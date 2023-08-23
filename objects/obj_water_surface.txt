@@ -1,0 +1,7 @@
+sprite=spr_water_surface
+visible=1
+solid=0
+persistent=0
+depth=-12000
+parent=par_indestructable
+mask=

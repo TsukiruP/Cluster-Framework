@@ -1,0 +1,86 @@
++System
+	|ctrl_initialization
+	|par_indestructable
+	+Controllers
+		|ctrl_display
+		|ctrl_audio
+		|ctrl_input
+		|ctrl_text
+		|ctrl_transition
+		+Stage Controllers
+			|ctrl_culling
+			|ctrl_stage
+			|ctrl_hud
+			|ctrl_pause
++Gameplay
+	+Characters
+		|ctrl_camera
+		|obj_player_spawn
+		|par_character
+	+Props
+		+Sensors
+		+Rings
+			|obj_ring
+		|obj_checkpoint
+		+Dash Panels
+		+Springs
+		+Dash Rings
+		+Monitors
+			|par_monitor
+			+Rings
+				|obj_monitor_bonus
+				|obj_monitor_super_bonus
+				|obj_monitor_random_bonus
+			+Shields
+				|obj_monitor_basic
+				|obj_monitor_magnetic
+				|obj_monitor_fire
+				|obj_monitor_bubble
+				|obj_monitor_lightning
+			+Status
+				|obj_monitor_muteki
+				|obj_monitor_speed
+				|obj_monitor_mine
+				|obj_monitor_slow
+				|obj_monitor_panic
+				|obj_monitor_swap
+		+Spikes
+			|par_spike
+		+Water
+			|obj_water_surface
+	+Badniks
+		|par_badnik
+	+Effects
+		|eff_dummy
++Stages
+	+Parents
+		|par_terrain
+		|par_solid
+		|par_obstacle
+		|par_platform
+		|par_moving_platform
+		|par_layer_low
+		|par_layer_high
+	+Basic Test
+		|obj_basic_test_parallax
+		+Collision Masks
+			+Solids
+				|obj_basic_test_collision_solid_01
+				|obj_basic_test_collision_solid_02
+				|obj_basic_test_collision_solid_03
+				|obj_basic_test_collision_solid_04
+				|obj_basic_test_collision_solid_05
+				|obj_basic_test_collision_solid_06
+				|obj_basic_test_collision_solid_07
+				|obj_basic_test_collision_solid_08
+				|obj_basic_test_collision_solid_09
+				|obj_basic_test_collision_solid_10
+				|obj_basic_test_collision_solid_11
+				|obj_basic_test_collision_solid_12
+				|obj_basic_test_collision_solid_13
+				|obj_basic_test_collision_solid_14
+				|obj_basic_test_collision_solid_15
+		+Gimmicks
+			|obj_basic_test_water_fall_01
+			|obj_basic_test_water_fall_02
+			|obj_basic_test_water_fall_03

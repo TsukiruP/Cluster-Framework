@@ -1,0 +1,7 @@
+sprite=
+visible=1
+solid=0
+persistent=0
+depth=16000
+parent=par_indestructable
+mask=
