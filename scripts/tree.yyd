@@ -101,4 +101,6 @@
 			|character_align_roll
 			|character_get_item
 			+Trail
-				|trail_start
+				|start_trail
+				|update_trail
+				|draw_trail

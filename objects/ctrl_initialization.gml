@@ -71,6 +71,7 @@ global.settings_gameplay_checkpoint = ini_read_real("gameplay", "checkpoint", tr
 global.settings_misc_hud     = ini_read_real("misc", "hud", 1);
 global.settings_misc_status  = ini_read_real("misc", "status", 2);
 global.settings_misc_feed    = ini_read_real("misc", "feed", true);
+global.settings_misc_trails  = ini_read_real("misc", "trails", true);
 global.settings_misc_lock_on = ini_read_real("misc", "lock_on", true);
 global.settings_misc_results = ini_read_real("misc", "results", 1);
 
@@ -142,6 +143,7 @@ global.gameplay_checkpoint = global.settings_gameplay_checkpoint;
 global.misc_hud     = global.settings_misc_hud;
 global.misc_status  = global.settings_misc_status;
 global.misc_feed    = global.settings_misc_feed;
+global.misc_trails  = global.settings_misc_trails;
 global.misc_lock_on = global.settings_misc_lock_on;
 global.misc_results = global.settings_misc_results;
 /*"/*'/**//* YYD ACTION

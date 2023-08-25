@@ -184,6 +184,8 @@ death_alarm     = -5;
 depth_default   =  0;
 carry_ally      =  noone;
 tunnel_lock     =  false;
+
+start_trail(15);
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -273,10 +275,12 @@ if(death_alarm == -1) exit;
 
 if(action_state == ACTION_DEATH) {
     if(death_alarm == -5) {
-        depth       = -11000
-        angle       =  0;
-        shield_date =  0;
-        death_alarm =  128;
+        depth              = -11000
+        angle              =  0;
+        shield_data        =  0;
+        invincibility_type =  0;
+        speed_shoe_type    =  0;
+        death_alarm        =  128;
         
         if(drowned == false) {
             if(physics_type == PHYS_UNDERWATER) y_speed = -3.5;
@@ -1451,7 +1455,7 @@ if(afterimage_draw == true) {
         if(instance_number(eff_afterimage) < 3) {
             afterimage_alarm = 6;
 
-            with(instance_create(floor(x), floor(y), eff_afterimage)) {
+            with(instance_create(floor(draw_x), floor(draw_y), eff_afterimage)) {
                 sprite_index = other.animation_sprite;
                 image_xscale = other.animation_direction * other.animation_x_scale;
                 image_yscale = other.animation_y_scale;
@@ -1472,6 +1476,16 @@ if(afterimage_draw == true) {
         }
     }
 }
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Trail
+
+update_trail(floor(x) + (dcos(angle + 90) * (-2 - (1 * angle == 90)) * (1 *action_state == ACTION_ROLL)) + dcos(angle) * x_speed,
+    floor(y) - (dsin(angle + 90) * (-3 - (1 * angle != 0)) * (1 *action_state == ACTION_ROLL)) + y_speed - dsin(angle) * x_speed,
+    action_state == ACTION_ROLL);
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -1479,6 +1493,12 @@ action_id=603
 applies_to=self
 */
 /// Draw Character
+
+// Trail:
+draw_set_blend_mode(bm_add);
+draw_set_color(c_blue);
+draw_trail(spr_trail, 20, true);
+draw_set_blend_mode(bm_normal);
 
 if(invincibility_type != 1 || (invincibility_type == 1 && (invincibility_alarm > 0 || invincibility_alarm == -1))) {
     if(invincibility_type == 1 && invincibility_alarm > 0 && !((global.stage_time div 60) mod 3)) exit;

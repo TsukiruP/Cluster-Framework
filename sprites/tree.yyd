@@ -244,6 +244,7 @@
 			|spr_water_splash_run
 			|spr_water_splash_jump
 		+Misc.
+			|spr_trail
 			|spr_character_arrow
 			|spr_homing_reticle
 			|spr_tag_call
