@@ -157,7 +157,7 @@ applies_to=self
 /// Item Feed
 
 if(player_exists()) {
-if(global.misc_feed == true && item_feed == -1) item_feed = ds_list_create();
+    if(global.misc_feed == true && item_feed == -1) item_feed = ds_list_create();
 }
 
 if(item_feed != -1) {
@@ -243,6 +243,9 @@ applies_to=self
 */
 /// Draw Status Effects
 
+// Don't bother if HUD has been disabled:
+if(global.misc_hud == 0) exit;
+
 if(player_exists()) {
     var status_count;
 
@@ -284,6 +287,9 @@ action_id=603
 applies_to=self
 */
 /// Draw Item Feed
+
+// Don't bother if HUD has been disabled:
+if(global.misc_hud == 0) exit;
 
 // Item feed:
 if(item_feed != -1) {
