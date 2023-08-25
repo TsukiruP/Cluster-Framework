@@ -100,3 +100,5 @@
 			|character_ring_loss
 			|character_align_roll
 			|character_get_item
+			+Trail
+				|trail_start
