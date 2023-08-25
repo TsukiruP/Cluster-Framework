@@ -34,8 +34,5 @@ if((control_type == 1 && (global.stage_rings > 0 || shield_data != 0)) || contro
     
     // Play sound:
     if(object_is_ancestor(argument0.object_index, par_spike)) sound_play("snd_spike");
-    else {
-        if(drowned == true) sound_play("snd_drown");
-        else sound_play("snd_hurt");
-    }
+    else sound_play("snd_hurt");
 }

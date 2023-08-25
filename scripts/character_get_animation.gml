@@ -116,7 +116,7 @@ switch(character_data) {
         character_set_animation("crouch_end",     spr_miles_crouch,       10, 11,  0,  0, 0.20, "stand");
 
         // Tag crouch:
-        character_set_animation("tag_crouch",     spr_miles_tag_crouch,    0, 10, 3,  0, 0.20);
+        character_set_animation("tag_crouch",     spr_miles_tag_crouch,    0, 10,  3, -1, 0.20);
         character_set_animation("tag_crouch_end", spr_miles_tag_crouch,   11, 12,  0,  0, 0.20, "tag_stand");
 
         // Spin dash:
@@ -259,15 +259,15 @@ switch(character_data) {
         character_set_animation("hurt",           spr_classic_misc,        2,  2,  2,  0, 0.20);
 
         // Death:
-        character_set_animation("death",          spr_classic_death,       0,  0,  0, -1, 0.20);
-        character_set_animation("drown",          spr_classic_death,       1,  1,  1, -1, 0.20);
+        character_set_animation("death",          spr_classic_death,       0,  0,  0,  0, 0);
+        character_set_animation("drown",          spr_classic_death,       1,  1,  0,  0, 0);
 
         // Ready:
         character_set_animation("ready",          spr_classic_stand,       5, 64,  0,  0, 0.15, "stand");
 
         // Spring:
-        character_set_animation("spring_flight",  spr_classic_misc,        4,  4,  4, -1, 0.20);
-        character_set_animation("spring_fall",    spr_classic_misc,        4,  4,  4, -1, 0.20);
+        character_set_animation("spring_flight",  spr_classic_misc,        4,  4,  4,  0, 0);
+        character_set_animation("spring_fall",    spr_classic_misc,        4,  4,  4,  0, 0);
 
         // Breathe:
         character_set_animation("breathe",        spr_classic_misc,        0,  1,  0,  0, 0.10);

@@ -18,21 +18,26 @@ sound_add_directory("data\audio\sfx\character\tag action", ".wav", 0, true);
 sound_add_directory("data\audio\sfx\prop", ".wav", 0, true);
 
 // Add BGM:
-sound_add_directory("data\audio\bgm", ".wav", 1, false);
+sound_add_directory("data\audio\bgm", ".ogg", 3, false);
 
 // Ring pan:
 ring_pan = 1;
 
 // BGM variables:
-bgm_instance = -1;
-bgm_muteki   = -1
-bgm_speed_up = -1;
-bgm_current  =  "none";
-bgm_fade     =  false;
+music_id  = -1;
+jingle_id = -1;
+fade_out  =  false;
 
 // Set volume:
 sound_kind_volume(0, global.audio_sfx_volume / 100);
-sound_kind_volume(1, global.audio_bgm_volume / 100);
+sound_kind_volume(3, global.audio_bgm_volume / 100);
+
+// Set loop points:
+sound_set_loop("bgm_dev_title", 2304672, 9984665, unit_samples);
+
+sound_set_loop("bgm_basic_test_1", 1091072, 6462372, unit_samples);
+
+sound_set_loop("bgm_basic_test_2", 868576, 6161087, unit_samples);
 #define Step_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -47,34 +52,43 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Fade BGM
+/// Fade Music
 
 // Fade Out:
-if(bgm_fade == true) {
-    // BGM:
-    if(bgm_instance != -1) {
-        if(sound_get_volume(bgm_instance) != 0) sound_volume(bgm_instance, max(0, sound_get_volume(bgm_instance) - 0.01));
-        else {
-            sound_discard(bgm_instance);
-            bgm_instance = -1;
+if(fade_out == true) {
+    if(sound_kind_get_volume(3) != 0) sound_kind_volume(3, max(0, sound_kind_get_volume(3) - 0.01));
+    else {
+        // Discard music:
+        if(music_id != -1) {
+            sound_stop(music_id);
+            sound_discard(music_id);
+            music_id = -1;
         }
-    }
 
-    // Fade Out Invincibility:
-    if(bgm_muteki != -1) {
-        if(sound_get_volume(bgm_muteki) != 0) sound_volume(bgm_muteki, max(0, sound_get_volume(bgm_muteki) - 0.01));
-        else {
-            sound_discard(bgm_muteki);
-            bgm_muteki = -1;
+        // Discard jingle:
+        if(jingle_id != -1) {
+            sound_stop(jingle_id);
+            sound_discard(jingle_id);
+            jingle_id = -1;
         }
-    }
 
-    // Fade Out Speed Up:
-    if(bgm_muteki != -1) {
-        if(sound_get_volume(bgm_muteki) != 0) sound_volume(bgm_muteki, max(0, sound_get_volume(bgm_muteki) - 0.01));
-        else {
-            sound_discard(bgm_muteki);
-            bgm_muteki = -1;
+        // Reset flag:
+        fade_out = false;
+    }
+}
+
+// Fade In:
+if(fade_out == false) {
+    // Don't if drowning is playing:
+    if(!sound_isplaying("bgm_drown")) {
+        // Fade in jingle first:
+        if(jingle_id != -1) {
+            if(sound_get_volume(jingle_id) != 1) sound_volume(jingle_id, min(1, sound_get_volume(jingle_id) + 0.01));
+        }
+        
+        // Fade in music:
+        else if(music_id != -1) {
+            if(sound_get_volume(music_id) != 1) sound_volume(music_id, min(1, sound_get_volume(music_id) + 0.01));
         }
     }
 }
@@ -83,35 +97,24 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Quiet BGM
+/// Quiet Music
 
-if(bgm_instance != -1) {
-    if(sound_isplaying("bgm_muteki")) {
-        sound_pause(bgm_instance);
+// Drowning takes priority:
+if(!sound_isplaying("bgm_drown")) {
+    // Next is the jingles:
+    if(jingle_id != -1) {
+        if(music_id != -1) sound_volume(music_id, 0);
     }
-}
-#define Other_4
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Room BGM
-
-// Set BGM:
-switch(room) {
-    // Basic Test:
-    case rm_basic_test_1:
-        bgm_current = "bgm_dev_title";
-        break;
-
-    default:
-        bgm_current = "none";
-        break;
+} else {
+    if(music_id != -1) sound_volume(music_id, 0);
+    if(jingle_id != -1) sound_volume(jingle_id, 0);
 }
 
-// Play BGM:
-if(bgm_current != "none") bgm_instance = sound_play_ex(bgm_current);
+// Clear jingle:
+if(jingle_id != -1 && !sound_isplaying("bgm_muteki") && !sound_isplaying("bgm_speed_up")) {
+    sound_discard(jingle_id)
+    jingle_id = -1;
+}
 #define Other_10
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -120,20 +123,17 @@ applies_to=self
 */
 /// Play Invincibility Jingle
 
-// Clear variable:
-if(bgm_muteki != -1) {
-    sound_discard(bgm_muteki);
-    bgm_muteki = -1;
+// Clear jingle:
+if(jingle_id != -1) {
+    sound_stop(jingle_id);
+    sound_discard(jingle_id);
+    jingle_id = -1;
 };
 
-//if(bgm_muteki == -1) {
-    //bgm_muteki =
-    sound_play_single("bgm_muteki");
-
-    //if(bgm_speed_up != -1) {
-        //sound_volume(bgm_speed_up, 0);
-    //}
-//}
+// Set jingle:
+if(jingle_id == -1) {
+    jingle_id = sound_play_single("bgm_muteki");
+}
 #define Other_11
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -142,23 +142,14 @@ applies_to=self
 */
 /// Play Speed Up Jingle
 
-// Clear variable:
-if(bgm_speed_up != -1) {
-    sound_discard(bgm_speed_up);
-    bgm_speed_up = -1;
+// Clear jingle:
+if(jingle_id != -1) {
+    sound_stop(jingle_id);
+    sound_discard(jingle_id);
+    jingle_id = -1;
 };
 
-if(bgm_speed_up == -1) {
-    bgm_speed_up = sound_play_single("bgm_speed_up");
-
-    if(bgm_muteki != -1) {
-        sound_volume(bgm_muteki, 0);
-    }
+// Set jingle:
+if(jingle_id == -1) {
+    jingle_id = sound_play_single("bgm_speed_up");
 }
-#define KeyPress_32
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-sound_kind_volume(1, 0);

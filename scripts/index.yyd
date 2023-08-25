@@ -87,3 +87,4 @@ character_state_hurt
 character_handle_monitor
 character_handle_water_surface
 water_exists
+user_get_input

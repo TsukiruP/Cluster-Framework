@@ -7,7 +7,7 @@ applies_to=self
 /// Transition Initialization
 
 // State variables:
-debug            = false
+debug            = false;
 fade_state       = 0;
 menu_state       = 0;
 title_card_state = 0;
@@ -82,7 +82,7 @@ if(transition_type == TRANS_FADE) {
             if(debug == true) {
                 event_user(0);
 
-                if(user_input_accept("pressed")) {
+                if(user_get_input(INP_ACCEPT, CHECK_PRESSED)) {
                     fade_state = 2;
                     event_user(1);
                 }
@@ -128,7 +128,7 @@ if(transition_type == TRANS_MENU) {
             if(debug == true) {
                 event_user(0);
 
-                if(user_input_accept("pressed")) {
+                if(user_get_input(INP_ACCEPT, CHECK_PRESSED)) {
                     menu_state = 2;
                     event_user(1);
                 }
@@ -167,6 +167,14 @@ if(transition_type == TRANS_CARD) {
 
     // Zone distance:
     zone_distance = zone_start + zone_position;
+
+    // Run kickoff:
+    if(player_exists()) {
+        if(title_card_state >= 4 && room_kickoff == KICKOFF_RUN && room_run_end_x != -1) {
+            global.player_id.x_speed     = global.player_id.x_top_speed;
+            global.player_id.input_right = true;
+        }
+    }
 
     // 0 - Background start:
     if(title_card_state == 0) {
@@ -211,7 +219,7 @@ if(transition_type == TRANS_CARD) {
             if(debug == true) {
                 event_user(0);
 
-                if(user_input_accept("pressed")) {
+                if(user_get_input(INP_ACCEPT, CHECK_PRESSED)) {
                     title_card_state = 4;
                     event_user(1);
                 }
@@ -224,9 +232,9 @@ if(transition_type == TRANS_CARD) {
 
     // 3 - Standing by:
     if(title_card_state == 3) {
-        if(transition_standby < 1) transition_standby += transition_speed;
+        if(transition_standby < 2) transition_standby += transition_speed;
         else {
-            transition_standby = 1;
+            transition_standby = 2;
             title_card_state   = 4;
         }
     }
@@ -242,14 +250,8 @@ if(transition_type == TRANS_CARD) {
 
             // Player kickoffs:
             if(player_exists()) {
-                // Run kickoff:
-                if(room_kickoff == KICKOFF_RUN) {
-                    global.player_id.x_speed     = global.player_id.x_top_speed;
-                    global.player_id.input_right = true;
-                }
-
                 // Wait/ready kickoffs:
-                else if(room_kickoff == KICKOFF_WAIT || room_kickoff == KICKOFF_READY) {
+                if(room_kickoff == KICKOFF_WAIT || room_kickoff == KICKOFF_READY) {
                     if(floor(background_position) <= global.player_id.y + 13 - view_yview[view_current]) {
                         // Wait kickoff:
                         if(room_kickoff == KICKOFF_WAIT) {
@@ -265,7 +267,7 @@ if(transition_type == TRANS_CARD) {
                             if(partner_exists()) global.partner_id.animation_current = "ready";
                         }
                     }
-                } else if(room_kickoff != KICKOFF_DEFAULT) global.player_id.control_type = 1;
+                } else if(room_kickoff != KICKOFF_DEFAULT && room_kickoff != KICKOFF_RUN) global.player_id.control_type = 1;
             }
         } else {
             background_speed    = 0;
@@ -287,8 +289,8 @@ if(transition_type == TRANS_CARD) {
             if(player_exists()) {
                 // Default standby:
                 if(room_kickoff == KICKOFF_DEFAULT) {
-                    if(transition_standby < 1.5) transition_standby += transition_speed;
-                    else transition_standby = 1.5;
+                    if(transition_standby < 3) transition_standby += transition_speed;
+                    else transition_standby = 3;
                 }
 
                 // Animation standby:
@@ -298,15 +300,15 @@ if(transition_type == TRANS_CARD) {
                     else transition_standby = 2.2;
                 }
 
-                // Running:
+                // Stop running:
                 if(room_kickoff == KICKOFF_RUN) {
                     if(room_run_end_x != -1 && global.player_id.x >= room_run_end_x) room_run_end_x = -1;
                 }
             }
         }
 
-        if(debug == true || room_kickoff == KICKOFF_DEBUG || (room_kickoff == KICKOFF_DEFAULT && transition_standby == 1.5) ||
-            ((room_kickoff == KICKOFF_WAIT || room_kickoff == KICKOFF_READY) && transition_standby == 2.2) ||
+        if(debug == true || room_kickoff == KICKOFF_DEBUG || (room_kickoff == KICKOFF_DEFAULT && transition_standby == 3) ||
+            ((room_kickoff == KICKOFF_WAIT || room_kickoff == KICKOFF_READY) && transition_standby >= 2.2) ||
             (room_kickoff == KICKOFF_RUN && room_run_end_x == -1)) {
             // Start stage:
             stage_start();
@@ -348,8 +350,16 @@ if(transition_type == TRANS_RETRY) {
     // Background scroll:
     background_scroll += background_scroll_speed;
 
-    // Death distance:
+    // Retry distance:
     retry_distance = retry_start - retry_position;
+
+    // Run kickoff:
+    if(player_exists()) {
+        if(retry_state >= 4 && room_kickoff == KICKOFF_RUN && room_run_end_x != -1) {
+            global.player_id.x_speed     = global.player_id.x_top_speed;
+            global.player_id.input_right = true;
+        }
+    }
 
     // Background position:
     if(retry_state != 4) {
@@ -370,7 +380,7 @@ if(transition_type == TRANS_RETRY) {
         }
     }
 
-    // Death position:
+    // Retry position:
     if(retry_distance > retry_target) {
         retry_speed     = ceil(abs(retry_target - retry_distance) / 9);
         retry_position += retry_speed;
@@ -380,7 +390,7 @@ if(transition_type == TRANS_RETRY) {
     }
 
     // Skip states:
-    if(transition_standby != 1 && retry_state <= 1 && transition_standby != 1 && user_input_accept("pressed")) {
+    if(transition_standby != 1 && retry_state <= 1 && transition_standby != 1 && user_get_input(INP_ACCEPT, CHECK_PRESSED)) {
         transition_standby = 1;
         retry_state        = 1;
     }
@@ -398,7 +408,7 @@ if(transition_type == TRANS_RETRY) {
         if(transition_standby < 1) transition_standby += transition_speed;
         else {
             if(debug == true) event_user(0);
-            if((debug == true && user_input_accept("pressed")) || debug == false) {
+            if((debug == true && user_get_input(INP_ACCEPT, CHECK_PRESSED)) || debug == false) {
                 if(debug == true) event_user(1);
 
                 retry_state = 2;
@@ -406,12 +416,12 @@ if(transition_type == TRANS_RETRY) {
         }
     }
 
-    // 2 - Death end:
+    // 2 - Retry end:
     if(retry_state == 2) {
         // Background target:
         background_target = global.display_height / 2 + 15;
 
-        // Death target:
+        // Retry target:
         retry_target = -retry_size - 9;
 
         if(retry_distance == retry_target && background_position == background_target) retry_state = 3;
@@ -421,17 +431,12 @@ if(transition_type == TRANS_RETRY) {
     if(retry_state == 3) {
         if(transition_timer < 1) transition_timer += transition_speed;
         else {
-            if(global.checkpoint_x != -1 && global.checkpoint_y != -1) {
-                if(debug == false) room_goto(transition_room);
-
-                retry_state = 4;
-            } else {
-                persistent                  = false;
-                transition                  = room_transition(room);
-                transition.transition_timer = 1;
-                transition.depth            = depth - 50;
-                retry_state                 = -1;
+            if(debug == false) {
+                //room_get_data(transition_room);
+                room_goto(transition_room);
             }
+
+            retry_state = 4;
         }
     }
 
@@ -440,10 +445,16 @@ if(transition_type == TRANS_RETRY) {
         // Background target:
         background_target = -15;
 
-        // Resume stage:
-        stage_start();
+        if(global.player_id.x >= room_run_end_x && global.player_id.action_state != ACTION_DEATH) room_run_end_x = -1;
 
-        if(background_position == background_target) instance_destroy();
+        if((room_kickoff == KICKOFF_RUN && room_run_end_x == -1)) {
+            // Resume stage:
+            stage_start();
+
+            if(background_position == background_target) {
+                instance_destroy();
+            }
+        }
     }
 }
 #define Other_4
@@ -452,13 +463,38 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Create Objects
+/// Play Music
 
-// Create water:
-if(room_water_level != -1) instance_create(0, room_water_level, obj_water_surface);
+// Reset music volume:
+if(sound_kind_get_volume(3) != global.audio_bgm_volume / 100) sound_kind_volume(3, global.audio_bgm_volume / 100);
+
+// Set music:
+if(room_music != "") {
+    if(!sound_isplaying(room_music)) {
+        with(ctrl_audio) {
+            // Discard music:
+            if(music_id != -1) {
+                sound_discard(music_id);
+                music_id = -1;
+            }
+
+            // Create music instance:
+            if(music_id == -1) music_id = sound_loop_single(other.room_music);
+        }
+    }
+}
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Create Objects
 
 // Create background:
 if(room_background != -1) instance_create(0, 0, room_background);
+
+// Create water:
+if(room_water_level != -1) instance_create(0, room_water_level, obj_water_surface);
 
 // Create stage objects:
 if(transition_type == TRANS_CARD || transition_type == TRANS_RETRY) {

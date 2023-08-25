@@ -30,6 +30,3 @@ obj_basic_test_collision_solid_01,1776,960,00129865,0,1,1,4294967295,0,0
 obj_basic_test_collision_solid_04,432,900,001A502E,0,1,1,4294967295,0,0
 obj_basic_test_collision_solid_04,528,924,00105D41,0,1,1,4294967295,0,0
 obj_monitor_bubble,1232,1088,002F98DD,0,1,1,4294967295,0,0
-obj_monitor_muteki,304,844,0026CD8E,0,1,1,4294967295,0,0
-obj_monitor_speed,364,844,00199C45,0,1,1,4294967295,0,0
-obj_monitor_muteki,436,844,00332C73,0,1,1,4294967295,0,0

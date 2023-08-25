@@ -1,4 +1,4 @@
-/// user_input_left(type, [device])
+/// user_input_left(type, [device])'
 
 // Return held input:
 if(argument[0] == "held"){

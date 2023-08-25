@@ -1,4 +1,4 @@
-/// character_set_animation(animation, sprite, start frame, end frame, loop frame, loop count, speed, [next], [next frame], [flag frame])
+/// character_set_animation(animation, sprite, start frame, end frame, loop frame, loop count, speed, [next, next frame, flag frame])
 
 if(animation_current == argument[0]) {
     animation_sprite      = argument[1];

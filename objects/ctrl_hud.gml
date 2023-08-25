@@ -68,30 +68,32 @@ if(hide == false) {
 // Air position:
 if(global.misc_hud == 1) {
     if(player_exists()) {
-        // Air value:
-        air_value = global.player_id.air_remaining * 60;
+        if(global.player_id.action_state != ACTION_DEATH) {
+            // Air value:
+            air_value = global.player_id.air_remaining;
 
-        if(global.player_id.action_state != ACTION_DEATH && global.player_id.physics_type == PHYS_UNDERWATER) {
-            if(air_position < hud_position) {
-                if(hud_speed == 0) air_speed = ceil(abs(air_position - hud_position) / hud_factor);
-                else air_speed = hud_speed;
+            if(global.player_id.physics_type == PHYS_UNDERWATER) {
+                if(air_position < hud_position) {
+                    if(hud_speed == 0) air_speed = ceil(abs(air_position - hud_position) / hud_factor);
+                    else air_speed = hud_speed;
 
-                air_position += air_speed;
+                    air_position += air_speed;
+                } else {
+                    air_speed    = hud_speed;
+                    air_position = hud_position;
+                }
             } else {
-                air_speed    = hud_speed;
-                air_position = hud_position;
+                if(air_position != hud_start) {
+                    air_speed     = ceil(abs(air_position - hud_start) / (hud_factor * 3));
+                    air_position -= air_speed;
+                } else {
+                    air_speed    = 0;
+                    air_position = hud_start;
+                }
             }
-        } else if(global.player_id.action_state != ACTION_DEATH) {
-            if(air_position != hud_start) {
-                air_speed     = ceil(abs(air_position - hud_start) / (hud_factor * 3));
-                air_position -= air_speed;
-            } else {
-                air_speed    = 0;
-                air_position = hud_start;
-            }
-        }
+        } else air_value = 0;
     } else {
-        air_value    = 1800;
+        air_value    = 30;
         air_position = hud_position;
     }
 }
@@ -223,7 +225,7 @@ if(global.misc_hud == 1) {
 
     // Air:
     draw_sprite(spr_hud, 2, view_xview[view_current] + air_position, view_yview[view_current] + 58);
-    draw_text(view_xview[view_current] + air_position + 29, view_yview[view_current] + 63, string_place_value(floor(air_value / 100), 2));
+    draw_text(view_xview[view_current] + air_position + 29, view_yview[view_current] + 63, string_place_value(air_value, 2));
 
     // Action gauge:
     draw_sprite(spr_hud, 3, view_xview[view_current] + hud_position + 6, view_yview[view_current] + global.display_height - 29);

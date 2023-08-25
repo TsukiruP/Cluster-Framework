@@ -447,4 +447,4 @@ applies_to=self
 /// "Restart" Game
 // 8.2 extensions don't support game restart, so we just go back to the first room.
 
-room_goto(room_first);
+if(!instance_exists(ctrl_transition)) room_transition(rm_basic_test_2);

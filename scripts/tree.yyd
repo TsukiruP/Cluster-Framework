@@ -37,6 +37,7 @@
 	+Misc.
 		|draw_backdrop_tiled_area
 		|window_resize
+		|user_get_input
 		|approach
 		|angle_wrap
 		|angle_rotate_towards

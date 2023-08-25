@@ -152,7 +152,7 @@ platform_alarm = 30;
 // Water variables:
 underwater      = false;
 air_remaining   = 30;
-air_alarm       = 60;
+air_alarm       = 1800;
 drown_countdown = 0;
 drowned         = false;
 
@@ -266,22 +266,16 @@ if(death_alarm == -1) exit;
 
 if(action_state == ACTION_DEATH) {
     if(death_alarm == -5) {
-        angle       =  0;
-        death_alarm =  128;
         depth       = -11000
+        angle       =  0;
+        shield_date =  0;
+        death_alarm =  128;
         
         if(drowned == false) {
             if(physics_type == PHYS_UNDERWATER) y_speed = -3.5;
             else y_speed = -7;
-        }
-        
-        // Fade out audio:
-        // [PLACEHOLDER]
-        
-        // Destroy shields:
-        // [PLACEHOLDER]
+        } else sound_play("snd_drown");
 
-        
         // Stop sounds:
         if(sound_isplaying("snd_fly")) sound_stop("snd_fly");
         if(sound_isplaying("snd_fly_drop")) sound_stop("snd_fly_drop");
@@ -831,7 +825,7 @@ if(physics_type == PHYS_UNDERWATER) {
         air_alarm     = 60;
         
         // Stop jingle:
-        // [PLACEHOLDER]
+        sound_stop("bgm_drown");
     } else {
         // Decrease air alarm:
         if(air_alarm != 0) air_alarm -= 1;
@@ -846,7 +840,7 @@ if(physics_type == PHYS_UNDERWATER) {
                     
                 // Drown jingle:
                 case 12:
-                    // [PLACEHOLDER]
+                    sound_play("bgm_drown");
                 
                 // Drown countdown:
                 case 10:
@@ -862,7 +856,7 @@ if(physics_type == PHYS_UNDERWATER) {
                     action_state  = ACTION_DEATH;
                     air_remaining = 30;
                     air_alarm     = 60;
-                    drowned      = true;
+                    drowned       = true;
                 break;
             }
             
@@ -876,6 +870,9 @@ if(physics_type == PHYS_UNDERWATER) {
 } else {
     air_remaining = 30;
     air_alarm     = 60;
+    
+    // Stop jingle:
+    sound_stop("bgm_drown");
 }
 #define Step_1
 /*"/*'/**//* YYD ACTION
@@ -1165,7 +1162,13 @@ switch(action_state) {
     
     // Death:
     case ACTION_DEATH:
-        if(animation_current != "death") animation_current = "death";
+        if(character_data != CHAR_NONE) {
+            if(animation_current != "death") animation_current = "death";
+        } else {
+            if(drowned == true) {
+                if(animation_current != "drown") animation_current = "drown";
+            } else if(animation_current != "death") animation_current = "death";
+        }
         break;
     
     // Spring:
