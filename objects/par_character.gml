@@ -6,6 +6,9 @@ applies_to=self
 */
 /// Character Initialization
 
+// Image speed:
+image_speed = 0;
+
 // Initialized variable:
 initialized = false;
 
@@ -829,6 +832,9 @@ if(speed_shoe_alarm > -1) {
         speed_shoe_alarm = -1;
     }
 }
+
+if(speed_shoe_type == 1) afterimage_draw = true;
+else afterimage_draw = false;
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -1438,6 +1444,34 @@ action_id=603
 applies_to=self
 */
 /// Afterimage
+
+if(afterimage_draw == true) {
+    if(afterimage_alarm > 0) afterimage_alarm -= 1;
+    else {
+        if(instance_number(eff_afterimage) < 3) {
+            afterimage_alarm = 6;
+
+            with(instance_create(floor(x), floor(y), eff_afterimage)) {
+                sprite_index = other.animation_sprite;
+                image_xscale = other.animation_direction * other.animation_x_scale;
+                image_yscale = other.animation_y_scale;
+                image_angle  = other.animation_angle;
+                image_speed  = 0;
+                image_index  = floor(other.animation_current_frame);
+                image_alpha  = 0.9;
+                depth        = other.depth + 1;
+
+                // Miles' tail
+                miles_tails_sprite    = other.miles_tails_sprite;
+                miles_tails_frame     = other.miles_tails_frame;
+                miles_tails_x         = other.miles_tails_x;
+                miles_tails_y         = other.miles_tails_y;
+                miles_tails_angle     = other.miles_tails_angle;
+                miles_tails_direction = other.miles_tails_direction;
+            }
+        }
+    }
+}
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1

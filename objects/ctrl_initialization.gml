@@ -6,6 +6,9 @@ applies_to=self
 */
 /// Settings Initialization
 
+// Image speed:
+image_speed = 0;
+
 // Open/create settings file:
 ini_open("settings.ini");
 
