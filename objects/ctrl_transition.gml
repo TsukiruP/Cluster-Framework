@@ -355,7 +355,7 @@ if(transition_type == TRANS_RETRY) {
 
     // Run kickoff:
     if(player_exists()) {
-        if(retry_state >= 4 && room_kickoff == KICKOFF_RUN && room_run_end_x != -1) {
+        if(retry_state >= 4 && room_kickoff == KICKOFF_RUN && room_run_end_x != -1 && global.checkpoint_x == -1 && global.checkpoint_y == -1) {
             global.player_id.x_speed     = global.player_id.x_top_speed;
             global.player_id.input_right = true;
         }
@@ -445,9 +445,13 @@ if(transition_type == TRANS_RETRY) {
         // Background target:
         background_target = -15;
 
-        if(global.player_id.x >= room_run_end_x && global.player_id.action_state != ACTION_DEATH) room_run_end_x = -1;
+        // Stop running:
+        if(player_exists()) {
+            if(global.player_id.x >= room_run_end_x && global.player_id.action_state != ACTION_DEATH) room_run_end_x = -1;
+        }
 
-        if((room_kickoff == KICKOFF_RUN && room_run_end_x == -1)) {
+
+        if(debug == true || room_kickoff != KICKOFF_RUN || (room_kickoff == KICKOFF_RUN && (room_run_end_x == -1 || (global.checkpoint_x != -1 && global.checkpoint_y != -1)))) {
             // Resume stage:
             stage_start();
 

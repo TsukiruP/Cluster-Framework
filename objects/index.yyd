@@ -64,3 +64,4 @@ obj_monitor_speed
 obj_monitor_slow
 obj_monitor_panic
 obj_monitor_swap
+eff_afterimage

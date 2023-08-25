@@ -13,7 +13,7 @@
 			|ctrl_hud
 			|ctrl_pause
 +Gameplay
-	+Characters
+	+Character
 		|ctrl_camera
 		|obj_player_spawn
 		|par_character
@@ -52,6 +52,8 @@
 		|par_badnik
 	+Effects
 		|eff_dummy
+		+Character
+			|eff_afterimage
 +Stages
 	+Parents
 		|par_terrain

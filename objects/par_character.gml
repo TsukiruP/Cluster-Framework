@@ -85,6 +85,10 @@ status_swap_alarm   = -1;
 
 slam_state          = 0;
 
+// After image variables:
+afterimage_draw  = false;
+afterimage_alarm = 0;
+
 // Sonic variables:
 peel_out_flag       = false;
 peel_out_timer      = 0;
@@ -152,7 +156,7 @@ platform_alarm = 30;
 // Water variables:
 underwater      = false;
 air_remaining   = 30;
-air_alarm       = 1800;
+air_alarm       = 60;
 drown_countdown = 0;
 drowned         = false;
 
@@ -279,6 +283,10 @@ if(action_state == ACTION_DEATH) {
         // Stop sounds:
         if(sound_isplaying("snd_fly")) sound_stop("snd_fly");
         if(sound_isplaying("snd_fly_drop")) sound_stop("snd_fly_drop");
+        
+        // Stop jingles:
+        if(sound_isplaying("bgm_muteki")) sound_stop("bgm_muteki");
+        if(sound_isplaying("bgm_speed_up")) sound_stop("bgm_speed_up");
     }
     
     // Add gravity:
@@ -302,7 +310,10 @@ if(action_state == ACTION_DEATH) {
 }
 
 if(action_state != ACTION_RESPAWN) {
-    if(y >= room_height && action_state != ACTION_DEATH) action_state = ACTION_DEATH;
+    if(y >= room_height && action_state != ACTION_DEATH) {
+        action_state = ACTION_DEATH;
+        sound_play("snd_hurt");
+    }
 }
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -795,7 +806,7 @@ applies_to=self
 if(initialized == false || action_state == ACTION_RESPAWN || action_state == ACTION_DEATH) exit;
 
 // Invincibility alarm:
-if(invincibility_alarm > -1){
+if(invincibility_alarm > -1) {
     invincibility_alarm -= 1;
     
     if(invincibility_alarm == 0) {
@@ -807,6 +818,16 @@ if(invincibility_alarm > -1){
 // Hurt invincibility:
 if(invincibility_type == 1 && invincibility_alarm == -1) {
     if(ground == true || action_state != ACTION_HURT) invincibility_alarm = 120;
+}
+
+// Speed shoes alarm:
+if(speed_shoe_alarm > -1) {
+    speed_shoe_alarm -= 1;
+    
+    if(speed_shoe_alarm == 0) {
+        speed_shoe_type  =  0;
+        speed_shoe_alarm = -1;
+    }
 }
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -1428,7 +1449,7 @@ applies_to=self
 if(invincibility_type != 1 || (invincibility_type == 1 && (invincibility_alarm > 0 || invincibility_alarm == -1))) {
     if(invincibility_type == 1 && invincibility_alarm > 0 && !((global.stage_time div 60) mod 3)) exit;
 
-    // Miles' Tails:
+    // Miles' tails:
     if(miles_tails_sprite != noone) draw_sprite_ext(miles_tails_sprite, floor(miles_tails_frame), floor(draw_x + miles_tails_x), floor(draw_y + miles_tails_y), miles_tails_direction * animation_x_scale, animation_y_scale, miles_tails_angle, animation_blend, animation_alpha);
     
     // Character:
