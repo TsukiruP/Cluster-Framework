@@ -18,7 +18,8 @@ hud_start    = -sprite_get_width(spr_hud) - hud_factor * 2;
 hud_speed    =  0;
 
 // Air variables:
-air_value    =  1800;
+air_hide     =  false;
+air_value    =  30;
 air_position = -sprite_get_width(spr_hud);
 air_speed    =  0;
 
@@ -68,30 +69,36 @@ if(hide == false) {
 // Air position:
 if(global.misc_hud == 1) {
     if(player_exists()) {
+        // Air target:
         if(global.player_id.action_state != ACTION_DEATH) {
-            // Air value:
-            air_value = global.player_id.air_remaining;
-
             if(global.player_id.physics_type == PHYS_UNDERWATER) {
-                if(air_position < hud_position) {
-                    if(hud_speed == 0) air_speed = ceil(abs(air_position - hud_position) / hud_factor);
-                    else air_speed = hud_speed;
+                if(global.player_id.shield_data == SHIELD_BUBBLE) air_hide = true;
+                else air_hide = false;
+            } else air_hide = true;
+        }
 
-                    air_position += air_speed;
-                } else {
-                    air_speed    = hud_speed;
-                    air_position = hud_position;
-                }
+        // Air value:
+        air_value = global.player_id.air_remaining;
+
+        if(air_hide == false) {
+            if(air_position < hud_position) {
+                if(hud_speed == 0) air_speed = ceil(abs(air_position - hud_position) / hud_factor);
+                else air_speed = hud_speed;
+
+                air_position += air_speed;
             } else {
-                if(air_position != hud_start) {
-                    air_speed     = ceil(abs(air_position - hud_start) / (hud_factor * 3));
-                    air_position -= air_speed;
-                } else {
-                    air_speed    = 0;
-                    air_position = hud_start;
-                }
+                air_speed    = hud_speed;
+                air_position = hud_position;
             }
-        } else air_value = 0;
+        } else {
+            if(air_position != hud_start) {
+                air_speed     = ceil(abs(air_position - hud_start) / (hud_factor * 3));
+                air_position -= air_speed;
+            } else {
+                air_speed    = 0;
+                air_position = hud_start;
+            }
+        }
     } else {
         air_value    = 30;
         air_position = hud_position;

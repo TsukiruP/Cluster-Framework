@@ -153,8 +153,8 @@ terrain_edge_skip        = false;
 
 // Platform variables:
 platform_id    = noone;
+platform_mode  = false;
 platform_check = false;
-platform_alarm = 30;
 
 // Water variables:
 underwater      = false;
@@ -331,6 +331,10 @@ applies_to=self
 
 // Don't bother if not initialized or in the middle of respawning/dying:
 if(initialized == false || action_state == ACTION_RESPAWN || action_state == ACTION_DEATH) exit;
+
+// Platform fix:
+if(character_collision_platform_fix(x, y, angle, mask_platform_fix)) platform_mode = true;
+else platform_mode = false;
 
 // X movement:
 var x_steps, x_samples;
@@ -1048,20 +1052,6 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Platform Check
-
-if((ground == false || !place_meeting(x, y, par_platform)) && platform_check == true) {
-    if(platform_alarm > 0) platform_alarm -= 1;
-    else {
-        platform_check = false;
-        platform_alarm = 30;
-    }
-}
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
 /// Update Animations
 
 // Draw positions:
@@ -1428,18 +1418,18 @@ if(instance_exists(obj_water_surface)) {
     if((abs(y_speed) >= 0) && ((y > obj_water_surface.y && previous_y < obj_water_surface.y) ^^ (y < obj_water_surface.y && previous_y  > obj_water_surface.y))) {
         // Entering the water:
         if(y > obj_water_surface.y && previous_y < obj_water_surface.y) {
-            if(y_speed > 9) dummy_effect_create(spr_water_splash_large, 0.15, x, obj_water_surface.y, depth - 2);
-            else dummy_effect_create(spr_water_splash_small, 0.15, x, obj_water_surface.y, depth - 2);
+            if(y_speed > 9) dummy_effect_create(spr_splash_large, 0.15, x, obj_water_surface.y, depth - 2);
+            else dummy_effect_create(spr_splash_small, 0.15, x, obj_water_surface.y, depth - 2);
         }
 
         // Exiting the water:
         if(y < obj_water_surface.y && previous_y  > obj_water_surface.y) {
-            if(y_speed < -5) dummy_effect_create(spr_water_splash_large, 0.15, x, obj_water_surface.y, depth - 2);
-            else dummy_effect_create(spr_water_splash_small, 0.15, x, obj_water_surface.y, depth - 2);
+            if(y_speed < -5) dummy_effect_create(spr_splash_large, 0.15, x, obj_water_surface.y, depth - 2);
+            else dummy_effect_create(spr_splash_small, 0.15, x, obj_water_surface.y, depth - 2);
         }
 
         // Play sound:
-        sound_play("snd_water_splash");
+        sound_play("snd_splash");
     }
 }
 /*"/*'/**//* YYD ACTION

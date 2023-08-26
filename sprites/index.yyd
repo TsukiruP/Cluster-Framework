@@ -127,13 +127,13 @@ spr_miles_swim
 spr_miles_fly_boost
 spr_basic_test_water_fall_01
 spr_water_surface
-spr_water_bubble_spawn
-spr_water_bubble
-spr_water_splash_small
-spr_water_splash_large
-spr_water_splash_step
-spr_water_splash_run
-spr_water_splash_jump
+spr_bubble_spawn
+spr_bubble
+spr_splash_small
+spr_splash_large
+spr_splash_step
+spr_splash_run
+spr_splash_jump
 spr_explosion_small
 spr_explosion_large
 spr_explosion_badnik
@@ -205,3 +205,4 @@ spr_knuckles_leap
 spr_knuckles_fly_carry
 spr_basic_test_water_fall_03
 spr_trail
+mask_platform_fix

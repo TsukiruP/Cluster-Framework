@@ -23,6 +23,7 @@
 			|mask_dot
 			|mask_lines
 			|mask_edge_line
+			|mask_platform_fix
 			|mask_ledge
 		+Classic
 			|spr_classic_stand
@@ -209,8 +210,8 @@
 			|spr_spike_down
 		+Water
 			|spr_water_surface
-			|spr_water_bubble_spawn
-			|spr_water_bubble
+			|spr_bubble_spawn
+			|spr_bubble
 		+Misc.
 			|spr_hint_box
 	+Effects
@@ -237,12 +238,12 @@
 			|spr_explosion_large
 			|spr_explosion_badnik
 			|spr_explosion_water
-		+Water Splashes
-			|spr_water_splash_small
-			|spr_water_splash_large
-			|spr_water_splash_step
-			|spr_water_splash_run
-			|spr_water_splash_jump
+		+Splashes
+			|spr_splash_small
+			|spr_splash_large
+			|spr_splash_step
+			|spr_splash_run
+			|spr_splash_jump
 		+Misc.
 			|spr_trail
 			|spr_character_arrow

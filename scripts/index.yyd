@@ -91,3 +91,4 @@ user_get_input
 start_trail
 update_trail
 draw_trail
+character_collision_platform_fix

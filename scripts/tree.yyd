@@ -52,6 +52,7 @@
 		+Collision
 			|character_collision
 			|character_collision_slope
+			|character_collision_platform_fix
 			|character_collision_edge_line
 			+Main
 				|character_collision_main

@@ -29,3 +29,4 @@ obj_basic_test_collision_solid_01,1680,960,000B66A1,0,1,1,4294967295,0,0
 obj_basic_test_collision_solid_01,1776,960,00129865,0,1,1,4294967295,0,0
 obj_basic_test_collision_solid_04,432,900,001A502E,0,1,1,4294967295,0,0
 obj_basic_test_collision_solid_04,528,924,00105D41,0,1,1,4294967295,0,0
+obj_monitor_bubble,912,988,84A58F14,0,1,1,4294967295,0,0
