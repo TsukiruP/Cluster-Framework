@@ -9,8 +9,9 @@
 		|room_get_data
 		|room_transition
 		|room_view_set_all
-	+Parallax
+	+Draw Tiled
 		|parallax_add_node
+		|draw_backdrop_tiled_area
 		+Sprites
 			|draw_sprite_tiled_horizontal
 			|draw_sprite_tiled_horizontal_yscale
@@ -35,7 +36,6 @@
 		|user_input_cancel
 		|user_input_help
 	+Misc.
-		|draw_backdrop_tiled_area
 		|window_resize
 		|user_get_input
 		|approach

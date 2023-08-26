@@ -573,8 +573,6 @@ if(transition_type == TRANS_CARD) {
     // Bar:
     draw_sprite_tiled_vertical(spr_title_card_banner, 0, view_xview[view_current] + banner_position, view_yview[view_current] + banner_scroll);
 
-    draw_backdrop_tiled_area(spr_title_card_banner, 0, 0, view_xview[view_current] + banner_position, view_yview[view_current] + banner_scroll, 0, view_yview + view_hview);
-
     // Zone:
     zone_start = -string_width(room_zone) - 9;
 

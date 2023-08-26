@@ -15,7 +15,7 @@ if(argument_count >= 10) xscale = argument[9];
 else xscale = 1;
 
 // Set y scale:
-if(argument_count >= 10) yscale = argument[9];
+if(argument_count >= 11) yscale = argument[10];
 else yscale = 1;
 
 // Set backdrop data:
