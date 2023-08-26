@@ -27,19 +27,19 @@ if(background_exists(argument[0])) {
     backdrop_height = sprite_get_height(argument[0]);
 }
 
-tiled_width = backdrop_width;
+tiled_width  = backdrop_width;
 tiled_height = backdrop_height;
 
-for(j = 0; j < argument[6]; j += backdrop_height) {
+for(j = 0; j < argument[6]; j += backdrop_height + ysep) {
     tiled_height = min(argument[6] - j, backdrop_height);
 
-    for(i = 0; i < argument[5]; i += backdrop_width) {
+    for(i = 0; i < argument[5]; i += backdrop_width + xsep) {
         tiled_width = min(argument[5] - i, backdrop_width);
 
         if(background_exists(argument[0])) {
-            draw_background_part_ext(argument[0], argument[1], argument[2], tiled_width, tiled_height, argument[3] + i + xsep, argument[4] + j + ysep, xscale, yscale, c_white, 1);
+            draw_background_part_ext(argument[0], argument[1], argument[2], tiled_width, tiled_height, argument[3] + i, argument[4] + j, xscale, yscale, c_white, 1);
         } else {
-            draw_sprite_part_ext(argument[0], 0, argument[1], argument[2], tiled_width, tiled_height, argument[3] + i + xsep, argument[4] + j + ysep, xscale, yscale, c_white, 1);
+            draw_sprite_part_ext(argument[0], 0, argument[1], argument[2], tiled_width, tiled_height, argument[3] + i, argument[4] + j, xscale, yscale, c_white, 1);
         }
     }
 }
