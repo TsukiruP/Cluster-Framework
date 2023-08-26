@@ -115,6 +115,33 @@ if(jingle_id != -1 && !sound_isplaying("bgm_muteki") && !sound_isplaying("bgm_sp
     sound_discard(jingle_id)
     jingle_id = -1;
 }
+#define Other_3
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Release Audio
+
+// Sound list:
+sound_list = sound_kind_list(0);
+
+for(i = 0; i < ds_list_size(sound_list); i += 1) {
+    ds_list_find_value(sound_list, i);
+    ds_list_delete(sound_list, i);
+}
+
+ds_list_destroy(sound_list);
+
+// Music list:
+music_list = sound_kind_list(3);
+
+for(i = 0; i < ds_list_size(music_list); i += 1) {
+    ds_list_find_value(music_list, i);
+    ds_list_delete(music_list, i);
+}
+
+ds_list_destroy(music_list);
 #define Other_10
 /*"/*'/**//* YYD ACTION
 lib_id=1

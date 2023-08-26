@@ -71,7 +71,7 @@ global.settings_gameplay_checkpoint = ini_read_real("gameplay", "checkpoint", tr
 global.settings_misc_hud     = ini_read_real("misc", "hud", 1);
 global.settings_misc_status  = ini_read_real("misc", "status", 2);
 global.settings_misc_feed    = ini_read_real("misc", "feed", true);
-global.settings_misc_trails  = ini_read_real("misc", "trails", true);
+global.settings_misc_trails  = ini_read_real("misc", "trails", false);
 global.settings_misc_lock_on = ini_read_real("misc", "lock_on", true);
 global.settings_misc_results = ini_read_real("misc", "results", 1);
 
@@ -220,7 +220,7 @@ global.font_hud          = font_add_sprite(fnt_hud, ord("0"), false, 1);
 // Character related:
 global.player_id       =  noone;
 global.partner_id      =  noone;
-global.player_data     =  CHAR_NONE;
+global.player_data     =  CHAR_KNUCKLES;
 global.partner_data    =  CHAR_NONE;
 
 global.gravity_angle   =  0;

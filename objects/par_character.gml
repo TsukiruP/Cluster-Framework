@@ -185,7 +185,9 @@ depth_default   =  0;
 carry_ally      =  noone;
 tunnel_lock     =  false;
 
-start_trail(15);
+// Create trail:
+if(global.misc_trails == true) start_trail(15);
+trail_color = c_white;
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -1397,11 +1399,11 @@ switch(control_type) {
     // Player depth:
     case 1:
         animation_depth = -1;
-    break;
+        break;
 
     default:
         animation_depth = 0;
-    break;
+        break;
 }
 
 // Apply animation depth when not respawning or being carried:
@@ -1471,10 +1473,27 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Trail
+/// Update Trail
 
-update_trail(floor(x) + (dcos(angle + 90) * (-2 - (1 * angle == 90)) * (1 *action_state == ACTION_ROLL)) + dcos(angle) * x_speed,
-    floor(y) - (dsin(angle + 90) * (-3 - (1 * angle != 0)) * (1 *action_state == ACTION_ROLL)) + y_speed - dsin(angle) * x_speed,
+if(global.misc_trails == false) exit;
+
+if(global.misc_trails == true) {
+    switch(character_data) {
+        case CHAR_MILES:
+            trail_color = c_yellow;
+            break;
+
+        case CHAR_KNUCKLES:
+            trail_color = c_red;
+            break;
+
+        default:
+            trail_color = c_blue;
+            break;
+    }
+}
+update_trail(floor(x) + (dcos(angle + 90) * (-2 - (1 * angle == 90)) * (1 * action_state == ACTION_ROLL)) + dcos(angle) * x_speed,
+    floor(y) - (dsin(angle + 90) * (-3 - (1 * angle != 0)) * (1 * action_state == ACTION_ROLL)) + y_speed - dsin(angle) * x_speed,
     action_state == ACTION_ROLL);
 #define Draw_0
 /*"/*'/**//* YYD ACTION
@@ -1485,10 +1504,12 @@ applies_to=self
 /// Draw Character
 
 // Trail:
-draw_set_blend_mode(bm_add);
-draw_set_color(c_blue);
-draw_trail(spr_trail, 20, true);
-draw_set_blend_mode(bm_normal);
+if(global.misc_trails == true) {
+    draw_set_blend_mode(bm_add);
+    draw_set_color(trail_color);
+    draw_trail(spr_trail, 20, true);
+    draw_set_blend_mode(bm_normal);
+}
 
 if(invincibility_type != 1 || (invincibility_type == 1 && (invincibility_alarm > 0 || invincibility_alarm == -1))) {
     if(invincibility_type == 1 && invincibility_alarm > 0 && !((global.stage_time div 60) mod 3)) exit;
@@ -1524,3 +1545,10 @@ if(invincibility_type != 2) {
             break;
     }
 } else draw_sprite_ext(spr_shield_muteki, current_time div 60, floor(draw_x), floor(draw_y), 1, 1, 0, c_white, 0.7);
+#define KeyPress_32
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+y = 10;

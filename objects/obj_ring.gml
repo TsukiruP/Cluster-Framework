@@ -76,6 +76,10 @@ if(player_exists()) {
                 dropped    = false;
             }
         }
+
+        // Destroy if out of view:
+        if(x < view_xview[view_current] - sprite_width || x > view_xview[view_current] + view_wview[view_current] + sprite_width
+        || y < view_yview[view_current] - sprite_height || y > view_yview[view_current] + view_hview[view_current] + sprite_height) instance_destroy();
     } else {
         if(global.player_id.shield_data != SHIELD_MAGNETIC) {
             magnetized = false;
