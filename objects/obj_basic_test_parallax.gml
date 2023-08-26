@@ -18,7 +18,7 @@ sky_scroll         =  0;
 sky_scroll_speed   = -0.08;
 
 // Sea variables:
-sea_factor         =  0.94;
+sea_factor         =  0.875;
 #define Step_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -49,7 +49,7 @@ var sky_y;
 var sea_x, sea_y, sea_scale;
 
 // Sea variables:
-sea_x      = floor(view_xview[view_current] * sea_factor);
+sea_x      = view_xview[view_current] * sea_factor;
 sea_y      = floor(view_yview[view_current] * parallax_ratio) + (parallax_reference - floor((parallax_reference - view_hview / 2) * parallax_ratio));
 sea_scale  = clamp((parallax_reference - sea_y) / background_get_height(pbg_basic_test_sea), -1, 1);
 
@@ -57,6 +57,16 @@ sea_scale  = clamp((parallax_reference - sea_y) / background_get_height(pbg_basi
 sky_x     = floor(view_xview[view_current] * sky_factor) + sky_scroll;
 sky_y     = sea_y - background_get_height(pbg_basic_test_sky);
 
+for(i = 0; i < background_get_height(pbg_basic_test_sea) / 4; i += 1) {
+    var layer_scroll;
+
+    layer_scroll = ((current_time * 0.001) * i mod  background_get_width(pbg_basic_test_sea));
+
+    // Draw sea:
+    draw_backdrop_tiled_area(pbg_basic_test_sea, 0, i * 4, sea_x - layer_scroll, sea_y + (i * 4) * sea_scale, view_xview * (1 - sea_factor) + layer_scroll + view_wview, 4, 0, 0, 1, sea_scale);
+}
+
+/*
 // Sky parallax:
 draw_background_tiled_horizontal_part(pbg_basic_test_sky, 0, 0, background_get_width(pbg_basic_test_sky), background_get_height(pbg_basic_test_sky), sky_x, sky_y, 0);
 
