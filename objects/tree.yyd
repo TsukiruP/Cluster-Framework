@@ -5,7 +5,7 @@
 		|ctrl_display
 		|ctrl_audio
 		|ctrl_input
-		|ctrl_text
+		|ctrl_textbox
 		|ctrl_transition
 		+Stage Controllers
 			|ctrl_culling

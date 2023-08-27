@@ -15,7 +15,7 @@ ctrl_display
 ctrl_transition
 ctrl_camera
 ctrl_audio
-ctrl_text
+ctrl_textbox
 ctrl_stage
 obj_player_spawn
 ctrl_hud
