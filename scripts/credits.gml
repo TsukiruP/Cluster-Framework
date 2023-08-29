@@ -113,6 +113,7 @@ Tsukiru
     Edited Miles Wait Short
     Edited Miles Sprites
     Edited Knuckles Sprites
+    Edited Miles Insta-Shield
 
 jan300omega
     Sprite Sheet Project - Sonic (My Palette)
