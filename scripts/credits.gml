@@ -28,6 +28,9 @@ Sonic (Project) Advanced
     Title Card Concept
     Death Transition Concept
 
+Not So Simple Sonic Advance
+    Recolor Knuckles Eyes Concept
+    
 SOURCE ENGINES
 A.NB
     Harinezumi Framework
@@ -114,6 +117,7 @@ Tsukiru
     Edited Miles Sprites
     Edited Knuckles Sprites
     Edited Miles Insta-Shield
+    Edited Monitor Sprites
 
 jan300omega
     Sprite Sheet Project - Sonic (My Palette)
