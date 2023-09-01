@@ -52,8 +52,10 @@ Tsukiru
     Water Effects - Sonic Rush
     Water Effects - Sonic Colors (DS)
     Explosions - Sonic Colors (DS)
+    Rings - Sonic Colors (DS)
     Goal Ring - Sonic Colors (DS)
     Dash Ring - Sonic Colors (DS)
+    Spikes - Sonic Colors (DS)
 
 IceisNice
     Sonic The Hedgehog - Sonic Advance 2

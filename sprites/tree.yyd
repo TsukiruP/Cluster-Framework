@@ -219,6 +219,7 @@
 			|spr_spin_dash_dust
 			|spr_super_spin_dust
 			|spr_skid_dust
+			|spr_drop_dash_dust
 		+Shields
 			|spr_shield_basic
 			|spr_shield_magnetic
