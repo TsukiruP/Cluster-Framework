@@ -24,8 +24,8 @@ switch(character_data) {
         character_set_animation("tag_jog",        spr_sonic_tag_jog,       0,  7,  0, -1, 0.25);
 
         // Spin flight/fall:
-        character_set_animation("spin_flight",    spr_sonic_spin_flight,   0,  7,  0, -1, 0.30);
-        character_set_animation("spin_fall",      spr_sonic_spin_fall,     0,  4,  2, -1, 0.30);
+        character_set_animation("spin_flight",    spr_sonic_spin_flight,   0,  9,  2, -1, 0.30);
+        character_set_animation("spin_fall",      spr_sonic_spin_fall,     0,  3,  1, -1, 0.30);
 
         // Look:
         character_set_animation("look",           spr_sonic_look,          0,  5,  2, -1, 0.20);

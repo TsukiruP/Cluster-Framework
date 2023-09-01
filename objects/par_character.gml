@@ -1097,7 +1097,7 @@ switch(action_state) {
                         // Jog:
                         if(abs(x_speed) >= 3.00 && abs(x_speed) < 4.50 && animation_current != "jog") animation_current = "jog";
                         
-                        // Jog walk:
+                        // Jog fast:
                         if(abs(x_speed) >= 4.50 && abs(x_speed) < 6.00 && animation_current != "jog_fast") animation_current = "jog_fast";
                         
                         // Run:
