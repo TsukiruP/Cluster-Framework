@@ -1,10 +1,7 @@
 /// character_animation_core()
 // Core of the animation system.
 
-// Reset changed flag:
-animation_changed = false;
-
-// Check if the animation has changed:
+// Check previous animation:
 if(animation_current != animation_previous) {
     animation_previous = animation_current;
 
@@ -12,10 +9,9 @@ if(animation_current != animation_previous) {
     character_get_animation();
 
     // Start from the first franme:
-    animation_current_frame = animation_start_frame;
+    if(animation_changed == false) animation_current_frame = animation_start_frame;
 
     // Set flags:
-    animation_changed  = true;
     animation_finished = false;
 }
 

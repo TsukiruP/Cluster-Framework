@@ -10,7 +10,7 @@ if(animation_current == argument[0]) {
 
     // Set animation next:
     if(argument_count >= 8) {
-        animation_next       = argument[7];
+        animation_next = argument[7];
 
         // Set next frame:
         if(argument_count >= 9) animation_next_frame = argument[8];

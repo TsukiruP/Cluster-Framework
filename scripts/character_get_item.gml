@@ -19,31 +19,36 @@ switch(argument0) {
 
     // Basic shield:
     case ITEM_BASIC:
-        shield_data = SHIELD_BASIC;
+        shield_data  = SHIELD_BASIC;
+        shield_state = 0;
         sound_play("snd_shield_basic");
         break;
 
     // Magnetic shield:
     case ITEM_MAGNETIC:
-        shield_data = SHIELD_MAGNETIC;
+        shield_data  = SHIELD_MAGNETIC;
+        shield_state = 0;
         sound_play("snd_shield_lightning");
         break;
 
     // Fire shield:
     case ITEM_FIRE:
-        shield_data = SHIELD_FIRE;
+        shield_data  = SHIELD_FIRE;
+        shield_state = 0;
         sound_play("snd_shield_fire");
         break;
 
     // Bubble shield:
     case ITEM_BUBBLE:
-        shield_data = SHIELD_BUBBLE;
+        shield_data  = SHIELD_BUBBLE;
+        shield_state = 0;
         sound_play("snd_shield_bubble");
         break;
 
     // Lightning shield:
     case ITEM_LIGHTNING:
-        shield_data = SHIELD_LIGHTNING;
+        shield_data  = SHIELD_LIGHTNING;
+        shield_state = 0;
         sound_play("snd_shield_lightning");
         break;
 

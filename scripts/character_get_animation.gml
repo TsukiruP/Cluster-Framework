@@ -4,10 +4,10 @@ switch(character_data) {
     // Sonic
     case CHAR_SONIC:
         // Default:
-        character_set_animation("stand",          spr_sonic_stand,         0,  7,  0, -1, 0.20);
+        character_set_animation("stand",          spr_sonic_stand,         0,  34,  0, -1, 0.20);
 
         // Wait:
-        character_set_animation("wait_short",     spr_sonic_wait_short,    0, 14,  0,  0, 0.18, "stand");
+        character_set_animation("wait_short",     spr_sonic_wait_short,    0, 34,  0,  0, 0.18, "stand");
         character_set_animation("wait_long",      spr_sonic_wait_long,     0, 21, 18, -1, 0.10);
 
         character_set_animation("walk",           spr_sonic_walk,          0,  7,  0, -1, 0.25);
@@ -24,7 +24,7 @@ switch(character_data) {
         character_set_animation("tag_jog",        spr_sonic_tag_jog,       0,  7,  0, -1, 0.25);
 
         // Spin flight/fall:
-        character_set_animation("spin_flight",    spr_sonic_spin_flight,   0,  9,  2, -1, 0.30);
+        character_set_animation("spin_flight",    spr_sonic_spin_flight,   0,  9,  2, 1, 0.30, "spin_fall");
         character_set_animation("spin_fall",      spr_sonic_spin_fall,     0,  3,  1, -1, 0.30);
 
         // Look:
@@ -64,11 +64,11 @@ switch(character_data) {
         character_set_animation("death",          spr_sonic_death,         0,  5,  4, -1, 0.20);
 
         // Ready:
-        character_set_animation("ready",          spr_sonic_ready,         0, 34,  0,  0, 0.18, "stand");
+        character_set_animation("ready",          spr_sonic_ready,         0, 36,  0,  0, 0.18, "stand");
 
         // Spring:
-        character_set_animation("spring_flight",  spr_sonic_spring,        0,  2,  0, -1, 0.20);
-        character_set_animation("spring_fall",    spr_sonic_spring,        3,  9,  7, -1, 0.20);
+        character_set_animation("spring_flight",  spr_sonic_spring,        0,  3,  1, -1, 0.20);
+        character_set_animation("spring_fall",    spr_sonic_spring,        4, 12, 10, -1, 0.20, "", 0, 6);
 
         // Tag jump:
         character_set_animation("tag_flight",     spr_sonic_tag_jump,      0,  2,  0, -1, 0.20);

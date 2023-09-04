@@ -1116,7 +1116,13 @@ switch(action_state) {
                 if(tag_hold_state == 3) {
                     if(animation_current != "tag_flight" && animation_current != "tag_fall") animation_current = "tag_fall";
                 } else {
-                    if(animation_current != "spin_flight" && animation_current != "spin_fall" && animation_current != "spring_flight" && animation_current != "spring_fall") animation_current = "spring_fall";
+                    if(animation_current != "spin_flight" && animation_current != "spin_fall" && animation_current != "spring_flight" && animation_current != "spring_fall") {
+                        animation_current       = "spring_fall";
+                        animation_previous      = animation_current;
+                        
+                        character_get_animation();
+                        animation_current_frame = animation_flag_frame;
+                    }
                 }
             }
         }
@@ -1545,10 +1551,3 @@ if(invincibility_type != 2) {
             break;
     }
 } else draw_sprite_ext(spr_shield_muteki, current_time div 60, floor(draw_x), floor(draw_y), 1, 1, 0, c_white, 0.7);
-#define KeyPress_32
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-y = 10;
