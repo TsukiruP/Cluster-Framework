@@ -220,7 +220,7 @@ global.font_hud          = font_add_sprite(fnt_hud, ord("0"), false, 1);
 // Character related:
 global.player_id       =  noone;
 global.partner_id      =  noone;
-global.player_data     =  CHAR_SONIC;
+global.player_data     =  CHAR_NONE;
 global.partner_data    =  CHAR_NONE;
 
 global.gravity_angle   =  0;

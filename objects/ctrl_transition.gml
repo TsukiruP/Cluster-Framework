@@ -289,8 +289,8 @@ if(transition_type == TRANS_CARD) {
             if(player_exists()) {
                 // Default standby:
                 if(room_kickoff == KICKOFF_DEFAULT) {
-                    if(transition_standby < 3) transition_standby += transition_speed;
-                    else transition_standby = 3;
+                    if(transition_standby < 3.7) transition_standby += transition_speed;
+                    else transition_standby = 3.7;
                 }
 
                 // Animation standby:
@@ -307,7 +307,7 @@ if(transition_type == TRANS_CARD) {
             }
         }
 
-        if(debug == true || room_kickoff == KICKOFF_DEBUG || (room_kickoff == KICKOFF_DEFAULT && transition_standby == 3) ||
+        if(debug == true || room_kickoff == KICKOFF_DEBUG || (room_kickoff == KICKOFF_DEFAULT && transition_standby == 3.7) ||
             ((room_kickoff == KICKOFF_WAIT || room_kickoff == KICKOFF_READY) && transition_standby >= 2.2) ||
             (room_kickoff == KICKOFF_RUN && room_run_end_x == -1)) {
             // Start stage:

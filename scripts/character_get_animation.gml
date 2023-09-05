@@ -44,8 +44,8 @@ switch(character_data) {
         character_set_animation("tag_crouch_end", spr_sonic_tag_crouch,    3,  4,  0,  0, 0.20, "tag_stand");
 
         // Spin dash:
-        character_set_animation("super_spin",     spr_sonic_super_spin,    0,  3,  0,  0, 0.30);
         character_set_animation("spin_dash",      spr_sonic_spin_dash,     0,  3,  0, -1, 0.30);
+        character_set_animation("super_spin",     spr_sonic_super_spin,    0,  3,  0,  0, 0.30);
 
         // Roll:
         character_set_animation("roll",           spr_sonic_roll,          0,  3,  0, -1, 0.30);
@@ -194,8 +194,8 @@ switch(character_data) {
         character_set_animation("tag_crouch_end", spr_knuckles_tag_crouch,    3,  4,  0,  0, 0.20, "tag_stand");
 
         // Spin dash:
-        character_set_animation("super_spin",     spr_knuckles_super_spin,    0,  3,  0,  0, 0.30);
         character_set_animation("spin_dash",      spr_knuckles_spin_dash,     0,  3,  0, -1, 0.30);
+        character_set_animation("super_spin",     spr_knuckles_super_spin,    0,  3,  0,  0, 0.30);
 
         // Roll:
         character_set_animation("roll",           spr_knuckles_roll,          0,  3,  0, -1, 0.30);

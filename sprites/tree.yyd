@@ -63,8 +63,8 @@
 				|spr_sonic_crouch
 				|spr_sonic_tag_crouch
 			+Spin Dash
-				|spr_sonic_super_spin
 				|spr_sonic_spin_dash
+				|spr_sonic_super_spin
 			|spr_sonic_roll
 			+Skid
 				|spr_sonic_skid
@@ -156,8 +156,8 @@
 				|spr_knuckles_crouch
 				|spr_knuckles_tag_crouch
 			+Spin Dash
-				|spr_knuckles_super_spin
 				|spr_knuckles_spin_dash
+				|spr_knuckles_super_spin
 			|spr_knuckles_roll
 			+Skid
 				|spr_knuckles_skid
