@@ -1,55 +1,53 @@
 /// character_animation_core()
 // Core of the animation system.
 
-// Check previous animation:
-if(animation_current != animation_previous) {
+// Load target animation::
+if(animation_current != animation_target) {
+    // Store the previous animaiton:
     animation_previous = animation_current;
 
-    // Get animation data:
+    // Update current animation:
+    animation_current = animation_target;
     character_get_animation();
 
-    // Start from the first franme:
-    if(animation_changed == false) animation_current_frame = animation_start_frame;
+    // Start from first frame:
+    animation_current_frame = animation_start_frame;
 
-    // Set flags:
+    // Clean up finished variable:
     animation_finished = false;
 }
 
-// Play the animation if not finished:
+// Play animation
 if(animation_finished == false) {
-    // Update animation frame:
+    // Update current frame:
     animation_current_frame += animation_speed;
 
-    // Check if we're on the last frame:
+    // Handle last frame:
     if(floor(animation_current_frame) > animation_end_frame) {
         // Loop the animation if called for:
         if(animation_loop_count != 0) {
             animation_current_frame = animation_loop_frame;
-            
+
             if(animation_loop_count != -1) animation_loop_count -= 1;
         } else {
             // Set to last frame:
             animation_current_frame = animation_end_frame;
-            
+
             // Go into next animation, if it's been given:
             if(animation_next != "") {
-                animation_current = animation_next;
+                animation_target = animation_next;
 
                 if(animation_next_frame != 0) {
-                    animation_previous      = animation_current;
+                    animation_current       = animation_target;
                     animation_current_frame = animation_next_frame;
 
                     // Get animation data:
                     character_get_animation();
 
                     // Set flags:
-                    animation_changed  = true;
                     animation_finished = false;
                 }
             } else animation_finished = true;
         }
     }
 }
-
-// Miles' tails:
-if(miles_tails_sprite != noone) miles_tailes_frame += miles_tails_speed;

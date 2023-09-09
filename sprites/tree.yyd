@@ -221,6 +221,8 @@
 			|spr_skid_dust
 			|spr_drop_dash_dust
 		+Shields
+			|spr_shield_insta_sonic
+			|spr_shield_insta_miles
 			|spr_shield_basic
 			|spr_shield_magnetic
 			|spr_shield_fire

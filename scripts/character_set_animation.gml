@@ -1,24 +1,31 @@
-/// character_set_animation(animation, sprite, start frame, end frame, loop frame, loop count, speed, [next, next frame, flag frame])
+/// character_add_animation(character, animation, sprite, start frame, end frame, loop frame, loop count, speed, [next, next frame, flag frame])
 
-if(animation_current == argument[0]) {
-    animation_sprite      = argument[1];
-    animation_start_frame = argument[2];
-    animation_end_frame   = argument[3];
-    animation_loop_frame  = argument[4];
-    animation_loop_count  = argument[5];
-    animation_speed       = argument[6];
+var animation_next_temp, animation_next_frame_temp, animation_flag_frame_temp;
 
-    // Set animation next:
-    if(argument_count >= 8) {
-        animation_next = argument[7];
+// Create animation grid:
+if(animation_grid == -1) animation_grid = ds_grid_create(11, 1);
+else ds_grid_resize(animation_grid, 11, ds_grid_height(animation_grid) + 1);
 
-        // Set next frame:
-        if(argument_count >= 9) animation_next_frame = argument[8];
-        else animation_next_frame = 0;
-    } else {
-        animation_next       = "";
-        animation_next_frame = 0;
-    }
+// Set next animation:
+if(argument_count >= 9) animation_next_temp = argument[8];
+else animation_next_temp = "";
 
-    if(argument_count >= 10) animation_flag_frame  = argument[9];
-}
+// Set next animation frame:
+if(argument_count >= 10) animation_next_frame_temp = argument[9];
+else animation_next_frame_temp = 0;
+
+// Set flag frame:
+if(argument_count >= 11) animation_flag_frame_temp = argument[10];
+else animation_flag_frame_temp = 0;
+
+// Set next animation:
+ds_grid_set(animation_grid,  1, ds_grid_height(animation_grid) - 1, argument[1]);
+ds_grid_set(animation_grid,  2, ds_grid_height(animation_grid) - 1, argument[2]);
+ds_grid_set(animation_grid,  3, ds_grid_height(animation_grid) - 1, argument[3]);
+ds_grid_set(animation_grid,  4, ds_grid_height(animation_grid) - 1, argument[4]);
+ds_grid_set(animation_grid,  5, ds_grid_height(animation_grid) - 1, argument[5]);
+ds_grid_set(animation_grid,  6, ds_grid_height(animation_grid) - 1, argument[6]);
+ds_grid_set(animation_grid,  7, ds_grid_height(animation_grid) - 1, argument[7]);
+ds_grid_set(animation_grid,  8, ds_grid_height(animation_grid) - 1, animation_next_temp);
+ds_grid_set(animation_grid,  9, ds_grid_height(animation_grid) - 1, animation_next_frame_temp);
+ds_grid_set(animation_grid, 10, ds_grid_height(animation_grid) - 1, animation_flag_frame_temp);

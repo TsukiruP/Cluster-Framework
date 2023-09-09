@@ -39,7 +39,7 @@ user_input_help
 character_action_jump
 character_animation_core
 character_get_animation
-character_set_animation
+character_add_animation
 angle_rotate_towards
 miles_tails_get_animation
 miles_tails_set_animation
@@ -92,3 +92,8 @@ start_trail
 update_trail
 draw_trail
 character_collision_platform_fix
+sonic_add_animation
+miles_add_animations
+knuckles_add_animations
+classic_add_animations
+character_compile_animations

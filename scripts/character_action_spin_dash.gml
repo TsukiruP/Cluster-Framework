@@ -42,7 +42,7 @@ if(action_state == ACTION_SPIN_DASH) {
     
     // Increase strength & pitch:
     if(input_jump_pressed == true) {
-        animation_current       = "super_spin";
+        animation_target        = "super_spin";
         animation_current_frame = animation_start_frame;
         
         // Increase strength:

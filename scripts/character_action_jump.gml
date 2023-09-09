@@ -29,10 +29,19 @@ if((ground == true || (action_state == ACTION_CARRY && input_down == true)) && !
     }
 }
 
-// Complete jump:
 if(action_state == ACTION_JUMP) {
+    // Complete jump:
     if(y_speed > 0 && jump_complete == false) jump_complete = true;
+
+    if(character_data != CHAR_CLASSIC && animation_current == "roll" && animation_next != "spin_flight") {
+        animation_next       = "spin_flight";
+        animation_next_frame = 2;
+        animation_loop_count = 0;
+    }
+
+    if(animation_current == "spin_flight" && y_speed >= 0) animation_next = "spin_fall";
 }
+
 
 // Variable clean up:
 if(ground == true || action_state == ACTION_CARRY) {

@@ -69,8 +69,8 @@ global.settings_gameplay_checkpoint = ini_read_real("gameplay", "checkpoint", tr
 
 // Read/create misc settings:
 global.settings_misc_hud     = ini_read_real("misc", "hud", 1);
-global.settings_misc_status  = ini_read_real("misc", "status", 2);
-global.settings_misc_feed    = ini_read_real("misc", "feed", true);
+global.settings_misc_status  = ini_read_real("misc", "status", 0);
+global.settings_misc_feed    = ini_read_real("misc", "feed", false);
 global.settings_misc_trails  = ini_read_real("misc", "trails", false);
 global.settings_misc_lock_on = ini_read_real("misc", "lock_on", true);
 global.settings_misc_results = ini_read_real("misc", "results", 1);
@@ -218,15 +218,20 @@ global.font_title_card   = font_add_sprite(fnt_title_card_zone, ord(" "), true, 
 global.font_hud          = font_add_sprite(fnt_hud, ord("0"), false, 1);
 
 // Character related:
-global.player_id       =  noone;
-global.partner_id      =  noone;
-global.player_data     =  CHAR_NONE;
-global.partner_data    =  CHAR_NONE;
+global.player_id             =  noone;
+global.partner_id            =  noone;
+global.player_data           =  CHAR_MILES;
+global.partner_data          =  CHAR_CLASSIC;
 
-global.gravity_angle   =  0;
-global.checkpoint_x    = -1;
-global.checkpoint_y    = -1;
-global.checkpoint_time = -1;
+global.gravity_angle         =  0;
+global.animation_grid        = -1;
+global.animation_character   = -1;
+global.animation_coordinates = -1;
+global.animation_initialized = false;
+
+global.checkpoint_x          = -1;
+global.checkpoint_y          = -1;
+global.checkpoint_time       = -1;
 
 // Set views:
 room_view_set_all();

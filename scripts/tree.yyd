@@ -84,7 +84,13 @@
 			|character_state_hurt
 		+Animation
 			|character_animation_core
-			|character_set_animation
+			|character_add_animation
+			+Character Specific
+				|classic_add_animations
+				|sonic_add_animation
+				|miles_add_animations
+				|knuckles_add_animations
+			|character_compile_animations
 			|character_get_animation
 			+Miles' Tails
 				|miles_tails_set_animation

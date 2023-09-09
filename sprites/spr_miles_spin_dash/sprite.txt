@@ -1,5 +1,5 @@
 frames=8
-origin_x=34
+origin_x=33
 origin_y=11
 collision_shape=0
 alpha_tolerance=0

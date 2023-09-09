@@ -35,8 +35,9 @@ if(instance_exists(obj_player_spawn)) {
             global.partner_id                     =  instance_create(x - 30, y, par_character);
             global.partner_id.character_data      =  global.partner_data;
             global.partner_id.control_type        =  2;
-            global.partner_id.animation_direction = -1;
         }
+
+        character_compile_animations();
 
         instance_destroy();
     }

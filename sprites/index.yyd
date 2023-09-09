@@ -207,3 +207,5 @@ spr_basic_test_water_fall_03
 spr_trail
 mask_platform_fix
 spr_drop_dash_dust
+spr_shield_insta_sonic
+spr_shield_insta_miles

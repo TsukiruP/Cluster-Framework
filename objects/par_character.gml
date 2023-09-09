@@ -13,7 +13,7 @@ image_speed = 0;
 initialized = false;
 
 // Character variables:
-character_data = CHAR_NONE;
+character_data = CHAR_CLASSIC;
 control_type   = 0;
 
 // Collision variables:
@@ -203,42 +203,46 @@ applies_to=self
 */
 /// Animation Initialization
 
-animation_current         = "stand";
-animation_previous        = "";
-animation_sprite          = spr_sonic_stand;
-animation_current_frame   = 0;
-animation_start_frame     = 0;
-animation_end_frame       = 0;
-animation_loop_frame      = 0;
-animation_loop_count      = 0;
-animation_speed           = 0;
-animation_rendering_speed = 0;
-animation_next            = 0;
-animation_next_frame      = 0;
-animation_flag_frame      = 0;
-animation_changed         = false;
-animation_finished        = false;
+animation_grid            = -1;
+animation_target          =  "stand";
+animation_current         =  ""
+animation_previous        =  animation_current;
+animation_sprite          =  spr_sonic_stand;
+animation_current_frame   =  0;
+animation_start_frame     =  0;
+animation_end_frame       =  0;
+animation_loop_frame      =  0;
+animation_loop_count      =  0;
+animation_speed           =  0;
+animation_rendering_speed =  0;
+animation_next            =  0;
+animation_next_frame      =  0;
+animation_flag_frame      =  0;
+animation_changed         =  false;
+animation_finished        =  false;
 
-animation_direction       = 1;
-animation_x_scale         = 1;
-animation_y_scale         = 1;
-animation_angle           = 0;
-animation_angle_mod       = 0;
-animation_blend           = c_white;
-animation_alpha           = 1;
-animation_timer           = 0;
-animation_depth           = 0;
+animation_direction       =  1;
+animation_x_scale         =  1;
+animation_y_scale         =  1;
+animation_angle           =  0;
+animation_angle_mod       =  0;
+animation_blend           =  c_white;
+animation_alpha           =  1;
+animation_timer           =  0;
+animation_depth           =  0;
 
-miles_tails_sprite        = noone;
-miles_tails_frame         = 0;
-miles_tails_speed         = 0;
-miles_tails_x             = 0;
-miles_tails_y             = 0;
-miles_tails_angle         = 0;
-miles_tails_direction     = 1;
+miles_tails_sprite        =  noone;
+miles_tails_frame         =  0;
+miles_tails_speed         =  0;
+miles_tails_x             =  0;
+miles_tails_y             =  0;
+miles_tails_angle         =  0;
+miles_tails_direction     =  1;
 
-draw_x                    = x;
-draw_y                    = y;
+draw_x                    =  x;
+draw_y                    =  y;
+
+//character_compile_animations();
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -464,8 +468,8 @@ if(ground == false) {
             // Return to default state:
             if(action_state != ACTION_GLIDE && action_state != ACTION_GLIDE_DROP && action_state != ACTION_SLIDE && drop_dash_state < 2) {
                 if(action_state != ACTION_HURT){
-                   action_state      = ACTION_DEFAULT;
-                   animation_current = "land";
+                   action_state     = ACTION_DEFAULT;
+                   animation_target = "land";
                 }
             }
             
@@ -628,7 +632,7 @@ if(x_allow == true) {
     }
     
     // Input & deceleration:
-    if(action_state == ACTION_DEFAULT || action_state == ACTION_JUMP || action_state == ACTION_SKID || action_state == ACTION_FLY || action_state == ACTION_FLY_DROP || (action_state == ACTION_TORNADO && animation_current == "tornado") || action_state == ACTION_GLIDE_DROP || action_state == ACTION_BALANCE || action_state == ACTION_BREATHE) {
+    if(action_state == ACTION_DEFAULT || action_state == ACTION_JUMP || action_state == ACTION_SKID || action_state == ACTION_FLY || action_state == ACTION_FLY_DROP || (action_state == ACTION_TORNADO && animation_target == "tornado") || action_state == ACTION_GLIDE_DROP || action_state == ACTION_BALANCE || action_state == ACTION_BREATHE) {
         // Ground acceleration:
         if(ground == true) {
             if(input_lock_alarm == 0) {
@@ -1070,58 +1074,54 @@ switch(action_state) {
         if(ground == true) {
             if(tag_hold_state == 3) {
                 // Stand:
-                if(x_speed == 0 && animation_current != "tag_look_end" && animation_current != "tag_crouch_end" && animation_current != "tag_stand") animation_current = "tag_stand";
+                if(x_speed == 0 && animation_target != "tag_look_end" && animation_target != "tag_crouch_end" && animation_target != "tag_stand") animation_target = "tag_stand";
                 
                 if(x_speed <> 0) {
                     // Walk:
-                    if(abs(x_speed) < 3.75 && animation_current != "tag_walk") animation_current = "tag_walk";
+                    if(abs(x_speed) < 3.75 && animation_target != "tag_walk") animation_target = "tag_walk";
                     
                     // Walk fast:
-                    if(abs(x_speed) >= 3.75 && abs(x_speed) <  6.00 && animation_current != "tag_walk_fast") animation_current = "tag_walk_fast";
+                    if(abs(x_speed) >= 3.75 && abs(x_speed) <  6.00 && animation_target != "tag_walk_fast") animation_target = "tag_walk_fast";
                     
                     // Jog:
-                    if(abs(x_speed) >=  6.00 && abs(x_speed) < 4.50 && animation_current != "tag_jog") animation_current = "tag_jog";
+                    if(abs(x_speed) >=  6.00 && abs(x_speed) < 4.50 && animation_target != "tag_jog") animation_target = "tag_jog";
                 }
             } else {
                 // Stand:
-                if(x_speed == 0 && animation_current != "wait_short" && animation_current != "wait_long" && animation_current != "look_end" && animation_current != "crouch_end" && animation_current != "land" && animation_current != "stand") animation_current = "stand";
+                if(x_speed == 0 && animation_target != "wait_short" && animation_target != "wait_long" && animation_target != "look_end" && animation_target != "crouch_end" && animation_target != "land" && animation_target != "stand") animation_target = "stand";
                 
                 if(x_speed <> 0) {
-                    if(character_data != CHAR_NONE) {
+                    if(character_data != CHAR_CLASSIC) {
                         // Walk:
-                        if(abs(x_speed) < 1.50 && animation_current != "walk") animation_current = "walk";
+                        if(abs(x_speed) < 1.50 && animation_target != "walk") animation_target = "walk";
                         
                         // Walk fast:
-                        if(abs(x_speed) >= 1.50 && abs(x_speed) < 3.00 && animation_current != "walk_fast") animation_current = "walk_fast";
+                        if(abs(x_speed) >= 1.50 && abs(x_speed) < 3.00 && animation_target != "walk_fast") animation_target = "walk_fast";
                         
                         // Jog:
-                        if(abs(x_speed) >= 3.00 && abs(x_speed) < 4.50 && animation_current != "jog") animation_current = "jog";
+                        if(abs(x_speed) >= 3.00 && abs(x_speed) < 4.50 && animation_target != "jog") animation_target = "jog";
                         
                         // Jog fast:
-                        if(abs(x_speed) >= 4.50 && abs(x_speed) < 6.00 && animation_current != "jog_fast") animation_current = "jog_fast";
+                        if(abs(x_speed) >= 4.50 && abs(x_speed) < 6.00 && animation_target != "jog_fast") animation_target = "jog_fast";
                         
                         // Run:
-                        if(abs(x_speed) >= 6.00 && animation_current != "run" && animation_current != "dash") animation_current = "run";
+                        if(abs(x_speed) >= 6.00 && animation_target != "run" && animation_target != "dash") animation_target = "run";
                     } else {
                         // Jog:
-                        if(abs(x_speed) < 6.00 && animation_current != "jog") animation_current = "jog";
+                        if(abs(x_speed) < 6.00 && animation_target != "jog") animation_target = "jog";
                         
                         // Run:
-                        if(abs(x_speed) >= 6.00 && animation_current != "run") animation_current = "run";
+                        if(abs(x_speed) >= 6.00 && animation_target != "run") animation_target = "run";
                     }
                 }
             }
         } else {
-            if(character_data != CHAR_NONE) {
+            if(character_data != CHAR_CLASSIC) {
                 if(tag_hold_state == 3) {
-                    if(animation_current != "tag_flight" && animation_current != "tag_fall") animation_current = "tag_fall";
+                    if(animation_target != "tag_flight" && animation_target != "tag_fall") animation_target = "tag_fall";
                 } else {
-                    if(animation_current != "spin_flight" && animation_current != "spin_fall" && animation_current != "spring_flight" && animation_current != "spring_fall") {
-                        animation_current       = "spring_fall";
-                        animation_previous      = animation_current;
-                        
-                        character_get_animation();
-                        animation_current_frame = animation_flag_frame;
+                    if(animation_target != "spin_flight" && animation_target != "spin_fall" && animation_target != "spring_flight" && animation_target != "spring_fall") {
+                        animation_target       = "spring_fall";
                     }
                 }
             }
@@ -1130,112 +1130,112 @@ switch(action_state) {
     
     // Jump:
     case ACTION_JUMP:
-        if(character_data != CHAR_NONE) {
+        if(character_data != CHAR_CLASSIC) {
             if(drop_dash_state != 2) {
                 if(tag_hold_state == 3) {
-                    if(y_speed <= 0 && animation_current != "tag_flight" && animation_current != "tag_fall") animation_current = "tag_flight";
-                    if(y_speed > 0 && animation_current != "tag_fall") animation_current = "tag_fall";
+                    if(y_speed <= 0 && animation_target != "tag_flight" && animation_target != "tag_fall") animation_target = "tag_flight";
+                    if(y_speed > 0 && animation_target != "tag_fall") animation_target = "tag_fall";
                 } else if(tag_action == TAG_LEAP) {
-                    if(y_speed <= 0 && animation_current != "leap_flight" && animation_current != "leap_fall" && animation_current != "spring_fall") animation_current = "leap_flight";
-                    if(y_speed > 0 && animation_current != "leap_fall" && animation_current != "spring_fall") animation_current = "leap_fall";
+                    if(y_speed <= 0 && animation_target != "leap_flight" && animation_target != "leap_fall" && animation_target != "spring_fall") animation_target = "leap_flight";
+                    if(y_speed > 0 && animation_target != "leap_fall" && animation_target != "spring_fall") animation_target = "leap_fall";
                 } else {
-                    if((animation_current != "spin_flight" && animation_current != "spin_fall") || animation_current == "drop_dash") animation_current = "spin_flight";
+                    if((animation_target != "roll" && animation_target != "spin_flight" && animation_target != "spin_fall") || animation_current == "drop_dash") animation_target = "spin_flight";
                 }
             }
         } else {
-            if(drop_dash_state != 2 && animation_current != "roll") animation_current = "roll";
+            if(drop_dash_state != 2 && animation_target != "roll") animation_target = "roll";
         }
         break
     
     // Look:
     case ACTION_LOOK:
         if(tag_hold_state == 3) {
-            if(animation_current != "tag_look") animation_current = "tag_look";
+            if(animation_target != "tag_look") animation_target = "tag_look";
         } else {
-            if(animation_current != "look") animation_current = "look";
+            if(animation_target != "look") animation_target = "look";
         }
         break;
     
     // Crouch:
     case ACTION_CROUCH:
         if(tag_hold_state == 3) {
-            if(animation_current != "tag_crouch") animation_current = "tag_crouch";
+            if(animation_target != "tag_crouch") animation_target = "tag_crouch";
         } else {
-            if(animation_current != "crouch") animation_current = "crouch";
+            if(animation_target != "crouch") animation_target = "crouch";
         }
         break;
     
     // Spin Dash:
     case ACTION_SPIN_DASH:
-        if(animation_current != "super_spin" && animation_current != "spin_dash") animation_current = "spin_dash";
+        if(animation_target != "super_spin" && animation_target != "spin_dash") animation_target = "spin_dash";
         break;
     
     // Roll:
     case ACTION_ROLL:
-        if(animation_current != "roll") animation_current = "roll";
+        if(animation_target != "roll") animation_target = "roll";
         break;
     
     // Skid:
     case ACTION_SKID:
         if(tag_hold_state == 3) {
-            if(animation_current != "tag_skid") animation_current = "tag_skid";
+            if(animation_target != "tag_skid") animation_target = "tag_skid";
         } else {
-            if(animation_current != "skid") animation_current = "skid";
+            if(animation_target != "skid") animation_target = "skid";
         }
         break;
     
     // Hurt:
     case ACTION_HURT:
-        if(animation_current != "hurt") animation_current = "hurt";
+        if(animation_target != "hurt") animation_target = "hurt";
         break;
     
     // Death:
     case ACTION_DEATH:
-        if(character_data != CHAR_NONE) {
-            if(animation_current != "death") animation_current = "death";
+        if(character_data != CHAR_CLASSIC) {
+            if(animation_target != "death") animation_target = "death";
         } else {
             if(drowned == true) {
-                if(animation_current != "drown") animation_current = "drown";
-            } else if(animation_current != "death") animation_current = "death";
+                if(animation_target != "drown") animation_target = "drown";
+            } else if(animation_target != "death") animation_target = "death";
         }
         break;
     
     // Spring:
     case ACTION_SPRING:
-        if(character_data != CHAR_NONE) {
+        if(character_data != CHAR_CLASSIC) {
             if(tag_hold_state == 3) {
-                if((y_speed < 0 || spring_alarm > 0) && animation_current != "tag_flight") animation_current = "tag_flight";
-                if(((y_speed >= 0 && spring_angle == gravity_angle + ANGLE_UP) || (spring_alarm == 0 && spring_angle != gravity_angle + ANGLE_UP)) && animation_current != "tag_fall") animation_current = "tag_fall";
+                if((y_speed < 0 || spring_alarm > 0) && animation_target != "tag_flight") animation_target = "tag_flight";
+                if(((y_speed >= 0 && spring_angle == gravity_angle + ANGLE_UP) || (spring_alarm == 0 && spring_angle != gravity_angle + ANGLE_UP)) && animation_target != "tag_fall") animation_target = "tag_fall";
             } else {
-                if((y_speed < 0 || spring_alarm > 0) && animation_current != "spring_flight") animation_current = "spring_flight";
-                if(((y_speed >= 0 && spring_angle == gravity_angle + ANGLE_UP) || (spring_alarm == 0 && spring_angle != gravity_angle + ANGLE_UP)) && animation_current != "spring_fall") animation_current = "spring_fall";
+                if((y_speed < 0 || spring_alarm > 0) && animation_target != "spring_flight") animation_target = "spring_flight";
+                if(((y_speed >= 0 && spring_angle == gravity_angle + ANGLE_UP) || (spring_alarm == 0 && spring_angle != gravity_angle + ANGLE_UP)) && animation_target != "spring_fall") animation_target = "spring_fall";
             }
         } else {
-            if((y_speed < 0 || spring_alarm > 0) && animation_current != "spring") animation_current = "spring";
-            if(((y_speed >= 0 && spring_angle == gravity_angle + ANGLE_UP) || (spring_alarm == 0 && spring_angle != gravity_angle + ANGLE_UP)) && animation_current != "jog") animation_current = "jog";
+            if((y_speed < 0 || spring_alarm > 0) && animation_target != "spring") animation_target = "spring";
+            if(((y_speed >= 0 && spring_angle == gravity_angle + ANGLE_UP) || (spring_alarm == 0 && spring_angle != gravity_angle + ANGLE_UP)) && animation_target != "jog") animation_target = "jog";
         }
         break;
     
     // Breathe:
     case ACTION_BREATHE:
-        if(animation_current != "breathe") animation_current = "breathe";
+        if(animation_target != "breathe") animation_target = "breathe";
         break;
 }
 
 // Missing animations:
-if(character_data == CHAR_NONE || character_data == CHAR_MILES) {
-    if(animation_current == "super_spin") animation_current = "spin_dash";
+if(character_data == CHAR_CLASSIC || character_data == CHAR_MILES) {
+    if(animation_target == "super_spin") animation_target = "spin_dash";
 }
 
-if(character_data == CHAR_NONE) {
-    if(animation_current == "land" || animation_current == "look_end" || animation_current == "crouch_end") animation_current = "stand";
+if(character_data == CHAR_CLASSIC) {
+    if(animation_target == "land" || animation_target == "look_end" || animation_target == "crouch_end") animation_target = "stand";
 }
 
 // Animation core:
 character_animation_core();
 
 // Align roll:
-if(action_state == ACTION_ROLL) character_align_roll();
+if(animation_current == "roll" || animation_current == "spin_flight") character_align_roll();
 
 // Animation timer:
 if(control_type == 1 && tag_hold_state != 3) {
@@ -1244,26 +1244,26 @@ if(control_type == 1 && tag_hold_state != 3) {
         
         // Wait short:
         if(animation_timer == 300) {
-            animation_current = "wait_short";
+            animation_target = "wait_short";
             
             if(partner_exists()) {
                 with(global.partner_id) {
-                    if(ground == true && action_state == ACTION_DEFAULT) animation_current = "wait_short";
+                    if(ground == true && action_state == ACTION_DEFAULT) animation_target = "wait_short";
                 }
             }
         }
         
         // Wait long:
         if(animation_timer == 500) {
-            animation_current = "wait_long";
+            animation_target = "wait_long";
             
             if(partner_exists()) {
                 with(global.partner_id) {
-                    if(ground == true && action_state == ACTION_DEFAULT) animation_current = "wait_long";
+                    if(ground == true && action_state == ACTION_DEFAULT) animation_target = "wait_long";
                 }
             }
         }
-    } else if(animation_current != "wait_short" && animation_current != "wait_long") animation_timer = 0;
+    } else if(animation_target != "wait_short" && animation_target != "wait_long") animation_timer = 0;
 }
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -1360,11 +1360,11 @@ if(animation_current == "death" || animation_current == "hurt" || animation_curr
     animation_current == "glide" || animation_current == "glide_drop" || animation_current == "slide" || animation_current == "climb_stand" || animation_current == "climb_move" || animation_current == "climb_ledge" ||
     animation_current == "fly_carry" || animation_current == "glide_carry" || animation_current == "push" || animation_current == "breathe") {
     animation_angle = 0;
-} else if(character_data != CHAR_NONE && action_state == ACTION_SPRING && spring_alarm > 0 && (animation_current == "spring_flight" || animation_current == "spring_fall")) {
+} else if(character_data != CHAR_CLASSIC && action_state == ACTION_SPRING && spring_alarm > 0 && (animation_current == "spring_flight" || animation_current == "spring_fall")) {
     animation_angle = spring_angle - 90;
 }
 else {
-    if(character_data != CHAR_NONE && tag_hold_state != 3) {
+    if(character_data != CHAR_CLASSIC && tag_hold_state != 3) {
         if(ground == true) animation_angle = angle;
         else animation_angle = angle_rotate_towards(0, animation_angle, 4);
     } else {
