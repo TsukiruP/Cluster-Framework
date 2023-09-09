@@ -1088,7 +1088,7 @@ switch(action_state) {
                 }
             } else {
                 // Stand:
-                if(x_speed == 0 && animation_target != "wait_short" && animation_target != "wait_long" && animation_target != "look_end" && animation_target != "crouch_end" && animation_target != "land" && animation_target != "stand") animation_target = "stand";
+                if(x_speed == 0 && animation_target != "wait_short" && animation_target != "wait_long" && animation_target != "look_end" && animation_target != "crouch_end" && animation_target != "land" && animation_target != "ready" && animation_target != "stand") animation_target = "stand";
                 
                 if(x_speed <> 0) {
                     if(character_data != CHAR_CLASSIC) {
@@ -1238,6 +1238,7 @@ character_animation_core();
 if(animation_current == "roll" || animation_current == "spin_flight") character_align_roll();
 
 // Animation timer:
+/*
 if(control_type == 1 && tag_hold_state != 3) {
     if(animation_current == "stand") {
         animation_timer += 1;

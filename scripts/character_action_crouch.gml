@@ -26,8 +26,8 @@ if(action_state == ACTION_CROUCH) {
         if(animation_current_frame >= animation_loop_frame) {
             action_state = ACTION_DEFAULT;
 
-            if(tag_hold_state == 3) animation_current = "tag_crouch_end";
-            else animation_current = "crouch_end";
+            if(tag_hold_state == 3) animation_target = "tag_crouch_end";
+            else animation_target = "crouch_end";
         }
     }
 }

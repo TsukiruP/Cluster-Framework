@@ -255,16 +255,16 @@ if(transition_type == TRANS_CARD) {
                     if(floor(background_position) <= global.player_id.y + 13 - view_yview[view_current]) {
                         // Wait kickoff:
                         if(room_kickoff == KICKOFF_WAIT) {
-                            global.player_id.animation_current = "wait_short";
+                            global.player_id.animation_target = "wait_short";
 
-                            if(partner_exists()) global.partner_id.animation_current = "wait_short";
+                            if(partner_exists()) global.partner_id.animation_target = "wait_short";
                         }
 
                         // Ready kickoff:
                         if(room_kickoff == KICKOFF_READY) {
-                            global.player_id.animation_current = "ready";
+                            global.player_id.animation_target = "ready";
 
-                            if(partner_exists()) global.partner_id.animation_current = "ready";
+                            if(partner_exists()) global.partner_id.animation_target = "ready";
                         }
                     }
                 } else if(room_kickoff != KICKOFF_DEFAULT && room_kickoff != KICKOFF_RUN) global.player_id.control_type = 1;
@@ -294,8 +294,8 @@ if(transition_type == TRANS_CARD) {
                 }
 
                 // Animation standby:
-                if(room_kickoff == KICKOFF_WAIT && global.player_id.animation_current != "wait_short" ||
-                    room_kickoff == KICKOFF_READY && global.player_id.animation_current != "ready") {
+                if(room_kickoff == KICKOFF_WAIT && global.player_id.animation_target != "wait_short" ||
+                    room_kickoff == KICKOFF_READY && global.player_id.animation_target != "ready") {
                     if(transition_standby < 2.2) transition_standby += transition_speed;
                     else transition_standby = 2.2;
                 }
