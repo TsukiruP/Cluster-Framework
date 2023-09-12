@@ -8,4 +8,4 @@ bbox_type=0
 bbox_left=27
 bbox_top=23
 bbox_right=57
-bbox_bottom=66
+bbox_bottom=65
