@@ -1552,7 +1552,7 @@ if(global.misc_trails == true) {
     draw_set_blend_mode(bm_normal);
 }
 
-draw_sprite(spr_miles_roll, floor(animation_current_frame), floor(draw_x) + 10, floor(draw_y) - 2);
+draw_sprite(spr_knuckles_roll, floor(animation_current_frame), floor(draw_x) + 10, floor(draw_y) - 2);
 
 if(invincibility_type != 1 || (invincibility_type == 1 && (invincibility_alarm > 0 || invincibility_alarm == -1))) {
     if(invincibility_type == 1 && invincibility_alarm > 0 && !((global.stage_time div 60) mod 3)) exit;

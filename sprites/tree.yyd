@@ -197,6 +197,7 @@
 			|spr_checkpoint_inactive
 			|spr_checkpoint_active
 		+Springs
+			|spr_spring_up
 		+Dash Panels
 		+Dash Rings
 		+Rainbow Rings
