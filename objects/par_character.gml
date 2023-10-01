@@ -1354,45 +1354,79 @@ if(character_data == CHAR_MILES) {
 }
 
 // Animation Angle:
-if(animation_current == "death" || animation_current == "hurt" || animation_current == "stand" || animation_current == "tag_stand" || animation_current == "wait_short" || animation_current == "wait_long" || 
-    animation_current == "look" || animation_current == "look_end" || animation_current == "crouch" || animation_current == "crouch_end" || animation_current == "tag_look" || animation_current == "tag_look_end" ||
-    animation_current == "tag_crouch" || animation_current == "tag_crouch_end" || animation_current == "super_spin" || animation_current == "spin_dash" || animation_current == "roll" ||
-    animation_current == "land" || animation_current == "fly" || animation_current == "fly_drop" || animation_current == "swim" || animation_current == "swim_drop" ||
-    animation_current == "glide" || animation_current == "glide_drop" || animation_current == "slide" || animation_current == "climb_stand" || animation_current == "climb_move" || animation_current == "climb_ledge" ||
-    animation_current == "fly_carry" || animation_current == "glide_carry" || animation_current == "push" || animation_current == "breathe") {
-    animation_angle = 0;
-} else if(character_data != CHAR_CLASSIC && action_state == ACTION_SPRING && spring_alarm > 0 && (animation_current == "spring_flight" || animation_current == "spring_fall")) {
-    animation_angle = spring_angle - 90;
-}
-else {
-    if(character_data != CHAR_CLASSIC && tag_hold_state != 3) {
-        if(ground == true) animation_angle = angle;
-        else animation_angle = angle_rotate_towards(0, animation_angle, 4);
-    } else {
-        if(ground == true) {
-            if(terrain_angle_change == false) animation_angle_mod = 0;
-            else {
-                angle_mod = animation_angle_mod;
-                
-                if(angle >= 0 && angle <= 180) {
-                    if(angle < 36) angle_mod = 0;
-                    else angle_mod = angle;
+switch(animation_current) {
+    // Reset angle:
+    case "death":
+    case "hurt":
+    case "stand":
+    case "tag_stand":
+    case "wait_short":
+    case "wait_long":
+    case "look":
+    case "look_end":
+    case "tag_look":
+    case "tag_look_end":
+    case "crouch":
+    case "crouch_end":
+    case "tag_crouch":
+    case "tag_crouch_end":
+    case "super_spin":
+    case "spin_dash":
+    case "roll":
+    case "land":
+    case "fly":
+    case "fly_drop":
+    case "swim":
+    case "swim_drop":
+    case "glide":
+    case "glide_drop":
+    case "slide":
+    case "climb_stand":
+    case "climb_move":
+    case "climb_ledge":
+    case "fly_carry":
+    case "glide_carry":
+    case "push":
+    case "breathe":
+        animation_angle = 0;
+        break;
+    
+    // Spring angle:
+    case "spring_flight":
+    case "spring_fall":
+        if(character_data != CHAR_CLASSIC && action_state == ACTION_SPRING && spring_alarm > 0) animation_angle = spring_angle - 90;
+        break;
+    
+    // Terrain angle:
+    default:
+        if(character_data != CHAR_CLASSIC && tag_hold_state != 3) {
+            if(ground == true) animation_angle = angle;
+            else animation_angle = angle_rotate_towards(0, animation_angle, 4);
+        } else {
+            if(ground == true) {
+                if(terrain_angle_change == false) animation_angle_mod = 0;
+                else {
+                    angle_mod = animation_angle_mod;
+                    
+                    if(angle >= 0 && angle <= 180) {
+                        if(angle < 36) angle_mod = 0;
+                        else angle_mod = angle;
+                    }
+                    
+                    if(angle >= 180 && angle <= 360) {
+                        if(angle > 360 - 36) angle_mod = 0;
+                        else angle_mod = angle;
+                    }
+                    
+                    if(abs(angle_difference(animation_angle_mod, angle_mod)) < 45) {
+                        animation_angle_mod = angle_rotate_towards(angle_mod, animation_angle_mod, max(4, abs(x_speed)));
+                    } else animation_angle_mod = angle_mod;
                 }
-                
-                if(angle >= 180 && angle <= 360) {
-                    if(angle > 360 - 36) angle_mod = 0;
-                    else angle_mod = angle;
-                }
-                
-                if(abs(angle_difference(animation_angle_mod, angle_mod)) < 45) {
-                    animation_angle_mod = angle_rotate_towards(angle_mod, animation_angle_mod, max(4, abs(x_speed)));
-                } else animation_angle_mod = angle_mod;
-            }
-        } else angle_rotate_towards(0, animation_angle_mod, 4);
-        
-        // Rotate:
-        animation_angle = round(animation_angle_mod / 45) * 45;
-    }
+            } else angle_rotate_towards(0, animation_angle_mod, 4);
+            
+            // Rotate:
+            animation_angle = round(animation_angle_mod / 45) * 45;
+        }
 }
 /*"/*'/**//* YYD ACTION
 lib_id=1
