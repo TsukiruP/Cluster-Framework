@@ -130,7 +130,7 @@ shield_insta     = noone;
 shield_elemental = noone;
 
 // Tag Action variables:
-tag_hold_state    = 3;
+tag_hold_state    = 0;
 tag_hold_timer    = 0;
 tag_hold_duration = 68;
 
@@ -1236,36 +1236,6 @@ character_animation_core();
 
 // Align roll:
 if(animation_current == "roll" || animation_current == "spin_flight") character_align_roll();
-
-// Animation timer:
-/*
-if(control_type == 1 && tag_hold_state != 3) {
-    if(animation_current == "stand") {
-        animation_timer += 1;
-        
-        // Wait short:
-        if(animation_timer == 300) {
-            animation_target = "wait_short";
-            
-            if(partner_exists()) {
-                with(global.partner_id) {
-                    if(ground == true && action_state == ACTION_DEFAULT) animation_target = "wait_short";
-                }
-            }
-        }
-        
-        // Wait long:
-        if(animation_timer == 500) {
-            animation_target = "wait_long";
-            
-            if(partner_exists()) {
-                with(global.partner_id) {
-                    if(ground == true && action_state == ACTION_DEFAULT) animation_target = "wait_long";
-                }
-            }
-        }
-    } else if(animation_target != "wait_short" && animation_target != "wait_long") animation_timer = 0;
-}
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -1551,8 +1521,6 @@ if(global.misc_trails == true) {
     draw_trail(spr_trail, 20, true);
     draw_set_blend_mode(bm_normal);
 }
-
-draw_sprite(spr_knuckles_roll, floor(animation_current_frame), floor(draw_x) + 10, floor(draw_y) - 2);
 
 if(invincibility_type != 1 || (invincibility_type == 1 && (invincibility_alarm > 0 || invincibility_alarm == -1))) {
     if(invincibility_type == 1 && invincibility_alarm > 0 && !((global.stage_time div 60) mod 3)) exit;
