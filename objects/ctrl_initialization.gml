@@ -212,11 +212,6 @@ randomize();
 global.gamepad_device = 0;
 global.gamepad_exists = false;
 
-// Fonts:
-global.font_system       = font_add_sprite(fnt_system, ord(" "), true, 0);
-global.font_title_card   = font_add_sprite(fnt_title_card_zone, ord(" "), true, -4);
-global.font_hud          = font_add_sprite(fnt_hud, ord("0"), false, 1);
-
 // Character related:
 global.player_id             =  noone;
 global.partner_id            =  noone;
@@ -240,6 +235,7 @@ room_view_set_all();
 instance_create(x, y, ctrl_display);
 instance_create(x, y, ctrl_audio);
 instance_create(x, y, ctrl_input);
+instance_create(x, y, ctrl_text);
 #define KeyPress_13
 /*"/*'/**//* YYD ACTION
 lib_id=1
