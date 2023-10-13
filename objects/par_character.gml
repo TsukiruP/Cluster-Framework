@@ -1533,7 +1533,7 @@ if(invincibility_type != 1 || (invincibility_type == 1 && (invincibility_alarm >
         miles_tails_x = draw_x - 5 * dcos(miles_tails_angle) - abs(dcos(miles_tails_angle) * (ground == true && animation_direction == -1)) - (abs(dsin(miles_tails_angle)) * animation_direction);
         miles_tails_y = draw_y + 4 * dsin(miles_tails_angle) - abs(dcos(miles_tails_angle) * (ground == true && animation_direction == -1));
         
-        if(animation_current == "roll" || (animation_current == "spin_flight" && animation_current_frame >= animation_loop_frame)) draw_sprite_ext(spr_miles_tails, 4, floor(miles_tails_x), floor(miles_tails_y), animation_direction * animation_x_scale, animation_y_scale, miles_tails_angle + 270, animation_blend, animation_alpha);
+        if(animation_current == "roll" || (animation_current == "spin_flight" && animation_current_frame >= animation_loop_frame)) draw_sprite_ext(spr_miles_tails, 4, floor(miles_tails_x), floor(miles_tails_y), animation_direction * animation_x_scale, animation_y_scale, angle_wrap(miles_tails_angle - 90), animation_blend, animation_alpha);
     }
     
     // Character:
