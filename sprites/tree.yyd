@@ -122,6 +122,7 @@
 			|spr_miles_tail_swipe
 			|spr_miles_tornado
 			+Misc.
+				|spr_miles_tails
 				|spr_miles_ready
 				|spr_miles_spring
 				|spr_miles_breathe

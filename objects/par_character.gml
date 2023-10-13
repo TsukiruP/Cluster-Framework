@@ -130,7 +130,7 @@ shield_insta     = noone;
 shield_elemental = noone;
 
 // Tag Action variables:
-tag_hold_state    = 3;
+tag_hold_state    = 0;
 tag_hold_timer    = 0;
 tag_hold_duration = 68;
 
@@ -233,11 +233,12 @@ animation_depth           =  0;
 
 miles_tails_sprite        =  noone;
 miles_tails_frame         =  0;
-miles_tails_speed         =  0;
+miles_tails_speed         =  0.5;
 miles_tails_x             =  0;
 miles_tails_y             =  0;
 miles_tails_angle         =  0;
 miles_tails_direction     =  1;
+miles_tails_offset        =  0;
 
 draw_x                    =  x;
 draw_y                    =  y;
@@ -1235,7 +1236,7 @@ if(character_data == CHAR_CLASSIC) {
 character_animation_core();
 
 // Align roll:
-if(animation_current == "roll" || animation_current == "spin_flight") character_align_roll();
+//if(animation_current == "roll" || animation_current == "spin_flight") character_align_roll();
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -1317,7 +1318,7 @@ var angle_mod;
 
 // Miles Tails:
 if(character_data == CHAR_MILES) {
-    if(ground == true) miles_tails_angle = angle;
+    if(ground == true) miles_tails_angle = angle_wrap(angle + (180 * (animation_direction == -1)));
     else {
         miles_tails_angle = point_direction(xprevious, yprevious, x, y,);
     }
@@ -1522,13 +1523,18 @@ if(global.misc_trails == true) {
     draw_set_blend_mode(bm_normal);
 }
 
-draw_sprite(spr_knuckles_roll, floor(animation_current_frame), floor(draw_x) + 10, floor(draw_y) - 2);
+//draw_sprite(spr_knuckles_roll, floor(animation_current_frame), floor(draw_x) + 10, floor(draw_y) - 2);
 
 if(invincibility_type != 1 || (invincibility_type == 1 && (invincibility_alarm > 0 || invincibility_alarm == -1))) {
     if(invincibility_type == 1 && invincibility_alarm > 0 && !((global.stage_time div 60) mod 3)) exit;
 
     // Miles' tails:
-    if(miles_tails_sprite != noone) draw_sprite_ext(miles_tails_sprite, floor(miles_tails_frame), floor(draw_x + miles_tails_x), floor(draw_y + miles_tails_y), miles_tails_direction * animation_x_scale, animation_y_scale, miles_tails_angle, animation_blend, animation_alpha);
+    if(character_data == CHAR_MILES) {
+        miles_tails_x = draw_x - 5 * dcos(miles_tails_angle) - abs(dcos(miles_tails_angle) * (ground == true && animation_direction == -1)) - (abs(dsin(miles_tails_angle)) * animation_direction);
+        miles_tails_y = draw_y + 4 * dsin(miles_tails_angle) - abs(dcos(miles_tails_angle) * (ground == true && animation_direction == -1));
+        
+        if(animation_current == "roll" || (animation_current == "spin_flight" && animation_current_frame >= animation_loop_frame)) draw_sprite_ext(spr_miles_tails, 4, floor(miles_tails_x), floor(miles_tails_y), animation_direction * animation_x_scale, animation_y_scale, miles_tails_angle + 270, animation_blend, animation_alpha);
+    }
     
     // Character:
     draw_sprite_ext(animation_sprite, floor(animation_current_frame), floor(draw_x), floor(draw_y), animation_direction * animation_x_scale, animation_y_scale, animation_angle, animation_blend, animation_alpha);

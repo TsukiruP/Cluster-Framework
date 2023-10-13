@@ -51,3 +51,5 @@ if(animation_finished == false) {
         }
     }
 }
+
+miles_tails_frame += miles_tails_speed;
