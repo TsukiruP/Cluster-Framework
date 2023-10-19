@@ -13,7 +13,7 @@
 		|spr_hud
 		|fnt_hud
 +Gameplay
-	+Characters
+	+PCs
 		+Masks
 			|mask_main
 			|mask_large
@@ -181,6 +181,7 @@
 				+Tag Actions
 					|spr_knuckles_leap
 					|spr_knuckles_fly_carry
+	+NPCs
 	+Props
 		+Sensors
 			+Layer Sensors

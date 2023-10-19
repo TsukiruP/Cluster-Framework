@@ -13,10 +13,13 @@
 			|ctrl_hud
 			|ctrl_pause
 +Gameplay
-	+Character
+	+PCs
 		|ctrl_camera
 		|obj_player_spawn
 		|par_character
+	+NPCs
+		+Badniks
+			|par_badnik
 	+Props
 		+Sensors
 		+Rings
@@ -48,8 +51,6 @@
 			|par_spike
 		+Water
 			|obj_water_surface
-	+Badniks
-		|par_badnik
 	+Effects
 		|eff_dummy
 		+Character
