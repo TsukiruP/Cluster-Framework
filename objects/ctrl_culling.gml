@@ -18,19 +18,19 @@ instance_activate_region(view_xview[view_current] - global.display_width / 2, vi
 // Deactivate badniks:
 instance_deactivate_object(par_badnik);
 
-// Activate character & view regions:
-if(instance_exists(par_character)) {
-    // Cycle through character instances:
-    var character_count, character_handle;
+// Activate player & view regions:
+if(instance_exists(par_player)) {
+    // Cycle through player instances:
+    var player_count, player_handle;
 
-    // Character count:
-    character_count = instance_number(par_character);
+    // Player count:
+    player_count = instance_number(par_player);
 
-    for(i = 0; i < character_count; i += 1) {
-        character_handle = instance_find(par_character, i);
-        if(character_handle == noone) continue;
+    for(i = 0; i < player_count; i += 1) {
+        player_handle = instance_find(par_player, i);
+        if(player_handle == noone) continue;
 
-        instance_activate_region(character_handle.x - global.display_width / 2, character_handle.y - global.display_height / 2, global.display_width, global.display_height, true);
+        instance_activate_region(player_handle.x - global.display_width / 2, player_handle.y - global.display_height / 2, global.display_width, global.display_height, true);
     }
 }
 

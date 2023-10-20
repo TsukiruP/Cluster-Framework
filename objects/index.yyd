@@ -6,7 +6,7 @@ par_moving_platform
 par_layer_low
 par_layer_high
 obj_basic_test_collision_solid_01
-par_character
+par_player
 par_indestructable
 
 ctrl_initialization

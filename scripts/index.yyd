@@ -61,7 +61,7 @@ draw_sprite_tiled_horizontal_yscale
 draw_sprite_tiled_vertical
 player_exists
 partner_exists
-approach
+
 
 
 

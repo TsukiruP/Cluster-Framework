@@ -1,4 +1,9 @@
-/// player_exists()
-// Returns true if the player object currently exists.
+/// player_exists(player)
+// Returns true if the given player object currently exists.
 
-return global.player_id != noone && instance_exists(global.player_id);
+var player_number;
+
+if(argument_count >= 1) player_number = argument[0];
+else player_number = 0;
+
+return global.player_id[player_number] != noone && instance_exists(global.player_id[player_number]);

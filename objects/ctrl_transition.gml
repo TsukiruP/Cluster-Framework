@@ -171,8 +171,8 @@ if(transition_type == TRANS_CARD) {
     // Run kickoff:
     if(player_exists()) {
         if(title_card_state >= 4 && room_kickoff == KICKOFF_RUN && room_run_end_x != -1) {
-            global.player_id.x_speed     = global.player_id.x_top_speed;
-            global.player_id.input_right = true;
+            global.player_id[0].x_speed     = global.player_id[0].x_top_speed;
+            global.player_id[0].input_right = true;
         }
     }
 
@@ -252,22 +252,22 @@ if(transition_type == TRANS_CARD) {
             if(player_exists()) {
                 // Wait/ready kickoffs:
                 if(room_kickoff == KICKOFF_WAIT || room_kickoff == KICKOFF_READY) {
-                    if(floor(background_position) <= global.player_id.y + 13 - view_yview[view_current]) {
+                    if(floor(background_position) <= global.player_id[0].y + 13 - view_yview[view_current]) {
                         // Wait kickoff:
                         if(room_kickoff == KICKOFF_WAIT) {
-                            global.player_id.animation_target = "wait_short";
+                            global.player_id[0].animation_target = "wait_short";
 
-                            if(partner_exists()) global.partner_id.animation_target = "wait_short";
+                            if(player_exists(1)) global.player_id[1].animation_target = "wait_short";
                         }
 
                         // Ready kickoff:
                         if(room_kickoff == KICKOFF_READY) {
-                            global.player_id.animation_target = "ready";
+                            global.player_id[0].animation_target = "ready";
 
-                            if(partner_exists()) global.partner_id.animation_target = "ready";
+                            if(player_exists(1)) global.player_id[1].animation_target = "ready";
                         }
                     }
-                } else if(room_kickoff != KICKOFF_DEFAULT && room_kickoff != KICKOFF_RUN) global.player_id.control_type = 1;
+                } else if(room_kickoff != KICKOFF_DEFAULT && room_kickoff != KICKOFF_RUN) global.player_id[0].control_type = 1;
             }
         } else {
             background_speed    = 0;
@@ -294,15 +294,15 @@ if(transition_type == TRANS_CARD) {
                 }
 
                 // Animation standby:
-                if(room_kickoff == KICKOFF_WAIT && global.player_id.animation_target != "wait_short" ||
-                    room_kickoff == KICKOFF_READY && global.player_id.animation_target != "ready") {
+                if(room_kickoff == KICKOFF_WAIT && global.player_id[0].animation_target != "wait_short" ||
+                    room_kickoff == KICKOFF_READY && global.player_id[0].animation_target != "ready") {
                     if(transition_standby < 2.2) transition_standby += transition_speed;
                     else transition_standby = 2.2;
                 }
 
                 // Stop running:
                 if(room_kickoff == KICKOFF_RUN) {
-                    if(room_run_end_x != -1 && global.player_id.x >= room_run_end_x) room_run_end_x = -1;
+                    if(room_run_end_x != -1 && global.player_id[0].x >= room_run_end_x) room_run_end_x = -1;
                 }
             }
         }
@@ -356,8 +356,8 @@ if(transition_type == TRANS_RETRY) {
     // Run kickoff:
     if(player_exists()) {
         if(retry_state >= 4 && room_kickoff == KICKOFF_RUN && room_run_end_x != -1 && global.checkpoint_x == -1 && global.checkpoint_y == -1) {
-            global.player_id.x_speed     = global.player_id.x_top_speed;
-            global.player_id.input_right = true;
+            global.player_id[0].x_speed     = global.player_id[0].x_top_speed;
+            global.player_id[0].input_right = true;
         }
     }
 
@@ -447,7 +447,7 @@ if(transition_type == TRANS_RETRY) {
 
         // Stop running:
         if(player_exists()) {
-            if(global.player_id.x >= room_run_end_x && global.player_id.action_state != ACTION_DEATH) room_run_end_x = -1;
+            if(global.player_id[0].x >= room_run_end_x && global.player_id[0].action_state != ACTION_DEATH) room_run_end_x = -1;
         }
 
 

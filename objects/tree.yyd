@@ -16,7 +16,7 @@
 	+PCs
 		|ctrl_camera
 		|obj_player_spawn
-		|par_character
+		|par_player
 	+NPCs
 		+Badniks
 			|par_badnik

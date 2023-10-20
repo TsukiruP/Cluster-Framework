@@ -213,10 +213,10 @@ global.gamepad_device = 0;
 global.gamepad_exists = false;
 
 // Character related:
-global.player_id             =  noone;
-global.partner_id            =  noone;
-global.player_data           =  CHAR_MILES;
-global.partner_data          =  CHAR_CLASSIC;
+global.player_id[0]          =  noone;
+global.player_id[1]          =  noone;
+global.player_data[0]        =  CHAR_MILES;
+global.player_data[1]        =  CHAR_CLASSIC;
 
 global.gravity_angle         =  0;
 global.animation_grid        = -1;

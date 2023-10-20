@@ -24,7 +24,7 @@ limit_top    = 0;
 limit_bottom = room_height;
 
 // Focus handle:
-focus_handle = global.player_id;
+focus_handle = global.player_id[0];
 
 // Camera variables:
 camera_speed             = 6.5;
@@ -56,7 +56,7 @@ applies_to=self
 
 // Shift around the player:
 if(player_exists()) {
-    if(focus_handle == global.player_id) {
+    if(focus_handle == global.player_id[0]) {
         // Up timer:
         if(focus_handle.action_state == ACTION_LOOK) camera_up_timer = min(camera_up_timer + 1, 120);
         else camera_up_timer = 0;
@@ -76,7 +76,7 @@ if(player_exists()) {
 
         // Camera pan:
         if((focus_handle.action_state == ACTION_PEEL_OUT && focus_handle.peel_out_timer > 15) || focus_handle.peel_out_flag == true) {
-            camera_x_shift = inch(camera_x_shift, 64 * focus_handle.animation_direction, 2);
+            camera_x_shift = approach(camera_x_shift, 64 * focus_handle.animation_direction, 2);
         } else camera_x_shift = max(0, abs(camera_x_shift - 2) * sign(camera_x_shift));
     }
 }
@@ -95,7 +95,7 @@ border_bottom = camera_y + 32;
 
 // Focus on player:
 if(player_exists()) {
-    if(focus_handle == global.player_id) {
+    if(focus_handle == global.player_id[0]) {
         if(camera_position_distance == 0) {
             // Horizontal movement:
             if(camera_lag == 0) {
@@ -132,19 +132,19 @@ if(player_exists()) {
                 }
             }
             // Camera near borders:
-            if(focus_handle.y > limit_bottom + view_yhalf) camera_y = inch(camera_y, limit_bottom + view_yhalf, 3);
+            if(focus_handle.y > limit_bottom + view_yhalf) camera_y = approach(camera_y, limit_bottom + view_yhalf, 3);
 
-            if(focus_handle.y < limit_top - view_yhalf) camera_y = inch(camera_y, limit_top - view_yhalf, 3);
+            if(focus_handle.y < limit_top - view_yhalf) camera_y = approach(camera_y, limit_top - view_yhalf, 3);
 
-            if(focus_handle.x > limit_right + view_xhalf) camera_x = inch(camera_x, limit_right + view_xhalf, 3);
+            if(focus_handle.x > limit_right + view_xhalf) camera_x = approach(camera_x, limit_right + view_xhalf, 3);
 
-            if(focus_handle.x < limit_left - view_xhalf) camera_x = inch(camera_x, limit_left - view_xhalf, 3);
+            if(focus_handle.x < limit_left - view_xhalf) camera_x = approach(camera_x, limit_left - view_xhalf, 3);
         }
     }
 }
 
 // Focus on other objects:
-if(focus_handle != noone && focus_handle != global.player_id) {
+if(focus_handle != noone && focus_handle != global.player_id[0]) {
     if(focus_handle.x != camera_x) {
         if(focus_handle.x > camera_x && camera_x <= limit_right - view_xhalf) camera_x += min(abs(focus_handle.x - camera_x), camera_speed);
 
