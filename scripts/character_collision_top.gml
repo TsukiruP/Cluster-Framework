@@ -10,7 +10,7 @@ mask_temp = mask_index;
 mask_index = argument3;
 
 // Collision test:
-collision_test = character_collision(floor(argument0 - dsin(argument2) * 11), floor(argument1 - dcos(argument2) * 11), collision_layer);
+collision_test = player_collision(floor(argument0 - dsin(argument2) * 11), floor(argument1 - dcos(argument2) * 11), collision_layer);
 
 // Restore temporal mask:
 mask_index = mask_temp;

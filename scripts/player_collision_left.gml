@@ -1,4 +1,4 @@
-/// character_collision_left(x, y, angle, mask)
+/// player_collision_left(x, y, angle, mask)
 // Returns true if colliding with terrain from the left.
 
 var mask_temp, collision_test;

@@ -1,5 +1,5 @@
 // pad_to_chr(pad)
-// Returns a character_data based on the given gamepad button.
+// Returns a character based on the given gamepad button.
 
 // Return chracter:
 /* [PLACEHOLDER]

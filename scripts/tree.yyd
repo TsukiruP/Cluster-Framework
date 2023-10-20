@@ -33,63 +33,63 @@
 +Gameplay
 	+Player
 		+Collision
-			|character_collision
-			|character_collision_slope
-			|character_collision_platform_fix
-			|character_collision_edge_line
+			|player_collision
+			|player_collision_slope
+			|player_collision_platform_fix
+			|player_collision_edge_line
 			+Main
-				|character_collision_main
-				|character_collision_object_main
+				|player_collision_main
+				|player_collision_object_main
 			+Left
-				|character_collision_left
-				|character_collision_left_edge
-				|character_collision_object_left
+				|player_collision_left
+				|player_collision_left_edge
+				|player_collision_object_left
 			+Right
-				|character_collision_right
-				|character_collision_right_edge
-				|character_collision_object_right
+				|player_collision_right
+				|player_collision_right_edge
+				|player_collision_object_right
 			+Top
-				|character_collision_top
-				|character_collision_object_top
+				|player_collision_top
+				|player_collision_object_top
 			+Bottom
-				|character_collision_bottom
-				|character_collision_object_bottom
+				|player_collision_bottom
+				|player_collision_object_bottom
 		+Angle
-			|character_set_angle
-			|character_get_angle
+			|player_set_angle
+			|player_get_angle
 		+Actions
-			|character_action_jump
-			|character_action_look
-			|character_action_crouch
-			|character_action_spin_dash
-			|character_action_roll
-			|character_action_skid
-			|character_state_hurt
+			|player_action_jump
+			|player_action_look
+			|player_action_crouch
+			|player_action_spin_dash
+			|player_action_roll
+			|player_action_skid
+			|player_state_hurt
 		+Animation
-			|character_animation_core
-			|character_add_animation
+			|player_animation_core
+			|player_add_animation
 			+Character Specific
 				|classic_add_animations
-				|sonic_add_animation
+				|sonic_add_animations
 				|miles_add_animations
 				|knuckles_add_animations
-			|character_compile_animations
-			|character_get_animation
+			|player_compile_animations
+			|player_get_animation
 			+Miles' Tails
 				|miles_tails_set_animation
 				|miles_tails_get_animation
 		+Handle
-			|character_handle_list
-			|character_handle_ring
-			|character_handle_monitor
-			|character_handle_water_surface
+			|player_handle_list
+			|player_handle_ring
+			|player_handle_monitor
+			|player_handle_water_surface
 		+Input
 			|character_input_blank
 			|character_input_player
 		+Misc.
-			|character_ring_loss
-			|character_align_roll
-			|character_get_item
+			|player_ring_loss
+			|player_align_roll
+			|player_get_item
 			+Trail
 				|start_trail
 				|update_trail

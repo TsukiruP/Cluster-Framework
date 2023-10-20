@@ -1,5 +1,5 @@
-/// character_collision_main(x, y)
-// Returns true if colliding with terrain.
+/// player_collision_object_main(x, y, obj)
+// Returns true if colliding with the given object.
 
 var mask_temp, collision_test;
 
@@ -10,7 +10,7 @@ mask_temp = mask_index;
 mask_index = mask_main;
 
 // Collision test:
-collision_test = player_collision(floor(argument0), floor(argument1), collision_layer);
+collision_test = instance_place(floor(argument0), floor(argument1), argument2);
 
 // Restore temporal mask:
 mask_index = mask_temp;

@@ -1,4 +1,4 @@
-/// character_get_angle(x, y, angle)
+/// player_get_angle(x, y, angle)
 // Returns the surface angle at the given position & angle.
 
 var mask_temp, xPoint, yPoint;

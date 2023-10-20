@@ -9,8 +9,8 @@ applies_to=self
 // Image speed:
 image_speed = 0;
 
-// Character handle:
-character_handle = noone;
+// Player handle:
+player_handle = noone;
 
 // Item data variables:
 item_data = ITEM_BONUS;
@@ -22,8 +22,8 @@ applies_to=self
 */
 /// Give Item
 
-if(character_handle != noone) {
-    with(character_handle) character_get_item(other.item_data);
+if(player_handle != noone) {
+    with(player_handle) player_get_item(other.item_data);
 }
 #define Step_0
 /*"/*'/**//* YYD ACTION

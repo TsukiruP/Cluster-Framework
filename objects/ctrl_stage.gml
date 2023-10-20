@@ -37,7 +37,7 @@ if(instance_exists(obj_player_spawn)) {
             global.player_id[1].control_type   =  2;
         }
 
-        character_compile_animations();
+        player_compile_animations();
 
         instance_destroy();
     }

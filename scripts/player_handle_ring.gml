@@ -1,4 +1,4 @@
-/// character_handle_ring()
+/// player_handle_ring()
 // Nom nom nom.
 
 var ring_handle;

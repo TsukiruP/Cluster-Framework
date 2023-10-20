@@ -231,19 +231,14 @@ animation_alpha           =  1;
 animation_timer           =  0;
 animation_depth           =  0;
 
-miles_tails_sprite        =  noone;
 miles_tails_frame         =  0;
-miles_tails_speed         =  0.5;
+miles_tails_speed         =  0.14;
 miles_tails_x             =  0;
 miles_tails_y             =  0;
 miles_tails_angle         =  0;
-miles_tails_direction     =  1;
-miles_tails_offset        =  0;
 
 draw_x                    =  x;
 draw_y                    =  y;
-
-//character_compile_animations();
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -340,7 +335,7 @@ applies_to=self
 if(initialized == false || action_state == ACTION_RESPAWN || action_state == ACTION_DEATH) exit;
 
 // Platform fix:
-if(character_collision_platform_fix(x, y, angle, mask_platform_fix)) platform_mode = true;
+if(player_collision_platform_fix(x, y, angle, mask_platform_fix)) platform_mode = true;
 else platform_mode = false;
 
 // X movement:
@@ -358,28 +353,28 @@ repeat(x_steps) {
     y -= dsin(angle) * x_samples;
     
     // Move outside of terrain:
-    while(x_samples < 0 && character_collision_left(x, y, angle, mask_mid)) {
+    while(x_samples < 0 && player_collision_left(x, y, angle, mask_mid)) {
         x += dcos(angle);
         y -= dsin(angle);
     }
     
-    while(x_samples > 0 && character_collision_right(x, y, angle, mask_mid)) {
+    while(x_samples > 0 && player_collision_right(x, y, angle, mask_mid)) {
         x -= dcos(angle);
         y += dsin(angle);
     }
     
     // Handle list:
-    character_handle_list();
+    player_handle_list();
     
     // Terrain & slope movement:
     if(ground == true) {
-        while(character_collision_main(x, y)) {
+        while(player_collision_main(x, y)) {
             x -= dsin(angle);
             y -= dcos(angle);
         }
         
-        if(character_collision_slope(x, y, angle, mask_mid)) {
-            while(!character_collision_main(x, y)) {
+        if(player_collision_slope(x, y, angle, mask_mid)) {
+            while(!player_collision_main(x, y)) {
                  x += dsin(angle);
                  y += dcos(angle);
             }
@@ -388,26 +383,26 @@ repeat(x_steps) {
         // Set angle:
         if(y_allow == true) {
             if(terrain_angle_change == true) {
-                if((terrain_edge_skip == false && character_collision_left_edge(x, y, angle) && character_collision_right_edge(x, y, angle)) || terrain_edge_skip == true) {
+                if((terrain_edge_skip == false && player_collision_left_edge(x, y, angle) && player_collision_right_edge(x, y, angle)) || terrain_edge_skip == true) {
                     if(terrain_edge_exception == true) {
                         var angle_test;
                         
-                        angle_test = character_get_angle(x, y, angle);
+                        angle_test = player_get_angle(x, y, angle);
                         
                         if((angle_test >= 60 && angle_test <= 90) || (angle_test >= 240 && angle_test <= 300)) {
-                            if(!character_collision_edge_line()) {
+                            if(!player_collision_edge_line()) {
                                 ground = false;
                                 break;
                             } else angle = angle_test;
                         }
-                    } else angle = character_get_angle(x, y, angle);
+                    } else angle = player_get_angle(x, y, angle);
                 }
             } else angle = gravity_angle;
         }
     }
     
     // Handle list:
-    character_handle_list();
+    player_handle_list();
     
     // Abort:
     if(x_speed == 0) break;
@@ -429,31 +424,31 @@ if(ground == false) {
         y += dcos(angle) * y_samples;
         
         // Move outside of terrain:
-        while(y_samples < 0 && character_collision_top(x, y, gravity_angle, mask_mid)) {
+        while(y_samples < 0 && player_collision_top(x, y, gravity_angle, mask_mid)) {
             x += dsin(angle);
             y += dcos(angle);
         }
         
-        while(y_samples > 0 && character_collision_bottom(x, y, gravity_angle, mask_mid)) {
+        while(y_samples > 0 && player_collision_bottom(x, y, gravity_angle, mask_mid)) {
             x -= dsin(angle);
             y -= dcos(angle);
         }
         
         // Handle list:
-        character_handle_list();
+        player_handle_list();
         
         // Floor landing:
-        if(y_speed >= 0 && character_collision_bottom(x, y, gravity_angle, mask_big)) {
+        if(y_speed >= 0 && player_collision_bottom(x, y, gravity_angle, mask_big)) {
             if(terrain_angle_change == true) {
                 if(terrain_edge_skip == false) {
-                    if(character_collision_left_edge(x, y, gravity_angle) && character_collision_right_edge(x, y, gravity_angle)) {
-                        character_set_angle(character_get_angle(x, y, angle));
-                    } else character_set_angle(gravity_angle);
-                } else character_set_angle(character_get_angle(x, y, angle));
-            } else character_set_angle(gravity_angle);
+                    if(player_collision_left_edge(x, y, gravity_angle) && player_collision_right_edge(x, y, gravity_angle)) {
+                        player_set_angle(player_get_angle(x, y, angle));
+                    } else player_set_angle(gravity_angle);
+                } else player_set_angle(player_get_angle(x, y, angle));
+            } else player_set_angle(gravity_angle);
             
             // Obstacle landing:
-            if(character_collision_object_bottom(x, y, angle, mask_main, par_obstacle)) character_set_angle(gravity_angle);
+            if(player_collision_object_bottom(x, y, angle, mask_main, par_obstacle)) player_set_angle(gravity_angle);
             
             // Change x speed when landing on awkward terrain:
             if(abs(x_speed) <= abs(y_speed) && angle_relative > 35 && angle_relative < 324) {
@@ -479,18 +474,18 @@ if(ground == false) {
         }
         
         // Ceiling landing:
-        if(y_speed < 0 && terrain_ceiling_allow == true && character_collision_top(x, y, gravity_angle, mask_large) && !character_collision_object_top(x, y, angle, mask_large, par_obstacle)) { 
+        if(y_speed < 0 && terrain_ceiling_allow == true && player_collision_top(x, y, gravity_angle, mask_large) && !player_collision_object_top(x, y, angle, mask_large, par_obstacle)) { 
             // Set angle:
-            character_set_angle(gravity_angle + 180);
+            player_set_angle(gravity_angle + 180);
             
             // Check if landing is possible:
-            if(character_collision_left_edge(x, y, angle) && character_collision_right_edge(x, y, angle)) {
+            if(player_collision_left_edge(x, y, angle) && player_collision_right_edge(x, y, angle)) {
                 // Set angle:
-                character_set_angle(character_get_angle(x, y, angle));
+                player_set_angle(player_get_angle(x, y, angle));
                 
                 // Check fi the angle isn't flat:
                 if(angle_relative > 160 && angle_relative < 200) {
-                    character_set_angle(gravity_angle);
+                    player_set_angle(gravity_angle);
                     y_speed = 0;
                 }
 
@@ -505,7 +500,7 @@ if(ground == false) {
                     if(action_state != ACTION_DEFAULT);
                 }
             } else {
-                character_set_angle(gravity_angle);
+                player_set_angle(gravity_angle);
                 y_speed = 0;
 
                 if(ground == false) break;
@@ -513,25 +508,25 @@ if(ground == false) {
         }
 
         // Another collision check:
-        while(character_collision_left(x, y, angle, mask_mid)) {
+        while(player_collision_left(x, y, angle, mask_mid)) {
             x += dcos(angle);
             y -= dsin(angle);
         }
 
-        while(character_collision_right(x, y, angle, mask_mid)) {
+        while(player_collision_right(x, y, angle, mask_mid)) {
             x -= dcos(angle);
             y += dsin(angle);
         }
 
         // Another move outside of terrain:
         if(ground == true) {
-            while(character_collision_main(x, y)) {
+            while(player_collision_main(x, y)) {
                 x -= dsin(angle);
                 y -= dcos(angle);
             }
 
-            if(character_collision_slope(x, y, angle, mask_mid)) {
-                while(!character_collision_main(x, y)) {
+            if(player_collision_slope(x, y, angle, mask_mid)) {
+                while(!player_collision_main(x, y)) {
                         x += dsin(angle);
                         y += dcos(angle);
                 }
@@ -539,7 +534,7 @@ if(ground == false) {
         }
 
         // Handle list:
-        character_handle_list();
+        player_handle_list();
 
         // Abort:
         if(y_speed == 0) break;
@@ -548,7 +543,7 @@ if(ground == false) {
 
 // Launch movement:
 repeat(x_steps * 2) {
-    if(ground == true && angle != 0 && ((x_speed <= 0 && !character_collision_left_edge(x, y, angle)) || (x_speed >= 0 && !character_collision_right_edge(x, y, angle)))) {
+    if(ground == true && angle != 0 && ((x_speed <= 0 && !player_collision_left_edge(x, y, angle)) || (x_speed >= 0 && !player_collision_right_edge(x, y, angle)))) {
         if(terrain_launch_allow == true) {
             if(angle != 90 && angle != 180 && angle != 270 && terrain_launch_angle != -1 && terrain_launch_direction != 0 && sign(x_speed) == terrain_launch_direction) {
                 // Disable wall stop:
@@ -684,13 +679,13 @@ if(x_allow == true) {
     }
     
     // Set angle:
-    if(ground == true && character_collision_left_edge(x, y, angle) && character_collision_right_edge(x, y, angle)) {
-        character_set_angle(character_get_angle(x, y, angle));
-    } else character_set_angle(gravity_angle);
+    if(ground == true && player_collision_left_edge(x, y, angle) && player_collision_right_edge(x, y, angle)) {
+        player_set_angle(player_get_angle(x, y, angle));
+    } else player_set_angle(gravity_angle);
     
     // Wall stop:
     if(wall_stop_allow == true) {
-        if((x_speed < 0 && character_collision_left(x, y, angle, mask_big)) || (x_speed > 0 && character_collision_right(x, y, angle, mask_big))) {
+        if((x_speed < 0 && player_collision_left(x, y, angle, mask_big)) || (x_speed > 0 && player_collision_right(x, y, angle, mask_big))) {
             x_speed = 0;
         }
     }
@@ -719,26 +714,26 @@ if(y_allow == true) {
         }
         
         // Set ground:
-        if(!character_collision_bottom(x, y, angle, mask_big)) {
+        if(!player_collision_bottom(x, y, angle, mask_big)) {
             ground = false;
-            character_set_angle(gravity_angle);
+            player_set_angle(gravity_angle);
         }
     } else {
         // Add gravity force:
         if(action_state != ACTION_CARRY) y_speed += gravity_force;
         
         // Set ground:
-        if(y_speed >= 0 && character_collision_bottom(x, y, angle, mask_big)) ground = true;
+        if(y_speed >= 0 && player_collision_bottom(x, y, angle, mask_big)) ground = true;
         
         // Ceiling collision:
-        if(y_speed < 0 && character_collision_top(x, y, angle, mask_big)) {
+        if(y_speed < 0 && player_collision_top(x, y, angle, mask_big)) {
             y_speed = 0;
             
             if(action_state == ACTION_DEFAULT && x_speed == 0 && y_speed == 0) action_state = ACTION_ROLL;
         }
         
         // Reset hurt speed:
-        if(y_speed >= 0 && action_state == ACTION_HURT && character_collision_bottom(x, y, angle, mask_main)) {
+        if(y_speed >= 0 && action_state == ACTION_HURT && player_collision_bottom(x, y, angle, mask_main)) {
             x_speed      = 0;
             action_state = ACTION_DEFAULT;
         }
@@ -767,12 +762,12 @@ applies_to=self
 // Don't bother if not initialized or in the middle of dying:
 if(initialized == false || action_state == ACTION_DEATH) exit;
 
-character_action_jump();
-character_action_look();
-character_action_crouch();
-character_action_spin_dash();
-character_action_roll();
-character_action_skid();
+player_action_jump();
+player_action_look();
+player_action_crouch();
+player_action_spin_dash();
+player_action_roll();
+player_action_skid();
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -1233,10 +1228,10 @@ if(character_data == CHAR_CLASSIC) {
 }
 
 // Animation core:
-character_animation_core();
+player_animation_core();
 
 // Align roll:
-//if(animation_current == "roll" || animation_current == "spin_flight") character_align_roll();
+if(animation_current == "roll" || animation_current == "spin_flight") player_align_roll();
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -1513,7 +1508,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Draw Character
+/// Draw Player
 
 // Trail:
 if(global.misc_trails == true) {
@@ -1533,7 +1528,7 @@ if(invincibility_type != 1 || (invincibility_type == 1 && (invincibility_alarm >
         miles_tails_x = draw_x - 5 * dcos(miles_tails_angle) - abs(dcos(miles_tails_angle) * (ground == true && animation_direction == -1)) - (abs(dsin(miles_tails_angle)) * animation_direction);
         miles_tails_y = draw_y + 4 * dsin(miles_tails_angle) - abs(dcos(miles_tails_angle) * (ground == true && animation_direction == -1));
         
-        if(animation_current == "roll" || (animation_current == "spin_flight" && animation_current_frame >= animation_loop_frame)) draw_sprite_ext(spr_miles_tails, 4, floor(miles_tails_x), floor(miles_tails_y), animation_direction * animation_x_scale, animation_y_scale, angle_wrap(miles_tails_angle - 90), animation_blend, animation_alpha);
+        if(animation_current == "roll" || (animation_current == "spin_flight" && animation_current_frame >= animation_loop_frame)) draw_sprite_ext(spr_miles_tails, floor(miles_tails_frame), floor(miles_tails_x), floor(miles_tails_y), animation_direction * animation_x_scale, animation_y_scale, angle_wrap(miles_tails_angle - 90), animation_blend, animation_alpha);
     }
     
     // Character:

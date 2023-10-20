@@ -1,4 +1,4 @@
-/// character_action_spin_dash()
+/// player_action_spin_dash()
 // Charge and Up.
 
 // Trigger Spin Dash:
@@ -17,7 +17,7 @@ if(action_state == ACTION_SPIN_DASH) {
 
     // Let 'er rip:
     if(ground == true && input_down == false) {
-        if((animation_direction == -1 && !player_collision_left(x, y, angle, mask_big)) || (animation_direction == 1 && !character_collision_right(x, y, angle, mask_big))) {
+        if((animation_direction == -1 && !player_collision_left(x, y, angle, mask_big)) || (animation_direction == 1 && !player_collision_right(x, y, angle, mask_big))) {
             x_speed      = animation_direction * (8 + (spin_dash_strength div 2)); 
             action_state = ACTION_ROLL;
             

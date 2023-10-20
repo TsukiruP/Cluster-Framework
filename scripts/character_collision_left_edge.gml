@@ -14,7 +14,7 @@ sprite_index = mask_lines;
 image_index  = floor(argument2);
 
 // Collision test:
-collision_test = character_collision(floor(argument0 - dcos(argument2) * 8 + dsin(argument2) * 11), floor(argument1 + dsin(argument2) * 11 + dcos(argument2) * 11), collision_layer);
+collision_test = player_collision(floor(argument0 - dcos(argument2) * 8 + dsin(argument2) * 11), floor(argument1 + dsin(argument2) * 11 + dcos(argument2) * 11), collision_layer);
 
 // Restore temporal mask:
 mask_index   = mask_temp;

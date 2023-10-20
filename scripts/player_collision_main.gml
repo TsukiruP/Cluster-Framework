@@ -1,4 +1,4 @@
-/// character_collision_main(x, y)
+/// player_collision_main(x, y)
 // Returns true if colliding with terrain.
 
 var mask_temp, collision_test;

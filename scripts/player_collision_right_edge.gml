@@ -1,4 +1,4 @@
-/// character_collision_right_edge(x, y, angle)
+/// player_collision_right_edge(x, y, angle)
 // Returns true if colliding with terrain.
 
 var mask_temp, sprite_temp, image_temp, collision_test;
