@@ -252,20 +252,15 @@ if(transition_type == TRANS_CARD) {
             if(player_exists()) {
                 // Wait/ready kickoffs:
                 if(room_kickoff == KICKOFF_WAIT || room_kickoff == KICKOFF_READY) {
+                    var kickoff_animation;
+
+                    if(room_kickoff == KICKOFF_WAIT) kickoff_animation = "wait_short";
+                    if(room_kickoff == KICKOFF_READY) kickoff_animation = "ready";
+
                     if(floor(background_position) <= global.player_id[0].y + 13 - view_yview[view_current]) {
-                        // Wait kickoff:
-                        if(room_kickoff == KICKOFF_WAIT) {
-                            global.player_id[0].animation_target = "wait_short";
+                        global.player_id[0].animation_target = kickoff_animation;
 
-                            if(player_exists(1)) global.player_id[1].animation_target = "wait_short";
-                        }
-
-                        // Ready kickoff:
-                        if(room_kickoff == KICKOFF_READY) {
-                            global.player_id[0].animation_target = "ready";
-
-                            if(player_exists(1)) global.player_id[1].animation_target = "ready";
-                        }
+                        if(player_exists(1)) global.player_id[1].animation_target = kickoff_animation;
                     }
                 } else if(room_kickoff != KICKOFF_DEFAULT && room_kickoff != KICKOFF_RUN) global.player_id[0].control_type = 1;
             }
