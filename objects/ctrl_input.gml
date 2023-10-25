@@ -45,10 +45,8 @@ joystick_total = 2;
 
 // Joystick devices:
 for(i = 0; i < joystick_total; i += 1) {
-    joystick_device[i] = -2;
+    joystick_device[i] = -1;
 }
-
-//joystick_device[0] = 0;
 
 // Dpad values:
 for(i = INP_LEFT; i <= INP_DOWN; i += 1) {
@@ -70,11 +68,11 @@ if(joystick_found()) {
     for(i = 0; i < joystick_total; i += 1) {
         // Check if current device has been removed:
         if(joystick_device[i] > joystick_count() - 1) {
-            joystick_device[i] = -2;
+            joystick_device[i] = -1;
         }
 
         // Check current device is set to seeking:
-        if(joystick_device[i] == -2) {
+        if(joystick_device[i] == -1) {
             // Check there's enough joysticks:
             if(joystick_count() > 0) {
                 // Iterate through currently connected joysticks:
@@ -91,37 +89,6 @@ if(joystick_found()) {
             }
         }
         
-    }
-}
-
-/*
-if(joystick_found()) {
-    for(i = 0; i < joystick_total; i += 1) {
-        if(joystick_device[i] == -2) {
-            // Iterate through every joystick currently connected:
-            for(j = 0; j < joystick_count(); j += 1) {
-                // Iterate through every device registered:
-                for(k = 0; k <= joystick_total; k += 1) {
-                    if(joystick_exists(j) && j != joystick_device[k]) joystick_device[i] = j;
-                }
-            }
-        } else if(joystick_device[i] > joystick_count()) {
-            // Check if there's enough joysticks:
-            if(joystick_count() > 0) {
-                // Iterate through every joystick currently connected:
-                for(j = 0; j < joystick_count(); j += 1) {
-                    // Iterate through every device registered:
-                    for(k = 0; k <= joystick_total; k += 1) {
-                        if(joystick_exists(j) && j != joystick_device[k]) joystick_device[i] = j;
-                    }
-                }
-            } else {
-                for(j = 0; j <= joystick_total; j += 1) {
-                    // Set joysticks to auto detect:
-                    joystick_device[j] = -2;
-                }
-            }
-        }
     }
 }
 #define Step_1
