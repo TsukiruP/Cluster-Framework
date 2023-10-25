@@ -9,7 +9,7 @@ ring_handle = player_collision_object_main(x, y, obj_ring);
 if(ring_handle != noone) {
     if(invincibility_type != 1 || (invincibility_type == 1 && invincibility_alarm > -1 && invincibility_type <= 90)) {
         if(action_state != ACTION_HURT) {
-            if(control_type == 1 || (control_type == 2 && global.player_id[0].action_state != ACTION_HURT)) {
+            if(control_type == 1 || (control_type == 2 && global.player_instance[0].action_state != ACTION_HURT)) {
                 with(ring_handle) {
                     dummy_effect_create(spr_ring_sparkle, 0.35, x, y, -10);
                     instance_destroy();

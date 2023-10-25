@@ -152,9 +152,9 @@ terrain_edge_exception   = false;
 terrain_edge_skip        = false;
 
 // Platform variables:
-platform_id    = noone;
-platform_mode  = false;
-platform_check = false;
+platform_instance = noone;
+platform_mode     = false;
+platform_check    = false;
 
 // Water variables:
 underwater      = false;
@@ -195,7 +195,7 @@ applies_to=self
 */
 /// Input Initialization
 
-character_input_blank();
+player_get_input();
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -632,12 +632,12 @@ if(x_allow == true) {
         // Ground acceleration:
         if(ground == true) {
             if(input_lock_alarm == 0) {
-                if(input_left == true) {
+                if(player_input[INP_LEFT, CHECK_HELD] == true) {
                     if(x_speed > 0) x_speed -= deceleration_temp;
                     else {
                         if(x_speed > -x_top_speed) x_speed -= acceleration_temp;
                     }
-                } else if(input_right == true) {
+                } else if(player_input[INP_RIGHT, CHECK_HELD] == true) {
                     if(x_speed < 0) x_speed += deceleration_temp;
                     else {
                         if(x_speed < x_top_speed) x_speed += acceleration_temp;
@@ -650,14 +650,14 @@ if(x_allow == true) {
         
         // Air acceleration:
         else {
-            if(input_left == true) {
+            if(player_input[INP_LEFT, CHECK_HELD] == true) {
                 if(action_state == ACTION_FLY || action_state == ACTION_FLY_DROP || action_state == ACTION_GLIDE_DROP) {
                     if(x_speed > 0) x_speed -= acceleration_temp;
                     else if(x_speed > -x_top_speed) x_speed -= air_acceleration;
                 } else x_speed -= air_acceleration;
             }
             
-            if(input_right == true) {
+            if(player_input[INP_RIGHT, CHECK_HELD] == true) {
                 if(action_state == ACTION_FLY || action_state == ACTION_FLY_DROP || action_state == ACTION_GLIDE_DROP) {
                     if(x_speed < 0) x_speed += acceleration_temp;
                     else if(x_speed < x_top_speed) x_speed += air_acceleration;
@@ -797,11 +797,11 @@ if(gimmick_lock == true && gimmick_lock_alarm < 1) {
 // Gimmick lock sets your input:
 if(gimmick_lock == true) {
     if(x_speed > 0) {
-        input_right     = true;
-        input_lock_left = true;
+        player_input[INP_RIGHT, CHECK_HELD] = true;
+        input_lock_left                     = true;
     } else if(x_speed < 0) {
-        input_left       = true;
-        input_lock_right = true;
+        player_input[INP_LEFT, CHECK_HELD] = true;
+        input_lock_right                   = true;
     }
 }
 
@@ -922,17 +922,17 @@ applies_to=self
 // Don't bother if not initialized or in the middle of respawning/dying:
 if(initialized == false || action_state == ACTION_RESPAWN || action_state == ACTION_DEATH) exit;
 
-if(control_type == 1) character_input_player();
-else character_input_blank();
+if(control_type == 1) player_get_input(0);
+else player_get_input();
 
 // Input lock:
 if(input_lock_alarm != 0){
-    if(input_lock_direction == -1) input_left = false;
-    if(input_lock_direction == 1) input_right = false;
+    if(input_lock_direction == -1) player_input[INP_LEFT, CHECK_HELD] = false;
+    if(input_lock_direction == 1) player_input[INP_RIGHT, CHECK_HELD] = false;
 }
 
-if(input_lock_left == true) input_left = false;
-if(input_lock_right == true) input_right = false;
+if(input_lock_left == true) player_input[INP_LEFT, CHECK_HELD] = false;
+if(input_lock_right == true) player_input[INP_RIGHT, CHECK_HELD] = false;
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -1258,7 +1258,7 @@ if(ground == true) {
 if(animation_current == "spin_flight" || animation_current == "spin_fall" || animation_current == "tag_flight" || animation_current == "tag_fall" ||
     animation_current == "leap_flight" || animation_current == "leap_fall" || animation_current == "spring_flight" || animation_current == "spring_fall" ||
     action_state == ACTION_JUMP && animation_current == "roll") {
-    animation_rendering_speed = 0.25 * max(1, 1 + abs(x_speed) / 25 + abs(y_speed) /25);
+    animation_rendering_speed = 0.25 * max(1, 1 + abs(x_speed) / 25 + abs(y_speed) / 25);
     animation_speed           = animation_rendering_speed;
 }
 
@@ -1267,6 +1267,8 @@ if(action_state == ACTION_ROLL) {
     if(ground == true) {
         animation_speed            = 0.25 + (abs(x_speed) / 12);
         aniimation_rendering_speed = animation_speed;
+
+        miles_tails_speed          = 0.14 + (abs(x_speed) / 25 + abs(y_speed) / 25);
     } else {
         aniimation_rendering_speed = animation_speed;
     }
@@ -1287,17 +1289,17 @@ applies_to=self
 // Change direction on the ground based on speed and input:
 if(action_state != ACTION_DEATH && action_state != ACTION_HURT && action_state != ACTION_JUMP && action_state != ACTION_LOOK && action_state != ACTION_CROUCH &&
     action_state != ACTION_SPIN_DASH && action_state != ACTION_ROLL && action_state != ACTION_SKID && action_state != ACTION_PEEL_OUT && action_state != ACTION_CLIMB && action_state != ACTION_CARRY) {
-    if(x_speed <= 0 && input_left == true) animation_direction = -1;
+    if(x_speed <= 0 && player_input[INP_LEFT, CHECK_HELD] == true) animation_direction = -1;
 
-    if(x_speed >= 0 && input_right == true) animation_direction = 1;
+    if(x_speed >= 0 && player_input[INP_RIGHT, CHECK_HELD] == true) animation_direction = 1;
 }
 
 // Airborne and jump direction:
 if((ground == false && action_state == ACTION_DEFAULT) || action_state == ACTION_JUMP) {
-    if(input_left == true) animation_direction = -1;
-    if(input_right == true) animation_direction = 1;
+    if(player_input[INP_LEFT, CHECK_HELD] == true) animation_direction = -1;
+    if(player_input[INP_RIGHT, CHECK_HELD] == true) animation_direction = 1;
 
-    if(action_state == ACTION_JUMP && input_left == true && input_right == true) animation_direction = animation_direction;
+    if(action_state == ACTION_JUMP && player_input[INP_LEFT, CHECK_HELD] == true && player_input[INP_RIGHT, CHECK_HELD] == true) animation_direction = animation_direction;
 }
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -1310,14 +1312,6 @@ applies_to=self
 if(initialized == false || action_state == ACTION_RESPAWN || action_state == ACTION_DEATH) exit;
 
 var angle_mod;
-
-// Miles Tails:
-if(character_data == CHAR_MILES) {
-    if(ground == true) miles_tails_angle = angle_wrap(angle + (180 * (animation_direction == -1)));
-    else {
-        miles_tails_angle = point_direction(xprevious, yprevious, x, y,);
-    }
-}
 
 // Animation Angle:
 switch(animation_current) {
@@ -1393,6 +1387,14 @@ switch(animation_current) {
             // Rotate:
             animation_angle = round(animation_angle_mod / 45) * 45;
         }
+}
+
+// Miles Tails:
+if(character_data == CHAR_MILES) {
+    if(ground == true) miles_tails_angle = angle_wrap(angle + (180 * (animation_direction == -1)));
+    else {
+        miles_tails_angle = point_direction(xprevious, yprevious, x, y,);
+    }
 }
 /*"/*'/**//* YYD ACTION
 lib_id=1

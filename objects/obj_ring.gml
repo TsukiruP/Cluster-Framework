@@ -70,8 +70,8 @@ applies_to=self
 if(player_exists()) {
     // Update status:
     if(magnetized == false) {
-        if(global.player_id[0].shield_data == SHIELD_MAGNETIC) {
-            if(distance_to_object(global.player_id[0]) < 64) {
+        if(global.player_instance[0].shield_data == SHIELD_MAGNETIC) {
+            if(distance_to_object(global.player_instance[0]) < 64) {
                 magnetized = true;
                 dropped    = false;
             }
@@ -83,7 +83,7 @@ if(player_exists()) {
             || y < view_yview[view_current] - sprite_height || y > view_yview[view_current] + view_hview[view_current] + sprite_height) instance_destroy();
         }
     } else {
-        if(global.player_id[0].shield_data != SHIELD_MAGNETIC) {
+        if(global.player_instance[0].shield_data != SHIELD_MAGNETIC) {
             magnetized = false;
             dropped    = true;
             drop_alarm = 256;
@@ -92,8 +92,8 @@ if(player_exists()) {
         // Move towards player:
         var xx, yy;
 
-        xx = sign(global.player_id[0].x - x);
-        yy = sign(global.player_id[0].y - y);
+        xx = sign(global.player_instance[0].x - x);
+        yy = sign(global.player_instance[0].y - y);
 
         x_speed += xx * (0.1875 + (0.75 * (sign(x_speed) != xx)));
         y_speed += yy * (0.1875 + (0.75 * (sign(y_speed) != yy)));

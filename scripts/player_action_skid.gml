@@ -10,7 +10,7 @@ if(input_lock_left == true || input_lock_right == true) {
 // Trigger skid:
 if(ground = true && action_state == ACTION_DEFAULT && input_lock_alarm <= 0 && gimmick_lock == false) {
     if(angle_relative < 45 || angle_relative > 315) {
-        if(((x_speed >= 4.5 && input_left == true) || (x_speed <= -4.5 && input_right == true)) && sign(x_speed) == animation_direction){
+        if(((x_speed >= 4.5 && player_input[INP_LEFT, CHECK_HELD] == true) || (x_speed <= -4.5 && player_input[INP_RIGHT, CHECK_HELD] == true)) && sign(x_speed) == animation_direction){
             action_state   = ACTION_SKID;
             skid_direction = sign(x_speed);
             
@@ -25,10 +25,10 @@ if(action_state == ACTION_SKID) {
     // Skid left:
     if(skid_direction == -1) {
         // End when holding "forward":
-        if(input_left == true) {
+        if(player_input[INP_LEFT, CHECK_HELD] == true) {
             action_state     = ACTION_DEFAULT;
             input_lock_alarm = 10;
-        } else if(input_right == true) {
+        } else if(player_input[INP_RIGHT, CHECK_HELD] == true) {
             if(x_speed >= 0) {
                 x_speed             = 0.5;
                 action_state        = ACTION_DEFAULT;
@@ -40,10 +40,10 @@ if(action_state == ACTION_SKID) {
     // Skid right:
     if(skid_direction == 1) {
         // End when holding "forward":
-        if(input_right == true) {
+        if(player_input[INP_RIGHT, CHECK_HELD] == true) {
             action_state     = ACTION_DEFAULT;
             input_lock_alarm = 10;
-        } else if(input_left == true) {
+        } else if(player_input[INP_LEFT, CHECK_HELD] == true) {
             if(x_speed <= 0) {
                 x_speed             = -0.5;
                 action_state        =  ACTION_DEFAULT;

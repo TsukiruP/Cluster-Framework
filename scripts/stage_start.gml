@@ -3,7 +3,7 @@
 
 // Player controls:
 if(player_exists()) {
-    if(global.player_id[0].control_type != 1) global.player_id[0].control_type = 1;
+    if(global.player_instance[0].control_type != 1) global.player_instance[0].control_type = 1;
 }
 
 // Add time:

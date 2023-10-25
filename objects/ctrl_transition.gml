@@ -171,8 +171,8 @@ if(transition_type == TRANS_CARD) {
     // Run kickoff:
     if(player_exists()) {
         if(title_card_state >= 4 && room_kickoff == KICKOFF_RUN && room_run_end_x != -1) {
-            global.player_id[0].x_speed     = global.player_id[0].x_top_speed;
-            global.player_id[0].input_right = true;
+            global.player_instance[0].x_speed     = global.player_instance[0].x_top_speed;
+            global.player_instance[0].input_right = true;
         }
     }
 
@@ -257,12 +257,12 @@ if(transition_type == TRANS_CARD) {
                     if(room_kickoff == KICKOFF_WAIT) kickoff_animation = "wait_short";
                     if(room_kickoff == KICKOFF_READY) kickoff_animation = "ready";
 
-                    if(floor(background_position) <= global.player_id[0].y + 13 - view_yview[view_current]) {
-                        global.player_id[0].animation_target = kickoff_animation;
+                    if(floor(background_position) <= global.player_instance[0].y + 13 - view_yview[view_current]) {
+                        global.player_instance[0].animation_target = kickoff_animation;
 
-                        if(player_exists(1)) global.player_id[1].animation_target = kickoff_animation;
+                        if(player_exists(1)) global.player_instance[1].animation_target = kickoff_animation;
                     }
-                } else if(room_kickoff != KICKOFF_DEFAULT && room_kickoff != KICKOFF_RUN) global.player_id[0].control_type = 1;
+                } else if(room_kickoff != KICKOFF_DEFAULT && room_kickoff != KICKOFF_RUN) global.player_instance[0].control_type = 1;
             }
         } else {
             background_speed    = 0;
@@ -289,15 +289,15 @@ if(transition_type == TRANS_CARD) {
                 }
 
                 // Animation standby:
-                if(room_kickoff == KICKOFF_WAIT && global.player_id[0].animation_target != "wait_short" ||
-                    room_kickoff == KICKOFF_READY && global.player_id[0].animation_target != "ready") {
+                if(room_kickoff == KICKOFF_WAIT && global.player_instance[0].animation_target != "wait_short" ||
+                    room_kickoff == KICKOFF_READY && global.player_instance[0].animation_target != "ready") {
                     if(transition_standby < 2.2) transition_standby += transition_speed;
                     else transition_standby = 2.2;
                 }
 
                 // Stop running:
                 if(room_kickoff == KICKOFF_RUN) {
-                    if(room_run_end_x != -1 && global.player_id[0].x >= room_run_end_x) room_run_end_x = -1;
+                    if(room_run_end_x != -1 && global.player_instance[0].x >= room_run_end_x) room_run_end_x = -1;
                 }
             }
         }
@@ -351,8 +351,8 @@ if(transition_type == TRANS_RETRY) {
     // Run kickoff:
     if(player_exists()) {
         if(retry_state >= 4 && room_kickoff == KICKOFF_RUN && room_run_end_x != -1 && global.checkpoint_x == -1 && global.checkpoint_y == -1) {
-            global.player_id[0].x_speed     = global.player_id[0].x_top_speed;
-            global.player_id[0].input_right = true;
+            global.player_instance[0].x_speed     = global.player_instance[0].x_top_speed;
+            global.player_instance[0].input_right = true;
         }
     }
 
@@ -442,7 +442,7 @@ if(transition_type == TRANS_RETRY) {
 
         // Stop running:
         if(player_exists()) {
-            if(global.player_id[0].x >= room_run_end_x && global.player_id[0].action_state != ACTION_DEATH) room_run_end_x = -1;
+            if(global.player_instance[0].x >= room_run_end_x && global.player_instance[0].action_state != ACTION_DEATH) room_run_end_x = -1;
         }
 
 
@@ -472,13 +472,13 @@ if(room_music != "") {
     if(!sound_isplaying(room_music)) {
         with(ctrl_audio) {
             // Discard music:
-            if(music_id != -1) {
-                sound_discard(music_id);
-                music_id = -1;
+            if(music_instance != -1) {
+                sound_discard(music_instance);
+                music_instance = -1;
             }
 
             // Create music instance:
-            if(music_id == -1) music_id = sound_loop_single(other.room_music);
+            if(music_instance == -1) music_instance = sound_loop_single(other.room_music);
         }
     }
 }

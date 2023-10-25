@@ -2,7 +2,7 @@
 // Charge and Up.
 
 // Trigger Spin Dash:
-if(action_state == ACTION_CROUCH && input_jump_pressed == true) {
+if(action_state == ACTION_CROUCH && player_input[INP_JUMP, CHECK_PRESSED] == true) {
     action_state       = ACTION_SPIN_DASH;
     spin_dash_strength = 0;
     spin_dash_pitch    = 0;
@@ -16,7 +16,7 @@ if(action_state == ACTION_SPIN_DASH) {
     var sfx_spin_dash;
 
     // Let 'er rip:
-    if(ground == true && input_down == false) {
+    if(ground == true && player_input[INP_DOWN, CHECK_HELD] == false) {
         if((animation_direction == -1 && !player_collision_left(x, y, angle, mask_big)) || (animation_direction == 1 && !player_collision_right(x, y, angle, mask_big))) {
             x_speed      = animation_direction * (8 + (spin_dash_strength div 2)); 
             action_state = ACTION_ROLL;
@@ -41,7 +41,7 @@ if(action_state == ACTION_SPIN_DASH) {
     x_speed = 0;
     
     // Increase strength & pitch:
-    if(input_jump_pressed == true) {
+    if(player_input[INP_JUMP, CHECK_PRESSED] == true) {
         animation_target        = "super_spin";
         animation_current_frame = animation_start_frame;
         

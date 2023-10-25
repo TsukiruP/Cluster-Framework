@@ -53,3 +53,4 @@ if(animation_finished == false) {
 }
 
 miles_tails_frame += miles_tails_speed;
+if(floor(miles_tails_frame) > sprite_get_number(spr_miles_tails)) miles_tails_frame = 0;

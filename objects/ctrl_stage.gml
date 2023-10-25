@@ -21,20 +21,20 @@ applies_to=self
 if(instance_exists(obj_player_spawn)) {
     with(obj_player_spawn) {
         // Spawn player 1:
-        global.player_id[0]                = instance_create(x, y, par_player);
-        global.player_id[0].character_data = global.player_data[0];
+        global.player_instance[0]                = instance_create(x, y, par_player);
+        global.player_instance[0].character_data = global.player_data[0];
 
         // Create camera:
-        with(global.player_id[0]) {
+        with(global.player_instance[0]) {
             camera              = instance_create(x, y, ctrl_camera);
-            camera.focus_handle = global.player_id[0];
+            camera.focus_handle = global.player_instance[0];
         }
 
         // Spawn player 2:
         if(global.player_data[1] != 0) {
-            global.player_id[1]                =  instance_create(x - 30, y, par_player);
-            global.player_id[1].character_data =  global.player_data[1];
-            global.player_id[1].control_type   =  2;
+            global.player_instance[1]                =  instance_create(x - 30, y, par_player);
+            global.player_instance[1].character_data =  global.player_data[1];
+            global.player_instance[1].control_type   =  2;
         }
 
         player_compile_animations();

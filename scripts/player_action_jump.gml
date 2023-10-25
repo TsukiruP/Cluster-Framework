@@ -2,12 +2,12 @@
 // A jump to the sky turns to a rider kick.
 
 // Varying jump:
-if(y_speed < jump_release && action_state == ACTION_JUMP && jump_complete == false && input_jump == false) {
+if(y_speed < jump_release && action_state == ACTION_JUMP && jump_complete == false && player_input[INP_JUMP, CHECK_HELD] == false) {
     y_speed = jump_release;
 }
 
 // Jump!:
-if((ground == true || (action_state == ACTION_CARRY && input_down == true)) && !player_collision_top(x, y - 6, angle, mask_big) && input_jump_pressed == true) {
+if((ground == true || (action_state == ACTION_CARRY && player_input[INP_JUMP, CHECK_HELD] == true)) && !player_collision_top(x, y - 6, angle, mask_big) && player_input[INP_JUMP, CHECK_PRESSED] == true) {
     // Ignore some ground based actions:
     if(action_state != ACTION_CROUCH && action_state != ACTION_SPIN_DASH && action_state != ACTION_PEEL_OUT && tunnel_lock == false) {
         if(terrain_angle_change == false) player_set_angle(gravity_angle);
@@ -38,8 +38,6 @@ if(action_state == ACTION_JUMP) {
         animation_next_frame = 2;
         animation_loop_count = 0;
     }
-
-    if(animation_current == "spin_flight" && y_speed >= 0) animation_next = "spin_fall";
 }
 
 

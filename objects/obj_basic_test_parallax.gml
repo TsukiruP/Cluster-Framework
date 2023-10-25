@@ -94,7 +94,7 @@ for(i = 0; i < sea_height / 4; i += 1) {
     // Draw medium rocks:
     if(i == 3) draw_backdrop_tiled_area(pbg_basic_test_rock_medium, 0, 0, view_xview[view_current] * 0.87 + 50, layer_y - 15, view_xview[view_current] + view_wview[view_current], background_get_height(pbg_basic_test_rock_medium), 170);
 
-    layer_scroll = ((current_time * 0.001) * i mod  background_get_width(pbg_basic_test_sea));
+    layer_scroll = ((current_time * 0.002) * i mod  background_get_width(pbg_basic_test_sea));
 
     // Draw sea:
     draw_backdrop_tiled_area(pbg_basic_test_sea, 0, i * 4, sea_x - layer_scroll, layer_y, view_xview[view_current] * (1 - sea_factor) + layer_scroll + view_wview[view_current], 4, 0, 0, 1, sea_scale);

@@ -13,7 +13,7 @@
 			|ctrl_hud
 			|ctrl_pause
 +Gameplay
-	+PCs
+	+PC
 		|ctrl_camera
 		|obj_player_spawn
 		|par_player
