@@ -43,12 +43,12 @@ global.setting_input_key[INP_CANCEL]  = ini_read_real("input", "key_cancel", DEF
 global.setting_input_key[INP_HELP]    = ini_read_real("input", "key_help", DEFAULT_KEY_HELP);
 
 // Read/create joy input settings:
-global.setting_input_joy[INP_JUMP - INP_JUMP]    = 0;
-global.setting_input_joy[INP_SPECIAL - INP_JUMP] = 2;
-global.setting_input_joy[INP_SWAP - INP_JUMP]    = 3;
-global.setting_input_joy[INP_SUPER - INP_JUMP]   = 1;
-global.setting_input_joy[INP_TAG - INP_JUMP]     = 5;
-global.setting_input_joy[INP_ALT - INP_JUMP]     = 4;
+global.setting_input_joy[INP_JUMP - INP_JUMP]    = JOY_FACE1;
+global.setting_input_joy[INP_SPECIAL - INP_JUMP] = JOY_FACE3;
+global.setting_input_joy[INP_SWAP - INP_JUMP]    = JOY_FACE4;
+global.setting_input_joy[INP_SUPER - INP_JUMP]   = JOY_FACE2;
+global.setting_input_joy[INP_TAG - INP_JUMP]     = JOY_BUMPERR;
+global.setting_input_joy[INP_ALT - INP_JUMP]     = JOY_BUMPERL;
 
 global.setting_input_joy_deadzone     = 0.5;
 
