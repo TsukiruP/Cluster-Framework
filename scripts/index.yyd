@@ -21,7 +21,7 @@ key_to_string
 pad_to_chr
 player_get_angle
 player_set_angle
-angle_wrap
+wrap_angle
 user_input_left
 user_input_right
 user_input_up

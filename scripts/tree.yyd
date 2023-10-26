@@ -23,8 +23,7 @@
 	+Misc.
 		|window_resize
 		|user_get_input
-		|angle_wrap
-		|angle_rotate_towards
+		|wrap_angle
 		|player_exists
 		|water_exists
 		|stage_start
@@ -111,3 +110,4 @@
 	+Miles' Tails
 		|miles_tails_set_animation
 		|miles_tails_get_animation
+	|angle_rotate_towards

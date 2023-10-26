@@ -19,4 +19,4 @@ if(abs(difference) < 180) {
     else argument1 -= argument2;
 }
 
-return angle_wrap(argument1);
+return wrap_angle(argument1);
