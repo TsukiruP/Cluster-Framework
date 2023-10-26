@@ -17,6 +17,13 @@ switch(player_id) {
         break;
 
     // Player 2:
+    case 1:
+        for(i = INP_LEFT; i <= INP_SUPER; i += 1) {
+            for(j = CHECK_HELD; j <= CHECK_RELEASED; j += 1) {
+                player_input[i, j] = user_get_input(i, j, DEV_JOYSTICK1);
+            }
+        }
+        break;
 
     // Blank:
     default:

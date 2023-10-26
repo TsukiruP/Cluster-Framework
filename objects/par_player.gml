@@ -923,7 +923,7 @@ applies_to=self
 if(initialized == false || action_state == ACTION_RESPAWN || action_state == ACTION_DEATH) exit;
 
 if(control_type == 1) player_get_input(0);
-else player_get_input();
+else player_get_input(1);
 
 // Input lock:
 if(input_lock_alarm != 0){
@@ -1060,9 +1060,6 @@ applies_to=self
 draw_x = x;
 draw_y = y;
 
-// Miles' tails:
-miles_tails_get_animation();
-
 // Action animations:
 switch(action_state) {
     // Default:
@@ -1071,41 +1068,41 @@ switch(action_state) {
             if(tag_hold_state == 3) {
                 // Stand:
                 if(x_speed == 0 && animation_target != "tag_look_end" && animation_target != "tag_crouch_end" && animation_target != "tag_stand") animation_target = "tag_stand";
-                
+
                 if(x_speed <> 0) {
                     // Walk:
                     if(abs(x_speed) < 3.75 && animation_target != "tag_walk") animation_target = "tag_walk";
-                    
+
                     // Walk fast:
                     if(abs(x_speed) >= 3.75 && abs(x_speed) <  6.00 && animation_target != "tag_walk_fast") animation_target = "tag_walk_fast";
-                    
+
                     // Jog:
                     if(abs(x_speed) >=  6.00 && abs(x_speed) < 4.50 && animation_target != "tag_jog") animation_target = "tag_jog";
                 }
             } else {
                 // Stand:
                 if(x_speed == 0 && animation_target != "wait_short" && animation_target != "wait_long" && animation_target != "look_end" && animation_target != "crouch_end" && animation_target != "land" && animation_target != "ready" && animation_target != "stand") animation_target = "stand";
-                
+
                 if(x_speed <> 0) {
                     if(character_data != CHAR_CLASSIC) {
                         // Walk:
                         if(abs(x_speed) < 1.50 && animation_target != "walk") animation_target = "walk";
-                        
+
                         // Walk fast:
                         if(abs(x_speed) >= 1.50 && abs(x_speed) < 3.00 && animation_target != "walk_fast") animation_target = "walk_fast";
-                        
+
                         // Jog:
                         if(abs(x_speed) >= 3.00 && abs(x_speed) < 4.50 && animation_target != "jog") animation_target = "jog";
-                        
+
                         // Jog fast:
                         if(abs(x_speed) >= 4.50 && abs(x_speed) < 6.00 && animation_target != "jog_fast") animation_target = "jog_fast";
-                        
+
                         // Run:
                         if(abs(x_speed) >= 6.00 && animation_target != "run" && animation_target != "dash") animation_target = "run";
                     } else {
                         // Jog:
                         if(abs(x_speed) < 6.00 && animation_target != "jog") animation_target = "jog";
-                        
+
                         // Run:
                         if(abs(x_speed) >= 6.00 && animation_target != "run") animation_target = "run";
                     }
@@ -1123,7 +1120,7 @@ switch(action_state) {
             }
         }
         break;
-    
+
     // Jump:
     case ACTION_JUMP:
         if(character_data != CHAR_CLASSIC) {
@@ -1142,7 +1139,7 @@ switch(action_state) {
             if(drop_dash_state != 2 && animation_target != "roll") animation_target = "roll";
         }
         break
-    
+
     // Look:
     case ACTION_LOOK:
         if(tag_hold_state == 3) {
@@ -1151,7 +1148,7 @@ switch(action_state) {
             if(animation_target != "look") animation_target = "look";
         }
         break;
-    
+
     // Crouch:
     case ACTION_CROUCH:
         if(tag_hold_state == 3) {
@@ -1160,17 +1157,17 @@ switch(action_state) {
             if(animation_target != "crouch") animation_target = "crouch";
         }
         break;
-    
+
     // Spin Dash:
     case ACTION_SPIN_DASH:
         if(animation_target != "super_spin" && animation_target != "spin_dash") animation_target = "spin_dash";
         break;
-    
+
     // Roll:
     case ACTION_ROLL:
         if(animation_target != "roll") animation_target = "roll";
         break;
-    
+
     // Skid:
     case ACTION_SKID:
         if(tag_hold_state == 3) {
@@ -1179,12 +1176,12 @@ switch(action_state) {
             if(animation_target != "skid") animation_target = "skid";
         }
         break;
-    
+
     // Hurt:
     case ACTION_HURT:
         if(animation_target != "hurt") animation_target = "hurt";
         break;
-    
+
     // Death:
     case ACTION_DEATH:
         if(character_data != CHAR_CLASSIC) {
@@ -1195,7 +1192,7 @@ switch(action_state) {
             } else if(animation_target != "death") animation_target = "death";
         }
         break;
-    
+
     // Spring:
     case ACTION_SPRING:
         if(character_data != CHAR_CLASSIC) {
@@ -1211,7 +1208,7 @@ switch(action_state) {
             if(((y_speed >= 0 && spring_angle == gravity_angle + ANGLE_UP) || (spring_alarm == 0 && spring_angle != gravity_angle + ANGLE_UP)) && animation_target != "jog") animation_target = "jog";
         }
         break;
-    
+
     // Breathe:
     case ACTION_BREATHE:
         if(animation_target != "breathe") animation_target = "breathe";
