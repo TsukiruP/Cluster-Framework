@@ -81,7 +81,6 @@
 			|player_handle_water_surface
 		+Input
 			|player_get_input
-			|character_input_player
 		+Misc.
 			|player_ring_loss
 			|player_align_roll
@@ -111,3 +110,4 @@
 		|miles_tails_set_animation
 		|miles_tails_get_animation
 	|angle_rotate_towards
+	|character_input_player
