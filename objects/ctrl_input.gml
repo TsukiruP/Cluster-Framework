@@ -284,7 +284,7 @@ for(i = 0; i < joystick_max; i += 1) {
         }
 
         // Pressed joystick inputs:
-        for(j = INP_JUMP; j <= INP_ALT; j += 1) {
+        for(j = INP_JUMP; j <= INP_HELP; j += 1) {
             button_id = joystick_button[global.input_joy[j - INP_JUMP], joystick_device[i, 1]];
 
             if(button_id != -1) joystick_input[j, CHECK_PRESSED + (i * 3)] = joystick_check_button_pressed(device_id, button_id);

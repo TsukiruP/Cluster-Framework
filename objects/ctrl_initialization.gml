@@ -102,11 +102,11 @@ for(i = INP_JUMP - INP_JUMP; i <= INP_ALT - INP_JUMP; i += 1) {
     global.input_joy[i] = global.setting_input_joy[i];
 }
 
-global.input_joy[INP_START - INP_JUMP]  = 7;
-global.input_joy[INP_SELECT - INP_JUMP] = 6;
-global.input_joy[INP_ACCEPT - INP_JUMP] = 0;
-global.input_joy[INP_CANCEL - INP_JUMP] = 1;
-global.input_joy[INP_HELP - INP_JUMP]   = 3;
+global.input_joy[INP_START - INP_JUMP]  = JOY_START;
+global.input_joy[INP_SELECT - INP_JUMP] = JOY_SELECT;
+global.input_joy[INP_ACCEPT - INP_JUMP] = JOY_FACE1;
+global.input_joy[INP_CANCEL - INP_JUMP] = JOY_FACE2;
+global.input_joy[INP_HELP - INP_JUMP]   = JOY_FACE4;
 
 global.input_joy_deadzone               = global.setting_input_joy_deadzone;
 
