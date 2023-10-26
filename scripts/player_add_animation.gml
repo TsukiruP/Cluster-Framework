@@ -6,17 +6,18 @@ var animation_next_temp, animation_next_frame_temp, animation_flag_frame_temp;
 if(global.animation_grid == -1) global.animation_grid = ds_grid_create(11, 1);
 else ds_grid_resize(global.animation_grid, 11, ds_grid_height(global.animation_grid) + 1);
 
+// Set the previous character's final animation:
+if(global.animation_character != -1) global.animation_coordinates[global.animation_character, 1] = ds_grid_height(global.animation_grid) - 1;
+
 // Set animation character:
 if(argument[0] != global.animation_character) {
-    // Set the previous character's final animation:
-    if(global.animation_character != -1) global.animation_coordinates[global.animation_character, 1] = ds_grid_height(global.animation_grid) - 2;
-    
     // Change the animation character:
     global.animation_character = argument[0];
     
     // Set the current character's start:
     global.animation_coordinates[global.animation_character, 0] = max(0, ds_grid_height(global.animation_grid) - 1);
 }
+
 
 // Set next animation:
 if(argument_count >= 9) animation_next_temp = argument[8];

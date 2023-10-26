@@ -40,4 +40,4 @@ player_add_animation(CHAR_CLASSIC,     "spring_flight",  spr_classic_misc,      
 player_add_animation(CHAR_CLASSIC,     "spring_fall",    spr_classic_misc,           4,  4,  4,  0, 0);
 
 // Breathe:
-player_add_animation(CHAR_CLASSIC,     "breathe",        spr_classic_misc,           0,  1,  0,  0, 0.10);
+player_add_animation(CHAR_CLASSIC,     "breathe",        spr_classic_misc,           5,  5,  5,  0, 0.10);
