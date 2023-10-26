@@ -259,7 +259,7 @@ for(i = 0; i < joystick_max; i += 1) {
         joystick_input[INP_UP, CHECK_PRESSED + (i * 3)]    = (joystick_dpad[INP_UP, CHECK_PRESSED + (i * 3)] || (joystick_axis(device_id, 1) < -global.input_joy_deadzone && global.input_joy_deadzone != 0  && joystick_input[INP_UP, CHECK_HELD + (i * 3)] == false));
         joystick_input[INP_DOWN, CHECK_PRESSED + (i * 3)]  = (joystick_dpad[INP_DOWN, CHECK_PRESSED + (i * 3)] || (joystick_axis(device_id, 1) > global.input_joy_deadzone && global.input_joy_deadzone != 0  && joystick_input[INP_DOWN, CHECK_HELD + (i * 3)] == false));
 
-        for(j = INP_JUMP; j <= INP_ALT; j += 1) {
+        for(j = INP_JUMP; j <= INP_HELP; j += 1) {
             button_id = joystick_button[global.input_joy[j - INP_JUMP], joystick_device[i, 1]];
 
             if(global.input_joy[j - INP_JUMP] == JOY_TRIGGERL || global.input_joy[j - INP_JUMP] == JOY_TRIGGERR) {
@@ -296,49 +296,16 @@ for(i = 0; i < joystick_max; i += 1) {
         joystick_input[INP_UP, CHECK_RELEASED + (i * 3)]    = (joystick_dpad[INP_UP, CHECK_RELEASED + (i * 3)] || (joystick_axis(device_id, 1) > -global.input_joy_deadzone && global.input_joy_deadzone != 0  && joystick_input[INP_UP, CHECK_HELD + (i * 3)] == true));
         joystick_input[INP_DOWN, CHECK_RELEASED + (i * 3)]  = (joystick_dpad[INP_DOWN, CHECK_RELEASED + (i * 3)] || (joystick_axis(device_id, 1) < global.input_joy_deadzone && global.input_joy_deadzone != 0  && joystick_input[INP_DOWN, CHECK_HELD + (i * 3)] == true));
 
-        for(j = INP_JUMP; j <= INP_ALT; j += 1) {
+        for(j = INP_JUMP; j <= INP_HELP; j += 1) {
             button_id = joystick_button[global.input_joy[j - INP_JUMP], joystick_device[i, 1]];
 
             if(global.input_joy[j - INP_JUMP] == JOY_TRIGGERL || global.input_joy[j - INP_JUMP] == JOY_TRIGGERR) {
                 joystick_input[j, CHECK_RELEASED + (i * 3)] = (joystick_axis(device_id, button_id) > 0 && joystick_input[j, CHECK_HELD + (i * 3)] == true)
             } else {
-                if(button_id != -1) joystick_input[j, CHECK_RELEASED + (i * 3)] = joystick_check_button(device_id, button_id);
+                if(button_id != -1) joystick_input[j, CHECK_RELEASED + (i * 3)] = joystick_check_button_released(device_id, button_id);
             }
         }
     }
-}
-
-/*
-// Pressed joystick directions:
-// This is because we're reliant on the status of the held check.
-joystick_input[INP_LEFT, CHECK_PRESSED]  = (joystick_pov_x(0) == -1 || (joystick_axis(0, 0) < -global.input_joy_deadzone)) && (joystick_input[INP_LEFT, CHECK_HELD] == false);
-joystick_input[INP_RIGHT, CHECK_PRESSED] = (joystick_pov_x(0) == 1 || (joystick_axis(0, 0) > global.input_joy_deadzone)) && (joystick_input[INP_RIGHT, CHECK_HELD] == false);
-joystick_input[INP_UP, CHECK_PRESSED]    = (joystick_pov_y(0) == -1 || (joystick_axis(0, 1) < -global.input_joy_deadzone)) && (joystick_input[INP_UP, CHECK_HELD] == false);
-joystick_input[INP_DOWN, CHECK_PRESSED]  = (joystick_pov_y(0) == 1 || (joystick_axis(0, 1) < -global.input_joy_deadzone)) && (joystick_input[INP_DOWN, CHECK_HELD] == false);
-
-// Held joystick inputs:
-joystick_input[INP_LEFT, CHECK_HELD]  = (joystick_pov_x(0) == -1 || (joystick_axis(0, 0) < -global.input_joy_deadzone));
-joystick_input[INP_RIGHT, CHECK_HELD] = (joystick_pov_x(0) == 1 || (joystick_axis(0, 0) > global.input_joy_deadzone));
-joystick_input[INP_UP, CHECK_HELD]    = (joystick_pov_y(0) == -1 || (joystick_axis(0, 1) < -global.input_joy_deadzone));
-joystick_input[INP_DOWN, CHECK_HELD]  = (joystick_pov_y(0) == 1 || (joystick_axis(0, 1) > global.input_joy_deadzone));
-
-for(i = INP_JUMP; i <= INP_HELP; i += 1) {
-    joystick_input[i, CHECK_HELD] = joystick_check_button(0, global.input_joy[i - INP_JUMP]);
-}
-
-// Pressed joystick buttons:
-for(i = INP_JUMP; i <= INP_HELP ; i += 1) {
-    joystick_input[i, CHECK_PRESSED] = joystick_check_button_pressed(0, global.input_joy[i - INP_JUMP]);
-}
-
-// Released joystick inputs:
-joystick_input[INP_LEFT, CHECK_RELEASED]  = (joystick_pov_x(0) == -1 || (joystick_axis(0, 0) < -global.input_joy_deadzone)) && (joystick_input[INP_LEFT, CHECK_HELD] == true);
-joystick_input[INP_RIGHT, CHECK_RELEASED] = (joystick_pov_x(0) == 1 || (joystick_axis(0, 0) > global.input_joy_deadzone)) && (joystick_input[INP_RIGHT, CHECK_HELD] == true);
-joystick_input[INP_UP, CHECK_RELEASED]    = (joystick_pov_y(0) == -1 || (joystick_axis(0, 1) < -global.input_joy_deadzone)) && (joystick_input[INP_UP, CHECK_HELD] == true);
-joystick_input[INP_DOWN, CHECK_RELEASED]  = (joystick_pov_y(0) == 1 || (joystick_axis(0, 1) < -global.input_joy_deadzone)) && (joystick_input[INP_DOWN, CHECK_HELD] == true);
-
-for(i = INP_JUMP; i <= INP_HELP; i += 1) {
-    joystick_input[i, CHECK_RELEASED] = joystick_check_button_released(0, global.input_joy[i - INP_JUMP]);
 }
 /*"/*'/**//* YYD ACTION
 lib_id=1
