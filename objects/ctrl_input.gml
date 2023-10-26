@@ -40,11 +40,11 @@ applies_to=self
 */
 /// Joystick Initialization
 
-// Joystick total:
-joystick_total = 2;
+// Joystick max:
+joystick_max = 2;
 
 // Joystick devices:
-for(i = 0; i < joystick_total; i += 1) {
+for(i = 0; i < joystick_max; i += 1) {
     joystick_device[i, 0] = -1;
     joystick_device[i, 1] =  0;
 }
@@ -107,7 +107,7 @@ applies_to=self
 // Update devices:
 if(joystick_found()) {
     // Set seeking devices:
-    for(i = 0; i < joystick_total; i += 1) {
+    for(i = 0; i < joystick_max; i += 1) {
         // Check if current device has been removed:
         if(joystick_device[i, 0] > joystick_count() - 1) {
             joystick_device[i, 0] = -1;
@@ -120,7 +120,7 @@ if(joystick_found()) {
                 // Iterate through currently connected joysticks:
                 for(j = 0; j < joystick_count(); j += 1) {
                     // Iterate through every registered joysticks:
-                    for(k = 0; k < joystick_total; k += 1) {
+                    for(k = 0; k < joystick_max; k += 1) {
                         // If the device is already registered, move on:
                         if(joystick_device[k, 0] == j) break;
                         
@@ -141,7 +141,7 @@ applies_to=self
 /// Joystick Buttons
 
 // Update device layout:
-for(i = 0; i < joystick_total; i += 1) {
+for(i = 0; i < joystick_max; i += 1) {
     // Check if the current joystick exists:
     if(joystick_exists(i)) {
         // Check if the current joustick has a POV/D-Pad:
@@ -152,6 +152,16 @@ for(i = 0; i < joystick_total; i += 1) {
     }
 }
 #define Step_1
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Update Joystick D-pad
+
+for(i = 0; i < joystick_max; i += 1) {
+
+}
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -182,7 +192,7 @@ for(i = INP_LEFT; i <= INP_HELP; i += 1) {
 }
 
 // Joystick inputs:
-for(i = 0; i < joystick_total; i += 1) {
+for(i = 0; i < joystick_max; i += 1) {
     if(joystick_exists(i)) {
         var device_id, button_id;
 
