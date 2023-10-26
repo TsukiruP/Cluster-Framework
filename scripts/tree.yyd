@@ -68,10 +68,10 @@
 			|player_animation_core
 			|player_add_animation
 			+Character Specific
-				|classic_add_animations
 				|sonic_add_animations
 				|miles_add_animations
 				|knuckles_add_animations
+				|classic_add_animations
 			|player_compile_animations
 			|player_get_animation
 		+Handle

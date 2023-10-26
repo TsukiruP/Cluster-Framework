@@ -13,7 +13,7 @@ image_speed = 0;
 initialized = false;
 
 // Character variables:
-character_data = CHAR_CLASSIC;
+character_data = CHAR_SONIC;
 control_type   = 0;
 
 // Collision variables:
@@ -874,7 +874,7 @@ if(physics_type == PHYS_UNDERWATER) {
                 case 15:
                     sound_play("snd_drown_alert");
                     break;
-                    
+                
                 // Drown jingle:
                 case 12:
                     sound_play("bgm_drown");

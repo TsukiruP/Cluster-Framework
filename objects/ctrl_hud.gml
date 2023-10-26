@@ -68,7 +68,7 @@ if(hide == false) {
 
 // Air position:
 if(global.misc_hud == 1) {
-    if(player_exists()) {
+    if(player_exists(0)) {
         // Air target:
         if(global.player_instance[0].action_state != ACTION_DEATH) {
             if(global.player_instance[0].physics_type == PHYS_UNDERWATER) {
@@ -111,7 +111,7 @@ applies_to=self
 */
 /// Status Effects
 
-if(player_exists()) {
+if(player_exists(0)) {
     // Only update active status effects:
     if(global.misc_status == 1) {
         // Shield:
@@ -163,7 +163,7 @@ applies_to=self
 */
 /// Item Feed
 
-if(player_exists()) {
+if(player_exists(0)) {
     if(global.misc_feed == true && item_feed == -1) item_feed = ds_list_create();
 }
 
@@ -253,7 +253,7 @@ applies_to=self
 // Don't bother if HUD has been disabled:
 if(global.misc_hud == 0) exit;
 
-if(player_exists()) {
+if(player_exists(0)) {
     var status_count, player_muteki, player_shoes, player_panic, player_swap;
     
     status_count  = 0;

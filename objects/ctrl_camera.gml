@@ -55,7 +55,7 @@ applies_to=self
 /// Camera Shift
 
 // Shift around the player:
-if(player_exists()) {
+if(player_exists(0)) {
     if(focus_handle == global.player_instance[0]) {
         // Up timer:
         if(focus_handle.action_state == ACTION_LOOK) camera_up_timer = min(camera_up_timer + 1, 120);
@@ -94,7 +94,7 @@ border_top    = camera_y - 32;
 border_bottom = camera_y + 32;
 
 // Focus on player:
-if(player_exists()) {
+if(player_exists(0)) {
     if(focus_handle == global.player_instance[0]) {
         if(camera_position_distance == 0) {
             // Horizontal movement:

@@ -67,7 +67,7 @@ applies_to=self
 */
 /// Magnetized
 
-if(player_exists()) {
+if(player_exists(0)) {
     // Update status:
     if(magnetized == false) {
         if(global.player_instance[0].shield_data == SHIELD_MAGNETIC) {

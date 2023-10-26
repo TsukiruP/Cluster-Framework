@@ -2,7 +2,7 @@
 //
 
 // Player controls:
-if(player_exists()) {
+if(player_exists(0)) {
     if(global.player_instance[0].control_type != 1) global.player_instance[0].control_type = 1;
 }
 

@@ -169,7 +169,7 @@ if(transition_type == TRANS_CARD) {
     zone_distance = zone_start + zone_position;
 
     // Run kickoff:
-    if(player_exists()) {
+    if(player_exists(0)) {
         if(title_card_state >= 4 && room_kickoff == KICKOFF_RUN && room_run_end_x != -1) {
             global.player_instance[0].x_speed     = global.player_instance[0].x_top_speed;
             global.player_instance[0].input_right = true;
@@ -249,7 +249,7 @@ if(transition_type == TRANS_CARD) {
             background_position -= background_speed;
 
             // Player kickoffs:
-            if(player_exists()) {
+            if(player_exists(0)) {
                 // Wait/ready kickoffs:
                 if(room_kickoff == KICKOFF_WAIT || room_kickoff == KICKOFF_READY) {
                     var kickoff_animation;
@@ -281,7 +281,7 @@ if(transition_type == TRANS_CARD) {
 
         if(debug == false) {
             // Kickoff standbys:
-            if(player_exists()) {
+            if(player_exists(0)) {
                 // Default standby:
                 if(room_kickoff == KICKOFF_DEFAULT) {
                     if(transition_standby < 3.7) transition_standby += transition_speed;
@@ -349,7 +349,7 @@ if(transition_type == TRANS_RETRY) {
     retry_distance = retry_start - retry_position;
 
     // Run kickoff:
-    if(player_exists()) {
+    if(player_exists(0)) {
         if(retry_state >= 4 && room_kickoff == KICKOFF_RUN && room_run_end_x != -1 && global.checkpoint_x == -1 && global.checkpoint_y == -1) {
             global.player_instance[0].x_speed     = global.player_instance[0].x_top_speed;
             global.player_instance[0].input_right = true;
@@ -441,7 +441,7 @@ if(transition_type == TRANS_RETRY) {
         background_target = -15;
 
         // Stop running:
-        if(player_exists()) {
+        if(player_exists(0)) {
             if(global.player_instance[0].x >= room_run_end_x && global.player_instance[0].action_state != ACTION_DEATH) room_run_end_x = -1;
         }
 
