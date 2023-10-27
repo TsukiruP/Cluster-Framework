@@ -43,7 +43,7 @@ global.setting_input_key[INP_CANCEL]  = ini_read_real("input", "key_cancel", DEF
 global.setting_input_key[INP_HELP]    = ini_read_real("input", "key_help", DEFAULT_KEY_HELP);
 
 // Read/create joy input settings:
-global.setting_input_joy[INP_JUMP - INP_JUMP]    = JOY_FACE1;
+global.setting_input_joy[INP_JUMP - INP_JUMP]    = JOY_TRIGGERR;
 global.setting_input_joy[INP_SPECIAL - INP_JUMP] = JOY_FACE3;
 global.setting_input_joy[INP_SWAP - INP_JUMP]    = JOY_FACE4;
 global.setting_input_joy[INP_SUPER - INP_JUMP]   = JOY_FACE2;
@@ -198,7 +198,7 @@ randomize();
 global.player_instance[0]    =  noone;
 global.player_instance[1]    =  noone;
 global.player_data[0]        =  CHAR_CLASSIC;
-global.player_data[1]        =  -1;
+global.player_data[1]        =  CHAR_MILES;
 
 global.gravity_angle         =  0;
 global.animation_grid        = -1;
