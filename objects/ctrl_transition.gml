@@ -250,17 +250,12 @@ if(transition_type == TRANS_CARD) {
 
             // Player kickoffs:
             if(player_exists(0)) {
-                // Wait/ready kickoffs:
-                if(room_kickoff == KICKOFF_WAIT || room_kickoff == KICKOFF_READY) {
-                    var kickoff_animation;
-
-                    if(room_kickoff == KICKOFF_WAIT) kickoff_animation = "wait_short";
-                    if(room_kickoff == KICKOFF_READY) kickoff_animation = "ready";
-
+                // Ready kickoff:
+                if(room_kickoff == KICKOFF_READY) {
                     if(floor(background_position) <= global.player_instance[0].y + 13 - view_yview[view_current]) {
-                        global.player_instance[0].animation_target = kickoff_animation;
+                        global.player_instance[0].animation_target = "ready";
 
-                        if(player_exists(1)) global.player_instance[1].animation_target = kickoff_animation;
+                        if(player_exists(1)) global.player_instance[1].animation_target = "ready";
                     }
                 } else if(room_kickoff != KICKOFF_DEFAULT && room_kickoff != KICKOFF_RUN) global.player_instance[0].control_type = 1;
             }
@@ -289,8 +284,7 @@ if(transition_type == TRANS_CARD) {
                 }
 
                 // Animation standby:
-                if(room_kickoff == KICKOFF_WAIT && global.player_instance[0].animation_target != "wait_short" ||
-                    room_kickoff == KICKOFF_READY && global.player_instance[0].animation_target != "ready") {
+                if(room_kickoff == KICKOFF_READY && global.player_instance[0].animation_target != "ready") {
                     if(transition_standby < 2.2) transition_standby += transition_speed;
                     else transition_standby = 2.2;
                 }
@@ -303,8 +297,7 @@ if(transition_type == TRANS_CARD) {
         }
 
         if(debug == true || room_kickoff == KICKOFF_DEBUG || (room_kickoff == KICKOFF_DEFAULT && transition_standby == 3.7) ||
-            ((room_kickoff == KICKOFF_WAIT || room_kickoff == KICKOFF_READY) && transition_standby >= 2.2) ||
-            (room_kickoff == KICKOFF_RUN && room_run_end_x == -1)) {
+            (room_kickoff == KICKOFF_READY && transition_standby >= 2.2) || (room_kickoff == KICKOFF_RUN && room_run_end_x == -1)) {
             // Start stage:
             stage_start();
 
