@@ -15,6 +15,7 @@ initialized = false;
 // Character variables:
 character_data = CHAR_SONIC;
 control_type   = 0;
+partner_alarm  = 0;
 
 // Collision variables:
 ground          = true;
@@ -196,6 +197,18 @@ applies_to=self
 /// Input Initialization
 
 player_get_input();
+
+// Create Queues
+partner_input_up   = ds_queue_create();
+partner_input_down = ds_queue_create();
+partner_input_jump = ds_queue_create();
+
+// Populate Queues:
+repeat(16) {
+    ds_queue_enqueue(partner_input_up, false);
+    ds_queue_enqueue(partner_input_down, false);
+    ds_queue_enqueue(partner_input_jump, false);
+}
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -1558,3 +1571,5 @@ if(invincibility_type != 2) {
             break;
     }
 } else draw_sprite_ext(spr_shield_muteki, current_time div 60, floor(draw_x), floor(draw_y), 1, 1, 0, c_white, 0.7);
+
+if(partner_alarm != 0) draw_text(floor(draw_x), floor(draw_y) - 20, string(partner_alarm));
