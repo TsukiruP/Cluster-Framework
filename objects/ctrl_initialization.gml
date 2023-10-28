@@ -52,8 +52,6 @@ for(i = 0; i < 2; i += 1) {
     global.setting_input_joy[INP_ALT - INP_JUMP, i]     = ini_read_real("input", "joy" + string(i) + "_alt", JOY_BUMPERL);;
 }
 
-global.setting_input_joy[INP_JUMP - INP_JUMP, 1]    = ini_read_real("input", "joy" + string(1) + "_jump", JOY_BUMPERR);
-
 global.setting_input_joy_deadzone = 0.05;
 
 // Read/create misc input settings:

@@ -24,8 +24,6 @@ for(i = INP_LEFT; i <= INP_HELP; i += 1) {
 for(i = INP_LEFT; i <= INP_DOWN; i += 1) {
     input_timer[i] = 0;
 }
-
-test = 0;
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
