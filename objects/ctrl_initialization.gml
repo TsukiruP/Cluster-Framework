@@ -43,14 +43,18 @@ global.setting_input_key[INP_CANCEL]  = ini_read_real("input", "key_cancel", DEF
 global.setting_input_key[INP_HELP]    = ini_read_real("input", "key_help", DEFAULT_KEY_HELP);
 
 // Read/create joy input settings:
-global.setting_input_joy[INP_JUMP - INP_JUMP]    = JOY_FACE1;
-global.setting_input_joy[INP_SPECIAL - INP_JUMP] = JOY_FACE3;
-global.setting_input_joy[INP_SWAP - INP_JUMP]    = JOY_FACE4;
-global.setting_input_joy[INP_SUPER - INP_JUMP]   = JOY_FACE2;
-global.setting_input_joy[INP_TAG - INP_JUMP]     = JOY_BUMPERR;
-global.setting_input_joy[INP_ALT - INP_JUMP]     = JOY_BUMPERL;
+for(i = 0; i < 2; i += 1) {
+    global.setting_input_joy[INP_JUMP - INP_JUMP, i]    = ini_read_real("input", "joy" + string(i) + "_jump", JOY_FACE1);
+    global.setting_input_joy[INP_SPECIAL - INP_JUMP, i] = ini_read_real("input", "joy" + string(i) + "_special", JOY_FACE3);;
+    global.setting_input_joy[INP_SWAP - INP_JUMP, i]    = ini_read_real("input", "joy" + string(i) + "_swap", JOY_FACE4);;
+    global.setting_input_joy[INP_SUPER - INP_JUMP, i]   = ini_read_real("input", "joy" + string(i) + "_super", JOY_FACE2);;
+    global.setting_input_joy[INP_TAG - INP_JUMP, i]     = ini_read_real("input", "joy" + string(i) + "_tag", JOY_BUMPERR);;
+    global.setting_input_joy[INP_ALT - INP_JUMP, i]     = ini_read_real("input", "joy" + string(i) + "_alt", JOY_BUMPERL);;
+}
 
-global.setting_input_joy_deadzone     = 0.5;
+global.setting_input_joy[INP_JUMP - INP_JUMP, 1]    = ini_read_real("input", "joy" + string(1) + "_jump", JOY_BUMPERR);
+
+global.setting_input_joy_deadzone = 0.05;
 
 // Read/create misc input settings:
 global.setting_input_misc_style  = ini_read_real("input", "misc_style", DEFAULT_MISC_STYLE);
@@ -98,17 +102,19 @@ for(i = INP_LEFT; i <= INP_HELP; i += 1) {
 }
 
 // Apply joy input settings:
-for(i = INP_JUMP - INP_JUMP; i <= INP_ALT - INP_JUMP; i += 1) {
-    global.input_joy[i] = global.setting_input_joy[i];
+for(i = 0; i < 2; i += 1) {
+    for(j = INP_JUMP - INP_JUMP; j <= INP_ALT - INP_JUMP; j += 1) {
+        global.input_joy[j, i] = global.setting_input_joy[j, i];
+    }
+
+    global.input_joy[INP_START - INP_JUMP, i]  = JOY_START;
+    global.input_joy[INP_SELECT - INP_JUMP, i] = JOY_SELECT;
+    global.input_joy[INP_ACCEPT - INP_JUMP, i] = JOY_FACE1;
+    global.input_joy[INP_CANCEL - INP_JUMP, i] = JOY_FACE2;
+    global.input_joy[INP_HELP - INP_JUMP, i]   = JOY_FACE4;
 }
 
-global.input_joy[INP_START - INP_JUMP]  = JOY_START;
-global.input_joy[INP_SELECT - INP_JUMP] = JOY_SELECT;
-global.input_joy[INP_ACCEPT - INP_JUMP] = JOY_FACE1;
-global.input_joy[INP_CANCEL - INP_JUMP] = JOY_FACE2;
-global.input_joy[INP_HELP - INP_JUMP]   = JOY_FACE4;
-
-global.input_joy_deadzone               = global.setting_input_joy_deadzone;
+global.input_joy_deadzone = global.setting_input_joy_deadzone;
 
 // Apply misc input settings:
 global.input_misc_style  = global.setting_input_misc_style;

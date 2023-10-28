@@ -333,10 +333,10 @@ for(i = 0; i < joystick_max; i += 1) {
 
         // Pressed joystick triggers:
         for(j = INP_JUMP; j <= INP_HELP; j += 1) {
-            button_id = joystick_button[global.input_joy[j - INP_JUMP], joystick_device[i, 1]];
+            button_id = joystick_button[global.input_joy[j - INP_JUMP, i], joystick_device[i, 1]];
 
             if(button_id != -1) {
-                if(global.input_joy[j - INP_JUMP] == JOY_TRIGGERL || global.input_joy[j - INP_JUMP] == JOY_TRIGGERR) {
+                if(global.input_joy[j - INP_JUMP, i] == JOY_TRIGGERL || global.input_joy[j - INP_JUMP, i] == JOY_TRIGGERR) {
                     joystick_input[j, CHECK_PRESSED + (i * 3)] = (joystick_axis(device_id, button_id) != -1 && joystick_input[j, CHECK_HELD + (i * 3)] == false);
                 }
             }
@@ -350,10 +350,10 @@ for(i = 0; i < joystick_max; i += 1) {
 
         // Released joystick triggers:
         for(j = INP_JUMP; j <= INP_HELP; j += 1) {
-            button_id = joystick_button[global.input_joy[j - INP_JUMP], joystick_device[i, 1]];
+            button_id = joystick_button[global.input_joy[j - INP_JUMP, i], joystick_device[i, 1]];
 
             if(button_id != -1) {
-                if(global.input_joy[j - INP_JUMP] == JOY_TRIGGERL || global.input_joy[j - INP_JUMP] == JOY_TRIGGERR) {
+                if(global.input_joy[j - INP_JUMP, i] == JOY_TRIGGERL || global.input_joy[j - INP_JUMP, i] == JOY_TRIGGERR) {
                     joystick_input[j, CHECK_RELEASED + (i * 3)] = (joystick_axis(device_id, button_id) == -1 && joystick_input[j, CHECK_HELD + (i * 3)] == true);
                 }
             }
@@ -366,10 +366,10 @@ for(i = 0; i < joystick_max; i += 1) {
 
         // Held joystick buttons & triggers:
         for(j = INP_JUMP; j <= INP_HELP; j += 1) {
-            button_id = joystick_button[global.input_joy[j - INP_JUMP], joystick_device[i, 1]];
+            button_id = joystick_button[global.input_joy[j - INP_JUMP, i], joystick_device[i, 1]];
 
             if(button_id != -1) {
-                if(global.input_joy[j - INP_JUMP] == JOY_TRIGGERL || global.input_joy[j - INP_JUMP] == JOY_TRIGGERR) {
+                if(global.input_joy[j - INP_JUMP, i] == JOY_TRIGGERL || global.input_joy[j - INP_JUMP, i] == JOY_TRIGGERR) {
                     joystick_input[j, CHECK_HELD + (i * 3)] = (joystick_axis(device_id, button_id) != -1);
                 } else {
                     joystick_input[j, CHECK_HELD + (i * 3)] = joystick_check_button(device_id, button_id);
@@ -379,10 +379,10 @@ for(i = 0; i < joystick_max; i += 1) {
 
         // Pressed joystick buttons:
         for(j = INP_JUMP; j <= INP_HELP; j += 1) {
-            button_id = joystick_button[global.input_joy[j - INP_JUMP], joystick_device[i, 1]];
+            button_id = joystick_button[global.input_joy[j - INP_JUMP, i], joystick_device[i, 1]];
 
             if(button_id != -1) {
-                if(global.input_joy[j - INP_JUMP] != JOY_TRIGGERL && global.input_joy[j - INP_JUMP] != JOY_TRIGGERR) {
+                if(global.input_joy[j - INP_JUMP, i] != JOY_TRIGGERL && global.input_joy[j - INP_JUMP, i] != JOY_TRIGGERR) {
                     joystick_input[j, CHECK_PRESSED + (i * 3)] = joystick_check_button_pressed(device_id, button_id);
                 }
             }
@@ -390,10 +390,10 @@ for(i = 0; i < joystick_max; i += 1) {
 
         // Released joystick buttons:
         for(j = INP_JUMP; j <= INP_HELP; j += 1) {
-            button_id = joystick_button[global.input_joy[j - INP_JUMP], joystick_device[i, 1]];
+            button_id = joystick_button[global.input_joy[j - INP_JUMP, i], joystick_device[i, 1]];
 
             if(button_id != -1) {
-                if(global.input_joy[j - INP_JUMP] != JOY_TRIGGERL && global.input_joy[j - INP_JUMP] != JOY_TRIGGERR) {
+                if(global.input_joy[j - INP_JUMP, i] != JOY_TRIGGERL && global.input_joy[j - INP_JUMP, i] != JOY_TRIGGERR) {
                     joystick_input[j, CHECK_RELEASED + (i * 3)] = joystick_check_button_released(device_id, button_id);
                 }
             }
