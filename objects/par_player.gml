@@ -12,10 +12,8 @@ image_speed = 0;
 // Initialized variable:
 initialized = false;
 
-// Character variables:
+// Character data:
 character_data = CHAR_SONIC;
-control_type   = 0;
-partner_alarm  = 0;
 
 // Collision variables:
 ground          = true;
@@ -179,6 +177,11 @@ input_lock_right     = 0;
 gimmick_lock       = false;
 gimmick_lock_alarm = 0;
 
+// Control variables:
+control_data  = -1;
+control_alarm =  0;
+control_lock  =  false;
+
 // Misc. variables:
 wall_stop_allow =  true;
 death_alarm     = -5;
@@ -321,14 +324,14 @@ if(action_state == ACTION_DEATH) {
     if(death_alarm > 0) death_alarm -= 1;
     else if(death_alarm == 0) {
         // Respawn partner:
-        if(control_type == 2) action_state = ACTION_RESPAWN;
+        if(control_data == 1) action_state = ACTION_RESPAWN;
         
         // Set death alarm:
         death_alarm = -1;
     }
     
     // Retry transition:
-    if(control_type == 1 && death_alarm == 64 && !instance_exists(ctrl_transition)) room_transition(room, TRANS_RETRY);
+    if(control_data == 0 && death_alarm == 64 && !instance_exists(ctrl_transition)) room_transition(room, TRANS_RETRY);
 }
 
 if(action_state != ACTION_RESPAWN) {
@@ -935,8 +938,7 @@ applies_to=self
 // Don't bother if not initialized or in the middle of respawning/dying:
 if(initialized == false || action_state == ACTION_RESPAWN || action_state == ACTION_DEATH) exit;
 
-if(control_type == 1) player_get_input(0);
-else player_get_input(1);
+player_get_input();
 
 // Input lock:
 if(input_lock_alarm != 0){
@@ -1414,9 +1416,9 @@ applies_to=self
 /// Update Depth
 
 // Change animation depth based on control type:
-switch(control_type) {
+switch(control_data) {
     // Player depth:
-    case 1:
+    case 0:
         animation_depth = -1;
         break;
 
@@ -1571,5 +1573,3 @@ if(invincibility_type != 2) {
             break;
     }
 } else draw_sprite_ext(spr_shield_muteki, current_time div 60, floor(draw_x), floor(draw_y), 1, 1, 0, c_white, 0.7);
-
-if(partner_alarm != 0) draw_text(floor(draw_x), floor(draw_y) - 20, string(partner_alarm));

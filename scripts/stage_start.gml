@@ -3,7 +3,7 @@
 
 // Player controls:
 if(player_exists(0)) {
-    if(global.player_instance[0].control_type != 1) global.player_instance[0].control_type = 1;
+    if(global.player_instance[0].control_lock != false) global.player_instance[0].control_lock = false;
 }
 
 // Add time:

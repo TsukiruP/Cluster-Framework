@@ -1,18 +1,15 @@
-/// player_get_input(id)
-// Returns the inputs based on the given id.
+/// player_get_input()
+// Returns the inputs based on control data.
 
-var player_id;
-
-if(argument_count >= 1) player_id = argument[0];
-else player_id = -1;
-
-switch(player_id) {
+switch(control_data) {
     // Player 1:
     case 0:
-        // Register inputs:
-        for(i = INP_LEFT; i <= INP_SUPER; i += 1) {
-            for(j = CHECK_HELD; j <= CHECK_RELEASED; j += 1) {
-                player_input[i, j] = user_get_input(i, j);
+        if(control_lock == false) {
+            // Register inputs:
+            for(i = INP_LEFT; i <= INP_SUPER; i += 1) {
+                for(j = CHECK_HELD; j <= CHECK_RELEASED; j += 1) {
+                    player_input[i, j] = user_get_input(i, j);
+                }
             }
         }
         break;
@@ -20,9 +17,9 @@ switch(player_id) {
     // Player 2:
     case 1:
         // Set partner alarm:
-        if(user_get_input(-1, 0, DEV_JOYSTICK1)) partner_alarm = 600;
+        if(user_get_input(-1, 0, DEV_JOYSTICK1)) control_alarm = 600;
 
-        if(partner_alarm == 0) {
+        if(control_alarm == 0) {
             if(player_exists(0)) {
                 var player_handle;
 
@@ -61,13 +58,15 @@ switch(player_id) {
                 else player_input[INP_JUMP, CHECK_HELD] = false;
             }
         } else {
-            // Decrease partner alarm:
-            if(partner_alarm > 0) partner_alarm -= 1;
+            if(control_lock == false) {
+                // Decrease partner alarm:
+                if(control_alarm > 0) control_alarm -= 1;
 
-            // Register inputs:
-            for(i = INP_LEFT; i <= INP_SUPER; i += 1) {
-                for(j = CHECK_HELD; j <= CHECK_RELEASED; j += 1) {
-                    player_input[i, j] = user_get_input(i, j, DEV_JOYSTICK1);
+                // Register inputs:
+                for(i = INP_LEFT; i <= INP_SUPER; i += 1) {
+                    for(j = CHECK_HELD; j <= CHECK_RELEASED; j += 1) {
+                        player_input[i, j] = user_get_input(i, j, DEV_JOYSTICK1);
+                    }
                 }
             }
         }
