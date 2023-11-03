@@ -25,16 +25,6 @@
 			|mask_edge_line
 			|mask_platform_fix
 			|mask_ledge
-		+Classic
-			|spr_classic_stand
-			|spr_classic_jog
-			|spr_classic_run
-			|spr_classic_spin_dash
-			|spr_classic_roll
-			|spr_classic_skid
-			|spr_classic_death
-			|spr_classic_push
-			|spr_classic_misc
 		+Sonic
 			+Default
 				|spr_sonic_stand
@@ -182,6 +172,17 @@
 				+Tag Actions
 					|spr_knuckles_leap
 					|spr_knuckles_fly_carry
+		+Amy
+		+Classic
+			|spr_classic_stand
+			|spr_classic_jog
+			|spr_classic_run
+			|spr_classic_spin_dash
+			|spr_classic_roll
+			|spr_classic_skid
+			|spr_classic_death
+			|spr_classic_push
+			|spr_classic_misc
 	+NPCs
 	+Props
 		+Sensors
