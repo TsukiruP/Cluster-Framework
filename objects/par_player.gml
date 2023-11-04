@@ -179,8 +179,8 @@ gimmick_lock_alarm = 0;
 
 // Control variables:
 control_data  = -1;
-control_alarm =  0;
 control_lock  =  false;
+control_alarm =  0;
 
 // Misc. variables:
 wall_stop_allow =  true;
@@ -1416,16 +1416,10 @@ applies_to=self
 /// Update Depth
 
 // Change animation depth based on control type:
-switch(control_data) {
-    // Player depth:
-    case 0:
-        animation_depth = -1;
-        break;
-
-    default:
-        animation_depth = 0;
-        break;
-}
+if(player_exists(0)) {
+    if(global.player_instance[0] == self.id) animation_depth = -1;
+    else animation_depth = 0;
+} else animation_depth = 0;
 
 // Apply animation depth when not respawning or being carried:
 if(depth != animation_depth && action_state != ACTION_RESPAWN && action_state != ACTION_CARRY) depth = animation_depth;
