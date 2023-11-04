@@ -1,4 +1,4 @@
-/// player_get_item(item)
+/// player_get_item(id)
 // Performs a certain event based on the given item id.
 
 switch(argument0) {
@@ -87,6 +87,7 @@ switch(argument0) {
         break;
 }
 
+// Update item feed:
 if(global.misc_feed == true) {
     with(ctrl_hud) {
         ds_list_add(item_feed, argument0);
