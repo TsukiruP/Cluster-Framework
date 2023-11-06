@@ -77,7 +77,7 @@
 		+Handle
 			|player_handle_list
 			|player_handle_ring
-			|player_handle_monitor
+			|player_handle_item_box
 			|player_handle_water_surface
 		+Input
 			|player_get_input

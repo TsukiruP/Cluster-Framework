@@ -206,9 +206,9 @@
 		+Dash Panels
 		+Dash Rings
 		+Rainbow Rings
-		+Monitor
-			|spr_monitor_icons
-			|spr_monitor
+		+Item Box
+			|spr_item_box
+			|spr_items
 		+Spikes
 			|spr_spike_left
 			|spr_spike_right

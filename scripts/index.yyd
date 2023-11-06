@@ -84,7 +84,7 @@ credits
 in_view
 player_ring_loss
 player_state_hurt
-player_handle_monitor
+player_handle_item_box
 player_handle_water_surface
 water_exists
 user_get_input

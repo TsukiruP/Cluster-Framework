@@ -152,8 +152,8 @@ spr_sensor_platform_left
 spr_sensor_platform_right
 spr_sensor_platform_up
 spr_sensor_platform_down
-spr_monitor
-spr_monitor_icons
+spr_item_box
+spr_items
 spr_knuckles_stand
 spr_knuckles_wait_short
 spr_knuckles_wait_long

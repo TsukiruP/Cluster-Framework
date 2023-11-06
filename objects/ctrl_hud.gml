@@ -267,10 +267,10 @@ if(player_exists(0)) {
             if((i != STATUS_MUTEKI && i != STATUS_SPEED && i != STATUS_PANIC && i != STATUS_SWAP) ||
                 (i == STATUS_MUTEKI && player_muteki) || (i == STATUS_SPEED && player_shoes) || (i == STATUS_PANIC && player_panic) || (i == STATUS_SWAP && player_swap)) {
                 // Shadow:
-                draw_sprite_ext(spr_monitor_icons, 0, view_xview[view_current] + view_wview[view_current] - hud_position - 8 - (sprite_get_width(spr_monitor_icons) + 2) * status_count, view_yview[view_current] + 18, 1, 1, 0, c_black, 1);
+                draw_sprite_ext(spr_items, 0, view_xview[view_current] + view_wview[view_current] - hud_position - 8 - (sprite_get_width(spr_items) + 2) * status_count, view_yview[view_current] + 18, 1, 1, 0, c_black, 1);
 
                 // Icons:
-                draw_sprite_ext(spr_monitor_icons, status_effect[i], view_xview[view_current] + view_wview[view_current] - hud_position - 9 - (sprite_get_width(spr_monitor_icons) + 2) * status_count, view_yview[view_current] + 17, 1, 1, 0, c_white, 1);
+                draw_sprite_ext(spr_items, status_effect[i], view_xview[view_current] + view_wview[view_current] - hud_position - 9 - (sprite_get_width(spr_items) + 2) * status_count, view_yview[view_current] + 17, 1, 1, 0, c_white, 1);
             }
 
             // Gray out:
@@ -280,7 +280,7 @@ if(player_exists(0)) {
                     (i == STATUS_SPEED && global.player_instance[0].speed_shoe_type == 0) ||
                     (i == STATUS_PANIC && global.player_instance[0].status_panic == false) ||
                     (i == STATUS_SWAP && global.player_instance[0].status_swap == false)) {
-                    draw_sprite_ext(spr_monitor_icons, status_effect[i], view_xview[view_current] + view_wview[view_current] - hud_position - 9 - (sprite_get_width(spr_monitor_icons) + 2) * status_count, view_yview[view_current] + 17, 1, 1, 0, c_gray, 0.6);
+                    draw_sprite_ext(spr_items, status_effect[i], view_xview[view_current] + view_wview[view_current] - hud_position - 9 - (sprite_get_width(spr_items) + 2) * status_count, view_yview[view_current] + 17, 1, 1, 0, c_gray, 0.6);
                 }
             }
 
@@ -312,7 +312,7 @@ if(item_feed != -1) {
 
             if(ds_list_find_value(item_feed, i + 1) != item_target) ds_list_replace(item_feed, i + 1, ds_list_find_value(item_feed, i + 1) + item_speed);
 
-            if(item_timer < 60 || (item_timer >= 60 && item_timer mod 5)) draw_sprite(spr_monitor_icons, ds_list_find_value(item_feed, i), view_xview[view_current] + ds_list_find_value(item_feed, i + 1), view_yview[view_current] + view_hview[view_current] - 33);
+            if(item_timer < 60 || (item_timer >= 60 && item_timer mod 5)) draw_sprite(spr_items, ds_list_find_value(item_feed, i), view_xview[view_current] + ds_list_find_value(item_feed, i + 1), view_yview[view_current] + view_hview[view_current] - 33);
         }
     }
 }
