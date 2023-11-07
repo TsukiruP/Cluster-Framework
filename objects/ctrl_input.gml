@@ -447,3 +447,21 @@ action_id=603
 applies_to=self
 */
 /// Input Prompts
+#define Other_10
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Create Partner Queues
+
+partner_input_up   = ds_queue_create();
+partner_input_down = ds_queue_create();
+partner_input_jump = ds_queue_create();
+
+// Populate Queues:
+repeat(16) {
+    ds_queue_enqueue(partner_input_up, false);
+    ds_queue_enqueue(partner_input_down, false);
+    ds_queue_enqueue(partner_input_jump, false);
+}

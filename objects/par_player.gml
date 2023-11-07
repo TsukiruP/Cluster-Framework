@@ -200,18 +200,6 @@ applies_to=self
 /// Input Initialization
 
 player_get_input();
-
-// Create Queues
-partner_input_up   = ds_queue_create();
-partner_input_down = ds_queue_create();
-partner_input_jump = ds_queue_create();
-
-// Populate Queues:
-repeat(16) {
-    ds_queue_enqueue(partner_input_up, false);
-    ds_queue_enqueue(partner_input_down, false);
-    ds_queue_enqueue(partner_input_jump, false);
-}
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603

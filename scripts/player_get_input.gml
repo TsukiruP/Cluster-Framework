@@ -40,11 +40,11 @@ switch(control_data) {
                 // Up & down:
                 var queue_up, queue_down;
 
-                queue_up   = ds_queue_dequeue(partner_input_up);
-                queue_down = ds_queue_dequeue(partner_input_down);
+                queue_up   = ds_queue_dequeue(ctrl_input.partner_input_up);
+                queue_down = ds_queue_dequeue(ctrl_input.partner_input_down);
 
-                ds_queue_enqueue(partner_input_up, player_handle.player_input[INP_UP, CHECK_HELD]);
-                ds_queue_enqueue(partner_input_down, player_handle.player_input[INP_DOWN, CHECK_HELD]);
+                ds_queue_enqueue(ctrl_input.partner_input_up, player_handle.player_input[INP_UP, CHECK_HELD]);
+                ds_queue_enqueue(ctrl_input.partner_input_down, player_handle.player_input[INP_DOWN, CHECK_HELD]);
 
                 player_input[INP_UP, CHECK_HELD] = queue_up;
                 player_input[INP_DOWN, CHECK_HELD] = queue_down;

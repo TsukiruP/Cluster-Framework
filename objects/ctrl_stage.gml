@@ -16,9 +16,10 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Character Initialization
+/// Player Initialization
 
 if(instance_exists(obj_player_spawn)) {
+    // Spawn players:
     with(obj_player_spawn) {
         // Spawn player 1:
         global.player_instance[0]                = instance_create(x, y, par_player);
@@ -38,6 +39,9 @@ if(instance_exists(obj_player_spawn)) {
             global.player_instance[1].character_data = global.player_data[1];
             global.player_instance[1].control_data   = 1;
         }
+
+        // Create partner queues:
+        with(ctrl_input) event_user(0);
 
         player_compile_animations();
 
