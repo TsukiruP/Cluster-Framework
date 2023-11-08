@@ -9,9 +9,6 @@ applies_to=self
 // Image speed:
 image_speed = 0;
 
-// Initialized variable:
-initialized = false;
-
 // Character data:
 character_data = CHAR_SONIC;
 
@@ -33,6 +30,7 @@ deceleration      = 0.5;
 slope_factor      = 0.125;
 air_acceleration  = 0.09375;
 ground_speed      = 0;
+previous_x        = x;
 
 acceleration_temp = 0;
 deceleration_temp = 0;
@@ -45,6 +43,7 @@ y_max_speed        = 16;
 gravity_force      = 0.21875;
 gravity_force_temp = 0.21875;
 gravity_angle      = 0;
+previous_y        = y;
 
 // Action variable:
 action_state = ACTION_DEFAULT;
@@ -152,7 +151,6 @@ terrain_edge_skip        = false;
 
 // Platform variables:
 platform_instance = noone;
-platform_mode     = false;
 platform_check    = false;
 
 // Water variables:
@@ -250,8 +248,6 @@ applies_to=self
 */
 /// Finish Initialization
 
-initialized = true;
-
 // Go to checkpoint:
 if(global.checkpoint_x != -1 && global.checkpoint_y != -1) {
     x                 = global.checkpoint_x;
@@ -335,12 +331,17 @@ applies_to=self
 */
 /// Collision
 
-// Don't bother if not initialized or in the middle of respawning/dying:
-if(initialized == false || action_state == ACTION_RESPAWN || action_state == ACTION_DEATH) exit;
+// Don't bother if in the middle of respawning/dying:
+if(action_state == ACTION_RESPAWN || action_state == ACTION_DEATH) exit;
 
 // Platform fix:
-if(player_collision_platform_fix(x, y, angle, mask_platform_fix)) platform_mode = true;
-else platform_mode = false;
+if(!place_meeting(x, y, par_platform) && platform_check == true) {
+    if(platform_alarm > 0) platform_alarm -= 1;
+    else {
+        platform_check = false;
+        platform_alarm = 30;
+    }
+}
 
 // X movement:
 var x_steps, x_samples;
@@ -451,11 +452,8 @@ if(ground == false) {
                 } else player_set_angle(player_get_angle(x, y, angle));
             } else player_set_angle(gravity_angle);
             
-            // Obstacle landing:
-            if(player_collision_object_bottom(x, y, angle, mask_main, par_obstacle)) player_set_angle(gravity_angle);
-            
             // Change x speed when landing on awkward terrain:
-            if(abs(x_speed) <= abs(y_speed) && angle_relative > 35 && angle_relative < 324) {
+            if(abs(x_speed) <= abs(y_speed) && angle_relative > 22.5 && angle_relative < 337.5) {
                 x_speed = -y_speed * sign(dsin(angle_relative));
                 
                 if(angle_relative < 45 || angle_relative > 315) x_speed *= 0.5;
@@ -465,16 +463,12 @@ if(ground == false) {
             y_speed = 0;
             ground  = true;
             
-            // Return to default state:
+            // Play landing animation:
             if(action_state != ACTION_GLIDE && action_state != ACTION_GLIDE_DROP && action_state != ACTION_SLIDE && drop_dash_state < 2) {
                 if(action_state != ACTION_HURT){
-                   action_state     = ACTION_DEFAULT;
                    animation_target = "land";
                 }
             }
-            
-            // Reset gravity force after flying:
-            if(action_state == ACTION_FLY || action_state == ACTION_FLY_DROP) gravity_force = gravity_force_temp;
         }
         
         // Ceiling landing:
@@ -500,8 +494,6 @@ if(ground == false) {
                 // Set ground:
                 if(ground == false && angle != 0 && drop_dash_state < 2 && action_state != ACTION_FLY && action_state != ACTION_FLY_DROP) {
                     ground = true;
-
-                    if(action_state != ACTION_DEFAULT);
                 }
             } else {
                 player_set_angle(gravity_angle);
@@ -588,8 +580,8 @@ applies_to=self
 */
 /// Horizontal Movement
 
-// Don't bother if not initialized or in the middle of respawning/dying:
-if(initialized == false || action_state == ACTION_RESPAWN || action_state == ACTION_DEATH) exit;
+// Don't bother if in the middle of respawning/dying:
+if(action_state == ACTION_RESPAWN || action_state == ACTION_DEATH) exit;
 
 // Input lock alarm:
 if(input_lock_alarm > 0) input_lock_alarm -= 1;
@@ -601,17 +593,6 @@ else {
 if(angle == 0 && input_lock_alarm > 0) {
     input_lock_alarm     = 0;
     input_lock_direction = 0;
-}
-
-// Acceleration & deceleration values:
-if(ground == true) {
-    acceleration_temp = acceleration;
-    deceleration_temp = deceleration;
-    friction_temp     = acceleration_temp;
-} else {
-    acceleration_temp = acceleration * 2;
-    deceleration_temp = 0;
-    friction_temp     = 0;
 }
 
 // Movement:
@@ -633,39 +614,32 @@ if(x_allow == true) {
     
     // Input & deceleration:
     if(action_state == ACTION_DEFAULT || action_state == ACTION_JUMP || action_state == ACTION_SKID || action_state == ACTION_FLY || action_state == ACTION_FLY_DROP || (action_state == ACTION_TORNADO && animation_target == "tornado") || action_state == ACTION_GLIDE_DROP || action_state == ACTION_BALANCE || action_state == ACTION_BREATHE) {
+        var input_direction;
+        
+        // Input direction:
+        input_direction = player_input[INP_RIGHT, CHECK_HELD] - player_input[INP_LEFT, CHECK_HELD];
+        
         // Ground acceleration:
         if(ground == true) {
-            if(input_lock_alarm == 0) {
-                if(player_input[INP_LEFT, CHECK_HELD] == true) {
-                    if(x_speed > 0) x_speed -= deceleration_temp;
+            if(input_direction != 0) {
+                if(input_lock_alarm == 0) {
+                    // Decelerate:
+                    if(x_speed != 0 && sign(x_speed) != input_direction) x_speed += deceleration * input_direction;
+                    
+                    // Accelerate:
                     else {
-                        if(x_speed > -x_top_speed) x_speed -= acceleration_temp;
+                        if(abs(x_speed) < x_top_speed) x_speed += acceleration * input_direction;
                     }
-                } else if(player_input[INP_RIGHT, CHECK_HELD] == true) {
-                    if(x_speed < 0) x_speed += deceleration_temp;
-                    else {
-                        if(x_speed < x_top_speed) x_speed += acceleration_temp;
-                    }
-                } else {
-                    x_speed -= min(abs(x_speed), friction_temp) * sign(x_speed);
                 }
-            }
+            } else x_speed -= min(abs(x_speed), acceleration) * sign(x_speed);
         }
         
         // Air acceleration:
         else {
-            if(player_input[INP_LEFT, CHECK_HELD] == true) {
+            if(input_direction != 0) {
                 if(action_state == ACTION_FLY || action_state == ACTION_FLY_DROP || action_state == ACTION_GLIDE_DROP) {
-                    if(x_speed > 0) x_speed -= acceleration_temp;
-                    else if(x_speed > -x_top_speed) x_speed -= air_acceleration;
-                } else x_speed -= air_acceleration;
-            }
-            
-            if(player_input[INP_RIGHT, CHECK_HELD] == true) {
-                if(action_state == ACTION_FLY || action_state == ACTION_FLY_DROP || action_state == ACTION_GLIDE_DROP) {
-                    if(x_speed < 0) x_speed += acceleration_temp;
-                    else if(x_speed < x_top_speed) x_speed += air_acceleration;
-                } else x_speed += air_acceleration;
+                    if(abs(x_speed) < x_top_speed) x_speed += air_acceleration * input_direction;
+                } else x_speed += air_acceleration * input_direction;
             }
         }
     }
@@ -678,6 +652,7 @@ if(x_allow == true) {
             ground  =  false;
         } else {
             input_lock_alarm = 30;
+            
             if(input_lock_direction == 0) input_lock_direction = animation_direction;
         }
     }
@@ -701,20 +676,25 @@ applies_to=self
 */
 /// Vertical Movement
 
-// Don't bother if not initialized or in the middle of respawning/dying:
-if(initialized == false || action_state == ACTION_RESPAWN || action_state == ACTION_DEATH) exit;
+// Don't bother if in the middle of respawning/dying:
+if(action_state == ACTION_RESPAWN || action_state == ACTION_DEATH) exit;
 
 // Run only if allowed:
 if(y_allow == true) {
     if(ground == true) {
         // Reset y speed:
-        y_speed = 0;
+        if(y_speed != 0) y_speed = 0;
         
         // Reset state:
         if(action_state == ACTION_HURT || (action_state == ACTION_JUMP && drop_dash_state < 2) || action_state == ACTION_FLY || action_state == ACTION_FLY_DROP || action_state == ACTION_CARRY || action_state == ACTION_SPRING || action_state == ACTION_BREATHE) {
             if(action_state == ACTION_HURT) x_speed = 0;
             
             action_state = ACTION_DEFAULT;
+        }
+        
+        // Reset gravity force:
+        if(action_state == ACTION_FLY || action_state == ACTION_FLY_DROP) {
+            gravity_force = gravity_force_temp;
         }
         
         // Set ground:
@@ -724,22 +704,18 @@ if(y_allow == true) {
         }
     } else {
         // Add gravity force:
-        if(action_state != ACTION_CARRY) y_speed += gravity_force;
+        if(action_state != ACTION_GLIDE && action_state != ACTION_CARRY) y_speed = min(y_speed + gravity_force, y_max_speed);
         
-        // Set ground:
-        if(y_speed >= 0 && player_collision_bottom(x, y, angle, mask_big)) ground = true;
-        
-        // Ceiling collision:
+        // Ceiling bonk:
         if(y_speed < 0 && player_collision_top(x, y, angle, mask_big)) {
             y_speed = 0;
             
-            if(action_state == ACTION_DEFAULT && x_speed == 0 && y_speed == 0) action_state = ACTION_ROLL;
+            if(action_state == ACTION_DEFAULT && x_speed == 0) action_state = ACTION_ROLL;
         }
         
-        // Reset hurt speed:
-        if(y_speed >= 0 && action_state == ACTION_HURT && player_collision_bottom(x, y, angle, mask_main)) {
-            x_speed      = 0;
-            action_state = ACTION_DEFAULT;
+        // Air drag:
+        if(action_state != ACTION_HURT && action_state != ACTION_GLIDE) {
+            if(y_speed < 0 && y_speed < -4) x_speed -= floor(x_speed / 0.125) / 256;
         }
     }
 }
@@ -748,23 +724,10 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Air Drag
-
-// Don't bother if not initialized or in the middle of respawning/dying:
-if(initialized == false || action_state == ACTION_RESPAWN || action_state == ACTION_DEATH) exit;
-
-if(ground == false && action_state != ACTION_HURT && action_state != ACTION_GLIDE) {
-    if(y_speed < 0 && y_speed > -4) x_speed -= floor(x_speed / 0.125) / 256;
-}
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
 /// Action States
 
-// Don't bother if not initialized or in the middle of dying:
-if(initialized == false || action_state == ACTION_DEATH) exit;
+// Don't bother in the middle of dying:
+if(action_state == ACTION_DEATH) exit;
 
 player_action_jump();
 player_action_look();
@@ -779,8 +742,8 @@ applies_to=self
 */
 /// Input Disabling
 
-// Don't bother if not initialized or in the middle of respawning/dying:
-if(initialized == false || action_state == ACTION_RESPAWN || action_state == ACTION_DEATH) exit;
+// Don't bother if in the middle of respawning/dying:
+if(action_state == ACTION_RESPAWN || action_state == ACTION_DEATH) exit;
 
 // Reset gimmick lock:
 if(gimmick_lock == true && action_state = ACTION_JUMP) {
@@ -819,8 +782,8 @@ applies_to=self
 */
 /// Status Effects
 
-// Don't bother if not initialized or in the middle of respawning/dying:
-if(initialized == false || action_state == ACTION_RESPAWN || action_state == ACTION_DEATH) exit;
+// Don't bother if in the middle of respawning/dying:
+if(action_state == ACTION_RESPAWN || action_state == ACTION_DEATH) exit;
 
 // Invincibility alarm:
 if(invincibility_alarm > -1) {
@@ -856,8 +819,8 @@ applies_to=self
 */
 /// Underwater
 
-// Don't bother if not initialized or in the middle of respawning/dying:
-if(initialized == false || action_state == ACTION_RESPAWN || action_state == ACTION_DEATH) exit;
+// Don't bother if in the middle of respawning/dying:
+if(action_state == ACTION_RESPAWN || action_state == ACTION_DEATH) exit;
 
 if(physics_type == PHYS_UNDERWATER) {
     // Refill air if in breathe action or bubble shield:
@@ -923,8 +886,8 @@ applies_to=self
 */
 /// Update Inputs
 
-// Don't bother if not initialized or in the middle of respawning/dying:
-if(initialized == false || action_state == ACTION_RESPAWN || action_state == ACTION_DEATH) exit;
+// Don't bother if in the middle of respawning/dying:
+if(action_state == ACTION_RESPAWN || action_state == ACTION_DEATH) exit;
 
 player_get_input();
 
@@ -934,7 +897,7 @@ if(input_lock_alarm != 0){
     if(input_lock_direction == 1) player_input[INP_RIGHT, CHECK_HELD] = false;
 }
 
-if(input_lock_left == true) player_input[INP_LEFT, CHECK_HELD] = false;
+if(input_lock_left == true) player_input[INP_LEFT, CHECK_HELD]   = false;
 if(input_lock_right == true) player_input[INP_RIGHT, CHECK_HELD] = false;
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -1294,8 +1257,15 @@ if(action_state != ACTION_DEATH && action_state != ACTION_HURT && action_state !
     if(x_speed >= 0 && player_input[INP_RIGHT, CHECK_HELD] == true) animation_direction = 1;
 }
 
+// Roll direction
+if(action_state == ACTION_ROLL) {
+    if(x_speed < 0 && player_input[INP_LEFT, CHECK_HELD] == true) animation_direction = -1;
+
+    if(x_speed > 0 && player_input[INP_RIGHT, CHECK_HELD] == true) animation_direction = 1;
+}
+
 // Airborne and jump direction:
-if((ground == false && action_state == ACTION_DEFAULT) || action_state == ACTION_JUMP) {
+if((ground == false && action_state == ACTION_DEFAULT) || action_state == ACTION_JUMP || action_state == ACTION_FLY || action_state == ACTION_FLY_DROP) {
     if(player_input[INP_LEFT, CHECK_HELD] == true) animation_direction = -1;
     if(player_input[INP_RIGHT, CHECK_HELD] == true) animation_direction = 1;
 
@@ -1308,8 +1278,8 @@ applies_to=self
 */
 /// Update Angle
 
-// Don't bother if not initialized or in the middle of respawning/dying:
-if(initialized == false || action_state == ACTION_RESPAWN || action_state == ACTION_DEATH) exit;
+// Don't bother if in the middle of respawning/dying:
+if(action_state == ACTION_RESPAWN || action_state == ACTION_DEATH) exit;
 
 var angle_mod;
 
@@ -1506,6 +1476,9 @@ applies_to=self
 */
 /// Draw Player
 
+// Knuckles test:
+//draw_sprite(spr_knuckles_roll, floor(animation_current_frame), floor(draw_x) + 10, floor(draw_y) - 2);
+
 // Trail:
 if(global.misc_trails == true) {
     draw_set_blend_mode(bm_add);
@@ -1514,22 +1487,20 @@ if(global.misc_trails == true) {
     draw_set_blend_mode(bm_normal);
 }
 
-//draw_sprite(spr_knuckles_roll, floor(animation_current_frame), floor(draw_x) + 10, floor(draw_y) - 2);
+// Change alpha when hurt:
+if(invincibility_type == 1 && invincibility_alarm > 0) animation_alpha = (global.stage_time div 60) mod 3;
+else animation_alpha = 1;
 
-if(invincibility_type != 1 || (invincibility_type == 1 && (invincibility_alarm > 0 || invincibility_alarm == -1))) {
-    if(invincibility_type == 1 && invincibility_alarm > 0 && !((global.stage_time div 60) mod 3)) exit;
-
-    // Miles' tails:
-    if(character_data == CHAR_MILES) {
-        miles_tails_x = draw_x - 5 * dcos(miles_tails_angle) - abs(dcos(miles_tails_angle) * (ground == true && animation_direction == -1)) - (abs(dsin(miles_tails_angle)) * animation_direction);
-        miles_tails_y = draw_y + 4 * dsin(miles_tails_angle) - abs(dcos(miles_tails_angle) * (ground == true && animation_direction == -1));
-        
-        if(animation_current == "roll" || (animation_current == "spin_flight" && animation_current_frame >= animation_loop_frame)) draw_sprite_ext(spr_miles_tails, floor(miles_tails_frame), floor(miles_tails_x), floor(miles_tails_y), animation_direction * animation_x_scale, animation_y_scale, wrap_angle(miles_tails_angle - 90), animation_blend, animation_alpha);
-    }
+// Miles' tails:
+if(character_data == CHAR_MILES) {
+    miles_tails_x = draw_x - 5 * dcos(miles_tails_angle) - abs(dcos(miles_tails_angle) * (ground == true && animation_direction == -1)) - (abs(dsin(miles_tails_angle)) * animation_direction);
+    miles_tails_y = draw_y + 4 * dsin(miles_tails_angle) - abs(dcos(miles_tails_angle) * (ground == true && animation_direction == -1));
     
-    // Character:
-    draw_sprite_ext(animation_sprite, floor(animation_current_frame), floor(draw_x), floor(draw_y), animation_direction * animation_x_scale, animation_y_scale, animation_angle, animation_blend, animation_alpha);
+    if(animation_current == "roll" || (animation_current == "spin_flight" && animation_current_frame >= animation_loop_frame)) draw_sprite_ext(spr_miles_tails, floor(miles_tails_frame), floor(miles_tails_x), floor(miles_tails_y), animation_direction * animation_x_scale, animation_y_scale, wrap_angle(miles_tails_angle - 90), animation_blend, animation_alpha);
 }
+
+// Character:
+draw_sprite_ext(animation_sprite, floor(animation_current_frame), floor(draw_x), floor(draw_y), animation_direction * animation_x_scale, animation_y_scale, animation_angle, animation_blend, animation_alpha);
 
 // Spin dash dust:
 if(action_state == ACTION_SPIN_DASH) {

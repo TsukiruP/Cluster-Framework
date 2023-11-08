@@ -232,6 +232,8 @@ if(transition_type == TRANS_CARD) {
 
     // 3 - Standing by:
     if(title_card_state == 3) {
+        if(transition_standby == 1) instance_activate_object(ctrl_culling);
+
         if(transition_standby < 2) transition_standby += transition_speed;
         else {
             transition_standby = 2;
@@ -420,7 +422,6 @@ if(transition_type == TRANS_RETRY) {
         if(transition_timer < 1) transition_timer += transition_speed;
         else {
             if(debug == false) {
-                //room_get_data(transition_room);
                 room_goto(transition_room);
             }
 
@@ -430,21 +431,25 @@ if(transition_type == TRANS_RETRY) {
 
     // 4 - Background end:
     if(retry_state == 4) {
-        // Background target:
-        background_target = -15;
+        instance_activate_object(ctrl_culling); //instance_activate_all();
 
-        // Stop running:
-        if(player_exists(0)) {
-            if(global.player_instance[0].x >= room_run_end_x && global.player_instance[0].action_state != ACTION_DEATH) room_run_end_x = -1;
-        }
+        if(transition_timer < 1.02) transition_timer += transition_speed;
+        else {
+            // Background target:
+            background_target = -15;
 
+            // Stop running:
+            if(player_exists(0)) {
+                if(global.player_instance[0].x >= room_run_end_x && global.player_instance[0].action_state != ACTION_DEATH) room_run_end_x = -1;
+            }
 
-        if(debug == true || room_kickoff != KICKOFF_RUN || (room_kickoff == KICKOFF_RUN && (room_run_end_x == -1 || (global.checkpoint_x != -1 && global.checkpoint_y != -1)))) {
-            // Resume stage:
-            stage_start();
+            if(debug == true || room_kickoff != KICKOFF_RUN || (room_kickoff == KICKOFF_RUN && (room_run_end_x == -1 || (global.checkpoint_x != -1 && global.checkpoint_y != -1)))) {
+                // Resume stage:
+                stage_start();
 
-            if(background_position == background_target) {
-                instance_destroy();
+                if(background_position == background_target) {
+                    instance_destroy();
+                }
             }
         }
     }
@@ -493,6 +498,14 @@ if(transition_type == TRANS_CARD || transition_type == TRANS_RETRY) {
     instance_create(0, 0, ctrl_culling);
     instance_create(0, 0, ctrl_stage);
     instance_create(0, 0, ctrl_hud);
+
+    instance_deactivate_all(true);
+    instance_activate_object(gm82core_object);
+    instance_activate_object(ctrl_display);
+    instance_activate_object(ctrl_audio);
+    instance_activate_object(ctrl_input);
+    instance_activate_object(ctrl_text);
+    instance_activate_object(ctrl_stage);
 }
 #define Other_10
 /*"/*'/**//* YYD ACTION
