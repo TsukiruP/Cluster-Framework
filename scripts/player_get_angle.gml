@@ -1,7 +1,7 @@
 /// player_get_angle(x, y, angle)
 // Returns the surface angle at the given position & angle.
 
-var mask_temp, xPoint, yPoint;
+var mask_temp, angle_temp, xPoint, yPoint;
 
 // Store mask as a temporal variables:
 mask_temp = mask_index;
@@ -10,25 +10,22 @@ mask_temp = mask_index;
 mask_index = mask_dot;
 
 // Limit the angle:
-argument2 = round(argument2 / 10) * 10;
+angle_temp = roundto_unbiased(argument2, 10);
 
 // Set up sensors:
-xPoint[0] = argument0 - dcos(argument2) * 7;
-xPoint[1] = argument0 + dcos(argument2) * 7;
+xPoint[0] = argument0 - dcos(argument2) * 4;
+xPoint[1] = argument0 + dcos(argument2) * 4;
 
-yPoint[0] = argument1 + dsin(argument2) * 7;
-yPoint[1] = argument1 - dsin(argument2) * 7;
+yPoint[0] = argument1 + dsin(argument2) * 4;
+yPoint[1] = argument1 - dsin(argument2) * 4;
 
 // Push down the sensors to find the angle:
 repeat(25) {
-    if(!player_collision(floor(xPoint[0]), floor(yPoint[0]), collision_layer)) {
-        xPoint[0] += dsin(argument2);
-        yPoint[0] += dcos(argument2);
-    }
-
-    if(!player_collision(floor(xPoint[1]), floor(yPoint[1]), collision_layer)) {
-        xPoint[1] += dsin(argument2);
-        yPoint[1] += dcos(argument2);
+    for(i = 0; i <= 1; i += 1) {
+        if(!player_collision(floor(xPoint[i]), floor(yPoint[i]), collision_layer)) {
+            xPoint[i] += dsin(collision_layer);
+            yPoint[i] += dcos(collision_layer);
+        }
     }
 }
 
