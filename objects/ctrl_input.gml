@@ -465,3 +465,14 @@ repeat(16) {
     ds_queue_enqueue(partner_input_down, false);
     ds_queue_enqueue(partner_input_jump, false);
 }
+#define Other_11
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Clear Partner Queues
+
+ds_queue_clear(partner_input_up);
+ds_queue_clear(partner_input_down);
+ds_queue_clear(partner_input_jump);
