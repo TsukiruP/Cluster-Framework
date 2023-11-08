@@ -1221,7 +1221,7 @@ if(ground == true) {
 if(animation_current == "spin_flight" || animation_current == "spin_fall" || animation_current == "tag_flight" || animation_current == "tag_fall" ||
     animation_current == "leap_flight" || animation_current == "leap_fall" || animation_current == "spring_flight" || animation_current == "spring_fall" ||
     action_state == ACTION_JUMP && animation_current == "roll") {
-    animation_rendering_speed = 0.25 * max(1, 1 + abs(x_speed) / 25 + abs(y_speed) / 25);
+    animation_rendering_speed = 0.25 * max(1 + abs(x_speed) / 25 + abs(y_speed) / 25, 1);
     animation_speed           = animation_rendering_speed;
 }
 
@@ -1349,7 +1349,7 @@ switch(animation_current) {
                     }
                     
                     if(abs(angle_difference(animation_angle_mod, angle_mod)) < 45) {
-                        animation_angle_mod = approach_angle(animation_angle_mod, angle_mod, max(4, abs(x_speed)));
+                        animation_angle_mod = approach_angle(animation_angle_mod, angle_mod, max(abs(x_speed), 4));
                     } else animation_angle_mod = angle_mod;
                 }
             } else approach_angle(animation_angle_mod, 0, 4);

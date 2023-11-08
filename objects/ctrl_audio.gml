@@ -56,7 +56,7 @@ applies_to=self
 
 // Fade Out:
 if(fade_out == true) {
-    if(sound_kind_get_volume(3) != 0) sound_kind_volume(3, max(0, sound_kind_get_volume(3) - 0.01));
+    if(sound_kind_get_volume(3) != 0) sound_kind_volume(3, max(sound_kind_get_volume(3) - 0.01, 0));
     else {
         // Discard music:
         if(music_instance != -1) {
