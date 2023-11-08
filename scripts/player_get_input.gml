@@ -50,7 +50,7 @@ switch(control_data) {
                 player_input[INP_DOWN, CHECK_HELD] = queue_down;
 
                 // Jump:
-                if(ground == true && player_handle.y < y - 50 && player_handle.ground == false) {
+                if(ground == true && action_state != ACTION_CROUCH && action_state != ACTION_LOOK && player_handle.y < y - 50 && player_handle.ground == false) {
                     player_input[INP_JUMP, CHECK_PRESSED] = true;
                 } else player_input[INP_JUMP, CHECK_PRESSED] = false;
 
