@@ -53,8 +53,10 @@ if(player_exists(0)) {
         look_direction = (focus_handle.action_state == ACTION_CROUCH) - (focus_handle.action_state == ACTION_LOOK);
 
         // Look timer:
-        if(look_direction != 0) camera_look_timer = clamp(camera_look_timer + (1 * look_direction), -120, 120);
-        else camera_look_timer = 0;
+        //if(look_direction != 0) camera_look_timer = clamp(camera_look_timer + (1 * look_direction), -120, 120);
+        //else camera_look_timer = 0;
+        camera_look_timer = clamp(camera_look_timer + (1 * look_direction), -120, 120);
+        if(sign(camera_look_timer) != look_direction) camera_look_timer = 0;
 
         // Shift camera upwards:
         if(camera_look_timer <= -120) camera_y_shift = max(camera_y_shift - 2, - 104);
