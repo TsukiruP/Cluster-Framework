@@ -1211,7 +1211,7 @@ if(ground == true) {
         animation_speed = 0.25 + (abs(peel_out_timer) * 0.01);
     } else {
         if(animation_current == "walk" || animation_current == "walk_fast" || animation_current == "jog" || animation_current == "jog_fast" || animation_current == "tag_walk" || animation_current == "tag_walk_fast") {
-            animation_speed = 0.20 + (abs(ground_speed)/ 30);
+            animation_speed = 0.20 + (abs(x_speed)/ 30);
         }
 
         if(animation_current == "run" || animation_current == "dash" || animation_current == "tag_jog") {
