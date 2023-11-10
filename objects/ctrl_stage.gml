@@ -6,11 +6,12 @@ applies_to=self
 */
 /// Stage Initialization
 
-global.stage_rings = 0;
-global.stage_score = 0;
-global.stage_time  = 0;
-global.object_time = 0;
-global.add_time    = false;
+global.stage_rings  = 0;
+global.stage_score  = 0;
+global.stage_time   = 0;
+global.object_time  = 0;
+global.object_ratio = 1;
+global.add_time     = false;
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -64,8 +65,8 @@ applies_to=self
 
 // Stage timer:
 if(global.add_time == true) {
-    global.stage_time += 1000 / 60;
+    global.stage_time += (1000 / 60) * global.object_ratio;
 }
 
 // Object timer
-global.object_time += 1000 / 60;
+global.object_time += (1000 / 60) * global.object_ratio;

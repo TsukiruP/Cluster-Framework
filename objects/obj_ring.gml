@@ -35,7 +35,7 @@ applies_to=self
 
 if(dropped == true) {
     // Image_speed:
-    image_speed = (lifespan / 2) / 256;
+    image_speed = ((lifespan / 2) / 256) * global.object_ratio;
 
     // Alpha:
     if(lifespan < 25) image_alpha += (0 - image_alpha) * 0.05;
@@ -56,13 +56,13 @@ if(dropped == true) {
 
     // Horizontal movement:
     if(place_meeting(x + x_speed, y, par_solid)) x_speed *= -0.25;
-    else x += x_speed;
+    else x += x_speed * global.object_ratio;
 
     // Verical movement:
     y_speed += y_gravity;
 
     if(place_meeting(x, y + y_speed, par_solid) || (y_speed >= 0 && place_meeting(x, y + y_speed, par_platform) && !place_meeting(x, y, par_platform))) y_speed *= -0.75;
-    else y += y_speed;
+    else y += y_speed * global.object_ratio;
 
     // Destroy:
     if(lifespan <= 0 || !in_view()) instance_destroy();

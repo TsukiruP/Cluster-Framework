@@ -64,6 +64,8 @@
 			|player_action_roll
 			|player_action_skid
 			|player_state_hurt
+			+Classic
+				|classic_action_clock_up
 		+Animation
 			|player_animation_core
 			|player_add_animation

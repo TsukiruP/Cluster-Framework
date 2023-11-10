@@ -37,7 +37,7 @@ applies_to=self
 */
 /// Parallax Speed
 
-sky_scroll += sky_scroll_speed;
+sky_scroll += sky_scroll_speed * global.object_ratio;
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -63,7 +63,6 @@ sky_y        = sea_y - background_get_height(pbg_basic_test_sky);
 
 // Under variables;
 under_height = 128;
-
 
 // Sky parallax:
 draw_backdrop_tiled_area(pbg_basic_test_sky, 0, 0, sky_x, sky_y, view_xview[view_current] * (1 - sky_factor) - sky_scroll + view_wview[view_current], sky_height);
@@ -94,7 +93,7 @@ for(i = 0; i < sea_height / 4; i += 1) {
     // Draw medium rocks:
     if(i == 3) draw_backdrop_tiled_area(pbg_basic_test_rock_medium, 0, 0, view_xview[view_current] * 0.87 + 50, layer_y - 15, view_xview[view_current] + view_wview[view_current], background_get_height(pbg_basic_test_rock_medium), 170);
 
-    layer_scroll = ((current_time * 0.002) * i mod  background_get_width(pbg_basic_test_sea));
+    layer_scroll = ((current_time * 0.002) * i mod background_get_width(pbg_basic_test_sea)) * global.object_ratio;
 
     // Draw sea:
     draw_backdrop_tiled_area(pbg_basic_test_sea, 0, i * 4, sea_x - layer_scroll, layer_y, view_xview[view_current] * (1 - sea_factor) + layer_scroll + view_wview[view_current], 4, 0, 0, 1, sea_scale);

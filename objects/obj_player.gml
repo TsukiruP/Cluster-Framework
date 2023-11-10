@@ -186,6 +186,7 @@ death_alarm     = -5;
 depth_default   =  0;
 carry_ally      =  noone;
 tunnel_lock     =  false;
+clock_up_state  =  0;
 
 // Create trail:
 if(global.misc_trails == true) start_trail(15);
@@ -735,6 +736,8 @@ player_action_crouch();
 player_action_spin_dash();
 player_action_roll();
 player_action_skid();
+
+if(character_data == CHAR_CLASSIC) classic_action_clock_up();
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603

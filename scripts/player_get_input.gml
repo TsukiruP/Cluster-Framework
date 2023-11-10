@@ -5,7 +5,7 @@ if(control_lock == false) {
     // Player 1:
     if(control_cpu == false) {
         // Register inputs:
-        for(i = INP_LEFT; i <= INP_SUPER; i += 1) {
+        for(i = INP_LEFT; i <= INP_ALT; i += 1) {
             for(j = CHECK_HELD; j <= CHECK_RELEASED; j += 1) {
                 player_input[i, j] = user_get_input(i, j);
             }
@@ -60,7 +60,7 @@ if(control_lock == false) {
             if(control_alarm > 0) control_alarm -= 1;
 
             // Register inputs:
-            for(i = INP_LEFT; i <= INP_SUPER; i += 1) {
+            for(i = INP_LEFT; i <= INP_ALT; i += 1) {
                 for(j = CHECK_HELD; j <= CHECK_RELEASED; j += 1) {
                     player_input[i, j] = user_get_input(i, j, DEV_JOYSTICK1);
                 }
@@ -69,7 +69,7 @@ if(control_lock == false) {
     }
 } else {
     // Register inputs:
-    for(i = INP_LEFT; i <= INP_SUPER; i += 1) {
+    for(i = INP_LEFT; i <= INP_ALT; i += 1) {
         for(j = CHECK_HELD; j <= CHECK_RELEASED; j += 1) {
             player_input[i, j] = false;
         }

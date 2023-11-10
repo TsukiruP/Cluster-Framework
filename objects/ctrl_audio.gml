@@ -11,6 +11,7 @@ sound_add_directory("data\audio\sfx\character\common", ".wav", 0, true);
 sound_add_directory("data\audio\sfx\character\sonic", ".wav", 0, true);
 sound_add_directory("data\audio\sfx\character\miles", ".wav", 0, true);
 sound_add_directory("data\audio\sfx\character\knuckles", ".wav", 0, true);
+sound_add_directory("data\audio\sfx\character\classic", ".wav", 0, true);
 sound_add_directory("data\audio\sfx\character\shield", ".wav", 0, true);
 sound_add_directory("data\audio\sfx\character\tag action", ".wav", 0, true);
 

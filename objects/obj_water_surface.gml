@@ -16,7 +16,7 @@ applies_to=self
 */
 /// Water Scroll
 
-water_scroll -= water_scroll_speed;
+water_scroll -= water_scroll_speed * global.object_ratio;
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
