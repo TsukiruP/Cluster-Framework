@@ -42,6 +42,7 @@ applies_to=self
 if(player_exists(0)) {
     var player_handle, xx, yy;
 
+    // Move towards the player:
     player_handle = global.player_instance[0];
     xx            = sign(player_handle.x - x);
     yy            = sign(player_handle.y - y);
@@ -50,10 +51,13 @@ if(player_exists(0)) {
     vspeed += (yy * (0.1875 + (0.75 * (sign(vspeed) != yy))));
     speed   = clamp(speed, -64, 64) * global.object_ratio;
 
+    // Drop a normal ring when no longer magnetized:
     if(player_handle.shield_data != SHIELD_MAGNETIC) {
         dropped = true;
         instance_destroy();
     }
+
+    // Destroy
 }
 #define Draw_0
 /*"/*'/**//* YYD ACTION

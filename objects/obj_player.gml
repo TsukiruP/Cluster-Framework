@@ -120,6 +120,7 @@ climb_speed         = 0;
 climb_ledge         = false;
 
 // Classic variables:
+clock_up_alarm    = 0;
 clock_up_state    = 0;
 clock_up_timer    = 0;
 clock_up_duration = 900;

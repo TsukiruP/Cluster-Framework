@@ -36,6 +36,7 @@ applies_to=self
 if(dropped == true) {
     // Image_speed:
     image_speed = ((lifespan / 2) / 256) * global.object_ratio;
+    //image_index = global.object_time div 80;
 
     // Alpha:
     if(lifespan < 25) image_alpha += (0 - image_alpha) * 0.05;
@@ -59,7 +60,7 @@ if(dropped == true) {
     else x += x_speed * global.object_ratio;
 
     // Verical movement:
-    y_speed += y_gravity;
+    y_speed += y_gravity * global.object_ratio;
 
     if(place_meeting(x, y + y_speed, par_solid) || (y_speed >= 0 && place_meeting(x, y + y_speed, par_platform) && !place_meeting(x, y, par_platform))) y_speed *= -0.75;
     else y += y_speed * global.object_ratio;

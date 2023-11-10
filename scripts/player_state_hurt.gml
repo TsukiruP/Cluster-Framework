@@ -36,3 +36,14 @@ if((control_cpu == false && (global.stage_rings > 0 || shield_data != 0)) || con
     if(object_is_ancestor(argument0.object_index, par_spike)) sound_play("snd_spike");
     else sound_play("snd_hurt");
 }
+
+// Clock Over:
+if(control_cpu == false && clock_up_state != 0) {
+    // Play sound:
+    // Since this is dependent on the Clock Up state, we play the sound first.
+    if(clock_up_state == 2) sound_play("snd_hyper_clock_over");
+    else sound_play("snd_clock_over");
+
+    clock_up_state      = 0;
+    global.object_ratio = 1;
+}

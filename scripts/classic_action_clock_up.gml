@@ -1,8 +1,13 @@
 /// classic_action_clock_up()
 // He who was born a God and governs over all.
 
+if(user_get_input(INP_SELECT, CHECK_PRESSED)) shield_data = 0;
 
-//
+// Clock Up alarm:
+if(clock_up_alarm > 0) clock_up_alarm -= 1;
+else if(clock_up_alarm != 0) clock_up_alarm = 0;
+
+// Clock Up timer:
 if(clock_up_state != 0) {
     // Increase Clock Up timer:
     clock_up_timer = min(clock_up_timer + 1 * clock_up_state, clock_up_duration);
@@ -23,7 +28,7 @@ if(clock_up_state != 0) {
 if(action_state == ACTION_DEATH || action_state == ACTION_HURT) exit;
 
 // Clock Up:
-if(player_input[INP_SUPER, CHECK_PRESSED] == true) {
+if(player_input[INP_SUPER, CHECK_PRESSED] == true && clock_up_alarm == 0) {
     if(clock_up_state != 2 && player_input[INP_ALT, CHECK_HELD] == true && ((clock_up_state == 0 && clock_up_timer == 0) || clock_up_state != 0)) {
         clock_up_state      = 2;
         global.object_ratio = 0;
@@ -47,4 +52,7 @@ if(player_input[INP_SUPER, CHECK_PRESSED] == true) {
         clock_up_state      = 0;
         global.object_ratio = 1;
     }
+
+    // Set Clock Up alarm:
+    clock_up_alarm = 90;
 }
