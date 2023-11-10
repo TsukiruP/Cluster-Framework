@@ -1,21 +1,19 @@
 /// player_get_input()
 // Returns the inputs based on control data.
 
-switch(control_data) {
+if(control_lock == false) {
     // Player 1:
-    case 0:
-        if(control_lock == false) {
-            // Register inputs:
-            for(i = INP_LEFT; i <= INP_SUPER; i += 1) {
-                for(j = CHECK_HELD; j <= CHECK_RELEASED; j += 1) {
-                    player_input[i, j] = user_get_input(i, j);
-                }
+    if(control_cpu == false) {
+        // Register inputs:
+        for(i = INP_LEFT; i <= INP_SUPER; i += 1) {
+            for(j = CHECK_HELD; j <= CHECK_RELEASED; j += 1) {
+                player_input[i, j] = user_get_input(i, j);
             }
         }
-        break;
+    }
 
     // Player 2:
-    case 1:
+    if(control_cpu == true) {
         // Set partner alarm:
         if(user_get_input(-1, 0, DEV_JOYSTICK1)) control_alarm = 600;
 
@@ -58,26 +56,22 @@ switch(control_data) {
                 else player_input[INP_JUMP, CHECK_HELD] = false;
             }
         } else {
-            if(control_lock == false) {
-                // Decrease partner alarm:
-                if(control_alarm > 0) control_alarm -= 1;
+            // Decrease partner alarm:
+            if(control_alarm > 0) control_alarm -= 1;
 
-                // Register inputs:
-                for(i = INP_LEFT; i <= INP_SUPER; i += 1) {
-                    for(j = CHECK_HELD; j <= CHECK_RELEASED; j += 1) {
-                        player_input[i, j] = user_get_input(i, j, DEV_JOYSTICK1);
-                    }
+            // Register inputs:
+            for(i = INP_LEFT; i <= INP_SUPER; i += 1) {
+                for(j = CHECK_HELD; j <= CHECK_RELEASED; j += 1) {
+                    player_input[i, j] = user_get_input(i, j, DEV_JOYSTICK1);
                 }
             }
         }
-        break;
-
-    // Blank:
-    default:
-        // Register inputs:
-        for(i = INP_LEFT; i <= INP_SUPER; i += 1) {
-            for(j = CHECK_HELD; j <= CHECK_RELEASED; j += 1) {
-                player_input[i, j] = false;
-            }
+    }
+} else {
+    // Register inputs:
+    for(i = INP_LEFT; i <= INP_SUPER; i += 1) {
+        for(j = CHECK_HELD; j <= CHECK_RELEASED; j += 1) {
+            player_input[i, j] = false;
         }
+    }
 }

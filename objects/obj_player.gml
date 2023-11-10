@@ -176,9 +176,9 @@ gimmick_lock       = false;
 gimmick_lock_alarm = 0;
 
 // Control variables:
-control_data  = -1;
-control_lock  =  false;
-control_alarm =  0;
+control_cpu   = false;
+control_lock  = false;
+control_alarm = 0;
 
 // Misc. variables:
 wall_stop_allow =  true;
@@ -308,14 +308,14 @@ if(action_state == ACTION_DEATH) {
     if(death_alarm > 0) death_alarm -= 1;
     else if(death_alarm == 0) {
         // Respawn partner:
-        if(control_data == 1) action_state = ACTION_RESPAWN;
+        if(control_cpu == true) action_state = ACTION_RESPAWN;
         
         // Set death alarm:
         death_alarm = -1;
     }
     
     // Retry transition:
-    if(control_data == 0 && death_alarm == 64 && !instance_exists(ctrl_transition)) room_transition(room, TRANS_RETRY);
+    if(control_cpu == false && death_alarm == 64 && !instance_exists(ctrl_transition)) room_transition(room, TRANS_RETRY);
 }
 
 if(action_state != ACTION_RESPAWN) {

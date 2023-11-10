@@ -5,7 +5,7 @@
 if( action_state == ACTION_DEATH || action_state == ACTION_HURT || invincibility_type > 0) exit;
 
 // Hurt:
-if((control_data == 0 && (global.stage_rings > 0 || shield_data != 0)) || control_data == 1) {
+if((control_cpu == false && (global.stage_rings > 0 || shield_data != 0)) || control_cpu == true) {
     ground              =  false;
     action_state        =  ACTION_HURT;
     invincibility_type  =  1;
@@ -20,14 +20,14 @@ if((control_data == 0 && (global.stage_rings > 0 || shield_data != 0)) || contro
     }
     
     // Play sound:
-    if((control_data == 0 && shield_data != 0)) {
+    if((control_cpu == false && shield_data != 0)) {
         // Clear shield:
-        if(control_data == 0) shield_data = 0;
+        if(control_cpu == false) shield_data = 0;
         
         // Play sound:
         if(object_is_ancestor(argument0.object_index, par_spike)) sound_play("snd_spike");
         else sound_play("snd_hurt");
-    } else if(control_data == 0) player_ring_loss();
+    } else if(control_cpu == false) player_ring_loss();
 } else {
     // Die:
     action_state = ACTION_DEATH;

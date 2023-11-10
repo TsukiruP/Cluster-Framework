@@ -22,7 +22,7 @@ if(action_state == ACTION_SPIN_DASH) {
             action_state = ACTION_ROLL;
             
             // Camera lag
-            if(control_data == 0) ctrl_camera.camera_lag_alarm = 16;
+            if(control_cpu == false) ctrl_camera.camera_lag_alarm = 16;
             
             // Play sound:
             sound_play_single("snd_spin_dash_release");
