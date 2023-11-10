@@ -19,6 +19,6 @@ instance_activate_object(par_indestructable);
 instance_activate_region(view_xview[view_current] - 64, view_yview[view_current] - 64, view_wview[view_current] + 128, view_hview[view_current] + 128, true);
 
 // Activate region around players:
-with(par_player) {
+with(obj_player) {
     if(!in_view()) instance_activate_region(x - 64, y - 64, 128, 128, true);
 }

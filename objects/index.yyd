@@ -6,7 +6,7 @@ par_moving_platform
 par_layer_low
 par_layer_high
 obj_basic_test_collision_solid_01
-par_player
+obj_player
 par_indestructable
 
 ctrl_initialization
@@ -65,3 +65,5 @@ obj_item_slow
 obj_item_panic
 obj_item_swap
 eff_afterimage
+par_ring
+obj_ring_magnetized

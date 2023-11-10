@@ -16,14 +16,16 @@
 	+PC
 		|ctrl_camera
 		|obj_player_spawn
-		|par_player
+		|obj_player
 	+NPCs
 		+Badniks
 			|par_badnik
 	+Props
 		+Sensors
 		+Rings
+			|par_ring
 			|obj_ring
+			|obj_ring_magnetized
 		|obj_checkpoint
 		+Dash Panels
 		+Springs

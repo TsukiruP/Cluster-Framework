@@ -22,7 +22,7 @@ if(instance_exists(obj_player_spawn)) {
     // Spawn players:
     with(obj_player_spawn) {
         // Spawn player 1:
-        global.player_instance[0]                = instance_create(x, y, par_player);
+        global.player_instance[0]                = instance_create(x, y, obj_player);
         global.player_instance[0].character_data = global.player_data[0];
         global.player_instance[0].control_data   = 0;
         global.player_instance[0].control_lock   = true;
@@ -35,7 +35,7 @@ if(instance_exists(obj_player_spawn)) {
 
         // Spawn player 2:
         if(global.player_data[1] != -1) {
-            global.player_instance[1]                = instance_create(x - 30, y, par_player);
+            global.player_instance[1]                = instance_create(x - 30, y, obj_player);
             global.player_instance[1].character_data = global.player_data[1];
             global.player_instance[1].control_data   = 1;
         }
