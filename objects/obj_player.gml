@@ -119,6 +119,11 @@ climb_ox            = 0;
 climb_speed         = 0;
 climb_ledge         = false;
 
+// Classic variables:
+clock_up_state    = 0;
+clock_up_timer    = 0;
+clock_up_duration = 900;
+
 // Shield variables:
 shield_data      = 0;
 shield_usable    = true;
@@ -186,7 +191,6 @@ death_alarm     = -5;
 depth_default   =  0;
 carry_ally      =  noone;
 tunnel_lock     =  false;
-clock_up_state  =  0;
 
 // Create trail:
 if(global.misc_trails == true) start_trail(15);

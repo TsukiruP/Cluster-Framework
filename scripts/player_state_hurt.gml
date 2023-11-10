@@ -1,8 +1,8 @@
 /// player_state_hurt(obj)
 // Ouchie ouch ouch.
 
-// Don't bother if already hurt, in the middle of dying, or have invincibility:
-if( action_state == ACTION_DEATH || action_state == ACTION_HURT || invincibility_type > 0) exit;
+// Don't bother if in the middle of dying, already hurt, or have invincibility:
+if(action_state == ACTION_DEATH || action_state == ACTION_HURT || invincibility_type > 0) exit;
 
 // Hurt:
 if((control_cpu == false && (global.stage_rings > 0 || shield_data != 0)) || control_cpu == true) {

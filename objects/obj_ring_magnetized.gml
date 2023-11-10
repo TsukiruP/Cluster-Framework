@@ -46,9 +46,9 @@ if(player_exists(0)) {
     xx            = sign(player_handle.x - x);
     yy            = sign(player_handle.y - y);
 
-    hspeed += (xx * (0.1875 + (0.75 * (sign(hspeed) != xx)))) * global.object_ratio;
-    vspeed += (yy * (0.1875 + (0.75 * (sign(vspeed) != yy)))) * global.object_ratio;
-    speed   = clamp(speed, -64, 64);
+    hspeed += (xx * (0.1875 + (0.75 * (sign(hspeed) != xx))));
+    vspeed += (yy * (0.1875 + (0.75 * (sign(vspeed) != yy))));
+    speed   = clamp(speed, -64, 64) * global.object_ratio;
 
     if(player_handle.shield_data != SHIELD_MAGNETIC) {
         dropped = true;

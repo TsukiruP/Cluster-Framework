@@ -52,7 +52,7 @@ applies_to=self
 
 if(dropped == true) {
     // Decrease lifespan alarm:
-    lifespan = max(lifespan - 1, 0);
+    lifespan = max(lifespan - 1 * global.object_ratio, 0);
 
     // Horizontal movement:
     if(place_meeting(x + x_speed, y, par_solid)) x_speed *= -0.25;

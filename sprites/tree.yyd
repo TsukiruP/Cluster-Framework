@@ -11,6 +11,7 @@
 			|fnt_title_card_act
 	+HUD
 		|spr_hud
+		|spr_action_gauge
 		|fnt_hud
 +Gameplay
 	+PCs
