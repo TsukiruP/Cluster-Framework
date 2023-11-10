@@ -1,5 +1,5 @@
 /// dummy_effect_create(sprite, speed, x, y, depth, [xscale])
-// Create a generic effect for the sprite given.
+// Creates a generic effect for the sprite given.
 
 dummy_effect              = instance_create(argument[2], argument[3], eff_dummy);
 dummy_effect.sprite_index = argument[0];
