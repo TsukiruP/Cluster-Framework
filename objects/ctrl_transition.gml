@@ -447,9 +447,7 @@ if(transition_type == TRANS_RETRY) {
                 // Resume stage:
                 stage_start();
 
-                if(background_position == background_target) {
-                    instance_destroy();
-                }
+                if(background_position == background_target) instance_destroy();
             }
         }
     }

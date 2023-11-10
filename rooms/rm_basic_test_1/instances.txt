@@ -32,4 +32,4 @@ obj_basic_test_collision_solid_04,528,924,00105D41,0,1,1,4294967295,0,0
 obj_item_bubble,1228,1084,A9BD5D30,0,1,1,4294967295,0,0
 obj_item_muteki,860,988,F0F5AE6E,0,1,1,4294967295,0,0
 obj_item_mine,532,844,35BAAC36,0,1,1,4294967295,0,0
-obj_item_magnetic,800,980,C6BAD41A,0,1,1,4294967295,0,0
+obj_item_magnetic,616,804,C6BAD41A,0,1,1,4294967295,0,0

@@ -202,7 +202,7 @@ randomize();
 global.player_instance[0]    =  noone;
 global.player_instance[1]    =  noone;
 global.player_data[0]        =  CHAR_SONIC;
-global.player_data[1]        =  CHAR_MILES;
+global.player_data[1]        = -1;
 
 global.gravity_angle         =  0;
 global.animation_grid        = -1;

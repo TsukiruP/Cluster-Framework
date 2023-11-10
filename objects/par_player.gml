@@ -1004,7 +1004,7 @@ if(instance_exists(ctrl_camera)) {
         }
 
         x = ctrl_camera.limit_left + sprite_get_width(mask_main) / 2;
-        if(ground == true) animation_current = "stand";
+        if(ground == true) animation_target = "stand";
     } else if(x >= (ctrl_camera.limit_right - sprite_get_width(mask_main) / 2) && x_speed > 0) {
         if(action_state != ACTION_GLIDE) x_speed = 0;
         else {
@@ -1012,7 +1012,7 @@ if(instance_exists(ctrl_camera)) {
         }
 
         x = ctrl_camera.limit_right - sprite_get_width(mask_main) / 2;
-        if(ground == true) animation_current = "stand";
+        if(ground == true) animation_target = "stand";
     }
 }
 /*"/*'/**//* YYD ACTION
