@@ -340,14 +340,8 @@ applies_to=self
 // Don't bother if in the middle of respawning/dying:
 if(action_state == ACTION_RESPAWN || action_state == ACTION_DEATH) exit;
 
-// Platform fix:
-if(!place_meeting(x, y, par_platform) && platform_check == true) {
-    if(platform_alarm > 0) platform_alarm -= 1;
-    else {
-        platform_check = false;
-        platform_alarm = 30;
-    }
-}
+// Platform mode:
+if(!place_meeting(x, y, par_platform) && platform_mode == true) platform_mode = false;
 
 // X movement:
 var x_steps, x_samples;
