@@ -8,9 +8,9 @@
 		|ctrl_text
 		|ctrl_transition
 		+Stage Controllers
+			|ctrl_camera
 			|ctrl_culling
 			|ctrl_stage
-			|ctrl_camera
 			|ctrl_hud
 			|ctrl_pause
 +Gameplay
