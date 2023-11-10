@@ -4,7 +4,7 @@
 var ring_handle;
 
 // Collect ring:
-ring_handle = player_collision_object_main(x, y, obj_ring);
+ring_handle = player_collision_object_main(x, y, par_ring);
 
 if(ring_handle != noone) {
     if(invincibility_type != 1 || (invincibility_type == 1 && invincibility_alarm > -1 && invincibility_type <= 90)) {
