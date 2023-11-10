@@ -10,11 +10,11 @@
 		+Stage Controllers
 			|ctrl_culling
 			|ctrl_stage
+			|ctrl_camera
 			|ctrl_hud
 			|ctrl_pause
 +Gameplay
 	+PC
-		|ctrl_camera
 		|obj_player_spawn
 		|obj_player
 	+NPCs
