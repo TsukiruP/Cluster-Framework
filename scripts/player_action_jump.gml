@@ -42,9 +42,4 @@ if(action_state == ACTION_JUMP) {
 
 
 // Variable clean up:
-if(ground == true || action_state == ACTION_CARRY) {
-    jump_complete = false;
-}
-
-if(user_get_input(INP_SELECT, CHECK_PRESSED)) shield_data = SHIELD_MAGNETIC;
-if(user_get_input(INP_SUPER, CHECK_PRESSED)) shield_data = SHIELD_NONE;
+if(ground == true || action_state == ACTION_CARRY) jump_complete = false;
