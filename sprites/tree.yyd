@@ -182,6 +182,7 @@
 			|spr_classic_roll
 			|spr_classic_skid
 			|spr_classic_death
+			|spr_classic_balance
 			|spr_classic_push
 			|spr_classic_misc
 	+NPCs
