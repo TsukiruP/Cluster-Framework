@@ -341,7 +341,7 @@ applies_to=self
 if(action_state == ACTION_RESPAWN || action_state == ACTION_DEATH) exit;
 
 // Platform mode:
-if(!place_meeting(x, y, par_platform) && platform_mode == true) platform_mode = false;
+//if(!place_meeting(x, y, par_platform) && platform_mode == true) platform_mode = false;
 
 // X movement:
 var x_steps, x_samples;
