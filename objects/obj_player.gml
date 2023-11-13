@@ -187,11 +187,11 @@ control_lock  = false;
 control_alarm = 0;
 
 // Misc. variables:
-wall_stop_allow =  true;
-death_alarm     = -5;
-depth_default   =  0;
-carry_ally      =  noone;
-tunnel_lock     =  false;
+wall_stop     =  true;
+death_alarm   = -5;
+depth_default =  0;
+carry_ally    =  noone;
+tunnel_lock   =  false;
 
 // Create trail:
 if(global.misc_trails == true) start_trail(15);
@@ -268,7 +268,7 @@ applies_to=self
 */
 /// Restore Wall Stop
 
-wall_stop_allow = true;
+wall_stop = true;
 #define Step_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -341,7 +341,7 @@ applies_to=self
 if(action_state == ACTION_RESPAWN || action_state == ACTION_DEATH) exit;
 
 // Platform mode:
-//if(!place_meeting(x, y, par_platform) && platform_mode == true) platform_mode = false;
+if(!place_meeting(x, y, par_platform) && platform_check == true) platform_check = false;
 
 // X movement:
 var x_steps, x_samples;
@@ -349,8 +349,7 @@ var x_steps, x_samples;
 // X speed limit:
 x_speed = clamp(x_speed, -x_max_speed, x_max_speed);
 
-x_steps   = 1;
-x_steps  += floor(abs(x_speed) / 13);
+x_steps   = 1 + floor(abs(x_speed) / 13);
 x_samples = x_speed / x_steps;
 
 repeat(x_steps) {
@@ -420,8 +419,7 @@ var y_steps, y_samples;
 y_speed = clamp(y_speed, -y_max_speed, y_max_speed);
 
 if(ground == false) {
-    y_steps   = 1;
-    y_steps  += floor(abs(y_speed) / 13);
+    y_steps   = 1 + floor(abs(y_speed) / 13);
     y_samples = y_speed / y_steps;
     
     repeat(y_steps) {
@@ -453,15 +451,14 @@ if(ground == false) {
             } else player_set_angle(gravity_angle);
             
             // Change x speed when landing on awkward terrain:
-            if(abs(x_speed) <= abs(y_speed) && angle_relative > 22.5 && angle_relative < 337.5) {
-                x_speed = -y_speed * sign(dsin(angle_relative));
+            if(abs(x_speed) <= abs(y_speed) && angle_relative >= 22.5 && angle_relative <= 337.5) {
+                x_speed = y_speed * -sign(dsin(angle_relative));
                 
                 if(angle_relative < 45 || angle_relative > 315) x_speed *= 0.5;
             }
             
             // Set ground:
-            y_speed = 0;
-            ground  = true;
+            ground = true;
             
             // Play landing animation:
             if(action_state != ACTION_GLIDE && action_state != ACTION_GLIDE_DROP && action_state != ACTION_SLIDE && drop_dash_state < 2) {
@@ -481,25 +478,23 @@ if(ground == false) {
                 // Set angle:
                 player_set_angle(player_get_angle(x, y, angle));
                 
-                // Check fi the angle isn't flat:
-                if(angle_relative > 160 && angle_relative < 200) {
+                // Check if angle is steep enough:
+                if(angle_relative < 135 || angle_relative > 225) {
+                    x_speed = y_speed * -sign(dsin(angle_relative));
+                    ground  = true;
+                }
+                
+                // Otherwise, detatch:
+                else {
                     player_set_angle(gravity_angle);
                     y_speed = 0;
                 }
-
-                // Set speeds:
-                x_speed -= dsin(angle) * y_speed;
-                y_speed  = 0;
-
-                // Set ground:
-                if(ground == false && angle != 0 && drop_dash_state < 2 && action_state != ACTION_FLY && action_state != ACTION_FLY_DROP) {
-                    ground = true;
-                }
-            } else {
+            }
+            
+            // Otherwise, reset:
+            else {
                 player_set_angle(gravity_angle);
                 y_speed = 0;
-
-                if(ground == false) break;
             }
         }
 
@@ -543,13 +538,12 @@ repeat(x_steps * 2) {
         if(terrain_launch_allow == true) {
             if(angle != 90 && angle != 180 && angle != 270 && terrain_launch_angle != -1 && terrain_launch_direction != 0 && sign(x_speed) == terrain_launch_direction) {
                 // Disable wall stop:
-                wall_stop_allow = false;
+                wall_stop = false;
 
                 if(alarm[0] == -1) alarm[0] = 15;
 
                 // Set angles:
-                angle_relative = sign(x_speed) * terrain_launch_angle;
-                angle          = sign(x_speed) * terrain_launch_angle;
+                player_set_angle(sign(x_speed) * terrain_launch_angle);
 
                 // Set speeds:
                 y_speed = -dsin(angle_relative) * x_speed;
@@ -559,12 +553,11 @@ repeat(x_steps * 2) {
                 ground = false;
 
                 // Set angles again:
-                angle_relative = sign(x_speed) * terrain_launch_angle;
-                angle          = sign(x_speed) * terrain_launch_angle;
+                player_set_angle(sign(x_speed) * terrain_launch_angle);
             } else {
-                ground  =  false;
                 y_speed = -(dsin(angle) * x_speed);
                 x_speed =   dcos(angle) * x_speed;
+                ground  =   false;
             }
         }
     }
@@ -598,34 +591,34 @@ if(angle == 0 && input_lock_alarm > 0) {
 // Movement:
 if(x_allow == true) {
     // Decelerate on slopes:
-    if(action_state == ACTION_ROLL) {
-        // Rolling up:
-        if((angle_relative < 180 && x_speed > 0) || (angle_relative > 180 && x_speed < 0)) {
-            x_speed -= dsin(angle_relative) * roll_deceleration_up;
-        } else {
-            x_speed -= dsin(angle_relative) * roll_deceleration_down;
-        }
-    } else {
-        // Normal deceleration:
-        if((angle_relative > 35 && angle_relative < 330) || round(x_speed) != 0 || input_lock_alarm != 0) {
-            x_speed -= dsin(angle_relative) * 0.125;
+    if(ground == true && action_state != ACTION_SLIDE) {
+        // Check if we're not moving along a ceiling:
+        if(angle_relative < 135 || angle_relative > 225) {
+            // Rolling along slopes:
+            if(action_state == ACTION_ROLL) {
+                // Rolling up a slope:
+                if(sign(x_speed) == sign(dsin(angle_relative))) x_speed -= dsin(angle_relative) * roll_deceleration_up;
+
+                // Rolling down a slope:
+                else x_speed -= dsin(angle_relative) * roll_deceleration_down;
+            } else if(x_speed != 0) x_speed -= dsin(angle_relative) * 0.125;
         }
     }
-    
+
     // Input & deceleration:
     if(action_state == ACTION_DEFAULT || action_state == ACTION_JUMP || action_state == ACTION_SKID || action_state == ACTION_FLY || action_state == ACTION_FLY_DROP || (action_state == ACTION_TORNADO && animation_target == "tornado") || action_state == ACTION_GLIDE_DROP || action_state == ACTION_BALANCE || action_state == ACTION_BREATHE) {
         var input_direction;
-        
+
         // Input direction:
         input_direction = player_input[INP_RIGHT, CHECK_HELD] - player_input[INP_LEFT, CHECK_HELD];
-        
+
         // Ground acceleration:
         if(ground == true) {
             if(input_direction != 0) {
                 if(input_lock_alarm == 0) {
                     // Decelerate:
                     if(x_speed != 0 && sign(x_speed) != input_direction) x_speed += deceleration * input_direction;
-                    
+
                     // Accelerate:
                     else {
                         if(abs(x_speed) < x_top_speed) x_speed += acceleration * input_direction;
@@ -633,38 +626,34 @@ if(x_allow == true) {
                 }
             } else x_speed -= min(abs(x_speed), acceleration) * sign(x_speed);
         }
-        
+
         // Air acceleration:
         else {
             if(input_direction != 0) {
                 if(action_state == ACTION_FLY || action_state == ACTION_FLY_DROP || action_state == ACTION_GLIDE_DROP) {
-                    if(abs(x_speed) < x_top_speed) x_speed += air_acceleration * input_direction;
+                    if(abs(x_speed) < x_top_speed || sign(x_speed) != input_direction) x_speed += air_acceleration * input_direction;
                 } else x_speed += air_acceleration * input_direction;
             }
         }
     }
-    
+
     // Falling off:
-    if(ground == true && angle_relative >= 46 && angle_relative <= 315 && abs(x_speed) < 2.5 && tunnel_lock == false) {
+    if(ground == true && angle_relative >= 45 && angle_relative <= 315 && abs(x_speed) < 2.5 && tunnel_lock == false) {
         if(angle_relative >= 90 && angle_relative <= 270) {
             y_speed = -dsin(angle_relative) * x_speed;
             x_speed =  dcos(angle_relative) * x_speed;
             ground  =  false;
-        } else {
-            input_lock_alarm = 30;
-            
-            if(input_lock_direction == 0) input_lock_direction = animation_direction;
-        }
+        } else input_lock_alarm = 30;
     }
-    
+
     // Set angle:
     if(ground == true && player_collision_left_edge(x, y, angle) && player_collision_right_edge(x, y, angle)) {
         player_set_angle(player_get_angle(x, y, angle));
     } else player_set_angle(gravity_angle);
-    
+
     // Wall stop:
-    if(wall_stop_allow == true) {
-        if((x_speed < 0 && player_collision_left(x, y, angle, mask_big)) || (x_speed > 0 && player_collision_right(x, y, angle, mask_big))) {
+    if(wall_stop == true) {
+        if((x_speed <= 0 && player_collision_left(x, y, angle, mask_big)) || (x_speed >= 0 && player_collision_right(x, y, angle, mask_big))) {
             x_speed = 0;
         }
     }
