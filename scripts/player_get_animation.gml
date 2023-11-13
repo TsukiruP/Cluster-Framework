@@ -1,4 +1,4 @@
-/// player_get_animation()
+/// player_get_animation([animation, argument])
 
 if(global.animation_grid != -1) {
     if(global.animation_initialized = true){
