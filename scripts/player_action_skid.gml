@@ -2,7 +2,7 @@
 // Try to outrun this demon to get left in the dust.
 
 // Trigger skid:
-if(ground = true && action_state == ACTION_DEFAULT && input_lock_alarm <= 0 && gimmick_lock == false) {
+if(ground = true && action_state == ACTION_DEFAULT && input_lock_alarm <= 0) {
     if(angle_relative < 45 || angle_relative > 315) {
         if(((x_speed >= 4.5 && player_input[INP_LEFT, CHECK_HELD] == true) || (x_speed <= -4.5 && player_input[INP_RIGHT, CHECK_HELD] == true)) && sign(x_speed) == animation_direction){
             action_state = ACTION_SKID;

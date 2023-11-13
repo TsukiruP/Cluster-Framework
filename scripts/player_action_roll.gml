@@ -14,8 +14,10 @@ if(ground == true && action_state == ACTION_DEFAULT && abs(x_speed) >= 1.03125 &
 if(action_state == ACTION_ROLL) {
     if(ground == true) {
         // Deceleration:
-        if(x_speed > 0 && player_input[INP_LEFT, CHECK_HELD] == true) x_speed = max(x_speed - roll_deceleration, 0);
-        if(x_speed < 0 && player_input[INP_RIGHT, CHECK_HELD] == true) x_speed = min(x_speed + roll_deceleration, 0);
+        if(input_lock_alarm == 0) {
+            if(x_speed > 0 && player_input[INP_LEFT, CHECK_HELD] == true) x_speed -= roll_deceleration;
+            if(x_speed < 0 && player_input[INP_RIGHT, CHECK_HELD] == true) x_speed += roll_deceleration;
+        }
 
         // Friction:
         x_speed -= min(abs(x_speed), roll_friction) * sign(x_speed);

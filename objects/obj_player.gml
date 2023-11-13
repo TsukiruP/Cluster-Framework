@@ -171,12 +171,6 @@ spring_strength = 0;
 spring_alarm    = 0;
 spring_angle    = 0;
 
-// Input lock variables:
-input_lock_alarm     = 0;
-input_lock_direction = 0;
-input_lock_left      = 0;
-input_lock_right     = 0;
-
 // Gimmick lock variables:
 gimmick_lock       = false;
 gimmick_lock_alarm = 0;
@@ -192,6 +186,7 @@ death_alarm   = -5;
 depth_default =  0;
 carry_ally    =  noone;
 tunnel_lock   =  false;
+input_lock_alarm = 0;
 
 // Create trail:
 if(global.misc_trails == true) start_trail(15);
@@ -576,18 +571,6 @@ applies_to=self
 // Don't bother if in the middle of respawning/dying:
 if(action_state == ACTION_RESPAWN || action_state == ACTION_DEATH) exit;
 
-// Input lock alarm:
-if(input_lock_alarm > 0) input_lock_alarm -= 1;
-else {
-    input_lock_alarm     = 0;
-    input_lock_direction = 0;
-}
-
-if(angle == 0 && input_lock_alarm > 0) {
-    input_lock_alarm     = 0;
-    input_lock_direction = 0;
-}
-
 // Movement:
 if(x_allow == true) {
     // Decelerate on slopes:
@@ -731,46 +714,6 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Input Disabling
-
-// Don't bother if in the middle of respawning/dying:
-if(action_state == ACTION_RESPAWN || action_state == ACTION_DEATH) exit;
-
-// Reset gimmick lock:
-if(gimmick_lock == true && action_state = ACTION_JUMP) {
-    input_lock_direction = 0;
-    gimmick_lock_alarm   = 0;
-}
-
-// Disable direction lock when angle is 0:
-if(angle == 0 && input_lock_direction != 0) input_lock_direction = 0;
-
-// Disable gimmick lock:
-if(gimmick_lock == true && gimmick_lock_alarm < 1) {
-    input_lock_left  = false;
-    input_lock_right = false;
-    gimmick_lock     = false;
-}
-
-// Gimmick lock sets your input:
-if(gimmick_lock == true) {
-    if(x_speed > 0) {
-        player_input[INP_RIGHT, CHECK_HELD] = true;
-        input_lock_left                     = true;
-    } else if(x_speed < 0) {
-        player_input[INP_LEFT, CHECK_HELD] = true;
-        input_lock_right                   = true;
-    }
-}
-
-// Decrease gimmick lock alarm:
-if(gimmick_lock_alarm > 0) gimmick_lock_alarm -= 1;
-else gimmick_lock_alarm = 0;
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
 /// Status Effects
 
 // Don't bother if in the middle of respawning/dying:
@@ -883,13 +826,7 @@ if(action_state == ACTION_RESPAWN || action_state == ACTION_DEATH) exit;
 player_get_input();
 
 // Input lock:
-if(input_lock_alarm != 0){
-    if(input_lock_direction == -1) player_input[INP_LEFT, CHECK_HELD] = false;
-    if(input_lock_direction == 1) player_input[INP_RIGHT, CHECK_HELD] = false;
-}
-
-if(input_lock_left == true) player_input[INP_LEFT, CHECK_HELD]   = false;
-if(input_lock_right == true) player_input[INP_RIGHT, CHECK_HELD] = false;
+if(ground == true && input_lock_alarm > 0) input_lock_alarm -= 1;
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
