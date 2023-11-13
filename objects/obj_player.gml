@@ -29,7 +29,6 @@ acceleration      = 0.046875;
 deceleration      = 0.5;
 slope_factor      = 0.125;
 air_acceleration  = 0.09375;
-ground_speed      = 0;
 previous_x        = x;
 
 acceleration_temp = 0;
@@ -557,10 +556,6 @@ repeat(x_steps * 2) {
         }
     }
 }
-
-// Ground speed:
-if (abs(x_speed) <= abs(y_speed)) ground_speed = y_speed * -dsin(angle);
-else ground_speed = x_speed;
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
