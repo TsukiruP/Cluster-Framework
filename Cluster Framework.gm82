@@ -3,7 +3,7 @@ gameid=386720886
 
 info_author=
 info_version=100
-info_information=Gamepad Buttons\r\n0 - Dualsense Cross\r\n1 - Dualsense Circle\r\n2 - Dualsense Square\r\n3 - Dualsense Triangle\r\n4 - Dualsense Select\r\n5 - Dualsense Playstation Button\r\n6 - Dualsense Start\r\n7 - Dualsense Left Stick\r\n8 - Dualsense Right Stick\r\n9 - Dualsense Left Bumper\r\n10 - Dualsense Right Bumper\r\n11 - Dualsense Dpad Up\r\n12 - Dualsense Dpad Down\r\n13 - Dualsense Dpad Left\r\n14 - Dualsense Dpad Right\r\n15 - Dualsense Touch Pad\r\n16 - ???\r\n\r\nFace buttons are the same for Xbone controller.\r\n4 - Xbone Left Bumper\r\n5 - Xbone Right Bumper\r\n6 - Xbone Select\r\n7 - Xbone Start\r\n8 - Xbone Left Stick\r\n9 - Xbone Right Stick\r\n10 - Xbox Button\r\n11 - Share button\r\n12 - ???\r\n13 - ???\r\n14 - ???\r\n15 - ???
+info_information=Gamepad Buttons\r\n0 - Dualsense Cross\r\n1 - Dualsense Circle\r\n2 - Dualsense Square\r\n3 - Dualsense Triangle\r\n4 - Dualsense Select\r\n5 - Dualsense Playstation Button\r\n6 - Dualsense Start\r\n7 - Dualsense Left Stick\r\n8 - Dualsense Right Stick\r\n9 - Dualsense Left Bumper\r\n10 - Dualsense Right Bumper\r\n11 - Dualsense Dpad Up\r\n12 - Dualsense Dpad Down\r\n13 - Dualsense Dpad Left\r\n14 - Dualsense Dpad Right\r\n15 - Dualsense Touch Pad\r\n16 - ???\r\n\r\nFace buttons are the same for Xbone controller.\r\n4 - Xbone Left Bumper\r\n5 - Xbone Right Bumper\r\n6 - Xbone Select\r\n7 - Xbone Start\r\n8 - Xbone Left Stick\r\n9 - Xbone Right Stick\r\n10 - Xbox Button\r\n11 - Share button\r\n12 - ???\r\n13 - ???\r\n14 - ???\r\n15 - ???\r\n\r\nSwitch Pro Controller\r\n0 - A\r\n1 - B\r\n2 - X\r\n3 - Y\r\nEverything else is seemingly similar to the Dualsense?\r\nTouchpad = Screenshot\r\nPS Button = Home
 
 exe_company=
 exe_product=
