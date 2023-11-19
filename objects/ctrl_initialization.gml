@@ -20,8 +20,8 @@ global.setting_display_fullscreen = ini_read_real("display", "full", DEFAULT_DIS
 global.setting_display_vsync      = ini_read_real("display", "vsync", DEFAULT_DISPLAY_VSYNC);
 
 // Read/create audio settings:
-global.setting_audio_bgm_volume = ini_read_real("audio", "bgm", DEFAULT_AUDIO_BGM);
-global.setting_audio_sfx_volume = ini_read_real("audio", "sfx", DEFAULT_AUDIO_SFX);
+global.setting_audio_bgm = ini_read_real("audio", "bgm", DEFAULT_AUDIO_BGM);
+global.setting_audio_sfx = ini_read_real("audio", "sfx", DEFAULT_AUDIO_SFX);
 
 // Read/create key input settings:
 global.setting_input_key[INP_LEFT]    = ini_read_real("input", "key_left", DEFAULT_KEY_LEFT);
@@ -89,10 +89,9 @@ global.display_scale      = global.setting_display_scale;
 global.display_fullscreen = global.setting_display_fullscreen;
 global.display_vsync      = global.setting_display_vsync;
 
-
 // Apply audio settings:
-global.audio_bgm_volume = global.setting_audio_bgm_volume;
-global.audio_sfx_volume = global.setting_audio_sfx_volume;
+global.audio_bgm = global.setting_audio_bgm;
+global.audio_sfx = global.setting_audio_sfx;
 
 // Apply key input settings:
 for(i = INP_LEFT; i <= INP_HELP; i += 1) {

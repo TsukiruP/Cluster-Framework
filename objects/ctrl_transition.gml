@@ -461,7 +461,7 @@ applies_to=self
 /// Play Music
 
 // Reset music volume:
-if(sound_kind_get_volume(3) != global.audio_bgm_volume / 100) sound_kind_volume(3, global.audio_bgm_volume / 100);
+if(sound_kind_get_volume(3) != global.audio_bgm / 100) sound_kind_volume(3, global.audio_bgm / 100);
 
 // Set music:
 if(room_music != "") {

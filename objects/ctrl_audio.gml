@@ -30,8 +30,8 @@ jingle_instance = -1;
 fade_out        =  false;
 
 // Set volume:
-sound_kind_volume(0, global.audio_sfx_volume / 100);
-sound_kind_volume(3, global.audio_bgm_volume / 100);
+sound_kind_volume(0, global.audio_sfx / 100);
+sound_kind_volume(3, global.audio_bgm / 100);
 
 // Set loop points:
 sound_set_loop("bgm_dev_title", 2304672, 9984665, unit_samples);
