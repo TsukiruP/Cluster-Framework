@@ -79,18 +79,20 @@ applies_to=self
 /// Button Initialization
 
 // Xbox buttons:
-joystick_button[JOY_FACE1, 0]    = 0;
-joystick_button[JOY_FACE2, 0]    = 1;
-joystick_button[JOY_FACE3, 0]    = 2;
-joystick_button[JOY_FACE4, 0]    = 3;
-joystick_button[JOY_BUMPERL, 0]  = 4;
-joystick_button[JOY_BUMPERR, 0]  = 5;
-joystick_button[JOY_TRIGGERL, 0] = 4;
-joystick_button[JOY_TRIGGERR, 0] = 5;
-joystick_button[JOY_SELECT, 0]   = 6;
-joystick_button[JOY_START, 0]    = 7;
-joystick_button[JOY_STICKL, 0]   = 8;
-joystick_button[JOY_STICKR, 0]   = 9;
+joystick_button[JOY_FACE1, 0]    =  0;
+joystick_button[JOY_FACE2, 0]    =  1;
+joystick_button[JOY_FACE3, 0]    =  2;
+joystick_button[JOY_FACE4, 0]    =  3;
+joystick_button[JOY_BUMPERL, 0]  =  4;
+joystick_button[JOY_BUMPERR, 0]  =  5;
+joystick_button[JOY_TRIGGERL, 0] =  4;
+joystick_button[JOY_TRIGGERR, 0] =  5;
+joystick_button[JOY_SELECT, 0]   =  6;
+joystick_button[JOY_START, 0]    =  7;
+joystick_button[JOY_STICKL, 0]   =  8;
+joystick_button[JOY_STICKR, 0]   =  9;
+joystick_button[JOY_HOME, 0]     = 10;
+joystick_button[JOY_SHARE, 0]    = 11;
 
 // DualSense buttons:
 joystick_button[JOY_FACE1, 1]    =  0;
@@ -101,7 +103,7 @@ joystick_button[JOY_BUMPERL, 1]  =  9;
 joystick_button[JOY_BUMPERR, 1]  = 10;
 joystick_button[JOY_TRIGGERL, 1] =  4;
 joystick_button[JOY_TRIGGERR, 1] =  5;
-joystick_button[JOY_SELECT, 1]   =  4;
+joystick_button[JOY_SELECT, 1]   = 15;
 joystick_button[JOY_START, 1]    =  6;
 joystick_button[JOY_STICKL, 1]   =  7;
 joystick_button[JOY_STICKR, 1]   =  8;
@@ -109,6 +111,28 @@ joystick_button[JOY_LEFT, 1]     = 13;
 joystick_button[JOY_RIGHT, 1]    = 14;
 joystick_button[JOY_UP, 1]       = 11;
 joystick_button[JOY_DOWN, 1]     = 12;
+joystick_button[JOY_HOME, 1]     =  5;
+joystick_button[JOY_SHARE, 1]    =  4;
+
+// Pro Controller buttons:
+joystick_button[JOY_FACE1, 2]    =  1;
+joystick_button[JOY_FACE2, 2]    =  0;
+joystick_button[JOY_FACE3, 2]    =  3;
+joystick_button[JOY_FACE4, 2]    =  2;
+joystick_button[JOY_BUMPERL, 2]  =  9;
+joystick_button[JOY_BUMPERR, 2]  = 10;
+joystick_button[JOY_TRIGGERL, 2] =  4;
+joystick_button[JOY_TRIGGERR, 2] =  5;
+joystick_button[JOY_SELECT, 2]   = 4;
+joystick_button[JOY_START, 2]    =  6;
+joystick_button[JOY_STICKL, 2]   =  7;
+joystick_button[JOY_STICKR, 2]   =  8;
+joystick_button[JOY_LEFT, 2]     = 13;
+joystick_button[JOY_RIGHT, 2]    = 14;
+joystick_button[JOY_UP, 2]       = 11;
+joystick_button[JOY_DOWN, 2]     = 12;
+joystick_button[JOY_HOME, 2]     =  5;
+joystick_button[JOY_SHARE, 2]    = 15;
 #define Step_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
