@@ -306,34 +306,27 @@ applies_to=self
 */
 /// Update Device Inputs
 
-// User/player 1 held inputs:
+// User/player 1 inputs:
 for(i = INP_LEFT; i <= INP_HELP; i += 1) {
+    // Held:
     user_input[i, CHECK_HELD] = (keyboard_input[i, CHECK_HELD] || joystick_input[i, CHECK_HELD]);
-}
 
-
-// User/player 1 pressed inputs:
-for(i = INP_LEFT; i <= INP_HELP; i += 1) {
+    // Pressed:
     user_input[i, CHECK_PRESSED] = ((keyboard_input[i, CHECK_PRESSED] && !joystick_input[i, CHECK_HELD]) || (joystick_input[i, CHECK_PRESSED] && !keyboard_input[i, CHECK_HELD]));
-}
 
-// User/player 1 released inputs:
-for(i = INP_LEFT; i <= INP_HELP; i += 1) {
+    // Released:
     user_input[i, CHECK_RELEASED] = ((keyboard_input[i, CHECK_RELEASED] && !joystick_input[i, CHECK_HELD]) || (joystick_input[i, CHECK_RELEASED] && !keyboard_input[i, CHECK_HELD]));
 }
 
-// Held keyboard inputs:
+// Keyboard inputs:
 for(i = INP_LEFT; i <= INP_HELP; i += 1) {
+    // Held:
     keyboard_input[i, CHECK_HELD] = keyboard_check(global.input_key[i]);
-}
 
-// Pressed keyboard inputs:
-for(i = INP_LEFT; i <= INP_HELP; i += 1) {
+    // Pressed:
     keyboard_input[i, CHECK_PRESSED] = keyboard_check_pressed(global.input_key[i]);
-}
 
-// Released keyboard inputs:
-for(i = INP_LEFT; i <= INP_HELP; i += 1) {
+    // Released:
     keyboard_input[i, CHECK_RELEASED] = keyboard_check_released(global.input_key[i]);
 }
 
