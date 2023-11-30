@@ -72,7 +72,7 @@ spr_shield_muteki
 spr_shield_fire_burst
 spr_shield_bubble_bounce
 spr_shield_lightning_spark
-spr_character_spawn
+spr_player_spawn
 spr_basic_test_collision_solid_02
 spr_basic_test_collision_solid_03
 spr_basic_test_collision_solid_04

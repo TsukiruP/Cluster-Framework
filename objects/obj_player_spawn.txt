@@ -1,4 +1,4 @@
-sprite=spr_character_spawn
+sprite=spr_player_spawn
 visible=1
 solid=0
 persistent=0

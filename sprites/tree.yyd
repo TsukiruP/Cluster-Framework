@@ -1,8 +1,7 @@
 +System
 	|spr_realizing_hopper
-	|fnt_system
 	|spr_transition_background
-	|spr_character_spawn
+	|fnt_system
 	+Title Card
 		+Default
 			|spr_title_card_banner
@@ -15,6 +14,7 @@
 		|fnt_hud
 +Gameplay
 	+PCs
+		|spr_player_spawn
 		+Masks
 			|mask_main
 			|mask_large
