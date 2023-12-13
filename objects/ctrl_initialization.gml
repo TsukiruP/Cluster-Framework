@@ -23,7 +23,7 @@ global.setting_display_vsync      = ini_read_real("display", "vsync", DEFAULT_DI
 global.setting_audio_bgm = ini_read_real("audio", "bgm", DEFAULT_AUDIO_BGM);
 global.setting_audio_sfx = ini_read_real("audio", "sfx", DEFAULT_AUDIO_SFX);
 
-// Read/create key input settings:
+// Read/create keyboard settings:
 global.setting_input_key[INP_LEFT]    = ini_read_real("input", "key_left", DEFAULT_KEY_LEFT);
 global.setting_input_key[INP_RIGHT]   = ini_read_real("input", "key_right", DEFAULT_KEY_RIGHT);
 global.setting_input_key[INP_UP]      = ini_read_real("input", "key_up", DEFAULT_KEY_UP);
@@ -42,21 +42,31 @@ global.setting_input_key[INP_ACCEPT]  = ini_read_real("input", "key_accept", DEF
 global.setting_input_key[INP_CANCEL]  = ini_read_real("input", "key_cancel", DEFAULT_KEY_CANCEL);
 global.setting_input_key[INP_HELP]    = ini_read_real("input", "key_help", DEFAULT_KEY_HELP);
 
-// Read/create joy input settings:
+// Read/create joystick settings:
 for(i = 0; i < 2; i += 1) {
-    global.setting_input_joy[INP_JUMP - INP_JUMP, i]    = ini_read_real("input", "joy" + string(i) + "_jump", JOY_FACE1);
-    global.setting_input_joy[INP_SPECIAL - INP_JUMP, i] = ini_read_real("input", "joy" + string(i) + "_special", JOY_FACE3);;
-    global.setting_input_joy[INP_SWAP - INP_JUMP, i]    = ini_read_real("input", "joy" + string(i) + "_swap", JOY_FACE4);;
-    global.setting_input_joy[INP_SUPER - INP_JUMP, i]   = ini_read_real("input", "joy" + string(i) + "_super", JOY_FACE2);;
-    global.setting_input_joy[INP_TAG - INP_JUMP, i]     = ini_read_real("input", "joy" + string(i) + "_tag", JOY_BUMPERR);;
-    global.setting_input_joy[INP_ALT - INP_JUMP, i]     = ini_read_real("input", "joy" + string(i) + "_alt", JOY_BUMPERL);;
+    global.setting_input_joy[INP_LEFT, i]    = JOY_LEFT;
+    global.setting_input_joy[INP_RIGHT, i]   = JOY_RIGHT;
+    global.setting_input_joy[INP_UP, i]      = JOY_UP;
+    global.setting_input_joy[INP_DOWN, i]    = JOY_DOWN;
+    global.setting_input_joy[INP_JUMP, i]    = ini_read_real("input", "joy" + string(i) + "_jump", JOY_FACE1);
+    global.setting_input_joy[INP_SPECIAL, i] = ini_read_real("input", "joy" + string(i) + "_special", JOY_FACE3);
+    global.setting_input_joy[INP_SWAP, i]    = ini_read_real("input", "joy" + string(i) + "_swap", JOY_FACE4);
+    global.setting_input_joy[INP_SUPER, i]   = ini_read_real("input", "joy" + string(i) + "_super", JOY_FACE2);
+    global.setting_input_joy[INP_TAG, i]     = ini_read_real("input", "joy" + string(i) + "_tag", JOY_BUMPERR);
+    global.setting_input_joy[INP_ALT, i]     = ini_read_real("input", "joy" + string(i) + "_alt", JOY_BUMPERL);
+    global.setting_input_joy[INP_START, i]   = JOY_START;
+    global.setting_input_joy[INP_SELECT, i]  = JOY_SELECT;
+    global.setting_input_joy[INP_ACCEPT, i]  = JOY_FACE1;
+    global.setting_input_joy[INP_CANCEL, i]  = JOY_FACE2;
+    global.setting_input_joy[INP_HELP, i]    = JOY_FACE4;
+
+    // Other:
+    global.setting_input_deadzone[i] = ini_read_real("input", "joy" + string(i) + "_deadzone", 0.05);
+    global.setting_input_accept[i]   = ini_read_real("input", "joy" + string(i) + "_accept", 0);
 }
 
-global.setting_input_joy_deadzone = 0.05;
-
 // Read/create misc input settings:
-global.setting_input_misc_style  = ini_read_real("input", "misc_style", DEFAULT_MISC_STYLE);
-global.setting_input_misc_accept = ini_read_real("input", "misc_accept", DEFAULT_MISC_ACCEPT);
+global.setting_input_style  = ini_read_real("input", "misc_style", DEFAULT_MISC_STYLE);
 
 // Read/create textbox settings:
 global.setting_textbox_red   = ini_read_real("textbox", "red", DEFAULT_TEXTBOX_RED);
@@ -69,7 +79,7 @@ global.setting_gameplay_elemental  = ini_read_real("gameplay", "elemental", true
 global.setting_gameplay_debuffs    = ini_read_real("gameplay", "debuffs", false);
 global.setting_gameplay_checkpoint = ini_read_real("gameplay", "checkpoint", true);
 
-// Read/create misc settings:
+// Read/create misc. settings:
 global.setting_misc_hud     = ini_read_real("misc", "hud", 1);
 global.setting_misc_status  = ini_read_real("misc", "status", 2);
 global.setting_misc_feed    = ini_read_real("misc", "feed", false);
@@ -98,24 +108,19 @@ for(i = INP_LEFT; i <= INP_HELP; i += 1) {
     global.input_key[i] = global.setting_input_key[i];
 }
 
-// Apply joy input settings:
+// Apply joystick settings:
 for(i = 0; i < 2; i += 1) {
-    for(j = INP_JUMP - INP_JUMP; j <= INP_ALT - INP_JUMP; j += 1) {
+    for(j = INP_LEFT; j <= INP_HELP; j += 1) {
         global.input_joy[j, i] = global.setting_input_joy[j, i];
     }
 
-    global.input_joy[INP_START - INP_JUMP, i]  = JOY_START;
-    global.input_joy[INP_SELECT - INP_JUMP, i] = JOY_SELECT;
-    global.input_joy[INP_ACCEPT - INP_JUMP, i] = JOY_FACE1;
-    global.input_joy[INP_CANCEL - INP_JUMP, i] = JOY_FACE2;
-    global.input_joy[INP_HELP - INP_JUMP, i]   = JOY_FACE4;
+    // Other settings:
+    global.input_deadzone[i] = global.setting_input_deadzone[i];
+    global.input_accept[i]   = global.setting_input_accept[i];
 }
 
-global.input_joy_deadzone = global.setting_input_joy_deadzone;
-
 // Apply misc input settings:
-global.input_misc_style  = global.setting_input_misc_style;
-global.input_misc_accept = global.setting_input_misc_accept;
+global.input_style = global.setting_input_style;
 
 // Apply textbox settings
 global.textbox_red   = global.setting_textbox_red;
@@ -128,7 +133,7 @@ global.gameplay_elemental  = global.setting_gameplay_elemental;
 global.gameplay_debuffs    = global.setting_gameplay_debuffs;
 global.gameplay_checkpoint = global.setting_gameplay_checkpoint;
 
-// Apply misc settings:
+// Apply misc. settings:
 global.misc_hud     = global.setting_misc_hud;
 global.misc_status  = global.setting_misc_status;
 global.misc_feed    = global.setting_misc_feed;
@@ -201,7 +206,7 @@ randomize();
 global.player_instance[0]    =  noone;
 global.player_instance[1]    =  noone;
 global.player_data[0]        =  CHAR_CLASSIC;
-global.player_data[1]        = -1;
+global.player_data[1]        =  CHAR_MILES;
 
 global.gravity_angle         =  0;
 global.animation_grid        = -1;

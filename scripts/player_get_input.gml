@@ -7,7 +7,7 @@ if(control_lock == false) {
         // Register inputs:
         for(i = INP_LEFT; i <= INP_ALT; i += 1) {
             for(j = CHECK_HELD; j <= CHECK_RELEASED; j += 1) {
-                player_input[i, j] = user_get_input(i, j);
+                player_input[i, j] = input_check(i, j);
             }
         }
     }
@@ -15,7 +15,7 @@ if(control_lock == false) {
     // Player 2:
     if(control_cpu == true) {
         // Set partner alarm:
-        if(user_get_input(-1, 0, DEV_JOYSTICK1)) control_alarm = 600;
+        if(input_check(INP_ANY, CHECK_HELD, DEV_JOYSTICK1)) control_alarm = 600;
 
         if(control_alarm == 0) {
             if(player_exists(0)) {
@@ -62,7 +62,7 @@ if(control_lock == false) {
             // Register inputs:
             for(i = INP_LEFT; i <= INP_ALT; i += 1) {
                 for(j = CHECK_HELD; j <= CHECK_RELEASED; j += 1) {
-                    player_input[i, j] = user_get_input(i, j, DEV_JOYSTICK1);
+                    player_input[i, j] = input_check(i, j, DEV_JOYSTICK1);
                 }
             }
         }

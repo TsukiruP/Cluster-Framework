@@ -22,7 +22,7 @@ pad_to_chr
 player_get_angle
 player_set_angle
 wrap_angle
-user_input_left
+joystick_check
 user_input_right
 user_input_up
 user_input_down
@@ -87,7 +87,7 @@ player_state_hurt
 player_handle_item_box
 player_handle_water_surface
 water_exists
-user_get_input
+input_check
 start_trail
 update_trail
 draw_trail
@@ -98,3 +98,5 @@ knuckles_add_animations
 classic_add_animations
 player_compile_animations
 classic_action_clock_up
+joystick_check_pressed
+joystick_check_released

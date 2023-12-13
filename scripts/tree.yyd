@@ -1,5 +1,10 @@
 +System
 	|credits
+	+Input
+		|joystick_check
+		|joystick_check_pressed
+		|joystick_check_released
+		|input_check
 	+Text
 		|key_to_string
 		|pad_to_chr
@@ -22,7 +27,6 @@
 			|draw_background_tiled_vertical_part
 	+Misc.
 		|window_resize
-		|user_get_input
 		|wrap_angle
 		|player_exists
 		|water_exists
@@ -93,7 +97,6 @@
 				|draw_trail
 +Trash
 	+Input
-		|user_input_left
 		|user_input_right
 		|user_input_up
 		|user_input_down

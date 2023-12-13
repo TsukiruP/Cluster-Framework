@@ -82,7 +82,7 @@ if(transition_type == TRANS_FADE) {
             if(debug == true) {
                 event_user(0);
 
-                if(user_get_input(INP_ACCEPT, CHECK_PRESSED)) {
+                if(input_check(INP_ACCEPT, CHECK_PRESSED)) {
                     fade_state = 2;
                     event_user(1);
                 }
@@ -128,7 +128,7 @@ if(transition_type == TRANS_MENU) {
             if(debug == true) {
                 event_user(0);
 
-                if(user_get_input(INP_ACCEPT, CHECK_PRESSED)) {
+                if(input_check(INP_ACCEPT, CHECK_PRESSED)) {
                     menu_state = 2;
                     event_user(1);
                 }
@@ -219,7 +219,7 @@ if(transition_type == TRANS_CARD) {
             if(debug == true) {
                 event_user(0);
 
-                if(user_get_input(INP_ACCEPT, CHECK_PRESSED)) {
+                if(input_check(INP_ACCEPT, CHECK_PRESSED)) {
                     title_card_state = 4;
                     event_user(1);
                 }
@@ -380,7 +380,7 @@ if(transition_type == TRANS_RETRY) {
     }
 
     // Skip states:
-    if(transition_standby != 1 && retry_state <= 1 && transition_standby != 1 && user_get_input(INP_ACCEPT, CHECK_PRESSED)) {
+    if(transition_standby != 1 && retry_state <= 1 && transition_standby != 1 && input_check(INP_ACCEPT, CHECK_PRESSED)) {
         transition_standby = 1;
         retry_state        = 1;
     }
@@ -398,7 +398,7 @@ if(transition_type == TRANS_RETRY) {
         if(transition_standby < 1) transition_standby += transition_speed;
         else {
             if(debug == true) event_user(0);
-            if((debug == true && user_get_input(INP_ACCEPT, CHECK_PRESSED)) || debug == false) {
+            if((debug == true && input_check(INP_ACCEPT, CHECK_PRESSED)) || debug == false) {
                 if(debug == true) event_user(1);
 
                 retry_state = 2;

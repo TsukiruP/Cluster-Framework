@@ -14,6 +14,7 @@ if(argument[0] == INP_ANY) {
         if(ctrl_input.joystick_device[0, 0] > -1) {
             var device_id, button_id;
 
+            // Device id:
             device_id = ctrl_input.joystick_device[0, 0];
 
             for(i = 0; i < joystick_buttons(device_id); i += 1) {
@@ -28,6 +29,7 @@ if(argument[0] == INP_ANY) {
         if(ctrl_input.joystick_device[1, 0] > -1) {
             var device_id, button_id;
 
+            // Device id:
             device_id = ctrl_input.joystick_device[1, 0];
 
             for(i = 0; i < joystick_buttons(device_id); i += 1) {
