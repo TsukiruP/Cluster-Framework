@@ -13,18 +13,18 @@ mask_index = mask_dot;
 angle_temp = roundto_unbiased(argument2, 10);
 
 // Set up sensors:
-xPoint[0] = argument0 - dcos(argument2) * 4;
-xPoint[1] = argument0 + dcos(argument2) * 4;
+xPoint[0] = argument0 - dcos(angle_temp) * 4;
+xPoint[1] = argument0 + dcos(angle_temp) * 4;
 
-yPoint[0] = argument1 + dsin(argument2) * 4;
-yPoint[1] = argument1 - dsin(argument2) * 4;
+yPoint[0] = argument1 + dsin(angle_temp) * 4;
+yPoint[1] = argument1 - dsin(angle_temp) * 4;
 
 // Push down the sensors to find the angle:
 repeat(25) {
     for(i = 0; i <= 1; i += 1) {
         if(!player_collision(floor(xPoint[i]), floor(yPoint[i]), collision_layer)) {
-            xPoint[i] += dsin(collision_layer);
-            yPoint[i] += dcos(collision_layer);
+            xPoint[i] += dsin(angle_temp);
+            yPoint[i] += dcos(angle_temp);
         }
     }
 }
