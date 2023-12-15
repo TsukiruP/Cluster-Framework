@@ -1,7 +1,7 @@
 /// player_get_animation([animation, argument])
 
 if(global.animation_grid != -1) {
-    if(global.animation_initialized = true){
+    if(global.animation_initialized = true) {
         var animation_range;
 
         animation_range = ds_grid_value_y(global.animation_grid, 0, global.animation_coordinates[character_data, 0], 10, global.animation_coordinates[character_data, 1], animation_current);

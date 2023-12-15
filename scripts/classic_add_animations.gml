@@ -1,5 +1,5 @@
 // classic_add_animations()
-
+/*
 // Default:
 player_add_animation(CHAR_CLASSIC,     "stand",          spr_classic_stand,          0,  0,  0,  0, 0.20);
 

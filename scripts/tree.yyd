@@ -88,6 +88,7 @@
 		+Input
 			|player_get_input
 		+Misc.
+			|player_get_physics
 			|player_ring_loss
 			|player_align_roll
 			|player_get_item
@@ -97,7 +98,6 @@
 				|draw_trail
 +Trash
 	+Input
-		|user_input_right
 		|user_input_up
 		|user_input_down
 		|user_input_jump

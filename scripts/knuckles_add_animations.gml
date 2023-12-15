@@ -1,5 +1,5 @@
 // knuckles_add_animations()
-
+/*
 // Default:
 player_add_animation(CHAR_KNUCKLES, "stand",          spr_knuckles_stand,         0,  8,  0, -1, 0.20);
 

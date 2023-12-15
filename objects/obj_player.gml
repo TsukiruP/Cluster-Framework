@@ -29,7 +29,6 @@ acceleration      = 0.046875;
 deceleration      = 0.5;
 slope_factor      = 0.125;
 air_acceleration  = 0.09375;
-previous_x        = x;
 
 acceleration_temp = 0;
 deceleration_temp = 0;
@@ -42,7 +41,6 @@ y_max_speed        = 16;
 gravity_force      = 0.21875;
 gravity_force_temp = 0.21875;
 gravity_angle      = 0;
-previous_y        = y;
 
 // Action variable:
 action_state = ACTION_DEFAULT;
@@ -51,7 +49,6 @@ action_state = ACTION_DEFAULT;
 jump_force    = -6.5;
 jump_release  = -4;
 jump_complete =  false;
-jump_strength  = -6.5;
 
 // Spin dash variables:
 spin_dash_strength = 0;
@@ -334,6 +331,216 @@ applies_to=self
 // Don't bother if in the middle of respawning/dying:
 if(action_state == ACTION_RESPAWN || action_state == ACTION_DEATH) exit;
 
+// Platform check:
+if(!place_meeting(x, y, par_platform) && platform_check == true) platform_check = false;
+
+// Platform handle:
+
+// Horizontal movement:
+var x_steps, x_samples;
+
+x_speed   = clamp(x_speed, -x_max_speed, x_max_speed);
+x_steps   = 1 + floor(abs(x_speed) / 13);
+x_samples = x_speed / x_steps;
+
+repeat(x_steps) {
+    x += dcos(angle) * x_samples;
+    y -= dsin(angle) * x_samples;
+    
+    // Move outside of terrain:
+    while(x_samples < 0 && player_collision_left(x, y, angle, mask_mid)) {
+        x += dcos(angle);
+        y -= dsin(angle);
+    }
+    
+    while(x_samples > 0 && player_collision_right(x, y, angle, mask_mid)) {
+        x -= dcos(angle);
+        y += dsin(angle);
+    }
+    
+    // Handle list:
+    player_handle_list();
+    
+    // Terrain/slope movement:
+    if(ground == true) {
+        while(player_collision_main(x, y)) {
+            x -= dsin(angle);
+            y -= dcos(angle);
+        }
+        
+        if(player_collision_slope(x, y, angle, mask_mid)) {
+            while(!player_collision_main(x, y)) {
+                x += dsin(angle);
+                y += dcos(angle);
+            }
+        }
+        
+        // Get new angle:
+        if(terrain_angle_change == true) {
+            if((terrain_edge_skip == false && player_collision_left_edge(x, y, angle) && player_collision_right_edge(x, y, angle)) || terrain_edge_skip == true) {
+                if(terrain_edge_exception == true) {
+                    var angle_test;
+                    
+                    // Angle test:
+                    angle_test = player_get_angle(x, y, angle);
+                    
+                    if((angle_test >= 60 && angle_test <= 90) || (angle_test >= 240 && angle_test <= 300)) {
+                        if(!player_collision_edge_line()) {
+                            ground = false;
+                            break;
+                        } else player_set_angle(angle_test);
+                    }
+                } else player_set_angle(player_get_angle(x, y, angle));
+            }
+        } else player_set_angle(gravity_angle);
+    }
+    
+    // Handle list:
+    player_handle_list();
+}
+
+// Vertical movement:
+y_speed = clamp(y_speed, -y_max_speed, y_max_speed);
+
+if(ground == false) {
+    var y_steps, y_samples;
+    
+    y_steps   = 1 + floor(abs(y_speed) / 13);
+    y_samples = y_speed / y_steps;
+    
+    repeat(y_steps) {
+        x += dsin(angle) * y_samples;
+        y += dcos(angle) * y_samples;
+        
+        // Move outside of terrain:
+        while(y_samples < 0 && player_collision_top(x, y, 0, mask_mid)) {
+            x += dsin(angle);
+            y += dcos(angle);
+        }
+        
+        while(y_samples > 0 && player_collision_bottom(x, y, 0, mask_mid)) {
+            x -= dsin(angle);
+            y -= dcos(angle);
+        }
+        
+        // Handle list:
+        player_handle_list();
+        
+        // Floor landing:
+        if(y_speed >= 0 && player_collision_bottom(x, y, 0, mask_big)) {
+            // Get new angle:
+            if(terrain_angle_change == true) {
+                if(terrain_edge_skip == false) {
+                    if(player_collision_left_edge(x, y, 0) && player_collision_right_edge(x, y, 0)) player_set_angle(player_get_angle(x, y, angle));
+                    else player_set_angle(gravity_angle);
+                } else player_set_angle(player_get_angle(gravity_angle));
+            } else player_set_angle(gravity_angle);
+            
+            // Change horizontal speed on uneven terrain:
+            if(abs(x_speed) <= abs(y_speed) && angle_relative >= 22.5 && angle_relative <= 337.5) {
+                x_speed = y_speed * -sign(dsin(angle_relative));
+                
+                if(angle_relative < 45 || angle_relative > 315) x_speed *= 0.5;
+            }
+            
+            // Set ground:
+            ground = true;
+        }
+        
+        // Ceiling landing:
+        if(y_speed < 0 && player_collision_top(x, y, 0, mask_large) && !player_collision_object_top(x, y, 0, mask_large, par_obstacle)) {
+            // Set angle:
+            player_set_angle(180);
+            
+            // Attach to the ceiling if possible:
+            if(player_collision_left_edge(x, y, angle) && player_collision_right_edge(x, y, angle)) {
+                // Get new angle:
+                player_set_angle(player_get_angle(x, y, angle));
+                
+                // Check ceiling steepness:
+                if(angle_relative < 135 || angle_relative > 225) {
+                    // Set speed and attatch to the ceiling:
+                    x_speed = y_speed * -sign(dsin(angle_relative));
+                    ground  = true;
+                } else {
+                    player_set_angle(gravity_angle);
+                    y_speed = 0;
+                }
+            } else {
+                player_set_angle(gravity_angle);
+                y_speed = 0;
+            }
+        }
+        
+        // Another wall stuck check:
+        while(player_collision_left(x, y, angle, mask_mid)) {
+            x += dcos(angle);
+            y -= dsin(angle);
+        }
+        
+        while(player_collision_right(x, y, angle, mask_mid)) {
+            x -= dcos(angle);
+            y += dsin(angle);
+        }
+        
+        // Copied from horizontal movement:
+        if(ground == true) {
+            while(player_collision_main(x, y)) {
+                x -= dsin(angle);
+                y -= dcos(angle);
+            }
+            
+            if(player_collision_slope(x, y, angle, mask_mid)) {
+                while(!player_collision_main(x, y)) {
+                    x += dsin(angle);
+                    y += dcos(angle);
+                }
+            }
+        }
+        
+        // Handle list:
+        player_handle_list();
+    }
+}
+
+// Launch && fall movement:
+repeat(x_steps * 2) {
+    if(ground == true && angle != 0 && ((x_speed <= 0 && !player_collision_left_edge(x, y, angle)) || (x_speed >= 0 && !player_collision_right_edge(x, y, angle)))) {
+        // Launch off ramps:
+        if(terrain_launch_allow == true) {
+            if(angle != 90 && angle != 180 && angle != 270 && terrain_launch_angle != -1 && terrain_launch_direction != 0 && sign(x_speed) == terrain_launch_direction) {
+                // Disable wall stop:
+                wall_stop = false;
+                
+                if(alarm[0] == -1) alarm[0] = 15;
+                
+                // Get new angle:
+                player_set_angle(sign(x_speed) * terrain_launch_angle);
+                
+                // Set speeds:
+                y_speed = -dsin(angle_relative) * x_speed;
+                x_speed =  dcos(angle_relative) * x_speed;
+                
+                // Set ground:
+                ground = true;
+            } else {
+                y_speed = -(dsin(angle) * x_speed);
+                x_speed =   dcos(angle) * x_speed;
+                ground  =   false;
+            }
+        }
+    }
+}
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Collision (OLD)
+/*
+// Don't bother if in the middle of respawning/dying:
+if(action_state == ACTION_RESPAWN || action_state == ACTION_DEATH) exit;
+
 // Platform mode:
 if(!place_meeting(x, y, par_platform) && platform_check == true) platform_check = false;
 
@@ -563,6 +770,108 @@ applies_to=self
 */
 /// Horizontal Movement
 
+// Don't bother if in the middle of respawning/dying or x movement has been disabled:
+if(action_state == ACTION_RESPAWN || action_state == ACTION_DEATH || x_allow == false) exit;
+
+// Slope acceleration/deceleration:
+if(ground == true && action_state != ACTION_SLIDE) {
+    // Check if we're not on a ceiling:
+    if(angle_relative < 135 || angle_relative > 225) {
+        if(action_state == ACTION_ROLL) {
+            // Rolling upwards:
+            if(sign(x_speed) == sign(dsin(angle_relative))) x_speed -= dsin(angle_relative) * roll_deceleration_up;
+
+            // Rolling downwards:
+            else x_speed -= dsin(angle_relative) * roll_deceleration_down;
+        } else {
+            if((angle_relative >= 22.5 && angle_relative <= 337.5) || round(x_speed) != 0) x_speed -= dsin(angle_relative) * 0.125;
+        }
+    }
+}
+
+// Input acceleration/deceleration:
+if((action_state == ACTION_DEFAULT && animation_current != "turn") || action_state == ACTION_JUMP || (action_state == ACTION_SKID && animation_current != "skid_turn") || action_state == ACTION_BALANCE || action_state == ACTION_FLY || (action_state == ACTION_TORNADO && animation_current == "tornado") || action_state == ACTION_GLIDE_DROP || action_state == ACTION_BREATHE) {
+    var input_direction;
+
+    // Input direction:
+    input_direction = player_input[INP_RIGHT, CHECK_HELD] - player_input[INP_LEFT, CHECK_HELD];
+
+    // Ground movement:
+    if(ground == true) {
+        if(input_direction != 0) {
+            if(input_lock_alarm == 0) {
+                // Turn:
+                if(abs(x_speed) < 4.5 && animation_direction != input_direction) {
+                     x_speed          = 0;
+                     animation_target = "turn";
+                }
+
+                // Decelerate:
+                else if(x_speed != 0 && sign(x_speed) != input_direction) {
+                    x_speed += deceleration * input_direction;
+
+                    if(sign(x_speed) == input_direction) x_speed = deceleration * input_direction;
+                }
+
+                // Accelerate:
+                else {
+                    // Turn:
+                    if(abs(x_speed) < x_top_speed && animation_current != "turn") {
+                        x_speed += acceleration * input_direction;
+
+                        if(abs(x_speed) > x_top_speed) x_speed = x_top_speed * input_direction;
+                    }
+                }
+            }
+        }
+
+        // Friction
+        else x_speed -= min(abs(x_speed), acceleration) * sign(x_speed);
+    }
+
+    // Air movement:
+    else {
+        // Accelerate:
+        if(input_direction != 0) {
+            if(abs(x_speed) < x_top_speed || sign(x_speed) != input_direction) {
+                x_speed += air_acceleration * input_direction;
+
+                if(abs(x_speed) > x_top_speed && sign(x_speed) == input_direction) x_speed = x_top_speed * input_direction;
+            }
+        }
+
+        // Air drag:
+        if(y_speed > -4 && y_speed < 0) x_speed -= floor(x_speed / 0.125) / 256;
+    }
+}
+
+// Fall if too slow:
+if(ground == true && angle_relative >= 45 && angle_relative <= 315 && abs(x_speed) < 2.5 && tunnel_lock == false) {
+    if(angle_relative >= 90 && angle_relative <= 270) {
+        y_speed = -dsin(angle_relative) * x_speed;
+        x_speed =  dcos(angle_relative) * x_speed;
+        ground  =  false;
+    } else input_lock_alarm = 30;
+}
+
+// Get new angle:
+if(ground == true && player_collision_left_edge(x, y, angle) && player_collision_right_edge(x, y, angle)) {
+    player_set_angle(player_get_angle(x, y, angle));
+} else player_set_angle(gravity_angle);
+
+// Wall stop:
+if(wall_stop == true) {
+    if((x_speed <= 0 && player_collision_left(x, y, angle, mask_big)) || (x_speed >= 0 && player_collision_right(x, y, angle, mask_big))) {
+        x_speed = 0;
+    }
+}
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Horizontal Movement (OLD)
+/*
 // Don't bother if in the middle of respawning/dying:
 if(action_state == ACTION_RESPAWN || action_state == ACTION_DEATH) exit;
 
@@ -643,6 +952,40 @@ applies_to=self
 */
 /// Vertical Movement
 
+// Don't bother if in the middle of respawning/dying or y movement has been disabled:
+if(action_state == ACTION_RESPAWN || action_state == ACTION_DEATH || y_allow == false) exit;
+
+if(ground == true) {
+    // Reset gravity:
+    if(y_speed != 0) y_speed = 0;
+    
+    // Reset action state:
+    if(action_state == ACTION_HURT || action_state == ACTION_JUMP || action_state == ACTION_CARRY || action_state == ACTION_FLY) {
+        // Reset speed when hurt:
+        if(action_state == ACTION_HURT) x_speed = 0;
+        
+        // Reset gravity after flying:
+        if(action_state == ACTION_FLY) gravity_force = gravity_force_temp;
+        
+        action_state = ACTION_DEFAULT;
+    }
+    
+    // Set ground:
+    if(!player_collision_bottom(x, y, angle, mask_big)) {
+        ground = false;
+        player_set_angle(gravity_angle);
+    }
+} else {
+    // Apply gravity force:
+    if(action_state != ACTION_CARRY && action_state != ACTION_GLIDE && action_state != ACTION_CLIMB) y_speed = min(y_speed + gravity_force, y_max_speed);
+}
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Vertical Movement (OLD)
+/*
 // Don't bother if in the middle of respawning/dying:
 if(action_state == ACTION_RESPAWN || action_state == ACTION_DEATH) exit;
 
@@ -714,7 +1057,7 @@ applies_to=self
 // Don't bother if in the middle of respawning/dying:
 if(action_state == ACTION_RESPAWN || action_state == ACTION_DEATH) exit;
 
-// Invincibility alarm:
+// Invincibility:
 if(invincibility_alarm > -1) {
     invincibility_alarm -= 1;
     
@@ -729,7 +1072,7 @@ if(invincibility_type == 1 && invincibility_alarm == -1) {
     if(ground == true || action_state != ACTION_HURT) invincibility_alarm = 120;
 }
 
-// Speed shoes alarm:
+// Speed shoes:
 if(speed_shoe_alarm > -1) {
     speed_shoe_alarm -= 1;
     
@@ -749,56 +1092,60 @@ applies_to=self
 /// Underwater
 
 // Don't bother if in the middle of respawning/dying:
-if(action_state == ACTION_RESPAWN || action_state == ACTION_DEATH) exit;
-
-if(physics_type == PHYS_UNDERWATER) {
-    // Refill air if in breathe action or bubble shield:
-    if(action_state == ACTION_BREATHE || shield_data == SHIELD_BUBBLE) {
+if(action_state != ACTION_RESPAWN && action_state != ACTION_DEATH && !instance_exists(ctrl_tally)) {
+    if(physics_type == PHYS_UNDERWATER) {
+        // Refill air if in breathe action or bubble shield:
+        if(action_state == ACTION_BREATHE || shield_data == SHIELD_BUBBLE) {
+            air_remaining = 30;
+            air_alarm     = 60;
+            
+            // Stop jingle:
+            sound_stop("bgm_drown");
+        } else {
+            // Decrease air alarm:
+            if(air_alarm != 0) air_alarm -= 1;
+            else {
+                switch(air_remaining) {
+                    // Drown alert:
+                    case 25:
+                    case 20:
+                    case 15:
+                        sound_play("snd_drown_alert");
+                        break;
+                    
+                    // Drown jingle:
+                    case 12:
+                        sound_play("bgm_drown");
+                    
+                    // Drown countdown:
+                    case 10:
+                    case 8:
+                    case 6:
+                    case 4:
+                    case 2:
+                        drown_countdown += 1;
+                        break;
+                    
+                    // Drown:
+                    case 0:
+                        action_state = ACTION_DEATH;
+                        drowned      = true;
+                    break;
+                }
+                
+                air_remaining -= 1;
+                air_alarm      = 60;
+            }
+            
+            // Create bubbles:
+            // [PLACEHOLDER]
+        }
+    } else {
         air_remaining = 30;
         air_alarm     = 60;
         
         // Stop jingle:
         sound_stop("bgm_drown");
-    } else {
-        // Decrease air alarm:
-        if(air_alarm != 0) air_alarm -= 1;
-        else {
-            switch(air_remaining) {
-                // Drown alert:
-                case 25:
-                case 20:
-                case 15:
-                    sound_play("snd_drown_alert");
-                    break;
-                
-                // Drown jingle:
-                case 12:
-                    sound_play("bgm_drown");
-                
-                // Drown countdown:
-                case 10:
-                case 8:
-                case 6:
-                case 4:
-                case 2:
-                    drown_countdown += 1;
-                    break;
-                
-                // Drown:
-                case 0:
-                    action_state  = ACTION_DEATH;
-                    air_remaining = 30;
-                    air_alarm     = 60;
-                    drowned       = true;
-                break;
-            }
-            
-            air_remaining -= 1;
-            air_alarm      = 60;
-        }
-        
-        // Create bubbles:
-        // [PLACEHOLDER]
     }
 } else {
     air_remaining = 30;
@@ -829,10 +1176,6 @@ applies_to=self
 */
 /// Update Physics
 
-// Previous positions:
-previous_x = x;
-previous_y = y;
-
 // Update physics type:
 if(instance_exists(obj_water_surface)) {
     if(y < obj_water_surface.y) {
@@ -844,73 +1187,8 @@ if(instance_exists(obj_water_surface)) {
     }
 }
 
-switch(physics_type) {
-    case PHYS_UNDERWATER:
-        // Horizontal variables:
-        x_top_speed      = 3;
-        x_max_speed      = 8;
-        acceleration     = 0.0234375;
-        deceleration     = 0.25;
-        slope_factor     = 0.25;
-        air_acceleration = 0.046875;
-
-        // Vertical variables:
-        if(action_state != ACTION_FLY && action_state != ACTION_FLY_DROP && action_state != ACTION_GLIDE && action_state != ACTION_CLIMB) {
-            if(action_state == ACTION_HURT) gravity_force = 0.09375;
-            else gravity_force = 0.0625;
-        } else if(action_state == ACTION_GLIDE || action_state == ACTION_CLIMB) gravity_force = 0;
-
-        // Jump variables:
-        if(character_data == CHAR_KNUCKLES) jump_force = -3;
-        else jump_force = -3.5;
-
-        jump_release = -2;
-
-        // Roll variables:
-        roll_friction = 0.01171875;
-
-        // Knuckles variables:
-        glide_acceleration  = 0.0078125;
-        glide_gravity_force = 0.0625;
-        break;
-
-    default:
-        // Horizontal variables:
-        if(speed_shoe_type == 1) x_top_speed = 12;
-        else x_top_speed = 6;
-
-        x_max_speed      = 16;
-
-        if(speed_shoe_type == 1) acceleration = 0.09375;
-        else acceleration = 0.046875;
-
-        deceleration     = 0.5;
-        slope_factor     = 0.125;
-
-        if(speed_shoe_type == 1) air_acceleration = 0.1875;
-        else air_acceleration = 0.09375;
-
-        // Vertical variables:
-        if(action_state != ACTION_FLY && action_state != ACTION_FLY_DROP && action_state != ACTION_GLIDE && action_state != ACTION_CLIMB) {
-            if(action_state == ACTION_HURT) gravity_force = 0.1875;
-            else gravity_force = gravity_force_temp;
-        } else if(action_state == ACTION_GLIDE || action_state == ACTION_CLIMB) gravity_force = 0;
-
-        // Jump variables:
-        if(character_data == CHAR_KNUCKLES) jump_force = -6;
-        else jump_force = -6.5;
-
-        jump_release = -4;
-
-        // Roll variables:
-        if(speed_shoe_type == 1) roll_friction = 0.046875;
-        else roll_friction = 0.0234375;
-
-        // Knuckles variables:
-        glide_acceleration  = 0.015625;
-        glide_gravity_force = 0.125;
-        break;
-}
+// Physics:
+player_get_physics();
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -963,14 +1241,15 @@ switch(action_state) {
                     if(abs(x_speed) < 3.75 && animation_target != "tag_walk") animation_target = "tag_walk";
 
                     // Walk fast:
-                    if(abs(x_speed) >= 3.75 && abs(x_speed) <  6.00 && animation_target != "tag_walk_fast") animation_target = "tag_walk_fast";
+                    if(abs(x_speed) >= 3.75 && abs(x_speed) < 4.50 && animation_target != "tag_walk_fast") animation_target = "tag_walk_fast";
 
                     // Jog:
-                    if(abs(x_speed) >=  6.00 && abs(x_speed) < 4.50 && animation_target != "tag_jog") animation_target = "tag_jog";
+                    if(abs(x_speed) >=  4.50 && animation_target != "tag_jog") animation_target = "tag_jog";
                 }
             } else {
                 // Stand:
-                if(x_speed == 0 && animation_target != "wait_short" && animation_target != "wait_long" && animation_target != "look_end" && animation_target != "crouch_end" && animation_target != "land" && animation_target != "ready" && animation_target != "stand") animation_target = "stand";
+                if(x_speed == 0 && animation_target != "stand" && animation_target != "land" && animation_target != "ready" && animation_target != "look_end" && animation_target != "crouch_end" &&
+                    animation_target != "turn") animation_target = "stand";
 
                 if(x_speed <> 0) {
                     if(character_data != CHAR_CLASSIC) {
@@ -1003,7 +1282,7 @@ switch(action_state) {
                     if(animation_target != "tag_flight" && animation_target != "tag_fall") animation_target = "tag_fall";
                 } else {
                     if(animation_target != "spin_flight" && animation_target != "spin_fall" && animation_target != "spring_flight" && animation_target != "spring_fall") {
-                        animation_target       = "spring_fall";
+                        animation_target = "spring_fall";
                     }
                 }
             }
@@ -1062,7 +1341,7 @@ switch(action_state) {
         if(tag_hold_state == 3) {
             if(animation_target != "tag_skid") animation_target = "tag_skid";
         } else {
-            if(animation_target != "skid") animation_target = "skid";
+            if(animation_target != "skid" && animation_target != "skid_fast" && animation_target != "skid_turn") animation_target = "skid";
         }
         break;
 
@@ -1173,8 +1452,9 @@ applies_to=self
 /// Update Direction
 
 // Change direction on the ground based on speed and input:
-if(action_state != ACTION_DEATH && action_state != ACTION_HURT && action_state != ACTION_JUMP && action_state != ACTION_LOOK && action_state != ACTION_CROUCH &&
-    action_state != ACTION_SPIN_DASH && action_state != ACTION_ROLL && action_state != ACTION_SKID && action_state != ACTION_PEEL_OUT && action_state != ACTION_CLIMB && action_state != ACTION_CARRY) {
+if(action_state != ACTION_DEATH && action_state != ACTION_HURT && animation_current != "turn" && action_state != ACTION_JUMP && action_state != ACTION_LOOK && action_state != ACTION_CROUCH &&
+    action_state != ACTION_SPIN_DASH && action_state != ACTION_ROLL && action_state != ACTION_SKID && action_state != ACTION_BALANCE && action_state != ACTION_CARRY && action_state != ACTION_GOAL &&
+    action_state != ACTION_PEEL_OUT && action_state != ACTION_SLIDE && action_state != ACTION_CLIMB) {
     if(x_speed <= 0 && player_input[INP_LEFT, CHECK_HELD] == true) animation_direction = -1;
 
     if(x_speed >= 0 && player_input[INP_RIGHT, CHECK_HELD] == true) animation_direction = 1;
@@ -1188,7 +1468,7 @@ if(action_state == ACTION_ROLL) {
 }
 
 // Airborne and jump direction:
-if((ground == false && action_state == ACTION_DEFAULT) || action_state == ACTION_JUMP || action_state == ACTION_FLY || action_state == ACTION_FLY_DROP) {
+if((ground == false && action_state == ACTION_DEFAULT) || action_state == ACTION_JUMP || action_state == ACTION_FLY) {
     if(player_input[INP_LEFT, CHECK_HELD] == true) animation_direction = -1;
     if(player_input[INP_RIGHT, CHECK_HELD] == true) animation_direction = 1;
 
@@ -1215,6 +1495,7 @@ switch(animation_current) {
     case "tag_stand":
     case "wait_short":
     case "wait_long":
+    case "land":
     case "look":
     case "look_end":
     case "tag_look":
@@ -1226,7 +1507,11 @@ switch(animation_current) {
     case "super_spin":
     case "spin_dash":
     case "roll":
-    case "land":
+    case "push":
+    case "breathe":
+    case "goal":
+    case "fly_carry":
+    case "glide_carry":
     case "fly":
     case "fly_drop":
     case "swim":
@@ -1237,10 +1522,6 @@ switch(animation_current) {
     case "climb_stand":
     case "climb_move":
     case "climb_ledge":
-    case "fly_carry":
-    case "glide_carry":
-    case "push":
-    case "breathe":
         animation_angle = 0;
         break;
     
@@ -1304,32 +1585,6 @@ if(player_exists(0)) {
 
 // Apply animation depth when not respawning or being carried:
 if(depth != animation_depth && action_state != ACTION_RESPAWN && action_state != ACTION_CARRY) depth = animation_depth;
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Water Splash
-// Creates the splash and sfx when entering and exiting.
-
-if(instance_exists(obj_water_surface)) {
-    if((abs(y_speed) >= 0) && ((y > obj_water_surface.y && previous_y < obj_water_surface.y) ^^ (y < obj_water_surface.y && previous_y  > obj_water_surface.y))) {
-        // Entering the water:
-        if(y > obj_water_surface.y && previous_y < obj_water_surface.y) {
-            if(y_speed > 9) dummy_effect_create(spr_splash_large, 0.15, x, obj_water_surface.y, depth - 2);
-            else dummy_effect_create(spr_splash_small, 0.15, x, obj_water_surface.y, depth - 2);
-        }
-
-        // Exiting the water:
-        if(y < obj_water_surface.y && previous_y  > obj_water_surface.y) {
-            if(y_speed < -5) dummy_effect_create(spr_splash_large, 0.15, x, obj_water_surface.y, depth - 2);
-            else dummy_effect_create(spr_splash_small, 0.15, x, obj_water_surface.y, depth - 2);
-        }
-
-        // Play sound:
-        sound_play("snd_splash");
-    }
-}
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603

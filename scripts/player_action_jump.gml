@@ -7,19 +7,14 @@ if(y_speed < jump_release && action_state == ACTION_JUMP && jump_complete == fal
 }
 
 // Jump!:
-if((ground == true || (action_state == ACTION_CARRY && player_input[INP_JUMP, CHECK_HELD] == true)) && !player_collision_top(x, y - 6, angle, mask_big) && player_input[INP_JUMP, CHECK_PRESSED] == true) {
+if((ground == true || (action_state == ACTION_CARRY && player_input[INP_DOWN, CHECK_HELD] == true)) && !player_collision_top(x, y - 6, angle, mask_big) && player_input[INP_JUMP, CHECK_PRESSED] == true) {
     // Ignore some ground based actions:
     if(action_state != ACTION_CROUCH && action_state != ACTION_SPIN_DASH && action_state != ACTION_PEEL_OUT && tunnel_lock == false) {
-        var ground_speed;
-
         // Reset angle to gravity angle if not allowed to rotate:
         if(terrain_angle_change == false) player_set_angle(gravity_angle);
 
-        // Ground speed:
-        ground_speed = x_speed;
-
-        x_speed      =  (dcos(angle_relative) * ground_speed) - (dsin(angle_relative) * -jump_force);
-        y_speed      = -(dsin(angle_relative) * ground_speed) - (dcos(angle_relative) * -jump_force);
+        y_speed      = -(dsin(angle_relative) * x_speed) - (dcos(angle_relative) * -jump_force);
+        x_speed      =  (dcos(angle_relative) * x_speed) - (dsin(angle_relative) * -jump_force);
         ground       =  false;
         action_state =  ACTION_JUMP;
 
@@ -39,6 +34,7 @@ if(action_state == ACTION_JUMP) {
     // Complete jump:
     if(y_speed > 0 && jump_complete == false) jump_complete = true;
 
+    // Loop animation:
     if(character_data != CHAR_CLASSIC && animation_current == "roll" && animation_next != "spin_flight") {
         animation_next       = "spin_flight";
         animation_next_frame = 2;

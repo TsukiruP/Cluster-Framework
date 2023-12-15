@@ -1,5 +1,5 @@
 // miles_add_animations()
-
+/*
 // Default:
 player_add_animation(CHAR_MILES, "stand",          spr_miles_stand,            0, 15,  0, -1, 0.20);
 
