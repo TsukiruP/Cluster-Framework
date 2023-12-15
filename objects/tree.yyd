@@ -13,6 +13,7 @@
 			|ctrl_stage
 			|ctrl_hud
 			|ctrl_pause
+			|ctrl_tally
 +Gameplay
 	+PC
 		|obj_player_spawn
