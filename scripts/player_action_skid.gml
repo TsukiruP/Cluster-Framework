@@ -28,11 +28,16 @@ if(action_state == ACTION_SKID) {
     input_direction = player_input[INP_RIGHT, CHECK_HELD] - player_input[INP_LEFT, CHECK_HELD];
 
     // Skid turn:
-    if(sign(x_speed) != -input_direction) {
-        if(input_direction != 0 && animation_direction != input_direction) {
-            x_speed          = 0;
-            animation_target = "skid_turn";
-        } else action_state = ACTION_DEFAULT;
+    if(tag_hold_state != 3) {
+        if(sign(x_speed) != -input_direction && animation_current != "skid_turn") {
+            if(input_direction != 0 && animation_direction != input_direction) {
+                x_speed = 0;
+
+                // Play animation:
+                animation_target     = "skid_turn";
+                animation_direction *= -1;
+            } else action_state = ACTION_DEFAULT;
+        }
     }
 
     // Create skid dust:
@@ -43,21 +48,12 @@ if(action_state == ACTION_SKID) {
     }
 
     // Cancel skid:
-    if(animation_current != "skid_turn") {
-        if(ground == false || (angle_relative >= 25 && angle_relative <= 315) || input_direction == 0 || input_lock_alarm > 0) action_state = ACTION_DEFAULT;
-    }
-
-    //if(ground == false || (angle_relative >= 25 && angle_relative <= 315) || sign(x_speed) == 0 ||
-    //    sign(x_speed) != animation_direction || input_direction = animation_direction || input_lock_alarm > 0) action_state = ACTION_DEFAULT;
+    if(ground == false || (angle_relative >= 25 && angle_relative <= 315) || (input_direction == 0 && animation_current != "skid_turn") || //(sign(x_speed) == input_direction && tag_hold_state == 3) ||
+        (animation_current == "skid_turn" && animation_finished == true) || input_lock_alarm > 0) action_state = ACTION_DEFAULT;
 }
 
-// Skid turn:
-if((animation_current == "skid_turn") && animation_finished == true) {
-    animation_direction *= -1;
-    action_state         = ACTION_DEFAULT;
-}
-
-if((animation_current == "turn") && animation_finished == true) {
-    animation_direction *= -1;
-    animation_target = "stand";
+// Turn:
+if(ground == true && animation_finished == true) {
+    if(animation_current == "turn") animation_target = "stand";
+    if(animation_current == "tag_turn") animation_target = "tag_stand";
 }

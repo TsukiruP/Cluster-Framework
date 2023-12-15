@@ -74,7 +74,8 @@ global.setting_textbox_green = ini_read_real("textbox", "green", DEFAULT_TEXTBOX
 global.setting_textbox_blue  = ini_read_real("textbox", "blue", DEFAULT_TEXTBOX_BLUE);
 
 // Read/create gameplay settings:
-global.setting_gameplay_turn       = ini_read_real("gameplay", "turn", false);
+global.setting_gameplay_turn       = ini_read_real("gameplay", "turn", true);
+global.setting_gameplay_skid       = ini_read_real("gameplay", "skid", true);
 global.setting_gameplay_elemental  = ini_read_real("gameplay", "elemental", true);
 global.setting_gameplay_debuffs    = ini_read_real("gameplay", "debuffs", false);
 global.setting_gameplay_checkpoint = ini_read_real("gameplay", "checkpoint", true);
@@ -129,6 +130,7 @@ global.textbox_blue  = global.setting_textbox_blue;
 
 // Apply gameplay settings:
 global.gameplay_turn       = global.setting_gameplay_turn;
+global.gameplay_skid       = global.setting_gameplay_skid;
 global.gameplay_elemental  = global.setting_gameplay_elemental;
 global.gameplay_debuffs    = global.setting_gameplay_debuffs;
 global.gameplay_checkpoint = global.setting_gameplay_checkpoint;

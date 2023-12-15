@@ -41,6 +41,7 @@
 					|spr_sonic_wait_partner
 				+Tag
 					|spr_sonic_tag_stand
+					|spr_sonic_tag_turn
 					|spr_sonic_tag_walk
 					|spr_sonic_tag_walk_fast
 					|spr_sonic_tag_jog

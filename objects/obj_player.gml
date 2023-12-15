@@ -86,6 +86,27 @@ slam_state          = 0;
 afterimage_draw  = false;
 afterimage_alarm = 0;
 
+// Shield variables:
+shield_data      = 0;
+shield_usable    = true;
+shield_state     = 0;
+
+shield_insta     = noone;
+shield_elemental = noone;
+
+// Tag Action variables:
+tag_hold_state    = 0;
+tag_hold_timer    = 0;
+tag_hold_duration = 68;
+
+tag_link_state    = 0;
+tag_arc_timer     = 0;
+tag_arc_duration  = room_speed / 2;
+tag_arc           = 0;
+tag_distance_x    = 0;
+tag_distance_y    = 0;
+tag_action        = 0;
+
 // Sonic variables:
 peel_out_flag       = false;
 peel_out_timer      = 0;
@@ -120,27 +141,6 @@ clock_up_alarm    = 0;
 clock_up_state    = 0;
 clock_up_timer    = 0;
 clock_up_duration = 900;
-
-// Shield variables:
-shield_data      = 0;
-shield_usable    = true;
-shield_state     = 0;
-
-shield_insta     = noone;
-shield_elemental = noone;
-
-// Tag Action variables:
-tag_hold_state    = 0;
-tag_hold_timer    = 0;
-tag_hold_duration = 68;
-
-tag_link_state    = 0;
-tag_arc_timer     = 0;
-tag_arc_duration  = room_speed / 2;
-tag_arc           = 0;
-tag_distance_x    = 0;
-tag_distance_y    = 0;
-tag_action        = 0;
 
 // Terrain variables:
 terrain_angle_change     = false;
@@ -790,7 +790,7 @@ if(ground == true && action_state != ACTION_SLIDE) {
 }
 
 // Input acceleration/deceleration:
-if((action_state == ACTION_DEFAULT && animation_current != "turn") || action_state == ACTION_JUMP || (action_state == ACTION_SKID && animation_current != "skid_turn") || action_state == ACTION_BALANCE || action_state == ACTION_FLY || (action_state == ACTION_TORNADO && animation_current == "tornado") || action_state == ACTION_GLIDE_DROP || action_state == ACTION_BREATHE) {
+if((action_state == ACTION_DEFAULT && animation_current != "turn" && animation_current != "tag_turn") || action_state == ACTION_JUMP || (action_state == ACTION_SKID && animation_current != "skid_turn" && animation_current != "tag_turn") || action_state == ACTION_BALANCE || action_state == ACTION_FLY || (action_state == ACTION_TORNADO && animation_current == "tornado") || action_state == ACTION_GLIDE_DROP || action_state == ACTION_BREATHE) {
     var input_direction;
 
     // Input direction:
@@ -801,9 +801,18 @@ if((action_state == ACTION_DEFAULT && animation_current != "turn") || action_sta
         if(input_direction != 0) {
             if(input_lock_alarm == 0) {
                 // Turn:
-                if(abs(x_speed) < 4.5 && animation_direction != input_direction) {
-                     x_speed          = 0;
-                     animation_target = "turn";
+                if(global.gameplay_turn == true && ((action_state != ACTION_SKID && abs(x_speed) < 4.5) ||
+                    (action_state == ACTION_SKID && sign(x_speed) != -input_direction && tag_hold_state == 3)) && animation_direction != input_direction) {
+                     x_speed = 0;
+
+                     // Play animation:
+                     if(tag_hold_state == 3) {
+                        if(action_state == ACTION_SKID) action_state = ACTION_DEFAULT;
+
+                        animation_target = "tag_turn";
+                     } else animation_target = "turn";
+
+                     animation_direction *= -1;
                 }
 
                 // Decelerate:
@@ -816,7 +825,7 @@ if((action_state == ACTION_DEFAULT && animation_current != "turn") || action_sta
                 // Accelerate:
                 else {
                     // Turn:
-                    if(abs(x_speed) < x_top_speed && animation_current != "turn") {
+                    if(abs(x_speed) < x_top_speed) {
                         x_speed += acceleration * input_direction;
 
                         if(abs(x_speed) > x_top_speed) x_speed = x_top_speed * input_direction;
@@ -1234,7 +1243,8 @@ switch(action_state) {
         if(ground == true) {
             if(tag_hold_state == 3) {
                 // Stand:
-                if(x_speed == 0 && animation_target != "tag_look_end" && animation_target != "tag_crouch_end" && animation_target != "tag_stand") animation_target = "tag_stand";
+                if(x_speed == 0 && animation_target != "tag_stand" && animation_target != "tag_turn" &&
+                    animation_target != "tag_look_end" && animation_target != "tag_crouch_end") animation_target = "tag_stand";
 
                 if(x_speed <> 0) {
                     // Walk:
@@ -1248,8 +1258,8 @@ switch(action_state) {
                 }
             } else {
                 // Stand:
-                if(x_speed == 0 && animation_target != "stand" && animation_target != "land" && animation_target != "ready" && animation_target != "look_end" && animation_target != "crouch_end" &&
-                    animation_target != "turn") animation_target = "stand";
+                if(x_speed == 0 && animation_target != "stand" && animation_target != "turn" && animation_target != "land" && animation_target != "ready" &&
+                    animation_target != "look_end" && animation_target != "crouch_end") animation_target = "stand";
 
                 if(x_speed <> 0) {
                     if(character_data != CHAR_CLASSIC) {
@@ -1529,26 +1539,27 @@ switch(animation_current) {
     case "spring_flight":
     case "spring_fall":
         if(character_data != CHAR_CLASSIC && action_state == ACTION_SPRING && spring_alarm > 0) animation_angle = spring_angle - 90;
+        else animation_angle = approach_angle(animation_angle, 0, 4);
         break;
     
     // Terrain angle:
     default:
         if(character_data != CHAR_CLASSIC && tag_hold_state != 3) {
             if(ground == true) animation_angle = angle;
-            else animation_angle = approach_angle(animation_angle_mod, 0, 4);
+            else animation_angle = approach_angle(animation_angle, 0, 4);
         } else {
             if(ground == true) {
                 if(terrain_angle_change == false) animation_angle_mod = 0;
                 else {
+                    var angle_mod;
+                    
                     angle_mod = animation_angle_mod;
                     
-                    if(angle >= 0 && angle <= 180) {
+                    if(angle <= 180) {
                         if(angle < 36) angle_mod = 0;
                         else angle_mod = angle;
-                    }
-                    
-                    if(angle >= 180 && angle <= 360) {
-                        if(angle > 360 - 36) angle_mod = 0;
+                    } else {
+                        if(angle > 324) angle_mod = 0;
                         else angle_mod = angle;
                     }
                     
@@ -1556,7 +1567,7 @@ switch(animation_current) {
                         animation_angle_mod = approach_angle(animation_angle_mod, angle_mod, max(abs(x_speed), 4));
                     } else animation_angle_mod = angle_mod;
                 }
-            } else approach_angle(animation_angle_mod, 0, 4);
+            } else animation_angle_mod = approach_angle(animation_angle_mod, 0, 4);
             
             // Rotate:
             animation_angle = round(animation_angle_mod / 45) * 45;
@@ -1655,7 +1666,7 @@ applies_to=self
 /// Draw Player
 
 // Knuckles test:
-//draw_sprite(spr_knuckles_roll, floor(animation_current_frame), floor(draw_x) + 10, floor(draw_y) - 2);
+if(tag_hold_state == 3) draw_sprite(spr_knuckles_roll, floor(animation_current_frame), floor(draw_x) + 10 * animation_direction, floor(draw_y) - 2);
 
 // Trail:
 if(global.misc_trails == true) {

@@ -16,6 +16,7 @@ player_add_animation(CHAR_SONIC, "wait_partner",   spr_sonic_wait_partner,   0, 
 
 // Tag default:
 player_add_animation(CHAR_SONIC, "tag_stand",      spr_sonic_tag_stand,      0,  3,  0, -1, 0.20);
+player_add_animation(CHAR_SONIC, "tag_turn",       spr_sonic_tag_turn,       0,  2,  0,  0, 0.40);
 player_add_animation(CHAR_SONIC, "tag_walk",       spr_sonic_tag_walk,       0,  7,  0, -1, 0.25);
 player_add_animation(CHAR_SONIC, "tag_walk_fast",  spr_sonic_tag_walk_fast,  0,  7,  0, -1, 0.25);
 player_add_animation(CHAR_SONIC, "tag_jog",        spr_sonic_tag_jog,        0,  7,  0, -1, 0.25);

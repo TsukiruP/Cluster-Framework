@@ -206,7 +206,7 @@ view_fol_vspeed7=-1
 view_fol_target7=
 
 remember=1
-editor_width=1413
+editor_width=1673
 editor_height=998
 show_grid=0
 show_objects=0
@@ -217,5 +217,5 @@ show_views=1
 delete_underlying_objects=0
 delete_underlying_tiles=0
 tab=0
-editor_x=4382
-editor_y=2685
+editor_x=4294967117
+editor_y=2035
