@@ -1,15 +1,14 @@
 /// player_action_skid()
 // Try to outrun this demon to get left in the dust.
 
+var skid_classic;
+
 // Classic skid:
 skid_classic = (global.gameplay_skid == false || character_data == CHAR_CLASSIC);
 
 // Trigger skid:
 if(ground = true && action_state == ACTION_DEFAULT && input_lock_alarm == 0) {
     if(skid_classic == false || (skid_classic == true && (angle_relative < 45 || angle_relative > 315))) {
-        // Input direction:
-        input_direction = player_input[INP_RIGHT, CHECK_HELD] - player_input[INP_LEFT, CHECK_HELD];
-
         // Trigger skid:
         if(abs(x_speed) >= 4.5 && sign(x_speed) == -input_direction) {
             action_state = ACTION_SKID;
@@ -24,16 +23,13 @@ if(ground = true && action_state == ACTION_DEFAULT && input_lock_alarm == 0) {
             if(skid_classic == true) animation_direction = sign(x_speed);
 
             // Play sound:
-            sound_play("snd_skid");
+            sound_play_single("snd_skid");
         }
     }
 }
 
 // Skid:
 if(action_state == ACTION_SKID) {
-    // Input direction:
-    input_direction = player_input[INP_RIGHT, CHECK_HELD] - player_input[INP_LEFT, CHECK_HELD];
-
     // Skid turn:
     if(global.gameplay_turn == true && character_data != CHAR_CLASSIC && tag_hold_state != 3) {
         if(input_direction != 0 && sign(x_speed) != -input_direction && animation_current != "skid_turn" && animation_direction != input_direction) {
@@ -58,12 +54,6 @@ if(action_state == ACTION_SKID) {
     if(ground == false || (angle_relative >= 25 && angle_relative <= 315) || (sign(x_speed) == input_direction) ||
     (((skid_classic == false && x_speed != 0 && sign(x_speed) != -input_direction) || (skid_classic == true && sign(x_speed) == input_direction)) && animation_current != "skid_turn") ||
     (animation_current == "skid_turn" && animation_finished == true) || input_lock_alarm > 0) action_state = ACTION_DEFAULT;
-
-    /*
-    if(ground == false || (angle_relative >= 25 && angle_relative <= 315) || ((global.gameplay_skid == false || character_data == CHAR_CLASSIC) && x_speed == 0) ||
-        (global.gameplay_skid == true && character_data != CHAR_CLASSIC && input_direction == 0 && animation_current != "skid_turn") ||
-        (global.gameplay_turn == false && sign(x_speed) != animation_direction) || (animation_current == "skid_turn" && animation_finished == true) || input_lock_alarm > 0) action_state = ACTION_DEFAULT;
-    */
 }
 
 // Turn:
