@@ -37,7 +37,7 @@ if(action_state == ACTION_JUMP) {
     // Loop animation:
     if(character_data != CHAR_CLASSIC && animation_current == "roll" && animation_next != "spin_flight") {
         animation_next       = "spin_flight";
-        animation_next_frame = 2;
+        animation_next_frame = player_get_animation("spin_flight", 5);
         animation_loop_count = 0;
     }
 }
