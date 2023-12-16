@@ -32,10 +32,7 @@ acceleration      = 0.046875;
 deceleration      = 0.5;
 slope_factor      = 0.125;
 air_acceleration  = 0.09375;
-
-acceleration_temp = 0;
-deceleration_temp = 0;
-friction_temp     = 0;
+input_direction   = 0;
 
 // Vertical variables:
 y_allow            = true;
@@ -62,7 +59,6 @@ roll_deceleration_down = 0.3125;
 roll_rebounce          = false;
 
 // Skid variables:
-skid_classic    = false;
 skid_dust_alarm = 3;
 
 // Balance variables:
@@ -793,14 +789,12 @@ if(ground == true && action_state != ACTION_SLIDE) {
 }
 
 // Input acceleration/deceleration:
-if((action_state == ACTION_DEFAULT && animation_current != "turn" && animation_current != "tag_turn") || action_state == ACTION_JUMP || (action_state == ACTION_SKID && animation_current != "skid_turn" && animation_current != "tag_turn") || action_state == ACTION_BALANCE || action_state == ACTION_FLY || (action_state == ACTION_TORNADO && animation_current == "tornado") || action_state == ACTION_GLIDE_DROP || action_state == ACTION_BREATHE) {
-    var input_direction;
-
+if((action_state == ACTION_DEFAULT && animation_current != "turn" && animation_current != "tag_turn") || action_state == ACTION_JUMP || (action_state == ACTION_SKID && animation_current != "skid_turn" && animation_current != "tag_turn") || action_state == ACTION_BALANCE || action_state == ACTION_PUSH || action_state == ACTION_BREATHE || action_state == ACTION_FLY || (action_state == ACTION_TORNADO && animation_current == "tornado") || action_state == ACTION_GLIDE_DROP) {
     // Input direction:
     input_direction = player_input[INP_RIGHT, CHECK_HELD] - player_input[INP_LEFT, CHECK_HELD];
 
     // Ground movement:
-    if(ground == true) {
+    if(ground == true && action_state != ACTION_PUSH) {
         if(input_direction != 0) {
             if(input_lock_alarm == 0) {
                 // Turn:
@@ -1060,6 +1054,7 @@ player_action_spin_dash();
 player_action_roll();
 player_action_skid();
 player_action_balance();
+player_state_push();
 
 if(character_data == CHAR_CLASSIC) classic_action_clock_up();
 /*"/*'/**//* YYD ACTION
@@ -1371,6 +1366,11 @@ switch(action_state) {
         }
         break;
 
+    // Push:
+    case ACTION_PUSH:
+        if(animation_target != "push") animation_target = "push";
+        break;
+
     // Spring:
     case ACTION_SPRING:
         if(character_data != CHAR_CLASSIC) {
@@ -1479,7 +1479,7 @@ applies_to=self
 
 // Change direction on the ground based on speed and input:
 if(action_state != ACTION_DEATH && action_state != ACTION_HURT && animation_current != "turn" && action_state != ACTION_JUMP && action_state != ACTION_LOOK && action_state != ACTION_CROUCH &&
-    action_state != ACTION_SPIN_DASH && action_state != ACTION_ROLL && action_state != ACTION_SKID && action_state != ACTION_BALANCE && action_state != ACTION_CARRY && action_state != ACTION_GOAL &&
+    action_state != ACTION_SPIN_DASH && action_state != ACTION_ROLL && action_state != ACTION_SKID && action_state != ACTION_BALANCE && action_state != ACTION_PUSH && action_state != ACTION_GOAL &&
     action_state != ACTION_PEEL_OUT && action_state != ACTION_SLIDE && action_state != ACTION_CLIMB) {
     if(x_speed <= 0 && player_input[INP_LEFT, CHECK_HELD] == true) animation_direction = -1;
 

@@ -68,6 +68,7 @@
 			|player_action_roll
 			|player_action_skid
 			|player_action_balance
+			|player_state_push
 			|player_state_hurt
 			+Classic
 				|classic_action_clock_up
