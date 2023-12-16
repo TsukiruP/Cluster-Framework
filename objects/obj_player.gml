@@ -804,16 +804,18 @@ if((action_state == ACTION_DEFAULT && animation_current != "turn" && animation_c
         if(input_direction != 0) {
             if(input_lock_alarm == 0) {
                 // Turn:
-                if(global.gameplay_turn == true && (angle_relative < 45 || angle_relative > 315) && ((action_state != ACTION_SKID && action_state != ACTION_BALANCE && abs(x_speed) < 4.5) ||
+                if(global.gameplay_turn == true && (angle_relative < 45 || angle_relative > 315) && ((action_state != ACTION_SKID && abs(x_speed) < 4.5) ||
                     (action_state == ACTION_SKID && sign(x_speed) != -input_direction && tag_hold_state == 3)) && animation_direction != input_direction) {
                      x_speed = 0;
 
                      // Play animation:
-                     if(tag_hold_state == 3) {
-                        if(action_state == ACTION_SKID) action_state = ACTION_DEFAULT;
+                     if(action_state != ACTION_BALANCE) {
+                         if(tag_hold_state == 3) {
+                            if(action_state == ACTION_SKID) action_state = ACTION_DEFAULT;
 
-                        animation_target = "tag_turn";
-                     } else animation_target = "turn";
+                            animation_target = "tag_turn";
+                         } else animation_target = "turn";
+                     }
 
                      animation_direction *= -1;
                 }
@@ -1293,10 +1295,10 @@ switch(action_state) {
         } else {
             if(character_data != CHAR_CLASSIC) {
                 if(tag_hold_state == 3) {
-                    if(animation_target != "tag_turn" && animation_target != "tag_flight" && animation_target != "tag_fall") animation_target = "tag_fall";
+                    if(animation_target != "tag_turn" && animation_target != "tag_skid" && animation_target != "tag_flight" && animation_target != "tag_fall") animation_target = "tag_fall";
                 } else {
-                    if(animation_target != "spin_flight" && animation_target != "spin_fall" && animation_target != "turn" && animation_current != "skid_fast" && animation_current != "skid_turn" &&
-                        animation_target != "spring_flight" && animation_target != "spring_fall") {
+                    if( animation_target != "turn" && animation_target != "spin_flight" && animation_target != "spin_fall" &&
+                    animation_current != "skid" && animation_current != "skid_fast" && animation_current != "skid_turn" && animation_target != "spring_flight" && animation_target != "spring_fall") {
                         animation_target = "spring_fall";
                     }
                 }
@@ -1444,9 +1446,9 @@ if(ground == true) {
 }
 
 // Flight & fall animation speed:
-if(animation_current == "spin_flight" || animation_current == "spin_fall" || animation_current == "tag_flight" || animation_current == "tag_fall" ||
-    animation_current == "leap_flight" || animation_current == "leap_fall" || animation_current == "spring_flight" || animation_current == "spring_fall" ||
-    action_state == ACTION_JUMP && animation_current == "roll") {
+if(action_state == ACTION_JUMP && animation_current == "roll" ||
+    animation_current == "spin_flight" || animation_current == "spin_fall" || animation_current == "spring_flight" || animation_current == "spring_fall" ||
+    animation_current == "tag_flight" || animation_current == "tag_fall" || animation_current == "leap_flight" || animation_current == "leap_fall") {
     animation_rendering_speed = 0.25 * max(1 + abs(x_speed) / 25 + abs(y_speed) / 25, 1);
     animation_speed           = animation_rendering_speed;
 }
@@ -1513,12 +1515,11 @@ var angle_mod;
 // Animation Angle:
 switch(animation_current) {
     // Reset angle:
-    case "death":
-    case "hurt":
     case "stand":
     case "turn":
     case "tag_stand":
     case "tag_turn":
+    case "ready":
     case "land":
     case "look":
     case "look_end":
@@ -1532,13 +1533,16 @@ switch(animation_current) {
     case "spin_dash":
     case "roll":
     case "skid":
-    case "balance_front":
-    case "balance_back":
     case "skid_fast":
     case "skid_turn":
+    case "tag_skid":
+    case "balance_front":
+    case "balance_back":
     case "push":
     case "breathe":
     case "goal":
+    case "hurt":
+    case "death":
     case "fly_carry":
     case "glide_carry":
     case "fly":
