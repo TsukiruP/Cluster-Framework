@@ -1,8 +1,6 @@
 /// classic_action_clock_up()
 // He who was born a God and governs over all.
 
-if(input_check(INP_SELECT, CHECK_PRESSED)) shield_data = 0;
-
 // Clock Up alarm:
 if(clock_up_alarm > 0) clock_up_alarm -= 1;
 else if(clock_up_alarm != 0) clock_up_alarm = 0;

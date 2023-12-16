@@ -20,6 +20,9 @@ angle           = 0;
 angle_relative  = 0;
 physics_type    = PHYS_DEFAULT;
 
+// Action variable:
+action_state = ACTION_DEFAULT;
+
 // Horizontal variables:
 x_allow           = true;
 x_speed           = 0;
@@ -42,9 +45,6 @@ gravity_force      = 0.21875;
 gravity_force_temp = 0.21875;
 gravity_angle      = 0;
 
-// Action variable:
-action_state = ACTION_DEFAULT;
-
 // Jump variables:
 jump_force    = -6.5;
 jump_release  = -4;
@@ -62,8 +62,11 @@ roll_deceleration_down = 0.3125;
 roll_rebounce          = false;
 
 // Skid variables:
-skid_direction  = 0;
+skid_classic    = false;
 skid_dust_alarm = 3;
+
+// Balance variables:
+balance_direction = 0;
 
 // Status variables:
 respawn_state       =  0;
@@ -801,7 +804,7 @@ if((action_state == ACTION_DEFAULT && animation_current != "turn" && animation_c
         if(input_direction != 0) {
             if(input_lock_alarm == 0) {
                 // Turn:
-                if(global.gameplay_turn == true && ((action_state != ACTION_SKID && abs(x_speed) < 4.5) ||
+                if(global.gameplay_turn == true && (angle_relative < 45 || angle_relative > 315) && ((action_state != ACTION_SKID && action_state != ACTION_BALANCE && abs(x_speed) < 4.5) ||
                     (action_state == ACTION_SKID && sign(x_speed) != -input_direction && tag_hold_state == 3)) && animation_direction != input_direction) {
                      x_speed = 0;
 
@@ -1054,6 +1057,7 @@ player_action_crouch();
 player_action_spin_dash();
 player_action_roll();
 player_action_skid();
+player_action_balance();
 
 if(character_data == CHAR_CLASSIC) classic_action_clock_up();
 /*"/*'/**//* YYD ACTION
@@ -1289,9 +1293,10 @@ switch(action_state) {
         } else {
             if(character_data != CHAR_CLASSIC) {
                 if(tag_hold_state == 3) {
-                    if(animation_target != "tag_flight" && animation_target != "tag_fall") animation_target = "tag_fall";
+                    if(animation_target != "tag_turn" && animation_target != "tag_flight" && animation_target != "tag_fall") animation_target = "tag_fall";
                 } else {
-                    if(animation_target != "spin_flight" && animation_target != "spin_fall" && animation_target != "spring_flight" && animation_target != "spring_fall") {
+                    if(animation_target != "spin_flight" && animation_target != "spin_fall" && animation_target != "turn" && animation_current != "skid_fast" && animation_current != "skid_turn" &&
+                        animation_target != "spring_flight" && animation_target != "spring_fall") {
                         animation_target = "spring_fall";
                     }
                 }
@@ -1355,19 +1360,12 @@ switch(action_state) {
         }
         break;
 
-    // Hurt:
-    case ACTION_HURT:
-        if(animation_target != "hurt") animation_target = "hurt";
-        break;
-
-    // Death:
-    case ACTION_DEATH:
-        if(character_data != CHAR_CLASSIC) {
-            if(animation_target != "death") animation_target = "death";
+    // Balance:
+    case ACTION_BALANCE:
+        if(animation_direction == balance_direction) {
+            if(animation_target != "balance_front") animation_target = "balance_front";
         } else {
-            if(drowned == true) {
-                if(animation_target != "drown") animation_target = "drown";
-            } else if(animation_target != "death") animation_target = "death";
+            if(animation_target != "balance_back") animation_target = "balance_back";
         }
         break;
 
@@ -1390,6 +1388,22 @@ switch(action_state) {
     // Breathe:
     case ACTION_BREATHE:
         if(animation_target != "breathe") animation_target = "breathe";
+        break;
+
+    // Hurt:
+    case ACTION_HURT:
+        if(animation_target != "hurt") animation_target = "hurt";
+        break;
+
+    // Death:
+    case ACTION_DEATH:
+        if(character_data != CHAR_CLASSIC) {
+            if(animation_target != "death") animation_target = "death";
+        } else {
+            if(drowned == true) {
+                if(animation_target != "drown") animation_target = "drown";
+            } else if(animation_target != "death") animation_target = "death";
+        }
         break;
 }
 
@@ -1502,9 +1516,9 @@ switch(animation_current) {
     case "death":
     case "hurt":
     case "stand":
+    case "turn":
     case "tag_stand":
-    case "wait_short":
-    case "wait_long":
+    case "tag_turn":
     case "land":
     case "look":
     case "look_end":
@@ -1517,6 +1531,11 @@ switch(animation_current) {
     case "super_spin":
     case "spin_dash":
     case "roll":
+    case "skid":
+    case "balance_front":
+    case "balance_back":
+    case "skid_fast":
+    case "skid_turn":
     case "push":
     case "breathe":
     case "goal":

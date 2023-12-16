@@ -19,9 +19,6 @@ obj_basic_test_collision_solid_01,1200,816,002C3D15,0,1,1,4294967295,0,0
 obj_basic_test_collision_solid_01,1296,816,00374DD2,0,1,1,4294967295,0,0
 obj_basic_test_collision_solid_01,1392,816,00366294,0,1,1,4294967295,0,0
 obj_basic_test_collision_solid_11,1032,840,001337CE,0,1,1,4294967295,0,0
-obj_basic_test_collision_solid_01,1104,720,00098EE0,0,1,1,4294967295,0,0
-obj_basic_test_collision_solid_01,1104,624,0018D0A2,0,1,1,4294967295,0,0
-obj_basic_test_collision_solid_12,1172,748,0029D0E8,0,1,1,4294967295,0,0
 obj_basic_test_collision_solid_01,48,816,00121D04,0,1,1,4294967295,0,0
 obj_basic_test_collision_solid_01,48,720,00358D31,0,1,1,4294967295,0,0
 obj_basic_test_collision_solid_01,48,624,00046D64,0,1,1,4294967295,0,0

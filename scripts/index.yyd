@@ -100,3 +100,4 @@ player_compile_animations
 classic_action_clock_up
 joystick_check_pressed
 joystick_check_released
+player_action_balance
