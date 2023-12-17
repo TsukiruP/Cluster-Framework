@@ -1259,8 +1259,8 @@ switch(action_state) {
                 }
             } else {
                 // Stand:
-                if(x_speed == 0 && animation_target != "stand" && animation_target != "turn" && animation_target != "land" && animation_target != "ready" &&
-                    animation_target != "look_end" && animation_target != "crouch_end") animation_target = "stand";
+                if(x_speed == 0 && animation_target != "stand" && animation_target != "turn" && animation_target != "wait_leader" && animation_target != "wait_partner" &&
+                    animation_target != "land" && animation_target != "ready" && animation_target != "look_end" && animation_target != "crouch_end") animation_target = "stand";
 
                 if(x_speed <> 0) {
                     if(character_data != CHAR_CLASSIC) {
@@ -1407,6 +1407,25 @@ switch(action_state) {
             } else if(animation_target != "death") animation_target = "death";
         }
         break;
+}
+
+// Wait:
+if(control_cpu == false && control_lock == false && animation_current == "stand") {
+    if(animation_timer != 400) animation_timer += 1;
+    else {
+        if(player_exists(1)) {
+            animation_target = "wait_leader";
+
+            with(global.player_instance[1]) animation_target = "wait_partner";
+        } else animation_target = choose("wait_leader", "wait_partner");
+    }
+} else animation_timer = 0;
+
+if(character_data == CHAR_SONIC) {
+    if(animation_current == "wait_partner") {
+        if(floor(animation_current_frame) == animation_end_frame) animation_speed = player_get_animation("wait_partner", 7) * 0.5;
+        else animation_speed = player_get_animation("wait_partner", 7);
+    }
 }
 
 // Missing animations:

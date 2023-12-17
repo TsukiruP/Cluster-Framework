@@ -12,7 +12,7 @@ player_add_animation(CHAR_SONIC, "dash",           spr_sonic_dash,           0, 
 
 // Wait:
 player_add_animation(CHAR_SONIC, "wait_leader",    spr_sonic_wait_leader,    0, 21, 18, -1, 0.10);
-player_add_animation(CHAR_SONIC, "wait_partner",   spr_sonic_wait_partner,   0, 21,  2, -1, 0.18);
+player_add_animation(CHAR_SONIC, "wait_partner",   spr_sonic_wait_partner,   0, 21,  2, -1, 0.10);
 
 // Tag default:
 player_add_animation(CHAR_SONIC, "tag_stand",      spr_sonic_tag_stand,      0,  3,  0, -1, 0.20);
