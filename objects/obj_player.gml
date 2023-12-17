@@ -214,7 +214,7 @@ animation_loop_frame      =  0;
 animation_loop_count      =  0;
 animation_speed           =  0;
 animation_rendering_speed =  0;
-animation_next            =  0;
+animation_next            =  "";
 animation_next_frame      =  0;
 animation_flag_frame      =  0;
 animation_changed         =  false;
@@ -1419,25 +1419,19 @@ switch(action_state) {
     }
 }
 
-
 // Wait:
-if(control_cpu == false && control_lock == false && animation_current == "stand") {
+if(control_cpu == false && control_lock == false && animation_current == "stand" && animation_next == "") {
     if(animation_timer != 400) animation_timer += 1;
     else {
         if(player_exists(1)) {
             animation_target = "wait_leader";
 
-            with(global.player_instance[1]) animation_target = "wait_partner";
-        } else animation_target = choose("wait_leader", "wait_partner");
+            with(global.player_instance[1]) animation_next = "wait_partner";
+        } else animation_next = choose("wait_leader", "wait_partner");
+
+        animation_loop_count = 0;
     }
 } else animation_timer = 0;
-
-if(character_data == CHAR_SONIC) {
-    if(animation_current == "wait_partner") {
-        if(floor(animation_current_frame) == animation_end_frame) animation_speed = player_get_animation("wait_partner", 7) * 0.5;
-        else animation_speed = player_get_animation("wait_partner", 7);
-    }
-}
 
 // Missing animations:
 if(character_data == CHAR_MILES) {
@@ -1455,6 +1449,14 @@ action_id=603
 applies_to=self
 */
 /// Update Speed
+
+// Wait speed:
+if(character_data == CHAR_SONIC) {
+    if(animation_current == "wait_partner") {
+        if(floor(animation_current_frame) == animation_end_frame) animation_speed = player_get_animation("wait_partner", 7) * 0.25;
+        else animation_speed = player_get_animation("wait_partner", 7);
+    }
+}
 
 // Running speed:
 if(ground == true) {
