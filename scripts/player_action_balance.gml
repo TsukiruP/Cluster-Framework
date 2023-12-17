@@ -7,6 +7,9 @@ balance_direction = ((player_collision_left_edge(x, y, 8) && !player_collision_r
 // Trigger balance:
 if(ground == true && angle == 0 && x_speed == 0 && balance_direction != 0 && tag_animations == false) {
     if(action_state == ACTION_DEFAULT) action_state = ACTION_BALANCE;
-} else {
+}
+
+// Cancel balance:
+else {
     if(action_state == ACTION_BALANCE) action_state = ACTION_DEFAULT;
 }
