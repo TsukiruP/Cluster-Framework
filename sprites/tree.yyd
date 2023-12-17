@@ -75,6 +75,8 @@
 				|spr_sonic_tag_spring
 			|spr_sonic_breathe
 			+Goal
+				|spr_sonic_goal
+				|spr_sonic_goal_gold
 			|spr_sonic_hurt
 			|spr_sonic_death
 			+Tag Actions
