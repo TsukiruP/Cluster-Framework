@@ -3,8 +3,7 @@
 
 // Trigger crouch:
 if(ground == true && x_speed == 0 && y_speed == 0 && (action_state == ACTION_DEFAULT || action_state == ACTION_GLIDE_DROP) && player_input[INP_DOWN, CHECK_HELD] == true) {
-    if(animation_current != "look" && animation_current != "look_end" && animation_current != "crouch_end" &&
-        animation_current != "tag_look" && animation_current != "tag_look_end" && animation_current != "tag_crouch_end" ) {
+    if(animation_current != "look" && animation_current != "look_end" && animation_current != "crouch_end") {
             action_state = ACTION_CROUCH;
             x_speed      = 0;
         }
@@ -20,8 +19,7 @@ if(action_state == ACTION_CROUCH) {
             action_state = ACTION_DEFAULT;
 
             // Play animation:
-            if(tag_hold_state == 3) animation_target = "tag_crouch_end";
-            else animation_target = "crouch_end";
+            animation_target = "crouch_end";
         }
     }
 }

@@ -2,7 +2,7 @@
 // Charge and Up.
 
 // Trigger Spin Dash:
-if(action_state == ACTION_CROUCH && player_input[INP_JUMP, CHECK_PRESSED] == true) {
+if(action_state == ACTION_CROUCH && tag_animations == false && player_input[INP_JUMP, CHECK_PRESSED] == true) {
     var sfx_spin_dash;
 
     action_state       = ACTION_SPIN_DASH;

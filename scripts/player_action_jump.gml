@@ -1,6 +1,6 @@
 /// player_action_jump()
 // A jump to the sky turns to a rider kick.
-
+if(input_check(INP_SELECT, CHECK_PRESSED)) player_tag_animations();
 // Varying jump:
 if(y_speed < jump_release && action_state == ACTION_JUMP && jump_complete == false && player_input[INP_JUMP, CHECK_HELD] == false) {
     y_speed = jump_release;
