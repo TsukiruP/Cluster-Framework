@@ -13,5 +13,6 @@ if(ground == true && action_state == ACTION_DEFAULT && tag_animations == false &
 
 // Push:
 if(action_state == ACTION_PUSH) {
-    if(wall_direction != input_direction) action_state = ACTION_DEFAULT;
+    // Cancel push:
+    if(ground == false || (wall_direction != input_direction) || wall_direction == 0 || tag_animations == true) action_state = ACTION_DEFAULT;
 }
