@@ -63,8 +63,8 @@ player_add_animation(CHAR_SONIC, "skid_turn",      spr_sonic_skid_turn,      0, 
 player_add_animation(CHAR_SONIC, "tag_skid",       spr_sonic_tag_skid,       0,  2,  1, -1, 0.35);
 
 // Balance:
-player_add_animation(CHAR_SONIC, "balance_front",  spr_sonic_balance_front,  0,  8,  1, -1, 0.20);
 player_add_animation(CHAR_SONIC, "balance_back",   spr_sonic_balance_back,   0,  8,  1, -1, 0.20);
+player_add_animation(CHAR_SONIC, "balance_front",  spr_sonic_balance_front,  0,  8,  1, -1, 0.20);
 
 // Push:
 player_add_animation(CHAR_SONIC, "push",           spr_sonic_push,           0,  8,  1, -1, 0.20);
