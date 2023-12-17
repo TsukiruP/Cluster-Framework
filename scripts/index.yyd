@@ -60,7 +60,7 @@ draw_background_tiled_horizontal_part
 draw_sprite_tiled_horizontal_yscale
 draw_sprite_tiled_vertical
 player_exists
-partner_exists
+player_replace_animation
 
 
 
@@ -102,3 +102,4 @@ joystick_check_pressed
 joystick_check_released
 player_action_balance
 player_state_push
+player_tag_animations

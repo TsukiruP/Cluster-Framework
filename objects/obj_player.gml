@@ -105,6 +105,7 @@ tag_arc           = 0;
 tag_distance_x    = 0;
 tag_distance_y    = 0;
 tag_action        = 0;
+tag_animations    = false;
 
 // Sonic variables:
 peel_out_flag       = false;
@@ -789,7 +790,7 @@ if(ground == true && action_state != ACTION_SLIDE) {
 }
 
 // Input acceleration/deceleration:
-if((action_state == ACTION_DEFAULT && animation_current != "turn" && animation_current != "tag_turn") || action_state == ACTION_JUMP || (action_state == ACTION_SKID && animation_current != "skid_turn" && animation_current != "tag_turn") || action_state == ACTION_BALANCE || action_state == ACTION_PUSH || action_state == ACTION_BREATHE || action_state == ACTION_FLY || (action_state == ACTION_TORNADO && animation_current == "tornado") || action_state == ACTION_GLIDE_DROP) {
+if((action_state == ACTION_DEFAULT && animation_current != "turn") || action_state == ACTION_JUMP || (action_state == ACTION_SKID && animation_current != "skid_turn") || action_state == ACTION_BALANCE || action_state == ACTION_PUSH || action_state == ACTION_BREATHE || action_state == ACTION_FLY || (action_state == ACTION_TORNADO && animation_current == "tornado") || action_state == ACTION_GLIDE_DROP) {
     // Input direction:
     input_direction = player_input[INP_RIGHT, CHECK_HELD] - player_input[INP_LEFT, CHECK_HELD];
 
@@ -799,16 +800,14 @@ if((action_state == ACTION_DEFAULT && animation_current != "turn" && animation_c
             if(input_lock_alarm == 0) {
                 // Turn:
                 if(global.gameplay_turn == true && (angle_relative < 45 || angle_relative > 315) && ((action_state != ACTION_SKID && abs(x_speed) < 4.5) ||
-                    (action_state == ACTION_SKID && sign(x_speed) != -input_direction && tag_hold_state == 3)) && animation_direction != input_direction) {
+                    (action_state == ACTION_SKID && sign(x_speed) != -input_direction && tag_animations == true)) && animation_direction != input_direction) {
                      x_speed = 0;
 
                      // Play animation:
                      if(action_state != ACTION_BALANCE) {
-                         if(tag_hold_state == 3) {
-                            if(action_state == ACTION_SKID) action_state = ACTION_DEFAULT;
+                         if(action_state == ACTION_SKID && tag_animations == true) action_state = ACTION_DEFAULT;
 
-                            animation_target = "tag_turn";
-                         } else animation_target = "turn";
+                         animation_target = "turn";
                      }
 
                      animation_direction *= -1;
@@ -1241,106 +1240,118 @@ draw_y = y;
 switch(action_state) {
     // Default:
     case ACTION_DEFAULT:
-        if(ground == true) {
-            if(tag_hold_state == 3) {
+        // Classic default:
+        if(character_data == CHAR_CLASSIC) {
+            if(ground == true) {
                 // Stand:
-                if(x_speed == 0 && animation_target != "tag_stand" && animation_target != "tag_turn" &&
-                    animation_target != "tag_look_end" && animation_target != "tag_crouch_end") animation_target = "tag_stand";
+                if(x_speed == 0 && animation_target != "stand") animation_target = "stand";
+
+                if(x_speed <> 0) {
+                    // Jog:
+                    if(abs(x_speed) < 6.00 && animation_target != "jog") animation_target = "jog";
+
+                    // Run:
+                    if(abs(x_speed) >= 6.00 && animation_target != "run") animation_target = "run";
+                }
+            }
+        }
+
+        // Tag default:
+        else if(tag_animations == true) {
+            if(ground == true) {
+                // Stand:
+                if(x_speed == 0 && animation_target != "tag_stand" && animation_target != "turn" &&
+                    animation_target != "look_end" && animation_target != "crouch_end") animation_target = "stand";
 
                 if(x_speed <> 0) {
                     // Walk:
-                    if(abs(x_speed) < 3.75 && animation_target != "tag_walk") animation_target = "tag_walk";
+                    if(abs(x_speed) < 3.75 && animation_target != "walk") animation_target = "walk";
 
                     // Walk fast:
-                    if(abs(x_speed) >= 3.75 && abs(x_speed) < 4.50 && animation_target != "tag_walk_fast") animation_target = "tag_walk_fast";
+                    if(abs(x_speed) >= 3.75 && abs(x_speed) < 4.50 && animation_target != "walk_fast") animation_target = "walk_fast";
 
                     // Jog:
-                    if(abs(x_speed) >=  4.50 && animation_target != "tag_jog") animation_target = "tag_jog";
+                    if(abs(x_speed) >=  4.50 && animation_target != "jog") animation_target = "jog";
                 }
             } else {
+                // Fall:
+                if(animation_target != "turn" && animation_target != "skid" && animation_target != "spring_flight" && animation_target != "spring_fall") animation_target = "spring_fall";
+            }
+        }
+
+        // Normal default:
+        else {
+            if(ground == true) {
                 // Stand:
                 if(x_speed == 0 && animation_target != "stand" && animation_target != "turn" && animation_target != "wait_leader" && animation_target != "wait_partner" &&
                     animation_target != "land" && animation_target != "ready" && animation_target != "look_end" && animation_target != "crouch_end") animation_target = "stand";
 
                 if(x_speed <> 0) {
-                    if(character_data != CHAR_CLASSIC) {
-                        // Walk:
-                        if(abs(x_speed) < 1.50 && animation_target != "walk") animation_target = "walk";
+                    // Walk:
+                    if(abs(x_speed) < 1.50 && animation_target != "walk") animation_target = "walk";
 
-                        // Walk fast:
-                        if(abs(x_speed) >= 1.50 && abs(x_speed) < 3.00 && animation_target != "walk_fast") animation_target = "walk_fast";
+                    // Walk fast:
+                    if(abs(x_speed) >= 1.50 && abs(x_speed) < 3.00 && animation_target != "walk_fast") animation_target = "walk_fast";
 
-                        // Jog:
-                        if(abs(x_speed) >= 3.00 && abs(x_speed) < 4.50 && animation_target != "jog") animation_target = "jog";
+                    // Jog:
+                    if(abs(x_speed) >= 3.00 && abs(x_speed) < 4.50 && animation_target != "jog") animation_target = "jog";
 
-                        // Jog fast:
-                        if(abs(x_speed) >= 4.50 && abs(x_speed) < 6.00 && animation_target != "jog_fast") animation_target = "jog_fast";
+                    // Jog fast:
+                    if(abs(x_speed) >= 4.50 && abs(x_speed) < 6.00 && animation_target != "jog_fast") animation_target = "jog_fast";
 
-                        // Run:
-                        if(abs(x_speed) >= 6.00 && animation_target != "run" && animation_target != "dash") animation_target = "run";
-                    } else {
-                        // Jog:
-                        if(abs(x_speed) < 6.00 && animation_target != "jog") animation_target = "jog";
-
-                        // Run:
-                        if(abs(x_speed) >= 6.00 && animation_target != "run") animation_target = "run";
-                    }
+                    // Run:
+                    if(abs(x_speed) >= 6.00 && animation_target != "run" && animation_target != "dash") animation_target = "run";
                 }
-            }
-        } else {
-            if(character_data != CHAR_CLASSIC) {
-                if(tag_hold_state == 3) {
-                    if(animation_target != "tag_turn" && animation_target != "tag_skid" && animation_target != "tag_flight" && animation_target != "tag_fall") animation_target = "tag_fall";
-                } else {
-                    if( animation_target != "turn" && animation_target != "spin_flight" && animation_target != "spin_fall" &&
-                    animation_current != "skid" && animation_current != "skid_fast" && animation_current != "skid_turn" && animation_target != "spring_flight" && animation_target != "spring_fall") {
-                        animation_target = "spring_fall";
-                    }
-                }
+            } else {
+                // Fall:
+                if(animation_target != "turn" && animation_target != "spin_flight" && animation_target != "spin_fall" && animation_current != "skid" && animation_current != "skid_fast" &&
+                    animation_current != "skid_turn" && animation_target != "spring_flight" && animation_target != "spring_fall") animation_target = "spring_fall";
             }
         }
         break;
 
     // Jump:
     case ACTION_JUMP:
-        if(character_data != CHAR_CLASSIC) {
-            if(drop_dash_state != 2) {
-                if(tag_hold_state == 3) {
-                    if(y_speed <= 0 && animation_target != "tag_flight" && animation_target != "tag_fall") animation_target = "tag_flight";
-                    if(y_speed > 0 && animation_target != "tag_fall") animation_target = "tag_fall";
-                } else if(tag_action == TAG_LEAP) {
-                    if(y_speed <= 0 && animation_target != "leap_flight" && animation_target != "leap_fall" && animation_target != "spring_fall") animation_target = "leap_flight";
-                    if(y_speed > 0 && animation_target != "leap_fall" && animation_target != "spring_fall") animation_target = "leap_fall";
-                } else {
-                    if((animation_target != "roll" && animation_target != "spin_flight" && animation_target != "spin_fall") || animation_current == "drop_dash") animation_target = "spin_flight";
-                }
-            }
-        } else {
-            if(drop_dash_state != 2 && animation_target != "roll") animation_target = "roll";
+        // Classic jump:
+        if(character_data == CHAR_CLASSIC) {
+            if(animation_target != "roll") animation_target = "roll";
         }
-        break
+
+        // Tag jump:
+        else if(tag_animations == true) {
+            if(y_speed <= 0 && animation_target != "spring_flight" && animation_target != "spring_fall") animation_target = "spring_flight";
+            if(y_speed > 0 && animation_target != "spring_fall") animation_target = "spring_fall";
+        }
+
+        // Normal jump:
+        else {
+            if(tag_action == TAG_LEAP) {
+                if(y_speed <= 0 && animation_target != "leap_flight" && animation_target != "leap_fall" && animation_target != "spring_fall") animation_target = "leap_flight";
+                if(y_speed > 0 && animation_target != "leap_fall" && animation_target != "spring_fall") animation_target = "leap_fall";
+            } else {
+                if((animation_target != "roll" && animation_target != "spin_flight" && animation_target != "spin_fall") || animation_current == "drop_dash") animation_target = "spin_flight";
+            }
+        }
+        break;
 
     // Look:
     case ACTION_LOOK:
-        if(tag_hold_state == 3) {
-            if(animation_target != "tag_look") animation_target = "tag_look";
-        } else {
-            if(animation_target != "look") animation_target = "look";
-        }
+        if(animation_target != "look") animation_target = "look";
         break;
 
     // Crouch:
     case ACTION_CROUCH:
-        if(tag_hold_state == 3) {
-            if(animation_target != "tag_crouch") animation_target = "tag_crouch";
-        } else {
-            if(animation_target != "crouch") animation_target = "crouch";
-        }
+        if(animation_target != "crouch") animation_target = "crouch";
         break;
 
     // Spin Dash:
     case ACTION_SPIN_DASH:
-        if(animation_target != "super_spin" && animation_target != "spin_dash") animation_target = "spin_dash";
+        // Classic Spin Dash:
+        if(character_data == CHAR_CLASSIC) {
+            if(animation_target != "spin_dash") animation_target = "spin_dash";
+        } else {
+            if(animation_target != "super_spin" && animation_target != "spin_dash") animation_target = "spin_dash";
+        }
         break;
 
     // Roll:
@@ -1350,9 +1361,13 @@ switch(action_state) {
 
     // Skid:
     case ACTION_SKID:
-        if(tag_hold_state == 3) {
-            if(animation_target != "tag_skid") animation_target = "tag_skid";
-        } else {
+        // Classic/tag skid:
+        if(character_data == CHAR_CLASSIC || tag_animations == true) {
+            if(animation_target != "skid") animation_target = "skid";
+        }
+
+        // Normal skid:
+        else {
             if(animation_target != "skid" && animation_target != "skid_fast" && animation_target != "skid_turn") animation_target = "skid";
         }
         break;
@@ -1373,17 +1388,16 @@ switch(action_state) {
 
     // Spring:
     case ACTION_SPRING:
-        if(character_data != CHAR_CLASSIC) {
-            if(tag_hold_state == 3) {
-                if((y_speed < 0 || spring_alarm > 0) && animation_target != "tag_flight") animation_target = "tag_flight";
-                if(((y_speed >= 0 && spring_angle == gravity_angle + ANGLE_UP) || (spring_alarm == 0 && spring_angle != gravity_angle + ANGLE_UP)) && animation_target != "tag_fall") animation_target = "tag_fall";
-            } else {
-                if((y_speed < 0 || spring_alarm > 0) && animation_target != "spring_flight") animation_target = "spring_flight";
-                if(((y_speed >= 0 && spring_angle == gravity_angle + ANGLE_UP) || (spring_alarm == 0 && spring_angle != gravity_angle + ANGLE_UP)) && animation_target != "spring_fall") animation_target = "spring_fall";
-            }
-        } else {
+        // Classic spring:
+        if(character_data == CHAR_CLASSIC) {
             if((y_speed < 0 || spring_alarm > 0) && animation_target != "spring") animation_target = "spring";
             if(((y_speed >= 0 && spring_angle == gravity_angle + ANGLE_UP) || (spring_alarm == 0 && spring_angle != gravity_angle + ANGLE_UP)) && animation_target != "jog") animation_target = "jog";
+        }
+
+        // Tag/normal spring:
+        else {
+            if((y_speed < 0 || spring_alarm > 0) && animation_target != "spring_flight") animation_target = "spring_flight";
+            if(((y_speed >= 0 && spring_angle == gravity_angle + ANGLE_UP) || (spring_alarm == 0 && spring_angle != gravity_angle + ANGLE_UP)) && animation_target != "spring_fall") animation_target = "spring_fall";
         }
         break;
 
@@ -1398,16 +1412,13 @@ switch(action_state) {
         break;
 
     // Death:
-    case ACTION_DEATH:
-        if(character_data != CHAR_CLASSIC) {
+    if(character_data != ACTION_DEATH) {
+        case ACTION_DEATH:
             if(animation_target != "death") animation_target = "death";
-        } else {
-            if(drowned == true) {
-                if(animation_target != "drown") animation_target = "drown";
-            } else if(animation_target != "death") animation_target = "death";
-        }
-        break;
+            break;
+    }
 }
+
 
 // Wait:
 if(control_cpu == false && control_lock == false && animation_current == "stand") {
@@ -1429,12 +1440,8 @@ if(character_data == CHAR_SONIC) {
 }
 
 // Missing animations:
-if(character_data == CHAR_CLASSIC || character_data == CHAR_MILES) {
+if(character_data == CHAR_MILES) {
     if(animation_target == "super_spin") animation_target = "spin_dash";
-}
-
-if(character_data == CHAR_CLASSIC) {
-    if(animation_target == "land" || animation_target == "look_end" || animation_target == "crouch_end") animation_target = "stand";
 }
 
 // Animation core:
@@ -1454,11 +1461,11 @@ if(ground == true) {
     if(action_state == ACTION_PEEL_OUT) {
         animation_speed = 0.25 + (abs(peel_out_timer) * 0.01);
     } else {
-        if(animation_current == "walk" || animation_current == "walk_fast" || animation_current == "jog" || animation_current == "jog_fast" || animation_current == "tag_walk" || animation_current == "tag_walk_fast") {
+        if(animation_current == "walk" || animation_current == "walk_fast" || animation_current == "jog" || animation_current == "jog_fast") {
             animation_speed = 0.20 + (abs(x_speed)/ 30);
         }
 
-        if(animation_current == "run" || animation_current == "dash" || animation_current == "tag_jog") {
+        if(animation_current == "run" || animation_current == "dash") {
             animation_speed = 0.25 + (abs(x_speed)/ 25);
         }
     }
@@ -1466,8 +1473,8 @@ if(ground == true) {
 
 // Flight & fall animation speed:
 if(action_state == ACTION_JUMP && animation_current == "roll" ||
-    animation_current == "spin_flight" || animation_current == "spin_fall" || animation_current == "spring_flight" || animation_current == "spring_fall" ||
-    animation_current == "tag_flight" || animation_current == "tag_fall" || animation_current == "leap_flight" || animation_current == "leap_fall") {
+    animation_current == "spin_flight" || animation_current == "spin_fall" ||
+    animation_current == "spring_flight" || animation_current == "spring_fall" || animation_current == "leap_flight" || animation_current == "leap_fall") {
     animation_rendering_speed = 0.25 * max(1 + abs(x_speed) / 25 + abs(y_speed) / 25, 1);
     animation_speed           = animation_rendering_speed;
 }
@@ -1536,25 +1543,18 @@ switch(animation_current) {
     // Reset angle:
     case "stand":
     case "turn":
-    case "tag_stand":
-    case "tag_turn":
     case "ready":
     case "land":
     case "look":
     case "look_end":
-    case "tag_look":
-    case "tag_look_end":
     case "crouch":
     case "crouch_end":
-    case "tag_crouch":
-    case "tag_crouch_end":
     case "super_spin":
     case "spin_dash":
     case "roll":
     case "skid":
     case "skid_fast":
     case "skid_turn":
-    case "tag_skid":
     case "balance_front":
     case "balance_back":
     case "push":
@@ -1586,7 +1586,7 @@ switch(animation_current) {
     
     // Terrain angle:
     default:
-        if(character_data != CHAR_CLASSIC && tag_hold_state != 3) {
+        if(character_data != CHAR_CLASSIC && tag_animations == false) {
             if(ground == true) animation_angle = angle;
             else animation_angle = approach_angle(animation_angle, 0, 4);
         } else {
@@ -1708,7 +1708,7 @@ applies_to=self
 /// Draw Player
 
 // Knuckles test:
-if(tag_hold_state == 3) draw_sprite(spr_knuckles_roll, floor(animation_current_frame), floor(draw_x) + 10 * animation_direction, floor(draw_y) - 2);
+if(tag_animations == true) draw_sprite(spr_knuckles_roll, floor(animation_current_frame), floor(draw_x) + 10 * animation_direction, floor(draw_y) - 2);
 
 // Trail:
 if(global.misc_trails == true) {

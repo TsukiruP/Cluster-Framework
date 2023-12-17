@@ -14,13 +14,6 @@ player_add_animation(CHAR_SONIC, "dash",           spr_sonic_dash,           0, 
 player_add_animation(CHAR_SONIC, "wait_leader",    spr_sonic_wait_leader,    0, 21, 18, -1, 0.10);
 player_add_animation(CHAR_SONIC, "wait_partner",   spr_sonic_wait_partner,   0, 21,  2, -1, 0.10);
 
-// Tag default:
-player_add_animation(CHAR_SONIC, "tag_stand",      spr_sonic_tag_stand,      0,  3,  0, -1, 0.20);
-player_add_animation(CHAR_SONIC, "tag_turn",       spr_sonic_tag_turn,       0,  2,  0,  0, 0.40);
-player_add_animation(CHAR_SONIC, "tag_walk",       spr_sonic_tag_walk,       0,  7,  0, -1, 0.25);
-player_add_animation(CHAR_SONIC, "tag_walk_fast",  spr_sonic_tag_walk_fast,  0,  7,  0, -1, 0.25);
-player_add_animation(CHAR_SONIC, "tag_jog",        spr_sonic_tag_jog,        0,  7,  0, -1, 0.25);
-
 // Ready:
 player_add_animation(CHAR_SONIC, "ready",          spr_sonic_ready,          0, 36,  0,  0, 0.18, "stand");
 
@@ -35,17 +28,9 @@ player_add_animation(CHAR_SONIC, "spin_fall",      spr_sonic_spin_fall,      0, 
 player_add_animation(CHAR_SONIC, "look",           spr_sonic_look,           0,  5,  2, -1, 0.20);
 player_add_animation(CHAR_SONIC, "look_end",       spr_sonic_look,           6,  7,  0,  0, 0.20, "stand");
 
-// Tag look:
-player_add_animation(CHAR_SONIC, "tag_look",       spr_sonic_tag_look,       0,  2,  0,  0, 0.20);
-player_add_animation(CHAR_SONIC, "tag_look_end",   spr_sonic_tag_look,       3,  4,  0,  0, 0.20, "tag_stand");
-
 // Crouch:
 player_add_animation(CHAR_SONIC, "crouch",         spr_sonic_crouch,         0,  3,  0,  0, 0.20);
 player_add_animation(CHAR_SONIC, "crouch_end",     spr_sonic_crouch,         4,  5,  0,  0, 0.20, "stand");
-
-// Tag crouch:
-player_add_animation(CHAR_SONIC, "tag_crouch",     spr_sonic_tag_crouch,     0,  2,  0,  0, 0.20);
-player_add_animation(CHAR_SONIC, "tag_crouch_end", spr_sonic_tag_crouch,     3,  4,  0,  0, 0.20, "tag_stand");
 
 // Spin dash:
 player_add_animation(CHAR_SONIC, "spin_dash",      spr_sonic_spin_dash,      0,  3,  0, -1, 0.30);
@@ -59,9 +44,6 @@ player_add_animation(CHAR_SONIC, "skid",           spr_sonic_skid,           0, 
 player_add_animation(CHAR_SONIC, "skid_fast",      spr_sonic_skid_fast,      0,  3,  2, -1, 0.35);
 player_add_animation(CHAR_SONIC, "skid_turn",      spr_sonic_skid_turn,      0,  3,  0,  0, 0.35);
 
-// Tag skid:
-player_add_animation(CHAR_SONIC, "tag_skid",       spr_sonic_tag_skid,       0,  2,  1, -1, 0.35);
-
 // Balance:
 player_add_animation(CHAR_SONIC, "balance_back",   spr_sonic_balance_back,   0,  8,  1, -1, 0.20);
 player_add_animation(CHAR_SONIC, "balance_front",  spr_sonic_balance_front,  0,  8,  1, -1, 0.20);
@@ -72,10 +54,6 @@ player_add_animation(CHAR_SONIC, "push",           spr_sonic_push,           0, 
 // Spring:
 player_add_animation(CHAR_SONIC, "spring_flight",  spr_sonic_spring,         0,  3,  1, -1, 0.20);
 player_add_animation(CHAR_SONIC, "spring_fall",    spr_sonic_spring,         4, 12, 10, -1, 0.20);
-
-// Tag spring:
-player_add_animation(CHAR_SONIC, "tag_flight",     spr_sonic_tag_spring,     0,  2,  0, -1, 0.20);
-player_add_animation(CHAR_SONIC, "tag_fall",       spr_sonic_tag_spring,     3, 11,  9, -1, 0.20);
 
 // Breathe:
 player_add_animation(CHAR_SONIC, "breathe",        spr_sonic_breathe,        0,  1,  0,  0, 0.10);
