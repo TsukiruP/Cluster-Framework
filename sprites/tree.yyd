@@ -48,6 +48,7 @@
 				+Misc.
 					|spr_sonic_ready
 					|spr_sonic_land
+					|spr_sonic_omochao
 			+Jump
 				|spr_sonic_spin_flight
 				|spr_sonic_spin_fall
