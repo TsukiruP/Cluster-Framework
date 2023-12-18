@@ -88,14 +88,15 @@
 		+Miles
 			+Default
 				|spr_miles_stand
+				|spr_miles_turn
 				|spr_miles_walk
 				|spr_miles_walk_fast
 				|spr_miles_jog
 				|spr_miles_jog_fast
 				|spr_miles_run
 				+Wait
-					|spr_miles_wait_short
-					|spr_miles_wait_long
+					|spr_miles_wait_leader
+					|spr_miles_wait_partner
 				+Tag
 					|spr_miles_tag_stand
 					|spr_miles_tag_walk
@@ -117,8 +118,12 @@
 			|spr_miles_roll
 			+Skid
 				|spr_miles_skid
+				|spr_miles_skid_fast
+				|spr_miles_skid_turn
 				|spr_miles_tag_skid
 			+Balance
+				|spr_miles_balance_back
+				|spr_miles_balance_front
 			|spr_miles_push
 			+Spring
 				|spr_miles_spring

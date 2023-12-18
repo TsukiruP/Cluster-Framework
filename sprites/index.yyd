@@ -98,8 +98,8 @@ spr_miles_hurt
 spr_miles_death
 spr_miles_tornado
 spr_miles_stand
-spr_miles_wait_short
-spr_miles_wait_long
+spr_miles_wait_partner
+spr_miles_wait_leader
 spr_miles_walk
 spr_miles_walk_fast
 spr_miles_jog
@@ -116,7 +116,7 @@ spr_miles_look
 spr_miles_tag_look
 spr_miles_crouch
 spr_miles_tag_crouch
-spr_miles_skid
+spr_miles_skid_fast
 spr_miles_tag_skid
 spr_miles_tail_swipe
 spr_miles_breathe
@@ -226,3 +226,8 @@ spr_sonic_tag_turn
 spr_sonic_goal
 spr_sonic_goal_gold
 spr_sonic_omochao
+spr_miles_turn
+spr_miles_skid_turn
+spr_miles_skid
+spr_miles_balance_front
+spr_miles_balance_back

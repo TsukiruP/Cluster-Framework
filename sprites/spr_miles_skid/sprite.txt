@@ -1,4 +1,4 @@
-frames=3
+frames=4
 origin_x=40
 origin_y=46
 collision_shape=0
@@ -6,6 +6,6 @@ alpha_tolerance=0
 per_frame_colliders=0
 bbox_type=0
 bbox_left=12
-bbox_top=32
-bbox_right=50
+bbox_top=27
+bbox_right=49
 bbox_bottom=59
