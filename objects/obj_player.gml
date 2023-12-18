@@ -1423,15 +1423,23 @@ switch(action_state) {
 if(control_cpu == false && control_lock == false && animation_current == "stand" && animation_next == "") {
     if(animation_timer != 400) animation_timer += 1;
     else {
-        if(player_exists(1)) {
-            animation_target = "wait_leader";
-
-            with(global.player_instance[1]) animation_next = "wait_partner";
-        } else animation_next = choose("wait_leader", "wait_partner");
+        if(player_exists(1)) animation_next = "wait_leader";
+        else animation_next = choose("wait_leader", "wait_partner");
 
         animation_loop_count = 0;
     }
 } else animation_timer = 0;
+
+if(player_exists(1) && animation_current == "wait_leader") {
+    var partner_instance;
+
+    // Partner instance:
+    partner_instance = global.player_instance[1];
+
+    if(partner_instance.control_alarm == 0 && partner_instance.x_speed == 0 && partner_instance.animation_target != "wait_partner") {
+        with(partner_instance) animation_target = "wait_partner";
+    }
+}
 
 // Missing animations:
 if(character_data == CHAR_MILES) {
