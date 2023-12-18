@@ -405,6 +405,15 @@ for(i = 0; i < joystick_max; i += 1) {
                 joystick_input[j, CHECK_RELEASED + (i * 3)] = joystick_check_released(i, global.input_joy[j, i]);
             }
         }
+    } else {
+        // Held:
+        joystick_input[j, CHECK_HELD + (i * 3)] = false;
+
+        // Pressed:
+        joystick_input[j, CHECK_PRESSED + (i * 3)] = false;
+
+        // Released:
+        joystick_input[j, CHECK_RELEASED + (i * 3)] = false;
     }
 }
 
