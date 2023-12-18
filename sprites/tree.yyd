@@ -130,6 +130,7 @@
 				|spr_miles_tag_spring
 			|spr_miles_breathe
 			+Goal
+				|spr_miles_goal_gold
 			|spr_miles_hurt
 			|spr_miles_death
 			+Tag Actions
