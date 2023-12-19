@@ -19,11 +19,15 @@ if(animation_current != animation_target) {
 
 // Play animation
 if(animation_finished == false) {
+    // Target frame:
+    if(sign(animation_speed) == -1) animation_target_frame = animation_start_frame;
+    else animation_target_frame = animation_end_frame;
+
     // Update current frame:
     animation_current_frame += animation_speed;
 
     // Handle last frame:
-    if(floor(animation_current_frame) > animation_end_frame) {
+    if(abs(floor(animation_current_frame)) > animation_target_frame && sign(animation_current_frame) == sign(animation_speed)) {
         // Loop the animation if called for:
         if(animation_loop_count != 0) {
             animation_current_frame = animation_loop_frame;
@@ -31,7 +35,7 @@ if(animation_finished == false) {
             if(animation_loop_count != -1) animation_loop_count -= 1;
         } else {
             // Set to last frame:
-            animation_current_frame = animation_end_frame;
+            animation_current_frame = animation_target_frame;
 
             // Go into next animation, if it's been given:
             if(animation_next != "") {

@@ -204,7 +204,7 @@ applies_to=self
 
 animation_grid            = -1;
 animation_target          =  "stand";
-animation_current         =  ""
+animation_current         =  "";
 animation_previous        =  animation_current;
 animation_sprite          =  spr_sonic_stand;
 animation_current_frame   =  0;
@@ -1261,7 +1261,7 @@ switch(action_state) {
             if(ground == true) {
                 // Stand:
                 if(x_speed == 0 && animation_target != "tag_stand" && animation_target != "turn" &&
-                    animation_target != "look_end" && animation_target != "crouch_end") animation_target = "stand";
+                    animation_target != "look" && animation_target != "crouch") animation_target = "stand";
 
                 if(x_speed <> 0) {
                     // Walk:
@@ -1284,7 +1284,7 @@ switch(action_state) {
             if(ground == true) {
                 // Stand:
                 if(x_speed == 0 && animation_target != "stand" && animation_target != "turn" && animation_target != "wait_leader" && animation_target != "wait_partner" &&
-                    animation_target != "land" && animation_target != "ready" && animation_target != "look_end" && animation_target != "crouch_end") animation_target = "stand";
+                    animation_target != "land" && animation_target != "ready" && animation_target != "look" && animation_target != "crouch") animation_target = "stand";
 
                 if(x_speed <> 0) {
                     // Walk:
@@ -1556,9 +1556,7 @@ switch(animation_current) {
     case "ready":
     case "land":
     case "look":
-    case "look_end":
     case "crouch":
-    case "crouch_end":
     case "super_spin":
     case "spin_dash":
     case "roll":
