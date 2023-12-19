@@ -207,7 +207,7 @@ randomize();
 // Character related:
 global.player_instance[0]    =   noone;
 global.player_instance[1]    =   noone;
-global.player_data[0]        =   CHAR_MILES;
+global.player_data[0]        =   CHAR_CLASSIC;
 global.player_data[1]        =   CHAR_SONIC;
 
 global.gravity_angle         =  0;

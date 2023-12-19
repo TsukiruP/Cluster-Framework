@@ -1246,7 +1246,7 @@ switch(action_state) {
         if(character_data == CHAR_CLASSIC) {
             if(ground == true) {
                 // Stand:
-                if(x_speed == 0 && animation_target != "stand") animation_target = "stand";
+                if(x_speed == 0 && animation_target != "stand" && animation_target != "wait_leader" && animation_target != "wait_partner") animation_target = "stand";
 
                 if(x_speed <> 0) {
                     // Jog:
@@ -1262,7 +1262,7 @@ switch(action_state) {
         else if(tag_animations == true) {
             if(ground == true) {
                 // Stand:
-                if(x_speed == 0 && animation_target != "tag_stand" && animation_target != "turn" &&
+                if(x_speed == 0 && animation_target != "stand" && animation_target != "turn" &&
                     animation_target != "look" && animation_target != "crouch") animation_target = "stand";
 
                 if(x_speed <> 0) {
@@ -1431,6 +1431,9 @@ if(control_cpu == false && control_lock == false && tag_animations == false && a
         else animation_next = choose("wait_leader", "wait_partner");
 
         animation_loop_count = 0;
+
+        // Classic fix:
+        if(character_data == CHAR_CLASSIC) animation_target = animation_next;
     }
 } else animation_timer = 0;
 
