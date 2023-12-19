@@ -12,12 +12,10 @@ if(tag_animations == false) {
             player_add_animation(CHAR_SONIC, "jog",            spr_sonic_jog_tag,        0,  7,  0, -1, 0.25);
 
             // Look:
-            player_add_animation(CHAR_SONIC, "look",           spr_sonic_look_tag,       0,  2,  0,  0, 0.20);
-            player_add_animation(CHAR_SONIC, "look_end",       spr_sonic_look_tag,       3,  4,  0,  0, 0.20, "stand");
+            player_add_animation(CHAR_SONIC, "look",           spr_sonic_look_tag,       0,  2,  0,  0, 0.20, "stand", 0, 1);
 
             // Crouch:
-            player_add_animation(CHAR_SONIC, "crouch",         spr_sonic_crouch_tag,     0,  2,  0,  0, 0.20);
-            player_add_animation(CHAR_SONIC, "crouch_end",     spr_sonic_crouch_tag,     3,  4,  0,  0, 0.20, "stand");
+            player_add_animation(CHAR_SONIC, "crouch",         spr_sonic_crouch_tag,     0,  2,  0,  0, 0.20, "stand", 0, 1);
 
             // Skid:
             player_add_animation(CHAR_SONIC, "skid",           spr_sonic_skid_tag,       0,  2,  1, -1, 0.35);

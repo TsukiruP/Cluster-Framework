@@ -25,12 +25,10 @@ player_add_animation(CHAR_SONIC, "spin_flight",    spr_sonic_spin_flight,    0, 
 player_add_animation(CHAR_SONIC, "spin_fall",      spr_sonic_spin_fall,      0,  3,  1, -1, 0.30);
 
 // Look:
-player_add_animation(CHAR_SONIC, "look",           spr_sonic_look,           0,  5,  2, -1, 0.20);
-player_add_animation(CHAR_SONIC, "look_end",       spr_sonic_look,           6,  7,  0,  0, 0.20, "stand");
+player_add_animation(CHAR_SONIC, "look",           spr_sonic_look,           0,  5,  2, -1, 0.20, "", 0, 1);
 
 // Crouch:
-player_add_animation(CHAR_SONIC, "crouch",         spr_sonic_crouch,         0,  3,  0,  0, 0.20);
-player_add_animation(CHAR_SONIC, "crouch_end",     spr_sonic_crouch,         4,  5,  0,  0, 0.20, "stand");
+player_add_animation(CHAR_SONIC, "crouch",         spr_sonic_crouch,         0,  3,  0,  0, 0.20, "", 0, 1);
 
 // Spin dash:
 player_add_animation(CHAR_SONIC, "spin_dash",      spr_sonic_spin_dash,      0,  3,  0, -1, 0.30);
