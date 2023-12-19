@@ -790,7 +790,9 @@ if(ground == true && action_state != ACTION_SLIDE) {
 }
 
 // Input acceleration/deceleration:
-if((action_state == ACTION_DEFAULT && animation_current != "turn") || action_state == ACTION_JUMP || (action_state == ACTION_SKID && animation_current != "skid_turn") || action_state == ACTION_BALANCE || action_state == ACTION_PUSH || action_state == ACTION_BREATHE || action_state == ACTION_FLY || (action_state == ACTION_TORNADO && animation_current == "tornado") || action_state == ACTION_GLIDE_DROP) {
+if((action_state == ACTION_DEFAULT && animation_current != "turn" && animation_current != "look" && animation_current != "crouch") || action_state == ACTION_JUMP ||
+    (action_state == ACTION_SKID && animation_current != "skid_turn") || action_state == ACTION_BALANCE || action_state == ACTION_PUSH || action_state == ACTION_BREATHE ||
+    action_state == ACTION_FLY || (action_state == ACTION_TORNADO && animation_current == "tornado") || action_state == ACTION_GLIDE_DROP) {
     // Input direction:
     input_direction = player_input[INP_RIGHT, CHECK_HELD] - player_input[INP_LEFT, CHECK_HELD];
 
@@ -1412,15 +1414,17 @@ switch(action_state) {
         break;
 
     // Death:
-    if(character_data != ACTION_DEATH) {
-        case ACTION_DEATH:
+    case ACTION_DEATH:
+        if(character_data == CHAR_CLASSIC) {
+
+        } else {
             if(animation_target != "death") animation_target = "death";
-            break;
-    }
+        }
+        break;
 }
 
 // Wait:
-if(control_cpu == false && control_lock == false && animation_current == "stand" && animation_next == "") {
+if(control_cpu == false && control_lock == false && tag_animations == false && animation_current == "stand" && animation_next == "") {
     if(animation_timer != 400) animation_timer += 1;
     else {
         if(player_exists(1)) animation_next = "wait_leader";

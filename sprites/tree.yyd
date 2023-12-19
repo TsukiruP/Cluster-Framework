@@ -99,6 +99,7 @@
 					|spr_miles_wait_partner
 				+Tag
 					|spr_miles_stand_tag
+					|spr_miles_turn_tag
 					|spr_miles_walk_tag
 					|spr_miles_walk_fast_tag
 					|spr_miles_jog_tag
