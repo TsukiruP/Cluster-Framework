@@ -75,15 +75,14 @@
 		+Animation
 			|player_animation_core
 			|player_add_animation
-			|player_replace_animation
 			+Character Specific
 				|sonic_add_animations
 				|miles_add_animations
 				|knuckles_add_animations
 				|classic_add_animations
+				|player_tag_animations
 			|player_compile_animations
 			|player_get_animation
-			|player_tag_animations
 		+Handle
 			|player_handle_list
 			|player_handle_ring
@@ -93,6 +92,7 @@
 			|player_get_input
 		+Misc.
 			|player_get_physics
+			|player_replace_animation
 			|player_ring_loss
 			|player_align_roll
 			|player_get_item
