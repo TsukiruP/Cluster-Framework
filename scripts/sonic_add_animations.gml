@@ -2,7 +2,7 @@
 
 // Default:
 player_add_animation(CHAR_SONIC, "stand",          spr_sonic_stand,          0, 34,  0, -1, 0.20);
-player_add_animation(CHAR_SONIC, "turn",           spr_sonic_turn,           0,  1,  0,  0, 0.40);
+player_add_animation(CHAR_SONIC, "turn",           spr_sonic_turn,           0,  1,  0,  0, 0.50);
 player_add_animation(CHAR_SONIC, "walk",           spr_sonic_walk,           0,  7,  0, -1, 0.25);
 player_add_animation(CHAR_SONIC, "walk_fast",      spr_sonic_walk_fast,      0,  7,  0, -1, 0.25);
 player_add_animation(CHAR_SONIC, "jog",            spr_sonic_jog,            0,  7,  0, -1, 0.25);

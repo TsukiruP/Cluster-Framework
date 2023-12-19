@@ -2,7 +2,7 @@
 
 // Default:
 player_add_animation(CHAR_MILES, "stand",          spr_miles_stand,          0, 15,  0, -1, 0.20);
-player_add_animation(CHAR_MILES, "turn",           spr_miles_turn,           0,  1,  0,  0, 0.40);
+player_add_animation(CHAR_MILES, "turn",           spr_miles_turn,           0,  1,  0,  0, 0.50);
 player_add_animation(CHAR_MILES, "walk",           spr_miles_walk,           0,  7,  0, -1, 0.25);
 player_add_animation(CHAR_MILES, "walk_fast",      spr_miles_walk_fast,      0,  7,  0, -1, 0.25);
 player_add_animation(CHAR_MILES, "jog",            spr_miles_jog,            0,  7,  0, -1, 0.25);
@@ -44,7 +44,7 @@ player_add_animation(CHAR_MILES, "skid_turn",      spr_miles_skid_turn,      0, 
 
 // Balance:
 player_add_animation(CHAR_MILES, "balance_back",   spr_miles_balance_back,   0,  7,  0, -1, 0.20);
-player_add_animation(CHAR_SONIC, "balance_front",  spr_miles_balance_front,  0,  8,  1, -1, 0.20);
+player_add_animation(CHAR_MILES, "balance_front",  spr_miles_balance_front,  0,  8,  1, -1, 0.20);
 
 // Push:
 

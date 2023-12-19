@@ -1,6 +1,8 @@
 /// player_add_animation(character, animation, sprite, start frame, end frame, loop frame, loop count, speed, [next, next frame, flag frame])
+// Add an animation to the animation ds grid all player characters use.
+// If the animation is already added, then it overwrites the previous information.
 
-var animation_next_temp, animation_next_frame_temp, animation_flag_frame_temp;
+var animation_row, animation_next_temp, animation_next_frame_temp, animation_flag_frame_temp;
 
 // Create animation grid:
 if(global.animation_grid == -1) global.animation_grid = ds_grid_create(11, 1);

@@ -3,29 +3,30 @@
 
 if(global.animation_grid != -1) {
     if(global.animation_initialized = true) {
-        var animation_range;
+        var animation_row, animation_argument;
 
-        // Return a specific argument:
-        if(argument_count >= 2) {
-            animation_range = ds_grid_value_y(global.animation_grid, 0, global.animation_coordinates[character_data, 0], 10, global.animation_coordinates[character_data, 1], argument[0]);
+        // Animation argument:
+        if(argument_count >= 2) animation_argument = argument[0];
+        else animation_argument = animation_current;
 
-            if(animation_range != -1) return ds_grid_get(global.animation_grid, argument[1], animation_range);
-        }
+        // Animation row:
+        animation_row = ds_grid_value_y(global.animation_grid, 0, global.animation_coordinates[character_data, 0], 10, global.animation_coordinates[character_data, 1], animation_argument);
 
-        // Set animation data:
-        else {
-            animation_range = ds_grid_value_y(global.animation_grid, 0, global.animation_coordinates[character_data, 0], 10, global.animation_coordinates[character_data, 1], animation_current);
+        if(animation_row != -1) {
+            // Return a specific argument:
+            if(argument_count >= 2) return ds_grid_get(global.animation_grid, argument[1], animation_row);
 
-            if(animation_range != -1) {
-                animation_sprite      = ds_grid_get(global.animation_grid,  2, animation_range);
-                animation_start_frame = ds_grid_get(global.animation_grid,  3, animation_range);
-                animation_end_frame   = ds_grid_get(global.animation_grid,  4, animation_range);
-                animation_loop_frame  = ds_grid_get(global.animation_grid,  5, animation_range);
-                animation_loop_count  = ds_grid_get(global.animation_grid,  6, animation_range);
-                animation_speed       = ds_grid_get(global.animation_grid,  7, animation_range);
-                animation_next        = ds_grid_get(global.animation_grid,  8, animation_range);
-                animation_next_frame  = ds_grid_get(global.animation_grid,  9, animation_range);
-                animation_flag_frame  = ds_grid_get(global.animation_grid, 10, animation_range);
+            // Set animation data:
+            else {
+                animation_sprite      = ds_grid_get(global.animation_grid,  2, animation_row);
+                animation_start_frame = ds_grid_get(global.animation_grid,  3, animation_row);
+                animation_end_frame   = ds_grid_get(global.animation_grid,  4, animation_row);
+                animation_loop_frame  = ds_grid_get(global.animation_grid,  5, animation_row);
+                animation_loop_count  = ds_grid_get(global.animation_grid,  6, animation_row);
+                animation_speed       = ds_grid_get(global.animation_grid,  7, animation_row);
+                animation_next        = ds_grid_get(global.animation_grid,  8, animation_row);
+                animation_next_frame  = ds_grid_get(global.animation_grid,  9, animation_row);
+                animation_flag_frame  = ds_grid_get(global.animation_grid, 10, animation_row);
             }
         }
     }
