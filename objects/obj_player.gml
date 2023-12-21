@@ -1635,7 +1635,7 @@ switch(animation_current) {
 if(character_data == CHAR_MILES) {
     if(ground == true) miles_tails_angle = wrap_angle(angle + (180 * (animation_direction == -1)));
     else {
-        miles_tails_angle = point_direction(xprevious, yprevious, x, y,);
+        miles_tails_angle = point_direction(0, 0, x_speed, y_speed);
     }
 }
 /*"/*'/**//* YYD ACTION
