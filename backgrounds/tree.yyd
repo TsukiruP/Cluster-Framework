@@ -3,6 +3,7 @@
 		|tls_basic_test_96x96
 		|tls_basic_test_96x48
 		|tls_basic_test_ramps
+		|tls_basic_test_edges
 +Parallax
 	|pbg_basic_test_sky
 	|pbg_basic_test_sea
