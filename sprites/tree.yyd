@@ -106,6 +106,7 @@
 				+Misc.
 					|spr_miles_ready
 					|spr_miles_land
+					|spr_miles_omochao
 			+Jump
 				|spr_miles_spin_flight
 				|spr_miles_spin_fall
@@ -143,7 +144,7 @@
 			+Fly
 				|spr_miles_fly
 				|spr_miles_fly_turn
-				|spr_miles_fly_drop
+				|spr_miles_fly_cancel
 				|spr_miles_swim
 				|spr_miles_swim_turn
 			+Boost

@@ -1,4 +1,4 @@
-frames=20
+frames=18
 origin_x=40
 origin_y=46
 collision_shape=0

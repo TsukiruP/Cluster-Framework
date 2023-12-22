@@ -83,7 +83,7 @@ player_get_item
 credits
 in_view
 player_ring_loss
-player_state_hurt
+player_action_hurt
 player_handle_item_box
 player_handle_water_surface
 water_exists
@@ -101,5 +101,7 @@ classic_action_clock_up
 joystick_check_pressed
 joystick_check_released
 player_action_balance
-player_state_push
+player_action_push
 player_tag_animations
+miles_action_fly
+miles_fly_animations

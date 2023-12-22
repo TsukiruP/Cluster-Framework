@@ -59,3 +59,15 @@ player_add_animation(CHAR_MILES,    "hurt",           spr_miles_hurt,           
 
 // Death:
 player_add_animation(CHAR_MILES,    "death",          spr_miles_death,          0,  5,  4, -1, 0.20);
+
+// Frog:
+
+// Throw:
+
+// Glide carry:
+
+// Fly:
+player_add_animation(CHAR_MILES,    "fly",            spr_miles_fly,            0, 15,  0, -1, 0.30);
+player_add_animation(CHAR_MILES,    "fly_drop",       spr_miles_fly,           16, 25, 18, -1, 0.25);
+player_add_animation(CHAR_MILES,    "fly_turn",       spr_miles_fly_turn,       0,  1,  0,  0, 0.50, "fly");
+player_add_animation(CHAR_MILES,    "fly_cancel",     spr_miles_fly_cancel,     0,  3,  2, -1, 0.20);
