@@ -4,5 +4,5 @@ tile_width=96
 tile_height=48
 tile_hoffset=0
 tile_voffset=0
-tile_hsep=1
+tile_hsep=0
 tile_vsep=0
