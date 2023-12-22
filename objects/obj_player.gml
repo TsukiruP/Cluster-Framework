@@ -1079,8 +1079,8 @@ switch(action_state) {
 
     // Death:
     case ACTION_DEATH:
-        if(character_data == CHAR_CLASSIC) {
-
+        if(character_data == CHAR_CLASSIC && drowned == true) {
+            if(animation_target != "drown") animation_target = "drown";
         } else {
             if(animation_target != "death") animation_target = "death";
         }
