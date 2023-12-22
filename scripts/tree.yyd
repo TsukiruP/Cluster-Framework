@@ -68,8 +68,13 @@
 			|player_action_roll
 			|player_action_skid
 			|player_action_balance
-			|player_state_push
-			|player_state_hurt
+			|player_action_push
+			|player_action_hurt
+			+Sonic
+			+Miles
+				|miles_action_fly
+			+Knuckles
+			+Amy
 			+Classic
 				|classic_action_clock_up
 		+Animation
@@ -81,7 +86,9 @@
 				|knuckles_add_animations
 				|classic_add_animations
 			|player_compile_animations
-			|player_tag_animations
+			+Replacements
+				|player_tag_animations
+				|miles_fly_animations
 			|player_get_animation
 			|player_reverse_animation
 		+Handle

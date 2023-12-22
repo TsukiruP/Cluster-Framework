@@ -13,7 +13,7 @@ if(global.animation_grid == -1) {
         ds_grid_resize(global.animation_grid, 11, ds_grid_height(global.animation_grid) + 1);
         animation_row = ds_grid_height(global.animation_grid) - 1;
     } else {
-        animation_row = ds_grid_value_y(global.animation_grid, 0, global.animation_coordinates[character_data, 0], 10, global.animation_coordinates[character_data, 1], argument[1]);
+        animation_row = ds_grid_value_y(global.animation_grid, 0, global.animation_coordinates[argument[0], 0], 10, global.animation_coordinates[argument[0], 1], argument[1]);
     }
 }
 

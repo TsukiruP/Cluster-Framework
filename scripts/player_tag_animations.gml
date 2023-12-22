@@ -1,4 +1,4 @@
-/// player_animations()
+/// player_tag_animations()
 // Replaces a set of animations with their tag varients.
 
 // Replace animations:
@@ -25,6 +25,7 @@ if(tag_animations == false) {
             player_add_animation(CHAR_MILES, "spring_flight",  spr_miles_spring_tag,     0,  2,  0, -1, 0.20);
             player_add_animation(CHAR_MILES, "spring_fall",    spr_miles_spring_tag,     3, 11,  9, -1, 0.20);
             break;
+
         default:
             // Default:
             player_add_animation(CHAR_SONIC, "stand",          spr_sonic_stand_tag,      0,  3,  0, -1, 0.20);
