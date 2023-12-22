@@ -6,7 +6,7 @@ if(action_state == ACTION_CROUCH && tag_animations == false && player_input[INP_
     var sfx_spin_dash;
 
     action_state       = ACTION_SPIN_DASH;
-    spin_dash_strength = 0;
+    spin_dash_charge = 0;
 
     // Play sound:
     sfx_spin_dash = sound_play_single("snd_spin_dash_charge");
@@ -17,7 +17,7 @@ if(action_state == ACTION_SPIN_DASH) {
     if(ground == true) {
         // Let 'er rip:
         if(player_input[INP_DOWN, CHECK_HELD] == false) {
-            x_speed      = animation_direction * (8 + (spin_dash_strength div 2));
+            x_speed      = animation_direction * (8 + (spin_dash_charge div 2));
             action_state = ACTION_ROLL;
             
             // Camera lag:
@@ -30,9 +30,9 @@ if(action_state == ACTION_SPIN_DASH) {
             sound_stop("snd_spin_dash_charge");
         }
         
-        // Increase strength:
+        // Increase charge:
         if(player_input[INP_JUMP, CHECK_PRESSED] == true) {
-            spin_dash_strength = min(spin_dash_strength + 2, 8);
+            spin_dash_charge = min(spin_dash_charge + 2, 8);
             
             // Play animation:
             animation_target        = "super_spin";
@@ -40,12 +40,12 @@ if(action_state == ACTION_SPIN_DASH) {
             
             // Play sound:
             sfx_spin_dash = sound_play_single("snd_spin_dash_charge");
-            sound_pitch(sfx_spin_dash, 1 + spin_dash_strength * 0.0625);
+            sound_pitch(sfx_spin_dash, 1 + spin_dash_charge * 0.0625);
         }
     }
     
-    // Decrease strength:
-    if(spin_dash_strength > 0) {
-        spin_dash_strength -= (spin_dash_strength / 0.125) / 256;
+    // Decrease charge:
+    if(spin_dash_charge > 0) {
+        spin_dash_charge *= 0.96875;
     }
 }

@@ -232,7 +232,7 @@ if(transition_type == TRANS_CARD) {
 
     // 3 - Standing by:
     if(title_card_state == 3) {
-        if(transition_standby == 1) instance_activate_object(ctrl_culling);
+        ctrl_stage.culling = true;
 
         if(transition_standby < 2) transition_standby += transition_speed;
         else {
@@ -387,6 +387,9 @@ if(transition_type == TRANS_RETRY) {
 
     // 0 - Background start:
     if(retry_state == 0) {
+        // Recompile animations
+        //with(ctrl_stage) event_user(0);
+
         // Background target:
         background_target = 32;
 
@@ -419,11 +422,9 @@ if(transition_type == TRANS_RETRY) {
 
     // 3 - Room change:
     if(retry_state == 3) {
-        if(transition_timer < 1) transition_timer += transition_speed;
+        if(transition_timer < 0.8) transition_timer += transition_speed;
         else {
-            if(debug == false) {
-                room_goto(transition_room);
-            }
+            if(debug == false) room_goto(transition_room);
 
             retry_state = 4;
         }
@@ -431,9 +432,9 @@ if(transition_type == TRANS_RETRY) {
 
     // 4 - Background end:
     if(retry_state == 4) {
-        instance_activate_object(ctrl_culling); //instance_activate_all();
+        ctrl_stage.culling = true;
 
-        if(transition_timer < 1.02) transition_timer += transition_speed;
+        if(transition_timer < 1) transition_timer += transition_speed;
         else {
             // Background target:
             background_target = -15;
@@ -493,7 +494,6 @@ if(room_water_level != -1) instance_create(0, room_water_level, obj_water_surfac
 
 // Create stage objects:
 if(transition_type == TRANS_CARD || transition_type == TRANS_RETRY) {
-    instance_create(0, 0, ctrl_culling);
     instance_create(0, 0, ctrl_stage);
     instance_create(0, 0, ctrl_hud);
 
@@ -560,7 +560,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Draw Title Card Changeover
+/// Draw Title Card Transition
 
 if(transition_type == TRANS_CARD) {
     // Font:
@@ -590,7 +590,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Draw Retry Changeover
+/// Draw Retry Transition
 
 if(transition_type == TRANS_RETRY) {
     // Font:

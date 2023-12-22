@@ -5,7 +5,7 @@
 balance_direction = ((player_collision_left_edge(x, y, 8) && !player_collision_right_edge(x, y, 352)) - (!player_collision_left_edge(x, y, 8) && player_collision_right_edge(x, y, 352)));
 
 // Trigger balance:
-if(ground == true && angle == 0 && x_speed == 0 && balance_direction != 0 && tag_animations == false) {
+if(ground == true && angle == gravity_angle && x_speed == 0 && balance_direction != 0 && tag_animations == false) {
     if(action_state == ACTION_DEFAULT) action_state = ACTION_BALANCE;
 }
 

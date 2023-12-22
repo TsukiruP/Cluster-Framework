@@ -15,17 +15,9 @@ if(action_state == ACTION_ROLL) {
     if(ground == true) {
         // Deceleration:
         if(input_lock_alarm == 0) {
-            if(x_speed > 0 && player_input[INP_LEFT, CHECK_HELD] == true) {
-                x_speed -= roll_deceleration;
+            if(x_speed > 0 && player_input[INP_LEFT, CHECK_HELD] == true) x_speed = max(x_speed - roll_deceleration, 0);
 
-                if(x_speed <= 0) x_speed = -deceleration;
-            }
-
-            if(x_speed < 0 && player_input[INP_RIGHT, CHECK_HELD] == true) {
-                x_speed += roll_deceleration;
-
-                if(x_speed >= 0) x_speed = deceleration;
-            }
+            if(x_speed < 0 && player_input[INP_RIGHT, CHECK_HELD] == true) x_speed = min(x_speed + roll_deceleration, 0);
         }
 
         // Friction:
@@ -36,7 +28,8 @@ if(action_state == ACTION_ROLL) {
             action_state = ACTION_DEFAULT;
         }
     } else {
-        jump_complete = true;
         action_state  = ACTION_JUMP;
+        jump_complete = true;
+        roll_rebounce = true;
     }
 }

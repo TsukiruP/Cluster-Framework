@@ -6,7 +6,8 @@ return
 
 Based on
 Harinezumi Engine by A.NB (Aleksander Norberg)
-S9E Engine/S8E Revival Project by Akuma
+S9E Engine by Akuma
+SonicforGMS by VectorSatyr
 
 Inspirations
 Sonic 2 Absolute

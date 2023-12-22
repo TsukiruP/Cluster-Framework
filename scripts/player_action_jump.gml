@@ -44,4 +44,8 @@ if(action_state == ACTION_JUMP) {
 
 
 // Variable clean up:
-if(ground == true || action_state == ACTION_CARRY) jump_complete = false;
+if(ground == true || action_state == ACTION_CARRY) {
+    if(jump_complete != false) jump_complete = false;
+    if(roll_rebounce != false) roll_rebounce = false;
+    if(score_multiplier != 0) score_multiplier = 0;
+}

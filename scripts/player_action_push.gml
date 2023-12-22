@@ -1,4 +1,4 @@
-/// player_state_push()
+/// player_action_push()
 //
 
 var wall_direction;
