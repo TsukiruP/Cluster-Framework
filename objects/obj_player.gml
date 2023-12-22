@@ -459,7 +459,7 @@ if(ground == false) {
                     player_set_angle(player_get_angle(x, y, angle));
 
                     // Check ceiling steepness:
-                    if(angle_relative < 135 || angle_relaitve > 225) {
+                    if(angle_relative < 135 || angle_relative > 225) {
                         // Set X speed and ground:
                         x_speed = y_speed * -sign(dsin(angle_relative));
                         ground  = true;
@@ -1040,10 +1040,18 @@ switch(action_state) {
 
     // Balance:
     case ACTION_BALANCE:
-        if(animation_direction == balance_direction) {
-            if(animation_target != "balance_front") animation_target = "balance_front";
+        if(character_data == CHAR_CLASSIC) {
+            if(abs(balance_direction) == 2) {
+                if(animation_target != "balance_front") animation_target = "balance_front";
+            } else {
+                if(animation_target != "balance_back") animation_target = "balance_back";
+            }
         } else {
-            if(animation_target != "balance_back") animation_target = "balance_back";
+            if(animation_direction == balance_direction) {
+                if(animation_target != "balance_front") animation_target = "balance_front";
+            } else {
+                if(animation_target != "balance_back") animation_target = "balance_back";
+            }
         }
         break;
 
