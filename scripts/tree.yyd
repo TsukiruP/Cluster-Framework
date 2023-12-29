@@ -126,3 +126,7 @@
 		|miles_tails_get_animation
 	|angle_rotate_towards
 	|character_input_player
++GMS2
+	|collision_line_list
+	|collision_rectangle_list
+	|collision_point_list

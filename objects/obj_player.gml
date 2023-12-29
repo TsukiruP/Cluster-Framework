@@ -242,6 +242,15 @@ lib_id=1
 action_id=603
 applies_to=self
 */
+circle      = true;
+ellipse     = false;
+main_width  = 13;
+main_height = 32;
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
 /// Finish Initialization
 
 // Go to checkpoint:
@@ -1453,3 +1462,17 @@ if(invincibility_type != 2) {
             break;
     }
 } else draw_sprite_ext(spr_shield_muteki, current_time div 60, floor(draw_x), floor(draw_y), 1, 1, 0, c_white, 0.7);
+
+if(circle == true) {
+    draw_set_color(c_maroon);
+    draw_circle(floor(obj_player.x), floor(obj_player.y), 27/2, false);
+    
+    draw_set_color(c_yellow);
+    //draw_circle(floor(obj_player.x + 27/2) - 2, floor(obj_player.y), 7/2, false);
+    //draw_circle(floor(obj_player.x - 27/2) + 3, floor(obj_player.y), 7/2, false);
+}
+
+if(ellipse == true) {
+    draw_set_color(c_maroon);
+    draw_ellipse(obj_player.x - main_width / 2, obj_player.y - main_height / 2, obj_player.x + main_width / 2, obj_player.y + main_height / 2, false);
+}

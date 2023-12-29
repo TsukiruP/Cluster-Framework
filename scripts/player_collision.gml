@@ -4,6 +4,7 @@
 var solid_handle, platform_handle;
 
 // Solid:
+//solid_handle = collision_ellipse(argument0, argument1, argument0, argument1, par_solid, true, false);
 solid_handle = instance_place(argument0, argument1, par_solid);
 
 if(solid_handle != noone) {

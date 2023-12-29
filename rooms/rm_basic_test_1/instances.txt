@@ -7,7 +7,6 @@ obj_basic_test_collision_solid_01,912,1024,58825F82,0,1,1,4294967295,0,0
 obj_basic_test_collision_solid_01,1104,1024,94F4F321,0,1,1,4294967295,0,0
 obj_basic_test_collision_solid_01,1104,928,532FCCC2,0,1,1,4294967295,0,0
 obj_basic_test_collision_solid_01,1104,832,2BBFBD9E,0,1,1,4294967295,0,0
-obj_basic_test_collision_solid_11,1032,952,233E51BB,0,1,1,4294967295,0,0
 obj_player_spawn,716,960,DFA25E06,0,1,1,4294967295,0,0
 obj_basic_test_collision_solid_01,528,928,52C9BDA1,0,1,1,4294967295,0,0
 obj_basic_test_collision_solid_01,48,880,47DA764F,0,1,1,4294967295,270,0
