@@ -1,4 +1,4 @@
-/// player_collision()
+/// player_collision_terrain()
 
 // Exit if ground collision is disabled:
 if(ground_collision_allow == false) exit;
@@ -15,12 +15,13 @@ while(point_check(wall_width, wall_height)) {
     y += x_direction;
 }
 
-if(on_object == false) {
+if(on_obstacle == false) {
     // Landing:
     if(ground == false && y_speed > 0) {
         if(line_check(-hitbox_width, hitbox_height, true) || line_check(hitbox_width, hitbox_height, true)) {
-            ground = true;
-            landed = true;
+            ground  = true;
+            landed  = true;
+            g_speed = x_speed;
             player_detect_angle();
 
             // Landing speed (From 24 to 90 degrees):
@@ -44,8 +45,8 @@ if(on_object == false) {
             }
 
             // Landing speed (From 270 to 336 degrees):
-            else if (angle >= 270 && angle <= 336) {
-                if (angle <= 315) {
+            else if(angle >= 270 && angle <= 336) {
+                if(angle <= 315) {
                     if(abs(x_speed) <= abs(y_speed)) {
                         g_speed = y_speed;
                     }
@@ -74,12 +75,12 @@ if(on_object == false) {
         else detach_distance = 16;
 
         // Detach:
-        if(!line_check(-hitbox_width, hitbox_height + detach_distance, true) && !line_check(hitbox_width, hitbox_height + detach_distance, true) && detach_allow == true && roll_forced == false) {
+        if(detach_allow == true && roll_forced == false && !line_check(-hitbox_width, hitbox_height + detach_distance, true) && !line_check(hitbox_width, hitbox_height + detach_distance, true)) {
             ground = false;
         }
 
         // Move down slopes:
-        if((line_check(-hitbox_width, hitbox_height + 16, true) || line_check(hitbox_width, hitbox_height + 16, true)) && on_edge == false) {
+        if(on_edge == false && (line_check(-hitbox_width, hitbox_height + 16, true) || line_check(hitbox_width, hitbox_height + 16, true))) {
             while(!line_check(hitbox_width, hitbox_height, true) && !line_check(-hitbox_width, hitbox_height, true)) {
                 x += x_direction;
                 y += y_direction;
@@ -102,7 +103,7 @@ if(on_object == false) {
         if(angle_mode == 0)
         {
             // Start ceiling landing:
-            if((point_check(-hitbox_width, -hitbox_height) || point_check(hitbox_width, -hitbox_height)) && y_speed < -2.5 && ceiling_allow && ground == false) {
+            if(ground == false && ceiling_allow == true && y_speed < -2.5 && (point_check(-hitbox_width, -hitbox_height) || point_check(hitbox_width, -hitbox_height))) {
                 ceiling_landing = 1;
             }
 
@@ -118,11 +119,11 @@ if(on_object == false) {
                 }
 
                 if(temp_angle >= 90 && temp_angle <= 180 - 45 || (temp_angle >= 180 + 45 && temp_angle <= 270)) {
-                    angle    = temp_angle;
+                    angle           = temp_angle;
                     ceiling_landing = 2;
                 }
                 else {
-                    angle    = 0;
+                    angle           = 0;
                     ceiling_landing = 0;
                 }
             }
@@ -134,12 +135,12 @@ if(on_object == false) {
                 else {
                     x_speed = y_speed;
                 }
+                ground             = true;
+                ceiling_landing    = 0;
+                ceiling_lock_alarm = 16;
+                state              = ACTION_DEFAULT;
+                input_lock_alarm   = 2;
 
-                ceiling_landing = 0;
-                control_lock    = 2;
-                ceiling_lock    = 16;
-                state           = ACTION_DEFAULT;
-                ground          = true;
             }
         }
 

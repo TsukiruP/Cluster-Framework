@@ -1,36 +1,68 @@
-/// player_get_angle(x, y, angle)
-// Returns the surface angle at the given position & angle.
+/// player_get_angle(x, y, [floor_mode])
 
-var mask_temp, angle_temp, xPoint, yPoint;
+// Set up arguments:
+var pos_x, pos_y, floor_mode, off_x, off_y, i;
 
-// Store mask as a temporal variables:
-mask_temp = mask_index;
+pos_x = argument[0];
+pos_y = argument[1];
 
-// Switch mask:
-mask_index = mask_dot;
+// Set up floor mode:
+if(argument_count > 2) floor_mode = argument[2];
+else floor_mode = 0;
 
-// Limit the angle:
-angle_temp = roundto_unbiased(argument2, 10);
+// Set up off x and off y:
+switch(floor_mode) {
+    // Floor angle:
+    case 0:
+        off_x[0] = pos_x - pos_x mod 16;
+        off_x[1] = pos_x + (15 - pos_x mod 16);
+        off_y[0] = pos_y;
+        off_y[1] = pos_y;
+        break;
 
-// Set up sensors:
-xPoint[0] = argument0 - dcos(angle_temp) * 4;
-xPoint[1] = argument0 + dcos(angle_temp) * 4;
+    // Right wall angle:
+    case 1:
+        off_x[0] = pos_x;
+        off_x[1] = pos_x;
+        off_y[0] = pos_y + (15 - pos_y mod 16);
+        off_y[1] = pos_y - pos_y mod 16;
+        break;
 
-yPoint[0] = argument1 + dsin(angle_temp) * 4;
-yPoint[1] = argument1 - dsin(angle_temp) * 4;
+    // Ceiling anngle:
+    case 2:
+        off_x[0] = pos_x + (15 - pos_x mod 16);
+        off_x[1] = pos_x - pos_x mod 16;
+        off_y[0] = pos_y;
+        off_y[1] = pos_y;
+        break;
 
-// Push down the sensors to find the angle:
-repeat(25) {
-    for(i = 0; i <= 1; i += 1) {
-        if(!player_collision(floor(xPoint[i]), floor(yPoint[i]), collision_layer)) {
-            xPoint[i] += dsin(angle_temp);
-            yPoint[i] += dcos(angle_temp);
-        }
+    // Left wall angle:
+    case 3:
+        off_x[0] = pos_x;
+        off_x[1] = pos_x;
+        off_y[0] = pos_y - pos_y mod 16;
+        off_y[1] = pos_y + (15 - pos_y mod 16);
+        break;
+}
+
+// Move angle points:
+for(i = 0; i <= 1; i += 1) {
+    // Push angle sensors down:
+    while(!angle_sensor(off_x[i], off_y[i])
+    && off_x[i] > pos_x - 32 && off_x[i] < pos_x + 32
+    && off_y[i] > pos_y - 36 && off_y[i] < pos_y + 36) {
+        off_x[i] += dsin(90 * floor_mode);
+        off_y[i] += dcos(90 * floor_mode);
+    }
+
+    // Push angle sensors up:
+    while(angle_sensor(off_x[i], off_y[i])
+    && off_x[i] > pos_x - 32 && off_x[i] < pos_x + 32
+    && off_y[i] > pos_y - 36 && off_y[i] < pos_y + 36) {
+        off_x[i] -= dsin(90 * floor_mode);
+        off_y[i] -= dcos(90 * floor_mode);
     }
 }
 
-// Restore temporal mask:
-mask_index = mask_temp;
-
 // Return angle:
-return floor(point_direction(xPoint[0], yPoint[0], xPoint[1], yPoint[1]));
+return floor(point_direction(off_x[0], off_y[0], off_x[1], off_y[1]));

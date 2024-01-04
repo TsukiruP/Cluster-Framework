@@ -1,6 +1,6 @@
 /// player_collision_slope(x, y, angle, mask)
 // Returns true if colliding with slopes.
-
+/*
 var mask_temp, collision_test;
 
 // Store mask as a temporal variables:

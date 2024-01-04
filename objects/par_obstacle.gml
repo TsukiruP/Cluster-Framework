@@ -6,8 +6,5 @@ applies_to=self
 */
 /// Obstacle Initialization
 
-event_inherited();
-
-// Terrain variables:
-angle_change     = false;
-launch_direction = 0;
+collision = true;
+type      = SOLID_FULL;

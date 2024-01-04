@@ -26,7 +26,7 @@ if(instance_exists(obj_player_spawn)) {
         // Spawn player 1:
         global.player_instance[0]                = instance_create(x, y, obj_player);
         global.player_instance[0].character_data = global.player_data[0];
-        global.player_instance[0].control_lock   = true;
+        global.player_instance[0].input_lock   = true;
 
         // Create camera:
         with(global.player_instance[0]) {
@@ -38,7 +38,7 @@ if(instance_exists(obj_player_spawn)) {
         if(global.player_data[1] != -1) {
             global.player_instance[1]                = instance_create(x - 30, y, obj_player);
             global.player_instance[1].character_data = global.player_data[1];
-            global.player_instance[1].control_cpu    = true;
+            global.player_instance[1].input_cpu    = true;
         }
 
         // Create partner queues:

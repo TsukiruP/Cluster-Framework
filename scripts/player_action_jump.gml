@@ -1,24 +1,20 @@
 /// player_action_jump()
 // A jump to the sky turns to a rider kick.
-if(input_check(INP_SELECT, CHECK_PRESSED)) player_tag_animations();
+
 // Varying jump:
 if(y_speed < jump_release && action_state == ACTION_JUMP && jump_complete == false && player_input[INP_JUMP, CHECK_HELD] == false) {
     y_speed = jump_release;
 }
 
 // Jump!:
-if((ground == true || (action_state == ACTION_CARRY && player_input[INP_DOWN, CHECK_HELD] == true)) && !player_collision_top(x, y - 6, angle, mask_big) && player_input[INP_JUMP, CHECK_PRESSED] == true) {
+if((ground == true || (action_state == ACTION_CARRY && player_input[INP_DOWN, CHECK_HELD] == true)) && player_input[INP_JUMP, CHECK_PRESSED] == true) {
     // Ignore some ground based actions:
     if(action_state != ACTION_CROUCH && action_state != ACTION_SPIN_DASH && action_state != ACTION_PEEL_OUT && tunnel_lock == false) {
-        // Reset angle to gravity angle if not allowed to rotate:
-        if(terrain_angle_change == false) player_set_angle(gravity_angle);
 
-        y_speed      = -(dsin(angle_relative) * x_speed) - (dcos(angle_relative) * -jump_force);
-        x_speed      =  (dcos(angle_relative) * x_speed) - (dsin(angle_relative) * -jump_force);
+        y_speed      = -(dsin(angle) * x_speed) - (dcos(angle) * -jump_force);
+        x_speed      =  (dcos(angle) * x_speed) - (dsin(angle) * -jump_force);
         ground       =  false;
         action_state =  ACTION_JUMP;
-
-        player_set_angle(gravity_angle);
 
         // Create water splash:
         if(instance_exists(obj_water_surface)) {
@@ -40,6 +36,9 @@ if(action_state == ACTION_JUMP) {
         animation_next_frame = player_get_animation("spin_flight", 5);
         animation_loop_count = 0;
     }
+
+    // Reset upon landing:
+    if(ground == true) action_state = ACTION_DEFAULT;
 }
 
 

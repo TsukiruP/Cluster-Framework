@@ -114,8 +114,8 @@ if(player_exists(0)) {
 
                 // Grounded vertical movement:
                 else {
-                    if(focus_handle.y < camera_y) camera_y -= min(camera_y - focus_handle.y, camera_speed_cap);
-                    else if(focus_handle.y > camera_y) camera_y += min(focus_handle.y - camera_y, camera_speed_cap);
+                    if(focus_handle.y < camera_y + focus_handle.roll_offset) camera_y -= min(camera_y - focus_handle.roll_offset - focus_handle.y, camera_speed_cap);
+                    else if(focus_handle.y > camera_y + focus_handle.roll_offset) camera_y += min(focus_handle.y - camera_y - focus_handle.roll_offset, camera_speed_cap);
                 }
             }
         }

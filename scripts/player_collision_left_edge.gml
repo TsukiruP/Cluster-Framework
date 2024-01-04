@@ -1,6 +1,6 @@
 /// player_collision_left_edge(x, y, angle)
 // Returns true if colliding with terrain.
-
+/*
 var mask_temp, sprite_temp, image_temp, collision_test;
 
 // Store mask and sprite as a temporal variables:

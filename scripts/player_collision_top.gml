@@ -1,6 +1,6 @@
 /// player_collision_top(x, y, angle, mask);
 // Returns true if colliding with terrain from the top.
-
+/*
 var mask_temp, collision_test;
 
 // Store mask as a temporal variables:

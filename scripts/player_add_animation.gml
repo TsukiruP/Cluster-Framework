@@ -44,7 +44,7 @@ else animation_next_frame_temp = 0;
 if(argument_count >= 11) animation_flag_frame_temp = argument[10];
 else animation_flag_frame_temp = 0;
 
-// Set next animation:
+// Set animation data:
 ds_grid_set(global.animation_grid,  1, animation_row, argument[1]);
 ds_grid_set(global.animation_grid,  2, animation_row, argument[2]);
 ds_grid_set(global.animation_grid,  3, animation_row, argument[3]);

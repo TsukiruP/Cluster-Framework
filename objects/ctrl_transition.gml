@@ -259,7 +259,7 @@ if(transition_type == TRANS_CARD) {
 
                         if(player_exists(1)) global.player_instance[1].animation_target = "ready";
                     }
-                } else if(room_kickoff != KICKOFF_DEFAULT && room_kickoff != KICKOFF_RUN) global.player_instance[0].control_lock = false;
+                } else if(room_kickoff != KICKOFF_DEFAULT && room_kickoff != KICKOFF_RUN) global.player_instance[0].input_lock = false;
             }
         } else {
             background_speed    = 0;

@@ -1,9 +1,9 @@
 /// player_get_input()
 // Returns the inputs based on control data.
 
-if(control_lock == false) {
+if(input_lock == false) {
     // Player 1:
-    if(control_cpu == false) {
+    if(input_cpu == false) {
         // Register inputs:
         for(i = INP_LEFT; i <= INP_ALT; i += 1) {
             for(j = CHECK_HELD; j <= CHECK_RELEASED; j += 1) {
@@ -13,11 +13,11 @@ if(control_lock == false) {
     }
 
     // Player 2:
-    if(control_cpu == true) {
+    else if(input_cpu == true) {
         // Set partner alarm:
-        if(input_check(INP_ANY, CHECK_HELD, DEV_JOYSTICK1)) control_alarm = 600;
+        if(input_check(INP_ANY, CHECK_HELD, DEV_JOYSTICK1)) input_cpu_alarm = 600;
 
-        if(control_alarm == 0) {
+        if(input_cpu_alarm == 0) {
             if(player_exists(0)) {
                 var player_handle;
 
@@ -57,7 +57,7 @@ if(control_lock == false) {
             }
         } else {
             // Decrease partner alarm:
-            if(control_alarm > 0) control_alarm -= 1;
+            if(input_cpu_alarm > 0) input_cpu_alarm -= 1;
 
             // Register inputs:
             for(i = INP_LEFT; i <= INP_ALT; i += 1) {
@@ -68,7 +68,7 @@ if(control_lock == false) {
         }
     }
 } else {
-    // Register inputs:
+    // Reset inputs:
     for(i = INP_LEFT; i <= INP_ALT; i += 1) {
         for(j = CHECK_HELD; j <= CHECK_RELEASED; j += 1) {
             player_input[i, j] = false;

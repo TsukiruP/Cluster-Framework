@@ -1,4 +1,4 @@
-player_collision
+player_collision_OLD
 player_collision_main
 player_collision_slope
 draw_backdrop_tiled_area
@@ -16,10 +16,10 @@ player_collision_object_right
 player_collision_right_edge
 player_collision_edge_line
 player_get_input
-character_input_player
+player_movement
 key_to_string
 pad_to_chr
-player_get_angle
+player_get_angle_OLD
 player_set_angle
 wrap_angle
 joystick_check
@@ -40,7 +40,7 @@ player_action_jump
 player_animation_core
 player_get_animation
 player_add_animation
-angle_rotate_towards
+player_set_animations
 miles_tails_get_animation
 miles_tails_set_animation
 room_set_data
@@ -108,3 +108,16 @@ miles_fly_animations
 collision_rectangle_list
 collision_line_list
 collision_point_list
+point_check
+angle_sensor
+line_check
+obstacle_check
+player_collision_terrain
+player_get_angle
+player_detect_angle
+player_mode
+player_collision_semisolids
+player_collision_object
+player_collision_obstacle
+player_wall_stop
+player_hitbox

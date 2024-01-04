@@ -36,30 +36,22 @@
 +Gameplay
 	+Player
 		+Collision
-			|player_collision
-			|player_collision_slope
-			|player_collision_platform_fix
-			|player_collision_edge_line
-			+Main
-				|player_collision_main
-				|player_collision_object_main
-			+Left
-				|player_collision_left
-				|player_collision_left_edge
-				|player_collision_object_left
-			+Right
-				|player_collision_right
-				|player_collision_right_edge
-				|player_collision_object_right
-			+Top
-				|player_collision_top
-				|player_collision_object_top
-			+Bottom
-				|player_collision_bottom
-				|player_collision_object_bottom
+			+Utilities
+				|point_check
+				|angle_sensor
+				|line_check
+				|obstacle_check
+			|player_movement
+			|player_collision_semisolids
+			|player_collision_terrain
+			|player_collision_obstacle
+			|player_collision_object
+			|player_mode
+			|player_hitbox
+			|player_wall_stop
 		+Angle
-			|player_set_angle
 			|player_get_angle
+			|player_detect_angle
 		+Actions
 			|player_action_jump
 			|player_action_look
@@ -91,6 +83,7 @@
 				|miles_fly_animations
 			|player_get_animation
 			|player_reverse_animation
+			|player_set_animations
 		+Handle
 			|player_handle_list
 			|player_handle_ring
@@ -107,6 +100,10 @@
 				|start_trail
 				|update_trail
 				|draw_trail
++GMS2
+	|collision_line_list
+	|collision_rectangle_list
+	|collision_point_list
 +Trash
 	+Input
 		|user_input_up
@@ -124,9 +121,27 @@
 	+Miles' Tails
 		|miles_tails_set_animation
 		|miles_tails_get_animation
-	|angle_rotate_towards
-	|character_input_player
-+GMS2
-	|collision_line_list
-	|collision_rectangle_list
-	|collision_point_list
+	+Sonic Dash
+		|player_collision_OLD
+		|player_collision_slope
+		|player_collision_platform_fix
+		|player_collision_edge_line
+		+Main
+			|player_collision_main
+			|player_collision_object_main
+		+Left
+			|player_collision_left
+			|player_collision_left_edge
+			|player_collision_object_left
+		+Right
+			|player_collision_right
+			|player_collision_right_edge
+			|player_collision_object_right
+		+Top
+			|player_collision_top
+			|player_collision_object_top
+		+Bottom
+			|player_collision_bottom
+			|player_collision_object_bottom
+		|player_get_angle_OLD
+		|player_set_angle

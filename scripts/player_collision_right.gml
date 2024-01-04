@@ -1,6 +1,6 @@
 /// player_collision_right(x, y, angle, mask)
 // Returns true if colliding with terrain from the right.
-
+/*
 var mask_temp, collision_test;
 
 // Store mask as a temporal variables:

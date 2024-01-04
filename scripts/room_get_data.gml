@@ -6,7 +6,7 @@ else room_handle = room;
 switch(room_handle) {
     // Basic Test Act 1:
     case rm_basic_test_1:
-        room_set_data(TRANS_CARD, "bgm_basic_test_1", obj_basic_test_parallax, "Basic Test", 1, 1248, 0);
+        room_set_data(TRANS_CARD, "bgm_basic_test_1", obj_basic_test_parallax, "Basic Test", 1, 768);
         break;
 
     default:

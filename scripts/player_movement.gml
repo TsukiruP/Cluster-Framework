@@ -1,0 +1,43 @@
+/// player_movement()
+
+// Cap speed:
+x_speed = clamp(x_speed, -max_speed, max_speed);
+y_speed = clamp(y_speed, -max_speed, max_speed);
+g_speed = clamp(g_speed, -max_speed, max_speed);
+
+// Ground angle:
+if(ground == true) {
+    x_speed = g_speed *  dcos(angle);
+    y_speed = g_speed * -dsin(angle);
+}
+
+// Add gravity force:
+if(ground == false && y_allow == true) {
+    y_speed += gravity_force / steps;
+}
+
+// Update position:
+x += x_speed / steps;
+y += y_speed / steps;
+
+if(abs(g_speed) < 2.5) {
+    // Lock controls:
+    if(angle >= 45 && angle <= 360 - 45 && input_lock_alarm == 0) input_lock_alarm = 30;
+
+    // Fall off:
+    if(angle >= 90 && angle <= 270) ground = false;
+}
+
+// Reset wall height:
+wall_height = 0;
+
+// Wall offset height on flat ground:
+if(ground == true && angle == 0) wall_height = 4;
+
+// Reset ceiling flag:
+touching_ceiling = false;
+
+// Set flag if inside ceiling:
+if(line_check(-hitbox_width, -hitbox_height - 8) || line_check(hitbox_width, -hitbox_height - 8)) {
+    touching_ceiling = true;
+}

@@ -2,7 +2,8 @@
 // Keep rollin', rollin', rollin', rollin'
 
 // Trigger roll:
-if(ground == true && action_state == ACTION_DEFAULT && abs(x_speed) >= 1.03125 && tag_animations == false && player_input[INP_LEFT, CHECK_HELD] == false && player_input[INP_RIGHT, CHECK_HELD] == false && player_input[INP_DOWN, CHECK_HELD] == true) {
+if(ground == true && action_state == ACTION_DEFAULT && abs(x_speed) >= 1.03125 && tag_animations == false &&
+    player_input[INP_LEFT, CHECK_HELD] == false && player_input[INP_RIGHT, CHECK_HELD] == false && player_input[INP_DOWN, CHECK_HELD] == true) {
     action_state = ACTION_ROLL;
 
     // Play sound:
