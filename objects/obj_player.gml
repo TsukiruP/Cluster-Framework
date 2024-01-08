@@ -464,7 +464,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Scripts
+/// Utility Scripts
 
 // Actions:
 player_action_list();
