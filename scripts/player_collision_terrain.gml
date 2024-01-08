@@ -25,8 +25,8 @@ if(on_obstacle == false) {
             player_detect_angle();
 
             // Landing speed (From 24 to 90 degrees):
-            if(angle >= 24 && angle <= 90) {
-                if(angle >= 45) {
+            if(ground_angle >= 24 && ground_angle <= 90) {
+                if(ground_angle >= 45) {
                     if(abs(x_speed) <= abs(y_speed)) {
                         g_speed = y_speed * -1;
                     }
@@ -45,8 +45,8 @@ if(on_obstacle == false) {
             }
 
             // Landing speed (From 270 to 336 degrees):
-            else if(angle >= 270 && angle <= 336) {
-                if(angle <= 315) {
+            else if(ground_angle >= 270 && ground_angle <= 336) {
+                if(ground_angle <= 315) {
                     if(abs(x_speed) <= abs(y_speed)) {
                         g_speed = y_speed;
                     }
@@ -94,7 +94,7 @@ if(on_obstacle == false) {
         }
     }
 
-    // Angle detection:
+    // ground_angle detection:
     player_detect_angle();
 
     // Ceiling collision:
@@ -110,7 +110,7 @@ if(on_obstacle == false) {
             if(ceiling_landing == 1) {
                 var temp_angle;
 
-                // Set temp angle:
+                // Set temp ground_angle:
                 if(point_check(-hitbox_width, -hitbox_height)) {
                     temp_angle = player_get_angle(floor(x) - hitbox_width, floor(y) - hitbox_height, 2);
                 }
@@ -119,17 +119,17 @@ if(on_obstacle == false) {
                 }
 
                 if(temp_angle >= 90 && temp_angle <= 180 - 45 || (temp_angle >= 180 + 45 && temp_angle <= 270)) {
-                    angle           = temp_angle;
+                    ground_angle           = temp_angle;
                     ceiling_landing = 2;
                 }
                 else {
-                    angle           = 0;
+                    ground_angle           = 0;
                     ceiling_landing = 0;
                 }
             }
 
             if (ceiling_landing == 2) {
-                if(angle < 180) {
+                if(ground_angle < 180) {
                     x_speed = -y_speed;
                 }
                 else {

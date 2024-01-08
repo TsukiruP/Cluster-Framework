@@ -13,7 +13,7 @@ switch(character_data) {
         hitbox_height = 15;
 
         // Curled hitbox:
-        if(animation_current == "spin_flight" || animation_current == "roll") {
+        if(animation_current == "spin_flight" || animation_current == "roll" || animation_current == "spin_dash" || animation_current == "super_spin") {
             hitbox_width  = 9;
             hitbox_height = 9;
             roll_offset   = 6;

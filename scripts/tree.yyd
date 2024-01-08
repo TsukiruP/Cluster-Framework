@@ -1,3 +1,7 @@
++GMS2
+	|collision_line_list
+	|collision_rectangle_list
+	|collision_point_list
 +System
 	|credits
 	+Input
@@ -53,6 +57,7 @@
 			|player_get_angle
 			|player_detect_angle
 		+Actions
+			|player_action_list
 			|player_action_jump
 			|player_action_look
 			|player_action_crouch
@@ -62,6 +67,7 @@
 			|player_action_balance
 			|player_action_push
 			|player_action_hurt
+			|player_action_tag
 			+Sonic
 			+Miles
 				|miles_action_fly
@@ -83,7 +89,9 @@
 				|miles_fly_animations
 			|player_get_animation
 			|player_reverse_animation
-			|player_set_animations
+			|player_animation_target
+			|player_animation_direction
+			|player_animation_angle
 		+Handle
 			|player_handle_list
 			|player_handle_ring
@@ -100,10 +108,6 @@
 				|start_trail
 				|update_trail
 				|draw_trail
-+GMS2
-	|collision_line_list
-	|collision_rectangle_list
-	|collision_point_list
 +Trash
 	+Input
 		|user_input_up
@@ -119,8 +123,6 @@
 		|user_input_cancel
 		|user_input_help
 	+Miles' Tails
-		|miles_tails_set_animation
-		|miles_tails_get_animation
 	+Sonic Dash
 		|player_collision_OLD
 		|player_collision_slope

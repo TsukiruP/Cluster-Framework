@@ -8,7 +8,7 @@ skid_classic = (global.gameplay_skid == false || character_data == CHAR_CLASSIC)
 
 // Trigger skid:
 if(ground = true && action_state == ACTION_DEFAULT && input_lock_alarm == 0) {
-    if(skid_classic == false || (skid_classic == true && (angle_relative < 45 || angle_relative > 315))) {
+    if(skid_classic == false || (skid_classic == true && (ground_angle < 45 || ground_angle > 315))) {
         // Trigger skid:
         if(abs(x_speed) >= 4.5 && sign(x_speed) == -input_direction) {
             action_state = ACTION_SKID;
@@ -43,12 +43,12 @@ if(action_state == ACTION_SKID) {
         if(skid_dust_alarm > 0) skid_dust_alarm -= 1;
         else {
             skid_dust_alarm = 3;
-            dummy_effect_create(spr_skid_dust, 0.3, x, y + 13 * dsin(angle + 90), depth - 1);
+            dummy_effect_create(spr_skid_dust, 0.3, x, y + 13 * dsin(ground_angle + 90), depth - 1);
         }
     }
 
     // Cancel skid:
-    if(ground == false || (angle_relative >= 25 && angle_relative <= 315) || (sign(x_speed) == input_direction) ||
+    if(ground == false || (ground_angle >= 25 && ground_angle <= 315) || (sign(x_speed) == input_direction) ||
     (((skid_classic == false && x_speed != 0 && sign(x_speed) != -input_direction) || (skid_classic == true && sign(x_speed) == input_direction)) && animation_current != "skid_turn") ||
     (animation_current == "skid_turn" && animation_finished == true) || input_lock_alarm > 0) action_state = ACTION_DEFAULT;
 }

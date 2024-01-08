@@ -11,8 +11,8 @@ if((ground == true || (action_state == ACTION_CARRY && player_input[INP_DOWN, CH
     // Ignore some ground based actions:
     if(action_state != ACTION_CROUCH && action_state != ACTION_SPIN_DASH && action_state != ACTION_PEEL_OUT && tunnel_lock == false) {
 
-        y_speed      = -(dsin(angle) * x_speed) - (dcos(angle) * -jump_force);
-        x_speed      =  (dcos(angle) * x_speed) - (dsin(angle) * -jump_force);
+        y_speed      = -(dsin(ground_angle) * x_speed) - (dcos(ground_angle) * -jump_force);
+        x_speed      =  (dcos(ground_angle) * x_speed) - (dsin(ground_angle) * -jump_force);
         ground       =  false;
         action_state =  ACTION_JUMP;
 

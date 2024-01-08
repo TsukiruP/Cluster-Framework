@@ -40,9 +40,9 @@ player_action_jump
 player_animation_core
 player_get_animation
 player_add_animation
-player_set_animations
-miles_tails_get_animation
-miles_tails_set_animation
+player_animation_target
+player_animation_direction
+player_action_list
 room_set_data
 room_get_data
 room_transition
@@ -121,3 +121,5 @@ player_collision_object
 player_collision_obstacle
 player_wall_stop
 player_hitbox
+player_action_tag
+player_animation_angle

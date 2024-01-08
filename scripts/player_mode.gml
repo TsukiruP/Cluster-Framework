@@ -1,10 +1,10 @@
 /// player_mode()
 
-// Changle angle mode:
-if ((angle >= 0 && angle <= 45) || (angle >= 315 && angle <= 360)) mode = 0;
-if (angle >= 46 && angle <= 134) mode = 1;
-if (angle >= 135 && angle <= 225) mode = 2;
-if (angle >= 225 && angle <= 314) mode = 3;
+// Changle ground_angle mode:
+if ((ground_angle >= 0 && ground_angle <= 45) || (ground_angle >= 315 && ground_angle <= 360)) mode = 0;
+if (ground_angle >= 46 && ground_angle <= 134) mode = 1;
+if (ground_angle >= 135 && ground_angle <= 225) mode = 2;
+if (ground_angle >= 225 && ground_angle <= 314) mode = 3;
 
 // Change direction:
 switch (mode)

@@ -41,7 +41,7 @@ if(ground == true) {
 }
 
 // Floor ramp fixes:
-if(mode == 0 && landed == false && angle == 0) {
+if(mode == 0 && landed == false && ground_angle == 0) {
     // Left ramp edge:
     if(!line_check(-hitbox_width, hitbox_height + 1, true) && line_check(hitbox_width, hitbox_height + 1, true)) {
         var temp_angle, angle_diff;
@@ -50,7 +50,7 @@ if(mode == 0 && landed == false && angle == 0) {
         temp_angle = player_get_angle(x - wall_width, y + hitbox_height, 0);
 
         // Difference between ground angle and temp angle:
-        angle_diff = abs(angle - temp_angle);
+        angle_diff = abs(ground_angle - temp_angle);
 
         // Check steepness:
         if(angle_diff > 45 && angle_diff <= 270) {
@@ -67,7 +67,7 @@ if(mode == 0 && landed == false && angle == 0) {
         temp_angle = player_get_angle(x + wall_width, y + hitbox_height, 0);
 
         // Difference between ground angle and temp angle:
-        angle_diff = abs(angle - temp_angle);
+        angle_diff = abs(ground_angle - temp_angle);
 
         // Check steepness:
         if(angle_diff >= 270 && angle_diff < 315) {
@@ -77,4 +77,4 @@ if(mode == 0 && landed == false && angle == 0) {
 }
 
 // Set angle:
-angle = new_angle;
+ground_angle = new_angle;
