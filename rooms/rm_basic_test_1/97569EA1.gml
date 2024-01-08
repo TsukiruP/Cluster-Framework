@@ -1,0 +1,1 @@
+type = SOLID_SEMI;

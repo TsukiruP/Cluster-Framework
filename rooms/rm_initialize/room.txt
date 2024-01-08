@@ -206,8 +206,8 @@ view_fol_vspeed7=-1
 view_fol_target7=
 
 remember=1
-editor_width=1673
-editor_height=1006
+editor_width=560
+editor_height=693
 show_grid=1
 show_objects=1
 show_tiles=1
