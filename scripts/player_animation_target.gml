@@ -1,5 +1,5 @@
 /// player_animation_target()
-// Updates the animation target and then calls the animation core script.
+// Sets the animation target and then calls the animation core script.
 
 // Action animations:
 switch(action_state) {

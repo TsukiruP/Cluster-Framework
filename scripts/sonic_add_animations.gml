@@ -31,7 +31,7 @@ player_add_animation(CHAR_SONIC,    "look",           spr_sonic_look,           
 player_add_animation(CHAR_SONIC,    "crouch",         spr_sonic_crouch,         0,  3,  0,  0, 0.20, "", 0, 1);
 
 // Spin dash:
-player_add_animation(CHAR_SONIC,    "spin_dash",      spr_sonic_spin_dash,      0,  3,  0, -1, 0.30);
+player_add_animation(CHAR_SONIC,    "spin_dash",      spr_sonic_spin_dash,      0,  3,  0, -1, 0);
 player_add_animation(CHAR_SONIC,    "super_spin",     spr_sonic_super_spin,     0,  3,  0,  0, 0.30, "spin_dash");
 
 // Roll:

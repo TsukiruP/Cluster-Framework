@@ -24,7 +24,7 @@ player_set_angle
 wrap_angle
 joystick_check
 player_get_physics
-user_input_up
+player_animation_depth
 user_input_down
 user_input_jump
 user_input_special
@@ -123,3 +123,4 @@ player_wall_stop
 player_hitbox
 player_action_tag
 player_animation_angle
+player_animation_speed

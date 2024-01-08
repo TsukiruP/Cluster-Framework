@@ -1,5 +1,5 @@
 /// player_animation_direction()
-// Updates the animation direction based on the current action and/or input:
+// Sets the animation direction based on the current action and/or input:
 
 // General:
 if((ground == true && action_state == ACTION_DEFAULT && animation_current != "turn") || action_state == ACTION_ROLL || action_state == ACTION_BREATHE) {

@@ -92,6 +92,8 @@
 			|player_animation_target
 			|player_animation_direction
 			|player_animation_angle
+			|player_animation_speed
+			|player_animation_depth
 		+Handle
 			|player_handle_list
 			|player_handle_ring
@@ -110,7 +112,6 @@
 				|draw_trail
 +Trash
 	+Input
-		|user_input_up
 		|user_input_down
 		|user_input_jump
 		|user_input_special
