@@ -43,7 +43,7 @@ global.setting_input_key[INP_CANCEL]  = ini_read_real("input", "key_cancel", DEF
 global.setting_input_key[INP_HELP]    = ini_read_real("input", "key_help", DEFAULT_KEY_HELP);
 
 // Read/create joystick settings:
-for(i = 0; i < 2; i += 1) {
+for (i = 0; i < 2; i += 1) {
     global.setting_input_joy[INP_LEFT, i]    = JOY_LEFT;
     global.setting_input_joy[INP_RIGHT, i]   = JOY_RIGHT;
     global.setting_input_joy[INP_UP, i]      = JOY_UP;
@@ -104,14 +104,14 @@ global.display_vsync      = global.setting_display_vsync;
 global.audio_bgm = global.setting_audio_bgm;
 global.audio_sfx = global.setting_audio_sfx;
 
-// Apply key input settings:
-for(i = INP_LEFT; i <= INP_HELP; i += 1) {
+// Apply keyboard settings:
+for (i = INP_LEFT; i <= INP_HELP; i += 1) {
     global.input_key[i] = global.setting_input_key[i];
 }
 
 // Apply joystick settings:
-for(i = 0; i < 2; i += 1) {
-    for(j = INP_LEFT; j <= INP_HELP; j += 1) {
+for (i = 0; i < 2; i += 1) {
+    for (j = INP_LEFT; j <= INP_HELP; j += 1) {
         global.input_joy[j, i] = global.setting_input_joy[j, i];
     }
 

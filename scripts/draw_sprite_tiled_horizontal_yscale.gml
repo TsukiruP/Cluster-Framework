@@ -7,6 +7,6 @@ sprite_step  = sprite_get_width(argument0);
 sprite_start = view_xview[view_current] + ((argument2 - view_xview[view_current]) mod sprite_step) - sprite_step;
 sprite_end   = view_xview[view_current] + view_wview[view_current] + sprite_step;
 
-for(sprite_current = sprite_start; sprite_current <= sprite_end; sprite_current += sprite_step) {
+for (sprite_current = sprite_start; sprite_current <= sprite_end; sprite_current += sprite_step) {
     draw_sprite_ext(argument0, argument1, sprite_current, argument3, 1, argument4, 0, c_white, 1);
 }

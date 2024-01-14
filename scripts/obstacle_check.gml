@@ -22,7 +22,7 @@ if (collision_rectangle(floor(x) - x1, floor(y) - y1, floor(x) + x2, floor(y) + 
     obstacle_collisions = ds_list_create();
     obstacle_count      = collision_rectangle_list(floor(x) - x1, floor(y) - y1, floor(x) + x2, floor(y) + y2, par_obstacle, true, true, obstacle_collisions, false);
     
-    for(i = 0; i < obstacle_count; i += 1) {
+    for (i = 0; i < obstacle_count; i += 1) {
         var obstacle_instance;
         
         obstacle_instance = ds_list_find_value(obstacle_collisions, i);

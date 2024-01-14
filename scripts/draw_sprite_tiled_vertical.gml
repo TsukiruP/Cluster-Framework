@@ -7,6 +7,6 @@ sprite_step  = sprite_get_height(argument0);
 sprite_start = view_yview[view_current] + ((argument3 - view_yview[view_current]) mod sprite_step) - sprite_step;
 sprite_end   = view_yview[view_current] + view_hview[view_current] + sprite_step;
 
-for(sprite_current = sprite_start; sprite_current <= sprite_end; sprite_current += sprite_step) {
+for (sprite_current = sprite_start; sprite_current <= sprite_end; sprite_current += sprite_step) {
     draw_sprite(argument0, argument1, argument2, sprite_current);
 }
