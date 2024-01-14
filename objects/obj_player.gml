@@ -401,7 +401,9 @@ if (ground == true && action_state != ACTION_SLIDE) {
 }
 
 // Acceleration & deceleration:
-if ((action_state == ACTION_DEFAULT && animation_current != "turn" && animation_current != "look" && animation_current != "crouch") || action_state == ACTION_JUMP) {
+if ((action_state == ACTION_DEFAULT && animation_current != "turn" && animation_current != "look" && animation_current != "crouch") || action_state == ACTION_JUMP ||
+    (action_state == ACTION_SKID && animation_current != "skid_turn") || action_state == ACTION_BALANCE || action_state == ACTION_PUSH || action_state == ACTION_BREATHE ||
+    action_state == ACTION_FLY || (action_state == ACTION_TORNADO && animation_current == "tornado") || action_state == ACTION_GLIDE_DROP) {
     // Input direction:
     input_direction = player_input[INP_RIGHT, CHECK_HELD] - player_input[INP_LEFT, CHECK_HELD];
 
@@ -552,7 +554,7 @@ if (action_state != ACTION_RESPAWN && action_state != ACTION_DEATH && !instance_
             // Decrease air alarm:
             if (air_alarm != 0) air_alarm -= 1;
             else {
-                switch(air_remaining) {
+                switch (air_remaining) {
                     // Drown alert:
                     case 25:
                     case 20:
@@ -1054,32 +1056,6 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Camera Boundaries (OLD)
-
-if(instance_exists(ctrl_camera)) {
-    if(x <= (ctrl_camera.limit_left + sprite_get_width(mask_main) / 2) && x_speed < 0) {
-        if(action_state != ACTION_GLIDE) x_speed = 0;
-        else {
-            if(x_speed < -glide_acceleration) x_speed = -glide_acceleration;
-        }
-
-        x = ctrl_camera.limit_left + sprite_get_width(mask_main) / 2;
-        if(ground == true) animation_target = "stand";
-    } else if(x >= (ctrl_camera.limit_right - sprite_get_width(mask_main) / 2) && x_speed > 0) {
-        if(action_state != ACTION_GLIDE) x_speed = 0;
-        else {
-            if(x_speed > glide_acceleration) x_speed = glide_acceleration;
-        }
-
-        x = ctrl_camera.limit_right - sprite_get_width(mask_main) / 2;
-        if(ground == true) animation_target = "stand";
-    }
-}
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
 /// Afterimage
 
 if (afterimage_draw == true) {
@@ -1136,6 +1112,32 @@ if (global.misc_trails == true) {
 update_trail(floor(x) + (dcos(angle + 90) * (-2 - (1 * angle == 90)) * (1 * action_state == ACTION_ROLL)) + dcos(ground_angle) * x_speed,
     floor(y) - (dsin(ground_angle + 90) * (-3 - (1 * angle != 0)) * (1 * action_state == ACTION_ROLL)) + y_speed - dsin(ground_angle) * x_speed,
     action_state == ACTION_ROLL);
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Camera Boundaries (OLD)
+
+if(instance_exists(ctrl_camera)) {
+    if(x <= (ctrl_camera.limit_left + sprite_get_width(mask_main) / 2) && x_speed < 0) {
+        if(action_state != ACTION_GLIDE) x_speed = 0;
+        else {
+            if(x_speed < -glide_acceleration) x_speed = -glide_acceleration;
+        }
+
+        x = ctrl_camera.limit_left + sprite_get_width(mask_main) / 2;
+        if(ground == true) animation_target = "stand";
+    } else if(x >= (ctrl_camera.limit_right - sprite_get_width(mask_main) / 2) && x_speed > 0) {
+        if(action_state != ACTION_GLIDE) x_speed = 0;
+        else {
+            if(x_speed > glide_acceleration) x_speed = glide_acceleration;
+        }
+
+        x = ctrl_camera.limit_right - sprite_get_width(mask_main) / 2;
+        if(ground == true) animation_target = "stand";
+    }
+}
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603

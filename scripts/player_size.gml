@@ -4,33 +4,28 @@
 main_height_temp = main_height;
 
 // Reset roll offset:
-if (animation_current != "spin_flight" && animation_current != "roll") roll_offset = 0;
+if (animation_current != "spin_flight" && animation_current != "roll" && animation_current != "spin_dash" && animation_current != "super_spin") roll_offset = 0;
 
 switch (character_data) {
     // Sonic:
     default:
-        switch (animation_current) {
-            // Curled size:
-            case "spin_flight":
-            case "roll":
-            case "spin_dash":
-            case "super_spin":
-                main_width  = 9;
-                main_height = 9;
+        // Default size:
+        main_width  = 6;
+        main_height = 15;
 
-                roll_offset = 6;
-                break;
+        // Curled size:
+        if ((animation_current == "spin_flight" && animation_current_frame >= animation_loop_frame) || animation_current == "spin_fall" ||
+            animation_current == "roll" || animation_current == "spin_dash" || animation_current == "super_spin") {
+            main_width  = 9;
+            main_height = 9;
 
-            // Default size:
-            default:
-                main_width  = 6;
-                main_height = 15;
+            roll_offset = 6;
         }
         break;
 }
 
-// Floor position fix:
-if ((ground == true && ceiling_lock_alarm == 0) || (mode == 0 && action_state == ACTION_JUMP)) {
+// Position fix:
+if ((ground == true && ceiling_lock_alarm == 0) || (mode == 0 && action_state == ACTION_JUMP && animation_current != "spin_flight")) {
     x += (main_height_temp - main_height) * x_direction;
     y += (main_height_temp - main_height) * y_direction;
 }
