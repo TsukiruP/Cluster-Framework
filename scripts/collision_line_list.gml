@@ -1,6 +1,6 @@
 /// collision_line_list(x1, y1, x2, y2, obj, prec, notme, list, ordered)
 // Populates the given DS list with the IDs of instances of the given object colliding within the given line.
-// It optionally orders them by distance and returns the number of instances found to be in collision.
+// It optionally orders them by distance from the center of the line and returns the number of instances found to be in collision.
 var x1, y1, x2, y2, obj, prec, notme, list, ordered, size;
 x1      = argument0;
 y1      = argument1;
@@ -13,24 +13,29 @@ list    = argument7;
 ordered = argument8;
 size    = ds_list_size(list);
 
+// Check for ordering:
 if (ordered)
 {
-    var priority, cx, cy, i;
+    // Setup priority and line center:
+    var priority, cx, cy;
     priority = ds_priority_create();
     cx       = mean(x1, x2);
     cy       = mean(y1, y2);
 
-    for (i = 0; i < instance_number(obj); i += 1)
+    // Evaluate:
+    with (obj)
     {
-        var ins, coltest;
-        ins     = instance_find(obj, i);
-        coltest = collision_line(x1, y1, x2, y2, ins, prec, notme);
-        if (coltest != noone)
+        if (!notme || id != other.id)
         {
-            ds_priority_add(priority, coltest, point_distance(cx, cy, coltest.x, coltest.y));
+            // Continue if there's no collision:
+            if (!collision_line(x1, y1, x2, y2, id, prec, false)) continue;
+            
+            // Add to priority:
+            ds_priority_add(priority, id, point_distance(cx, cy, id.x, id.y));
         }
     }
-
+    
+    // Add to list from priority:
     while (!ds_priority_empty(priority))
     {
         ds_list_add(list, ds_priority_delete_min(priority));
@@ -39,15 +44,19 @@ if (ordered)
 }
 else
 {
-    for (i = 0; i < instance_number(obj); i += 1)
+    // Evaluate:
+    with (obj)
     {
-        var ins, coltest;
-        ins     = instance_find(obj, i);
-        coltest = collision_line(x1, y1, x2, y2, ins, prec, notme);
-        if (coltest != noone)
+        if (!notme || id != other.id)
         {
-            ds_list_add(list, coltest);
+            // Continue if there's no collision:
+            if (!collision_line(x1, y1, x2, y2, id, prec, false)) continue;
+
+            // Add to list:
+            ds_list_add(list, id);
         }
     }
 }
+
+// Return the number of collisions:
 return ds_list_size(list) - size;
