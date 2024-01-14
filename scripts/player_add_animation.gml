@@ -5,11 +5,11 @@
 var animation_row, animation_next_temp, animation_next_frame_temp, animation_flag_frame_temp;
 
 // Create animation grid:
-if(global.animation_grid == -1) {
+if (global.animation_grid == -1) {
     global.animation_grid = ds_grid_create(11, 1);
     animation_row         = 0;
 } else {
-    if(object_index != obj_player) {
+    if (object_index != obj_player) {
         ds_grid_resize(global.animation_grid, 11, ds_grid_height(global.animation_grid) + 1);
         animation_row = ds_grid_height(global.animation_grid) - 1;
     } else {
@@ -18,12 +18,12 @@ if(global.animation_grid == -1) {
 }
 
 // Player shouldn't be initializing animation data:
-if(object_index != obj_player) {
+if (object_index != obj_player) {
     // Set the previous character's final animation:
-    if(global.animation_character != -1) global.animation_coordinates[global.animation_character, 1] = animation_row;
+    if (global.animation_character != -1) global.animation_coordinates[global.animation_character, 1] = animation_row;
 
     // Set animation character:
-    if(argument[0] != global.animation_character) {
+    if (argument[0] != global.animation_character) {
         // Change the animation character:
         global.animation_character = argument[0];
 
@@ -33,15 +33,15 @@ if(object_index != obj_player) {
 }
 
 // Set next animation:
-if(argument_count >= 9) animation_next_temp = argument[8];
+if (argument_count >= 9) animation_next_temp = argument[8];
 else animation_next_temp = "";
 
 // Set next animation frame:
-if(argument_count >= 10) animation_next_frame_temp = argument[9];
+if (argument_count >= 10) animation_next_frame_temp = argument[9];
 else animation_next_frame_temp = 0;
 
 // Set flag frame:
-if(argument_count >= 11) animation_flag_frame_temp = argument[10];
+if (argument_count >= 11) animation_flag_frame_temp = argument[10];
 else animation_flag_frame_temp = 0;
 
 // Set animation data:

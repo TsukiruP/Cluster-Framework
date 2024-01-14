@@ -33,12 +33,12 @@ ceiling_landing    = 0;
 ceiling_lock_alarm = 0;
 touching_ceiling   = false;
 
-// Hitbox variables:
-hitbox_width       = 6;
-hitbox_height      = 15;
-wall_width         = hitbox_width + 3;
-wall_height        = 0;
-hitbox_height_temp = 0;
+// Size variables:
+main_width       = 6;
+main_height      = 15;
+main_height_temp = 0;
+wall_width       = main_width + 3;
+wall_height      = 0;
 
 // Action variable:
 action_state = ACTION_DEFAULT;
@@ -200,7 +200,7 @@ tunnel_lock   =  false;
 score_multiplier = 0;
 
 // Create trail:
-if(global.misc_trails == true) start_trail(15);
+if (global.misc_trails == true) start_trail(15);
 trail_color = c_white;
 
 terrain_angle_change = false;
@@ -263,7 +263,7 @@ applies_to=self
 /// Finish Initialization
 
 // Go to checkpoint:
-if(global.checkpoint_x != -1 && global.checkpoint_y != -1) {
+if (global.checkpoint_x != -1 && global.checkpoint_y != -1) {
     x                 = global.checkpoint_x;
     y                 = global.checkpoint_y;
     global.stage_time = global.checkpoint_time;
@@ -287,10 +287,10 @@ applies_to=self
 // One is always aware that it lies in wait. Though life is merely a journey to the grave, it must not be undertaken without hope.
 
 // Don't bother if the death alarm has been updated:
-if(death_alarm == -1) exit;
+if (death_alarm == -1) exit;
 
-if(action_state == ACTION_DEATH) {
-    if(death_alarm == -5) {
+if (action_state == ACTION_DEATH) {
+    if (death_alarm == -5) {
         depth              = -11000
         ground_angle       =  0;
         shield_data        =  0;
@@ -298,43 +298,49 @@ if(action_state == ACTION_DEATH) {
         speed_shoe_type    =  0;
         death_alarm        =  128;
         
-        if(drowned == false) {
-            if(physics_type == PHYS_UNDERWATER) y_speed = -3.5;
+        if (drowned == false) {
+            if (physics_type == PHYS_UNDERWATER) y_speed = -3.5;
             else y_speed = -7;
-        } else sound_play("snd_drown");
+        } else {
+            sound_play("snd_drown");
+        }
 
         // Stop sounds:
-        if(sound_isplaying("snd_fly")) sound_stop("snd_fly");
-        if(sound_isplaying("snd_fly_drop")) sound_stop("snd_fly_drop");
+        if (sound_isplaying("snd_fly")) sound_stop("snd_fly");
+        if (sound_isplaying("snd_fly_drop")) sound_stop("snd_fly_drop");
         
         // Stop jingles:
-        if(sound_isplaying("bgm_muteki")) sound_stop("bgm_muteki");
-        if(sound_isplaying("bgm_speed_up")) sound_stop("bgm_speed_up");
+        if (sound_isplaying("bgm_muteki")) sound_stop("bgm_muteki");
+        if (sound_isplaying("bgm_speed_up")) sound_stop("bgm_speed_up");
     }
     
     // Add gravity:
-    if(drowned == true) y_speed += 0.0625;
+    if (drowned == true) y_speed += 0.0625;
     else y_speed += 0.21875;
     
     y += y_speed;
     
-    // Decrease death alarm:
-    if(death_alarm > 0) death_alarm -= 1;
-    else if(death_alarm == 0) {
+    // Reset death alarm:
+    if (death_alarm == 0) {
         // Respawn partner:
-        if(input_cpu == true) action_state = ACTION_RESPAWN;
+        if (input_cpu == true) action_state = ACTION_RESPAWN;
         
         // Set death alarm:
         death_alarm = -1;
     }
     
+    // Decrease death alarm:
+    else if (death_alarm > 0) {
+        death_alarm -= 1;
+    }
+    
     // Retry transition:
-    if(input_cpu == false && death_alarm == 64 && !instance_exists(ctrl_transition)) room_transition(room, TRANS_RETRY);
+    if (input_cpu == false && death_alarm == 64 && !instance_exists(ctrl_transition)) room_transition(room, TRANS_RETRY);
 }
 
 // Death at screen bottom:
-if(action_state != ACTION_RESPAWN) {
-    if(y >= room_height && action_state != ACTION_DEATH) {
+if (action_state != ACTION_RESPAWN) {
+    if (y >= room_height && action_state != ACTION_DEATH) {
         action_state = ACTION_DEATH;
         sound_play("snd_hurt");
     }
@@ -347,12 +353,12 @@ applies_to=self
 /// Collision
 
 // Don't bother if in the middle of respawning/dying:
-if(action_state == ACTION_RESPAWN || action_state == ACTION_DEATH) exit;
+if (action_state == ACTION_RESPAWN || action_state == ACTION_DEATH) exit;
 
 // Steps:
 steps = 1 + abs(floor(x_speed / 13)) + abs(floor(y_speed / 13));
 
-repeat(steps) {
+repeat (steps) {
     // Movement:
     player_movement();
 
@@ -376,42 +382,41 @@ applies_to=self
 /// Control
 
 // Don't bother if in the middle of respawning/dying:
-if(action_state == ACTION_RESPAWN || action_state == ACTION_DEATH) exit;
+if (action_state == ACTION_RESPAWN || action_state == ACTION_DEATH) exit;
 
 // Slope acceleration/deceleration:
-if(ground == true && action_state != ACTION_SLIDE) {
+if (ground == true && action_state != ACTION_SLIDE) {
     // Check if we're not on a ceiling:
-    if(ground_angle < 135 || ground_angle > 225) {
-        if(action_state == ACTION_ROLL) {
+    if (ground_angle < 135 || ground_angle > 225) {
+        if (action_state == ACTION_ROLL) {
             // Rolling upwards:
-            if(sign(g_speed) == sign(dsin(ground_angle))) g_speed -= dsin(ground_angle) * roll_friction_up;
+            if (sign(g_speed) == sign(dsin(ground_angle))) g_speed -= dsin(ground_angle) * roll_friction_up;
 
             // Rolling downwards:
             else g_speed -= dsin(ground_angle) * roll_friction_down;
-        }
-        else {
-            if(ground_angle >= 22.5 && ground_angle <= 337.5 && (g_speed != 0 || input_lock_alarm != 0)) g_speed -= dsin(ground_angle) * 0.125;
+        } else {
+            if (abs(g_speed) > 0.125 || input_lock_alarm != 0) g_speed -= dsin(ground_angle) * 0.125;
         }
     }
 }
 
 // Acceleration & deceleration:
-if((action_state == ACTION_DEFAULT && animation_current != "turn" && animation_current != "look" && animation_current != "crouch") || action_state == ACTION_JUMP) {
+if ((action_state == ACTION_DEFAULT && animation_current != "turn" && animation_current != "look" && animation_current != "crouch") || action_state == ACTION_JUMP) {
     // Input direction:
     input_direction = player_input[INP_RIGHT, CHECK_HELD] - player_input[INP_LEFT, CHECK_HELD];
 
     // Ground:
-    if(ground == true && action_state != ACTION_PUSH) {
-        if(input_direction != 0) {
-            if(input_lock_alarm == 0) {
+    if (ground == true && action_state != ACTION_PUSH) {
+        if (input_direction != 0) {
+            if (input_lock_alarm == 0) {
                 // Turn:
-                if(global.gameplay_turn == true && (ground_angle < 45 || ground_angle > 315) && ((action_state != ACTION_SKID && abs(g_speed) < 4.5) ||
+                if (global.gameplay_turn == true && (ground_angle < 45 || ground_angle > 315) && ((action_state != ACTION_SKID && abs(g_speed) < 4.5) ||
                     (action_state == ACTION_SKID && sign(g_speed) != -input_direction && tag_animations == true)) && animation_direction != input_direction) {
                      g_speed = 0;
 
                      // Play animation:
-                     if(action_state != ACTION_BALANCE) {
-                         if(action_state == ACTION_SKID && tag_animations == true) action_state = ACTION_DEFAULT;
+                     if (action_state != ACTION_BALANCE) {
+                         if (action_state == ACTION_SKID && tag_animations == true) action_state = ACTION_DEFAULT;
 
                          animation_target = "turn";
                      }
@@ -420,19 +425,19 @@ if((action_state == ACTION_DEFAULT && animation_current != "turn" && animation_c
                 }
 
                 // Decelerate:
-                else if(g_speed != 0 && sign(g_speed) != input_direction) {
+                else if (g_speed != 0 && sign(g_speed) != input_direction) {
                     g_speed += deceleration * input_direction;
 
-                    if(sign(g_speed) == input_direction) g_speed = deceleration * input_direction;
+                    if (sign(g_speed) == input_direction) g_speed = deceleration * input_direction;
                 }
 
                 // Accelerate:
                 else {
                     // Turn:
-                    if(abs(g_speed) < x_top_speed) {
+                    if (abs(g_speed) < x_top_speed) {
                         g_speed += acceleration * input_direction;
 
-                        if(abs(g_speed) > x_top_speed) g_speed = x_top_speed * input_direction;
+                        if (abs(g_speed) > x_top_speed) g_speed = x_top_speed * input_direction;
                     }
                 }
             }
@@ -447,16 +452,16 @@ if((action_state == ACTION_DEFAULT && animation_current != "turn" && animation_c
     // Air:
     else {
         // Accelerate:
-        if(input_direction != 0) {
-            if(abs(x_speed) < x_top_speed || sign(x_speed) != input_direction) {
+        if (input_direction != 0) {
+            if (abs(x_speed) < x_top_speed || sign(x_speed) != input_direction) {
                 x_speed += 2 * acceleration * input_direction;
 
-                if(abs(x_speed) > x_top_speed && sign(x_speed) == input_direction) x_speed = x_top_speed * input_direction;
+                if (abs(x_speed) > x_top_speed && sign(x_speed) == input_direction) x_speed = x_top_speed * input_direction;
             }
         }
 
         // Air drag:
-        if(abs(x_speed) > 0.125 && y_speed > -4 && y_speed < 0) x_speed *= 0.96875;
+        if (abs(x_speed) > 0.125 && y_speed > -4 && y_speed < 0) x_speed *= 0.96875;
     }
 }
 /*"/*'/**//* YYD ACTION
@@ -482,10 +487,10 @@ player_animation_angle();
 player_animation_speed();
 
 // Animation depth:
-
+player_animation_depth();
 
 // Hitbox:
-player_hitbox();
+player_size();
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -494,34 +499,34 @@ applies_to=self
 /// Status Effects
 
 // Don't bother if in the middle of respawning/dying:
-if(action_state == ACTION_RESPAWN || action_state == ACTION_DEATH) exit;
+if (action_state == ACTION_RESPAWN || action_state == ACTION_DEATH) exit;
 
 // Invincibility:
-if(invincibility_alarm > -1) {
+if (invincibility_alarm > -1) {
     invincibility_alarm -= 1;
     
-    if(invincibility_alarm == 0) {
+    if (invincibility_alarm == 0) {
         invincibility_type  =  0;
         invincibility_alarm = -1;
     }
 }
 
 // Hurt invincibility:
-if(invincibility_type == 1 && invincibility_alarm == -1) {
-    if(ground == true || action_state != ACTION_HURT) invincibility_alarm = 120;
+if (invincibility_type == 1 && invincibility_alarm == -1) {
+    if (ground == true || action_state != ACTION_HURT) invincibility_alarm = 120;
 }
 
 // Speed shoes:
-if(speed_shoe_alarm > -1) {
+if (speed_shoe_alarm > -1) {
     speed_shoe_alarm -= 1;
     
-    if(speed_shoe_alarm == 0) {
+    if (speed_shoe_alarm == 0) {
         speed_shoe_type  =  0;
         speed_shoe_alarm = -1;
     }
 }
 
-if(speed_shoe_type == 1) afterimage_draw = true;
+if (speed_shoe_type == 1) afterimage_draw = true;
 else afterimage_draw = false;
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -531,18 +536,21 @@ applies_to=self
 /// Underwater
 
 // Don't bother if in the middle of respawning/dying:
-if(action_state != ACTION_RESPAWN && action_state != ACTION_DEATH && !instance_exists(ctrl_tally)) {
-    if(physics_type == PHYS_UNDERWATER) {
+if (action_state != ACTION_RESPAWN && action_state != ACTION_DEATH && !instance_exists(ctrl_tally)) {
+    if (physics_type == PHYS_UNDERWATER) {
         // Refill air if in breathe action or bubble shield:
-        if(action_state == ACTION_BREATHE || shield_data == SHIELD_BUBBLE) {
+        if (action_state == ACTION_BREATHE || shield_data == SHIELD_BUBBLE) {
             air_remaining = 30;
             air_alarm     = 60;
             
             // Stop jingle:
             sound_stop("bgm_drown");
-        } else {
+        }
+        
+        // Decrease air variables:
+        else {
             // Decrease air alarm:
-            if(air_alarm != 0) air_alarm -= 1;
+            if (air_alarm != 0) air_alarm -= 1;
             else {
                 switch(air_remaining) {
                     // Drown alert:
@@ -1004,12 +1012,12 @@ applies_to=self
 /// Update Inputs
 
 // Don't bother if in the middle of respawning/dying:
-if(action_state == ACTION_RESPAWN || action_state == ACTION_DEATH) exit;
+if (action_state == ACTION_RESPAWN || action_state == ACTION_DEATH) exit;
 
 player_get_input();
 
 // Input lock:
-if(ground == true && input_lock_alarm > 0) input_lock_alarm -= 1;
+if (ground == true && input_lock_alarm > 0) input_lock_alarm -= 1;
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -1018,13 +1026,13 @@ applies_to=self
 /// Update Physics
 
 // Update physics type:
-if(instance_exists(obj_water_surface)) {
-    if(y < obj_water_surface.y) {
-        if(physics_type != PHYS_DEFAULT) physics_type = PHYS_DEFAULT;
+if (instance_exists(obj_water_surface)) {
+    if (y < obj_water_surface.y) {
+        if (physics_type != PHYS_DEFAULT) physics_type = PHYS_DEFAULT;
     }
 
-    if(y > obj_water_surface.y) {
-        if(physics_type != PHYS_UNDERWATER) physics_type = PHYS_UNDERWATER;
+    if (y > obj_water_surface.y) {
+        if (physics_type != PHYS_UNDERWATER) physics_type = PHYS_UNDERWATER;
     }
 }
 
@@ -1038,7 +1046,7 @@ applies_to=self
 */
 /// Wall Stop
 
-repeat(steps) {
+repeat (steps) {
     player_wall_stop();
 }
 /*"/*'/**//* YYD ACTION
@@ -1046,7 +1054,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Camera Boundaries
+/// Camera Boundaries (OLD)
 
 if(instance_exists(ctrl_camera)) {
     if(x <= (ctrl_camera.limit_left + sprite_get_width(mask_main) / 2) && x_speed < 0) {
@@ -1072,30 +1080,15 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Update Depth
-
-// Change animation depth based on control type:
-if(player_exists(0)) {
-    if(global.player_instance[0] == self.id) animation_depth = -1;
-    else animation_depth = 0;
-} else animation_depth = 0;
-
-// Apply animation depth when not respawning or being carried:
-if(depth != animation_depth && action_state != ACTION_RESPAWN && action_state != ACTION_CARRY) depth = animation_depth;
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
 /// Afterimage
 
-if(afterimage_draw == true) {
-    if(afterimage_alarm > 0) afterimage_alarm -= 1;
+if (afterimage_draw == true) {
+    if (afterimage_alarm > 0) afterimage_alarm -= 1;
     else {
-        if(instance_number(eff_afterimage) < 3) {
+        if (instance_number(eff_afterimage) < 3) {
             afterimage_alarm = 6;
 
-            with(instance_create(floor(draw_x), floor(draw_y), eff_afterimage)) {
+            with (instance_create(floor(x), floor(y), eff_afterimage)) {
                 sprite_index = other.animation_sprite;
                 image_xscale = other.animation_direction * other.animation_x_scale;
                 image_yscale = other.animation_y_scale;
@@ -1123,10 +1116,10 @@ applies_to=self
 */
 /// Update Trail
 
-if(global.misc_trails == false) exit;
+if (global.misc_trails == false) exit;
 
-if(global.misc_trails == true) {
-    switch(character_data) {
+if (global.misc_trails == true) {
+    switch (character_data) {
         case CHAR_MILES:
             trail_color = c_yellow;
             break;
@@ -1140,8 +1133,8 @@ if(global.misc_trails == true) {
             break;
     }
 }
-update_trail(floor(x) + (dcos(angle + 90) * (-2 - (1 * angle == 90)) * (1 * action_state == ACTION_ROLL)) + dcos(angle) * x_speed,
-    floor(y) - (dsin(angle + 90) * (-3 - (1 * angle != 0)) * (1 * action_state == ACTION_ROLL)) + y_speed - dsin(angle) * x_speed,
+update_trail(floor(x) + (dcos(angle + 90) * (-2 - (1 * angle == 90)) * (1 * action_state == ACTION_ROLL)) + dcos(ground_angle) * x_speed,
+    floor(y) - (dsin(ground_angle + 90) * (-3 - (1 * angle != 0)) * (1 * action_state == ACTION_ROLL)) + y_speed - dsin(ground_angle) * x_speed,
     action_state == ACTION_ROLL);
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -1571,6 +1564,21 @@ if(drop_dash_state == 2) {
     animation_speed            = 0.25 + ((drop_dash_speed + (abs(x_speed) / 4)) / 12);
     aniimation_rendering_speed = animation_speed;
 }
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Update Depth (OLD)
+/*
+// Change animation depth based on control type:
+if(player_exists(0)) {
+    if(global.player_instance[0] == self.id) animation_depth = -1;
+    else animation_depth = 0;
+} else animation_depth = 0;
+
+// Apply animation depth when not respawning or being carried:
+if(depth != animation_depth && action_state != ACTION_RESPAWN && action_state != ACTION_CARRY) depth = animation_depth;
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -1580,10 +1588,10 @@ applies_to=self
 /// Draw Player
 
 // Knuckles test:
-if(tag_animations == true) draw_sprite(spr_knuckles_roll, 1, floor(x) + 11 * animation_direction, floor(y) + 1);
+if (tag_animations == true) draw_sprite(spr_knuckles_roll, 1, floor(x) + 11 * animation_direction, floor(y) + 1);
 
 // Trail:
-if(global.misc_trails == true) {
+if (global.misc_trails == true) {
     draw_set_blend_mode(bm_add);
     draw_set_color(trail_color);
     draw_trail(spr_trail, 20, true);
@@ -1591,41 +1599,41 @@ if(global.misc_trails == true) {
 }
 
 // Change alpha when hurt:
-if(invincibility_type == 1 && invincibility_alarm > 0) animation_alpha = (global.stage_time div 60) mod 3;
+if (invincibility_type == 1 && invincibility_alarm > 0) animation_alpha = (global.stage_time div 60) mod 3;
 else animation_alpha = 1;
 
 // Miles' tails:
-if(character_data == CHAR_MILES) {
+if (character_data == CHAR_MILES) {
     miles_tails_x = x - 5 * dcos(miles_tails_angle) - abs(dcos(miles_tails_angle) * (ground == true && animation_direction == -1)) - (abs(dsin(miles_tails_angle)) * animation_direction);
     miles_tails_y = y + 4 * dsin(miles_tails_angle) - abs(dcos(miles_tails_angle) * (ground == true && animation_direction == -1));
     
-    if(animation_current == "roll" || (animation_current == "spin_flight" && animation_current_frame >= animation_loop_frame)) draw_sprite_ext(spr_miles_tails, floor(miles_tails_frame), floor(miles_tails_x), floor(miles_tails_y), animation_direction * animation_x_scale, animation_y_scale, wrap_angle(miles_tails_angle - 90), animation_blend, animation_alpha);
+    if (animation_current == "roll" || (animation_current == "spin_flight" && animation_current_frame >= animation_loop_frame)) draw_sprite_ext(spr_miles_tails, floor(miles_tails_frame), floor(miles_tails_x), floor(miles_tails_y), animation_direction * animation_x_scale, animation_y_scale, wrap_angle(miles_tails_angle - 90), animation_blend, animation_alpha);
 }
 
 // Character:
 draw_sprite_ext(animation_sprite, floor(animation_current_frame), floor(x), floor(y), animation_direction * animation_x_scale, animation_y_scale, animation_angle, animation_blend, animation_alpha);
 
 // Spin dash dust:
-if(action_state == ACTION_SPIN_DASH) { //current_time div 40 / current_time div 30
-    if(floor(spin_dash_charge) == 0) {
-        draw_sprite_ext(spr_spin_dash_dust, 5, floor(x - 4 * animation_direction), floor(y) + hitbox_height, animation_direction, 1, 0, c_white, animation_alpha);
+if (action_state == ACTION_SPIN_DASH) {
+    if (floor(spin_dash_charge) == 0) {
+        draw_sprite_ext(spr_spin_dash_dust, current_time div 40, floor(x - 4 * animation_direction), floor(y) + main_height, animation_direction, 1, 0, c_white, animation_alpha);
     } else {
-        draw_sprite_ext(spr_super_spin_dust, 0, floor(x - 4 * animation_direction), floor(y) + hitbox_height, animation_direction, 1, 0, c_white, animation_alpha);
+        draw_sprite_ext(spr_super_spin_dust, current_time div 30, floor(x - 4 * animation_direction), floor(y) + main_height, animation_direction, 1, 0, c_white, animation_alpha);
     }
 }
 
 // Peel out dust:
-if(action_state == ACTION_PEEL_OUT) {
-    if(peel_out_timer >= 16 && floor(peel_out_timer < 32)) {
+if (action_state == ACTION_PEEL_OUT) {
+    if (peel_out_timer >= 16 && floor(peel_out_timer < 32)) {
         draw_sprite_ext(spr_spin_dash_dust, current_time div 40, floor(x - 4 * animation_direction), floor(y), animation_direction, 1, 0, c_white, animation_alpha);
-    } else if(peel_out_timer >= 32) {
+    } else if (peel_out_timer >= 32) {
         draw_sprite_ext(spr_super_spin_dust, current_time div 30, floor(x - 4 * animation_direction), floor(y), animation_direction, 1, 0, c_white, animation_alpha);
     }
 }
 
 // Shields:
-if(invincibility_type != 2) {
-    switch(shield_data) {
+if (invincibility_type != 2) {
+    switch (shield_data) {
         case SHIELD_BASIC:
             draw_sprite_ext(spr_shield_basic, current_time div 60, floor(x), floor(y), 1, 1, 0, c_white, 0.5);
             break;
@@ -1637,6 +1645,3 @@ if(invincibility_type != 2) {
 } else {
     draw_sprite_ext(spr_shield_muteki, current_time div 60, floor(x), floor(y), 1, 1, 0, c_white, 0.7);
 }
-
-draw_set_color(c_yellow);
-//draw_rectangle(floor(x) - hitbox_width, floor(y) - hitbox_height, floor(x) + hitbox_width, floor(y) + hitbox_height, true);

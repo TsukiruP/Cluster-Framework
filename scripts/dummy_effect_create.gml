@@ -6,4 +6,4 @@ dummy_effect.sprite_index = argument[0];
 dummy_effect.image_speed  = argument[1];
 dummy_effect.depth        = argument[4];
 
-if(argument_count == 6) dummy_effect.image_xscale = argument[5];
+if (argument_count == 6) dummy_effect.image_xscale = argument[5];

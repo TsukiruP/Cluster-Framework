@@ -15,8 +15,8 @@ applies_to=self
 */
 /// Create Ring
 
-if(dropped == true) {
-    with(instance_create(x, y, obj_ring)) {
+if (dropped == true) {
+    with (instance_create(x, y, obj_ring)) {
         lifespan = 256;
         dropped  = true;
         x_speed  = other.hspeed;
@@ -39,7 +39,7 @@ applies_to=self
 */
 /// Movement
 
-if(player_exists(0)) {
+if (player_exists(0)) {
     var player_handle, xx, yy;
 
     // Move towards the player:
@@ -52,12 +52,10 @@ if(player_exists(0)) {
     speed   = clamp(speed, -64, 64) * global.object_ratio;
 
     // Drop a normal ring when no longer magnetized:
-    if(player_handle.shield_data != SHIELD_MAGNETIC) {
+    if (player_handle.shield_data != SHIELD_MAGNETIC) {
         dropped = true;
         instance_destroy();
     }
-
-    // Destroy
 }
 #define Draw_0
 /*"/*'/**//* YYD ACTION

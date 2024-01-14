@@ -51,7 +51,7 @@
 			|player_collision_obstacle
 			|player_collision_object
 			|player_mode
-			|player_hitbox
+			|player_size
 			|player_wall_stop
 		+Angle
 			|player_get_angle
@@ -148,3 +148,4 @@
 			|player_collision_object_bottom
 		|player_get_angle_OLD
 		|player_set_angle
+|script126

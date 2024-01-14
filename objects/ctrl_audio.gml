@@ -47,7 +47,7 @@ applies_to=self
 */
 /// Ring Panning
 
-if(sound_get_pan("snd_ring") != ring_pan) sound_pan("snd_ring", ring_pan);
+if (sound_get_pan("snd_ring") != ring_pan) sound_pan("snd_ring", ring_pan);
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -56,18 +56,18 @@ applies_to=self
 /// Fade Music
 
 // Fade Out:
-if(fade_out == true) {
-    if(sound_kind_get_volume(3) != 0) sound_kind_volume(3, max(sound_kind_get_volume(3) - 0.01, 0));
+if (fade_out == true) {
+    if (sound_kind_get_volume(3) != 0) sound_kind_volume(3, max(sound_kind_get_volume(3) - 0.01, 0));
     else {
         // Discard music:
-        if(music_instance != -1) {
+        if (music_instance != -1) {
             sound_stop(music_instance);
             sound_discard(music_instance);
             music_instance = -1;
         }
 
         // Discard jingle:
-        if(jingle_instance != -1) {
+        if (jingle_instance != -1) {
             sound_stop(jingle_instance);
             sound_discard(jingle_instance);
             jingle_instance = -1;
@@ -79,17 +79,17 @@ if(fade_out == true) {
 }
 
 // Fade In:
-if(fade_out == false) {
+if (fade_out == false) {
     // Don't if drowning is playing:
-    if(!sound_isplaying("bgm_drown")) {
+    if (!sound_isplaying("bgm_drown")) {
         // Fade in jingle first:
-        if(jingle_instance != -1) {
-            if(sound_get_volume(jingle_instance) != 1) sound_volume(jingle_instance, min(1, sound_get_volume(jingle_instance) + 0.01));
+        if (jingle_instance != -1) {
+            if (sound_get_volume(jingle_instance) != 1) sound_volume(jingle_instance, min(1, sound_get_volume(jingle_instance) + 0.01));
         }
         
         // Fade in music:
-        else if(music_instance != -1) {
-            if(sound_get_volume(music_instance) != 1) sound_volume(music_instance, min(1, sound_get_volume(music_instance) + 0.01));
+        else if (music_instance != -1) {
+            if (sound_get_volume(music_instance) != 1) sound_volume(music_instance, min(1, sound_get_volume(music_instance) + 0.01));
         }
     }
 }
@@ -101,18 +101,18 @@ applies_to=self
 /// Quiet Music
 
 // Drowning takes priority:
-if(!sound_isplaying("bgm_drown")) {
+if (!sound_isplaying("bgm_drown")) {
     // Next is the jingles:
-    if(jingle_instance != -1) {
-        if(music_instance != -1) sound_volume(music_instance, 0);
+    if (jingle_instance != -1) {
+        if (music_instance != -1) sound_volume(music_instance, 0);
     }
 } else {
-    if(music_instance != -1) sound_volume(music_instance, 0);
-    if(jingle_instance != -1) sound_volume(jingle_instance, 0);
+    if (music_instance != -1) sound_volume(music_instance, 0);
+    if (jingle_instance != -1) sound_volume(jingle_instance, 0);
 }
 
 // Clear jingle:
-if(jingle_instance != -1 && !sound_isplaying("bgm_muteki") && !sound_isplaying("bgm_speed_up")) {
+if (jingle_instance != -1 && !sound_isplaying("bgm_muteki") && !sound_isplaying("bgm_speed_up")) {
     sound_discard(jingle_instance)
     jingle_instance = -1;
 }
@@ -152,14 +152,14 @@ applies_to=self
 /// Play Invincibility Jingle
 
 // Clear jingle:
-if(jingle_instance != -1) {
+if (jingle_instance != -1) {
     sound_stop(jingle_instance);
     sound_discard(jingle_instance);
     jingle_instance = -1;
-};
+}
 
 // Set jingle:
-if(jingle_instance == -1) {
+if (jingle_instance == -1) {
     jingle_instance = sound_play_single("bgm_muteki");
 }
 #define Other_11
@@ -171,13 +171,13 @@ applies_to=self
 /// Play Speed Up Jingle
 
 // Clear jingle:
-if(jingle_instance != -1) {
+if (jingle_instance != -1) {
     sound_stop(jingle_instance);
     sound_discard(jingle_instance);
     jingle_instance = -1;
-};
+}
 
 // Set jingle:
-if(jingle_instance == -1) {
+if (jingle_instance == -1) {
     jingle_instance = sound_play_single("bgm_speed_up");
 }

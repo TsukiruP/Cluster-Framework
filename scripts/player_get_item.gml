@@ -1,7 +1,7 @@
 /// player_get_item(id)
 // Performs a certain event based on the given item id.
 
-switch(argument0) {
+switch (argument0) {
     // Ring bonus:
     case ITEM_BONUS:
         global.stage_rings += 5;
@@ -57,7 +57,7 @@ switch(argument0) {
         invincibility_type  = 2;
         invincibility_alarm = 1380;
 
-        with(ctrl_audio) event_user(0);
+        with (ctrl_audio) event_user(0);
         break;
 
     // Speed up:
@@ -65,7 +65,7 @@ switch(argument0) {
         speed_shoe_type  = 1;
         speed_shoe_alarm = 900;
 
-        with(ctrl_audio) event_user(1);
+        with (ctrl_audio) event_user(1);
         break;
 
     // Mine:
@@ -88,8 +88,8 @@ switch(argument0) {
 }
 
 // Update item feed:
-if(global.misc_feed == true) {
-    with(ctrl_hud) {
+if (global.misc_feed == true) {
+    with (ctrl_hud) {
         ds_list_add(item_feed, argument0);
         ds_list_add(item_feed, -8);
         item_timer = 0;

@@ -2,10 +2,10 @@
 // Returns a string based on the given keyboard key.
 
 // Return individual keys:
-if(argument0 > 48 && argument0 < 91) return chr(argument0);
+if (argument0 > 48 && argument0 < 91) return chr(argument0);
 
 // Return specific keys:
-switch(argument0) {
+switch (argument0) {
     case -1: return "No Key";
     case  8: return "Backspace";
     case  9: return "Tab";

@@ -1,6 +1,6 @@
 /// parallax_add_node(direction, background, xfactor, xspeed, xscroll, xoffset, xseparation, yfactor, yspeed, yscroll, yoffset, yseparation, left, top, width, height)
 // Create or resize grid if needed.
-if(parallax_nodes == -1) parallax_nodes = ds_grid_create(16, 1);
+if (parallax_nodes == -1) parallax_nodes = ds_grid_create(16, 1);
 else ds_grid_resize(parallax_nodes, 16, parallax_nodes_count + 1);
 
 // Add information to grid

@@ -2,8 +2,8 @@
 // Replaces a set of animations with their tag varients.
 
 // Replace animations:
-if(tag_animations == false) {
-    switch(character_data) {
+if (tag_animations == false) {
+    switch (character_data) {
         case CHAR_MILES:
             // Default:
             player_add_animation(CHAR_MILES, "stand",          spr_miles_stand_tag,      0,  3,  0, -1, 0.20);
@@ -56,7 +56,7 @@ if(tag_animations == false) {
 
 // Reset animations:
 else {
-    switch(character_data) {
+    switch (character_data) {
         case CHAR_MILES:
             miles_add_animations();
             break;

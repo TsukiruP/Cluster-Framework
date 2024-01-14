@@ -20,32 +20,32 @@ applies_to=self
 */
 /// Player Initialization
 
-if(instance_exists(obj_player_spawn)) {
+if (instance_exists(obj_player_spawn)) {
     // Spawn players:
-    with(obj_player_spawn) {
+    with (obj_player_spawn) {
         // Spawn player 1:
         global.player_instance[0]                = instance_create(x, y, obj_player);
         global.player_instance[0].character_data = global.player_data[0];
         global.player_instance[0].input_lock   = true;
 
         // Create camera:
-        with(global.player_instance[0]) {
+        with (global.player_instance[0]) {
             camera              = instance_create(x, y, ctrl_camera);
             camera.focus_handle = global.player_instance[0];
         }
 
         // Spawn player 2:
-        if(global.player_data[1] != -1) {
+        if (global.player_data[1] != -1) {
             global.player_instance[1]                = instance_create(x - 30, y, obj_player);
             global.player_instance[1].character_data = global.player_data[1];
             global.player_instance[1].input_cpu    = true;
         }
 
         // Create partner queues:
-        with(ctrl_input) event_user(0);
+        with (ctrl_input) event_user(0);
 
         // Compile animations:
-        if(global.animation_grid == -1) player_compile_animations();
+        if (global.animation_grid == -1) player_compile_animations();
 
         instance_destroy();
     }
@@ -66,7 +66,7 @@ applies_to=self
 /// Global Timers
 
 // Stage timer:
-if(global.add_time == true) {
+if (global.add_time == true) {
     global.stage_time += (1000 / 60) * global.object_ratio;
 }
 
@@ -80,7 +80,7 @@ applies_to=self
 */
 /// (De)activate Instances
 
-if(culling == true) {
+if (culling == true) {
     // Deactivate everything:
     instance_deactivate_all(true);
 
@@ -95,8 +95,8 @@ if(culling == true) {
     instance_activate_region(view_xview[view_current] - 64, view_yview[view_current] - 64, view_wview[view_current] + 128, view_hview[view_current] + 128, true);
 
     // Activate region around players:
-    with(obj_player) {
-        if(!in_view()) instance_activate_region(x - 64, y - 64, 128, 128, true);
+    with (obj_player) {
+        if (!in_view()) instance_activate_region(x - 64, y - 64, 128, 128, true);
     }
 }
 #define Other_5

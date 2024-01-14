@@ -1,17 +1,17 @@
 /// joystick_check(player, button)
 // Returns if the given player is currently holding the given button.
 
-with(ctrl_input) {
+with (ctrl_input) {
     var device_id, button_id;
 
     // Device id:
     device_id = joystick_device[argument0, 0];
 
     // Check device id:
-    if(device_id <= -1) exit;
+    if (device_id <= -1) exit;
 
-    if(joystick_exists(device_id)) {
-        switch(argument1) {
+    if (joystick_exists(device_id)) {
+        switch (argument1) {
             case JOY_TRIGGERL:
                 return joystick_trigger[INP_LEFT, CHECK_HELD + (argument0 * 3)];
                 break;

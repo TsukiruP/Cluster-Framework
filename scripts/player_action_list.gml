@@ -2,9 +2,9 @@
 // A handy list of the action scripts.
 
 // Don't bother if in the middle of respawning/dying:
-if(action_state == ACTION_RESPAWN || action_state == ACTION_DEATH) exit;
+if (action_state == ACTION_RESPAWN || action_state == ACTION_DEATH) exit;
 
-switch(character_data) {
+switch (character_data) {
     case CHAR_SONIC:
         break;
 

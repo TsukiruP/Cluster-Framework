@@ -1,28 +1,29 @@
 /// player_hitbox()
 
 // Store previous hitbox height:
-hitbox_height_temp = hitbox_height;
+main_height_temp = main_height;
 
 // Reset roll offset:
-if(animation_current != "spin_flight" && animation_current != "roll") roll_offset = 0;
+if (animation_current != "spin_flight" && animation_current != "roll") roll_offset = 0;
 
-switch(character_data) {
-    case CHAR_SONIC:
+switch (character_data) {
+    // Sonic:
+    default:
         // Default hitbox:
-        hitbox_width  = 6;
-        hitbox_height = 15;
+        main_width  = 6;
+        main_height = 15;
 
         // Curled hitbox:
-        if(animation_current == "spin_flight" || animation_current == "roll" || animation_current == "spin_dash" || animation_current == "super_spin") {
-            hitbox_width  = 9;
-            hitbox_height = 9;
+        if (animation_current == "spin_flight" || animation_current == "roll" || animation_current == "spin_dash" || animation_current == "super_spin") {
+            main_width  = 9;
+            main_height = 9;
             roll_offset   = 6;
         }
         break;
 }
 
 // Floor position fix:
-if((ground == true && ceiling_lock_alarm == 0) || (mode == 0 && action_state == ACTION_JUMP)) {
-    x += (hitbox_height_temp - hitbox_height) * x_direction;
-    y += (hitbox_height_temp - hitbox_height) * y_direction;
+if ((ground == true && ceiling_lock_alarm == 0) || (mode == 0 && action_state == ACTION_JUMP)) {
+    x += (main_height_temp - main_height) * x_direction;
+    y += (main_height_temp - main_height) * y_direction;
 }

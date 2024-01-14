@@ -22,8 +22,8 @@ applies_to=self
 */
 /// Give Item
 
-if(player_handle != noone) {
-    with(player_handle) player_get_item(other.item_data);
+if (player_handle != noone) {
+    with (player_handle) player_get_item(other.item_data);
 }
 #define Step_0
 /*"/*'/**//* YYD ACTION
@@ -34,14 +34,14 @@ applies_to=self
 /// Replace Items
 
 // Elemental shields:
-if(global.gameplay_elemental == false) {
-    if(item_data == ITEM_FIRE || item_data == ITEM_BUBBLE) item_data = ITEM_BASIC;
-    if(item_data == ITEM_LIGHTNING) item_data = ITEM_MAGNETIC;
+if (global.gameplay_elemental == false) {
+    if (item_data == ITEM_FIRE || item_data == ITEM_BUBBLE) item_data = ITEM_BASIC;
+    if (item_data == ITEM_LIGHTNING) item_data = ITEM_MAGNETIC;
 }
 
 // Debuffs:
-if(global.gameplay_debuffs == false) {
-    if(item_data == ITEM_SLOW || item_data == ITEM_PANIC || item_data == ITEM_SWAP) item_data = ITEM_MINE;
+if (global.gameplay_debuffs == false) {
+    if (item_data == ITEM_SLOW || item_data == ITEM_PANIC || item_data == ITEM_SWAP) item_data = ITEM_MINE;
 }
 #define Draw_0
 /*"/*'/**//* YYD ACTION

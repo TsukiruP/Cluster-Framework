@@ -16,7 +16,7 @@ py = ds_list_find_value(trail_y, 0);
 draw_primitive_begin_texture(pr_trianglestrip, sprite_get_texture(argument0, 0));
 size = ds_list_size(trail_x)
 
-for(i = 0; i < size; i += 1) {
+for (i = 0; i < size; i += 1) {
     nx = ds_list_find_value(trail_x, i)
     ny = ds_list_find_value(trail_y, i)
 
@@ -26,7 +26,7 @@ for(i = 0; i < size; i += 1) {
 
     //Alpha is either as set, or automatic
     a = draw_get_alpha()
-    if(argument2 == 1) then a = (i - 1) / size
+    if (argument2 == 1) then a = (i - 1) / size
 
     xt = (i - 1) / size
     draw_vertex_texture_color(px + dx, py + dy, xt, 0, col, a * ds_list_find_value(trail_al, i));
@@ -36,4 +36,5 @@ for(i = 0; i < size; i += 1) {
 
     xt += xt_i;
 }
+
 draw_primitive_end();

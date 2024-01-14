@@ -28,7 +28,7 @@ applies_to=self
 */
 /// Parallax Reference
 
-if(instance_exists(obj_water_surface)) parallax_reference = obj_water_surface.y;
+if (instance_exists(obj_water_surface)) parallax_reference = obj_water_surface.y;
 else parallax_reference = room_height;
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -91,7 +91,7 @@ for(i = 0; i < sea_height / 4; i += 1) {
     layer_y = sea_y + (i * 4) * sea_scale;
 
     // Draw medium rocks:
-    if(i == 3) draw_backdrop_tiled_area(pbg_basic_test_rock_medium, 0, 0, view_xview[view_current] * 0.87 + 50, layer_y - 15, view_xview[view_current] + view_wview[view_current], background_get_height(pbg_basic_test_rock_medium), 170);
+    if (i == 3) draw_backdrop_tiled_area(pbg_basic_test_rock_medium, 0, 0, view_xview[view_current] * 0.87 + 50, layer_y - 15, view_xview[view_current] + view_wview[view_current], background_get_height(pbg_basic_test_rock_medium), 170);
 
     layer_scroll = ((current_time * 0.002) * i mod background_get_width(pbg_basic_test_sea)) * global.object_ratio;
 
@@ -99,7 +99,7 @@ for(i = 0; i < sea_height / 4; i += 1) {
     draw_backdrop_tiled_area(pbg_basic_test_sea, 0, i * 4, sea_x - layer_scroll, layer_y, view_xview[view_current] * (1 - sea_factor) + layer_scroll + view_wview[view_current], 4, 0, 0, 1, sea_scale);
 }
 
-if(sea_scale > 0) {
+if (sea_scale > 0) {
     draw_backdrop_tiled_area(pbg_basic_test_rock_small, 0, 0, view_xview[view_current] * 0.86 - 24, sea_y + 20 * sea_scale - 17, view_xview[view_current] + view_wview[view_current], background_get_height(pbg_basic_test_rock_small), 214);
     draw_backdrop_tiled_area(pbg_basic_test_rock_large, 0, 0, view_xview[view_current] * 0.73 + 152, sea_y + 40 * sea_scale - 45, view_xview[view_current] + view_wview[view_current], background_get_height(pbg_basic_test_rock_large), 154);
 }
