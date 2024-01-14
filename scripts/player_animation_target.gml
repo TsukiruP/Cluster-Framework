@@ -2,7 +2,7 @@
 // Sets the animation target and then calls the animation core script.
 
 // Action animations:
-switch(action_state) {
+switch (action_state) {
     // Default:
     case ACTION_DEFAULT:
         // Classic default:

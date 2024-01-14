@@ -7,8 +7,8 @@ applies_to=self
 /// Input Initialization
 
 // User & keyboard inputs:
-for(i = INP_LEFT; i <= INP_HELP; i += 1) {
-    for(j = CHECK_HELD; j <= CHECK_RELEASED; j += 1) {
+for (i = INP_LEFT; i <= INP_HELP; i += 1) {
+    for (j = CHECK_HELD; j <= CHECK_RELEASED; j += 1) {
         // User inputs:
         user_input[i, j]     = false;
 
@@ -18,7 +18,7 @@ for(i = INP_LEFT; i <= INP_HELP; i += 1) {
 }
 
 // Input timers:
-for(i = INP_LEFT; i <= INP_DOWN; i += 1) {
+for (i = INP_LEFT; i <= INP_DOWN; i += 1) {
     input_timer[i] = 0;
 }
 /*"/*'/**//* YYD ACTION
@@ -138,7 +138,7 @@ applies_to=self
 // Find devices:
 if (joystick_found()) {
     // Set seeking devices:
-    for(i = 0; i < joystick_max; i += 1) {
+    for (i = 0; i < joystick_max; i += 1) {
         // Check if current device has been removed:
         if (joystick_device[i, 0] > joystick_count() - 1) {
             joystick_device[i, 0] = -1;
@@ -149,13 +149,13 @@ if (joystick_found()) {
             // Check there's enough joysticks:
             if (joystick_count() > 0) {
                 // Iterate through currently connected joysticks:
-                for(j = 0; j < joystick_count(); j += 1) {
+                for (j = 0; j < joystick_count(); j += 1) {
                     var joystick_available;
                     
                     joystick_available = true;
                     
                     // Iterate through every registered joysticks:
-                    for(k = 0; k < joystick_max; k += 1) {
+                    for (k = 0; k < joystick_max; k += 1) {
                         
                         // If the device is already registered, move on:
                         if (joystick_device[k, 0] == j) joystick_available = false;
@@ -180,7 +180,7 @@ applies_to=self
 /// Update Buttons
 
 // Update device buttons:
-for(i = 0; i < joystick_max; i += 1) {
+for (i = 0; i < joystick_max; i += 1) {
     // Check if the current joystick exists:
     if (joystick_device[i, 0] > -1) {
         // Check if the current joustick has a POV/D-Pad:
@@ -191,7 +191,7 @@ for(i = 0; i < joystick_max; i += 1) {
 
         // Other configurations:
         else {
-            switch(joystick_name(i)) {
+            switch (joystick_name(i)) {
                 case "Nintendo Switch Pro Controller":
                     joystick_device[i, 1] = 2;
                     break;
@@ -231,7 +231,7 @@ applies_to=self
 */
 /// Update D-pad
 
-for(i = 0; i < joystick_max; i += 1) {
+for (i = 0; i < joystick_max; i += 1) {
     var device_id;
 
     // Device id:
@@ -261,7 +261,7 @@ for(i = 0; i < joystick_max; i += 1) {
 
         // Read button values:
         else {
-            for(j = INP_LEFT; j <= INP_DOWN; j += 1) {
+            for (j = INP_LEFT; j <= INP_DOWN; j += 1) {
                 // Held:
                 joystick_dpad[j, CHECK_HELD + (i * 3)] = joystick_check_button(device_id, joystick_button[JOY_LEFT + j, joystick_device[i, 1]]);
 

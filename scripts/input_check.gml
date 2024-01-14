@@ -7,7 +7,7 @@ if (argument[0] == INP_ANY) {
 
     joystick_any = false;
 
-    switch(argument[1]) {
+    switch (argument[1]) {
         case CHECK_HELD:
             // Keyboard:
             keyboard_any  = keyboard_check(vk_anykey);

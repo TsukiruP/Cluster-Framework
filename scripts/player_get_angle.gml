@@ -11,7 +11,7 @@ if (argument_count > 2) floor_mode = argument[2];
 else floor_mode = 0;
 
 // Set up off x and off y:
-switch(floor_mode) {
+switch (floor_mode) {
     // Floor angle:
     case 0:
         off_x[0] = pos_x - pos_x mod 16;

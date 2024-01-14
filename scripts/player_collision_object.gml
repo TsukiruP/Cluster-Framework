@@ -2,7 +2,7 @@
 
 var left, top, right, bottom, i, collision_test;
 
-switch(argument0) {
+switch (argument0) {
     case SIDE_MAIN:
         left   = -wall_width;
         top    = -main_height;

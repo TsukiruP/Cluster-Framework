@@ -265,7 +265,7 @@ if (player_exists(0)) {
     player_panic  = (global.player_instance[0].status_panic_alarm == -1 || global.player_instance[0].status_panic_alarm > 120 || (global.player_instance[0].status_panic_alarm <= 120 && global.player_instance[0].status_panic_alarm mod 5));
     player_swap   = (global.player_instance[0].status_swap_alarm == -1 || global.player_instance[0].status_swap_alarm > 120 || (global.player_instance[0].status_swap_alarm <= 120 && global.player_instance[0].status_swap_alarm mod 5));
     
-    for(i = status_size; i >= 0; i -= 1) {
+    for (i = status_size; i >= 0; i -= 1) {
         if ((global.misc_status == 1 && status_effect[i] != 0) || global.misc_status == 2) {
             if ((i != STATUS_MUTEKI && i != STATUS_SPEED && i != STATUS_PANIC && i != STATUS_SWAP) ||
                 (i == STATUS_MUTEKI && player_muteki) || (i == STATUS_SPEED && player_shoes) || (i == STATUS_PANIC && player_panic) || (i == STATUS_SWAP && player_swap)) {
@@ -305,7 +305,7 @@ if (global.misc_hud == 0) exit;
 // Item feed:
 if (item_feed != -1) {
     if (ds_list_size(item_feed) != 0) {
-        for(i = 0; i < ds_list_size(item_feed); i += 2) {
+        for (i = 0; i < ds_list_size(item_feed); i += 2) {
             var item_target, item_speed;
 
             draw_set_color(c_white);

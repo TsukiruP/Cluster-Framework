@@ -71,7 +71,7 @@ draw_backdrop_tiled_area(pbg_basic_test_sky, 0, 0, sky_x, sky_y, view_xview[view
 draw_backdrop_tiled_area(pbg_basic_test_under, 0, 0, sky_x - sky_scroll, sea_y, view_xview[view_current] * (1 - sky_factor) + view_wview[view_current], under_height);
 
 // Extend underwater parallax:
-for(i = 0; i < (room_height - (sea_y + under_height)) / 64; i += 1) {
+for (i = 0; i < (room_height - (sea_y + under_height)) / 64; i += 1) {
     var under_x, under_width;
 
     under_x     = under_factor - (i * 0.05);
@@ -85,7 +85,7 @@ draw_backdrop_tiled_area(pbg_basic_test_rock_small, 0, 0, view_xview[view_curren
 draw_backdrop_tiled_area(pbg_basic_test_rock_large, 0, 0, view_xview[view_current] * 0.73 + 152, sea_y + 40 * sea_scale - 45, view_xview[view_current] + view_wview[view_current], background_get_height(pbg_basic_test_rock_large), 154);
 
 // Sea parallax:
-for(i = 0; i < sea_height / 4; i += 1) {
+for (i = 0; i < sea_height / 4; i += 1) {
     var layer_y, layer_scroll;
 
     layer_y = sea_y + (i * 4) * sea_scale;
