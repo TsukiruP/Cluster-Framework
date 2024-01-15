@@ -6,6 +6,27 @@ if (ground == true) {
     var left_edge, right_edge;
 
     // Edges:
+    left_edge = (!line_check(main_width, main_height + 16, true) && !obstacle_check(-wall_width, 0, wall_width, main_height + 2, true));
+    right_edge = (!line_check(-main_width, main_height + 16, true) && !obstacle_check(wall_width, 0, -wall_width, main_height + 2, true));
+
+    balance_direction = (left_edge - right_edge);
+}
+
+
+// Trigger balance:
+if (ground == true && ground_angle == gravity_angle && x_speed == 0 && balance_direction != 0 && tag_animations == false) {
+    if (action_state == ACTION_DEFAULT) action_state = ACTION_BALANCE;
+}
+else {
+    if (action_state == ACTION_BALANCE) action_state = ACTION_DEFAULT;
+}
+
+/*
+// Balance direction:
+if (ground == true) {
+    var left_edge, right_edge;
+
+    // Edges:
     left_edge  = (player_collision_left_edge(x, y, 8) && !player_collision_right_edge(x, y, 352));
     right_edge = (!player_collision_left_edge(x, y, 8) && player_collision_right_edge(x, y, 352));
 
