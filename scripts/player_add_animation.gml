@@ -1,3 +1,6 @@
+/// player_add_animation(character, animation, timeline)
+
+/*
 /// player_add_animation(character, animation, sprite, start frame, end frame, loop frame, loop count, speed, [next, next frame, flag frame])
 // Add an animation to the animation ds grid all player characters use.
 // If the animation is already added, then it overwrites the previous information.

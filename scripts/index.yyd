@@ -25,7 +25,7 @@ wrap_angle
 joystick_check
 player_get_physics
 player_animation_depth
-user_input_down
+sonic_action_slide
 user_input_jump
 user_input_special
 user_input_swap
@@ -124,4 +124,4 @@ player_size
 player_action_tag
 player_animation_angle
 player_animation_speed
-script126
+rectangle_check

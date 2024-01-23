@@ -1,6 +1,9 @@
 /// player_animation_core()
 // Core of the animation system.
 
+
+
+/*
 // Load target animation::
 if (animation_current != animation_target) {
     // Store the previous animaiton:

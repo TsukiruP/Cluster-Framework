@@ -35,7 +35,7 @@ switch (animation_current) {
     case "swim_drop":
     case "glide":
     case "glide_drop":
-    case "slide":
+    //case "slide":
     case "climb_stand":
     case "climb_move":
     case "climb_ledge":

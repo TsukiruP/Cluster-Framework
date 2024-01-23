@@ -1,6 +1,5 @@
 +Trash
 	+Solids
-		|spr_basic_test_collision_solid_02
 		|spr_basic_test_collision_solid_03
 		|spr_basic_test_collision_solid_04
 		|spr_basic_test_collision_solid_05
@@ -82,7 +81,7 @@
 				|spr_sonic_crouch_tag
 			+Spin Dash
 				|spr_sonic_spin_dash
-				|spr_sonic_super_spin
+				|spr_sonic_spin_charge
 			|spr_sonic_roll
 			+Skid
 				|spr_sonic_skid
@@ -107,6 +106,7 @@
 				|spr_sonic_fly_carry
 				|spr_sonic_throw
 				|spr_sonic_glide_carry
+			|spr_sonic_slide
 		+Miles
 			+Default
 				|spr_miles_stand

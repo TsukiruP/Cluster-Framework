@@ -11,12 +11,12 @@ switch (character_data) {
     default:
         // Default size:
         main_width  = 6;
-        main_height = 15;
+        main_height = 14;
 
         // Curled size:
         if ((animation_current == "spin_flight" && animation_current_frame >= animation_loop_frame) || animation_current == "spin_fall" ||
             animation_current == "roll" || animation_current == "spin_dash" || animation_current == "super_spin") {
-            main_width  = 9;
+            main_width  = 6;
             main_height = 9;
 
             roll_offset = 6;

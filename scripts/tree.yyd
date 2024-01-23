@@ -45,6 +45,7 @@
 				|angle_sensor
 				|line_check
 				|obstacle_check
+				|rectangle_check
 			|player_movement
 			|player_collision_semisolids
 			|player_collision_terrain
@@ -69,6 +70,7 @@
 			|player_action_hurt
 			|player_action_tag
 			+Sonic
+				|sonic_action_slide
 			+Miles
 				|miles_action_fly
 			+Knuckles
@@ -112,7 +114,6 @@
 				|draw_trail
 +Trash
 	+Input
-		|user_input_down
 		|user_input_jump
 		|user_input_special
 		|user_input_swap
@@ -148,4 +149,3 @@
 			|player_collision_object_bottom
 		|player_get_angle_OLD
 		|player_set_angle
-|script126

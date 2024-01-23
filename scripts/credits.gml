@@ -8,6 +8,7 @@ Based on
 Harinezumi Engine by A.NB (Aleksander Norberg)
 S9E Engine by Akuma
 SonicforGMS by VectorSatyr
+Sonic Advance 2 Decompilation
 
 Inspirations
 Sonic 2 Absolute

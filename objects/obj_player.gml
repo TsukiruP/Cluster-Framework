@@ -40,6 +40,11 @@ main_height_temp = 0;
 wall_width       = main_width + 3;
 wall_height      = 0;
 
+hitbox_width    = 0;
+hitbox_height   = 0;
+hitbox_offset_x = 0;
+hitbox_offset_y = 0;
+
 // Action variable:
 action_state = ACTION_DEFAULT;
 
@@ -493,6 +498,9 @@ player_animation_depth();
 
 // Hitbox:
 player_size();
+
+// Object handle:
+player_handle_list();
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -1647,3 +1655,52 @@ if (invincibility_type != 2) {
 } else {
     draw_sprite_ext(spr_shield_muteki, current_time div 60, floor(x), floor(y), 1, 1, 0, c_white, 0.7);
 }
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Draw Size
+
+// Exit if not in debug mode:
+if (debug_mode == false) exit;
+
+// Draw main size:
+draw_set_color(c_orange);
+draw_rectangle(floor(x) - main_width,  floor(y) - main_height, floor(x) + main_width, floor(y) + main_height, true);
+
+// Draw hitbox:
+var x1, y1, x2, y2;
+
+switch (mode) {
+    case 0:
+        x1 = floor(x) + (hitbox_offset_x * animation_direction) - hitbox_width;
+        y1 = floor(y) +  hitbox_offset_y - hitbox_height;
+        x2 = floor(x) + (hitbox_offset_x * animation_direction) + hitbox_width;
+        y2 = floor(y) +  hitbox_offset_y + hitbox_height;
+        break;
+
+    case 1:
+        x1 = floor(x) +  hitbox_offset_y - hitbox_height;
+        y1 = floor(y) - (hitbox_offset_x * animation_direction) - hitbox_width;
+        x2 = floor(x) +  hitbox_offset_y + hitbox_height;
+        y2 = floor(y) - (hitbox_offset_x * animation_direction) + hitbox_width;
+        break;
+
+    case 2:
+        x1 = floor(x) - (hitbox_offset_x * animation_direction) - hitbox_width;
+        y1 = floor(y) -  hitbox_offset_y - hitbox_height;
+        x2 = floor(x) - (hitbox_offset_x * animation_direction) + hitbox_width;
+        y2 = floor(y) -  hitbox_offset_y + hitbox_height;
+        break;
+
+    case 3:
+        x1 = floor(x) -  hitbox_offset_y - hitbox_height;
+        y1 = floor(y) + (hitbox_offset_x * animation_direction) - hitbox_width;
+        x2 = floor(x) -  hitbox_offset_y + hitbox_height;
+        y2 = floor(y) + (hitbox_offset_x * animation_direction) + hitbox_width;
+        break;
+}
+
+draw_set_color(c_red);
+draw_rectangle(x1, y1, x2, y2, true);
