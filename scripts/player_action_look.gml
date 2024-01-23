@@ -19,7 +19,7 @@ if (action_state == ACTION_LOOK) {
             action_state = ACTION_DEFAULT;
 
             // Play animation:
-            player_reverse_animation("stand", 2.5);
+            //player_reverse_animation("stand", 2.5);
         }
     }
 }

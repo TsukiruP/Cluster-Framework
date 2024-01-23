@@ -12,7 +12,7 @@ if (instance_exists(obj_water_surface)) {
     }
 
     // Exiting the water:
-    else if (y < obj_water_surface.y && yprevious  > obj_water_surface.y) {
+    else if (y < obj_water_surface.y && yprevious > obj_water_surface.y) {
         y_speed *= 2;
     }
 }
