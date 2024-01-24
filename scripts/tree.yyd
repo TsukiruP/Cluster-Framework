@@ -57,7 +57,7 @@
 			|player_wall_stop
 		+Angle
 			|player_get_angle
-			|player_detect_angle
+			|player_set_angle
 		+Actions
 			|player_action_list
 			|player_action_jump
@@ -87,16 +87,16 @@
 				|knuckles_add_animations
 				|classic_add_animations
 			|player_compile_animations
-			+Replacements
-				|player_tag_animations
-				|miles_fly_animations
 			|player_get_animation
-			|player_reverse_animation
 			|player_animation_target
 			|player_animation_direction
 			|player_animation_angle
-			|player_animation_speed
 			|player_animation_depth
+			+Replacements
+				|player_tag_animations
+				|miles_fly_animations
+			|player_reverse_animation
+			|player_animation_speed
 		+Handle
 			|player_handle_list
 			|player_handle_ring
@@ -149,4 +149,4 @@
 			|player_collision_bottom
 			|player_collision_object_bottom
 		|player_get_angle_OLD
-		|player_set_angle
+		|player_set_angle_OLD

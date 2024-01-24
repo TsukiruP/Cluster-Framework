@@ -30,12 +30,14 @@ if (action_state == ACTION_JUMP) {
     // Complete jump:
     if (y_speed > 0 && jump_complete == false) jump_complete = true;
 
+    /*
     // Loop animation:
     if (character_data != CHAR_CLASSIC && animation_current == "roll" && animation_next != "spin_flight") {
         animation_next       = "spin_flight";
         animation_next_frame = player_get_animation("spin_flight", 5);
         animation_loop_count = 0;
     }
+    */
 
     // Reset upon landing:
     if (ground == true) action_state = ACTION_DEFAULT;

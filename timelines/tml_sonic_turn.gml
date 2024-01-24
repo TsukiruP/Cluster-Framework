@@ -38,6 +38,5 @@ applies_to=self
 /// Change Animation
 
 if (ground == true) {
-    timeline_index    = tml_sonic_stand;
-    timeline_position = 0;
+    animation_target = "stand";
 }

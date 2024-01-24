@@ -22,7 +22,7 @@ if (on_obstacle == false) {
             ground  = true;
             landed  = true;
             g_speed = x_speed;
-            player_detect_angle();
+            player_set_angle();
 
             // Landing speed (From 24 to 90 degrees):
             if (ground_angle >= 24 && ground_angle <= 90) {
@@ -89,7 +89,7 @@ if (on_obstacle == false) {
     }
 
     // ground_angle detection:
-    player_detect_angle();
+    player_set_angle();
 
     // Ceiling collision:
     if (ground == false)

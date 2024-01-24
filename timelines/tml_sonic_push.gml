@@ -92,16 +92,7 @@ applies_to=self
 /// Change Frame
 
 image_index = 8;
-#define 52
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Change Frame
-
-image_index = 9;
-#define 57
+#define 51
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603

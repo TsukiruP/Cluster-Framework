@@ -20,7 +20,7 @@ player_movement
 key_to_string
 pad_to_chr
 player_get_angle_OLD
-player_set_angle
+player_set_angle_OLD
 wrap_angle
 joystick_check
 player_get_physics
@@ -114,7 +114,7 @@ line_check
 obstacle_check
 player_collision_terrain
 player_get_angle
-player_detect_angle
+player_set_angle
 player_mode
 player_collision_semisolids
 player_collision_object

@@ -3,6 +3,7 @@
 // Store previous height:
 main_height_temp = main_height;
 
+/*
 // Reset roll offset:
 if (animation_current != "spin_flight" && animation_current != "roll" && animation_current != "spin_dash" && animation_current != "super_spin") roll_offset = 0;
 
@@ -23,7 +24,7 @@ switch (character_data) {
         }
         break;
 }
-
+*/
 // Position fix:
 if ((ground == true && ceiling_lock_alarm == 0) || (mode == 0 && action_state == ACTION_JUMP && animation_current != "spin_flight")) {
     x += (main_height_temp - main_height) * x_direction;
