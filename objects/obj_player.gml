@@ -225,7 +225,7 @@ applies_to=self
 /// Animation Initialization
 
 animation_grid            = -1;
-animation_target          =  "stand";
+animation_target          =  "";
 animation_current         =  "";
 animation_previous        =  animation_current;
 animation_sprite          =  spr_sonic_stand;
@@ -1621,7 +1621,7 @@ if (character_data == CHAR_MILES) {
 }
 
 // Character:
-draw_sprite_ext(animation_sprite, floor(animation_current_frame), floor(x), floor(y), animation_direction * animation_x_scale, animation_y_scale, animation_angle, animation_blend, animation_alpha);
+draw_sprite_ext(sprite_index, image_index, floor(x), floor(y), animation_direction * animation_x_scale, animation_y_scale, animation_angle, animation_blend, animation_alpha);
 
 // Spin dash dust:
 if (action_state == ACTION_SPIN_DASH) {

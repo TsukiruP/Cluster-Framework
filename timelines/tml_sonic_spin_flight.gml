@@ -112,7 +112,17 @@ applies_to=self
 /// Change Frame
 
 image_index = 3;
-#define 21
+#define 22
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Change Sprite
+
+sprite_index = spr_sonic_spin_flight;
+image_index  = 2;
+#define 23
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -120,4 +130,4 @@ applies_to=self
 */
 /// Loop Animation
 
-timeline_position = 6;
+timeline_position = 8;

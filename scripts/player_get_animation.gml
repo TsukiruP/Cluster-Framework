@@ -8,9 +8,11 @@ if (global.animation_grid != -1) {
         // Animation row:
         animation_row = ds_grid_value_y(global.animation_grid, 0, global.animation_coordinates[character_data, 0], 10, global.animation_coordinates[character_data, 1], argument0);
 
-        if (animation_row != -1) {
+        if (animation_row == -1) animation_row = 0;
 
-        }
+        // Return a timeline:
+        return ds_grid_get(global.animation_grid, 2, animation_row);
+
         /*var animation_row, animation_argument;
 
         // Animation argument:

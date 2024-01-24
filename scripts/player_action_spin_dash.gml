@@ -35,7 +35,7 @@ if (action_state == ACTION_SPIN_DASH) {
             spin_dash_charge = min(spin_dash_charge + 2, 8);
             
             // Play animation:
-            animation_target        = "super_spin";
+            animation_target        = "spin_charge";
             animation_current_frame = animation_start_frame;
             
             // Play sound:

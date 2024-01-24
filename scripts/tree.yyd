@@ -37,6 +37,7 @@
 		|stage_start
 		|dummy_effect_create
 		|in_view
+		|timeline_set
 +Gameplay
 	+Player
 		+Collision
