@@ -56,5 +56,4 @@ applies_to=self
 */
 /// Change Timeline
 
-timeline_index    = tml_sonic_spin_dash;
-timeline_position = 0;
+animation_target = "spin_dash";

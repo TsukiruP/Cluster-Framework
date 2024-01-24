@@ -82,6 +82,7 @@
 			|player_animation_core
 			|player_add_animation
 			|player_get_animation
+			|player_set_animation
 			+Character Specific
 				|sonic_add_animations
 				|miles_add_animations
@@ -125,7 +126,6 @@
 			|player_tag_animations
 			|miles_fly_animations
 		|player_reverse_animation
-		|player_animation_speed
 	+Sonic Dash
 		|player_collision_OLD
 		|player_collision_slope

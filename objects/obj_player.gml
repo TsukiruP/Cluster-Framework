@@ -490,13 +490,10 @@ player_animation_target();
 // Animation angle:
 player_animation_angle();
 
-// Animation speed:
-player_animation_speed();
-
 // Animation depth:
 player_animation_depth();
 
-// Hitbox:
+// Size:
 player_size();
 
 // Object handle:

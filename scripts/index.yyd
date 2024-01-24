@@ -123,6 +123,6 @@ player_wall_stop
 player_size
 player_action_tag
 player_animation_angle
-player_animation_speed
+player_set_animation
 rectangle_check
 timeline_set

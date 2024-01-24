@@ -28,10 +28,10 @@
 		+Balance
 			|tml_sonic_balance_back
 			|tml_sonic_balance_front
+		|tml_sonic_push
 		+Spring
 			|tml_sonic_spring_flight
 			|tml_sonic_spring_fall
-		|tml_sonic_push
 		|tml_sonic_breathe
 		+Goal
 		|tml_sonic_hurt
