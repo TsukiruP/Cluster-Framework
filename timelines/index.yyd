@@ -1,5 +1,5 @@
-
 tml_sonic_stand
+tml_sonic_turn
 tml_sonic_walk
 tml_sonic_crouch
 tml_sonic_crouch_end
@@ -22,7 +22,6 @@ tml_sonic_balance_front
 tml_sonic_spring_flight
 tml_sonic_spring_fall
 tml_sonic_push
-tml_sonic_turn
+tml_sonic_breathe
 tml_sonic_hurt
 tml_sonic_death
-tml_sonic_breathe
