@@ -14,6 +14,7 @@ timeline_speed = 1;
 // Set collision:
 main_width  = 6;
 main_height = 14;
+roll_offset = 0;
 
 // Set hitbox:
 hitbox_width    = 0;
@@ -42,6 +43,7 @@ image_index = 2;
 // Set collision:
 main_width  = 6;
 main_height = 9;
+roll_offset = 5;
 
 // Set hitbox:
 hitbox_width    = 0;

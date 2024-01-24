@@ -35,7 +35,7 @@ touching_ceiling   = false;
 
 // Size variables:
 main_width       = 6;
-main_height      = 15;
+main_height      = 14;
 main_height_temp = 0;
 wall_width       = main_width + 3;
 wall_height      = 0;
@@ -68,7 +68,7 @@ gravity_angle      = 0;
 g_speed            = 0;
 
 // Jump variables:
-jump_force    = -6.5;
+jump_force    =  6.5;
 jump_release  = -4;
 jump_complete =  false;
 

@@ -115,7 +115,7 @@ switch (action_state) {
         if (character_data == CHAR_CLASSIC) {
             if (animation_target != "spin_dash") animation_target = "spin_dash";
         } else {
-            if (animation_target != "super_spin" && animation_target != "spin_dash") animation_target = "spin_dash";
+            if (animation_target != "spin_charge" && animation_target != "spin_dash") animation_target = "spin_dash";
         }
         break;
 

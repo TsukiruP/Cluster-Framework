@@ -14,6 +14,7 @@ timeline_speed = 1;
 // Set collision:
 main_width  = 6;
 main_height = 9;
+roll_offset = 5;
 #define 1
 /*"/*'/**//* YYD ACTION
 lib_id=1

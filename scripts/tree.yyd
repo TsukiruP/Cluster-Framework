@@ -81,22 +81,17 @@
 		+Animation
 			|player_animation_core
 			|player_add_animation
+			|player_get_animation
 			+Character Specific
 				|sonic_add_animations
 				|miles_add_animations
 				|knuckles_add_animations
 				|classic_add_animations
 			|player_compile_animations
-			|player_get_animation
 			|player_animation_target
 			|player_animation_direction
 			|player_animation_angle
 			|player_animation_depth
-			+Replacements
-				|player_tag_animations
-				|miles_fly_animations
-			|player_reverse_animation
-			|player_animation_speed
 		+Handle
 			|player_handle_list
 			|player_handle_ring
@@ -125,7 +120,12 @@
 		|user_input_accept
 		|user_input_cancel
 		|user_input_help
-	+Miles' Tails
+	+Animations
+		+Replacements
+			|player_tag_animations
+			|miles_fly_animations
+		|player_reverse_animation
+		|player_animation_speed
 	+Sonic Dash
 		|player_collision_OLD
 		|player_collision_slope
