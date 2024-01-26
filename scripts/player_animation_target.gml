@@ -9,14 +9,14 @@ switch (action_state) {
         if (character_data == CHAR_CLASSIC) {
             if (ground == true) {
                 // Stand:
-                if (g_speed == 0 && animation_target != "stand" && animation_target != "wait_leader" && animation_target != "wait_partner") animation_target = "stand";
+                if (g_speed == 0 && animation_target != "stand" && animation_target != "wait_leader" && animation_target != "wait_partner") player_set_animation("stand");
 
                 if (g_speed <> 0) {
                     // Jog:
-                    if (abs(g_speed) < 6.00 && animation_target != "jog") animation_target = "jog";
+                    if (abs(g_speed) < 6.00 && animation_target != "jog") player_set_animation("jog");
 
                     // Run:
-                    if (abs(g_speed) >= 6.00 && animation_target != "run") animation_target = "run";
+                    if (abs(g_speed) >= 6.00 && animation_target != "run") player_set_animation("run");
                 }
             }
         }
@@ -26,21 +26,21 @@ switch (action_state) {
             if (ground == true) {
                 // Stand:
                 if (g_speed == 0 && animation_target != "stand" && animation_target != "turn" &&
-                    animation_target != "look_end" && animation_target != "crouch_end") animation_target = "stand";
+                    animation_target != "look_end" && animation_target != "crouch_end") player_set_animation("stand");
 
                 if (g_speed <> 0) {
                     // Walk:
-                    if (abs(g_speed) < 3.75 && animation_target != "walk") animation_target = "walk";
+                    if (abs(g_speed) < 3.75 && animation_target != "walk") player_set_animation("walk");
 
                     // Walk fast:
-                    if (abs(g_speed) >= 3.75 && abs(g_speed) < 4.50 && animation_target != "walk_fast") animation_target = "walk_fast";
+                    if (abs(g_speed) >= 3.75 && abs(g_speed) < 4.50 && animation_target != "walk_fast") player_set_animation("walk_fast");
 
                     // Jog:
-                    if (abs(g_speed) >=  4.50 && animation_target != "jog") animation_target = "jog";
+                    if (abs(g_speed) >=  4.50 && animation_target != "jog") player_set_animation("jog");
                 }
             } else {
                 // Fall:
-                if (animation_target != "turn" && animation_target != "skid" && animation_target != "spring_flight" && animation_target != "spring_fall") animation_target = "spring_fall";
+                if (animation_target != "turn" && animation_target != "skid" && animation_target != "spring_flight" && animation_target != "spring_fall") player_set_animation("spring_fall");
             }
         }
 
@@ -49,28 +49,28 @@ switch (action_state) {
             if (ground == true) {
                 // Stand:
                 if (g_speed == 0 && animation_target != "stand" && animation_target != "turn" && animation_target != "wait_leader" && animation_target != "wait_partner" &&
-                    animation_target != "land" && animation_target != "ready" && animation_target != "look_end" && animation_target != "crouch_end") animation_target = "stand";
+                    animation_target != "land" && animation_target != "ready" && animation_target != "look_end" && animation_target != "crouch_end") player_set_animation("stand");
 
                 if (g_speed <> 0) {
                     // Walk:
-                    if (abs(g_speed) < 1.50 && animation_target != "walk") animation_target = "walk";
+                    if (abs(g_speed) < 1.50 && animation_target != "walk") player_set_animation("walk");
 
                     // Walk fast:
-                    if (abs(g_speed) >= 1.50 && abs(g_speed) < 3.00 && animation_target != "walk_fast") animation_target = "walk_fast";
+                    if (abs(g_speed) >= 1.50 && abs(g_speed) < 3.00 && animation_target != "walk_fast") player_set_animation("walk_fast");
 
                     // Jog:
-                    if (abs(g_speed) >= 3.00 && abs(g_speed) < 4.50 && animation_target != "jog") animation_target = "jog";
+                    if (abs(g_speed) >= 3.00 && abs(g_speed) < 4.50 && animation_target != "jog") player_set_animation("jog");
 
                     // Jog fast:
-                    if (abs(g_speed) >= 4.50 && abs(g_speed) < 6.00 && animation_target != "jog_fast") animation_target = "jog_fast";
+                    if (abs(g_speed) >= 4.50 && abs(g_speed) < 6.00 && animation_target != "jog_fast") player_set_animation("jog_fast");
 
                     // Run:
-                    if (abs(g_speed) >= 6.00 && animation_target != "run" && animation_target != "dash") animation_target = "run";
+                    if (abs(g_speed) >= 6.00 && animation_target != "run" && animation_target != "dash") player_set_animation("run");
                 }
             } else {
                 // Fall:
                 if (animation_target != "turn" && animation_target != "spin_flight" && animation_target != "spin_fall" && animation_current != "skid" && animation_current != "skid_fast" &&
-                    animation_current != "skid_turn" && animation_target != "spring_flight" && animation_target != "spring_fall" && animation_target != "fly_cancel") animation_target = "spring_fall";
+                    animation_current != "skid_turn" && animation_target != "spring_flight" && animation_target != "spring_fall" && animation_target != "fly_cancel") player_set_animation("spring_fall");
             }
         }
         break;
@@ -79,61 +79,61 @@ switch (action_state) {
     case ACTION_JUMP:
         // Classic jump:
         if (character_data == CHAR_CLASSIC) {
-            if (animation_target != "roll") animation_target = "roll";
+            if (animation_target != "roll") player_set_animation("roll");
         }
 
         // Tag jump:
         else if (tag_animations == true) {
-            if (y_speed <= 0 && animation_target != "spring_flight" && animation_target != "spring_fall") animation_target = "spring_flight";
-            if (y_speed > 0 && animation_target != "spring_fall") animation_target = "spring_fall";
+            if (y_speed <= 0 && animation_target != "spring_flight" && animation_target != "spring_fall") player_set_animation("spring_flight");
+            if (y_speed > 0 && animation_target != "spring_fall") player_set_animation("spring_fall");
         }
 
         // Normal jump:
         else {
             if (tag_action == TAG_LEAP) {
-                if (y_speed <= 0 && animation_target != "leap_flight" && animation_target != "leap_fall" && animation_target != "spring_fall") animation_target = "leap_flight";
-                if (y_speed > 0 && animation_target != "leap_fall" && animation_target != "spring_fall") animation_target = "leap_fall";
+                if (y_speed <= 0 && animation_target != "leap_flight" && animation_target != "leap_fall" && animation_target != "spring_fall") player_set_animation("leap_flight");
+                if (y_speed > 0 && animation_target != "leap_fall" && animation_target != "spring_fall") player_set_animation("leap_fall");
             } else {
-                if ((animation_target != "roll" && animation_target != "spin_flight" && animation_target != "spin_fall") || animation_current == "drop_dash") animation_target = "spin_flight";
+                if ((animation_target != "roll" && animation_target != "spin_flight" && animation_target != "spin_fall") || animation_current == "drop_dash") player_set_animation("spin_flight");
             }
         }
         break;
 
     // Look:
     case ACTION_LOOK:
-        if (animation_target != "look") animation_target = "look";
+        if (animation_target != "look") player_set_animation("look");
         break;
 
     // Crouch:
     case ACTION_CROUCH:
-        if (animation_target != "crouch") animation_target = "crouch";
+        if (animation_target != "crouch") player_set_animation("crouch");
         break;
 
     // Spin Dash:
     case ACTION_SPIN_DASH:
         // Classic Spin Dash:
         if (character_data == CHAR_CLASSIC) {
-            if (animation_target != "spin_dash") animation_target = "spin_dash";
+            if (animation_target != "spin_dash") player_set_animation("spin_dash");
         } else {
-            if (animation_target != "spin_charge" && animation_target != "spin_dash") animation_target = "spin_dash";
+            if (animation_target != "spin_charge" && animation_target != "spin_dash") player_set_animation("spin_dash");
         }
         break;
 
     // Roll:
     case ACTION_ROLL:
-        if (animation_target != "roll") animation_target = "roll";
+        if (animation_target != "roll") player_set_animation("roll");
         break;
 
     // Skid:
     case ACTION_SKID:
         // Classic/tag skid:
         if (character_data == CHAR_CLASSIC || tag_animations == true) {
-            if (animation_target != "skid") animation_target = "skid";
+            if (animation_target != "skid") player_set_animation("skid");
         }
 
         // Normal skid:
         else {
-            if (animation_target != "skid" && animation_target != "skid_fast" && animation_target != "skid_turn") animation_target = "skid";
+            if (animation_target != "skid" && animation_target != "skid_fast" && animation_target != "skid_turn") player_set_animation("skid");
         }
         break;
 
@@ -141,64 +141,64 @@ switch (action_state) {
     case ACTION_BALANCE:
         if (character_data == CHAR_CLASSIC) {
             if (abs(balance_direction) == 2) {
-                if (animation_target != "balance_front") animation_target = "balance_front";
+                if (animation_target != "balance_front") player_set_animation("balance_front");
             } else {
-                if (animation_target != "balance_back") animation_target = "balance_back";
+                if (animation_target != "balance_back") player_set_animation("balance_back");
             }
         } else {
-            if (animation_direction == balance_direction) {
-                if (animation_target != "balance_front") animation_target = "balance_front";
+            if (animation_direction != balance_direction) {
+                if (animation_target != "balance_back") player_set_animation("balance_back");
             } else {
-                if (animation_target != "balance_back") animation_target = "balance_back";
+                if (animation_target != "balance_front") player_set_animation("balance_front");
             }
         }
         break;
 
     // Push:
     case ACTION_PUSH:
-        if (animation_target != "push") animation_target = "push";
+        if (animation_target != "push") player_set_animation("push");
         break;
 
     // Spring:
     case ACTION_SPRING:
         // Classic spring:
         if (character_data == CHAR_CLASSIC) {
-            if ((y_speed < 0 || spring_alarm > 0) && animation_target != "spring") animation_target = "spring";
-            if (((y_speed >= 0 && spring_angle == gravity_angle + ANGLE_UP) || (spring_alarm == 0 && spring_angle != gravity_angle + ANGLE_UP)) && animation_target != "jog") animation_target = "jog";
+            if ((y_speed < 0 || spring_alarm > 0) && animation_target != "spring") player_set_animation("spring");
+            if (((y_speed >= 0 && spring_angle == gravity_angle + ANGLE_UP) || (spring_alarm == 0 && spring_angle != gravity_angle + ANGLE_UP)) && animation_target != "jog") player_set_animation("jog");
         }
 
         // Tag/normal spring:
         else {
-            if ((y_speed < 0 || spring_alarm > 0) && animation_target != "spring_flight") animation_target = "spring_flight";
-            if (((y_speed >= 0 && spring_angle == gravity_angle + ANGLE_UP) || (spring_alarm == 0 && spring_angle != gravity_angle + ANGLE_UP)) && animation_target != "spring_fall") animation_target = "spring_fall";
+            if ((y_speed < 0 || spring_alarm > 0) && animation_target != "spring_flight") player_set_animation("spring_flight");
+            if (((y_speed >= 0 && spring_angle == gravity_angle + ANGLE_UP) || (spring_alarm == 0 && spring_angle != gravity_angle + ANGLE_UP)) && animation_target != "spring_fall") player_set_animation("spring_fall");
         }
         break;
 
     // Breathe:
     case ACTION_BREATHE:
-        if (animation_target != "breathe") animation_target = "breathe";
+        if (animation_target != "breathe") player_set_animation("breathe");
         break;
 
     // Hurt:
     case ACTION_HURT:
-        if (animation_target != "hurt") animation_target = "hurt";
+        if (animation_target != "hurt") player_set_animation("hurt");
         break;
 
     // Death:
     case ACTION_DEATH:
         if (character_data == CHAR_CLASSIC && drowned == true) {
-            if (animation_target != "drown") animation_target = "drown";
+            if (animation_target != "drown") player_set_animation("drown");
         } else {
-            if (animation_target != "death") animation_target = "death";
+            if (animation_target != "death") player_set_animation("death");
         }
         break;
 
     // Fly:
     case ACTION_FLY:
         if (flight_timer == flight_duration) {
-            if (animation_target != "fly_drop") animation_target = "fly_drop";
+            if (animation_target != "fly_drop") player_set_animation("fly_drop");
         } else {
-            if (animation_target != "fly" && animation_target != "fly_drop" && animation_target != "fly_turn") animation_target = "fly";
+            if (animation_target != "fly" && animation_target != "fly_drop" && animation_target != "fly_turn") player_set_animation("fly");
         }
         break;
 }
@@ -218,7 +218,7 @@ if (input_cpu == false && input_lock == false && tag_animations == false && anim
 } else {
     animation_timer = 0;
 }
-*/
+
 if (player_exists(1) && animation_current == "wait_leader") {
     var partner_instance;
 
@@ -234,9 +234,6 @@ if (player_exists(1) && animation_current == "wait_leader") {
 if (character_data == CHAR_MILES) {
     if (animation_target == "super_spin") animation_target = "spin_dash";
 }
-
+*/
 // Animation core:
 player_animation_core();
-
-// Align roll:
-if (animation_current == "roll" || animation_current == "spin_flight") player_align_roll();
