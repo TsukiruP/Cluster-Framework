@@ -30,6 +30,15 @@ applies_to=self
 /// Change Frame
 
 image_index = 1;
+#define 5
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Animation Trigger:
+
+animation_trigger = true;
 #define 8
 /*"/*'/**//* YYD ACTION
 lib_id=1

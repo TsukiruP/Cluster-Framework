@@ -56,4 +56,4 @@ applies_to=self
 */
 /// Change Timeline
 
-animation_target = "spin_dash";
+player_set_animation("spin_dash");

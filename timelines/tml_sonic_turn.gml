@@ -39,5 +39,5 @@ applies_to=self
 /// Change Animation
 
 if (ground == true) {
-    animation_target = "stand";
+    player_set_animation("stand");
 }

@@ -14,8 +14,8 @@ switch (animation_current) {
     case "land":
     case "look":
     case "crouch":
-    case "super_spin":
     case "spin_dash":
+    case "spin_charge":
     case "roll":
     case "skid":
     case "skid_fast":

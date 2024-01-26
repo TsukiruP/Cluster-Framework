@@ -26,7 +26,7 @@ switch (action_state) {
             if (ground == true) {
                 // Stand:
                 if (g_speed == 0 && animation_target != "stand" && animation_target != "turn" &&
-                    animation_target != "look" && animation_target != "crouch") animation_target = "stand";
+                    animation_target != "look_end" && animation_target != "crouch_end") animation_target = "stand";
 
                 if (g_speed <> 0) {
                     // Walk:
@@ -49,7 +49,7 @@ switch (action_state) {
             if (ground == true) {
                 // Stand:
                 if (g_speed == 0 && animation_target != "stand" && animation_target != "turn" && animation_target != "wait_leader" && animation_target != "wait_partner" &&
-                    animation_target != "land" && animation_target != "ready" && animation_target != "look" && animation_target != "crouch") animation_target = "stand";
+                    animation_target != "land" && animation_target != "ready" && animation_target != "look_end" && animation_target != "crouch_end") animation_target = "stand";
 
                 if (g_speed <> 0) {
                     // Walk:
@@ -202,7 +202,7 @@ switch (action_state) {
         }
         break;
 }
-
+/*
 // Wait:
 if (input_cpu == false && input_lock == false && tag_animations == false && animation_current == "stand" && animation_next == "") {
     if (animation_timer != 400) animation_timer += 1;
@@ -218,7 +218,7 @@ if (input_cpu == false && input_lock == false && tag_animations == false && anim
 } else {
     animation_timer = 0;
 }
-
+*/
 if (player_exists(1) && animation_current == "wait_leader") {
     var partner_instance;
 

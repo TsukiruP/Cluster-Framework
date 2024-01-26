@@ -14,8 +14,8 @@ if (ground = true && action_state == ACTION_DEFAULT && input_lock_alarm == 0) {
             action_state = ACTION_SKID;
 
             // Play animation:
-            if (abs(g_speed) >= x_top_speed && tag_animations == false) animation_target = "skid_fast";
-            else animation_target = "skid";
+            if (abs(g_speed) >= x_top_speed && tag_animations == false) player_set_animation("skid_fast");
+            else player_set_animation("skid");
 
             if (skid_classic == true) animation_direction = sign(g_speed);
 
@@ -33,7 +33,7 @@ if (action_state == ACTION_SKID) {
             g_speed = 0;
 
             // Play animation:
-            animation_target     = "skid_turn";
+            player_set_animation("skid_turn");
             animation_direction *= -1;
         }
     }
@@ -52,6 +52,3 @@ if (action_state == ACTION_SKID) {
         (((skid_classic == false && g_speed != 0 && sign(g_speed) != -input_direction) || (skid_classic == true && sign(g_speed) == input_direction)) && animation_current != "skid_turn") ||
         (animation_current == "skid_turn" && animation_finished == true) || input_lock_alarm > 0) action_state = ACTION_DEFAULT;
 }
-
-// Turn:
-if (ground == true && animation_finished == true && animation_current == "turn") animation_target = "stand";

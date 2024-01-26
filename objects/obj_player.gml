@@ -224,42 +224,29 @@ applies_to=self
 */
 /// Animation Initialization
 
-animation_grid            = -1;
-animation_target          =  "";
-animation_current         =  "";
-animation_previous        =  animation_current;
-animation_sprite          =  spr_sonic_stand;
-animation_current_frame   =  0;
-animation_start_frame     =  0;
-animation_end_frame       =  0;
-animation_loop_frame      =  0;
-animation_loop_count      =  0;
-animation_speed           =  0;
-animation_rendering_speed =  0;
-animation_next            =  "";
-animation_next_frame      =  0;
-animation_flag_frame      =  0;
-animation_changed         =  false;
-animation_finished        =  false;
+animation_grid      = -1;
+animation_target    =  "stand";
+animation_current   =  "";
+animation_previous  =  animation_current;
+animation_moment    =  0;
+animation_finished  =  false;
+animation_reload    =  false;
 
-animation_direction       =  1;
-animation_x_scale         =  1;
-animation_y_scale         =  1;
-animation_angle           =  0;
-animation_angle_mod       =  0;
-animation_blend           =  c_white;
-animation_alpha           =  1;
-animation_timer           =  0;
-animation_depth           =  0;
+animation_direction =  1;
+animation_x_scale   =  1;
+animation_y_scale   =  1;
+animation_angle     =  0;
+animation_angle_mod =  0;
+animation_blend     =  c_white;
+animation_alpha     =  1;
+animation_timer     =  0;
+animation_depth     =  0;
 
-miles_tails_frame         =  0;
-miles_tails_speed         =  0.14;
-miles_tails_x             =  0;
-miles_tails_y             =  0;
-miles_tails_angle         =  0;
-
-draw_x                    =  x;
-draw_y                    =  y;
+miles_tails_frame   =  0;
+miles_tails_speed   =  0.14;
+miles_tails_x       =  0;
+miles_tails_y       =  0;
+miles_tails_angle   =  0;
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -1609,48 +1596,16 @@ if (global.misc_trails == true) {
 if (invincibility_type == 1 && invincibility_alarm > 0) animation_alpha = (global.stage_time div 60) mod 3;
 else animation_alpha = 1;
 
+// Character:
+draw_sprite_ext(sprite_index, image_index, floor(x), floor(y), animation_direction * animation_x_scale, animation_y_scale, animation_angle, animation_blend, animation_alpha);
+
+/*
 // Miles' tails:
 if (character_data == CHAR_MILES) {
     miles_tails_x = x - 5 * dcos(miles_tails_angle) - abs(dcos(miles_tails_angle) * (ground == true && animation_direction == -1)) - (abs(dsin(miles_tails_angle)) * animation_direction);
     miles_tails_y = y + 4 * dsin(miles_tails_angle) - abs(dcos(miles_tails_angle) * (ground == true && animation_direction == -1));
     
     if (animation_current == "roll" || (animation_current == "spin_flight" && animation_current_frame >= animation_loop_frame)) draw_sprite_ext(spr_miles_tails, floor(miles_tails_frame), floor(miles_tails_x), floor(miles_tails_y), animation_direction * animation_x_scale, animation_y_scale, wrap_angle(miles_tails_angle - 90), animation_blend, animation_alpha);
-}
-
-// Character:
-draw_sprite_ext(sprite_index, image_index, floor(x), floor(y), animation_direction * animation_x_scale, animation_y_scale, animation_angle, animation_blend, animation_alpha);
-
-// Spin dash dust:
-if (action_state == ACTION_SPIN_DASH) {
-    if (floor(spin_dash_charge) == 0) {
-        draw_sprite_ext(spr_spin_dash_dust, current_time div 40, floor(x - 4 * animation_direction), floor(y) + main_height, animation_direction, 1, 0, c_white, animation_alpha);
-    } else {
-        draw_sprite_ext(spr_super_spin_dust, current_time div 30, floor(x - 4 * animation_direction), floor(y) + main_height, animation_direction, 1, 0, c_white, animation_alpha);
-    }
-}
-
-// Peel out dust:
-if (action_state == ACTION_PEEL_OUT) {
-    if (peel_out_timer >= 16 && floor(peel_out_timer < 32)) {
-        draw_sprite_ext(spr_spin_dash_dust, current_time div 40, floor(x - 4 * animation_direction), floor(y), animation_direction, 1, 0, c_white, animation_alpha);
-    } else if (peel_out_timer >= 32) {
-        draw_sprite_ext(spr_super_spin_dust, current_time div 30, floor(x - 4 * animation_direction), floor(y), animation_direction, 1, 0, c_white, animation_alpha);
-    }
-}
-
-// Shields:
-if (invincibility_type != 2) {
-    switch (shield_data) {
-        case SHIELD_BASIC:
-            draw_sprite_ext(spr_shield_basic, current_time div 60, floor(x), floor(y), 1, 1, 0, c_white, 0.5);
-            break;
-        
-        case SHIELD_MAGNETIC:
-            draw_sprite_ext(spr_shield_magnetic, current_time div 65, floor(x), floor(y), 1, 1, 0, c_white, 0.4);
-            break;
-    }
-} else {
-    draw_sprite_ext(spr_shield_muteki, current_time div 60, floor(x), floor(y), 1, 1, 0, c_white, 0.7);
 }
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -1663,8 +1618,40 @@ applies_to=self
 if (debug_mode == false) exit;
 
 // Draw main size:
+var x1, y1, x2, y2;
+
+switch (mode) {
+    case 0:
+        x1 = floor(x) - main_width;
+        y1 = floor(y) - main_height;
+        x2 = floor(x) + main_width;
+        y2 = floor(y) + main_height;
+        break;
+
+    case 1:
+        x1 = floor(x) - main_height;
+        y1 = floor(y) - main_width;
+        x2 = floor(x) + main_height;
+        y2 = floor(y) + main_width;
+        break;
+
+    case 2:
+        x1 = floor(x) - main_width;
+        y1 = floor(y) - main_height;
+        x2 = floor(x) + main_width;
+        y2 = floor(y) + main_height;
+        break;
+
+    case 3:
+        x1 = floor(x) - main_height;
+        y1 = floor(y) - main_width;
+        x2 = floor(x) + main_height;
+        y2 = floor(y) + main_width;
+        break;
+}
+
 draw_set_color(c_orange);
-draw_rectangle(floor(x) - main_width,  floor(y) - main_height, floor(x) + main_width, floor(y) + main_height, true);
+draw_rectangle(x1, y1, x2, y2, true);
 
 // Draw hitbox:
 var x1, y1, x2, y2;

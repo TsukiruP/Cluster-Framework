@@ -21,6 +21,9 @@ hitbox_width    = 0;
 hitbox_height   = 0;
 hitbox_offset_x = 0;
 hitbox_offset_y = 0;
+
+// Animation trigger:
+animation_trigger = true;
 #define 1
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -47,4 +50,4 @@ applies_to=self
 */
 /// Change Frame
 
-image_index      = 3;
+image_index = 3;

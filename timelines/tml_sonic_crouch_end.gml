@@ -37,5 +37,4 @@ applies_to=self
 */
 /// Change Animation
 
-timeline_index    = tml_sonic_stand;
-timeline_position = 0;
+player_set_animation("stand");
