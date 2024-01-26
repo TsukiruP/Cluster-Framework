@@ -88,7 +88,7 @@ if (on_obstacle == false) {
         }
     }
 
-    // ground_angle detection:
+    // Ground angle detection:
     player_set_angle();
 
     // Ceiling collision:
