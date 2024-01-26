@@ -1683,6 +1683,7 @@ switch (mode) {
         y2 = floor(y) + (hitbox_offset_x * animation_direction) + hitbox_width;
         break;
 }
-
-draw_set_color(c_red);
-draw_rectangle(x1, y1, x2, y2, true);
+if (hitbox_width != 0 && hitbox_height != 0) {
+    draw_set_color(c_lime);
+    draw_rectangle(x1, y1, x2, y2, true);
+}
