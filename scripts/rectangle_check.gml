@@ -3,6 +3,9 @@
 // Exit if collision is disabled:
 if (collision_allow == false) exit;
 
+// Return false if either radius is set to 0:
+if (argument2 == 0 || argument3 == 0) return noone;
+
 // Set up arguments:
 var x1, y1, x2, y2;
 
