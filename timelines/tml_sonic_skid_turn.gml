@@ -21,6 +21,9 @@ hitbox_width    = 0;
 hitbox_height   = 0;
 hitbox_offset_x = 0;
 hitbox_offset_y = 0;
+
+// Animation direction:
+animation_direction *= -1;
 #define 2
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -54,8 +57,6 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Change Animation
+/// Finish Animation
 
-if (ground == true) {
-    player_set_animation("stand");
-}
+animation_finished = true;

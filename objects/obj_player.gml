@@ -412,10 +412,8 @@ if ((action_state == ACTION_DEFAULT && animation_current != "turn" && animation_
                      if (action_state != ACTION_BALANCE) {
                          if (action_state == ACTION_SKID && tag_animations == true) action_state = ACTION_DEFAULT;
 
-                         animation_target = "turn";
+                         player_set_animation("turn");
                      }
-
-                     animation_direction *= -1;
                 }
 
                 // Decelerate:
@@ -468,11 +466,11 @@ applies_to=self
 // Actions:
 player_action_list();
 
-// Animation direction:
-player_animation_direction();
-
 // Animation target:
 player_animation_target();
+
+// Animation direction:
+player_animation_direction();
 
 // Animation angle:
 player_animation_angle();
@@ -1049,7 +1047,7 @@ action_id=603
 applies_to=self
 */
 /// Afterimage
-
+/*
 if (afterimage_draw == true) {
     if (afterimage_alarm > 0) afterimage_alarm -= 1;
     else {

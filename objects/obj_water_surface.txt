@@ -1,5 +1,5 @@
 sprite=spr_water_surface
-visible=0
+visible=1
 solid=0
 persistent=0
 depth=-12000
