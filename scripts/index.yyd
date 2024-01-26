@@ -25,7 +25,7 @@ wrap_angle
 joystick_check
 player_get_physics
 player_animation_depth
-sonic_action_slide
+sonic_action_hammer
 user_input_jump
 user_input_special
 user_input_swap

@@ -71,7 +71,7 @@
 			|player_action_hurt
 			|player_action_tag
 			+Sonic
-				|sonic_action_slide
+				|sonic_action_hammer
 			+Miles
 				|miles_action_fly
 			+Knuckles
@@ -103,7 +103,6 @@
 		+Misc.
 			|player_get_physics
 			|player_ring_loss
-			|player_align_roll
 			|player_get_item
 			+Trail
 				|start_trail
@@ -150,3 +149,4 @@
 			|player_collision_object_bottom
 		|player_get_angle_OLD
 		|player_set_angle_OLD
+	|player_align_roll

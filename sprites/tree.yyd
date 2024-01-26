@@ -106,7 +106,7 @@
 				|spr_sonic_fly_carry
 				|spr_sonic_throw
 				|spr_sonic_glide_carry
-			|spr_sonic_slide
+			|spr_sonic_hammer
 		+Miles
 			+Default
 				|spr_miles_stand

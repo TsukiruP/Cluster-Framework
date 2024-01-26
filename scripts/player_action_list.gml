@@ -6,7 +6,7 @@ if (action_state == ACTION_RESPAWN || action_state == ACTION_DEATH) exit;
 
 switch (character_data) {
     case CHAR_SONIC:
-        sonic_action_slide();
+        sonic_action_hammer();
         break;
 
     case CHAR_MILES:

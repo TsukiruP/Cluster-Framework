@@ -50,7 +50,7 @@ player_add_animation(CHAR_SONIC, "hurt",          tml_sonic_hurt);
 // Death:
 player_add_animation(CHAR_SONIC, "death",         tml_sonic_death);
 
-
+player_add_animation(CHAR_SONIC, "hammer",         tml_sonic_hammer);
 /*
 // Default:
 player_add_animation(CHAR_SONIC,    "stand",          spr_sonic_stand,          0, 34,  0, -1, 0.20);

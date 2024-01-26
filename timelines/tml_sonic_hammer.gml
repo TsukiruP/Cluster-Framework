@@ -7,7 +7,7 @@ applies_to=self
 /// Start Animation
 sprite_index   = spr_sonic_hammer;
 image_index    = 0;
-timeline_loop  = true;
+timeline_loop  = false;
 timeline_speed = 1;
 
 hitbox_width    = 0;
@@ -31,7 +31,7 @@ applies_to=self
 */
 /// Change Frame
 
-image_index = 3;
+image_index = 2;
 #define 3
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -40,8 +40,17 @@ applies_to=self
 */
 /// Change Frame
 
+image_index = 3;
+#define 4
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Change Frame
+
 image_index = 4;
-#define 5
+#define 6
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -143,7 +152,6 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Change Timeline
+/// Finish Animation
 
-timeline_index    = tml_sonic_stand;
-timeline_position = 0;
+animation_finished = true;
