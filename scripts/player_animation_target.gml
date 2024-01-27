@@ -236,18 +236,24 @@ if (character_data == CHAR_MILES) {
     if (animation_target == "super_spin") player_set_animation("spin_dash");
 }
 
-// Animation varients:
+// Animation variants:
 switch (animation_target) {
     case "stand":
     case "walk":
     case "walk_fast":
     case "jog":
-        if (tag_animations == true) animation_varient = 1;
+        if (tag_animations == true) animation_variant = 1;
+        else animation_variant = 0;
         break;
 
     default:
-        animation_varient = 0;
+        animation_variant = 0;
 }
 
 // Animation core:
 player_animation_core();
+
+// Movement speed:
+if (animation_current == "walk" || animation_current == "walk_fast" || animation_current == "jog" || animation_current == "jog_fast" || animation_current == "run") {
+    timeline_speed = clamp(abs(g_speed * 16 * 3) / 64, 0.5, 8)
+}

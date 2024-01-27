@@ -1,5 +1,5 @@
-/// player_get_animation(animation, varient)
-// Returns a timeline based on the given animation and varient.
+/// player_get_animation(animation, variant)
+// Returns a timeline based on the given animation and variant.
 // Defaults to a character's first animation if it is not able to be found.
 
 if (global.animation_grid != -1) {
