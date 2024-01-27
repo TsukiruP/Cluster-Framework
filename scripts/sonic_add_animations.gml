@@ -1,11 +1,11 @@
 /// sonic_add_animations()
 
 // Default:
-player_add_animation(CHAR_SONIC, "stand",         tml_sonic_stand);
-player_add_animation(CHAR_SONIC, "turn",          tml_sonic_turn);
-player_add_animation(CHAR_SONIC, "walk",          tml_sonic_walk);
-player_add_animation(CHAR_SONIC, "walk_fast",     tml_sonic_walk_fast);
-player_add_animation(CHAR_SONIC, "jog",           tml_sonic_jog);
+player_add_animation(CHAR_SONIC, "stand",         tml_sonic_stand,     tml_sonic_stand_tag);
+player_add_animation(CHAR_SONIC, "turn",          tml_sonic_turn,      tml_sonic_turn_tag);
+player_add_animation(CHAR_SONIC, "walk",          tml_sonic_walk,      tml_sonic_walk_tag);
+player_add_animation(CHAR_SONIC, "walk_fast",     tml_sonic_walk_fast, tml_sonic_walk_fast_tag);
+player_add_animation(CHAR_SONIC, "jog",           tml_sonic_jog,       tml_sonic_jog_tag);
 player_add_animation(CHAR_SONIC, "jog_fast",      tml_sonic_jog_fast);
 player_add_animation(CHAR_SONIC, "run",           tml_sonic_run);
 

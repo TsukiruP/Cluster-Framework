@@ -228,8 +228,10 @@ animation_grid      = -1;
 animation_target    =  "stand";
 animation_current   =  "";
 animation_previous  =  animation_current;
+animation_varient   =  0;
 animation_moment    =  0;
 animation_finished  =  false;
+animation_trigger   =  false;
 animation_reload    =  false;
 
 animation_direction =  1;

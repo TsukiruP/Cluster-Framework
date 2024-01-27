@@ -229,11 +229,25 @@ if (player_exists(1) && animation_current == "wait_leader") {
         with (partner_instance) animation_target = "wait_partner";
     }
 }
+*/
 
 // Missing animations:
 if (character_data == CHAR_MILES) {
-    if (animation_target == "super_spin") animation_target = "spin_dash";
+    if (animation_target == "super_spin") player_set_animation("spin_dash");
 }
-*/
+
+// Animation varients:
+switch (animation_target) {
+    case "stand":
+    case "walk":
+    case "walk_fast":
+    case "jog":
+        if (tag_animations == true) animation_varient = 1;
+        break;
+
+    default:
+        animation_varient = 0;
+}
+
 // Animation core:
 player_animation_core();

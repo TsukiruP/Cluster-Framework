@@ -4,10 +4,10 @@ var animation_row;
 
 // Create animation grid:
 if (global.animation_grid == -1) {
-    global.animation_grid = ds_grid_create(2, 1);
+    global.animation_grid = ds_grid_create(4, 1);
     animation_row = 0;
 } else {
-    ds_grid_resize(global.animation_grid, 11, ds_grid_height(global.animation_grid) + 1);
+    ds_grid_resize(global.animation_grid, 4, ds_grid_height(global.animation_grid) + 1);
     animation_row = ds_grid_height(global.animation_grid) - 1;
 }
 

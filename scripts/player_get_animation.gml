@@ -12,7 +12,7 @@ if (global.animation_grid != -1) {
         if (animation_row == -1) animation_row = global.animation_coordinates[character_data, 0];
 
         // Return a timeline:
-        return ds_grid_get(global.animation_grid, 2, animation_row);
+        return ds_grid_get(global.animation_grid, argument1 + 2, animation_row);
     }
 
 }
