@@ -34,8 +34,8 @@ player_add_animation(CHAR_SONIC, "skid_fast",     tml_sonic_skid_fast);
 player_add_animation(CHAR_SONIC, "skid_turn",     tml_sonic_skid_turn);
 
 // Balance:
-player_add_animation(CHAR_SONIC, "balance_back",  tml_sonic_balance_back);
 player_add_animation(CHAR_SONIC, "balance_front", tml_sonic_balance_front);
+player_add_animation(CHAR_SONIC, "balance_back",  tml_sonic_balance_back);
 
 // Spring:
 player_add_animation(CHAR_SONIC, "spring_flight", tml_sonic_spring_flight);

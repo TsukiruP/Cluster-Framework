@@ -66,7 +66,7 @@ applies_to=self
 /// Change Frame
 
 image_index = 9;
-#define 16
+#define 15
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -75,7 +75,7 @@ applies_to=self
 /// Change Frame
 
 image_index = 10;
-#define 19
+#define 18
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -84,7 +84,7 @@ applies_to=self
 /// Change Frame
 
 image_index = 11;
-#define 22
+#define 21
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -93,7 +93,7 @@ applies_to=self
 /// Change Frame
 
 image_index = 12;
-#define 24
+#define 23
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603

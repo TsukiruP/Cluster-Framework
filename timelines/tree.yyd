@@ -26,8 +26,8 @@
 			|tml_sonic_skid_fast
 			|tml_sonic_skid_turn
 		+Balance
-			|tml_sonic_balance_back
 			|tml_sonic_balance_front
+			|tml_sonic_balance_back
 		|tml_sonic_push
 		+Spring
 			|tml_sonic_spring_flight

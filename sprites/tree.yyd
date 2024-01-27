@@ -89,8 +89,8 @@
 				|spr_sonic_skid_turn
 				|spr_sonic_skid_tag
 			+Balance
-				|spr_sonic_balance_back
 				|spr_sonic_balance_front
+				|spr_sonic_balance_back
 			|spr_sonic_push
 			+Spring
 				|spr_sonic_spring

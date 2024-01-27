@@ -146,10 +146,10 @@ switch (action_state) {
                 if (animation_target != "balance_back") player_set_animation("balance_back");
             }
         } else {
-            if (animation_direction != balance_direction) {
-                if (animation_target != "balance_back") player_set_animation("balance_back");
-            } else {
+            if (animation_direction == balance_direction) {
                 if (animation_target != "balance_front") player_set_animation("balance_front");
+            } else {
+                if (animation_target != "balance_back") player_set_animation("balance_back");
             }
         }
         break;

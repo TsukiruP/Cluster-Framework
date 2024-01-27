@@ -36,7 +36,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Animation Trigger:
+/// Animation Trigger
 
 animation_trigger = true;
 #define 8

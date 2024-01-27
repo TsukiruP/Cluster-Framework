@@ -48,7 +48,7 @@ applies_to=self
 /// Change Frame
 
 image_index = 3;
-#define 8
+#define 7
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603

@@ -59,7 +59,7 @@ applies_to=self
 /// Change Frame
 
 image_index = 5;
-#define 8
+#define 9
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -68,7 +68,7 @@ applies_to=self
 /// Change Frame
 
 image_index = 6;
-#define 9
+#define 10
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -82,7 +82,7 @@ hitbox_width    =  15;
 hitbox_height   =  16.5;
 hitbox_offset_x =  3;
 hitbox_offset_y = -17;
-#define 10
+#define 11
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -96,7 +96,7 @@ hitbox_width    =  16;
 hitbox_height   =  19;
 hitbox_offset_x =  16;
 hitbox_offset_y = -3;
-#define 12
+#define 13
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -105,7 +105,7 @@ applies_to=self
 /// Change Frame
 
 image_index = 9;
-#define 14
+#define 15
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -114,7 +114,7 @@ applies_to=self
 /// Change Frame
 
 image_index = 10;
-#define 16
+#define 17
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -123,7 +123,7 @@ applies_to=self
 /// Change Frame
 
 image_index = 11;
-#define 19
+#define 20
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -137,7 +137,7 @@ hitbox_width    = 0;
 hitbox_height   = 0;
 hitbox_offset_x = 0;
 hitbox_offset_y = 0;
-#define 22
+#define 23
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -146,7 +146,7 @@ applies_to=self
 /// Change Frame
 
 image_index = 13;
-#define 26
+#define 25
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
