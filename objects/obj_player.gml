@@ -87,9 +87,6 @@ roll_offset        = 0;
 // Skid dust alarm:
 skid_dust_alarm = 3;
 
-// Balance direction:
-balance_direction = 0;
-
 // Status variables:
 respawn_state       =  0;
 
@@ -208,7 +205,8 @@ score_multiplier = 0;
 if (global.misc_trails == true) start_trail(15);
 trail_color = c_white;
 
-terrain_angle_change = false;
+// Balance direction:
+balance_direction = 0;
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
