@@ -1,4 +1,4 @@
-obj_player_spawn,864,720,DFA25E06,0,1,1,4294967295,0,0
+obj_player_spawn,816,752,DFA25E06,0,1,1,4294967295,0,0
 obj_basic_test_collision_08,384,336,4DFED0FC,0,1,1,4294967295,0,0
 obj_basic_test_collision_09,480,336,F83C2C12,0,1,1,4294967295,0,0
 obj_basic_test_collision_03,480,432,3BB847E5,0,1,1,4294967295,0,0
@@ -91,7 +91,6 @@ obj_basic_test_collision_02,2688,960,A637AA60,0,1,1,4294967295,0,0
 obj_basic_test_collision_28,2112,1008,E50DE546,0,1,1,4294967295,0,0
 obj_basic_test_collision_22,2304,1152,7AB0D842,0,1,1,4294967295,0,0
 obj_basic_test_collision_03,2400,768,35DE678A,0,1,1,4294967295,0,0
-obj_basic_test_collision_03,960,672,0514BE34,0,1,1,4294967295,0,1
 obj_basic_test_collision_03,2400,864,48109103,0,1,1,4294967295,0,0
 obj_basic_test_collision_03,2400,960,051F6B2B,0,1,1,4294967295,0,0
 obj_basic_test_collision_03,2400,672,17ACDBDA,0,1,1,4294967295,0,0
@@ -108,6 +107,9 @@ obj_basic_test_collision_02,1808,384,6B0639FC,0,1,1,4294967295,0,0
 obj_basic_test_collision_02,1808,480,D99043FA,0,1,1,4294967295,0,0
 obj_basic_test_collision_02,1808,576,8C7339A8,0,1,1,4294967295,0,0
 obj_basic_test_collision_02,1808,672,47A559C2,0,1,1,4294967295,0,0
-obj_item_bonus,1360,784,4B050A2A,0,1,1,4294967295,0,0
 obj_basic_test_collision_22,2304,720,FB6C59A1,0,1,1,4294967295,0,0
 obj_basic_test_collision_01,2304,816,F43DFC2B,0,1,1,4294967295,0,0
+obj_item_bonus,928,736,F34711B1,0,1,1,4294967295,0,0
+obj_item_bonus,976,736,A0882BB1,0,1,1,4294967295,0,0
+obj_item_bonus,1024,736,716F4082,0,1,1,4294967295,0,0
+obj_item_random_bonus,880,736,697047F4,0,1,1,4294967295,0,0

@@ -262,15 +262,6 @@ if (global.checkpoint_x != -1 && global.checkpoint_y != -1) {
     y                 = global.checkpoint_y;
     global.stage_time = global.checkpoint_time;
 }
-#define Alarm_0
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Restore Wall Stop
-
-wall_stop = true;
 #define Step_0
 /*"/*'/**//* YYD ACTION
 lib_id=1

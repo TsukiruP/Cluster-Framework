@@ -3,7 +3,7 @@
 
 var item_box_handle;
 
-item_box_handle = rectangle_check(hitbox_offset_x, hitbox_offset_y, hitbox_width, hitbox_height, par_item_box); //player_collision_object_main(x, y, par_item_box);
+item_box_handle = rectangle_check(hitbox_offset_x * animation_direction, hitbox_offset_y, hitbox_width, hitbox_height, par_item_box);
 
 // Break item box:
 if (item_box_handle != noone) {
