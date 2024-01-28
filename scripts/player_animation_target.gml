@@ -225,7 +225,12 @@ if (character_data == CHAR_MILES) {
 if (ground == true && input_lock == false && animation_target == "stand") {
     if (animation_alarm > 0) animation_alarm -= 1;
     else {
-        player_set_animation("wait_leader");
+        if (player_exists(1) != noone) {
+            if (player_exists(1) == self.id) player_set_animation("wait_partner");
+            else player_set_animation("wait_leader");
+        } else {
+            player_set_animation(choose("wait_leader", "wait_partner"));
+        }
     }
 } else {
     if (animation_alarm != 360) animation_alarm = 360;

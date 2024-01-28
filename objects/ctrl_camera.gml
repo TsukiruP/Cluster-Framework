@@ -16,7 +16,7 @@ limit_top    = 0;
 limit_bottom = room_height;
 
 // Focus handle:
-focus_handle = global.player_instance[0];
+focus_handle = player_exists(0);
 
 // Camera variables:
 camera_x                 = x;
@@ -45,8 +45,8 @@ applies_to=self
 /// Camera Shift
 
 // Shift around the player:
-if (player_exists(0)) {
-    if (focus_handle == global.player_instance[0]) {
+if (player_exists(0) != noone) {
+    if (focus_handle == player_exists(0)) {
         var look_direction;
 
         // Look direction:
@@ -93,8 +93,8 @@ border_top    = camera_y - 32;
 border_bottom = camera_y + 32;
 
 // Focus on player:
-if (player_exists(0)) {
-    if (focus_handle == global.player_instance[0]) {
+if (player_exists(0) != noone) {
+    if (focus_handle == player_exists(0)) {
         // Camera speed cap:
         camera_speed_cap = 16;
 
@@ -130,7 +130,7 @@ if (player_exists(0)) {
 }
 
 // Focus on other objects:
-if (focus_handle != noone && (!player_exists(0) || focus_handle != global.player_instance[0])) {
+if (focus_handle != noone && (player_exists(0) == noone ^^ focus_handle != player_exists(0))) {
     // Camera speed cap:
     camera_speed_cap = 6;
 

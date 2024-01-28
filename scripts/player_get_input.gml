@@ -18,10 +18,10 @@ if (input_lock == false) {
         if (input_check(INP_ANY, CHECK_HELD, DEV_JOYSTICK1)) input_cpu_alarm = 600;
 
         if (input_cpu_alarm == 0) {
-            if (player_exists(0)) {
+            if (player_exists(0) != noone) {
                 var player_handle;
 
-                player_handle = global.player_instance[0];
+                player_handle = player_exists(0);
 
                 // Move right:
                 if ((x < player_handle.x - 16 || (player_handle.y < y - 50 && player_handle.ground == true && player_handle.x_speed > 0)) &&

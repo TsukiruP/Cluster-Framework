@@ -66,22 +66,22 @@ if (hide == false) {
     }
 }
 
-// Air position:
+
+// Air timer:
 if (global.misc_hud == 1) {
-    if (player_exists(0)) {
-        // Air target:
-        if (global.player_instance[0].action_state != ACTION_DEATH) {
-            if (global.player_instance[0].physics_type == PHYS_UNDERWATER) {
-                if (global.player_instance[0].shield_data == SHIELD_BUBBLE) air_hide = true;
-                else air_hide = false;
-            } else {
-                air_hide = true;
+    if (player_exists(0) != noone) {
+        with (player_exists(0)) {
+            if (action_state != ACTION_DEATH) {
+                // Show air timer only if underwater and don't have the bubble shield:
+                if (physics_type == PHYS_UNDERWATER && shield_data != SHIELD_BUBBLE) other.air_hide = false;
+                else other.air_hide  = true;
+                
+                // Update air value:
+                other.air_value = air_remaining;
             }
         }
-
-        // Air value:
-        air_value = global.player_instance[0].air_remaining;
-
+        
+        // Air position:
         if (air_hide == false) {
             if (air_position < hud_position) {
                 if (hud_speed == 0) air_speed = ceil(abs(air_position - hud_position) / hud_factor);
@@ -112,8 +112,8 @@ action_id=603
 applies_to=self
 */
 /// Status Effects
-
-if (player_exists(0)) {
+/*
+if (player_exists(0) != noone) {
     // Only update active status effects:
     if (global.misc_status == 1) {
         // Shield:
@@ -165,6 +165,7 @@ applies_to=self
 */
 /// Item Feed
 
+/*
 if (player_exists(0)) {
     if (global.misc_feed == true && item_feed == -1) item_feed = ds_list_create();
 }
@@ -255,7 +256,7 @@ applies_to=self
 
 // Don't bother if HUD has been disabled:
 if (global.misc_hud == 0) exit;
-
+/*
 if (player_exists(0)) {
     var status_count, player_muteki, player_shoes, player_panic, player_swap;
     
