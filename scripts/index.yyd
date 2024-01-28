@@ -52,7 +52,7 @@ player_action_look
 player_action_crouch
 player_action_spin_dash
 player_action_roll
-player_align_roll
+player_action_default
 player_action_skid
 parallax_add_node
 draw_background_tiled_horizontal_part
@@ -120,7 +120,7 @@ player_collision_semisolids
 player_collision_object
 player_collision_obstacle
 player_wall_stop
-player_size
+player_position_fix
 player_action_tag
 player_animation_angle
 player_set_animation

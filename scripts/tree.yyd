@@ -53,13 +53,14 @@
 			|player_collision_obstacle
 			|player_collision_object
 			|player_mode
-			|player_size
+			|player_position_fix
 			|player_wall_stop
 		+Angle
 			|player_get_angle
 			|player_set_angle
 		+Actions
 			|player_action_list
+			|player_action_default
 			|player_action_jump
 			|player_action_look
 			|player_action_crouch
@@ -149,4 +150,3 @@
 			|player_collision_object_bottom
 		|player_get_angle_OLD
 		|player_set_angle_OLD
-	|player_align_roll

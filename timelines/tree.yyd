@@ -8,6 +8,9 @@
 			|tml_sonic_jog
 			|tml_sonic_jog_fast
 			|tml_sonic_run
+			+Wait
+				|tml_sonic_wait_leader
+				|tml_sonic_wait_partner
 			+Tag
 				|tml_sonic_stand_tag
 				|tml_sonic_turn_tag

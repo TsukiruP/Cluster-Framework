@@ -225,7 +225,7 @@ applies_to=self
 /// Animation Initialization
 
 animation_grid      = -1;
-animation_target    =  "stand";
+animation_target    =  "";
 animation_current   =  "";
 animation_previous  =  animation_current;
 animation_variant   =  0;
@@ -233,6 +233,7 @@ animation_moment    =  0;
 animation_finished  =  false;
 animation_trigger   =  false;
 animation_reload    =  false;
+animation_alarm     =  0;
 
 animation_direction =  1;
 animation_x_scale   =  1;
@@ -241,7 +242,6 @@ animation_angle     =  0;
 animation_angle_mod =  0;
 animation_blend     =  c_white;
 animation_alpha     =  1;
-animation_timer     =  0;
 animation_depth     =  0;
 
 miles_tails_frame   =  0;
@@ -471,8 +471,8 @@ player_animation_angle();
 // Animation depth:
 player_animation_depth();
 
-// Size:
-player_size();
+// Position fix:
+player_position_fix();
 
 // Object handle:
 player_handle_list();

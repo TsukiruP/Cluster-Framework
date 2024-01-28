@@ -9,6 +9,10 @@ player_add_animation(CHAR_SONIC, "jog",           tml_sonic_jog,       tml_sonic
 player_add_animation(CHAR_SONIC, "jog_fast",      tml_sonic_jog_fast);
 player_add_animation(CHAR_SONIC, "run",           tml_sonic_run);
 
+// Wait:
+player_add_animation(CHAR_SONIC, "wait_leader",   tml_sonic_wait_leader);
+player_add_animation(CHAR_SONIC, "wait_partner",  tml_sonic_wait_partner);
+
 // Spin Jump:
 player_add_animation(CHAR_SONIC, "spin_flight",   tml_sonic_spin_flight);
 player_add_animation(CHAR_SONIC, "spin_fall",     tml_sonic_spin_fall);

@@ -2,7 +2,7 @@
 // Eyes on the ground.
 
 // Trigger crouch:
-if (ground == true && g_speed == 0 && y_speed == 0 && (action_state == ACTION_DEFAULT || action_state == ACTION_GLIDE_DROP) && player_input[INP_DOWN, CHECK_HELD] == true) {
+if (ground == true && g_speed == 0 && y_speed == 0 && balance_direction == 0 && (action_state == ACTION_DEFAULT || action_state == ACTION_GLIDE_DROP) && player_input[INP_DOWN, CHECK_HELD] == true) {
     if (animation_current != "look" && animation_current != "crouch") {
         action_state = ACTION_CROUCH;
         g_speed      = 0;
