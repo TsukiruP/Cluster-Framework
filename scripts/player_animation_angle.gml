@@ -60,25 +60,22 @@ switch (animation_current) {
         // Classic/Tag angle behavior:
         else {
             if (ground == true) {
-                if (terrain_angle_change == false) animation_angle_mod = 0;
-                else {
-                    var angle_mod;
-                    
-                    angle_mod = animation_angle_mod;
-                    
-                    if (ground_angle <= 180) {
-                        if (ground_angle < 36) angle_mod = 0;
-                        else angle_mod = ground_angle;
-                    } else {
-                        if (ground_angle > 324) angle_mod = 0;
-                        else angle_mod = ground_angle;
-                    }
-                    
-                    if (abs(angle_difference(animation_angle_mod, angle_mod)) < 45) {
-                        animation_angle_mod = approach_angle(animation_angle_mod, angle_mod, max(abs(x_speed), 4));
-                    } else {
-                        animation_angle_mod = angle_mod;
-                    }
+                var angle_mod;
+                
+                angle_mod = animation_angle_mod;
+                
+                if (ground_angle <= 180) {
+                    if (ground_angle < 36) angle_mod = 0;
+                    else angle_mod = ground_angle;
+                } else {
+                    if (ground_angle > 324) angle_mod = 0;
+                    else angle_mod = ground_angle;
+                }
+                
+                if (abs(angle_difference(animation_angle_mod, angle_mod)) < 45) {
+                    animation_angle_mod = approach_angle(animation_angle_mod, angle_mod, max(abs(x_speed), 4));
+                } else {
+                    animation_angle_mod = angle_mod;
                 }
             } else {
                 animation_angle_mod = approach_angle(animation_angle_mod, 0, 4);
