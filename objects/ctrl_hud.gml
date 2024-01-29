@@ -247,13 +247,13 @@ if (player_exists(0) != noone) {
     with (player_exists(0)) {
         other.status_active[STATUS_SHIELD] = (shield_data != 0);
         other.status_active[STATUS_MUTEKI] = (invincibility_alarm > 120 || (invincibility_alarm > -1 && invincibility_alarm <= 120 && invincibility_alarm mod 5));
-        other.status_active[STATUS_SPEED]  = (speed_shoe_alarm > 120 || (speed_shoe_alarm > -1 && speed_shoe_alarm <= 120 && speed_shoe_alarm mod 5));
-        other.status_active[STATUS_PANIC]  = (status_panic_alarm > 120 || (status_panic_alarm > -1 && status_panic_alarm <= 120 && status_panic_alarm mod 5));;
-        other.status_active[STATUS_SWAP]   = (status_swap_alarm > 120 || (status_swap_alarm > -1 && status_swap_alarm <= 120 && status_swap_alarm mod 5));;
+        other.status_active[STATUS_SPEED]  = true; //(speed_shoe_alarm > 120 || (speed_shoe_alarm > -1 && speed_shoe_alarm <= 120 && speed_shoe_alarm mod 5));
+        other.status_active[STATUS_PANIC]  = 0; //(status_panic_alarm > 120 || (status_panic_alarm > -1 && status_panic_alarm <= 120 && status_panic_alarm mod 5));;
+        other.status_active[STATUS_SWAP]   = 0; //(status_swap_alarm > 120 || (status_swap_alarm > -1 && status_swap_alarm <= 120 && status_swap_alarm mod 5));;
     }
     
     for (i = status_size; i >= 0; i -= 1) {
-        if ((global.misc_status == 1 && status_active[i]) || global.misc_status == 2) {
+        if ((global.misc_status == 1 && status_active[i] == true) || global.misc_status == 2) {
             // Shadow:
             draw_sprite_ext(spr_items, 0, view_xview[view_current] + view_wview[view_current] - hud_position - 8 - (sprite_get_width(spr_items) + 2) * status_count, view_yview[view_current] + 18, 1, 1, 0, c_black, 1);
 
@@ -268,7 +268,7 @@ if (player_exists(0) != noone) {
             }
             
             // Increase status count:
-            if ((global.misc_status == 1 && status_icon[i] != 0) || global.misc_status == 2) status_count += 1;
+            if ((global.misc_status == 1 && status_active[i] == true) || global.misc_status == 2) status_count += 1;
         }
     }
 }
