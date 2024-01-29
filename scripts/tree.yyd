@@ -100,11 +100,11 @@
 			|player_handle_item_box
 			|player_handle_water_surface
 		+Input
-			|player_get_input
 		+Misc.
-			|player_get_physics
 			|player_ring_loss
 			|player_get_item
+			|player_get_input
+			|player_get_physics
 			+Trail
 				|start_trail
 				|update_trail
