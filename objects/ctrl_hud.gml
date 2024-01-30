@@ -39,11 +39,11 @@ status_speed                 =  0;
 status_size                  =  2 + 2 * global.gameplay_debuffs;
 status_count                 =  0;
 
-status_active[STATUS_SHIELD] =  0;
-status_active[STATUS_MUTEKI] =  0;
-status_active[STATUS_SPEED]  =  0;
-status_active[STATUS_PANIC]  =  0;
-status_active[STATUS_SWAP]   =  0;
+status_active[STATUS_SHIELD, 0] =  0;
+status_active[STATUS_MUTEKI, 0] =  0;
+status_active[STATUS_SPEED, 0]  =  0;
+status_active[STATUS_PANIC, 0]  =  0;
+status_active[STATUS_SWAP , 0]  =  0;
 #define Step_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -245,15 +245,31 @@ if (player_exists(0) != noone) {
     status_count = 0;
     
     with (player_exists(0)) {
-        other.status_active[STATUS_SHIELD] = (shield_data != 0);
-        other.status_active[STATUS_MUTEKI] = (invincibility_alarm > 120 || (invincibility_alarm > -1 && invincibility_alarm <= 120 && invincibility_alarm mod 5));
-        other.status_active[STATUS_SPEED]  = true; //(speed_shoe_alarm > 120 || (speed_shoe_alarm > -1 && speed_shoe_alarm <= 120 && speed_shoe_alarm mod 5));
-        other.status_active[STATUS_PANIC]  = 0; //(status_panic_alarm > 120 || (status_panic_alarm > -1 && status_panic_alarm <= 120 && status_panic_alarm mod 5));;
-        other.status_active[STATUS_SWAP]   = 0; //(status_swap_alarm > 120 || (status_swap_alarm > -1 && status_swap_alarm <= 120 && status_swap_alarm mod 5));;
+        // Shield:
+        other.status_active[STATUS_SHIELD, 0] = (shield_data != 0);
+        other.status_active[STATUS_SHIELD, 1] = true;
+        
+        // Invincibility:
+        other.status_active[STATUS_MUTEKI, 0] = (invincibility_type != 0);
+        other.status_active[STATUS_MUTEKI, 1] = (invincibility_alarm > 120 || (invincibility_alarm <= 120 && abs(invincibility_alarm mod 5)));
+        
+        
+        // Speed:
+        other.status_active[STATUS_SPEED, 0] = (speed_shoe_type != 0)
+        other.status_active[STATUS_SPEED, 1] = (speed_shoe_alarm > 120 || (speed_shoe_alarm <= 120 && abs(speed_shoe_alarm mod 5)));
+        
+        
+        // Panic:
+        other.status_active[STATUS_PANIC, 0] = status_panic;
+        other.status_active[STATUS_PANIC, 1] = (status_panic_alarm > 120 || (status_panic_alarm <= 120 && abs(status_panic_alarm mod 5)));
+        
+        // Swap:
+        other.status_active[STATUS_SWAP, 0] = status_swap;
+        other.status_active[STATUS_SWAP, 1] = (status_swap_alarm > 120 || (status_swap_alarm <= 120 && abs(status_swap_alarm mod 5)));
     }
     
     for (i = status_size; i >= 0; i -= 1) {
-        if ((global.misc_status == 1 && status_active[i] == true) || global.misc_status == 2) {
+        if (((global.misc_status == 1 && status_active[i, 0] == true) || global.misc_status == 2) && status_active[i, 1] == true) {
             // Shadow:
             draw_sprite_ext(spr_items, 0, view_xview[view_current] + view_wview[view_current] - hud_position - 8 - (sprite_get_width(spr_items) + 2) * status_count, view_yview[view_current] + 18, 1, 1, 0, c_black, 1);
 
@@ -262,14 +278,14 @@ if (player_exists(0) != noone) {
             
             // Gray out:
             if (global.misc_status == 2) {
-                if (status_active[i] == false) {
+                if (status_active[i, 0] == false) {
                     draw_sprite_ext(spr_items, status_icon[i], view_xview[view_current] + view_wview[view_current] - hud_position - 9 - (sprite_get_width(spr_items) + 2) * status_count, view_yview[view_current] + 17, 1, 1, 0, c_gray, 0.6);
                 }
             }
-            
-            // Increase status count:
-            if ((global.misc_status == 1 && status_active[i] == true) || global.misc_status == 2) status_count += 1;
         }
+        
+        // Increase status count:
+        if ((global.misc_status == 1 && status_active[i, 0] == true) || global.misc_status == 2) status_count += 1;
     }
 }
 /*"/*'/**//* YYD ACTION
