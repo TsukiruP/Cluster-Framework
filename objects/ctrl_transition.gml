@@ -471,7 +471,10 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-background_scroll_alt -= background_scroll_speed;
+/// Retry Scroll Fix
+if (transition_type == TRANS_RETRY) {
+    background_scroll_alt -= background_scroll_speed;
+}
 #define Other_4
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -619,7 +622,7 @@ if (transition_type == TRANS_RETRY) {
 
     // Background:
     draw_sprite_tiled_horizontal(spr_transition_background, 1, view_xview[view_current] + background_scroll, view_yview[view_current] + background_position);
-    draw_sprite_tiled_horizontal_yscale(spr_transition_background, 1, view_xview[view_current] + background_scroll_alt, view_yview[view_current] + global.display_height - background_position, -1);
+    draw_sprite_tiled_horizontal_yscale(spr_transition_background, 1, view_xview[view_current] - 16 + background_scroll_alt, view_yview[view_current] + global.display_height - background_position, -1);
 
     // Try again:
     retry_size  = string_width("Try Again");
