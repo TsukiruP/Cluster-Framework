@@ -19,6 +19,17 @@
 		|spr_basic_test_collision_low_01
 	+High
 		|spr_basic_test_collision_high_01
+	+Masks
+		|mask_main
+		|mask_large
+		|mask_big
+		|mask_mid
+		|mask_small
+		|mask_dot
+		|mask_lines
+		|mask_edge_line
+		|mask_platform_fix
+		|mask_ledge
 +System
 	|spr_realizing_hopper
 	|spr_transition_background
@@ -36,17 +47,6 @@
 +Gameplay
 	+PCs
 		|spr_player_spawn
-		+Masks
-			|mask_main
-			|mask_large
-			|mask_big
-			|mask_mid
-			|mask_small
-			|mask_dot
-			|mask_lines
-			|mask_edge_line
-			|mask_platform_fix
-			|mask_ledge
 		+Sonic
 			+Default
 				|spr_sonic_stand
