@@ -9,8 +9,27 @@ if (ground == true) {
     left_edge = (!line_check(main_width, main_height + 16, true) && !obstacle_check(-wall_width, 0, wall_width, main_height + 2, true));
     right_edge = (!line_check(-main_width, main_height + 16, true) && !obstacle_check(wall_width, 0, -wall_width, main_height + 2, true));
 
-    if (ground_angle == gravity_angle) balance_direction = (left_edge - right_edge);
-    else balance_direction = 0;
+    if (ground_angle == gravity_angle) {
+        // Classic balance behavior:
+        if (character_data == CHAR_CLASSIC) {
+            var left_edge_classic, right_edge_classic;
+
+            left_edge_classic = (!line_check(main_width / 2, main_height + 16, true) && !obstacle_check(-wall_width / 2, 0, wall_width / 2, main_height + 2, true));
+            right_edge_classic = (!line_check(-main_width / 2, main_height + 16, true) && !obstacle_check(wall_width / 2, 0, -wall_width / 2, main_height + 2, true));
+
+            balance_direction = (left_edge - right_edge) + (left_edge_classic - right_edge_classic);
+        }
+
+        // Advance balance behavior:
+        else {
+            balance_direction = (left_edge - right_edge);
+        }
+    }
+
+    // Reset balance direction:
+    else {
+        balance_direction = 0;
+    }
 }
 
 // Push:
