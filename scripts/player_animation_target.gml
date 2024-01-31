@@ -47,19 +47,22 @@ switch (action_state) {
         // Normal default:
         else {
             if (ground == true) {
-                if (push_animation == false) {
+                // Push:
+                if (push_animation == true) {
+                    if (animation_target != "push") player_set_animation("push");
+                } else {
                     if (g_speed == 0) {
-                        if (balance_direction == 0) {
-                            // Stand:
-                            if (animation_target != "stand" && animation_target != "turn" && animation_target != "wait_leader" && animation_target != "wait_partner" &&
-                                animation_target != "land" && animation_target != "ready" && animation_target != "look_end" && animation_target != "crouch_end") player_set_animation("stand");
-                        } else {
-                            // Balance:
+                        // Balance:
+                        if (balance_direction != 0) {
                             if (animation_direction == balance_direction) {
                                 if (animation_target != "balance_front") player_set_animation("balance_front");
                             } else {
                                 if (animation_target != "balance_back") player_set_animation("balance_back");
                             }
+                        } else {
+                            // Stand:
+                            if (animation_target != "stand" && animation_target != "turn" && animation_target != "wait_leader" && animation_target != "wait_partner" &&
+                                animation_target != "land" && animation_target != "ready" && animation_target != "look_end" && animation_target != "crouch_end") player_set_animation("stand");
                         }
                     }
 
@@ -79,8 +82,6 @@ switch (action_state) {
                         // Run:
                         if (abs(g_speed) >= 6.00 && animation_target != "run" && animation_target != "dash") player_set_animation("run");
                     }
-                } else {
-                    if (animation_target != "push") player_set_animation("push");
                 }
             } else {
                 // Fall:
@@ -226,7 +227,7 @@ if (character_data == CHAR_MILES) {
 }
 
 // Wait:
-if (ground == true && input_lock == false && animation_target == "stand") {
+if (ground == true && input_lock == false && tag_animations == false && animation_target == "stand") {
     if (animation_alarm > 0) animation_alarm -= 1;
     else {
         if (player_exists(1) != noone) {
