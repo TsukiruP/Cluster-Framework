@@ -47,36 +47,40 @@ switch (action_state) {
         // Normal default:
         else {
             if (ground == true) {
-                if (g_speed == 0) {
-                    if (balance_direction == 0) {
-                        // Stand:
-                        if (animation_target != "stand" && animation_target != "turn" && animation_target != "wait_leader" && animation_target != "wait_partner" &&
-                            animation_target != "land" && animation_target != "ready" && animation_target != "look_end" && animation_target != "crouch_end") player_set_animation("stand");
-                    } else {
-                        // Balance:
-                        if (animation_direction == balance_direction) {
-                            if (animation_target != "balance_front") player_set_animation("balance_front");
+                if (push_animation == false) {
+                    if (g_speed == 0) {
+                        if (balance_direction == 0) {
+                            // Stand:
+                            if (animation_target != "stand" && animation_target != "turn" && animation_target != "wait_leader" && animation_target != "wait_partner" &&
+                                animation_target != "land" && animation_target != "ready" && animation_target != "look_end" && animation_target != "crouch_end") player_set_animation("stand");
                         } else {
-                            if (animation_target != "balance_back") player_set_animation("balance_back");
+                            // Balance:
+                            if (animation_direction == balance_direction) {
+                                if (animation_target != "balance_front") player_set_animation("balance_front");
+                            } else {
+                                if (animation_target != "balance_back") player_set_animation("balance_back");
+                            }
                         }
                     }
-                }
 
-                if (g_speed <> 0) {
-                    // Walk:
-                    if (abs(g_speed) < 1.50 && animation_target != "walk") player_set_animation("walk");
+                    if (g_speed <> 0) {
+                        // Walk:
+                        if (abs(g_speed) < 1.50 && animation_target != "walk") player_set_animation("walk");
 
-                    // Walk fast:
-                    if (abs(g_speed) >= 1.50 && abs(g_speed) < 3.00 && animation_target != "walk_fast") player_set_animation("walk_fast");
+                        // Walk fast:
+                        if (abs(g_speed) >= 1.50 && abs(g_speed) < 3.00 && animation_target != "walk_fast") player_set_animation("walk_fast");
 
-                    // Jog:
-                    if (abs(g_speed) >= 3.00 && abs(g_speed) < 4.50 && animation_target != "jog") player_set_animation("jog");
+                        // Jog:
+                        if (abs(g_speed) >= 3.00 && abs(g_speed) < 4.50 && animation_target != "jog") player_set_animation("jog");
 
-                    // Jog fast:
-                    if (abs(g_speed) >= 4.50 && abs(g_speed) < 6.00 && animation_target != "jog_fast") player_set_animation("jog_fast");
+                        // Jog fast:
+                        if (abs(g_speed) >= 4.50 && abs(g_speed) < 6.00 && animation_target != "jog_fast") player_set_animation("jog_fast");
 
-                    // Run:
-                    if (abs(g_speed) >= 6.00 && animation_target != "run" && animation_target != "dash") player_set_animation("run");
+                        // Run:
+                        if (abs(g_speed) >= 6.00 && animation_target != "run" && animation_target != "dash") player_set_animation("run");
+                    }
+                } else {
+                    if (animation_target != "push") player_set_animation("push");
                 }
             } else {
                 // Fall:

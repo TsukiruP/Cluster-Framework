@@ -1,7 +1,7 @@
 /// player_action_default()
 //
 
-// Balance direction:
+// Balance:
 if (ground == true) {
     var left_edge, right_edge;
 
@@ -11,4 +11,11 @@ if (ground == true) {
 
     if (ground_angle == gravity_angle) balance_direction = (left_edge - right_edge);
     else balance_direction = 0;
+}
+
+// Push:
+if ((point_check((wall_width + 1) * animation_direction, wall_height) && abs(g_speed) <= acceleration + 0.5) ||
+    (obstacle_check((wall_width + 1 * animation_direction), main_height, (wall_width + 1 * animation_direction), main_height) && abs(g_speed) <= acceleration)) {
+    if (ground == true && input_direction != 0 && animation_direction == input_direction) push_animation = true;
+    else push_animation = false;
 }

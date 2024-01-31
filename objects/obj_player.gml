@@ -67,6 +67,10 @@ gravity_angle      = 0;
 
 g_speed            = 0;
 
+// Default variables:
+balance_direction = 0;
+push_animation    = false;
+
 // Jump variables:
 jump_force    =  6.5;
 jump_release  = -4;
@@ -204,9 +208,6 @@ score_multiplier = 0;
 // Create trail:
 if (global.misc_trails == true) start_trail(15);
 trail_color = c_white;
-
-// Balance direction:
-balance_direction = 0;
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
