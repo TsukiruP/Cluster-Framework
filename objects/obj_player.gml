@@ -448,6 +448,9 @@ if ((action_state == ACTION_DEFAULT && animation_current != "turn" && animation_
         if (abs(x_speed) > 0.125 && y_speed > -4 && y_speed < 0) x_speed *= 0.96875;
     }
 }
+
+// Wall stop:
+repeat (steps) player_wall_stop();
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -621,16 +624,6 @@ if (instance_exists(obj_water_surface)) {
 // Physics:
 player_get_physics();
 #define Step_2
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Wall Stop
-
-repeat (steps) {
-    player_wall_stop();
-}
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
