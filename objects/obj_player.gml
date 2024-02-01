@@ -40,10 +40,15 @@ main_height_temp = 0;
 wall_width       = main_width + 3;
 wall_height      = 0;
 
-hitbox_width    = 0;
-hitbox_height   = 0;
-hitbox_offset_x = 0;
-hitbox_offset_y = 0;
+hurtbox_width    = 0;
+hurtbox_height   = 0;
+hurtbox_offset_x = 0;
+hurtbox_offset_y = 0;
+
+hitbox_width     = 0;
+hitbox_height    = 0;
+hitbox_offset_x  = 0;
+hitbox_offset_y  = 0;
 
 // Action variable:
 action_state = ACTION_DEFAULT;
@@ -765,6 +770,44 @@ switch (mode) {
 draw_set_color(c_orange);
 draw_rectangle(x1, y1, x2, y2, true);
 
+// Draw hurtbox:
+var x1, y1, x2, y2;
+
+switch (mode) {
+    case 0:
+        x1 = floor(x) + (hurtbox_offset_x * animation_direction) - hurtbox_width;
+        y1 = floor(y) +  hurtbox_offset_y - hurtbox_height;
+        x2 = floor(x) + (hurtbox_offset_x * animation_direction) + hurtbox_width;
+        y2 = floor(y) +  hurtbox_offset_y + hurtbox_height;
+        break;
+
+    case 1:
+        x1 = floor(x) +  hurtbox_offset_y - hurtbox_height;
+        y1 = floor(y) - (hurtbox_offset_x * animation_direction) - hurtbox_width;
+        x2 = floor(x) +  hurtbox_offset_y + hurtbox_height;
+        y2 = floor(y) - (hurtbox_offset_x * animation_direction) + hurtbox_width;
+        break;
+
+    case 2:
+        x1 = floor(x) - (hurtbox_offset_x * animation_direction) - hurtbox_width;
+        y1 = floor(y) -  hurtbox_offset_y - hurtbox_height;
+        x2 = floor(x) - (hurtbox_offset_x * animation_direction) + hurtbox_width;
+        y2 = floor(y) -  hurtbox_offset_y + hurtbox_height;
+        break;
+
+    case 3:
+        x1 = floor(x) -  hurtbox_offset_y - hurtbox_height;
+        y1 = floor(y) + (hurtbox_offset_x * animation_direction) - hurtbox_width;
+        x2 = floor(x) -  hurtbox_offset_y + hurtbox_height;
+        y2 = floor(y) + (hurtbox_offset_x * animation_direction) + hurtbox_width;
+        break;
+}
+
+if (hurtbox_width != 0 && hurtbox_height != 0) {
+    draw_set_color(c_red);
+    draw_rectangle(x1, y1, x2, y2, true);
+}
+
 // Draw hitbox:
 var x1, y1, x2, y2;
 
@@ -797,6 +840,7 @@ switch (mode) {
         y2 = floor(y) + (hitbox_offset_x * animation_direction) + hitbox_width;
         break;
 }
+
 if (hitbox_width != 0 && hitbox_height != 0) {
     draw_set_color(c_lime);
     draw_rectangle(x1, y1, x2, y2, true);
