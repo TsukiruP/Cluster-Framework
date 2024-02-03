@@ -60,6 +60,9 @@
 				+Wait
 					|spr_sonic_wait_leader
 					|spr_sonic_wait_partner
+				+Balance
+					|spr_sonic_balance_front
+					|spr_sonic_balance_back
 				+Tag
 					|spr_sonic_stand_tag
 					|spr_sonic_turn_tag
@@ -69,6 +72,7 @@
 				+Misc.
 					|spr_sonic_ready
 					|spr_sonic_land
+					|spr_sonic_push
 					|spr_sonic_omochao
 			+Jump
 				|spr_sonic_spin_flight
@@ -88,10 +92,6 @@
 				|spr_sonic_skid_fast
 				|spr_sonic_skid_turn
 				|spr_sonic_skid_tag
-			+Balance
-				|spr_sonic_balance_front
-				|spr_sonic_balance_back
-			|spr_sonic_push
 			+Spring
 				|spr_sonic_spring
 				|spr_sonic_spring_tag
