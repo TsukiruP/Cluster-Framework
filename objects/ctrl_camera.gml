@@ -23,9 +23,16 @@ camera_x                 = x;
 camera_y                 = y;
 camera_x_shift           = 0;
 camera_y_shift           = 0;
+camera_speed_cap         = 16;
 camera_lag_alarm         = 0;
 camera_look_timer        = 0;
 camera_position_distance = 0;
+
+// Border variables:
+border_left   = 0;
+border_right  = 0;
+border_top    = 0;
+border_bottom = 0;
 #define Step_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -82,11 +89,7 @@ applies_to=self
 */
 /// Camera Movement
 
-var camera_speed_cap;
-
 // Update borders:
-var border_left, border_right, border_top, border_bottom;
-
 border_left   = camera_x - 8;
 border_right  = camera_x + 8;
 border_top    = camera_y - 32;
@@ -95,32 +98,30 @@ border_bottom = camera_y + 32;
 // Focus on player:
 if (player_exists(0) != noone) {
     if (focus_handle == player_exists(0)) {
-        // Camera speed cap:
-        camera_speed_cap = 16;
-
-        if (camera_position_distance == 0) {
-            // Horizontal movement:
-            if (camera_lag_alarm == 0) {
-                if (focus_handle.x < border_left) camera_x -= min(border_left - focus_handle.x, camera_speed_cap);
-                else if (focus_handle.x > border_right) camera_x += min(focus_handle.x - border_right, camera_speed_cap);
-            }
-        }
-
-        if (focus_handle.action_state != ACTION_DEATH) {
-            if (camera_position_distance == 0) {
-                // Airborne vertical movement:
-                if (focus_handle.ground == false) {
-                    if (focus_handle.y < border_top) camera_y -= min(border_top - focus_handle.y, camera_speed_cap);
-                    else if (focus_handle.y > border_bottom) camera_y += min(focus_handle.y - border_bottom, camera_speed_cap);
+        with (player_exists(0)) {
+            if (other.camera_position_distance == 0) {
+                // Horizontal movement:
+                if (other.camera_lag_alarm == 0) {
+                    if (x < other.border_left - (ground && roll_offset * x_direction)) other.camera_x -= min(other.border_left - (ground && roll_offset * x_direction) - x, other.camera_speed_cap);
+                    else if (x > other.border_right - (ground && roll_offset * x_direction)) other.camera_x += min(x - other.border_right - (ground && roll_offset * x_direction), other.camera_speed_cap);
                 }
 
-                // Grounded vertical movement:
-                else {
-                    if (focus_handle.y + focus_handle.roll_offset != camera_y) {
-                        if (abs(focus_handle.y + focus_handle.roll_offset - focus_handle.yprevious) <= 6) {
-                            camera_y += clamp(focus_handle.y - focus_handle.roll_offset - camera_y, -6, 6);
-                        } else {
-                            camera_y += clamp(focus_handle.y - focus_handle.roll_offset - camera_y, -16, 16);
+                // Vertical movment:
+                if (action_state != ACTION_DEATH) {
+                    // Airborne:
+                    if (ground == false) {
+                        if (y < other.border_top) other.camera_y -= min(other.border_top - y, other.camera_speed_cap);
+                        else if (y > other.border_bottom) other.camera_y += min(y - other.border_bottom, other.camera_speed_cap);
+                    }
+
+                    // Grounded:
+                    else if (ground == true) {
+                        if (y + roll_offset != other.camera_y) {
+                            if (abs(y + (roll_offset * y_direction) - yprevious) <= 6) {
+                                other.camera_y += clamp(y - (roll_offset * y_direction) - other.camera_y, -6, 6);
+                            } else {
+                                other.camera_y += clamp(y - (roll_offset * y_direction) - other.camera_y, -16, 16);
+                            }
                         }
                     }
                 }
