@@ -1,4 +1,4 @@
-obj_player_spawn,816,752,DFA25E06,0,1,1,4294967295,0,0
+obj_player_spawn,1088,416,DFA25E06,0,1,1,4294967295,0,0
 obj_basic_test_collision_08,384,336,4DFED0FC,0,1,1,4294967295,0,0
 obj_basic_test_collision_09,480,336,F83C2C12,0,1,1,4294967295,0,0
 obj_basic_test_collision_03,480,432,3BB847E5,0,1,1,4294967295,0,0
