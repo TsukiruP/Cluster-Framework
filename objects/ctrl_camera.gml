@@ -102,8 +102,8 @@ if (player_exists(0) != noone) {
             if (other.camera_position_distance == 0) {
                 // Horizontal movement:
                 if (other.camera_lag_alarm == 0) {
-                    if (x < other.border_left - (ground && roll_offset * x_direction)) other.camera_x -= min(other.border_left - (ground && roll_offset * x_direction) - x, other.camera_speed_cap);
-                    else if (x > other.border_right - (ground && roll_offset * x_direction)) other.camera_x += min(x - other.border_right - (ground && roll_offset * x_direction), other.camera_speed_cap);
+                    if (x < other.border_left - (ground && roll_offset * -x_direction)) other.camera_x -= min(other.border_left - (ground && roll_offset * -x_direction) - x, other.camera_speed_cap);
+                    else if (x > other.border_right - (ground && roll_offset * -x_direction)) other.camera_x += min(x - other.border_right - (ground && roll_offset * -x_direction), other.camera_speed_cap);
                 }
 
                 // Vertical movment:
