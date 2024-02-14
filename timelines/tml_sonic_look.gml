@@ -18,7 +18,7 @@ roll_offset = 0;
 
 // Set hurtbox:
 hurtbox_width    = 6;
-hurtbox_height   = 14.5;
+hurtbox_height   = 14;
 hurtbox_offset_x = 0;
 hurtbox_offset_y = 1;
 
