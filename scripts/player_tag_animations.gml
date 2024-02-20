@@ -1,7 +1,7 @@
 /// player_tag_animations()
 // Replaces a set of animations with their tag varients.
 
-// Replace animations:
+/* Replace animations:
 if (tag_animations == false) {
     switch (character_data) {
         case CHAR_MILES:

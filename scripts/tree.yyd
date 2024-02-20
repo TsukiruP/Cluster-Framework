@@ -84,8 +84,8 @@
 			|player_add_animation
 			|player_get_animation
 			|player_set_animation
-			+Character Specific
-				|sonic_add_animations
+			+Animation Lists
+				|sonic_animation_list
 				|miles_add_animations
 				|knuckles_add_animations
 				|classic_add_animations

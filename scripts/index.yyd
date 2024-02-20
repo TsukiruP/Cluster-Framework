@@ -92,7 +92,7 @@ start_trail
 update_trail
 draw_trail
 player_collision_platform_fix
-sonic_add_animations
+sonic_animation_list
 miles_add_animations
 knuckles_add_animations
 classic_add_animations
