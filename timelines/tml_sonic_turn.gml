@@ -27,9 +27,6 @@ hitbox_width    = 0;
 hitbox_height   = 0;
 hitbox_offset_x = 0;
 hitbox_offset_y = 0;
-
-// Animation direction:
-animation_direction *= -1;
 #define 1
 /*"/*'/**//* YYD ACTION
 lib_id=1
