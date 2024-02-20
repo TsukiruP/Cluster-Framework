@@ -51,6 +51,3 @@ if (action_state == ACTION_SKID) {
         (((skid_classic == false && g_speed != 0 && sign(g_speed) != -input_direction) || (skid_classic == true && sign(g_speed) == input_direction)) && animation_current != "skid_turn") ||
         (animation_current == "skid_turn" && animation_finished == true) || input_lock_alarm > 0) action_state = ACTION_DEFAULT;
 }
-
-// Turn:
-if (ground == true && animation_finished == true && animation_current == "turn") player_set_animation("stand");
