@@ -1,6 +1,10 @@
 /// player_action_default()
 //
 
+if (ground == true && animation_current == "turn" && animation_finished == true) {
+    player_set_animation("stand");
+}
+
 // Balance:
 if (ground == true) {
     var left_edge, right_edge;
