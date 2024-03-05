@@ -714,7 +714,7 @@ if (invincibility_type == 1 && invincibility_alarm > 0) animation_alpha = (globa
 else animation_alpha = 1;
 
 // Character:
-draw_sprite_ext(sprite_index, image_index, floor(x), floor(y), animation_direction * animation_x_scale, animation_y_scale, animation_angle, animation_blend, animation_alpha);
+draw_sprite_ext(sprite_index, image_index, floor(x) + (animation_direction < 0), floor(y), animation_direction * animation_x_scale, animation_y_scale, animation_angle, animation_blend, animation_alpha);
 
 /*
 // Miles' tails:
