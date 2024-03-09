@@ -5,6 +5,7 @@ action_id=603
 applies_to=self
 */
 /// Start Animation
+
 sprite_index   = spr_sonic_hammer;
 image_index    = 0;
 timeline_loop  = false;

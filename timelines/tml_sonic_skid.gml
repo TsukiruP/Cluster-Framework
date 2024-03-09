@@ -16,6 +16,12 @@ main_width  = 6;
 main_height = 14;
 roll_offset = 0;
 
+// Set hurtbox:
+hurtbox_width    = 6;
+hurtbox_height   = 14.5;
+hurtbox_offset_x = 0;
+hurtbox_offset_y = 1;
+
 // Set hitbox:
 hitbox_width    = 0;
 hitbox_height   = 0;
@@ -30,6 +36,12 @@ applies_to=self
 /// Change Frame
 
 image_index = 1;
+
+// Set hurtbox:
+hurtbox_width    = 6;
+hurtbox_height   = 14;
+hurtbox_offset_x = 0;
+hurtbox_offset_y = 1;
 #define 6
 /*"/*'/**//* YYD ACTION
 lib_id=1

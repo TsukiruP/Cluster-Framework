@@ -39,7 +39,7 @@ image_index = 1;
 
 // Set hurtbox:
 hurtbox_width    = 6;
-hurtbox_height   = 8;
+hurtbox_height   = 8.5;
 hurtbox_offset_x = 1;
 hurtbox_offset_y = 0;
 #define 4
