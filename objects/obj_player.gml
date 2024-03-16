@@ -710,7 +710,7 @@ if (global.misc_trails == true) {
 }
 
 // Change alpha when hurt:
-if (invincibility_type == 1 && invincibility_alarm > 0) animation_alpha = (invincibility_alarm div 4) mod 2;
+if (invincibility_type == 1 && invincibility_alarm > 0) animation_alpha = (invincibility_alarm / 4) mod 2;
 else animation_alpha = 1;
 
 // Character:

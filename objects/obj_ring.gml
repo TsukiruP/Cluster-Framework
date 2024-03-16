@@ -32,7 +32,7 @@ action_id=603
 applies_to=self
 */
 /// Movement
-/*
+
 if(dropped == true) {
     // Decrease lifespan alarm:
     lifespan = max(lifespan - 1 * global.object_ratio, 0);
@@ -74,7 +74,7 @@ applies_to=self
 */
 /// Draw Ring
 
-if(dropped == false || lifespan >= 90 || (dropped == true && lifespan < 90 && (lifespan div 4) mod 2)) {
+if(dropped == false || lifespan >= 90 || (dropped == true && lifespan < 90 && (lifespan / 4) mod 2)) {
     draw_sprite_ext(sprite_index, -1, x, y, image_xscale, image_yscale, image_angle, image_blend, image_alpha);
 }
 
