@@ -1,6 +1,5 @@
 +Trash
 	+Solids
-		|spr_basic_test_collision_solid_02
 		|spr_basic_test_collision_solid_03
 		|spr_basic_test_collision_solid_04
 		|spr_basic_test_collision_solid_05
@@ -20,6 +19,17 @@
 		|spr_basic_test_collision_low_01
 	+High
 		|spr_basic_test_collision_high_01
+	+Masks
+		|mask_main
+		|mask_large
+		|mask_big
+		|mask_mid
+		|mask_small
+		|mask_dot
+		|mask_lines
+		|mask_edge_line
+		|mask_platform_fix
+		|mask_ledge
 +System
 	|spr_realizing_hopper
 	|spr_transition_background
@@ -37,17 +47,6 @@
 +Gameplay
 	+PCs
 		|spr_player_spawn
-		+Masks
-			|mask_main
-			|mask_large
-			|mask_big
-			|mask_mid
-			|mask_small
-			|mask_dot
-			|mask_lines
-			|mask_edge_line
-			|mask_platform_fix
-			|mask_ledge
 		+Sonic
 			+Default
 				|spr_sonic_stand
@@ -61,6 +60,9 @@
 				+Wait
 					|spr_sonic_wait_leader
 					|spr_sonic_wait_partner
+				+Balance
+					|spr_sonic_balance_front
+					|spr_sonic_balance_back
 				+Tag
 					|spr_sonic_stand_tag
 					|spr_sonic_turn_tag
@@ -70,6 +72,7 @@
 				+Misc.
 					|spr_sonic_ready
 					|spr_sonic_land
+					|spr_sonic_push
 					|spr_sonic_omochao
 			+Jump
 				|spr_sonic_spin_flight
@@ -82,17 +85,13 @@
 				|spr_sonic_crouch_tag
 			+Spin Dash
 				|spr_sonic_spin_dash
-				|spr_sonic_super_spin
+				|spr_sonic_spin_charge
 			|spr_sonic_roll
 			+Skid
 				|spr_sonic_skid
 				|spr_sonic_skid_fast
 				|spr_sonic_skid_turn
 				|spr_sonic_skid_tag
-			+Balance
-				|spr_sonic_balance_back
-				|spr_sonic_balance_front
-			|spr_sonic_push
 			+Spring
 				|spr_sonic_spring
 				|spr_sonic_spring_tag
@@ -107,6 +106,7 @@
 				|spr_sonic_fly_carry
 				|spr_sonic_throw
 				|spr_sonic_glide_carry
+			|spr_sonic_hammer
 		+Miles
 			+Default
 				|spr_miles_stand

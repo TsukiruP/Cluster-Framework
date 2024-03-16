@@ -35,13 +35,13 @@ switch (mode) {
         x1 =  radius_x;
         y1 =  0;
         x2 =  radius_x;
-        y2 = -radius_y - 1;
+        y2 = -radius_y;
         break;
 
     case 3:
         x1 =  0;
         y1 =  radius_x;
-        x2 = -radius_y - 1;
+        x2 = -radius_y;
         y2 =  radius_x;
         break;
 }

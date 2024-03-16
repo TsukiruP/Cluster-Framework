@@ -3,7 +3,8 @@
 
 var player_number;
 
-if (argument_count >= 1) player_number = argument[0];
-else return instance_exists(obj_player);
+// Player number:
+player_number = argument0;
 
-return global.player_instance[player_number] != noone && instance_exists(global.player_instance[player_number]);
+if (global.player_instance[player_number] == noone ^^ !instance_exists(global.player_instance[player_number])) return noone;
+else return global.player_instance[player_number];

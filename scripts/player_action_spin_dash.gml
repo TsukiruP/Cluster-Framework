@@ -8,6 +8,9 @@ if (action_state == ACTION_CROUCH && tag_animations == false && player_input[INP
     action_state       = ACTION_SPIN_DASH;
     spin_dash_charge = 0;
 
+    // Reset jump input:
+    player_input[INP_JUMP, CHECK_PRESSED] = false;
+
     // Play sound:
     sfx_spin_dash = sound_play_single("snd_spin_dash_charge");
 }
@@ -34,9 +37,8 @@ if (action_state == ACTION_SPIN_DASH) {
         if (player_input[INP_JUMP, CHECK_PRESSED] == true) {
             spin_dash_charge = min(spin_dash_charge + 2, 8);
             
-            // Play animation:
-            animation_target        = "super_spin";
-            animation_current_frame = animation_start_frame;
+            // Set animation:
+            player_set_animation("spin_charge", 0, true);
             
             // Play sound:
             sfx_spin_dash = sound_play_single("snd_spin_dash_charge");

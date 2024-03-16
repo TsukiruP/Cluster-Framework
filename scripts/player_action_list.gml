@@ -6,6 +6,7 @@ if (action_state == ACTION_RESPAWN || action_state == ACTION_DEATH) exit;
 
 switch (character_data) {
     case CHAR_SONIC:
+        sonic_action_hammer();
         break;
 
     case CHAR_MILES:
@@ -20,6 +21,7 @@ switch (character_data) {
         break;
 }
 
+player_action_default();
 player_action_jump();
 player_action_look();
 player_action_crouch();

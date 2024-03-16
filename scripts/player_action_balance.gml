@@ -1,6 +1,6 @@
 /// player_action_balance()
 // Hanging on the edge of tomorrow!
-
+/*
 // Balance direction:
 if (ground == true) {
     var left_edge, right_edge;
@@ -21,7 +21,7 @@ else {
     if (action_state == ACTION_BALANCE) action_state = ACTION_DEFAULT;
 }
 
-/*
+
 // Balance direction:
 if (ground == true) {
     var left_edge, right_edge;

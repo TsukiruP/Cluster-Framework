@@ -9,10 +9,16 @@ applies_to=self
 // Image speed:
 image_speed = 0;
 
+// Size:
+prop_width    = 12.5;
+prop_height   = 16;
+prop_offset_x = 0;
+prop_offset_y = 0;
+
 // Player handle:
 player_handle = noone;
 
-// Item data variables:
+// Item data:
 item_data = ITEM_BONUS;
 #define Destroy_0
 /*"/*'/**//* YYD ACTION
@@ -56,3 +62,6 @@ draw_sprite(spr_items, item_data, x, y);
 
 // Item box:
 draw_sprite(spr_item_box, 1, x, y);
+
+// Size:
+event_inherited();

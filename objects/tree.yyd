@@ -6,6 +6,7 @@
 		|ctrl_audio
 		|ctrl_input
 		|ctrl_text
+		|ctrl_particle
 		|ctrl_transition
 		+Stage Controllers
 			|ctrl_camera
@@ -22,6 +23,7 @@
 		+Badniks
 			|par_badnik
 	+Props
+		|par_prop
 		+Sensors
 		+Rings
 			|par_ring

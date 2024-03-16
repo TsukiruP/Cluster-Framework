@@ -28,15 +28,22 @@ item_feed     = -1;
 item_timer    =  0;
 item_duration =  110;
 
-// Status effect variables:
-status_effect[STATUS_SHIELD] =  0;
-status_effect[STATUS_MUTEKI] =  0;
-status_effect[STATUS_SPEED]  =  0;
-status_effect[STATUS_PANIC]  =  0;
-status_effect[STATUS_SWAP]   =  0;
+// Status variables:
+status_icon[STATUS_SHIELD]   =  ITEM_BASIC;
+status_icon[STATUS_MUTEKI]   =  ITEM_MUTEKI;
+status_icon[STATUS_SPEED]    =  ITEM_SPEED;
+status_icon[STATUS_PANIC]    =  ITEM_PANIC;
+status_icon[STATUS_SWAP]     =  ITEM_SWAP;
 status_position              = -1;
 status_speed                 =  0;
 status_size                  =  2 + 2 * global.gameplay_debuffs;
+status_count                 =  0;
+
+status_active[STATUS_SHIELD, 0] =  0;
+status_active[STATUS_MUTEKI, 0] =  0;
+status_active[STATUS_SPEED, 0]  =  0;
+status_active[STATUS_PANIC, 0]  =  0;
+status_active[STATUS_SWAP , 0]  =  0;
 #define Step_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -66,22 +73,23 @@ if (hide == false) {
     }
 }
 
-// Air position:
+
+// Air:
 if (global.misc_hud == 1) {
-    if (player_exists(0)) {
-        // Air target:
-        if (global.player_instance[0].action_state != ACTION_DEATH) {
-            if (global.player_instance[0].physics_type == PHYS_UNDERWATER) {
-                if (global.player_instance[0].shield_data == SHIELD_BUBBLE) air_hide = true;
-                else air_hide = false;
-            } else {
-                air_hide = true;
+    if (player_exists(0) != noone) {
+        // Hide air:
+        with (player_exists(0)) {
+            if (action_state != ACTION_DEATH) {
+                // Show air timer only if underwater and don't have the bubble shield:
+                if (physics_type == PHYS_UNDERWATER && shield_data != SHIELD_BUBBLE) other.air_hide = false;
+                else other.air_hide  = true;
+                
+                // Update air value:
+                other.air_value = air_remaining;
             }
         }
-
-        // Air value:
-        air_value = global.player_instance[0].air_remaining;
-
+        
+        // Air position:
         if (air_hide == false) {
             if (air_position < hud_position) {
                 if (hud_speed == 0) air_speed = ceil(abs(air_position - hud_position) / hud_factor);
@@ -111,51 +119,26 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Status Effects
+/// Status Icons
 
-if (player_exists(0)) {
-    // Only update active status effects:
-    if (global.misc_status == 1) {
+if (player_exists(0) != noone) {
+    with (player_exists(0)) {
         // Shield:
-        if (global.player_instance[0].shield_data != 0) status_effect[STATUS_SHIELD] = global.player_instance[0].shield_data + 2;
-        else status_effect[STATUS_SHIELD] = 0;
+        if (shield_data != SHIELD_NONE) other.status_icon[STATUS_SHIELD] = shield_data + 2;
+        else other.status_icon[STATUS_SHIELD] = ITEM_BASIC;
 
         // Invincibility:
-        if (global.player_instance[0].invincibility_type != 0) status_effect[STATUS_MUTEKI] = ITEM_MUTEKI;
-        else status_effect[STATUS_MUTEKI] = 0;
+        other.status_icon[STATUS_MUTEKI] = ITEM_MUTEKI;
 
         // Speed Up/Slow Down:
-        if (global.player_instance[0].speed_shoe_type == 1) status_effect[STATUS_SPEED] = ITEM_SPEED;
-        else if (global.player_instance[0].speed_shoe_type == 2) status_effect[STATUS_SPEED] = ITEM_SLOW;
-        else status_effect[STATUS_SPEED] = 0;
+        if (speed_shoe_type == 2) other.status_icon[STATUS_SPEED] = ITEM_SLOW;
+        else other.status_icon[STATUS_SPEED] = ITEM_SPEED;
 
         // Panic:
-        if (global.player_instance[0].status_panic == true) status_effect[STATUS_PANIC] = ITEM_PANIC;
-        else status_effect[STATUS_PANIC] = 0;
+        other.status_icon[STATUS_PANIC] = ITEM_PANIC;
 
         // Swap:
-        if (global.player_instance[0].status_swap == true) status_effect[STATUS_SWAP] = ITEM_SWAP;
-        else status_effect[STATUS_SWAP] = 0;
-    }
-
-    // Update all status effects:
-    else if (global.misc_status == 2) {
-        // Shield:
-        if (global.player_instance[0].shield_data != 0) status_effect[STATUS_SHIELD] = global.player_instance[0].shield_data + 2;
-        else status_effect[STATUS_SHIELD] = ITEM_BASIC;
-
-        // Invincibility:
-        status_effect[STATUS_MUTEKI] = ITEM_MUTEKI;
-
-        // Speed Up/Slow Down:
-        if (global.player_instance[0].speed_shoe_type == 2) status_effect[STATUS_SPEED] = ITEM_SLOW;
-        else status_effect[STATUS_SPEED] = ITEM_SPEED;
-
-        // Panic:
-        status_effect[STATUS_PANIC] = ITEM_PANIC;
-
-        // Swap:
-        status_effect[STATUS_SWAP] = ITEM_SWAP;
+        other.status_icon[STATUS_SWAP] = ITEM_SWAP;
     }
 }
 /*"/*'/**//* YYD ACTION
@@ -165,7 +148,8 @@ applies_to=self
 */
 /// Item Feed
 
-if (player_exists(0)) {
+
+if (player_exists(0) != noone) {
     if (global.misc_feed == true && item_feed == -1) item_feed = ds_list_create();
 }
 
@@ -251,45 +235,57 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Draw Status Effects
+/// Draw Status
 
 // Don't bother if HUD has been disabled:
 if (global.misc_hud == 0) exit;
 
-if (player_exists(0)) {
-    var status_count, player_muteki, player_shoes, player_panic, player_swap;
+if (player_exists(0) != noone) {
+    // Reset status count:
+    status_count = 0;
     
-    status_count  = 0;
-    player_muteki = (global.player_instance[0].invincibility_alarm == -1 || global.player_instance[0].invincibility_alarm > 120 || (global.player_instance[0].invincibility_alarm <= 120 && global.player_instance[0].invincibility_alarm mod 5));
-    player_shoes  = (global.player_instance[0].speed_shoe_alarm == -1 || global.player_instance[0].speed_shoe_alarm > 120 || (global.player_instance[0].speed_shoe_alarm <= 120 && global.player_instance[0].speed_shoe_alarm mod 5));
-    player_panic  = (global.player_instance[0].status_panic_alarm == -1 || global.player_instance[0].status_panic_alarm > 120 || (global.player_instance[0].status_panic_alarm <= 120 && global.player_instance[0].status_panic_alarm mod 5));
-    player_swap   = (global.player_instance[0].status_swap_alarm == -1 || global.player_instance[0].status_swap_alarm > 120 || (global.player_instance[0].status_swap_alarm <= 120 && global.player_instance[0].status_swap_alarm mod 5));
+    with (player_exists(0)) {
+        // Shield:
+        other.status_active[STATUS_SHIELD, 0] = (shield_data != 0);
+        other.status_active[STATUS_SHIELD, 1] = true;
+        
+        // Invincibility:
+        other.status_active[STATUS_MUTEKI, 0] = (invincibility_type != 0);
+        other.status_active[STATUS_MUTEKI, 1] = (invincibility_alarm > 120 || (invincibility_alarm <= 120 && abs(invincibility_alarm mod 5)));
+        
+        
+        // Speed:
+        other.status_active[STATUS_SPEED, 0] = (speed_shoe_type != 0)
+        other.status_active[STATUS_SPEED, 1] = (speed_shoe_alarm > 120 || (speed_shoe_alarm <= 120 && abs(speed_shoe_alarm mod 5)));
+        
+        
+        // Panic:
+        other.status_active[STATUS_PANIC, 0] = status_panic;
+        other.status_active[STATUS_PANIC, 1] = (status_panic_alarm > 120 || (status_panic_alarm <= 120 && abs(status_panic_alarm mod 5)));
+        
+        // Swap:
+        other.status_active[STATUS_SWAP, 0] = status_swap;
+        other.status_active[STATUS_SWAP, 1] = (status_swap_alarm > 120 || (status_swap_alarm <= 120 && abs(status_swap_alarm mod 5)));
+    }
     
     for (i = status_size; i >= 0; i -= 1) {
-        if ((global.misc_status == 1 && status_effect[i] != 0) || global.misc_status == 2) {
-            if ((i != STATUS_MUTEKI && i != STATUS_SPEED && i != STATUS_PANIC && i != STATUS_SWAP) ||
-                (i == STATUS_MUTEKI && player_muteki) || (i == STATUS_SPEED && player_shoes) || (i == STATUS_PANIC && player_panic) || (i == STATUS_SWAP && player_swap)) {
-                // Shadow:
-                draw_sprite_ext(spr_items, 0, view_xview[view_current] + view_wview[view_current] - hud_position - 8 - (sprite_get_width(spr_items) + 2) * status_count, view_yview[view_current] + 18, 1, 1, 0, c_black, 1);
+        if (((global.misc_status == 1 && status_active[i, 0] == true) || global.misc_status == 2) && status_active[i, 1] == true) {
+            // Shadow:
+            draw_sprite_ext(spr_items, 0, view_xview[view_current] + view_wview[view_current] - hud_position - 8 - (sprite_get_width(spr_items) + 2) * status_count, view_yview[view_current] + 18, 1, 1, 0, c_black, 1);
 
-                // Icons:
-                draw_sprite_ext(spr_items, status_effect[i], view_xview[view_current] + view_wview[view_current] - hud_position - 9 - (sprite_get_width(spr_items) + 2) * status_count, view_yview[view_current] + 17, 1, 1, 0, c_white, 1);
-            }
-
+            // Icons:
+            draw_sprite_ext(spr_items, status_icon[i], view_xview[view_current] + view_wview[view_current] - hud_position - 9 - (sprite_get_width(spr_items) + 2) * status_count, view_yview[view_current] + 17, 1, 1, 0, c_white, 1);
+            
             // Gray out:
             if (global.misc_status == 2) {
-                if ((i == STATUS_SHIELD && global.player_instance[0].shield_data == 0) ||
-                    (i == STATUS_MUTEKI && global.player_instance[0].invincibility_type == 0) ||
-                    (i == STATUS_SPEED && global.player_instance[0].speed_shoe_type == 0) ||
-                    (i == STATUS_PANIC && global.player_instance[0].status_panic == false) ||
-                    (i == STATUS_SWAP && global.player_instance[0].status_swap == false)) {
-                    draw_sprite_ext(spr_items, status_effect[i], view_xview[view_current] + view_wview[view_current] - hud_position - 9 - (sprite_get_width(spr_items) + 2) * status_count, view_yview[view_current] + 17, 1, 1, 0, c_gray, 0.6);
+                if (status_active[i, 0] == false) {
+                    draw_sprite_ext(spr_items, status_icon[i], view_xview[view_current] + view_wview[view_current] - hud_position - 9 - (sprite_get_width(spr_items) + 2) * status_count, view_yview[view_current] + 17, 1, 1, 0, c_gray, 0.6);
                 }
             }
-
-            // Increase status count:
-            if ((global.misc_status == 1 && status_effect[i] != 0) || global.misc_status == 2) status_count += 1;
         }
+        
+        // Increase status count:
+        if ((global.misc_status == 1 && status_active[i, 0] == true) || global.misc_status == 2) status_count += 1;
     }
 }
 /*"/*'/**//* YYD ACTION

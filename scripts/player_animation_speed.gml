@@ -1,6 +1,6 @@
 /// player_animation_speed()
 // Sets the animation speed.
-
+/*
 // Wait speed:
 if (character_data == CHAR_SONIC) {
     if (animation_current == "wait_partner") {

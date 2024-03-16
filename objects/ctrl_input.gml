@@ -273,6 +273,15 @@ for (i = 0; i < joystick_max; i += 1) {
             }
         }
     }
+
+    // Reset values:
+    else {
+        for (j = INP_LEFT; j <= INP_DOWN; j += 1) {
+            for (k = CHECK_HELD; k <= CHECK_RELEASED; k += 1) {
+                joystick_dpad[j, k + (i * 3)] = false;
+            }
+        }
+    }
 }
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -287,51 +296,49 @@ for (i = 0; i < joystick_max; i += 1) {
     // Device id:
     device_id = joystick_device[i, 0];
 
-    if (device_id > -1) {
-        // Read analog values:
-        if (global.setting_input_deadzone[i] != 0) {
-            // Set deadzone:
-            joystick_set_deadzone(global.input_deadzone[i]);
+    // Read analog values:
+    if (device_id > -1 && global.input_deadzone[i] != 0) {
+        // Set deadzone:
+        joystick_set_deadzone(global.input_deadzone[i]);
 
-            // Pressed:
-            joystick_analog[INP_LEFT, CHECK_PRESSED + (i * 3)]  = (sign(joystick_axis(device_id, 0)) == -1 && joystick_analog[INP_LEFT, CHECK_HELD + (i * 3)] == false);
-            joystick_analog[INP_RIGHT, CHECK_PRESSED + (i * 3)] = (sign(joystick_axis(device_id, 0)) == 1 && joystick_analog[INP_RIGHT, CHECK_HELD + (i * 3)] == false);
-            joystick_analog[INP_UP, CHECK_PRESSED + (i * 3)]    = (sign(joystick_axis(device_id, 1)) == -1 && joystick_analog[INP_UP, CHECK_HELD + (i * 3)] == false);
-            joystick_analog[INP_DOWN, CHECK_PRESSED + (i * 3)]  = (sign(joystick_axis(device_id, 1)) == 1 && joystick_analog[INP_DOWN, CHECK_HELD + (i * 3)] == false);
+        // Pressed:
+        joystick_analog[INP_LEFT, CHECK_PRESSED + (i * 3)]  = (sign(joystick_axis(device_id, 0)) == -1 && joystick_analog[INP_LEFT, CHECK_HELD + (i * 3)] == false);
+        joystick_analog[INP_RIGHT, CHECK_PRESSED + (i * 3)] = (sign(joystick_axis(device_id, 0)) == 1 && joystick_analog[INP_RIGHT, CHECK_HELD + (i * 3)] == false);
+        joystick_analog[INP_UP, CHECK_PRESSED + (i * 3)]    = (sign(joystick_axis(device_id, 1)) == -1 && joystick_analog[INP_UP, CHECK_HELD + (i * 3)] == false);
+        joystick_analog[INP_DOWN, CHECK_PRESSED + (i * 3)]  = (sign(joystick_axis(device_id, 1)) == 1 && joystick_analog[INP_DOWN, CHECK_HELD + (i * 3)] == false);
 
-            // Released:
-            joystick_analog[INP_LEFT, CHECK_RELEASED + (i * 3)]  = (sign(joystick_axis(device_id, 0)) != -1 && joystick_analog[INP_LEFT, CHECK_HELD + (i * 3)] == true);
-            joystick_analog[INP_RIGHT, CHECK_RELEASED + (i * 3)] = (sign(joystick_axis(device_id, 0)) != 1 && joystick_analog[INP_RIGHT, CHECK_HELD + (i * 3)] == true);
-            joystick_analog[INP_UP, CHECK_RELEASED + (i * 3)]    = (sign(joystick_axis(device_id, 1)) != -1 && joystick_analog[INP_UP, CHECK_HELD + (i * 3)] == true);
-            joystick_analog[INP_DOWN, CHECK_RELEASED + (i * 3)]  = (sign(joystick_axis(device_id, 1)) != 1 && joystick_analog[INP_DOWN, CHECK_HELD + (i * 3)] == true);
+        // Released:
+        joystick_analog[INP_LEFT, CHECK_RELEASED + (i * 3)]  = (sign(joystick_axis(device_id, 0)) != -1 && joystick_analog[INP_LEFT, CHECK_HELD + (i * 3)] == true);
+        joystick_analog[INP_RIGHT, CHECK_RELEASED + (i * 3)] = (sign(joystick_axis(device_id, 0)) != 1 && joystick_analog[INP_RIGHT, CHECK_HELD + (i * 3)] == true);
+        joystick_analog[INP_UP, CHECK_RELEASED + (i * 3)]    = (sign(joystick_axis(device_id, 1)) != -1 && joystick_analog[INP_UP, CHECK_HELD + (i * 3)] == true);
+        joystick_analog[INP_DOWN, CHECK_RELEASED + (i * 3)]  = (sign(joystick_axis(device_id, 1)) != 1 && joystick_analog[INP_DOWN, CHECK_HELD + (i * 3)] == true);
 
-            // Held:
-            joystick_analog[INP_LEFT, CHECK_HELD + (i * 3)]  = (sign(joystick_axis(device_id, 0)) == -1);
-            joystick_analog[INP_RIGHT, CHECK_HELD + (i * 3)] = (sign(joystick_axis(device_id, 0)) == 1);
-            joystick_analog[INP_UP, CHECK_HELD + (i * 3)]    = (sign(joystick_axis(device_id, 1)) == -1);
-            joystick_analog[INP_DOWN, CHECK_HELD + (i * 3)]  = (sign(joystick_axis(device_id, 1)) == 1);
-        }
+        // Held:
+        joystick_analog[INP_LEFT, CHECK_HELD + (i * 3)]  = (sign(joystick_axis(device_id, 0)) == -1);
+        joystick_analog[INP_RIGHT, CHECK_HELD + (i * 3)] = (sign(joystick_axis(device_id, 0)) == 1);
+        joystick_analog[INP_UP, CHECK_HELD + (i * 3)]    = (sign(joystick_axis(device_id, 1)) == -1);
+        joystick_analog[INP_DOWN, CHECK_HELD + (i * 3)]  = (sign(joystick_axis(device_id, 1)) == 1);
+    }
 
-        // Reset analog values:
-        else {
-            // Pressed:
-            joystick_analog[INP_LEFT, CHECK_PRESSED + (i * 3)]  = false;
-            joystick_analog[INP_RIGHT, CHECK_PRESSED + (i * 3)] = false;
-            joystick_analog[INP_UP, CHECK_PRESSED + (i * 3)]    = false;
-            joystick_analog[INP_DOWN, CHECK_PRESSED + (i * 3)]  = false;
+    // Reset analog values:
+    else {
+        // Pressed:
+        joystick_analog[INP_LEFT, CHECK_PRESSED + (i * 3)]  = false;
+        joystick_analog[INP_RIGHT, CHECK_PRESSED + (i * 3)] = false;
+        joystick_analog[INP_UP, CHECK_PRESSED + (i * 3)]    = false;
+        joystick_analog[INP_DOWN, CHECK_PRESSED + (i * 3)]  = false;
 
-            // Released:
-            joystick_analog[INP_LEFT, CHECK_RELEASED + (i * 3)]  = false;
-            joystick_analog[INP_RIGHT, CHECK_RELEASED + (i * 3)] = false;
-            joystick_analog[INP_UP, CHECK_RELEASED + (i * 3)]    = false;
-            joystick_analog[INP_DOWN, CHECK_RELEASED + (i * 3)]  = false;
+        // Released:
+        joystick_analog[INP_LEFT, CHECK_RELEASED + (i * 3)]  = false;
+        joystick_analog[INP_RIGHT, CHECK_RELEASED + (i * 3)] = false;
+        joystick_analog[INP_UP, CHECK_RELEASED + (i * 3)]    = false;
+        joystick_analog[INP_DOWN, CHECK_RELEASED + (i * 3)]  = false;
 
-            // Held:
-            joystick_analog[INP_LEFT, CHECK_HELD + (i * 3)]  = false;
-            joystick_analog[INP_RIGHT, CHECK_HELD + (i * 3)] = false;
-            joystick_analog[INP_UP, CHECK_HELD + (i * 3)]    = false;
-            joystick_analog[INP_DOWN, CHECK_HELD + (i * 3)]  = false;
-        }
+        // Held:
+        joystick_analog[INP_LEFT, CHECK_HELD + (i * 3)]  = false;
+        joystick_analog[INP_RIGHT, CHECK_HELD + (i * 3)] = false;
+        joystick_analog[INP_UP, CHECK_HELD + (i * 3)]    = false;
+        joystick_analog[INP_DOWN, CHECK_HELD + (i * 3)]  = false;
     }
 }
 /*"/*'/**//* YYD ACTION

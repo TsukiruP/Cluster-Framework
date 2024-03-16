@@ -35,8 +35,9 @@
 		|player_exists
 		|water_exists
 		|stage_start
-		|dummy_effect_create
 		|in_view
+		|timeline_set
+		|particle_create
 +Gameplay
 	+Player
 		+Collision
@@ -45,19 +46,21 @@
 				|angle_sensor
 				|line_check
 				|obstacle_check
+				|rectangle_check
 			|player_movement
 			|player_collision_semisolids
 			|player_collision_terrain
 			|player_collision_obstacle
-			|player_collision_object
+			|player_collision_prop
 			|player_mode
-			|player_size
+			|player_position_fix
 			|player_wall_stop
 		+Angle
 			|player_get_angle
-			|player_detect_angle
+			|player_set_angle
 		+Actions
 			|player_action_list
+			|player_action_default
 			|player_action_jump
 			|player_action_look
 			|player_action_crouch
@@ -69,6 +72,7 @@
 			|player_action_hurt
 			|player_action_tag
 			+Sonic
+				|sonic_action_hammer
 			+Miles
 				|miles_action_fly
 			+Knuckles
@@ -78,21 +82,17 @@
 		+Animation
 			|player_animation_core
 			|player_add_animation
-			+Character Specific
-				|sonic_add_animations
+			|player_get_animation
+			|player_set_animation
+			+Animation Lists
+				|sonic_animation_list
 				|miles_add_animations
 				|knuckles_add_animations
 				|classic_add_animations
 			|player_compile_animations
-			+Replacements
-				|player_tag_animations
-				|miles_fly_animations
-			|player_get_animation
-			|player_reverse_animation
 			|player_animation_target
 			|player_animation_direction
 			|player_animation_angle
-			|player_animation_speed
 			|player_animation_depth
 		+Handle
 			|player_handle_list
@@ -100,19 +100,17 @@
 			|player_handle_item_box
 			|player_handle_water_surface
 		+Input
-			|player_get_input
 		+Misc.
-			|player_get_physics
 			|player_ring_loss
-			|player_align_roll
 			|player_get_item
+			|player_get_input
+			|player_get_physics
 			+Trail
 				|start_trail
 				|update_trail
 				|draw_trail
 +Trash
 	+Input
-		|user_input_down
 		|user_input_jump
 		|user_input_special
 		|user_input_swap
@@ -123,7 +121,11 @@
 		|user_input_accept
 		|user_input_cancel
 		|user_input_help
-	+Miles' Tails
+	+Animations
+		+Replacements
+			|player_tag_animations
+			|miles_fly_animations
+		|player_reverse_animation
 	+Sonic Dash
 		|player_collision_OLD
 		|player_collision_slope
@@ -147,5 +149,5 @@
 			|player_collision_bottom
 			|player_collision_object_bottom
 		|player_get_angle_OLD
-		|player_set_angle
-|script126
+		|player_set_angle_OLD
+|script128

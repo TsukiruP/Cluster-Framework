@@ -31,26 +31,8 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Animate
-
-if(dropped == true) {
-    // Image_speed:
-    image_speed = ((lifespan / 2) / 256) * global.object_ratio;
-    //image_index = global.object_time div 80;
-
-    // Alpha:
-    if(lifespan < 25) image_alpha += (0 - image_alpha) * 0.05;
-} else {
-    image_index = global.object_time div 100;
-    image_speed = 0;
-}
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
 /// Movement
-
+/*
 if(dropped == true) {
     // Decrease lifespan alarm:
     lifespan = max(lifespan - 1 * global.object_ratio, 0);
@@ -95,3 +77,6 @@ applies_to=self
 if(dropped == false || lifespan >= 90 || (dropped == true && lifespan < 90 && (lifespan div 4) mod 2)) {
     draw_sprite_ext(sprite_index, -1, x, y, image_xscale, image_yscale, image_angle, image_blend, image_alpha);
 }
+
+// Size:
+event_inherited();

@@ -20,12 +20,12 @@ player_movement
 key_to_string
 pad_to_chr
 player_get_angle_OLD
-player_set_angle
+player_set_angle_OLD
 wrap_angle
 joystick_check
 player_get_physics
 player_animation_depth
-user_input_down
+sonic_action_hammer
 user_input_jump
 user_input_special
 user_input_swap
@@ -52,7 +52,7 @@ player_action_look
 player_action_crouch
 player_action_spin_dash
 player_action_roll
-player_align_roll
+player_action_default
 player_action_skid
 parallax_add_node
 draw_background_tiled_horizontal_part
@@ -74,7 +74,7 @@ draw_background_tiled_vertical_part
 
 draw_sprite_tiled_horizontal
 draw_background_tiled_horizontal_part_yscale
-dummy_effect_create
+particle_create
 
 string_place_value
 player_handle_list
@@ -92,7 +92,7 @@ start_trail
 update_trail
 draw_trail
 player_collision_platform_fix
-sonic_add_animations
+sonic_animation_list
 miles_add_animations
 knuckles_add_animations
 classic_add_animations
@@ -114,14 +114,16 @@ line_check
 obstacle_check
 player_collision_terrain
 player_get_angle
-player_detect_angle
+player_set_angle
 player_mode
 player_collision_semisolids
-player_collision_object
+player_collision_prop
 player_collision_obstacle
 player_wall_stop
-player_size
+player_position_fix
 player_action_tag
 player_animation_angle
-player_animation_speed
-script126
+player_set_animation
+rectangle_check
+timeline_set
+script128

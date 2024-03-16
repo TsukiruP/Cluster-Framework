@@ -10,7 +10,7 @@ deceleration     = 0.5
 if (action_state == ACTION_HURT) gravity_force = 0.1875;
 else if (action_state != ACTION_FLY) gravity_force = gravity_force_temp;
 
-jump_force   = -6.5 + ((character_data == CHAR_KNUCKLES) * 0.5);
+jump_force   =  6.5 + ((character_data == CHAR_KNUCKLES) * 0.5);
 jump_release = -4;
 
 // Roll variables:
@@ -23,7 +23,6 @@ roll_deceleration_down = 0.3125;
 if (speed_shoe_type == 1) {
     x_top_speed      *= 2;
     acceleration     *= 2;
-    air_acceleration *= 2;
     roll_friction    *= 2;
 }
 
@@ -39,6 +38,6 @@ if (physics_type == PHYS_UNDERWATER) {
     if (action_state == ACTION_HURT) gravity_force = 0.09375;
     else if (action_state != ACTION_FLY) gravity_force = 0.0625;
     
-    jump_force   += 3;
+    jump_force   -= 3;
     jump_release *= 0.5;
 }

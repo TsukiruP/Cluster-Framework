@@ -81,9 +81,9 @@ global.setting_gameplay_debuffs    = ini_read_real("gameplay", "debuffs", false)
 global.setting_gameplay_checkpoint = ini_read_real("gameplay", "checkpoint", true);
 
 // Read/create misc. settings:
-global.setting_misc_hud     = ini_read_real("misc", "hud", 1);
-global.setting_misc_status  = ini_read_real("misc", "status", 2);
-global.setting_misc_feed    = ini_read_real("misc", "feed", false);
+global.setting_misc_hud     = ini_read_real("misc", "hud", 0);
+global.setting_misc_status  = ini_read_real("misc", "status", 1);
+global.setting_misc_feed    = ini_read_real("misc", "feed", true);
 global.setting_misc_trails  = ini_read_real("misc", "trails", false);
 global.setting_misc_lock_on = ini_read_real("misc", "lock_on", true);
 global.setting_misc_results = ini_read_real("misc", "results", 1);
@@ -208,7 +208,7 @@ randomize();
 global.player_instance[0]    =   noone;
 global.player_instance[1]    =   noone;
 global.player_data[0]        =   CHAR_SONIC;
-global.player_data[1]        =   -1;
+global.player_data[1]        =  -1;
 
 global.gravity_angle         =  0;
 global.animation_grid        = -1;
@@ -228,6 +228,7 @@ instance_create(x, y, ctrl_display);
 instance_create(x, y, ctrl_audio);
 instance_create(x, y, ctrl_input);
 instance_create(x, y, ctrl_text);
+instance_create(x, y, ctrl_particle);
 #define KeyPress_13
 /*"/*'/**//* YYD ACTION
 lib_id=1

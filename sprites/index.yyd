@@ -37,7 +37,7 @@ spr_sonic_look_tag
 spr_sonic_crouch
 spr_sonic_crouch_tag
 spr_sonic_spin_dash
-spr_sonic_super_spin
+spr_sonic_spin_charge
 spr_sonic_roll
 spr_sonic_skid
 spr_sonic_skid_tag
@@ -73,7 +73,7 @@ spr_shield_fire_burst
 spr_shield_bubble_bounce
 spr_shield_lightning_spark
 spr_player_spawn
-spr_basic_test_collision_solid_02
+spr_sonic_hammer
 spr_basic_test_collision_solid_03
 spr_basic_test_collision_solid_04
 spr_basic_test_collision_solid_05

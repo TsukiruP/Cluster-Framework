@@ -1,9 +1,11 @@
 /// stage_start()
 //
 
-// Player controls:
-if (player_exists(0)) {
-    if (global.player_instance[0].input_lock != false) global.player_instance[0].input_lock = false;
+// Player input lock:
+if (player_exists(0) != noone) {
+    with (player_exists(0)) {
+        if (input_lock != false) input_lock = false;
+    }
 }
 
 // Add time:
