@@ -9,13 +9,16 @@ if (mode != 0 || (ground == false && y_speed <= 0)) {
 }
 
 // Also disable if colliding from the top:
-var collision_test;
+var terrain_handle, collision_test;
 
-collision_test = player_collision_object(SIDE_MAIN, par_terrain);
+terrain_handle = instance_nearest(x, y, par_terrain);
+collision_main = collision_rectangle(floor(x) - main_width, floor(y) - main_height, floor(x) + main_width, floor(y) + main_height, terrain_handle, true, true);
+collision_top  = collision_rectangle(floor(x) - main_width, floor(y) - main_height - 1, floor(x) + main_width, floor(y), terrain_handle, true, true);
 
-if (collision_test != noone) {
-    if (collision_test.type == SOLID_SEMI) {
-        if (player_collision_object(SIDE_TOP_EXT, collision_test)) collision_test.platform_check = false;
-        else collision_test.platform_check = true;
+
+if (collision_main) {
+    if (terrain_handle.type == SOLID_SEMI) {
+        if (collision_top == true) terrain_handle.platform_check = false;
+        else terrain_handle.platform_check = true;
     }
 }

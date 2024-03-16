@@ -1,7 +1,8 @@
-/// player_collision_object(side, obj)
+/// player_collision_prop(side, prop)
 
 // Player data:
 var x1, y1, x2, y2;
+
 switch (mode) {
     case 0:
         x1 = floor(x) - main_width;
@@ -33,6 +34,7 @@ switch (mode) {
 }
 
 // Object data:
+
 switch (argument0) {
     case SIDE_MAIN:
         ox1 = floor(argument1.x) - argument1.prop_width + argument1.prop_offset_x;
@@ -70,7 +72,5 @@ switch (argument0) {
         break;
 }
 
-// Collision test:
-collision_test = rectangle_in_rectangle(x1, y1, x2, y2, ox1, oy1, ox2, oy2);
-
-return collision_test;
+// Return collision:
+return rectangle_in_rectangle(x1, y1, x2, y2, ox1, oy1, ox2, oy2);;
