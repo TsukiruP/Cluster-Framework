@@ -29,14 +29,6 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Animate
-
-image_index = global.object_time div 100;
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
 /// Movement
 
 if (player_exists(0)) {

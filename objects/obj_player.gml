@@ -710,7 +710,7 @@ if (global.misc_trails == true) {
 }
 
 // Change alpha when hurt:
-if (invincibility_type == 1 && invincibility_alarm > 0) animation_alpha = (global.stage_time div 60) mod 3;
+if (invincibility_type == 1 && invincibility_alarm > 0) animation_alpha = (invincibility_alarm div 4) mod 2;
 else animation_alpha = 1;
 
 // Character:
@@ -775,31 +775,31 @@ var x1, y1, x2, y2;
 
 switch (mode) {
     case 0:
-        x1 = floor(x) + (hurtbox_offset_x * animation_direction) - hurtbox_width;
-        y1 = floor(y) +  hurtbox_offset_y - hurtbox_height;
-        x2 = floor(x) + (hurtbox_offset_x * animation_direction) + hurtbox_width;
-        y2 = floor(y) +  hurtbox_offset_y + hurtbox_height;
+        x1 = floor(x) - hurtbox_width + (hurtbox_offset_x * animation_direction);
+        y1 = floor(y) - hurtbox_height +  hurtbox_offset_y;
+        x2 = floor(x) + hurtbox_width + (hurtbox_offset_x * animation_direction);
+        y2 = floor(y) + hurtbox_height +  hurtbox_offset_y;
         break;
 
     case 1:
-        x1 = floor(x) +  hurtbox_offset_y - hurtbox_height;
-        y1 = floor(y) - (hurtbox_offset_x * animation_direction) - hurtbox_width;
-        x2 = floor(x) +  hurtbox_offset_y + hurtbox_height;
-        y2 = floor(y) - (hurtbox_offset_x * animation_direction) + hurtbox_width;
+        x1 = floor(x) - hurtbox_height +  hurtbox_offset_y;
+        y1 = floor(y) - hurtbox_width - (hurtbox_offset_x * animation_direction);
+        x2 = floor(x) + hurtbox_height +  hurtbox_offset_y;
+        y2 = floor(y) + hurtbox_width - (hurtbox_offset_x * animation_direction);
         break;
 
     case 2:
-        x1 = floor(x) - (hurtbox_offset_x * animation_direction) - hurtbox_width;
-        y1 = floor(y) -  hurtbox_offset_y - hurtbox_height;
-        x2 = floor(x) - (hurtbox_offset_x * animation_direction) + hurtbox_width;
-        y2 = floor(y) -  hurtbox_offset_y + hurtbox_height;
+        x1 = floor(x) - hurtbox_width - (hurtbox_offset_x * animation_direction);
+        y1 = floor(y) - hurtbox_height -  hurtbox_offset_y;
+        x2 = floor(x) + hurtbox_width - (hurtbox_offset_x * animation_direction);
+        y2 = floor(y) + hurtbox_height -  hurtbox_offset_y;
         break;
 
     case 3:
-        x1 = floor(x) -  hurtbox_offset_y - hurtbox_height;
-        y1 = floor(y) + (hurtbox_offset_x * animation_direction) - hurtbox_width;
-        x2 = floor(x) -  hurtbox_offset_y + hurtbox_height;
-        y2 = floor(y) + (hurtbox_offset_x * animation_direction) + hurtbox_width;
+        x1 = floor(x) - hurtbox_height -  hurtbox_offset_y;
+        y1 = floor(y) - hurtbox_width + (hurtbox_offset_x * animation_direction);
+        x2 = floor(x) + hurtbox_height -  hurtbox_offset_y;
+        y2 = floor(y) + hurtbox_width + (hurtbox_offset_x * animation_direction);
         break;
 }
 
@@ -813,31 +813,31 @@ var x1, y1, x2, y2;
 
 switch (mode) {
     case 0:
-        x1 = floor(x) + (hitbox_offset_x * animation_direction) - hitbox_width;
-        y1 = floor(y) +  hitbox_offset_y - hitbox_height;
-        x2 = floor(x) + (hitbox_offset_x * animation_direction) + hitbox_width;
-        y2 = floor(y) +  hitbox_offset_y + hitbox_height;
+        x1 = floor(x) - hitbox_width + (hitbox_offset_x * animation_direction);
+        y1 = floor(y) - hitbox_height +  hitbox_offset_y;
+        x2 = floor(x) + hitbox_width + (hitbox_offset_x * animation_direction);
+        y2 = floor(y) + hitbox_height +  hitbox_offset_y;
         break;
 
     case 1:
-        x1 = floor(x) +  hitbox_offset_y - hitbox_height;
-        y1 = floor(y) - (hitbox_offset_x * animation_direction) - hitbox_width;
-        x2 = floor(x) +  hitbox_offset_y + hitbox_height;
-        y2 = floor(y) - (hitbox_offset_x * animation_direction) + hitbox_width;
+        x1 = floor(x) - hitbox_height +  hitbox_offset_y;
+        y1 = floor(y) - hitbox_width - (hitbox_offset_x * animation_direction);
+        x2 = floor(x) + hitbox_height +  hitbox_offset_y;
+        y2 = floor(y) + hitbox_width - (hitbox_offset_x * animation_direction);
         break;
 
     case 2:
-        x1 = floor(x) - (hitbox_offset_x * animation_direction) - hitbox_width;
-        y1 = floor(y) -  hitbox_offset_y - hitbox_height;
-        x2 = floor(x) - (hitbox_offset_x * animation_direction) + hitbox_width;
-        y2 = floor(y) -  hitbox_offset_y + hitbox_height;
+        x1 = floor(x) - hitbox_width - (hitbox_offset_x * animation_direction);
+        y1 = floor(y) - hitbox_height -  hitbox_offset_y;
+        x2 = floor(x) + hitbox_width - (hitbox_offset_x * animation_direction);
+        y2 = floor(y) + hitbox_height -  hitbox_offset_y;
         break;
 
     case 3:
-        x1 = floor(x) -  hitbox_offset_y - hitbox_height;
-        y1 = floor(y) + (hitbox_offset_x * animation_direction) - hitbox_width;
-        x2 = floor(x) -  hitbox_offset_y + hitbox_height;
-        y2 = floor(y) + (hitbox_offset_x * animation_direction) + hitbox_width;
+        x1 = floor(x) - hitbox_height -  hitbox_offset_y;
+        y1 = floor(y) - hitbox_width + (hitbox_offset_x * animation_direction);
+        x2 = floor(x) + hitbox_height -  hitbox_offset_y;
+        y2 = floor(y) + hitbox_width + (hitbox_offset_x * animation_direction);
         break;
 }
 

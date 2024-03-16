@@ -35,9 +35,9 @@
 		|player_exists
 		|water_exists
 		|stage_start
-		|dummy_effect_create
 		|in_view
 		|timeline_set
+		|particle_create
 +Gameplay
 	+Player
 		+Collision
@@ -51,7 +51,7 @@
 			|player_collision_semisolids
 			|player_collision_terrain
 			|player_collision_obstacle
-			|player_collision_object
+			|player_collision_prop
 			|player_mode
 			|player_position_fix
 			|player_wall_stop
@@ -150,3 +150,4 @@
 			|player_collision_object_bottom
 		|player_get_angle_OLD
 		|player_set_angle_OLD
+|script128

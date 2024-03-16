@@ -1,9 +1,16 @@
 /// dummy_effect_create(sprite, speed, x, y, depth, [xscale])
+/// dummy_effect_create(timeline, x, y, depth, [xscale])
 // Creates a generic effect for the sprite given.
 
-dummy_effect              = instance_create(argument[2], argument[3], eff_dummy);
-dummy_effect.sprite_index = argument[0];
-dummy_effect.image_speed  = argument[1];
-dummy_effect.depth        = argument[4];
+dummy_effect = instance_create(argument[1], argument[2], eff_dummy);
 
-if (argument_count == 6) dummy_effect.image_xscale = argument[5];
+with (dummy_effect) {
+    // Set timeline:
+    timeline_set(argument[0]);
+
+    // Set depth:
+    depth = argument[3];
+
+    // Set xscale:
+    if (argument_count >= 5) image_xscale = argument[5];
+}

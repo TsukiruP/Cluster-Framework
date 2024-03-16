@@ -3,14 +3,17 @@
 
 var ring_handle;
 
-// Collect ring:
-ring_handle = player_collision_object_main(x, y, par_ring);
+// Nearest ring:
+ring_handle = instance_nearest(x, y, par_ring);
 
-if (ring_handle != noone) {
+if (ring_handle == noone) exit;
+
+// Collect ring:
+if (player_collision_prop(SIDE_MAIN, ring_handle) != 0) {
     if (invincibility_type != 1 || (invincibility_type == 1 && invincibility_alarm > -1 && invincibility_type <= 90)) {
         if (action_state != ACTION_HURT) {
             with (ring_handle) {
-                dummy_effect_create(spr_ring_sparkle, 0.35, x, y, -10);
+                particle_create(EFFECT_RING, x, y);
                 instance_destroy();
             }
 

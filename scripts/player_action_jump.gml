@@ -17,7 +17,7 @@ if ((ground == true || (action_state == ACTION_CARRY && player_input[INP_DOWN, C
 
         // Create water splash:
         if (instance_exists(obj_water_surface)) {
-            if (floor(y) == obj_water_surface.y - 13) dummy_effect_create(spr_splash_jump, 0.13, x - 8 * animation_direction, obj_water_surface.y, depth - 1, animation_direction);
+            //if (floor(y) == obj_water_surface.y - 13) ;
         }
 
         // Play sound:

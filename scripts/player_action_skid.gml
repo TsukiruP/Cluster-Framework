@@ -42,7 +42,7 @@ if (action_state == ACTION_SKID) {
         if (skid_dust_alarm > 0) skid_dust_alarm -= 1;
         else {
             skid_dust_alarm = 3;
-            dummy_effect_create(spr_skid_dust, 0.3, x, y + main_height * dsin(ground_angle + 90), depth - 1);
+            //dummy_effect_create(spr_skid_dust, 0.3, x, y + main_height * dsin(ground_angle + 90), depth - 1);
         }
     }
 

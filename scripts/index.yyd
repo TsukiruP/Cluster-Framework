@@ -74,7 +74,7 @@ draw_background_tiled_vertical_part
 
 draw_sprite_tiled_horizontal
 draw_background_tiled_horizontal_part_yscale
-dummy_effect_create
+particle_create
 
 string_place_value
 player_handle_list
@@ -117,7 +117,7 @@ player_get_angle
 player_set_angle
 player_mode
 player_collision_semisolids
-player_collision_object
+player_collision_prop
 player_collision_obstacle
 player_wall_stop
 player_position_fix
@@ -126,3 +126,4 @@ player_animation_angle
 player_set_animation
 rectangle_check
 timeline_set
+script128

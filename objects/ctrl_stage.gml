@@ -67,11 +67,11 @@ applies_to=self
 
 // Stage timer:
 if (global.add_time == true) {
-    global.stage_time += (1000 / 60) * global.object_ratio;
+    global.stage_time += global.object_ratio;
 }
 
 // Object timer
-global.object_time += (1000 / 60) * global.object_ratio;
+global.object_time += global.object_ratio;
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
