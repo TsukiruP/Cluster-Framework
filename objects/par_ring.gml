@@ -25,4 +25,4 @@ applies_to=self
 */
 /// Animate
 
-image_index = floor(global.object_time) div 8;
+image_index = floor(global.object_time) div (8 / (1 + dropped));

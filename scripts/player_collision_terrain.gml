@@ -4,13 +4,13 @@
 if (ground_collision_allow == false) exit;
 
 // Left wall collision:
-while (point_check(-wall_width, wall_height)) {
+while (player_point_check(-wall_width, wall_height)) {
     x += y_direction;
     y -= x_direction;
 }
 
 // Right wall collision:
-while (point_check(wall_width, wall_height)) {
+while (player_point_check(wall_width, wall_height)) {
     x -= y_direction;
     y += x_direction;
 }
@@ -18,7 +18,7 @@ while (point_check(wall_width, wall_height)) {
 if (on_obstacle == false) {
     // Landing:
     if (ground == false && y_speed > 0) {
-        if (line_check(-main_width, main_height, true) || line_check(main_width, main_height, true)) {
+        if (player_line_check(-main_width, main_height, true) || player_line_check(main_width, main_height, true)) {
             ground  = true;
             landed  = true;
             g_speed = x_speed;
@@ -69,20 +69,20 @@ if (on_obstacle == false) {
         else detach_distance = 16;
 
         // Detach:
-        if (detach_allow == true && roll_forced == false && !line_check(-main_width, main_height + detach_distance, true) && !line_check(main_width, main_height + detach_distance, true)) {
+        if (detach_allow == true && roll_forced == false && !player_line_check(-main_width, main_height + detach_distance, true) && !player_line_check(main_width, main_height + detach_distance, true)) {
             ground = false;
         }
 
         // Move down slopes:
-        if (on_edge == false && (line_check(-main_width, main_height + 16, true) || line_check(main_width, main_height + 16, true))) {
-            while(!line_check(main_width, main_height, true) && !line_check(-main_width, main_height, true)) {
+        if (on_edge == false && (player_line_check(-main_width, main_height + 16, true) || player_line_check(main_width, main_height + 16, true))) {
+            while(!player_line_check(main_width, main_height, true) && !player_line_check(-main_width, main_height, true)) {
                 x += x_direction;
                 y += y_direction;
             }
         }
 
         // Move up slopes:
-        while (line_check(-main_width, main_height, true) || line_check(main_width, main_height, true)) {
+        while (player_line_check(-main_width, main_height, true) || player_line_check(main_width, main_height, true)) {
             x -= x_direction;
             y -= y_direction;
         }
@@ -97,7 +97,7 @@ if (on_obstacle == false) {
         if (angle_mode == 0)
         {
             // Start ceiling landing:
-            if (ground == false && ceiling_allow == true && y_speed < -2.5 && (point_check(-main_width, -main_height) || point_check(main_width, -main_height))) {
+            if (ground == false && ceiling_allow == true && y_speed < -2.5 && (player_point_check(-main_width, -main_height) || player_point_check(main_width, -main_height))) {
                 ceiling_landing = 1;
             }
 
@@ -105,7 +105,7 @@ if (on_obstacle == false) {
                 var temp_angle;
 
                 // Set temp ground_angle:
-                if (point_check(-main_width, -main_height)) {
+                if (player_point_check(-main_width, -main_height)) {
                     temp_angle = player_get_angle(floor(x) - main_width, floor(y) - main_height, 2);
                 } else {
                     temp_angle = player_get_angle(floor(x) + main_width, floor(y) - main_height, 2);
@@ -137,7 +137,7 @@ if (on_obstacle == false) {
         }
 
         if (mode == 0) {
-            while (line_check(-main_width, -main_height) || line_check(main_width, -main_height)) {
+            while (player_line_check(-main_width, -main_height) || player_line_check(main_width, -main_height)) {
                 y += 1;
 
                 // Stop y speed:

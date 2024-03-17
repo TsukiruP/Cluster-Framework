@@ -108,10 +108,10 @@ miles_fly_animations
 collision_rectangle_list
 collision_line_list
 collision_point_list
-point_check
+player_point_check
 angle_sensor
-line_check
-obstacle_check
+player_line_check
+player_obstacle_check
 player_collision_terrain
 player_get_angle
 player_set_angle
@@ -124,6 +124,6 @@ player_position_fix
 player_action_tag
 player_animation_angle
 player_set_animation
-rectangle_check
+player_rectangle_check
 timeline_set
 script128

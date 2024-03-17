@@ -10,16 +10,16 @@ if (ground == true) {
     var left_edge, right_edge;
 
     // Edges:
-    left_edge = (!line_check(main_width, main_height + 16, true) && !obstacle_check(-wall_width, 0, wall_width, main_height + 2, true));
-    right_edge = (!line_check(-main_width, main_height + 16, true) && !obstacle_check(wall_width, 0, -wall_width, main_height + 2, true));
+    left_edge = (!player_line_check(main_width, main_height + 16, true) && !player_obstacle_check(-wall_width, 0, wall_width, main_height + 2, true));
+    right_edge = (!player_line_check(-main_width, main_height + 16, true) && !player_obstacle_check(wall_width, 0, -wall_width, main_height + 2, true));
 
     if (ground_angle == gravity_angle) {
         // Classic balance behavior:
         if (character_data == CHAR_CLASSIC) {
             var left_edge_classic, right_edge_classic;
 
-            left_edge_classic = (!line_check(main_width / 2, main_height + 16, true) && !obstacle_check(-wall_width / 2, 0, wall_width / 2, main_height + 2, true));
-            right_edge_classic = (!line_check(-main_width / 2, main_height + 16, true) && !obstacle_check(wall_width / 2, 0, -wall_width / 2, main_height + 2, true));
+            left_edge_classic = (!player_line_check(main_width / 2, main_height + 16, true) && !player_obstacle_check(-wall_width / 2, 0, wall_width / 2, main_height + 2, true));
+            right_edge_classic = (!player_line_check(-main_width / 2, main_height + 16, true) && !player_obstacle_check(wall_width / 2, 0, -wall_width / 2, main_height + 2, true));
 
             balance_direction = (left_edge - right_edge) + (left_edge_classic - right_edge_classic);
         }
@@ -37,8 +37,8 @@ if (ground == true) {
 }
 
 // Push:
-if ((point_check((wall_width + 1) * animation_direction, wall_height) && abs(g_speed) <= acceleration + 0.5) ||
-    (obstacle_check((wall_width + 1 * animation_direction), main_height, (wall_width + 1 * animation_direction), main_height) && abs(g_speed) <= acceleration)) {
+if ((player_point_check((wall_width + 1) * animation_direction, wall_height) && abs(g_speed) <= acceleration + 0.5) ||
+    (player_obstacle_check((wall_width + 1 * animation_direction), main_height, (wall_width + 1 * animation_direction), main_height) && abs(g_speed) <= acceleration)) {
     if (ground == true && input_direction != 0 && animation_direction == input_direction) push_animation = true;
     else push_animation = false;
 }

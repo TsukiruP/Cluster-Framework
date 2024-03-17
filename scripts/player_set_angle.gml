@@ -16,7 +16,7 @@ if (ground == true) {
     // New angle:
     if (on_edge == false && on_obstacle == false) {
         // Get new angle from left sensor:
-        if (line_check(-main_width, main_height + 1, true) && !line_check(main_width, main_height + 1, true)) {
+        if (player_line_check(-main_width, main_height + 1, true) && !player_line_check(main_width, main_height + 1, true)) {
             pos_x = floor(x) - main_width * abs(y_direction);
             pos_y = floor(y) + main_width * x_direction;
 
@@ -25,7 +25,7 @@ if (ground == true) {
         }
 
         // Get new angle from right sensor:
-        if (!line_check(-main_width, main_height + 1, true) && line_check(main_width, main_height + 1, true)) {
+        if (!player_line_check(-main_width, main_height + 1, true) && player_line_check(main_width, main_height + 1, true)) {
             pos_x = floor(x) + main_width * abs(y_direction);
             pos_y = floor(y) - main_width * x_direction;
 
@@ -34,7 +34,7 @@ if (ground == true) {
         }
 
         // Force angle to the proper mode if on flat terrain:
-        if (line_check(-main_width, main_height + 1, true) && line_check(main_width, main_height + 1, true)) {
+        if (player_line_check(-main_width, main_height + 1, true) && player_line_check(main_width, main_height + 1, true)) {
             new_angle = 90 * mode;
         }
     }
@@ -43,7 +43,7 @@ if (ground == true) {
 // Floor ramp fixes:
 if (mode == 0 && landed == false && ground_angle == 0) {
     // Left ramp edge:
-    if (!line_check(-main_width, main_height + 1, true) && line_check(main_width, main_height + 1, true)) {
+    if (!player_line_check(-main_width, main_height + 1, true) && player_line_check(main_width, main_height + 1, true)) {
         var temp_angle, angle_diff;
 
         // Temporary angle:
@@ -60,7 +60,7 @@ if (mode == 0 && landed == false && ground_angle == 0) {
     }
 
     // Right ramp edge:
-    if (line_check(-main_width, main_height + 1, true) && !line_check(main_width, main_height + 1, true)) {
+    if (player_line_check(-main_width, main_height + 1, true) && !player_line_check(main_width, main_height + 1, true)) {
         var temp_angle, angle_diff;
 
         // Temporary angle:

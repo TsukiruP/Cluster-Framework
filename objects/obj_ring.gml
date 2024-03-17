@@ -32,7 +32,7 @@ action_id=603
 applies_to=self
 */
 /// Movement
-/*
+
 if(dropped == true) {
     // Decrease lifespan alarm:
     lifespan = max(lifespan - 1 * global.object_ratio, 0);

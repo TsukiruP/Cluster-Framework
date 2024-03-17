@@ -42,11 +42,11 @@
 	+Player
 		+Collision
 			+Utilities
-				|point_check
 				|angle_sensor
-				|line_check
-				|obstacle_check
-				|rectangle_check
+				|player_point_check
+				|player_line_check
+				|player_obstacle_check
+				|player_rectangle_check
 			|player_movement
 			|player_collision_semisolids
 			|player_collision_terrain
