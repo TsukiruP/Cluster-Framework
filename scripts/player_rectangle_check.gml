@@ -4,38 +4,38 @@
 if (collision_allow == false) exit;
 
 // Return false if either radius is set to 0:
-if (argument2 == 0 || argument3 == 0) return noone;
+if (argument0 == 0 || argument1 == 0) return noone;
 
 // Set up arguments:
 var x1, y1, x2, y2;
 
 switch (mode) {
     case 0:
-        x1 = floor(x) - argument0 + argument2;
+        x1 = floor(x) - argument0 + (argument2 * animation_direction);
         y1 = floor(y) - argument1 + argument3;
-        x2 = floor(x) + argument0 + argument2;
+        x2 = floor(x) + argument0 + (argument2 * animation_direction);
         y2 = floor(y) + argument1 + argument3;
         break;
 
     case 1:
         x1 = floor(x) - argument1 + argument3;
-        y1 = floor(y) - argument0 - argument2;
+        y1 = floor(y) - argument0 - (argument2 * animation_direction);
         x2 = floor(x) + argument1 + argument3;
-        y2 = floor(y) + argument0 - argument2;
+        y2 = floor(y) + argument0 - (argument2 * animation_direction);
         break;
 
     case 2:
-        x1 = floor(x) - argument0 - argument2;
+        x1 = floor(x) - argument0 - (argument2 * animation_direction);
         y1 = floor(y) - argument1 - argument3;
-        x2 = floor(x) + argument0 - argument2;
+        x2 = floor(x) + argument0 - (argument2 * animation_direction);
         y2 = floor(y) + argument1 - argument3;
         break;
 
     case 3:
         x1 = floor(x) - argument1 - argument3;
-        y1 = floor(y) - argument0 + argument2;
+        y1 = floor(y) - argument0 + (argument2 * animation_direction);
         x2 = floor(x) + argument1 - argument3;
-        y2 = floor(y) + argument0 + argument2;
+        y2 = floor(y) + argument0 + (argument2 * animation_direction);
         break;
 }
 
