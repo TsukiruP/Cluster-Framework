@@ -126,4 +126,4 @@ player_animation_angle
 player_set_animation
 player_rectangle_check
 timeline_set
-script128
+object_point_check
