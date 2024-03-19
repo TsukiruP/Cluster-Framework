@@ -44,7 +44,7 @@ obj_basic_test_parallax
 ctrl_culling
 par_badnik
 obj_ring
-eff_dummy
+eff_spin_dash_dust
 par_item_box
 obj_basic_test_water_fall_01
 obj_basic_test_water_fall_02

@@ -3,16 +3,17 @@
 
 // Trigger Spin Dash:
 if (action_state == ACTION_CROUCH && tag_animations == false && player_input[INP_JUMP, CHECK_PRESSED] == true) {
-    var eff_spin_dash, sfx_spin_dash;
+    var sfx_spin_dash;
 
     action_state       = ACTION_SPIN_DASH;
     spin_dash_charge = 0;
 
-    eff_spin_dash = instance_create(x - 4, y, eff_dummy);
-    with (eff_spin_dash) timeline_set(tml_spin_dash_dust);
-
     // Reset jump input:
     player_input[INP_JUMP, CHECK_PRESSED] = false;
+
+    with (instance_create(x, y, eff_spin_dash_dust)) {
+        player_handle = other.id;
+    }
 
     // Play sound:
     sfx_spin_dash = sound_play_single("snd_spin_dash_charge");
@@ -28,8 +29,6 @@ if (action_state == ACTION_SPIN_DASH) {
             
             // Camera lag:
             if (input_cpu == false) ctrl_camera.camera_lag_alarm = 16;
-            
-            with (eff_spin_dash) instance_destroy();
             
             // Play sound:
             sound_play_single("snd_spin_dash_release");

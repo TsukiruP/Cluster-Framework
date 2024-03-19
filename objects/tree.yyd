@@ -57,8 +57,8 @@
 		+Water
 			|obj_water_surface
 	+Effects
-		|eff_dummy
-		+Character
+		+Player
+			|eff_spin_dash_dust
 			|eff_afterimage
 +Stages
 	+Parents
