@@ -1,16 +1,6 @@
 /// player_action_roll()
 // Keep rollin', rollin', rollin', rollin'
 
-// Trigger roll:
-if (ground == true && action_state == ACTION_DEFAULT && abs(g_speed) >= 1.03125 && tag_animations == false &&
-    player_input[INP_LEFT, CHECK_HELD] == false && player_input[INP_RIGHT, CHECK_HELD] == false && player_input[INP_DOWN, CHECK_HELD] == true) {
-    action_state = ACTION_ROLL;
-
-    // Play sound:
-    sound_play_single("snd_roll");
-}
-
-
 // Roll:
 if (action_state == ACTION_ROLL) {
     if (ground == true) {
@@ -33,4 +23,13 @@ if (action_state == ACTION_ROLL) {
         jump_complete = true;
         roll_rebounce = true;
     }
+}
+
+// Trigger roll:
+if (ground == true && action_state == ACTION_DEFAULT && abs(g_speed) >= 1.03125 && tag_animations == false &&
+    player_input[INP_LEFT, CHECK_HELD] == false && player_input[INP_RIGHT, CHECK_HELD] == false && player_input[INP_DOWN, CHECK_HELD] == true) {
+    action_state = ACTION_ROLL;
+
+    // Play sound:
+    sound_play_single("snd_roll");
 }

@@ -48,4 +48,5 @@
 		|tml_sonic_death
 		|tml_sonic_hammer
 +Effects
-	|tml_spin_dash_dust
+	|tml_spin_dash
+	|tml_spin_charge

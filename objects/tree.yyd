@@ -58,7 +58,8 @@
 			|obj_water_surface
 	+Effects
 		+Player
-			|eff_spin_dash_dust
+			|eff_player
+			|eff_spin_dash
 			|eff_afterimage
 +Stages
 	+Parents

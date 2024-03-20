@@ -33,7 +33,6 @@ if (action_state == ACTION_JUMP) {
     if (ground == true) action_state = ACTION_DEFAULT;
 }
 
-
 // Variable clean up:
 if (ground == true || action_state == ACTION_CARRY) {
     if (jump_complete != false) jump_complete = false;

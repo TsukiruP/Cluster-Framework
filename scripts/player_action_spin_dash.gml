@@ -1,24 +1,6 @@
 /// player_action_spin_dash()
 // Charge and Up.
 
-// Trigger Spin Dash:
-if (action_state == ACTION_CROUCH && tag_animations == false && player_input[INP_JUMP, CHECK_PRESSED] == true) {
-    var sfx_spin_dash;
-
-    action_state       = ACTION_SPIN_DASH;
-    spin_dash_charge = 0;
-
-    // Reset jump input:
-    player_input[INP_JUMP, CHECK_PRESSED] = false;
-
-    with (instance_create(x, y, eff_spin_dash_dust)) {
-        player_handle = other.id;
-    }
-
-    // Play sound:
-    sfx_spin_dash = sound_play_single("snd_spin_dash_charge");
-}
-
 // Spin Dash:
 if (action_state == ACTION_SPIN_DASH) {
     if (ground == true) {
@@ -54,4 +36,20 @@ if (action_state == ACTION_SPIN_DASH) {
     if (spin_dash_charge > 0) {
         spin_dash_charge *= 0.96875;
     }
+}
+
+// Trigger Spin Dash:
+if (action_state == ACTION_CROUCH && tag_animations == false && player_input[INP_JUMP, CHECK_PRESSED] == true) {
+    var sfx_spin_dash;
+
+    action_state       = ACTION_SPIN_DASH;
+    spin_dash_charge = 0;
+
+    with (instance_create(x, y, eff_spin_dash)) {
+        timeline_set(tml_spin_dash);
+        player_handle = other.id;
+    }
+
+    // Play sound:
+    sfx_spin_dash = sound_play_single("snd_spin_dash_charge");
 }

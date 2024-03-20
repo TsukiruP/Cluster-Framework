@@ -6,25 +6,6 @@ var skid_classic;
 // Classic skid:
 skid_classic = (global.gameplay_skid == false || character_data == CHAR_CLASSIC);
 
-// Trigger skid:
-if (ground = true && action_state == ACTION_DEFAULT && input_lock_alarm == 0) {
-    if (skid_classic == false || (skid_classic == true && (ground_angle < 45 || ground_angle > 315))) {
-        // Trigger skid:
-        if (abs(g_speed) >= 4.5 && sign(g_speed) == -input_direction) {
-            action_state = ACTION_SKID;
-
-            // Play animation:
-            if (abs(g_speed) >= x_top_speed && tag_animations == false) player_set_animation("skid_fast");
-            else player_set_animation("skid");
-
-            if (skid_classic == true) animation_direction = sign(g_speed);
-
-            // Play sound:
-            sound_play_single("snd_skid");
-        }
-    }
-}
-
 // Skid:
 if (action_state == ACTION_SKID) {
     // Skid turn:
@@ -50,4 +31,23 @@ if (action_state == ACTION_SKID) {
     if (ground == false || (ground_angle >= 25 && ground_angle <= 315) || (sign(g_speed) == input_direction) ||
         (((skid_classic == false && g_speed != 0 && sign(g_speed) != -input_direction) || (skid_classic == true && sign(g_speed) == input_direction)) && animation_current != "skid_turn") ||
         (animation_current == "skid_turn" && animation_finished == true) || input_lock_alarm > 0) action_state = ACTION_DEFAULT;
+}
+
+// Trigger skid:
+if (ground = true && action_state == ACTION_DEFAULT && input_lock_alarm == 0) {
+    if (skid_classic == false || (skid_classic == true && (ground_angle < 45 || ground_angle > 315))) {
+        // Trigger skid:
+        if (abs(g_speed) >= 4.5 && sign(g_speed) == -input_direction) {
+            action_state = ACTION_SKID;
+
+            // Play animation:
+            if (abs(g_speed) >= x_top_speed && tag_animations == false) player_set_animation("skid_fast");
+            else player_set_animation("skid");
+
+            if (skid_classic == true) animation_direction = sign(g_speed);
+
+            // Play sound:
+            sound_play_single("snd_skid");
+        }
+    }
 }

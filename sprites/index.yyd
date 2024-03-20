@@ -58,7 +58,7 @@ spr_classic_death
 spr_classic_misc
 spr_classic_push
 spr_spin_dash_dust
-spr_super_spin_dust
+spr_spin_charge_dust
 spr_skid_dust
 spr_tag_call
 spr_status_slow
