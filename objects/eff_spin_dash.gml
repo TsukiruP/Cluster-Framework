@@ -8,6 +8,9 @@ applies_to=self
 
 event_inherited();
 
+// Update direction:
+image_xscale = player_handle.animation_direction;
+
 // Update depth:
 depth = player_handle.depth - 1;
 
@@ -28,4 +31,4 @@ applies_to=self
 */
 /// Draw Spin Dash Dust
 
-if (sprite_exists(sprite_index)) draw_sprite(sprite_index, image_index, x, y + floor(player_handle.main_height));
+if (sprite_exists(sprite_index)) draw_sprite_ext(sprite_index, image_index, x, y + floor(player_handle.main_height), image_xscale, 1, 0, c_white, 1);
