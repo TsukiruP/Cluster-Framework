@@ -21,7 +21,7 @@ roll_deceleration_down = 0.3125;
 
 // Speed shoes multiplier:
 if (speed_shoe_type == 1) {
-    x_top_speed      *= 2;
+    top_speed        *= 2;
     acceleration     *= 2;
     roll_friction    *= 2;
 }

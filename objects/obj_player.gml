@@ -423,10 +423,10 @@ if ((action_state == ACTION_DEFAULT && animation_current != "turn" && animation_
                 // Accelerate:
                 else {
                     // Turn:
-                    if (abs(g_speed) < x_top_speed) {
+                    if (abs(g_speed) < top_speed) {
                         g_speed += acceleration * input_direction;
 
-                        if (abs(g_speed) > x_top_speed) g_speed = x_top_speed * input_direction;
+                        if (abs(g_speed) > top_speed) g_speed = top_speed * input_direction;
                     }
                 }
             }
@@ -442,10 +442,10 @@ if ((action_state == ACTION_DEFAULT && animation_current != "turn" && animation_
     else {
         // Accelerate:
         if (input_direction != 0) {
-            if (abs(x_speed) < x_top_speed || sign(x_speed) != input_direction) {
+            if (abs(x_speed) < top_speed || sign(x_speed) != input_direction) {
                 x_speed += 2 * acceleration * input_direction;
 
-                if (abs(x_speed) > x_top_speed && sign(x_speed) == input_direction) x_speed = x_top_speed * input_direction;
+                if (abs(x_speed) > top_speed && sign(x_speed) == input_direction) x_speed = top_speed * input_direction;
             }
         }
 
