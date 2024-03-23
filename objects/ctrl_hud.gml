@@ -208,9 +208,9 @@ if (global.misc_hud == 1) {
 
     // Timer:
     draw_sprite(spr_hud, 0, view_xview[view_current] + hud_position, view_yview[view_current] + 6);
-    draw_text(view_xview[view_current] + hud_position + 29, view_yview[view_current] + 11, string_place_value(floor(global.stage_time / 60000), 2));
-    draw_text(view_xview[view_current] + hud_position + 54, view_yview[view_current] + 11, string_place_value(floor(global.stage_time / 1000) mod 60, 2));
-    draw_text(view_xview[view_current] + hud_position + 79, view_yview[view_current] + 11, string_place_value(floor(global.stage_time / 10) mod 100, 2));
+    draw_text(view_xview[view_current] + hud_position + 29, view_yview[view_current] + 11, string_place_value(global.stage_time div 3600, 2));
+    draw_text(view_xview[view_current] + hud_position + 54, view_yview[view_current] + 11, string_place_value((global.stage_time div 60) mod 60, 2));
+    draw_text(view_xview[view_current] + hud_position + 79, view_yview[view_current] + 11, string_place_value(floor(global.stage_time * 1.667) mod 100, 2));
 
     // Rings:
     draw_sprite(spr_hud, 1, view_xview[view_current] + hud_position, view_yview[view_current] + 32);
