@@ -1,6 +1,7 @@
 /// player_action_default()
 //
 
+// Turn:
 if (ground == true && animation_current == "turn" && animation_finished == true) {
     player_set_animation("stand");
 }
@@ -41,4 +42,10 @@ if ((player_point_check((wall_width + 1) * animation_direction, wall_height) && 
     (player_obstacle_check((wall_width + 1 * animation_direction), main_height, (wall_width + 1 * animation_direction), main_height) && abs(g_speed) <= acceleration)) {
     if (ground == true && input_direction != 0 && animation_direction == input_direction) push_animation = true;
     else push_animation = false;
+}
+
+// Hurt:
+if (ground == true && action_state == ACTION_HURT) {
+    action_state = ACTION_DEFAULT;
+    g_speed      = 0;
 }
