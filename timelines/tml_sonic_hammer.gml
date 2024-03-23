@@ -6,10 +6,9 @@ applies_to=self
 */
 /// Start Animation
 
-sprite_index   = spr_sonic_hammer;
-image_index    = 0;
-timeline_loop  = false;
-timeline_speed = 1;
+sprite_index  = spr_sonic_hammer;
+image_index   = 0;
+timeline_loop = false;
 
 hitbox_width    = 0;
 hitbox_height   = 0;

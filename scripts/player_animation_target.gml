@@ -261,4 +261,6 @@ player_animation_core();
 // Movement speed:
 if (animation_current == "walk" || animation_current == "walk_fast" || animation_current == "jog" || animation_current == "jog_fast" || animation_current == "run") {
     timeline_speed = clamp(abs(g_speed * 16 * 3) / 64, 0.5, 8)
+} else {
+    timeline_speed = 1;
 }

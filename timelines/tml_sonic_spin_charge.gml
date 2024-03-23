@@ -6,10 +6,9 @@ applies_to=self
 */
 /// Start Animation
 
-sprite_index   = spr_sonic_spin_charge;
-image_index    = 0;
-timeline_loop  = false;
-timeline_speed = 1;
+sprite_index  = spr_sonic_spin_charge;
+image_index   = 0;
+timeline_loop = false;
 
 // Set collision:
 main_width  = 6;
