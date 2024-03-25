@@ -9,6 +9,9 @@ if (instance_exists(obj_water_surface)) {
     if (y > obj_water_surface.y && yprevious < obj_water_surface.y) {
         x_speed *= 0.50;
         y_speed *= 0.25;
+
+        // Splash:
+
     }
 
     // Exiting the water:

@@ -27,6 +27,13 @@ part_type_life(ds_map_get(particle_map, EFFECT_SKID), 14, 14);
 ds_map_add(particle_map, EFFECT_RING, part_type_create());
 part_type_sprite(ds_map_get(particle_map, EFFECT_RING), spr_ring_sparkle, true, true, false);
 part_type_life(ds_map_get(particle_map, EFFECT_RING), 16, 16);
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Explosion Initialization
+
 
 // Small explosion:
 ds_map_add(particle_map, EFFECT_EXPL_SM, part_type_create());
@@ -47,6 +54,37 @@ part_type_life(ds_map_get(particle_map, EFFECT_EXPL_BK), 46, 46);
 ds_map_add(particle_map, EFFECT_EXPL_WT, part_type_create());
 part_type_sprite(ds_map_get(particle_map, EFFECT_EXPL_WT), spr_explosion_water, true, true, false);
 part_type_life(ds_map_get(particle_map, EFFECT_EXPL_WT), 58, 58);
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Splash Initialization
+
+// Small splash:
+ds_map_add(particle_map, EFFECT_SPLH_SM, part_type_create());
+part_type_sprite(ds_map_get(particle_map, EFFECT_SPLH_SM), spr_splash_small, true, true, false);
+part_type_life(ds_map_get(particle_map, EFFECT_SPLH_SM), 23, 23);
+
+// Large splash:
+ds_map_add(particle_map, EFFECT_SPLH_LG, part_type_create());
+part_type_sprite(ds_map_get(particle_map, EFFECT_SPLH_LG), spr_splash_large, true, true, false);
+part_type_life(ds_map_get(particle_map, EFFECT_SPLH_LG), 19, 19);
+
+// Step splash:
+ds_map_add(particle_map, EFFECT_SPLH_ST, part_type_create());
+part_type_sprite(ds_map_get(particle_map, EFFECT_SPLH_ST), spr_splash_step, true, true, false);
+part_type_life(ds_map_get(particle_map, EFFECT_SPLH_ST), 16, 16);
+
+// Run splash:
+ds_map_add(particle_map, EFFECT_SPLH_RN, part_type_create());
+part_type_sprite(ds_map_get(particle_map, EFFECT_SPLH_RN), spr_splash_run, true, true, false);
+part_type_life(ds_map_get(particle_map, EFFECT_SPLH_RN), 11, 11);
+
+// Jump splash:
+ds_map_add(particle_map, EFFECT_SPLH_JU, part_type_create());
+part_type_sprite(ds_map_get(particle_map, EFFECT_SPLH_JU), spr_splash_jump, true, true, false);
+part_type_life(ds_map_get(particle_map, EFFECT_SPLH_JU), 16, 16);
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1

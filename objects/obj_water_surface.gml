@@ -40,4 +40,4 @@ draw_set_color(c_white);
 draw_set_blend_mode(bm_normal);
 
 // Draw surface:
-draw_sprite_tiled_horizontal(spr_water_surface, 0, water_scroll, y);
+//draw_sprite_tiled_horizontal(spr_water_surface, 0, water_scroll, y);

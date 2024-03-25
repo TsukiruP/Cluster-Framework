@@ -60,6 +60,7 @@
 		+Player
 			|eff_player
 			|eff_spin_dash
+			|eff_splash_jump
 			|eff_afterimage
 +Stages
 	+Parents

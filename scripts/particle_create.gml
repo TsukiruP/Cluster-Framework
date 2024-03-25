@@ -1,6 +1,17 @@
-/// particle_create(part, x, y)
+/// particle_create(part, x, y, [xscale, yscale])
 // Creates a generic effect for the sprite given.
 
+var xscale, yscale;
+
+// Set xscale:
+if (argument_count >= 4) xscale = argument[3];
+else xscale = 1;
+
+// Set yscale:
+if (argument_count >= 5) yscale = argument[4];
+else yscale = 1;
+
 with (ctrl_particle) {
-    part_particles_create(particle_system, argument1, argument2, ds_map_get(particle_map, argument0), 1);
+    part_type_scale(ds_map_get(particle_map, argument[0]), xscale, yscale);
+    part_particles_create(particle_system, argument[1], argument[2], ds_map_get(particle_map, argument[0]), 1);
 }
