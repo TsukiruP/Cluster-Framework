@@ -42,11 +42,10 @@ if (action_state == ACTION_SPIN_DASH) {
 if (action_state == ACTION_CROUCH && tag_animations == false && player_input[INP_JUMP, CHECK_PRESSED] == true) {
     var sfx_spin_dash;
 
-    action_state       = ACTION_SPIN_DASH;
+    action_state     = ACTION_SPIN_DASH;
     spin_dash_charge = 0;
 
     with (instance_create(x, y, eff_spin_dash)) {
-        timeline_set(tml_spin_dash);
         player_handle = other.id;
     }
 
