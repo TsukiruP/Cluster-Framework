@@ -26,8 +26,8 @@ joystick_check
 player_get_physics
 player_animation_depth
 sonic_action_hammer
-user_input_jump
-user_input_special
+ctl_update
+ctl_position
 user_input_swap
 user_input_tag
 user_input_super
@@ -127,3 +127,4 @@ player_set_animation
 player_rectangle_check
 timeline_set
 object_point_check
+ctl_initialize
