@@ -30,9 +30,13 @@
 			|draw_background_tiled_horizontal_part_yscale
 			|draw_background_tiled_vertical_part
 	+Timelines
-		|ctl_initialize
-		|ctl_update
-		|ctl_position
+		+Utilities
+			|ctl_initialize
+			|ctl_update
+			|ctl_position
+		+Sonic
+			|ctl_sonic_stand
+			|ctl_sonic_turn
 	+Misc.
 		|window_resize
 		|wrap_angle
@@ -115,8 +119,6 @@
 				|draw_trail
 +Trash
 	+Input
-		|user_input_swap
-		|user_input_tag
 		|user_input_super
 		|user_input_start
 		|user_input_select

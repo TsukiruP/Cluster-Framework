@@ -28,8 +28,8 @@ player_animation_depth
 sonic_action_hammer
 ctl_update
 ctl_position
-user_input_swap
-user_input_tag
+ctl_sonic_stand
+ctl_sonic_turn
 user_input_super
 user_input_start
 user_input_select
