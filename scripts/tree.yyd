@@ -34,9 +34,24 @@
 			|ctl_initialize
 			|ctl_update
 			|ctl_position
+			|timeline_set
 		+Sonic
-			|ctl_sonic_stand
-			|ctl_sonic_turn
+			+Default
+				|ctl_sonic_stand
+				|ctl_sonic_turn
+				|ctl_sonic_walk
+				|ctl_sonic_walk_fast
+				|ctl_sonic_jog
+				|ctl_sonic_jog_fast
+				|ctl_sonic_run
+				+Wait
+					|ctl_sonic_wait_leader
+					|ctl_sonic_wait_partner
+				+Balance
+			+Jump
+			+Look
+			+Crouch
+				|ctl_sonic_crouch
 	+Misc.
 		|window_resize
 		|wrap_angle
@@ -44,7 +59,6 @@
 		|water_exists
 		|stage_start
 		|in_view
-		|timeline_set
 		|particle_create
 +Gameplay
 	+Player
@@ -119,9 +133,6 @@
 				|draw_trail
 +Trash
 	+Input
-		|user_input_super
-		|user_input_start
-		|user_input_select
 		|user_input_accept
 		|user_input_cancel
 		|user_input_help
@@ -155,3 +166,4 @@
 		|player_get_angle_OLD
 		|player_set_angle_OLD
 |object_point_check
+|script135

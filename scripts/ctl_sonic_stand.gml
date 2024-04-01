@@ -197,7 +197,7 @@ else if (ctl_position(218)) {
     image_index = 34;
 }
 
-// Change frame:
+// Null frame:
 else if (ctl_position(223)) {
     ctl_time = 0;
 }

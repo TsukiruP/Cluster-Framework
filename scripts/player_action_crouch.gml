@@ -8,7 +8,6 @@ if (action_state == ACTION_CROUCH) {
 
     if (ground == true && animation_trigger == true && player_input[INP_DOWN, CHECK_HELD] == false) {
         action_state = ACTION_DEFAULT;
-        player_set_animation("crouch_end");
     }
 }
 

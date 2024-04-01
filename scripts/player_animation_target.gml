@@ -62,7 +62,7 @@ switch (action_state) {
                         } else {
                             // Stand:
                             if (animation_target != "stand" && animation_target != "turn" && animation_target != "wait_leader" && animation_target != "wait_partner" &&
-                                animation_target != "land" && animation_target != "ready" && animation_target != "look_end" && animation_target != "crouch_end") player_set_animation("stand");
+                                animation_target != "land" && animation_target != "ready" && animation_target != "look" && animation_target != "crouch") player_set_animation("stand");
                         }
                     }
 
@@ -227,6 +227,7 @@ if (character_data == CHAR_MILES) {
 }
 
 // Wait:
+/*
 if (ground == true && input_lock == false && tag_animations == false && animation_target == "stand") {
     if (animation_alarm > 0) animation_alarm -= 1;
     else {
@@ -240,7 +241,7 @@ if (ground == true && input_lock == false && tag_animations == false && animatio
 } else {
     if (animation_alarm != 360) animation_alarm = 360;
 }
-
+*/
 // Animation variants:
 switch (animation_target) {
     case "stand":
@@ -258,6 +259,7 @@ switch (animation_target) {
 // Animation core:
 player_animation_core();
 
+/*
 // Movement speed:
 if (animation_current == "walk" || animation_current == "walk_fast" || animation_current == "jog" || animation_current == "jog_fast" || animation_current == "run") {
     timeline_speed = clamp(abs(g_speed * 16 * 3) / 64, 0.5, 8)

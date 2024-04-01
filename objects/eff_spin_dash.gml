@@ -16,9 +16,9 @@ depth = player_handle.depth - 1;
 
 // Update timeline:
 if (floor(player_handle.spin_dash_charge) > 0) {
-    if (timeline_index != tml_spin_charge) timeline_set(tml_spin_charge);
+    //if (timeline_index != tml_spin_charge) timeline_set(tml_spin_charge);
 } else {
-    if (timeline_index != tml_spin_dash) timeline_set(tml_spin_dash);
+    //if (timeline_index != tml_spin_dash) timeline_set(tml_spin_dash);
 }
 
 // Destroy:

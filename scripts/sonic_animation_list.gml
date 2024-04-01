@@ -1,30 +1,31 @@
 /// sonic_animation_list()
 
 // Default:
-player_add_animation(CHAR_SONIC, "stand",         tml_sonic_stand,     tml_sonic_stand_tag);
-player_add_animation(CHAR_SONIC, "turn",          tml_sonic_turn,      tml_sonic_turn_tag);
-player_add_animation(CHAR_SONIC, "walk",          tml_sonic_walk,      tml_sonic_walk_tag);
-player_add_animation(CHAR_SONIC, "walk_fast",     tml_sonic_walk_fast, tml_sonic_walk_fast_tag);
-player_add_animation(CHAR_SONIC, "jog",           tml_sonic_jog,       tml_sonic_jog_tag);
-player_add_animation(CHAR_SONIC, "jog_fast",      tml_sonic_jog_fast);
-player_add_animation(CHAR_SONIC, "run",           tml_sonic_run);
+player_add_animation(CHAR_SONIC, "stand",         ctl_sonic_stand) //,     tml_sonic_stand_tag);
+player_add_animation(CHAR_SONIC, "turn",          ctl_sonic_turn) //,      tml_sonic_turn_tag);
+player_add_animation(CHAR_SONIC, "walk",          ctl_sonic_walk) //      tml_sonic_walk_tag);
+player_add_animation(CHAR_SONIC, "walk_fast",     ctl_sonic_walk_fast) // tml_sonic_walk_fast_tag);
+player_add_animation(CHAR_SONIC, "jog",           ctl_sonic_jog) //,       tml_sonic_jog_tag);
+player_add_animation(CHAR_SONIC, "jog_fast",      ctl_sonic_jog_fast);
+player_add_animation(CHAR_SONIC, "run",           ctl_sonic_run);
 
 // Wait:
-player_add_animation(CHAR_SONIC, "wait_leader",   tml_sonic_wait_leader);
-player_add_animation(CHAR_SONIC, "wait_partner",  tml_sonic_wait_partner);
+player_add_animation(CHAR_SONIC, "wait",          ctl_sonic_wait_leader, ctl_sonic_wait_partner);
 
 // Spin Jump:
+/*
 player_add_animation(CHAR_SONIC, "spin_flight",   tml_sonic_spin_flight);
 player_add_animation(CHAR_SONIC, "spin_fall",     tml_sonic_spin_fall);
 
 // Look:
 player_add_animation(CHAR_SONIC, "look",          tml_sonic_look);
 player_add_animation(CHAR_SONIC, "look_end",      tml_sonic_look_end);
+*/
 
 // Crouch:
-player_add_animation(CHAR_SONIC, "crouch",        tml_sonic_crouch);
-player_add_animation(CHAR_SONIC, "crouch_end",    tml_sonic_crouch_end);
+player_add_animation(CHAR_SONIC, "crouch",        ctl_sonic_crouch);
 
+/*
 // Spin Dash:
 player_add_animation(CHAR_SONIC, "spin_dash",     tml_sonic_spin_dash);
 player_add_animation(CHAR_SONIC, "spin_charge",   tml_sonic_spin_charge);
@@ -120,3 +121,4 @@ player_add_animation(CHAR_SONIC,    "death",          spr_sonic_death,          
 
 // Slide:
 player_add_animation(CHAR_SONIC,    "slide",          spr_sonic_slide,          0,  3,  0, -1, 0.20);
+*/

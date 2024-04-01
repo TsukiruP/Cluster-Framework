@@ -5,9 +5,12 @@ action_id=603
 applies_to=self
 */
 /// Player Initialization
-turn_direction = 0;
+
 // Image speed:
 image_speed = 0;
+
+// Timeline initialization:
+ctl_initialize();
 
 // Character data:
 character_data = CHAR_SONIC;
@@ -408,7 +411,6 @@ if ((action_state == ACTION_DEFAULT && animation_current != "turn" && animation_
                      // Play animation:
                      if (action_state != ACTION_BALANCE) {
                          if (action_state == ACTION_SKID && tag_animations == true) action_state = ACTION_DEFAULT;
-                         turn_direction = input_direction;
                          player_set_animation("turn");
                      }
                 }
