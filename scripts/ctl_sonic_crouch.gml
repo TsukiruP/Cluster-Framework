@@ -1,7 +1,16 @@
 /// ctl_sonic_crouch()
 
+var ctl_speed;
+
 // Set speed:
-ctl_update(1);
+ctl_speed = 1;
+
+if (ctl_time >= 0 && ctl_speed != -1 && action_state == ACTION_DEFAULT && animation_trigger == true) {
+    ctl_speed *= -1;
+    if (ctl_time > 1) ctl_time = 1;
+}
+
+ctl_update(ctl_speed);
 
 // Start animation:
 if (ctl_position(0)) {
@@ -24,6 +33,9 @@ if (ctl_position(0)) {
     hitbox_height   = 0;
     hitbox_offset_x = 0;
     hitbox_offset_y = 0;
+
+    // Animation trigger:
+    animation_trigger = true;
 }
 
 // Change frame:
