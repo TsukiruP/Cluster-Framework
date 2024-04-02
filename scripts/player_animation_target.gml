@@ -227,23 +227,6 @@ if (character_data == CHAR_MILES) {
     if (animation_target == "super_spin") player_set_animation("spin_dash");
 }
 
-// Wait:
-/*
-if (ground == true && input_lock == false && tag_animations == false && animation_target == "stand") {
-    if (animation_alarm > 0) animation_alarm -= 1;
-    else {
-        if (player_exists(1) != noone) {
-            if (player_exists(1) == self.id) player_set_animation("wait_partner");
-            else player_set_animation("wait_leader");
-        } else {
-            player_set_animation(choose("wait_leader", "wait_partner"));
-        }
-    }
-} else {
-    if (animation_alarm != 360) animation_alarm = 360;
-}
-*/
-
 // Animation variants:
 switch (animation_target) {
     case "stand":
@@ -253,7 +236,7 @@ switch (animation_target) {
         if (tag_animations == true) animation_variant = 1;
         else animation_variant = 0;
         break;
-
+/*
     case "wait":
         if (player_exists(1) != noone) {
             if (player_exists(1) == self.id) animation_variant = 1;
@@ -262,7 +245,7 @@ switch (animation_target) {
             animation_variant = choose(0, 1);
         }
         break;
-
+*/
     default:
         animation_variant = 0;
 }
