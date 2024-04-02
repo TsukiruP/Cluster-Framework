@@ -1,6 +1,12 @@
 /// player_animation_target()
 // Sets the animation target and then calls the animation core script.
 
+// Store previous height:
+main_height_temp = main_height;
+
+// Wait:
+
+
 // Action animations:
 switch (action_state) {
     // Default:
@@ -9,7 +15,7 @@ switch (action_state) {
         if (character_data == CHAR_CLASSIC) {
             if (ground == true) {
                 // Stand:
-                if (g_speed == 0 && animation_target != "stand" && animation_target != "wait_leader" && animation_target != "wait_partner") player_set_animation("stand");
+                if (g_speed == 0 && animation_target != "stand" && animation_target != "wait") player_set_animation("stand");
 
                 if (g_speed <> 0) {
                     // Jog:
@@ -61,8 +67,8 @@ switch (action_state) {
                             }
                         } else {
                             // Stand:
-                            if (animation_target != "stand" && animation_target != "turn" && animation_target != "wait_leader" && animation_target != "wait_partner" &&
-                                animation_target != "land" && animation_target != "ready" && animation_target != "look" && animation_target != "crouch") player_set_animation("stand");
+                            if (animation_target != "stand" && animation_target != "turn" && animation_target != "wait" && animation_target != "land"
+                            && animation_target != "ready" && animation_target != "look" && animation_target != "crouch") player_set_animation("stand");
                         }
                     }
 
@@ -219,8 +225,6 @@ switch (action_state) {
         break;
 }
 
-
-
 // Missing animations:
 if (character_data == CHAR_MILES) {
     if (animation_target == "super_spin") player_set_animation("spin_dash");
@@ -242,6 +246,7 @@ if (ground == true && input_lock == false && tag_animations == false && animatio
     if (animation_alarm != 360) animation_alarm = 360;
 }
 */
+
 // Animation variants:
 switch (animation_target) {
     case "stand":
@@ -252,6 +257,15 @@ switch (animation_target) {
         else animation_variant = 0;
         break;
 
+    case "wait":
+        if (player_exists(1) != noone) {
+            if (player_exists(1) == self.id) animation_varient = 1;
+            else animation_varient = 0;
+        } else {
+            animation_varient = choose(0, 1);
+        }
+        break;
+
     default:
         animation_variant = 0;
 }
@@ -259,10 +273,15 @@ switch (animation_target) {
 // Animation core:
 player_animation_core();
 
-/*
-// Movement speed:
-if (animation_current == "walk" || animation_current == "walk_fast" || animation_current == "jog" || animation_current == "jog_fast" || animation_current == "run") {
-    timeline_speed = clamp(abs(g_speed * 16 * 3) / 64, 0.5, 8)
+if (ground == true && input_lock == false && tag_animations == false && animation_current == "stand") {
+    if (animation_alarm > 0) animation_alarm -= 1;
+    else player_set_animation("wait");
 } else {
-    timeline_speed = 1;
+    animation_alarm = 360;
+}
+
+// Position fix:
+if ((ground == true && ceiling_lock_alarm == 0) || (mode == 0 && action_state == ACTION_JUMP && animation_current != "spin_flight")) {
+    x += (main_height_temp - main_height) * x_direction;
+    y += (main_height_temp - main_height) * y_direction;
 }

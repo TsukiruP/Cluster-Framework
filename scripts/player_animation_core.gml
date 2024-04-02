@@ -17,6 +17,7 @@ if ((ctl_index != player_get_animation(animation_target, animation_variant)) || 
 
     // Reset reload:
     animation_reload = false;
-} else if (ctl_index == player_get_animation(animation_target, animation_variant)) {
-    script_execute(ctl_index);
 }
+
+// Execute custom timeline:
+script_execute(ctl_index);

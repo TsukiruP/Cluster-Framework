@@ -13,8 +13,8 @@ player_add_animation(CHAR_SONIC, "run",           ctl_sonic_run);
 player_add_animation(CHAR_SONIC, "wait",          ctl_sonic_wait_leader, ctl_sonic_wait_partner);
 
 // Spin Jump:
-/*
-player_add_animation(CHAR_SONIC, "spin_flight",   tml_sonic_spin_flight);
+
+player_add_animation(CHAR_SONIC, "spin_flight",   ctl_sonic_spin_flight);/*
 player_add_animation(CHAR_SONIC, "spin_fall",     tml_sonic_spin_fall);
 
 // Look:

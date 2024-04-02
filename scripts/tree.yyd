@@ -49,7 +49,9 @@
 					|ctl_sonic_wait_partner
 				+Balance
 			+Jump
+				|ctl_sonic_spin_flight
 			+Look
+				|player_position_fix
 			+Crouch
 				|ctl_sonic_crouch
 	+Misc.
@@ -75,7 +77,6 @@
 			|player_collision_obstacle
 			|player_collision_prop
 			|player_mode
-			|player_position_fix
 			|player_wall_stop
 		+Angle
 			|player_get_angle
@@ -166,4 +167,3 @@
 		|player_get_angle_OLD
 		|player_set_angle_OLD
 |object_point_check
-|script135

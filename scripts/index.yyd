@@ -133,4 +133,4 @@ ctl_sonic_jog
 ctl_sonic_jog_fast
 ctl_sonic_run
 ctl_sonic_wait_partner
-script135
+ctl_sonic_spin_flight

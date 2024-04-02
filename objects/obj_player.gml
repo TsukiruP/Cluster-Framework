@@ -480,8 +480,6 @@ player_animation_angle();
 // Animation depth:
 player_animation_depth();
 
-// Position fix:
-player_position_fix();
 
 // Object handle:
 player_handle_list();
