@@ -4,9 +4,6 @@
 // Store previous height:
 main_height_temp = main_height;
 
-// Wait:
-
-
 // Action animations:
 switch (action_state) {
     // Default:
@@ -259,10 +256,10 @@ switch (animation_target) {
 
     case "wait":
         if (player_exists(1) != noone) {
-            if (player_exists(1) == self.id) animation_varient = 1;
-            else animation_varient = 0;
+            if (player_exists(1) == self.id) animation_variant = 1;
+            else animation_variant = 0;
         } else {
-            animation_varient = choose(0, 1);
+            animation_variant = choose(0, 1);
         }
         break;
 
@@ -272,13 +269,6 @@ switch (animation_target) {
 
 // Animation core:
 player_animation_core();
-
-if (ground == true && input_lock == false && tag_animations == false && animation_current == "stand") {
-    if (animation_alarm > 0) animation_alarm -= 1;
-    else player_set_animation("wait");
-} else {
-    animation_alarm = 360;
-}
 
 // Position fix:
 if ((ground == true && ceiling_lock_alarm == 0) || (mode == 0 && action_state == ACTION_JUMP && animation_current != "spin_flight")) {
