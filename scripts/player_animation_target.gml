@@ -29,7 +29,7 @@ switch (action_state) {
             if (ground == true) {
                 // Stand:
                 if (g_speed == 0 && animation_target != "stand" && animation_target != "turn" &&
-                    animation_target != "look_end" && animation_target != "crouch_end") player_set_animation("stand");
+                    animation_target != "look" && animation_target != "crouch") player_set_animation("stand");
 
                 if (g_speed <> 0) {
                     // Walk:
@@ -236,16 +236,18 @@ switch (animation_target) {
         if (tag_animations == true) animation_variant = 1;
         else animation_variant = 0;
         break;
-/*
+
     case "wait":
-        if (player_exists(1) != noone) {
-            if (player_exists(1) == self.id) animation_variant = 1;
-            else animation_variant = 0;
-        } else {
-            animation_variant = choose(0, 1);
+        if (animation_target != animation_current) {
+            if (player_exists(1) != noone) {
+                if (player_exists(1) == self.id) animation_variant = 1;
+                else animation_variant = 0;
+            } else {
+                animation_variant = choose(0, 1);
+            }
         }
         break;
-*/
+
     default:
         animation_variant = 0;
 }
