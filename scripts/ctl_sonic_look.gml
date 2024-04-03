@@ -8,7 +8,7 @@ ctl_speed = 1;
 if (ctl_time >= -1 && ctl_speed != -2 && action_state == ACTION_DEFAULT && animation_trigger == true) {
     ctl_speed *= -2;
 
-    if (ctl_time > 4) ctl_time = 4;
+    if (ctl_time > 3) ctl_time = 4;
 }
 
 ctl_update(ctl_speed);
@@ -38,16 +38,14 @@ else if (ctl_position(0)) {
     hitbox_height   = 0;
     hitbox_offset_x = 0;
     hitbox_offset_y = 0;
+
 }
 
 
 // Change frame:
 else if (ctl_position(4)) {
     image_index = 1;
-}
 
-// Animation trigger:
-else if (ctl_position(5)) {
     animation_trigger = true;
 }
 
