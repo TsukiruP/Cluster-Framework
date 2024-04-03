@@ -10,7 +10,7 @@ if (ground == true && input_lock == false && tag_animations == false && animatio
             player_set_animation("wait");
         }
     }
-} else if (animation_current != "wait") {
+} else {
     animation_alarm = 360;
 }
 
