@@ -8,7 +8,6 @@ if (action_state == ACTION_LOOK) {
 
     if (ground == true && animation_trigger == true && player_input[INP_UP, CHECK_HELD] == false) {
         action_state = ACTION_DEFAULT;
-        player_set_animation("look_end");
     }
 }
 

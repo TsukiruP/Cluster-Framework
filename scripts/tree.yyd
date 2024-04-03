@@ -51,7 +51,7 @@
 			+Jump
 				|ctl_sonic_spin_flight
 			+Look
-				|player_position_fix
+				|ctl_sonic_look
 			+Crouch
 				|ctl_sonic_crouch
 	+Misc.

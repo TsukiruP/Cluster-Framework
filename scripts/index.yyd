@@ -120,7 +120,7 @@ player_collision_semisolids
 player_collision_prop
 player_collision_obstacle
 player_wall_stop
-player_position_fix
+ctl_sonic_look
 player_action_tag
 player_animation_angle
 player_set_animation

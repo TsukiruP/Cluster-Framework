@@ -16,11 +16,9 @@ player_add_animation(CHAR_SONIC, "wait",          ctl_sonic_wait_leader, ctl_son
 
 player_add_animation(CHAR_SONIC, "spin_flight",   ctl_sonic_spin_flight);/*
 player_add_animation(CHAR_SONIC, "spin_fall",     tml_sonic_spin_fall);
-
-// Look:
-player_add_animation(CHAR_SONIC, "look",          tml_sonic_look);
-player_add_animation(CHAR_SONIC, "look_end",      tml_sonic_look_end);
 */
+// Look:
+player_add_animation(CHAR_SONIC, "look",          ctl_sonic_look);
 
 // Crouch:
 player_add_animation(CHAR_SONIC, "crouch",        ctl_sonic_crouch);

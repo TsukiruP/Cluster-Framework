@@ -7,6 +7,7 @@ ctl_speed = 1;
 
 if (ctl_time >= 0 && ctl_speed != -1 && action_state == ACTION_DEFAULT && animation_trigger == true) {
     ctl_speed *= -1;
+
     if (ctl_time > 0) ctl_time = 0;
 }
 
@@ -33,6 +34,9 @@ if (ctl_position(0)) {
     hitbox_height   = 0;
     hitbox_offset_x = 0;
     hitbox_offset_y = 0;
+
+    // Finish animation:
+    if (sign(ctl_speed) == -1) animation_finished = true;
 }
 
 // Change frame:
