@@ -222,6 +222,19 @@ switch (action_state) {
         break;
 }
 
+// Wait:
+if (ground == true && input_lock == false && tag_animations == false && animation_target == "stand") {
+    if (animation_alarm > 0) {
+        animation_alarm -= 1;
+
+        if (animation_alarm == 0) {
+            player_set_animation("wait");
+        }
+    }
+} else {
+    if (animation_alarm != 360) animation_alarm = 360;
+}
+
 // Missing animations:
 if (character_data == CHAR_MILES) {
     if (animation_target == "super_spin") player_set_animation("spin_dash");

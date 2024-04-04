@@ -8,7 +8,9 @@ ctl_speed = 1;
 if (ctl_time >= -1 && ctl_speed != -2 && action_state == ACTION_DEFAULT && animation_trigger == true) {
     ctl_speed *= -2;
 
-    if (ctl_time > 3) ctl_time = 4;
+
+    if (ctl_position(4)) ctl_time = 3;
+    else if (ctl_time > 4) ctl_time = 4;
 }
 
 ctl_update(ctl_speed);

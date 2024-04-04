@@ -1,19 +1,6 @@
 /// player_action_default()
 //
 
-// Wait:
-if (ground == true && input_lock == false && tag_animations == false && animation_current == "stand") {
-    if (animation_alarm > 0) {
-        animation_alarm -= 1;
-
-        if (animation_alarm == 0) {
-            player_set_animation("wait");
-        }
-    }
-} else {
-    animation_alarm = 360;
-}
-
 // Turn:
 if (ground == true && animation_current == "turn" && animation_finished == true) {
     player_set_animation("stand");
