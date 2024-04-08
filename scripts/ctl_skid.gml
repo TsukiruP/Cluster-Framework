@@ -1,11 +1,11 @@
-/// ctl_spin_dash()
+/// ctl_skid()
 
 // Set speed:
 ctl_update(1);
 
 // Start effect:
 if (ctl_position(0)) {
-    sprite_index = spr_spin_dash;
+    sprite_index = spr_skid;
     image_index  = 0;
 }
 
@@ -44,7 +44,7 @@ else if (ctl_position(14)) {
     image_index = 7;
 }
 
-// Null frame:
+// Finish effect:
 else if (ctl_position(15)) {
-    ctl_time = 0;
+    instance_destroy();
 }

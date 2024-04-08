@@ -344,8 +344,8 @@ applies_to=self
 */
 /// Collision
 
-// Don't bother if in the middle of respawning/dying:
-if (action_state == ACTION_RESPAWN || action_state == ACTION_DEATH) exit;
+// Don't bother if in the middle of respawning/dying or paused:
+if (action_state == ACTION_RESPAWN || action_state == ACTION_DEATH || global.game_pause == true) exit;
 
 // Steps:
 steps = 1 + abs(floor(x_speed / 13)) + abs(floor(y_speed / 13));
@@ -373,8 +373,8 @@ applies_to=self
 */
 /// Control
 
-// Don't bother if in the middle of respawning/dying:
-if (action_state == ACTION_RESPAWN || action_state == ACTION_DEATH) exit;
+// Don't bother if in the middle of respawning/dying or paused:
+if (action_state == ACTION_RESPAWN || action_state == ACTION_DEATH || global.game_pause == true) exit;
 
 // Slope acceleration/deceleration:
 if (ground == true && action_state != ACTION_SLIDE) {
@@ -465,6 +465,9 @@ applies_to=self
 */
 /// Utility Scripts
 
+// Don't bother if paused:
+if (global.game_pause == true) exit;
+
 // Actions:
 player_action_list();
 
@@ -490,8 +493,8 @@ applies_to=self
 */
 /// Status Effects
 
-// Don't bother if in the middle of respawning/dying:
-if (action_state == ACTION_RESPAWN || action_state == ACTION_DEATH) exit;
+// Don't bother if in the middle of respawning/dying or paused:
+if (action_state == ACTION_RESPAWN || action_state == ACTION_DEATH || global.game_pause == true) exit;
 
 // Invincibility:
 if (invincibility_alarm > -1) {
@@ -527,6 +530,9 @@ applies_to=self
 */
 /// Underwater
 
+// Don't bother if paused:
+if (global.game_pause == true) exit;
+
 // Don't bother if in the middle of respawning/dying:
 if (action_state != ACTION_RESPAWN && action_state != ACTION_DEATH && !instance_exists(ctrl_tally)) {
     if (physics_type == PHYS_UNDERWATER) {
@@ -534,11 +540,11 @@ if (action_state != ACTION_RESPAWN && action_state != ACTION_DEATH && !instance_
         if (action_state == ACTION_BREATHE || shield_data == SHIELD_BUBBLE) {
             air_remaining = 30;
             air_alarm     = 60;
-            
+
             // Stop jingle:
             if (input_cpu == false) sound_stop("bgm_drown");
         }
-        
+
         // Decrease air variables:
         else {
             // Decrease air alarm:
@@ -551,11 +557,11 @@ if (action_state != ACTION_RESPAWN && action_state != ACTION_DEATH && !instance_
                     case 15:
                         if (input_cpu == false) sound_play("snd_drown_alert");
                         break;
-                    
+
                     // Drown jingle:
                     case 12:
                         if (input_cpu == false) sound_play("bgm_drown");
-                    
+
                     // Drown countdown:
                     case 10:
                     case 8:
@@ -564,32 +570,32 @@ if (action_state != ACTION_RESPAWN && action_state != ACTION_DEATH && !instance_
                     case 2:
                         drown_countdown += 1;
                         break;
-                    
+
                     // Drown:
                     case 0:
                         action_state = ACTION_DEATH;
                         drowned      = true;
                     break;
                 }
-                
+
                 air_remaining -= 1;
                 air_alarm      = 60;
             }
-            
+
             // Create bubbles:
             // [PLACEHOLDER]
         }
     } else {
         air_remaining = 30;
         air_alarm     = 60;
-        
+
         // Stop jingle:
         sound_stop("bgm_drown");
     }
 } else {
     air_remaining = 30;
     air_alarm     = 60;
-    
+
     // Stop jingle:
     sound_stop("bgm_drown");
 }

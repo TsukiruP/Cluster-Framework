@@ -85,4 +85,4 @@ obj_basic_test_collision_27
 par_prop
 ctrl_particle
 eff_spin_dash
-eff_dummy
+eff_basic

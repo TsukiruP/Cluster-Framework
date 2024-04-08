@@ -5,8 +5,9 @@ ctl_update(1);
 
 // Start effect:
 if (ctl_position(0)) {
-    sprite_index = spr_ring_sparkle;
-    image_index  = 0;
+    sprite_index =  spr_ring_sparkle;
+    image_index  =  0;
+    depth        = -1;
 }
 
 // Change frame:

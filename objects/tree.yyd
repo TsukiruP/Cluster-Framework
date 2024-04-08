@@ -57,7 +57,7 @@
 		+Water
 			|obj_water_surface
 	+Effects
-		|eff_dummy
+		|eff_basic
 		+Player
 			|eff_player
 			|eff_spin_dash

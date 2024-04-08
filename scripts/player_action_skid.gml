@@ -20,7 +20,14 @@ if (action_state == ACTION_SKID) {
 
     // Create skid dust:
     if (g_speed != 0) {
+        if (skid_dust_alarm > 0) {
+            skid_dust_alarm -= 1;
 
+            if (skid_dust_alarm == 0) {
+                effect_create(ctl_skid, x, y + main_height);
+                skid_dust_alarm = 3;
+            }
+        }
     }
 
     // Cancel skid:
@@ -35,6 +42,7 @@ if (ground = true && action_state == ACTION_DEFAULT && input_lock_alarm == 0) {
         // Trigger skid:
         if (abs(g_speed) >= 4.5 && sign(g_speed) == -input_direction) {
             action_state = ACTION_SKID;
+            skid_dust_alarm = 3;
 
             // Play animation:
             if (abs(g_speed) >= top_speed && tag_animations == false) player_set_animation("skid_fast");

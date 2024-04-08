@@ -78,6 +78,7 @@
 		+Effects
 			|ctl_spin_dash
 			|ctl_spin_charge
+			|ctl_skid
 			|ctl_ring_sparkle
 	+Misc.
 		|window_resize

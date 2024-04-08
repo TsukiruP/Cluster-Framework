@@ -56,34 +56,6 @@ if (dropped == true) {
     // Destroy:
     if(lifespan <= 0 || !in_view()) instance_destroy();
 }
-
-/*
-if(dropped == true) {
-    // Decrease lifespan alarm:
-    lifespan = max(lifespan - 1 * global.object_ratio, 0);
-
-    // Horizontal movement:
-    //if(place_meeting(x + x_speed, y, par_solid)) x_speed *= -0.25;
-    //else x += x_speed * global.object_ratio;
-
-    //if ((object_point_check(bbox_left, y) && x_speed < 0) || (object_point_check(bbox_right, y) && x_speed > 0)) {
-        //x_speed *= -0.25;
-    //}
-
-    x += x_speed * global.object_ratio;
-
-    // Verical movement:
-    y_speed += y_gravity * global.object_ratio;
-
-    //if(place_meeting(x, y + y_speed, par_solid) || (y_speed >= 0 && place_meeting(x, y + y_speed, par_platform) && !place_meeting(x, y, par_platform))) y_speed *= -0.75;
-    //else y += y_speed * global.object_ratio;
-
-    if ((object_point_check(bbox_top, y) && y_speed < 0) || (object_point_check(bbox_bottom, y) && y_speed > 0)) {
-        y_speed *= -0.75;
-    }
-    // Destroy:
-    if(lifespan <= 0 || !in_view()) instance_destroy();
-}
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603

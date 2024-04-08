@@ -3,7 +3,7 @@
 // Set speed:
 ctl_update(1);
 
-// Start animation:
+// Start effect:
 if (ctl_position(0)) {
     sprite_index = spr_spin_charge;
     image_index  = 0;
