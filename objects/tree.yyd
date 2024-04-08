@@ -57,10 +57,10 @@
 		+Water
 			|obj_water_surface
 	+Effects
+		|eff_dummy
 		+Player
 			|eff_player
 			|eff_spin_dash
-			|eff_splash_jump
 			|eff_afterimage
 +Stages
 	+Parents

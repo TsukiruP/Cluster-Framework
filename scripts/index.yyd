@@ -1,9 +1,9 @@
-player_collision_OLD
-player_collision_main
-player_collision_slope
+ctl_sonic_hurt
+ctl_spin_dash
+ctl_sonic_death
 draw_backdrop_tiled_area
 stage_start
-player_collision_object_main
+ctl_ring_sparkle
 player_collision_top
 player_collision_object_top
 player_collision_bottom
@@ -14,7 +14,7 @@ player_collision_left_edge
 player_collision_right
 player_collision_object_right
 player_collision_right_edge
-player_collision_edge_line
+ctl_sonic_push
 player_get_input
 player_movement
 key_to_string
@@ -33,9 +33,9 @@ ctl_sonic_turn
 ctl_sonic_walk_fast
 ctl_sonic_wait_leader
 ctl_sonic_crouch
-user_input_accept
-user_input_cancel
-user_input_help
+ctl_sonic_spin_fall
+ctl_sonic_spin_dash
+ctl_sonic_skid
 player_action_jump
 player_animation_core
 player_get_animation
@@ -60,7 +60,7 @@ draw_background_tiled_horizontal_part
 draw_sprite_tiled_horizontal_yscale
 draw_sprite_tiled_vertical
 player_exists
-player_reverse_animation
+ctl_sonic_breathe
 
 
 
@@ -74,7 +74,7 @@ draw_background_tiled_vertical_part
 
 draw_sprite_tiled_horizontal
 draw_background_tiled_horizontal_part_yscale
-particle_create
+effect_create
 
 string_place_value
 player_handle_list
@@ -91,7 +91,7 @@ input_check
 start_trail
 update_trail
 draw_trail
-player_collision_platform_fix
+ctl_sonic_balance_front
 sonic_animation_list
 miles_add_animations
 knuckles_add_animations
@@ -102,9 +102,9 @@ joystick_check_pressed
 joystick_check_released
 player_action_balance
 player_action_push
-player_tag_animations
+ctl_sonic_skid_turn
 miles_action_fly
-miles_fly_animations
+ctl_sonic_spring_flight
 collision_rectangle_list
 collision_line_list
 collision_point_list
@@ -134,3 +134,9 @@ ctl_sonic_jog_fast
 ctl_sonic_run
 ctl_sonic_wait_partner
 ctl_sonic_spin_flight
+ctl_sonic_spin_charge
+ctl_sonic_roll
+ctl_sonic_skid_fast
+ctl_sonic_spring_fall
+ctl_sonic_balance_back
+ctl_spin_charge

@@ -6,8 +6,7 @@ applies_to=self
 */
 /// Player Effect Initialization
 
-// Image speed:
-image_speed = 0;
+event_inherited();
 
 // Player handle:
 player_handle = noone;

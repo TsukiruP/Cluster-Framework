@@ -1,12 +1,10 @@
-#define Step_2
+#define Step_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
 applies_to=self
 */
 /// React to Player
-
-event_inherited();
 
 // Update direction:
 image_xscale = player_handle.animation_direction;
@@ -16,10 +14,12 @@ depth = player_handle.depth - 1;
 
 // Update timeline:
 if (floor(player_handle.spin_dash_charge) > 0) {
-    //if (timeline_index != tml_spin_charge) timeline_set(tml_spin_charge);
+    if (ctl_index != ctl_spin_charge) timeline_set(ctl_spin_charge);
 } else {
-    //if (timeline_index != tml_spin_dash) timeline_set(tml_spin_dash);
+    if (ctl_index != ctl_spin_dash) timeline_set(ctl_spin_dash);
 }
+
+event_inherited();
 
 // Destroy:
 if (player_handle.action_state != ACTION_SPIN_DASH) instance_destroy();

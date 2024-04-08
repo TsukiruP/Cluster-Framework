@@ -274,11 +274,15 @@
 		+Misc.
 			|spr_hint_box
 	+Effects
-		+Dust
-			|spr_spin_dash_dust
-			|spr_spin_charge_dust
-			|spr_skid_dust
-			|spr_drop_dash_dust
+		+Player
+			|spr_trail
+			|spr_spin_dash
+			|spr_spin_charge
+			|spr_skid
+			|spr_drop_dash
+			|spr_homing_reticle
+			|spr_character_arrow
+			|spr_tag_call
 		+Shields
 			|spr_shield_insta_sonic
 			|spr_shield_insta_miles
@@ -307,10 +311,6 @@
 			|spr_splash_run
 			|spr_splash_jump
 		+Misc.
-			|spr_trail
-			|spr_character_arrow
-			|spr_homing_reticle
-			|spr_tag_call
 			|spr_ring_sparkle
 +Zones
 	+Basic Test

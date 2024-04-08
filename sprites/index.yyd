@@ -57,9 +57,9 @@ spr_classic_skid
 spr_classic_death
 spr_classic_misc
 spr_classic_push
-spr_spin_dash_dust
-spr_spin_charge_dust
-spr_skid_dust
+spr_spin_dash
+spr_spin_charge
+spr_skid
 spr_tag_call
 spr_status_slow
 spr_status_panic
@@ -206,7 +206,7 @@ spr_knuckles_fly_carry
 spr_basic_test_water_fall_03
 spr_trail
 mask_platform_fix
-spr_drop_dash_dust
+spr_drop_dash
 spr_shield_insta_sonic
 spr_shield_insta_miles
 spr_spring_up

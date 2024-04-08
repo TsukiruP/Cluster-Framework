@@ -13,7 +13,7 @@ if (player_collision_prop(SIDE_MAIN, ring_handle) != 0) {
     if (invincibility_type != 1 || (invincibility_type == 1 && invincibility_alarm > -1 && invincibility_type <= 90)) {
         if (action_state != ACTION_HURT) {
             with (ring_handle) {
-                particle_create(EFFECT_RING, x, y);
+                effect_create(ctl_ring_sparkle, x, y);
                 instance_destroy();
             }
 

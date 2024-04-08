@@ -12,7 +12,6 @@ if (action_state == ACTION_SKID) {
     if (global.gameplay_turn == true && character_data != CHAR_CLASSIC && tag_animations == false) {
         if (input_direction != 0 && sign(g_speed) != -input_direction && animation_current != "skid_turn" && animation_direction != input_direction) {
             g_speed         = 0;
-            skid_dust_alarm = 1;
 
             // Play animation:
             player_set_animation("skid_turn");
@@ -21,11 +20,7 @@ if (action_state == ACTION_SKID) {
 
     // Create skid dust:
     if (g_speed != 0) {
-        if (skid_dust_alarm > 0) skid_dust_alarm -= 1;
-        else {
-            skid_dust_alarm = 3;
-            particle_create(EFFECT_SKID, x, y + main_height * dsin(ground_angle + 90));
-        }
+
     }
 
     // Cancel skid:

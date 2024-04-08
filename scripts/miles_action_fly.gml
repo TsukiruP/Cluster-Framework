@@ -47,7 +47,7 @@ if (action_state == ACTION_FLY) {
 
 // Replace animations:
 if ((physics_type == PHYS_UNDERWATER && flight_animations == true) || (physics_type == PHYS_DEFAULT && flight_animations == false)) {
-    miles_fly_animations();
+    //miles_fly_animations();
 }
 
 // Variable clean up:
