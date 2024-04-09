@@ -6,7 +6,6 @@
 		|ctrl_audio
 		|ctrl_input
 		|ctrl_text
-		|ctrl_particle
 		|ctrl_transition
 		+Stage Controllers
 			|ctrl_camera
@@ -108,3 +107,4 @@
 	|par_platform
 	|par_layer_low
 	|par_layer_high
+	|ctrl_particle

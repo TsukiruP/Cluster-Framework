@@ -345,7 +345,7 @@ applies_to=self
 /// Collision
 
 // Don't bother if in the middle of respawning/dying or paused:
-if (action_state == ACTION_RESPAWN || action_state == ACTION_DEATH || global.game_pause == true) exit;
+if (action_state == ACTION_RESPAWN || action_state == ACTION_DEATH || game_paused()) exit;
 
 // Steps:
 steps = 1 + abs(floor(x_speed / 13)) + abs(floor(y_speed / 13));
@@ -374,7 +374,7 @@ applies_to=self
 /// Control
 
 // Don't bother if in the middle of respawning/dying or paused:
-if (action_state == ACTION_RESPAWN || action_state == ACTION_DEATH || global.game_pause == true) exit;
+if (action_state == ACTION_RESPAWN || action_state == ACTION_DEATH || game_paused()) exit;
 
 // Slope acceleration/deceleration:
 if (ground == true && action_state != ACTION_SLIDE) {
@@ -466,7 +466,7 @@ applies_to=self
 /// Utility Scripts
 
 // Don't bother if paused:
-if (global.game_pause == true) exit;
+if (game_paused()) exit;
 
 // Actions:
 player_action_list();
@@ -483,7 +483,6 @@ player_animation_angle();
 // Animation depth:
 player_animation_depth();
 
-
 // Object handle:
 player_handle_list();
 /*"/*'/**//* YYD ACTION
@@ -494,7 +493,7 @@ applies_to=self
 /// Status Effects
 
 // Don't bother if in the middle of respawning/dying or paused:
-if (action_state == ACTION_RESPAWN || action_state == ACTION_DEATH || global.game_pause == true) exit;
+if (action_state == ACTION_RESPAWN || action_state == ACTION_DEATH || game_paused()) exit;
 
 // Invincibility:
 if (invincibility_alarm > -1) {
@@ -531,7 +530,7 @@ applies_to=self
 /// Underwater
 
 // Don't bother if paused:
-if (global.game_pause == true) exit;
+if (game_paused()) exit;
 
 // Don't bother if in the middle of respawning/dying:
 if (action_state != ACTION_RESPAWN && action_state != ACTION_DEATH && !instance_exists(ctrl_tally)) {

@@ -228,7 +228,6 @@ instance_create(x, y, ctrl_display);
 instance_create(x, y, ctrl_audio);
 instance_create(x, y, ctrl_input);
 instance_create(x, y, ctrl_text);
-//instance_create(x, y, ctrl_particle);
 #define KeyPress_13
 /*"/*'/**//* YYD ACTION
 lib_id=1

@@ -33,6 +33,9 @@ applies_to=self
 */
 /// Movement
 
+// Don't bother if paused:
+if (game_paused()) exit;
+
 if (dropped == true) {
     // Decrease lifespan alarm:
     lifespan = max(lifespan - 1 * global.object_ratio, 0);
@@ -62,6 +65,9 @@ action_id=603
 applies_to=self
 */
 /// Magnetization
+
+// Don't bother if paused:
+if (game_paused()) exit;
 
 if(player_exists(0)) {
     // Update status:

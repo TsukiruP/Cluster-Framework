@@ -17,8 +17,12 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Execute Custom Timeline
+/// Animate
 
-if (ctl_index != noone && global.game_pause = false) {
+// Don't bother if paused:
+if (game_paused()) exit;
+
+// Execute Custom Timeline
+if (ctl_index != noone) {
     script_execute(ctl_index);
 }

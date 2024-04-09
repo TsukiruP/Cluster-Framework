@@ -13,8 +13,9 @@ global.stage_time   = 0;
 global.object_time  = 0;
 global.object_ratio = 1;
 
-global.add_time     = false;
 global.game_pause   = false;
+
+add_time            = false;
 culling             = false;
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -75,8 +76,11 @@ applies_to=self
 */
 /// Global Timers
 
+// Don't bother if paused:
+if (game_paused()) exit;
+
 // Stage timer:
-if (global.add_time == true) {
+if (add_time == true) {
     global.stage_time += global.object_ratio;
 }
 

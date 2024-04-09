@@ -31,6 +31,9 @@ applies_to=self
 */
 /// Movement
 
+// Don't bother if paused:
+if (game_paused()) exit;
+
 if (player_exists(0)) {
     var player_handle, xx, yy;
 

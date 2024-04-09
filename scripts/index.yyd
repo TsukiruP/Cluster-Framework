@@ -8,7 +8,7 @@ player_collision_top
 player_collision_object_top
 player_collision_bottom
 player_collision_object_bottom
-player_collision_left
+game_paused
 player_collision_object_left
 player_collision_left_edge
 player_collision_right
