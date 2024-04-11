@@ -312,18 +312,18 @@ if (action_state == ACTION_DEATH) {
     
     y += y_speed;
     
-    // Reset death alarm:
-    if (death_alarm == 0) {
-        // Respawn partner:
-        if (input_cpu == true) action_state = ACTION_RESPAWN;
-        
-        // Set death alarm:
-        death_alarm = -1;
-    }
-    
     // Decrease death alarm:
-    else if (death_alarm > 0) {
+    if (death_alarm > 0) {
         death_alarm -= 1;
+        
+        // Reset death alarm:
+        if (death_alarm == 0) {
+            // Respawn partner:
+            if (input_cpu == true) action_state = ACTION_RESPAWN;
+            
+            // Set death alarm:
+            death_alarm = -1;
+        }
     }
     
     // Retry transition:
@@ -463,28 +463,52 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Utility Scripts
+/// Action List
+// A handy list of the action scripts.
+
+// Don't bother if in the middle of respawning/dying:
+if (action_state == ACTION_RESPAWN || action_state == ACTION_DEATH || game_paused()) exit;
+
+switch (character_data) {
+    case CHAR_SONIC:
+        break;
+
+    case CHAR_MILES:
+        break;
+
+    case CHAR_KNUCKLES:
+        break;
+
+    case CHAR_CLASSIC:
+        classic_action_clock_up();
+        break;
+}
+
+player_action_default();
+player_action_jump();
+player_action_look();
+player_action_crouch();
+player_action_tag();
+player_action_spin_dash();
+player_action_roll();
+player_action_skid();
+player_action_balance();
+player_action_push();
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Handle List
+// A handy list of the object handle scripts.
 
 // Don't bother if paused:
 if (game_paused()) exit;
 
-// Actions:
-player_action_list();
-
-// Animation target:
-//player_animation_target();
-
-// Animation direction:
-//player_animation_direction();
-
-// Animation angle:
-//player_animation_angle();
-
-// Animation depth:
-//player_animation_depth();
-
-// Object handle:
-player_handle_list();
+// Handle scripts:
+player_handle_ring();
+player_handle_item_box();
+player_handle_water_surface();
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -546,39 +570,41 @@ if (action_state != ACTION_RESPAWN && action_state != ACTION_DEATH && !instance_
 
         // Decrease air variables:
         else {
-            // Decrease air alarm:
-            if (air_alarm != 0) air_alarm -= 1;
-            else {
-                switch (air_remaining) {
-                    // Drown alert:
-                    case 25:
-                    case 20:
-                    case 15:
-                        if (input_cpu == false) sound_play("snd_drown_alert");
+            if (air_alarm > 0) {
+                air_alarm -= 1;
+
+                if (air_alarm == 0) {
+                    switch (air_remaining) {
+                        // Drown alert:
+                        case 25:
+                        case 20:
+                        case 15:
+                            if (input_cpu == false) sound_play("snd_drown_alert");
+                            break;
+
+                        // Drown jingle:
+                        case 12:
+                            if (input_cpu == false) sound_play("bgm_drown");
+
+                        // Drown countdown:
+                        case 10:
+                        case 8:
+                        case 6:
+                        case 4:
+                        case 2:
+                            drown_countdown += 1;
+                            break;
+
+                        // Drown:
+                        case 0:
+                            action_state = ACTION_DEATH;
+                            drowned      = true;
                         break;
+                    }
 
-                    // Drown jingle:
-                    case 12:
-                        if (input_cpu == false) sound_play("bgm_drown");
-
-                    // Drown countdown:
-                    case 10:
-                    case 8:
-                    case 6:
-                    case 4:
-                    case 2:
-                        drown_countdown += 1;
-                        break;
-
-                    // Drown:
-                    case 0:
-                        action_state = ACTION_DEATH;
-                        drowned      = true;
-                    break;
+                    air_remaining -= 1;
+                    air_alarm      = 60;
                 }
-
-                air_remaining -= 1;
-                air_alarm      = 60;
             }
 
             // Create bubbles:
@@ -641,6 +667,9 @@ applies_to=self
 */
 /// Animation Target
 // Sets the animation target and then calls the animation core script.
+
+// Don't bother if paused:
+if (game_paused()) exit;
 
 // Store previous height:
 main_height_temp = main_height;
@@ -922,6 +951,9 @@ applies_to=self
 /// Animation Direction
 // Sets the animation direction based on the current action and/or input:
 
+// Don't bother if paused:
+if (game_paused()) exit;
+
 // General:
 if ((ground == true && action_state == ACTION_DEFAULT && animation_current != "turn") || action_state == ACTION_ROLL || action_state == ACTION_BREATHE) {
     // Left:
@@ -947,8 +979,8 @@ applies_to=self
 /// Animation Angle
 // Sets the animation angle based on the current animation.
 
-// Don't bother if in the middle of respawning/dying:
-if (action_state == ACTION_RESPAWN || action_state == ACTION_DEATH) exit;
+// Don't bother if in the middle of respawning/dying or paused:
+if (action_state == ACTION_RESPAWN || action_state == ACTION_DEATH || game_paused()) exit;
 
 var angle_mod;
 
@@ -1045,8 +1077,11 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Animation Depth:
+/// Animation Depth
 // Sets the animation depth depending on if the player is a cpu or is being carried.
+
+// Don't bother if paused:
+if (game_paused()) exit;
 
 // Change animation depth based on control type:
 if (input_cpu == false) animation_depth = -1;
