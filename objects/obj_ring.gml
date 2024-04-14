@@ -37,11 +37,11 @@ applies_to=self
 if (game_paused()) exit;
 
 if (dropped == true) {
-    // Decrease lifespan alarm:
-    lifespan = max(lifespan - 1 * global.object_ratio, 0);
-
+    // Destroy if out of view:
+    if(!in_view()) instance_destroy();
+    
     // Add speed:
-     x += x_speed * global.object_ratio;
+    x += x_speed * global.object_ratio;
 
     // Add gravity:
     y_speed += y_gravity * global.object_ratio;
@@ -55,9 +55,6 @@ if (dropped == true) {
     if ((object_point_check(x, bbox_top) && y_speed < 0) || (object_point_check(x, bbox_bottom) && y_speed > 0)) {
         y_speed *= -1;
     }
-
-    // Destroy:
-    if(lifespan <= 0 || !in_view()) instance_destroy();
 }
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -77,6 +74,23 @@ if(player_exists(0)) {
             instance_destroy();
         }
     }
+}
+#define Step_1
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Lifespan
+
+// Don't bother if paused:
+if (game_paused()) exit;
+
+if (dropped == true) {
+    // Decrease lifespan alarm:
+    lifespan = max(lifespan - 1 * global.object_ratio, 0);
+    
+    if(lifespan <= 0) instance_destroy();
 }
 #define Draw_0
 /*"/*'/**//* YYD ACTION
