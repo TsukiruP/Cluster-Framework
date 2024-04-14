@@ -37,7 +37,7 @@ global.setting_input_key[INP_TAG]     = ini_read_real("input", "key_tag", DEFAUL
 global.setting_input_key[INP_ALT]     = ini_read_real("input", "key_tag", DEFAULT_KEY_ALT);
 
 global.setting_input_key[INP_START]   = ini_read_real("input", "key_start", DEFAULT_KEY_START);
-global.setting_input_key[INP_SELECT]  = ini_read_real("input", "key_start", DEFAULT_KEY_START);
+global.setting_input_key[INP_SELECT]  = ini_read_real("input", "key_select", DEFAULT_KEY_SELECT);
 global.setting_input_key[INP_ACCEPT]  = ini_read_real("input", "key_accept", DEFAULT_KEY_ACCEPT);
 global.setting_input_key[INP_CANCEL]  = ini_read_real("input", "key_cancel", DEFAULT_KEY_CANCEL);
 global.setting_input_key[INP_HELP]    = ini_read_real("input", "key_help", DEFAULT_KEY_HELP);
@@ -81,7 +81,7 @@ global.setting_gameplay_debuffs    = ini_read_real("gameplay", "debuffs", false)
 global.setting_gameplay_checkpoint = ini_read_real("gameplay", "checkpoint", true);
 
 // Read/create misc. settings:
-global.setting_misc_hud     = ini_read_real("misc", "hud", 1);
+global.setting_misc_hud     = ini_read_real("misc", "hud", 0);
 global.setting_misc_status  = ini_read_real("misc", "status", 1);
 global.setting_misc_feed    = ini_read_real("misc", "feed", true);
 global.setting_misc_trails  = ini_read_real("misc", "trails", false);
