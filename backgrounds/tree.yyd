@@ -1,8 +1,8 @@
++Basic Test
+	|tls_basic_test_96x48
+	|tls_basic_test_ramps
+	|tls_basic_test_edges
 +Tilesets
-	+Basic Test
-		|tls_basic_test_96x48
-		|tls_basic_test_ramps
-		|tls_basic_test_edges
 	|tls_basic_test_96x96
 +Parallax
 	|pbg_basic_test_sky

@@ -146,7 +146,6 @@
 			|player_handle_ring
 			|player_handle_item_box
 			|player_handle_water_surface
-		+Input
 		+Misc.
 			|player_ring_loss
 			|player_get_item
@@ -156,8 +155,10 @@
 				|start_trail
 				|update_trail
 				|draw_trail
+	|object_point_check
 +Trash
 	+Input
+		+Input
 	+Animations
 		+Replacements
 	+Sonic Dash
@@ -182,4 +183,3 @@
 	|player_animation_direction
 	|player_animation_angle
 	|player_animation_depth
-|object_point_check

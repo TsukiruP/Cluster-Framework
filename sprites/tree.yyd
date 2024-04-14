@@ -286,11 +286,11 @@
 			|spr_tag_call
 		+Shields
 			|spr_shield_insta_sonic
-			|spr_shield_insta_miles
 			|spr_shield_basic
 			|spr_shield_magnetic
 			|spr_shield_fire
 			|spr_shield_bubble
+			|spr_shield_insta_miles
 			|spr_shield_lightning
 			|spr_shield_muteki
 			+Actions
