@@ -103,7 +103,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Return to Gameplay
+/// Continue
 
 if (pause_delay > 0) {
     pause_delay -= 1;
@@ -146,7 +146,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Pause Delay:
+/// Set Pause Delay
 
 pause_delay = 2;
 #define Other_11
@@ -155,7 +155,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Return to Pause Menu
+/// Reset Menu
 
 pause_target = global.display_width / 2;
 menu_level   = 0;
