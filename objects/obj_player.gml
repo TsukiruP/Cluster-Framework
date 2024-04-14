@@ -26,7 +26,7 @@ ground_angle           = 0;
 angle_mode             = 0;
 physics_type           = PHYS_DEFAULT;
 
-on_edge    = false;
+on_edge     = false;
 on_obstacle = false;
 
 detach_allow   = true;
@@ -275,6 +275,21 @@ lib_id=1
 action_id=603
 applies_to=self
 */
+///  Inputs
+
+// Don't bother if in the middle of respawning/dying or paused:
+if (action_state == ACTION_RESPAWN || action_state == ACTION_DEATH || game_paused()) exit;
+
+// Receive inputs:
+player_get_input();
+
+// Input lock:
+if (ground == true && input_lock_alarm > 0) input_lock_alarm -= 1;
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
 /// Death
 // One is always aware that it lies in wait. Though life is merely a journey to the grave, it must not be undertaken without hope.
 
@@ -327,7 +342,7 @@ if (action_state == ACTION_DEATH) {
     }
     
     // Retry transition:
-    if (input_cpu == false && death_alarm == 64 && !instance_exists(ctrl_transition)) room_transition(room, TRANS_RETRY);
+    if (input_cpu == false && death_alarm == 64 && !instance_exists(ctrl_transition)) transition_create(room, TRANS_RETRY);
 }
 
 // Death at screen bottom:
@@ -514,6 +529,36 @@ lib_id=1
 action_id=603
 applies_to=self
 */
+/// Refill Air
+
+// Don't bother if paused:
+if (game_paused()) exit;
+
+// Don't bother if in the middle of respawning/dying:
+if (action_state != ACTION_RESPAWN && action_state != ACTION_DEATH && !instance_exists(ctrl_tally)) {
+    if (physics_type == PHYS_UNDERWATER) {
+        // Refill air if in breathe action or bubble shield:
+        if (action_state == ACTION_BREATHE || shield_data == SHIELD_BUBBLE) {
+            air_remaining = 30;
+            air_alarm     = 60;
+
+            // Stop jingle:
+            if (input_cpu == false) sound_stop("bgm_drown");
+        }
+    }
+} else {
+    air_remaining = 30;
+    air_alarm     = 60;
+
+    // Stop jingle:
+    sound_stop("bgm_drown");
+}
+#define Step_1
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
 /// Status Effects
 
 // Don't bother if in the middle of respawning/dying or paused:
@@ -527,11 +572,6 @@ if (invincibility_alarm > -1) {
         invincibility_type  =  0;
         invincibility_alarm = -1;
     }
-}
-
-// Hurt invincibility:
-if (invincibility_type == 1 && invincibility_alarm == -1) {
-    if (ground == true || action_state != ACTION_HURT) invincibility_alarm = 120;
 }
 
 // Speed shoes:
@@ -551,7 +591,27 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Underwater
+/// Physics
+
+// Update physics type:
+if (instance_exists(obj_water_surface)) {
+    if (y < obj_water_surface.y) {
+        if (physics_type != PHYS_DEFAULT) physics_type = PHYS_DEFAULT;
+    }
+
+    if (y > obj_water_surface.y) {
+        if (physics_type != PHYS_UNDERWATER) physics_type = PHYS_UNDERWATER;
+    }
+}
+
+// Physics:
+player_get_physics();
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Air
 
 // Don't bother if paused:
 if (game_paused()) exit;
@@ -560,16 +620,7 @@ if (game_paused()) exit;
 if (action_state != ACTION_RESPAWN && action_state != ACTION_DEATH && !instance_exists(ctrl_tally)) {
     if (physics_type == PHYS_UNDERWATER) {
         // Refill air if in breathe action or bubble shield:
-        if (action_state == ACTION_BREATHE || shield_data == SHIELD_BUBBLE) {
-            air_remaining = 30;
-            air_alarm     = 60;
-
-            // Stop jingle:
-            if (input_cpu == false) sound_stop("bgm_drown");
-        }
-
-        // Decrease air variables:
-        else {
+        if (action_state != ACTION_BREATHE && shield_data != SHIELD_BUBBLE) {
             if (air_alarm > 0) {
                 air_alarm -= 1;
 
@@ -606,59 +657,9 @@ if (action_state != ACTION_RESPAWN && action_state != ACTION_DEATH && !instance_
                     air_alarm      = 60;
                 }
             }
-
-            // Create bubbles:
-            // [PLACEHOLDER]
         }
-    } else {
-        air_remaining = 30;
-        air_alarm     = 60;
-
-        // Stop jingle:
-        sound_stop("bgm_drown");
-    }
-} else {
-    air_remaining = 30;
-    air_alarm     = 60;
-
-    // Stop jingle:
-    sound_stop("bgm_drown");
-}
-#define Step_1
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Update Inputs
-
-// Don't bother if in the middle of respawning/dying:
-if (action_state == ACTION_RESPAWN || action_state == ACTION_DEATH) exit;
-
-player_get_input();
-
-// Input lock:
-if (ground == true && input_lock_alarm > 0) input_lock_alarm -= 1;
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Update Physics
-
-// Update physics type:
-if (instance_exists(obj_water_surface)) {
-    if (y < obj_water_surface.y) {
-        if (physics_type != PHYS_DEFAULT) physics_type = PHYS_DEFAULT;
-    }
-
-    if (y > obj_water_surface.y) {
-        if (physics_type != PHYS_UNDERWATER) physics_type = PHYS_UNDERWATER;
     }
 }
-
-// Physics:
-player_get_physics();
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -1188,7 +1189,7 @@ if (character_data == CHAR_MILES) {
     miles_tails_x = x - 5 * dcos(miles_tails_angle) - abs(dcos(miles_tails_angle) * (ground == true && animation_direction == -1)) - (abs(dsin(miles_tails_angle)) * animation_direction);
     miles_tails_y = y + 4 * dsin(miles_tails_angle) - abs(dcos(miles_tails_angle) * (ground == true && animation_direction == -1));
     
-    if (animation_current == "roll" || (animation_current == "spin_flight" && animation_current_frame >= animation_loop_frame)) draw_sprite_ext(spr_miles_tails, floor(miles_tails_frame), floor(miles_tails_x), floor(miles_tails_y), animation_direction * animation_x_scale, animation_y_scale, wrap_angle(miles_tails_angle - 90), animation_blend, animation_alpha);
+    if (animation_current == "roll" || (animation_current == "spin_flight" && animation_current_frame >= animation_loop_frame)) draw_sprite_ext(spr_miles_tails, floor(miles_tails_frame), floor(miles_tails_x), floor(miles_tails_y), animation_direction * animation_x_scale, animation_y_scale, wrap(miles_tails_angle - 90), animation_blend, animation_alpha);
 }
 /*"/*'/**//* YYD ACTION
 lib_id=1
