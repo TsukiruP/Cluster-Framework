@@ -31,7 +31,7 @@ applies_to=self
 */
 /// Movement
 
-// Don't bother if paused:
+// Don't bother if the game is paused:
 if (game_paused()) exit;
 
 if (player_exists(0)) {

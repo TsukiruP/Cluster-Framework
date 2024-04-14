@@ -19,7 +19,7 @@ applies_to=self
 */
 /// Animate
 
-// Don't bother if paused:
+// Don't bother if the game is paused:
 if (game_paused()) exit;
 
 // Execute Custom Timeline

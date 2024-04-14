@@ -52,7 +52,7 @@ applies_to=self
 */
 /// Movement
 
-// Don't bother if game is paused:
+// Don't bother if the game is paused:
 if (game_paused()) exit;
 
 // HUD movement:
@@ -132,7 +132,7 @@ applies_to=self
 */
 /// Status Icons
 
-// Don't bother if game is paused:
+// Don't bother if the game is paused:
 if (game_paused()) exit;
 
 if (player_exists(0) != noone) {
@@ -162,7 +162,7 @@ applies_to=self
 */
 /// Item Feed
 
-// Don't bother if game is paused:
+// Don't bother if the game is paused:
 if (game_paused()) exit;
 
 // Create feed:
