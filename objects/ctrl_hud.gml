@@ -52,6 +52,9 @@ applies_to=self
 */
 /// Movement
 
+// Don't bother if game is paused:
+if (game_paused()) exit;
+
 // HUD movement:
 if (hide == false) {
     if (hud_position == -1) hud_position = hud_target;
@@ -87,7 +90,7 @@ if (global.misc_hud == 1) {
                 // Show air timer only if underwater and don't have the bubble shield:
                 if (physics_type == PHYS_UNDERWATER && shield_data != SHIELD_BUBBLE) other.air_hide = false;
                 else other.air_hide  = true;
-                
+
                 // Update air value:
                 other.air_value = air_remaining;
             }
@@ -96,7 +99,7 @@ if (global.misc_hud == 1) {
         air_value    = 30;
         air_position = hud_position;
     }
-    
+
     // Air movement:
     if (air_hide == false) {
         if (air_position < hud_position) {
@@ -104,7 +107,7 @@ if (global.misc_hud == 1) {
             else air_speed = hud_speed;
 
             air_position += air_speed;
-            
+
             if (air_position >= hud_position) {
                 air_speed    = hud_speed;
                 air_position = hud_position;
@@ -114,7 +117,7 @@ if (global.misc_hud == 1) {
         if (air_position != hud_start) {
             air_speed     = ceil(abs(air_position - hud_start) / (hud_factor * 3));
             air_position -= air_speed;
-            
+
             if (air_position == hud_start) {
                 air_speed    = 0;
                 air_position = hud_start;
@@ -128,6 +131,9 @@ action_id=603
 applies_to=self
 */
 /// Status Icons
+
+// Don't bother if game is paused:
+if (game_paused()) exit;
 
 if (player_exists(0) != noone) {
     with (player_exists(0)) {
@@ -156,10 +162,15 @@ applies_to=self
 */
 /// Item Feed
 
+// Don't bother if game is paused:
+if (game_paused()) exit;
+
+// Create feed:
 if (player_exists(0) != noone) {
     if (global.misc_feed == true && item_feed == -1) item_feed = ds_list_create();
 }
 
+// Update feed:
 if (item_feed != -1) {
     if (ds_list_size(item_feed) != 0) {
         if (ds_list_find_value(item_feed, ds_list_size(item_feed) - 1) == global.display_width / 2+ (ds_list_size(item_feed) / 2 - 1) * 9 - (ds_list_size(item_feed) / 2 - 1) * 18) {
