@@ -54,3 +54,8 @@ if (ground == true && action_state == ACTION_HURT) {
     action_state = ACTION_DEFAULT;
     g_speed      = 0;
 }
+
+// Invincibility:
+if (invincibility_type == 1 && invincibility_alarm == -1) {
+    if (ground == true || action_state != ACTION_HURT) invincibility_alarm = 120;
+}
