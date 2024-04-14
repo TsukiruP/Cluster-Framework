@@ -1,5 +1,5 @@
 par_terrain
-par_solid
+ctrl_fade
 par_platform
 par_obstacle
 par_moving_platform

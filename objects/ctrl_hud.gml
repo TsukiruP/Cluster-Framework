@@ -44,32 +44,36 @@ status_active[STATUS_MUTEKI, 0] =  0;
 status_active[STATUS_SPEED, 0]  =  0;
 status_active[STATUS_PANIC, 0]  =  0;
 status_active[STATUS_SWAP , 0]  =  0;
-#define Step_0
+#define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
 applies_to=self
 */
-/// Update Position
+/// Movement
 
-// HUD position:
+// HUD movement:
 if (hide == false) {
     if (hud_position == -1) hud_position = hud_target;
     else if (hud_position < hud_target) {
         hud_speed     = ceil(abs(hud_position - hud_target) / hud_factor);
         hud_position += hud_speed;
-    } else {
-        hud_speed    = 0;
-        hud_position = hud_target;
+
+        if (hud_position >= hud_target) {
+            hud_speed    = 0;
+            hud_position = hud_target;
+        }
     }
 } else {
     if (hud_position == -1) hud_position = hud_start;
     else if (hud_position != hud_start) {
         hud_speed     = ceil(abs(hud_position - hud_start) / (hud_factor * 3));
         hud_position -= hud_speed;
-    } else {
-        hud_speed    = 0;
-        hud_position = hud_start;
+
+        if (hud_position == hud_start) {
+            hud_speed    = 0;
+            hud_position = hud_start;
+        }
     }
 }
 
@@ -77,7 +81,7 @@ if (hide == false) {
 // Air:
 if (global.misc_hud == 1) {
     if (player_exists(0) != noone) {
-        // Hide air:
+        // Air value:
         with (player_exists(0)) {
             if (action_state != ACTION_DEATH) {
                 // Show air timer only if underwater and don't have the bubble shield:
@@ -88,30 +92,34 @@ if (global.misc_hud == 1) {
                 other.air_value = air_remaining;
             }
         }
-        
-        // Air position:
-        if (air_hide == false) {
-            if (air_position < hud_position) {
-                if (hud_speed == 0) air_speed = ceil(abs(air_position - hud_position) / hud_factor);
-                else air_speed = hud_speed;
+    } else {
+        air_value    = 30;
+        air_position = hud_position;
+    }
+    
+    // Air movement:
+    if (air_hide == false) {
+        if (air_position < hud_position) {
+            if (hud_speed == 0) air_speed = ceil(abs(air_position - hud_position) / hud_factor);
+            else air_speed = hud_speed;
 
-                air_position += air_speed;
-            } else {
+            air_position += air_speed;
+            
+            if (air_position >= hud_position) {
                 air_speed    = hud_speed;
                 air_position = hud_position;
             }
-        } else {
-            if (air_position != hud_start) {
-                air_speed     = ceil(abs(air_position - hud_start) / (hud_factor * 3));
-                air_position -= air_speed;
-            } else {
+        }
+    } else {
+        if (air_position != hud_start) {
+            air_speed     = ceil(abs(air_position - hud_start) / (hud_factor * 3));
+            air_position -= air_speed;
+            
+            if (air_position == hud_start) {
                 air_speed    = 0;
                 air_position = hud_start;
             }
         }
-    } else {
-        air_value    = 30;
-        air_position = hud_position;
     }
 }
 /*"/*'/**//* YYD ACTION
@@ -148,7 +156,6 @@ applies_to=self
 */
 /// Item Feed
 
-
 if (player_exists(0) != noone) {
     if (global.misc_feed == true && item_feed == -1) item_feed = ds_list_create();
 }
@@ -162,25 +169,7 @@ if (item_feed != -1) {
         }
     }
 }
-#define Other_3
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Destroy Item Feed
-
-event_user(0);
 #define Other_5
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Destroy Item Feed
-
-event_user(0);
-#define Other_10
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603

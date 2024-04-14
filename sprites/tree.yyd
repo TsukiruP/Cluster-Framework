@@ -43,6 +43,7 @@
 	+HUD
 		|spr_hud
 		|spr_action_gauge
+		|spr_pause
 		|fnt_hud
 +Gameplay
 	+PCs

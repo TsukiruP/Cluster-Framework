@@ -20,6 +20,9 @@ transition_timer   = 0;
 transition_standby = 0;
 transition_room    = room;
 
+// Fade handle:
+fade_handle = noone;
+
 // Background variables:
 background_position     = -15;
 background_speed        =  0;
@@ -56,7 +59,7 @@ retry_target   = global.display_width / 2 - 3;
 retry_distance = 0;
 retry_steps    = 15;
 retry_size     = 0;
-#define Step_0
+#define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -67,37 +70,48 @@ applies_to=self
 if (transition_type == TRANS_FADE) {
     // 0 - Fade to black:
     if (fade_state == 0) {
-        if (transition_timer < 1) transition_timer += transition_speed;
-        else {
-            transition_timer = 1;
-            fade_state       = 1;
+        if (fade_handle == noone) {
+            fade_handle            = fade_create(transition_speed, 1);
+            fade_handle.persistent = true;
+        }
+
+        if (fade_handle.fade_timer >= 1) {
+            fade_state = 1;
         }
     }
 
     // 1 - Standing by:
     if (fade_state == 1) {
-        if (transition_standby < 0.5) transition_standby += transition_speed;
-        else {
-            transition_standby = 0.5;
+        if (transition_standby < 0.5) {
+            transition_standby += transition_speed;
 
-            if (debug == true) {
-                event_user(0);
+            if (transition_standby >= 0.5) {
+                transition_standby = 0.5;
 
-                if (input_check(INP_ACCEPT, CHECK_PRESSED)) {
+                if (debug == true) {
+                    event_user(0);
+
+                    if (input_check(INP_ACCEPT, CHECK_PRESSED)) {
+                        fade_state = 2;
+                        event_user(1);
+                    }
+                } else {
+                    room_goto(transition_room);
                     fade_state = 2;
-                    event_user(1);
                 }
-            } else {
-                room_goto(transition_room);
-                fade_state = 2;
             }
         }
     }
 
     // 2 - Fade from black:
     if (fade_state == 2) {
-        if (transition_timer > 0) transition_timer -= transition_speed;
-        else instance_destroy();
+        fade_reverse(fade_handle);
+        fade_state = 3;
+    }
+
+    // 3 - End fade:
+    if (fade_state == 3) {
+        if (!instance_exists(fade_handle)) instance_destroy();
     }
 }
 /*"/*'/**//* YYD ACTION
@@ -113,29 +127,32 @@ if (transition_type == TRANS_MENU) {
         if (background_position < background_target) {
             background_speed     = ceil(abs(background_position - background_target) / 5);
             background_position += background_speed;
-        } else {
-            background_speed    = 0;
-            background_position = background_target;
-            menu_state          = 1;
+
+            if (background_position >= background_target) {
+                background_speed    = 0;
+                background_position = background_target;
+                menu_state          = 1;
+            }
         }
     }
 
     // 1 - Room change:
     if (menu_state == 1) {
-        if (transition_timer < 1) transition_timer += transition_speed;
-        else {
-            //transition_timer = 1;
+        if (transition_timer < 1) {
+            transition_timer += transition_speed;
 
-            if (debug == true) {
-                event_user(0);
+            if (transition_timer >= 1) {
+                if (debug == true) {
+                    event_user(0);
 
-                if (input_check(INP_ACCEPT, CHECK_PRESSED)) {
+                    if (input_check(INP_ACCEPT, CHECK_PRESSED)) {
+                        menu_state = 2;
+                        event_user(1);
+                    }
+                } else {
+                    room_goto(transition_room);
                     menu_state = 2;
-                    event_user(1);
                 }
-            } else {
-                room_goto(transition_room);
-                menu_state = 2;
             }
         }
     }
@@ -148,10 +165,12 @@ if (transition_type == TRANS_MENU) {
         if (background_position > background_target) {
             background_speed     = ceil(abs(background_position - background_target) / 5);
             background_position -= background_speed;
-        } else {
-            background_speed    = 0;
-            background_position = background_target
-            instance_destroy();
+
+            if (background_position <= background_target) {
+                background_speed    = 0;
+                background_position = background_target
+                instance_destroy();
+            }
         }
     }
 }
@@ -184,10 +203,12 @@ if (transition_type == TRANS_CARD) {
         if (background_position < background_target) {
             background_speed     = ceil(abs(background_position - background_target) / 5);
             background_position += background_speed;
-        } else {
-            background_speed    = 0;
-            background_position = background_target;
-            title_card_state    = 1;
+
+            if (background_position >= background_target) {
+                background_speed    = 0;
+                background_position = background_target;
+                title_card_state    = 1;
+            }
         }
     }
 
@@ -197,38 +218,45 @@ if (transition_type == TRANS_CARD) {
         if (banner_position < 0) {
             banner_speed     = ceil(abs(banner_position - banner_target) / 6);
             banner_position += banner_speed;
-        } else {
-            banner_speed    = 0;
-            banner_position = banner_target;
+
+            if (banner_position >= 0) {
+                banner_speed    = 0;
+                banner_position = banner_target;
+            }
         }
 
         // Zone start:
         if (zone_distance < zone_target) {
             zone_speed     = ceil(abs(zone_distance - zone_target) / 9);
             zone_position += zone_speed;
-        } else {
-            zone_speed       = 0;
-            zone_position    = -zone_start + zone_target;
-            title_card_state = 2;
+
+            if (zone_position >= zone_target - zone_start) {
+                zone_speed       = 0;
+                zone_position    = -zone_start + zone_target;
+                title_card_state = 2;
+            }
         }
     }
 
     // 2 - Room change:
     if (title_card_state == 2) {
-        if (transition_timer < 1) transition_timer += transition_speed;
-        else {
-            transition_timer = 1;
+        if (transition_timer < 1) {
+            transition_timer += transition_speed;
 
-            if (debug == true) {
-                event_user(0);
+            if (transition_timer >= 1) {
+                transition_timer = 1;
 
-                if (input_check(INP_ACCEPT, CHECK_PRESSED)) {
-                    title_card_state = 4;
-                    event_user(1);
+                if (debug == true) {
+                    event_user(0);
+
+                    if (input_check(INP_ACCEPT, CHECK_PRESSED)) {
+                        title_card_state = 4;
+                        event_user(1);
+                    }
+                } else {
+                    room_goto(transition_room);
+                    title_card_state = 3;
                 }
-            } else {
-                room_goto(transition_room);
-                title_card_state = 3;
             }
         }
     }
@@ -237,10 +265,13 @@ if (transition_type == TRANS_CARD) {
     if (title_card_state == 3) {
         ctrl_stage.culling = true;
 
-        if (transition_standby < 2) transition_standby += transition_speed;
-        else {
-            transition_standby = 2;
-            title_card_state   = 4;
+        if (transition_standby < 2) {
+            transition_standby += transition_speed;
+
+            if (transition_standby >= 2) {
+                transition_standby = 2;
+                title_card_state   = 4;
+            }
         }
     }
 
@@ -272,10 +303,12 @@ if (transition_type == TRANS_CARD) {
                     }
                 }
             }
-        }  else {
-            background_speed    = 0;
-            background_position = background_target;
-            title_card_state    = 5;
+
+            if (background_position <= background_target) {
+                background_speed    = 0;
+                background_position = background_target;
+                title_card_state    = 5;
+            }
         }
     }
 
@@ -321,18 +354,22 @@ if (transition_type == TRANS_CARD) {
             if (banner_position > banner_target) {
                 banner_speed     = ceil(abs(banner_position - banner_target) / 6);
                 banner_position -= banner_speed;
-            } else {
-                banner_speed = 0;
-                banner_position = banner_target;
+
+                if (banner_position <= banner_target) {
+                    banner_speed = 0;
+                    banner_position = banner_target;
+                }
             }
 
             // Zone end:
             if (zone_distance < zone_target) {
                 zone_speed     = ceil(abs(zone_distance - zone_target) / 9);
                 zone_position += zone_speed;
-            } else {
-                zone_speed    = 0;
-                zone_position = -zone_distance + zone_target;
+
+                if (zone_distance >= zone_target - zone_start) {
+                    zone_speed    = 0;
+                    zone_position = -zone_distance + zone_target;
+                }
             }
         }
 
@@ -465,16 +502,6 @@ if (transition_type == TRANS_RETRY) {
         }
     }
 }
-#define Step_1
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Retry Scroll Fix
-if (transition_type == TRANS_RETRY) {
-    background_scroll_alt -= background_scroll_speed;
-}
 #define Other_4
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -548,7 +575,7 @@ action_id=603
 applies_to=self
 */
 /// Draw Fade Transition
-
+/*
 if (transition_type == TRANS_FADE) {
     draw_set_color(c_black);
     draw_set_alpha(transition_timer);
@@ -622,7 +649,7 @@ if (transition_type == TRANS_RETRY) {
 
     // Background:
     draw_sprite_tiled_horizontal(spr_transition_background, 1, view_xview[view_current] + background_scroll, view_yview[view_current] + background_position);
-    draw_sprite_tiled_horizontal_yscale(spr_transition_background, 1, view_xview[view_current] - 16 + background_scroll_alt, view_yview[view_current] + global.display_height - background_position, -1);
+    draw_sprite_tiled_horizontal_yscale(spr_transition_background, 1, view_xview[view_current] - 16.5 - background_scroll, view_yview[view_current] + global.display_height - background_position, -1);
 
     // Try again:
     retry_size  = string_width("Try Again");

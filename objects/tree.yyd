@@ -7,6 +7,7 @@
 		|ctrl_input
 		|ctrl_text
 		|ctrl_transition
+		|ctrl_fade
 		+Stage Controllers
 			|ctrl_camera
 			|ctrl_culling
@@ -103,7 +104,6 @@
 			|obj_basic_test_water_fall_02
 			|obj_basic_test_water_fall_03
 +Trash
-	|par_solid
 	|par_platform
 	|par_layer_low
 	|par_layer_high

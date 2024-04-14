@@ -133,102 +133,6 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Update Devices
-
-// Find devices:
-if (joystick_found()) {
-    // Set seeking devices:
-    for (i = 0; i < joystick_max; i += 1) {
-        // Check if current device has been removed:
-        if (joystick_device[i, 0] > joystick_count() - 1) {
-            joystick_device[i, 0] = -1;
-        }
-
-        // Check current device is set to seeking:
-        if (joystick_device[i, 0] == -1) {
-            // Check there's enough joysticks:
-            if (joystick_count() > 0) {
-                // Iterate through currently connected joysticks:
-                for (j = 0; j < joystick_count(); j += 1) {
-                    var joystick_available;
-                    
-                    joystick_available = true;
-                    
-                    // Iterate through every registered joysticks:
-                    for (k = 0; k < joystick_max; k += 1) {
-                        
-                        // If the device is already registered, move on:
-                        if (joystick_device[k, 0] == j) joystick_available = false;
-                    }
-                    
-                    // Register the device:
-                    if (joystick_available = true) {
-                        joystick_device[i, 0] = j;
-                        break;
-                    }
-                }
-            }
-        }
-        
-    }
-}
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Update Buttons
-
-// Update device buttons:
-for (i = 0; i < joystick_max; i += 1) {
-    // Check if the current joystick exists:
-    if (joystick_device[i, 0] > -1) {
-        // Check if the current joustick has a POV/D-Pad:
-        if (joystick_has_pov(i)) {
-            // Set to Xbox configuration:
-            joystick_device[i, 1] = 0;
-        }
-
-        // Other configurations:
-        else {
-            switch (joystick_name(i)) {
-                case "Nintendo Switch Pro Controller":
-                    joystick_device[i, 1] = 2;
-                    break;
-
-                default:
-                    joystick_device[i, 1] = 1;
-            }
-        }
-    }
-}
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Update Accept
-
-// Update accept format:
-for (i = 0; i < joystick_max; i += 1) {
-    // Nintendo accept:
-    if (global.input_accept[i] == 1) {
-        global.input_joy[INP_ACCEPT, i] = JOY_FACE2;
-        global.input_joy[INP_CANCEL, i] = JOY_FACE1;
-    }
-
-    // Xbox accept:
-    else {
-        global.input_joy[INP_ACCEPT, i] = JOY_FACE1;
-        global.input_joy[INP_CANCEL, i] = JOY_FACE2;
-    }
-}
-#define Step_1
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
 /// Update D-pad
 
 for (i = 0; i < joystick_max; i += 1) {
@@ -501,6 +405,102 @@ action_id=603
 applies_to=self
 */
 /// Input Prompts
+#define Step_2
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Update Devices
+
+// Find devices:
+if (joystick_found()) {
+    // Set seeking devices:
+    for (i = 0; i < joystick_max; i += 1) {
+        // Check if current device has been removed:
+        if (joystick_device[i, 0] > joystick_count() - 1) {
+            joystick_device[i, 0] = -1;
+        }
+
+        // Check current device is set to seeking:
+        if (joystick_device[i, 0] == -1) {
+            // Check there's enough joysticks:
+            if (joystick_count() > 0) {
+                // Iterate through currently connected joysticks:
+                for (j = 0; j < joystick_count(); j += 1) {
+                    var joystick_available;
+                    
+                    joystick_available = true;
+                    
+                    // Iterate through every registered joysticks:
+                    for (k = 0; k < joystick_max; k += 1) {
+                        
+                        // If the device is already registered, move on:
+                        if (joystick_device[k, 0] == j) joystick_available = false;
+                    }
+                    
+                    // Register the device:
+                    if (joystick_available = true) {
+                        joystick_device[i, 0] = j;
+                        break;
+                    }
+                }
+            }
+        }
+        
+    }
+}
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Update Buttons
+
+// Update device buttons:
+for (i = 0; i < joystick_max; i += 1) {
+    // Check if the current joystick exists:
+    if (joystick_device[i, 0] > -1) {
+        // Check if the current joustick has a POV/D-Pad:
+        if (joystick_has_pov(i)) {
+            // Set to Xbox configuration:
+            joystick_device[i, 1] = 0;
+        }
+
+        // Other configurations:
+        else {
+            switch (joystick_name(i)) {
+                case "Nintendo Switch Pro Controller":
+                    joystick_device[i, 1] = 2;
+                    break;
+
+                default:
+                    joystick_device[i, 1] = 1;
+            }
+        }
+    }
+}
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Update Accept
+
+// Update accept format:
+for (i = 0; i < joystick_max; i += 1) {
+    // Nintendo accept:
+    if (global.input_accept[i] == 1) {
+        global.input_joy[INP_ACCEPT, i] = JOY_FACE2;
+        global.input_joy[INP_CANCEL, i] = JOY_FACE1;
+    }
+
+    // Xbox accept:
+    else {
+        global.input_joy[INP_ACCEPT, i] = JOY_FACE1;
+        global.input_joy[INP_CANCEL, i] = JOY_FACE2;
+    }
+}
 #define Other_10
 /*"/*'/**//* YYD ACTION
 lib_id=1

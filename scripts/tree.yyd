@@ -16,7 +16,6 @@
 	+Room
 		|room_set_data
 		|room_get_data
-		|room_transition
 		|room_view_set_all
 	+Draw
 		|parallax_add_node
@@ -82,13 +81,17 @@
 			|ctl_ring_sparkle
 	+Misc.
 		|window_resize
-		|wrap_angle
+		|transition_create
+		|fade_create
+		|fade_reverse
+		|in_view
 		|player_exists
 		|water_exists
 		|stage_start
-		|in_view
-		|effect_create
 		|game_paused
+		|wrap
+		|wrap_angle
+		|effect_create
 +Gameplay
 	+Player
 		+Collision
@@ -109,7 +112,6 @@
 			|player_get_angle
 			|player_set_angle
 		+Actions
-			|player_action_list
 			|player_action_default
 			|player_action_jump
 			|player_action_look
@@ -140,12 +142,7 @@
 				|knuckles_add_animations
 				|classic_add_animations
 			|player_compile_animations
-			|player_animation_target
-			|player_animation_direction
-			|player_animation_angle
-			|player_animation_depth
 		+Handle
-			|player_handle_list
 			|player_handle_ring
 			|player_handle_item_box
 			|player_handle_water_surface
@@ -180,4 +177,9 @@
 			|player_collision_object_bottom
 		|player_get_angle_OLD
 		|player_set_angle_OLD
+	|player_handle_list
+	|player_animation_target
+	|player_animation_direction
+	|player_animation_angle
+	|player_animation_depth
 |object_point_check

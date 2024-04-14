@@ -234,4 +234,4 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-room_transition(rm_basic_test_1);
+transition_create(rm_basic_test_1);

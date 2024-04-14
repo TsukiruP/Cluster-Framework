@@ -42,10 +42,10 @@ player_get_animation
 player_add_animation
 player_animation_target
 player_animation_direction
-player_action_list
+fade_create
 room_set_data
 room_get_data
-room_transition
+transition_create
 room_view_set_all
 window_resize
 player_action_look
@@ -141,3 +141,5 @@ ctl_sonic_spring_fall
 ctl_sonic_balance_back
 ctl_spin_charge
 ctl_skid
+fade_reverse
+wrap

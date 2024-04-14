@@ -62,11 +62,8 @@ applies_to=self
 */
 /// Pause Menu
 
-if (global.game_pause > 1) global.game_pause -= 1;
-
-if (input_check(INP_START, CHECK_PRESSED)) {
-    if (!global.game_pause) global.game_pause = 2;
-    if (global.game_pause == 1) global.game_pause = 0;
+if (global.game_pause == false && !instance_exists(ctrl_pause) && input_check(INP_START, CHECK_PRESSED)) {
+    instance_create(0, 0, ctrl_pause);
 }
 #define Step_1
 /*"/*'/**//* YYD ACTION
