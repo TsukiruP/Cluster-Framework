@@ -13,6 +13,8 @@ menu_state       = 0;
 title_card_state = 0;
 retry_state      = 0;
 
+pause_ignore     = false;
+
 // Transition variables:
 transition_type    = TRANS_FADE;
 transition_speed   = 0.02;
@@ -181,6 +183,9 @@ applies_to=self
 */
 /// Title Card Transition
 
+// Don't bother if the game is paused:
+if (pause_ignore == false && game_paused()) exit;
+
 if (transition_type == TRANS_CARD) {
     // Banner scroll:
     banner_scroll += banner_scroll_speed;
@@ -263,8 +268,8 @@ if (transition_type == TRANS_CARD) {
 
     // 3 - Standing by:
     if (title_card_state == 3) {
-        ctrl_stage.culling = true;
-
+        ctrl_stage.culling =  true;
+        
         if (transition_standby < 2) {
             transition_standby += transition_speed;
 
@@ -308,6 +313,8 @@ if (transition_type == TRANS_CARD) {
                 background_speed    = 0;
                 background_position = background_target;
                 title_card_state    = 5;
+                
+                event_user(2);
             }
         }
     }
@@ -346,10 +353,7 @@ if (transition_type == TRANS_CARD) {
             (room_kickoff == KICKOFF_READY && transition_standby >= 2.2) || (room_kickoff == KICKOFF_RUN && room_run_end_x == -1)) {
             // Start stage:
             stage_start();
-
-            // Remove persistence:
-            persistent = false;
-
+            
             // Banner end:
             if (banner_position > banner_target) {
                 banner_speed     = ceil(abs(banner_position - banner_target) / 6);
@@ -497,7 +501,10 @@ if (transition_type == TRANS_RETRY) {
                 // Resume stage:
                 stage_start();
 
-                if (background_position == background_target) instance_destroy();
+                if (background_position == background_target) {
+                    event_user(2);
+                    instance_destroy();
+                }
             }
         }
     }
@@ -568,6 +575,18 @@ action_id=603
 applies_to=self
 */
 /// Close Debug Header
+#define Other_12
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Enable Pause
+
+persistent        =  false;
+depth             = -14000;
+pause_ignore      =  false;
+global.game_pause =  0;
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1

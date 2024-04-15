@@ -6,17 +6,17 @@ applies_to=self
 */
 /// Stage Initialization
 
-global.stage_rings  = 0;
-global.stage_score  = 0;
-global.stage_time   = 0;
+global.stage_rings  =  0;
+global.stage_score  =  0;
+global.stage_time   =  0;
 
-global.object_time  = 0;
-global.object_ratio = 1;
+global.object_time  =  0;
+global.object_ratio =  1;
 
-global.game_pause   = false;
+global.game_pause   = -1;
 
-add_time            = false;
-culling             = false;
+add_time            =  false;
+culling             =  false;
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -62,7 +62,7 @@ applies_to=self
 */
 /// Pause Menu
 
-if (global.game_pause == false && !instance_exists(ctrl_pause) && input_check(INP_START, CHECK_PRESSED)) {
+if (global.game_pause != -1 && !instance_exists(ctrl_pause) && input_check(INP_START, CHECK_PRESSED)) {
     instance_create(0, 0, ctrl_pause);
 }
 #define Step_1
@@ -73,7 +73,7 @@ applies_to=self
 */
 /// Global Timers
 
-// Don't bother if paused:
+// Don't bother if the game is paused:
 if (game_paused()) exit;
 
 // Stage timer:

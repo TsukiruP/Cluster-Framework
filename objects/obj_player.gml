@@ -277,7 +277,7 @@ applies_to=self
 */
 ///  Inputs
 
-// Don't bother if in the middle of respawning/dying or paused:
+// Don't bother if in the middle of respawning/dying or the game is paused:
 if (action_state == ACTION_RESPAWN || action_state == ACTION_DEATH || game_paused()) exit;
 
 // Receive inputs:
@@ -311,7 +311,9 @@ if (action_state == ACTION_DEATH) {
         } else {
             sound_play("snd_drown");
         }
-
+        
+        global.game_pause = -1;
+        
         // Stop sounds:
         if (sound_isplaying("snd_fly")) sound_stop("snd_fly");
         if (sound_isplaying("snd_fly_drop")) sound_stop("snd_fly_drop");
@@ -359,7 +361,7 @@ applies_to=self
 */
 /// Collision
 
-// Don't bother if in the middle of respawning/dying or paused:
+// Don't bother if in the middle of respawning/dying or the game is paused:
 if (action_state == ACTION_RESPAWN || action_state == ACTION_DEATH || game_paused()) exit;
 
 // Steps:
@@ -388,7 +390,7 @@ applies_to=self
 */
 /// Control
 
-// Don't bother if in the middle of respawning/dying or paused:
+// Don't bother if in the middle of respawning/dying or the game is paused:
 if (action_state == ACTION_RESPAWN || action_state == ACTION_DEATH || game_paused()) exit;
 
 // Slope acceleration/deceleration:
@@ -481,7 +483,7 @@ applies_to=self
 /// Action List
 // A handy list of the action scripts.
 
-// Don't bother if in the middle of respawning/dying:
+// Don't bother if in the middle of respawning/dying or the game is paused:
 if (action_state == ACTION_RESPAWN || action_state == ACTION_DEATH || game_paused()) exit;
 
 switch (character_data) {
@@ -517,7 +519,7 @@ applies_to=self
 /// Handle List
 // A handy list of the object handle scripts.
 
-// Don't bother if paused:
+// Don't bother if the game is paused:
 if (game_paused()) exit;
 
 // Handle scripts:
@@ -531,7 +533,7 @@ applies_to=self
 */
 /// Refill Air
 
-// Don't bother if paused:
+// Don't bother if the game is paused:
 if (game_paused()) exit;
 
 // Don't bother if in the middle of respawning/dying:
@@ -561,7 +563,7 @@ applies_to=self
 */
 /// Status Effects
 
-// Don't bother if in the middle of respawning/dying or paused:
+// Don't bother if in the middle of respawning/dying or the game is paused:
 if (action_state == ACTION_RESPAWN || action_state == ACTION_DEATH || game_paused()) exit;
 
 // Invincibility:
@@ -613,7 +615,7 @@ applies_to=self
 */
 /// Air
 
-// Don't bother if paused:
+// Don't bother if the game is paused:
 if (game_paused()) exit;
 
 // Don't bother if in the middle of respawning/dying:
@@ -669,7 +671,7 @@ applies_to=self
 /// Animation Target
 // Sets the animation target and then calls the animation core script.
 
-// Don't bother if paused:
+// Don't bother if the game is paused:
 if (game_paused()) exit;
 
 // Store previous height:
@@ -952,7 +954,7 @@ applies_to=self
 /// Animation Direction
 // Sets the animation direction based on the current action and/or input:
 
-// Don't bother if paused:
+// Don't bother if the game is paused:
 if (game_paused()) exit;
 
 // General:
@@ -980,7 +982,7 @@ applies_to=self
 /// Animation Angle
 // Sets the animation angle based on the current animation.
 
-// Don't bother if in the middle of respawning/dying or paused:
+// Don't bother if in the middle of respawning/dying or the game is paused:
 if (action_state == ACTION_RESPAWN || action_state == ACTION_DEATH || game_paused()) exit;
 
 var angle_mod;
@@ -1081,7 +1083,7 @@ applies_to=self
 /// Animation Depth
 // Sets the animation depth depending on if the player is a cpu or is being carried.
 
-// Don't bother if paused:
+// Don't bother if the game is paused:
 if (game_paused()) exit;
 
 // Change animation depth based on control type:

@@ -7,7 +7,7 @@ applies_to=self
 /// Pause Initialization
 
 // Pause:
-global.game_pause = true;
+global.game_pause = 1;
 sound_pause_all();
 
 // Menu variables:
@@ -28,8 +28,9 @@ pause_hide     = 0;
 
 sub_distance   = pause_target + sprite_get_width(pause_sprite);
 
-// Fade handle:
-fade_handle = fade_create(0.06, 0.6);
+// Handle:
+fade_handle       = fade_create(0.06, 0.6);
+transition_handle = noone;
 #define Step_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -101,7 +102,13 @@ if (pause_delay == 0) {
             // Sub menu:
             case 1:
                 if (sub_selection == 0) {
-
+                    switch (sub_level) {
+                        // Restart
+                        case 0:
+                            menu_lock   = true;
+                            fade_handle = fade_create(0.02, 2, depth);
+                            break;
+                    }
                 }
 
                 // Return to pause menu:
@@ -140,10 +147,32 @@ if (pause_delay > 0) {
     pause_delay -= 1;
 
     if (pause_delay == 0 && menu_lock == true) {
-        pause_target = global.display_width + sprite_get_width(pause_sprite);
-        global.game_pause = false;
+        pause_target      = global.display_width + sprite_get_width(pause_sprite);
+        global.game_pause = 0;
         sound_resume_all();
         fade_reverse(fade_handle);
+    }
+}
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Restart
+
+if (menu_lock == false) exit;
+
+if (instance_exists(fade_handle)) {
+    if (fade_handle.fade_timer == 2) {
+        if (transition_handle == noone) {
+            transition_handle                  = transition_create(room);
+            transition_handle.depth            = depth;
+            transition_handle.pause_ignore     = true;
+            transition_handle.transition_timer = 0.50;
+        }
+
+        sound_stop_all();
+        sound_resume_all();
     }
 }
 #define Step_2
