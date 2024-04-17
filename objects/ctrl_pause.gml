@@ -58,6 +58,24 @@ if (input_check(INP_SELECT, CHECK_PRESSED)) {
     else ctrl_hud.visible = true;
 }
 
+// Cancel:
+if (input_check(INP_CANCEL, CHECK_PRESSED)) {
+    if (pause_hide == 0) {
+        switch (menu_level) {
+            case 1:
+                event_user(1);
+                break;
+
+            default:
+                event_user(0);
+        }
+    } else {
+        pause_hide          = 0;
+        fade_handle.visible = true;
+        ctrl_hud.visible    = true;
+    }
+}
+
 // Exit if hiding the menu:
 if (pause_hide != 0) exit;
 
@@ -116,18 +134,6 @@ if (pause_delay == 0) {
                     event_user(1);
                 }
                 break;
-        }
-    }
-
-    // Cancel:
-    if (input_check(INP_CANCEL, CHECK_PRESSED)) {
-        switch (menu_level) {
-            case 1:
-                event_user(1);
-                break;
-
-            default:
-                event_user(0);
         }
     }
 
