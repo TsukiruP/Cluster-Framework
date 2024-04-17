@@ -2,6 +2,6 @@ sprite=
 visible=1
 solid=0
 persistent=1
-depth=-14000
+depth=-16000
 parent=par_indestructable
 mask=

@@ -584,7 +584,6 @@ applies_to=self
 /// Enable Pause
 
 persistent        =  false;
-depth             = -14000;
 pause_ignore      =  false;
 global.game_pause =  0;
 #define Draw_0
