@@ -583,9 +583,9 @@ applies_to=self
 */
 /// Enable Pause
 
-persistent        =  false;
-pause_ignore      =  false;
-global.game_pause =  0;
+persistent         =  false;
+pause_ignore       =  false;
+global.pause_allow = true;
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1

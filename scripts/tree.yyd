@@ -17,6 +17,7 @@
 		|room_set_data
 		|room_get_data
 		|room_view_set_all
+		|stage_start
 	+Draw
 		|parallax_add_node
 		|draw_backdrop_tiled_area
@@ -80,17 +81,16 @@
 			|ctl_skid
 			|ctl_ring_sparkle
 	+Misc.
+		|wrap
+		|wrap_angle
 		|window_resize
 		|transition_create
 		|fade_create
 		|fade_reverse
+		|game_paused
 		|in_view
 		|player_exists
 		|water_exists
-		|stage_start
-		|game_paused
-		|wrap
-		|wrap_angle
 		|effect_create
 +Gameplay
 	+Player

@@ -81,7 +81,7 @@ global.setting_gameplay_debuffs    = ini_read_real("gameplay", "debuffs", false)
 global.setting_gameplay_checkpoint = ini_read_real("gameplay", "checkpoint", true);
 
 // Read/create misc. settings:
-global.setting_misc_hud     = ini_read_real("misc", "hud", 1);
+global.setting_misc_hud     = ini_read_real("misc", "hud", 0);
 global.setting_misc_status  = ini_read_real("misc", "status", 1);
 global.setting_misc_feed    = ini_read_real("misc", "feed", true);
 global.setting_misc_trails  = ini_read_real("misc", "trails", false);
@@ -204,7 +204,7 @@ applies_to=self
 // Randomize:
 randomize();
 
-// Character related:
+// Player inisitalization:
 global.player_instance[0]    =   noone;
 global.player_instance[1]    =   noone;
 global.player_data[0]        =   CHAR_SONIC;

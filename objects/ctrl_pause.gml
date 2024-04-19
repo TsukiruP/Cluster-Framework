@@ -6,8 +6,7 @@ applies_to=self
 */
 /// Pause Initialization
 
-// Pause:
-global.game_pause = 1;
+// Pause audio:
 sound_pause_all();
 
 // Menu variables:
@@ -25,6 +24,7 @@ pause_speed    = 0;
 pause_target   = global.display_width / 2;
 pause_delay    = 2;
 pause_hide     = 0;
+pause_active   = true;
 
 sub_distance   = pause_target + sprite_get_width(pause_sprite);
 
@@ -47,15 +47,7 @@ if (menu_lock == true) exit;
 // Hide pause:
 if (input_check(INP_SELECT, CHECK_PRESSED)) {
     pause_hide += 1;
-    pause_hide = wrap(pause_hide, 0, 1 + (global.misc_hud != 0));
-
-    // Hide pause fade:
-    if (pause_hide != 0) fade_handle.visible = false;
-    else fade_handle.visible = true;
-
-    // Hide the HUD:
-    if (pause_hide == 2) ctrl_hud.visible = false;
-    else ctrl_hud.visible = true;
+    pause_hide  = wrap(pause_hide, 0, 1 + (instance_exists(ctrl_transition) || global.misc_hud != 0));
 }
 
 // Cancel:
@@ -69,12 +61,21 @@ if (input_check(INP_CANCEL, CHECK_PRESSED)) {
             default:
                 event_user(0);
         }
-    } else {
-        pause_hide          = 0;
-        fade_handle.visible = true;
-        ctrl_hud.visible    = true;
+    }
+
+    // Reset appearance:
+    else {
+        pause_hide = 0;
     }
 }
+
+// Hide fade:
+if (pause_hide != 0) fade_handle.visible = false;
+else fade_handle.visible = true;
+
+// Hide overlays:
+if (pause_hide == 2) par_overlay.visible = false;
+else par_overlay.visible = true;
 
 // Exit if hiding the menu:
 if (pause_hide != 0) exit;
@@ -153,8 +154,9 @@ if (pause_delay > 0) {
     pause_delay -= 1;
 
     if (pause_delay == 0 && menu_lock == true) {
-        pause_target      = global.display_width + sprite_get_width(pause_sprite);
-        global.game_pause = 0;
+        pause_target = global.display_width + sprite_get_width(pause_sprite);
+        pause_active = false;
+
         sound_resume_all();
         fade_reverse(fade_handle);
     }

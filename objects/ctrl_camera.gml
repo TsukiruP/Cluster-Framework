@@ -41,6 +41,9 @@ applies_to=self
 */
 /// Camera Lag
 
+// Don't bother if the game is paused:
+if (game_paused()) exit;
+
 if (camera_lag_alarm > 0) camera_lag_alarm -= 1;
 else camera_lag_alarm = 0;
 #define Step_2
@@ -50,6 +53,9 @@ action_id=603
 applies_to=self
 */
 /// Camera Shift
+
+// Don't bother if the game is paused:
+if (game_paused()) exit;
 
 // Shift around the player:
 if (player_exists(0) != noone) {
@@ -94,6 +100,9 @@ border_left   = camera_x - 8;
 border_right  = camera_x + 8;
 border_top    = camera_y - 32;
 border_bottom = camera_y + 32;
+
+// Don't bother if the game is paused:
+if (game_paused()) exit;
 
 // Focus on player:
 if (player_exists(0) != noone) {

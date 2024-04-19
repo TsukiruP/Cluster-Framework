@@ -1,6 +1,7 @@
 +System
 	|ctrl_initialization
 	|par_indestructable
+	|par_overlay
 	+Controllers
 		|ctrl_display
 		|ctrl_audio

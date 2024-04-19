@@ -312,7 +312,7 @@ if (action_state == ACTION_DEATH) {
             sound_play("snd_drown");
         }
         
-        global.game_pause = -1;
+        global.pause_allow = false;
         
         // Stop sounds:
         if (sound_isplaying("snd_fly")) sound_stop("snd_fly");
