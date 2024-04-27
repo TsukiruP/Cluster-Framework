@@ -81,7 +81,7 @@ global.setting_gameplay_debuffs    = ini_read_real("gameplay", "debuffs", false)
 global.setting_gameplay_checkpoint = ini_read_real("gameplay", "checkpoint", true);
 
 // Read/create misc. settings:
-global.setting_misc_hud     = ini_read_real("misc", "hud", 0);
+global.setting_misc_hud     = ini_read_real("misc", "hud", 1);
 global.setting_misc_status  = ini_read_real("misc", "status", 1);
 global.setting_misc_feed    = ini_read_real("misc", "feed", true);
 global.setting_misc_trails  = ini_read_real("misc", "trails", false);
@@ -149,6 +149,8 @@ applies_to=self
 */
 /// Save Initialization
 
+global.save_rings = 0;
+
 // Read/create Sonic skill settings:
 global.save_sonic_skill_jump     = 0;
 global.save_sonic_skill_special  = 0;
@@ -204,7 +206,7 @@ applies_to=self
 // Randomize:
 randomize();
 
-// Player inisitalization:
+// Player initialization:
 global.player_instance[0]    =   noone;
 global.player_instance[1]    =   noone;
 global.player_data[0]        =   CHAR_SONIC;
@@ -220,10 +222,22 @@ global.checkpoint_x          = -1;
 global.checkpoint_y          = -1;
 global.checkpoint_time       = -1;
 
+// Game initialization:
+global.game_rings   = 0;
+global.game_score   = 0;
+global.game_time    = 0;
+
+global.object_time  = 0;
+global.object_ratio = 1;
+
+global.time_allow   = false;
+global.pause_allow  = true;
+
 // Set views:
 room_view_set_all();
 
 // Create controllers:
+instance_create(x, y, ctrl_game);
 instance_create(x, y, ctrl_display);
 instance_create(x, y, ctrl_audio);
 instance_create(x, y, ctrl_input);

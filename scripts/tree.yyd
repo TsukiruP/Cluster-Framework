@@ -13,11 +13,14 @@
 		|key_to_string
 		|pad_to_chr
 		|string_place_value
+		|text_message_set
+	+Game
+		|game_start
+		|game_paused
 	+Room
 		|room_set_data
 		|room_get_data
 		|room_view_set_all
-		|stage_start
 	+Draw
 		|parallax_add_node
 		|draw_backdrop_tiled_area
@@ -87,7 +90,6 @@
 		|transition_create
 		|fade_create
 		|fade_reverse
-		|game_paused
 		|in_view
 		|player_exists
 		|water_exists

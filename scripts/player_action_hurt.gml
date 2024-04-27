@@ -5,7 +5,7 @@
 if (action_state == ACTION_DEATH || action_state == ACTION_HURT || invincibility_type > 0) exit;
 
 // Hurt:
-if ((input_cpu == false && (global.stage_rings > 0 || shield_data != 0)) || input_cpu == true) {
+if ((input_cpu == false && (global.game_rings > 0 || shield_data != 0)) || input_cpu == true) {
     ground              =  false;
     action_state        =  ACTION_HURT;
     invincibility_type  =  1;

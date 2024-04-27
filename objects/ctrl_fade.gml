@@ -10,7 +10,7 @@ fade_speed  = 0;
 fade_timer  = 0;
 fade_target = 0;
 fade_color  = c_black;
-#define Step_1
+#define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603

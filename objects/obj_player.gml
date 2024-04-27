@@ -232,8 +232,8 @@ applies_to=self
 /// Animation Initialization
 
 animation_grid      = -1;
-animation_target    =  "";
 animation_current   =  "";
+animation_target    =  "";
 animation_previous  =  animation_current;
 animation_variant   =  0;
 animation_moment    =  0;
@@ -267,7 +267,7 @@ applies_to=self
 if (global.checkpoint_x != -1 && global.checkpoint_y != -1) {
     x                 = global.checkpoint_x;
     y                 = global.checkpoint_y;
-    global.stage_time = global.checkpoint_time;
+    global.game_time = global.checkpoint_time;
 }
 #define Step_0
 /*"/*'/**//* YYD ACTION

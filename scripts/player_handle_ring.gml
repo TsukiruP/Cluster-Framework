@@ -18,7 +18,7 @@ if (player_collision_prop(SIDE_MAIN, ring_handle) != 0) {
             }
 
             // Add to stage rings:
-            global.stage_rings += 1;
+            global.game_rings += 1;
 
             // Play sound:
             sound_play_single("snd_ring");

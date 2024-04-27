@@ -6,10 +6,8 @@ applies_to=self
 */
 /// HUD Initialization
 
-// State variables:
-hide = true;
-
 // HUD variables:
+hud_hide     =  true;
 hud_sprite   =  spr_hud;
 hud_target   =  4;
 hud_factor   =  4;
@@ -56,7 +54,7 @@ applies_to=self
 if (game_paused()) exit;
 
 // HUD movement:
-if (hide == false) {
+if (hud_hide == false) {
     if (hud_position == -1) hud_position = hud_target;
     else if (hud_position < hud_target) {
         hud_speed     = ceil(abs(hud_position - hud_target) / hud_factor);
@@ -208,13 +206,13 @@ if (global.misc_hud == 1) {
 
     // Timer:
     draw_sprite(spr_hud, 0, view_xview[view_current] + hud_position, view_yview[view_current] + 6);
-    draw_text(view_xview[view_current] + hud_position + 29, view_yview[view_current] + 11, string_place_value(global.stage_time div 3600, 2));
-    draw_text(view_xview[view_current] + hud_position + 54, view_yview[view_current] + 11, string_place_value((global.stage_time div 60) mod 60, 2));
-    draw_text(view_xview[view_current] + hud_position + 79, view_yview[view_current] + 11, string_place_value(floor(global.stage_time * 1.667) mod 100, 2));
+    draw_text(view_xview[view_current] + hud_position + 29, view_yview[view_current] + 11, string_place_value(global.game_time div 3600, 2));
+    draw_text(view_xview[view_current] + hud_position + 54, view_yview[view_current] + 11, string_place_value((global.game_time div 60) mod 60, 2));
+    draw_text(view_xview[view_current] + hud_position + 79, view_yview[view_current] + 11, string_place_value(floor(global.game_time * 1.667) mod 100, 2));
 
     // Rings:
     draw_sprite(spr_hud, 1, view_xview[view_current] + hud_position, view_yview[view_current] + 32);
-    draw_text(view_xview[view_current] + hud_position + 29, view_yview[view_current] + 37, string_place_value(global.stage_rings, 3));
+    draw_text(view_xview[view_current] + hud_position + 29, view_yview[view_current] + 37, string_place_value(global.game_rings, 3));
 
     // Air:
     draw_sprite(spr_hud, 2, view_xview[view_current] + air_position, view_yview[view_current] + 58);

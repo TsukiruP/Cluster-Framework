@@ -1,4 +1,4 @@
-/// stage_start()
+/// game_start()
 //
 
 // Player input lock:

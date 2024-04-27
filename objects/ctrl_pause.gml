@@ -18,18 +18,18 @@ sub_level      = 0;
 sub_selection  = 0;
 
 // Pause variables:
+pause_hide     = 0;
 pause_sprite   = spr_pause;
 pause_position = global.display_width + sprite_get_width(pause_sprite);
 pause_speed    = 0;
 pause_target   = global.display_width / 2;
 pause_delay    = 2;
-pause_hide     = 0;
 pause_active   = true;
 
 sub_distance   = pause_target + sprite_get_width(pause_sprite);
 
 // Handle:
-fade_handle       = fade_create(0.06, 0.6);
+fade_handle       = noone;
 transition_handle = noone;
 #define Step_0
 /*"/*'/**//* YYD ACTION
@@ -44,28 +44,31 @@ var menu_down, menu_up, menu_direction;
 // Exit if some menu behavior has been executed:
 if (menu_lock == true) exit;
 
-// Hide pause:
-if (input_check(INP_SELECT, CHECK_PRESSED)) {
-    pause_hide += 1;
-    pause_hide  = wrap(pause_hide, 0, 1 + (instance_exists(ctrl_transition) || global.misc_hud != 0));
-}
-
-// Cancel:
-if (input_check(INP_CANCEL, CHECK_PRESSED)) {
-    if (pause_hide == 0) {
-        switch (menu_level) {
-            case 1:
-                event_user(1);
-                break;
-
-            default:
-                event_user(0);
-        }
+// Input delay:
+if (pause_delay == 0) {
+    // Hide pause:
+    if (input_check(INP_SELECT, CHECK_PRESSED)) {
+        pause_hide += 1;
+        pause_hide  = wrap(pause_hide, 0, 1 + (instance_exists(ctrl_transition) || global.misc_hud != 0));
     }
 
-    // Reset appearance:
-    else {
-        pause_hide = 0;
+    // Cancel:
+    if (input_check(INP_CANCEL, CHECK_PRESSED)) {
+        if (pause_hide == 0) {
+            switch (menu_level) {
+                case 1:
+                    event_user(1);
+                    break;
+
+                default:
+                    event_user(0);
+            }
+        }
+
+        // Reset appearance:
+        else {
+            pause_hide = 0;
+        }
     }
 }
 

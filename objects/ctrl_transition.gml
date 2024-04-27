@@ -78,17 +78,18 @@ if (transition_type == TRANS_FADE) {
         }
 
         if (fade_handle.fade_timer >= 1) {
-            fade_state = 1;
+            global.time_allow = false;
+            fade_state        = 1;
         }
     }
 
     // 1 - Standing by:
     if (fade_state == 1) {
-        if (transition_standby < 0.5) {
+        if (transition_standby < 1) {
             transition_standby += transition_speed;
 
-            if (transition_standby >= 0.5) {
-                transition_standby = 0.5;
+            if (transition_standby >= 1) {
+                transition_standby =1;
 
                 if (debug == true) {
                     event_user(0);
@@ -113,6 +114,9 @@ if (transition_type == TRANS_FADE) {
 
     // 3 - End fade:
     if (fade_state == 3) {
+        // Start game:
+        game_start();
+
         if (!instance_exists(fade_handle)) instance_destroy();
     }
 }
@@ -236,9 +240,11 @@ if (transition_type == TRANS_CARD) {
             zone_position += zone_speed;
 
             if (zone_position >= zone_target - zone_start) {
-                zone_speed       = 0;
-                zone_position    = -zone_start + zone_target;
-                title_card_state = 2;
+                global.time_allow = false;
+                
+                zone_speed        = 0;
+                zone_position     = -zone_start + zone_target;
+                title_card_state  = 2;
             }
         }
     }
@@ -267,10 +273,7 @@ if (transition_type == TRANS_CARD) {
     }
 
     // 3 - Standing by:
-    if (title_card_state == 3) {
-        ctrl_stage.culling =  true;
-        
-        if (transition_standby < 2) {
+    if (title_card_state == 3) {if (transition_standby < 2) {
             transition_standby += transition_speed;
 
             if (transition_standby >= 2) {
@@ -304,7 +307,7 @@ if (transition_type == TRANS_CARD) {
                     }
                 } else {
                     if (room_kickoff != KICKOFF_DEFAULT && room_kickoff != KICKOFF_RUN) {
-                        with (player_exists(0)) input_lock = false;
+                        //with (player_exists(0)) input_lock = false;
                     }
                 }
             }
@@ -313,8 +316,6 @@ if (transition_type == TRANS_CARD) {
                 background_speed    = 0;
                 background_position = background_target;
                 title_card_state    = 5;
-                
-                event_user(2);
             }
         }
     }
@@ -351,8 +352,8 @@ if (transition_type == TRANS_CARD) {
 
         if (debug == true || room_kickoff == KICKOFF_DEBUG || (room_kickoff == KICKOFF_DEFAULT && transition_standby == 3.7) ||
             (room_kickoff == KICKOFF_READY && transition_standby >= 2.2) || (room_kickoff == KICKOFF_RUN && room_run_end_x == -1)) {
-            // Start stage:
-            stage_start();
+            // Start game:
+            game_start();
             
             // Banner end:
             if (banner_position > banner_target) {
@@ -378,7 +379,11 @@ if (transition_type == TRANS_CARD) {
         }
 
         // Title card end:
-        if (banner_position == banner_target && zone_distance == zone_target) instance_destroy();
+        if (banner_position == banner_target && zone_distance == zone_target) {
+            global.time_allow = true;
+            
+            instance_destroy();
+        }
     }
 }
 /*"/*'/**//* YYD ACTION
@@ -482,10 +487,7 @@ if (transition_type == TRANS_RETRY) {
     }
 
     // 4 - Background end:
-    if (retry_state == 4) {
-        ctrl_stage.culling = true;
-
-        if (transition_timer < 1) transition_timer += transition_speed;
+    if (retry_state == 4) {if (transition_timer < 1) transition_timer += transition_speed;
         else {
             // Background target:
             background_target = -15;
@@ -498,18 +500,23 @@ if (transition_type == TRANS_RETRY) {
             }
 
             if (debug == true || room_kickoff != KICKOFF_RUN || (room_kickoff == KICKOFF_RUN && (room_run_end_x == -1 || (global.checkpoint_x != -1 && global.checkpoint_y != -1)))) {
-                // Resume stage:
-                stage_start();
+                // Start game:
+                game_start();
 
-                if (background_position == background_target) {
-                    event_user(2);
-                    instance_destroy();
-                }
+                if (background_position == background_target) instance_destroy();
             }
         }
     }
 }
 #define Other_4
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Pause Ignore
+
+pause_ignore = false;
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -547,20 +554,6 @@ if (room_background != -1) instance_create(0, 0, room_background);
 
 // Create water:
 if (room_water_level != -1) instance_create(0, room_water_level, obj_water_surface);
-
-// Create stage objects:
-if (transition_type == TRANS_CARD || transition_type == TRANS_RETRY) {
-    instance_create(0, 0, ctrl_stage);
-    instance_create(0, 0, ctrl_hud);
-
-    instance_deactivate_all(true);
-    instance_activate_object(gm82core_object);
-    instance_activate_object(ctrl_display);
-    instance_activate_object(ctrl_audio);
-    instance_activate_object(ctrl_input);
-    instance_activate_object(ctrl_text);
-    instance_activate_object(ctrl_stage);
-}
 #define Other_10
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -583,29 +576,10 @@ applies_to=self
 */
 /// Enable Pause
 
-persistent         =  false;
-pause_ignore       =  false;
+persistent         = false;
+pause_ignore       = false;
 global.pause_allow = true;
 #define Draw_0
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Draw Fade Transition
-/*
-if (transition_type == TRANS_FADE) {
-    draw_set_color(c_black);
-    draw_set_alpha(transition_timer);
-
-    draw_rectangle(view_xview[view_current], view_yview[view_current], view_xview[view_current] + global.display_width, view_yview[view_current] + global.display_height, false);
-
-    // Reset draw variables:
-    draw_set_color(c_white);
-    draw_set_alpha(1);
-    draw_set_halign(fa_left);
-    draw_set_valign(fa_top);
-}
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603

@@ -2,7 +2,9 @@
 	|ctrl_initialization
 	|par_indestructable
 	|par_overlay
+	|ctrl_culling
 	+Controllers
+		|ctrl_game
 		|ctrl_display
 		|ctrl_audio
 		|ctrl_input
@@ -11,8 +13,6 @@
 		|ctrl_fade
 		+Stage Controllers
 			|ctrl_camera
-			|ctrl_culling
-			|ctrl_stage
 			|ctrl_hud
 			|ctrl_pause
 			|ctrl_tally
