@@ -1,4 +1,4 @@
-/// text_message_set([strings to be added])
+/// text_message_set(str1, str2, ...)
 // Sets the text controller's message variables
 
 with (ctrl_text) {
@@ -9,9 +9,6 @@ with (ctrl_text) {
     for (i = 0; i < argument_count; i += 1) {
         text_message[i] = argument[i];
     }
-    
-    // Add first message to log:
-    log_message += text_message[0];
     
     // Reset current & target:
     text_current = 0;
