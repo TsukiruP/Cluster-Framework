@@ -42,6 +42,13 @@ text_overflow    = false;
 
 // Header variables:
 header_message = 0;
+
+// Log variables:
+log_message  = "";
+log_current  = 0;
+
+log_alpha[0] = 0; // Background alpha
+log_alpha[1] = 0; // Text alpha
 #define Step_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -54,7 +61,14 @@ if (text_clear == false) {
     // Advance text:
     if (text_current == text_target && text_alpha[2] == 1 && text_overflow == false && input_check(INP_ACCEPT, CHECK_PRESSED)) {
         // Update text target:
-        if (text_target != text_length) text_target += 1;
+        if (text_target != text_length) {
+            text_target += 1;
+        }
+
+        // Clear text:
+        else {
+            text_clear = true;
+        }
     }
 }
 #define Step_2
@@ -65,42 +79,76 @@ applies_to=self
 */
 /// Text Box Alpha
 
-if (text_message != "") {
-    // Box alpha:
-    if (text_alpha[0] < 0.6) {
-        text_alpha[0] += text_alpha[1];
-    } else {
-        text_alpha[0] = 0.6;
-    }
-
-    // Text alpha:
-    if (text_clear == false) {
-        // Fade in text:
-        if (text_current == text_target) {
-            if (text_alpha[2] < 1) {
-                text_alpha[2] += text_alpha[3];
-            } else {
-                text_alpha[2] = 1;
-            }
+if (text_clear == false) {
+    if (text_message != "") {
+        // Box alpha:
+        if (text_alpha[0] < 0.6) {
+            text_alpha[0] += text_alpha[1];
+        } else {
+            text_alpha[0] = 0.6;
         }
 
-        // Fade out text:
-        else {
-            if (text_alpha[2] > -0.5) {
-                text_alpha[2] -= text_alpha[3];
+        // Text alpha:
+        if (text_clear == false) {
+            // Fade in text:
+            if (text_current == text_target) {
+                if (text_alpha[2] < 1) {
+                    text_alpha[2] += text_alpha[3];
+                } else {
+                    text_alpha[2] = 1;
+                }
+            }
 
-                if (text_alpha[2] == -0.5) {
-                    text_overflow  = false;
-                    text_current   = text_target;
+            // Fade out text:
+            else {
+                if (text_alpha[2] > -0.5) {
+                    text_alpha[2] -= text_alpha[3];
 
-                    text_scroll[0] = 0;
-                    text_scroll[1] = 0;
-                    text_scroll[4] = false;
+                    if (text_alpha[2] == -0.5) {
+                        text_current   = text_target;
 
-                    text_alpha[2]  = 0;
+                        text_scroll[0] = 0;
+                        text_scroll[1] = 0;
+                        text_scroll[4] = false;
+
+                        text_alpha[2]  = 0;
+
+                        text_overflow  = false;
+                    }
                 }
             }
         }
+    }
+}
+
+// Clear text:
+else {
+    // Box alpha:
+    if (text_alpha[0] > 0) {
+        text_alpha[0] -= text_alpha[1];
+    } else {
+        text_alpha[0] = 0;
+    }
+
+    // Text alpha:
+    if (text_alpha[2] > 0) {
+        text_alpha[2] -= text_alpha[3];
+    } else {
+        text_alpha[2] = 0;
+    }
+
+    if (text_alpha[0] == 0 && text_alpha[2] == 0) {
+        text_message   = "";
+        text_length    = 0;
+        text_current   = 0;
+        text_target    = 0;
+
+        text_scroll[0] = 0;
+        text_scroll[1] = 0;
+        text_scroll[4] = false;
+
+        text_overflow  = false;
+        text_clear     = false;
     }
 }
 #define Other_3
@@ -122,17 +170,21 @@ applies_to=self
 */
 /// Draw Text Box
 
-// Draw box:
-draw_set_color(c_blue);
-draw_set_alpha(text_alpha[0]);
-
-draw_rectangle(view_xview[view_current], view_yview[view_current] + global.display_height - 19 - 59, view_yview[view_current] + global.display_width, view_yview[view_current] + global.display_height - 19, false);
-
-// Draw text:
 if (text_message != "") {
     var font_height, text_height;
 
+    // Box:
+    draw_set_color(c_blue);
+    draw_set_alpha(text_alpha[0]);
+
+    draw_rectangle(view_xview[view_current], view_yview[view_current] + global.display_height - 19 - 59, view_xview[view_current] + global.display_width, view_yview[view_current] + global.display_height - 19, false);
+
+    // Font:
     draw_set_font(global.font_system);
+    draw_set_color(c_white);
+    draw_set_alpha(text_alpha[2]);
+    draw_set_halign(fa_left);
+    draw_set_valign(fa_top);
 
     font_height = string_height("Test");
     text_height = string_height_ext(text_message[text_current], font_height, global.display_width - (text_position[0] * 2));
@@ -172,13 +224,15 @@ if (text_message != "") {
         text_scroll[0]  += scroll_direction;
     }
 
-    draw_set_color(c_white);
-    draw_set_alpha(text_alpha[2]);
-    draw_set_halign(fa_left);
-    draw_set_valign(fa_top);
-
+    // Text:
     draw_text_ext(text_position[0], -text_scroll[0], text_message[text_current], font_height, global.display_width - (text_position[0] * 2));
 }
+
+// Reset draw variables:
+draw_set_color(c_white);
+draw_set_alpha(1);
+draw_set_halign(fa_left);
+draw_set_valign(fa_top);
 #define KeyPress_32
 /*"/*'/**//* YYD ACTION
 lib_id=1

@@ -10,6 +10,9 @@ with (ctrl_text) {
         text_message[i] = argument[i];
     }
     
+    // Add first message to log:
+    log_message += text_message[0];
+    
     // Reset current & target:
     text_current = 0;
     text_target  = 0;
