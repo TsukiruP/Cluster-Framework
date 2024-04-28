@@ -188,7 +188,7 @@ applies_to=self
 /// Title Card Transition
 
 // Don't bother if the game is paused:
-if (pause_ignore == false && game_paused()) exit;
+if (pause_ignore == false && game_paused(ctrl_pause)) exit;
 
 if (transition_type == TRANS_CARD) {
     // Banner scroll:

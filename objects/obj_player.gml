@@ -672,7 +672,7 @@ applies_to=self
 // Sets the animation target and then calls the animation core script.
 
 // Don't bother if the game is paused:
-if (game_paused()) exit;
+if (game_paused(ctrl_pause)) exit;
 
 // Store previous height:
 main_height_temp = main_height;

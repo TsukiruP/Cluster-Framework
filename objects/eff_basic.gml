@@ -11,7 +11,7 @@ image_speed = 0;
 
 // Timeline initialization:
 ctl_initialize();
-#define Step_0
+#define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603

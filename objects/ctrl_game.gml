@@ -33,7 +33,7 @@ applies_to=self
 /// Global Timers
 
 // Don't bother if the game is paused:
-if (game_paused()) exit;
+if (game_paused(ctrl_pause)) exit;
 
 // Stage timer:
 if (global.time_allow == true) {

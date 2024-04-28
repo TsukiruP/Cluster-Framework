@@ -45,7 +45,7 @@ if (dropped == true) {
 
     // Add gravity:
     y_speed += y_gravity * global.object_ratio;
-    y += y_speed * global.object_ratio;
+    y       += y_speed * global.object_ratio;
 
     // Terrain collision:
     if ((object_point_check(bbox_left, y) && x_speed < 0) || (object_point_check(bbox_right, y) && x_speed > 0)) {

@@ -13,7 +13,7 @@
 		|key_to_string
 		|pad_to_chr
 		|string_place_value
-		|text_message_set
+		|text_message_add_many
 	+Game
 		|game_start
 		|game_paused

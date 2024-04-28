@@ -143,4 +143,4 @@ ctl_spin_charge
 ctl_skid
 fade_reverse
 wrap
-text_message_set
+text_message_add_many

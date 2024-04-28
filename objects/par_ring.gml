@@ -26,6 +26,6 @@ applies_to=self
 /// Animate
 
 // Don't bother if the game is paused:
-if (game_paused()) exit;
+if (game_paused(ctrl_pause)) exit;
 
 image_index = floor(global.object_time) div (8 / (1 + dropped));
