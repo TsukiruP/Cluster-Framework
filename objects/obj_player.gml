@@ -537,17 +537,16 @@ applies_to=self
 if (game_paused()) exit;
 
 // Don't bother if in the middle of respawning/dying:
-if (action_state != ACTION_RESPAWN && action_state != ACTION_DEATH && !instance_exists(ctrl_tally)) {
-    if (physics_type == PHYS_UNDERWATER) {
-        // Refill air if in breathe action or bubble shield:
-        if (action_state == ACTION_BREATHE || shield_data == SHIELD_BUBBLE) {
-            air_remaining = 30;
-            air_alarm     = 60;
+if (action_state != ACTION_RESPAWN && action_state != ACTION_DEATH && physics_type == PHYS_UNDERWATER && !instance_exists(ctrl_tally)) {
+    // Refill air if in breathe action or bubble shield:
+    if (action_state == ACTION_BREATHE || shield_data == SHIELD_BUBBLE) {
+        air_remaining = 30;
+        air_alarm     = 60;
 
-            // Stop jingle:
-            if (input_cpu == false) sound_stop("bgm_drown");
-        }
+        // Stop jingle:
+        if (input_cpu == false) sound_stop("bgm_drown");
     }
+
 } else {
     air_remaining = 30;
     air_alarm     = 60;
