@@ -77,7 +77,7 @@ if (transition_type == TRANS_FADE) {
             fade_handle.persistent = true;
         }
 
-        if (fade_handle.fade_timer >= 1) {
+        if (fade_handle.fade_alpha >= 1) {
             global.time_allow = false;
             fade_state        = 1;
         }
