@@ -13,7 +13,8 @@
 		|key_to_string
 		|pad_to_chr
 		|string_place_value
-		|text_message_add_many
+		|text_message_set
+		|topic_message_set
 	+Game
 		|game_start
 		|game_paused
@@ -180,7 +181,6 @@
 			|player_collision_object_bottom
 		|player_get_angle_OLD
 		|player_set_angle_OLD
-	|player_handle_list
 	|player_animation_target
 	|player_animation_direction
 	|player_animation_angle

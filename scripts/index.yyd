@@ -77,7 +77,7 @@ draw_background_tiled_horizontal_part_yscale
 effect_create
 
 string_place_value
-player_handle_list
+topic_message_set
 player_handle_ring
 player_get_item
 credits
@@ -143,4 +143,4 @@ ctl_spin_charge
 ctl_skid
 fade_reverse
 wrap
-text_message_add_many
+text_message_set
