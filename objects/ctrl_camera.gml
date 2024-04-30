@@ -42,7 +42,7 @@ applies_to=self
 /// Camera Lag
 
 // Don't bother if the game is paused:
-if (game_paused()) exit;
+if (game_paused(ctrl_pause)) exit;
 
 if (camera_lag_alarm > 0) camera_lag_alarm -= 1;
 else camera_lag_alarm = 0;
@@ -55,7 +55,7 @@ applies_to=self
 /// Camera Shift
 
 // Don't bother if the game is paused:
-if (game_paused()) exit;
+if (game_paused(ctrl_pause)) exit;
 
 // Shift around the player:
 if (player_exists(0) != noone) {
@@ -102,7 +102,7 @@ border_top    = camera_y - 32;
 border_bottom = camera_y + 32;
 
 // Don't bother if the game is paused:
-if (game_paused()) exit;
+if (game_paused(ctrl_pause)) exit;
 
 // Focus on player:
 if (player_exists(0) != noone) {

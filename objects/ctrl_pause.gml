@@ -39,6 +39,9 @@ applies_to=self
 */
 /// Navigation
 
+// Don't bother if the game is paused:
+if (game_paused(ctrl_text)) exit;
+
 var menu_down, menu_up, menu_direction;
 
 // Exit if some menu behavior has been executed:
@@ -174,7 +177,7 @@ applies_to=self
 if (menu_lock == false) exit;
 
 if (instance_exists(fade_handle)) {
-    if (fade_handle.fade_timer == 2) {
+    if (fade_handle.fade_alpha == 2) {
         if (transition_handle == noone) {
             transition_handle                  = transition_create(room);
             transition_handle.depth            = depth;
@@ -239,10 +242,11 @@ applies_to=self
 */
 /// Draw Menu
 
-if (pause_hide == 0) {
-    // Pause menu:
-    draw_sprite(pause_sprite, menu_selection, view_xview[view_current] + pause_position, view_yview[view_current] + global.display_height / 2);
+// Don't draw if hidden:
+if (pause_hide != 0) exit;
 
-    // Sub menu:
-    draw_sprite(pause_sprite, 3 + sub_selection + sub_level * 2, view_xview[view_current] + pause_position + sub_distance, view_yview[view_current] + global.display_height / 2);
-}
+// Pause menu:
+draw_sprite(pause_sprite, menu_selection, view_xview[view_current] + pause_position, view_yview[view_current] + global.display_height / 2);
+
+// Sub menu:
+draw_sprite(pause_sprite, 3 + sub_selection + sub_level * 2, view_xview[view_current] + pause_position + sub_distance, view_yview[view_current] + global.display_height / 2);

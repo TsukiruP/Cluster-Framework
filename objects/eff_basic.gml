@@ -20,7 +20,7 @@ applies_to=self
 /// Animate
 
 // Don't bother if the game is paused:
-if (game_paused()) exit;
+if (game_paused(ctrl_pause)) exit;
 
 // Execute Custom Timeline
 if (ctl_index != noone) {

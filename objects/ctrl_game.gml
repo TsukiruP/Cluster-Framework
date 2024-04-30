@@ -15,7 +15,7 @@ applies_to=self
 
 if (!player_exists(0)) exit;
 
-if (global.pause_allow == true && !instance_exists(ctrl_pause) && input_check(INP_START, CHECK_PRESSED)) {
+if (global.pause_allow == true && !instance_exists(ctrl_pause) && !game_paused(ctrl_text) && input_check(INP_START, CHECK_PRESSED)) {
     var pause_fade;
 
     pause_fade = fade_create(0.06, 0.6, depth);
@@ -36,7 +36,7 @@ applies_to=self
 if (game_paused(ctrl_pause)) exit;
 
 // Stage timer:
-if (global.time_allow == true) {
+if (global.time_allow == true && !game_paused(ctrl_text)) {
     global.game_time += global.object_ratio;
 }
 

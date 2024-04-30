@@ -11,7 +11,7 @@ if (instance_exists(ctrl_pause)) {
 }
 
 // Text pause
-pause_text = ctrl_text.text_message != "";
+pause_text = (ctrl_text.text_message != "" || ctrl_text.topic_message != "" || ctrl_text.log_alpha[1] != 0);
 
 if (argument_count >= 1) {
     if (argument[0] == ctrl_pause) return pause_stage;
