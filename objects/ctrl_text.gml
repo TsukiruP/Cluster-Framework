@@ -122,8 +122,7 @@ if (text_clear == false) {
 
                         // Clear text:
                         else {
-                            text_clear   = true;
-                            log_message += "#";
+                            text_clear = true;
                         }
                     }
 
@@ -311,6 +310,7 @@ if (text_clear == true && text_alpha[2] == 0 && topic_alpha[0] == 0) {
     topic_message  = "";
 
     log_hide       = true;
+    log_message   += "#";
 }
 /*"/*'/**//* YYD ACTION
 lib_id=1
