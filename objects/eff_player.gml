@@ -24,3 +24,6 @@ if (instance_exists(player_handle)) {
 } else {
     instance_destroy();
 }
+
+// Animate:
+event_inherited();
