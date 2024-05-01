@@ -7,7 +7,8 @@ if (action_state == ACTION_LOOK) {
     if (ground == false || g_speed != 0 || y_speed != 0) action_state = ACTION_DEFAULT;
 
     if (ground == true && animation_trigger == true && player_input[INP_UP, CHECK_HELD] == false) {
-        action_state = ACTION_DEFAULT;
+        action_state      = ACTION_DEFAULT;
+        animation_reverse = true;
     }
 }
 

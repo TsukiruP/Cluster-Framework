@@ -44,11 +44,6 @@ if ((player_point_check((wall_width + 1) * animation_direction, wall_height) && 
     else push_animation = false;
 }
 
-// Crouch:
-if ((animation_current == "look" || animation_current == "crouch") && animation_finished && animation_trigger) {
-    player_set_animation("stand");
-}
-
 // Hurt:
 if (ground == true && action_state == ACTION_HURT) {
     action_state = ACTION_DEFAULT;

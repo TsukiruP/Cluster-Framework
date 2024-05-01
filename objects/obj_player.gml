@@ -239,6 +239,7 @@ animation_variant   =  0;
 animation_moment    =  0;
 animation_finished  =  false;
 animation_trigger   =  false;
+animation_reverse   =  false;
 animation_reload    =  false;
 animation_alarm     =  0;
 
