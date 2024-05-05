@@ -16,21 +16,10 @@ if (animation_reverse == false) {
         image_index  = 0;
 
         // Set collision:
-        main_width  = 6;
-        main_height = 14;
-        roll_offset = 0;
 
         // Set hurtbox:
-        hurtbox_width    = 6;
-        hurtbox_height   = 10.5;
-        hurtbox_offset_x = 0;
-        hurtbox_offset_y = 5;
 
         // Set hitbox:
-        hitbox_width    = 0;
-        hitbox_height   = 0;
-        hitbox_offset_x = 0;
-        hitbox_offset_y = 0;
     }
 
     // Change frame:

@@ -62,7 +62,6 @@ main_bottom      = 14;
 relative_left    = main_left;
 relative_right   = main_right;
 
-main_top_temp    = 0;
 main_bottom_temp = 0;
 
 wall_left   = relative_left + 3;
