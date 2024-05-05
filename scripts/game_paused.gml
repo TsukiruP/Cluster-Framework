@@ -1,4 +1,4 @@
-/// game_paused([type])
+/// game_paused([controller])
 // Returns true if the game is currently paused.
 
 var pause_stage, pause_text;

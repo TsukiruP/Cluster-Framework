@@ -22,7 +22,7 @@ applies_to=self
 // Don't bother if the game is paused:
 if (game_paused(ctrl_pause)) exit;
 
-// Execute Custom Timeline
+// Execute timeline:
 if (ctl_index != noone) {
     script_execute(ctl_index);
 }

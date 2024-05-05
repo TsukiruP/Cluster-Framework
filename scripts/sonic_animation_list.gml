@@ -1,7 +1,7 @@
 /// sonic_animation_list()
 
 // Default:
-player_add_animation(CHAR_SONIC, "stand",         ctl_sonic_stand) //,     tml_sonic_stand_tag);
+player_add_animation(CHAR_SONIC, "idle",          ctl_sonic_idle) //,     tml_sonic_idle_tag);
 player_add_animation(CHAR_SONIC, "turn",          ctl_sonic_turn) //,      tml_sonic_turn_tag);
 player_add_animation(CHAR_SONIC, "walk",          ctl_sonic_walk) //      tml_sonic_walk_tag);
 player_add_animation(CHAR_SONIC, "walk_fast",     ctl_sonic_walk_fast) // tml_sonic_walk_fast_tag);
@@ -19,6 +19,9 @@ player_add_animation(CHAR_SONIC, "balance_back",  ctl_sonic_balance_back);
 // Push:
 player_add_animation(CHAR_SONIC, "push",          ctl_sonic_push);
 
+// Omochao:
+player_add_animation(CHAR_SONIC, "omochao",          ctl_sonic_omochao);
+
 // Spin Jump:
 player_add_animation(CHAR_SONIC, "spin_flight",   ctl_sonic_spin_flight);
 player_add_animation(CHAR_SONIC, "spin_fall",     ctl_sonic_spin_fall);
@@ -28,7 +31,6 @@ player_add_animation(CHAR_SONIC, "look",          ctl_sonic_look);
 
 // Crouch:
 player_add_animation(CHAR_SONIC, "crouch",        ctl_sonic_crouch);
-
 
 // Spin Dash:
 player_add_animation(CHAR_SONIC, "spin_dash",     ctl_sonic_spin_dash);

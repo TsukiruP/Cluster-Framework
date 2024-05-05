@@ -188,7 +188,7 @@ applies_to=self
 /// Title Card Transition
 
 // Don't bother if the game is paused:
-if (pause_ignore == false && game_paused(ctrl_pause)) exit;
+if (game_paused(ctrl_pause) && pause_ignore == false) exit;
 
 if (transition_type == TRANS_CARD) {
     // Banner scroll:
@@ -307,7 +307,7 @@ if (transition_type == TRANS_CARD) {
                     }
                 } else {
                     if (room_kickoff != KICKOFF_DEFAULT && room_kickoff != KICKOFF_RUN) {
-                        //with (player_exists(0)) input_lock = false;
+                        with (player_exists(0)) input_lock = false;
                     }
                 }
             }
@@ -339,7 +339,7 @@ if (transition_type == TRANS_CARD) {
 
                 with (player_exists(0)) {
                     // Animation standby:
-                    if (other.room_kickoff == KICKOFF_READY && animation_target != "ready") {
+                    if (other.room_kickoff == KICKOFF_READY && animation_current != "ready") {
                         if (other.transition_standby < 2.2) other.transition_standby += other.transition_speed;
                         else other.transition_standby = 2.2;
                     }

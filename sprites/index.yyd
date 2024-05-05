@@ -16,7 +16,7 @@ fnt_title_card_zone
 fnt_title_card_act
 fnt_hud
 spr_hud
-spr_sonic_stand
+spr_sonic_idle
 spr_sonic_wait_partner
 spr_sonic_wait_leader
 spr_sonic_walk
@@ -25,7 +25,7 @@ spr_sonic_jog
 spr_sonic_jog_fast
 spr_sonic_run
 spr_sonic_dash
-spr_sonic_stand_tag
+spr_sonic_idle_tag
 spr_sonic_walk_tag
 spr_sonic_walk_fast_tag
 spr_sonic_jog_tag

@@ -48,7 +48,7 @@
 		|spr_player_spawn
 		+Sonic
 			+Default
-				|spr_sonic_stand
+				|spr_sonic_idle
 				|spr_sonic_turn
 				|spr_sonic_walk
 				|spr_sonic_walk_fast
@@ -63,7 +63,7 @@
 					|spr_sonic_balance_front
 					|spr_sonic_balance_back
 				+Tag
-					|spr_sonic_stand_tag
+					|spr_sonic_idle_tag
 					|spr_sonic_turn_tag
 					|spr_sonic_walk_tag
 					|spr_sonic_walk_fast_tag
@@ -270,10 +270,10 @@
 			|spr_water_surface
 			|spr_bubble_spawn
 			|spr_bubble
-		+Omochao
-			|spr_omochao_idle
-			|spr_omochao_sonic
-		+Misc.
+		+Interactable
+			+Omochao
+				|spr_omochao_idle
+				|spr_omochao_sonic
 			|spr_hint_box
 	+Effects
 		+Player

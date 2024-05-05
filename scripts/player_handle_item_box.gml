@@ -11,6 +11,7 @@ if (item_box_handle == noone) exit;
 // Break item box:
 if (player_collision_prop(SIDE_MAIN, item_box_handle) != 0 || player_rectangle_check(hitbox_width, hitbox_height, hitbox_offset_x, hitbox_offset_y, item_box_handle)) {
     if (input_cpu == false) {
+        // Destroy item box:
         with (item_box_handle) {
             player_handle = other.id;
             //particle_create(EFFECT_EXPL_SM, x, y);

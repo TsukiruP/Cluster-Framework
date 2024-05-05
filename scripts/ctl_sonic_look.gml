@@ -101,6 +101,6 @@ else {
 
     // Null frame:
     else if (ctl_position(3)) {
-        player_set_animation("stand");
+        player_set_animation("idle");
     }
 }

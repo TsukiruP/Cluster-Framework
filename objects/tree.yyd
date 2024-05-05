@@ -57,6 +57,8 @@
 			|par_spike
 		+Water
 			|obj_water_surface
+		+Interactable
+			|obj_omochao
 	+Effects
 		|eff_basic
 		+Player

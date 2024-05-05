@@ -28,7 +28,7 @@ player_animation_depth
 sonic_action_hammer
 ctl_update
 ctl_position
-ctl_sonic_stand
+ctl_sonic_idle
 ctl_sonic_turn
 ctl_sonic_walk_fast
 ctl_sonic_wait_leader
@@ -144,3 +144,6 @@ ctl_skid
 fade_reverse
 wrap
 text_message_set
+ctl_sonic_omochao
+player_handle_omochao
+script148

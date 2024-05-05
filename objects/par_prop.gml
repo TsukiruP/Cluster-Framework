@@ -22,4 +22,6 @@ applies_to=self
 // Exit if not in debug mode:
 if (debug_mode == false) exit;
 
-draw_rectangle(x - prop_width, y - prop_height, x + prop_width, y + prop_height, true);
+draw_set_color(c_orange);
+
+draw_rectangle(x - prop_width + prop_offset_x, y - prop_height + prop_offset_y, x + prop_width + prop_offset_x, y + prop_height + prop_offset_y, true);

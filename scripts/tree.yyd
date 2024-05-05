@@ -43,7 +43,7 @@
 			+PCs
 				+Sonic
 					+Default
-						|ctl_sonic_stand
+						|ctl_sonic_idle
 						|ctl_sonic_turn
 						|ctl_sonic_walk
 						|ctl_sonic_walk_fast
@@ -59,6 +59,7 @@
 						+Tag
 						+Misc.
 							|ctl_sonic_push
+							|ctl_sonic_omochao
 					+Jump
 						|ctl_sonic_spin_flight
 						|ctl_sonic_spin_fall
@@ -85,10 +86,11 @@
 				+Omochao
 					|ctl_omochao_idle
 			+Effects
-				|ctl_spin_dash
-				|ctl_spin_charge
-				|ctl_skid
 				|ctl_ring_sparkle
+				+Player
+					|ctl_spin_dash
+					|ctl_spin_charge
+					|ctl_skid
 	+Misc.
 		|wrap
 		|wrap_angle
@@ -153,6 +155,7 @@
 		+Handle
 			|player_handle_ring
 			|player_handle_item_box
+			|player_handle_omochao
 			|player_handle_water_surface
 		+Misc.
 			|player_ring_loss
@@ -189,3 +192,4 @@
 	|player_animation_direction
 	|player_animation_angle
 	|player_animation_depth
+|script148

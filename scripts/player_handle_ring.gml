@@ -12,12 +12,13 @@ if (ring_handle == noone) exit;
 if (player_collision_prop(SIDE_MAIN, ring_handle) != 0) {
     if (invincibility_type != 1 || (invincibility_type == 1 && invincibility_alarm > -1 && invincibility_type <= 90)) {
         if (action_state != ACTION_HURT) {
+            // Destroy ring:
             with (ring_handle) {
                 effect_create(ctl_ring_sparkle, x, y);
                 instance_destroy();
             }
 
-            // Add to stage rings:
+            // Add to ring count:
             global.game_rings += 1;
 
             // Play sound:

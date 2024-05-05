@@ -26,15 +26,15 @@ ground_angle           = 0;
 angle_mode             = 0;
 physics_type           = PHYS_DEFAULT;
 
-on_edge     = false;
-on_obstacle = false;
+on_edge                = false;
+on_obstacle            = false;
 
-detach_allow   = true;
+detach_allow           = true;
 
-ceiling_allow      = true;
-ceiling_landing    = 0;
-ceiling_lock_alarm = 0;
-touching_ceiling   = false;
+ceiling_allow          = true;
+ceiling_landing        = 0;
+ceiling_lock_alarm     = 0;
+touching_ceiling       = false;
 
 // Size variables:
 main_width       = 6;
@@ -52,6 +52,23 @@ hitbox_width     = 0;
 hitbox_height    = 0;
 hitbox_offset_x  = 0;
 hitbox_offset_y  = 0;
+
+// NEW Size variables:
+main_left        = 6;
+main_right       = 6;
+main_top         = 14;
+main_bottom      = 14;
+
+relative_left    = main_left;
+relative_right   = main_right;
+
+main_top_temp    = 0;
+main_bottom_temp = 0;
+
+wall_left   = relative_left + 3;
+wall_right  = relative_right + 3;
+wall_top    = 0;
+wall_bottom = 0;
 
 // Action variable:
 action_state = ACTION_DEFAULT;
@@ -294,8 +311,8 @@ applies_to=self
 /// Death
 // One is always aware that it lies in wait. Though life is merely a journey to the grave, it must not be undertaken without hope.
 
-// Don't bother if the death alarm has been updated:
-if (death_alarm == -1) exit;
+// Don't bother if the death alarm has been updated or the game is paused:
+if (death_alarm == -1 || game_paused()) exit;
 
 if (action_state == ACTION_DEATH) {
     if (death_alarm == -5) {
@@ -411,7 +428,7 @@ if (ground == true && action_state != ACTION_SLIDE) {
 }
 
 // Acceleration & deceleration:
-if ((action_state == ACTION_DEFAULT && animation_current != "turn" && animation_current != "look" && animation_current != "crouch") || action_state == ACTION_JUMP ||
+if ((action_state == ACTION_DEFAULT && animation_current != "turn" && animation_current != "look" && animation_current != "crouch" && animation_current != "omochao") || action_state == ACTION_JUMP ||
     (action_state == ACTION_SKID && animation_current != "skid_turn") || action_state == ACTION_BALANCE || action_state == ACTION_PUSH || action_state == ACTION_BREATHE ||
     action_state == ACTION_FLY || (action_state == ACTION_TORNADO && animation_current == "tornado") || action_state == ACTION_GLIDE_DROP) {
     // Input direction:
@@ -426,7 +443,7 @@ if ((action_state == ACTION_DEFAULT && animation_current != "turn" && animation_
                     (action_state == ACTION_SKID && sign(g_speed) != -input_direction && tag_animations == true)) && animation_direction != input_direction) {
                      g_speed = 0;
 
-                     // Play animation:
+                     // Set animation:
                      if (action_state != ACTION_BALANCE) {
                          if (action_state == ACTION_SKID && tag_animations == true) action_state = ACTION_DEFAULT;
                          player_set_animation("turn");
@@ -482,7 +499,6 @@ action_id=603
 applies_to=self
 */
 /// Action List
-// A handy list of the action scripts.
 
 // Don't bother if in the middle of respawning/dying or the game is paused:
 if (action_state == ACTION_RESPAWN || action_state == ACTION_DEATH || game_paused()) exit;
@@ -518,7 +534,6 @@ action_id=603
 applies_to=self
 */
 /// Handle List
-// A handy list of the object handle scripts.
 
 // Don't bother if the game is paused:
 if (game_paused()) exit;
@@ -526,6 +541,7 @@ if (game_paused()) exit;
 // Handle scripts:
 player_handle_ring();
 player_handle_item_box();
+player_handle_omochao();
 player_handle_water_surface();
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -684,8 +700,8 @@ switch (action_state) {
         // Classic default:
         if (character_data == CHAR_CLASSIC) {
             if (ground == true) {
-                // Stand:
-                if (g_speed == 0 && animation_target != "stand" && animation_target != "wait") player_set_animation("stand");
+                // Idle:
+                if (g_speed == 0 && animation_target != "idle" && animation_target != "wait") player_set_animation("idle");
 
                 if (g_speed <> 0) {
                     // Jog:
@@ -700,9 +716,9 @@ switch (action_state) {
         // Tag default:
         else if (tag_animations == true) {
             if (ground == true) {
-                // Stand:
-                if (g_speed == 0 && animation_target != "stand" && animation_target != "turn" &&
-                    animation_target != "look" && animation_target != "crouch") player_set_animation("stand");
+                // Idle:
+                if (g_speed == 0 && animation_target != "idle" && animation_target != "turn" &&
+                    animation_target != "look" && animation_target != "crouch") player_set_animation("idle");
 
                 if (g_speed <> 0) {
                     // Walk:
@@ -736,9 +752,9 @@ switch (action_state) {
                                 if (animation_target != "balance_back") player_set_animation("balance_back");
                             }
                         } else {
-                            // Stand:
-                            if (animation_target != "stand" && animation_target != "turn" && animation_target != "wait" && animation_target != "land"
-                            && animation_target != "ready" && animation_target != "look" && animation_target != "crouch") player_set_animation("stand");
+                            // Idle:
+                            if (animation_target != "idle" && animation_target != "turn" && animation_target != "wait" && animation_target != "land"
+                            && animation_target != "ready" && animation_target != "look" && animation_target != "crouch" && animation_target != "omochao") player_set_animation("idle");
                         }
                     }
 
@@ -896,7 +912,7 @@ switch (action_state) {
 }
 
 // Wait:
-if (ground == true && input_lock == false && tag_animations == false && animation_target == "stand") {
+if (!game_paused(ctrl_text) && ground == true && input_lock == false && tag_animations == false && animation_target == "idle") {
     if (animation_alarm > 0) {
         animation_alarm -= 1;
 
@@ -915,7 +931,7 @@ if (character_data == CHAR_MILES) {
 
 // Animation variants:
 switch (animation_target) {
-    case "stand":
+    case "idle":
     case "walk":
     case "walk_fast":
     case "jog":
@@ -958,7 +974,7 @@ applies_to=self
 if (game_paused()) exit;
 
 // General:
-if ((ground == true && action_state == ACTION_DEFAULT && animation_current != "turn") || action_state == ACTION_ROLL || action_state == ACTION_BREATHE) {
+if ((ground == true && action_state == ACTION_DEFAULT && animation_current != "turn" && animation_current != "omochao") || action_state == ACTION_ROLL || action_state == ACTION_BREATHE) {
     // Left:
     if ((x_speed <= 0 || g_speed <= 0) && player_input[INP_LEFT, CHECK_HELD] == true) animation_direction = -1;
 
@@ -990,7 +1006,7 @@ var angle_mod;
 // Animation Angle:
 switch (animation_current) {
     // Reset angle:
-    case "stand":
+    case "idle":
     case "turn":
     case "ready":
     case "land":
@@ -1182,7 +1198,7 @@ if (global.misc_trails == true) {
 if (invincibility_type == 1 && invincibility_alarm > 0) animation_alpha = (invincibility_alarm div 4) mod 2;
 else animation_alpha = 1;
 
-// Character:
+// Player:
 draw_sprite_ext(sprite_index, image_index, floor(x) + (animation_direction < 0), floor(y), animation_direction * animation_x_scale, animation_y_scale, animation_angle, animation_blend, animation_alpha);
 
 /*
@@ -1203,43 +1219,44 @@ applies_to=self
 // Exit if not in debug mode:
 if (debug_mode == false) exit;
 
-// Draw main size:
+// Main size:
 var x1, y1, x2, y2;
 
 switch (mode) {
     case 0:
-        x1 = floor(x) - main_width;
-        y1 = floor(y) - main_height;
-        x2 = floor(x) + main_width;
-        y2 = floor(y) + main_height;
+        x1 = floor(x) - main_left;
+        y1 = floor(y) - main_top;
+        x2 = floor(x) + main_right;
+        y2 = floor(y) + main_bottom;
         break;
 
     case 1:
-        x1 = floor(x) - main_height;
-        y1 = floor(y) - main_width;
-        x2 = floor(x) + main_height;
-        y2 = floor(y) + main_width;
+        x1 = floor(x) - main_top;
+        y1 = floor(y) - main_right;
+        x2 = floor(x) + main_bottom;
+        y2 = floor(y) + main_left;
         break;
 
     case 2:
-        x1 = floor(x) - main_width;
-        y1 = floor(y) - main_height;
-        x2 = floor(x) + main_width;
-        y2 = floor(y) + main_height;
+        x1 = floor(x) - main_right;
+        y1 = floor(y) - main_bottom;
+        x2 = floor(x) + main_left;
+        y2 = floor(y) + main_top;
         break;
 
     case 3:
-        x1 = floor(x) - main_height;
-        y1 = floor(y) - main_width;
-        x2 = floor(x) + main_height;
-        y2 = floor(y) + main_width;
+        x1 = floor(x) - main_bottom;
+        y1 = floor(y) - main_left;
+        x2 = floor(x) + main_top;
+        y2 = floor(y) + main_right;
         break;
 }
 
 draw_set_color(c_orange);
-draw_rectangle(x1, y1, x2, y2, true);
 
-// Draw hurtbox:
+draw_rectangle(x1, y1, x2, y2, true);
+/*
+// Hurtbox:
 var x1, y1, x2, y2;
 
 switch (mode) {
@@ -1251,66 +1268,68 @@ switch (mode) {
         break;
 
     case 1:
-        x1 = floor(x) - hurtbox_height +  hurtbox_offset_y;
+        x1 = floor(x) - hurtbox_height + hurtbox_offset_y;
         y1 = floor(y) - hurtbox_width - (hurtbox_offset_x * animation_direction);
-        x2 = floor(x) + hurtbox_height +  hurtbox_offset_y;
+        x2 = floor(x) + hurtbox_height + hurtbox_offset_y;
         y2 = floor(y) + hurtbox_width - (hurtbox_offset_x * animation_direction);
         break;
 
     case 2:
         x1 = floor(x) - hurtbox_width - (hurtbox_offset_x * animation_direction);
-        y1 = floor(y) - hurtbox_height -  hurtbox_offset_y;
+        y1 = floor(y) - hurtbox_height - hurtbox_offset_y;
         x2 = floor(x) + hurtbox_width - (hurtbox_offset_x * animation_direction);
-        y2 = floor(y) + hurtbox_height -  hurtbox_offset_y;
+        y2 = floor(y) + hurtbox_height - hurtbox_offset_y;
         break;
 
     case 3:
-        x1 = floor(x) - hurtbox_height -  hurtbox_offset_y;
+        x1 = floor(x) - hurtbox_height - hurtbox_offset_y;
         y1 = floor(y) - hurtbox_width + (hurtbox_offset_x * animation_direction);
-        x2 = floor(x) + hurtbox_height -  hurtbox_offset_y;
+        x2 = floor(x) + hurtbox_height - hurtbox_offset_y;
         y2 = floor(y) + hurtbox_width + (hurtbox_offset_x * animation_direction);
         break;
 }
 
 if (hurtbox_width != 0 && hurtbox_height != 0) {
     draw_set_color(c_red);
+
     draw_rectangle(x1, y1, x2, y2, true);
 }
 
-// Draw hitbox:
+// Hitbox:
 var x1, y1, x2, y2;
 
 switch (mode) {
     case 0:
         x1 = floor(x) - hitbox_width + (hitbox_offset_x * animation_direction);
-        y1 = floor(y) - hitbox_height +  hitbox_offset_y;
+        y1 = floor(y) - hitbox_height + hitbox_offset_y;
         x2 = floor(x) + hitbox_width + (hitbox_offset_x * animation_direction);
-        y2 = floor(y) + hitbox_height +  hitbox_offset_y;
+        y2 = floor(y) + hitbox_height + hitbox_offset_y;
         break;
 
     case 1:
-        x1 = floor(x) - hitbox_height +  hitbox_offset_y;
+        x1 = floor(x) - hitbox_height + hitbox_offset_y;
         y1 = floor(y) - hitbox_width - (hitbox_offset_x * animation_direction);
-        x2 = floor(x) + hitbox_height +  hitbox_offset_y;
+        x2 = floor(x) + hitbox_height + hitbox_offset_y;
         y2 = floor(y) + hitbox_width - (hitbox_offset_x * animation_direction);
         break;
 
     case 2:
         x1 = floor(x) - hitbox_width - (hitbox_offset_x * animation_direction);
-        y1 = floor(y) - hitbox_height -  hitbox_offset_y;
+        y1 = floor(y) - hitbox_height - hitbox_offset_y;
         x2 = floor(x) + hitbox_width - (hitbox_offset_x * animation_direction);
         y2 = floor(y) + hitbox_height -  hitbox_offset_y;
         break;
 
     case 3:
-        x1 = floor(x) - hitbox_height -  hitbox_offset_y;
+        x1 = floor(x) - hitbox_height - hitbox_offset_y;
         y1 = floor(y) - hitbox_width + (hitbox_offset_x * animation_direction);
-        x2 = floor(x) + hitbox_height -  hitbox_offset_y;
+        x2 = floor(x) + hitbox_height - hitbox_offset_y;
         y2 = floor(y) + hitbox_width + (hitbox_offset_x * animation_direction);
         break;
 }
 
 if (hitbox_width != 0 && hitbox_height != 0) {
     draw_set_color(c_lime);
+
     draw_rectangle(x1, y1, x2, y2, true);
 }

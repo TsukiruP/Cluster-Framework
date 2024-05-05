@@ -8,7 +8,7 @@ var angle_mod;
 // Animation Angle:
 switch (animation_current) {
     // Reset angle:
-    case "stand":
+    case "idle":
     case "turn":
     case "ready":
     case "land":

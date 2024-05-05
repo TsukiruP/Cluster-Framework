@@ -81,6 +81,6 @@ else {
     else if (ctl_position(1)) {
         image_index = 0;
 
-        player_set_animation("stand");
+        player_set_animation("idle");
     }
 }
