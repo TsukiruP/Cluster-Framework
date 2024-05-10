@@ -1,6 +1,6 @@
 /// player_handle_item_box()
 // Get equipped with.... ring?!
-
+/*
 var item_box_handle;
 
 // Nearest item box:

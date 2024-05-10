@@ -7,6 +7,11 @@ applies_to=self
 /// Prop Initialization
 
 // Size:
+prop_left     = 0;
+prop_right    = 0;
+prop_top      = 0;
+prop_bottom   = 0;
+
 prop_width    = 0;
 prop_height   = 0;
 prop_offset_x = 0;

@@ -10,10 +10,30 @@ if (ctl_position(0)) {
     image_index  = 0;
 
     // Set collision:
+    main_left   = 6;
+    main_right  = 6;
+    main_top    = 14;
+    main_bottom = 14;
+
+    roll_offset = 0;
 
     // Set hurtbox:
+    hurtbox_left     = 4;
+    hurtbox_right    = 8;
+    hurtbox_top      = 16;
+    hurtbox_bottom   = 15;
+
+    hurtbox_offset_x = 0;
+    hurtbox_offset_y = 0;
 
     // Set hitbox:
+    hitbox_left     = 0;
+    hitbox_right    = 0;
+    hitbox_top      = 0;
+    hitbox_bottom   = 0;
+
+    hitbox_offset_x = 0;
+    hitbox_offset_y = 0;
 
     // Set direction:
     animation_direction *= -1;

@@ -1,6 +1,6 @@
 /// player_handle_omochao()
 //
-
+/*
 var omochao_handle;
 
 // Nearest Omochao:

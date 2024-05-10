@@ -17,10 +17,16 @@ if (animation_reverse == false) {
         image_index  = 0;
 
         // Set collision:
+        main_left        = 6;
+        main_right       = 6;
+        main_top         = 14;
+        main_bottom      = 14;
 
-    // Set hurtbox:
+        roll_offset      = 0;
 
-    // Set hitbox:
+        // Set hurtbox:
+
+        // Set hitbox:
     }
 
     // Change frame:
@@ -62,21 +68,16 @@ else {
         image_index  = 6;
 
         // Set collision:
-        main_width  = 6;
-        main_height = 14;
-        roll_offset = 0;
+        main_left        = 6;
+        main_right       = 6;
+        main_top         = 14;
+        main_bottom      = 14;
+
+        roll_offset      = 0;
 
         // Set hurtbox:
-        hurtbox_width    = 6;
-        hurtbox_height   = 14;
-        hurtbox_offset_x = 0;
-        hurtbox_offset_y = 1;
 
         // Set hitbox:
-        hitbox_width    = 0;
-        hitbox_height   = 0;
-        hitbox_offset_x = 0;
-        hitbox_offset_y = 0;
     }
 
     // Change frame:

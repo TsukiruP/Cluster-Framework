@@ -1,5 +1,5 @@
 /// player_collision_prop(side, prop, [radius_x, radius_y, offset_x, offset_y])
-
+/*
 // Player coordinates:
 var x1, y1, x2, y2;
 

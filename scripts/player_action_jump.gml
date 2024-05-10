@@ -15,11 +15,6 @@ if ((ground == true || (action_state == ACTION_CARRY && player_input[INP_DOWN, C
         ground       = false;
         action_state = ACTION_JUMP;
 
-        // Create water splash:
-        if (instance_exists(obj_water_surface)) {
-            //if (floor(y) + main_height + 1 == obj_water_surface.y) particle_create(EFFECT_SPLH_JU, x, y + main_height, animation_direction);
-        }
-
         // Play sound:
         sound_play_single("snd_jump");
     }
@@ -31,6 +26,8 @@ if (action_state == ACTION_JUMP) {
 
     // Reset upon landing:
     if (ground == true) action_state = ACTION_DEFAULT;
+
+    if (y_speed > 0) player_set_animation("spin_fall");
 }
 
 // Variable clean up:
