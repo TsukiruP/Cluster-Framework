@@ -1,6 +1,6 @@
 /// player_handle_ring()
 // Nom nom nom.
-/*
+
 var ring_handle;
 
 // Nearest ring:
@@ -9,7 +9,7 @@ ring_handle = instance_nearest(x, y, par_ring);
 if (ring_handle == noone) exit;
 
 // Collect ring:
-if (player_collision_prop(SIDE_MAIN, ring_handle) != 0) {
+if (player_collision_prop(ring_handle, SIDE_MAIN) != 0) {
     if (invincibility_type != 1 || (invincibility_type == 1 && invincibility_alarm > -1 && invincibility_type <= 90)) {
         if (action_state != ACTION_HURT) {
             // Destroy ring:

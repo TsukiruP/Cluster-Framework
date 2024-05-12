@@ -1,6 +1,6 @@
 /// player_handle_item_box()
 // Get equipped with.... ring?!
-/*
+
 var item_box_handle;
 
 // Nearest item box:
@@ -9,7 +9,7 @@ item_box_handle = instance_nearest(x, y, par_item_box);
 if (item_box_handle == noone) exit;
 
 // Break item box:
-if (player_collision_prop(SIDE_MAIN, item_box_handle) != 0 || player_rectangle_check(hitbox_width, hitbox_height, hitbox_offset_x, hitbox_offset_y, item_box_handle)) {
+if (player_collision_prop(item_box_handle, SIDE_MAIN) != 0 || player_collision_prop(item_box_handle, SIDE_MAIN, 1) != 0) {
     if (input_cpu == false) {
         // Destroy item box:
         with (item_box_handle) {

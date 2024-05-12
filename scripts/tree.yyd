@@ -57,7 +57,6 @@
 				|player_point_check
 				|player_line_check
 				|player_obstacle_check
-				|player_rectangle_check
 			|player_movement
 			|player_collision_semisolids
 			|player_collision_terrain
@@ -191,4 +190,5 @@
 	|player_animation_direction
 	|player_animation_angle
 	|player_animation_depth
+	|player_rectangle_check
 |script148

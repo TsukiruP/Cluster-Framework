@@ -1,5 +1,5 @@
 /// player_rectangle_check(radius_x, radius_y, offset_x, offset_y, prop)
-
+/*
 // Exit if collision is disabled:
 if (collision_allow == false) exit;
 

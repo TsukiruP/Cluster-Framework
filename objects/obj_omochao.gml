@@ -10,10 +10,12 @@ applies_to=self
 image_speed = 0;
 
 // Size:
-prop_width    = 10.5;
-prop_height   = 10.5;
-prop_offset_x = 1;
-prop_offset_y = 5;
+main_left     = 11;
+main_right    = 10;
+main_top      = 11;
+main_bottom   = 10;
+main_offset_x = 2;
+main_offset_y = 5;
 
 // Player handle:
 player_handle = noone;

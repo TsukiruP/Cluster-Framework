@@ -4,15 +4,15 @@
 if (ground_collision_allow == false) exit;
 
 // Left wall collision:
-while (player_point_check(-wall_left * animation_direction, wall_height)) {
-    x += (y_direction * animation_direction);
-    y -= (x_direction * animation_direction);
+while (player_point_check(-wall_left, wall_height)) {
+    x += y_direction;
+    y -= x_direction;
 }
 
 // Right wall collision:
-while (player_point_check(wall_right * animation_direction, wall_height)) {
-    x -= (y_direction * animation_direction);
-    y += (x_direction * animation_direction);
+while (player_point_check(wall_right, wall_height)) {
+    x -= y_direction;
+    y += x_direction;
 }
 
 if (on_obstacle == false) {

@@ -67,9 +67,6 @@ hitbox_bottom         = 0;
 hitbox_offset_x       = 0;
 hitbox_offset_y       = 0;
 
-hitbox_left_relative  = hitbox_left;
-hitbox_right_relative = hitbox_right;
-
 // Action variable:
 action_state = ACTION_DEFAULT;
 
@@ -957,8 +954,14 @@ switch (animation_target) {
 // Animation core:
 player_animation_core();
 
-wall_right = main_right + 3;
-wall_left  = main_left + 3;
+// Wall sides:
+if (animation_direction < 0) {
+    wall_left  = main_right + 3;
+    wall_right = main_left + 3;
+} else {
+    wall_left  = main_left + 3;
+    wall_right = main_right + 3;
+}
 
 // Position fix:
 if ((ground == true && ceiling_lock_alarm == 0) || (mode == 0 && action_state == ACTION_JUMP && animation_current != "spin_flight")) {
@@ -1264,31 +1267,31 @@ var x1, y1, x2, y2;
 
 switch (mode) {
     case 0:
-        x1 = floor(x) - (hurtbox_left + hurtbox_offset_x) * animation_direction;
+        x1 = floor(x) - ((hurtbox_left + hurtbox_offset_x) * animation_direction);
         y1 = floor(y) - hurtbox_top + hurtbox_offset_y;
-        x2 = floor(x) + (hurtbox_right + hurtbox_offset_x) * animation_direction;
+        x2 = floor(x) + ((hurtbox_right + hurtbox_offset_x) * animation_direction);
         y2 = floor(y) + hurtbox_bottom + hurtbox_offset_y;
         break;
 
     case 1:
         x1 = floor(x) - hurtbox_top + hurtbox_offset_y;
-        y1 = floor(y) - (hurtbox_right + hurtbox_offset_x) * animation_direction;
+        y1 = floor(y) - ((hurtbox_right + hurtbox_offset_x) * animation_direction);
         x2 = floor(x) + hurtbox_bottom + hurtbox_offset_y;
-        y2 = floor(y) + (hurtbox_left + hurtbox_offset_x) * animation_direction;
+        y2 = floor(y) + ((hurtbox_left + hurtbox_offset_x) * animation_direction);
         break;
 
     case 2:
-        x1 = floor(x) - (hurtbox_right + hurtbox_offset_x) * animation_direction;
+        x1 = floor(x) - ((hurtbox_right + hurtbox_offset_x) * animation_direction);
         y1 = floor(y) - hurtbox_bottom + hurtbox_offset_y;
-        x2 = floor(x) + (hurtbox_left + hurtbox_offset_x) * animation_direction;
+        x2 = floor(x) + ((hurtbox_left + hurtbox_offset_x) * animation_direction);
         y2 = floor(y) + hurtbox_top + hurtbox_offset_y;
         break;
 
     case 3:
         x1 = floor(x) - hurtbox_bottom + hurtbox_offset_y;
-        y1 = floor(y) - (hurtbox_left + hurtbox_offset_x) * animation_direction;
+        y1 = floor(y) - ((hurtbox_left + hurtbox_offset_x) * animation_direction);
         x2 = floor(x) + hurtbox_top + hurtbox_offset_y;
-        y2 = floor(y) + (hurtbox_right + hurtbox_offset_x) * animation_direction;
+        y2 = floor(y) + ((hurtbox_right + hurtbox_offset_x) * animation_direction);
         break;
 }
 
@@ -1303,31 +1306,31 @@ var x1, y1, x2, y2;
 
 switch (mode) {
     case 0:
-        x1 = floor(x) - (hitbox_left + hitbox_offset_x) * animation_direction;
+        x1 = floor(x) - ((hitbox_left + hitbox_offset_x) * animation_direction);
         y1 = floor(y) - hitbox_top + hitbox_offset_y;
-        x2 = floor(x) + (hitbox_right + hitbox_offset_x) * animation_direction;
+        x2 = floor(x) + ((hitbox_right + hitbox_offset_x) * animation_direction);
         y2 = floor(y) + hitbox_bottom + hitbox_offset_y;
         break;
 
     case 1:
         x1 = floor(x) - hitbox_top + hitbox_offset_y;
-        y1 = floor(y) - (hitbox_right + hitbox_offset_x) * animation_direction;
+        y1 = floor(y) - ((hitbox_right + hitbox_offset_x) * animation_direction);
         x2 = floor(x) + hitbox_bottom + hitbox_offset_y;
-        y2 = floor(y) + (hitbox_left + hitbox_offset_x) * animation_direction;
+        y2 = floor(y) + ((hitbox_left + hitbox_offset_x) * animation_direction);
         break;
 
     case 2:
-        x1 = floor(x) - (hitbox_right + hitbox_offset_x) * animation_direction;
+        x1 = floor(x) - ((hitbox_right + hitbox_offset_x) * animation_direction);
         y1 = floor(y) - hitbox_bottom + hitbox_offset_y;
-        x2 = floor(x) + (hitbox_left + hitbox_offset_x) * animation_direction;
+        x2 = floor(x) + ((hitbox_left + hitbox_offset_x) * animation_direction);
         y2 = floor(y) + hitbox_top + hitbox_offset_y;
         break;
 
     case 3:
         x1 = floor(x) - hitbox_bottom + hitbox_offset_y;
-        y1 = floor(y) - (hitbox_left + hitbox_offset_x) * animation_direction;
+        y1 = floor(y) - ((hitbox_left + hitbox_offset_x) * animation_direction);
         x2 = floor(x) + hitbox_top + hitbox_offset_y;
-        y2 = floor(y) + (hitbox_right + hitbox_offset_x) * animation_direction;
+        y2 = floor(y) + ((hitbox_right + hitbox_offset_x) * animation_direction);
         break;
 }
 

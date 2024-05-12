@@ -7,15 +7,12 @@ applies_to=self
 /// Prop Initialization
 
 // Size:
-prop_left     = 0;
-prop_right    = 0;
-prop_top      = 0;
-prop_bottom   = 0;
-
-prop_width    = 0;
-prop_height   = 0;
-prop_offset_x = 0;
-prop_offset_y = 0;
+main_left     = 0;
+main_right    = 0;
+main_top      = 0;
+main_bottom   = 0;
+main_offset_x = 0;
+main_offset_y = 0;
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -29,4 +26,4 @@ if (debug_mode == false) exit;
 
 draw_set_color(c_orange);
 
-draw_rectangle(x - prop_width + prop_offset_x, y - prop_height + prop_offset_y, x + prop_width + prop_offset_x, y + prop_height + prop_offset_y, true);
+draw_rectangle(x - main_left + main_offset_x, y - main_top + main_offset_y, x + main_right + main_offset_x, y + main_bottom + main_offset_y, true);
