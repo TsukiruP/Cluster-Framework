@@ -374,7 +374,7 @@ if (text_hide == true) exit;
 d3d_set_viewport(0, 0, global.display_width, global.display_height);
 
 // Box:
-draw_set_color(c_blue);
+draw_set_color(make_color_rgb(global.textbox_red, global.textbox_green, global.textbox_blue));
 draw_set_alpha(topic_alpha[0]);
 
 draw_rectangle(0, (global.display_height / 2) - 9 - ((font_height / 2) * topic_lines), global.display_width, (global.display_height / 2) + 10 + ((font_height / 2) * topic_lines), false);
@@ -405,7 +405,7 @@ applies_to=self
 if (text_hide == true) exit;
 
 // Box:
-draw_set_color(c_blue);
+draw_set_color(make_color_rgb(global.textbox_red, global.textbox_green, global.textbox_blue));
 draw_set_alpha(text_alpha[0]);
 
 draw_rectangle(0, global.display_height - 19 - 59, global.display_width, global.display_height - 19, false);
