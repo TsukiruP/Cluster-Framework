@@ -37,35 +37,35 @@ ceiling_lock_alarm     = 0;
 touching_ceiling       = false;
 
 // Main size variables:
-main_left           = 6;
-main_right          = 6;
-main_top            = 14;
-main_bottom         = 14;
+main_left        = 6;
+main_right       = 6;
+main_top         = 14;
+main_bottom      = 14;
 
-main_bottom_temp    = 0;
+main_bottom_temp = 0;
 
-wall_left           = main_left + 3;
-wall_right          = main_right + 3;
-wall_top            = 0;
-wall_bottom         = 0;
+wall_left        = main_left + 3;
+wall_right       = main_right + 3;
+wall_top         = 0;
+wall_bottom      = 0;
 
-// Hurtbox size variables:
-hurtbox_left           = 0;
-hurtbox_right          = 0;
-hurtbox_top            = 0;
-hurtbox_bottom         = 0;
+// Hurtbox variables:
+hurtbox_left     = 0;
+hurtbox_right    = 0;
+hurtbox_top      = 0;
+hurtbox_bottom   = 0;
 
-hurtbox_offset_x       = 0;
-hurtbox_offset_y       = 0;
+hurtbox_offset_x = 0;
+hurtbox_offset_y = 0;
 
-// Hitbox size variables:
-hitbox_left           = 0;
-hitbox_right          = 0;
-hitbox_top            = 0;
-hitbox_bottom         = 0;
+// Hitbox variables:
+hitbox_left     = 0;
+hitbox_right    = 0;
+hitbox_top      = 0;
+hitbox_bottom   = 0;
 
-hitbox_offset_x       = 0;
-hitbox_offset_y       = 0;
+hitbox_offset_x = 0;
+hitbox_offset_y = 0;
 
 // Action variable:
 action_state = ACTION_DEFAULT;
