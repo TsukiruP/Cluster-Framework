@@ -6,6 +6,8 @@ applies_to=self
 */
 /// Omochao Initialization
 
+event_inherited();
+
 // Image speed:
 image_speed = 0;
 
@@ -21,9 +23,10 @@ main_offset_y = 5;
 player_handle = noone;
 
 // Omochao variables:
-omochao_message = "";
-omochao_topic   = "";
+omochao_current = -1;
+omochao_target  =  0;
 
+// Draw variables:
 draw_x = x;
 draw_y = y;
 #define Step_0
@@ -35,7 +38,21 @@ applies_to=self
 /// Activate
 
 if (player_handle != noone) {
-    if (ctrl_text.text_clear == false && player_handle.animation_reverse != true) text_message_set("OMOCHAO#Bro visited his friend.");
+    // Check current:
+    if (omochao_current != omochao_target) {
+        // Update text controller:
+        switch (omochao_target) {
+            case 1:
+                text_message_set("Kuuga, Agito, Ryuki, Faiz, Blade~");
+                break;
+
+            default:
+                text_message_set("OMOCHAO#Bro visited his friend.");
+        }
+
+        // Set current:
+        omochao_current = omochao_target;
+    }
 }
 #define Step_2
 /*"/*'/**//* YYD ACTION
@@ -78,6 +95,10 @@ if (player_handle != noone) {
 
 // Execute timeline:
 if (player_handle == noone) {
+    // Reset current:
+    omochao_current = -1;
+    
+    // Reset draw:
     draw_x = x;
     draw_y = y;
     
