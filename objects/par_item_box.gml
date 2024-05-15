@@ -6,6 +6,8 @@ applies_to=self
 */
 /// Item Box Initialization
 
+event_inherited();
+
 // Image speed:
 image_speed = 0;
 
@@ -14,8 +16,6 @@ main_left     = 13;
 main_right    = 12;
 main_top      = 16;
 main_bottom   = 16;
-main_offset_x = 0;
-main_offset_y = 0;
 
 // Player handle:
 player_handle = noone;

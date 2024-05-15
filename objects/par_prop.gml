@@ -6,13 +6,23 @@ applies_to=self
 */
 /// Prop Initialization
 
-// Size:
+// Main size variables:
 main_left     = 0;
 main_right    = 0;
 main_top      = 0;
 main_bottom   = 0;
+
 main_offset_x = 0;
 main_offset_y = 0;
+
+// Hitbox variables:
+hitbox_left     = 0;
+hitbox_right    = 0;
+hitbox_top      = 0;
+hitbox_bottom   = 0;
+
+hitbox_offset_x = 0;
+hitbox_offset_y = 0;
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1

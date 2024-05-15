@@ -6,6 +6,8 @@ applies_to=self
 */
 /// Ring Initialization
 
+event_inherited();
+
 // Image speed:
 image_speed = 0;
 
@@ -14,8 +16,6 @@ main_left     = 8;
 main_right    = 8;
 main_top      = 8;
 main_bottom   = 8;
-main_offset_x = 0;
-main_offset_y = 0;
 
 // Dropped:
 dropped = false;
