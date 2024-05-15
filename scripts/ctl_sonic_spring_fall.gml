@@ -9,7 +9,7 @@ if (ctl_position(0)) {
     sprite_index = spr_sonic_spring;
     image_index  = 4;
 
-    // Set collision:
+    // Set size:
     main_left   = 6;
     main_right  = 6;
     main_top    = 14;

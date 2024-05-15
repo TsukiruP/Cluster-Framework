@@ -12,10 +12,11 @@ ctl_update(1);
 if (animation_reverse == false) {
     // Start animation:
     if (ctl_position(0)) {
+        // Set sprite:
         sprite_index = spr_sonic_crouch;
         image_index  = 0;
 
-        // Set collision:
+        // Set size:
         main_left   = 6;
         main_right  = 6;
         main_top    = 14;
@@ -65,10 +66,11 @@ if (animation_reverse == false) {
 else {
     // Start animation:
     if (ctl_position(0)) {
+        // Set sprite:
         sprite_index = spr_sonic_crouch;
         image_index  = 1;
 
-        // Set collision:
+        // Set size:
         main_left   = 6;
         main_right  = 6;
         main_top    = 14;

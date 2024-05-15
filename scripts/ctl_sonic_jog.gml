@@ -5,10 +5,11 @@ ctl_update(clamp(abs(g_speed * 16 * 3) / 64, 0.5, 8));
 
 // Start animation:
 if (ctl_position(0)) {
+    // Set sprite:
     sprite_index = spr_sonic_jog;
     image_index  = 0;
 
-    // Set collision:
+    // Set size:
     main_left   = 6;
     main_right  = 6;
     main_top    = 14;

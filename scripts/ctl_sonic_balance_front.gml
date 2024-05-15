@@ -5,10 +5,11 @@ ctl_update(1);
 
 // Start animation:
 if (ctl_position(0)) {
+    // Set sprite:
     sprite_index = spr_sonic_balance_front;
     image_index  = 0;
 
-    // Set collision:
+    // Set size:
     main_left   = 6;
     main_right  = 6;
     main_top    = 14;

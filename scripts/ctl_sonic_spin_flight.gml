@@ -9,7 +9,7 @@ if (ctl_position(0)) {
     sprite_index = spr_sonic_spin_flight;
     image_index  = 0;
 
-    // Set collision:
+    // Set size:
     main_left   = 6;
     main_right  = 6;
     main_top    = 14;
@@ -27,10 +27,10 @@ if (ctl_position(0)) {
     hurtbox_offset_y = 0;
 
     // Set hitbox:
-    hitbox_left     = 0;
-    hitbox_right    = 0;
-    hitbox_top      = 0;
-    hitbox_bottom   = 0;
+    hitbox_left     = 7;
+    hitbox_right    = 5;
+    hitbox_top      = 9;
+    hitbox_bottom   = 9;
 
     hitbox_offset_x = 0;
     hitbox_offset_y = 0;
@@ -63,10 +63,10 @@ else if (ctl_position(5)) {
     hurtbox_offset_y = 0;
 
     // Set hitbox:
-    hitbox_left     = 0;
-    hitbox_right    = 0;
-    hitbox_top      = 0;
-    hitbox_bottom   = 0;
+    hitbox_left     = 7;
+    hitbox_right    = 5;
+    hitbox_top      = 9;
+    hitbox_bottom   = 9;
 
     hitbox_offset_x = 0;
     hitbox_offset_y = 0;
