@@ -7,7 +7,10 @@ return
 Based on
 Harinezumi Engine by A.NB (Aleksander Norberg)
 S9E Engine by Akuma
+
 SonicforGMS by VectorSatyr
+Used for Shield timelines
+
 Sonic Advance 2 Decompilation
 
 Inspirations
@@ -26,12 +29,9 @@ Sonic Triple Trouble 16-Bit
 Knuckles' Halloween Tale
    Item Feed
 
-Sonic (Project) Advanced
+Sonic (Project) Advanced / Sonic Advanced X
     Title Card Concept
     Death Transition Concept
-
-Not So Simple Sonic Advance
-    Recolor Knuckles Eyes Concept
     
 SOURCE ENGINES
 A.NB
@@ -75,9 +75,6 @@ QuadFactor
     Sonic - Sonic Battle
     Tails - Sonic Battle
     Knuckles - Sonic Battle
-
-EternalLight
-    Name Input - Sonic Advance 3 (Color edited by Tsukiru)
 
 Chaofanatic
     Rings - Sonic Rush Adventure
