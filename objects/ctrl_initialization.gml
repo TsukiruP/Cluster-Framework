@@ -66,7 +66,8 @@ for (i = 0; i < 2; i += 1) {
 }
 
 // Read/create misc input settings:
-global.setting_input_style  = ini_read_real("input", "misc_style", DEFAULT_MISC_STYLE);
+global.setting_input_style = ini_read_real("input", "style", DEFAULT_MISC_STYLE);
+global.setting_input_focus = ini_read_real("input", "focus", false);
 
 // Read/create textbox settings:
 global.setting_textbox_red   = ini_read_real("textbox", "red", DEFAULT_TEXTBOX_RED);
@@ -82,9 +83,10 @@ global.setting_gameplay_checkpoint = ini_read_real("gameplay", "checkpoint", tru
 
 // Read/create misc. settings:
 global.setting_misc_hud     = ini_read_real("misc", "hud", 1);
-global.setting_misc_status  = ini_read_real("misc", "status", 1);
+global.setting_misc_status  = ini_read_real("misc", "status", 2);
 global.setting_misc_feed    = ini_read_real("misc", "feed", true);
 global.setting_misc_trails  = ini_read_real("misc", "trails", false);
+global.setting_misc_flicker = ini_read_real("misc", "flicker", true);
 global.setting_misc_lock_on = ini_read_real("misc", "lock_on", true);
 global.setting_misc_results = ini_read_real("misc", "results", 1);
 
@@ -122,6 +124,7 @@ for (i = 0; i < 2; i += 1) {
 
 // Apply misc input settings:
 global.input_style = global.setting_input_style;
+global.input_focus = global.setting_input_focus;
 
 // Apply textbox settings
 global.textbox_red   = global.setting_textbox_red;
@@ -140,6 +143,7 @@ global.misc_hud     = global.setting_misc_hud;
 global.misc_status  = global.setting_misc_status;
 global.misc_feed    = global.setting_misc_feed;
 global.misc_trails  = global.setting_misc_trails;
+global.misc_flicker = global.setting_misc_flicker
 global.misc_lock_on = global.setting_misc_lock_on;
 global.misc_results = global.setting_misc_results;
 /*"/*'/**//* YYD ACTION
@@ -248,4 +252,4 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-transition_create(rm_basic_test_1);
+transition_create(rm_basic_test);

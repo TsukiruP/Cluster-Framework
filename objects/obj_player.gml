@@ -36,6 +36,10 @@ ceiling_landing        = 0;
 ceiling_lock_alarm     = 0;
 touching_ceiling       = false;
 
+// Platform variables:
+platform_instance = noone;
+platform_check    = false;
+
 // Main size variables:
 main_left        = 6;
 main_right       = 6;
@@ -66,6 +70,13 @@ hitbox_bottom   = 0;
 
 hitbox_offset_x = 0;
 hitbox_offset_y = 0;
+
+// Input variables:
+input_direction  = 0;
+input_lock       = false;
+input_lock_alarm = 0;
+input_cpu        = false;
+input_cpu_alarm  = 0;
 
 // Action variable:
 action_state = ACTION_DEFAULT;
@@ -113,6 +124,14 @@ roll_offset        = 0;
 // Skid dust alarm:
 skid_dust_alarm = 3;
 
+// Shield variables:
+shield_data     = 0;
+shield_usable   = true;
+shield_state    = 0;
+
+shield_insta    = noone;
+shield_instance = noone;
+
 // Status variables:
 respawn_state       =  0;
 
@@ -130,17 +149,25 @@ status_swap_alarm   = -1;
 
 slam_state          = 0;
 
-// After image variables:
-afterimage_draw  = false;
-afterimage_alarm = 0;
+// Spring variables:
+spring_strength = 0;
+spring_alarm    = 0;
+spring_angle    = 0;
 
-// Shield variables:
-shield_data      = 0;
-shield_usable    = true;
-shield_state     = 0;
+// Gimmick lock variables:
+gimmick_lock       = false;
+gimmick_lock_alarm = 0;
 
-shield_insta     = noone;
-shield_elemental = noone;
+// Water variables:
+water_surface      = false;
+water_splash_alarm = 14;
+
+underwater         = false;
+air_remaining      = 30;
+air_alarm          = 60;
+
+drown_countdown    = 0;
+drowned            = false;
 
 // Tag Action variables:
 tag_hold_state    = 0;
@@ -192,32 +219,9 @@ clock_up_state    = 0;
 clock_up_timer    = 0;
 clock_up_duration = 900;
 
-// Platform variables:
-platform_instance = noone;
-platform_check    = false;
-
-// Water variables:
-underwater      = false;
-air_remaining   = 30;
-air_alarm       = 60;
-drown_countdown = 0;
-drowned         = false;
-
-// Spring variables:
-spring_strength = 0;
-spring_alarm    = 0;
-spring_angle    = 0;
-
-// Gimmick lock variables:
-gimmick_lock       = false;
-gimmick_lock_alarm = 0;
-
-// Input variables:
-input_direction  = 0;
-input_lock       = false;
-input_lock_alarm = 0;
-input_cpu        = false;
-input_cpu_alarm  = 0;
+// After image variables:
+afterimage_draw  = false;
+afterimage_alarm = 0;
 
 // Misc. variables:
 wall_stop     =  true;
@@ -540,6 +544,20 @@ player_handle_ring();
 player_handle_item_box();
 player_handle_omochao();
 player_handle_water_surface();
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Shield
+
+if (shield_data != 0 && shield_instance == noone) {
+    shield_instance = instance_create(x, y, eff_shield);
+
+    with (shield_instance) {
+        player_handle = other.id;
+    }
+}
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603

@@ -9,4 +9,4 @@ applies_to=self
 event_inherited();
 
 // Item data variable:
-item_data = ITEM_BUBBLE;
+item_data = ITEM_LIGHTNING;

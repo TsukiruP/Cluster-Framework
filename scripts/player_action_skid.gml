@@ -24,7 +24,7 @@ if (action_state == ACTION_SKID) {
             skid_dust_alarm -= 1;
 
             if (skid_dust_alarm == 0) {
-                effect_create(ctl_skid, x, y + main_bottom);
+                effect_create(ctl_skid, x, y + main_bottom, depth);
                 skid_dust_alarm = 3;
             }
         }

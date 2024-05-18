@@ -17,12 +17,9 @@
 			|ctrl_pause
 			|ctrl_tally
 +Gameplay
-	+PC
+	+Player
 		|obj_player_spawn
 		|obj_player
-	+NPCs
-		+Badniks
-			|par_badnik
 	+Props
 		|par_prop
 		+Sensors
@@ -59,11 +56,14 @@
 			|obj_water_surface
 		+Interactable
 			|obj_omochao
+		+Badniks
+			|par_badnik
 	+Effects
 		|eff_basic
 		+Player
 			|eff_player
 			|eff_spin_dash
+			|eff_shield
 			|eff_afterimage
 +Stages
 	+Parents

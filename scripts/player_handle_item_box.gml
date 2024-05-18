@@ -14,7 +14,7 @@ if (player_collision_prop(item_box_handle, SIDE_MAIN) != 0 || player_collision_p
         // Destroy item box:
         with (item_box_handle) {
             player_handle = other.id;
-            //particle_create(EFFECT_EXPL_SM, x, y);
+            effect_create(ctl_explosion_small, x, y, depth - 1);
             instance_destroy();
         }
 

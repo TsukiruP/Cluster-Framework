@@ -44,7 +44,7 @@
 		|spr_pause
 		|fnt_hud
 +Gameplay
-	+PCs
+	+Player
 		|spr_player_spawn
 		+Sonic
 			+Default
@@ -105,7 +105,7 @@
 				|spr_sonic_fly_carry
 				|spr_sonic_throw
 				|spr_sonic_glide_carry
-			|spr_sonic_hammer
+			|spr_sonic_insta
 		+Miles
 			+Default
 				|spr_miles_stand
@@ -286,12 +286,12 @@
 			|spr_character_arrow
 			|spr_tag_call
 		+Shields
-			|spr_shield_insta_sonic
+			|spr_shield_insta
 			|spr_shield_basic
 			|spr_shield_magnetic
 			|spr_shield_fire
-			|spr_shield_bubble
-			|spr_shield_insta_miles
+			|spr_shield_bubble_shell
+			|spr_shield_bubble_wave
 			|spr_shield_lightning
 			|spr_shield_muteki
 			+Actions
@@ -311,7 +311,7 @@
 			|spr_splash_large
 			|spr_splash_step
 			|spr_splash_run
-			|spr_splash_jump
+			|spr_splash_dash
 		+Misc.
 			|spr_ring_sparkle
 +Zones

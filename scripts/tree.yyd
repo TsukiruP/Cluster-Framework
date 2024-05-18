@@ -38,6 +38,79 @@
 		|ctl_update
 		|ctl_position
 		|timeline_set
+		+Indexes
+			+Player
+				+Sonic
+					+Default
+						|ctl_sonic_idle
+						|ctl_sonic_turn
+						|ctl_sonic_walk
+						|ctl_sonic_walk_fast
+						|ctl_sonic_jog
+						|ctl_sonic_jog_fast
+						|ctl_sonic_run
+						+Wait
+							|ctl_sonic_wait_leader
+							|ctl_sonic_wait_partner
+						+Balance
+							|ctl_sonic_balance_front
+							|ctl_sonic_balance_back
+						+Tag
+						+Misc.
+							|ctl_sonic_push
+							|ctl_sonic_omochao
+					+Jump
+						|ctl_sonic_spin_flight
+						|ctl_sonic_spin_fall
+					+Look
+						|ctl_sonic_look
+					+Crouch
+						|ctl_sonic_crouch
+					+Spin Dash
+						|ctl_sonic_spin_dash
+						|ctl_sonic_spin_charge
+					|ctl_sonic_roll
+					+Skid
+						|ctl_sonic_skid
+						|ctl_sonic_skid_fast
+						|ctl_sonic_skid_turn
+					+Spring
+						|ctl_sonic_spring_flight
+						|ctl_sonic_spring_fall
+					|ctl_sonic_breathe
+					+Goal
+					|ctl_sonic_hurt
+					|ctl_sonic_death
+			+Props
+				+Omochao
+					|ctl_omochao_idle
+			+Effects
+				+Player
+					|ctl_spin_dash
+					|ctl_spin_charge
+					|ctl_skid
+				+Shields
+					|ctl_shield_insta
+					|ctl_shield_basic
+					|ctl_shield_magnetic
+					|ctl_shield_fire
+					|ctl_shield_bubble
+					|ctl_shield_lightning
+					|ctl_shield_muteki
+				+Status
+				+Explosions
+					|ctl_explosion_small
+					|ctl_explosion_large
+					|ctl_explosion_badnik
+					|ctl_explosion_water
+				+Splashes
+					|ctl_splash_small
+					|ctl_splash_large
+					|ctl_splash_step
+					|ctl_splash_run
+					|ctl_splash_dash
+				+Misc.
+					|ctl_ring_sparkle
 	+Misc.
 		|wrap
 		|wrap_angle
@@ -112,58 +185,6 @@
 				|start_trail
 				|update_trail
 				|draw_trail
-	+Timelines
-		+PCs
-			+Sonic
-				+Default
-					|ctl_sonic_idle
-					|ctl_sonic_turn
-					|ctl_sonic_walk
-					|ctl_sonic_walk_fast
-					|ctl_sonic_jog
-					|ctl_sonic_jog_fast
-					|ctl_sonic_run
-					+Wait
-						|ctl_sonic_wait_leader
-						|ctl_sonic_wait_partner
-					+Balance
-						|ctl_sonic_balance_front
-						|ctl_sonic_balance_back
-					+Tag
-					+Misc.
-						|ctl_sonic_push
-						|ctl_sonic_omochao
-				+Jump
-					|ctl_sonic_spin_flight
-					|ctl_sonic_spin_fall
-				+Look
-					|ctl_sonic_look
-				+Crouch
-					|ctl_sonic_crouch
-				+Spin Dash
-					|ctl_sonic_spin_dash
-					|ctl_sonic_spin_charge
-				|ctl_sonic_roll
-				+Skid
-					|ctl_sonic_skid
-					|ctl_sonic_skid_fast
-					|ctl_sonic_skid_turn
-				+Spring
-					|ctl_sonic_spring_flight
-					|ctl_sonic_spring_fall
-				|ctl_sonic_breathe
-				+Goal
-				|ctl_sonic_hurt
-				|ctl_sonic_death
-		+Props
-			+Omochao
-				|ctl_omochao_idle
-		+Effects
-			|ctl_ring_sparkle
-			+Player
-				|ctl_spin_dash
-				|ctl_spin_charge
-				|ctl_skid
 	|object_point_check
 +Trash
 	+Input
@@ -191,4 +212,3 @@
 	|player_animation_angle
 	|player_animation_depth
 	|player_rectangle_check
-|script148

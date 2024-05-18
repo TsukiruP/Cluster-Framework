@@ -71,7 +71,7 @@ switch (argument0) {
     // Mine:
     case ITEM_MINE:
         player_action_hurt(other);
-        //dummy_effect_create(spr_explosion_large, 0.35, x, y, -5);
+        effect_create(ctl_explosion_large, other.x, other.y, depth - 1);
         break;
 
     // Slow:

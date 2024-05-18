@@ -26,8 +26,6 @@ if (action_state == ACTION_JUMP) {
 
     // Reset upon landing:
     if (ground == true) action_state = ACTION_DEFAULT;
-
-    if (y_speed > 0) player_set_animation("spin_fall");
 }
 
 // Variable clean up:

@@ -42,12 +42,9 @@ if (player_handle != noone) {
     if (omochao_current != omochao_target) {
         // Update text controller:
         switch (omochao_target) {
-            case 1:
-                text_message_set("Kuuga, Agito, Ryuki, Faiz, Blade~");
-                break;
-
+            // Default:
             default:
-                text_message_set("OMOCHAO#Bro visited his friend.");
+                text_message_set("Disappear.#This chair is an eyesore.#This chair. This chair. This chair. This chair. This chair. This chair. This chair. This chair. This chair. This chair. This chair. This chair. This chair. This chair. This chair. This chair. This chair. This chair. This chair. This chair. This chair. This chair. This chair. This chair. This chair. This chair. This chair. This chair. This chair. This chair. This chair. This chair. This chair. This chair. This chair. This chair. This chair.");
         }
 
         // Set current:

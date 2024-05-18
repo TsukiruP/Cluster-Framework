@@ -14,7 +14,7 @@ if (player_collision_prop(ring_handle, SIDE_MAIN) != 0) {
         if (action_state != ACTION_HURT) {
             // Destroy ring:
             with (ring_handle) {
-                effect_create(ctl_ring_sparkle, x, y);
+                effect_create(ctl_ring_sparkle, x, y, depth - 1);
                 instance_destroy();
             }
 

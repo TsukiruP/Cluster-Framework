@@ -66,9 +66,14 @@ applies_to=self
 // Don't bother if the game is paused:
 if (game_paused()) exit;
 
-if(player_exists(0)) {
+if(player_exists(0) != noone) {
+    var player_handle;
+    
+    // Player handle:
+    player_handle = player_exists(0);
+    
     // Update status:
-    if(global.player_instance[0].shield_data == SHIELD_MAGNETIC) {
+    if(player_handle.shield_data == SHIELD_MAGNETIC || player_handle.shield_data == SHIELD_LIGHTNING) {
         if(distance_to_object(global.player_instance[0]) < 64) {
             magnetized = true;
             instance_destroy();

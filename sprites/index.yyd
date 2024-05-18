@@ -66,14 +66,14 @@ spr_status_panic
 spr_shield_basic
 spr_shield_magnetic
 spr_shield_fire
-spr_shield_bubble
+spr_shield_bubble_wave
 spr_shield_lightning
 spr_shield_muteki
 spr_shield_fire_burst
 spr_shield_bubble_bounce
 spr_shield_lightning_spark
 spr_player_spawn
-spr_sonic_hammer
+spr_sonic_insta
 spr_basic_test_collision_solid_03
 spr_basic_test_collision_solid_04
 spr_basic_test_collision_solid_05
@@ -132,8 +132,8 @@ spr_bubble
 spr_splash_small
 spr_splash_large
 spr_splash_step
+spr_splash_dash
 spr_splash_run
-spr_splash_jump
 spr_explosion_small
 spr_explosion_large
 spr_explosion_badnik
@@ -207,8 +207,8 @@ spr_basic_test_water_fall_03
 spr_trail
 mask_platform_fix
 spr_drop_dash
-spr_shield_insta_sonic
-spr_shield_insta_miles
+spr_shield_insta
+spr_shield_bubble_shell
 spr_spring_up
 spr_miles_tails
 spr_miles_fly_cancel
