@@ -20,6 +20,10 @@ applies_to=self
 
 event_inherited();
 
+// Update depth:
+depth = player_handle.depth;
+
+
 // Update direction:
 image_xscale = player_handle.animation_direction;
 
