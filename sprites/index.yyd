@@ -145,9 +145,9 @@ spr_checkpoint_active
 spr_character_arrow
 spr_hint_box
 spr_ring_sparkle
-spr_sensor_layer_switch
-spr_sensor_layer_low
-spr_sensor_layer_high
+spr_hint_box_editor
+spr_sensor_layer_a
+spr_sensor_layer_b
 spr_sensor_platform_left
 spr_sensor_platform_right
 spr_sensor_platform_up

@@ -23,6 +23,10 @@
 	+Props
 		|par_prop
 		+Sensors
+			+Layer Sensors
+				|par_sensor_layer
+				|obj_sensor_layer_a
+				|obj_sensor_layer_b
 		+Rings
 			|par_ring
 			|obj_ring
@@ -52,12 +56,14 @@
 				|obj_item_swap
 		+Spikes
 			|par_spike
-		+Water
-			|obj_water_surface
-		+Interactable
-			|obj_omochao
 		+Badniks
 			|par_badnik
+		+Water
+			|obj_water_surface
+		+Hints
+			|par_hint
+			|obj_hint_box
+			|obj_omochao
 	+Effects
 		|eff_basic
 		+Player

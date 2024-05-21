@@ -89,3 +89,8 @@ eff_basic
 par_overlay
 obj_omochao
 eff_shield
+par_hint
+obj_sensor_layer_a
+obj_sensor_layer_b
+par_sensor_layer
+obj_hint_box

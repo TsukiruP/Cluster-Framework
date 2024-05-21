@@ -38,6 +38,6 @@ if (ground == true && ground_angle == 0) wall_height = 4;
 touching_ceiling = false;
 
 // Set flag if inside ceiling:
-if (player_line_check(-main_left * animation_direction, -main_top - 8) || player_line_check(main_right * animation_direction, -main_top - 8)) {
+if (player_line_check(-rela_main_left, -main_top - 8) || player_line_check(rela_main_right, -main_top - 8)) {
     touching_ceiling = true;
 }

@@ -5,7 +5,7 @@ action_id=603
 applies_to=self
 */
 /// Player Initialization
-
+test = false
 // Image speed:
 image_speed = 0;
 
@@ -41,35 +41,42 @@ platform_instance = noone;
 platform_check    = false;
 
 // Main size variables:
-main_left        = 6;
-main_right       = 6;
-main_top         = 14;
-main_bottom      = 14;
+main_left       = 6;
+main_right      = 6;
+main_top        = 14;
+main_bottom     = 14;
 
-main_bottom_temp = 0;
+rela_main_left  = 0;
+rela_main_right = 0;
 
-wall_left        = main_left + 3;
-wall_right       = main_right + 3;
-wall_top         = 0;
-wall_bottom      = 0;
+wall_left       = main_left + 3;
+wall_right      = main_right + 3;
+wall_top        = 0;
+wall_bottom     = 0;
 
 // Hurtbox variables:
-hurtbox_left     = 0;
-hurtbox_right    = 0;
-hurtbox_top      = 0;
-hurtbox_bottom   = 0;
+hurtbox_left       = 0;
+hurtbox_right      = 0;
+hurtbox_top        = 0;
+hurtbox_bottom     = 0;
 
-hurtbox_offset_x = 0;
-hurtbox_offset_y = 0;
+hurtbox_offset_x   = 0;
+hurtbox_offset_y   = 0;
+
+rela_hurtbox_left  = 0;
+rela_hurtbox_right = 0;
 
 // Hitbox variables:
-hitbox_left     = 0;
-hitbox_right    = 0;
-hitbox_top      = 0;
-hitbox_bottom   = 0;
+hitbox_left       = 0;
+hitbox_right      = 0;
+hitbox_top        = 0;
+hitbox_bottom     = 0;
 
-hitbox_offset_x = 0;
-hitbox_offset_y = 0;
+hitbox_offset_x   = 0;
+hitbox_offset_y   = 0;
+
+rela_hitbox_left  = 0;
+rela_hitbox_right = 0;
 
 // Input variables:
 input_direction  = 0;
@@ -103,6 +110,7 @@ g_speed            = 0;
 // Default variables:
 balance_direction = 0;
 push_animation    = false;
+hint_wanted       = false;
 
 // Jump variables:
 jump_force    =  6.5;
@@ -429,7 +437,7 @@ if (ground == true && action_state != ACTION_SLIDE) {
 }
 
 // Acceleration & deceleration:
-if ((action_state == ACTION_DEFAULT && animation_current != "turn" && animation_current != "look" && animation_current != "crouch" && animation_current != "omochao") || action_state == ACTION_JUMP ||
+if ((action_state == ACTION_DEFAULT && hint_wanted == false && animation_current != "turn" && animation_current != "look" && animation_current != "crouch") || action_state == ACTION_JUMP ||
     (action_state == ACTION_SKID && animation_current != "skid_turn") || action_state == ACTION_BALANCE || action_state == ACTION_PUSH || action_state == ACTION_BREATHE ||
     action_state == ACTION_FLY || (action_state == ACTION_TORNADO && animation_current == "tornado") || action_state == ACTION_GLIDE_DROP) {
     // Input direction:
@@ -540,9 +548,10 @@ applies_to=self
 if (game_paused()) exit;
 
 // Handle scripts:
+player_handle_layer();
 player_handle_ring();
 player_handle_item_box();
-player_handle_omochao();
+player_handle_hint();
 player_handle_water_surface();
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -706,7 +715,9 @@ applies_to=self
 if (game_paused(ctrl_pause)) exit;
 
 // Store previous height:
-main_bottom_temp = main_bottom;
+var temp_main_bottom;
+
+temp_main_bottom = main_bottom;
 
 // Action animations:
 switch (action_state) {
@@ -972,19 +983,10 @@ switch (animation_target) {
 // Animation core:
 player_animation_core();
 
-// Wall sides:
-if (animation_direction < 0) {
-    wall_left  = main_right + 3;
-    wall_right = main_left + 3;
-} else {
-    wall_left  = main_left + 3;
-    wall_right = main_right + 3;
-}
-
 // Position fix:
 if ((ground == true && ceiling_lock_alarm == 0) || (mode == 0 && action_state == ACTION_JUMP && animation_current != "spin_flight")) {
-    x += (main_bottom_temp - main_bottom) * x_direction;
-    y += (main_bottom_temp - main_bottom) * y_direction;
+    x += (temp_main_bottom - main_bottom) * x_direction;
+    y += (temp_main_bottom - main_bottom) * y_direction;
 }
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -998,7 +1000,7 @@ applies_to=self
 if (game_paused()) exit;
 
 // General:
-if ((ground == true && action_state == ACTION_DEFAULT && animation_current != "turn" && animation_current != "omochao") || action_state == ACTION_ROLL || action_state == ACTION_BREATHE) {
+if ((ground == true && action_state == ACTION_DEFAULT && hint_wanted == false && animation_current != "turn") || action_state == ACTION_ROLL || action_state == ACTION_BREATHE) {
     // Left:
     if ((x_speed <= 0 || g_speed <= 0) && player_input[INP_LEFT, CHECK_HELD] == true) animation_direction = -1;
 
@@ -1014,6 +1016,37 @@ if ((ground == false && action_state == ACTION_DEFAULT) || action_state == ACTIO
     // Right:
     if (player_input[INP_RIGHT, CHECK_HELD] == true) animation_direction = 1;
 }
+
+// Collision direction:
+if (animation_direction < 0) {
+    // Main:
+    rela_main_left  = main_right;
+    rela_main_right = main_left;
+    
+    // Hurtbox:
+    rela_hurtbox_left  = hurtbox_right;
+    rela_hurtbox_right = hurtbox_left;
+    
+    // Hitbox:
+    rela_hitbox_left  = hitbox_right;
+    rela_hitbox_right = hitbox_left;
+} else {
+    // Main:
+    rela_main_left  = main_left;
+    rela_main_right = main_right;
+    
+    // Hurtbox:
+    rela_hurtbox_left  = hurtbox_left;
+    rela_hurtbox_right = hurtbox_right;
+    
+    // Hitbox:
+    rela_hitbox_left  = hitbox_left;
+    rela_hitbox_right = hitbox_right;
+}
+
+// Wall direction:
+wall_left  = rela_main_left + 3;
+wall_right = rela_main_right + 3;
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -1032,6 +1065,9 @@ switch (animation_current) {
     // Reset angle:
     case "idle":
     case "turn":
+    case "wait":
+    case "balance_front":
+    case "balance_back":
     case "ready":
     case "land":
     case "look":
@@ -1042,8 +1078,6 @@ switch (animation_current) {
     case "skid":
     case "skid_fast":
     case "skid_turn":
-    case "balance_front":
-    case "balance_back":
     case "push":
     case "breathe":
     case "goal":
@@ -1223,7 +1257,9 @@ if (invincibility_type == 1 && invincibility_alarm > 0) animation_alpha = (invin
 else animation_alpha = 1;
 
 // Player:
-draw_sprite_ext(sprite_index, image_index, floor(x) + (animation_direction < 0), floor(y), animation_direction * animation_x_scale, animation_y_scale, animation_angle, animation_blend, animation_alpha);
+if (sprite_exists(sprite_index)) {
+    draw_sprite_ext(sprite_index, image_index, floor(x) + (animation_direction < 0), floor(y), animation_direction * animation_x_scale, animation_y_scale, animation_angle, animation_blend, animation_alpha);
+}
 
 /*
 // Miles' tails:
@@ -1248,31 +1284,31 @@ var x1, y1, x2, y2;
 
 switch (mode) {
     case 0:
-        x1 = floor(x) - (main_left * animation_direction);
+        x1 = floor(x) - rela_main_left;
         y1 = floor(y) - main_top;
-        x2 = floor(x) + (main_right * animation_direction);
+        x2 = floor(x) + rela_main_right;
         y2 = floor(y) + main_bottom;
         break;
 
     case 1:
         x1 = floor(x) - main_top;
-        y1 = floor(y) - (main_right * animation_direction);
+        y1 = floor(y) - rela_main_right;
         x2 = floor(x) + main_bottom;
-        y2 = floor(y) + (main_left * animation_direction);
+        y2 = floor(y) + rela_main_left;
         break;
 
     case 2:
-        x1 = floor(x) - (main_right * animation_direction);
+        x1 = floor(x) - rela_main_right;
         y1 = floor(y) - main_bottom;
-        x2 = floor(x) + (main_left * animation_direction);
+        x2 = floor(x) + rela_main_left;
         y2 = floor(y) + main_top;
         break;
 
     case 3:
         x1 = floor(x) - main_bottom;
-        y1 = floor(y) - (main_left * animation_direction);
+        y1 = floor(y) - rela_main_left;
         x2 = floor(x) + main_top;
-        y2 = floor(y) + (main_right * animation_direction);
+        y2 = floor(y) + rela_main_right;
         break;
 }
 
@@ -1285,31 +1321,31 @@ var x1, y1, x2, y2;
 
 switch (mode) {
     case 0:
-        x1 = floor(x) - ((hurtbox_left + hurtbox_offset_x) * animation_direction);
+        x1 = floor(x) - rela_hurtbox_left + (hurtbox_offset_x * animation_direction);
         y1 = floor(y) - hurtbox_top + hurtbox_offset_y;
-        x2 = floor(x) + ((hurtbox_right + hurtbox_offset_x) * animation_direction);
+        x2 = floor(x) + rela_hurtbox_right + (hurtbox_offset_x * animation_direction);
         y2 = floor(y) + hurtbox_bottom + hurtbox_offset_y;
         break;
 
     case 1:
         x1 = floor(x) - hurtbox_top + hurtbox_offset_y;
-        y1 = floor(y) - ((hurtbox_right + hurtbox_offset_x) * animation_direction);
+        y1 = floor(y) - rela_hurtbox_right + (hurtbox_offset_x * animation_direction);
         x2 = floor(x) + hurtbox_bottom + hurtbox_offset_y;
-        y2 = floor(y) + ((hurtbox_left + hurtbox_offset_x) * animation_direction);
+        y2 = floor(y) + rela_hurtbox_left + (hurtbox_offset_x * animation_direction);
         break;
 
     case 2:
-        x1 = floor(x) - ((hurtbox_right + hurtbox_offset_x) * animation_direction);
+        x1 = floor(x) - rela_hurtbox_right + (hurtbox_offset_x * animation_direction);
         y1 = floor(y) - hurtbox_bottom + hurtbox_offset_y;
-        x2 = floor(x) + ((hurtbox_left + hurtbox_offset_x) * animation_direction);
+        x2 = floor(x) + rela_hurtbox_left + (hurtbox_offset_x * animation_direction);
         y2 = floor(y) + hurtbox_top + hurtbox_offset_y;
         break;
 
     case 3:
         x1 = floor(x) - hurtbox_bottom + hurtbox_offset_y;
-        y1 = floor(y) - ((hurtbox_left + hurtbox_offset_x) * animation_direction);
+        y1 = floor(y) - rela_hurtbox_left + (hurtbox_offset_x * animation_direction);
         x2 = floor(x) + hurtbox_top + hurtbox_offset_y;
-        y2 = floor(y) + ((hurtbox_right + hurtbox_offset_x) * animation_direction);
+        y2 = floor(y) + rela_hurtbox_right + (hurtbox_offset_x * animation_direction);
         break;
 }
 
@@ -1324,31 +1360,31 @@ var x1, y1, x2, y2;
 
 switch (mode) {
     case 0:
-        x1 = floor(x) - ((hitbox_left + hitbox_offset_x) * animation_direction);
+        x1 = floor(x) - rela_hitbox_left + (hurtbox_offset_x * animation_direction);
         y1 = floor(y) - hitbox_top + hitbox_offset_y;
-        x2 = floor(x) + ((hitbox_right + hitbox_offset_x) * animation_direction);
+        x2 = floor(x) + rela_hitbox_right + (hurtbox_offset_x * animation_direction);
         y2 = floor(y) + hitbox_bottom + hitbox_offset_y;
         break;
 
     case 1:
         x1 = floor(x) - hitbox_top + hitbox_offset_y;
-        y1 = floor(y) - ((hitbox_right + hitbox_offset_x) * animation_direction);
+        y1 = floor(y) - rela_hitbox_right + (hurtbox_offset_x * animation_direction);
         x2 = floor(x) + hitbox_bottom + hitbox_offset_y;
-        y2 = floor(y) + ((hitbox_left + hitbox_offset_x) * animation_direction);
+        y2 = floor(y) + rela_hitbox_left + (hurtbox_offset_x * animation_direction);
         break;
 
     case 2:
-        x1 = floor(x) - ((hitbox_right + hitbox_offset_x) * animation_direction);
+        x1 = floor(x) - rela_hitbox_right + (hurtbox_offset_x * animation_direction);
         y1 = floor(y) - hitbox_bottom + hitbox_offset_y;
-        x2 = floor(x) + ((hitbox_left + hitbox_offset_x) * animation_direction);
+        x2 = floor(x) + rela_hitbox_left + (hurtbox_offset_x * animation_direction);
         y2 = floor(y) + hitbox_top + hitbox_offset_y;
         break;
 
     case 3:
         x1 = floor(x) - hitbox_bottom + hitbox_offset_y;
-        y1 = floor(y) - ((hitbox_left + hitbox_offset_x) * animation_direction);
+        y1 = floor(y) - rela_hitbox_left + (hurtbox_offset_x * animation_direction);
         x2 = floor(x) + hitbox_top + hitbox_offset_y;
-        y2 = floor(y) + ((hitbox_right + hitbox_offset_x) * animation_direction);
+        y2 = floor(y) + rela_hitbox_right + (hurtbox_offset_x * animation_direction);
         break;
 }
 

@@ -11,16 +11,16 @@ if (ground == true) {
     var left_edge, right_edge;
 
     // Edges:
-    left_edge = (!player_line_check(main_right * animation_direction, main_bottom + 16, true) && !player_obstacle_check(-wall_left * animation_direction, 0, wall_right * animation_direction, main_bottom + 2, true));
-    right_edge = (!player_line_check(-main_left * animation_direction, main_bottom + 16, true) && !player_obstacle_check(wall_right * animation_direction, 0, -wall_left * animation_direction, main_bottom + 2, true));
+    left_edge = (!player_line_check(rela_main_right, main_bottom + 16, true) && !player_obstacle_check(-wall_left, 0, wall_right, main_bottom + 2, true));
+    right_edge = (!player_line_check(-rela_main_left, main_bottom + 16, true) && !player_obstacle_check(wall_right, 0, -wall_left, main_bottom + 2, true));
 
     if (ground_angle == gravity_angle) {
         // Classic balance behavior:
         if (character_data == CHAR_CLASSIC) {
             var left_edge_classic, right_edge_classic;
 
-            left_edge_classic = (!player_line_check((main_right * animation_direction) / 2, main_bottom + 16, true) && !player_obstacle_check((-wall_left * animation_direction) / 2, 0, (wall_right * animation_direction) / 2, main_bottom + 2, true));
-            right_edge_classic = (!player_line_check((-main_left * animation_direction) / 2, main_bottom + 16, true) && !player_obstacle_check((wall_right * animation_direction) / 2, 0, (-wall_left * animation_direction) / 2, main_bottom + 2, true));
+            left_edge_classic = (!player_line_check(rela_main_right / 2, main_bottom + 16, true) && !player_obstacle_check(-wall_left / 2, 0, wall_right / 2, main_bottom + 2, true));
+            right_edge_classic = (!player_line_check(-rela_main_left / 2, main_bottom + 16, true) && !player_obstacle_check(wall_right / 2, 0, -wall_left / 2, main_bottom + 2, true));
 
             balance_direction = (left_edge - right_edge) + (left_edge_classic - right_edge_classic);
         }
@@ -37,14 +37,12 @@ if (ground == true) {
     }
 }
 
-/*
 // Push:
-if ((player_point_check((wall_width + 1) * animation_direction, wall_height) && abs(g_speed) <= acceleration + 0.5) ||
-    (player_obstacle_check((wall_width + 1 * animation_direction), main_top, (wall_width + 1 * animation_direction), main_bottom) && abs(g_speed) <= acceleration)) {
+if ((abs(g_speed) <= acceleration + 0.5 && (player_point_check(-wall_left - 1, wall_height) || player_point_check(wall_right + 1, wall_height))) ||
+    (abs(g_speed) <= acceleration && player_obstacle_check(wall_left, main_top, wall_right, main_bottom))) {
     if (ground == true && input_direction != 0 && animation_direction == input_direction) push_animation = true;
     else push_animation = false;
 }
-*/
 
 // Hurt:
 if (ground == true && action_state == ACTION_HURT) {
@@ -57,7 +55,7 @@ if (invincibility_type == 1 && invincibility_alarm == -1) {
     if (ground == true || action_state != ACTION_HURT) invincibility_alarm = 120;
 }
 
-// Water surface expects:
+// Water surface effects:
 if (instance_exists(obj_water_surface)) {
     if (water_surface == true) {
         // Create step/run splash:

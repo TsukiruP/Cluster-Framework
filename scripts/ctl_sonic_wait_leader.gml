@@ -78,67 +78,67 @@ else if (ctl_position(93)) {
 
 // Change frame:
 else if (ctl_position(105)) {
-    image_index = 9;
+    image_index = 7;
 }
 
 // Change frame:
 else if (ctl_position(117)) {
-    image_index = 10;
+    image_index = 8;
 }
 
 // Change frame:
 else if (ctl_position(129)) {
-    image_index = 11;
+    image_index = 7;
 }
 
 // Change frame:
 else if (ctl_position(141)) {
-    image_index = 12;
+    image_index = 8;
 }
 
 // Change frame:
 else if (ctl_position(153)) {
-    image_index = 13;
+    image_index = 7;
 }
 
 // Change frame:
 else if (ctl_position(165)) {
-    image_index = 14;
+    image_index = 8;
 }
 
 // Change frame:
 else if (ctl_position(177)) {
-    image_index = 15;
+    image_index = 7;
 }
 
 // Change frame:
 else if (ctl_position(219)) {
-    image_index = 16;
+    image_index = 9;
 }
 
 // Change frame:
 else if (ctl_position(227)) {
-    image_index = 17;
+    image_index = 10;
 }
 
 // Change frame:
 else if (ctl_position(233)) {
-    image_index = 18;
+    image_index = 11;
 }
 
 // Change frame:
 else if (ctl_position(253)) {
-    image_index = 19;
+    image_index = 12;
 }
 
 // Change frame:
 else if (ctl_position(273)) {
-    image_index = 20;
+    image_index = 13;
 }
 
 // Change frame:
 else if (ctl_position(293)) {
-    image_index = 21;
+    image_index = 14;
 }
 
 // Null frame:

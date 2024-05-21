@@ -1,33 +1,3 @@
-+Trash
-	+Solids
-		|spr_basic_test_collision_solid_03
-		|spr_basic_test_collision_solid_04
-		|spr_basic_test_collision_solid_05
-		|spr_basic_test_collision_solid_06
-		|spr_basic_test_collision_solid_07
-		|spr_basic_test_collision_solid_11
-		|spr_basic_test_collision_solid_12
-		|spr_basic_test_collision_solid_09
-		|spr_basic_test_collision_solid_13
-		|spr_basic_test_collision_solid_14
-		|spr_basic_test_collision_solid_15
-	+Platforms
-		|spr_basic_test_collision_plat_01
-	+Low
-		|spr_basic_test_collision_low_01
-	+High
-		|spr_basic_test_collision_high_01
-	+Masks
-		|mask_main
-		|mask_large
-		|mask_big
-		|mask_mid
-		|mask_small
-		|mask_dot
-		|mask_lines
-		|mask_edge_line
-		|mask_platform_fix
-		|mask_ledge
 +System
 	|spr_realizing_hopper
 	|spr_transition_background
@@ -235,13 +205,11 @@
 			|spr_classic_push
 			|spr_classic_misc
 			|spr_classic_death
-	+NPCs
 	+Props
 		+Sensors
 			+Layer Sensors
-				|spr_sensor_layer_switch
-				|spr_sensor_layer_low
-				|spr_sensor_layer_high
+				|spr_sensor_layer_a
+				|spr_sensor_layer_b
 			+Platform Sensors
 				|spr_sensor_platform_left
 				|spr_sensor_platform_right
@@ -266,15 +234,18 @@
 			|spr_spike_right
 			|spr_spike_up
 			|spr_spike_down
+		+Badniks
 		+Water
 			|spr_water_surface
 			|spr_bubble_spawn
 			|spr_bubble
-		+Interactable
+		+Hints
+			+Hint Box
+				|spr_hint_box_editor
+				|spr_hint_box
 			+Omochao
 				|spr_omochao_idle
 				|spr_omochao_sonic
-			|spr_hint_box
 	+Effects
 		+Player
 			|spr_trail
@@ -350,3 +321,33 @@
 			|spr_basic_test_water_fall_01
 			|spr_basic_test_water_fall_02
 			|spr_basic_test_water_fall_03
++Trash
+	+Solids
+		|spr_basic_test_collision_solid_03
+		|spr_basic_test_collision_solid_04
+		|spr_basic_test_collision_solid_05
+		|spr_basic_test_collision_solid_06
+		|spr_basic_test_collision_solid_07
+		|spr_basic_test_collision_solid_11
+		|spr_basic_test_collision_solid_12
+		|spr_basic_test_collision_solid_09
+		|spr_basic_test_collision_solid_13
+		|spr_basic_test_collision_solid_14
+		|spr_basic_test_collision_solid_15
+	+Platforms
+		|spr_basic_test_collision_plat_01
+	+Low
+		|spr_basic_test_collision_low_01
+	+High
+		|spr_basic_test_collision_high_01
+	+Masks
+		|mask_main
+		|mask_large
+		|mask_big
+		|mask_mid
+		|mask_small
+		|mask_dot
+		|mask_lines
+		|mask_edge_line
+		|mask_platform_fix
+		|mask_ledge

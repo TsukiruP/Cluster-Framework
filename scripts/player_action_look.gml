@@ -13,8 +13,8 @@ if (action_state == ACTION_LOOK) {
 }
 
 // Trigger look:
-if (ground == true && g_speed == 0 && y_speed == 0 && balance_direction == 0 && action_state == ACTION_DEFAULT && player_input[INP_UP, CHECK_HELD] == true) {
-    if (animation_current != "look" && animation_current != "crouch" && animation_current != "omochao") {
+if (ground == true && g_speed == 0 && y_speed == 0 && action_state == ACTION_DEFAULT && balance_direction == 0 && hint_wanted == false && player_input[INP_UP, CHECK_HELD] == true) {
+    if (animation_current != "look" && animation_current != "crouch") {
         action_state = ACTION_LOOK;
         g_speed      = 0;
     }

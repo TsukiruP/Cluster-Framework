@@ -8,9 +8,6 @@ applies_to=self
 
 event_inherited();
 
-// Image speed:
-image_speed = 0;
-
 // Size:
 main_left     = 11;
 main_right    = 10;
@@ -18,13 +15,6 @@ main_top      = 11;
 main_bottom   = 10;
 main_offset_x = 2;
 main_offset_y = 5;
-
-// Player handle:
-player_handle = noone;
-
-// Omochao variables:
-omochao_current = -1;
-omochao_target  =  0;
 
 // Draw variables:
 draw_x = x;
@@ -38,17 +28,19 @@ applies_to=self
 /// Activate
 
 if (player_handle != noone) {
-    // Check current:
-    if (omochao_current != omochao_target) {
-        // Update text controller:
-        switch (omochao_target) {
-            // Default:
-            default:
-                text_message_set("Disappear.#This chair is an eyesore.#This chair. This chair. This chair. This chair. This chair. This chair. This chair. This chair. This chair. This chair. This chair. This chair. This chair. This chair. This chair. This chair. This chair. This chair. This chair. This chair. This chair. This chair. This chair. This chair. This chair. This chair. This chair. This chair. This chair. This chair. This chair. This chair. This chair. This chair. This chair. This chair. This chair.");
-        }
+    if (player_handle.hint_wanted == true) {
+        // Check current:
+        if (hint_current != hint_target) {
+            // Update text controller:
+            switch (hint_target) {
+                // Default:
+                default:
+                    text_message_set("Hello! I'm Omochao! Listen to me carefully and you will learn a lot.");
+            }
 
-        // Set current:
-        omochao_current = omochao_target;
+            // Set current:
+            hint_current = hint_target;
+        }
     }
 }
 #define Step_2
@@ -64,43 +56,67 @@ if (game_paused(ctrl_pause)) exit;
 
 // Match player:
 if (player_handle != noone) {
-    // Put down Omochao:
-    if (ctrl_text.text_clear && player_handle.animation_current == "omochao" && player_handle.animation_reverse == false) {
-        player_handle.animation_trigger = true;
-        player_handle.animation_reverse = true;
+    if (player_handle.hint_wanted == true) {
+        // Put down Omochao:
+        if (ctrl_text.text_clear == true && player_handle.animation_current == "omochao" && player_handle.animation_reverse == false) {
+            player_handle.animation_trigger = true;
+            player_handle.animation_reverse = true;
+        }
+    
+        // Change sprite index:
+        switch (player_handle.character_data) {
+            // Sonic:
+            case CHAR_SONIC:
+                sprite_index = spr_omochao_sonic;
+                break;
+        }
+        
+        // Clear text:
+        if (player_handle.hint_wanted == false) {
+            ctrl_text.text_clear = true;
+        }
+    } else {
+        // Reset current:
+        event_inherited();
+        
+        // Reset sprite index:
+        sprite_index = spr_omochao_idle;
     }
-
-    // Change sprite index:
-    switch (player_handle.character_data) {
-        default:
-            sprite_index = spr_omochao_sonic;
-    }
-
-    // Match image index:
-    image_index = player_handle.image_index;
-    
-    // Attach to player:
-    draw_x = floor(player_handle.x);
-    draw_y = floor(player_handle.y);
-    
-    // Update direction:
-    image_xscale = player_handle.animation_direction;
-    
-    // Reset Omochao:
-    if (player_handle.animation_current != "omochao") player_handle = noone;
 }
 
-// Execute timeline:
-if (player_handle == noone) {
+// Reset:
+if (player_handle == noone && hint_current != -1) {
     // Reset current:
-    omochao_current = -1;
+    event_inherited();
     
-    // Reset draw:
+    // Reset sprite index:
+    sprite_index = spr_omochao_idle;
+}
+
+// Idle:
+if (sprite_index == spr_omochao_idle) {
+    // Image index:
+    image_index  = floor(global.object_time) div 3; 
+    
+    // Draw coordinates:
     draw_x = x;
     draw_y = y;
     
-    sprite_index = spr_omochao_idle;
-    image_index  = floor(global.object_time) div 3;
+    // Image xscale:
+    image_xscale = 1;
+}
+
+// Picked up:
+else {
+    // Image index:
+    image_index = player_handle.image_index;
+    
+    // Draw coordinates:
+    draw_x = floor(player_handle.x);
+    draw_y = floor(player_handle.y);
+    
+    // Image xscale:
+    image_xscale = player_handle.animation_direction;
 }
 #define Draw_0
 /*"/*'/**//* YYD ACTION

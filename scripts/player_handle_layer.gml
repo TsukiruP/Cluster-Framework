@@ -1,0 +1,14 @@
+/// player_handle_layer()
+// Like an onion.
+
+var sensor_handle;
+
+// Nearest sensor:
+sensor_handle = instance_nearest(x, y, par_sensor_layer);
+
+if (sensor_handle == noone) exit;
+
+// Change layer:
+if (player_collision_prop(sensor_handle, SIDE_MAIN) != 0) {
+    layer = sensor_handle.layer;
+}

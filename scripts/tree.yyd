@@ -172,9 +172,10 @@
 				|classic_add_animations
 			|player_compile_animations
 		+Handle
+			|player_handle_layer
 			|player_handle_ring
 			|player_handle_item_box
-			|player_handle_omochao
+			|player_handle_hint
 			|player_handle_water_surface
 		+Misc.
 			|player_ring_loss

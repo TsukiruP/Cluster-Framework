@@ -64,12 +64,12 @@ if (animation_reverse == false) {
 
     // Change frame:
     else if (ctl_position(32)) {
-        image_index = 4;
+        image_index = 2;
     }
 
     // Change frame:
     else if (ctl_position(44)) {
-        image_index = 5;
+        image_index = 4;
     }
 
     // Change frame:
