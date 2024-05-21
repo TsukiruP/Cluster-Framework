@@ -60,7 +60,7 @@ applies_to=self
 */
 /// Animate
 
-var shield_advanced;
+var shield_advance;
 
 event_inherited();
 
@@ -71,11 +71,11 @@ if ((player_handle.shield_data == SHIELD_FIRE && (image_index mod 2) != 0) || (p
     depth = player_handle.depth - 1;
 }
 
-// Advanced shields:
-shield_advanced = (player_handle.shield_data == SHIELD_BASIC || player_handle.shield_data == SHIELD_MAGNETIC || player_handle.invincibility_type == 2);
+// Advance shields:
+shield_advance = (player_handle.shield_data == SHIELD_BASIC || player_handle.shield_data == SHIELD_MAGNETIC || player_handle.invincibility_type == 2);
 
 // Hide:
-if (player_handle.shield_data == SHIELD_BUBBLE || (global.misc_flicker == true && shield_advanced == true)) {
+if (player_handle.shield_data == SHIELD_BUBBLE || (global.misc_flicker == true && shield_advance == true)) {
     // Hide:
     if (ctl_time > 1 && ctl_time mod 2) {
         shield_hide = !shield_hide;
@@ -85,7 +85,7 @@ if (player_handle.shield_data == SHIELD_BUBBLE || (global.misc_flicker == true &
 }
 
 // Alpha:
-if ((global.misc_flicker == true && shield_advanced == true) || shield_advanced == false) {
+if ((global.misc_flicker == true && shield_advance == true) || shield_advance == false) {
     shield_alpha = 1;
 } else {
     shield_alpha = 0.6;
