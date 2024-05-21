@@ -74,8 +74,8 @@ spr_shield_bubble_bounce
 spr_shield_lightning_spark
 spr_player_spawn
 spr_sonic_insta
-spr_basic_test_collision_solid_03
-spr_basic_test_collision_solid_04
+spr_spring_right_up
+spr_spring_right
 spr_basic_test_collision_solid_05
 spr_basic_test_collision_solid_09
 spr_basic_test_collision_solid_06
@@ -266,3 +266,5 @@ spr_basic_test_collision_27
 spr_basic_test_collision_28
 spr_basic_test_collision_29
 spr_pause
+spr_spring_left
+spr_spring_down

@@ -6,8 +6,8 @@ if (action_state == ACTION_SPIN_DASH) {
     if (ground == true) {
         // Let 'er rip:
         if (player_input[INP_DOWN, CHECK_HELD] == false) {
-            g_speed      = animation_direction * (8 + (spin_dash_charge div 2));
             action_state = ACTION_ROLL;
+            g_speed      = animation_direction * (8 + (spin_dash_charge div 2));
             
             // Camera lag:
             if (input_cpu == false) ctrl_camera.camera_lag_alarm = 16;

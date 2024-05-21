@@ -41,7 +41,7 @@ if (ground = true && action_state == ACTION_DEFAULT && input_lock_alarm == 0) {
     if (skid_classic == false || (skid_classic == true && (ground_angle < 45 || ground_angle > 315))) {
         // Trigger skid:
         if (abs(g_speed) >= 4.5 && sign(g_speed) == -input_direction) {
-            action_state = ACTION_SKID;
+            action_state    = ACTION_SKID;
             skid_dust_alarm = 3;
 
             // Set animation:

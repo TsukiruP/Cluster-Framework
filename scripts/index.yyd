@@ -163,3 +163,5 @@ ctl_shield_fire
 ctl_shield_bubble
 ctl_shield_lightning
 player_handle_layer
+ctl_spring
+player_handle_spring

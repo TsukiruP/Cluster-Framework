@@ -92,6 +92,8 @@ action_state = ACTION_DEFAULT;
 top_speed        = 6;
 max_speed        = 16;
 
+g_speed            = 0;
+
 x_allow          = true;
 x_direction      = 0;
 x_speed          = 0;
@@ -104,8 +106,6 @@ y_speed            = 0;
 gravity_force      = 0.21875;
 gravity_force_temp = 0.21875;
 gravity_angle      = 0;
-
-g_speed            = 0;
 
 // Default variables:
 balance_direction = 0;
@@ -133,12 +133,12 @@ roll_offset        = 0;
 skid_dust_alarm = 3;
 
 // Shield variables:
-shield_data     = 0;
-shield_usable   = true;
-shield_state    = 0;
+shield_data   = 0;
+shield_usable = true;
+shield_state  = 0;
 
-shield_insta    = noone;
-shield_instance = noone;
+shield_insta  = noone;
+shield_handle = noone;
 
 // Status variables:
 respawn_state       =  0;
@@ -159,8 +159,9 @@ slam_state          = 0;
 
 // Spring variables:
 spring_strength = 0;
-spring_alarm    = 0;
 spring_angle    = 0;
+spring_alarm    = 0;
+spring_current  = noone;
 
 // Gimmick lock variables:
 gimmick_lock       = false;
@@ -438,7 +439,7 @@ if (ground == true && action_state != ACTION_SLIDE) {
 
 // Acceleration & deceleration:
 if ((action_state == ACTION_DEFAULT && hint_wanted == false && animation_current != "turn" && animation_current != "look" && animation_current != "crouch") || action_state == ACTION_JUMP ||
-    (action_state == ACTION_SKID && animation_current != "skid_turn") || action_state == ACTION_BALANCE || action_state == ACTION_PUSH || action_state == ACTION_BREATHE ||
+    (action_state == ACTION_SKID && animation_current != "skid_turn") || action_state == ACTION_BALANCE || action_state == ACTION_PUSH || (action_state == ACTION_SPRING && spring_alarm == 0) || action_state == ACTION_BREATHE ||
     action_state == ACTION_FLY || (action_state == ACTION_TORNADO && animation_current == "tornado") || action_state == ACTION_GLIDE_DROP) {
     // Input direction:
     input_direction = player_input[INP_RIGHT, CHECK_HELD] - player_input[INP_LEFT, CHECK_HELD];
@@ -550,9 +551,10 @@ if (game_paused()) exit;
 // Handle scripts:
 player_handle_layer();
 player_handle_ring();
+player_handle_spring();
 player_handle_item_box();
-player_handle_hint();
 player_handle_water_surface();
+player_handle_hint();
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -560,10 +562,10 @@ applies_to=self
 */
 /// Shield
 
-if (shield_data != 0 && shield_instance == noone) {
-    shield_instance = instance_create(x, y, eff_shield);
+if (shield_data != 0 && shield_handle == noone) {
+    shield_handle = instance_create(x, y, eff_shield);
 
-    with (shield_instance) {
+    with (shield_handle) {
         player_handle = other.id;
     }
 }
@@ -1009,7 +1011,7 @@ if ((ground == true && action_state == ACTION_DEFAULT && hint_wanted == false &&
 }
 
 // Airborne:
-if ((ground == false && action_state == ACTION_DEFAULT) || action_state == ACTION_JUMP || action_state == ACTION_FLY) {
+if ((ground == false && action_state == ACTION_DEFAULT) || action_state == ACTION_JUMP || (action_state == ACTION_SPRING && spring_alarm == 0) || action_state == ACTION_FLY) {
     // Left:
     if (player_input[INP_LEFT, CHECK_HELD] == true) animation_direction = -1;
 

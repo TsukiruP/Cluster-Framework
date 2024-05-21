@@ -37,12 +37,14 @@ if (ground == true) {
     }
 }
 
+/*
 // Push:
 if ((abs(g_speed) <= acceleration + 0.5 && (player_point_check(-wall_left - 1, wall_height) || player_point_check(wall_right + 1, wall_height))) ||
     (abs(g_speed) <= acceleration && player_obstacle_check(wall_left, main_top, wall_right, main_bottom))) {
     if (ground == true && input_direction != 0 && animation_direction == input_direction) push_animation = true;
     else push_animation = false;
 }
+*/
 
 // Hurt:
 if (ground == true && action_state == ACTION_HURT) {

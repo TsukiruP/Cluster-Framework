@@ -10,10 +10,10 @@ if (y_speed < jump_release && action_state == ACTION_JUMP && jump_complete == fa
 if ((ground == true || (action_state == ACTION_CARRY && player_input[INP_DOWN, CHECK_HELD] == true)) && player_input[INP_JUMP, CHECK_PRESSED] == true) {
     // Ignore some ground based actions:
     if (action_state != ACTION_CROUCH && action_state != ACTION_SPIN_DASH && action_state != ACTION_PEEL_OUT && tunnel_lock == false) {
-        x_speed     -= dsin(ground_angle) * jump_force;
-        y_speed     -= dcos(ground_angle) * jump_force;
         ground       = false;
         action_state = ACTION_JUMP;
+        x_speed     -= dsin(ground_angle) * jump_force;
+        y_speed     -= dcos(ground_angle) * jump_force;
 
         // Play sound:
         sound_play_single("snd_jump");

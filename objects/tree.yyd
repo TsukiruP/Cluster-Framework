@@ -32,9 +32,13 @@
 			|obj_ring
 			|obj_ring_magnetized
 		|obj_checkpoint
-		+Dash Panels
 		+Springs
+			|par_spring
+			|obj_spring_up
+			|obj_spring_right_up
+		+Dash Panels
 		+Dash Rings
+		+Rainbow Rings
 		+Item Boxes
 			|par_item_box
 			+Ring Bonuses
@@ -113,7 +117,6 @@
 			|obj_basic_test_water_fall_02
 			|obj_basic_test_water_fall_03
 +Trash
-	|par_platform
 	|par_layer_low
 	|par_layer_high
 	|ctrl_particle

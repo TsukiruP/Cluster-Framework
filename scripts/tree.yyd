@@ -82,8 +82,8 @@
 					|ctl_sonic_hurt
 					|ctl_sonic_death
 			+Props
-				+Omochao
-					|ctl_omochao_idle
+				|ctl_spring
+				|ctl_omochao_idle
 			+Effects
 				+Player
 					|ctl_spin_dash
@@ -174,9 +174,10 @@
 		+Handle
 			|player_handle_layer
 			|player_handle_ring
+			|player_handle_spring
 			|player_handle_item_box
-			|player_handle_hint
 			|player_handle_water_surface
+			|player_handle_hint
 		+Misc.
 			|player_ring_loss
 			|player_get_item

@@ -1,9 +1,9 @@
 /// player_movement()
 
 // Cap speed:
+g_speed = clamp(g_speed, -max_speed, max_speed);
 x_speed = clamp(x_speed, -max_speed, max_speed);
 y_speed = clamp(y_speed, -max_speed, max_speed);
-g_speed = clamp(g_speed, -max_speed, max_speed);
 
 // Ground ground_angle:
 if (ground == true) {
@@ -12,7 +12,7 @@ if (ground == true) {
 }
 
 // Add gravity force:
-if (ground == false && y_allow == true) {
+if (ground == false && y_allow == true && spring_alarm == 0) {
     y_speed += gravity_force / steps;
 }
 
@@ -41,3 +41,15 @@ touching_ceiling = false;
 if (player_line_check(-rela_main_left, -main_top - 8) || player_line_check(rela_main_right, -main_top - 8)) {
     touching_ceiling = true;
 }
+
+// Spring alarm:
+if (spring_alarm > 0) {
+    spring_alarm -= 1;
+}
+
+if (ground == true || action_state != ACTION_SPRING || spring_alarm == 0) {
+    if (spring_alarm != 0) spring_alarm   = 0;
+    if (spring_alarm != noone) spring_current = noone;
+}
+
+if (ground == true && action_state == ACTION_SPRING) action_state = ACTION_DEFAULT;

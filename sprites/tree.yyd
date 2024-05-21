@@ -222,7 +222,12 @@
 			|spr_checkpoint_inactive
 			|spr_checkpoint_active
 		+Springs
+			|spr_spring_left
+			|spr_spring_right
 			|spr_spring_up
+			|spr_spring_down
+			|spr_spring_right_up
+			|spr_basic_test_collision_solid_05
 		+Dash Panels
 		+Dash Rings
 		+Rainbow Rings
@@ -323,9 +328,6 @@
 			|spr_basic_test_water_fall_03
 +Trash
 	+Solids
-		|spr_basic_test_collision_solid_03
-		|spr_basic_test_collision_solid_04
-		|spr_basic_test_collision_solid_05
 		|spr_basic_test_collision_solid_06
 		|spr_basic_test_collision_solid_07
 		|spr_basic_test_collision_solid_11

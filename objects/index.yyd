@@ -1,6 +1,6 @@
 par_terrain
 ctrl_fade
-par_platform
+par_spring
 par_obstacle
 par_moving_platform
 par_layer_low
@@ -94,3 +94,5 @@ obj_sensor_layer_a
 obj_sensor_layer_b
 par_sensor_layer
 obj_hint_box
+obj_spring_up
+obj_spring_right_up
