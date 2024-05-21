@@ -8,7 +8,7 @@ applies_to=self
 
 water_scroll       = 0;
 water_scroll_speed = 0.25;
-#define Step_0
+#define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -16,7 +16,7 @@ applies_to=self
 */
 /// Water Scroll
 
-water_scroll -= water_scroll_speed * global.object_ratio;
+water_scroll = -floor(global.object_time) div 6;
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -40,4 +40,4 @@ draw_set_color(c_white);
 draw_set_blend_mode(bm_normal);
 
 // Draw surface:
-//draw_sprite_tiled_horizontal(spr_water_surface, 0, water_scroll, y);
+draw_sprite_tiled_horizontal(spr_water_surface, 0, water_scroll, y);
