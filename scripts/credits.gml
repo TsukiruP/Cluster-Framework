@@ -2,89 +2,63 @@
 // Return the list of credits to be given.
 
 return
-"Developed by Tsukiru
+"Developed by Tsukiru#
 
-Based on
-Harinezumi Engine by A.NB (Aleksander Norberg)
+CODE
+Sonic Mania Decompilation by Rubberduckycooly
+
+Sonic Advance 2 Decompilation by SAT-R
+
+Harinezumi Engine/S8E by A.NB
 S9E Engine by Akuma
 
-SonicforGMS by VectorSatyr
-Used for Shield timelines
+Harmony Framework by Dark
+    Original player collision
 
-Sonic Advance 2 Decompilation
+SonicForGMS (for GMS1) by VectorSatyr
+    Animation timelines concept
 
-Inspirations
-Sonic 2 Absolute
-Sonic 2 Absolute: The Modding Community Pack
+Osminium by The Valeev
+    Springs/Dash Panels/Dash Rings
+    Trails
+
+Pixelated Pope
+    Arc code for Tag Actions
+
+INSPIRATION
 Sonic XG
-    Monitor HUD
+    Monitor HUD concept
 
 Sonic the Hedgehog: Project '06
-    Bound Jump SFX Concept
+    Bound Jump SFX
     Action Gauge Concept
 
-Sonic Triple Trouble 16-Bit
-    Partner behavior
-
-Knuckles' Halloween Tale
-   Item Feed
-
-Sonic (Project) Advanced / Sonic Advanced X
+Sonic (Project) Advance / Sonic Advance X
     Title Card Concept
     Death Transition Concept
-    
-SOURCE ENGINES
-A.NB
-    Harinezumi Framework
-    S8E
-
-Akuma
-    S9E
-    
-The Valeev
-    Osminium
 
 SPRITE RIPS
 Tsukiru
-    Sonic The Hedgehog - Sonic Advance 3
-    Miles Tails Prower - Sonic Advance 3
-    Multiplayer - Sonic Advance 3
-    Water Effects - Sonic Advance
-    Water Effects - Sonic Advance 3
-    Water Effects - Sonic Rush
-    Water Effects - Sonic Colors (DS)
-    Explosions - Sonic Colors (DS)
-    Rings - Sonic Colors (DS)
     Goal Ring - Sonic Colors (DS)
-    Dash Ring - Sonic Colors (DS)
-    Spikes - Sonic Colors (DS)
-
-IceisNice
-    Sonic The Hedgehog - Sonic Advance 2
-    Miles Tails Prower - Sonic Advance 2
-    Springs - Sonic Advance 3
-    Diagonal Rings - Sonic Rush
-    Spikes - Sonic Rush
-
-Renn Foxx Ramos
-    Sonic The Hedgehog - Sonic Advance 3
-    Miles Tails Prower - Sonic Advance 3
-    Knuckles the Echidna - Sonic Advance 3
+    Water Effects - Sonic Colors (DS)
+    Status Effect - Sonic Advance 2
+    Status Effect - Sonic Advance 3
+    Explosions - Sonic Colors (DS)
+    Water Explosion - Sonic Rush Adventure
+    Step/Run/Dash Splash - Sonic Rush
 
 QuadFactor
     Sonic - Sonic Battle
     Tails - Sonic Battle
     Knuckles - Sonic Battle
 
-Chaofanatic
-    Rings - Sonic Rush Adventure
-    Explosions - Sonic Rush Adventure (Water Explosion edited by Tsukiru)
 
 Blazefirelp
     Monitors - Sonic Colors (DS)
 
 Techokami
-    Minigames & Zone Maps
+    Minigames & Zone Maps tiles - Sonic Advance 3
+    Hidden Island tiles - Sonic Rush Adventure
 
 TrishRowdy
     Checkpoint - Sonic Colors (DS)
@@ -92,42 +66,19 @@ TrishRowdy
 Dolphman, Random Talking Bush
     General Objects - Sonic Mania
 
-CODE
-Tsukiru
-    Improvements for Harinezumi
-    Revamped button configuration
-    Menus
-    Sonic 1 Skid
-    Tag Actions
-    
-thevaleev
-    Spring/Dash Panel/Dash Ring code [PLACEHOLDER]
-
-Pixelated Pope
-    Original Resolution/Display Code
-    Arc used for Tag Actions (https://www.reddit.com/r/gamemaker/comments/3mqkur/examplecode_apparently_people_are_interested_in/)
-
-YellowAfterlife
-    Clip Region Shader (https://yal.cc/gamemaker-draw-clip/)
+MainMemory
+    Everything Sonic Advance 1-3
 
 CUSTOM SPRITES
 Tsukiru
     Sonic Generations-esque Font
     Expanded HomingMissile333 Font
-    Edited Miles Wait Short
-    Edited Miles Sprites
-    Edited Knuckles Sprites
-    Edited Miles Insta-Shield
-    Edited Monitor Sprites
 
 jan300omega
     Sprite Sheet Project - Sonic (My Palette)
 
 TTuDa6upka
     Sonic Peel Out sprites v 1.0
-
-KellyTheSeyky
-    Sonic Generation spritesheet V6
 
 HomingMissile333
     Sonic HUD Sprite Sheet (NEW)
@@ -145,44 +96,11 @@ goncas23
 Vebilis
     Sonic Adventure Hint Box Sprites
 
-SOUND RIPS
-Tsukiru
-    Sonic Adventure 2
-    Sonic Heroes
-    Sonic Advance 3
+SOUND
 
-Random Talking Bush
-    Sonic Mania
 
-Lange
-    Sonic Advance 3
-
-Chaofanatic
-    Sonic the Hedgehog (2006)
-    
-thegameexplorer
-    Sonic the Hedgehog 4: Episode II
-
-TOOLS
-CRI Middleware Co., LTD.
-    ADX Encoder (Used for Sonic Adventure 2)
-    
-Sewer56
-    PACTool (Used for Sonic Heroes)
-
-Ekey
-    MBTL.BIN.Tool
-
-UMDGen Team
-    UMDGen
-    
-Halley's Comet Software
-    vgmstream
-    
-wmltogether
-    CriPakTools
-    
 SPECIAL THANKS
 Akuma
 renex
-floogle"
+floogle
+";
