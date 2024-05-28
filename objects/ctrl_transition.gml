@@ -202,7 +202,7 @@ if (transition_type == TRANS_CARD) {
         if (title_card_state >= 4 && room_kickoff == KICKOFF_RUN && room_run_end_x != -1) {
             with (player_exists(0)) {
                 g_speed                             = top_speed;
-                player_input[INP_RIGHT, CHECK_HELD] = true;
+                input_player[INP_RIGHT, CHECK_HELD] = true;
             }
         }
     }
@@ -405,7 +405,7 @@ if (transition_type == TRANS_RETRY) {
         with (player_exists(0)) {
             if (other.retry_state >= 4 && other.room_kickoff == KICKOFF_RUN && other.room_run_end_x != -1 && global.checkpoint_x == -1 && global.checkpoint_y == -1) {
                 g_speed                             = top_speed;
-                player_input[INP_RIGHT, CHECK_HELD] = true;
+                input_player[INP_RIGHT, CHECK_HELD] = true;
             }
         }
     }

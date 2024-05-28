@@ -13,9 +13,9 @@ image_speed = 0;
 
 // Size:
 main_left     = 8;
-main_right    = 8;
+main_right    = 7;
 main_top      = 8;
-main_bottom   = 8;
+main_bottom   = 7;
 
 // Dropped:
 dropped = false;

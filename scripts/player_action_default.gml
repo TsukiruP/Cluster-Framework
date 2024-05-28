@@ -11,16 +11,16 @@ if (ground == true) {
     var left_edge, right_edge;
 
     // Edges:
-    left_edge = (!player_line_check(rela_main_right, main_bottom + 16, true) && !player_obstacle_check(-wall_left, 0, wall_right, main_bottom + 2, true));
-    right_edge = (!player_line_check(-rela_main_left, main_bottom + 16, true) && !player_obstacle_check(wall_right, 0, -wall_left, main_bottom + 2, true));
+    left_edge = (!player_line_check(main_right_rel, main_bottom + 16, true) && !player_obstacle_check(-wall_left, 0, wall_right, main_bottom + 2, true));
+    right_edge = (!player_line_check(-main_left_rel, main_bottom + 16, true) && !player_obstacle_check(wall_right, 0, -wall_left, main_bottom + 2, true));
 
     if (ground_angle == gravity_angle) {
         // Classic balance behavior:
         if (character_data == CHAR_CLASSIC) {
             var left_edge_classic, right_edge_classic;
 
-            left_edge_classic = (!player_line_check(rela_main_right / 2, main_bottom + 16, true) && !player_obstacle_check(-wall_left / 2, 0, wall_right / 2, main_bottom + 2, true));
-            right_edge_classic = (!player_line_check(-rela_main_left / 2, main_bottom + 16, true) && !player_obstacle_check(wall_right / 2, 0, -wall_left / 2, main_bottom + 2, true));
+            left_edge_classic = (!player_line_check(main_right_rel / 2, main_bottom + 16, true) && !player_obstacle_check(-wall_left / 2, 0, wall_right / 2, main_bottom + 2, true));
+            right_edge_classic = (!player_line_check(-main_left_rel / 2, main_bottom + 16, true) && !player_obstacle_check(wall_right / 2, 0, -wall_left / 2, main_bottom + 2, true));
 
             balance_direction = (left_edge - right_edge) + (left_edge_classic - right_edge_classic);
         }

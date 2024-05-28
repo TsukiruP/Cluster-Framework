@@ -79,7 +79,7 @@ if (player_handle == noone && hint_current != -1) {
 }
 
 // Float:
-draw_y = y + sin(floor(global.object_time) * 0.03) * 2;
+draw_y = y + sin(floor(global.object_time) * 0.03) * 1.5;
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -89,7 +89,7 @@ applies_to=self
 /// Draw Hint Box
 
 // Hint Box:
-draw_sprite_ext(spr_hint_box, (player_handle != noone), x, draw_y, image_xscale, 1, 0, c_white, 1);
+draw_sprite_ext(sprite_index, (player_handle != noone) + 1, x, draw_y, image_xscale, 1, 0, c_white, 1);
 
 // Size:
 event_inherited();

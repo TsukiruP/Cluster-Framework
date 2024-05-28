@@ -46,6 +46,7 @@ Tsukiru
     Explosions - Sonic Colors (DS)
     Water Explosion - Sonic Rush Adventure
     Step/Run/Dash Splash - Sonic Rush
+    Dash Ring - Sonic Colors
 
 QuadFactor
     Sonic - Sonic Battle
@@ -55,6 +56,11 @@ QuadFactor
 
 Blazefirelp
     Monitors - Sonic Colors (DS)
+    Rainbow Rings - Sonic Rush
+
+IceisNice
+    Rainbow Rings - Sonic Rush
+    Diagonal Rings - Sonic Rush
 
 Techokami
     Minigames & Zone Maps tiles - Sonic Advance 3

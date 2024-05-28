@@ -82,9 +82,9 @@ if (argument[0] == INP_ANY) {
 else {
     // Return a specific device:
     if (argument_count > 2) {
-        if (argument[2] > DEV_KEYBOARD) return ctrl_input.joystick_input[argument[0], argument[1] + 3 * (argument[2] - 1)];
-        else return ctrl_input.keyboard_input[argument[0], argument[1]];
+        if (argument[2] > DEV_KEYBOARD) return ctrl_input.input_joystick[argument[0], argument[1] + 3 * (argument[2] - 1)];
+        else return ctrl_input.input_keyboard[argument[0], argument[1]];
     } else {
-        return ctrl_input.user_input[argument[0], argument[1]];
+        return ctrl_input.input_user[argument[0], argument[1]];
     }
 }

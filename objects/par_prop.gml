@@ -34,6 +34,6 @@ applies_to=self
 // Exit if not in debug mode:
 if (debug_mode == false) exit;
 
-draw_set_color(c_orange);
+draw_set_color(c_red);
 
 draw_rectangle(x - main_left + main_offset_x, y - main_top + main_offset_y, x + main_right + main_offset_x, y + main_bottom + main_offset_y, true);

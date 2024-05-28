@@ -17,7 +17,7 @@ if (action_state != ACTION_HURT && player_collision_prop(ring_handle, SIDE_MAIN)
             instance_destroy();
         }
 
-        // Add to ring count:
+        // Add to ring total:
         global.game_rings += 1;
 
         // Play sound:

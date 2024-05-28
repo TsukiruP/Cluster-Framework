@@ -10,10 +10,10 @@ applies_to=self
 for (i = INP_LEFT; i <= INP_HELP; i += 1) {
     for (j = CHECK_HELD; j <= CHECK_RELEASED; j += 1) {
         // User inputs:
-        user_input[i, j]     = false;
+        input_user[i, j]     = false;
 
         // Keyboard inputs:
-        keyboard_input[i, j] = false;
+        input_keyboard[i, j] = false;
     }
 }
 
@@ -61,7 +61,7 @@ for (i = 0; i < joystick_max; i += 1) {
             }
 
             // General inputs:
-            joystick_input[j, k + (i * 3)] = false;
+            input_joystick[j, k + (i * 3)] = false;
         }
     }
 }
@@ -286,13 +286,13 @@ applies_to=self
 // Keyboard inputs:
 for (i = INP_LEFT; i <= INP_HELP; i += 1) {
     // Held:
-    keyboard_input[i, CHECK_HELD] = keyboard_check(global.input_key[i]);
+    input_keyboard[i, CHECK_HELD] = keyboard_check(global.input_key[i]);
 
     // Pressed:
-    keyboard_input[i, CHECK_PRESSED] = keyboard_check_pressed(global.input_key[i]);
+    input_keyboard[i, CHECK_PRESSED] = keyboard_check_pressed(global.input_key[i]);
 
     // Released:
-    keyboard_input[i, CHECK_RELEASED] = keyboard_check_released(global.input_key[i]);
+    input_keyboard[i, CHECK_RELEASED] = keyboard_check_released(global.input_key[i]);
 }
 
 // Joystick inputs:
@@ -307,25 +307,25 @@ for (i = 0; i < joystick_max; i += 1) {
             // Directional inputs:
             if (j <= INP_DOWN) {
                 // Held:
-                joystick_input[j, CHECK_HELD + (i * 3)] = (joystick_check(i, global.input_joy[j, i]) || joystick_analog[j, CHECK_HELD + (i * 3)]);
+                input_joystick[j, CHECK_HELD + (i * 3)] = (joystick_check(i, global.input_joy[j, i]) || joystick_analog[j, CHECK_HELD + (i * 3)]);
 
                 // Pressed:
-                joystick_input[j, CHECK_PRESSED + (i * 3)] = (joystick_check_pressed(i, global.input_joy[j, i]) || joystick_analog[j, CHECK_PRESSED + (i * 3)]);
+                input_joystick[j, CHECK_PRESSED + (i * 3)] = (joystick_check_pressed(i, global.input_joy[j, i]) || joystick_analog[j, CHECK_PRESSED + (i * 3)]);
 
                 // Released:
-                joystick_input[j, CHECK_RELEASED + (i * 3)] = (joystick_check_released(i, global.input_joy[j, i]) || joystick_analog[j, CHECK_RELEASED + (i * 3)]);
+                input_joystick[j, CHECK_RELEASED + (i * 3)] = (joystick_check_released(i, global.input_joy[j, i]) || joystick_analog[j, CHECK_RELEASED + (i * 3)]);
             }
 
             // Other inputs:
             else {
                 // Held:
-                joystick_input[j, CHECK_HELD + (i * 3)] = joystick_check(i, global.input_joy[j, i]);
+                input_joystick[j, CHECK_HELD + (i * 3)] = joystick_check(i, global.input_joy[j, i]);
 
                 // Pressed:
-                joystick_input[j, CHECK_PRESSED + (i * 3)] = joystick_check_pressed(i, global.input_joy[j, i]);
+                input_joystick[j, CHECK_PRESSED + (i * 3)] = joystick_check_pressed(i, global.input_joy[j, i]);
 
                 // Released:
-                joystick_input[j, CHECK_RELEASED + (i * 3)] = joystick_check_released(i, global.input_joy[j, i]);
+                input_joystick[j, CHECK_RELEASED + (i * 3)] = joystick_check_released(i, global.input_joy[j, i]);
             }
         }
     }
@@ -334,13 +334,13 @@ for (i = 0; i < joystick_max; i += 1) {
     else {
         for (j = INP_LEFT; j <= INP_HELP; j += 1) {
             // Held:
-            joystick_input[j, CHECK_HELD + (i * 3)] = false;
+            input_joystick[j, CHECK_HELD + (i * 3)] = false;
 
             // Pressed:
-            joystick_input[j, CHECK_PRESSED + (i * 3)] = false;
+            input_joystick[j, CHECK_PRESSED + (i * 3)] = false;
 
             // Released:
-            joystick_input[j, CHECK_RELEASED + (i * 3)] = false;
+            input_joystick[j, CHECK_RELEASED + (i * 3)] = false;
         }
     }
 }
@@ -348,13 +348,13 @@ for (i = 0; i < joystick_max; i += 1) {
 // User/player 1 inputs:
 for (i = INP_LEFT; i <= INP_HELP; i += 1) {
     // Held:
-    user_input[i, CHECK_HELD] = (keyboard_input[i, CHECK_HELD] || joystick_input[i, CHECK_HELD]);
+    input_user[i, CHECK_HELD] = (input_keyboard[i, CHECK_HELD] || input_joystick[i, CHECK_HELD]);
 
     // Pressed:
-    user_input[i, CHECK_PRESSED] = ((keyboard_input[i, CHECK_PRESSED] && !joystick_input[i, CHECK_HELD]) || (joystick_input[i, CHECK_PRESSED] && !keyboard_input[i, CHECK_HELD]));
+    input_user[i, CHECK_PRESSED] = ((input_keyboard[i, CHECK_PRESSED] && !input_joystick[i, CHECK_HELD]) || (input_joystick[i, CHECK_PRESSED] && !input_keyboard[i, CHECK_HELD]));
 
     // Released:
-    user_input[i, CHECK_RELEASED] = ((keyboard_input[i, CHECK_RELEASED] && !joystick_input[i, CHECK_HELD]) || (joystick_input[i, CHECK_RELEASED] && !keyboard_input[i, CHECK_HELD]));
+    input_user[i, CHECK_RELEASED] = ((input_keyboard[i, CHECK_RELEASED] && !input_joystick[i, CHECK_HELD]) || (input_joystick[i, CHECK_RELEASED] && !input_keyboard[i, CHECK_HELD]));
 }
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -364,7 +364,7 @@ applies_to=self
 /// Update Input Timer
 
 for (i = INP_LEFT; i <= INP_DOWN; i += 1) {
-    if (user_input[i, CHECK_HELD] == true) input_timer[i] += 1;
+    if (input_user[i, CHECK_HELD] == true) input_timer[i] += 1;
     else {
         if (input_timer[i] != 0) input_timer[i] = 0;
     }
@@ -377,27 +377,27 @@ applies_to=self
 /// Conflicting Inputs
 
 // Held left & right:
-if (user_input[INP_LEFT, CHECK_HELD] == true && user_input[INP_RIGHT, CHECK_HELD] == true) {
-    user_input[INP_LEFT, CHECK_HELD]  = false;
-    user_input[INP_RIGHT, CHECK_HELD] = false;
+if (input_user[INP_LEFT, CHECK_HELD] == true && input_user[INP_RIGHT, CHECK_HELD] == true) {
+    input_user[INP_LEFT, CHECK_HELD]  = false;
+    input_user[INP_RIGHT, CHECK_HELD] = false;
 }
 
 // Pressed left & right:
-if (user_input[INP_LEFT, CHECK_PRESSED] == true && user_input[INP_RIGHT, CHECK_PRESSED] == true) {
-    user_input[INP_LEFT, CHECK_PRESSED]  = false;
-    user_input[INP_RIGHT, CHECK_PRESSED] = false;
+if (input_user[INP_LEFT, CHECK_PRESSED] == true && input_user[INP_RIGHT, CHECK_PRESSED] == true) {
+    input_user[INP_LEFT, CHECK_PRESSED]  = false;
+    input_user[INP_RIGHT, CHECK_PRESSED] = false;
 }
 
 // Held up & down:
-if (user_input[INP_UP, CHECK_HELD] == true && user_input[INP_DOWN, CHECK_HELD] == true) {
-    user_input[INP_UP, CHECK_HELD]  = false;
-    user_input[INP_DOWN, CHECK_HELD] = false;
+if (input_user[INP_UP, CHECK_HELD] == true && input_user[INP_DOWN, CHECK_HELD] == true) {
+    input_user[INP_UP, CHECK_HELD]  = false;
+    input_user[INP_DOWN, CHECK_HELD] = false;
 }
 
 // Pressed up & down:
-if (user_input[INP_UP, CHECK_PRESSED] == true && user_input[INP_DOWN, CHECK_PRESSED] == true) {
-    user_input[INP_UP, CHECK_PRESSED]  = false;
-    user_input[INP_DOWN, CHECK_PRESSED] = false;
+if (input_user[INP_UP, CHECK_PRESSED] == true && input_user[INP_DOWN, CHECK_PRESSED] == true) {
+    input_user[INP_UP, CHECK_PRESSED]  = false;
+    input_user[INP_DOWN, CHECK_PRESSED] = false;
 }
 /*"/*'/**//* YYD ACTION
 lib_id=1

@@ -12,7 +12,7 @@ if (ground == true) {
 }
 
 // Add gravity force:
-if (ground == false && y_allow == true && spring_alarm == 0) {
+if (ground == false && y_allow == true && (spring_angle == ANGLE_DOWN || spring_alarm == 0)) {
     y_speed += gravity_force / steps;
 }
 
@@ -38,18 +38,17 @@ if (ground == true && ground_angle == 0) wall_height = 4;
 touching_ceiling = false;
 
 // Set flag if inside ceiling:
-if (player_line_check(-rela_main_left, -main_top - 8) || player_line_check(rela_main_right, -main_top - 8)) {
+if (player_line_check(-main_left_rel, -main_top - 8) || player_line_check(main_right_rel, -main_top - 8)) {
     touching_ceiling = true;
 }
 
-// Spring alarm:
-if (spring_alarm > 0) {
-    spring_alarm -= 1;
+// Springing:
+if (((ground == true && input_lock_alarm == 0) || (ground == false && action_state != ACTION_SPRING) || touching_ceiling == true) && spring_alarm != 0) {
+    spring_alarm = 0;
 }
 
-if (ground == true || action_state != ACTION_SPRING || spring_alarm == 0) {
-    if (spring_alarm != 0) spring_alarm   = 0;
-    if (spring_alarm != noone) spring_current = noone;
+if (spring_alarm == 0 && spring_current != noone) {
+    spring_current = noone;
 }
 
 if (ground == true && action_state == ACTION_SPRING) action_state = ACTION_DEFAULT;

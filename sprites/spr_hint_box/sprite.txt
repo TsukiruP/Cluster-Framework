@@ -1,4 +1,4 @@
-frames=2
+frames=3
 origin_x=24
 origin_y=54
 collision_shape=1
@@ -8,4 +8,4 @@ bbox_type=0
 bbox_left=3
 bbox_top=0
 bbox_right=43
-bbox_bottom=67
+bbox_bottom=101

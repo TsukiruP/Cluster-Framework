@@ -9,8 +9,8 @@ else pl_type = 0;
 switch (pl_type) {
     // Hurtbox:
     case 1:
-        pl_left     = rela_hurtbox_left;
-        pl_right    = rela_hurtbox_right;
+        pl_left     = hurtbox_left_rel;
+        pl_right    = hurtbox_right_rel;
         pl_top      = hurtbox_top;
         pl_bottom   = hurtbox_bottom;
 
@@ -20,8 +20,8 @@ switch (pl_type) {
 
     // Hitbox:
     case 2:
-        pl_left     = rela_hitbox_left;
-        pl_right    = rela_hitbox_right;
+        pl_left     = hitbox_left_rel;
+        pl_right    = hitbox_right_rel;
         pl_top      = hitbox_top;
         pl_bottom   = hitbox_bottom;
 
@@ -31,8 +31,8 @@ switch (pl_type) {
 
     // Main:
     default:
-        pl_left     = rela_main_left;
-        pl_right    = rela_main_right;
+        pl_left     = main_left_rel;
+        pl_right    = main_right_rel;
         pl_top      = main_top;
         pl_bottom   = main_bottom;
 
