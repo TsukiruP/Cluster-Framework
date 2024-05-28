@@ -9,10 +9,12 @@
 			|fnt_title_card_zone
 			|fnt_title_card_act
 	+HUD
-		|spr_hud
-		|spr_action_gauge
 		|spr_pause
-		|fnt_hud
+		+Default
+			|spr_hud
+			|spr_action_gauge
+			|fnt_hud
+		+S4E2
 +Gameplay
 	+Player
 		|spr_player_spawn
