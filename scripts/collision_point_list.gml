@@ -1,6 +1,7 @@
 /// collision_point_list(x, y, obj, prec, notme, list, ordered)
 // Populates the given DS list with the IDs of instances of the given object colliding within the given point.
 // It optionally orders them by distance from the point and returns the number of instances found to be in collision.
+
 var xx, yy, obj, prec, notme, list, ordered, size;
 xx      = argument0;
 yy      = argument1;

@@ -7,7 +7,7 @@ if (input_lock == false) {
         // Register inputs:
         for (i = INP_LEFT; i <= INP_ALT; i += 1) {
             for (j = CHECK_HELD; j <= CHECK_RELEASED; j += 1) {
-                player_input[i, j] = input_check(i, j);
+                input_player[i, j] = input_check(i, j);
             }
         }
     }
@@ -26,17 +26,17 @@ if (input_lock == false) {
                 // Move right:
                 if ((x < player_handle.x - 16 || (player_handle.y < y - 50 && player_handle.ground == true && player_handle.x_speed > 0)) &&
                     (player_handle.y >= y - 50 || player_handle.ground == false || player_handle.x_speed >= 0)) {
-                    player_input[INP_RIGHT, CHECK_HELD] = true;
+                    input_player[INP_RIGHT, CHECK_HELD] = true;
                 } else {
-                    player_input[INP_RIGHT, CHECK_HELD] = false;
+                    input_player[INP_RIGHT, CHECK_HELD] = false;
                 }
 
                 // Move left:
                 if ((x > player_handle.x + 16 || (player_handle.y < y - 50 && player_handle.ground == true && player_handle.x_speed < 0)) &&
                     (player_handle.y >= y - 50 || player_handle.ground == false || player_handle.x_speed <= 0)) {
-                    player_input[INP_LEFT, CHECK_HELD] = true;
+                    input_player[INP_LEFT, CHECK_HELD] = true;
                 } else {
-                    player_input[INP_LEFT, CHECK_HELD] = false;
+                    input_player[INP_LEFT, CHECK_HELD] = false;
                 }
 
                 // Up & down:
@@ -45,21 +45,21 @@ if (input_lock == false) {
                 queue_up   = ds_queue_dequeue(ctrl_input.partner_input_up);
                 queue_down = ds_queue_dequeue(ctrl_input.partner_input_down);
 
-                ds_queue_enqueue(ctrl_input.partner_input_up, player_handle.player_input[INP_UP, CHECK_HELD]);
-                ds_queue_enqueue(ctrl_input.partner_input_down, player_handle.player_input[INP_DOWN, CHECK_HELD]);
+                ds_queue_enqueue(ctrl_input.partner_input_up, player_handle.input_player[INP_UP, CHECK_HELD]);
+                ds_queue_enqueue(ctrl_input.partner_input_down, player_handle.input_player[INP_DOWN, CHECK_HELD]);
 
-                player_input[INP_UP, CHECK_HELD] = queue_up;
-                player_input[INP_DOWN, CHECK_HELD] = queue_down;
+                input_player[INP_UP, CHECK_HELD] = queue_up;
+                input_player[INP_DOWN, CHECK_HELD] = queue_down;
 
                 // Jump:
                 if (ground == true && action_state != ACTION_CROUCH && action_state != ACTION_LOOK && player_handle.y < y - 50 && player_handle.ground == false) {
-                    player_input[INP_JUMP, CHECK_PRESSED] = true;
+                    input_player[INP_JUMP, CHECK_PRESSED] = true;
                 } else {
-                    player_input[INP_JUMP, CHECK_PRESSED] = false;
+                    input_player[INP_JUMP, CHECK_PRESSED] = false;
                 }
 
-                if (action_state == ACTION_JUMP) player_input[INP_JUMP, CHECK_HELD] = true;
-                else player_input[INP_JUMP, CHECK_HELD] = false;
+                if (action_state == ACTION_JUMP) input_player[INP_JUMP, CHECK_HELD] = true;
+                else input_player[INP_JUMP, CHECK_HELD] = false;
             }
         } else {
             // Decrease partner alarm:
@@ -68,7 +68,7 @@ if (input_lock == false) {
             // Register inputs:
             for (i = INP_LEFT; i <= INP_ALT; i += 1) {
                 for (j = CHECK_HELD; j <= CHECK_RELEASED; j += 1) {
-                    player_input[i, j] = input_check(i, j, DEV_JOYSTICK1);
+                    input_player[i, j] = input_check(i, j, DEV_JOYSTICK1);
                 }
             }
         }
@@ -77,7 +77,7 @@ if (input_lock == false) {
     // Reset inputs:
     for (i = INP_LEFT; i <= INP_ALT; i += 1) {
         for (j = CHECK_HELD; j <= CHECK_RELEASED; j += 1) {
-            player_input[i, j] = false;
+            input_player[i, j] = false;
         }
     }
 }

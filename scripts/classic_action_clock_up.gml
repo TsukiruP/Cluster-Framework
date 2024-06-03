@@ -26,9 +26,9 @@ if (clock_up_state != 0) {
 if (action_state == ACTION_DEATH || action_state == ACTION_HURT) exit;
 
 // Clock Up:
-if (player_input[INP_SUPER, CHECK_PRESSED] == true && clock_up_alarm == 0) {
+if (input_player[INP_SUPER, CHECK_PRESSED] == true && clock_up_alarm == 0) {
     // Hyper:
-    if (clock_up_state != 2 && player_input[INP_ALT, CHECK_HELD] == true && ((clock_up_state == 0 && clock_up_timer == 0) || clock_up_state != 0)) {
+    if (clock_up_state != 2 && input_player[INP_ALT, CHECK_HELD] == true && ((clock_up_state == 0 && clock_up_timer == 0) || clock_up_state != 0)) {
         clock_up_state      = 2;
         global.object_ratio = 0;
 
@@ -38,7 +38,7 @@ if (player_input[INP_SUPER, CHECK_PRESSED] == true && clock_up_alarm == 0) {
     }
 
     // Normal:
-    else if (clock_up_state != 1 && ((clock_up_state == 0 && clock_up_timer == 0) || (player_input[INP_ALT, CHECK_HELD] == true && clock_up_state == 2))) {
+    else if (clock_up_state != 1 && ((clock_up_state == 0 && clock_up_timer == 0) || (input_player[INP_ALT, CHECK_HELD] == true && clock_up_state == 2))) {
         clock_up_state      = 1;
         global.object_ratio = 0.25;
 

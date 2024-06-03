@@ -4,17 +4,17 @@
 switch (argument0) {
     // Ring bonus:
     case ITEM_BONUS:
-        global.stage_rings += 5;
+        global.game_rings += 5;
         break;
 
     // Super ring bonus:
     case ITEM_SUPER_BONUS:
-        global.stage_rings += 10;
+        global.game_rings += 10;
         break;
 
     // Random ring bonus:
     case ITEM_RANDOM_BONUS:
-        global.stage_rings += choose(1, 5, 10, 30, 50);
+        global.game_rings += choose(1, 5, 10, 30, 50);
         break;
 
     // Basic shield:
@@ -71,7 +71,7 @@ switch (argument0) {
     // Mine:
     case ITEM_MINE:
         player_action_hurt(other);
-        //dummy_effect_create(spr_explosion_large, 0.35, x, y, -5);
+        effect_create(ctl_explosion_large, other.x, other.y, depth - 1);
         break;
 
     // Slow:

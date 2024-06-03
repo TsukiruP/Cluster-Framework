@@ -9,10 +9,14 @@ applies_to=self
 global.stage_rings  = 0;
 global.stage_score  = 0;
 global.stage_time   = 0;
+
 global.object_time  = 0;
 global.object_ratio = 1;
-global.add_time     = false;
-culling             = false;
+
+global.pause_allow  = true;
+
+add_time            =  false;
+culling             =  false;
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -57,6 +61,10 @@ action_id=603
 applies_to=self
 */
 /// Pause Menu
+
+if (global.pause_allow && !instance_exists(ctrl_pause) && input_check(INP_START, CHECK_PRESSED)) {
+    instance_create(0, 0, ctrl_pause);
+}
 #define Step_1
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -65,8 +73,11 @@ applies_to=self
 */
 /// Global Timers
 
+// Don't bother if the game is paused:
+if (game_paused()) exit;
+
 // Stage timer:
-if (global.add_time == true) {
+if (add_time == true) {
     global.stage_time += global.object_ratio;
 }
 

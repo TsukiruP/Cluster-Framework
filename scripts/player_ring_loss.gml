@@ -7,7 +7,7 @@ var ring_total, ring_angle, ring_speed, ring_handle;
 sound_play("snd_ring_loss");
 
 // Ring variables:
-ring_total = min(global.stage_rings, 32);
+ring_total = min(global.game_rings, 32);
 ring_angle = 101.25;
 ring_speed = 4;
 
@@ -35,4 +35,4 @@ while(ring_total) {
 }
 
 // Empty stage rings:
-global.stage_rings = 0;
+global.game_rings = 0;

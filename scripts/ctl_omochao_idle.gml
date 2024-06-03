@@ -1,0 +1,31 @@
+/// ctl_omochao_idle()
+
+// Set speed:
+ctl_update(1);
+
+// Start animation:
+if (ctl_position(0)) {
+    // Set sprite:
+    sprite_index = spr_omochao_idle;
+    image_index  = 0;
+}
+
+// Change frame:
+else if (ctl_position(3)) {
+    image_index = 1;
+}
+
+// Change frame:
+else if (ctl_position(6)) {
+    image_index = 2;
+}
+
+// Change frame:
+else if (ctl_position(9)) {
+    image_index = 3;
+}
+
+// Null frame:
+else if (ctl_position(11)) {
+    ctl_time = 0;
+}

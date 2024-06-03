@@ -5,9 +5,9 @@
 if (action_state == ACTION_SPIN_DASH) {
     if (ground == true) {
         // Let 'er rip:
-        if (player_input[INP_DOWN, CHECK_HELD] == false) {
-            g_speed      = animation_direction * (8 + (spin_dash_charge div 2));
+        if (input_player[INP_DOWN, CHECK_HELD] == false) {
             action_state = ACTION_ROLL;
+            g_speed      = animation_direction * (8 + (spin_dash_charge div 2));
             
             // Camera lag:
             if (input_cpu == false) ctrl_camera.camera_lag_alarm = 16;
@@ -20,7 +20,7 @@ if (action_state == ACTION_SPIN_DASH) {
         }
         
         // Increase charge:
-        if (player_input[INP_JUMP, CHECK_PRESSED] == true) {
+        if (input_player[INP_JUMP, CHECK_PRESSED] == true) {
             spin_dash_charge = min(spin_dash_charge + 2, 8);
             
             // Set animation:
@@ -39,7 +39,7 @@ if (action_state == ACTION_SPIN_DASH) {
 }
 
 // Trigger Spin Dash:
-if (action_state == ACTION_CROUCH && tag_animations == false && player_input[INP_JUMP, CHECK_PRESSED] == true) {
+if (action_state == ACTION_CROUCH && tag_animations == false && input_player[INP_JUMP, CHECK_PRESSED] == true) {
     var sfx_spin_dash;
 
     action_state     = ACTION_SPIN_DASH;

@@ -1,6 +1,7 @@
 /// collision_line_list(x1, y1, x2, y2, obj, prec, notme, list, ordered)
 // Populates the given DS list with the IDs of instances of the given object colliding within the given line.
 // It optionally orders them by distance from the center of the line and returns the number of instances found to be in collision.
+
 var x1, y1, x2, y2, obj, prec, notme, list, ordered, size;
 x1      = argument0;
 y1      = argument1;

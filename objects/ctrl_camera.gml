@@ -41,6 +41,9 @@ applies_to=self
 */
 /// Camera Lag
 
+// Don't bother if the game is paused:
+if (game_paused(ctrl_pause)) exit;
+
 if (camera_lag_alarm > 0) camera_lag_alarm -= 1;
 else camera_lag_alarm = 0;
 #define Step_2
@@ -51,6 +54,9 @@ applies_to=self
 */
 /// Camera Shift
 
+// Don't bother if the game is paused:
+if (game_paused(ctrl_pause)) exit;
+
 // Shift around the player:
 if (player_exists(0) != noone) {
     if (focus_handle == player_exists(0)) {
@@ -60,9 +66,8 @@ if (player_exists(0) != noone) {
         look_direction = (focus_handle.action_state == ACTION_CROUCH) - (focus_handle.action_state == ACTION_LOOK);
 
         // Look timer:
-        //if (look_direction != 0) camera_look_timer = clamp(camera_look_timer + (1 * look_direction), -120, 120);
-        //else camera_look_timer = 0;
         camera_look_timer = clamp(camera_look_timer + (1 * look_direction), -120, 120);
+        
         if (sign(camera_look_timer) != look_direction) camera_look_timer = 0;
 
         // Shift camera upwards:
@@ -94,6 +99,9 @@ border_left   = camera_x - 8;
 border_right  = camera_x + 8;
 border_top    = camera_y - 32;
 border_bottom = camera_y + 32;
+
+// Don't bother if the game is paused:
+if (game_paused(ctrl_pause)) exit;
 
 // Focus on player:
 if (player_exists(0) != noone) {

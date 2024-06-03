@@ -33,16 +33,19 @@ applies_to=self
 */
 /// Movement
 
-if (dropped == true) {
-    // Decrease lifespan alarm:
-    lifespan = max(lifespan - 1 * global.object_ratio, 0);
+// Don't bother if the game is paused:
+if (game_paused()) exit;
 
+if (dropped == true) {
+    // Destroy if out of view:
+    if(!in_view()) instance_destroy();
+    
     // Add speed:
-     x += x_speed * global.object_ratio;
+    x += x_speed * global.object_ratio;
 
     // Add gravity:
     y_speed += y_gravity * global.object_ratio;
-    y += y_speed * global.object_ratio;
+    y       += y_speed * global.object_ratio;
 
     // Terrain collision:
     if ((object_point_check(bbox_left, y) && x_speed < 0) || (object_point_check(bbox_right, y) && x_speed > 0)) {
@@ -52,37 +55,6 @@ if (dropped == true) {
     if ((object_point_check(x, bbox_top) && y_speed < 0) || (object_point_check(x, bbox_bottom) && y_speed > 0)) {
         y_speed *= -1;
     }
-
-    // Destroy:
-    if(lifespan <= 0 || !in_view()) instance_destroy();
-}
-
-/*
-if(dropped == true) {
-    // Decrease lifespan alarm:
-    lifespan = max(lifespan - 1 * global.object_ratio, 0);
-
-    // Horizontal movement:
-    //if(place_meeting(x + x_speed, y, par_solid)) x_speed *= -0.25;
-    //else x += x_speed * global.object_ratio;
-
-    //if ((object_point_check(bbox_left, y) && x_speed < 0) || (object_point_check(bbox_right, y) && x_speed > 0)) {
-        //x_speed *= -0.25;
-    //}
-
-    x += x_speed * global.object_ratio;
-
-    // Verical movement:
-    y_speed += y_gravity * global.object_ratio;
-
-    //if(place_meeting(x, y + y_speed, par_solid) || (y_speed >= 0 && place_meeting(x, y + y_speed, par_platform) && !place_meeting(x, y, par_platform))) y_speed *= -0.75;
-    //else y += y_speed * global.object_ratio;
-
-    if ((object_point_check(bbox_top, y) && y_speed < 0) || (object_point_check(bbox_bottom, y) && y_speed > 0)) {
-        y_speed *= -0.75;
-    }
-    // Destroy:
-    if(lifespan <= 0 || !in_view()) instance_destroy();
 }
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -91,14 +63,39 @@ applies_to=self
 */
 /// Magnetization
 
-if(player_exists(0)) {
+// Don't bother if the game is paused:
+if (game_paused()) exit;
+
+if(player_exists(0) != noone) {
+    var player_handle;
+    
+    // Player handle:
+    player_handle = player_exists(0);
+    
     // Update status:
-    if(global.player_instance[0].shield_data == SHIELD_MAGNETIC) {
+    if(player_handle.shield_data == SHIELD_MAGNETIC || player_handle.shield_data == SHIELD_LIGHTNING) {
         if(distance_to_object(global.player_instance[0]) < 64) {
             magnetized = true;
             instance_destroy();
         }
     }
+}
+#define Step_1
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Lifespan
+
+// Don't bother if the game is paused:
+if (game_paused()) exit;
+
+if (dropped == true) {
+    // Decrease lifespan alarm:
+    lifespan = max(lifespan - 1 * global.object_ratio, 0);
+    
+    if(lifespan <= 0) instance_destroy();
 }
 #define Draw_0
 /*"/*'/**//* YYD ACTION
@@ -108,6 +105,7 @@ applies_to=self
 */
 /// Draw Ring
 
+// Ring:
 if(dropped == false || lifespan >= 90 || (dropped == true && lifespan < 90 && (lifespan div 4) mod 2)) {
     draw_sprite_ext(sprite_index, -1, x, y, image_xscale, image_yscale, image_angle, image_blend, image_alpha);
 }

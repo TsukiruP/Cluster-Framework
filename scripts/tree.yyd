@@ -13,10 +13,14 @@
 		|key_to_string
 		|pad_to_chr
 		|string_place_value
+		|text_message_set
+		|topic_message_set
+	+Game
+		|game_start
+		|game_paused
 	+Room
 		|room_set_data
 		|room_get_data
-		|room_transition
 		|room_view_set_all
 	+Draw
 		|parallax_add_node
@@ -29,15 +33,95 @@
 			|draw_background_tiled_horizontal_part
 			|draw_background_tiled_horizontal_part_yscale
 			|draw_background_tiled_vertical_part
+	+Timelines
+		|ctl_initialize
+		|ctl_update
+		|ctl_position
+		|timeline_set
+		+Indexes
+			+Player
+				+Sonic
+					+Default
+						|ctl_sonic_idle
+						|ctl_sonic_turn
+						|ctl_sonic_walk
+						|ctl_sonic_walk_fast
+						|ctl_sonic_jog
+						|ctl_sonic_jog_fast
+						|ctl_sonic_run
+						+Wait
+							|ctl_sonic_wait_leader
+							|ctl_sonic_wait_partner
+						+Balance
+							|ctl_sonic_balance_front
+							|ctl_sonic_balance_back
+						+Tag
+						+Misc.
+							|ctl_sonic_push
+							|ctl_sonic_omochao
+					+Jump
+						|ctl_sonic_spin_flight
+						|ctl_sonic_spin_fall
+					+Look
+						|ctl_sonic_look
+					+Crouch
+						|ctl_sonic_crouch
+					+Spin Dash
+						|ctl_sonic_spin_dash
+						|ctl_sonic_spin_charge
+					|ctl_sonic_roll
+					+Skid
+						|ctl_sonic_skid
+						|ctl_sonic_skid_fast
+						|ctl_sonic_skid_turn
+					+Spring
+						|ctl_sonic_spring_flight
+						|ctl_sonic_spring_fall
+					|ctl_sonic_breathe
+					+Goal
+					|ctl_sonic_hurt
+					|ctl_sonic_death
+			+Props
+				|ctl_spring
+				|ctl_omochao_idle
+			+Effects
+				+Player
+					|ctl_spin_dash
+					|ctl_spin_charge
+					|ctl_skid
+				+Shields
+					|ctl_shield_insta
+					|ctl_shield_basic
+					|ctl_shield_magnetic
+					|ctl_shield_fire
+					|ctl_shield_bubble
+					|ctl_shield_lightning
+					|ctl_shield_muteki
+				+Status
+				+Explosions
+					|ctl_explosion_small
+					|ctl_explosion_large
+					|ctl_explosion_badnik
+					|ctl_explosion_water
+				+Splashes
+					|ctl_splash_small
+					|ctl_splash_large
+					|ctl_splash_step
+					|ctl_splash_run
+					|ctl_splash_dash
+				+Misc.
+					|ctl_ring_sparkle
 	+Misc.
-		|window_resize
+		|wrap
 		|wrap_angle
+		|window_resize
+		|transition_create
+		|fade_create
+		|fade_reverse
+		|in_view
 		|player_exists
 		|water_exists
-		|stage_start
-		|in_view
-		|timeline_set
-		|particle_create
+		|effect_create
 +Gameplay
 	+Player
 		+Collision
@@ -46,20 +130,17 @@
 				|player_point_check
 				|player_line_check
 				|player_obstacle_check
-				|player_rectangle_check
 			|player_movement
 			|player_collision_semisolids
 			|player_collision_terrain
 			|player_collision_obstacle
 			|player_collision_prop
 			|player_mode
-			|player_position_fix
 			|player_wall_stop
 		+Angle
 			|player_get_angle
 			|player_set_angle
 		+Actions
-			|player_action_list
 			|player_action_default
 			|player_action_jump
 			|player_action_look
@@ -90,16 +171,13 @@
 				|knuckles_add_animations
 				|classic_add_animations
 			|player_compile_animations
-			|player_animation_target
-			|player_animation_direction
-			|player_animation_angle
-			|player_animation_depth
 		+Handle
-			|player_handle_list
+			|player_handle_layer
 			|player_handle_ring
+			|player_handle_spring
 			|player_handle_item_box
 			|player_handle_water_surface
-		+Input
+			|player_handle_hint
 		+Misc.
 			|player_ring_loss
 			|player_get_item
@@ -109,33 +187,15 @@
 				|start_trail
 				|update_trail
 				|draw_trail
+	|object_point_check
 +Trash
 	+Input
-		|user_input_jump
-		|user_input_special
-		|user_input_swap
-		|user_input_tag
-		|user_input_super
-		|user_input_start
-		|user_input_select
-		|user_input_accept
-		|user_input_cancel
-		|user_input_help
+		+Input
 	+Animations
 		+Replacements
-			|player_tag_animations
-			|miles_fly_animations
-		|player_reverse_animation
 	+Sonic Dash
-		|player_collision_OLD
-		|player_collision_slope
-		|player_collision_platform_fix
-		|player_collision_edge_line
 		+Main
-			|player_collision_main
-			|player_collision_object_main
 		+Left
-			|player_collision_left
 			|player_collision_left_edge
 			|player_collision_object_left
 		+Right
@@ -150,4 +210,7 @@
 			|player_collision_object_bottom
 		|player_get_angle_OLD
 		|player_set_angle_OLD
-|object_point_check
+	|player_animation_direction
+	|player_animation_angle
+	|player_animation_depth
+	|player_rectangle_check

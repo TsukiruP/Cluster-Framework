@@ -9,20 +9,19 @@ ring_handle = instance_nearest(x, y, par_ring);
 if (ring_handle == noone) exit;
 
 // Collect ring:
-if (player_collision_prop(SIDE_MAIN, ring_handle) != 0) {
+if (action_state != ACTION_HURT && player_collision_prop(ring_handle, SIDE_MAIN) != 0) {
     if (invincibility_type != 1 || (invincibility_type == 1 && invincibility_alarm > -1 && invincibility_type <= 90)) {
-        if (action_state != ACTION_HURT) {
-            with (ring_handle) {
-                particle_create(EFFECT_RING, x, y);
-                instance_destroy();
-            }
-
-            // Add to stage rings:
-            global.stage_rings += 1;
-
-            // Play sound:
-            sound_play_single("snd_ring");
-            ctrl_audio.ring_pan *= -1;
+        // Destroy ring:
+        with (ring_handle) {
+            effect_create(ctl_ring_sparkle, x, y, depth - 1);
+            instance_destroy();
         }
+
+        // Add to ring total:
+        global.game_rings += 1;
+
+        // Play sound:
+        sound_play_single("snd_ring");
+        ctrl_audio.ring_pan *= -1;
     }
 }

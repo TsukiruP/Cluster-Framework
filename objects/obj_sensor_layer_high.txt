@@ -1,0 +1,7 @@
+sprite=spr_sensor_layer_high
+visible=1
+solid=0
+persistent=0
+depth=0
+parent=par_sensor_layer
+mask=

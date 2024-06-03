@@ -1,7 +1,7 @@
 /// player_animation_core()
 // Core of the animation system.
 
-if ((timeline_index != player_get_animation(animation_target, animation_variant)) || animation_reload = true) {
+if ((ctl_index != player_get_animation(animation_target, animation_variant)) || animation_reload = true) {
     // Store previous animation:
     animation_previous = animation_current;
 
@@ -12,9 +12,15 @@ if ((timeline_index != player_get_animation(animation_target, animation_variant)
     // Reset finished:
     animation_finished = false;
 
+    // Reset reverse:
+    animation_reverse = false;
+
     // Reset trigger:
     animation_trigger = false;
 
     // Reset reload:
     animation_reload = false;
 }
+
+// Execute custom timeline:
+script_execute(ctl_index);

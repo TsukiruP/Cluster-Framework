@@ -8,8 +8,10 @@ if (player_exists(0) != noone) {
     }
 }
 
-// Add time:
-if (instance_exists(ctrl_stage)) global.add_time = true;
+// Allow time:
+global.time_allow = true;
 
 // Show HUD:
-if (instance_exists(ctrl_hud)) ctrl_hud.hide = false;
+if (instance_exists(ctrl_hud)) {
+    ctrl_hud.hud_hide = false;
+}

@@ -16,25 +16,25 @@ if (ground == true) {
     // New angle:
     if (on_edge == false && on_obstacle == false) {
         // Get new angle from left sensor:
-        if (player_line_check(-main_width, main_height + 1, true) && !player_line_check(main_width, main_height + 1, true)) {
-            pos_x = floor(x) - main_width * abs(y_direction);
-            pos_y = floor(y) + main_width * x_direction;
+        if (player_line_check(-main_left_rel, main_bottom + 1, true) && !player_line_check(main_right_rel, main_bottom + 1, true)) {
+            pos_x = floor(x) - main_left_rel * abs(y_direction);
+            pos_y = floor(y) + main_left_rel * x_direction;
 
             // Return new angle:
             new_angle = player_get_angle(pos_x, pos_y, mode);
         }
 
         // Get new angle from right sensor:
-        if (!player_line_check(-main_width, main_height + 1, true) && player_line_check(main_width, main_height + 1, true)) {
-            pos_x = floor(x) + main_width * abs(y_direction);
-            pos_y = floor(y) - main_width * x_direction;
+        if (!player_line_check(-main_left_rel, main_bottom + 1, true) && player_line_check(main_right_rel, main_bottom + 1, true)) {
+            pos_x = floor(x) + main_right_rel * abs(y_direction);
+            pos_y = floor(y) - main_right_rel * x_direction;
 
             // Return new angle:
             new_angle = player_get_angle(pos_x, pos_y, mode);
         }
 
         // Force angle to the proper mode if on flat terrain:
-        if (player_line_check(-main_width, main_height + 1, true) && player_line_check(main_width, main_height + 1, true)) {
+        if (player_line_check(-main_left_rel, main_bottom + 1, true) && player_line_check(main_right_rel, main_bottom + 1, true)) {
             new_angle = 90 * mode;
         }
     }
@@ -43,14 +43,14 @@ if (ground == true) {
 // Floor ramp fixes:
 if (mode == 0 && landed == false && ground_angle == 0) {
     // Left ramp edge:
-    if (!player_line_check(-main_width, main_height + 1, true) && player_line_check(main_width, main_height + 1, true)) {
-        var temp_angle, angle_diff;
+    if (!player_line_check(-main_left_rel, main_bottom + 1, true) && player_line_check(main_right_rel, main_bottom + 1, true)) {
+        var angle_temp, angle_diff;
 
         // Temporary angle:
-        temp_angle = player_get_angle(x - wall_width, y + main_height, 0);
+        angle_temp = player_get_angle(x - wall_left, y + main_bottom, 0);
 
         // Difference between ground angle and temp angle:
-        angle_diff = abs(ground_angle - temp_angle);
+        angle_diff = abs(ground_angle - angle_temp);
 
         // Check steepness:
         if (angle_diff > 45 && angle_diff <= 270) {
@@ -60,14 +60,14 @@ if (mode == 0 && landed == false && ground_angle == 0) {
     }
 
     // Right ramp edge:
-    if (player_line_check(-main_width, main_height + 1, true) && !player_line_check(main_width, main_height + 1, true)) {
-        var temp_angle, angle_diff;
+    if (player_line_check(-main_left_rel, main_bottom + 1, true) && !player_line_check(main_right_rel, main_bottom + 1, true)) {
+        var angle_temp, angle_diff;
 
         // Temporary angle:
-        temp_angle = player_get_angle(x + wall_width, y + main_height, 0);
+        angle_temp = player_get_angle(x + wall_right, y + main_bottom, 0);
 
         // Difference between ground angle and temp angle:
-        angle_diff = abs(ground_angle - temp_angle);
+        angle_diff = abs(ground_angle - angle_temp);
 
         // Check steepness:
         if (angle_diff >= 270 && angle_diff < 315) {

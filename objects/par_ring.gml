@@ -6,17 +6,19 @@ applies_to=self
 */
 /// Ring Initialization
 
+event_inherited();
+
 // Image speed:
 image_speed = 0;
 
 // Size:
-prop_width    = 8;
-prop_height   = 8;
-prop_offset_x = 0;
-prop_offset_y = 0;
+main_left     = 8;
+main_right    = 7;
+main_top      = 8;
+main_bottom   = 7;
 
 // Dropped:
-dropped     = false;
+dropped = false;
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -25,4 +27,7 @@ applies_to=self
 */
 /// Animate
 
-image_index = floor(global.object_time) div (8 / (1 + dropped));
+// Don't bother if the game is paused:
+if (game_paused(ctrl_pause)) exit;
+
+image_index = (floor(global.object_time) div (8 / (1 + dropped))) mod 4;

@@ -6,16 +6,16 @@ if (action_state == ACTION_ROLL) {
     if (ground == true) {
         // Deceleration:
         if (input_lock_alarm == 0) {
-            if (g_speed > 0 && player_input[INP_LEFT, CHECK_HELD] == true) g_speed = max(g_speed - roll_deceleration, 0);
+            if (g_speed > 0 && input_player[INP_LEFT, CHECK_HELD] == true) g_speed = max(g_speed - roll_deceleration, 0);
 
-            if (g_speed < 0 && player_input[INP_RIGHT, CHECK_HELD] == true) g_speed = min(g_speed + roll_deceleration, 0);
+            if (g_speed < 0 && input_player[INP_RIGHT, CHECK_HELD] == true) g_speed = min(g_speed + roll_deceleration, 0);
         }
 
         // Friction:
         g_speed -= min(abs(g_speed), roll_friction) * sign(g_speed);
 
         // Uncurl:
-        if (((player_input[INP_LEFT, CHECK_HELD] == false && player_input[INP_RIGHT, CHECK_HELD] == false && player_input[INP_UP, CHECK_HELD] == true) || abs(g_speed) < 0.5) && tunnel_lock == false) {
+        if (((input_player[INP_LEFT, CHECK_HELD] == false && input_player[INP_RIGHT, CHECK_HELD] == false && input_player[INP_UP, CHECK_HELD] == true) || abs(g_speed) < 0.5) && tunnel_lock == false) {
             action_state = ACTION_DEFAULT;
         }
     } else {
@@ -27,7 +27,7 @@ if (action_state == ACTION_ROLL) {
 
 // Trigger roll:
 if (ground == true && action_state == ACTION_DEFAULT && abs(g_speed) >= 1.03125 && tag_animations == false &&
-    player_input[INP_LEFT, CHECK_HELD] == false && player_input[INP_RIGHT, CHECK_HELD] == false && player_input[INP_DOWN, CHECK_HELD] == true) {
+    input_player[INP_LEFT, CHECK_HELD] == false && input_player[INP_RIGHT, CHECK_HELD] == false && input_player[INP_DOWN, CHECK_HELD] == true) {
     action_state = ACTION_ROLL;
 
     // Play sound:

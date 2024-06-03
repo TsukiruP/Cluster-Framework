@@ -1,9 +1,9 @@
++Basic Test
 +Tilesets
-	+Basic Test
-		|tls_basic_test_96x48
-		|tls_basic_test_ramps
-		|tls_basic_test_edges
 	|tls_basic_test_96x96
+	|tls_isolated_isle_64x64
+	|tls_isolated_isle_64x96
+	|tls_basic_test_edges
 +Parallax
 	|pbg_basic_test_sky
 	|pbg_basic_test_sea

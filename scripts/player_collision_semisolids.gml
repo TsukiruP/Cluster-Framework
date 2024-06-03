@@ -12,8 +12,8 @@ if (mode != 0 || (ground == false && y_speed <= 0)) {
 var terrain_handle, collision_test;
 
 terrain_handle = instance_nearest(x, y, par_terrain);
-collision_main = collision_rectangle(floor(x) - main_width, floor(y) - main_height, floor(x) + main_width, floor(y) + main_height, terrain_handle, true, true);
-collision_top  = collision_rectangle(floor(x) - main_width, floor(y) - main_height - 1, floor(x) + main_width, floor(y), terrain_handle, true, true);
+collision_main = collision_rectangle(floor(x) - main_left_rel, floor(y) - main_top, floor(x) + main_right_rel, floor(y) + main_bottom, terrain_handle, true, true);
+collision_top  = collision_rectangle(floor(x) - main_left_rel, floor(y) - main_top - 1, floor(x) + main_right_rel, floor(y), terrain_handle, true, true);
 
 
 if (collision_main) {

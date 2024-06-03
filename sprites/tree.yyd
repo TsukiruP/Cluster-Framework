@@ -1,35 +1,3 @@
-+Trash
-	+Solids
-		|spr_basic_test_collision_solid_03
-		|spr_basic_test_collision_solid_04
-		|spr_basic_test_collision_solid_05
-		|spr_basic_test_collision_solid_06
-		|spr_basic_test_collision_solid_07
-		|spr_basic_test_collision_solid_08
-		|spr_basic_test_collision_solid_09
-		|spr_basic_test_collision_solid_10
-		|spr_basic_test_collision_solid_11
-		|spr_basic_test_collision_solid_12
-		|spr_basic_test_collision_solid_13
-		|spr_basic_test_collision_solid_14
-		|spr_basic_test_collision_solid_15
-	+Platforms
-		|spr_basic_test_collision_plat_01
-	+Low
-		|spr_basic_test_collision_low_01
-	+High
-		|spr_basic_test_collision_high_01
-	+Masks
-		|mask_main
-		|mask_large
-		|mask_big
-		|mask_mid
-		|mask_small
-		|mask_dot
-		|mask_lines
-		|mask_edge_line
-		|mask_platform_fix
-		|mask_ledge
 +System
 	|spr_realizing_hopper
 	|spr_transition_background
@@ -41,15 +9,22 @@
 			|fnt_title_card_zone
 			|fnt_title_card_act
 	+HUD
-		|spr_hud
-		|spr_action_gauge
-		|fnt_hud
+		|spr_pause
+		+Default
+			|spr_hud
+			|spr_action_gauge
+			|fnt_hud
+		+S4E2
+			|spr_hud_s4e2
+			|fnt_hud_s4e2
+			|fnt_score_s4e2
+			|fnt_time_s4e2
 +Gameplay
-	+PCs
+	+Player
 		|spr_player_spawn
 		+Sonic
 			+Default
-				|spr_sonic_stand
+				|spr_sonic_idle
 				|spr_sonic_turn
 				|spr_sonic_walk
 				|spr_sonic_walk_fast
@@ -64,7 +39,7 @@
 					|spr_sonic_balance_front
 					|spr_sonic_balance_back
 				+Tag
-					|spr_sonic_stand_tag
+					|spr_sonic_idle_tag
 					|spr_sonic_turn_tag
 					|spr_sonic_walk_tag
 					|spr_sonic_walk_fast_tag
@@ -106,7 +81,7 @@
 				|spr_sonic_fly_carry
 				|spr_sonic_throw
 				|spr_sonic_glide_carry
-			|spr_sonic_hammer
+			|spr_sonic_insta
 		+Miles
 			+Default
 				|spr_miles_stand
@@ -236,13 +211,11 @@
 			|spr_classic_push
 			|spr_classic_misc
 			|spr_classic_death
-	+NPCs
 	+Props
 		+Sensors
 			+Layer Sensors
-				|spr_sensor_layer_switch
-				|spr_sensor_layer_low
-				|spr_sensor_layer_high
+				|spr_sensor_layer_a
+				|spr_sensor_layer_b
 			+Platform Sensors
 				|spr_sensor_platform_left
 				|spr_sensor_platform_right
@@ -255,10 +228,33 @@
 			|spr_checkpoint_inactive
 			|spr_checkpoint_active
 		+Springs
+			|spr_spring_left
+			|spr_spring_right
 			|spr_spring_up
+			|spr_spring_down
+			|spr_spring_left_up
+			|spr_spring_left_down
+			|spr_spring_right_up
+			|spr_spring_right_down
 		+Dash Panels
 		+Dash Rings
+			|spr_dash_ring_left
+			|spr_dash_ring_right
+			|spr_dash_ring_up
+			|spr_dash_ring_down
+			|spr_dash_ring_left_up
+			|spr_dash_ring_left_down
+			|spr_dash_ring_right_up
+			|spr_dash_ring_right_down
 		+Rainbow Rings
+			|spr_rainbow_ring_left
+			|spr_rainbow_ring_right
+			|spr_rainbow_ring_up
+			|spr_rainbow_ring_down
+			|spr_rainbow_ring_left_up
+			|spr_rainbow_ring_left_down
+			|spr_rainbow_ring_right_up
+			|spr_rainbow_ring_right_down
 		+Item Box
 			|spr_item_box
 			|spr_items
@@ -267,25 +263,33 @@
 			|spr_spike_right
 			|spr_spike_up
 			|spr_spike_down
+		+Badniks
 		+Water
 			|spr_water_surface
 			|spr_bubble_spawn
 			|spr_bubble
-		+Misc.
+		+Hints
+			+Omochao
+				|spr_omochao_idle
+				|spr_omochao_sonic
 			|spr_hint_box
 	+Effects
-		+Dust
-			|spr_spin_dash_dust
-			|spr_spin_charge_dust
-			|spr_skid_dust
-			|spr_drop_dash_dust
+		+Player
+			|spr_trail
+			|spr_spin_dash
+			|spr_spin_charge
+			|spr_skid
+			|spr_drop_dash
+			|spr_homing_reticle
+			|spr_character_arrow
+			|spr_tag_call
 		+Shields
-			|spr_shield_insta_sonic
-			|spr_shield_insta_miles
+			|spr_shield_insta
 			|spr_shield_basic
 			|spr_shield_magnetic
 			|spr_shield_fire
-			|spr_shield_bubble
+			|spr_shield_bubble_shell
+			|spr_shield_bubble_wave
 			|spr_shield_lightning
 			|spr_shield_muteki
 			+Actions
@@ -305,12 +309,8 @@
 			|spr_splash_large
 			|spr_splash_step
 			|spr_splash_run
-			|spr_splash_jump
+			|spr_splash_dash
 		+Misc.
-			|spr_trail
-			|spr_character_arrow
-			|spr_homing_reticle
-			|spr_tag_call
 			|spr_ring_sparkle
 +Zones
 	+Basic Test
@@ -348,3 +348,23 @@
 			|spr_basic_test_water_fall_01
 			|spr_basic_test_water_fall_02
 			|spr_basic_test_water_fall_03
++Trash
+	+Solids
+		|spr_basic_test_collision_solid_14
+	+Platforms
+		|spr_basic_test_collision_plat_01
+	+Low
+		|spr_basic_test_collision_low_01
+	+High
+		|spr_basic_test_collision_high_01
+	+Masks
+		|mask_main
+		|mask_large
+		|mask_big
+		|mask_mid
+		|mask_small
+		|mask_dot
+		|mask_lines
+		|mask_edge_line
+		|mask_platform_fix
+		|mask_ledge

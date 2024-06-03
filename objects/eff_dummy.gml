@@ -6,15 +6,19 @@ applies_to=self
 */
 /// Effect Initialization
 
-image_speed   = 0;
+// Image speed:
+image_speed = 0;
 
-effect_finish = false;
+// Timeline initialization:
+ctl_initialize();
 #define Step_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
 applies_to=self
 */
-/// Finish Effect
+/// Execute Custom Timeline
 
-if (effect_finish == true) instance_destroy();
+if (ctl_index != noone) {
+    script_execute(ctl_index);
+}

@@ -1,0 +1,7 @@
+sprite=spr_spring_left
+visible=1
+solid=0
+persistent=0
+depth=0
+parent=par_spring
+mask=
