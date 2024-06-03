@@ -18,15 +18,16 @@ sub_level      = 0;
 sub_selection  = 0;
 
 // Pause variables:
-pause_hide     = 0;
-pause_sprite   = spr_pause;
-pause_position = global.display_width + sprite_get_width(pause_sprite);
-pause_speed    = 0;
-pause_target   = global.display_width / 2;
-pause_delay    = 2;
-pause_active   = true;
+pause_hide      = 0;
+pause_sprite    = spr_pause;
+pause_delay     = 2;
+pause_active    = true;
 
-sub_distance   = pause_target + sprite_get_width(pause_sprite);
+pause_x_current = global.display_width + sprite_get_width(pause_sprite);
+pause_x_target  = global.display_width / 2;
+pause_x_speed   = 0;
+
+sub_distance    = pause_x_target + sprite_get_width(pause_sprite);
 
 // Handle:
 fade_handle       = noone;
@@ -160,8 +161,8 @@ if (pause_delay > 0) {
     pause_delay -= 1;
 
     if (pause_delay == 0 && menu_lock == true) {
-        pause_target = global.display_width + sprite_get_width(pause_sprite);
-        pause_active = false;
+        pause_active   = false;
+        pause_x_target = global.display_width + sprite_get_width(pause_sprite);
 
         sound_resume_all();
         fade_reverse(fade_handle);
@@ -197,13 +198,13 @@ applies_to=self
 */
 /// Movement
 
-if (pause_position != pause_target) {
-    pause_speed     = ceil(abs(pause_position - pause_target) / 3);
-    pause_position -= pause_speed * sign(pause_position - pause_target);
+if (pause_x_current != pause_x_target) {
+    pause_x_speed    = ceil(abs(pause_x_current - pause_x_target) / 3);
+    pause_x_current -= pause_x_speed * sign(pause_x_current - pause_x_target);
 
-    if (pause_position == pause_target) {
-        pause_speed    = 0;
-        pause_position = pause_target;
+    if (pause_x_current == pause_x_target) {
+        pause_x_speed   = 0;
+        pause_x_current = pause_x_target;
     }
 }
 /*"/*'/**//* YYD ACTION
@@ -213,7 +214,7 @@ applies_to=self
 */
 /// Destroy
 
-if (pause_position == pause_target && !instance_exists(fade_handle)) instance_destroy();
+if (pause_x_current == pause_x_target && !instance_exists(fade_handle)) instance_destroy();
 #define Other_10
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -232,8 +233,8 @@ applies_to=self
 */
 /// Reset Menu
 
-pause_target = global.display_width / 2;
-menu_level   = 0;
+menu_level     = 0;
+pause_x_target = global.display_width / 2;
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -246,7 +247,7 @@ applies_to=self
 if (pause_hide != 0) exit;
 
 // Pause menu:
-draw_sprite(pause_sprite, menu_selection, view_xview[view_current] + pause_position, view_yview[view_current] + global.display_height / 2);
+draw_sprite(pause_sprite, menu_selection, view_xview[view_current] + pause_x_current, view_yview[view_current] + global.display_height / 2);
 
 // Sub menu:
-draw_sprite(pause_sprite, 3 + sub_selection + sub_level * 2, view_xview[view_current] + pause_position + sub_distance, view_yview[view_current] + global.display_height / 2);
+draw_sprite(pause_sprite, 3 + sub_selection + sub_level * 2, view_xview[view_current] + pause_x_current + sub_distance, view_yview[view_current] + global.display_height / 2);

@@ -82,7 +82,7 @@ global.setting_gameplay_debuffs    = ini_read_real("gameplay", "debuffs", false)
 global.setting_gameplay_checkpoint = ini_read_real("gameplay", "checkpoint", true);
 
 // Read/create misc. settings:
-global.setting_misc_hud     = ini_read_real("misc", "hud", 1);
+global.setting_misc_hud     = ini_read_real("misc", "hud", 2);
 global.setting_misc_status  = ini_read_real("misc", "status", 2);
 global.setting_misc_feed    = ini_read_real("misc", "feed", true);
 global.setting_misc_trails  = ini_read_real("misc", "trails", false);
@@ -227,9 +227,9 @@ global.checkpoint_y          = -1;
 global.checkpoint_time       = -1;
 
 // Game initialization:
+global.game_time    = 0;
 global.game_rings   = 0;
 global.game_score   = 0;
-global.game_time    = 0;
 
 global.object_time  = 0;
 global.object_ratio = 1;

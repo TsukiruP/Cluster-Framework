@@ -96,7 +96,7 @@ if (player_handle == noone && hint_current != -1) {
 // Idle:
 if (sprite_index == spr_omochao_idle) {
     // Image index:
-    image_index  = floor(global.object_time) div 3; 
+    image_index  = (floor(global.object_time) div 3) mod 4;
     
     // Draw coordinates:
     draw_x = x;

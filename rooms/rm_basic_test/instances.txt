@@ -1,3 +1,4 @@
+obj_ring,336,752,A9446921,0,1,1,4294967295,0,0
 obj_player_spawn,240,752,F4AE1C4E,0,1,1,4294967295,0,0
 obj_basic_test_collision_03,0,768,B0E589B2,0,1,1,4294967295,0,0
 obj_basic_test_collision_03,96,768,0D9C0381,0,1,1,4294967295,0,0
@@ -21,3 +22,7 @@ obj_basic_test_collision_28,576,720,9DF80386,0,1,1,4294967295,0,0
 obj_basic_test_collision_28,672,720,AC41D886,0,1,1,4294967295,0,0
 obj_basic_test_collision_28,768,720,9C513921,0,1,1,4294967295,0,0
 obj_basic_test_collision_28,864,720,BC713933,0,1,1,4294967295,0,0
+obj_dash_ring_right,240,544,811C3371,0,1,1,4294967295,0,0
+obj_rainbow_ring_left,352,544,FE2B90B1,0,1,1,4294967295,0,0
+obj_rainbow_ring_right_up,240,672,9F8E9F3B,0,1,1,4294967295,0,0
+obj_omochao,304,752,0A196FDF,0,1,1,4294967295,0,0

@@ -15,6 +15,10 @@
 			|spr_action_gauge
 			|fnt_hud
 		+S4E2
+			|spr_hud_s4e2
+			|fnt_hud_s4e2
+			|fnt_score_s4e2
+			|fnt_time_s4e2
 +Gameplay
 	+Player
 		|spr_player_spawn
@@ -346,9 +350,7 @@
 			|spr_basic_test_water_fall_03
 +Trash
 	+Solids
-		|spr_basic_test_collision_solid_13
 		|spr_basic_test_collision_solid_14
-		|spr_basic_test_collision_solid_15
 	+Platforms
 		|spr_basic_test_collision_plat_01
 	+Low

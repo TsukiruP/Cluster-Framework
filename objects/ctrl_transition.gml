@@ -17,50 +17,47 @@ pause_ignore     = false;
 
 // Transition variables:
 transition_type    = TRANS_FADE;
-transition_speed   = 0.02;
 transition_timer   = 0;
 transition_standby = 0;
+transition_speed   = 0.02;
 transition_room    = room;
 
 // Fade handle:
 fade_handle = noone;
 
 // Background variables:
-background_position     = -15;
-background_speed        =  0;
-background_target       =  global.display_height + 15;
-background_scroll       =  0;
-background_scroll_alt = 0;
-background_scroll_speed =  0.5;
+background_y_current      = -15;
+background_y_target       =  global.display_height + 15;
+background_y_speed        =  0;
+
+background_x_scroll       =  0;
+background_x_scroll_speed =  0.5;
 
 // Banner variables:
-banner_position     = -sprite_get_width(spr_title_card_banner) - 12;
-banner_speed        =  0;
-banner_target       =  0;
-banner_scroll       =  0;
-banner_scroll_speed =  1;
+banner_x_current      = -sprite_get_width(spr_title_card_banner) - 12;
+banner_x_target       =  0;
+banner_x_speed        =  0;
+
+banner_y_scroll       =  0;
+banner_y_scroll_speed =  1;
 
 // Zone variables:
-zone_position     = 0;
-zone_start        = 0;
-zone_speed        = 0;
-zone_target       = 40;
-zone_scroll       = 0;
-zone_scroll_speed = 1;
-zone_distance     = 0;
+zone_x_start     = 0;
+zone_x_current   = 0;
+zone_x_target    = 40;
+zone_x_speed     = 0;
 
-// Act variables:
-act_position = global.display_height;
-act_speed    = 0;
+zone_distance = 0;
 
 // Retry variables:
-retry_position = 0;
-retry_start    = 0;
-retry_speed    = 0;
-retry_target   = global.display_width / 2 - 3;
-retry_distance = 0;
-retry_steps    = 15;
-retry_size     = 0;
+retry_x_start   = 0;
+retry_x_current = 0;
+retry_x_target  = (global.display_width / 2) - 3;
+retry_x_speed   = 0;
+
+retry_distance  = 0;
+retry_steps     = 15;
+retry_size      = 0;
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -130,13 +127,13 @@ applies_to=self
 if (transition_type == TRANS_MENU) {
     // 0 - Background start:
     if (menu_state == 0) {
-        if (background_position < background_target) {
-            background_speed     = ceil(abs(background_position - background_target) / 5);
-            background_position += background_speed;
+        if (background_y_current < background_y_target) {
+            background_y_speed     = ceil(abs(background_y_current - background_y_target) / 5);
+            background_y_current += background_y_speed;
 
-            if (background_position >= background_target) {
-                background_speed    = 0;
-                background_position = background_target;
+            if (background_y_current >= background_y_target) {
+                background_y_speed    = 0;
+                background_y_current = background_y_target;
                 menu_state          = 1;
             }
         }
@@ -166,15 +163,15 @@ if (transition_type == TRANS_MENU) {
     // 2 - Background end:
     if (menu_state == 2) {
         // Background target:
-        background_target = -15;
+        background_y_target = -15;
 
-        if (background_position > background_target) {
-            background_speed     = ceil(abs(background_position - background_target) / 5);
-            background_position -= background_speed;
+        if (background_y_current > background_y_target) {
+            background_y_speed     = ceil(abs(background_y_current - background_y_target) / 5);
+            background_y_current -= background_y_speed;
 
-            if (background_position <= background_target) {
-                background_speed    = 0;
-                background_position = background_target
+            if (background_y_current <= background_y_target) {
+                background_y_speed    = 0;
+                background_y_current = background_y_target
                 instance_destroy();
             }
         }
@@ -192,10 +189,10 @@ if (game_paused(ctrl_pause) && pause_ignore == false) exit;
 
 if (transition_type == TRANS_CARD) {
     // Banner scroll:
-    banner_scroll += banner_scroll_speed;
+    banner_y_scroll += banner_y_scroll_speed;
 
     // Zone distance:
-    zone_distance = zone_start + zone_position;
+    zone_distance = zone_x_start + zone_x_current;
 
     // Run kickoff:
     if (player_exists(0) != noone) {
@@ -209,14 +206,14 @@ if (transition_type == TRANS_CARD) {
 
     // 0 - Background start:
     if (title_card_state == 0) {
-        if (background_position < background_target) {
-            background_speed     = ceil(abs(background_position - background_target) / 5);
-            background_position += background_speed;
+        if (background_y_current < background_y_target) {
+            background_y_speed     = ceil(abs(background_y_current - background_y_target) / 5);
+            background_y_current += background_y_speed;
 
-            if (background_position >= background_target) {
-                background_speed    = 0;
-                background_position = background_target;
-                title_card_state    = 1;
+            if (background_y_current >= background_y_target) {
+                background_y_speed    = 0;
+                background_y_current = background_y_target;
+                title_card_state      = 1;
             }
         }
     }
@@ -224,26 +221,26 @@ if (transition_type == TRANS_CARD) {
     // 1 - Banner/zone start:
     if (title_card_state == 1) {
         // Banner start:
-        if (banner_position < 0) {
-            banner_speed     = ceil(abs(banner_position - banner_target) / 6);
-            banner_position += banner_speed;
+        if (banner_x_current < 0) {
+            banner_x_speed     = ceil(abs(banner_x_current - banner_x_target) / 6);
+            banner_x_current += banner_x_speed;
 
-            if (banner_position >= 0) {
-                banner_speed    = 0;
-                banner_position = banner_target;
+            if (banner_x_current >= 0) {
+                banner_x_speed    = 0;
+                banner_x_current = banner_x_target;
             }
         }
 
         // Zone start:
-        if (zone_distance < zone_target) {
-            zone_speed     = ceil(abs(zone_distance - zone_target) / 9);
-            zone_position += zone_speed;
+        if (zone_distance < zone_x_target) {
+            zone_x_speed     = ceil(abs(zone_distance - zone_x_target) / 9);
+            zone_x_current += zone_x_speed;
 
-            if (zone_position >= zone_target - zone_start) {
+            if (zone_x_current >= zone_x_target - zone_x_start) {
                 global.time_allow = false;
                 
-                zone_speed        = 0;
-                zone_position     = -zone_start + zone_target;
+                zone_x_speed        = 0;
+                zone_x_current     = -zone_x_start + zone_x_target;
                 title_card_state  = 2;
             }
         }
@@ -286,18 +283,18 @@ if (transition_type == TRANS_CARD) {
     // 4 - Background end:
     if (title_card_state == 4) {
         // Background target:
-        background_target = -15;
+        background_y_target = -15;
 
-        if (background_position > background_target) {
-            background_speed     = ceil(abs(background_position - background_target) / 5);
-            background_position -= background_speed;
+        if (background_y_current > background_y_target) {
+            background_y_speed     = ceil(abs(background_y_current - background_y_target) / 5);
+            background_y_current -= background_y_speed;
 
             // Player kickoffs:
             if (player_exists(0) != noone) {
                 // Ready kickoff:
                 if (room_kickoff == KICKOFF_READY) {
                     with (player_exists(0)) {
-                        if (floor(other.background_position) <= y + 13 - view_yview[view_current]) {
+                        if (floor(other.background_y_current) <= y + 13 - view_yview[view_current]) {
                             player_set_animation("ready");
 
                             if (player_exists(1) != noone) {
@@ -312,9 +309,9 @@ if (transition_type == TRANS_CARD) {
                 }
             }
 
-            if (background_position <= background_target) {
-                background_speed    = 0;
-                background_position = background_target;
+            if (background_y_current <= background_y_target) {
+                background_y_speed    = 0;
+                background_y_current = background_y_target;
                 title_card_state    = 5;
             }
         }
@@ -323,10 +320,10 @@ if (transition_type == TRANS_CARD) {
     // 5 - Banner/stage end:
     if (title_card_state == 5) {
         // Banner target:
-        banner_target = -sprite_get_width(spr_title_card_banner) - 12;
+        banner_x_target = -sprite_get_width(spr_title_card_banner) - 12;
 
         // Zone target:
-        zone_target = global.display_width + 9;
+        zone_x_target = global.display_width + 9;
 
         if (debug == false) {
             // Kickoff standbys:
@@ -356,30 +353,30 @@ if (transition_type == TRANS_CARD) {
             game_start();
             
             // Banner end:
-            if (banner_position > banner_target) {
-                banner_speed     = ceil(abs(banner_position - banner_target) / 6);
-                banner_position -= banner_speed;
+            if (banner_x_current > banner_x_target) {
+                banner_x_speed     = ceil(abs(banner_x_current - banner_x_target) / 6);
+                banner_x_current -= banner_x_speed;
 
-                if (banner_position <= banner_target) {
-                    banner_speed = 0;
-                    banner_position = banner_target;
+                if (banner_x_current <= banner_x_target) {
+                    banner_x_speed = 0;
+                    banner_x_current = banner_x_target;
                 }
             }
 
             // Zone end:
-            if (zone_distance < zone_target) {
-                zone_speed     = ceil(abs(zone_distance - zone_target) / 9);
-                zone_position += zone_speed;
+            if (zone_distance < zone_x_target) {
+                zone_x_speed     = ceil(abs(zone_distance - zone_x_target) / 9);
+                zone_x_current += zone_x_speed;
 
-                if (zone_distance >= zone_target - zone_start) {
-                    zone_speed    = 0;
-                    zone_position = -zone_distance + zone_target;
+                if (zone_distance >= zone_x_target - zone_x_start) {
+                    zone_x_speed    = 0;
+                    zone_x_current = -zone_distance + zone_x_target;
                 }
             }
         }
 
         // Title card end:
-        if (banner_position == banner_target && zone_distance == zone_target) {
+        if (banner_x_current == banner_x_target && zone_distance == zone_x_target) {
             global.time_allow = true;
             
             instance_destroy();
@@ -395,10 +392,10 @@ applies_to=self
 
 if (transition_type == TRANS_RETRY) {
     // Background scroll:
-    background_scroll += background_scroll_speed;
+    background_x_scroll += background_x_scroll_speed;
 
     // Retry distance:
-    retry_distance = retry_start - retry_position;
+    retry_distance = retry_x_start - retry_x_current;
 
     // Run kickoff:
     if (player_exists(0) != noone) {
@@ -412,30 +409,30 @@ if (transition_type == TRANS_RETRY) {
 
     // Background position:
     if (retry_state != 4) {
-        if (background_position < background_target) {
-            background_speed     = ceil(abs(background_position - background_target) / retry_steps);
-            background_position += background_speed;
+        if (background_y_current < background_y_target) {
+            background_y_speed    = ceil(abs(background_y_current - background_y_target) / retry_steps);
+            background_y_current += background_y_speed;
         } else {
-            background_speed    = 0;
-            background_position = background_target;
+            background_y_speed   = 0;
+            background_y_current = background_y_target;
         }
     } else {
-        if (background_position > background_target) {
-            background_speed     = ceil(abs(background_target - background_position) / retry_steps);
-            background_position -= background_speed;
+        if (background_y_current > background_y_target) {
+            background_y_speed    = ceil(abs(background_y_target - background_y_current) / retry_steps);
+            background_y_current -= background_y_speed;
         } else {
-            background_speed    = 0;
-            background_position = background_target;
+            background_y_speed   = 0;
+            background_y_current = background_y_target;
         }
     }
 
     // Retry position:
-    if (retry_distance > retry_target) {
-        retry_speed     = ceil(abs(retry_target - retry_distance) / 9);
-        retry_position += retry_speed;
+    if (retry_distance > retry_x_target) {
+        retry_x_speed    = ceil(abs(retry_x_target - retry_distance) / 9);
+        retry_x_current += retry_x_speed;
     } else {
-        retry_speed    = 0;
-        retry_position = -retry_target + retry_start;
+        retry_x_speed   =  0;
+        retry_x_current = -retry_x_target + retry_x_start;
     }
 
     // Skip states:
@@ -447,9 +444,9 @@ if (transition_type == TRANS_RETRY) {
     // 0 - Background start:
     if (retry_state == 0) {
         // Background target:
-        background_target = 32;
+        background_y_target = 32;
 
-        if (retry_distance == retry_target && background_position == background_target) retry_state = 1;
+        if (retry_distance == retry_x_target && background_y_current == background_y_target) retry_state = 1;
     }
 
     // 1 - Standing by:
@@ -468,12 +465,12 @@ if (transition_type == TRANS_RETRY) {
     // 2 - Retry end:
     if (retry_state == 2) {
         // Background target:
-        background_target = global.display_height / 2 + 15;
+        background_y_target = global.display_height / 2 + 15;
 
         // Retry target:
-        retry_target = -retry_size - 9;
+        retry_x_target = -retry_size - 9;
 
-        if (retry_distance == retry_target && background_position == background_target) retry_state = 3;
+        if (retry_distance == retry_x_target && background_y_current == background_y_target) retry_state = 3;
     }
 
     // 3 - Room change:
@@ -487,10 +484,11 @@ if (transition_type == TRANS_RETRY) {
     }
 
     // 4 - Background end:
-    if (retry_state == 4) {if (transition_timer < 1) transition_timer += transition_speed;
+    if (retry_state == 4) {
+        if (transition_timer < 1) transition_timer += transition_speed;
         else {
             // Background target:
-            background_target = -15;
+            background_y_target = -15;
 
             // Stop running:
             if (player_exists(0) != noone) {
@@ -503,7 +501,7 @@ if (transition_type == TRANS_RETRY) {
                 // Start game:
                 game_start();
 
-                if (background_position == background_target) instance_destroy();
+                if (background_y_current == background_y_target) instance_destroy();
             }
         }
     }
@@ -588,7 +586,7 @@ applies_to=self
 /// Draw Menu Transition
 
 if (transition_type == TRANS_MENU) {
-    draw_sprite(spr_transition_background, 0, view_xview[view_current], view_yview[view_current] + background_position);
+    draw_sprite(spr_transition_background, 0, view_xview[view_current], view_yview[view_current] + background_y_current);
 
     // Reset draw variables:
     draw_set_color(c_white);
@@ -608,17 +606,17 @@ if (transition_type == TRANS_CARD) {
     draw_set_font(global.font_title_card);
 
     // Background:
-    draw_sprite(spr_transition_background, 0, view_xview[view_current], view_yview[view_current] + background_position);
+    draw_sprite(spr_transition_background, 0, view_xview[view_current], view_yview[view_current] + background_y_current);
 
     // Bar:
-    draw_sprite_tiled_vertical(spr_title_card_banner, 0, view_xview[view_current] + banner_position, view_yview[view_current] + banner_scroll);
+    draw_sprite_tiled_vertical(spr_title_card_banner, 0, view_xview[view_current] + banner_x_current, view_yview[view_current] + banner_y_scroll);
 
     // Zone:
-    zone_start = -string_width(room_zone) - 9;
+    zone_x_start = -string_width(room_zone) - 9;
 
-    draw_text(view_xview[view_current] + zone_start + zone_position, view_yview[view_current] + 87, room_zone);
+    draw_text(view_xview[view_current] + zone_x_start + zone_x_current, view_yview[view_current] + 87, room_zone);
 
-    if (room_act != 0) draw_sprite(spr_title_card_acts, room_act, view_xview[view_current] + zone_start + zone_position + 5, view_yview[view_current] + 128);
+    if (room_act != 0) draw_sprite(spr_title_card_acts, room_act, view_xview[view_current] + zone_x_start + zone_x_current + 5, view_yview[view_current] + 128);
 
     // Reset draw variables:
     draw_set_color(c_white);
@@ -640,14 +638,14 @@ if (transition_type == TRANS_RETRY) {
     draw_set_valign(fa_middle);
 
     // Background:
-    draw_sprite_tiled_horizontal(spr_transition_background, 1, view_xview[view_current] + background_scroll, view_yview[view_current] + background_position);
-    draw_sprite_tiled_horizontal_yscale(spr_transition_background, 1, view_xview[view_current] - 16.5 - background_scroll, view_yview[view_current] + global.display_height - background_position, -1);
+    draw_sprite_tiled_horizontal(spr_transition_background, 1, view_xview[view_current] + background_x_scroll, view_yview[view_current] + background_y_current);
+    draw_sprite_tiled_horizontal_yscale(spr_transition_background, 1, view_xview[view_current] - 16.5 - background_x_scroll, view_yview[view_current] + global.display_height - background_y_current, -1);
 
     // Try again:
-    retry_size  = string_width("Try Again");
-    retry_start = global.display_width + retry_size + 9;
+    retry_size    = string_width("Try Again");
+    retry_x_start = global.display_width + retry_size + 9;
 
-    draw_text(view_xview[view_current] + retry_start - retry_position, view_yview[view_current] + global.display_height / 2, "Try Again");
+    draw_text(view_xview[view_current] + retry_x_start - retry_x_current, view_yview[view_current] + global.display_height / 2, "Try Again");
 
     // Reset draw variables:
     draw_set_color(c_white);

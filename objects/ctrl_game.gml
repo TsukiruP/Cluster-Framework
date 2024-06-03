@@ -1,10 +1,3 @@
-#define Create_0
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Stage Initialization
 #define Step_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -78,9 +71,9 @@ applies_to=self
 */
 /// Reset Game Variables
 
+global.game_time    = 0;
 global.game_rings   = 0;
 global.game_score   = 0;
-global.game_time    = 0;
 
 global.object_time  = 0;
 global.object_ratio = 1;

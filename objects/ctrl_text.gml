@@ -4,16 +4,6 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Font Initialization
-
-global.font_system     = font_add_sprite(fnt_system, ord(" "), true, 0);
-global.font_title_card = font_add_sprite(fnt_title_card_zone, ord(" "), true, -4);
-global.font_hud        = font_add_sprite(fnt_hud, ord("0"), false, 1);
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
 /// Text Initialization
 
 // Text variables:
@@ -25,8 +15,8 @@ text_message     = "";
 text_length      = 0;
 text_current     = 0;
 text_target      = 0;
-text_position[0] = 42; // Text x
-text_position[1] = 70; // Text y
+text_x           = 42;
+text_y = 70; // Text y
 
 text_scroll[0]   = 0;     // Scroll current
 text_scroll[1]   = 0;     // Scroll target
@@ -59,6 +49,20 @@ topic_height = 0;
 topic_lines  = 0;
 text_height  = 0;
 log_height   = 0;
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Font Initialization
+
+global.font_system     = font_add_sprite(fnt_system, ord(" "), true, 0);
+global.font_title_card = font_add_sprite(fnt_title_card_zone, ord(" "), true, -4);
+global.font_hud        = font_add_sprite(fnt_hud, ord("0"), false, 1);
+
+global.font_hud_s4e2   = font_add_sprite(fnt_hud_s4e2, ord("0"), false, 1);
+global.font_score_s4e2 = font_add_sprite(fnt_score_s4e2, ord("0"), false, 1);
+global.font_time_s4e2  = font_add_sprite(fnt_time_s4e2, ord("0"), false, 1);
 #define Step_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -81,10 +85,10 @@ if (text_clear == false) {
         draw_set_font(global.font_system);
 
         font_height  = string_height("Test");
-        topic_height = string_height_ext(topic_message, font_height, global.display_width - (text_position[0] * 2));
+        topic_height = string_height_ext(topic_message, font_height, global.display_width - (text_x * 2));
         topic_lines  = (topic_height / font_height) - 1;
-        text_height  = string_height_ext(text_message[text_current], font_height, global.display_width - (text_position[0] * 2));
-        log_height   = string_height_ext(log_message, font_height, global.display_width - text_position[0]);
+        text_height  = string_height_ext(text_message[text_current], font_height, global.display_width - (text_x * 2));
+        log_height   = string_height_ext(log_message, font_height, global.display_width - text_x);
 
         // Overflow:
         if (((text_height / font_height) - (text_scroll[0] / font_height) <= text_scroll[3]) && (text_scroll[0] == text_scroll[1])) {
@@ -411,7 +415,7 @@ draw_set_alpha(text_alpha[0]);
 draw_rectangle(0, global.display_height - 19 - 59, global.display_width, global.display_height - 19, false);
 
 // Viewport:
-d3d_set_viewport(0, global.display_height - text_position[1], global.display_width, font_height * 3);
+d3d_set_viewport(0, global.display_height - text_y, global.display_width, font_height * 3);
 
 // Text:
 draw_set_font(global.font_system);
@@ -420,7 +424,7 @@ draw_set_alpha(text_alpha[2]);
 draw_set_halign(fa_left);
 draw_set_valign(fa_top);
 
-draw_text_ext(text_position[0], -text_scroll[0], text_message[text_current], font_height, global.display_width - (text_position[0] * 2));
+draw_text_ext(text_x, -text_scroll[0], text_message[text_current], font_height, global.display_width - (text_x * 2));
 
 // Arrow:
 draw_set_alpha(1);
@@ -462,7 +466,7 @@ draw_set_alpha(log_alpha[1]);
 draw_set_halign(fa_left);
 draw_set_valign(fa_top);
 
-draw_text_ext(text_position[0] / 2, -log_scroll, log_message, font_height, global.display_width - text_position[0]);
+draw_text_ext(text_x / 2, -log_scroll, log_message, font_height, global.display_width - text_x);
 
 // Reset draw variables:
 draw_set_color(c_white);
