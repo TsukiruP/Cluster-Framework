@@ -80,11 +80,11 @@ if (player_exists(0) != noone) {
         else camera_y_shift = max(abs(camera_y_shift) - 2, 0) * sign(camera_y_shift);
 
         // Camera pan:
-        if ((focus_handle.action_state == ACTION_PEEL_OUT && focus_handle.peel_out_timer > 15) || focus_handle.peel_out_flag == true) {
-            camera_x_shift = approach(camera_x_shift, 64 * focus_handle.animation_direction, 2);
-        } else {
+        //if ((focus_handle.action_state == ACTION_PEEL_OUT && focus_handle.peel_out_timer > 15) || focus_handle.peel_out_flag == true) {
+            //camera_x_shift = approach(camera_x_shift, 64 * focus_handle.image_xscale, 2);
+        //} else {
             camera_x_shift = max(0, abs(camera_x_shift - 2) * sign(camera_x_shift));
-        }
+       //}
     }
 }
 /*"/*'/**//* YYD ACTION

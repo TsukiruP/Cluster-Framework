@@ -124,6 +124,7 @@
 		|effect_create
 +Gameplay
 	+Player
+		+Control
 		+Collision
 			+Utilities
 				|angle_sensor
@@ -136,30 +137,25 @@
 			|player_collision_obstacle
 			|player_collision_prop
 			|player_mode
+			|player_collision_steps
 			|player_wall_stop
 		+Angle
 			|player_get_angle
 			|player_set_angle
 		+Actions
-			|player_action_default
-			|player_action_jump
-			|player_action_look
-			|player_action_crouch
-			|player_action_spin_dash
-			|player_action_roll
-			|player_action_skid
-			|player_action_balance
-			|player_action_push
-			|player_action_hurt
-			|player_action_tag
-			+Sonic
-				|sonic_action_hammer
-			+Miles
-				|miles_action_fly
-			+Knuckles
-			+Amy
-			+Classic
-				|classic_action_clock_up
+			|player_set_action
+			|player_action_template
+			+Indexes
+				|player_action_idle
+				|player_action_turn
+				|player_action_run
+				|player_action_air
+				|player_action_jump
+				|player_action_look
+				|player_action_crouch
+				|player_action_spin_dash
+				|player_action_roll
+				|player_action_skid
 		+Animation
 			|player_animation_core
 			|player_add_animation
@@ -196,7 +192,6 @@
 	+Sonic Dash
 		+Main
 		+Left
-			|player_collision_left_edge
 			|player_collision_object_left
 		+Right
 			|player_collision_right
@@ -208,9 +203,19 @@
 		+Bottom
 			|player_collision_bottom
 			|player_collision_object_bottom
-		|player_get_angle_OLD
-		|player_set_angle_OLD
-	|player_animation_direction
-	|player_animation_angle
-	|player_animation_depth
-	|player_rectangle_check
+	+Actions (OLD)
+		|player_action_default
+		|player_action_jump_old
+		|player_action_look_old
+		|player_action_crouch_old
+		|player_action_spin_dash_old
+		|player_action_roll_old
+		|player_action_skid_old
+		|player_action_push
+		|player_action_hurt
+		+Sonic
+		+Miles
+		+Knuckles
+		+Amy
+		+Classic
+			|classic_action_clock_up

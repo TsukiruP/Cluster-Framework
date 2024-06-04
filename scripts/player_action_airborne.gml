@@ -1,5 +1,4 @@
-/// player_action_jump(phase)
-// A jump to the sky turns to a rider kick.
+/// player_action_airborne(phase)
 
 switch (argument0) {
     // Start:
@@ -7,23 +6,17 @@ switch (argument0) {
         if (ground == true) {
             ground = false;
         }
-
-        x_speed -= dsin(ground_angle) * jump_force;
-        y_speed -= dcos(ground_angle) * jump_force;
-
-        // Play sound:
-        //sound_play_single("snd_jump");
         break;
 
     // Step:
     case ACTION_STEP:
         // Input:
-        if (input_x_direction != 0) {
+        if (input_direction != 0) {
             if (abs(x_speed) < top_speed) {
-                x_speed += (2 * acceleration) * input_x_direction;
+                x_speed += (2 * acceleration) * input_direction;
 
                 if (abs(x_speed) > top_speed) {
-                    x_speed = top_speed * input_x_direction;
+                    x_speed = top_speed * input_direction;
                 }
             }
         }
@@ -31,7 +24,7 @@ switch (argument0) {
         // Collision steps:
         player_collision_steps();
 
-        // Changed:
+        // Exit:
         if (action_changed == true) {
             return false;
         }
@@ -45,15 +38,6 @@ switch (argument0) {
             }
         }
 
-        // Jump skill:
-
-        // Special skill:
-
-        // Release:
-        if (jump_complete == false && y_speed < jump_release && input_player[INP_JUMP, CHECK_HELD] == false) {
-            y_speed = jump_release;
-        }
-
         // Air drag:
         if (abs(x_speed) > 0.125 && y_speed > -4 && y_speed < 0) x_speed *= 0.96875;
 
@@ -63,8 +47,8 @@ switch (argument0) {
         }
 
         // Direction:
-        if (input_x_direction != 0 && image_xscale == -input_x_direction) {
-            image_xscale = input_x_direction;
+        if (input_direction != 0 && animation_direction == -input_direction) {
+            animation_direction = input_direction;
         }
         break;
 

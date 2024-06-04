@@ -1,5 +1,5 @@
-/// player_action_jump(phase)
-// A jump to the sky turns to a rider kick.
+/// player_action_air(phase)
+//
 
 switch (argument0) {
     // Start:
@@ -7,12 +7,6 @@ switch (argument0) {
         if (ground == true) {
             ground = false;
         }
-
-        x_speed -= dsin(ground_angle) * jump_force;
-        y_speed -= dcos(ground_angle) * jump_force;
-
-        // Play sound:
-        //sound_play_single("snd_jump");
         break;
 
     // Step:
@@ -43,15 +37,6 @@ switch (argument0) {
             } else {
                 return player_set_action(player_action_run);
             }
-        }
-
-        // Jump skill:
-
-        // Special skill:
-
-        // Release:
-        if (jump_complete == false && y_speed < jump_release && input_player[INP_JUMP, CHECK_HELD] == false) {
-            y_speed = jump_release;
         }
 
         // Air drag:

@@ -1,21 +1,56 @@
-/// player_action_crouch()
+/// player_action_crouch(phase)
 // Eyes on the ground.
 
-// Crouch:
-if (action_state == ACTION_CROUCH) {
-    // Cancel crouch:
-    if (ground == false || g_speed != 0 || y_speed != 0) action_state = ACTION_DEFAULT;
+switch (argument0) {
+    // Start:
+    case ACTION_START:
+        player_set_animation("crouch");
+        break;
 
-    if (ground == true && animation_trigger == true && input_player[INP_DOWN, CHECK_HELD] == false) {
-        action_state      = ACTION_DEFAULT;
-        animation_reverse = true;
-    }
-}
+    // Step:
+    case ACTION_STEP:
+        // Spin Dash:
+        if (input_player[INP_JUMP, CHECK_PRESSED] == true) {
+            return player_set_action(player_action_spin_dash);
+        }
 
-// Trigger crouch:
-if (ground == true && g_speed == 0 && y_speed == 0 && (action_state == ACTION_DEFAULT || action_state == ACTION_GLIDE_DROP) && balance_direction == 0 && hint_wanted == false && input_player[INP_DOWN, CHECK_HELD] == true) {
-    if (animation_current != "look" && animation_current != "crouch") {
-        action_state = ACTION_CROUCH;
-        g_speed      = 0;
-    }
+        // Collision steps:
+        player_collision_steps();
+
+        // Changed:
+        if (action_changed == true) {
+            return false;
+        }
+
+        // Air:
+        if (ground == false || (ground_angle >= 90 && ground_angle <= 270)) {
+            return player_set_action(player_action_air);
+        }
+
+        // Lock:
+        if (mode != 0) {
+            input_lock_alarm = 30;
+            return player_set_action(player_action_run);
+        }
+
+        // Slope friction:
+        if (ground_angle < 135 || ground_angle > 225) {
+            if (abs(g_speed) > 0.125 || input_lock_alarm != 0) g_speed -= dsin(ground_angle) * 0.125;
+        }
+
+        // Run:
+        if (g_speed != 0 || input_x_direction != 0) {
+            return player_set_action(player_action_run);
+        }
+
+        // Cancel:
+        if (animation_trigger == true && input_player[INP_DOWN, CHECK_HELD] == false) {
+            animation_reverse = true;
+            return player_set_action(player_action_idle);
+        }
+        break;
+
+    // Finish:
+    case ACTION_FINISH:
+        break;
 }

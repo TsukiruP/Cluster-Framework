@@ -1,10 +1,9 @@
-/// player_action_skid(phase)
-// Try to outrun this demon to get left in the dust.
+/// player_action_run(phase)
+//
 
 switch (argument0) {
     // Start:
     case ACTION_START:
-        player_set_animation("skid");
         break;
 
     // Step:
@@ -16,17 +15,38 @@ switch (argument0) {
 
         // Input:
         if (input_x_direction != 0) {
-            if (sign(g_speed) != input_x_direction) {
+            // Turn:
+            if (abs(g_speed) <= 4 && image_xscale == -input_x_direction) {
                 if (input_lock_alarm == 0) {
-                    g_speed += deceleration * input_x_direction;
+                    return player_set_action(player_action_turn);
+                }
+            }
 
+            // Decelerate:
+            else if (g_speed != 0 && sign(g_speed) != input_x_direction) {
+                if (input_lock_alarm == 0) {
+                    // Skid:
+                    if (abs(g_speed) > 4) {
+                        return player_set_action(player_action_skid);
+                    }
+
+                    g_speed += deceleration * input_x_direction;
                     if (sign(g_speed) == input_x_direction) {
                         g_speed = deceleration * input_x_direction;
-                        return player_set_action(player_action_run);
                     }
                 }
-            } else {
-                return player_set_action(player_action_run);
+            }
+
+            // Accelerate:
+            else {
+                if (abs(g_speed) < top_speed) {
+                    g_speed += acceleration * input_x_direction;
+
+                    if (abs(g_speed) > top_speed) g_speed = top_speed * input_x_direction;
+                }
+
+                // Animation direction:
+                image_xscale = input_x_direction;
             }
         }
 
@@ -69,7 +89,7 @@ switch (argument0) {
             return player_set_action(player_action_idle);
         }
 
-        // Dust:
+        // Push:
         break;
 
     // Finish:

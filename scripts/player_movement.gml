@@ -11,22 +11,9 @@ if (ground == true) {
     y_speed = g_speed * -dsin(ground_angle);
 }
 
-// Add gravity force:
-if (ground == false && y_allow == true && (spring_angle == ANGLE_DOWN || spring_alarm == 0)) {
-    y_speed += gravity_force / steps;
-}
-
 // Update position:
 x += x_speed / steps;
 y += y_speed / steps;
-
-if (abs(g_speed) < 2.5) {
-    // Lock controls:
-    if (ground_angle >= 45 && ground_angle <= 360 - 45 && input_lock_alarm == 0) input_lock_alarm = 30;
-
-    // Fall off:
-    if (ground_angle >= 90 && ground_angle <= 270) ground = false;
-}
 
 // Reset wall height:
 wall_height = 0;

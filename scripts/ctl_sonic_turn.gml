@@ -36,11 +36,12 @@ if (ctl_position(0)) {
     hitbox_offset_y = 0;
 
     // Set direction:
-    animation_direction *= -1;
+    image_xscale *= -1;
 }
 
 // Change frame:
 else if (ctl_position(1)) {
     image_index        = 1;
+    //image_xscale      *= -1;
     animation_finished = true;
 }

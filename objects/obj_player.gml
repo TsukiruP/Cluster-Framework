@@ -5,7 +5,7 @@ action_id=603
 applies_to=self
 */
 /// Player Initialization
-
+tag_animations = false;
 // Image speed:
 image_speed = 0;
 
@@ -79,13 +79,19 @@ hitbox_left_rel  = 0;
 hitbox_right_rel = 0;
 
 // Input variables:
-input_direction  = 0;
-input_lock       = false;
-input_lock_alarm = 0;
-input_cpu        = false;
-input_cpu_alarm  = 0;
+input_x_direction = 0;
+input_y_direction = 0;
 
-// Action variable:
+input_lock        = false;
+input_lock_alarm  = 0;
+input_cpu         = false;
+input_cpu_alarm   = 0;
+
+// Action variables:
+action_current  = player_action_idle;
+action_previous = action_current;
+action_changed  = false;
+
 action_state = ACTION_DEFAULT;
 
 // Physics variables:
@@ -114,8 +120,8 @@ hint_wanted       = false;
 
 // Jump variables:
 jump_force    =  6.5;
-jump_release  = -4;
 jump_complete =  false;
+jump_release  = -4;
 
 // Spin dash charge:
 spin_dash_charge = 0;
@@ -176,50 +182,6 @@ air_alarm          = 60;
 drown_countdown    = 0;
 drowned            = false;
 
-// Tag Action variables:
-tag_hold_state    = 0;
-tag_hold_timer    = 0;
-tag_hold_duration = 68;
-
-tag_link_state    = 0;
-tag_arc_timer     = 0;
-tag_arc_duration  = room_speed / 2;
-tag_arc           = 0;
-tag_distance_x    = 0;
-tag_distance_y    = 0;
-tag_action        = 0;
-tag_animations    = false;
-
-// Sonic variables:
-peel_out_flag       = false;
-peel_out_timer      = 0;
-
-drop_dash_state     = 0;
-drop_dash_timer     = 0;
-drop_dash_speed     = 8;
-drop_dash_max_speed = 12;
-
-// Miles variables:
-tornado_timer     = 0;
-tornado_duration  = 240;
-
-flight_timer      = 0;
-flight_duration   = 480;
-flight_animations = true;
-flight_carry      = false;
-
-// Knuckles variables:
-glide_acceleration  = 0.015625;
-glide_top_speed     = 24;
-glide_gravity_force = 0.125;
-glide_turn_s        = 0;
-glide_turn_a        = 0;
-glide_carry         = false;
-
-climb_ox            = 0;
-climb_speed         = 0;
-climb_ledge         = false;
-
 // Classic variables:
 clock_up_alarm    = 0;
 clock_up_state    = 0;
@@ -266,15 +228,10 @@ animation_finished  =  false;
 animation_trigger   =  false;
 animation_reverse   =  false;
 animation_reload    =  false;
-animation_alarm     =  0;
+animation_alarm     =  360;
 
-animation_direction =  1;
-animation_x_scale   =  1;
-animation_y_scale   =  1;
 animation_angle     =  0;
 animation_angle_mod =  0;
-animation_blend     =  c_white;
-animation_alpha     =  1;
 animation_depth     =  0;
 
 miles_tails_frame   =  0;
@@ -308,6 +265,10 @@ if (action_state == ACTION_RESPAWN || action_state == ACTION_DEATH || game_pause
 
 // Receive inputs:
 player_get_input();
+
+// Input direction:
+input_x_direction = input_player[INP_RIGHT, CHECK_HELD] - input_player[INP_LEFT, CHECK_HELD];
+input_y_direction = input_player[INP_DOWN, CHECK_HELD] - input_player[INP_UP, CHECK_HELD];
 
 // Input lock:
 if (ground == true && input_lock_alarm > 0) input_lock_alarm -= 1;
@@ -385,8 +346,104 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Collision
+/// Action List
 
+// Don't bother if the game is currently paused:
+if (game_paused()) exit; 
+
+if (script_exists(action_current)) {
+    script_execute(action_current, ACTION_STEP);
+
+    if (action_changed != false) {
+        action_changed = false;
+    }
+}
+
+
+/*
+// Don't bother if in the middle of respawning/dying or the game is paused:
+if (action_state == ACTION_RESPAWN || action_state == ACTION_DEATH || game_paused()) exit;
+
+switch (character_data) {
+    case CHAR_SONIC:
+        break;
+
+    case CHAR_MILES:
+        break;
+
+    case CHAR_KNUCKLES:
+        break;
+
+    case CHAR_CLASSIC:
+        classic_action_clock_up();
+        break;
+}
+
+player_action_default();
+player_action_jump();
+player_action_look();
+player_action_crouch();
+player_action_tag();
+player_action_spin_dash();
+player_action_roll();
+player_action_skid();
+player_action_balance();
+player_action_push();
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Shield
+
+if (shield_data != 0 && shield_handle == noone) {
+    shield_handle = instance_create(x, y, eff_shield);
+
+    with (shield_handle) {
+        player_handle = other.id;
+    }
+}
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Refill Air
+
+// Don't bother if the game is paused:
+if (game_paused()) exit;
+
+// Don't bother if in the middle of respawning/dying:
+if (action_state != ACTION_RESPAWN && action_state != ACTION_DEATH && physics_type == PHYS_UNDERWATER && !instance_exists(ctrl_tally)) {
+    // Refill air if in breathe action or bubble shield:
+    if (action_state == ACTION_BREATHE || shield_data == SHIELD_BUBBLE) {
+        air_remaining = 30;
+        air_alarm     = 60;
+
+        // Stop jingle:
+        if (input_cpu == false) sound_stop("bgm_drown");
+    }
+
+} else {
+    air_remaining = 30;
+    air_alarm     = 60;
+
+    // Stop jingle:
+    sound_stop("bgm_drown");
+}
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=605
+invert=0
+arg0=Unused
+*/
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Collision
+/*
 // Don't bother if in the middle of respawning/dying or the game is paused:
 if (action_state == ACTION_RESPAWN || action_state == ACTION_DEATH || game_paused()) exit;
 
@@ -415,7 +472,7 @@ action_id=603
 applies_to=self
 */
 /// Control
-
+/*
 // Don't bother if in the middle of respawning/dying or the game is paused:
 if (action_state == ACTION_RESPAWN || action_state == ACTION_DEATH || game_paused()) exit;
 
@@ -506,43 +563,8 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Action List
-
-// Don't bother if in the middle of respawning/dying or the game is paused:
-if (action_state == ACTION_RESPAWN || action_state == ACTION_DEATH || game_paused()) exit;
-
-switch (character_data) {
-    case CHAR_SONIC:
-        break;
-
-    case CHAR_MILES:
-        break;
-
-    case CHAR_KNUCKLES:
-        break;
-
-    case CHAR_CLASSIC:
-        classic_action_clock_up();
-        break;
-}
-
-player_action_default();
-player_action_jump();
-player_action_look();
-player_action_crouch();
-player_action_tag();
-player_action_spin_dash();
-player_action_roll();
-player_action_skid();
-player_action_balance();
-player_action_push();
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
 /// Handle List
-
+/*
 // Don't bother if the game is paused:
 if (game_paused()) exit;
 
@@ -553,48 +575,6 @@ player_handle_spring();
 player_handle_item_box();
 player_handle_water_surface();
 player_handle_hint();
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Shield
-
-if (shield_data != 0 && shield_handle == noone) {
-    shield_handle = instance_create(x, y, eff_shield);
-
-    with (shield_handle) {
-        player_handle = other.id;
-    }
-}
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Refill Air
-
-// Don't bother if the game is paused:
-if (game_paused()) exit;
-
-// Don't bother if in the middle of respawning/dying:
-if (action_state != ACTION_RESPAWN && action_state != ACTION_DEATH && physics_type == PHYS_UNDERWATER && !instance_exists(ctrl_tally)) {
-    // Refill air if in breathe action or bubble shield:
-    if (action_state == ACTION_BREATHE || shield_data == SHIELD_BUBBLE) {
-        air_remaining = 30;
-        air_alarm     = 60;
-
-        // Stop jingle:
-        if (input_cpu == false) sound_stop("bgm_drown");
-    }
-
-} else {
-    air_remaining = 30;
-    air_alarm     = 60;
-
-    // Stop jingle:
-    sound_stop("bgm_drown");
-}
 #define Step_1
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -724,6 +704,41 @@ var main_bottom_temp;
 
 main_bottom_temp = main_bottom;
 
+switch (action_current) {
+    // Run:
+    case player_action_run:
+        // Walk:
+        if (abs(g_speed) < 1.50 && animation_target != "walk") player_set_animation("walk");
+
+        // Walk fast:
+        if (abs(g_speed) >= 1.50 && abs(g_speed) < 3.00 && animation_target != "walk_fast") player_set_animation("walk_fast");
+
+        // Jog:
+        if (abs(g_speed) >= 3.00 && abs(g_speed) < 4.50 && animation_target != "jog") player_set_animation("jog");
+
+        // Jog fast:
+        if (abs(g_speed) >= 4.50 && abs(g_speed) < 6.00 && animation_target != "jog_fast") player_set_animation("jog_fast");
+
+        // Run:
+        if (abs(g_speed) >= 6.00 && animation_target != "run" && animation_target != "dash") player_set_animation("run");
+        break;
+    
+    // Air:
+    case player_action_air:
+        if (y_speed < 0) {
+            if (animation_target != "spring_flight") player_set_animation("spring_flight");
+        } else {
+            if (animation_target != "spring_fall") player_set_animation("spring_fall");
+        }
+        break;
+    
+    // Jump:
+    case player_action_jump:
+        if (animation_target != "spin_flight") player_set_animation("spin_flight");
+        break;
+}
+
+/*
 // Action animations:
 switch (action_state) {
     // Default:
@@ -991,7 +1006,7 @@ switch (animation_target) {
     default:
         animation_variant = 0;
 }
-
+*/
 // Animation core:
 player_animation_core();
 
@@ -1007,7 +1022,7 @@ applies_to=self
 */
 /// Animation Direction
 // Sets the animation direction based on the current action and/or input:
-
+/*
 // Don't bother if the game is paused:
 if (game_paused()) exit;
 
@@ -1066,7 +1081,7 @@ applies_to=self
 */
 /// Animation Angle
 // Sets the animation angle based on the current animation.
-
+/*
 // Don't bother if in the middle of respawning/dying or the game is paused:
 if (action_state == ACTION_RESPAWN || action_state == ACTION_DEATH || game_paused()) exit;
 
@@ -1168,7 +1183,7 @@ applies_to=self
 */
 /// Animation Depth
 // Sets the animation depth depending on if the player is a cpu or is being carried.
-
+/*
 // Don't bother if the game is paused:
 if (game_paused()) exit;
 
@@ -1270,7 +1285,7 @@ else animation_alpha = 1;
 
 // Player:
 if (sprite_exists(sprite_index)) {
-    draw_sprite_ext(sprite_index, image_index, floor(x) + (animation_direction < 0), floor(y), animation_direction * animation_x_scale, animation_y_scale, animation_angle, animation_blend, animation_alpha);
+    draw_sprite_ext(sprite_index, image_index, floor(x) + (image_xscale < 0), floor(y), image_xscale, image_yscale, image_angle, c_white, 1);
 }
 
 /*
@@ -1333,31 +1348,31 @@ var x1, y1, x2, y2;
 
 switch (mode) {
     case 0:
-        x1 = floor(x) - hurtbox_left_rel + (hurtbox_offset_x * animation_direction);
+        x1 = floor(x) - hurtbox_left_rel + (hurtbox_offset_x * image_xscale);
         y1 = floor(y) - hurtbox_top + hurtbox_offset_y;
-        x2 = floor(x) + hurtbox_right_rel + (hurtbox_offset_x * animation_direction);
+        x2 = floor(x) + hurtbox_right_rel + (hurtbox_offset_x * image_xscale);
         y2 = floor(y) + hurtbox_bottom + hurtbox_offset_y;
         break;
 
     case 1:
         x1 = floor(x) - hurtbox_top + hurtbox_offset_y;
-        y1 = floor(y) - hurtbox_right_rel + (hurtbox_offset_x * animation_direction);
+        y1 = floor(y) - hurtbox_right_rel + (hurtbox_offset_x * image_xscale);
         x2 = floor(x) + hurtbox_bottom + hurtbox_offset_y;
-        y2 = floor(y) + hurtbox_left_rel + (hurtbox_offset_x * animation_direction);
+        y2 = floor(y) + hurtbox_left_rel + (hurtbox_offset_x * image_xscale);
         break;
 
     case 2:
-        x1 = floor(x) - hurtbox_right_rel + (hurtbox_offset_x * animation_direction);
+        x1 = floor(x) - hurtbox_right_rel + (hurtbox_offset_x * image_xscale);
         y1 = floor(y) - hurtbox_bottom + hurtbox_offset_y;
-        x2 = floor(x) + hurtbox_left_rel + (hurtbox_offset_x * animation_direction);
+        x2 = floor(x) + hurtbox_left_rel + (hurtbox_offset_x * image_xscale);
         y2 = floor(y) + hurtbox_top + hurtbox_offset_y;
         break;
 
     case 3:
         x1 = floor(x) - hurtbox_bottom + hurtbox_offset_y;
-        y1 = floor(y) - hurtbox_left_rel + (hurtbox_offset_x * animation_direction);
+        y1 = floor(y) - hurtbox_left_rel + (hurtbox_offset_x * image_xscale);
         x2 = floor(x) + hurtbox_top + hurtbox_offset_y;
-        y2 = floor(y) + hurtbox_right_rel + (hurtbox_offset_x * animation_direction);
+        y2 = floor(y) + hurtbox_right_rel + (hurtbox_offset_x * image_xscale);
         break;
 }
 
@@ -1372,31 +1387,31 @@ var x1, y1, x2, y2;
 
 switch (mode) {
     case 0:
-        x1 = floor(x) - hitbox_left_rel + (hurtbox_offset_x * animation_direction);
+        x1 = floor(x) - hitbox_left_rel + (hurtbox_offset_x * image_xscale);
         y1 = floor(y) - hitbox_top + hitbox_offset_y;
-        x2 = floor(x) + hitbox_right_rel + (hurtbox_offset_x * animation_direction);
+        x2 = floor(x) + hitbox_right_rel + (hurtbox_offset_x * image_xscale);
         y2 = floor(y) + hitbox_bottom + hitbox_offset_y;
         break;
 
     case 1:
         x1 = floor(x) - hitbox_top + hitbox_offset_y;
-        y1 = floor(y) - hitbox_right_rel + (hurtbox_offset_x * animation_direction);
+        y1 = floor(y) - hitbox_right_rel + (hurtbox_offset_x * image_xscale);
         x2 = floor(x) + hitbox_bottom + hitbox_offset_y;
-        y2 = floor(y) + hitbox_left_rel + (hurtbox_offset_x * animation_direction);
+        y2 = floor(y) + hitbox_left_rel + (hurtbox_offset_x * image_xscale);
         break;
 
     case 2:
-        x1 = floor(x) - hitbox_right_rel + (hurtbox_offset_x * animation_direction);
+        x1 = floor(x) - hitbox_right_rel + (hurtbox_offset_x * image_xscale);
         y1 = floor(y) - hitbox_bottom + hitbox_offset_y;
-        x2 = floor(x) + hitbox_left_rel + (hurtbox_offset_x * animation_direction);
+        x2 = floor(x) + hitbox_left_rel + (hurtbox_offset_x * image_xscale);
         y2 = floor(y) + hitbox_top + hitbox_offset_y;
         break;
 
     case 3:
         x1 = floor(x) - hitbox_bottom + hitbox_offset_y;
-        y1 = floor(y) - hitbox_left_rel + (hurtbox_offset_x * animation_direction);
+        y1 = floor(y) - hitbox_left_rel + (hurtbox_offset_x * image_xscale);
         x2 = floor(x) + hitbox_top + hitbox_offset_y;
-        y2 = floor(y) + hitbox_right_rel + (hurtbox_offset_x * animation_direction);
+        y2 = floor(y) + hitbox_right_rel + (hurtbox_offset_x * image_xscale);
         break;
 }
 

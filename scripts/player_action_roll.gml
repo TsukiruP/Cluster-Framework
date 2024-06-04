@@ -1,35 +1,72 @@
-/// player_action_roll()
+/// player_action_roll(phase)
 // Keep rollin', rollin', rollin', rollin'
 
-// Roll:
-if (action_state == ACTION_ROLL) {
-    if (ground == true) {
-        // Deceleration:
-        if (input_lock_alarm == 0) {
-            if (g_speed > 0 && input_player[INP_LEFT, CHECK_HELD] == true) g_speed = max(g_speed - roll_deceleration, 0);
+switch (argument0) {
+    // Start:
+    case ACTION_START:
+        // Animation:
+        player_set_animation("roll");
+        break;
 
-            if (g_speed < 0 && input_player[INP_RIGHT, CHECK_HELD] == true) g_speed = min(g_speed + roll_deceleration, 0);
+    // Step:
+    case ACTION_STEP:
+        // Jump:
+        if (touching_ceiling == false && input_player[INP_JUMP, CHECK_PRESSED] == true) {
+            return player_set_action(player_action_jump);
+        }
+
+        // Input:
+        if (input_x_direction != 0) {
+            if (input_lock_alarm == 0) {
+                if (g_speed != 0 && sign(g_speed) != input_x_direction) {
+                    g_speed += roll_deceleration * input_x_direction;
+
+                    if (sign(g_speed) == input_x_direction) {
+                        g_speed = roll_deceleration * input_x_direction;
+                    }
+                }
+            }
         }
 
         // Friction:
         g_speed -= min(abs(g_speed), roll_friction) * sign(g_speed);
 
-        // Uncurl:
-        if (((input_player[INP_LEFT, CHECK_HELD] == false && input_player[INP_RIGHT, CHECK_HELD] == false && input_player[INP_UP, CHECK_HELD] == true) || abs(g_speed) < 0.5) && tunnel_lock == false) {
-            action_state = ACTION_DEFAULT;
+        // Collision steps:
+        player_collision_steps();
+
+        // Changed:
+        if (action_changed == true) {
+            return false;
         }
-    } else {
-        action_state  = ACTION_JUMP;
-        jump_complete = true;
-        roll_rebounce = true;
-    }
-}
 
-// Trigger roll:
-if (ground == true && action_state == ACTION_DEFAULT && abs(g_speed) >= 1.03125 && tag_animations == false &&
-    input_player[INP_LEFT, CHECK_HELD] == false && input_player[INP_RIGHT, CHECK_HELD] == false && input_player[INP_DOWN, CHECK_HELD] == true) {
-    action_state = ACTION_ROLL;
+        // Air:
+        if (ground == false) {
+            return player_set_action(player_action_air);
+        }
 
-    // Play sound:
-    sound_play_single("snd_roll");
+        // Slope friction:
+        if (ground_angle < 135 || ground_angle > 225) {
+            // Rolling upwards:
+            if (sign(g_speed) == sign(dsin(ground_angle))) g_speed -= dsin(ground_angle) * roll_friction_up;
+
+            // Rolling downwards:
+            else g_speed -= dsin(ground_angle) * roll_friction_down;
+        }
+
+        // Fall down slopes:
+        if (mode != 0 && abs(g_speed) < 2.5) {
+            if (ground_angle >= 90 && ground_angle <= 270) {
+                return player_set_action(player_action_air);
+            }
+        }
+
+        // Uncurl:
+        if (mode == 0 && abs(g_speed) < 0.5) {
+            return player_set_action(player_action_run);
+        }
+        break;
+
+    // Finish:
+    case ACTION_FINISH:
+        break;
 }
