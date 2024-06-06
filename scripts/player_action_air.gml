@@ -13,10 +13,10 @@ switch (argument0) {
     case ACTION_STEP:
         // Input:
         if (input_x_direction != 0) {
-            if (abs(x_speed) < top_speed) {
+            if (abs(x_speed) < top_speed || sign(x_speed) != input_x_direction) {
                 x_speed += (2 * acceleration) * input_x_direction;
 
-                if (abs(x_speed) > top_speed) {
+                if (abs(x_speed) > top_speed && sign(x_speed) == input_x_direction) {
                     x_speed = top_speed * input_x_direction;
                 }
             }

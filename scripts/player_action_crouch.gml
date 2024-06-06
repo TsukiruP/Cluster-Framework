@@ -4,16 +4,15 @@
 switch (argument0) {
     // Start:
     case ACTION_START:
+        // Movement:
+        g_speed = 0;
+
+        // Animation:
         player_set_animation("crouch");
         break;
 
     // Step:
     case ACTION_STEP:
-        // Spin Dash:
-        if (input_player[INP_JUMP, CHECK_PRESSED] == true) {
-            return player_set_action(player_action_spin_dash);
-        }
-
         // Collision steps:
         player_collision_steps();
 
@@ -36,6 +35,11 @@ switch (argument0) {
         // Slope friction:
         if (ground_angle < 135 || ground_angle > 225) {
             if (abs(g_speed) > 0.125 || input_lock_alarm != 0) g_speed -= dsin(ground_angle) * 0.125;
+        }
+
+        // Spin Dash:
+        if (input_player[INP_JUMP, CHECK_PRESSED] == true) {
+            return player_set_action(player_action_spin_dash);
         }
 
         // Run:

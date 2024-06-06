@@ -1,4 +1,4 @@
-/// player_action_idle(phase)
+/// player_action_stand(phase)
 // Standing here, I realize...
 
 switch (argument0) {
@@ -8,6 +8,11 @@ switch (argument0) {
 
     // Step:
     case ACTION_STEP:
+        // Jump:
+        if (touching_ceiling == false && input_player[INP_JUMP, CHECK_PRESSED] == true) {
+            return player_set_action(player_action_jump);
+        }
+
         // Collision steps:
         player_collision_steps();
 
@@ -22,7 +27,7 @@ switch (argument0) {
         }
 
         // Turn:
-        if (global.gameplay_turn == true && character_data != CHAR_CLASSIC && image_xscale == -input_x_direction) {
+        if (image_xscale == -input_x_direction) {
             return player_set_action(player_action_turn);
         }
 
@@ -42,27 +47,23 @@ switch (argument0) {
             if (abs(g_speed) > 0.125 || input_lock_alarm != 0) g_speed -= dsin(ground_angle) * 0.125;
         }
 
-        // Jump:
-        if (ground == true && touching_ceiling == false && input_player[INP_JUMP, CHECK_PRESSED] == true) {
-            return player_set_action(player_action_jump);
-        }
-
         // Look & crouch:
-        switch (input_y_direction) {
-            // Look:
-            case -1:
-                return player_set_action(player_action_look);
-                break;
+        if (g_speed == 0) {
+            switch (input_y_direction) {
+                // Look:
+                case -1:
+                    return player_set_action(player_action_look);
+                    break;
 
-            // Crouch:
-            case 1:
-                return player_set_action(player_action_crouch);
-                break;
+                // Crouch:
+                case 1:
+                    return player_set_action(player_action_crouch);
+                    break;
+            }
         }
         // Note: There's a check here also for balancing.
         
         // Wait:
-        /*
         if (animation_alarm > 0) {
             animation_alarm -= 1;
 
@@ -70,7 +71,6 @@ switch (argument0) {
                 player_set_animation("wait");
             }
         }
-        */
         break;
 
     // Finish:

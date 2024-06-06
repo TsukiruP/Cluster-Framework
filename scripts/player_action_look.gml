@@ -4,16 +4,15 @@
 switch (argument0) {
     // Start:
     case ACTION_START:
+        // Movement:
+        g_speed = 0;
+
+        // Animation:
         player_set_animation("look");
         break;
 
     // Step:
     case ACTION_STEP:
-        // Jump:
-        if (touching_ceiling == false && input_player[INP_JUMP, CHECK_PRESSED] == true) {
-            return player_set_action(player_action_jump);
-        }
-
         // Collision steps:
         player_collision_steps();
 
@@ -38,12 +37,17 @@ switch (argument0) {
             if (abs(g_speed) > 0.125 || input_lock_alarm != 0) g_speed -= dsin(ground_angle) * 0.125;
         }
 
+        // Jump:
+        if (touching_ceiling == false && input_player[INP_JUMP, CHECK_PRESSED] == true) {
+            return player_set_action(player_action_jump);
+        }
+
         // Run:
         if (g_speed != 0 || input_x_direction != 0) {
             return player_set_action(player_action_run);
         }
 
-        // Cancel:
+        // Idle:
         if (animation_trigger == true && input_player[INP_UP, CHECK_HELD] == false) {
             animation_reverse = true;
             return player_set_action(player_action_idle);

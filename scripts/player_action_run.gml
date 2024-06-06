@@ -8,15 +8,10 @@ switch (argument0) {
 
     // Step:
     case ACTION_STEP:
-        // Jump:
-        if (touching_ceiling == false && input_player[INP_JUMP, CHECK_PRESSED] == true) {
-            return player_set_action(player_action_jump);
-        }
-
         // Input:
         if (input_x_direction != 0) {
             // Turn:
-            if (abs(g_speed) <= 4 && image_xscale == -input_x_direction) {
+            if (global.gameplay_turn == true && abs(g_speed) <= 4 && image_xscale == -input_x_direction) {
                 if (input_lock_alarm == 0) {
                     return player_set_action(player_action_turn);
                 }
@@ -55,6 +50,25 @@ switch (argument0) {
             g_speed -= min(abs(g_speed), acceleration) * sign(g_speed);
 
             // Roll:
+            if (abs(g_speed) > 1) {
+                if (input_player[INP_DOWN, CHECK_HELD] == true) {
+                    return player_set_action(player_action_roll);
+                }
+            }
+
+            else {
+                switch (input_y_direction) {
+                    // Look:
+                    case -1:
+                        return player_set_action(player_action_look);
+                        break;
+
+                    // Crouch:
+                    case 1:
+                        return player_set_action(player_action_crouch);
+                        break;
+                }
+            }
         }
 
         // Collision steps:
@@ -82,6 +96,11 @@ switch (argument0) {
             } else {
                 input_lock_alarm = 30;
             }
+        }
+
+        // Jump:
+        if (touching_ceiling == false && input_player[INP_JUMP, CHECK_PRESSED] == true) {
+            return player_set_action(player_action_jump);
         }
 
         // Idle:

@@ -28,7 +28,7 @@ player_action_jump
 player_action_air
 ctl_update
 ctl_position
-ctl_sonic_idle
+ctl_sonic_stand
 ctl_sonic_turn
 ctl_sonic_walk_fast
 ctl_sonic_wait_leader
@@ -102,7 +102,7 @@ joystick_check_pressed
 joystick_check_released
 player_action_roll
 player_action_push
-ctl_sonic_skid_turn
+ctl_sonic_turn_skid
 player_action_spin_dash
 ctl_sonic_spring_flight
 collision_rectangle_list

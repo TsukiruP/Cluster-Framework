@@ -1,4 +1,4 @@
-/// ctl_sonic_turn()
+/// ctl_sonic_turn_skid()
 
 // Set speed:
 ctl_update(1);
@@ -6,7 +6,7 @@ ctl_update(1);
 // Start animation:
 if (ctl_position(0)) {
     // Set sprite:
-    sprite_index = spr_sonic_turn;
+    sprite_index = spr_sonic_turn_skid;
     image_index  = 0;
 
     // Set size:
@@ -18,8 +18,8 @@ if (ctl_position(0)) {
     roll_offset = 0;
 
     // Set hurtbox:
-    hurtbox_left     = 8;
-    hurtbox_right    = 4;
+    hurtbox_left     = 4;
+    hurtbox_right    = 8;
     hurtbox_top      = 16;
     hurtbox_bottom   = 15;
 
@@ -37,7 +37,21 @@ if (ctl_position(0)) {
 }
 
 // Change frame:
-else if (ctl_position(1)) {
-    image_index        = 1;
+else if (ctl_position(2)) {
+    image_index = 1;
+}
+
+// Change frame:
+else if (ctl_position(4)) {
+    image_index = 2;
+}
+
+// Change frame:
+else if (ctl_position(6)) {
+    image_index = 3;
+}
+
+// Finish animation:
+else if (ctl_position(7)) {
     animation_finished = true;
 }

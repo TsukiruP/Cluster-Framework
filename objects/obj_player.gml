@@ -279,7 +279,7 @@ applies_to=self
 */
 /// Death
 // One is always aware that it lies in wait. Though life is merely a journey to the grave, it must not be undertaken without hope.
-
+/*
 // Don't bother if the death alarm has been updated or the game is paused:
 if (death_alarm == -1 || game_paused()) exit;
 
@@ -705,37 +705,102 @@ var main_bottom_temp;
 main_bottom_temp = main_bottom;
 
 switch (action_current) {
+    // Idle:
+    case player_action_idle:
+        if (animation_target != "stand" && animation_target != "balance" && animation_target != "wait" && animation_target != "look" && animation_target != "crouch") {
+            player_set_animation("stand");
+        }
+        break;
+    
+    // Turn:
+    case player_action_turn:
+        if (animation_target != "turn" && animation_target != "turn_skid") {
+            player_set_animation("turn");
+        }
+        break;
+    
     // Run:
     case player_action_run:
         // Walk:
-        if (abs(g_speed) < 1.50 && animation_target != "walk") player_set_animation("walk");
-
+        if (abs(g_speed) < 1.50) {
+            if (animation_target != "walk") player_set_animation("walk");
+        }
+        
         // Walk fast:
-        if (abs(g_speed) >= 1.50 && abs(g_speed) < 3.00 && animation_target != "walk_fast") player_set_animation("walk_fast");
-
+        else if (abs(g_speed) < 3.00) {
+            if (animation_target != "walk_fast") player_set_animation("walk_fast");
+        }
+        
         // Jog:
-        if (abs(g_speed) >= 3.00 && abs(g_speed) < 4.50 && animation_target != "jog") player_set_animation("jog");
-
+        else if (abs(g_speed) < 4.50) {
+            if (animation_target != "jog") player_set_animation("jog");
+        }
+        
         // Jog fast:
-        if (abs(g_speed) >= 4.50 && abs(g_speed) < 6.00 && animation_target != "jog_fast") player_set_animation("jog_fast");
-
+        else if (abs(g_speed) < 6.00) {
+            if (animation_target != "jog") player_set_animation("jog");
+        }
+        
         // Run:
-        if (abs(g_speed) >= 6.00 && animation_target != "run" && animation_target != "dash") player_set_animation("run");
+        else {
+            if (animation_target != "run") player_set_animation("run");
+        }
         break;
     
     // Air:
     case player_action_air:
-        if (y_speed < 0) {
-            if (animation_target != "spring_flight") player_set_animation("spring_flight");
-        } else {
-            if (animation_target != "spring_fall") player_set_animation("spring_fall");
+        if (animation_target != "turn" && animation_target != "turn_skid" && animation_target != "roll" && animation_target != "skid" && animation_target != "spring_flight" && animation_target != "spring_fall") {
+            player_set_animation("spring_fall");
         }
         break;
     
     // Jump:
     case player_action_jump:
-        if (animation_target != "spin_flight") player_set_animation("spin_flight");
+        if (animation_target != "roll" && animation_target != "spin") {
+            player_set_animation("spin");
+        }
         break;
+}
+
+// Variants:
+switch (animation_target) {
+    // Tag:
+    case "stand":
+    case "turn":
+    case "walk":
+    case "walk_fast":
+    case "jog":
+    case "look":
+    case "crouch":
+    case "skid":
+    case "spring_flight":
+    case "spring_fall":
+        // Tag variants
+        break;
+    
+    // Wait:
+    case "wait":
+        if (animation_target != animation_current) {
+            if (player_exists(1) != noone) {
+                if (player_exists(1) == self.id) animation_variant = 1;
+                else animation_variant = 0;
+            } else {
+                animation_variant = choose(0, 1);
+            }
+        }
+        break;
+    
+    default:
+        animation_variant = 0;
+}
+
+// Animation core:
+player_animation_core();
+
+// Position fix:
+if ((ground == true && ceiling_lock_alarm == 0) || (mode == 0 && action_state == ACTION_JUMP && animation_current != "spin_flight")) {
+    x += (main_bottom_temp - main_bottom) * x_direction;
+    y += (main_bottom_temp - main_bottom) * y_direction;
 }
 
 /*
@@ -1007,14 +1072,6 @@ switch (animation_target) {
         animation_variant = 0;
 }
 */
-// Animation core:
-player_animation_core();
-
-// Position fix:
-if ((ground == true && ceiling_lock_alarm == 0) || (mode == 0 && action_state == ACTION_JUMP && animation_current != "spin_flight")) {
-    x += (main_bottom_temp - main_bottom) * x_direction;
-    y += (main_bottom_temp - main_bottom) * y_direction;
-}
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -1081,7 +1138,7 @@ applies_to=self
 */
 /// Animation Angle
 // Sets the animation angle based on the current animation.
-/*
+
 // Don't bother if in the middle of respawning/dying or the game is paused:
 if (action_state == ACTION_RESPAWN || action_state == ACTION_DEATH || game_paused()) exit;
 
@@ -1090,44 +1147,28 @@ var angle_mod;
 // Animation Angle:
 switch (animation_current) {
     // Reset angle:
-    case "idle":
+    case "stand":
     case "turn":
     case "wait":
-    case "balance_front":
-    case "balance_back":
+    case "balance":
     case "ready":
     case "land":
     case "look":
     case "crouch":
     case "spin_dash":
-    case "spin_charge":
     case "roll":
     case "skid":
-    case "skid_fast":
     case "skid_turn":
     case "push":
     case "breathe":
     case "goal":
     case "hurt":
     case "death":
-    case "fly_carry":
-    case "glide_carry":
-    case "fly":
-    case "fly_drop":
-    case "swim":
-    case "swim_drop":
-    case "glide":
-    case "glide_drop":
-    case "slide":
-    case "climb_stand":
-    case "climb_move":
-    case "climb_ledge":
         animation_angle = 0;
         break;
     
     // Spring angle:
-    case "spring_flight":
-    case "spring_fall":
+    case "spring":
         if (character_data != CHAR_CLASSIC && action_state == ACTION_SPRING && spring_angle != ANGLE_DOWN && spring_alarm > 0) animation_angle = spring_angle - 90;
         else animation_angle = approach_angle(animation_angle, 0, 4);
         break;
@@ -1269,7 +1310,7 @@ applies_to=self
 /// Draw Player
 
 // Knuckles test:
-if (tag_animations == true) draw_sprite(spr_knuckles_roll, 1, floor(x) + 11 * animation_direction, floor(y) + 1);
+//if (tag_animations == true) draw_sprite(spr_knuckles_roll, 1, floor(x) + 11 * animation_direction, floor(y) + 1);
 
 // Trail:
 if (global.misc_trails == true) {

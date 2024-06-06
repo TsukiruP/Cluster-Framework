@@ -10,11 +10,6 @@ switch (argument0) {
 
     // Step:
     case ACTION_STEP:
-        // Jump:
-        if (touching_ceiling == false && input_player[INP_JUMP, CHECK_PRESSED] == true) {
-            return player_set_action(player_action_jump);
-        }
-
         // Input:
         if (input_x_direction != 0) {
             if (input_lock_alarm == 0) {
@@ -58,6 +53,11 @@ switch (argument0) {
             if (ground_angle >= 90 && ground_angle <= 270) {
                 return player_set_action(player_action_air);
             }
+        }
+
+        // Jump:
+        if (touching_ceiling == false && input_player[INP_JUMP, CHECK_PRESSED] == true) {
+            return player_set_action(player_action_jump);
         }
 
         // Uncurl:

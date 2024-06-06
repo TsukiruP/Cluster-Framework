@@ -7,17 +7,12 @@ switch (argument0) {
         // Movement:
         g_speed = 0;
 
-        // Animation:
-        player_set_animation("turn");
+        // Direction:
+        image_xscale *= -1;
         break;
 
     // Step:
     case ACTION_STEP:
-        // Jump:
-        if (touching_ceiling == false && input_player[INP_JUMP, CHECK_PRESSED] == true) {
-            return player_set_action(player_action_jump);
-        }
-
         // Collision steps:
         player_collision_steps();
 
@@ -43,6 +38,11 @@ switch (argument0) {
             } else {
                 input_lock_alarm = 30;
             }
+        }
+
+        // Jump:
+        if (touching_ceiling == false && input_player[INP_JUMP, CHECK_PRESSED] == true) {
+            return player_set_action(player_action_jump);
         }
 
         // Idle:

@@ -8,10 +8,11 @@ switch (argument0) {
             ground = false;
         }
 
+        // Physics:
         x_speed -= dsin(ground_angle) * jump_force;
         y_speed -= dcos(ground_angle) * jump_force;
 
-        // Play sound:
+        // Sound:
         //sound_play_single("snd_jump");
         break;
 
@@ -55,7 +56,9 @@ switch (argument0) {
         }
 
         // Air drag:
-        if (abs(x_speed) > 0.125 && y_speed > -4 && y_speed < 0) x_speed *= 0.96875;
+        if (abs(x_speed) > 0.125 && y_speed > -4 && y_speed < 0) {
+            x_speed *= 0.96875;
+        }
 
         // Gravity:
         if (y_allow == true) {

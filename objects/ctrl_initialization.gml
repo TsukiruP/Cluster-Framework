@@ -76,7 +76,7 @@ global.setting_textbox_blue  = ini_read_real("textbox", "blue", DEFAULT_TEXTBOX_
 
 // Read/create gameplay settings:
 global.setting_gameplay_turn       = ini_read_real("gameplay", "turn", true);
-global.setting_gameplay_skid       = ini_read_real("gameplay", "skid", true);
+global.setting_gameplay_skid       = ini_read_real("gameplay", "skid", false);
 global.setting_gameplay_elemental  = ini_read_real("gameplay", "elemental", true);
 global.setting_gameplay_debuffs    = ini_read_real("gameplay", "debuffs", false);
 global.setting_gameplay_checkpoint = ini_read_real("gameplay", "checkpoint", true);

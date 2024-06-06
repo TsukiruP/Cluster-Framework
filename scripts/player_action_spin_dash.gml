@@ -62,8 +62,9 @@ switch (argument0) {
         if (input_player[INP_JUMP, CHECK_PRESSED] == true) {
             spin_dash_charge = min(spin_dash_charge + 2, 8);
 
-            // Set animation:
-            player_set_animation("spin_charge", 0, true);
+            // Animation:
+            player_set_animation("spin_charge");
+            animation_reload = true;
 
             // Play sound:
             //sfx_spin_dash = sound_play_single("snd_spin_dash_charge");
