@@ -5,7 +5,7 @@ switch (argument0) {
     // Start:
     case ACTION_START:
         // Animation:
-        player_set_animation("roll");
+        player_set_animation("spin");
         break;
 
     // Step:

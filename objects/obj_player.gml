@@ -749,14 +749,14 @@ switch (action_current) {
     
     // Air:
     case player_action_air:
-        if (animation_target != "turn" && animation_target != "turn_skid" && animation_target != "roll" && animation_target != "skid" && animation_target != "spring_flight" && animation_target != "spring_fall") {
+        if (animation_target != "turn" && animation_target != "turn_skid" && animation_target != "spin" && animation_target != "skid" && animation_target != "spring_flight" && animation_target != "spring_fall") {
             player_set_animation("spring_fall");
         }
         break;
     
     // Jump:
     case player_action_jump:
-        if (animation_target != "roll" && animation_target != "spin") {
+        if (animation_target != "spin") {
             player_set_animation("spin");
         }
         break;
@@ -787,6 +787,14 @@ switch (animation_target) {
             } else {
                 animation_variant = choose(0, 1);
             }
+        }
+        break;
+    
+    case "spin":
+        if (action_current == player_action_jump) {
+            animation_variant = 1;
+        } else {
+            animation_variant = 0;
         }
         break;
     

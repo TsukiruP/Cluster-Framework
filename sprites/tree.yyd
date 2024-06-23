@@ -60,8 +60,8 @@
 			+Spin Dash
 				|spr_sonic_spin_dash
 				|spr_sonic_spin_charge
-			|spr_sonic_roll
 			+Spin
+				|spr_sonic_roll
 				|spr_sonic_spin_flight
 				|spr_sonic_spin_fall
 			+Skid

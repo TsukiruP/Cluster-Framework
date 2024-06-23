@@ -30,11 +30,8 @@ player_add_animation(CHAR_SONIC, "crouch",        ctl_sonic_crouch);
 player_add_animation(CHAR_SONIC, "spin_dash",     ctl_sonic_spin_dash);
 player_add_animation(CHAR_SONIC, "spin_charge",   ctl_sonic_spin_charge);
 
-// Roll:
-player_add_animation(CHAR_SONIC, "roll",          ctl_sonic_roll);
-
 // Spin:
-player_add_animation(CHAR_SONIC, "spin",          ctl_sonic_spin_flight, ctl_sonic_spin_fall);
+player_add_animation(CHAR_SONIC, "spin",          ctl_sonic_roll, ctl_sonic_spin_flight, ctl_sonic_spin_fall);
 
 // Skid:
 player_add_animation(CHAR_SONIC, "skid",          ctl_sonic_skid);
