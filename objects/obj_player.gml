@@ -408,6 +408,47 @@ lib_id=1
 action_id=603
 applies_to=self
 */
+/// Splashes
+
+if (instance_exists(obj_water_surface)) {
+    if (water_surface == true) {
+        // Create step/run splash:
+        if (ground == true && abs(g_speed) > 0) {
+            if (water_splash_alarm > 0) {
+                water_splash_alarm -= 1;
+
+                if (water_splash_alarm == 0) {
+                    if (abs(g_speed) >= 4.50) {
+                        effect_create(ctl_splash_run, floor(x), obj_water_surface.y, depth, image_xscale);
+                        water_splash_alarm = 7;
+                    } else {
+                        effect_create(ctl_splash_step, floor(x), obj_water_surface.y, depth, image_xscale);
+                        water_splash_alarm = 14;
+                    }
+                }
+            }
+        }
+
+        // Create jump splash:
+        if (ground == false && sign(y_speed) == -1) {
+            effect_create(ctl_splash_run, floor(x), obj_water_surface.y, depth, image_xscale);
+        }
+    } else {
+        water_splash_alarm = 14;
+    }
+
+    // Water surface:
+    if (floor(y) + main_bottom + 1 == obj_water_surface.y) {
+        water_surface = true;
+    } else {
+        water_surface = false;
+    }
+}
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
 /// Refill Air
 
 // Don't bother if the game is paused:
@@ -758,6 +799,41 @@ switch (action_current) {
     case player_action_jump:
         if (animation_target != "spin") {
             player_set_animation("spin");
+        }
+        break;
+    
+    // Look:
+    case player_action_look:
+        if (animation_target != "look") {
+            player_set_animation("look");
+        }
+        break;
+    
+    // Crouch:
+    case player_action_crouch:
+        if (animation_target != "crouch") {
+            player_set_animation("crouch");
+        }
+        break;
+    
+    // Spin Dash:
+    case player_action_spin_dash:
+        if (animation_target != "spin_dash" && animation_target != "spin_charge") {
+            player_set_animation("spin_dash");
+        }
+        break;
+    
+    // Roll:
+    case player_action_roll:
+        if (animation_target != "spin") {
+            player_set_animation("spin");
+        }
+        break;
+    
+    // Skid:
+    case player_action_skid:
+        if (animation_target != "skid" && animation_target != "skid_fast") {
+            player_set_animation("skid");
         }
         break;
 }
@@ -1148,8 +1224,9 @@ applies_to=self
 // Sets the animation angle based on the current animation.
 
 // Don't bother if in the middle of respawning/dying or the game is paused:
-if (action_state == ACTION_RESPAWN || action_state == ACTION_DEATH || game_paused()) exit;
-
+if (game_paused()) exit;
+image_angle = player_get_angle(x, y);
+/*
 var angle_mod;
 
 // Animation Angle:
@@ -1172,21 +1249,21 @@ switch (animation_current) {
     case "goal":
     case "hurt":
     case "death":
-        animation_angle = 0;
+        image_angle = 0;
         break;
     
     // Spring angle:
     case "spring":
-        if (character_data != CHAR_CLASSIC && action_state == ACTION_SPRING && spring_angle != ANGLE_DOWN && spring_alarm > 0) animation_angle = spring_angle - 90;
-        else animation_angle = approach_angle(animation_angle, 0, 4);
+        if (character_data != CHAR_CLASSIC && action_state == ACTION_SPRING && spring_angle != ANGLE_DOWN && spring_alarm > 0) image_angle = spring_angle - 90;
+        else image_angle = approach_angle(animation_angle, 0, 4);
         break;
     
     // Terrain angle:
     default:
         // Default angle behavior:
         if (character_data != CHAR_CLASSIC && tag_animations == false) {
-            if (ground == true) animation_angle = ground_angle;
-            else animation_angle = approach_angle(animation_angle, 0, 4);
+            if (ground == true) image_angle = ground_angle;
+            else image_angle = approach_angle(image_angle, 0, 4);
         }
         
         // Classic/Tag angle behavior:
@@ -1214,7 +1291,7 @@ switch (animation_current) {
             }
             
             // Rotate:
-            animation_angle = round(animation_angle_mod / 45) * 45;
+            image_angle = round(animation_angle_mod / 45) * 45;
         }
 }
 
