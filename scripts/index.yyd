@@ -40,7 +40,7 @@ player_action_jump_old
 player_animation_core
 player_get_animation
 player_add_animation
-ctl_omochao_idle
+player_set_damage
 player_action_idle
 fade_create
 room_set_data
@@ -167,3 +167,4 @@ ctl_spring
 player_handle_spring
 player_action_template
 player_action_crouch
+script169

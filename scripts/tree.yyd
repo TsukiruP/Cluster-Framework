@@ -67,8 +67,8 @@
 					+Spin Dash
 						|ctl_sonic_spin_dash
 						|ctl_sonic_spin_charge
-					|ctl_sonic_roll
 					+Spin
+						|ctl_sonic_roll
 						|ctl_sonic_spin_flight
 						|ctl_sonic_spin_fall
 					+Skid
@@ -175,6 +175,7 @@
 			|player_handle_water_surface
 			|player_handle_hint
 		+Misc.
+			|player_set_damage
 			|player_ring_loss
 			|player_get_item
 			|player_get_input
@@ -219,4 +220,4 @@
 		+Amy
 		+Classic
 			|classic_action_clock_up
-	|ctl_omochao_idle
+|script169
