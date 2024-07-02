@@ -1,9 +1,10 @@
 /// player_action_air(phase)
-//
+// Falling with style.
 
 switch (argument0) {
     // Start:
     case ACTION_START:
+        // Set ground:
         if (ground == true) {
             ground = false;
         }
@@ -47,7 +48,7 @@ switch (argument0) {
             y_speed += gravity_force;
         }
 
-        // Direction:
+        // Set direction:
         if (input_x_direction != 0 && image_xscale == -input_x_direction) {
             image_xscale = input_x_direction;
         }

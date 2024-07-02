@@ -4,16 +4,14 @@
 switch (argument0) {
     // Start:
     case ACTION_START:
+        // Set ground:
         if (ground == true) {
             ground = false;
         }
 
-        // Physics:
+        // Set movement:
         x_speed -= dsin(ground_angle) * jump_force;
         y_speed -= dcos(ground_angle) * jump_force;
-
-        // Sound:
-        //sound_play_single("snd_jump");
         break;
 
     // Step:

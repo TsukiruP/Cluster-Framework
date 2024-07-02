@@ -44,6 +44,7 @@ switch (argument0) {
 
         // Jump:
         if (ground == true && touching_ceiling == false && input_player[INP_JUMP, CHECK_PRESSED] == true) {
+            sound_play_single("snd_jump");
             return player_set_action(player_action_jump);
         }
 

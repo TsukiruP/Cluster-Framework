@@ -40,7 +40,7 @@ switch (argument0) {
                     if (abs(g_speed) > top_speed) g_speed = top_speed * input_x_direction;
                 }
 
-                // Animation direction:
+                // Set direction:
                 image_xscale = input_x_direction;
             }
         }
@@ -52,6 +52,7 @@ switch (argument0) {
             // Roll:
             if (abs(g_speed) > 1) {
                 if (input_player[INP_DOWN, CHECK_HELD] == true) {
+                    sound_play_single("snd_roll");
                     return player_set_action(player_action_roll);
                 }
             }
@@ -100,6 +101,7 @@ switch (argument0) {
 
         // Jump:
         if (touching_ceiling == false && input_player[INP_JUMP, CHECK_PRESSED] == true) {
+            sound_play_single("snd_jump");
             return player_set_action(player_action_jump);
         }
 
@@ -113,5 +115,6 @@ switch (argument0) {
 
     // Finish:
     case ACTION_FINISH:
+        input_lock_alarm = 0;
         break;
 }

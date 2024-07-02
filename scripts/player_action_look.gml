@@ -4,11 +4,8 @@
 switch (argument0) {
     // Start:
     case ACTION_START:
-        // Movement:
+        // Reset movement:
         g_speed = 0;
-
-        // Animation:
-        player_set_animation("look");
         break;
 
     // Step:
@@ -39,6 +36,7 @@ switch (argument0) {
 
         // Jump:
         if (touching_ceiling == false && input_player[INP_JUMP, CHECK_PRESSED] == true) {
+            sound_play_single("snd_jump");
             return player_set_action(player_action_jump);
         }
 

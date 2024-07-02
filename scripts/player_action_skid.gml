@@ -4,12 +4,18 @@
 switch (argument0) {
     // Start:
     case ACTION_START:
-        // Animation:
+        // Set animation:
         if (abs(g_speed) >= top_speed) {
             player_set_animation("skid_fast");
         } else {
             player_set_animation("skid");
         }
+
+        // Play sound:
+        sound_play_single("snd_skid");
+
+        // Dust alarm:
+        skid_dust_alarm = 3;
         break;
 
     // Step:
@@ -24,7 +30,7 @@ switch (argument0) {
                         g_speed = deceleration * input_x_direction;
 
                         // Turn:
-                        if (global.gameplay_turn == true) {
+                        if (global.gameplay_turn == true && character_data != CHAR_CLASSIC) {
                             player_set_animation("turn_skid");
                             return player_set_action(player_action_turn);
                         }
@@ -43,7 +49,7 @@ switch (argument0) {
         // Friction:
         else {
             // Run:
-            if (global.gameplay_skid == true) {
+            if (global.gameplay_skid == true && character_data != CHAR_CLASSIC) {
                 return player_set_action(player_action_run);
             }
 
@@ -100,6 +106,7 @@ switch (argument0) {
 
         // Jump:
         if (touching_ceiling == false && input_player[INP_JUMP, CHECK_PRESSED] == true) {
+            sound_play_single("snd_jump");
             return player_set_action(player_action_jump);
         }
 
@@ -109,6 +116,16 @@ switch (argument0) {
         }
 
         // Dust:
+        if (g_speed != 0) {
+            if (skid_dust_alarm > 0) {
+                skid_dust_alarm -= 1;
+
+                if (skid_dust_alarm == 0) {
+                    effect_create(ctl_skid, x, y + main_bottom, depth);
+                    skid_dust_alarm = 3;
+                }
+            }
+        }
         break;
 
     // Finish:

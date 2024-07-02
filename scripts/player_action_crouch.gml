@@ -4,11 +4,8 @@
 switch (argument0) {
     // Start:
     case ACTION_START:
-        // Movement:
+        // Reset movement:
         g_speed = 0;
-
-        // Animation:
-        player_set_animation("crouch");
         break;
 
     // Step:
