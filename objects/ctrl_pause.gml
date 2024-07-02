@@ -113,10 +113,10 @@ if (pause_delay == 0) {
             // Pasue menu:
             case 0:
                 if (menu_selection != 0) {
-                    menu_level    =  1;
-                    sub_level     =  menu_selection - 1;
-                    sub_selection =  0;
-                    pause_target  = -sprite_get_width(pause_sprite);
+                    menu_level     =  1;
+                    sub_level      =  menu_selection - 1;
+                    sub_selection  =  0;
+                    pause_x_target = -sprite_get_width(pause_sprite);
                 }
 
                 // Return to gameplay:
