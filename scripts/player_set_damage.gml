@@ -10,8 +10,7 @@ if ((input_cpu == false && (global.game_rings > 0 || status_shield != 0)) || inp
     y_speed = -4;
 
     // Set invincibility:
-    status_invin       = INVIN_HURT;
-    status_invin_alarm = 120;
+    status_invin = INVIN_HURT;
 
     // Set action:
     player_set_action(player_action_hurt);

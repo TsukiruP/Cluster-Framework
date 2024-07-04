@@ -34,7 +34,7 @@ switch (argument0) {
 
     // Finish:
     case ACTION_FINISH:
-
+        // Set invincibility:
         status_invin_alarm = 120;
         break;
 }
