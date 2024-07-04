@@ -433,6 +433,18 @@ if (status_invin == INVIN_HURT) {
         }
     }
 }
+
+// Speed shoes:
+if (status_speed != SPEED_NONE) {
+    // Speed alarm:
+    if (status_speed_alarm > 0) {
+        status_speed_alarm -= 1;
+        
+        if (status_speed_alarm == 0) {
+            status_speed = SPEED_NONE;
+        }
+    }
+}
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603

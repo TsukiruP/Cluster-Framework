@@ -67,7 +67,7 @@ switch (argument0) {
 
     // Speed up:
     case ITEM_SPEED:
-        status_speed       = 1;
+        status_speed       = SPEED_UP;
         status_speed_alarm = 900;
 
         with (ctrl_audio) event_user(1);
