@@ -8,9 +8,6 @@ switch (argument0) {
 
     // Step:
     case ACTION_STEP:
-        // Friction:
-        g_speed -= min(abs(g_speed), acceleration) * sign(g_speed);
-
         // Collision steps:
         player_collision_steps();
 
@@ -42,7 +39,7 @@ switch (argument0) {
         }
 
         // Run:
-        if (g_speed != 0 || input_x_direction != 0) {
+        if (g_speed != 0) {
             return player_set_action(player_action_run);
         }
 
