@@ -80,16 +80,16 @@ global.setting_gameplay_debuffs    = ini_read_real("gameplay", "debuffs", false)
 global.setting_gameplay_checkpoint = ini_read_real("gameplay", "checkpoint", true);
 
 // Read/create Advance settings:
-global.setting_advance_turn = ini_read_real("advance", "turn", true);
-global.setting_advance_skid = ini_read_real("advance", "skid", true);
-global.setting_advance_hurt = ini_read_real("advance", "hurt", true);
+global.setting_advance_turn    = ini_read_real("advance", "turn", true);
+global.setting_advance_skid    = ini_read_real("advance", "skid", true);
+global.setting_advance_hurt    = ini_read_real("advance", "hurt", true);
+global.setting_advance_flicker = ini_read_real("advance", "flicker", true);
 
 // Read/create misc. settings:
 global.setting_misc_hud     = ini_read_real("misc", "hud", 1);
 global.setting_misc_status  = ini_read_real("misc", "status", 2);
 global.setting_misc_feed    = ini_read_real("misc", "feed", true);
 global.setting_misc_trails  = ini_read_real("misc", "trails", true);
-global.setting_misc_flicker = ini_read_real("misc", "flicker", true);
 global.setting_misc_lock_on = ini_read_real("misc", "lock_on", true);
 global.setting_misc_results = ini_read_real("misc", "results", 1);
 
@@ -140,16 +140,16 @@ global.gameplay_debuffs    = global.setting_gameplay_debuffs;
 global.gameplay_checkpoint = global.setting_gameplay_checkpoint;
 
 // Apply Advance settings:
-global.advance_turn = global.setting_advance_turn;
-global.advance_skid = global.setting_advance_skid;
-global.advance_hurt = global.setting_advance_hurt;
+global.advance_turn    = global.setting_advance_turn;
+global.advance_skid    = global.setting_advance_skid;
+global.advance_hurt    = global.setting_advance_hurt;
+global.advance_flicker = global.setting_advance_flicker;
 
 // Apply misc. settings:
 global.misc_hud     = global.setting_misc_hud;
 global.misc_status  = global.setting_misc_status;
 global.misc_feed    = global.setting_misc_feed;
 global.misc_trails  = global.setting_misc_trails;
-global.misc_flicker = global.setting_misc_flicker
 global.misc_lock_on = global.setting_misc_lock_on;
 global.misc_results = global.setting_misc_results;
 /*"/*'/**//* YYD ACTION

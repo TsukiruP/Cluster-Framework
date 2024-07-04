@@ -75,7 +75,7 @@ if ((player_handle.status_shield == SHIELD_FIRE && (image_index mod 2) != 0) || 
 shield_advance = (player_handle.status_shield == SHIELD_BASIC || player_handle.status_shield == SHIELD_MAGNETIC || player_handle.status_invin == INVIN_BUFF);
 
 // Hide:
-if (player_handle.status_shield == SHIELD_BUBBLE || (global.misc_flicker == true && shield_advance == true)) {
+if (player_handle.status_shield == SHIELD_BUBBLE || (global.advance_flicker == true && shield_advance == true)) {
     // Hide:
     if (ctl_time > 1 && ctl_time mod 2) {
         shield_hide = !shield_hide;
@@ -85,7 +85,7 @@ if (player_handle.status_shield == SHIELD_BUBBLE || (global.misc_flicker == true
 }
 
 // Alpha:
-if ((global.misc_flicker == true && shield_advance == true) || shield_advance == false) {
+if ((global.advance_flicker == true && shield_advance == true) || shield_advance == false) {
     shield_alpha = 1;
 } else {
     shield_alpha = 0.6;
