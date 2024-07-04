@@ -424,26 +424,20 @@ applies_to=self
 if (game_paused()) exit;
 
 // Hurt invincibility:
-if (status_invin == INVIN_HURT) {
-    // Invincibility alarm:
-    if (status_invin_alarm > 0) {
-        status_invin_alarm -= 1;
-        
-        if (status_invin_alarm == 0) {
-            status_invin = INVIN_NONE;
-        }
+if (status_invin_alarm > 0) {
+    status_invin_alarm -= 1;
+    
+    if (status_invin_alarm == 0) {
+        status_invin = INVIN_NONE;
     }
 }
 
 // Speed shoes:
-if (status_speed != SPEED_NONE) {
-    // Speed alarm:
-    if (status_speed_alarm > 0) {
-        status_speed_alarm -= 1;
-        
-        if (status_speed_alarm == 0) {
-            status_speed = SPEED_NONE;
-        }
+if (status_speed_alarm > 0) {
+    status_speed_alarm -= 1;
+    
+    if (status_speed_alarm == 0) {
+        status_speed = SPEED_NONE;
     }
 }
 /*"/*'/**//* YYD ACTION
