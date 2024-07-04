@@ -5,7 +5,9 @@ switch (argument0) {
     // Start:
     case ACTION_START:
         // Set ground:
-        ground = false;
+        if (ground == true) {
+            ground = false;
+        }
         break;
 
     // Step:

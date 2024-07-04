@@ -8,7 +8,12 @@ switch (argument0) {
         depth = -11000;
 
         // Reset ground:
-        ground = false;
+        if (ground == true) {
+            ground = false;
+        }
+
+        // Set physics:
+        x_speed = 0;
 
         // Reset stats:
         status_shield = SHIELD_NONE;

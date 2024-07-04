@@ -31,8 +31,12 @@ if (player_line_check(-main_left_rel, -main_top - 8) || player_line_check(main_r
 
 if (y >= room_height && action_current != player_action_death) {
     // Set physics:
-    x_speed =  0;
     y_speed = -7;
+
+    // Underwater physics:
+    if (physics_type == PHYS_UNDERWATER) {
+        y_speed /= 2;
+    }
 
     // Set action:
     player_set_action(player_action_death);

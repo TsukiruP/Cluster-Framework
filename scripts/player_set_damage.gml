@@ -33,7 +33,6 @@ if ((input_cpu == false && (global.game_rings > 0 || status_shield != 0)) || inp
 // Death:
 else {
     // Set physics:
-    x_speed =  0;
     y_speed = -7;
 
     // Set action:
@@ -56,4 +55,10 @@ else {
         if (sound_isplaying("bgm_muteki")) sound_stop("bgm_muteki");
         if (sound_isplaying("bgm_speed_up")) sound_stop("bgm_speed_up");
     }
+}
+
+// Underwater physics:
+if (physics_type == PHYS_UNDERWATER) {
+    x_speed /= 2;
+    y_speed /= 2;
 }
