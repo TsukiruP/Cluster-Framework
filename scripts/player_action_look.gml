@@ -29,7 +29,9 @@ switch (argument0) {
 
         // Slope friction:
         if (ground_angle < 135 || ground_angle > 225) {
-            if (abs(g_speed) > 0.125 || input_lock_alarm != 0) g_speed -= dsin(ground_angle) * 0.125;
+            if (abs(g_speed) > 0.125 || input_lock_alarm != 0) {
+                g_speed -= dsin(ground_angle) * 0.125;
+            }
         }
 
         // Jump:
