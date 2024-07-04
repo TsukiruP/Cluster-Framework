@@ -11,7 +11,7 @@ switch (argument0) {
         // Input:
         if (input_x_direction != 0) {
             // Turn:
-            if (global.gameplay_turn == true && abs(g_speed) <= 4 && image_xscale == -input_x_direction) {
+            if (global.advance_turn == true && abs(g_speed) <= 4 && image_xscale == -input_x_direction) {
                 if (input_lock_alarm == 0) {
                     return player_set_action(player_action_turn);
                 }

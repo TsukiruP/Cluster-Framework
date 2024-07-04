@@ -30,7 +30,7 @@ switch (argument0) {
                         g_speed = deceleration * input_x_direction;
 
                         // Turn:
-                        if (global.gameplay_turn == true && character_data != CHAR_CLASSIC) {
+                        if (global.advance_turn == true && character_data != CHAR_CLASSIC) {
                             player_set_animation("turn_skid");
                             return player_set_action(player_action_turn);
                         }
@@ -49,7 +49,7 @@ switch (argument0) {
         // Friction:
         else {
             // Run:
-            if (global.gameplay_skid == true && character_data != CHAR_CLASSIC) {
+            if (global.advance_skid == true && character_data != CHAR_CLASSIC) {
                 return player_set_action(player_action_run);
             }
 

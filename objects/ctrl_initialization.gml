@@ -65,7 +65,7 @@ for (i = 0; i < 2; i += 1) {
     global.setting_input_accept[i]   = ini_read_real("input", "joy" + string(i) + "_accept", 0);
 }
 
-// Read/create misc input settings:
+// Read/create misc. input settings:
 global.setting_input_style = ini_read_real("input", "style", DEFAULT_MISC_STYLE);
 global.setting_input_focus = ini_read_real("input", "focus", false);
 
@@ -75,14 +75,17 @@ global.setting_textbox_green = ini_read_real("textbox", "green", DEFAULT_TEXTBOX
 global.setting_textbox_blue  = ini_read_real("textbox", "blue", DEFAULT_TEXTBOX_BLUE);
 
 // Read/create gameplay settings:
-global.setting_gameplay_turn       = ini_read_real("gameplay", "turn", true);
-global.setting_gameplay_skid       = ini_read_real("gameplay", "skid", true);
 global.setting_gameplay_elemental  = ini_read_real("gameplay", "elemental", true);
 global.setting_gameplay_debuffs    = ini_read_real("gameplay", "debuffs", false);
 global.setting_gameplay_checkpoint = ini_read_real("gameplay", "checkpoint", true);
 
+// Read/create Advance settings:
+global.setting_advance_turn = ini_read_real("advance", "turn", true);
+global.setting_advance_skid = ini_read_real("advance", "skid", true);
+global.setting_advance_hurt = ini_read_real("advance", "hurt", true);
+
 // Read/create misc. settings:
-global.setting_misc_hud     = ini_read_real("misc", "hud", 2);
+global.setting_misc_hud     = ini_read_real("misc", "hud", 1);
 global.setting_misc_status  = ini_read_real("misc", "status", 2);
 global.setting_misc_feed    = ini_read_real("misc", "feed", true);
 global.setting_misc_trails  = ini_read_real("misc", "trails", true);
@@ -122,7 +125,7 @@ for (i = 0; i < 2; i += 1) {
     global.input_accept[i]   = global.setting_input_accept[i];
 }
 
-// Apply misc input settings:
+// Apply misc. input settings:
 global.input_style = global.setting_input_style;
 global.input_focus = global.setting_input_focus;
 
@@ -132,11 +135,14 @@ global.textbox_green = global.setting_textbox_green;
 global.textbox_blue  = global.setting_textbox_blue;
 
 // Apply gameplay settings:
-global.gameplay_turn       = global.setting_gameplay_turn;
-global.gameplay_skid       = global.setting_gameplay_skid;
 global.gameplay_elemental  = global.setting_gameplay_elemental;
 global.gameplay_debuffs    = global.setting_gameplay_debuffs;
 global.gameplay_checkpoint = global.setting_gameplay_checkpoint;
+
+// Apply Advance settings:
+global.advance_turn = global.setting_advance_turn;
+global.advance_skid = global.setting_advance_skid;
+global.advance_hurt = global.setting_advance_hurt;
 
 // Apply misc. settings:
 global.misc_hud     = global.setting_misc_hud;
