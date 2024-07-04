@@ -65,12 +65,16 @@ switch (argument0) {
             switch (input_y_direction) {
                 // Look:
                 case -1:
-                    return player_set_action(player_action_look);
+                    if (animation_current != "look") {
+                        return player_set_action(player_action_look);
+                    }
                     break;
 
                 // Crouch:
                 case 1:
-                    return player_set_action(player_action_crouch);
+                    if (animation_current != "crouch") {
+                        return player_set_action(player_action_crouch);
+                    }
                     break;
             }
         }

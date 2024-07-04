@@ -4,8 +4,6 @@
 switch (argument0) {
     // Start:
     case ACTION_START:
-        // Reload animation:
-        animation_reload = true;
         break;
 
     // Step:

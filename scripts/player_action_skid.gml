@@ -61,23 +61,9 @@ switch (argument0) {
             g_speed -= min(abs(g_speed), acceleration) * sign(g_speed);
 
             // Roll:
-            if (abs(g_speed) > 1) {
+            if (abs(g_speed) > 0.5) {
                 if (input_player[INP_DOWN, CHECK_HELD] == true) {
                     return player_set_action(player_action_roll);
-                }
-            }
-
-            else {
-                switch (input_y_direction) {
-                    // Look:
-                    case -1:
-                        return player_set_action(player_action_look);
-                        break;
-
-                    // Crouch:
-                    case 1:
-                        return player_set_action(player_action_crouch);
-                        break;
                 }
             }
         }
