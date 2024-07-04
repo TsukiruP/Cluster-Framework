@@ -4,9 +4,6 @@
 switch (argument0) {
     // Start:
     case ACTION_START:
-        // Set depth:
-        depth = -11000;
-
         // Reset ground:
         if (ground == true) {
             ground = false;
@@ -22,6 +19,9 @@ switch (argument0) {
 
         // Death alarm:
         death_alarm = 128;
+
+        // Set depth:
+        depth = -11000;
         break;
 
     // Step:
