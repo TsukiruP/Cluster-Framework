@@ -159,7 +159,7 @@
 				|player_action_hurt
 				|player_action_death
 		+Passives
-			|classic_action_clock_up
+			|classic_passive_clock_up
 		+Animation
 			|player_animation_core
 			|player_add_animation
