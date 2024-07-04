@@ -10,7 +10,7 @@ if (ring_handle == noone) exit;
 
 // Collect ring:
 if (player_collision_prop(ring_handle, SIDE_MAIN) != 0) {
-    if (status_invin != INVIN_HURT || (status_invin == INVIN_HURT && status_invin_alarm < 90)) {
+    if (status_invin != INVIN_HURT || (status_invin == INVIN_HURT && status_invin_alarm > 0 && status_invin_alarm < 90)) {
         // Destroy ring:
         with (ring_handle) {
             effect_create(ctl_ring_sparkle, x, y, depth - 1);
