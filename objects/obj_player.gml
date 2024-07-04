@@ -12,7 +12,63 @@ image_speed = 0;
 // Timeline initialization:
 ctl_initialize();
 
-// Collision variables:
+// Action variables:
+action_current  = player_action_idle;
+action_previous = action_current;
+action_changed  = false;
+
+// Physics variables:
+top_speed        = 6;
+max_speed        = 16;
+
+g_speed          = 0;
+
+x_allow          = true;
+x_direction      = 0;
+x_speed          = 0;
+acceleration     = 0.046875;
+deceleration     = 0.5;
+
+y_allow            = true;
+y_direction        = 1;
+y_speed            = 0;
+gravity_force      = 0.21875;
+gravity_force_temp = 0.21875;
+gravity_angle      = 0;
+
+// Default variables:
+balance_direction = 0;
+push_animation    = false;
+hint_wanted       = false;
+
+// Jump variables:
+jump_force    =  6.5;
+jump_complete =  false;
+jump_release  = -4;
+
+// Roll variables:
+roll_deceleration  = 0.125;
+roll_friction      = 0.0234375;
+roll_friction_up   = 0.078125;
+roll_friction_down = 0.3125;
+roll_rebounce      = false;
+roll_forced        = false;
+roll_offset        = 0;
+
+// Misc. variables:
+wall_stop        =  true;
+death_alarm      = -5;
+depth_default    =  0;
+tunnel_lock      =  false;
+score_multiplier =  0;
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Collision Initialization
+
+// Collision flags:
 collision_allow        = true;
 ground_collision_allow = true;
 ground                 = true;
@@ -74,56 +130,6 @@ hitbox_offset_y  = 0;
 
 hitbox_left_rel  = 0;
 hitbox_right_rel = 0;
-
-// Action variables:
-action_current  = player_action_idle;
-action_previous = action_current;
-action_changed  = false;
-
-// Physics variables:
-top_speed        = 6;
-max_speed        = 16;
-
-g_speed          = 0;
-
-x_allow          = true;
-x_direction      = 0;
-x_speed          = 0;
-acceleration     = 0.046875;
-deceleration     = 0.5;
-
-y_allow            = true;
-y_direction        = 1;
-y_speed            = 0;
-gravity_force      = 0.21875;
-gravity_force_temp = 0.21875;
-gravity_angle      = 0;
-
-// Default variables:
-balance_direction = 0;
-push_animation    = false;
-hint_wanted       = false;
-
-// Jump variables:
-jump_force    =  6.5;
-jump_complete =  false;
-jump_release  = -4;
-
-// Roll variables:
-roll_deceleration  = 0.125;
-roll_friction      = 0.0234375;
-roll_friction_up   = 0.078125;
-roll_friction_down = 0.3125;
-roll_rebounce      = false;
-roll_forced        = false;
-roll_offset        = 0;
-
-// Misc. variables:
-wall_stop        =  true;
-death_alarm      = -5;
-depth_default    =  0;
-tunnel_lock      =  false;
-score_multiplier =  0;
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -152,7 +158,6 @@ status_shield_usable = true;
 status_shield_state  = 0;
 
 // Invincibility variables:
-status_hurt        = 0;
 status_invin       = 0;
 status_invin_alarm = 0;
 
@@ -417,8 +422,17 @@ applies_to=self
 // Don't bother if the game is paused:
 if (game_paused()) exit;
 
-if (status_speed == 1) afterimage_draw = true;
-else afterimage_draw = false;
+// Hurt invincibility:
+if (status_invin == INVIN_HURT) {
+    // Invincibility alarm:
+    if (status_invin_alarm > 0) {
+        status_invin_alarm -= 1;
+        
+        if (status_invin_alarm == 0) {
+            status_invin = INVIN_NONE;
+        }
+    }
+}
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -757,6 +771,42 @@ switch (animation_current) {
             image_angle = round(animation_angle_mod / 45) * 45;
         }
 }
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Collision Direction
+
+if (image_xscale < 0) {
+    // Main:
+    main_left_rel  = main_right;
+    main_right_rel = main_left;
+
+    // Hurtbox:
+    hurtbox_left_rel  = hurtbox_right;
+    hurtbox_right_rel = hurtbox_left;
+
+    // Hitbox:
+    hitbox_left_rel  = hitbox_right;
+    hitbox_right_rel = hitbox_left;
+} else {
+    // Main:
+    main_left_rel  = main_left;
+    main_right_rel = main_right;
+
+    // Hurtbox:
+    hurtbox_left_rel  = hurtbox_left;
+    hurtbox_right_rel = hurtbox_right;
+
+    // Hitbox:
+    hitbox_left_rel  = hitbox_left;
+    hitbox_right_rel = hitbox_right;
+}
+
+// Wall direction:
+wall_left  = main_left_rel + 3;
+wall_right = main_right_rel + 3;
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
