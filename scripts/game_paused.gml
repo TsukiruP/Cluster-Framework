@@ -1,5 +1,5 @@
 /// game_paused([controller])
-// Returns true if the game is currently paused.
+// Returns true
 
 var pause_stage, pause_text;
 
@@ -10,7 +10,7 @@ if (instance_exists(ctrl_pause)) {
     pause_stage = false;
 }
 
-// Text pause
+// Text pause:
 pause_text = (ctrl_text.text_message != "" || ctrl_text.topic_message != "" || ctrl_text.log_alpha[1] != 0);
 
 if (argument_count >= 1) {

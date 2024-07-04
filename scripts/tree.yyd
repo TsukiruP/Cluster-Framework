@@ -156,6 +156,10 @@
 				|player_action_spin_dash
 				|player_action_roll
 				|player_action_skid
+				|player_action_hurt
+				|player_action_death
+		+Passives
+			|classic_action_clock_up
 		+Animation
 			|player_animation_core
 			|player_add_animation
@@ -175,8 +179,8 @@
 			|player_handle_water_surface
 			|player_handle_hint
 		+Misc.
-			|player_set_damage
 			|player_ring_loss
+			|player_set_damage
 			|player_get_item
 			|player_get_input
 			|player_get_physics
@@ -193,7 +197,6 @@
 	+Sonic Dash
 		+Main
 		+Left
-			|player_collision_object_left
 		+Right
 			|player_collision_right
 			|player_collision_right_edge
@@ -212,12 +215,10 @@
 		|player_action_spin_dash_old
 		|player_action_roll_old
 		|player_action_skid_old
-		|player_action_push
-		|player_action_hurt
+		|player_action_push_OLD
+		|player_action_hurt_OLD
 		+Sonic
 		+Miles
 		+Knuckles
 		+Amy
 		+Classic
-			|classic_action_clock_up
-|script169

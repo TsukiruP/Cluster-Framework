@@ -71,5 +71,6 @@ switch (argument0) {
 
     // Finish:
     case ACTION_FINISH:
+        score_multiplier = 0;
         break;
 }

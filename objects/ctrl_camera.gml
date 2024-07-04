@@ -63,7 +63,7 @@ if (player_exists(0) != noone) {
         var look_direction;
 
         // Look direction:
-        look_direction = (focus_handle.action_state == ACTION_CROUCH) - (focus_handle.action_state == ACTION_LOOK);
+        look_direction = (focus_handle.action_current == player_action_crouch) - (focus_handle.action_current == player_action_look);
 
         // Look timer:
         camera_look_timer = clamp(camera_look_timer + (1 * look_direction), -120, 120);
@@ -115,7 +115,7 @@ if (player_exists(0) != noone) {
                 }
 
                 // Vertical movment:
-                if (action_state != ACTION_DEATH) {
+                if (action_current != player_action_death) {
                     // Airborne:
                     if (ground == false) {
                         if (y < other.border_top) other.camera_y -= min(other.border_top - y, other.camera_speed_cap);

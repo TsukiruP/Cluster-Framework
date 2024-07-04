@@ -19,58 +19,63 @@ switch (argument0) {
 
     // Basic shield:
     case ITEM_BASIC:
-        shield_data  = SHIELD_BASIC;
-        shield_state = 0;
+        status_shield       = SHIELD_BASIC;
+        status_shield_state = 0;
+
         sound_play("snd_shield_basic");
         break;
 
     // Magnetic shield:
     case ITEM_MAGNETIC:
-        shield_data  = SHIELD_MAGNETIC;
-        shield_state = 0;
+        status_shield       = SHIELD_MAGNETIC;
+        status_shield_state = 0;
+
         sound_play("snd_shield_lightning");
         break;
 
     // Fire shield:
     case ITEM_FIRE:
-        shield_data  = SHIELD_FIRE;
-        shield_state = 0;
+        status_shield       = SHIELD_FIRE;
+        status_shield_state = 0;
+
         sound_play("snd_shield_fire");
         break;
 
     // Bubble shield:
     case ITEM_BUBBLE:
-        shield_data  = SHIELD_BUBBLE;
-        shield_state = 0;
+        status_shield       = SHIELD_BUBBLE;
+        status_shield_state = 0;
+
         sound_play("snd_shield_bubble");
         break;
 
     // Lightning shield:
     case ITEM_LIGHTNING:
-        shield_data  = SHIELD_LIGHTNING;
-        shield_state = 0;
+        status_shield       = SHIELD_LIGHTNING;
+        status_shield_state = 0;
+
         sound_play("snd_shield_lightning");
         break;
 
     // Invincibility:
-    case ITEM_MUTEKI:
-        invincibility_type  = 2;
-        invincibility_alarm = 1380;
+    case ITEM_INVIN:
+        status_invin       = 2;
+        status_invin_alarm = 1380;
 
         with (ctrl_audio) event_user(0);
         break;
 
     // Speed up:
     case ITEM_SPEED:
-        speed_shoe_type  = 1;
-        speed_shoe_alarm = 900;
+        status_speed       = 1;
+        status_speed_alarm = 900;
 
         with (ctrl_audio) event_user(1);
         break;
 
     // Mine:
     case ITEM_MINE:
-        player_action_hurt(other);
+        player_set_damage(other);
         effect_create(ctl_explosion_large, other.x, other.y, depth - 1);
         break;
 

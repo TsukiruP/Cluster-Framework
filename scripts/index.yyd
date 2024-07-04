@@ -9,7 +9,7 @@ player_collision_object_top
 player_collision_bottom
 player_collision_object_bottom
 game_paused
-player_collision_object_left
+player_action_death
 player_action_look
 player_collision_right
 player_collision_object_right
@@ -83,7 +83,7 @@ player_get_item
 credits
 in_view
 player_ring_loss
-player_action_hurt
+player_action_hurt_OLD
 player_handle_item_box
 player_handle_water_surface
 water_exists
@@ -101,7 +101,7 @@ classic_action_clock_up
 joystick_check_pressed
 joystick_check_released
 player_action_roll
-player_action_push
+player_action_push_OLD
 ctl_sonic_turn_skid
 player_action_spin_dash
 ctl_sonic_spring_flight
@@ -167,4 +167,4 @@ ctl_spring
 player_handle_spring
 player_action_template
 player_action_crouch
-script169
+player_action_hurt

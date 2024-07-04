@@ -73,7 +73,7 @@ if(player_exists(0) != noone) {
     player_handle = player_exists(0);
     
     // Update status:
-    if(player_handle.shield_data == SHIELD_MAGNETIC || player_handle.shield_data == SHIELD_LIGHTNING) {
+    if(player_handle.status_shield == SHIELD_MAGNETIC || player_handle.status_shield == SHIELD_LIGHTNING) {
         if(distance_to_object(global.player_instance[0]) < 64) {
             magnetized = true;
             instance_destroy();

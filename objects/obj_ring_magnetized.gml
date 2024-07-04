@@ -47,7 +47,7 @@ if (player_exists(0) != noone) {
     speed   = clamp(speed, -64, 64) * global.object_ratio;
 
     // Drop a normal ring when no longer magnetized:
-    if (player_handle.shield_data != SHIELD_MAGNETIC && player_handle.shield_data != SHIELD_LIGHTNING) {
+    if (player_handle.status_shield != SHIELD_MAGNETIC && player_handle.status_shield != SHIELD_LIGHTNING) {
         dropped = true;
         instance_destroy();
     }

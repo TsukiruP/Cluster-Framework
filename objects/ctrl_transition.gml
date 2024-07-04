@@ -390,6 +390,9 @@ applies_to=self
 */
 /// Retry Transition
 
+// Don't bother if the game is paused:
+if (game_paused(ctrl_pause) && pause_ignore == false) exit;
+
 if (transition_type == TRANS_RETRY) {
     // Background scroll:
     background_x_scroll += background_x_scroll_speed;
@@ -493,7 +496,7 @@ if (transition_type == TRANS_RETRY) {
             // Stop running:
             if (player_exists(0) != noone) {
                 with (player_exists(0)) {
-                    if (x >= other.room_run_end_x && action_state != ACTION_DEATH) other.room_run_end_x = -1;
+                    if (x >= other.room_run_end_x && action_current != player_action_death) other.room_run_end_x = -1;
                 }
             }
 

@@ -32,7 +32,7 @@ item_duration =  110;
 
 // Status variables:
 status_icon[STATUS_SHIELD]   =  ITEM_BASIC;
-status_icon[STATUS_MUTEKI]   =  ITEM_MUTEKI;
+status_icon[STATUS_INVIN]    =  ITEM_INVIN;
 status_icon[STATUS_SPEED]    =  ITEM_SPEED;
 status_icon[STATUS_PANIC]    =  ITEM_PANIC;
 status_icon[STATUS_SWAP]     =  ITEM_SWAP;
@@ -42,10 +42,10 @@ status_size                  =  2 + 2 * global.gameplay_debuffs;
 status_count                 =  0;
 
 status_active[STATUS_SHIELD, 0] =  0;
-status_active[STATUS_MUTEKI, 0] =  0;
-status_active[STATUS_SPEED, 0]  =  0;
-status_active[STATUS_PANIC, 0]  =  0;
-status_active[STATUS_SWAP , 0]  =  0;
+status_active[STATUS_INVIN,  0] =  0;
+status_active[STATUS_SPEED,  0] =  0;
+status_active[STATUS_PANIC,  0] =  0;
+status_active[STATUS_SWAP ,  0] =  0;
 #define Step_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -206,14 +206,14 @@ if (game_paused(ctrl_pause)) exit;
 if (player_exists(0) != noone) {
     with (player_exists(0)) {
         // Shield:
-        if (shield_data != SHIELD_NONE) other.status_icon[STATUS_SHIELD] = shield_data + 2;
+        if (status_shield != SHIELD_NONE) other.status_icon[STATUS_SHIELD] = status_shield + 2;
         else other.status_icon[STATUS_SHIELD] = ITEM_BASIC;
 
         // Invincibility:
-        other.status_icon[STATUS_MUTEKI] = ITEM_MUTEKI;
+        other.status_icon[STATUS_INVIN] = ITEM_INVIN;
 
         // Speed Up/Slow Down:
-        if (speed_shoe_type == 2) other.status_icon[STATUS_SPEED] = ITEM_SLOW;
+        if (status_speed == 2) other.status_icon[STATUS_SPEED] = ITEM_SLOW;
         else other.status_icon[STATUS_SPEED] = ITEM_SPEED;
 
         // Panic:
@@ -372,17 +372,17 @@ if (player_exists(0) != noone) {
 
     with (player_exists(0)) {
         // Shield:
-        other.status_active[STATUS_SHIELD, 0] = (shield_data != 0);
+        other.status_active[STATUS_SHIELD, 0] = (status_shield != 0);
         other.status_active[STATUS_SHIELD, 1] = true;
 
         // Invincibility:
-        other.status_active[STATUS_MUTEKI, 0] = (invincibility_type != 0);
-        other.status_active[STATUS_MUTEKI, 1] = (invincibility_alarm > 120 || (invincibility_alarm <= 120 && abs(invincibility_alarm mod 5)));
+        other.status_active[STATUS_INVIN, 0] = (status_invin_type != 0);
+        other.status_active[STATUS_INVIN, 1] = (status_invin_alarm > 120 || (status_invin_alarm <= 120 && abs(status_invin_alarm mod 5)));
 
 
         // Speed:
-        other.status_active[STATUS_SPEED, 0] = (speed_shoe_type != 0)
-        other.status_active[STATUS_SPEED, 1] = (speed_shoe_alarm > 120 || (speed_shoe_alarm <= 120 && abs(speed_shoe_alarm mod 5)));
+        other.status_active[STATUS_SPEED, 0] = (status_speed != 0)
+        other.status_active[STATUS_SPEED, 1] = (status_speed_alarm > 120 || (status_speed_alarm <= 120 && abs(status_speed_alarm mod 5)));
 
 
         // Panic:

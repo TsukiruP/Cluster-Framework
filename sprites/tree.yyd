@@ -68,6 +68,8 @@
 				|spr_sonic_skid
 				|spr_sonic_skid_fast
 				|spr_sonic_skid_tag
+			|spr_sonic_hurt
+			|spr_sonic_death
 			|spr_sonic_push
 			+Spring
 				|spr_sonic_spring
@@ -76,8 +78,6 @@
 			+Goal
 				|spr_sonic_goal
 				|spr_sonic_goal_gold
-			|spr_sonic_hurt
-			|spr_sonic_death
 			+Tag Actions
 				|spr_sonic_leap
 				|spr_sonic_fly_carry

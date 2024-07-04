@@ -28,14 +28,3 @@ touching_ceiling = false;
 if (player_line_check(-main_left_rel, -main_top - 8) || player_line_check(main_right_rel, -main_top - 8)) {
     touching_ceiling = true;
 }
-
-// Springing:
-if (((ground == true && input_lock_alarm == 0) || (ground == false && action_state != ACTION_SPRING) || touching_ceiling == true) && spring_alarm != 0) {
-    spring_alarm = 0;
-}
-
-if (spring_alarm == 0 && spring_current != noone) {
-    spring_current = noone;
-}
-
-if (ground == true && action_state == ACTION_SPRING) action_state = ACTION_DEFAULT;

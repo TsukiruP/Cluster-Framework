@@ -52,13 +52,13 @@ if (input_lock == false) {
                 input_player[INP_DOWN, CHECK_HELD] = queue_down;
 
                 // Jump:
-                if (ground == true && action_state != ACTION_CROUCH && action_state != ACTION_LOOK && player_handle.y < y - 50 && player_handle.ground == false) {
+                if (ground == true && action_current != player_action_look && action_current != player_action_crouch && player_handle.y < y - 50 && player_handle.ground == false) {
                     input_player[INP_JUMP, CHECK_PRESSED] = true;
                 } else {
                     input_player[INP_JUMP, CHECK_PRESSED] = false;
                 }
 
-                if (action_state == ACTION_JUMP) input_player[INP_JUMP, CHECK_HELD] = true;
+                if (action_current == player_action_jump) input_player[INP_JUMP, CHECK_HELD] = true;
                 else input_player[INP_JUMP, CHECK_HELD] = false;
             }
         } else {

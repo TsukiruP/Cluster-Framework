@@ -9,8 +9,8 @@ ring_handle = instance_nearest(x, y, par_ring);
 if (ring_handle == noone) exit;
 
 // Collect ring:
-if (action_state != ACTION_HURT && player_collision_prop(ring_handle, SIDE_MAIN) != 0) {
-    if (invincibility_type != 1 || (invincibility_type == 1 && invincibility_alarm > -1 && invincibility_type <= 90)) {
+if (player_collision_prop(ring_handle, SIDE_MAIN) != 0) {
+    if (status_invin != INVIN_HURT || (status_invin == INVIN_HURT && status_invin_alarm < 90)) {
         // Destroy ring:
         with (ring_handle) {
             effect_create(ctl_ring_sparkle, x, y, depth - 1);

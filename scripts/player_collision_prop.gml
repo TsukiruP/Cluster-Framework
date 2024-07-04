@@ -45,31 +45,31 @@ var pl_x1, pl_y1, pl_x2, pl_y2;
 
 switch (mode) {
     case 0:
-        pl_x1 = floor(x) - pl_left + (pl_offset_x * animation_direction);
+        pl_x1 = floor(x) - pl_left + (pl_offset_x * image_xscale);
         pl_y1 = floor(y) - pl_top + pl_offset_y;
-        pl_x2 = floor(x) + pl_right + (pl_offset_x * animation_direction);
+        pl_x2 = floor(x) + pl_right + (pl_offset_x * image_xscale);
         pl_y2 = floor(y) + pl_bottom + pl_offset_y;
         break;
 
     case 1:
         pl_x1 = floor(x) - pl_top + pl_offset_y;
-        pl_y1 = floor(y) - pl_right + (pl_offset_x * animation_direction);
+        pl_y1 = floor(y) - pl_right + (pl_offset_x * image_xscale);
         pl_x2 = floor(x) + pl_bottom + pl_offset_y;
-        pl_y2 = floor(y) + pl_left + (pl_offset_x * animation_direction);
+        pl_y2 = floor(y) + pl_left + (pl_offset_x * image_xscale);
         break;
 
     case 2:
-        pl_x1 = floor(x) - pl_right + (pl_offset_x * animation_direction);
+        pl_x1 = floor(x) - pl_right + (pl_offset_x * image_xscale);
         pl_y1 = floor(y) - pl_bottom + pl_offset_y;
-        pl_x2 = floor(x) + pl_left + (pl_offset_x * animation_direction);
+        pl_x2 = floor(x) + pl_left + (pl_offset_x * image_xscale);
         pl_y2 = floor(y) + pl_top + pl_offset_y;
         break;
 
     case 3:
         pl_x1 = floor(x) - pl_bottom + pl_offset_y;
-        pl_y1 = floor(y) - pl_left + (pl_offset_x * animation_direction);
+        pl_y1 = floor(y) - pl_left + (pl_offset_x * image_xscale);
         pl_x2 = floor(x) + pl_top + pl_offset_y;
-        pl_y2 = floor(y) + pl_right + (pl_offset_x * animation_direction);
+        pl_y2 = floor(y) + pl_right + (pl_offset_x * image_xscale);
         break;
 }
 
