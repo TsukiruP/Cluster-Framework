@@ -4,12 +4,13 @@
 switch (argument0) {
     // Start:
     case ACTION_START:
-        // Reset movement:
-        g_speed = 0;
         break;
 
     // Step:
     case ACTION_STEP:
+        // Friction:
+        g_speed -= min(abs(g_speed), acceleration) * sign(g_speed);
+
         // Collision steps:
         player_collision_steps();
 
