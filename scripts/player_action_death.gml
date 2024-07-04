@@ -12,6 +12,8 @@ switch (argument0) {
 
         // Reset stats:
         status_shield = SHIELD_NONE;
+        status_invin  = INVIN_NONE;
+        status_speed  = SPEED_NONE;
 
         // Death alarm:
         death_alarm = 128;
