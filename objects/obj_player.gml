@@ -336,7 +336,7 @@ applies_to=self
 */
 /// Shield
 
-if (status_shield != 0 && shield_handle == noone) {
+if ((status_shield != SHIELD_NONE || status_invin != INVIN_NONE) && shield_handle == noone) {
     shield_handle = instance_create(x, y, eff_shield);
 
     with (shield_handle) {

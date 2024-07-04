@@ -92,8 +92,8 @@ if ((global.misc_flicker == true && shield_advance == true) || shield_advance ==
 }
 
 // Destroy:
-if (player_handle.status_shield == 0 && player_handle.status_invin != INVIN_BUFF) {
-    player_handle.shield_instance = noone;
+if (player_handle.status_shield == SHIELD_NONE && player_handle.status_invin != INVIN_BUFF) {
+    player_handle.shield_handle = noone;
     instance_destroy();
 }
 #define Draw_0
