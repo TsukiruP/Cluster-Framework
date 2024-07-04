@@ -74,17 +74,6 @@ switch (argument0) {
                     break;
             }
         }
-
-        // Wait:
-        /*
-        if (animation_alarm > 0) {
-            animation_alarm -= 1;
-
-            if (animation_current != "wait" && animation_alarm == 0) {
-                player_set_animation("wait");
-            }
-        }
-        */
         break;
 
     // Finish:

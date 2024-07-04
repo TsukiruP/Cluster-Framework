@@ -665,6 +665,19 @@ switch (action_current) {
         break;
 }
 
+// Wait:
+if (!game_paused(ctrl_text) && ground == true && input_lock == false && animation_target == "stand") {
+    if (animation_alarm > 0) {
+        animation_alarm -= 1;
+        
+        if (animation_alarm == 0) {
+            player_set_animation("wait");
+        }
+    }
+} else {
+    if (animation_alarm != 360) animation_alarm = 360;
+}
+
 // Variants:
 switch (animation_target) {
     // Tag:
