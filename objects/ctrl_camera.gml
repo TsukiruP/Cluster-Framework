@@ -41,7 +41,7 @@ applies_to=self
 */
 /// Camera Lag
 
-// Don't bother if the game is paused:
+// Don't bother if the stage is paused:
 if (game_paused(ctrl_pause)) exit;
 
 if (camera_lag_alarm > 0) camera_lag_alarm -= 1;
@@ -54,7 +54,7 @@ applies_to=self
 */
 /// Camera Shift
 
-// Don't bother if the game is paused:
+// Don't bother if the stage is paused:
 if (game_paused(ctrl_pause)) exit;
 
 // Shift around the player:
@@ -100,7 +100,7 @@ border_right  = camera_x + 8;
 border_top    = camera_y - 32;
 border_bottom = camera_y + 32;
 
-// Don't bother if the game is paused:
+// Don't bother if the stage is paused:
 if (game_paused(ctrl_pause)) exit;
 
 // Focus on player:

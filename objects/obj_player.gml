@@ -288,7 +288,7 @@ applies_to=self
 */
 ///  Inputs
 
-// Don't bother if the game is paused:
+// Don't bother if the stage is paused or text is active:
 if (game_paused()) exit;
 
 // Receive inputs:
@@ -307,7 +307,7 @@ applies_to=self
 */
 /// Actions
 
-// Don't bother if the game is currently paused:
+// Don't bother if the stage is paused or text is active:
 if (game_paused()) exit; 
 
 if (script_exists(action_current)) {
@@ -324,7 +324,7 @@ applies_to=self
 */
 /// Handle List
 
-// Don't bother if the game is paused:
+// Don't bother if the stage is paused or text is active:
 if (game_paused()) exit;
 
 player_handle_item_box();
@@ -390,7 +390,7 @@ applies_to=self
 */
 /// Refill Air
 
-// Don't bother if the game is paused:
+// Don't bother if the stage is paused or text is active:
 if (game_paused()) exit;
 
 // Don't bother if in the middle of respawning/dying:
@@ -419,7 +419,7 @@ applies_to=self
 */
 /// Alarms
 
-// Don't bother if the game is paused:
+// Don't bother if the stage is paused or text is active:
 if (game_paused()) exit;
 
 // Hurt invincibility:
@@ -460,7 +460,7 @@ applies_to=self
 */
 /// Air
 
-// Don't bother if the game is paused:
+// Don't bother if the stage is paused or text is active:
 if (game_paused()) exit;
 
 // Don't bother if in the middle of respawning/dying:
@@ -522,7 +522,7 @@ applies_to=self
 /// Animation Target
 // Sets the animation target and then calls the animation core script.
 
-// Don't bother if the game is paused:
+// Don't bother if the stage is paused:
 if (game_paused(ctrl_pause)) exit;
 
 // Store previous height:
@@ -701,7 +701,7 @@ applies_to=self
 /// Animation Angle
 // Sets the animation angle based on the current animation.
 
-// Don't bother if the game is paused:
+// Don't bother if the stage is paused or text is active:
 if (game_paused()) exit;
 
 var angle_mod;
@@ -814,8 +814,10 @@ applies_to=self
 */
 /// Update Trail
 
+// Don't bother if trails are disabled:
 if (global.misc_trails == false) exit;
 
+// Color trail:
 if (global.misc_trails == true) {
     switch (character_data) {
         case CHAR_MILES:
@@ -831,6 +833,8 @@ if (global.misc_trails == true) {
             break;
     }
 }
+
+// Update trail:
 update_trail(floor(x) + (dcos(ground_angle + 90) * (-2 - (1 * ground_angle == 90)) * (1 * action_current == player_action_roll)) + dcos(ground_angle) * x_speed,
     floor(y) - (dsin(ground_angle + 90) * (-3 - (1 * ground_angle != 0)) * (1 * action_current == player_action_roll)) + y_speed - dsin(ground_angle) * x_speed,
     action_current == player_action_roll);

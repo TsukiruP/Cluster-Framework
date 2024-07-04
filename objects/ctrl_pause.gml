@@ -40,7 +40,7 @@ applies_to=self
 */
 /// Navigation
 
-// Don't bother if the game is paused:
+// Don't bother if text is active:
 if (game_paused(ctrl_text)) exit;
 
 var menu_down, menu_up, menu_direction;

@@ -26,7 +26,7 @@ applies_to=self
 */
 /// Global Timers
 
-// Don't bother if the game is paused:
+// Don't bother if the stage is paused:
 if (game_paused(ctrl_pause)) exit;
 
 // Stage timer:

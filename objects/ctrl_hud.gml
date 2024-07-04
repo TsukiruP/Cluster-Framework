@@ -86,7 +86,7 @@ applies_to=self
 */
 /// Movement
 
-// Don't bother if the game is paused:
+// Don't bother if the stage is paused:
 if (game_paused(ctrl_pause)) exit;
 
 // Hide:
@@ -200,7 +200,7 @@ applies_to=self
 */
 /// Status Icons
 
-// Don't bother if the game is paused:
+// Don't bother if the stage is paused:
 if (game_paused(ctrl_pause)) exit;
 
 if (player_exists(0) != noone) {
@@ -230,7 +230,7 @@ applies_to=self
 */
 /// Item Feed
 
-// Don't bother if the game is paused:
+// Don't bother if the stage is paused:
 if (game_paused(ctrl_pause)) exit;
 
 // Create feed:

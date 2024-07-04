@@ -33,7 +33,7 @@ applies_to=self
 */
 /// Movement
 
-// Don't bother if the game is paused:
+// Don't bother if the stage is paused or text is active:
 if (game_paused()) exit;
 
 if (dropped == true) {
@@ -63,7 +63,7 @@ applies_to=self
 */
 /// Magnetization
 
-// Don't bother if the game is paused:
+// Don't bother if the stage is paused or text is active:
 if (game_paused()) exit;
 
 if(player_exists(0) != noone) {
@@ -88,7 +88,7 @@ applies_to=self
 */
 /// Lifespan
 
-// Don't bother if the game is paused:
+// Don't bother if the stage is paused or text is active:
 if (game_paused()) exit;
 
 if (dropped == true) {

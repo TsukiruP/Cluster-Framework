@@ -184,7 +184,7 @@ applies_to=self
 */
 /// Title Card Transition
 
-// Don't bother if the game is paused:
+// Don't bother if the stage is paused:
 if (game_paused(ctrl_pause) && pause_ignore == false) exit;
 
 if (transition_type == TRANS_CARD) {
@@ -390,7 +390,7 @@ applies_to=self
 */
 /// Retry Transition
 
-// Don't bother if the game is paused:
+// Don't bother if the stage is paused:
 if (game_paused(ctrl_pause) && pause_ignore == false) exit;
 
 if (transition_type == TRANS_RETRY) {
