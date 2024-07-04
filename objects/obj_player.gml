@@ -327,6 +327,7 @@ applies_to=self
 // Don't bother if the stage is paused or text is active:
 if (game_paused()) exit;
 
+player_handle_ring();
 player_handle_item_box();
 /*"/*'/**//* YYD ACTION
 lib_id=1
