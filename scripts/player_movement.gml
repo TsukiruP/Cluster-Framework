@@ -28,3 +28,25 @@ touching_ceiling = false;
 if (player_line_check(-main_left_rel, -main_top - 8) || player_line_check(main_right_rel, -main_top - 8)) {
     touching_ceiling = true;
 }
+
+if (y >= room_height && action_current != player_action_death) {
+    // Set physics:
+    x_speed =  0;
+    y_speed = -7;
+
+    // Set action:
+    player_set_action(player_action_death);
+
+    // Play sound:
+    sound_play("snd_hurt");
+
+    // Player 1 specific:
+    if (input_cpu == false) {
+        // Disable pause:
+        global.pause_allow = false;
+
+        // Stop jingles:
+        if (sound_isplaying("bgm_muteki")) sound_stop("bgm_muteki");
+        if (sound_isplaying("bgm_speed_up")) sound_stop("bgm_speed_up");
+    }
+}
