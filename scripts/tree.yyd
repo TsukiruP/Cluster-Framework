@@ -158,6 +158,7 @@
 				|player_action_skid
 				|player_action_hurt
 				|player_action_death
+				|player_action_push
 		+Passives
 			|classic_passive_clock_up
 		+Animation
@@ -208,7 +209,6 @@
 			|player_collision_bottom
 			|player_collision_object_bottom
 	+Actions (OLD)
-		|player_action_default
 		|player_action_jump_old
 		|player_action_look_old
 		|player_action_crouch_old

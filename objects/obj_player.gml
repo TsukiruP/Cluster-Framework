@@ -546,8 +546,16 @@ main_bottom_temp = main_bottom;
 switch (action_current) {
     // Idle:
     case player_action_idle:
-        if (animation_target != "stand" && animation_target != "balance" && animation_target != "wait" && animation_target != "look" && animation_target != "crouch") {
-            player_set_animation("stand");
+        if (balance_direction == 0) {
+            if (animation_target != "stand" && animation_target != "wait" && animation_target != "look" && animation_target != "crouch") {
+                player_set_animation("stand");
+            }
+        } else {
+            if (image_xscale == balance_direction) {
+                if (animation_target != "balance_front") player_set_animation("balance_front");
+            } else {
+                if (animation_target != "balance_back") player_set_animation("balance_back");
+            }
         }
         break;
     
@@ -646,6 +654,13 @@ switch (action_current) {
     case player_action_death:
         if (animation_target != "death") {
             player_set_animation("death");
+        }
+        break;
+    
+    // Push:
+    case player_action_push:
+        if (animation_target != "push") {
+            player_set_animation("push");
         }
         break;
 }

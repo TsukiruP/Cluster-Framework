@@ -48,20 +48,33 @@ switch (argument0) {
             return player_set_action(player_action_jump);
         }
 
-        // Look & crouch:
-        switch (input_y_direction) {
-            // Look:
-            case -1:
-                return player_set_action(player_action_look);
-                break;
+        // Balance:
+        var edge_left, edge_right;
 
-            // Crouch:
-            case 1:
-                return player_set_action(player_action_crouch);
-                break;
+        edge_left  = (!player_line_check(main_right_rel, main_bottom + 16, true));
+        edge_right = (!player_line_check(-main_left_rel, main_bottom + 16, true));
+
+        if (mode == 0) {
+            balance_direction = (edge_left - edge_right);
+        } else {
+            balance_direction = 0;
         }
-        // Note: There's a check here also for balancing.
-        
+
+        if (balance_direction == 0) {
+            // Look & crouch:
+            switch (input_y_direction) {
+                // Look:
+                case -1:
+                    return player_set_action(player_action_look);
+                    break;
+
+                // Crouch:
+                case 1:
+                    return player_set_action(player_action_crouch);
+                    break;
+            }
+        }
+
         // Wait:
         /*
         if (animation_alarm > 0) {

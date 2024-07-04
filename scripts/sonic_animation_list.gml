@@ -1,11 +1,17 @@
 /// sonic_animation_list()
 
-// Idle:
+// Stand:
 player_add_animation(CHAR_SONIC, "stand",         ctl_sonic_stand) //,     tml_sonic_idle_tag);
-player_add_animation(CHAR_SONIC, "balance",       ctl_sonic_balance_front, ctl_sonic_balance_back);
+
+// Balance:
+player_add_animation(CHAR_SONIC, "balance_front", ctl_sonic_balance_front);
+player_add_animation(CHAR_SONIC, "balance_back",  ctl_sonic_balance_back);
+
+// Wait:
 player_add_animation(CHAR_SONIC, "wait",          ctl_sonic_wait_leader, ctl_sonic_wait_partner);
 
-// Ready
+// Ready:
+
 // Land:
 player_add_animation(CHAR_SONIC, "omochao",       ctl_sonic_omochao);
 
