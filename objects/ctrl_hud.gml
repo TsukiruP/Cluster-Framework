@@ -372,26 +372,24 @@ if (player_exists(0) != noone) {
 
     with (player_exists(0)) {
         // Shield:
-        other.status_active[STATUS_SHIELD, 0] = (status_shield != 0);
+        other.status_active[STATUS_SHIELD, 0] = (status_shield != SHIELD_NONE);
         other.status_active[STATUS_SHIELD, 1] = true;
 
         // Invincibility:
-        other.status_active[STATUS_INVIN, 0] = (status_invin_type != 0);
-        other.status_active[STATUS_INVIN, 1] = (status_invin_alarm > 120 || (status_invin_alarm <= 120 && abs(status_invin_alarm mod 5)));
-
+        other.status_active[STATUS_INVIN, 0] = (status_invin != INVIN_NONE);
+        other.status_active[STATUS_INVIN, 1] = (status_invin_alarm == 0 || status_invin_alarm > 120 || (status_invin_alarm <= 120 && abs(status_invin_alarm mod 5)));
 
         // Speed:
         other.status_active[STATUS_SPEED, 0] = (status_speed != 0)
-        other.status_active[STATUS_SPEED, 1] = (status_speed_alarm > 120 || (status_speed_alarm <= 120 && abs(status_speed_alarm mod 5)));
-
+        other.status_active[STATUS_SPEED, 1] = (status_speed_alarm == 0 || status_speed_alarm > 120 || (status_speed_alarm <= 120 && abs(status_speed_alarm mod 5)));
 
         // Panic:
         other.status_active[STATUS_PANIC, 0] = status_panic;
-        other.status_active[STATUS_PANIC, 1] = (status_panic_alarm > 120 || (status_panic_alarm <= 120 && abs(status_panic_alarm mod 5)));
+        other.status_active[STATUS_PANIC, 1] = (status_panic_alarm == 0 || status_panic_alarm > 120 || (status_panic_alarm <= 120 && abs(status_panic_alarm mod 5)));
 
         // Swap:
         other.status_active[STATUS_SWAP, 0] = status_swap;
-        other.status_active[STATUS_SWAP, 1] = (status_swap_alarm > 120 || (status_swap_alarm <= 120 && abs(status_swap_alarm mod 5)));
+        other.status_active[STATUS_SWAP, 1] = (status_swap_alarm == 0 || status_swap_alarm > 120 || (status_swap_alarm <= 120 && abs(status_swap_alarm mod 5)));
     }
 
     for (i = status_size; i >= 0; i -= 1) {
