@@ -52,7 +52,7 @@ player_action_look_old
 player_action_crouch_old
 player_action_spin_dash_old
 player_action_roll_old
-player_action_default
+player_action_push
 player_action_skid_old
 parallax_add_node
 draw_background_tiled_horizontal_part
