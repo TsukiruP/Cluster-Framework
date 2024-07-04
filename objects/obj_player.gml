@@ -191,7 +191,7 @@ shield_handle = noone;
 
 // After image variables:
 afterimage_draw  = false;
-afterimage_alarm = 0;
+afterimage_alarm = 6;
 
 // Create trail:
 if (global.misc_trails == true) start_trail(15);
@@ -439,6 +439,13 @@ if (status_speed_alarm > 0) {
     if (status_speed_alarm == 0) {
         status_speed = SPEED_NONE;
     }
+}
+
+if (status_speed == SPEED_UP) {
+    afterimage_draw = true;
+} else {
+    afterimage_draw  = false;
+    afterimage_alarm = 6;
 }
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -746,6 +753,7 @@ switch (animation_current) {
     // Reset angle:
     case "stand":
     case "turn":
+    case "turn_skid":
     case "wait":
     case "balance":
     case "ready":
@@ -755,7 +763,7 @@ switch (animation_current) {
     case "spin_dash":
     case "roll":
     case "skid":
-    case "skid_turn":
+    case "skid_fast":
     case "hurt":
     case "death":
     case "push":
@@ -847,6 +855,35 @@ lib_id=1
 action_id=603
 applies_to=self
 */
+/// Afterimage
+
+if (afterimage_draw == true) {
+    if (afterimage_alarm > 0) {
+        afterimage_alarm -= 1;
+
+        if (afterimage_alarm == 0) {
+            if (instance_number(eff_afterimage) < 3) {
+                // Reset alarm:
+                afterimage_alarm = 6;
+
+                // Create afterimage:
+                with (instance_create(floor(x), floor(y), eff_afterimage)) {
+                    sprite_index = other.sprite_index;
+                    image_index  = other.image_index;
+                    image_xscale = other.image_xscale;
+                    image_angle  = other.image_angle;
+                    image_alpha  = 0.9;
+                    depth        = other.depth + 1;
+                }
+            }
+        }
+    }
+}
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
 /// Update Trail
 
 // Don't bother if trails are disabled:
@@ -879,40 +916,6 @@ action_id=605
 invert=0
 arg0=Old and Dusted
 */
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Afterimage
-/*
-if (afterimage_draw == true) {
-    if (afterimage_alarm > 0) afterimage_alarm -= 1;
-    else {
-        if (instance_number(eff_afterimage) < 3) {
-            afterimage_alarm = 6;
-
-            with (instance_create(floor(x), floor(y), eff_afterimage)) {
-                sprite_index = other.animation_sprite;
-                image_xscale = other.animation_direction * other.animation_x_scale;
-                image_yscale = other.animation_y_scale;
-                image_angle  = other.animation_angle;
-                image_speed  = 0;
-                image_index  = floor(other.animation_current_frame);
-                image_alpha  = 0.9;
-                depth        = other.depth + 1;
-
-                // Miles' tail
-                miles_tails_sprite    = other.miles_tails_sprite;
-                miles_tails_frame     = other.miles_tails_frame;
-                miles_tails_x         = other.miles_tails_x;
-                miles_tails_y         = other.miles_tails_y;
-                miles_tails_angle     = other.miles_tails_angle;
-                miles_tails_direction = other.miles_tails_direction;
-            }
-        }
-    }
-}
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
