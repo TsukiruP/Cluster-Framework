@@ -7,8 +7,11 @@ acceleration     = 0.046875;
 deceleration     = 0.5
 
 // Vertical variables:
-if (action_current == player_action_hurt) gravity_force = 0.1875;
-else gravity_force = gravity_force_temp;
+if (action_current == player_action_hurt) {
+    gravity_force = 0.1875;
+} else {
+    gravity_force = gravity_force_temp;
+}
 
 jump_force   =  6.5 + ((character_data == CHAR_KNUCKLES) * 0.5);
 jump_release = -4;
@@ -35,8 +38,11 @@ if (physics_type == PHYS_UNDERWATER) {
     roll_friction    *= 0.5;
     
     // Vertical variables:
-    if (action_current == player_action_hurt) gravity_force = 0.09375;
-    else gravity_force = 0.0625;
+    if (action_current == player_action_hurt) {
+        gravity_force = 0.09375;
+    } else {
+        gravity_force = 0.0625;
+    }
     
     jump_force   -= 3;
     jump_release *= 0.5;
