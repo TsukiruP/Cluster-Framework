@@ -5,10 +5,15 @@ switch (argument0) {
     // Start:
     case ACTION_START:
         // Set animation:
-        if (abs(g_speed) >= top_speed) {
+        if (abs(g_speed) >= 5.50) {
             player_set_animation("skid_fast");
         } else {
             player_set_animation("skid");
+        }
+
+        // Set direction:
+        if ((global.advance_skid == false || character_data == CHAR_CLASSIC) && g_speed != 0) {
+            image_xscale = sign(g_speed);
         }
 
         // Play sound:
@@ -30,7 +35,7 @@ switch (argument0) {
                         g_speed = deceleration * input_x_direction;
 
                         // Turn:
-                        if (global.advance_turn == true && character_data != CHAR_CLASSIC) {
+                        if (global.advance_turn == true && character_data != CHAR_CLASSIC && image_xscale != sign(g_speed)) {
                             player_set_animation("turn_skid");
                             return player_set_action(player_action_turn);
                         }
@@ -92,7 +97,9 @@ switch (argument0) {
 
         // Slope friction:
         if (ground_angle < 135 || ground_angle > 225) {
-            if (abs(g_speed) > 0.125 || input_lock_alarm != 0) g_speed -= dsin(ground_angle) * 0.125;
+            if (abs(g_speed) > 0.125 || input_lock_alarm != 0) {
+                g_speed -= dsin(ground_angle) * 0.125;
+            }
         }
 
         // Fall down slopes:
