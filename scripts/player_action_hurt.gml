@@ -21,7 +21,7 @@ switch (argument0) {
         // Land:
         if (ground == true) {
             // Reset movement:
-            if (global.advance_hurt == false) g_speed = 0;
+            if (global.advance_hurt == false) x_speed = 0;
             y_speed = 0;
 
             return player_set_action(player_action_idle);
