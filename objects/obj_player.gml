@@ -261,15 +261,7 @@ animation_reverse   =  false;
 animation_reload    =  false;
 animation_alarm     =  360;
 
-animation_angle     =  0;
 animation_angle_mod =  0;
-animation_depth     =  0;
-
-miles_tails_frame   =  0;
-miles_tails_speed   =  0.14;
-miles_tails_x       =  0;
-miles_tails_y       =  0;
-miles_tails_angle   =  0;
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -339,7 +331,7 @@ if (game_paused()) exit;
 
 player_handle_layer();
 player_handle_ring();
-//player_handle_spring();
+player_handle_spring();
 player_handle_item_box();
 player_handle_water_surface();
 //player_handle_hint();
@@ -372,7 +364,7 @@ if (status_invin >= INVIN_BUFF) {
 }
 
 // Slow cap:
-if (status_speed == SPEED_DOWN) {
+if (status_speed == SPEED_DOWN && spring_strength == 0) {
     // Ground speed:
     if (abs(g_speed) > top_speed) {
         g_speed = top_speed * sign(g_speed);
@@ -738,6 +730,23 @@ switch (action_current) {
             player_set_animation("push");
         }
         break;
+    
+    // Spring:
+    case player_action_spring:
+        // Flight:
+        if (y_speed < 0 || (spring_angle != ANGLE_DOWN && spring_alarm > 0)) {
+            if (animation_target != "spring_flight") {
+                player_set_animation("spring_flight");
+            }
+        }
+        
+        // Fall:
+        else {
+            if (animation_target != "spring_fall") {
+                player_set_animation("spring_fall");
+            }
+        }
+        break;
 }
 
 // Wait:
@@ -826,16 +835,19 @@ var angle_mod;
 switch (animation_current) {
     // Reset angle:
     case "stand":
-    case "turn":
-    case "turn_skid":
+    case "balance_front":
+    case "balance_back":
     case "wait":
-    case "balance":
     case "ready":
     case "land":
+    case "omochao":
+    case "turn":
+    case "turn_skid":
     case "look":
     case "crouch":
     case "spin_dash":
-    case "roll":
+    case "spin_charge":
+    case "spin":
     case "skid":
     case "skid_fast":
     case "hurt":
@@ -847,17 +859,24 @@ switch (animation_current) {
         break;
     
     // Spring angle:
-    case "spring":
-        if (character_data != CHAR_CLASSIC && spring_angle != ANGLE_DOWN && spring_alarm > 0) image_angle = spring_angle - 90;
-        else image_angle = approach_angle(animation_angle, 0, 4);
+    case "spring_flight":
+    case "spring_fall":
+        if (action_current == player_action_spring && character_data != CHAR_CLASSIC && spring_angle != ANGLE_DOWN && spring_alarm > 0) {
+            image_angle = spring_angle - 90;
+        } else {
+            image_angle = approach_angle(image_angle, 0, 4);
+        }
         break;
     
     // Terrain angle:
     default:
         // Default angle behavior:
         if (character_data != CHAR_CLASSIC) {
-            if (ground == true) image_angle = player_get_angle(x, y);
-            else image_angle = approach_angle(image_angle, 0, 4);
+            if (ground == true) {
+                image_angle = player_get_angle(x, y);
+            } else {
+                image_angle = approach_angle(image_angle, 0, 4);
+            }
         }
         
         // Classic/Tag angle behavior:
@@ -868,11 +887,17 @@ switch (animation_current) {
                 angle_mod = animation_angle_mod;
                 
                 if (player_get_angle(x, y) <= 180) {
-                    if (player_get_angle(x, y) < 36) angle_mod = 0;
-                    else angle_mod = player_get_angle(x, y);
+                    if (player_get_angle(x, y) < 36) {
+                        angle_mod = 0;
+                    } else {
+                        angle_mod = player_get_angle(x, y);
+                    }
                 } else {
-                    if (player_get_angle(x, y) > 324) angle_mod = 0;
-                    else angle_mod = player_get_angle(x, y);
+                    if (player_get_angle(x, y) > 324) {
+                        angle_mod = 0;
+                    } else {
+                        angle_mod = player_get_angle(x, y);
+                    }
                 }
                 
                 if (abs(angle_difference(animation_angle_mod, angle_mod)) < 45) {

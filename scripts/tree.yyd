@@ -160,6 +160,7 @@
 				|player_action_hurt
 				|player_action_death
 				|player_action_push
+				|player_action_spring
 		+Passives
 			|classic_passive_clock_up
 		+Animation
@@ -200,7 +201,6 @@
 		+Main
 		+Left
 		+Right
-			|player_collision_right_edge
 			|player_collision_object_right
 		+Top
 			|player_collision_top

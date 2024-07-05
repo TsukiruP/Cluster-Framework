@@ -13,7 +13,7 @@ player_action_death
 player_action_look
 ctl_template
 player_collision_object_right
-player_collision_right_edge
+player_action_spring
 ctl_sonic_push
 player_get_input
 player_movement
@@ -169,3 +169,4 @@ player_action_template
 player_action_crouch
 player_action_hurt
 ctl_debuff
+

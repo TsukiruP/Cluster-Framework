@@ -17,11 +17,11 @@ if (player_collision_prop(spring_handle, SIDE_MAIN) != 0) {
         if (spring_active == false) spring_active = true;
     }
     
-    // Spring variables:
+    // Set spring variables:
     spring_strength = spring_handle.spring_strength;
     spring_angle    = spring_handle.spring_angle;
     
-    // Spring:
+    // Set physics:
     g_speed =  dcos(spring_angle) * spring_strength;
     x_speed =  dcos(spring_angle) * spring_strength;
     y_speed = -dsin(spring_angle) * spring_strength;
@@ -32,15 +32,22 @@ if (player_collision_prop(spring_handle, SIDE_MAIN) != 0) {
         x = spring_handle.x;
         
         if (!(ground == true && (spring_angle == ANGLE_LEFT || spring_angle == ANGLE_RIGHT)) || spring_ancestry == true) {
-            y            = spring_handle.y;
-            ground       = false;
-            action_state = ACTION_SPRING;
+            // Set position:
+            y = spring_handle.y;
+            
+            // Set ground:
+            ground = false;
+            
+            // Set action:
+            player_set_action(player_action_spring);
         } else {
             input_lock_alarm = 16;
         }
         
         // Set direction:
-        if (dcos(spring_angle) != 0) animation_direction = sign(dcos(spring_angle));
+        if (dcos(spring_angle) != 0) {
+            image_xscale = sign(dcos(spring_angle));
+        }
         
         spring_alarm   = spring_strength + 15;
         spring_current = spring_handle;
