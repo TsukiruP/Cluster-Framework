@@ -41,7 +41,7 @@ switch (argument0) {
             }
         }
 
-        //
+        // Ignore physics and inputs if the alarm is still active:
         if (spring_alarm > 0) {
             return false;
         }

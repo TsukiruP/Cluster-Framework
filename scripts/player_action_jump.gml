@@ -9,7 +9,7 @@ switch (argument0) {
             ground = false;
         }
 
-        // Set movement:
+        // Set speed:
         x_speed -= dsin(ground_angle) * jump_force;
         y_speed -= dcos(ground_angle) * jump_force;
         break;

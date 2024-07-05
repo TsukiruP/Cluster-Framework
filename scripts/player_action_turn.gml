@@ -4,7 +4,7 @@
 switch (argument0) {
     // Start:
     case ACTION_START:
-        // Reset movement:
+        // Reset speed:
         g_speed = 0;
 
         // Flip direction:
