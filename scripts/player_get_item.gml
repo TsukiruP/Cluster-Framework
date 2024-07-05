@@ -22,6 +22,7 @@ switch (argument0) {
         status_shield       = SHIELD_BASIC;
         status_shield_state = 0;
 
+        // Play sound:
         sound_play("snd_shield_basic");
         break;
 
@@ -30,6 +31,7 @@ switch (argument0) {
         status_shield       = SHIELD_MAGNETIC;
         status_shield_state = 0;
 
+        // Play sound:
         sound_play("snd_shield_lightning");
         break;
 
@@ -38,6 +40,7 @@ switch (argument0) {
         status_shield       = SHIELD_FIRE;
         status_shield_state = 0;
 
+        // Play sound:
         sound_play("snd_shield_fire");
         break;
 
@@ -46,6 +49,7 @@ switch (argument0) {
         status_shield       = SHIELD_BUBBLE;
         status_shield_state = 0;
 
+        // Play sound:
         sound_play("snd_shield_bubble");
         break;
 
@@ -54,6 +58,7 @@ switch (argument0) {
         status_shield       = SHIELD_LIGHTNING;
         status_shield_state = 0;
 
+        // Play sound:
         sound_play("snd_shield_lightning");
         break;
 
@@ -62,6 +67,7 @@ switch (argument0) {
         status_invin       = 2;
         status_invin_alarm = 1380;
 
+        // Play jingle:
         with (ctrl_audio) event_user(0);
         break;
 
@@ -70,12 +76,15 @@ switch (argument0) {
         status_speed       = SPEED_UP;
         status_speed_alarm = 900;
 
+        // Play jingle:
         with (ctrl_audio) event_user(1);
         break;
 
     // Mine:
     case ITEM_MINE:
         player_set_damage(other);
+
+        // Create explosion:
         effect_create(ctl_explosion_large, other.x, other.y, depth - 1);
         break;
 
@@ -85,6 +94,8 @@ switch (argument0) {
 
     // Panic:
     case ITEM_PANIC:
+        status_panic       = true;
+        status_panic_alarm = 1200;
         break;
 
     // Swap:

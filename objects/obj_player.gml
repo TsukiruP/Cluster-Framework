@@ -299,7 +299,14 @@ input_x_direction = input_player[INP_RIGHT, CHECK_HELD] - input_player[INP_LEFT,
 input_y_direction = input_player[INP_DOWN, CHECK_HELD] - input_player[INP_UP, CHECK_HELD];
 
 // Input lock:
-if (ground == true && input_lock_alarm > 0) input_lock_alarm -= 1;
+if (ground == true && input_lock_alarm > 0) {
+    input_lock_alarm -= 1;
+}
+
+// Panic:
+if (status_panic == true && input_lock_alarm == 0) {
+    input_x_direction *= -1;
+}
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -345,6 +352,26 @@ if ((status_shield != SHIELD_NONE || status_invin != INVIN_NONE) && shield_handl
 
     with (shield_handle) {
         player_handle = other.id;
+    }
+}
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Debuff Immunity
+
+if (status_invin >= INVIN_BUFF) {
+    // Clear panic:
+    if (status_panic == true) {
+        status_panic       = false;
+        status_panic_alarm = 0;
+    }
+
+    // Clear swap:
+    if (status_swap == true) {
+        status_swap       = false;
+        status_swap_alarm = 0;
     }
 }
 /*"/*'/**//* YYD ACTION
@@ -445,6 +472,16 @@ if (status_speed_alarm > 0) {
     }
 }
 
+// Panic:
+if (status_panic_alarm > 0) {
+    status_panic_alarm -= 1;
+    
+    if (status_panic_alarm == 0) {
+        status_panic = false;
+    }
+}
+
+// Afterimage:
 if (status_speed == SPEED_UP) {
     afterimage_draw = true;
 } else {

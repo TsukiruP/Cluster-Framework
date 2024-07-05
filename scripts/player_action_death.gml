@@ -16,6 +16,8 @@ switch (argument0) {
         status_shield = SHIELD_NONE;
         status_invin  = INVIN_NONE;
         status_speed  = SPEED_NONE;
+        status_panic  = false;
+        status_swap   = false;
 
         // Death alarm:
         death_alarm = 128;
