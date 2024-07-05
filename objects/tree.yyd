@@ -77,10 +77,11 @@
 				|obj_item_fire
 				|obj_item_bubble
 				|obj_item_lightning
-			+Status Effects
+			+Buffs
 				|obj_item_invin
 				|obj_item_speed
-				|obj_item_mine
+			|obj_item_mine
+			+Debuffs
 				|obj_item_slow
 				|obj_item_panic
 				|obj_item_swap
@@ -97,10 +98,11 @@
 	+Effects
 		|eff_basic
 		+Player
+			|eff_afterimage
 			|eff_player
 			|eff_spin_dash
+			|eff_debuff
 			|eff_shield
-			|eff_afterimage
 +Stages
 	+Parents
 		|par_terrain

@@ -90,6 +90,8 @@ switch (argument0) {
 
     // Slow:
     case ITEM_SLOW:
+        status_speed       = SPEED_DOWN;
+        status_speed_alarm = 1200;
         break;
 
     // Panic:

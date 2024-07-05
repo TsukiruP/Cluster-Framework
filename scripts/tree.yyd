@@ -38,6 +38,7 @@
 		|ctl_update
 		|ctl_position
 		|timeline_set
+		|ctl_template
 		+Indexes
 			+Player
 				+Sonic
@@ -89,6 +90,7 @@
 					|ctl_spin_dash
 					|ctl_spin_charge
 					|ctl_skid
+					|ctl_debuff
 				+Shields
 					|ctl_shield_insta
 					|ctl_shield_basic
@@ -97,7 +99,6 @@
 					|ctl_shield_bubble
 					|ctl_shield_lightning
 					|ctl_shield_muteki
-				+Status
 				+Explosions
 					|ctl_explosion_small
 					|ctl_explosion_large
@@ -199,7 +200,6 @@
 		+Main
 		+Left
 		+Right
-			|player_collision_right
 			|player_collision_right_edge
 			|player_collision_object_right
 		+Top

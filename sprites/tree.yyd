@@ -282,6 +282,7 @@
 			|spr_spin_charge
 			|spr_skid
 			|spr_drop_dash
+			|spr_debuff
 			|spr_homing_reticle
 			|spr_character_arrow
 			|spr_tag_call
@@ -298,9 +299,6 @@
 				|spr_shield_fire_burst
 				|spr_shield_bubble_bounce
 				|spr_shield_lightning_spark
-		+Status
-			|spr_status_slow
-			|spr_status_panic
 		+Explosions
 			|spr_explosion_small
 			|spr_explosion_large
@@ -370,3 +368,4 @@
 		|mask_edge_line
 		|mask_platform_fix
 		|mask_ledge
+	|spr_status_slow

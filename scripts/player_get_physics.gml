@@ -40,10 +40,15 @@ if (physics_type == PHYS_UNDERWATER) {
     jump_force   -= 3;
     jump_release *= 0.5;
 } else {
-    // Speed shoes multiplier:
+    // Speed up multiplier:
     if (status_speed == SPEED_UP) {
         top_speed     *= 2;
         acceleration  *= 2;
         roll_friction *= 2;
+    }
+    
+    // Speed down multiplier:
+    else if (status_speed == SPEED_DOWN) {
+        top_speed *= 0.75;
     }
 }

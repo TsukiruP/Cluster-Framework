@@ -28,7 +28,9 @@ depth = player_handle.depth;
 image_xscale = player_handle.image_xscale;
 
 // Destroy:
-if (player_handle.action_current != player_action_spin_dash) instance_destroy();
+if (player_handle.action_current != player_action_spin_dash) {
+    instance_destroy();
+}
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1

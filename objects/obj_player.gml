@@ -189,6 +189,9 @@ skid_dust_alarm = 3;
 shield_insta  = noone;
 shield_handle = noone;
 
+// Status handle:
+status_handle = noone;
+
 // After image variables:
 afterimage_draw  = false;
 afterimage_alarm = 6;
@@ -345,23 +348,16 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Shield
+/// Debuffs
 
-if ((status_shield != SHIELD_NONE || status_invin != INVIN_NONE) && shield_handle == noone) {
-    shield_handle = instance_create(x, y, eff_shield);
-
-    with (shield_handle) {
-        player_handle = other.id;
-    }
-}
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Debuff Immunity
-
+// Immunity:
 if (status_invin >= INVIN_BUFF) {
+    // Clear speed down:
+    if (status_speed == SPEED_DOWN) {
+        status_speed       = SPEED_NONE;
+        status_speed_alarm = 0;
+    }
+
     // Clear panic:
     if (status_panic == true) {
         status_panic       = false;
@@ -372,6 +368,43 @@ if (status_invin >= INVIN_BUFF) {
     if (status_swap == true) {
         status_swap       = false;
         status_swap_alarm = 0;
+    }
+}
+
+// Slow cap:
+if (status_speed == SPEED_DOWN) {
+    // Ground speed:
+    if (abs(g_speed) > top_speed) {
+        g_speed = top_speed * sign(g_speed);
+    }
+
+    // x speed:
+    if (abs(x_speed) > top_speed) {
+        x_speed = top_speed * sign(x_speed);
+    }
+}
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Status Effects
+
+// Shield:
+if ((status_shield != SHIELD_NONE || status_invin != INVIN_NONE) && shield_handle == noone) {
+    shield_handle = instance_create(x, y, eff_shield);
+
+    with (shield_handle) {
+        player_handle = other.id;
+    }
+}
+
+// Status:
+if ((status_speed == SPEED_DOWN || status_panic == true) && status_handle == noone) {
+    status_handle = instance_create(x, y, eff_debuff);
+
+    with (status_handle) {
+        player_handle = other.id;
     }
 }
 /*"/*'/**//* YYD ACTION
@@ -1249,7 +1282,7 @@ if (global.misc_trails == true) {
     draw_set_blend_mode(bm_normal);
 }
 
-// Change alpha when hurt:
+// Hurt alpha:
 if (status_invin == INVIN_HURT && status_invin_alarm > 0) image_alpha = (status_invin_alarm div 4) mod 2;
 else image_alpha = 1;
 
