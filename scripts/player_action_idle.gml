@@ -12,7 +12,7 @@ switch (argument0) {
         player_collision_steps();
 
         // Changed:
-        if (action_changed == true) {
+        if (action_changed == true || hint_wanted == true) {
             return false;
         }
 

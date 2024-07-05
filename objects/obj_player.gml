@@ -334,7 +334,7 @@ player_handle_ring();
 player_handle_spring();
 player_handle_item_box();
 player_handle_water_surface();
-//player_handle_hint();
+player_handle_hint();
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -476,8 +476,8 @@ applies_to=self
 */
 /// Alarms
 
-// Don't bother if the stage is paused or text is active:
-if (game_paused()) exit;
+// Don't bother if the stage is paused:
+if (game_paused(ctrl_pause)) exit;
 
 // Hurt invincibility:
 if (status_invin_alarm > 0) {
@@ -614,7 +614,8 @@ switch (action_current) {
     // Idle:
     case player_action_idle:
         if (balance_direction == 0) {
-            if (animation_target != "stand" && animation_target != "wait" && animation_target != "look" && animation_target != "crouch") {
+            if (animation_target != "stand" && animation_target != "wait" && animation_target != "ready" && animation_target != "land" && animation_target != "omochao" &&
+                animation_target != "look" && animation_target != "crouch") {
                 player_set_animation("stand");
             }
         } else {

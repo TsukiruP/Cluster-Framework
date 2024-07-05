@@ -20,10 +20,14 @@ if (ground == true && input_cpu == false && player_collision_prop(hint_handle, S
                 player_handle = other.id;
             }
             
-            // Set animation:
-            action_state = ACTION_DEFAULT;
-            g_speed      = 0;
+            // Set speed:
+            g_speed = 0;
+            
+            // Set hint:
             hint_wanted  = true;
+            
+            // Set action:
+            player_set_action(player_action_idle);
             
             switch (hint_handle.object_index) {
                 // Hint Box:

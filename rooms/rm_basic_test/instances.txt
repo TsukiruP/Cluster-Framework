@@ -22,12 +22,7 @@ obj_basic_test_collision_28,672,720,AC41D886,0,1,1,4294967295,0,0
 obj_basic_test_collision_28,768,720,9C513921,0,1,1,4294967295,0,0
 obj_basic_test_collision_28,864,720,BC713933,0,1,1,4294967295,0,0
 obj_item_invin,176,752,CE2904EA,0,1,1,4294967295,0,0
-obj_item_slow,288,752,2A64C777,0,1,1,4294967295,0,0
-obj_item_panic,336,752,7EA35A16,0,1,1,4294967295,0,0
 obj_spring_up,368,752,55DA0043,0,1,1,4294967295,0,0
-obj_rainbow_ring_right_up,368,576,3DF9F960,0,1,1,4294967295,0,0
-obj_rainbow_ring_right,480,496,E08A879A,0,1,1,4294967295,0,0
-obj_rainbow_ring_right_down,624,496,466DAFA1,0,1,1,4294967295,0,0
 obj_basic_test_collision_19,1440,672,19B3D802,0,1,1,4294967295,0,0
 obj_basic_test_collision_21,1440,576,A7CB3C3D,0,1,1,4294967295,0,0
 obj_basic_test_collision_20,1344,576,1BF5AC89,0,1,1,4294967295,0,0
@@ -38,3 +33,5 @@ obj_basic_test_collision_01,1152,768,981A0BA4,0,1,1,4294967295,0,0
 obj_basic_test_collision_01,1248,768,F8238421,0,1,1,4294967295,0,0
 obj_basic_test_collision_03,1344,768,EF505CD8,0,1,1,4294967295,0,0
 obj_basic_test_collision_03,1440,768,893D941F,0,1,1,4294967295,0,0
+obj_hint_box,320,720,A9FD289F,0,1,1,4294967295,0,0
+obj_omochao,96,752,C5D483AB,0,1,1,4294967295,0,0

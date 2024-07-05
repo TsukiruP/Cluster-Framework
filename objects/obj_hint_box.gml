@@ -79,7 +79,7 @@ if (player_handle == noone && hint_current != -1) {
 }
 
 // Float:
-draw_y = y + sin(floor(global.object_time) * 0.03) * 1.5;
+draw_y = y + sin(floor(global.object_time) * 0.03) * 2;
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1

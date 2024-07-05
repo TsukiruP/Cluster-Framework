@@ -116,7 +116,7 @@ else {
     draw_y = floor(player_handle.y);
     
     // Image xscale:
-    image_xscale = player_handle.animation_direction;
+    image_xscale = player_handle.image_xscale;
 }
 #define Draw_0
 /*"/*'/**//* YYD ACTION
