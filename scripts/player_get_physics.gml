@@ -2,9 +2,9 @@
 // Sets the player's physics values according to the current physics state.
 
 // Horizontal variables:
-x_top_speed      = 6;
-acceleration     = 0.046875;
-deceleration     = 0.5
+top_speed    = 6;
+acceleration = 0.046875;
+deceleration = 0.5
 
 // Vertical variables:
 if (action_current == player_action_hurt) {
@@ -22,20 +22,13 @@ roll_friction          = 0.0234375;
 roll_deceleration_up   = 0.078125;
 roll_deceleration_down = 0.3125;
 
-// Speed shoes multiplier:
-if (status_speed == SPEED_UP) {
-    top_speed        *= 2;
-    acceleration     *= 2;
-    roll_friction    *= 2;
-}
-
 // Underwater multiplier:
 if (physics_type == PHYS_UNDERWATER) {
     // Horizontal variables:
-    x_top_speed      *= 0.5;
-    acceleration     *= 0.5;
-    deceleration     *= 0.5;
-    roll_friction    *= 0.5;
+    top_speed     *= 0.5;
+    acceleration  *= 0.5;
+    deceleration  *= 0.5;
+    roll_friction *= 0.5;
     
     // Vertical variables:
     if (action_current == player_action_hurt) {
@@ -46,4 +39,11 @@ if (physics_type == PHYS_UNDERWATER) {
     
     jump_force   -= 3;
     jump_release *= 0.5;
+} else {
+    // Speed shoes multiplier:
+    if (status_speed == SPEED_UP) {
+        top_speed     *= 2;
+        acceleration  *= 2;
+        roll_friction *= 2;
+    }
 }
