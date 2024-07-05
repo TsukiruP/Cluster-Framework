@@ -1,12 +1,22 @@
 /// player_set_damage(obj)
 //
 
+var hurt_direction;
+
+// Exit if already hurt, dying, or invincible:
 if (action_current == player_action_hurt || action_current == player_action_death || status_invin > 0) exit;
+
+// Hurt direction:
+if (sign(x - argument0.x) == 0) {
+    hurt_direction = 1;
+} else {
+    hurt_direction = sign(x - argument0.x);
+}
 
 // Hurt:
 if ((input_cpu == false && (global.game_rings > 0 || status_shield != 0)) || input_cpu == true) {
     // Set physics:
-    x_speed =  2 * sign(x - argument0.x);
+    x_speed =  2 * hurt_direction;
     y_speed = -4;
 
     // Set invincibility:
