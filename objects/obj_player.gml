@@ -873,7 +873,7 @@ switch (animation_current) {
         // Default angle behavior:
         if (character_data != CHAR_CLASSIC) {
             if (ground == true) {
-                image_angle = player_get_angle(x, y);
+                image_angle = ground_angle;
             } else {
                 image_angle = approach_angle(image_angle, 0, 4);
             }
@@ -886,17 +886,17 @@ switch (animation_current) {
                 
                 angle_mod = animation_angle_mod;
                 
-                if (player_get_angle(x, y) <= 180) {
-                    if (player_get_angle(x, y) < 36) {
+                if (ground_angle <= 180) {
+                    if (ground_angle < 36) {
                         angle_mod = 0;
                     } else {
-                        angle_mod = player_get_angle(x, y);
+                        angle_mod =ground_angle;
                     }
                 } else {
-                    if (player_get_angle(x, y) > 324) {
+                    if (ground_angle > 324) {
                         angle_mod = 0;
                     } else {
-                        angle_mod = player_get_angle(x, y);
+                        angle_mod = ground_angle;
                     }
                 }
                 
