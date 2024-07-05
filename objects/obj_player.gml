@@ -327,8 +327,12 @@ applies_to=self
 // Don't bother if the stage is paused or text is active:
 if (game_paused()) exit;
 
+player_handle_layer();
 player_handle_ring();
+//player_handle_spring();
 player_handle_item_box();
+player_handle_water_surface();
+//player_handle_hint();
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
