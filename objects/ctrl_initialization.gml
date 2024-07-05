@@ -87,7 +87,7 @@ global.setting_advance_flicker = ini_read_real("advance", "flicker", true);
 
 // Read/create misc. settings:
 global.setting_misc_hud     = ini_read_real("misc", "hud", 1);
-global.setting_misc_status  = ini_read_real("misc", "status", 2);
+global.setting_misc_status  = ini_read_real("misc", "status", 1);
 global.setting_misc_feed    = ini_read_real("misc", "feed", true);
 global.setting_misc_trails  = ini_read_real("misc", "trails", true);
 global.setting_misc_lock_on = ini_read_real("misc", "lock_on", true);
