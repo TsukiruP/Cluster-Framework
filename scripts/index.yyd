@@ -12,7 +12,7 @@ game_paused
 player_action_death
 player_action_look
 ctl_template
-player_collision_object_right
+ctl_sonic_land
 player_action_spring
 ctl_sonic_push
 player_get_input

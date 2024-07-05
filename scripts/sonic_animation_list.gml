@@ -13,6 +13,9 @@ player_add_animation(CHAR_SONIC, "wait",          ctl_sonic_wait_leader, ctl_son
 // Ready:
 
 // Land:
+player_add_animation(CHAR_SONIC, "land",          ctl_sonic_land);
+
+// Omochao:
 player_add_animation(CHAR_SONIC, "omochao",       ctl_sonic_omochao);
 
 // Turn:

@@ -38,6 +38,9 @@ switch (argument0) {
         // Land:
         if (ground == true) {
             if (x_speed == 0) {
+                // Set animation:
+                player_set_animation("land");
+
                 return player_set_action(player_action_idle);
             } else {
                 return player_set_action(player_action_run);

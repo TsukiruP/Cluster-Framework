@@ -426,7 +426,7 @@ if (instance_exists(obj_water_surface)) {
         }
 
         // Create jump splash:
-        if (ground == false && sign(y_speed) == -1) {
+        if ((ground == false && y_speed < 0) || (ground == true && y_speed > 0)) {
             effect_create(ctl_splash_run, floor(x), obj_water_surface.y, depth, image_xscale);
         }
     } else {
