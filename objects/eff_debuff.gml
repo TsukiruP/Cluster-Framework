@@ -24,7 +24,7 @@ event_inherited();
 depth = player_handle.depth;
 
 // Destroy:
-if (player_handle.status_speed != SPEED_DOWN && player_handle.status_panic == false) {
+if (player_handle.status_speed != SPEED_SLOW && player_handle.status_panic == false) {
     player_handle.status_handle = noone;
     instance_destroy();
 }

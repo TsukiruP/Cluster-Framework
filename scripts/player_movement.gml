@@ -50,7 +50,8 @@ if (y >= room_height && action_current != player_action_death) {
         global.pause_allow = false;
 
         // Stop jingles:
-        if (sound_isplaying("bgm_muteki")) sound_stop("bgm_muteki");
-        if (sound_isplaying("bgm_speed_up")) sound_stop("bgm_speed_up");
+        with (ctrl_audio) {
+            event_user(2);
+        }
     }
 }

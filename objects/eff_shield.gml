@@ -51,7 +51,7 @@ if (player_handle.status_invin != INVIN_BUFF) {
 
 // Invincibility:
 else {
-    if (ctl_index != ctl_shield_muteki) timeline_set(ctl_shield_muteki);
+    if (ctl_index != ctl_shield_invin) timeline_set(ctl_shield_invin);
 }
 /*"/*'/**//* YYD ACTION
 lib_id=1

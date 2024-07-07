@@ -112,7 +112,7 @@ if (!sound_isplaying("bgm_drown")) {
 }
 
 // Clear jingle:
-if (jingle_instance != -1 && !sound_isplaying("bgm_muteki") && !sound_isplaying("bgm_speed_up")) {
+if (jingle_instance != -1 && !sound_isplaying("bgm_invin") && !sound_isplaying("bgm_speed")) {
     sound_discard(jingle_instance)
     jingle_instance = -1;
 }
@@ -160,7 +160,7 @@ if (jingle_instance != -1) {
 
 // Set jingle:
 if (jingle_instance == -1) {
-    jingle_instance = sound_play_single("bgm_muteki");
+    jingle_instance = sound_play_single("bgm_invin");
 }
 #define Other_11
 /*"/*'/**//* YYD ACTION
@@ -168,7 +168,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Play Speed Up Jingle
+/// Play Speed Jingle
 
 // Clear jingle:
 if (jingle_instance != -1) {
@@ -179,5 +179,22 @@ if (jingle_instance != -1) {
 
 // Set jingle:
 if (jingle_instance == -1) {
-    jingle_instance = sound_play_single("bgm_speed_up");
+    jingle_instance = sound_play_single("bgm_speed");
+}
+#define Other_12
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Clear Jingle
+
+// Clear:
+if (sound_isplaying("bgm_invin")) {
+    sound_stop("bgm_invin");
+}
+
+//
+if (sound_isplaying("bgm_speed")) {
+    sound_stop("bgm_speed");
 }

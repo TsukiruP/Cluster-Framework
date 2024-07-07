@@ -345,7 +345,7 @@ applies_to=self
 // Immunity:
 if (status_invin >= INVIN_BUFF) {
     // Clear speed down:
-    if (status_speed == SPEED_DOWN) {
+    if (status_speed == SPEED_SLOW) {
         status_speed       = SPEED_NONE;
         status_speed_alarm = 0;
     }
@@ -363,16 +363,24 @@ if (status_invin >= INVIN_BUFF) {
     }
 }
 
-// Slow cap:
-if (status_speed == SPEED_DOWN && spring_strength == 0) {
-    // Ground speed:
-    if (abs(g_speed) > top_speed) {
-        g_speed = top_speed * sign(g_speed);
+//
+if (status_speed == SPEED_SLOW) {
+    // Cap speed:
+    if (spring_strength == 0) {
+        // Ground speed:
+        if (abs(g_speed) > top_speed) {
+            g_speed = top_speed * sign(g_speed);
+        }
+
+        // x speed:
+        if (abs(x_speed) > top_speed) {
+            x_speed = top_speed * sign(x_speed);
+        }
     }
 
-    // x speed:
-    if (abs(x_speed) > top_speed) {
-        x_speed = top_speed * sign(x_speed);
+    // Stop jingle:
+    if (sound_isplaying("bgm_speed")) {
+        sound_stop("bgm_speed");
     }
 }
 /*"/*'/**//* YYD ACTION
@@ -392,7 +400,7 @@ if ((status_shield != SHIELD_NONE || status_invin != INVIN_NONE) && shield_handl
 }
 
 // Status:
-if ((status_speed == SPEED_DOWN || status_panic == true) && status_handle == noone) {
+if ((status_speed == SPEED_SLOW || status_panic == true) && status_handle == noone) {
     status_handle = instance_create(x, y, eff_debuff);
 
     with (status_handle) {

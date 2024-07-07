@@ -48,7 +48,7 @@ if (physics_type == PHYS_UNDERWATER) {
     }
     
     // Speed down multiplier:
-    else if (status_speed == SPEED_DOWN) {
+    else if (status_speed == SPEED_SLOW) {
         top_speed *= 0.75;
     }
 }
