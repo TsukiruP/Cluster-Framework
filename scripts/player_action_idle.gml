@@ -4,6 +4,9 @@
 switch (argument0) {
     // Start:
     case ACTION_START:
+        if (ground == true && y_speed > 0) {
+            player_set_animation("land");
+        }
         break;
 
     // Step:
