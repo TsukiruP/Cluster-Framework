@@ -4,7 +4,7 @@ ctl_sonic_death
 draw_backdrop_tiled_area
 game_start
 ctl_ring_sparkle
-player_collision_top
+ctl_sonic_ready
 player_collision_object_top
 player_collision_bottom
 player_collision_object_bottom

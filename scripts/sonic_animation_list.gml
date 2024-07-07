@@ -11,6 +11,7 @@ player_add_animation(CHAR_SONIC, "balance_back",  ctl_sonic_balance_back);
 player_add_animation(CHAR_SONIC, "wait",          ctl_sonic_wait_leader, ctl_sonic_wait_partner);
 
 // Ready:
+player_add_animation(CHAR_SONIC, "ready",         ctl_sonic_ready);
 
 // Land:
 player_add_animation(CHAR_SONIC, "land",          ctl_sonic_land);

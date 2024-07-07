@@ -51,6 +51,7 @@
 							|ctl_sonic_wait_leader
 							|ctl_sonic_wait_partner
 						+Misc.
+							|ctl_sonic_ready
 							|ctl_sonic_land
 							|ctl_sonic_omochao
 					+Turn
@@ -203,7 +204,6 @@
 		+Left
 		+Right
 		+Top
-			|player_collision_top
 			|player_collision_object_top
 		+Bottom
 			|player_collision_bottom
