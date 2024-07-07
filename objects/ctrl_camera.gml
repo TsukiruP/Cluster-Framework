@@ -126,9 +126,9 @@ if (player_exists(0) != noone) {
                     else if (ground == true) {
                         if (y + roll_offset != other.camera_y) {
                             if (abs(y + (roll_offset * y_direction) - yprevious) <= 6) {
-                                other.camera_y += clamp(y - (roll_offset * y_direction) - other.camera_y, -6, 6);
+                                other.camera_y += clamp(y - (roll_offset ) - other.camera_y, -6, 6);
                             } else {
-                                other.camera_y += clamp(y - (roll_offset * y_direction) - other.camera_y, -16, 16);
+                                other.camera_y += clamp(y - (roll_offset ) - other.camera_y, -16, 16);
                             }
                         }
                     }
