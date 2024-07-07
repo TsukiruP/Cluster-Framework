@@ -6,6 +6,9 @@ applies_to=self
 */
 /// Transition Initialization
 
+// Image speed:
+image_speed = 0;
+
 // State variables:
 debug            = false;
 fade_state       = 0;
@@ -31,7 +34,7 @@ background_y_target       =  global.display_height + 15;
 background_y_speed        =  0;
 
 background_x_scroll       =  0;
-background_x_scroll_speed =  0.5;
+background_x_scroll_speed =  1;
 
 // Banner variables:
 banner_x_current      = -sprite_get_width(spr_title_card_banner) - 12;
@@ -210,29 +213,19 @@ if (transition_type == TRANS_CARD) {
         }
     }
     
-    // Background position:
-    if (title_card_state < 4) {
-        if (background_y_current < background_y_target) {
-            background_y_speed    = ceil(abs(background_y_current - background_y_target) / 5);
-            background_y_current += background_y_speed;
-            
-            if (background_y_current >= background_y_target) {
-                background_y_speed   = 0;
-                background_y_current = background_y_target;
-            }
-        }
-    } else {
-        // Background target:
+    // Background target:
+    if (title_card_state >= 4) {
         background_y_target = -15;
+    }
+    
+    // Background position:
+    if (background_y_current != background_y_target) {
+        background_y_speed    = ceil((background_y_target - background_y_current) / 5);
+        background_y_current += background_y_speed;
         
-        if (background_y_current > background_y_target) {
-            background_y_speed    = ceil(abs(background_y_target - background_y_current) / 5);
-            background_y_current -= background_y_speed;
-            
-            if (background_y_current <= background_y_target) {
-                background_y_speed   = 0;
-                background_y_current = background_y_target;
-            }
+        if (background_y_current >= background_y_target && sign(background_y_current) == sign(background_y_target)) {
+            background_y_speed   = 0;
+            background_y_current = background_y_target;
         }
     }
     
@@ -341,7 +334,7 @@ if (transition_type == TRANS_CARD) {
             }
 
             if (background_y_current <= background_y_target) {
-                title_card_state     = 5;
+                title_card_state = 5;
             }
             break;
         
@@ -381,7 +374,7 @@ if (transition_type == TRANS_CARD) {
             }
             break;
     
-    
+        // 6 - Start game:
         case 6:
             // Start game:
             game_start();
@@ -445,6 +438,7 @@ if (transition_type == TRANS_RETRY) {
     }
 
     // Background position:
+    /*
     if (retry_state != 4) {
         if (background_y_current < background_y_target) {
             background_y_speed    = ceil(abs(background_y_current - background_y_target) / retry_steps);
@@ -464,6 +458,17 @@ if (transition_type == TRANS_RETRY) {
                 background_y_speed   = 0;
                 background_y_current = background_y_target;
             }
+        }
+    }*/
+    
+    // Background position:
+    if (background_y_current != background_y_target) {
+        background_y_speed    = ceil((background_y_target - background_y_current) / retry_steps);
+        background_y_current += background_y_speed;
+        
+        if (background_y_current >= background_y_target && sign(background_y_current) == sign(background_y_target)) {
+            background_y_speed   = 0;
+            background_y_current = background_y_target;
         }
     }
 
@@ -613,7 +618,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Open Debug Header
+/// Open Debug Topic
 #define Other_11
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -694,7 +699,7 @@ if (transition_type == TRANS_RETRY) {
 
     // Background:
     draw_sprite_tiled_horizontal(spr_transition_background, 1, view_xview[view_current] + background_x_scroll, view_yview[view_current] + background_y_current);
-    draw_sprite_tiled_horizontal_yscale(spr_transition_background, 1, view_xview[view_current] - 16.5 - background_x_scroll, view_yview[view_current] + global.display_height - background_y_current, -1);
+    draw_sprite_tiled_horizontal_yscale(spr_transition_background, 1, view_xview[view_current] - 16 - background_x_scroll - 1, view_yview[view_current] + global.display_height - background_y_current, -1);
 
     // Try again:
     retry_size    = string_width("Try Again");
