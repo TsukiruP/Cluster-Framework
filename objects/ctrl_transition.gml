@@ -67,54 +67,58 @@ applies_to=self
 /// Fade Transition
 
 if (transition_type == TRANS_FADE) {
-    // 0 - Fade to black:
-    if (fade_state == 0) {
-        if (fade_handle == noone) {
-            fade_handle            = fade_create(transition_speed, 1);
-            fade_handle.persistent = true;
-        }
+    switch (fade_state) {
+        // 0 - Start fade:
+        case 0:
+            if (fade_handle == noone) {
+                fade_handle            = fade_create(transition_speed, 1);
+                fade_handle.persistent = true;
+            }
 
-        if (fade_handle.fade_alpha >= 1) {
-            global.time_allow = false;
-            fade_state        = 1;
-        }
-    }
+            if (fade_handle.fade_alpha >= 1) {
+                global.time_allow = false;
+                fade_state        = 1;
+            }
+            break;
 
-    // 1 - Standing by:
-    if (fade_state == 1) {
-        if (transition_standby < 1) {
-            transition_standby += transition_speed;
+        // 1 - Standing by:
+        case 1:
+            if (transition_standby < 1) {
+                transition_standby += transition_speed;
 
-            if (transition_standby >= 1) {
-                transition_standby =1;
+                if (transition_standby >= 1) {
+                    transition_standby =1;
 
-                if (debug == true) {
-                    event_user(0);
+                    if (debug == true) {
+                        event_user(0);
 
-                    if (input_check(INP_ACCEPT, CHECK_PRESSED)) {
+                        if (input_check(INP_ACCEPT, CHECK_PRESSED)) {
+                            fade_state = 2;
+                            event_user(1);
+                        }
+                    } else {
+                        room_goto(transition_room);
                         fade_state = 2;
-                        event_user(1);
                     }
-                } else {
-                    room_goto(transition_room);
-                    fade_state = 2;
                 }
             }
-        }
-    }
+            break;
 
-    // 2 - Fade from black:
-    if (fade_state == 2) {
-        fade_reverse(fade_handle);
-        fade_state = 3;
-    }
+        // 2 - Reverse fade:
+        case 2:
+            fade_reverse(fade_handle);
+            fade_state = 3;
+            break;
 
-    // 3 - End fade:
-    if (fade_state == 3) {
-        // Start game:
-        game_start();
+        // 3 - End fade:
+        case 3:
+            // Start game:
+            game_start();
 
-        if (!instance_exists(fade_handle)) instance_destroy();
+            if (!instance_exists(fade_handle)) {
+                instance_destroy();
+            }
+            break;
     }
 }
 /*"/*'/**//* YYD ACTION
@@ -125,56 +129,58 @@ applies_to=self
 /// Menu Transition
 
 if (transition_type == TRANS_MENU) {
-    // 0 - Background start:
-    if (menu_state == 0) {
-        if (background_y_current < background_y_target) {
-            background_y_speed     = ceil(abs(background_y_current - background_y_target) / 5);
-            background_y_current += background_y_speed;
+    switch (menu_state) {
+        // 0 - Background start:
+        case 0:
+            if (background_y_current < background_y_target) {
+                background_y_speed     = ceil(abs(background_y_current - background_y_target) / 5);
+                background_y_current += background_y_speed;
 
-            if (background_y_current >= background_y_target) {
-                background_y_speed    = 0;
-                background_y_current = background_y_target;
-                menu_state          = 1;
-            }
-        }
-    }
-
-    // 1 - Room change:
-    if (menu_state == 1) {
-        if (transition_timer < 1) {
-            transition_timer += transition_speed;
-
-            if (transition_timer >= 1) {
-                if (debug == true) {
-                    event_user(0);
-
-                    if (input_check(INP_ACCEPT, CHECK_PRESSED)) {
-                        menu_state = 2;
-                        event_user(1);
-                    }
-                } else {
-                    room_goto(transition_room);
-                    menu_state = 2;
+                if (background_y_current >= background_y_target) {
+                    background_y_speed    = 0;
+                    background_y_current = background_y_target;
+                    menu_state          = 1;
                 }
             }
-        }
-    }
+            break;
 
-    // 2 - Background end:
-    if (menu_state == 2) {
-        // Background target:
-        background_y_target = -15;
+        // 1 - Room change:
+        case 1:
+            if (transition_timer < 1) {
+                transition_timer += transition_speed;
 
-        if (background_y_current > background_y_target) {
-            background_y_speed     = ceil(abs(background_y_current - background_y_target) / 5);
-            background_y_current -= background_y_speed;
+                if (transition_timer >= 1) {
+                    if (debug == true) {
+                        event_user(0);
 
-            if (background_y_current <= background_y_target) {
-                background_y_speed    = 0;
-                background_y_current = background_y_target
-                instance_destroy();
+                        if (input_check(INP_ACCEPT, CHECK_PRESSED)) {
+                            menu_state = 2;
+                            event_user(1);
+                        }
+                    } else {
+                        room_goto(transition_room);
+                        menu_state = 2;
+                    }
+                }
             }
-        }
+            break;
+
+        // 2 - Background end:
+        case 2:
+            // Background target:
+            background_y_target = -15;
+
+            if (background_y_current > background_y_target) {
+                background_y_speed     = ceil(abs(background_y_current - background_y_target) / 5);
+                background_y_current -= background_y_speed;
+
+                if (background_y_current <= background_y_target) {
+                    background_y_speed    = 0;
+                    background_y_current = background_y_target
+                    instance_destroy();
+                }
+            }
+            break;
     }
 }
 /*"/*'/**//* YYD ACTION
@@ -203,152 +209,167 @@ if (transition_type == TRANS_CARD) {
             }
         }
     }
-
-    // 0 - Background start:
-    if (title_card_state == 0) {
-        if (background_y_current < background_y_target) {
-            background_y_speed     = ceil(abs(background_y_current - background_y_target) / 5);
-            background_y_current += background_y_speed;
-
-            if (background_y_current >= background_y_target) {
-                background_y_speed    = 0;
-                background_y_current = background_y_target;
-                title_card_state      = 1;
-            }
-        }
-    }
-
-    // 1 - Banner/zone start:
-    if (title_card_state == 1) {
-        // Banner start:
-        if (banner_x_current < 0) {
-            banner_x_speed     = ceil(abs(banner_x_current - banner_x_target) / 6);
-            banner_x_current += banner_x_speed;
-
-            if (banner_x_current >= 0) {
-                banner_x_speed    = 0;
-                banner_x_current = banner_x_target;
-            }
-        }
-
-        // Zone start:
-        if (zone_distance < zone_x_target) {
-            zone_x_speed     = ceil(abs(zone_distance - zone_x_target) / 9);
-            zone_x_current += zone_x_speed;
-
-            if (zone_x_current >= zone_x_target - zone_x_start) {
-                global.time_allow = false;
-                
-                zone_x_speed        = 0;
-                zone_x_current     = -zone_x_start + zone_x_target;
-                title_card_state  = 2;
-            }
-        }
-    }
-
-    // 2 - Room change:
-    if (title_card_state == 2) {
-        if (transition_timer < 1) {
-            transition_timer += transition_speed;
-
-            if (transition_timer >= 1) {
-                transition_timer = 1;
-
-                if (debug == true) {
-                    event_user(0);
-
-                    if (input_check(INP_ACCEPT, CHECK_PRESSED)) {
-                        title_card_state = 4;
-                        event_user(1);
-                    }
-                } else {
-                    room_goto(transition_room);
-                    title_card_state = 3;
+    
+    switch (title_card_state) {
+        // 0 - Background start:
+        case 0:
+            if (background_y_current < background_y_target) {
+                background_y_speed     = ceil(abs(background_y_current - background_y_target) / 5);
+                background_y_current += background_y_speed;
+    
+                if (background_y_current >= background_y_target) {
+                    background_y_speed    = 0;
+                    background_y_current = background_y_target;
+                    title_card_state      = 1;
                 }
             }
-        }
-    }
-
-    // 3 - Standing by:
-    if (title_card_state == 3) {if (transition_standby < 2) {
-            transition_standby += transition_speed;
-
-            if (transition_standby >= 2) {
-                transition_standby = 2;
-                title_card_state   = 4;
+            break;
+        
+        // 1 - Banner/zone start:
+        case 1:
+            // Banner start:
+            if (banner_x_current < 0) {
+                banner_x_speed     = ceil(abs(banner_x_current - banner_x_target) / 6);
+                banner_x_current += banner_x_speed;
+    
+                if (banner_x_current >= 0) {
+                    banner_x_speed    = 0;
+                    banner_x_current = banner_x_target;
+                }
             }
-        }
-    }
-
-    // 4 - Background end:
-    if (title_card_state == 4) {
-        // Background target:
-        background_y_target = -15;
-
-        if (background_y_current > background_y_target) {
-            background_y_speed     = ceil(abs(background_y_current - background_y_target) / 5);
-            background_y_current -= background_y_speed;
-
-            // Player kickoffs:
-            if (player_exists(0) != noone) {
-                // Ready kickoff:
-                if (room_kickoff == KICKOFF_READY) {
-                    with (player_exists(0)) {
-                        if (floor(other.background_y_current) <= y + 13 - view_yview[view_current]) {
-                            player_set_animation("ready");
-
-                            if (player_exists(1) != noone) {
-                                with (player_exists(1)) player_set_animation("ready");
+    
+            // Zone start:
+            if (zone_distance < zone_x_target) {
+                zone_x_speed     = ceil(abs(zone_distance - zone_x_target) / 9);
+                zone_x_current += zone_x_speed;
+    
+                if (zone_x_current >= zone_x_target - zone_x_start) {
+                    global.time_allow = false;
+                    
+                    zone_x_speed        = 0;
+                    zone_x_current     = -zone_x_start + zone_x_target;
+                    title_card_state  = 2;
+                }
+            }
+            break;
+        
+        // 2 - Room change:
+        case 2:
+            if (transition_timer < 1) {
+                transition_timer += transition_speed;
+    
+                if (transition_timer >= 1) {
+                    transition_timer = 1;
+    
+                    if (debug == true) {
+                        event_user(0);
+    
+                        if (input_check(INP_ACCEPT, CHECK_PRESSED)) {
+                            title_card_state = 4;
+                            event_user(1);
+                        }
+                    } else {
+                        room_goto(transition_room);
+                        title_card_state = 3;
+                    }
+                }
+            }
+            break;
+        
+        // 3 - Standing by:
+        case 3:
+            if (transition_standby < 2) {
+                transition_standby += transition_speed;
+    
+                if (transition_standby >= 2) {
+                    transition_standby = 2;
+                    title_card_state   = 4;
+                }
+            }
+            break;
+        
+        // 4 - Background end:
+        case 4:
+            // Background target:
+            background_y_target = -15;
+    
+            if (background_y_current > background_y_target) {
+                background_y_speed     = ceil(abs(background_y_current - background_y_target) / 5);
+                background_y_current -= background_y_speed;
+    
+                // Player kickoffs:
+                if (player_exists(0) != noone) {
+                    // Ready kickoff:
+                    if (room_kickoff == KICKOFF_READY) {
+                        with (player_exists(0)) {
+                            if (floor(other.background_y_current) <= y + 13 - view_yview[view_current]) {
+                                player_set_animation("ready");
+    
+                                if (player_exists(1) != noone) {
+                                    with (player_exists(1)) player_set_animation("ready");
+                                }
                             }
                         }
+                    } else {
+                        if (room_kickoff != KICKOFF_DEFAULT && room_kickoff != KICKOFF_RUN) {
+                            with (player_exists(0)) input_lock = false;
+                        }
                     }
-                } else {
-                    if (room_kickoff != KICKOFF_DEFAULT && room_kickoff != KICKOFF_RUN) {
-                        with (player_exists(0)) input_lock = false;
+                }
+    
+                if (background_y_current <= background_y_target) {
+                    background_y_speed    = 0;
+                    background_y_current = background_y_target;
+                    title_card_state    = 5;
+                }
+            }
+            break;
+        
+        // 5 - Banner/stage end:
+        case 5:
+            // Banner target:
+            banner_x_target = -sprite_get_width(spr_title_card_banner) - 12;
+    
+            // Zone target:
+            zone_x_target = global.display_width + 9;
+    
+            if (debug == false) {
+                // Kickoff standbys:
+                if (player_exists(0) != noone) {
+                    // Default standby:
+                    if (room_kickoff == KICKOFF_DEFAULT) {
+                        if (transition_standby < 3.7) transition_standby += transition_speed;
+                        else transition_standby = 3.7;
+                    }
+    
+                    with (player_exists(0)) {
+                        // Animation standby:
+                        if (other.room_kickoff == KICKOFF_READY && animation_current != "ready") {
+                            if (other.transition_standby < 2.2) other.transition_standby += other.transition_speed;
+                            else other.transition_standby = 2.2;
+                        }
+    
+                        // Stop running:
+                        if (other.room_kickoff == KICKOFF_RUN && other.room_run_end_x != -1 && x >= other.room_run_end_x) room_run_end_x = -1;
                     }
                 }
             }
-
-            if (background_y_current <= background_y_target) {
-                background_y_speed    = 0;
-                background_y_current = background_y_target;
-                title_card_state    = 5;
-            }
-        }
-    }
-
-    // 5 - Banner/stage end:
-    if (title_card_state == 5) {
-        // Banner target:
-        banner_x_target = -sprite_get_width(spr_title_card_banner) - 12;
-
-        // Zone target:
-        zone_x_target = global.display_width + 9;
-
-        if (debug == false) {
-            // Kickoff standbys:
-            if (player_exists(0) != noone) {
-                // Default standby:
-                if (room_kickoff == KICKOFF_DEFAULT) {
-                    if (transition_standby < 3.7) transition_standby += transition_speed;
-                    else transition_standby = 3.7;
-                }
-
-                with (player_exists(0)) {
-                    // Animation standby:
-                    if (other.room_kickoff == KICKOFF_READY && animation_current != "ready") {
-                        if (other.transition_standby < 2.2) other.transition_standby += other.transition_speed;
-                        else other.transition_standby = 2.2;
-                    }
-
-                    // Stop running:
-                    if (other.room_kickoff == KICKOFF_RUN && other.room_run_end_x != -1 && x >= other.room_run_end_x) room_run_end_x = -1;
+            
+            if (room_kickoff == KICKOFF_READY && transition_standby < 2.2 && input_check(INP_ACCEPT, CHECK_PRESSED)) {
+                transition_standby = 2.2;
+                with obj_player {
+                    player_set_animation("stand");
                 }
             }
-        }
-
-        if (debug == true || room_kickoff == KICKOFF_DEBUG || (room_kickoff == KICKOFF_DEFAULT && transition_standby == 3.7) ||
-            (room_kickoff == KICKOFF_READY && transition_standby >= 2.2) || (room_kickoff == KICKOFF_RUN && room_run_end_x == -1)) {
+            
+            if (debug == true || room_kickoff == KICKOFF_DEBUG || (room_kickoff == KICKOFF_DEFAULT && transition_standby == 3.7) ||
+                (room_kickoff == KICKOFF_READY && transition_standby >= 2.2) || (room_kickoff == KICKOFF_RUN && room_run_end_x == -1)) {
+                    title_card_state = 6;
+            }
+            break;
+    
+    
+        case 6:
             // Start game:
             game_start();
             
@@ -373,14 +394,14 @@ if (transition_type == TRANS_CARD) {
                     zone_x_current = -zone_distance + zone_x_target;
                 }
             }
-        }
-
-        // Title card end:
-        if (banner_x_current == banner_x_target && zone_distance == zone_x_target) {
-            global.time_allow = true;
-            
-            instance_destroy();
-        }
+    
+            // Title card end:
+            if (banner_x_current == banner_x_target && zone_distance == zone_x_target) {
+                global.time_allow = true;
+                
+                instance_destroy();
+            }
+            break;
     }
 }
 /*"/*'/**//* YYD ACTION
@@ -443,7 +464,81 @@ if (transition_type == TRANS_RETRY) {
         transition_standby = 1;
         retry_state        = 1;
     }
-
+    
+    switch (retry_state) {
+        // 0 - Background start:
+        case 0:
+            // Background target:
+            background_y_target = 32;
+    
+            if (retry_distance == retry_x_target && background_y_current == background_y_target) {
+                retry_state = 1;
+            }
+            break;
+        
+        // 1 - Standing by:
+        case 1:
+            if (transition_standby < 1) {
+                transition_standby += transition_speed;
+            } else {
+                if (debug == true) event_user(0);
+                if ((debug == true && input_check(INP_ACCEPT, CHECK_PRESSED)) || debug == false) {
+                    if (debug == true) event_user(1);
+    
+                    retry_state = 2;
+                }
+            }
+            break;
+        
+        // 2 - Retry end:
+        case 2:
+            // Background target:
+            background_y_target = global.display_height / 2 + 15;
+    
+            // Retry target:
+            retry_x_target = -retry_size - 9;
+    
+            if (retry_distance == retry_x_target && background_y_current == background_y_target) {
+                retry_state = 3;
+            }
+            break;
+        
+        // 3 - Room change:
+        case 3:
+            if (transition_timer < 0.8) {
+                transition_timer += transition_speed;
+            } else {
+                if (debug == false) room_goto(transition_room);
+    
+                retry_state = 4;
+            }
+            break;
+        
+        // 4 - Background end:
+        case 4:
+            if (transition_timer < 1) {
+                transition_timer += transition_speed;
+            } else {
+                // Background target:
+                background_y_target = -15;
+    
+                // Stop running:
+                if (player_exists(0) != noone) {
+                    with (player_exists(0)) {
+                        if (x >= other.room_run_end_x && action_current != player_action_death) other.room_run_end_x = -1;
+                    }
+                }
+    
+                if (debug == true || room_kickoff != KICKOFF_RUN || (room_kickoff == KICKOFF_RUN && (room_run_end_x == -1 || (global.checkpoint_x != -1 && global.checkpoint_y != -1)))) {
+                    // Start game:
+                    game_start();
+    
+                    if (background_y_current == background_y_target) instance_destroy();
+                }
+        }
+            break;
+    }
+    
     // 0 - Background start:
     if (retry_state == 0) {
         // Background target:
