@@ -57,6 +57,12 @@ switch (argument0) {
                 input_lock_alarm = 30;
             }
         }
+
+        // Jump:
+        if (touching_ceiling == false && input_player[INP_JUMP, CHECK_PRESSED] == true) {
+            sound_play_single("snd_jump");
+            return player_set_action(player_action_jump);
+        }
         break;
 
     // Finish:
