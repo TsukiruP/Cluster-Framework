@@ -126,7 +126,7 @@ player_set_action
 player_set_animation
 player_collision_steps
 timeline_set
-object_point_check
+prop_point_check
 ctl_initialize
 ctl_sonic_walk
 ctl_sonic_jog

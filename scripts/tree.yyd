@@ -193,7 +193,8 @@
 				|start_trail
 				|update_trail
 				|draw_trail
-	|object_point_check
+	+Props
+		|prop_point_check
 +Trash
 	+Input
 		+Input

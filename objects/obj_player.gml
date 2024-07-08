@@ -189,16 +189,21 @@ skid_dust_alarm = 3;
 shield_insta  = noone;
 shield_handle = noone;
 
-// Status handle:
-status_handle = noone;
+// Debuff handle:
+debuff_handle = noone;
 
 // After image variables:
 afterimage_draw  = false;
 afterimage_alarm = 6;
 
-// Create trail:
-if (global.misc_trails == true) start_trail(15);
+// Trail variables:
+trail_draw  = false;
 trail_color = c_white;
+
+// Start trail:
+if (global.misc_trails == true) {
+    start_trail(15);
+}
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -388,9 +393,9 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Status Effects
+/// Effects
 
-// Shield:
+// Create shield:
 if ((status_shield != SHIELD_NONE || status_invin != INVIN_NONE) && shield_handle == noone) {
     shield_handle = instance_create(x, y, eff_shield);
 
@@ -399,13 +404,28 @@ if ((status_shield != SHIELD_NONE || status_invin != INVIN_NONE) && shield_handl
     }
 }
 
-// Status:
-if ((status_speed == SPEED_SLOW || status_panic == true) && status_handle == noone) {
-    status_handle = instance_create(x, y, eff_debuff);
+// Create debuff:
+if ((status_speed == SPEED_SLOW || status_panic == true) && debuff_handle == noone) {
+    debuff_handle = instance_create(x, y, eff_debuff);
 
-    with (status_handle) {
+    with (debuff_handle) {
         player_handle = other.id;
     }
+}
+
+// Set afterimage:
+if (status_speed == SPEED_UP) {
+    afterimage_draw = true;
+} else {
+    afterimage_draw  = false;
+    afterimage_alarm = 6;
+}
+
+// Set trail:
+if (action_current == player_action_roll) {
+    trail_draw = true;
+} else {
+    trail_draw = false;
 }
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -512,14 +532,6 @@ if (status_panic_alarm > 0) {
     if (status_panic_alarm == 0) {
         status_panic = false;
     }
-}
-
-// Afterimage:
-if (status_speed == SPEED_UP) {
-    afterimage_draw = true;
-} else {
-    afterimage_draw  = false;
-    afterimage_alarm = 6;
 }
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -1015,9 +1027,9 @@ if (global.misc_trails == true) {
 }
 
 // Update trail:
-update_trail(floor(x) + (dcos(ground_angle + 90) * (-2 - (1 * ground_angle == 90)) * (1 * action_current == player_action_roll)) + dcos(ground_angle) * x_speed,
-    floor(y) - (dsin(ground_angle + 90) * (-3 - (1 * ground_angle != 0)) * (1 * action_current == player_action_roll)) + y_speed - dsin(ground_angle) * x_speed,
-    action_current == player_action_roll);
+update_trail(floor(x) + (dcos(ground_angle + 90) * (-2 - (1 * ground_angle == 90)) * (trail_draw == true)) + dcos(ground_angle) * x_speed,
+    floor(y) - (dsin(ground_angle + 90) * (-3 - (1 * ground_angle != 0)) * (trail_draw == true)) + y_speed - dsin(ground_angle) * x_speed,
+    (trail_draw == true));
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=605

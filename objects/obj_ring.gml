@@ -48,11 +48,11 @@ if (dropped == true) {
     y       += y_speed * global.object_ratio;
 
     // Terrain collision:
-    if ((object_point_check(bbox_left, y) && x_speed < 0) || (object_point_check(bbox_right, y) && x_speed > 0)) {
+    if ((prop_point_check(bbox_left, y) && x_speed < 0) || (prop_point_check(bbox_right, y) && x_speed > 0)) {
         x_speed *= -1;
     }
 
-    if ((object_point_check(x, bbox_top) && y_speed < 0) || (object_point_check(x, bbox_bottom) && y_speed > 0)) {
+    if ((prop_point_check(x, bbox_top) && y_speed < 0) || (prop_point_check(x, bbox_bottom) && y_speed > 0)) {
         y_speed *= -1;
     }
 }
