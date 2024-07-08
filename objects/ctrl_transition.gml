@@ -20,9 +20,12 @@ pause_ignore     = false;
 
 // Transition variables:
 transition_type    = TRANS_FADE;
+transition_alarm   = 0;
+
 transition_timer   = 0;
 transition_standby = 0;
 transition_speed   = 0.02;
+
 transition_room    = room;
 
 // Fade handle:
@@ -45,12 +48,12 @@ banner_y_scroll       =  0;
 banner_y_scroll_speed =  1;
 
 // Zone variables:
-zone_x_start     = 0;
-zone_x_current   = 0;
-zone_x_target    = 40;
-zone_x_speed     = 0;
+zone_x_start   = 0;
+zone_x_current = 0;
+zone_x_target  = 40;
+zone_x_speed   = 0;
 
-zone_distance = 0;
+zone_distance  = 0;
 
 // Retry variables:
 retry_x_start   = 0;
@@ -61,6 +64,15 @@ retry_x_speed   = 0;
 retry_distance  = 0;
 retry_steps     = 15;
 retry_size      = 0;
+#define Step_1
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+if (transition_alarm > 0) {
+    transition_alarm -= 1;
+}
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -80,29 +92,25 @@ if (transition_type == TRANS_FADE) {
 
             if (fade_handle.fade_alpha >= 1) {
                 global.time_allow = false;
+
                 fade_state        = 1;
+                transition_alarm  = 50;
             }
             break;
 
         // 1 - Standing by:
         case 1:
-            if (transition_standby < 1) {
-                transition_standby += transition_speed;
+            if (transition_alarm <= 0) {
+                if (debug == true) {
+                    event_user(0);
 
-                if (transition_standby >= 1) {
-                    transition_standby =1;
-
-                    if (debug == true) {
-                        event_user(0);
-
-                        if (input_check(INP_ACCEPT, CHECK_PRESSED)) {
-                            fade_state = 2;
-                            event_user(1);
-                        }
-                    } else {
-                        room_goto(transition_room);
+                    if (input_check(INP_ACCEPT, CHECK_PRESSED)) {
                         fade_state = 2;
+                        event_user(1);
                     }
+                } else {
+                    room_goto(transition_room);
+                    fade_state = 2;
                 }
             }
             break;
@@ -136,34 +144,32 @@ if (transition_type == TRANS_MENU) {
         // 0 - Background start:
         case 0:
             if (background_y_current < background_y_target) {
-                background_y_speed     = ceil(abs(background_y_current - background_y_target) / 5);
+                background_y_speed    = ceil(abs(background_y_current - background_y_target) / 5);
                 background_y_current += background_y_speed;
 
                 if (background_y_current >= background_y_target) {
-                    background_y_speed    = 0;
+                    menu_state           = 1;
+                    transition_alarm     = 50;
+
+                    background_y_speed   = 0;
                     background_y_current = background_y_target;
-                    menu_state          = 1;
                 }
             }
             break;
 
         // 1 - Room change:
         case 1:
-            if (transition_timer < 1) {
-                transition_timer += transition_speed;
+            if (transition_alarm <= 0) {
+                if (debug == true) {
+                    event_user(0);
 
-                if (transition_timer >= 1) {
-                    if (debug == true) {
-                        event_user(0);
-
-                        if (input_check(INP_ACCEPT, CHECK_PRESSED)) {
-                            menu_state = 2;
-                            event_user(1);
-                        }
-                    } else {
-                        room_goto(transition_room);
+                    if (input_check(INP_ACCEPT, CHECK_PRESSED)) {
                         menu_state = 2;
+                        event_user(1);
                     }
+                } else {
+                    room_goto(transition_room);
+                    menu_state = 2;
                 }
             }
             break;
@@ -267,17 +273,19 @@ if (transition_type == TRANS_CARD) {
                 zone_x_current += zone_x_speed;
     
                 if (zone_x_current >= zone_x_target - zone_x_start) {
-                    global.time_allow = false;
+                    global.time_allow =  false;
+                    title_card_state  =  2;
+                    transition_alarm  =  50;
                     
-                    zone_x_speed      = 0;
+                    zone_x_speed      =  0;
                     zone_x_current    = -zone_x_start + zone_x_target;
-                    title_card_state  = 2;
                 }
             }
             break;
         
         // 2 - Room change:
         case 2:
+            /*
             if (transition_timer < 1) {
                 transition_timer += transition_speed;
     
@@ -296,11 +304,27 @@ if (transition_type == TRANS_CARD) {
                         title_card_state = 3;
                     }
                 }
+            }*/
+            
+            if (transition_alarm <= 0) {
+                if (debug == true) {
+                    event_user(0);
+
+                    if (input_check(INP_ACCEPT, CHECK_PRESSED)) {
+                        title_card_state = 4;
+                        event_user(1);
+                    }
+                } else {
+                    room_goto(transition_room);
+                    title_card_state = 3;
+                    transition_alarm = 100;
+                }
             }
             break;
         
         // 3 - Standing by:
         case 3:
+            /*
             if (transition_standby < 2) {
                 transition_standby += transition_speed;
     
@@ -308,6 +332,10 @@ if (transition_type == TRANS_CARD) {
                     transition_standby = 2;
                     title_card_state   = 4;
                 }
+            }*/
+            
+            if (transition_alarm <= 0) {
+                title_card_state = 4;
             }
             break;
         
@@ -357,19 +385,23 @@ if (transition_type == TRANS_CARD) {
     
                     with (player_exists(0)) {
                         // Animation standby:
-                        if (other.room_kickoff == KICKOFF_READY && animation_current != "ready") {
-                            if (other.transition_standby < 2.2) other.transition_standby += other.transition_speed;
-                            else other.transition_standby = 2.2;
+                        if (other.room_kickoff == KICKOFF_READY && other.transition_alarm == 0 && animation_current == "ready") {
+                            //if (other.transition_standby < 2.2) other.transition_standby += other.transition_speed;
+                            //else other.transition_standby = 2.2;
+                            
+                            other.transition_alarm = 120;
                         }
     
                         // Stop running:
-                        if (other.room_kickoff == KICKOFF_RUN && other.room_run_end_x != -1 && x >= other.room_run_end_x) room_run_end_x = -1;
+                        if (other.room_kickoff == KICKOFF_RUN && other.room_run_end_x != -1 && x >= other.room_run_end_x) {
+                            room_run_end_x = -1;
+                        }
                     }
                 }
             }
             
-            if (debug == true || room_kickoff == KICKOFF_DEBUG || (room_kickoff == KICKOFF_DEFAULT && transition_standby == 3.7) ||
-                (room_kickoff == KICKOFF_READY && transition_standby >= 2.2) || (room_kickoff == KICKOFF_RUN && room_run_end_x == -1)) {
+            if (debug == true || room_kickoff == KICKOFF_DEBUG || ((room_kickoff == KICKOFF_DEFAULT || room_kickoff == KICKOFF_READY) && transition_alarm == 0) ||
+                (room_kickoff == KICKOFF_RUN && room_run_end_x == -1)) {
                     title_card_state = 6;
             }
             break;
