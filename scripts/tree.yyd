@@ -87,6 +87,8 @@
 					|ctl_sonic_death
 			+Props
 				|ctl_spring
+				+Checkpoint
+					|ctl_checkpoint_inactive
 			+Effects
 				+Player
 					|ctl_spin_dash
@@ -127,7 +129,6 @@
 		|effect_create
 +Gameplay
 	+Player
-		+Control
 		+Collision
 			+Utilities
 				|angle_sensor
@@ -143,8 +144,8 @@
 			|player_wall_stop
 			|player_collision_steps
 		+Angle
-			|player_get_angle
 			|player_set_angle
+			|player_get_angle
 		+Actions
 			|player_set_action
 			|player_action_template
@@ -183,6 +184,7 @@
 			|player_handle_item_box
 			|player_handle_water_surface
 			|player_handle_hint
+		+Control
 		+Misc.
 			|player_ring_loss
 			|player_set_damage
@@ -205,7 +207,6 @@
 		+Left
 		+Right
 		+Top
-			|player_collision_object_top
 		+Bottom
 			|player_collision_bottom
 			|player_collision_object_bottom

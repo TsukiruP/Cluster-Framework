@@ -5,7 +5,7 @@ draw_backdrop_tiled_area
 game_start
 ctl_ring_sparkle
 ctl_sonic_ready
-player_collision_object_top
+ctl_checkpoint_inactive
 player_collision_bottom
 player_collision_object_bottom
 game_paused

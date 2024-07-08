@@ -276,8 +276,8 @@ applies_to=self
 
 // Go to checkpoint:
 if (global.checkpoint_x != -1 && global.checkpoint_y != -1) {
-    x                 = global.checkpoint_x;
-    y                 = global.checkpoint_y;
+    x                = global.checkpoint_x;
+    y                = global.checkpoint_y;
     global.game_time = global.checkpoint_time;
 }
 #define Step_0

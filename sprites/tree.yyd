@@ -226,9 +226,8 @@
 		+Rings
 			|spr_ring
 			|spr_goal_ring
-		+Checkpoint
-			|spr_checkpoint_inactive
-			|spr_checkpoint_active
+		|spr_checkpoint_inactive
+		|spr_checkpoint_active
 		+Springs
 			|spr_spring_left
 			|spr_spring_right

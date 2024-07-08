@@ -49,16 +49,16 @@ switch (floor_mode) {
 for (i = 0; i <= 1; i += 1) {
     // Push angle sensors down:
     while (!angle_sensor(off_x[i], off_y[i])
-    && off_x[i] > pos_x - 32 && off_x[i] < pos_x + 32
-    && off_y[i] > pos_y - 36 && off_y[i] < pos_y + 36) {
+        && off_x[i] > pos_x - 32 && off_x[i] < pos_x + 32
+        && off_y[i] > pos_y - 36 && off_y[i] < pos_y + 36) {
         off_x[i] += dsin(90 * floor_mode);
         off_y[i] += dcos(90 * floor_mode);
     }
 
     // Push angle sensors up:
     while (angle_sensor(off_x[i], off_y[i])
-    && off_x[i] > pos_x - 32 && off_x[i] < pos_x + 32
-    && off_y[i] > pos_y - 36 && off_y[i] < pos_y + 36) {
+        && off_x[i] > pos_x - 32 && off_x[i] < pos_x + 32
+        && off_y[i] > pos_y - 36 && off_y[i] < pos_y + 36) {
         off_x[i] -= dsin(90 * floor_mode);
         off_y[i] -= dcos(90 * floor_mode);
     }
