@@ -183,7 +183,7 @@ if (instance_exists(fade_handle)) {
             transition_handle                  = transition_create(room);
             transition_handle.depth            = depth;
             transition_handle.pause_ignore     = true;
-            transition_handle.transition_timer = 0.50;
+            transition_handle.transition_alarm = 0;
         }
 
         sound_stop_all();
