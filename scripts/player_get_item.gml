@@ -114,6 +114,6 @@ if (global.misc_feed == true) {
     with (ctrl_hud) {
         ds_list_add(item_feed, argument0);
         ds_list_add(item_feed, -8);
-        item_timer = 0;
+        item_alarm = 120;
     }
 }
