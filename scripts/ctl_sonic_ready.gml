@@ -138,7 +138,7 @@ else if (ctl_position(86)) {
 
 // Change frame:
 else if (ctl_position(90)) {
-    image_index = 8;
+    image_index = 10;
 }
 
 // Change frame:
