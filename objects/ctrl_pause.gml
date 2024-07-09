@@ -214,7 +214,9 @@ applies_to=self
 */
 /// Destroy
 
-if (pause_x_current == pause_x_target && !instance_exists(fade_handle)) instance_destroy();
+if (pause_x_current == pause_x_target && !instance_exists(fade_handle)) {
+    instance_destroy();
+}
 #define Other_10
 /*"/*'/**//* YYD ACTION
 lib_id=1
