@@ -11,10 +11,10 @@ text_hide        = false;
 text_overflow    = false;
 text_clear       = false;
 
-text_message     = "";
-text_length      = 0;
-text_current     = 0;
-text_target      = 0;
+text_message = "";
+text_length  = 0;
+text_current = 0;
+text_target  = 0;
 text_x           = 42;
 text_y = 70; // Text y
 
