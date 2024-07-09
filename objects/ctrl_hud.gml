@@ -27,6 +27,8 @@ air_x_speed   =  0;
 
 // Item feed variables:
 item_feed     = -1;
+item_alarm    =  0;
+
 item_timer    =  0;
 item_duration =  110;
 
@@ -235,16 +237,23 @@ if (game_paused(ctrl_pause)) exit;
 
 // Create feed:
 if (player_exists(0) != noone) {
-    if (global.misc_feed == true && item_feed == -1) item_feed = ds_list_create();
+    if (global.misc_feed == true && item_feed == -1) {
+        item_feed = ds_list_create();
+    }
 }
 
 // Update feed:
 if (item_feed != -1) {
     if (ds_list_size(item_feed) != 0) {
         if (ds_list_find_value(item_feed, ds_list_size(item_feed) - 1) == global.display_width / 2+ (ds_list_size(item_feed) / 2 - 1) * 9 - (ds_list_size(item_feed) / 2 - 1) * 18) {
-            item_timer = min(item_timer + 1, item_duration);
-
-            if (item_timer == item_duration) ds_list_clear(item_feed);
+            if (item_alarm > 0) {
+                item_alarm -= 1;
+                
+                // Clear feed:
+                if (item_alarm <= 0) {
+                    ds_list_clear(item_feed);
+                }
+            }
         }
     }
 }
@@ -433,9 +442,13 @@ if (item_feed != -1) {
             item_target = global.display_width / 2 + (ds_list_size(item_feed) / 2 - 1) * 9 - i / 2 * 18; // No, I do not know what I was thinking with coding this. Nor do I know why it works.
             item_speed  = ceil(abs(ds_list_find_value(item_feed, i + 1) - item_target) / 4);
 
-            if (ds_list_find_value(item_feed, i + 1) != item_target) ds_list_replace(item_feed, i + 1, ds_list_find_value(item_feed, i + 1) + item_speed);
-
-            if (item_timer < 60 || (item_timer >= 60 && item_timer mod 5)) draw_sprite(spr_items, ds_list_find_value(item_feed, i), view_xview[view_current] + ds_list_find_value(item_feed, i + 1), view_yview[view_current] + view_hview[view_current] - 33);
+            if (ds_list_find_value(item_feed, i + 1) != item_target) {
+                ds_list_replace(item_feed, i + 1, ds_list_find_value(item_feed, i + 1) + item_speed);
+            }
+            
+            if (item_alarm > 60 || (item_alarm <= 60 && item_alarm mod 5)) {
+                draw_sprite(spr_items, ds_list_find_value(item_feed, i), view_xview[view_current] + ds_list_find_value(item_feed, i + 1), view_yview[view_current] + view_hview[view_current] - 33);
+            }
         }
     }
 }
