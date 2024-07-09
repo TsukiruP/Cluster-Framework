@@ -73,7 +73,7 @@ if (input_lock == false) {
             }
         }
     }
-} else {
+} else if (!instance_exists(ctrl_transition)) {
     // Reset inputs:
     for (i = INP_LEFT; i <= INP_ALT; i += 1) {
         for (j = CHECK_HELD; j <= CHECK_RELEASED; j += 1) {
