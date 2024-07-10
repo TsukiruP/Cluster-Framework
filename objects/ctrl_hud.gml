@@ -26,11 +26,9 @@ air_x_current = -sprite_get_width(spr_hud);
 air_x_speed   =  0;
 
 // Item feed variables:
-item_feed     = -1;
-item_alarm    =  0;
-
-item_timer    =  0;
-item_duration =  110;
+item_hide  =  false;
+item_feed  = -1;
+item_alarm =  0;
 
 // Status variables:
 status_icon[STATUS_SHIELD]   =  ITEM_BASIC;
@@ -249,6 +247,15 @@ if (item_feed != -1) {
             if (item_alarm > 0) {
                 item_alarm -= 1;
                 
+                // Hide:
+                if (item_alarm <= 60) {
+                    if (flicker(item_alarm, 4)) {
+                        item_hide = !item_hide;
+                    }
+                } else {
+                    item_hide = false;
+                }
+                
                 // Clear feed:
                 if (item_alarm <= 0) {
                     ds_list_clear(item_feed);
@@ -373,7 +380,9 @@ applies_to=self
 /// Draw Status
 
 // Don't bother if HUD isn't default or status is disabled:
-if (global.misc_hud != 1 || global.misc_status == 0) exit;
+if (global.misc_hud != 1 || global.misc_status == 0) {
+    exit;
+}
 
 if (player_exists(0) != noone) {
     // Reset status count:
@@ -386,19 +395,47 @@ if (player_exists(0) != noone) {
 
         // Invincibility:
         other.status_active[STATUS_INVIN, 0] = (status_invin != INVIN_NONE);
-        other.status_active[STATUS_INVIN, 1] = (status_invin_alarm == 0 || status_invin_alarm > 120 || (status_invin_alarm <= 120 && abs(status_invin_alarm mod 5)));
+
+        if (status_invin_alarm > 0 && status_invin_alarm <= 120) {
+            if (flicker(status_invin_alarm, 4)) {
+                other.status_active[STATUS_INVIN, 1] = !other.status_active[STATUS_INVIN, 1];
+            }
+        } else {
+            other.status_active[STATUS_INVIN, 1] = true;
+        }
 
         // Speed:
         other.status_active[STATUS_SPEED, 0] = (status_speed != 0)
-        other.status_active[STATUS_SPEED, 1] = (status_speed_alarm == 0 || status_speed_alarm > 120 || (status_speed_alarm <= 120 && abs(status_speed_alarm mod 5)));
+
+        if (status_speed_alarm > 0 && status_speed_alarm <= 120) {
+            if (flicker(status_speed_alarm, 4)) {
+                other.status_active[STATUS_SPEED, 1] = !other.status_active[STATUS_SPEED, 1];
+            }
+        } else {
+            other.status_active[STATUS_SPEED, 1] = true;
+        }
 
         // Panic:
         other.status_active[STATUS_PANIC, 0] = status_panic;
-        other.status_active[STATUS_PANIC, 1] = (status_panic_alarm == 0 || status_panic_alarm > 120 || (status_panic_alarm <= 120 && abs(status_panic_alarm mod 5)));
+
+        if (status_panic_alarm > 0 && status_panic_alarm <= 120) {
+            if (flicker(status_panic_alarm, 4)) {
+                other.status_active[STATUS_PANIC, 1] = !other.status_active[STATUS_PANIC, 1];
+            }
+        } else {
+            other.status_active[STATUS_PANIC, 1] = true;
+        }
 
         // Swap:
         other.status_active[STATUS_SWAP, 0] = status_swap;
-        other.status_active[STATUS_SWAP, 1] = (status_swap_alarm == 0 || status_swap_alarm > 120 || (status_swap_alarm <= 120 && abs(status_swap_alarm mod 5)));
+
+        if (status_swap_alarm > 0 && status_swap_alarm <= 120) {
+            if (flicker(status_swap_alarm, 4)) {
+                other.status_active[STATUS_SWAP, 1] = !other.status_active[STATUS_SWAP, 1];
+            }
+        } else {
+            other.status_active[STATUS_SWAP, 1] = true;
+        }
     }
 
     for (i = status_size; i >= 0; i -= 1) {
@@ -428,8 +465,10 @@ applies_to=self
 */
 /// Draw Item Feed
 
-// Don't bother if HUD has been disabled:
-if (global.misc_hud == 0) exit;
+// Don't bother if feed has been disabled:
+if (global.misc_hud == 0) {
+    exit;
+}
 
 // Item feed:
 if (item_feed != -1) {
@@ -446,9 +485,7 @@ if (item_feed != -1) {
                 ds_list_replace(item_feed, i + 1, ds_list_find_value(item_feed, i + 1) + item_speed);
             }
             
-            if (item_alarm > 60 || (item_alarm <= 60 && item_alarm mod 5)) {
-                draw_sprite(spr_items, ds_list_find_value(item_feed, i), view_xview[view_current] + ds_list_find_value(item_feed, i + 1), view_yview[view_current] + view_hview[view_current] - 33);
-            }
+            draw_sprite_ext(spr_items, ds_list_find_value(item_feed, i), view_xview[view_current] + ds_list_find_value(item_feed, i + 1), view_yview[view_current] + view_hview[view_current] - 33, 1, 1, 0, c_white, !item_hide);
         }
     }
 }

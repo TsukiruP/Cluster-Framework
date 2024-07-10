@@ -55,9 +55,12 @@ roll_rebounce      = false;
 roll_forced        = false;
 roll_offset        = 0;
 
+// Death variables:
+death_alarm  = -5;
+death_handle = noone;
+
 // Misc. variables:
 wall_stop        =  true;
-death_alarm      = -5;
 depth_default    =  0;
 tunnel_lock      =  false;
 score_multiplier =  0;
@@ -246,7 +249,7 @@ input_lock_alarm  = 0;
 input_cpu         = false;
 input_cpu_alarm   = 0;
 
-player_get_input();
+player_reset_input();
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -1329,8 +1332,13 @@ if (global.misc_trails == true) {
 }
 
 // Hurt alpha:
-if (status_invin == INVIN_HURT && status_invin_alarm > 0) image_alpha = (status_invin_alarm div 4) mod 2;
-else image_alpha = 1;
+if (status_invin == INVIN_HURT && status_invin_alarm > 0) {
+    if (flicker(status_invin_alarm, 4)) {
+        image_alpha = !image_alpha;
+    }
+} else {
+    image_alpha = 1;
+}
 
 // Player:
 if (sprite_exists(sprite_index)) {

@@ -75,9 +75,5 @@ if (input_lock == false) {
     }
 } else if (!instance_exists(ctrl_transition)) {
     // Reset inputs:
-    for (i = INP_LEFT; i <= INP_ALT; i += 1) {
-        for (j = CHECK_HELD; j <= CHECK_RELEASED; j += 1) {
-            input_player[i, j] = false;
-        }
-    }
+    player_reset_input();
 }

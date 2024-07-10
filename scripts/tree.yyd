@@ -127,6 +127,7 @@
 		|player_exists
 		|water_exists
 		|effect_create
+		|flicker
 +Gameplay
 	+Player
 		+Collision
@@ -166,6 +167,16 @@
 				|player_action_spring
 		+Passives
 			|classic_passive_clock_up
+		+Handle
+			|player_handle_layer
+			|player_handle_ring
+			|player_handle_spring
+			|player_handle_item_box
+			|player_handle_water_surface
+			|player_handle_hint
+		+Input
+			|player_reset_input
+			|player_get_input
 		+Animation
 			|player_animation_core
 			|player_add_animation
@@ -177,19 +188,10 @@
 				|knuckles_add_animations
 				|classic_add_animations
 			|player_compile_animations
-		+Handle
-			|player_handle_layer
-			|player_handle_ring
-			|player_handle_spring
-			|player_handle_item_box
-			|player_handle_water_surface
-			|player_handle_hint
-		+Control
 		+Misc.
 			|player_ring_loss
 			|player_set_damage
 			|player_get_item
-			|player_get_input
 			|player_get_physics
 			+Trail
 				|start_trail
@@ -208,10 +210,8 @@
 		+Right
 		+Top
 		+Bottom
-			|player_collision_bottom
 			|player_collision_object_bottom
 	+Actions (OLD)
-		|player_action_jump_old
 		|player_action_look_old
 		|player_action_crouch_old
 		|player_action_spin_dash_old
