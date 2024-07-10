@@ -8,7 +8,9 @@ with (ctrl_input) {
     device_id = joystick_device[argument0, 0];
 
     // Check device id:
-    if (device_id <= -1) exit;
+    if (device_id <= -1) {
+        exit;
+    }
 
     if (joystick_exists(device_id)) {
         switch (argument1) {

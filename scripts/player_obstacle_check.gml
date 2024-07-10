@@ -1,7 +1,9 @@
 /// player_obstacle_check(left, top, right, bottom, [semi_solid])
 
 // Exit if collision is disabled:
-if (collision_allow == false) exit;
+if (collision_allow == false) {
+    exit;
+}
 
 // Set up arguments:
 var x1, y1, x2, y2;

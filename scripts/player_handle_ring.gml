@@ -6,7 +6,10 @@ var ring_handle;
 // Nearest ring:
 ring_handle = instance_nearest(x, y, par_ring);
 
-if (ring_handle == noone) exit;
+// Exit if there's no nearest handle:
+if (ring_handle == noone) {
+    exit;
+}
 
 // Collect ring:
 if (player_collision_prop(ring_handle, SIDE_MAIN) != 0) {

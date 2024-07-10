@@ -6,7 +6,10 @@ var item_box_handle;
 // Nearest item box:
 item_box_handle = instance_nearest(x, y, par_item_box);
 
-if (item_box_handle == noone) exit;
+// Exit if there's no nearest handle:
+if (item_box_handle == noone) {
+    exit;
+}
 
 // Break item box:
 if (input_cpu == false && (player_collision_prop(item_box_handle, SIDE_MAIN) != 0 || player_collision_prop(item_box_handle, SIDE_MAIN, 1) != 0)) {

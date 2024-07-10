@@ -28,6 +28,8 @@ applies_to=self
 /// Animate
 
 // Don't bother if the stage is paused:
-if (game_paused(ctrl_pause)) exit;
+if (game_paused(ctrl_pause)) {
+    exit;
+}
 
 image_index = (floor(global.object_time) div (8 / (1 + dropped))) mod 4;

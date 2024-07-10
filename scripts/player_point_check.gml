@@ -1,7 +1,9 @@
 /// player_point_check(radius_x, radius_y, [semi_solid])
 
 // Exit if collision is disabled:
-if (collision_allow == false) exit;
+if (collision_allow == false) {
+    exit;
+}
 
 // Set up arguments:
 var radius_x, radius_y, semi_solid;

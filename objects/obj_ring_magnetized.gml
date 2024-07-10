@@ -32,7 +32,9 @@ applies_to=self
 /// Movement
 
 // Don't bother if the stage is paused or text is active:
-if (game_paused()) exit;
+if (game_paused()) {
+    exit;
+}
 
 if (player_exists(0) != noone) {
     var player_handle, xx, yy;

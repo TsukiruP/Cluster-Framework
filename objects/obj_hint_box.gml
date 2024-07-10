@@ -51,7 +51,9 @@ applies_to=self
 /// Animate
 
 // Don't bother if the stage is paused:
-if (game_paused(ctrl_pause)) exit;
+if (game_paused(ctrl_pause)) {
+    exit;
+}
 
 // Match player:
 if (player_handle != noone) {

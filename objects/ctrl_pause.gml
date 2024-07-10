@@ -38,15 +38,19 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Navigation
+/// Menu
 
 // Don't bother if text is active:
-if (game_paused(ctrl_text)) exit;
+if (game_paused(ctrl_text)) {
+    exit;
+}
 
 var menu_down, menu_up, menu_direction;
 
 // Exit if some menu behavior has been executed:
-if (menu_lock == true) exit;
+if (menu_lock == true) {
+    exit;
+}
 
 // Input delay:
 if (pause_delay == 0) {
@@ -77,15 +81,23 @@ if (pause_delay == 0) {
 }
 
 // Hide fade:
-if (pause_hide != 0) fade_handle.visible = false;
-else fade_handle.visible = true;
+if (pause_hide != 0) {
+    fade_handle.visible = false;
+} else {
+    fade_handle.visible = true;
+}
 
 // Hide overlays:
-if (pause_hide == 2) par_overlay.visible = false;
-else par_overlay.visible = true;
+if (pause_hide == 2) {
+    par_overlay.visible = false;
+} else {
+    par_overlay.visible = true;
+}
 
 // Exit if hiding the menu:
-if (pause_hide != 0) exit;
+if (pause_hide != 0) {
+    exit;
+}
 
 // Menu direction:
 menu_down = input_check(INP_DOWN, CHECK_PRESSED);
@@ -175,7 +187,10 @@ applies_to=self
 */
 /// Restart
 
-if (menu_lock == false) exit;
+// Exit if some menu behavior has been executed:
+if (menu_lock == false) {
+    exit;
+}
 
 if (instance_exists(fade_handle)) {
     if (fade_handle.fade_alpha == 2) {
@@ -246,7 +261,9 @@ applies_to=self
 /// Draw Menu
 
 // Don't draw if hidden:
-if (pause_hide != 0) exit;
+if (pause_hide != 0) {
+    exit;
+}
 
 // Pause menu:
 draw_sprite(pause_sprite, menu_selection, view_xview[view_current] + pause_x_current, view_yview[view_current] + global.display_height / 2);

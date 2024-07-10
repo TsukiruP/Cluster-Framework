@@ -1,7 +1,9 @@
 /// player_set_angle()
 
 // Exit if ground collision is disabled:
-if (ground_collision_allow == false) exit;
+if (ground_collision_allow == false) {
+    exit;
+}
 
 var new_angle, pos_x, pos_y;
 

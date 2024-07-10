@@ -34,7 +34,9 @@ applies_to=self
 /// Movement
 
 // Don't bother if the stage is paused or text is active:
-if (game_paused()) exit;
+if (game_paused()) {
+    exit;
+}
 
 if (dropped == true) {
     // Destroy if out of view:
@@ -64,7 +66,9 @@ applies_to=self
 /// Magnetization
 
 // Don't bother if the stage is paused or text is active:
-if (game_paused()) exit;
+if (game_paused()) {
+    exit;
+}
 
 if(player_exists(0) != noone) {
     var player_handle;
@@ -89,13 +93,18 @@ applies_to=self
 /// Lifespan
 
 // Don't bother if the stage is paused or text is active:
-if (game_paused()) exit;
+if (game_paused()) {
+    exit;
+}
 
 if (dropped == true) {
     // Decrease lifespan alarm:
     lifespan = max(lifespan - 1 * global.object_ratio, 0);
     
-    if(lifespan <= 0) instance_destroy();
+    // Destroy:
+    if(lifespan <= 0) {
+        instance_destroy();
+    }
 }
 #define Draw_0
 /*"/*'/**//* YYD ACTION

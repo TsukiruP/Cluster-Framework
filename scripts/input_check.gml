@@ -14,8 +14,11 @@ if (argument[0] == INP_ANY) {
 
             // Joysticks:
             if (argument_count > 2) {
-                if (argument[2] > DEV_KEYBOARD) joystick_target = argument[2] - 1;
-                else exit;
+                if (argument[2] > DEV_KEYBOARD) {
+                    joystick_target = argument[2] - 1;
+                } else {
+                    exit;
+                }
             } else {
                 joystick_target = 0;
             }
@@ -34,8 +37,11 @@ if (argument[0] == INP_ANY) {
 
             // Joysticks:
             if (argument_count > 2) {
-                if (argument[2] > DEV_KEYBOARD) joystick_target = argument[2] - 1;
-                else exit;
+                if (argument[2] > DEV_KEYBOARD) {
+                    joystick_target = argument[2] - 1;
+                } else {
+                    exit;
+                }
             } else {
                 joystick_target = 0;
             }
@@ -54,8 +60,11 @@ if (argument[0] == INP_ANY) {
 
             // Joysticks:
             if (argument_count > 2) {
-                if (argument[2] > DEV_KEYBOARD) joystick_target = argument[2] - 1;
-                else exit;
+                if (argument[2] > DEV_KEYBOARD) {
+                    joystick_target = argument[2] - 1;
+                } else {
+                    exit;
+                }
             } else {
                 joystick_target = 0;
             }

@@ -32,7 +32,9 @@ applies_to=self
 /// Draw Size
 
 // Exit if not in debug mode:
-if (debug_mode == false) exit;
+if (debug_mode == false) {
+    exit;
+}
 
 draw_set_color(c_red);
 

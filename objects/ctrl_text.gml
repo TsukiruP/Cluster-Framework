@@ -15,8 +15,8 @@ text_message = "";
 text_length  = 0;
 text_current = 0;
 text_target  = 0;
-text_x           = 42;
-text_y = 70; // Text y
+text_x       = 42;
+text_y       = 70;
 
 text_scroll[0]   = 0;     // Scroll current
 text_scroll[1]   = 0;     // Scroll target
@@ -372,7 +372,9 @@ applies_to=self
 /// Draw Topic
 
 // Don't draw if hidden:
-if (text_hide == true) exit;
+if (text_hide == true) {
+    exit;
+}
 
 // Viewport:
 d3d_set_viewport(0, 0, global.display_width, global.display_height);
@@ -406,7 +408,9 @@ applies_to=self
 /// Draw Text
 
 // Don't draw if hidden:
-if (text_hide == true) exit;
+if (text_hide == true) {
+    exit;
+}
 
 // Box:
 draw_set_color(make_color_rgb(global.textbox_red, global.textbox_green, global.textbox_blue));
@@ -448,7 +452,9 @@ applies_to=self
 /// Draw Log
 
 // Don't draw if hidden:
-if (text_hide == true) exit;
+if (text_hide == true) {
+    exit;
+}
 
 // Background:
 draw_set_color(c_black);

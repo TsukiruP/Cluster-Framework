@@ -73,7 +73,9 @@ applies_to=self
 /// Alarm
 
 // Don't bother if the stage is paused:
-if (game_paused(ctrl_pause) && pause_ignore == false) exit;
+if (game_paused(ctrl_pause) && pause_ignore == false) {
+    exit;
+}
 
 if (transition_alarm > 0) {
     transition_alarm -= 1;
@@ -87,7 +89,9 @@ applies_to=self
 /// Background
 
 // Don't bother if the stage is paused:
-if (game_paused(ctrl_pause) && pause_ignore == false) exit;
+if (game_paused(ctrl_pause) && pause_ignore == false) {
+    exit;
+}
 
 // Background target - bottom of screen:
 if ((transition_type == TRANS_MENU && transition_state < 2) || (transition_type == TRANS_CARD && transition_state < 4)) {
@@ -111,7 +115,7 @@ else {
 
 // Background position:
 if (background_y_current != background_y_target) {
-    var background_y_steps;
+    var background_y_steps, background_x_distance;
     
     // Background steps:
     if (transition_type == TRANS_RETRY) {
@@ -120,14 +124,14 @@ if (background_y_current != background_y_target) {
         background_y_factor = 5;
     }
     
-    background_y_speed    = ceil(abs(background_y_target - background_y_current) / background_y_factor);
-    background_y_current += background_y_speed * sign(background_y_target - background_y_current);
+    // Background distance:
+    background_x_distance = background_y_target - background_y_current;
     
-    // abs(background_y_current) >= abs(background_y_target) && sign(background_y_current) == sign(background_y_target)
+    background_y_speed    = ceil(abs(background_x_distance) / background_y_factor);
+    background_y_current += background_y_speed * sign(background_x_distance);
     
     if (background_y_current == background_y_target) {
-        background_y_speed   = 0;
-        background_y_current = background_y_target;
+        background_y_speed = 0;
         
         // Transition behavior:
         switch (transition_type) {
@@ -157,7 +161,9 @@ applies_to=self
 /// Room & Debug
 
 // Don't bother if the stage is paused:
-if (game_paused(ctrl_pause) && pause_ignore == false) exit;
+if (game_paused(ctrl_pause) && pause_ignore == false) {
+    exit;
+}
 
 if (transition_alarm <= 0) {
     if ((transition_type != TRANS_CARD && transition_state == 1) || (transition_type == TRANS_CARD && transition_state == 2)) {
@@ -243,7 +249,9 @@ applies_to=self
 /// Title Card
 
 // Don't bother if the stage is paused:
-if (game_paused(ctrl_pause) && pause_ignore == false) exit;
+if (game_paused(ctrl_pause) && pause_ignore == false) {
+    exit;
+}
 
 if (transition_type == TRANS_CARD) {
     // Banner scroll:
@@ -251,9 +259,9 @@ if (transition_type == TRANS_CARD) {
 
     if (player_exists(0) != noone) {
         // Run:
-        if (room_kickoff == KICKOFF_RUN && room_run_end_x != -1 && transition_state >= 4) {
-            if (player_exists(0).x >= room_run_end_x) {
-                room_run_end_x = -1;
+        if (room_kickoff == KICKOFF_RUN && room_run_target != -1 && transition_state >= 4) {
+            if (player_exists(0).x >= room_run_target) {
+                room_run_target = -1;
             } else {
                 with (player_exists(0)) {
                     g_speed                             = top_speed;
@@ -337,7 +345,7 @@ if (transition_type == TRANS_CARD) {
         
         // 4 - Kickoff start:
         case 4:
-            if (player_exists(0) != noone && debug == false && (room_kickoff != KICKOFF_RUN || room_run_end_x != -1)) {
+            if (player_exists(0) != noone && debug == false && (room_kickoff != KICKOFF_RUN || room_run_target != -1)) {
                 // Ready:
                 if (room_kickoff == KICKOFF_READY) {
                     // Time it with the background:
@@ -401,7 +409,9 @@ applies_to=self
 /// Retry
 
 // Don't bother if the stage is paused:
-if (game_paused(ctrl_pause) && pause_ignore == false) exit;
+if (game_paused(ctrl_pause) && pause_ignore == false) {
+    exit;
+}
 
 if (transition_type == TRANS_RETRY) {
     // Background scroll:
@@ -409,10 +419,10 @@ if (transition_type == TRANS_RETRY) {
 
     if (player_exists(0) != noone) {
         // Run:
-        if (room_kickoff == KICKOFF_RUN && room_run_end_x != -1 && transition_state >= 4) {
+        if (room_kickoff == KICKOFF_RUN && room_run_target != -1 && transition_state >= 4) {
             // Reset:
-            if ((global.checkpoint_x != -1 && global.checkpoint_y != -1) || player_exists(0).x >= room_run_end_x) {
-                room_run_end_x = -1;
+            if ((global.checkpoint_x != -1 && global.checkpoint_y != -1) || player_exists(0).x >= room_run_target) {
+                room_run_target = -1;
             }
             
             // Run:
@@ -429,7 +439,7 @@ if (transition_type == TRANS_RETRY) {
             transition_state = 2;
         }
     } else {
-        room_run_end_x = -1;
+        room_run_target = -1;
     }
 
     // Retry target:
@@ -472,7 +482,7 @@ if (transition_type == TRANS_RETRY) {
         
         // 4 - Kickoff end:
         case 4:
-            if (debug == true || room_kickoff != KICKOFF_RUN || (room_kickoff == KICKOFF_RUN && room_run_end_x == -1)) {
+            if (debug == true || room_kickoff != KICKOFF_RUN || (room_kickoff == KICKOFF_RUN && room_run_target == -1)) {
                 transition_state = 5;
             }
             break;

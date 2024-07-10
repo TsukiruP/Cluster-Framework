@@ -87,7 +87,9 @@ applies_to=self
 /// Movement
 
 // Don't bother if the stage is paused:
-if (game_paused(ctrl_pause)) exit;
+if (game_paused(ctrl_pause)) {
+    exit;
+}
 
 // Hide:
 if (hud_hide == false) {
@@ -201,7 +203,9 @@ applies_to=self
 /// Status Icons
 
 // Don't bother if the stage is paused:
-if (game_paused(ctrl_pause)) exit;
+if (game_paused(ctrl_pause)) {
+    exit;
+}
 
 if (player_exists(0) != noone) {
     with (player_exists(0)) {
@@ -231,7 +235,9 @@ applies_to=self
 /// Item Feed
 
 // Don't bother if the stage is paused:
-if (game_paused(ctrl_pause)) exit;
+if (game_paused(ctrl_pause)) {
+    exit;
+}
 
 // Create feed:
 if (player_exists(0) != noone) {
@@ -285,7 +291,9 @@ applies_to=self
 /// Draw Default HUD
 
 // Don't bother if HUD isn't default:
-if (global.misc_hud != 1) exit;
+if (global.misc_hud != 1) {
+    exit;
+}
 
 // Font:
 draw_set_font(global.font_hud);
@@ -335,7 +343,9 @@ applies_to=self
 /// Draw S4E2 HUD
 
 // Don't bother if HUD isn't S4E2:
-if (global.misc_hud != 2) exit;
+if (global.misc_hud != 2) {
+    exit;
+}
 
 // Font:
 draw_set_color(c_white);

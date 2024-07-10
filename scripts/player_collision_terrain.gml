@@ -1,7 +1,9 @@
 /// player_collision_terrain()
 
 // Exit if ground collision is disabled:
-if (ground_collision_allow == false) exit;
+if (ground_collision_allow == false) {
+    exit;
+}
 
 // Left wall collision:
 while (player_point_check(-wall_left, wall_height)) {

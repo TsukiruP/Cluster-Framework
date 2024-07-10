@@ -1,10 +1,12 @@
 /// player_set_damage(obj)
 //
 
-var hurt_direction;
-
 // Exit if already hurt, dying, or invincible:
-if (action_current == player_action_hurt || action_current == player_action_death || status_invin > 0) exit;
+if (action_current == player_action_hurt || action_current == player_action_death || status_invin > 0) {
+    exit;
+}
+
+var hurt_direction;
 
 // Hurt direction:
 if (sign(x - argument0.x) == 0) {

@@ -292,7 +292,9 @@ applies_to=self
 ///  Inputs
 
 // Don't bother if the stage is paused or text is active:
-if (game_paused()) exit;
+if (game_paused()) {
+    exit;
+}
 
 // Receive inputs:
 player_get_input();
@@ -318,8 +320,11 @@ applies_to=self
 /// Actions
 
 // Don't bother if the stage is paused or text is active:
-if (game_paused()) exit; 
+if (game_paused()) {
+    exit;
+}
 
+// Execute action:
 if (script_exists(action_current)) {
     script_execute(action_current, ACTION_STEP);
 
@@ -335,7 +340,9 @@ applies_to=self
 /// Handle List
 
 // Don't bother if the stage is paused or text is active:
-if (game_paused()) exit;
+if (game_paused()) {
+    exit;
+}
 
 player_handle_layer();
 player_handle_ring();
@@ -479,7 +486,9 @@ applies_to=self
 /// Refill Air
 
 // Don't bother if the stage is paused or text is active:
-if (game_paused()) exit;
+if (game_paused()) {
+    exit;
+}
 
 // Don't bother if in the middle of respawning/dying:
 if (action_current != player_action_death && physics_type == PHYS_UNDERWATER && !instance_exists(ctrl_tally)) {
@@ -508,7 +517,9 @@ applies_to=self
 /// Alarms
 
 // Don't bother if the stage is paused:
-if (game_paused(ctrl_pause)) exit;
+if (game_paused(ctrl_pause)) {
+    exit;
+}
 
 // Hurt invincibility:
 if (status_invin_alarm > 0) {
@@ -564,7 +575,9 @@ applies_to=self
 /// Air
 
 // Don't bother if the stage is paused or text is active:
-if (game_paused()) exit;
+if (game_paused()) {
+    exit;
+}
 
 // Don't bother if in the middle of respawning/dying:
 if (action_current != player_action_death && !instance_exists(ctrl_tally)) {
@@ -626,7 +639,9 @@ applies_to=self
 // Sets the animation target and then calls the animation core script.
 
 // Don't bother if the stage is paused:
-if (game_paused(ctrl_pause)) exit;
+if (game_paused(ctrl_pause)) {
+    exit;
+}
 
 // Store previous height:
 var main_bottom_temp;
@@ -851,7 +866,9 @@ applies_to=self
 // Sets the animation angle based on the current animation.
 
 // Don't bother if the stage is paused or text is active:
-if (game_paused()) exit;
+if (game_paused()) {
+    exit;
+}
 
 var angle_mod;
 
@@ -1010,7 +1027,9 @@ applies_to=self
 /// Update Trail
 
 // Don't bother if trails are disabled:
-if (global.misc_trails == false) exit;
+if (global.misc_trails == false) {
+    exit;
+}
 
 // Color trail:
 if (global.misc_trails == true) {
@@ -1352,7 +1371,9 @@ applies_to=self
 /// Draw Size
 
 // Exit if not in debug mode:
-if (debug_mode == false) exit;
+if (debug_mode == false) {
+    exit;
+}
 
 // Main size:
 var x1, y1, x2, y2;
