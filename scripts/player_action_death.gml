@@ -39,13 +39,21 @@ switch (argument0) {
             death_alarm -= 1;
 
             // Transition:
-            if (death_alarm == 64 && input_cpu == false && !instance_exists(ctrl_transition)) {
-                transition_create(room, TRANS_RETRY);
+            if (death_alarm == 64 && input_cpu == false && death_handle == noone) {
+                death_handle = transition_create(room, TRANS_RETRY);
             }
         }
         break;
 
     // Finish:
     case ACTION_FINISH:
+        // Destroy transition:
+        if (death_handle != noone) {
+            with (death_handle) {
+                instance_destroy();
+            }
+
+            death_handle = 0;
+        }
         break;
 }
