@@ -95,7 +95,7 @@ if ((transition_type == TRANS_MENU && transition_state < 2) || (transition_type 
 }
 
 // Background target - retry letterbox:
-else if (transition_type == TRANS_RETRY && transition_state < 2) {
+else if (transition_type == TRANS_RETRY && (transition_state < 2 || transition_state == 4)) {
     background_y_target = 32;
 }
 
@@ -121,9 +121,11 @@ if (background_y_current != background_y_target) {
     }
     
     background_y_speed    = ceil(abs(background_y_target - background_y_current) / background_y_factor);
-    background_y_current += background_y_speed * sign(background_y_target);
+    background_y_current += background_y_speed * sign(background_y_target - background_y_current);
     
-    if (abs(background_y_current) >= abs(background_y_target) && sign(background_y_current) == sign(background_y_target)) {
+    // abs(background_y_current) >= abs(background_y_target) && sign(background_y_current) == sign(background_y_target)
+    
+    if (background_y_current == background_y_target) {
         background_y_speed   = 0;
         background_y_current = background_y_target;
         
@@ -212,7 +214,7 @@ if (transition_type == TRANS_FADE) {
                 global.time_allow = false;
 
                 transition_state = 1;
-                transition_alarm = 90;
+                transition_alarm = 60;
             }
             break;
 
@@ -249,15 +251,13 @@ if (transition_type == TRANS_CARD) {
 
     if (player_exists(0) != noone) {
         // Run:
-        if (room_kickoff == KICKOFF_RUN && transition_state >= 4) {
-            if (room_run_end_x != -1) {
+        if (room_kickoff == KICKOFF_RUN && room_run_end_x != -1 && transition_state >= 4) {
+            if (player_exists(0).x >= room_run_end_x) {
+                room_run_end_x = -1;
+            } else {
                 with (player_exists(0)) {
                     g_speed                             = top_speed;
                     input_player[INP_RIGHT, CHECK_HELD] = true;
-                }
-                
-                if (player_exists(0).x >= room_run_end_x) {
-                    room_run_end_x = -1;
                 }
             }
         }
@@ -289,13 +289,13 @@ if (transition_type == TRANS_CARD) {
     
     // Banner position:
     if (transition_state > 0 && banner_x_current != banner_x_target) {
-        banner_x_speed    = ceil(abs(banner_x_target - banner_x_current) / banner_x_factor);
-        banner_x_current += banner_x_speed * (sign(banner_x_target) + (sign(banner_x_target) == 0));
+        var banner_x_distance;
         
-        if (abs(banner_x_current) >= abs(banner_x_target) && sign(banner_x_current) == sign(banner_x_target)) {
-            banner_x_speed   = 0;
-            banner_x_current = banner_x_target;
-        }
+        // Banner distance:
+        banner_x_distance = banner_x_target - banner_x_current;
+        
+        banner_x_speed    = ceil(abs(banner_x_distance) / banner_x_factor);
+        banner_x_current += banner_x_speed * (sign(banner_x_distance));
     }
     
     // Zone position:
@@ -409,15 +409,17 @@ if (transition_type == TRANS_RETRY) {
 
     if (player_exists(0) != noone) {
         // Run:
-        if (room_kickoff == KICKOFF_RUN && transition_state >= 4) {
-            if (global.checkpoint_x == -1 && global.checkpoint_y == -1 && room_run_end_x != -1) {
+        if (room_kickoff == KICKOFF_RUN && room_run_end_x != -1 && transition_state >= 4) {
+            // Reset:
+            if ((global.checkpoint_x != -1 && global.checkpoint_y != -1) || player_exists(0).x >= room_run_end_x) {
+                room_run_end_x = -1;
+            }
+            
+            // Run:
+            else {
                 with (player_exists(0)) {
                     g_speed                             = top_speed;
                     input_player[INP_RIGHT, CHECK_HELD] = true;
-                }
-                
-                if (player_exists(0).x >= room_run_end_x) {
-                    room_run_end_x = -1;
                 }
             }
         }
@@ -426,7 +428,9 @@ if (transition_type == TRANS_RETRY) {
         if (transition_state < 2 && input_check(INP_ANY, CHECK_PRESSED)) {
             transition_state = 2;
         }
-    } 
+    } else {
+        room_run_end_x = -1;
+    }
 
     // Retry target:
     if (transition_state >= 2) {
@@ -466,15 +470,20 @@ if (transition_type == TRANS_RETRY) {
             }
             break;
         
-        // 4 - Background end:
+        // 4 - Kickoff end:
         case 4:
-            if (debug == true || room_kickoff != KICKOFF_RUN || (room_kickoff == KICKOFF_RUN && (room_run_end_x == -1 || (global.checkpoint_x != -1 && global.checkpoint_y != -1)))) {
-                // Start game:
-                game_start();
+            if (debug == true || room_kickoff != KICKOFF_RUN || (room_kickoff == KICKOFF_RUN && room_run_end_x == -1)) {
+                transition_state = 5;
+            }
+            break;
+        
+        // 5 - Retry end:
+        case 5:
+            // Start game:
+            game_start();
 
-                if (background_y_current == background_y_target) {
-                    instance_destroy();
-                }
+            if (background_y_current == background_y_target) {
+                instance_destroy();
             }
             break;
     }
