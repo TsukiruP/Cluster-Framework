@@ -1,4 +1,4 @@
-/// room_set_data(transition, [music, background, zone, act, water level, kickoff, run end x])
+/// room_set_data(transition, [music, background, zone, act, water level, opener, run end x])
 
 transition_type = argument[0];
 
@@ -37,16 +37,16 @@ if (argument_count >= 6) {
     room_water_level = -1;
 }
 
-// Set kickoff
+// Set opener
 if (argument_count >= 7) {
-    room_kickoff = argument[6];
+    room_opener = argument[6];
 
-    if (room_kickoff == KICKOFF_RUN && argument_count >= 8) {
+    if (room_opener == OPENER_RUN && argument_count >= 8) {
         room_run_target = argument[7];
     } else {
         room_run_target = -1;
     }
 } else {
-    room_kickoff   =  KICKOFF_DEFAULT;
+    room_opener     =  OPENER_IDLE;
     room_run_target = -1;
 }

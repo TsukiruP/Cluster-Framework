@@ -75,9 +75,9 @@ if ((player_handle.status_shield == SHIELD_FIRE && (image_index mod 2) != 0) || 
 shield_advance = (player_handle.status_shield == SHIELD_BASIC || player_handle.status_shield == SHIELD_MAGNETIC || player_handle.status_invin == INVIN_BUFF);
 
 // Hide:
-if (!game_paused(ctrl_pause) && (player_handle.status_shield == SHIELD_BUBBLE || (global.advance_flicker == true && shield_advance == true))) {
+if (!game_is_paused(ctrl_pause) && (player_handle.status_shield == SHIELD_BUBBLE || (global.advance_flicker == true && shield_advance == true))) {
     // Hide:
-    if (!flicker(ctl_time, 2)) {
+    if (divisible(ctl_time, 2)) {
         shield_hide = !shield_hide;
     }
 } else {

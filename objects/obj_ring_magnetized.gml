@@ -32,7 +32,7 @@ applies_to=self
 /// Movement
 
 // Don't bother if the stage is paused or text is active:
-if (game_paused()) {
+if (game_is_paused()) {
     exit;
 }
 

@@ -2,14 +2,24 @@
 // Returns the inputs based on control data.
 
 if (input_lock == false) {
+    // Reset CPU alarm:
+    if (input_cpu == true) {
+        if (input_get_check(INP_ANY, CHECK_HELD, player_id + DEV_JOYSTICK0)) {
+            input_cpu_alarm = 600;
+        }
+    }
+
+    // Direct inputs:
+    if (input_cpu == false || (input_cpu == true && input_cpu_alarm > 0)) {
+        player_set_input(player_id);
+    } else {
+
+    }
+
+    /*
     // Player 1:
     if (input_cpu == false) {
-        // Register inputs:
-        for (i = INP_LEFT; i <= INP_ALT; i += 1) {
-            for (j = CHECK_HELD; j <= CHECK_RELEASED; j += 1) {
-                input_player[i, j] = input_check(i, j);
-            }
-        }
+        player_set_input(player_id)
     }
 
     // Player 2:
@@ -58,8 +68,11 @@ if (input_lock == false) {
                     input_player[INP_JUMP, CHECK_PRESSED] = false;
                 }
 
-                if (action_current == player_action_jump) input_player[INP_JUMP, CHECK_HELD] = true;
-                else input_player[INP_JUMP, CHECK_HELD] = false;
+                if (action_current == player_action_jump) {
+                    input_player[INP_JUMP, CHECK_HELD] = true;
+                } else {
+                    input_player[INP_JUMP, CHECK_HELD] = false;
+                }
             }
         } else {
             // Decrease partner alarm:
@@ -67,13 +80,11 @@ if (input_lock == false) {
 
             // Register inputs:
             for (i = INP_LEFT; i <= INP_ALT; i += 1) {
-                for (j = CHECK_HELD; j <= CHECK_RELEASED; j += 1) {
+                for (j = CHECK_PRESSED; j <= CHECK_HELD; j += 1) {
                     input_player[i, j] = input_check(i, j, DEV_JOYSTICK1);
                 }
             }
         }
     }
-} else if (!instance_exists(ctrl_transition)) {
-    // Reset inputs:
-    player_reset_input();
+    */
 }

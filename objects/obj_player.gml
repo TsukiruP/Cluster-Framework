@@ -12,6 +12,9 @@ image_speed = 0;
 // Timeline initialization:
 ctl_initialize();
 
+// Player id:
+player_id = 0;
+
 // Action variables:
 action_current  = player_action_idle;
 action_previous = action_current;
@@ -249,7 +252,7 @@ input_lock_alarm  = 0;
 input_cpu         = false;
 input_cpu_alarm   = 0;
 
-player_reset_input();
+player_set_input(-1);
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -292,12 +295,98 @@ applies_to=self
 ///  Inputs
 
 // Don't bother if the stage is paused or text is active:
-if (game_paused()) {
+if (game_is_paused()) {
     exit;
 }
 
 // Receive inputs:
-player_get_input();
+if (input_lock == false) {
+    // Reset CPU alarm:
+    if (input_cpu == true) {
+        if (input_get_check(INP_ANY, CHECK_HELD, DEV_JOYSTICK0 + player_id)) {
+            input_cpu_alarm = 600;
+        }
+    }
+
+    // Direct inputs:
+    if (input_cpu == false || (input_cpu == true && input_cpu_alarm > 0)) {
+        player_set_input(player_id);
+    } else {
+
+    }
+
+    /*
+    // Player 1:
+    if (input_cpu == false) {
+        player_set_input(player_id)
+    }
+
+    // Player 2:
+    else if (input_cpu == true) {
+        // Set partner alarm:
+        if (input_check(INP_ANY, CHECK_HELD, DEV_JOYSTICK1)) input_cpu_alarm = 600;
+
+        if (input_cpu_alarm == 0) {
+            if (player_exists(0) != noone) {
+                var player_handle;
+
+                player_handle = player_exists(0);
+
+                // Move right:
+                if ((x < player_handle.x - 16 || (player_handle.y < y - 50 && player_handle.ground == true && player_handle.x_speed > 0)) &&
+                    (player_handle.y >= y - 50 || player_handle.ground == false || player_handle.x_speed >= 0)) {
+                    input_player[INP_RIGHT, CHECK_HELD] = true;
+                } else {
+                    input_player[INP_RIGHT, CHECK_HELD] = false;
+                }
+
+                // Move left:
+                if ((x > player_handle.x + 16 || (player_handle.y < y - 50 && player_handle.ground == true && player_handle.x_speed < 0)) &&
+                    (player_handle.y >= y - 50 || player_handle.ground == false || player_handle.x_speed <= 0)) {
+                    input_player[INP_LEFT, CHECK_HELD] = true;
+                } else {
+                    input_player[INP_LEFT, CHECK_HELD] = false;
+                }
+
+                // Up & down:
+                var queue_up, queue_down;
+
+                queue_up   = ds_queue_dequeue(ctrl_input.partner_input_up);
+                queue_down = ds_queue_dequeue(ctrl_input.partner_input_down);
+
+                ds_queue_enqueue(ctrl_input.partner_input_up, player_handle.input_player[INP_UP, CHECK_HELD]);
+                ds_queue_enqueue(ctrl_input.partner_input_down, player_handle.input_player[INP_DOWN, CHECK_HELD]);
+
+                input_player[INP_UP, CHECK_HELD] = queue_up;
+                input_player[INP_DOWN, CHECK_HELD] = queue_down;
+
+                // Jump:
+                if (ground == true && action_current != player_action_look && action_current != player_action_crouch && player_handle.y < y - 50 && player_handle.ground == false) {
+                    input_player[INP_JUMP, CHECK_PRESSED] = true;
+                } else {
+                    input_player[INP_JUMP, CHECK_PRESSED] = false;
+                }
+
+                if (action_current == player_action_jump) {
+                    input_player[INP_JUMP, CHECK_HELD] = true;
+                } else {
+                    input_player[INP_JUMP, CHECK_HELD] = false;
+                }
+            }
+        } else {
+            // Decrease partner alarm:
+            if (input_cpu_alarm > 0) input_cpu_alarm -= 1;
+
+            // Register inputs:
+            for (i = INP_LEFT; i <= INP_ALT; i += 1) {
+                for (j = CHECK_PRESSED; j <= CHECK_HELD; j += 1) {
+                    input_player[i, j] = input_check(i, j, DEV_JOYSTICK1);
+                }
+            }
+        }
+    }
+    */
+}
 
 // Input direction:
 input_x_direction = input_player[INP_RIGHT, CHECK_HELD] - input_player[INP_LEFT, CHECK_HELD];
@@ -320,7 +409,7 @@ applies_to=self
 /// Actions
 
 // Don't bother if the stage is paused or text is active:
-if (game_paused()) {
+if (game_is_paused()) {
     exit;
 }
 
@@ -340,7 +429,7 @@ applies_to=self
 /// Handle List
 
 // Don't bother if the stage is paused or text is active:
-if (game_paused()) {
+if (game_is_paused()) {
     exit;
 }
 
@@ -486,7 +575,7 @@ applies_to=self
 /// Refill Air
 
 // Don't bother if the stage is paused or text is active:
-if (game_paused()) {
+if (game_is_paused()) {
     exit;
 }
 
@@ -517,7 +606,7 @@ applies_to=self
 /// Alarms
 
 // Don't bother if the stage is paused:
-if (game_paused(ctrl_pause)) {
+if (game_is_paused(ctrl_pause)) {
     exit;
 }
 
@@ -545,6 +634,18 @@ if (status_panic_alarm > 0) {
     
     if (status_panic_alarm == 0) {
         status_panic = false;
+    }
+}
+
+// Spring:
+if (spring_alarm > 0) {
+    spring_alarm -= 1;
+    
+    if (spring_alarm <= 0) {
+        spring_strength = 0;
+        spring_angle    = 0;
+        spring_alarm    = 0;
+        spring_current  = noone;
     }
 }
 /*"/*'/**//* YYD ACTION
@@ -575,7 +676,7 @@ applies_to=self
 /// Air
 
 // Don't bother if the stage is paused or text is active:
-if (game_paused()) {
+if (game_is_paused()) {
     exit;
 }
 
@@ -639,7 +740,7 @@ applies_to=self
 // Sets the animation target and then calls the animation core script.
 
 // Don't bother if the stage is paused:
-if (game_paused(ctrl_pause)) {
+if (game_is_paused(ctrl_pause)) {
     exit;
 }
 
@@ -789,7 +890,7 @@ switch (action_current) {
 }
 
 // Wait:
-if (!game_paused(ctrl_text) && ground == true && input_lock == false && animation_target == "stand") {
+if (!game_is_paused(ctrl_text) && ground == true && input_lock == false && animation_target == "stand") {
     if (animation_alarm > 0) {
         animation_alarm -= 1;
         
@@ -822,8 +923,15 @@ switch (animation_target) {
         if (animation_target != animation_current) {
             // Leader & partner wait:
             if (player_exists(1) != noone) {
-                if (player_exists(1) == self.id) animation_variant = 1;
-                else animation_variant = 0;
+                // Partner:
+                if (player_exists(1) == self.id) {
+                    animation_variant = 1;
+                }
+                
+                // Leader:
+                else {
+                    animation_variant = 0;
+                }
             }
             
             // Randomize wait:
@@ -866,7 +974,7 @@ applies_to=self
 // Sets the animation angle based on the current animation.
 
 // Don't bother if the stage is paused or text is active:
-if (game_paused()) {
+if (game_is_paused()) {
     exit;
 }
 
@@ -1001,11 +1109,8 @@ if (afterimage_draw == true) {
     if (afterimage_alarm > 0) {
         afterimage_alarm -= 1;
 
-        if (afterimage_alarm == 0) {
+        if (afterimage_alarm <= 0) {
             if (instance_number(eff_afterimage) < 3) {
-                // Reset alarm:
-                afterimage_alarm = 6;
-
                 // Create afterimage:
                 with (instance_create(floor(x), floor(y), eff_afterimage)) {
                     sprite_index = other.sprite_index;
@@ -1015,6 +1120,9 @@ if (afterimage_draw == true) {
                     image_alpha  = 0.9;
                     depth        = other.depth + 1;
                 }
+
+                // Reset alarm:
+                afterimage_alarm = 6;
             }
         }
     }
@@ -1352,7 +1460,7 @@ if (global.misc_trails == true) {
 
 // Hurt alpha:
 if (status_invin == INVIN_HURT && status_invin_alarm > 0) {
-    if (flicker(status_invin_alarm, 4)) {
+    if (divisible(status_invin_alarm, 4)) {
         image_alpha = !image_alpha;
     }
 } else {

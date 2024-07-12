@@ -8,13 +8,12 @@ applies_to=self
 
 // HUD variables:
 hud_hide      =  true;
-hud_sprite    =  spr_hud;
 
-hud_x_factor  =  4;
-hud_x_start   = -sprite_get_width(hud_sprite) - hud_x_factor;
-hud_x_current = -1;
-hud_x_target  =  4;
-hud_x_speed   =  0;
+hud_index     = spr_hud;
+hud_x_current = global.display_width;
+hud_x_target  = 4;
+hud_x_speed   = 0;
+hud_x_factor  = 4;
 
 hud_y         =  6;
 
@@ -22,7 +21,7 @@ hud_y         =  6;
 air_hide     =  false;
 air_value    =  30;
 
-air_x_current = -sprite_get_width(spr_hud);
+air_x_current = -sprite_get_width(hud_index);
 air_x_speed   =  0;
 
 // Item feed variables:
@@ -52,31 +51,39 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Reset HUD
+/// HUD Data
 
 switch (global.misc_hud) {
     // S4E2:
     case 2:
-        hud_sprite   = spr_hud_s4e2;
+        hud_index    = spr_hud_s4e2;
         hud_x_factor = 3;
-        hud_x_target = 13;
-
         hud_y        = 14;
         break;
 
     // Default:
     default:
-        hud_sprite   = spr_hud;
+        hud_index    = spr_hud;
         hud_x_factor = 4;
-        hud_x_target = 4;
-
         hud_y        = 6;
 }
 
+// HUD target:
+if (hud_hide == true) {
+    hud_x_target  = -(sprite_get_width(hud_index) + hud_x_factor);
+    hud_x_factor *= 3;
+} else {
+    switch (global.misc_hud) {
+        // S4E2:
+        case 2:
+            hud_x_target = 13;
+            break;
 
-// HUD start:
-if (hud_x_start != -sprite_get_width(hud_sprite) - hud_x_factor) {
-    hud_x_start = -sprite_get_width(hud_sprite) - hud_x_factor;
+        // Default:
+        default:
+            hud_x_target = 4;
+            break;
+    }
 }
 #define Step_2
 /*"/*'/**//* YYD ACTION
@@ -87,112 +94,67 @@ applies_to=self
 /// Movement
 
 // Don't bother if the stage is paused:
-if (game_paused(ctrl_pause)) {
+if (game_is_paused(ctrl_pause)) {
     exit;
 }
 
-// Hide:
-if (hud_hide == false) {
+// HUD:
+if (hud_x_current != hud_x_target) {
     // Snap to target:
-    if (hud_x_current == -1) {
+    if (hud_x_current == global.display_width) {
         hud_x_current = hud_x_target;
     }
     
-    // Move to target:
-    else if (hud_x_current < hud_x_target) {
-        hud_x_speed    = ceil(abs(hud_x_current - hud_x_target) / hud_x_factor);
-        hud_x_current += hud_x_speed;
-        
-        if (hud_x_current >= hud_x_target) {
-            hud_x_speed   = 0;
-            hud_x_current = hud_x_target;
-        }
-    }
-} else {
-    // Snap to start:
-    if (hud_x_current == -1) {
-        hud_x_current = hud_x_start;
-    }
+    var hud_x_distance;
     
-    // Move to start:
-    else if (hud_x_current != hud_x_start) {
-        hud_x_speed    = ceil(abs(hud_x_current - hud_x_start) / (hud_x_factor * 3));
-        hud_x_current -= hud_x_speed;
-        
-        if (hud_x_current == hud_x_start) {
-            hud_x_speed   = 0;
-            hud_x_current = hud_x_start;
-        }
-    }
+    // HUD distance:
+    hud_x_distance = hud_x_target - hud_x_current;
+    
+    hud_x_speed    = ceil(abs(hud_x_distance) / hud_x_factor);
+    hud_x_current += hud_x_speed * sign(hud_x_distance);
 }
-/*
-if (hud_hide == false) {
-    if (hud_position == -1) hud_position = hud_target;
-    else if (hud_position < hud_target) {
-        hud_speed     = ceil(abs(hud_position - hud_target) / hud_factor);
-        hud_position += hud_speed;
-
-        if (hud_position >= hud_target) {
-            hud_speed    = 0;
-            hud_position = hud_target;
-        }
-    }
-} else {
-    if (hud_position == -1) hud_position = hud_start;
-    else if (hud_position != hud_start) {
-        hud_speed     = ceil(abs(hud_position - hud_start) / (hud_factor * 3));
-        hud_position -= hud_speed;
-
-        if (hud_position == hud_start) {
-            hud_speed    = 0;
-            hud_position = hud_start;
-        }
-    }
-}
-
 
 // Air:
 if (global.misc_hud == 1) {
+    var air_x_target;
+    
+    // Value:
     if (player_exists(0) != noone) {
-        // Air value:
         with (player_exists(0)) {
-            if (action_state != ACTION_DEATH) {
-                // Show air timer only if underwater and don't have the bubble shield:
-                if (physics_type == PHYS_UNDERWATER && shield_data != SHIELD_BUBBLE) other.air_hide = false;
-                else other.air_hide  = true;
-
-                // Update air value:
+            // Hide:
+            if (action_current != player_action_death) {
+                if (physics_type == PHYS_UNDERWATER && status_shield != SHIELD_BUBBLE) {
+                    other.air_hide = false;
+                } else {
+                    other.air_hide = true;
+                }
+                
+                // Air value is always updated.
                 other.air_value = air_remaining;
             }
         }
     } else {
-        air_value    = 30;
-        air_position = hud_position;
+        air_value = 30;
     }
-
-    // Air movement:
+    
+    // Air target:
     if (air_hide == false) {
-        if (air_position < hud_position) {
-            if (hud_speed == 0) air_speed = ceil(abs(air_position - hud_position) / hud_factor);
-            else air_speed = hud_speed;
-
-            air_position += air_speed;
-
-            if (air_position >= hud_position) {
-                air_speed    = hud_speed;
-                air_position = hud_position;
-            }
-        }
+        air_x_target = hud_x_target;
     } else {
-        if (air_position != hud_start) {
-            air_speed     = ceil(abs(air_position - hud_start) / (hud_factor * 3));
-            air_position -= air_speed;
-
-            if (air_position == hud_start) {
-                air_speed    = 0;
-                air_position = hud_start;
-            }
-        }
+        air_x_target = -sprite_get_width(hud_index) - hud_x_factor;
+    }
+    
+    if (air_x_current != air_x_target) {
+        var air_x_distance, air_x_factor;
+        
+        // Air distance:
+        air_x_distance = air_x_target - air_x_current;
+        
+        // Air factor:
+        air_x_factor = hud_x_factor * (1 + (2 * (hud_hide == false && air_hide == true)));
+        
+        air_x_speed    = ceil(abs(air_x_distance) / air_x_factor);
+        air_x_current += air_x_speed * sign(air_x_distance);
     }
 }
 /*"/*'/**//* YYD ACTION
@@ -203,22 +165,28 @@ applies_to=self
 /// Status Icons
 
 // Don't bother if the stage is paused:
-if (game_paused(ctrl_pause)) {
+if (game_is_paused(ctrl_pause)) {
     exit;
 }
 
 if (player_exists(0) != noone) {
     with (player_exists(0)) {
         // Shield:
-        if (status_shield != SHIELD_NONE) other.status_icon[STATUS_SHIELD] = status_shield + 2;
-        else other.status_icon[STATUS_SHIELD] = ITEM_BASIC;
+        if (status_shield != SHIELD_NONE) {
+            other.status_icon[STATUS_SHIELD] = status_shield + 2;
+        } else {
+            other.status_icon[STATUS_SHIELD] = ITEM_BASIC;
+        }
 
         // Invincibility:
         other.status_icon[STATUS_INVIN] = ITEM_INVIN;
 
         // Speed Up/Slow Down:
-        if (status_speed == 2) other.status_icon[STATUS_SPEED] = ITEM_SLOW;
-        else other.status_icon[STATUS_SPEED] = ITEM_SPEED;
+        if (status_speed == 2) {
+            other.status_icon[STATUS_SPEED] = ITEM_SLOW;
+        } else {
+            other.status_icon[STATUS_SPEED] = ITEM_SPEED;
+        }
 
         // Panic:
         other.status_icon[STATUS_PANIC] = ITEM_PANIC;
@@ -235,7 +203,7 @@ applies_to=self
 /// Item Feed
 
 // Don't bother if the stage is paused:
-if (game_paused(ctrl_pause)) {
+if (game_is_paused(ctrl_pause)) {
     exit;
 }
 
@@ -255,7 +223,7 @@ if (item_feed != -1) {
                 
                 // Hide:
                 if (item_alarm <= 60) {
-                    if (flicker(item_alarm, 4)) {
+                    if (divisible(item_alarm, 4)) {
                         item_hide = !item_hide;
                     }
                 } else {
@@ -301,14 +269,18 @@ draw_set_color(c_white);
 draw_set_halign(fa_left);
 
 // Time:
-draw_sprite(spr_hud, 0, view_xview[view_current] + hud_x_current, view_yview[view_current] + hud_y);
+draw_sprite(hud_index, 0, view_xview[view_current] + hud_x_current, view_yview[view_current] + hud_y);
 draw_text(view_xview[view_current] + hud_x_current + 29, view_yview[view_current] + hud_y + 5, string_place_value(global.game_time div 3600, 2));
 draw_text(view_xview[view_current] + hud_x_current + 54, view_yview[view_current] + hud_y + 5, string_place_value((global.game_time div 60) mod 60, 2));
 draw_text(view_xview[view_current] + hud_x_current + 79, view_yview[view_current] + hud_y + 5, string_place_value(floor(global.game_time * 1.667) mod 100, 2));
 
 // Rings
-draw_sprite(spr_hud, 1, view_xview[view_current] + hud_x_current, view_yview[view_current] + hud_y + 26);
+draw_sprite(hud_index, 1, view_xview[view_current] + hud_x_current, view_yview[view_current] + hud_y + 26);
 draw_text(view_xview[view_current] + hud_x_current + 29, view_yview[view_current] + hud_y + 31, string_place_value(global.game_rings, 3));
+
+// Air:
+draw_sprite(hud_index, 2, view_xview[view_current] + air_x_current, view_yview[view_current] + hud_y + 52);
+draw_text(view_xview[view_current] + air_x_current + 29, view_yview[view_current] + hud_y + 57, string_place_value(air_value, 2));
 
 /*
 // Timer:
@@ -407,7 +379,7 @@ if (player_exists(0) != noone) {
         other.status_active[STATUS_INVIN, 0] = (status_invin != INVIN_NONE);
 
         if (status_invin_alarm > 0 && status_invin_alarm <= 120) {
-            if (flicker(status_invin_alarm, 4)) {
+            if (divisible(status_invin_alarm, 4)) {
                 other.status_active[STATUS_INVIN, 1] = !other.status_active[STATUS_INVIN, 1];
             }
         } else {
@@ -418,7 +390,7 @@ if (player_exists(0) != noone) {
         other.status_active[STATUS_SPEED, 0] = (status_speed != 0)
 
         if (status_speed_alarm > 0 && status_speed_alarm <= 120) {
-            if (flicker(status_speed_alarm, 4)) {
+            if (divisible(status_speed_alarm, 4)) {
                 other.status_active[STATUS_SPEED, 1] = !other.status_active[STATUS_SPEED, 1];
             }
         } else {
@@ -429,7 +401,7 @@ if (player_exists(0) != noone) {
         other.status_active[STATUS_PANIC, 0] = status_panic;
 
         if (status_panic_alarm > 0 && status_panic_alarm <= 120) {
-            if (flicker(status_panic_alarm, 4)) {
+            if (divisible(status_panic_alarm, 4)) {
                 other.status_active[STATUS_PANIC, 1] = !other.status_active[STATUS_PANIC, 1];
             }
         } else {
@@ -440,7 +412,7 @@ if (player_exists(0) != noone) {
         other.status_active[STATUS_SWAP, 0] = status_swap;
 
         if (status_swap_alarm > 0 && status_swap_alarm <= 120) {
-            if (flicker(status_swap_alarm, 4)) {
+            if (divisible(status_swap_alarm, 4)) {
                 other.status_active[STATUS_SWAP, 1] = !other.status_active[STATUS_SWAP, 1];
             }
         } else {
@@ -465,7 +437,9 @@ if (player_exists(0) != noone) {
         }
 
         // Increase status count:
-        if ((global.misc_status == 1 && status_active[i, 0] == true) || global.misc_status == 2) status_count += 1;
+        if ((global.misc_status == 1 && status_active[i, 0] == true) || global.misc_status == 2) {
+            status_count += 1;
+        }
     }
 }
 /*"/*'/**//* YYD ACTION

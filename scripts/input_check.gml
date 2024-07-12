@@ -1,6 +1,6 @@
 /// input_check(input, check, [device])
 // Returns true if the given input passes the given check on the given device.
-
+/*
 // Return ANY input:
 if (argument[0] == INP_ANY) {
     var keyboard_any, joystick_target, joystick_any;

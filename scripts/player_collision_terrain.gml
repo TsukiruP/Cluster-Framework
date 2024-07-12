@@ -132,9 +132,9 @@ if (on_obstacle == false) {
                 ground             = true;
                 ceiling_landing    = 0;
                 ceiling_lock_alarm = 16;
-                state              = ACTION_DEFAULT;
                 input_lock_alarm   = 2;
 
+                player_set_action(player_action_run);
             }
         }
 

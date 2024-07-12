@@ -6,31 +6,37 @@ applies_to=self
 */
 /// Create Player
 
-// Create player 1:
-global.player_instance[0]                = instance_create(x, y, obj_player);
-global.player_instance[0].character_data = global.player_data[0];
-global.player_instance[0].input_lock     = true;
+// Create players:
+for (i = 0; i < global.player_count; i += 1) {
+    if (global.player_data[i] >= CHAR_SONIC) {
+        global.player_instance[i]                = instance_create(x - (30 * i), y, obj_player);
+        global.player_instance[i].player_id      = i;
+        global.player_instance[i].character_data = global.player_data[i];
+        global.player_instance.input_lock        = true;
 
-with (global.player_instance[0]) {
-    // Create camera:
-    camera              = instance_create(x, y, ctrl_camera);
-    camera.focus_handle = global.player_instance[0];
+        // Create HUD:
+        if (i == 0) {
+            // Create camera:
+            camera              = instance_create(x, y, ctrl_camera);
+            camera.focus_handle = global.player_instance[0];
 
-    // Create HUD:
-    if (!instance_exists(ctrl_hud)) instance_create(0, 0, ctrl_hud);
-}
-
-// Create player 2:
-if (global.player_data[1] != -1) {
-    global.player_instance[1]                = instance_create(x - 30, y, obj_player);
-    global.player_instance[1].character_data = global.player_data[1];
-    global.player_instance[1].input_cpu      = true;
+            // Create HUD:
+            instance_create(0, 0, ctrl_hud);
+        } else if (i > 0) {
+            global.player_instance[i].input_cpu = true;
+        }
+    }
 }
 
 // Create partner queues:
-with (ctrl_input) event_user(0);
+with (ctrl_input) {
+    event_user(0);
+}
 
 // Compile animations:
-if (global.animation_grid == -1) player_compile_animations();
+if (global.animation_grid == -1) {
+    player_compile_animations();
+}
 
+// Destroy:
 instance_destroy();

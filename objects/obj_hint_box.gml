@@ -34,7 +34,7 @@ if (player_handle != noone) {
             switch (hint_target) {
                 // Default:
                 default:
-                    text_message_set("Hint Boxes are meant to provide information about the environment. This ranges from how to deal with enemies or gimmicks, or how Casinopolis is only open at night.");
+                    text_set_message("Hint Boxes are meant to provide information about the environment. This ranges from how to deal with enemies or gimmicks, or how Casinopolis is only open at night.");
             }
 
             // Set current:
@@ -51,7 +51,7 @@ applies_to=self
 /// Animate
 
 // Don't bother if the stage is paused:
-if (game_paused(ctrl_pause)) {
+if (game_is_paused(ctrl_pause)) {
     exit;
 }
 

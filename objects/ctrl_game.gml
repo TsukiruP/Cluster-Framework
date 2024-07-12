@@ -11,7 +11,7 @@ if (!player_exists(0)) {
     exit;
 }
 
-if (!game_paused(ctrl_text) && global.pause_allow == true && !instance_exists(ctrl_pause) && input_check(INP_START, CHECK_PRESSED)) {
+if (!game_is_paused(ctrl_text) && global.pause_allow == true && !instance_exists(ctrl_pause) && input_get_check(INP_START, CHECK_PRESSED)) {
     var pause_fade;
 
     pause_fade = fade_create(0.06, 0.6, depth);
@@ -29,12 +29,12 @@ applies_to=self
 /// Global Timers
 
 // Don't bother if the stage is paused:
-if (game_paused(ctrl_pause)) {
+if (game_is_paused(ctrl_pause)) {
     exit;
 }
 
 // Stage timer:
-if (global.time_allow == true && !game_paused(ctrl_text)) {
+if (global.time_allow == true && !game_is_paused(ctrl_text)) {
     global.game_time += global.object_ratio;
 }
 

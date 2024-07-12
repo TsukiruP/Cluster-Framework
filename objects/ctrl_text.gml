@@ -72,11 +72,11 @@ applies_to=self
 /// Inputs
 
 // Skip:
-if (text_clear == false && log_hide == true && (text_alpha[2] == 1 || topic_alpha[1] == 1) && input_check(INP_START, CHECK_PRESSED)) text_clear = true;
+if (text_clear == false && log_hide == true && (text_alpha[2] == 1 || topic_alpha[1] == 1) && input_get_check(INP_START, CHECK_PRESSED)) text_clear = true;
 
 if (text_clear == false) {
     // Hide:
-    if (!game_paused(ctrl_pause) && (text_message != "" || topic_message != "" || log_alpha[1] != 0) && input_check(INP_SELECT, CHECK_PRESSED)) text_hide = !text_hide;
+    if (!game_is_paused(ctrl_pause) && (text_message != "" || topic_message != "" || log_alpha[1] != 0) && input_get_check(INP_SELECT, CHECK_PRESSED)) text_hide = !text_hide;
 
     if (text_hide == false) {
         var scroll_min, scroll_max, scroll_direction;
@@ -98,7 +98,7 @@ if (text_clear == false) {
         }
 
         // Open log:
-        if ((game_paused(ctrl_pause) || text_message != "" || topic_message != "") && log_message != "" && (log_alpha[1] == 0 || log_alpha[1] == 1) && input_check(INP_HELP, CHECK_PRESSED)) {
+        if ((game_is_paused(ctrl_pause) || text_message != "" || topic_message != "") && log_message != "" && (log_alpha[1] == 0 || log_alpha[1] == 1) && input_get_check(INP_HELP, CHECK_PRESSED)) {
             log_hide = !log_hide;
 
             if (log_hide == false && log_height > global.display_height - 32) {
@@ -109,7 +109,7 @@ if (text_clear == false) {
         // Text box:
         if (log_hide == true) {
             // Accept:
-            if (input_check(INP_ACCEPT, CHECK_PRESSED)) {
+            if (input_get_check(INP_ACCEPT, CHECK_PRESSED)) {
                 // Topic:
                 if (topic_complete == false && topic_message != "" && topic_alpha[1] == 1) {
                     topic_complete = true;
@@ -145,7 +145,7 @@ if (text_clear == false) {
         // Log:
         else {
             // Cancel:
-            if (input_check(INP_CANCEL, CHECK_PRESSED)) {
+            if (input_get_check(INP_CANCEL, CHECK_PRESSED)) {
                 log_hide = true;
             }
         }
@@ -159,7 +159,7 @@ if (text_clear == false) {
             scroll_max = ((log_height - log_scroll) > (global.display_height - 32));
         }
 
-        scroll_direction = ((input_check(INP_DOWN, CHECK_PRESSED) || ctrl_input.input_timer[INP_DOWN] > 25) && scroll_max) - ((input_check(INP_UP, CHECK_PRESSED) || ctrl_input.input_timer[INP_UP] > 25) && scroll_min > 0);
+        scroll_direction = ((input_get_check(INP_DOWN, CHECK_PRESSED) || ctrl_input.input_timer[INP_DOWN] > 25) && scroll_max) - ((input_get_check(INP_UP, CHECK_PRESSED) || ctrl_input.input_timer[INP_UP] > 25) && scroll_min > 0);
 
         // Textbox scroll:
         if (log_hide == true && text_scroll[1] != 0 && (text_scroll[4] == true)) {
@@ -480,14 +480,3 @@ draw_set_alpha(1);
 draw_set_halign(fa_left);
 draw_set_valign(fa_top);
 d3d_set_viewport(0, 0, global.display_width, global.display_height);
-#define KeyPress_32
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-topic_message_set("Work in Progress");
-
-text_message_set(
-"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et ex porttitor, laoreet neque a, imperdiet ipsum. Vestibulum eu sapien dapibus, aliquam ex eget, tempus enim. In placerat ipsum nunc, eu condimentum ipsum ornare eget. Praesent tortor turpis, mattis vel pretium vel, luctus vitae justo. Maecenas nibh ligula, fringilla eget magna sed, malesuada malesuada orci. Praesent eu pulvinar eros. Nulla facilisi. Duis iaculis sollicitudin lacus.",
-"Cras ornare consequat urna at tristique. Mauris interdum risus at tellus suscipit, nec aliquam velit porttitor. Nunc non ante et purus sollicitudin hendrerit. Nulla rhoncus, nisl id finibus rhoncus, magna eros volutpat lorem, in elementum augue sapien sit amet libero. Morbi eu dui in leo porttitor pellentesque placerat in ante. Curabitur ut mauris laoreet, suscipit nibh vel, vehicula diam. In dapibus tincidunt nisl, vitae tincidunt odio gravida sit amet. Curabitur aliquam urna id leo consequat, et eleifend magna consectetur. Donec vestibulum nunc eget eros dapibus, id suscipit mi condimentum. In et efficitur lorem. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nunc at porttitor diam. Nulla scelerisque urna non ligula vulputate, nec consectetur sapien lobortis. Morbi ultrices vel dui pellentesque laoreet.");

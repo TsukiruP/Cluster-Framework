@@ -4,6 +4,43 @@ lib_id=1
 action_id=603
 applies_to=self
 */
+/// Engine Initialization
+
+// Randomize:
+randomize();
+
+// Player initialization:
+global.player_instance[0]    =   noone;
+global.player_instance[1]    =   noone;
+global.player_data[0]        =   CHAR_SONIC;
+global.player_data[1]        =  -1;
+global.player_count          =   2;
+
+global.gravity_angle         =  0;
+global.animation_grid        = -1;
+global.animation_character   = -1;
+global.animation_coordinates = -1;
+global.animation_initialized = false;
+
+global.checkpoint_x          = -1;
+global.checkpoint_y          = -1;
+global.checkpoint_time       = -1;
+
+// Game initialization:
+global.game_time    = 0;
+global.game_rings   = 0;
+global.game_score   = 0;
+
+global.object_time  = 0;
+global.object_ratio = 1;
+
+global.time_allow   = false;
+global.pause_allow  = true;
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
 /// Settings Initialization
 
 // Image speed:
@@ -43,7 +80,7 @@ global.setting_input_key[INP_CANCEL]  = ini_read_real("input", "key_cancel", DEF
 global.setting_input_key[INP_HELP]    = ini_read_real("input", "key_help", DEFAULT_KEY_HELP);
 
 // Read/create joystick settings:
-for (i = 0; i < 2; i += 1) {
+for (i = 0; i < global.player_count; i += 1) {
     global.setting_input_joy[INP_LEFT, i]    = JOY_LEFT;
     global.setting_input_joy[INP_RIGHT, i]   = JOY_RIGHT;
     global.setting_input_joy[INP_UP, i]      = JOY_UP;
@@ -115,7 +152,7 @@ for (i = INP_LEFT; i <= INP_HELP; i += 1) {
 }
 
 // Apply joystick settings:
-for (i = 0; i < 2; i += 1) {
+for (i = 0; i < global.player_count; i += 1) {
     for (j = INP_LEFT; j <= INP_HELP; j += 1) {
         global.input_joy[j, i] = global.setting_input_joy[j, i];
     }
@@ -211,37 +248,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Engine Initialization
-
-// Randomize:
-randomize();
-
-// Player initialization:
-global.player_instance[0]    =   noone;
-global.player_instance[1]    =   noone;
-global.player_data[0]        =   CHAR_SONIC;
-global.player_data[1]        =  -1;
-
-global.gravity_angle         =  0;
-global.animation_grid        = -1;
-global.animation_character   = -1;
-global.animation_coordinates = -1;
-global.animation_initialized = false;
-
-global.checkpoint_x          = -1;
-global.checkpoint_y          = -1;
-global.checkpoint_time       = -1;
-
-// Game initialization:
-global.game_time    = 0;
-global.game_rings   = 0;
-global.game_score   = 0;
-
-global.object_time  = 0;
-global.object_ratio = 1;
-
-global.time_allow   = false;
-global.pause_allow  = true;
+/// Controller Creation
 
 // Set views:
 room_view_set_all();

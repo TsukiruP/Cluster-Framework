@@ -20,7 +20,7 @@ applies_to=self
 /// Animate
 
 // Don't bother if the stage is paused:
-if (game_paused(ctrl_pause)) {
+if (game_is_paused(ctrl_pause)) {
     exit;
 }
 

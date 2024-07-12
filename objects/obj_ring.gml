@@ -8,7 +8,7 @@ applies_to=self
 
 event_inherited();
 
-// State variables:
+// Flags:
 magnetized = false;
 lifespan   = 0;
 
@@ -34,13 +34,15 @@ applies_to=self
 /// Movement
 
 // Don't bother if the stage is paused or text is active:
-if (game_paused()) {
+if (game_is_paused()) {
     exit;
 }
 
 if (dropped == true) {
     // Destroy if out of view:
-    if(!in_view()) instance_destroy();
+    if(!in_view()) {
+        instance_destroy();
+    }
     
     // Add speed:
     x += x_speed * global.object_ratio;
@@ -66,7 +68,7 @@ applies_to=self
 /// Magnetization
 
 // Don't bother if the stage is paused or text is active:
-if (game_paused()) {
+if (game_is_paused()) {
     exit;
 }
 
@@ -93,7 +95,7 @@ applies_to=self
 /// Lifespan
 
 // Don't bother if the stage is paused or text is active:
-if (game_paused()) {
+if (game_is_paused()) {
     exit;
 }
 

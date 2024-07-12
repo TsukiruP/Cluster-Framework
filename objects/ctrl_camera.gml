@@ -42,7 +42,7 @@ applies_to=self
 /// Camera Lag
 
 // Don't bother if the stage is paused:
-if (game_paused(ctrl_pause)) {
+if (game_is_paused(ctrl_pause)) {
     exit;
 }
 
@@ -60,7 +60,7 @@ applies_to=self
 /// Camera Shift
 
 // Don't bother if the stage is paused:
-if (game_paused(ctrl_pause)) {
+if (game_is_paused(ctrl_pause)) {
     exit;
 }
 
@@ -108,7 +108,7 @@ border_top    = camera_y - 32;
 border_bottom = camera_y + 32;
 
 // Don't bother if the stage is paused:
-if (game_paused(ctrl_pause)) {
+if (game_is_paused(ctrl_pause)) {
     exit;
 }
 
@@ -134,10 +134,10 @@ if (player_exists(0) != noone) {
                     // Grounded:
                     else if (ground == true) {
                         if (y + roll_offset != other.camera_y) {
-                            if (abs(y + (roll_offset * y_direction) - yprevious) <= 6) {
-                                other.camera_y += clamp(y - (roll_offset ) - other.camera_y, -6, 6);
+                            if (abs(y + (roll_offset) - yprevious) <= 6) {
+                                other.camera_y += clamp(y - (roll_offset) - other.camera_y, -6, 6);
                             } else {
-                                other.camera_y += clamp(y - (roll_offset ) - other.camera_y, -16, 16);
+                                other.camera_y += clamp(y - (roll_offset) - other.camera_y, -16, 16);
                             }
                         }
                     }

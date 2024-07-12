@@ -35,7 +35,7 @@ if (player_handle != noone) {
             switch (hint_target) {
                 // Default:
                 default:
-                    text_message_set("Hello! I'm Omochao! Listen to me carefully and you will learn a lot.");
+                    text_set_message("Hello! I'm Omochao! Listen to me carefully and you will learn a lot.");
             }
 
             // Set current:
@@ -52,7 +52,7 @@ applies_to=self
 /// Animate
 
 // Don't bother if the stage is paused:
-if (game_paused(ctrl_pause)) {
+if (game_is_paused(ctrl_pause)) {
     exit;
 }
 
@@ -98,7 +98,7 @@ if (player_handle == noone && hint_current != -1) {
 // Idle:
 if (sprite_index == spr_omochao_idle) {
     // Image index:
-    image_index  = (floor(global.object_time) div 3) mod 4;
+    image_index  = (floor(global.object_time) div 3) mod sprite_get_number(sprite_index);
     
     // Draw coordinates:
     draw_x = x;

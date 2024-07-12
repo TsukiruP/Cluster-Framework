@@ -16,7 +16,7 @@ applies_to=self
 */
 /// Water Scroll
 
-water_scroll = -(floor(global.object_time) div 6) mod 24;
+water_scroll = -(floor(global.object_time) div 6) mod sprite_get_width(spr_water_surface);
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1

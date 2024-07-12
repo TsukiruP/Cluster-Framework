@@ -8,11 +8,6 @@ switch (argument0) {
 
     // Step:
     case ACTION_STEP:
-        // Spring alarm:
-        if (spring_alarm > 0) {
-            spring_alarm -= 1;
-        }
-
         // Input:
         if (input_x_direction != 0 && spring_alarm == 0) {
             if (abs(x_speed) < top_speed || sign(x_speed) != input_x_direction) {

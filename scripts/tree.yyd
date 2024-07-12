@@ -4,35 +4,32 @@
 	|collision_point_list
 +System
 	|credits
+	+Game
+		|game_start
+		|game_is_paused
+	+Display
+		|window_resize
+		|in_view
 	+Input
-		|joystick_check
 		|joystick_check_pressed
 		|joystick_check_released
 		|input_check
+		|joystick_get_check
+		|input_get_check
+		|input_get_string
 	+Text
-		|key_to_string
-		|pad_to_chr
+		|key_get_string
+		|joy_get_char
 		|string_place_value
-		|text_message_set
-		|topic_message_set
-	+Game
-		|game_start
-		|game_paused
+		|text_set_message
+		|topic_set_message
 	+Room
 		|room_set_data
 		|room_get_data
 		|room_view_set_all
-	+Draw
-		|parallax_add_node
-		|draw_backdrop_tiled_area
-		+Sprites
-			|draw_sprite_tiled_horizontal
-			|draw_sprite_tiled_horizontal_yscale
-			|draw_sprite_tiled_vertical
-		+Background
-			|draw_background_tiled_horizontal_part
-			|draw_background_tiled_horizontal_part_yscale
-			|draw_background_tiled_vertical_part
+	+Fade
+		|fade_create
+		|fade_reverse
 	+Timelines
 		|ctl_initialize
 		|ctl_update
@@ -116,18 +113,26 @@
 					|ctl_splash_dash
 				+Misc.
 					|ctl_ring_sparkle
-	+Misc.
+	+Math
 		|wrap
 		|wrap_angle
-		|window_resize
+		|divisible
+	+Draw
+		|parallax_add_node
+		|draw_backdrop_tiled_area
+		+Sprites
+			|draw_sprite_tiled_horizontal
+			|draw_sprite_tiled_horizontal_yscale
+			|draw_sprite_tiled_vertical
+		+Background
+			|draw_background_tiled_horizontal_part
+			|draw_background_tiled_horizontal_part_yscale
+			|draw_background_tiled_vertical_part
+	+Misc.
 		|transition_create
-		|fade_create
-		|fade_reverse
-		|in_view
 		|player_exists
 		|water_exists
 		|effect_create
-		|flicker
 +Gameplay
 	+Player
 		+Collision
@@ -165,7 +170,7 @@
 				|player_action_death
 				|player_action_push
 				|player_action_spring
-		+Passives
+		+Traits
 			|classic_passive_clock_up
 		+Handle
 			|player_handle_layer
@@ -175,7 +180,7 @@
 			|player_handle_water_surface
 			|player_handle_hint
 		+Input
-			|player_reset_input
+			|player_set_input
 			|player_get_input
 		+Animation
 			|player_animation_core
@@ -224,4 +229,3 @@
 		+Knuckles
 		+Amy
 		+Classic
-|script172

@@ -41,7 +41,7 @@ applies_to=self
 /// Menu
 
 // Don't bother if text is active:
-if (game_paused(ctrl_text)) {
+if (game_is_paused(ctrl_text)) {
     exit;
 }
 
@@ -55,13 +55,13 @@ if (menu_lock == true) {
 // Input delay:
 if (pause_delay == 0) {
     // Hide pause:
-    if (input_check(INP_SELECT, CHECK_PRESSED)) {
+    if (input_get_check(INP_SELECT, CHECK_PRESSED)) {
         pause_hide += 1;
         pause_hide  = wrap(pause_hide, 0, 1 + (instance_exists(ctrl_transition) || global.misc_hud != 0));
     }
 
     // Cancel:
-    if (input_check(INP_CANCEL, CHECK_PRESSED)) {
+    if (input_get_check(INP_CANCEL, CHECK_PRESSED)) {
         if (pause_hide == 0) {
             switch (menu_level) {
                 case 1:
@@ -100,8 +100,8 @@ if (pause_hide != 0) {
 }
 
 // Menu direction:
-menu_down = input_check(INP_DOWN, CHECK_PRESSED);
-menu_up   = input_check(INP_UP, CHECK_PRESSED);
+menu_down = input_get_check(INP_DOWN, CHECK_PRESSED);
+menu_up   = input_get_check(INP_UP, CHECK_PRESSED);
 
 menu_direction = menu_down - menu_up;
 
@@ -120,7 +120,7 @@ else {
 // Input delay:
 if (pause_delay == 0) {
     // Accept:
-    if (input_check(INP_ACCEPT, CHECK_PRESSED)) {
+    if (input_get_check(INP_ACCEPT, CHECK_PRESSED)) {
         switch (menu_level) {
             // Pasue menu:
             case 0:
@@ -158,7 +158,7 @@ if (pause_delay == 0) {
     }
 
     // Start:
-    if (input_check(INP_START, CHECK_PRESSED)) {
+    if (input_get_check(INP_START, CHECK_PRESSED)) {
         event_user(0);
     }
 }
@@ -214,13 +214,13 @@ applies_to=self
 /// Movement
 
 if (pause_x_current != pause_x_target) {
-    pause_x_speed    = ceil(abs(pause_x_current - pause_x_target) / 3);
-    pause_x_current -= pause_x_speed * sign(pause_x_current - pause_x_target);
+    var pause_x_distance;
 
-    if (pause_x_current == pause_x_target) {
-        pause_x_speed   = 0;
-        pause_x_current = pause_x_target;
-    }
+    // Pause distance:
+    pause_x_distance = pause_x_target - pause_x_current;
+
+    pause_x_speed    = ceil(abs(pause_x_distance) / 3);
+    pause_x_current += pause_x_speed * sign(pause_x_distance);
 }
 /*"/*'/**//* YYD ACTION
 lib_id=1

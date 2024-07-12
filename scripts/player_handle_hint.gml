@@ -45,7 +45,9 @@ if (ground == true && input_cpu == false && player_collision_prop(hint_handle, S
             }
         }
     } else {
-        if (!game_paused(ctrl_text) && animation_current == "stand") hint_wanted = false;
+        if (!game_is_paused(ctrl_text) && animation_current == "stand") {
+            hint_wanted = false;
+        }
     }
 } else {
     hint_handle.player_handle = noone;
