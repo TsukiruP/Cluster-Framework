@@ -1,4 +1,4 @@
-/// player_obstacle_check(left, top, right, bottom, [semi_solid])
+/// player_obstacle_rectangle(left, top, right, bottom, [semi_solid])
 
 // Exit if collision is disabled:
 if (collision_allow == false) {
@@ -14,7 +14,7 @@ x2 = argument[2];
 y2 = argument[3];
 
 // Set semi obstacle:
-if (argument_count > 4) {
+if (argument_count >= 5) {
     semi_solid = argument[4];
 } else {
     semi_solid = false;

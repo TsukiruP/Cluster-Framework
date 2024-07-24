@@ -15,9 +15,20 @@ if (instance_exists(ctrl_pause)) {
 
 // Return:
 if (argument_count >= 1) {
-    if (argument[0] == ctrl_text) return pause_text;
-    else if (argument[0] == ctrl_pause) return pause_stage;
-    else return (pause_text || pause_stage);
+    // Text:
+    if (argument[0] == ctrl_text) {
+        return pause_text;
+    }
+
+    // Pause:
+    else if (argument[0] == ctrl_pause) {
+        return pause_stage;
+    }
+
+    // Default to either:
+    else {
+        return (pause_text || pause_stage);
+    }
 } else {
     return (pause_text || pause_stage);
 }

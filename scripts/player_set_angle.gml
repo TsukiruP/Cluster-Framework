@@ -18,7 +18,7 @@ if (ground == true) {
     // New angle:
     if (on_edge == false && on_obstacle == false) {
         // Get new angle from left sensor:
-        if (player_line_check(-main_left_rel, main_bottom + 1, true) && !player_line_check(main_right_rel, main_bottom + 1, true)) {
+        if (player_terrain_line(-main_left_rel, main_bottom + 1, true) && !player_terrain_line(main_right_rel, main_bottom + 1, true)) {
             pos_x = floor(x) - main_left_rel * abs(y_direction);
             pos_y = floor(y) + main_left_rel * x_direction;
 
@@ -27,7 +27,7 @@ if (ground == true) {
         }
 
         // Get new angle from right sensor:
-        if (!player_line_check(-main_left_rel, main_bottom + 1, true) && player_line_check(main_right_rel, main_bottom + 1, true)) {
+        if (!player_terrain_line(-main_left_rel, main_bottom + 1, true) && player_terrain_line(main_right_rel, main_bottom + 1, true)) {
             pos_x = floor(x) + main_right_rel * abs(y_direction);
             pos_y = floor(y) - main_right_rel * x_direction;
 
@@ -36,7 +36,7 @@ if (ground == true) {
         }
 
         // Force angle to the proper mode if on flat terrain:
-        if (player_line_check(-main_left_rel, main_bottom + 1, true) && player_line_check(main_right_rel, main_bottom + 1, true)) {
+        if (player_terrain_line(-main_left_rel, main_bottom + 1, true) && player_terrain_line(main_right_rel, main_bottom + 1, true)) {
             new_angle = 90 * mode;
         }
     }
@@ -45,7 +45,7 @@ if (ground == true) {
 // Floor ramp fixes:
 if (mode == 0 && landed == false && ground_angle == 0) {
     // Left ramp edge:
-    if (!player_line_check(-main_left_rel, main_bottom + 1, true) && player_line_check(main_right_rel, main_bottom + 1, true)) {
+    if (!player_terrain_line(-main_left_rel, main_bottom + 1, true) && player_terrain_line(main_right_rel, main_bottom + 1, true)) {
         var angle_temp, angle_diff;
 
         // Temporary angle:
@@ -62,7 +62,7 @@ if (mode == 0 && landed == false && ground_angle == 0) {
     }
 
     // Right ramp edge:
-    if (player_line_check(-main_left_rel, main_bottom + 1, true) && !player_line_check(main_right_rel, main_bottom + 1, true)) {
+    if (player_terrain_line(-main_left_rel, main_bottom + 1, true) && !player_terrain_line(main_right_rel, main_bottom + 1, true)) {
         var angle_temp, angle_diff;
 
         // Temporary angle:

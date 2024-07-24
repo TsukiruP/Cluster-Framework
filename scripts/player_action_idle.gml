@@ -54,8 +54,8 @@ switch (argument0) {
         // Balance:
         var edge_left, edge_right;
 
-        edge_left  = (!player_line_check(main_right_rel, main_bottom + 16, true));
-        edge_right = (!player_line_check(-main_left_rel, main_bottom + 16, true));
+        edge_left  = (!player_terrain_line(main_right_rel, main_bottom + 16, true));
+        edge_right = (!player_terrain_line(-main_left_rel, main_bottom + 16, true));
 
         if (mode == 0) {
             balance_direction = (edge_left - edge_right);

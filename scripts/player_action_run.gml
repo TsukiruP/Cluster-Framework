@@ -103,8 +103,8 @@ switch (argument0) {
 
         // Push:
         if (image_xscale == input_x_direction &&
-            ((image_xscale == -1 && (player_point_check(-(wall_left + 1), wall_bottom)) || (image_xscale == 1 && player_point_check((wall_right + 1), wall_bottom))) && abs(g_speed) <= acceleration + 0.5) ||
-            (player_obstacle_check(wall_left + 1, main_top, main_right + 1, main_bottom) && abs(g_speed) <= acceleration)) {
+            ((image_xscale == -1 && (player_terrain_point(-(wall_left + 1), wall_bottom)) || (image_xscale == 1 && player_terrain_point((wall_right + 1), wall_bottom))) && abs(g_speed) <= acceleration + 0.5) ||
+            (player_obstacle_rectangle(wall_left + 1, main_top, main_right + 1, main_bottom) && abs(g_speed) <= acceleration)) {
                 player_set_action(player_action_push);
             }
         break;

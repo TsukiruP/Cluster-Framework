@@ -16,22 +16,12 @@ with (ctrl_input) {
         switch (argument1) {
             // Left trigger:
             case JOY_TRIGGERL:
-                return joystick_trigger[INP_LEFT, argument2 + (argument0 * 3)];
+                return joystick_trigger[TRG_LEFT, argument2 + (argument0 * 3)];
                 break;
             
             // Right trigger:
             case JOY_TRIGGERR:
-                return joystick_trigger[INP_RIGHT, argument2 + (argument0 * 3)];
-                break;
-            
-            // Left D-pad:
-            case JOY_LEFT:
-                return joystick_dpad[INP_LEFT, argument2 + (argument0 * 3)]
-                break;
-            
-            // Right D-pad:
-            case JOY_RIGHT:
-                return joystick_dpad[INP_RIGHT, argument2 + (argument0 * 3)]
+                return joystick_trigger[TRG_RIGHT, argument2 + (argument0 * 3)];
                 break;
             
             // Down D-pad:
@@ -42,6 +32,16 @@ with (ctrl_input) {
             // Down D-pad:
             case JOY_DOWN:
                 return joystick_dpad[INP_DOWN, argument2 + (argument0 * 3)]
+                break;
+            
+            // Left D-pad:
+            case JOY_LEFT:
+                return joystick_dpad[INP_LEFT, argument2 + (argument0 * 3)]
+                break;
+            
+            // Right D-pad:
+            case JOY_RIGHT:
+                return joystick_dpad[INP_RIGHT, argument2 + (argument0 * 3)]
                 break;
             
             default:

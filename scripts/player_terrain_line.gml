@@ -1,4 +1,4 @@
-/// player_line_check(radius_x, radius_y, [semi_solid])
+/// player_terrain_line(radius_x, radius_y, [semi_solid])
 
 // Exit if collision is disabled:
 if (collision_allow == false) {
@@ -12,7 +12,7 @@ radius_x = argument[0];
 radius_y = argument[1];
 
 // Set semi solid:
-if (argument_count > 2) {
+if (argument_count >= 3) {
     semi_solid = argument[2];
 } else {
     semi_solid = false;

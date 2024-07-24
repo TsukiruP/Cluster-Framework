@@ -17,8 +17,8 @@ repeat (steps) {
     player_collision_obstacle();
 
     // Mode:
-    player_mode();
+    player_collision_mode();
 
     // Wall stop:
-    player_wall_stop();
+    player_collision_wall();
 }

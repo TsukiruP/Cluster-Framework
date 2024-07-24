@@ -61,10 +61,10 @@ global.setting_audio_bgm = ini_read_real("audio", "bgm", DEFAULT_AUDIO_BGM);
 global.setting_audio_sfx = ini_read_real("audio", "sfx", DEFAULT_AUDIO_SFX);
 
 // Read/create keyboard settings:
-global.setting_input_key[INP_LEFT]    = ini_read_real("input", "key_left", DEFAULT_KEY_LEFT);
-global.setting_input_key[INP_RIGHT]   = ini_read_real("input", "key_right", DEFAULT_KEY_RIGHT);
 global.setting_input_key[INP_UP]      = ini_read_real("input", "key_up", DEFAULT_KEY_UP);
 global.setting_input_key[INP_DOWN]    = ini_read_real("input", "key_down", DEFAULT_KEY_DOWN);
+global.setting_input_key[INP_LEFT]    = ini_read_real("input", "key_left", DEFAULT_KEY_LEFT);
+global.setting_input_key[INP_RIGHT]   = ini_read_real("input", "key_right", DEFAULT_KEY_RIGHT);
 
 global.setting_input_key[INP_JUMP]    = ini_read_real("input", "key_jump", DEFAULT_KEY_JUMP);
 global.setting_input_key[INP_SPECIAL] = ini_read_real("input", "key_special", DEFAULT_KEY_SPECIAL);
@@ -81,21 +81,23 @@ global.setting_input_key[INP_HELP]    = ini_read_real("input", "key_help", DEFAU
 
 // Read/create joystick settings:
 for (i = 0; i < global.player_count; i += 1) {
-    global.setting_input_joy[INP_LEFT, i]    = JOY_LEFT;
-    global.setting_input_joy[INP_RIGHT, i]   = JOY_RIGHT;
-    global.setting_input_joy[INP_UP, i]      = JOY_UP;
-    global.setting_input_joy[INP_DOWN, i]    = JOY_DOWN;
-    global.setting_input_joy[INP_JUMP, i]    = ini_read_real("input", "joy" + string(i) + "_jump", JOY_FACE1);
-    global.setting_input_joy[INP_SPECIAL, i] = ini_read_real("input", "joy" + string(i) + "_special", JOY_FACE3);
-    global.setting_input_joy[INP_SWAP, i]    = ini_read_real("input", "joy" + string(i) + "_swap", JOY_FACE4);
-    global.setting_input_joy[INP_SUPER, i]   = ini_read_real("input", "joy" + string(i) + "_super", JOY_FACE2);
-    global.setting_input_joy[INP_TAG, i]     = ini_read_real("input", "joy" + string(i) + "_tag", JOY_BUMPERR);
-    global.setting_input_joy[INP_ALT, i]     = ini_read_real("input", "joy" + string(i) + "_alt", JOY_BUMPERL);
-    global.setting_input_joy[INP_START, i]   = JOY_START;
-    global.setting_input_joy[INP_SELECT, i]  = JOY_SELECT;
-    global.setting_input_joy[INP_ACCEPT, i]  = JOY_FACE1;
-    global.setting_input_joy[INP_CANCEL, i]  = JOY_FACE2;
-    global.setting_input_joy[INP_HELP, i]    = JOY_FACE4;
+    global.setting_input_joy[i, INP_UP]      = JOY_UP;
+    global.setting_input_joy[i, INP_DOWN]    = JOY_DOWN;
+    global.setting_input_joy[i, INP_LEFT]    = JOY_LEFT;
+    global.setting_input_joy[i, INP_RIGHT]   = JOY_RIGHT;
+
+    global.setting_input_joy[i, INP_JUMP]    = ini_read_real("input", "joy" + string(i) + "_jump", JOY_FACE1);
+    global.setting_input_joy[i, INP_SPECIAL] = ini_read_real("input", "joy" + string(i) + "_special", JOY_FACE3);
+    global.setting_input_joy[i, INP_SWAP]    = ini_read_real("input", "joy" + string(i) + "_swap", JOY_FACE4);
+    global.setting_input_joy[i, INP_SUPER]   = ini_read_real("input", "joy" + string(i) + "_super", JOY_FACE2);
+    global.setting_input_joy[i, INP_TAG]     = ini_read_real("input", "joy" + string(i) + "_tag", JOY_BUMPERR);
+    global.setting_input_joy[i, INP_ALT]     = ini_read_real("input", "joy" + string(i) + "_alt", JOY_BUMPERL);
+
+    global.setting_input_joy[i, INP_START]   = JOY_START;
+    global.setting_input_joy[i, INP_SELECT]  = JOY_SELECT;
+    global.setting_input_joy[i, INP_ACCEPT]  = JOY_FACE1;
+    global.setting_input_joy[i, INP_CANCEL]  = JOY_FACE2;
+    global.setting_input_joy[i, INP_HELP]    = JOY_FACE4;
 
     // Other:
     global.setting_input_deadzone[i] = ini_read_real("input", "joy" + string(i) + "_deadzone", 0.05);
@@ -147,14 +149,14 @@ global.audio_bgm = global.setting_audio_bgm;
 global.audio_sfx = global.setting_audio_sfx;
 
 // Apply keyboard settings:
-for (i = INP_LEFT; i <= INP_HELP; i += 1) {
+for (i = INP_UP; i <= INP_HELP; i += 1) {
     global.input_key[i] = global.setting_input_key[i];
 }
 
 // Apply joystick settings:
 for (i = 0; i < global.player_count; i += 1) {
-    for (j = INP_LEFT; j <= INP_HELP; j += 1) {
-        global.input_joy[j, i] = global.setting_input_joy[j, i];
+    for (j = INP_UP; j <= INP_HELP; j += 1) {
+        global.input_joy[i, j] = global.setting_input_joy[i, j];
     }
 
     // Other settings:

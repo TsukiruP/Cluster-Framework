@@ -25,7 +25,7 @@ if (ground == true && ground_angle == 0) wall_height = 4;
 touching_ceiling = false;
 
 // Set flag if inside ceiling:
-if (player_line_check(-main_left_rel, -main_top - 8) || player_line_check(main_right_rel, -main_top - 8)) {
+if (player_terrain_line(-main_left_rel, -main_top - 8) || player_terrain_line(main_right_rel, -main_top - 8)) {
     touching_ceiling = true;
 }
 

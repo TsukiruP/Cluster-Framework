@@ -41,17 +41,26 @@ status_size                  =  2 + 2 * global.gameplay_debuffs;
 status_count                 =  0;
 
 status_active[STATUS_SHIELD, 0] =  0;
+status_active[STATUS_SHIELD, 1] =  false;
+
 status_active[STATUS_INVIN,  0] =  0;
+status_active[STATUS_INVIN,  1] =  false;
+
 status_active[STATUS_SPEED,  0] =  0;
+status_active[STATUS_SPEED,  1] =  false;
+
 status_active[STATUS_PANIC,  0] =  0;
+status_active[STATUS_PANIC,  1] =  false;
+
 status_active[STATUS_SWAP ,  0] =  0;
+status_active[STATUS_SWAP ,  1] =  false;
 #define Step_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
 applies_to=self
 */
-/// HUD Data
+/// Data
 
 switch (global.misc_hud) {
     // S4E2:
@@ -66,6 +75,10 @@ switch (global.misc_hud) {
         hud_index    = spr_hud;
         hud_x_factor = 4;
         hud_y        = 6;
+}
+
+if (input_get_check(INP_TAG, CHECK_PRESSED)) {
+    hud_hide = !hud_hide;
 }
 
 // HUD target:
@@ -162,7 +175,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Status Icons
+/// Status
 
 // Don't bother if the stage is paused:
 if (game_is_paused(ctrl_pause)) {
@@ -177,22 +190,54 @@ if (player_exists(0) != noone) {
         } else {
             other.status_icon[STATUS_SHIELD] = ITEM_BASIC;
         }
-
+        
+        other.status_active[STATUS_SHIELD, 0] = (status_shield != SHIELD_NONE);
+        other.status_active[STATUS_SHIELD, 1] = true;
+        
         // Invincibility:
-        other.status_icon[STATUS_INVIN] = ITEM_INVIN;
+        other.status_icon[STATUS_INVIN]      = ITEM_INVIN;        
+        other.status_active[STATUS_INVIN, 0] = (status_invin != INVIN_NONE);
 
+        if (status_invin_alarm > 0 && status_invin_alarm <= 120) {
+            other.status_active[STATUS_INVIN, 1] = sync_rate(status_invin_alarm, 2, 2);
+        } else {
+            other.status_active[STATUS_INVIN, 1] = true;
+        }
+        
         // Speed Up/Slow Down:
         if (status_speed == 2) {
             other.status_icon[STATUS_SPEED] = ITEM_SLOW;
         } else {
             other.status_icon[STATUS_SPEED] = ITEM_SPEED;
         }
+        
+        other.status_active[STATUS_SPEED, 0] = (status_speed != 0)
 
+        if (status_speed_alarm > 0 && status_speed_alarm <= 120) {
+            other.status_active[STATUS_SPEED, 1] = sync_rate(status_speed_alarm, 2, 2);
+        } else {
+            other.status_active[STATUS_SPEED, 1] = true;
+        }
+        
         // Panic:
-        other.status_icon[STATUS_PANIC] = ITEM_PANIC;
+        other.status_icon[STATUS_PANIC]      = ITEM_PANIC;
+        other.status_active[STATUS_PANIC, 0] = status_panic;
 
+        if (status_panic_alarm > 0 && status_panic_alarm <= 120) {
+            other.status_active[STATUS_PANIC, 1] = sync_rate(status_panic_alarm, 2, 2);
+        } else {
+            other.status_active[STATUS_PANIC, 1] = true;
+        }
+        
         // Swap:
-        other.status_icon[STATUS_SWAP] = ITEM_SWAP;
+        other.status_icon[STATUS_SWAP]      = ITEM_SWAP;
+        other.status_active[STATUS_SWAP, 0] = status_swap;
+
+        if (status_swap_alarm > 0 && status_swap_alarm <= 120) {
+            other.status_active[STATUS_SWAP, 1] = sync_rate(status_swap_alarm, 2, 2);
+        } else {
+            other.status_active[STATUS_SWAP, 1] = true;
+        }
     }
 }
 /*"/*'/**//* YYD ACTION
@@ -223,9 +268,7 @@ if (item_feed != -1) {
                 
                 // Hide:
                 if (item_alarm <= 60) {
-                    if (divisible(item_alarm, 4)) {
-                        item_hide = !item_hide;
-                    }
+                    item_hide = sync_rate(item_alarm, 2, 2);
                 } else {
                     item_hide = false;
                 }
@@ -341,10 +384,13 @@ draw_text(view_xview[view_current] + hud_x_current + 58 + 44, view_yview[view_cu
 // Rings:
 draw_set_font(global.font_hud_s4e2);
 
-if (((global.game_time div 8) mod 2 && global.game_rings == 0) || global.game_rings > 0) {
+if ((sync_rate(global.object_time, 2, 2) && global.game_rings == 0) || global.game_rings > 0) {
     // Flash red:
-    if (global.game_rings == 0) draw_set_color(c_red);
-    else draw_set_color(c_white);
+    if (global.game_rings == 0) {
+        draw_set_color(c_red);
+    } else {
+        draw_set_color(c_white);
+    }
 
     draw_text(view_xview[view_current] + hud_x_current - 5, view_yview[view_current] + hud_y + 11, string_place_value(global.game_rings, 3));
 }
@@ -366,80 +412,28 @@ if (global.misc_hud != 1 || global.misc_status == 0) {
     exit;
 }
 
-if (player_exists(0) != noone) {
-    // Reset status count:
-    status_count = 0;
+// Reset status count:
+status_count = 0;
 
-    with (player_exists(0)) {
-        // Shield:
-        other.status_active[STATUS_SHIELD, 0] = (status_shield != SHIELD_NONE);
-        other.status_active[STATUS_SHIELD, 1] = true;
+for (i = status_size; i >= 0; i -= 1) {
+    if (((global.misc_status == 1 && status_active[i, 0] == true) || global.misc_status == 2) && status_active[i, 1] == true) {
+        // Shadow:
+        draw_sprite_ext(spr_items, 0, view_xview[view_current] + view_wview[view_current] - hud_x_current - 8 - (sprite_get_width(spr_items) + 2) * status_count, view_yview[view_current] + 18, 1, 1, 0, c_black, 1);
 
-        // Invincibility:
-        other.status_active[STATUS_INVIN, 0] = (status_invin != INVIN_NONE);
+        // Icons:
+        draw_sprite_ext(spr_items, status_icon[i], view_xview[view_current] + view_wview[view_current] - hud_x_current - 9 - (sprite_get_width(spr_items) + 2) * status_count, view_yview[view_current] + 17, 1, 1, 0, c_white, 1);
 
-        if (status_invin_alarm > 0 && status_invin_alarm <= 120) {
-            if (divisible(status_invin_alarm, 4)) {
-                other.status_active[STATUS_INVIN, 1] = !other.status_active[STATUS_INVIN, 1];
+        // Gray out:
+        if (global.misc_status == 2) {
+            if (status_active[i, 0] == false) {
+                draw_sprite_ext(spr_items, status_icon[i], view_xview[view_current] + view_wview[view_current] - hud_x_current - 9 - (sprite_get_width(spr_items) + 2) * status_count, view_yview[view_current] + 17, 1, 1, 0, c_gray, 0.6);
             }
-        } else {
-            other.status_active[STATUS_INVIN, 1] = true;
-        }
-
-        // Speed:
-        other.status_active[STATUS_SPEED, 0] = (status_speed != 0)
-
-        if (status_speed_alarm > 0 && status_speed_alarm <= 120) {
-            if (divisible(status_speed_alarm, 4)) {
-                other.status_active[STATUS_SPEED, 1] = !other.status_active[STATUS_SPEED, 1];
-            }
-        } else {
-            other.status_active[STATUS_SPEED, 1] = true;
-        }
-
-        // Panic:
-        other.status_active[STATUS_PANIC, 0] = status_panic;
-
-        if (status_panic_alarm > 0 && status_panic_alarm <= 120) {
-            if (divisible(status_panic_alarm, 4)) {
-                other.status_active[STATUS_PANIC, 1] = !other.status_active[STATUS_PANIC, 1];
-            }
-        } else {
-            other.status_active[STATUS_PANIC, 1] = true;
-        }
-
-        // Swap:
-        other.status_active[STATUS_SWAP, 0] = status_swap;
-
-        if (status_swap_alarm > 0 && status_swap_alarm <= 120) {
-            if (divisible(status_swap_alarm, 4)) {
-                other.status_active[STATUS_SWAP, 1] = !other.status_active[STATUS_SWAP, 1];
-            }
-        } else {
-            other.status_active[STATUS_SWAP, 1] = true;
         }
     }
 
-    for (i = status_size; i >= 0; i -= 1) {
-        if (((global.misc_status == 1 && status_active[i, 0] == true) || global.misc_status == 2) && status_active[i, 1] == true) {
-            // Shadow:
-            draw_sprite_ext(spr_items, 0, view_xview[view_current] + view_wview[view_current] - hud_x_current - 8 - (sprite_get_width(spr_items) + 2) * status_count, view_yview[view_current] + 18, 1, 1, 0, c_black, 1);
-
-            // Icons:
-            draw_sprite_ext(spr_items, status_icon[i], view_xview[view_current] + view_wview[view_current] - hud_x_current - 9 - (sprite_get_width(spr_items) + 2) * status_count, view_yview[view_current] + 17, 1, 1, 0, c_white, 1);
-
-            // Gray out:
-            if (global.misc_status == 2) {
-                if (status_active[i, 0] == false) {
-                    draw_sprite_ext(spr_items, status_icon[i], view_xview[view_current] + view_wview[view_current] - hud_x_current - 9 - (sprite_get_width(spr_items) + 2) * status_count, view_yview[view_current] + 17, 1, 1, 0, c_gray, 0.6);
-                }
-            }
-        }
-
-        // Increase status count:
-        if ((global.misc_status == 1 && status_active[i, 0] == true) || global.misc_status == 2) {
-            status_count += 1;
-        }
+    // Increase status count:
+    if ((global.misc_status == 1 && status_active[i, 0] == true) || global.misc_status == 2) {
+        status_count += 1;
     }
 }
 /*"/*'/**//* YYD ACTION

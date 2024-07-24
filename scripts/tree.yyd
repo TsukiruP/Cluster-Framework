@@ -11,11 +11,9 @@
 		|window_resize
 		|in_view
 	+Input
-		|joystick_check_pressed
-		|joystick_check_released
-		|input_check
 		|joystick_get_check
 		|input_get_check
+		|input_get_timer
 		|input_get_string
 	+Text
 		|key_get_string
@@ -116,7 +114,7 @@
 	+Math
 		|wrap
 		|wrap_angle
-		|divisible
+		|sync_rate
 	+Draw
 		|parallax_add_node
 		|draw_backdrop_tiled_area
@@ -131,23 +129,22 @@
 	+Misc.
 		|transition_create
 		|player_exists
-		|water_exists
 		|effect_create
 +Gameplay
 	+Player
 		+Collision
 			+Utilities
 				|angle_sensor
-				|player_point_check
-				|player_line_check
-				|player_obstacle_check
+				|player_terrain_point
+				|player_terrain_line
+				|player_obstacle_rectangle
 			|player_movement
 			|player_collision_semisolids
 			|player_collision_terrain
 			|player_collision_obstacle
 			|player_collision_prop
-			|player_mode
-			|player_wall_stop
+			|player_collision_mode
+			|player_collision_wall
 			|player_collision_steps
 		+Angle
 			|player_set_angle
@@ -179,9 +176,6 @@
 			|player_handle_item_box
 			|player_handle_water_surface
 			|player_handle_hint
-		+Input
-			|player_set_input
-			|player_get_input
 		+Animation
 			|player_animation_core
 			|player_add_animation
@@ -194,6 +188,7 @@
 				|classic_add_animations
 			|player_compile_animations
 		+Misc.
+			|player_set_input
 			|player_ring_loss
 			|player_set_damage
 			|player_get_item
@@ -205,10 +200,6 @@
 	+Props
 		|prop_point_check
 +Trash
-	+Input
-		+Input
-	+Animations
-		+Replacements
 	+Sonic Dash
 		+Main
 		+Left
@@ -229,3 +220,7 @@
 		+Knuckles
 		+Amy
 		+Classic
+	|player_get_input
+	|joystick_check_pressed
+	|joystick_check_released
+	|water_exists

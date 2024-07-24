@@ -32,4 +32,4 @@ if (game_is_paused(ctrl_pause)) {
     exit;
 }
 
-image_index = (floor(global.object_time) div 8 / (1 + dropped == true)) mod sprite_get_number(sprite_index);
+image_index = sync_rate(global.object_time, 8 / (1 + dropped == true), sprite_get_number(sprite_index));

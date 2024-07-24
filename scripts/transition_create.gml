@@ -6,7 +6,9 @@ transition.transition_room = argument[0];
 with (transition) room_get_data(argument[0]);
 
 // Override transition type:
-if (argument_count >= 2) transition.transition_type = argument[1];
+if (argument_count >= 2) {
+    transition.transition_type = argument[1];
+}
 
 if (ctrl_audio.music_instance != -1) {
     if (transition.room_music != "") {

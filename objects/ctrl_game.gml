@@ -1,25 +1,3 @@
-#define Step_0
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Pause Menu
-
-// Don't bother if there's no player:
-if (!player_exists(0)) {
-    exit;
-}
-
-if (!game_is_paused(ctrl_text) && global.pause_allow == true && !instance_exists(ctrl_pause) && input_get_check(INP_START, CHECK_PRESSED)) {
-    var pause_fade;
-
-    pause_fade = fade_create(0.06, 0.6, depth);
-
-    with(instance_create(0, 0, ctrl_pause)) {
-        fade_handle = pause_fade;
-    }
-}
 #define Step_1
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -41,6 +19,27 @@ if (global.time_allow == true && !game_is_paused(ctrl_text)) {
 // Object timer
 global.object_time += global.object_ratio;
 #define Step_2
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Pause
+
+// Don't bother if there's no player:
+if (player_exists(0) == noone) {
+    exit;
+}
+
+if (!game_is_paused(ctrl_text) && global.pause_allow == true && !instance_exists(ctrl_pause) && input_get_check(INP_START, CHECK_PRESSED)) {
+    var pause_fade;
+
+    pause_fade = fade_create(0.06, 0.6, depth);
+
+    with(instance_create(0, 0, ctrl_pause)) {
+        fade_handle = pause_fade;
+    }
+}
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603

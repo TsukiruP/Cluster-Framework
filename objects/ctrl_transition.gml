@@ -179,7 +179,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Run Opener
+/// Run Start
 
 // Don't bother if the stage is paused:
 if ((game_is_paused(ctrl_pause) && pause_ignore == false) || (transition_type != TRANS_CARD && transition_type != TRANS_RETRY)) {
@@ -195,7 +195,7 @@ if (player_exists(0) != noone) {
         
         // Run:
         else {
-            with (player_exists(0)) {
+            with (obj_player) {
                 g_speed                             = top_speed;
                 input_player[INP_RIGHT, CHECK_HELD] = true;
             }
@@ -268,7 +268,7 @@ if (transition_type == TRANS_CARD) {
             
             // Skip ready animation:
             if (player_exists(0).animation_current == "ready") {
-                with (player_exists(0)) {
+                with (obj_player) {
                     player_set_animation("stand");
                 }
             }
@@ -339,7 +339,7 @@ if (transition_type == TRANS_CARD) {
                 if (room_opener == OPENER_READY) {
                     // Time it with the background:
                     if (background_y_current <= floor(player_exists(0).y + player_exists(0).main_bottom - view_yview[view_current])) {
-                        with (player_exists(0)) {
+                        with (obj_player) {
                             if (animation_current != "ready" && animation_previous != "ready") {
                                 player_set_animation("ready");
                             }
@@ -349,7 +349,7 @@ if (transition_type == TRANS_CARD) {
                 
                 // Free player:
                 else if (room_opener != OPENER_IDLE && room_opener != OPENER_RUN) {
-                    with (player_exists(0)) {
+                    with (obj_player) {
                         input_lock = false;
                     }
                 }

@@ -1,8 +1,11 @@
 /// prop_point_check(x, y, [semi_solid])
 
 // Set semi solid:
-if (argument_count > 2) semi_solid = argument[2];
-else semi_solid = false;
+if (argument_count > 2) {
+    semi_solid = argument[2];
+}else {
+    semi_solid = false;
+}
 
 if (collision_point(argument[0], argument[1], par_terrain, true, true)) {
     var terrain_collisions, terrain_count, i;

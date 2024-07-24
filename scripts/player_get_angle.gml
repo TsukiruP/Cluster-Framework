@@ -7,8 +7,11 @@ pos_x = argument[0];
 pos_y = argument[1];
 
 // Set up floor mode:
-if (argument_count > 2) floor_mode = argument[2];
-else floor_mode = 0;
+if (argument_count >= 3) {
+    floor_mode = argument[2];
+} else {
+    floor_mode = 0;
+}
 
 // Set up off x and off y:
 switch (floor_mode) {

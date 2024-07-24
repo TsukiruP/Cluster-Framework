@@ -37,7 +37,7 @@ if (argument_count >= 6) {
     room_water_level = -1;
 }
 
-// Set opener
+// Set start:
 if (argument_count >= 7) {
     room_opener = argument[6];
 

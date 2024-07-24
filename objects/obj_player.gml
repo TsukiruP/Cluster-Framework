@@ -922,15 +922,15 @@ switch (animation_target) {
     case "wait":
         if (animation_target != animation_current) {
             // Leader & partner wait:
-            if (player_exists(1) != noone) {
-                // Partner:
-                if (player_exists(1) == self.id) {
-                    animation_variant = 1;
+            if (instance_number(obj_player) > 0) {
+                // Leader:
+                if (player_id == 0) {
+                    animation_variant = 0;
                 }
                 
-                // Leader:
+                // Partner:
                 else {
-                    animation_variant = 0;
+                    animation_variant = 1;
                 }
             }
             
@@ -1460,9 +1460,7 @@ if (global.misc_trails == true) {
 
 // Hurt alpha:
 if (status_invin == INVIN_HURT && status_invin_alarm > 0) {
-    if (divisible(status_invin_alarm, 4)) {
-        image_alpha = !image_alpha;
-    }
+    image_alpha = sync_rate(status_invin_alarm, 2, 2);
 } else {
     image_alpha = 1;
 }

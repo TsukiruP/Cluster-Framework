@@ -3,8 +3,11 @@
 // Collision type:
 var pl_type, pl_left, pl_right, pl_top, pl_bottom, pl_offset_x, pl_offset_y;
 
-if (argument_count >= 3) pl_type = argument[2];
-else pl_type = 0;
+if (argument_count >= 3) {
+    pl_type = argument[2];
+} else {
+    pl_type = 0;
+}
 
 switch (pl_type) {
     // Hurtbox:
@@ -76,8 +79,11 @@ switch (mode) {
 // Prop collision:
 var pr_hitbox, pr_left, pr_right, pr_top, pr_bottom, pr_offset_x, pr_offset_y;
 
-if (argument_count >= 4) pr_hitbox = argument[3];
-else pr_hitbox = false;
+if (argument_count >= 4) {
+    pr_hitbox = argument[3];
+} else {
+    pr_hitbox = false;
+}
 
 if (pr_hitbox == true) {
     pr_left     = argument[0].hitbox_left;

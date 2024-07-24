@@ -77,9 +77,7 @@ shield_advance = (player_handle.status_shield == SHIELD_BASIC || player_handle.s
 // Hide:
 if (!game_is_paused(ctrl_pause) && (player_handle.status_shield == SHIELD_BUBBLE || (global.advance_flicker == true && shield_advance == true))) {
     // Hide:
-    if (divisible(ctl_time, 2)) {
-        shield_hide = !shield_hide;
-    }
+    shield_hide = sync_rate(ctl_time, 2, 2);
 } else {
     shield_hide = false;
 }

@@ -7,7 +7,7 @@ applies_to=self
 /// Input Initialization
 
 // User & keyboard inputs:
-for (i = INP_LEFT; i <= INP_HELP; i += 1) {
+for (i = INP_UP; i <= INP_HELP; i += 1) {
     for (j = CHECK_PRESSED; j <= CHECK_HELD; j += 1) {
         // User inputs:
         input_user[i, j]     = false;
@@ -18,7 +18,7 @@ for (i = INP_LEFT; i <= INP_HELP; i += 1) {
 }
 
 // Input timers:
-for (i = INP_LEFT; i <= INP_DOWN; i += 1) {
+for (i = INP_UP; i <= INP_RIGHT; i += 1) {
     input_timer[i] = 0;
 }
 /*"/*'/**//* YYD ACTION
@@ -41,10 +41,10 @@ for (i = JOY_FACE1; i <= JOY_DOWN; i += 1) {
 
 // Joystick inputs::
 for (i = 0; i < global.player_count; i += 1) {
-    for (j = INP_LEFT; j <= INP_HELP; j += 1) {
+    for (j = INP_UP; j <= INP_HELP; j += 1) {
         for (k = CHECK_PRESSED; k <= CHECK_HELD; k += 1) {
             // D-pad and analog inputs:
-            if (j <= INP_DOWN) {
+            if (j <= INP_RIGHT) {
                 // D-pad inputs:
                 joystick_dpad[j, k + (i * 3)] = false;
 
@@ -53,7 +53,7 @@ for (i = 0; i < global.player_count; i += 1) {
             }
 
             // Trigger inputs:
-            if (j <= INP_RIGHT) {
+            if (j <= TRG_RIGHT) {
                 joystick_trigger[j, k + (i * 3)] = false;
             }
         }
@@ -211,14 +211,14 @@ applies_to=self
 for (i = 0; i < global.player_count; i += 1) {
     // Nintendo accept:
     if (global.input_accept[i] == 1) {
-        global.input_joy[INP_ACCEPT, i] = JOY_FACE2;
-        global.input_joy[INP_CANCEL, i] = JOY_FACE1;
+        global.input_joy[i, INP_ACCEPT] = JOY_FACE2;
+        global.input_joy[i, INP_CANCEL] = JOY_FACE1;
     }
 
     // Xbox accept:
     else {
-        global.input_joy[INP_ACCEPT, i] = JOY_FACE1;
-        global.input_joy[INP_CANCEL, i] = JOY_FACE2;
+        global.input_joy[i, INP_ACCEPT] = JOY_FACE1;
+        global.input_joy[i, INP_CANCEL] = JOY_FACE2;
     }
 }
 /*"/*'/**//* YYD ACTION
@@ -238,27 +238,27 @@ for (i = 0; i < global.player_count; i += 1) {
         // Read POV:
         if (joystick_has_pov(joystick_id)) {
             // Pressed:
-            joystick_dpad[INP_LEFT, CHECK_PRESSED + (i * 3)]  = (joystick_pov_x(joystick_id) == -1 && joystick_dpad[INP_LEFT, CHECK_HELD + (i * 3)] == false);
-            joystick_dpad[INP_RIGHT, CHECK_PRESSED + (i * 3)] = (joystick_pov_x(joystick_id) == 1 && joystick_dpad[INP_RIGHT, CHECK_HELD + (i * 3)] == false);
             joystick_dpad[INP_UP, CHECK_PRESSED + (i * 3)]    = (joystick_pov_y(joystick_id) == -1 && joystick_dpad[INP_UP, CHECK_HELD + (i * 3)] == false);
             joystick_dpad[INP_DOWN, CHECK_PRESSED + (i * 3)]  = (joystick_pov_y(joystick_id) == 1 && joystick_dpad[INP_DOWN, CHECK_HELD + (i * 3)] == false);
+            joystick_dpad[INP_LEFT, CHECK_PRESSED + (i * 3)]  = (joystick_pov_x(joystick_id) == -1 && joystick_dpad[INP_LEFT, CHECK_HELD + (i * 3)] == false);
+            joystick_dpad[INP_RIGHT, CHECK_PRESSED + (i * 3)] = (joystick_pov_x(joystick_id) == 1 && joystick_dpad[INP_RIGHT, CHECK_HELD + (i * 3)] == false);
 
             // Released:
-            joystick_dpad[INP_LEFT, CHECK_RELEASED + (i * 3)]  = (joystick_pov_x(joystick_id) != -1 && joystick_dpad[INP_LEFT, CHECK_HELD + (i * 3)] == true);
-            joystick_dpad[INP_RIGHT, CHECK_RELEASED + (i * 3)] = (joystick_pov_x(joystick_id) != 1 && joystick_dpad[INP_RIGHT, CHECK_HELD + (i * 3)] == true);
             joystick_dpad[INP_UP, CHECK_RELEASED + (i * 3)]    = (joystick_pov_y(joystick_id) != -1 && joystick_dpad[INP_UP, CHECK_HELD + (i * 3)] == true);
             joystick_dpad[INP_DOWN, CHECK_RELEASED + (i * 3)]  = (joystick_pov_y(joystick_id) != 1 && joystick_dpad[INP_DOWN, CHECK_HELD + (i * 3)] == true);
+            joystick_dpad[INP_LEFT, CHECK_RELEASED + (i * 3)]  = (joystick_pov_x(joystick_id) != -1 && joystick_dpad[INP_LEFT, CHECK_HELD + (i * 3)] == true);
+            joystick_dpad[INP_RIGHT, CHECK_RELEASED + (i * 3)] = (joystick_pov_x(joystick_id) != 1 && joystick_dpad[INP_RIGHT, CHECK_HELD + (i * 3)] == true);
 
             // Held:
-            joystick_dpad[INP_LEFT, CHECK_HELD + (i * 3)]  = (joystick_pov_x(joystick_id) == -1);
-            joystick_dpad[INP_RIGHT, CHECK_HELD + (i * 3)] = (joystick_pov_x(joystick_id) == 1);
             joystick_dpad[INP_UP, CHECK_HELD + (i * 3)]    = (joystick_pov_y(joystick_id) == -1);
             joystick_dpad[INP_DOWN, CHECK_HELD + (i * 3)]  = (joystick_pov_y(joystick_id) == 1);
+            joystick_dpad[INP_LEFT, CHECK_HELD + (i * 3)]  = (joystick_pov_x(joystick_id) == -1);
+            joystick_dpad[INP_RIGHT, CHECK_HELD + (i * 3)] = (joystick_pov_x(joystick_id) == 1);
         }
 
         // Read buttons:
         else {
-            for (j = INP_LEFT; j <= INP_DOWN; j += 1) {
+            for (j = INP_UP; j <= INP_RIGHT; j += 1) {
                 // Pressed:
                 joystick_dpad[j, CHECK_PRESSED + (i * 3)] = joystick_check_button_pressed(device_id, joystick_button[JOY_LEFT + j, joystick_device[i, 1]]);
 
@@ -273,7 +273,7 @@ for (i = 0; i < global.player_count; i += 1) {
 
     // Reset:
     else {
-        for (j = INP_LEFT; j <= INP_DOWN; j += 1) {
+        for (j = INP_UP; j <= INP_RIGHT; j += 1) {
             for (k = CHECK_PRESSED; k <= CHECK_HELD; k += 1) {
                 joystick_dpad[j, k + (i * 3)] = false;
             }
@@ -299,27 +299,27 @@ for (i = 0; i < global.player_count; i += 1) {
         joystick_set_deadzone(global.input_deadzone[i]);
 
         // Pressed:
-        joystick_analog[INP_LEFT, CHECK_PRESSED + (i * 3)]  = (sign(joystick_axis(joystick_id, 0)) == -1 && joystick_analog[INP_LEFT, CHECK_HELD + (i * 3)] == false);
-        joystick_analog[INP_RIGHT, CHECK_PRESSED + (i * 3)] = (sign(joystick_axis(joystick_id, 0)) == 1 && joystick_analog[INP_RIGHT, CHECK_HELD + (i * 3)] == false);
         joystick_analog[INP_UP, CHECK_PRESSED + (i * 3)]    = (sign(joystick_axis(joystick_id, 1)) == -1 && joystick_analog[INP_UP, CHECK_HELD + (i * 3)] == false);
         joystick_analog[INP_DOWN, CHECK_PRESSED + (i * 3)]  = (sign(joystick_axis(joystick_id, 1)) == 1 && joystick_analog[INP_DOWN, CHECK_HELD + (i * 3)] == false);
+        joystick_analog[INP_LEFT, CHECK_PRESSED + (i * 3)]  = (sign(joystick_axis(joystick_id, 0)) == -1 && joystick_analog[INP_LEFT, CHECK_HELD + (i * 3)] == false);
+        joystick_analog[INP_RIGHT, CHECK_PRESSED + (i * 3)] = (sign(joystick_axis(joystick_id, 0)) == 1 && joystick_analog[INP_RIGHT, CHECK_HELD + (i * 3)] == false);
 
         // Released:
-        joystick_analog[INP_LEFT, CHECK_RELEASED + (i * 3)]  = (sign(joystick_axis(joystick_id, 0)) != -1 && joystick_analog[INP_LEFT, CHECK_HELD + (i * 3)] == true);
-        joystick_analog[INP_RIGHT, CHECK_RELEASED + (i * 3)] = (sign(joystick_axis(joystick_id, 0)) != 1 && joystick_analog[INP_RIGHT, CHECK_HELD + (i * 3)] == true);
         joystick_analog[INP_UP, CHECK_RELEASED + (i * 3)]    = (sign(joystick_axis(joystick_id, 1)) != -1 && joystick_analog[INP_UP, CHECK_HELD + (i * 3)] == true);
         joystick_analog[INP_DOWN, CHECK_RELEASED + (i * 3)]  = (sign(joystick_axis(joystick_id, 1)) != 1 && joystick_analog[INP_DOWN, CHECK_HELD + (i * 3)] == true);
+        joystick_analog[INP_LEFT, CHECK_RELEASED + (i * 3)]  = (sign(joystick_axis(joystick_id, 0)) != -1 && joystick_analog[INP_LEFT, CHECK_HELD + (i * 3)] == true);
+        joystick_analog[INP_RIGHT, CHECK_RELEASED + (i * 3)] = (sign(joystick_axis(joystick_id, 0)) != 1 && joystick_analog[INP_RIGHT, CHECK_HELD + (i * 3)] == true);
 
         // Held:
-        joystick_analog[INP_LEFT, CHECK_HELD + (i * 3)]  = (sign(joystick_axis(joystick_id, 0)) == -1);
-        joystick_analog[INP_RIGHT, CHECK_HELD + (i * 3)] = (sign(joystick_axis(joystick_id, 0)) == 1);
         joystick_analog[INP_UP, CHECK_HELD + (i * 3)]    = (sign(joystick_axis(joystick_id, 1)) == -1);
         joystick_analog[INP_DOWN, CHECK_HELD + (i * 3)]  = (sign(joystick_axis(joystick_id, 1)) == 1);
+        joystick_analog[INP_LEFT, CHECK_HELD + (i * 3)]  = (sign(joystick_axis(joystick_id, 0)) == -1);
+        joystick_analog[INP_RIGHT, CHECK_HELD + (i * 3)] = (sign(joystick_axis(joystick_id, 0)) == 1);
     }
 
     // Reset:
     else {
-        for (j = INP_LEFT; j <= INP_DOWN; j += 1) {
+        for (j = INP_UP; j <= INP_RIGHT; j += 1) {
             for (k = CHECK_PRESSED; k <= CHECK_HELD; k += 1) {
                 joystick_analog[j, k + (i * 3)] = false;
             }
@@ -340,7 +340,7 @@ for (i = 0; i < global.player_count; i += 1) {
     joystick_id = joystick_device[i, 0];
 
     if (joystick_id > -1) {
-        for (j = INP_LEFT; j <= INP_RIGHT; j += 1) {
+        for (j = TRG_LEFT; j <= TRG_RIGHT; j += 1) {
             var trigger_id;
 
             // Trigger id:
@@ -368,7 +368,7 @@ applies_to=self
 /// Inputs
 
 // Keyboard:
-for (i = INP_LEFT; i <= INP_HELP; i += 1) {
+for (i = INP_UP; i <= INP_HELP; i += 1) {
     // Held:
     input_keyboard[i, CHECK_HELD] = keyboard_check(global.input_key[i]);
 
@@ -387,16 +387,16 @@ for (i = 0; i < global.player_count; i += 1) {
     joystick_id = joystick_device[i, 0];
 
     if (joystick_id > -1) {
-        for (j = INP_LEFT; j <= INP_HELP; j += 1) {
+        for (j = INP_UP; j <= INP_HELP; j += 1) {
             for (k = CHECK_PRESSED; k <= CHECK_HELD; k += 1) {
                 // Directional inputs:
-                if (j <= INP_DOWN) {
-                    input_joystick[j, k + (i * 3)] = (joystick_get_check(joystick_id, global.input_joy[j, i], k) || joystick_analog[j, k + (i * 3)]);
+                if (j <= INP_RIGHT) {
+                    input_joystick[j, k + (i * 3)] = (joystick_get_check(joystick_id, global.input_joy[i, j], k) || joystick_analog[j, k + (i * 3)]);
                 }
 
                 // Every other input:
                 else {
-                    input_joystick[j, k + (i * 3)] = joystick_get_check(joystick_id, global.input_joy[j, i], k);
+                    input_joystick[j, k + (i * 3)] = joystick_get_check(joystick_id, global.input_joy[i, j], k);
                 }
             }
         }
@@ -404,7 +404,7 @@ for (i = 0; i < global.player_count; i += 1) {
 
     // Reset:
     else {
-        for (j = INP_LEFT; j <= INP_HELP; j += 1) {
+        for (j = INP_UP; j <= INP_HELP; j += 1) {
             for (k = CHECK_PRESSED; k <= CHECK_HELD; k += 1) {
                 input_joystick[j, k + (i * 3)] = false;
             }
@@ -413,70 +413,7 @@ for (i = 0; i < global.player_count; i += 1) {
 }
 
 // User:
-for (i = INP_LEFT; i <= INP_HELP; i += 1) {
-    // Held:
-    input_user[i, CHECK_HELD] = (input_keyboard[i, CHECK_HELD] || input_joystick[i, CHECK_HELD]);
-
-    // Pressed:
-    input_user[i, CHECK_PRESSED] = ((input_keyboard[i, CHECK_PRESSED] && !input_joystick[i, CHECK_HELD]) || (input_joystick[i, CHECK_PRESSED] && !input_keyboard[i, CHECK_HELD]));
-
-    // Released:
-    input_user[i, CHECK_RELEASED] = ((input_keyboard[i, CHECK_RELEASED] && !input_joystick[i, CHECK_HELD]) || (input_joystick[i, CHECK_RELEASED] && !input_keyboard[i, CHECK_HELD]));
-}
-/*
-// Joystick inputs:
-for (i = 0; i < joystick_max; i += 1) {
-    var device_id;
-
-    // Device id:
-    device_id = joystick_device[i, 0];
-
-    if (device_id > -1) {
-        for (j = INP_LEFT; j <= INP_HELP; j += 1) {
-            // Directional inputs:
-            if (j <= INP_DOWN) {
-                // Held:
-                input_joystick[j, CHECK_HELD + (i * 3)] = (joystick_check(i, global.input_joy[j, i]) || joystick_analog[j, CHECK_HELD + (i * 3)]);
-
-                // Pressed:
-                input_joystick[j, CHECK_PRESSED + (i * 3)] = (joystick_check_pressed(i, global.input_joy[j, i]) || joystick_analog[j, CHECK_PRESSED + (i * 3)]);
-
-                // Released:
-                input_joystick[j, CHECK_RELEASED + (i * 3)] = (joystick_check_released(i, global.input_joy[j, i]) || joystick_analog[j, CHECK_RELEASED + (i * 3)]);
-            }
-
-            // Other inputs:
-            else {
-                // Held:
-                input_joystick[j, CHECK_HELD + (i * 3)] = joystick_check(i, global.input_joy[j, i]);
-
-                // Pressed:
-                input_joystick[j, CHECK_PRESSED + (i * 3)] = joystick_check_pressed(i, global.input_joy[j, i]);
-
-                // Released:
-                input_joystick[j, CHECK_RELEASED + (i * 3)] = joystick_check_released(i, global.input_joy[j, i]);
-            }
-        }
-    }
-
-    // Reset joystick input:
-    else {
-        for (j = INP_LEFT; j <= INP_HELP; j += 1) {
-            // Held:
-            input_joystick[j, CHECK_HELD + (i * 3)] = false;
-
-            // Pressed:
-            input_joystick[j, CHECK_PRESSED + (i * 3)] = false;
-
-            // Released:
-            input_joystick[j, CHECK_RELEASED + (i * 3)] = false;
-        }
-    }
-}
-*/
-// User inputs:
-/*
-for (i = INP_LEFT; i <= INP_HELP; i += 1) {
+for (i = INP_UP; i <= INP_HELP; i += 1) {
     // Held:
     input_user[i, CHECK_HELD] = (input_keyboard[i, CHECK_HELD] || input_joystick[i, CHECK_HELD]);
 
@@ -493,7 +430,7 @@ applies_to=self
 */
 /// Timers
 
-for (i = INP_LEFT; i <= INP_DOWN; i += 1) {
+for (i = INP_UP; i <= INP_RIGHT; i += 1) {
     // Increment:
     if (input_user[i, CHECK_HELD] == true) {
         input_timer[i] += 1;
@@ -513,7 +450,7 @@ applies_to=self
 */
 /// Conflicts
 
-for (i = INP_LEFT; i <= INP_UP; i += 1) {
+for (i = INP_UP; i <= INP_RIGHT; i += 2) {
     // Held:
     if (input_user[i, CHECK_HELD] == true && input_user[i + 1, CHECK_HELD] == true) {
         input_user[i, CHECK_HELD]     = false;

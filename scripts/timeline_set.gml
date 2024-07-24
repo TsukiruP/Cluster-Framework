@@ -3,8 +3,11 @@
 var moment_target;
 
 // Moment target:
-if (argument_count >= 2) moment_target = argument[1];
-else moment_target = 0;
+if (argument_count >= 2) {
+    moment_target = argument[1];
+} else {
+    moment_target = 0;
+}
 
 // Update timeline:
 ctl_index         = argument[0];

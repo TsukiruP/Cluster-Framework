@@ -72,7 +72,9 @@ applies_to=self
 /// Inputs
 
 // Skip:
-if (text_clear == false && log_hide == true && (text_alpha[2] == 1 || topic_alpha[1] == 1) && input_get_check(INP_START, CHECK_PRESSED)) text_clear = true;
+if (text_clear == false && log_hide == true && (text_alpha[2] == 1 || topic_alpha[1] == 1) && input_get_check(INP_START, CHECK_PRESSED)) {
+    text_clear = true;
+}
 
 if (text_clear == false) {
     // Hide:
@@ -159,7 +161,7 @@ if (text_clear == false) {
             scroll_max = ((log_height - log_scroll) > (global.display_height - 32));
         }
 
-        scroll_direction = ((input_get_check(INP_DOWN, CHECK_PRESSED) || ctrl_input.input_timer[INP_DOWN] > 25) && scroll_max) - ((input_get_check(INP_UP, CHECK_PRESSED) || ctrl_input.input_timer[INP_UP] > 25) && scroll_min > 0);
+        scroll_direction = ((input_get_check(INP_DOWN, CHECK_PRESSED) || input_get_timer(INP_DOWN, 30)) && scroll_max) - ((input_get_check(INP_UP, CHECK_PRESSED) || input_get_timer(INP_UP, 30)) && scroll_min > 0);
 
         // Textbox scroll:
         if (log_hide == true && text_scroll[1] != 0 && (text_scroll[4] == true)) {
