@@ -65,7 +65,7 @@ if (game_is_paused(ctrl_pause)) {
 }
 
 // Shift around the player:
-if (focus_handle != noone) {
+if (instance_exists(focus_handle)) {
     if (focus_handle == player_exists(0)) {
         var look_direction;
 
@@ -120,49 +120,56 @@ if (game_is_paused(ctrl_pause)) {
     exit;
 }
 
-if (focus_handle != noone) {
+if (instance_exists(focus_handle)) {
     // Player focus:
     if (focus_handle == player_exists(0)) {
-        // Speed cap:
-        camera_speed_cap = 16;
-        
         if (camera_position_distance == 0) {
-            // Horizontal movement:
             if (camera_lag_alarm == 0) {
                 // Move left:
                 if (focus_handle.x < border_left) {
-                    camera_x -= min(border_left - focus_handle.x, camera_speed_cap);
+                    camera_x -= min(border_left - focus_handle.x, 24);
                 }
                 
                 // Move right:
                 else if (focus_handle.x > border_right) {
-                    camera_x += min(focus_handle.x - border_right, camera_speed_cap);
+                    camera_x += min(focus_handle.x - border_right, 24);
                 }
                 
                 // Vertical movement:
                 if (focus_handle.action_current != player_action_death) {
-                    var roll_offset, reference_up, reference_bottom;
-                    
-                    // Roll offset:
-                    roll_offset = focus_handle.roll_offset * focus_handle.y_direction;
-                    
-                    // References:
-                    if (focus_handle.ground == true) {
-                        reference_up     = camera_y;
-                        reference_bottom = camera_y;
-                    } else {
-                        reference_up     = border_top;
-                        reference_bottom = border_bottom;
+                    // Airborne:
+                    if (focus_handle.ground == false) {
+                        // Move up:
+                        if (focus_handle.y < border_top) {
+                            camera_y -= min(border_top - focus_handle.y, 24);
+                        }
+                        
+                        // Move down:
+                        else if (focus_handle.y > border_bottom) {
+                            camera_y += min(focus_handle.y - border_bottom, 24);
+                        }
                     }
                     
-                    // Move up:
-                    if (focus_handle.y < (reference_up + roll_offset)) {
-                        camera_y -= min(reference_up - (focus_handle.y - roll_offset), camera_speed_cap);
-                    }
-                    
-                    // Move down:
-                    else if (focus_handle.y > (reference_bottom + roll_offset)) {
-                        camera_y += min((focus_handle.y - (roll_offset)) - reference_bottom, camera_speed_cap);
+                    // Ground:
+                    else if (focus_handle.ground == true) {
+                        var camera_speed_cap;
+                        
+                        // Speed cap:
+                        if (focus_handle.g_speed >= 8) {
+                            camera_speed_cap = 24;
+                        } else {
+                            camera_speed_cap = 6;
+                        }
+                        
+                        // Move up:
+                        if (focus_handle.y < (camera_y - focus_handle.roll_offset)) {
+                            camera_y -= min((camera_y - focus_handle.roll_offset) - focus_handle.y, camera_speed_cap);
+                        }
+                        
+                        // Move down:
+                        else if (focus_handle.y > (camera_y + focus_handle.roll_offset)) {
+                            camera_y += min(focus_handle.y - (camera_y + focus_handle.roll_offset), camera_speed_cap);
+                        }
                     }
                 }
             }
@@ -171,27 +178,24 @@ if (focus_handle != noone) {
     
     // Object focus:
     else {
-        // Speed cap:
-        camera_speed_cap = 6;
-        
-        // Move left:
-        if (focus_handle.x < camera_x) {
-            camera_x -= min(camera_x - focus_handle.x, camera_speed_cap);
+        // Horizontal:
+        if (focus_handle.x != camera_x) {
+            var camera_distance_x;
+            
+            // Distance:
+            camera_distance_x = focus_handle.x - camera_x;
+            
+            camera_x += min(abs(camera_distance_x), 6) * sign(camera_distance_x);
         }
         
-        // Move right:
-        else if (focus_handle.x > camera_x) {
-            camer_x += min(focus_handle.x - camera_x, camera_speed_cap);
-        }
-        
-        // Move up:
-        if (focus_handle.y < camera_y) {
-            camera_y -= min(focus_handle.y - camera_y, camera_speed_cap);
-        }
-        
-        // Move down:
-        else if (focus_handle.y > camera_y) {
-            camera_y += min(focus_handle.y - camera_y, camera_speed_cap);
+        // Vertical:
+        if (focus_handle.y != camera_y) {
+            var camera_distance_y;
+            
+            // Distance:
+            camera_distance_y = focus_handle.y - camera_y;
+            
+            camera_y += min(abs(camera_distance_y), 6) * sign(camera_distance_y);
         }
     }
 }
@@ -206,4 +210,4 @@ y          = clamp(y, limit_top + view_yhalf, limit_bottom - view_yhalf);
 
 // Update positions:
 x = floor(camera_x + camera_x_shift);
-y = floor(camera_y + camera_y_shift);
+y = floor(camera_y + camera_y_shift) - 16;
