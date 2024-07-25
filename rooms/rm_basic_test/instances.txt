@@ -1,4 +1,3 @@
-obj_ring,384,752,07F4CB60,0,1,1,4294967295,0,0
 obj_player_spawn,240,752,F4AE1C4E,0,1,1,4294967295,0,0
 obj_basic_test_collision_03,96,768,0D9C0381,0,1,1,4294967295,0,0
 obj_basic_test_collision_03,192,768,12114FF8,0,1,1,4294967295,0,0
@@ -87,9 +86,9 @@ obj_basic_test_collision_01,576,816,757C501C,0,1,1,4294967295,0,0
 obj_basic_test_collision_03,672,768,1DBA3F74,0,1,1,4294967295,0,0
 obj_basic_test_collision_01,672,720,FF86C6A9,0,1,1,4294967295,0,0
 obj_basic_test_collision_03,0,768,D5082484,0,1,1,4294967295,0,0
-obj_omochao,352,752,893CDAE3,0,1,1,4294967295,0,0
-obj_item_basic,304,752,3D70AD8A,0,1,1,4294967295,0,0
 obj_basic_test_collision_01,960,560,2A410CE5,0,1,1,4294967295,0,0
 obj_basic_test_collision_01,864,560,53872412,0,1,1,4294967295,0,0
 obj_basic_test_collision_01,768,560,5F2C3690,0,1,1,4294967295,0,0
-obj_item_panic,192,752,E7D6ACEE,0,1,1,4294967295,0,0
+obj_item_magnetic,304,752,47B5FFF0,0,1,1,4294967295,0,0
+obj_item_lightning,352,752,8F052C45,0,1,1,4294967295,0,0
+obj_hint_box,176,720,FB35A283,0,1,1,4294967295,0,0

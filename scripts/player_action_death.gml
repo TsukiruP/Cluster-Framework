@@ -48,7 +48,7 @@ switch (argument0) {
     // Finish:
     case ACTION_FINISH:
         // Destroy transition:
-        if (death_handle != noone) {
+        if (instance_exists(death_handle)) {
             with (death_handle) {
                 instance_destroy();
             }

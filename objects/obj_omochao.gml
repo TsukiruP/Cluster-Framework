@@ -27,7 +27,7 @@ applies_to=self
 */
 /// Activate
 
-if (player_handle != noone) {
+if (instance_exists(player_handle)) {
     if (player_handle.hint_wanted == true) {
         // Check current:
         if (hint_current != hint_target) {
@@ -57,7 +57,7 @@ if (game_is_paused(ctrl_pause)) {
 }
 
 // Match player:
-if (player_handle != noone) {
+if (instance_exists(player_handle)) {
     if (player_handle.hint_wanted == true) {
         // Put down Omochao:
         if (ctrl_text.text_clear == true && player_handle.animation_current == "omochao" && player_handle.animation_reverse == false) {
