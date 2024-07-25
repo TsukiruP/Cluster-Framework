@@ -384,7 +384,7 @@ draw_text(view_xview[view_current] + hud_x_current + 58 + 44, view_yview[view_cu
 // Rings:
 draw_set_font(global.font_hud_s4e2);
 
-if ((sync_rate(global.object_time, 2, 2) && global.game_rings == 0) || global.game_rings > 0) {
+if ((sync_rate(global.object_time, 8, 2) && global.game_rings == 0) || global.game_rings > 0) {
     // Flash red:
     if (global.game_rings == 0) {
         draw_set_color(c_red);
