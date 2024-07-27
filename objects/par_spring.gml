@@ -40,13 +40,17 @@ applies_to=self
 */
 /// Animate
 
-// Don't bother if the game is paused or the object is a dash or rainbow ring:
-if (game_paused(ctrl_pause)|| object_is_ancestor(self.object_index, par_dash_ring) || object_is_ancestor(self.object_index, par_rainbow_ring)) exit;
+// Exit if the game is paused or the object is a dash or rainbow ring:
+if (game_ispaused(ctrl_pause)|| object_is_ancestor(self.object_index, par_dash_ring) || object_is_ancestor(self.object_index, par_rainbow_ring)) {
+    exit;
+}
 
+// Execute script:
 if (spring_active == true) {
     script_execute(ctl_index);
 }
 
+// Reset frame:
 if (spring_active == false) {
     timeline_set(ctl_spring);
     image_index = 0;

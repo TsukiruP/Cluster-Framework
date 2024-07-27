@@ -1,7 +1,9 @@
 /// player_point_check(radius_x, radius_y, [semi_solid])
 
 // Exit if collision is disabled:
-if (collision_allow == false) exit;
+if (collision_allow == false) {
+    exit;
+}
 
 // Set up arguments:
 var radius_x, radius_y, semi_solid;
@@ -10,8 +12,11 @@ radius_x = argument[0];
 radius_y = argument[1];
 
 // Set semi solid:
-if (argument_count > 2) semi_solid = argument[2];
-else semi_solid = false;
+if (argument_count > 2) {
+    semi_solid = argument[2];
+} else {
+    semi_solid = false;
+}
 
 if (collision_point(floor(x) + radius_x * y_direction + radius_y * x_direction, floor(y) + radius_y * y_direction + radius_x * -x_direction, par_terrain, true, true)) {
     var terrain_collisions, terrain_count, i;

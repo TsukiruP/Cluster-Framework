@@ -7,8 +7,11 @@ pos_x = argument[0];
 pos_y = argument[1];
 
 // Set up floor mode:
-if (argument_count > 2) floor_mode = argument[2];
-else floor_mode = 0;
+if (argument_count >= 3) {
+    floor_mode = argument[2];
+} else {
+    floor_mode = 0;
+}
 
 // Set up off x and off y:
 switch (floor_mode) {
@@ -49,16 +52,16 @@ switch (floor_mode) {
 for (i = 0; i <= 1; i += 1) {
     // Push angle sensors down:
     while (!angle_sensor(off_x[i], off_y[i])
-    && off_x[i] > pos_x - 32 && off_x[i] < pos_x + 32
-    && off_y[i] > pos_y - 36 && off_y[i] < pos_y + 36) {
+        && off_x[i] > pos_x - 32 && off_x[i] < pos_x + 32
+        && off_y[i] > pos_y - 36 && off_y[i] < pos_y + 36) {
         off_x[i] += dsin(90 * floor_mode);
         off_y[i] += dcos(90 * floor_mode);
     }
 
     // Push angle sensors up:
     while (angle_sensor(off_x[i], off_y[i])
-    && off_x[i] > pos_x - 32 && off_x[i] < pos_x + 32
-    && off_y[i] > pos_y - 36 && off_y[i] < pos_y + 36) {
+        && off_x[i] > pos_x - 32 && off_x[i] < pos_x + 32
+        && off_y[i] > pos_y - 36 && off_y[i] < pos_y + 36) {
         off_x[i] -= dsin(90 * floor_mode);
         off_y[i] -= dcos(90 * floor_mode);
     }

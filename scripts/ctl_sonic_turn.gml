@@ -34,9 +34,6 @@ if (ctl_position(0)) {
 
     hitbox_offset_x = 0;
     hitbox_offset_y = 0;
-
-    // Set direction:
-    animation_direction *= -1;
 }
 
 // Change frame:

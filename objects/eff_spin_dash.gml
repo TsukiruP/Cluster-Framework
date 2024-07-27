@@ -23,12 +23,13 @@ event_inherited();
 // Update depth:
 depth = player_handle.depth;
 
-
 // Update direction:
-image_xscale = player_handle.animation_direction;
+image_xscale = player_handle.image_xscale;
 
 // Destroy:
-if (player_handle.action_state != ACTION_SPIN_DASH) instance_destroy();
+if (player_handle.action_current != player_action_spin_dash) {
+    instance_destroy();
+}
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1

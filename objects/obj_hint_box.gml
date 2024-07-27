@@ -26,7 +26,7 @@ applies_to=self
 */
 /// Activate
 
-if (player_handle != noone) {
+if (instance_exists(player_handle)) {
     if (player_handle.hint_wanted == true) {
         // Check current:
         if (hint_current != hint_target) {
@@ -34,7 +34,7 @@ if (player_handle != noone) {
             switch (hint_target) {
                 // Default:
                 default:
-                    text_message_set("Hint Boxes are meant to provide information about the environment. This ranges from how to deal with enemies or gimmicks, or how Casinopolis is only open at night.");
+                    text_set_message("Hint Boxes are meant to provide information about the environment. This ranges from how to deal with enemies or gimmicks, or how Casinopolis is only open at night.");
             }
 
             // Set current:
@@ -50,18 +50,20 @@ applies_to=self
 */
 /// Animate
 
-// Don't bother if the game is paused:
-if (game_paused(ctrl_pause)) exit;
+// Exit if the stage is paused:
+if (game_ispaused(ctrl_pause)) {
+    exit;
+}
 
 // Match player:
-if (player_handle != noone) {
+if (instance_exists(player_handle)) {
     if (player_handle.hint_wanted == true) {
         // Look down:
         if (ctrl_text.text_clear == true && player_handle.animation_current == "look" && player_handle.animation_reverse == false) {
             player_handle.animation_trigger = true;
             player_handle.animation_reverse = true;
         }
-    
+
         // Clear text:
         if (player_handle.hint_wanted == false) {
             ctrl_text.text_clear = true;
@@ -79,7 +81,7 @@ if (player_handle == noone && hint_current != -1) {
 }
 
 // Float:
-draw_y = y + sin(floor(global.object_time) * 0.03) * 1.5;
+draw_y = y + sin(floor(global.object_time) * 0.03) * 2;
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -89,7 +91,7 @@ applies_to=self
 /// Draw Hint Box
 
 // Hint Box:
-draw_sprite_ext(sprite_index, (player_handle != noone) + 1, x, draw_y, image_xscale, 1, 0, c_white, 1);
+draw_sprite_ext(sprite_index, instance_exists(player_handle) + 1, x, draw_y, image_xscale, 1, 0, c_white, 1);
 
 // Size:
 event_inherited();

@@ -19,8 +19,10 @@ applies_to=self
 */
 /// Animate
 
-// Don't bother if the game is paused:
-if (game_paused(ctrl_pause)) exit;
+// Exit if the stage is paused:
+if (game_ispaused(ctrl_pause)) {
+    exit;
+}
 
 // Execute timeline:
 if (ctl_index != noone) {

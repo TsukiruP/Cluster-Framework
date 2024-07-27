@@ -16,7 +16,7 @@ fnt_title_card_zone
 fnt_title_card_act
 fnt_hud
 spr_hud
-spr_sonic_idle
+spr_sonic_stand
 spr_sonic_wait_partner
 spr_sonic_wait_leader
 spr_sonic_walk
@@ -25,7 +25,7 @@ spr_sonic_jog
 spr_sonic_jog_fast
 spr_sonic_run
 spr_sonic_dash
-spr_sonic_idle_tag
+spr_sonic_stand_tag
 spr_sonic_walk_tag
 spr_sonic_walk_fast_tag
 spr_sonic_jog_tag
@@ -62,13 +62,13 @@ spr_spin_charge
 spr_skid
 spr_tag_call
 spr_status_slow
-spr_status_panic
+spr_debuff
 spr_shield_basic
 spr_shield_magnetic
 spr_shield_fire
 spr_shield_bubble_wave
 spr_shield_lightning
-spr_shield_muteki
+spr_shield_invin
 spr_shield_fire_burst
 spr_shield_bubble_bounce
 spr_shield_lightning_spark
@@ -86,7 +86,7 @@ spr_basic_test_collision_plat_01
 spr_rainbow_ring_left
 spr_rainbow_ring_left_up
 spr_hud_s4e2
-spr_basic_test_collision_solid_14
+spr_pause_header
 spr_basic_test_collision_low_01
 spr_basic_test_water_fall_02
 fnt_hud_s4e2
@@ -220,7 +220,7 @@ spr_miles_push
 spr_sonic_balance_front
 spr_sonic_balance_back
 spr_sonic_turn
-spr_sonic_skid_turn
+spr_sonic_turn_skid
 spr_sonic_skid_fast
 spr_sonic_turn_tag
 spr_sonic_goal
@@ -282,3 +282,5 @@ spr_rainbow_ring_right_up
 spr_rainbow_ring_right_down
 fnt_score_s4e2
 fnt_time_s4e2
+
+spr_pause_menu

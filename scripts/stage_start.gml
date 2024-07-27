@@ -1,9 +1,9 @@
 /// stage_start()
-//
+// Sets up everything for a stage to start.
 
 // Player input lock:
-if (player_exists(0) != noone) {
-    with (player_exists(0)) {
+if (instance_exists(instance_player(0))) {
+    with (instance_player(0)) {
         if (input_lock != false) input_lock = false;
     }
 }

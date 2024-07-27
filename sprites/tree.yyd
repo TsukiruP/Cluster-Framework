@@ -19,39 +19,41 @@
 			|fnt_hud_s4e2
 			|fnt_score_s4e2
 			|fnt_time_s4e2
+	+Pause
+		|spr_pause_header
+		|spr_pause_menu
 +Gameplay
 	+Player
 		|spr_player_spawn
 		+Sonic
-			+Default
-				|spr_sonic_idle
+			+Idle
+				|spr_sonic_stand
+				|spr_sonic_stand_tag
+				+Balance
+					|spr_sonic_balance_front
+					|spr_sonic_balance_back
+				+Wait
+					|spr_sonic_wait_leader
+					|spr_sonic_wait_partner
+				+Misc.
+					|spr_sonic_ready
+					|spr_sonic_land
+					|spr_sonic_omochao
+			+Turn
 				|spr_sonic_turn
+				|spr_sonic_turn_tag
+				|spr_sonic_turn_skid
+			+Run
 				|spr_sonic_walk
 				|spr_sonic_walk_fast
 				|spr_sonic_jog
 				|spr_sonic_jog_fast
 				|spr_sonic_run
 				|spr_sonic_dash
-				+Wait
-					|spr_sonic_wait_leader
-					|spr_sonic_wait_partner
-				+Balance
-					|spr_sonic_balance_front
-					|spr_sonic_balance_back
 				+Tag
-					|spr_sonic_idle_tag
-					|spr_sonic_turn_tag
 					|spr_sonic_walk_tag
 					|spr_sonic_walk_fast_tag
 					|spr_sonic_jog_tag
-				+Misc.
-					|spr_sonic_ready
-					|spr_sonic_land
-					|spr_sonic_push
-					|spr_sonic_omochao
-			+Jump
-				|spr_sonic_spin_flight
-				|spr_sonic_spin_fall
 			+Look
 				|spr_sonic_look
 				|spr_sonic_look_tag
@@ -61,12 +63,17 @@
 			+Spin Dash
 				|spr_sonic_spin_dash
 				|spr_sonic_spin_charge
-			|spr_sonic_roll
+			+Spin
+				|spr_sonic_roll
+				|spr_sonic_spin_flight
+				|spr_sonic_spin_fall
 			+Skid
 				|spr_sonic_skid
 				|spr_sonic_skid_fast
-				|spr_sonic_skid_turn
 				|spr_sonic_skid_tag
+			|spr_sonic_hurt
+			|spr_sonic_death
+			|spr_sonic_push
 			+Spring
 				|spr_sonic_spring
 				|spr_sonic_spring_tag
@@ -74,8 +81,6 @@
 			+Goal
 				|spr_sonic_goal
 				|spr_sonic_goal_gold
-			|spr_sonic_hurt
-			|spr_sonic_death
 			+Tag Actions
 				|spr_sonic_leap
 				|spr_sonic_fly_carry
@@ -224,9 +229,8 @@
 		+Rings
 			|spr_ring
 			|spr_goal_ring
-		+Checkpoint
-			|spr_checkpoint_inactive
-			|spr_checkpoint_active
+		|spr_checkpoint_inactive
+		|spr_checkpoint_active
 		+Springs
 			|spr_spring_left
 			|spr_spring_right
@@ -280,6 +284,7 @@
 			|spr_spin_charge
 			|spr_skid
 			|spr_drop_dash
+			|spr_debuff
 			|spr_homing_reticle
 			|spr_character_arrow
 			|spr_tag_call
@@ -291,14 +296,11 @@
 			|spr_shield_bubble_shell
 			|spr_shield_bubble_wave
 			|spr_shield_lightning
-			|spr_shield_muteki
+			|spr_shield_invin
 			+Actions
 				|spr_shield_fire_burst
 				|spr_shield_bubble_bounce
 				|spr_shield_lightning_spark
-		+Status
-			|spr_status_slow
-			|spr_status_panic
 		+Explosions
 			|spr_explosion_small
 			|spr_explosion_large
@@ -344,13 +346,14 @@
 			|spr_basic_test_collision_27
 			|spr_basic_test_collision_28
 			|spr_basic_test_collision_29
+	+Sunset Hill
+		+Collision
 		+Gimmicks
 			|spr_basic_test_water_fall_01
 			|spr_basic_test_water_fall_02
 			|spr_basic_test_water_fall_03
 +Trash
 	+Solids
-		|spr_basic_test_collision_solid_14
 	+Platforms
 		|spr_basic_test_collision_plat_01
 	+Low
@@ -368,3 +371,4 @@
 		|mask_edge_line
 		|mask_platform_fix
 		|mask_ledge
+	|spr_status_slow

@@ -3,8 +3,11 @@
 // Collision type:
 var pl_type, pl_left, pl_right, pl_top, pl_bottom, pl_offset_x, pl_offset_y;
 
-if (argument_count >= 3) pl_type = argument[2];
-else pl_type = 0;
+if (argument_count >= 3) {
+    pl_type = argument[2];
+} else {
+    pl_type = 0;
+}
 
 switch (pl_type) {
     // Hurtbox:
@@ -45,39 +48,42 @@ var pl_x1, pl_y1, pl_x2, pl_y2;
 
 switch (mode) {
     case 0:
-        pl_x1 = floor(x) - pl_left + (pl_offset_x * animation_direction);
+        pl_x1 = floor(x) - pl_left + (pl_offset_x * image_xscale);
         pl_y1 = floor(y) - pl_top + pl_offset_y;
-        pl_x2 = floor(x) + pl_right + (pl_offset_x * animation_direction);
+        pl_x2 = floor(x) + pl_right + (pl_offset_x * image_xscale);
         pl_y2 = floor(y) + pl_bottom + pl_offset_y;
         break;
 
     case 1:
         pl_x1 = floor(x) - pl_top + pl_offset_y;
-        pl_y1 = floor(y) - pl_right + (pl_offset_x * animation_direction);
+        pl_y1 = floor(y) - pl_right + (pl_offset_x * image_xscale);
         pl_x2 = floor(x) + pl_bottom + pl_offset_y;
-        pl_y2 = floor(y) + pl_left + (pl_offset_x * animation_direction);
+        pl_y2 = floor(y) + pl_left + (pl_offset_x * image_xscale);
         break;
 
     case 2:
-        pl_x1 = floor(x) - pl_right + (pl_offset_x * animation_direction);
+        pl_x1 = floor(x) - pl_right + (pl_offset_x * image_xscale);
         pl_y1 = floor(y) - pl_bottom + pl_offset_y;
-        pl_x2 = floor(x) + pl_left + (pl_offset_x * animation_direction);
+        pl_x2 = floor(x) + pl_left + (pl_offset_x * image_xscale);
         pl_y2 = floor(y) + pl_top + pl_offset_y;
         break;
 
     case 3:
         pl_x1 = floor(x) - pl_bottom + pl_offset_y;
-        pl_y1 = floor(y) - pl_left + (pl_offset_x * animation_direction);
+        pl_y1 = floor(y) - pl_left + (pl_offset_x * image_xscale);
         pl_x2 = floor(x) + pl_top + pl_offset_y;
-        pl_y2 = floor(y) + pl_right + (pl_offset_x * animation_direction);
+        pl_y2 = floor(y) + pl_right + (pl_offset_x * image_xscale);
         break;
 }
 
 // Prop collision:
 var pr_hitbox, pr_left, pr_right, pr_top, pr_bottom, pr_offset_x, pr_offset_y;
 
-if (argument_count >= 4) pr_hitbox = argument[3];
-else pr_hitbox = false;
+if (argument_count >= 4) {
+    pr_hitbox = argument[3];
+} else {
+    pr_hitbox = false;
+}
 
 if (pr_hitbox == true) {
     pr_left     = argument[0].hitbox_left;

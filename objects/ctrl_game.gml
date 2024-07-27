@@ -1,23 +1,3 @@
-#define Step_0
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Pause Menu
-
-// Don't bother if there's no player:
-if (!player_exists(0)) exit;
-
-if (!game_paused(ctrl_text) && global.pause_allow == true && !instance_exists(ctrl_pause) && input_check(INP_START, CHECK_PRESSED)) {
-    var pause_fade;
-
-    pause_fade = fade_create(0.06, 0.6, depth);
-
-    with(instance_create(0, 0, ctrl_pause)) {
-        fade_handle = pause_fade;
-    }
-}
 #define Step_1
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -26,17 +6,40 @@ applies_to=self
 */
 /// Global Timers
 
-// Don't bother if the game is paused:
-if (game_paused(ctrl_pause)) exit;
+// Exit if the stage is paused:
+if (game_ispaused(ctrl_pause)) {
+    exit;
+}
 
 // Stage timer:
-if (!game_paused(ctrl_text) && global.time_allow == true) {
+if (global.time_allow == true && !game_ispaused(ctrl_text)) {
     global.game_time += global.object_ratio;
 }
 
 // Object timer
 global.object_time += global.object_ratio;
 #define Step_2
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Pause
+
+// Exit if there's no player 1:
+if (!instance_exists(instance_player(0))) {
+    exit;
+}
+
+if (!game_ispaused(ctrl_text) && global.pause_allow == true && !instance_exists(ctrl_pause) && input_get_check(INP_START, CHECK_PRESSED)) {
+    var pause_fade;
+
+    pause_fade = fade_create(0.06, 0.6, depth);
+
+    with(instance_create(0, 0, ctrl_pause)) {
+        fade_handle = pause_fade;
+    }
+}
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603

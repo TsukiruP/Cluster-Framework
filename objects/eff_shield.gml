@@ -20,9 +20,9 @@ applies_to=self
 /// Index
 
 // Shields:
-if (player_handle.invincibility_type != 2) {
+if (player_handle.status_invin != INVIN_BUFF) {
     // Update shield:
-    switch (player_handle.shield_data) {
+    switch (player_handle.status_shield) {
         // Magnetic:
         case SHIELD_MAGNETIC:
             if (ctl_index != ctl_shield_magnetic) timeline_set(ctl_shield_magnetic);
@@ -51,7 +51,7 @@ if (player_handle.invincibility_type != 2) {
 
 // Invincibility:
 else {
-    if (ctl_index != ctl_shield_muteki) timeline_set(ctl_shield_muteki);
+    if (ctl_index != ctl_shield_invin) timeline_set(ctl_shield_invin);
 }
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -65,35 +65,33 @@ var shield_advance;
 event_inherited();
 
 // Update depth:
-if ((player_handle.shield_data == SHIELD_FIRE && (image_index mod 2) != 0) || (player_handle.shield_data == SHIELD_LIGHTNING && ctl_time > 48)) {
+if ((player_handle.status_shield == SHIELD_FIRE && (image_index mod 2) != 0) || (player_handle.status_shield == SHIELD_LIGHTNING && ctl_time > 48)) {
     depth = player_handle.depth + 1;
 } else {
     depth = player_handle.depth - 1;
 }
 
 // Advance shields:
-shield_advance = (player_handle.shield_data == SHIELD_BASIC || player_handle.shield_data == SHIELD_MAGNETIC || player_handle.invincibility_type == 2);
+shield_advance = (player_handle.status_shield == SHIELD_BASIC || player_handle.status_shield == SHIELD_MAGNETIC || player_handle.status_invin == INVIN_BUFF);
 
 // Hide:
-if (player_handle.shield_data == SHIELD_BUBBLE || (global.misc_flicker == true && shield_advance == true)) {
+if (!game_ispaused(ctrl_pause) && (player_handle.status_shield == SHIELD_BUBBLE || (global.advance_flicker == true && shield_advance == true))) {
     // Hide:
-    if (ctl_time > 1 && ctl_time mod 2) {
-        shield_hide = !shield_hide;
-    }
+    shield_hide = sync_rate(ctl_time, 2, 2);
 } else {
     shield_hide = false;
 }
 
 // Alpha:
-if ((global.misc_flicker == true && shield_advance == true) || shield_advance == false) {
+if ((global.advance_flicker == true && shield_advance == true) || shield_advance == false) {
     shield_alpha = 1;
 } else {
     shield_alpha = 0.6;
 }
 
 // Destroy:
-if (player_handle.shield_data == 0 && player_handle.invincibility_type != 2) {
-    player_handle.shield_instance = noone;
+if (player_handle.status_shield == SHIELD_NONE && player_handle.status_invin != INVIN_BUFF) {
+    player_handle.shield_handle = noone;
     instance_destroy();
 }
 #define Draw_0
@@ -111,7 +109,7 @@ if (sprite_exists(sprite_index)) {
     }
 
     // Switch to bubble shield shell:
-    else if (player_handle.shield_data == SHIELD_BUBBLE) {
+    else if (player_handle.status_shield == SHIELD_BUBBLE) {
         draw_sprite(spr_shield_bubble_shell, ctl_time_previous div 12, x, y)
     }
 

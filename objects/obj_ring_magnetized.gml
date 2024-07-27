@@ -31,14 +31,16 @@ applies_to=self
 */
 /// Movement
 
-// Don't bother if the game is paused:
-if (game_paused()) exit;
+// Exit if the stage is paused or text is active:
+if (game_ispaused()) {
+    exit;
+}
 
-if (player_exists(0) != noone) {
+if (instance_exists(instance_player(0))) {
     var player_handle, xx, yy;
 
     // Move towards the player:
-    player_handle = player_exists(0);
+    player_handle = instance_player(0);
     xx            = sign(player_handle.x - x);
     yy            = sign(player_handle.y - y);
 
@@ -47,7 +49,7 @@ if (player_exists(0) != noone) {
     speed   = clamp(speed, -64, 64) * global.object_ratio;
 
     // Drop a normal ring when no longer magnetized:
-    if (player_handle.shield_data != SHIELD_MAGNETIC && player_handle.shield_data != SHIELD_LIGHTNING) {
+    if (player_handle.status_shield != SHIELD_MAGNETIC && player_handle.status_shield != SHIELD_LIGHTNING) {
         dropped = true;
         instance_destroy();
     }

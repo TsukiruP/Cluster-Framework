@@ -1,8 +1,10 @@
 /// key_to_string(key)
-// Returns a string based on the given keyboard key.
+// Returns the string value for the indicated key.
 
 // Return individual keys:
-if (argument0 > 48 && argument0 < 91) return chr(argument0);
+if (argument0 > 48 && argument0 < 91) {
+    return chr(argument0);
+}
 
 // Return specific keys:
 switch (argument0) {

@@ -8,13 +8,12 @@ applies_to=self
 
 // HUD variables:
 hud_hide      =  true;
-hud_sprite    =  spr_hud;
 
-hud_x_factor  =  4;
-hud_x_start   = -sprite_get_width(hud_sprite) - hud_x_factor;
-hud_x_current = -1;
-hud_x_target  =  4;
-hud_x_speed   =  0;
+hud_index     = spr_hud;
+hud_x_current = global.display_width;
+hud_x_target  = 4;
+hud_x_speed   = 0;
+hud_x_factor  = 4;
 
 hud_y         =  6;
 
@@ -22,61 +21,71 @@ hud_y         =  6;
 air_hide     =  false;
 air_value    =  30;
 
-air_x_current = -sprite_get_width(spr_hud);
+air_x_current = -sprite_get_width(hud_index);
 air_x_speed   =  0;
 
 // Item feed variables:
-item_feed     = -1;
-item_timer    =  0;
-item_duration =  110;
+item_hide  =  false;
+item_feed  = -1;
+item_alarm =  0;
 
 // Status variables:
 status_icon[STATUS_SHIELD]   =  ITEM_BASIC;
-status_icon[STATUS_MUTEKI]   =  ITEM_MUTEKI;
+status_icon[STATUS_INVIN]    =  ITEM_INVIN;
 status_icon[STATUS_SPEED]    =  ITEM_SPEED;
 status_icon[STATUS_PANIC]    =  ITEM_PANIC;
 status_icon[STATUS_SWAP]     =  ITEM_SWAP;
 status_position              = -1;
 status_speed                 =  0;
 status_size                  =  2 + 2 * global.gameplay_debuffs;
-status_count                 =  0;
 
-status_active[STATUS_SHIELD, 0] =  0;
-status_active[STATUS_MUTEKI, 0] =  0;
-status_active[STATUS_SPEED, 0]  =  0;
-status_active[STATUS_PANIC, 0]  =  0;
-status_active[STATUS_SWAP , 0]  =  0;
+for (i = STATUS_SHIELD; i <= STATUS_SWAP; i += 1) {
+    status_active[i, 0] = 0;
+    status_active[i, 1] = false;
+}
 #define Step_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
 applies_to=self
 */
-/// Reset HUD
+/// Position
 
 switch (global.misc_hud) {
     // S4E2:
     case 2:
-        hud_sprite   = spr_hud_s4e2;
+        hud_index    = spr_hud_s4e2;
         hud_x_factor = 3;
-        hud_x_target = 13;
-
         hud_y        = 14;
         break;
 
     // Default:
     default:
-        hud_sprite   = spr_hud;
+        hud_index    = spr_hud;
         hud_x_factor = 4;
-        hud_x_target = 4;
-
         hud_y        = 6;
 }
 
+if (input_get_check(INP_TAG, CHECK_PRESSED)) {
+    hud_hide = !hud_hide;
+}
 
-// HUD start:
-if (hud_x_start != -sprite_get_width(hud_sprite) - hud_x_factor) {
-    hud_x_start = -sprite_get_width(hud_sprite) - hud_x_factor;
+// HUD target:
+if (hud_hide == true) {
+    hud_x_target  = -(sprite_get_width(hud_index) + hud_x_factor);
+    hud_x_factor *= 3;
+} else {
+    switch (global.misc_hud) {
+        // S4E2:
+        case 2:
+            hud_x_target = 13;
+            break;
+
+        // Default:
+        default:
+            hud_x_target = 4;
+            break;
+    }
 }
 #define Step_2
 /*"/*'/**//* YYD ACTION
@@ -86,111 +95,68 @@ applies_to=self
 */
 /// Movement
 
-// Don't bother if the game is paused:
-if (game_paused(ctrl_pause)) exit;
+// Exit if the stage is paused:
+if (game_ispaused(ctrl_pause)) {
+    exit;
+}
 
-// Hide:
-if (hud_hide == false) {
+// HUD:
+if (hud_x_current != hud_x_target) {
     // Snap to target:
-    if (hud_x_current == -1) {
+    if (hud_x_current == global.display_width) {
         hud_x_current = hud_x_target;
     }
-    
-    // Move to target:
-    else if (hud_x_current < hud_x_target) {
-        hud_x_speed    = ceil(abs(hud_x_current - hud_x_target) / hud_x_factor);
-        hud_x_current += hud_x_speed;
-        
-        if (hud_x_current >= hud_x_target) {
-            hud_x_speed   = 0;
-            hud_x_current = hud_x_target;
-        }
-    }
-} else {
-    // Snap to start:
-    if (hud_x_current == -1) {
-        hud_x_current = hud_x_start;
-    }
-    
-    // Move to start:
-    else if (hud_x_current != hud_x_start) {
-        hud_x_speed    = ceil(abs(hud_x_current - hud_x_start) / (hud_x_factor * 3));
-        hud_x_current -= hud_x_speed;
-        
-        if (hud_x_current == hud_x_start) {
-            hud_x_speed   = 0;
-            hud_x_current = hud_x_start;
-        }
-    }
+
+    var hud_x_distance;
+
+    // HUD distance:
+    hud_x_distance = hud_x_target - hud_x_current;
+
+    hud_x_speed    = ceil(abs(hud_x_distance) / hud_x_factor);
+    hud_x_current += hud_x_speed * sign(hud_x_distance);
 }
-/*
-if (hud_hide == false) {
-    if (hud_position == -1) hud_position = hud_target;
-    else if (hud_position < hud_target) {
-        hud_speed     = ceil(abs(hud_position - hud_target) / hud_factor);
-        hud_position += hud_speed;
-
-        if (hud_position >= hud_target) {
-            hud_speed    = 0;
-            hud_position = hud_target;
-        }
-    }
-} else {
-    if (hud_position == -1) hud_position = hud_start;
-    else if (hud_position != hud_start) {
-        hud_speed     = ceil(abs(hud_position - hud_start) / (hud_factor * 3));
-        hud_position -= hud_speed;
-
-        if (hud_position == hud_start) {
-            hud_speed    = 0;
-            hud_position = hud_start;
-        }
-    }
-}
-
 
 // Air:
 if (global.misc_hud == 1) {
-    if (player_exists(0) != noone) {
-        // Air value:
-        with (player_exists(0)) {
-            if (action_state != ACTION_DEATH) {
-                // Show air timer only if underwater and don't have the bubble shield:
-                if (physics_type == PHYS_UNDERWATER && shield_data != SHIELD_BUBBLE) other.air_hide = false;
-                else other.air_hide  = true;
+    var air_x_target;
 
-                // Update air value:
+    // Value:
+    if (instance_exists(instance_player(0))) {
+        with (instance_player(0)) {
+            // Hide:
+            if (action_current != player_action_death) {
+                if (physics_type == PHYS_UNDERWATER && status_shield != SHIELD_BUBBLE) {
+                    other.air_hide = false;
+                } else {
+                    other.air_hide = true;
+                }
+
+                // Air value is always updated.
                 other.air_value = air_remaining;
             }
         }
     } else {
-        air_value    = 30;
-        air_position = hud_position;
+        air_value = 30;
     }
 
-    // Air movement:
+    // Air target:
     if (air_hide == false) {
-        if (air_position < hud_position) {
-            if (hud_speed == 0) air_speed = ceil(abs(air_position - hud_position) / hud_factor);
-            else air_speed = hud_speed;
-
-            air_position += air_speed;
-
-            if (air_position >= hud_position) {
-                air_speed    = hud_speed;
-                air_position = hud_position;
-            }
-        }
+        air_x_target = hud_x_target;
     } else {
-        if (air_position != hud_start) {
-            air_speed     = ceil(abs(air_position - hud_start) / (hud_factor * 3));
-            air_position -= air_speed;
+        air_x_target = -sprite_get_width(hud_index) - hud_x_factor;
+    }
 
-            if (air_position == hud_start) {
-                air_speed    = 0;
-                air_position = hud_start;
-            }
-        }
+    if (air_x_current != air_x_target) {
+        var air_x_distance, air_x_factor;
+
+        // Air distance:
+        air_x_distance = air_x_target - air_x_current;
+
+        // Air factor:
+        air_x_factor = hud_x_factor * (1 + (2 * (hud_hide == false && air_hide == true)));
+
+        air_x_speed    = ceil(abs(air_x_distance) / air_x_factor);
+        air_x_current += air_x_speed * sign(air_x_distance);
     }
 }
 /*"/*'/**//* YYD ACTION
@@ -198,29 +164,69 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Status Icons
+/// Status
 
-// Don't bother if the game is paused:
-if (game_paused(ctrl_pause)) exit;
+// Exit if the stage is paused:
+if (game_ispaused(ctrl_pause)) {
+    exit;
+}
 
-if (player_exists(0) != noone) {
-    with (player_exists(0)) {
+if (instance_exists(instance_player(0))) {
+    with (instance_player(0)) {
         // Shield:
-        if (shield_data != SHIELD_NONE) other.status_icon[STATUS_SHIELD] = shield_data + 2;
-        else other.status_icon[STATUS_SHIELD] = ITEM_BASIC;
+        if (status_shield != SHIELD_NONE) {
+            other.status_icon[STATUS_SHIELD] = status_shield + 2;
+        } else {
+            other.status_icon[STATUS_SHIELD] = ITEM_BASIC;
+        }
+
+        other.status_active[STATUS_SHIELD, 0] = (status_shield != SHIELD_NONE);
+        other.status_active[STATUS_SHIELD, 1] = true;
 
         // Invincibility:
-        other.status_icon[STATUS_MUTEKI] = ITEM_MUTEKI;
+        other.status_icon[STATUS_INVIN]      = ITEM_INVIN;
+        other.status_active[STATUS_INVIN, 0] = (status_invin != INVIN_NONE);
+
+        if (status_invin_alarm > 0 && status_invin_alarm <= 120) {
+            other.status_active[STATUS_INVIN, 1] = sync_rate(status_invin_alarm, 2, 2);
+        } else {
+            other.status_active[STATUS_INVIN, 1] = true;
+        }
 
         // Speed Up/Slow Down:
-        if (speed_shoe_type == 2) other.status_icon[STATUS_SPEED] = ITEM_SLOW;
-        else other.status_icon[STATUS_SPEED] = ITEM_SPEED;
+        if (status_speed == 2) {
+            other.status_icon[STATUS_SPEED] = ITEM_SLOW;
+        } else {
+            other.status_icon[STATUS_SPEED] = ITEM_SPEED;
+        }
+
+        other.status_active[STATUS_SPEED, 0] = (status_speed != 0)
+
+        if (status_speed_alarm > 0 && status_speed_alarm <= 120) {
+            other.status_active[STATUS_SPEED, 1] = sync_rate(status_speed_alarm, 2, 2);
+        } else {
+            other.status_active[STATUS_SPEED, 1] = true;
+        }
 
         // Panic:
-        other.status_icon[STATUS_PANIC] = ITEM_PANIC;
+        other.status_icon[STATUS_PANIC]      = ITEM_PANIC;
+        other.status_active[STATUS_PANIC, 0] = status_panic;
+
+        if (status_panic_alarm > 0 && status_panic_alarm <= 120) {
+            other.status_active[STATUS_PANIC, 1] = sync_rate(status_panic_alarm, 2, 2);
+        } else {
+            other.status_active[STATUS_PANIC, 1] = true;
+        }
 
         // Swap:
-        other.status_icon[STATUS_SWAP] = ITEM_SWAP;
+        other.status_icon[STATUS_SWAP]      = ITEM_SWAP;
+        other.status_active[STATUS_SWAP, 0] = status_swap;
+
+        if (status_swap_alarm > 0 && status_swap_alarm <= 120) {
+            other.status_active[STATUS_SWAP, 1] = sync_rate(status_swap_alarm, 2, 2);
+        } else {
+            other.status_active[STATUS_SWAP, 1] = true;
+        }
     }
 }
 /*"/*'/**//* YYD ACTION
@@ -230,21 +236,37 @@ applies_to=self
 */
 /// Item Feed
 
-// Don't bother if the game is paused:
-if (game_paused(ctrl_pause)) exit;
+// Exit if the stage is paused:
+if (game_ispaused(ctrl_pause)) {
+    exit;
+}
 
 // Create feed:
-if (player_exists(0) != noone) {
-    if (global.misc_feed == true && item_feed == -1) item_feed = ds_list_create();
+if (instance_exists(instance_player(0))) {
+    if (global.misc_feed == true && item_feed == -1) {
+        item_feed = ds_list_create();
+    }
 }
 
 // Update feed:
 if (item_feed != -1) {
     if (ds_list_size(item_feed) != 0) {
         if (ds_list_find_value(item_feed, ds_list_size(item_feed) - 1) == global.display_width / 2+ (ds_list_size(item_feed) / 2 - 1) * 9 - (ds_list_size(item_feed) / 2 - 1) * 18) {
-            item_timer = min(item_timer + 1, item_duration);
+            if (item_alarm > 0) {
+                item_alarm -= 1;
 
-            if (item_timer == item_duration) ds_list_clear(item_feed);
+                // Hide:
+                if (item_alarm <= 60) {
+                    item_hide = sync_rate(item_alarm, 2, 2);
+                } else {
+                    item_hide = false;
+                }
+
+                // Clear feed:
+                if (item_alarm <= 0) {
+                    ds_list_clear(item_feed);
+                }
+            }
         }
     }
 }
@@ -268,8 +290,10 @@ applies_to=self
 */
 /// Draw Default HUD
 
-// Don't bother if HUD isn't default:
-if (global.misc_hud != 1) exit;
+// Exit if HUD isn't default:
+if (global.misc_hud != 1) {
+    exit;
+}
 
 // Font:
 draw_set_font(global.font_hud);
@@ -277,30 +301,20 @@ draw_set_color(c_white);
 draw_set_halign(fa_left);
 
 // Time:
-draw_sprite(spr_hud, 0, view_xview[view_current] + hud_x_current, view_yview[view_current] + hud_y);
+draw_sprite(hud_index, 0, view_xview[view_current] + hud_x_current, view_yview[view_current] + hud_y);
 draw_text(view_xview[view_current] + hud_x_current + 29, view_yview[view_current] + hud_y + 5, string_place_value(global.game_time div 3600, 2));
 draw_text(view_xview[view_current] + hud_x_current + 54, view_yview[view_current] + hud_y + 5, string_place_value((global.game_time div 60) mod 60, 2));
 draw_text(view_xview[view_current] + hud_x_current + 79, view_yview[view_current] + hud_y + 5, string_place_value(floor(global.game_time * 1.667) mod 100, 2));
 
 // Rings
-draw_sprite(spr_hud, 1, view_xview[view_current] + hud_x_current, view_yview[view_current] + hud_y + 26);
+draw_sprite(hud_index, 1, view_xview[view_current] + hud_x_current, view_yview[view_current] + hud_y + 26);
 draw_text(view_xview[view_current] + hud_x_current + 29, view_yview[view_current] + hud_y + 31, string_place_value(global.game_rings, 3));
 
-/*
-// Timer:
-draw_sprite(spr_hud, 0, view_xview[view_current] + hud_position, view_yview[view_current] + 6);
-draw_text(view_xview[view_current] + hud_position + 29, view_yview[view_current] + 11, string_place_value(global.game_time div 3600, 2));
-draw_text(view_xview[view_current] + hud_position + 54, view_yview[view_current] + 11, string_place_value((global.game_time div 60) mod 60, 2));
-draw_text(view_xview[view_current] + hud_position + 79, view_yview[view_current] + 11, string_place_value(floor(global.game_time * 1.667) mod 100, 2));
-
-// Rings:
-draw_sprite(spr_hud, 1, view_xview[view_current] + hud_position, view_yview[view_current] + 32);
-draw_text(view_xview[view_current] + hud_position + 29, view_yview[view_current] + 37, string_place_value(global.game_rings, 3));
-
 // Air:
-draw_sprite(spr_hud, 2, view_xview[view_current] + air_position, view_yview[view_current] + 58);
-draw_text(view_xview[view_current] + air_position + 29, view_yview[view_current] + 63, string_place_value(air_value, 2));
+draw_sprite(hud_index, 2, view_xview[view_current] + air_x_current, view_yview[view_current] + hud_y + 52);
+draw_text(view_xview[view_current] + air_x_current + 29, view_yview[view_current] + hud_y + 57, string_place_value(air_value, 2));
 
+/*
 // Action gauge:
 draw_sprite(spr_hud, 3, view_xview[view_current] + hud_position + 6, view_yview[view_current] + global.display_height - 29);
 draw_sprite_part(spr_action_gauge, 0, 0, 0, sprite_get_width(spr_action_gauge) * ((global.player_instance[0].clock_up_duration - global.player_instance[0].clock_up_timer)/global.player_instance[0].clock_up_duration), sprite_get_height(spr_action_gauge), view_xview[view_current] + hud_position + 6 + 8, view_yview[view_current] + global.display_height - 29 + 12);
@@ -318,8 +332,10 @@ applies_to=self
 */
 /// Draw S4E2 HUD
 
-// Don't bother if HUD isn't S4E2:
-if (global.misc_hud != 2) exit;
+// Exit if HUD isn't S4E2:
+if (global.misc_hud != 2) {
+    exit;
+}
 
 // Font:
 draw_set_color(c_white);
@@ -343,10 +359,13 @@ draw_text(view_xview[view_current] + hud_x_current + 58 + 44, view_yview[view_cu
 // Rings:
 draw_set_font(global.font_hud_s4e2);
 
-if (((global.game_time div 8) mod 2 && global.game_rings == 0) || global.game_rings > 0) {
+if ((sync_rate(global.object_time, 8, 2) && global.game_rings == 0) || global.game_rings > 0) {
     // Flash red:
-    if (global.game_rings == 0) draw_set_color(c_red);
-    else draw_set_color(c_white);
+    if (global.game_rings == 0) {
+        draw_set_color(c_red);
+    } else {
+        draw_set_color(c_white);
+    }
 
     draw_text(view_xview[view_current] + hud_x_current - 5, view_yview[view_current] + hud_y + 11, string_place_value(global.game_rings, 3));
 }
@@ -363,55 +382,35 @@ applies_to=self
 */
 /// Draw Status
 
-// Don't bother if HUD isn't default or status is disabled:
-if (global.misc_hud != 1 || global.misc_status == 0) exit;
+// Exit if HUD isn't default or status is disabled:
+if (global.misc_hud != 1 || global.misc_status == 0) {
+    exit;
+}
 
-if (player_exists(0) != noone) {
-    // Reset status count:
-    status_count = 0;
+var status_count;
 
-    with (player_exists(0)) {
-        // Shield:
-        other.status_active[STATUS_SHIELD, 0] = (shield_data != 0);
-        other.status_active[STATUS_SHIELD, 1] = true;
+// Reset status count:
+status_count = 0;
 
-        // Invincibility:
-        other.status_active[STATUS_MUTEKI, 0] = (invincibility_type != 0);
-        other.status_active[STATUS_MUTEKI, 1] = (invincibility_alarm > 120 || (invincibility_alarm <= 120 && abs(invincibility_alarm mod 5)));
+for (i = status_size; i >= 0; i -= 1) {
+    if (((global.misc_status == 1 && status_active[i, 0] == true) || global.misc_status == 2) && status_active[i, 1] == true) {
+        // Shadow:
+        draw_sprite_ext(spr_items, 0, view_xview[view_current] + view_wview[view_current] - hud_x_current - 8 - (sprite_get_width(spr_items) + 2) * status_count, view_yview[view_current] + 18, 1, 1, 0, c_black, 1);
 
+        // Icons:
+        draw_sprite_ext(spr_items, status_icon[i], view_xview[view_current] + view_wview[view_current] - hud_x_current - 9 - (sprite_get_width(spr_items) + 2) * status_count, view_yview[view_current] + 17, 1, 1, 0, c_white, 1);
 
-        // Speed:
-        other.status_active[STATUS_SPEED, 0] = (speed_shoe_type != 0)
-        other.status_active[STATUS_SPEED, 1] = (speed_shoe_alarm > 120 || (speed_shoe_alarm <= 120 && abs(speed_shoe_alarm mod 5)));
-
-
-        // Panic:
-        other.status_active[STATUS_PANIC, 0] = status_panic;
-        other.status_active[STATUS_PANIC, 1] = (status_panic_alarm > 120 || (status_panic_alarm <= 120 && abs(status_panic_alarm mod 5)));
-
-        // Swap:
-        other.status_active[STATUS_SWAP, 0] = status_swap;
-        other.status_active[STATUS_SWAP, 1] = (status_swap_alarm > 120 || (status_swap_alarm <= 120 && abs(status_swap_alarm mod 5)));
-    }
-
-    for (i = status_size; i >= 0; i -= 1) {
-        if (((global.misc_status == 1 && status_active[i, 0] == true) || global.misc_status == 2) && status_active[i, 1] == true) {
-            // Shadow:
-            draw_sprite_ext(spr_items, 0, view_xview[view_current] + view_wview[view_current] - hud_x_current - 8 - (sprite_get_width(spr_items) + 2) * status_count, view_yview[view_current] + 18, 1, 1, 0, c_black, 1);
-
-            // Icons:
-            draw_sprite_ext(spr_items, status_icon[i], view_xview[view_current] + view_wview[view_current] - hud_x_current - 9 - (sprite_get_width(spr_items) + 2) * status_count, view_yview[view_current] + 17, 1, 1, 0, c_white, 1);
-
-            // Gray out:
-            if (global.misc_status == 2) {
-                if (status_active[i, 0] == false) {
-                    draw_sprite_ext(spr_items, status_icon[i], view_xview[view_current] + view_wview[view_current] - hud_x_current - 9 - (sprite_get_width(spr_items) + 2) * status_count, view_yview[view_current] + 17, 1, 1, 0, c_gray, 0.6);
-                }
+        // Gray out:
+        if (global.misc_status == 2) {
+            if (status_active[i, 0] == false) {
+                draw_sprite_ext(spr_items, status_icon[i], view_xview[view_current] + view_wview[view_current] - hud_x_current - 9 - (sprite_get_width(spr_items) + 2) * status_count, view_yview[view_current] + 17, 1, 1, 0, c_gray, 0.6);
             }
         }
+    }
 
-        // Increase status count:
-        if ((global.misc_status == 1 && status_active[i, 0] == true) || global.misc_status == 2) status_count += 1;
+    // Increase status count:
+    if ((global.misc_status == 1 && status_active[i, 0] == true) || global.misc_status == 2) {
+        status_count += 1;
     }
 }
 /*"/*'/**//* YYD ACTION
@@ -421,8 +420,10 @@ applies_to=self
 */
 /// Draw Item Feed
 
-// Don't bother if HUD has been disabled:
-if (global.misc_hud == 0) exit;
+// Exit if feed has been disabled:
+if (global.misc_hud == 0) {
+    exit;
+}
 
 // Item feed:
 if (item_feed != -1) {
@@ -435,9 +436,12 @@ if (item_feed != -1) {
             item_target = global.display_width / 2 + (ds_list_size(item_feed) / 2 - 1) * 9 - i / 2 * 18; // No, I do not know what I was thinking with coding this. Nor do I know why it works.
             item_speed  = ceil(abs(ds_list_find_value(item_feed, i + 1) - item_target) / 4);
 
-            if (ds_list_find_value(item_feed, i + 1) != item_target) ds_list_replace(item_feed, i + 1, ds_list_find_value(item_feed, i + 1) + item_speed);
+            if (ds_list_find_value(item_feed, i + 1) != item_target) {
+                ds_list_replace(item_feed, i + 1, ds_list_find_value(item_feed, i + 1) + item_speed);
+            }
 
-            if (item_timer < 60 || (item_timer >= 60 && item_timer mod 5)) draw_sprite(spr_items, ds_list_find_value(item_feed, i), view_xview[view_current] + ds_list_find_value(item_feed, i + 1), view_yview[view_current] + view_hview[view_current] - 33);
+            // Icon:
+            draw_sprite_ext(spr_items, ds_list_find_value(item_feed, i), view_xview[view_current] + ds_list_find_value(item_feed, i + 1), view_yview[view_current] + view_hview[view_current] - 33, 1, 1, 0, c_white, !item_hide);
         }
     }
 }

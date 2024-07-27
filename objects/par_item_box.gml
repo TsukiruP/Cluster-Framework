@@ -30,7 +30,7 @@ applies_to=self
 */
 /// Give Item
 
-if (player_handle != noone) {
+if (instance_exists(player_handle)) {
     with (player_handle) player_get_item(other.item_data);
 }
 #define Step_0

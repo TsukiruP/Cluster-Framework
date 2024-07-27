@@ -27,7 +27,7 @@ applies_to=self
 */
 /// Activate
 
-if (player_handle != noone) {
+if (instance_exists(player_handle)) {
     if (player_handle.hint_wanted == true) {
         // Check current:
         if (hint_current != hint_target) {
@@ -35,7 +35,7 @@ if (player_handle != noone) {
             switch (hint_target) {
                 // Default:
                 default:
-                    text_message_set("Hello! I'm Omochao! Listen to me carefully and you will learn a lot.");
+                    text_set_message("Hello! I'm Omochao! Listen to me carefully and you will learn a lot. " + input_get_string(INP_JUMP));
             }
 
             // Set current:
@@ -51,18 +51,20 @@ applies_to=self
 */
 /// Animate
 
-// Don't bother if the game is paused:
-if (game_paused(ctrl_pause)) exit;
+// Exit if the stage is paused:
+if (game_ispaused(ctrl_pause)) {
+    exit;
+}
 
 // Match player:
-if (player_handle != noone) {
+if (instance_exists(player_handle)) {
     if (player_handle.hint_wanted == true) {
         // Put down Omochao:
         if (ctrl_text.text_clear == true && player_handle.animation_current == "omochao" && player_handle.animation_reverse == false) {
             player_handle.animation_trigger = true;
             player_handle.animation_reverse = true;
         }
-    
+
         // Change sprite index:
         switch (player_handle.character_data) {
             // Sonic:
@@ -70,7 +72,7 @@ if (player_handle != noone) {
                 sprite_index = spr_omochao_sonic;
                 break;
         }
-        
+
         // Clear text:
         if (player_handle.hint_wanted == false) {
             ctrl_text.text_clear = true;
@@ -78,7 +80,7 @@ if (player_handle != noone) {
     } else {
         // Reset current:
         event_inherited();
-        
+
         // Reset sprite index:
         sprite_index = spr_omochao_idle;
     }
@@ -88,7 +90,7 @@ if (player_handle != noone) {
 if (player_handle == noone && hint_current != -1) {
     // Reset current:
     event_inherited();
-    
+
     // Reset sprite index:
     sprite_index = spr_omochao_idle;
 }
@@ -96,12 +98,12 @@ if (player_handle == noone && hint_current != -1) {
 // Idle:
 if (sprite_index == spr_omochao_idle) {
     // Image index:
-    image_index  = (floor(global.object_time) div 3) mod 4;
-    
+    image_index = sync_rate(global.object_time, 3, sprite_get_number(sprite_index));
+
     // Draw coordinates:
     draw_x = x;
     draw_y = y;
-    
+
     // Image xscale:
     image_xscale = 1;
 }
@@ -110,13 +112,13 @@ if (sprite_index == spr_omochao_idle) {
 else {
     // Image index:
     image_index = player_handle.image_index;
-    
+
     // Draw coordinates:
     draw_x = floor(player_handle.x);
     draw_y = floor(player_handle.y);
-    
+
     // Image xscale:
-    image_xscale = player_handle.animation_direction;
+    image_xscale = player_handle.image_xscale;
 }
 #define Draw_0
 /*"/*'/**//* YYD ACTION

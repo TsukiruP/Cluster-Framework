@@ -16,7 +16,7 @@ limit_top    = 0;
 limit_bottom = room_height;
 
 // Focus handle:
-focus_handle = player_exists(0);
+focus_handle = instance_player(0);
 
 // Camera variables:
 camera_x                 = x;
@@ -39,52 +39,79 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Camera Lag
+/// Lag
 
-// Don't bother if the game is paused:
-if (game_paused(ctrl_pause)) exit;
+// Exit if the stage is paused:
+if (game_ispaused(ctrl_pause)) {
+    exit;
+}
 
-if (camera_lag_alarm > 0) camera_lag_alarm -= 1;
-else camera_lag_alarm = 0;
+if (camera_lag_alarm > 0) {
+    camera_lag_alarm -= 1;
+} else {
+    camera_lag_alarm = 0;
+}
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Debug
+
+if (global.game_debug == true) {
+    visible = true;
+} else {
+    visible = false;
+}
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
 applies_to=self
 */
-/// Camera Shift
+/// Shift
 
-// Don't bother if the game is paused:
-if (game_paused(ctrl_pause)) exit;
+// Exit if the stage is paused:
+if (game_ispaused(ctrl_pause)) {
+    exit;
+}
 
 // Shift around the player:
-if (player_exists(0) != noone) {
-    if (focus_handle == player_exists(0)) {
+if (instance_exists(instance_player(0))) {
+    if (focus_handle == instance_player(0)) {
         var look_direction;
 
         // Look direction:
-        look_direction = (focus_handle.action_state == ACTION_CROUCH) - (focus_handle.action_state == ACTION_LOOK);
+        look_direction = (focus_handle.action_current == player_action_crouch) - (focus_handle.action_current == player_action_look);
 
         // Look timer:
         camera_look_timer = clamp(camera_look_timer + (1 * look_direction), -120, 120);
-        
-        if (sign(camera_look_timer) != look_direction) camera_look_timer = 0;
+
+        if (sign(camera_look_timer) != look_direction) {
+            camera_look_timer = 0;
+        }
 
         // Shift camera upwards:
-        if (camera_look_timer <= -120) camera_y_shift = max(camera_y_shift - 2, - 104);
+        if (camera_look_timer <= -120) {
+            camera_y_shift = max(camera_y_shift - 2, - 104);
+        }
 
         // Shift camera downwards:
-        else if (camera_look_timer >= 120) camera_y_shift = min(camera_y_shift + 2, 88);
+        else if (camera_look_timer >= 120) {
+            camera_y_shift = min(camera_y_shift + 2, 88);
+        }
 
         // Center camera:
-        else camera_y_shift = max(abs(camera_y_shift) - 2, 0) * sign(camera_y_shift);
+        else {
+            camera_y_shift = max(abs(camera_y_shift) - 2, 0) * sign(camera_y_shift);
+        }
 
         // Camera pan:
-        if ((focus_handle.action_state == ACTION_PEEL_OUT && focus_handle.peel_out_timer > 15) || focus_handle.peel_out_flag == true) {
-            camera_x_shift = approach(camera_x_shift, 64 * focus_handle.animation_direction, 2);
-        } else {
+        //if ((focus_handle.action_state == ACTION_PEEL_OUT && focus_handle.peel_out_timer > 15) || focus_handle.peel_out_flag == true) {
+            //camera_x_shift = approach(camera_x_shift, 64 * focus_handle.image_xscale, 2);
+        //} else {
             camera_x_shift = max(0, abs(camera_x_shift - 2) * sign(camera_x_shift));
-        }
+       //}
     }
 }
 /*"/*'/**//* YYD ACTION
@@ -92,7 +119,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Camera Movement
+/// Movement
 
 // Update borders:
 border_left   = camera_x - 8;
@@ -100,58 +127,95 @@ border_right  = camera_x + 8;
 border_top    = camera_y - 32;
 border_bottom = camera_y + 32;
 
-// Don't bother if the game is paused:
-if (game_paused(ctrl_pause)) exit;
+// Exit if the stage is paused:
+if (game_ispaused(ctrl_pause)) {
+    exit;
+}
 
-// Focus on player:
-if (player_exists(0) != noone) {
-    if (focus_handle == player_exists(0)) {
-        with (player_exists(0)) {
-            if (other.camera_position_distance == 0) {
-                // Horizontal movement:
-                if (other.camera_lag_alarm == 0) {
-                    if (x < other.border_left - (ground && roll_offset * -x_direction)) other.camera_x -= min(other.border_left - (ground && roll_offset * -x_direction) - x, other.camera_speed_cap);
-                    else if (x > other.border_right - (ground && roll_offset * -x_direction)) other.camera_x += min(x - other.border_right - (ground && roll_offset * -x_direction), other.camera_speed_cap);
+if (instance_exists(focus_handle)) {
+    // Player focus:
+    if (focus_handle == instance_player(0)) {
+        if (camera_position_distance == 0) {
+            if (camera_lag_alarm == 0) {
+                // Move left:
+                if (focus_handle.x < border_left) {
+                    camera_x -= min(border_left - focus_handle.x, 24);
                 }
 
-                // Vertical movment:
-                if (action_state != ACTION_DEATH) {
+                // Move right:
+                else if (focus_handle.x > border_right) {
+                    camera_x += min(focus_handle.x - border_right, 24);
+                }
+
+                // Vertical movement:
+                if (focus_handle.action_current != player_action_death) {
+                    var focus_y;
+
+                    // Have the camera compare a bit higher on the screen:
+                    focus_y = focus_handle.y;
+
                     // Airborne:
-                    if (ground == false) {
-                        if (y < other.border_top) other.camera_y -= min(other.border_top - y, other.camera_speed_cap);
-                        else if (y > other.border_bottom) other.camera_y += min(y - other.border_bottom, other.camera_speed_cap);
+                    if (focus_handle.ground == false) {
+                        // Move up:
+                        if (focus_y < border_top) {
+                            camera_y -= min(border_top - focus_y, 24);
+                        }
+
+                        // Move down:
+                        else if (focus_y > border_bottom) {
+                            camera_y += min(focus_y - border_bottom, 24);
+                        }
                     }
 
-                    // Grounded:
-                    else if (ground == true) {
-                        if (y + roll_offset != other.camera_y) {
-                            if (abs(y + (roll_offset * y_direction) - yprevious) <= 6) {
-                                other.camera_y += clamp(y - (roll_offset * y_direction) - other.camera_y, -6, 6);
-                            } else {
-                                other.camera_y += clamp(y - (roll_offset * y_direction) - other.camera_y, -16, 16);
-                            }
+                    // Ground:
+                    else if (focus_handle.ground == true) {
+                        var camera_speed_cap;
+
+                        // Speed cap:
+                        if (focus_handle.g_speed >= 8) {
+                            camera_speed_cap = 24;
+                        } else {
+                            camera_speed_cap = 6;
+                        }
+
+                        // Move up:
+                        if (focus_y < (camera_y - focus_handle.roll_offset)) {
+                            camera_y -= min((camera_y - focus_handle.roll_offset) - focus_y, camera_speed_cap);
+                        }
+
+                        // Move down:
+                        else if (focus_y > (camera_y + focus_handle.roll_offset)) {
+                            camera_y += min(focus_y - (camera_y + focus_handle.roll_offset), camera_speed_cap);
                         }
                     }
                 }
             }
         }
     }
+
+    // Object focus:
+    else {
+        // Horizontal:
+        if (focus_handle.x != camera_x) {
+            var camera_distance_x;
+
+            // Distance:
+            camera_distance_x = focus_handle.x - camera_x;
+
+            camera_x += min(abs(camera_distance_x), 6) * sign(camera_distance_x);
+        }
+
+        // Vertical:
+        if (focus_handle.y != camera_y) {
+            var camera_distance_y;
+
+            // Distance:
+            camera_distance_y = focus_handle.y - camera_y;
+
+            camera_y += min(abs(camera_distance_y), 6) * sign(camera_distance_y);
+        }
+    }
 }
-
-// Focus on other objects:
-if (focus_handle != noone && (player_exists(0) == noone ^^ focus_handle != player_exists(0))) {
-    // Camera speed cap:
-    camera_speed_cap = 6;
-
-    // Horizontal movement:
-    if (focus_handle.x < camera_x) camera_x -= min(camera_x - focus_handle.x, camera_speed_cap);
-    else if (focus_handle.x > camera_x) camera_x += min(focus_handle.x - camera_x, camera_speed_cap);
-
-    // Vertical movement:
-    if (focus_handle.y < camera_y) camera_y -= min(camera_y - focus_handle.y, camera_speed_cap);
-    else if (focus_handle.y > camera_y) camera_y += min(focus_handle.y - camera_y, camera_speed_cap);
-}
-
 
 // Limit camera position:
 var view_xhalf, view_yhalf;
@@ -163,4 +227,17 @@ y          = clamp(y, limit_top + view_yhalf, limit_bottom - view_yhalf);
 
 // Update positions:
 x = floor(camera_x + camera_x_shift);
-y = floor(camera_y + camera_y_shift);
+y = floor(camera_y + camera_y_shift) + 16;
+#define Draw_0
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Draw Camera
+
+// Borders:
+draw_rectangle(floor(border_left), floor(border_top), floor(border_right), floor(border_bottom), true);
+
+// Center:
+draw_line(floor(border_left), floor(camera_y), floor(border_right), floor(camera_y));

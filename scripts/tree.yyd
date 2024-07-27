@@ -4,64 +4,60 @@
 	|collision_point_list
 +System
 	|credits
-	+Input
-		|joystick_check
-		|joystick_check_pressed
-		|joystick_check_released
-		|input_check
-	+Text
-		|key_to_string
-		|pad_to_chr
-		|string_place_value
-		|text_message_set
-		|topic_message_set
 	+Game
-		|game_start
-		|game_paused
+		|game_ispaused
+		|stage_start
+	+Display
+		|window_resize
+		|in_view
+	+Input
+		|joystick_get_check
+		|input_get_check
+		|input_get_timer
+		|input_get_string
+	+Text
+		|key_get_string
+		|joy_get_char
+		|string_place_value
+		|text_set_message
+		|topic_set_message
 	+Room
 		|room_set_data
 		|room_get_data
 		|room_view_set_all
-	+Draw
-		|parallax_add_node
-		|draw_backdrop_tiled_area
-		+Sprites
-			|draw_sprite_tiled_horizontal
-			|draw_sprite_tiled_horizontal_yscale
-			|draw_sprite_tiled_vertical
-		+Background
-			|draw_background_tiled_horizontal_part
-			|draw_background_tiled_horizontal_part_yscale
-			|draw_background_tiled_vertical_part
+	+Fade
+		|fade_create
+		|fade_reverse
 	+Timelines
 		|ctl_initialize
 		|ctl_update
 		|ctl_position
 		|timeline_set
+		|ctl_template
 		+Indexes
 			+Player
 				+Sonic
-					+Default
-						|ctl_sonic_idle
+					+Idle
+						|ctl_sonic_stand
+						+Balance
+							|ctl_sonic_balance_front
+							|ctl_sonic_balance_back
+						+Wait
+							|ctl_sonic_wait_leader
+							|ctl_sonic_wait_partner
+						+Misc.
+							|ctl_sonic_ready
+							|ctl_sonic_land
+							|ctl_sonic_omochao
+					+Turn
 						|ctl_sonic_turn
+						|ctl_sonic_turn_skid
+					+Run
 						|ctl_sonic_walk
 						|ctl_sonic_walk_fast
 						|ctl_sonic_jog
 						|ctl_sonic_jog_fast
 						|ctl_sonic_run
-						+Wait
-							|ctl_sonic_wait_leader
-							|ctl_sonic_wait_partner
-						+Balance
-							|ctl_sonic_balance_front
-							|ctl_sonic_balance_back
-						+Tag
-						+Misc.
-							|ctl_sonic_push
-							|ctl_sonic_omochao
-					+Jump
-						|ctl_sonic_spin_flight
-						|ctl_sonic_spin_fall
 					+Look
 						|ctl_sonic_look
 					+Crouch
@@ -69,11 +65,14 @@
 					+Spin Dash
 						|ctl_sonic_spin_dash
 						|ctl_sonic_spin_charge
-					|ctl_sonic_roll
+					+Spin
+						|ctl_sonic_roll
+						|ctl_sonic_spin_flight
+						|ctl_sonic_spin_fall
 					+Skid
 						|ctl_sonic_skid
 						|ctl_sonic_skid_fast
-						|ctl_sonic_skid_turn
+					|ctl_sonic_push
 					+Spring
 						|ctl_sonic_spring_flight
 						|ctl_sonic_spring_fall
@@ -83,12 +82,14 @@
 					|ctl_sonic_death
 			+Props
 				|ctl_spring
-				|ctl_omochao_idle
+				+Checkpoint
+					|ctl_checkpoint_inactive
 			+Effects
 				+Player
 					|ctl_spin_dash
 					|ctl_spin_charge
 					|ctl_skid
+					|ctl_debuff
 				+Shields
 					|ctl_shield_insta
 					|ctl_shield_basic
@@ -96,8 +97,7 @@
 					|ctl_shield_fire
 					|ctl_shield_bubble
 					|ctl_shield_lightning
-					|ctl_shield_muteki
-				+Status
+					|ctl_shield_invin
 				+Explosions
 					|ctl_explosion_small
 					|ctl_explosion_large
@@ -111,55 +111,71 @@
 					|ctl_splash_dash
 				+Misc.
 					|ctl_ring_sparkle
-	+Misc.
+	+Math
 		|wrap
 		|wrap_angle
-		|window_resize
+		|sync_rate
+	+Draw
+		|parallax_add_node
+		|draw_backdrop_tiled_area
+		+Sprites
+			|draw_sprite_tiled_horizontal
+			|draw_sprite_tiled_horizontal_yscale
+			|draw_sprite_tiled_vertical
+		+Background
+			|draw_background_tiled_horizontal_part
+			|draw_background_tiled_horizontal_part_yscale
+			|draw_background_tiled_vertical_part
+	+Misc.
 		|transition_create
-		|fade_create
-		|fade_reverse
-		|in_view
-		|player_exists
-		|water_exists
+		|instance_player
 		|effect_create
 +Gameplay
 	+Player
 		+Collision
 			+Utilities
 				|angle_sensor
-				|player_point_check
-				|player_line_check
-				|player_obstacle_check
+				|player_terrain_point
+				|player_terrain_line
+				|player_obstacle_rectangle
 			|player_movement
 			|player_collision_semisolids
 			|player_collision_terrain
 			|player_collision_obstacle
 			|player_collision_prop
-			|player_mode
-			|player_wall_stop
+			|player_collision_mode
+			|player_collision_wall
+			|player_collision_steps
 		+Angle
-			|player_get_angle
 			|player_set_angle
+			|player_get_angle
 		+Actions
-			|player_action_default
-			|player_action_jump
-			|player_action_look
-			|player_action_crouch
-			|player_action_spin_dash
-			|player_action_roll
-			|player_action_skid
-			|player_action_balance
-			|player_action_push
-			|player_action_hurt
-			|player_action_tag
-			+Sonic
-				|sonic_action_hammer
-			+Miles
-				|miles_action_fly
-			+Knuckles
-			+Amy
-			+Classic
-				|classic_action_clock_up
+			|player_set_action
+			|player_action_template
+			+Indexes
+				|player_action_idle
+				|player_action_turn
+				|player_action_run
+				|player_action_air
+				|player_action_jump
+				|player_action_look
+				|player_action_crouch
+				|player_action_spin_dash
+				|player_action_roll
+				|player_action_skid
+				|player_action_hurt
+				|player_action_death
+				|player_action_push
+				|player_action_spring
+		+Traits
+			|classic_passive_clock_up
+		+Handle
+			|player_handle_layer
+			|player_handle_ring
+			|player_handle_spring
+			|player_handle_item_box
+			|player_handle_water_surface
+			|player_handle_hint
 		+Animation
 			|player_animation_core
 			|player_add_animation
@@ -171,46 +187,40 @@
 				|knuckles_add_animations
 				|classic_add_animations
 			|player_compile_animations
-		+Handle
-			|player_handle_layer
-			|player_handle_ring
-			|player_handle_spring
-			|player_handle_item_box
-			|player_handle_water_surface
-			|player_handle_hint
 		+Misc.
+			|player_set_input
 			|player_ring_loss
+			|player_set_damage
 			|player_get_item
-			|player_get_input
 			|player_get_physics
 			+Trail
 				|start_trail
 				|update_trail
 				|draw_trail
-	|object_point_check
+	+Props
+		|prop_point_check
 +Trash
-	+Input
-		+Input
-	+Animations
-		+Replacements
 	+Sonic Dash
 		+Main
 		+Left
-			|player_collision_left_edge
-			|player_collision_object_left
 		+Right
-			|player_collision_right
-			|player_collision_right_edge
-			|player_collision_object_right
 		+Top
-			|player_collision_top
-			|player_collision_object_top
 		+Bottom
-			|player_collision_bottom
 			|player_collision_object_bottom
-		|player_get_angle_OLD
-		|player_set_angle_OLD
-	|player_animation_direction
-	|player_animation_angle
-	|player_animation_depth
-	|player_rectangle_check
+	+Actions (OLD)
+		|player_action_look_old
+		|player_action_crouch_old
+		|player_action_spin_dash_old
+		|player_action_roll_old
+		|player_action_skid_old
+		|player_action_push_OLD
+		|player_action_hurt_OLD
+		+Sonic
+		+Miles
+		+Knuckles
+		+Amy
+		+Classic
+	|player_get_input
+	|joystick_check_pressed
+	|joystick_check_released
+	|water_exists

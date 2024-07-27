@@ -1,7 +1,9 @@
 /// angle_sensor(x, y)
 
 // Exit if collision is disabled:
-if (collision_allow == false) exit;
+if (collision_allow == false) {
+    exit;
+}
 
 if (collision_point(floor(argument0), floor(argument1), par_terrain, true, true)) {
     var terrain_collisions, terrain_count, i;

@@ -11,22 +11,9 @@ if (ground == true) {
     y_speed = g_speed * -dsin(ground_angle);
 }
 
-// Add gravity force:
-if (ground == false && y_allow == true && (spring_angle == ANGLE_DOWN || spring_alarm == 0)) {
-    y_speed += gravity_force / steps;
-}
-
 // Update position:
 x += x_speed / steps;
 y += y_speed / steps;
-
-if (abs(g_speed) < 2.5) {
-    // Lock controls:
-    if (ground_angle >= 45 && ground_angle <= 360 - 45 && input_lock_alarm == 0) input_lock_alarm = 30;
-
-    // Fall off:
-    if (ground_angle >= 90 && ground_angle <= 270) ground = false;
-}
 
 // Reset wall height:
 wall_height = 0;
@@ -38,17 +25,33 @@ if (ground == true && ground_angle == 0) wall_height = 4;
 touching_ceiling = false;
 
 // Set flag if inside ceiling:
-if (player_line_check(-main_left_rel, -main_top - 8) || player_line_check(main_right_rel, -main_top - 8)) {
+if (player_terrain_line(-main_left_rel, -main_top - 8) || player_terrain_line(main_right_rel, -main_top - 8)) {
     touching_ceiling = true;
 }
 
-// Springing:
-if (((ground == true && input_lock_alarm == 0) || (ground == false && action_state != ACTION_SPRING) || touching_ceiling == true) && spring_alarm != 0) {
-    spring_alarm = 0;
-}
+if (y >= room_height && action_current != player_action_death) {
+    // Set physics:
+    y_speed = -7;
 
-if (spring_alarm == 0 && spring_current != noone) {
-    spring_current = noone;
-}
+    // Underwater physics:
+    if (physics_type == PHYS_UNDERWATER) {
+        y_speed /= 2;
+    }
 
-if (ground == true && action_state == ACTION_SPRING) action_state = ACTION_DEFAULT;
+    // Set action:
+    player_set_action(player_action_death);
+
+    // Play sound:
+    sound_play("snd_hurt");
+
+    // Player 1 specific:
+    if (input_cpu == false) {
+        // Disable pause:
+        global.pause_allow = false;
+
+        // Stop jingles:
+        with (ctrl_audio) {
+            event_user(2);
+        }
+    }
+}

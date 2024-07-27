@@ -1,10 +1,14 @@
 /// player_exists(id)
-// Returns true if the given player object currently exists.
+// Returns whether the player exists, in general or the specific player id.
 
-var player_number;
+var player_id;
 
-// Player number:
-player_number = argument0;
+// Player id:
+player_id = argument[0];
 
-if (global.player_instance[player_number] == noone ^^ !instance_exists(global.player_instance[player_number])) return noone;
-else return global.player_instance[player_number];
+// Return instance:
+if (!instance_exists(global.player_instance[player_id])) {
+    return noone;
+} else {
+    return global.player_instance[player_id];
+}

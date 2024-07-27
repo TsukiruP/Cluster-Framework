@@ -27,7 +27,9 @@ applies_to=self
 */
 /// Animate
 
-// Don't bother if the game is paused:
-if (game_paused(ctrl_pause)) exit;
+// Exit if the stage is paused:
+if (game_ispaused(ctrl_pause)) {
+    exit;
+}
 
-image_index = (floor(global.object_time) div (8 / (1 + dropped))) mod 4;
+image_index = sync_rate(global.object_time, 8 / (1 + dropped == true), sprite_get_number(sprite_index));

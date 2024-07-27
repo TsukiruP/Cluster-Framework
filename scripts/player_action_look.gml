@@ -1,21 +1,58 @@
-/// player_action_look()
+/// player_action_look(phase)
 // Eyes on the sky.
 
-// Look:
-if (action_state == ACTION_LOOK) {
-    // Cancel look:
-    if (ground == false || g_speed != 0 || y_speed != 0) action_state = ACTION_DEFAULT;
+switch (argument0) {
+    // Start:
+    case ACTION_START:
+        break;
 
-    if (ground == true && animation_trigger == true && input_player[INP_UP, CHECK_HELD] == false) {
-        action_state      = ACTION_DEFAULT;
-        animation_reverse = true;
-    }
-}
+    // Step:
+    case ACTION_STEP:
+        // Collision steps:
+        player_collision_steps();
 
-// Trigger look:
-if (ground == true && g_speed == 0 && y_speed == 0 && action_state == ACTION_DEFAULT && balance_direction == 0 && hint_wanted == false && input_player[INP_UP, CHECK_HELD] == true) {
-    if (animation_current != "look" && animation_current != "crouch") {
-        action_state = ACTION_LOOK;
-        g_speed      = 0;
-    }
+        // Changed:
+        if (action_changed == true) {
+            return false;
+        }
+
+        // Air:
+        if (ground == false || (ground_angle >= 90 && ground_angle <= 270)) {
+            return player_set_action(player_action_air);
+        }
+
+        // Lock:
+        if (mode != 0) {
+            input_lock_alarm = 30;
+            return player_set_action(player_action_run);
+        }
+
+        // Slope friction:
+        if (ground_angle < 135 || ground_angle > 225) {
+            if (abs(g_speed) > 0.125 || input_lock_alarm != 0) {
+                g_speed -= dsin(ground_angle) * 0.125;
+            }
+        }
+
+        // Jump:
+        if (touching_ceiling == false && input_player[INP_JUMP, CHECK_PRESSED] == true) {
+            sound_play_single("snd_jump");
+            return player_set_action(player_action_jump);
+        }
+
+        // Run:
+        if (g_speed != 0) {
+            return player_set_action(player_action_run);
+        }
+
+        // Idle:
+        if (animation_trigger == true && input_player[INP_UP, CHECK_HELD] == false) {
+            animation_reverse = true;
+            return player_set_action(player_action_idle);
+        }
+        break;
+
+    // Finish:
+    case ACTION_FINISH:
+        break;
 }

@@ -1,51 +1,43 @@
-/// player_action_hurt(obj)
+/// player_action_hurt(phase)
 // Ouchie ouch ouch.
 
-// Don't bother if in the middle of dying, already hurt, or have invincibility:
-if (action_state == ACTION_DEATH || action_state == ACTION_HURT || invincibility_type > 0) exit;
+switch (argument0) {
+    // Start:
+    case ACTION_START:
+        // Set ground:
+        if (ground == true) {
+            ground = false;
+        }
+        break;
 
-// Hurt:
-if ((input_cpu == false && (global.game_rings > 0 || shield_data != 0)) || input_cpu == true) {
-    ground              =  false;
-    action_state        =  ACTION_HURT;
-    invincibility_type  =  1;
-    invincibility_alarm = -1;
-    
-    if (physics_type == PHYS_UNDERWATER) {
-        x_speed =  sign(x - argument0.x);
-        y_speed = -2;
-    } else {
-        x_speed =  2 * sign(x - argument0.x);
-        y_speed = -4;
-    }
-    
-    // Play sound:
-    if ((input_cpu == false && shield_data != 0)) {
-        // Clear shield:
-        if (input_cpu == false) shield_data = 0;
-        
-        // Play sound:
-        if (object_is_ancestor(argument0.object_index, par_spike)) sound_play("snd_spike");
-        else sound_play("snd_hurt");
-    } else if (input_cpu == false) {
-        player_ring_loss();
-    }
-} else {
-    // Die:
-    action_state = ACTION_DEATH;
-    
-    // Play sound:
-    if (object_is_ancestor(argument0.object_index, par_spike)) sound_play("snd_spike");
-    else sound_play("snd_hurt");
-}
+    // Step:
+    case ACTION_STEP:
+        // Collision steps:
+        player_collision_steps();
 
-// Clock Over:
-if (input_cpu == false && clock_up_state != 0) {
-    // Play sound:
-    // Since this is dependent on the Clock Up state, we play the sound first.
-    if (clock_up_state == 2) sound_play("snd_hyper_clock_over");
-    else sound_play("snd_clock_over");
+        // Changed:
+        if (action_changed == true) {
+            return false;
+        }
 
-    clock_up_state      = 0;
-    global.object_ratio = 1;
+        // Land:
+        if (ground == true) {
+            // Reset speed:
+            if (global.advance_hurt == false) g_speed = 0;
+            y_speed = 0;
+
+            return player_set_action(player_action_idle);
+        }
+
+        // Gravity:
+        if (y_allow == true) {
+            y_speed += gravity_force;
+        }
+        break;
+
+    // Finish:
+    case ACTION_FINISH:
+        // Set invincibility:
+        status_invin_alarm = 120;
+        break;
 }

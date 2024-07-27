@@ -24,7 +24,9 @@ applies_to=self
 */
 /// Animate
 
-// Don't bother if the game is paused:
-if (game_paused(ctrl_pause)) exit;
+// Don't bother if the stage is paused:
+if (game_ispaused(ctrl_pause)) {
+    exit;
+}
 
 image_index = ((floor(global.object_time) div 4) mod 6) + 1;

@@ -19,8 +19,8 @@ if (obstacle != false) {
 // Terrain:
 if (input_lock_alarm == 0) {
     // Wall collision:
-    if ((((g_speed < 0 && ground) || (x_speed < 0 && !ground)) && player_point_check(-wall_left - 1, wall_height)) ||
-        (((g_speed > 0 && ground) || (x_speed > 0 && !ground)) && player_point_check(wall_right +  1, wall_height))) {
+    if ((((g_speed < 0 && ground) || (x_speed < 0 && !ground)) && player_terrain_point(-wall_left - 1, wall_height)) ||
+        (((g_speed > 0 && ground) || (x_speed > 0 && !ground)) && player_terrain_point(wall_right +  1, wall_height))) {
         if (ground == true) g_speed = 0;
         x_speed = 0;
     }

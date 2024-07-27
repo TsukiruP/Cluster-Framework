@@ -1,7 +1,9 @@
 /// player_obstacle_check(left, top, right, bottom, [semi_solid])
 
 // Exit if collision is disabled:
-if (collision_allow == false) exit;
+if (collision_allow == false) {
+    exit;
+}
 
 // Set up arguments:
 var x1, y1, x2, y2;
@@ -12,8 +14,11 @@ x2 = argument[2];
 y2 = argument[3];
 
 // Set semi obstacle:
-if (argument_count > 4) semi_solid = argument[4];
-else semi_solid = false;
+if (argument_count > 4) {
+    semi_solid = argument[4];
+} else {
+    semi_solid = false;
+}
 
 // Trigger the collision:
 if (collision_rectangle(floor(x) - x1, floor(y) - y1, floor(x) + x2, floor(y) + y2, par_obstacle, true, true)) {

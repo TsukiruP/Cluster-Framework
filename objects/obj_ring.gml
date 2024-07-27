@@ -8,7 +8,7 @@ applies_to=self
 
 event_inherited();
 
-// State variables:
+// Flags:
 magnetized = false;
 lifespan   = 0;
 
@@ -33,13 +33,17 @@ applies_to=self
 */
 /// Movement
 
-// Don't bother if the game is paused:
-if (game_paused()) exit;
+// Exit if the stage is paused or text is active:
+if (game_ispaused()) {
+    exit;
+}
 
 if (dropped == true) {
     // Destroy if out of view:
-    if(!in_view()) instance_destroy();
-    
+    if(!in_view()) {
+        instance_destroy();
+    }
+
     // Add speed:
     x += x_speed * global.object_ratio;
 
@@ -48,11 +52,11 @@ if (dropped == true) {
     y       += y_speed * global.object_ratio;
 
     // Terrain collision:
-    if ((object_point_check(bbox_left, y) && x_speed < 0) || (object_point_check(bbox_right, y) && x_speed > 0)) {
+    if ((prop_point_check(bbox_left, y) && x_speed < 0) || (prop_point_check(bbox_right, y) && x_speed > 0)) {
         x_speed *= -1;
     }
 
-    if ((object_point_check(x, bbox_top) && y_speed < 0) || (object_point_check(x, bbox_bottom) && y_speed > 0)) {
+    if ((prop_point_check(x, bbox_top) && y_speed < 0) || (prop_point_check(x, bbox_bottom) && y_speed > 0)) {
         y_speed *= -1;
     }
 }
@@ -63,17 +67,19 @@ applies_to=self
 */
 /// Magnetization
 
-// Don't bother if the game is paused:
-if (game_paused()) exit;
+// Exit if the stage is paused or text is active:
+if (game_ispaused()) {
+    exit;
+}
 
-if(player_exists(0) != noone) {
+if(instance_exists(instance_player(0))) {
     var player_handle;
-    
+
     // Player handle:
-    player_handle = player_exists(0);
-    
+    player_handle = instance_player(0);
+
     // Update status:
-    if(player_handle.shield_data == SHIELD_MAGNETIC || player_handle.shield_data == SHIELD_LIGHTNING) {
+    if(player_handle.status_shield == SHIELD_MAGNETIC || player_handle.status_shield == SHIELD_LIGHTNING) {
         if(distance_to_object(global.player_instance[0]) < 64) {
             magnetized = true;
             instance_destroy();
@@ -88,14 +94,19 @@ applies_to=self
 */
 /// Lifespan
 
-// Don't bother if the game is paused:
-if (game_paused()) exit;
+// Exit if the stage is paused or text is active:
+if (game_ispaused()) {
+    exit;
+}
 
 if (dropped == true) {
     // Decrease lifespan alarm:
     lifespan = max(lifespan - 1 * global.object_ratio, 0);
-    
-    if(lifespan <= 0) instance_destroy();
+
+    // Destroy:
+    if(lifespan <= 0) {
+        instance_destroy();
+    }
 }
 #define Draw_0
 /*"/*'/**//* YYD ACTION
