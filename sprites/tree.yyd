@@ -9,7 +9,6 @@
 			|fnt_title_card_zone
 			|fnt_title_card_act
 	+HUD
-		|spr_pause
 		+Default
 			|spr_hud
 			|spr_action_gauge
@@ -372,3 +371,4 @@
 		|mask_platform_fix
 		|mask_ledge
 	|spr_status_slow
+	|spr_pause
