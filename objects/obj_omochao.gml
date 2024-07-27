@@ -51,8 +51,8 @@ applies_to=self
 */
 /// Animate
 
-// Don't bother if the stage is paused:
-if (game_is_paused(ctrl_pause)) {
+// Exit if the stage is paused:
+if (game_ispaused(ctrl_pause)) {
     exit;
 }
 
@@ -64,7 +64,7 @@ if (instance_exists(player_handle)) {
             player_handle.animation_trigger = true;
             player_handle.animation_reverse = true;
         }
-    
+
         // Change sprite index:
         switch (player_handle.character_data) {
             // Sonic:
@@ -72,7 +72,7 @@ if (instance_exists(player_handle)) {
                 sprite_index = spr_omochao_sonic;
                 break;
         }
-        
+
         // Clear text:
         if (player_handle.hint_wanted == false) {
             ctrl_text.text_clear = true;
@@ -80,7 +80,7 @@ if (instance_exists(player_handle)) {
     } else {
         // Reset current:
         event_inherited();
-        
+
         // Reset sprite index:
         sprite_index = spr_omochao_idle;
     }
@@ -90,7 +90,7 @@ if (instance_exists(player_handle)) {
 if (player_handle == noone && hint_current != -1) {
     // Reset current:
     event_inherited();
-    
+
     // Reset sprite index:
     sprite_index = spr_omochao_idle;
 }
@@ -99,11 +99,11 @@ if (player_handle == noone && hint_current != -1) {
 if (sprite_index == spr_omochao_idle) {
     // Image index:
     image_index = sync_rate(global.object_time, 3, sprite_get_number(sprite_index));
-    
+
     // Draw coordinates:
     draw_x = x;
     draw_y = y;
-    
+
     // Image xscale:
     image_xscale = 1;
 }
@@ -112,11 +112,11 @@ if (sprite_index == spr_omochao_idle) {
 else {
     // Image index:
     image_index = player_handle.image_index;
-    
+
     // Draw coordinates:
     draw_x = floor(player_handle.x);
     draw_y = floor(player_handle.y);
-    
+
     // Image xscale:
     image_xscale = player_handle.image_xscale;
 }

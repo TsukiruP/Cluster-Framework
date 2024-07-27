@@ -4,7 +4,7 @@ obj_basic_test_collision_03,192,768,12114FF8,0,1,1,4294967295,0,0
 obj_basic_test_collision_03,288,768,37DC9019,0,1,1,4294967295,0,0
 obj_basic_test_collision_21,1056,576,1ACEC3D5,0,1,1,4294967295,0,0
 obj_basic_test_collision_03,1056,768,A98D5F13,0,1,1,4294967295,0,0
-obj_basic_test_collision_20,1312,544,D3751104,0,1,1,4294967295,0,0
+obj_basic_test_collision_20,960,576,D3751104,0,1,1,4294967295,0,0
 obj_basic_test_collision_01,960,768,B7A7C6F2,0,1,1,4294967295,0,0
 obj_basic_test_collision_19,1056,672,2896C830,0,1,1,4294967295,0,1
 obj_basic_test_collision_18,960,672,5011B292,0,1,1,4294967295,0,1
@@ -86,9 +86,7 @@ obj_basic_test_collision_01,576,816,757C501C,0,1,1,4294967295,0,0
 obj_basic_test_collision_03,672,768,1DBA3F74,0,1,1,4294967295,0,0
 obj_basic_test_collision_01,672,720,FF86C6A9,0,1,1,4294967295,0,0
 obj_basic_test_collision_03,0,768,D5082484,0,1,1,4294967295,0,0
-obj_basic_test_collision_01,960,560,2A410CE5,0,1,1,4294967295,0,0
-obj_basic_test_collision_01,864,560,53872412,0,1,1,4294967295,0,0
-obj_basic_test_collision_01,768,560,5F2C3690,0,1,1,4294967295,0,0
 obj_item_magnetic,304,752,47B5FFF0,0,1,1,4294967295,0,0
 obj_item_lightning,352,752,8F052C45,0,1,1,4294967295,0,0
 obj_hint_box,176,720,FB35A283,0,1,1,4294967295,0,0
+obj_item_panic,688,704,E0B2EBDC,0,1,1,4294967295,0,0

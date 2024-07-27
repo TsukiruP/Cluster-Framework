@@ -32,7 +32,7 @@ applies_to=self
 /// Draw Size
 
 // Exit if not in debug mode:
-if (debug_mode == false) {
+if (global.game_debug == false) {
     exit;
 }
 

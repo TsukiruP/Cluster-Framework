@@ -38,29 +38,18 @@ status_icon[STATUS_SWAP]     =  ITEM_SWAP;
 status_position              = -1;
 status_speed                 =  0;
 status_size                  =  2 + 2 * global.gameplay_debuffs;
-status_count                 =  0;
 
-status_active[STATUS_SHIELD, 0] =  0;
-status_active[STATUS_SHIELD, 1] =  false;
-
-status_active[STATUS_INVIN,  0] =  0;
-status_active[STATUS_INVIN,  1] =  false;
-
-status_active[STATUS_SPEED,  0] =  0;
-status_active[STATUS_SPEED,  1] =  false;
-
-status_active[STATUS_PANIC,  0] =  0;
-status_active[STATUS_PANIC,  1] =  false;
-
-status_active[STATUS_SWAP ,  0] =  0;
-status_active[STATUS_SWAP ,  1] =  false;
+for (i = STATUS_SHIELD; i <= STATUS_SWAP; i += 1) {
+    status_active[i, 0] = 0;
+    status_active[i, 1] = false;
+}
 #define Step_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
 applies_to=self
 */
-/// Data
+/// Position
 
 switch (global.misc_hud) {
     // S4E2:
@@ -106,8 +95,8 @@ applies_to=self
 */
 /// Movement
 
-// Don't bother if the stage is paused:
-if (game_is_paused(ctrl_pause)) {
+// Exit if the stage is paused:
+if (game_ispaused(ctrl_pause)) {
     exit;
 }
 
@@ -117,12 +106,12 @@ if (hud_x_current != hud_x_target) {
     if (hud_x_current == global.display_width) {
         hud_x_current = hud_x_target;
     }
-    
+
     var hud_x_distance;
-    
+
     // HUD distance:
     hud_x_distance = hud_x_target - hud_x_current;
-    
+
     hud_x_speed    = ceil(abs(hud_x_distance) / hud_x_factor);
     hud_x_current += hud_x_speed * sign(hud_x_distance);
 }
@@ -130,10 +119,10 @@ if (hud_x_current != hud_x_target) {
 // Air:
 if (global.misc_hud == 1) {
     var air_x_target;
-    
+
     // Value:
-    if (player_exists(0) != noone) {
-        with (player_exists(0)) {
+    if (instance_exists(instance_player(0))) {
+        with (instance_player(0)) {
             // Hide:
             if (action_current != player_action_death) {
                 if (physics_type == PHYS_UNDERWATER && status_shield != SHIELD_BUBBLE) {
@@ -141,7 +130,7 @@ if (global.misc_hud == 1) {
                 } else {
                     other.air_hide = true;
                 }
-                
+
                 // Air value is always updated.
                 other.air_value = air_remaining;
             }
@@ -149,23 +138,23 @@ if (global.misc_hud == 1) {
     } else {
         air_value = 30;
     }
-    
+
     // Air target:
     if (air_hide == false) {
         air_x_target = hud_x_target;
     } else {
         air_x_target = -sprite_get_width(hud_index) - hud_x_factor;
     }
-    
+
     if (air_x_current != air_x_target) {
         var air_x_distance, air_x_factor;
-        
+
         // Air distance:
         air_x_distance = air_x_target - air_x_current;
-        
+
         // Air factor:
         air_x_factor = hud_x_factor * (1 + (2 * (hud_hide == false && air_hide == true)));
-        
+
         air_x_speed    = ceil(abs(air_x_distance) / air_x_factor);
         air_x_current += air_x_speed * sign(air_x_distance);
     }
@@ -177,25 +166,25 @@ applies_to=self
 */
 /// Status
 
-// Don't bother if the stage is paused:
-if (game_is_paused(ctrl_pause)) {
+// Exit if the stage is paused:
+if (game_ispaused(ctrl_pause)) {
     exit;
 }
 
-if (player_exists(0) != noone) {
-    with (player_exists(0)) {
+if (instance_exists(instance_player(0))) {
+    with (instance_player(0)) {
         // Shield:
         if (status_shield != SHIELD_NONE) {
             other.status_icon[STATUS_SHIELD] = status_shield + 2;
         } else {
             other.status_icon[STATUS_SHIELD] = ITEM_BASIC;
         }
-        
+
         other.status_active[STATUS_SHIELD, 0] = (status_shield != SHIELD_NONE);
         other.status_active[STATUS_SHIELD, 1] = true;
-        
+
         // Invincibility:
-        other.status_icon[STATUS_INVIN]      = ITEM_INVIN;        
+        other.status_icon[STATUS_INVIN]      = ITEM_INVIN;
         other.status_active[STATUS_INVIN, 0] = (status_invin != INVIN_NONE);
 
         if (status_invin_alarm > 0 && status_invin_alarm <= 120) {
@@ -203,14 +192,14 @@ if (player_exists(0) != noone) {
         } else {
             other.status_active[STATUS_INVIN, 1] = true;
         }
-        
+
         // Speed Up/Slow Down:
         if (status_speed == 2) {
             other.status_icon[STATUS_SPEED] = ITEM_SLOW;
         } else {
             other.status_icon[STATUS_SPEED] = ITEM_SPEED;
         }
-        
+
         other.status_active[STATUS_SPEED, 0] = (status_speed != 0)
 
         if (status_speed_alarm > 0 && status_speed_alarm <= 120) {
@@ -218,7 +207,7 @@ if (player_exists(0) != noone) {
         } else {
             other.status_active[STATUS_SPEED, 1] = true;
         }
-        
+
         // Panic:
         other.status_icon[STATUS_PANIC]      = ITEM_PANIC;
         other.status_active[STATUS_PANIC, 0] = status_panic;
@@ -228,7 +217,7 @@ if (player_exists(0) != noone) {
         } else {
             other.status_active[STATUS_PANIC, 1] = true;
         }
-        
+
         // Swap:
         other.status_icon[STATUS_SWAP]      = ITEM_SWAP;
         other.status_active[STATUS_SWAP, 0] = status_swap;
@@ -247,13 +236,13 @@ applies_to=self
 */
 /// Item Feed
 
-// Don't bother if the stage is paused:
-if (game_is_paused(ctrl_pause)) {
+// Exit if the stage is paused:
+if (game_ispaused(ctrl_pause)) {
     exit;
 }
 
 // Create feed:
-if (player_exists(0) != noone) {
+if (instance_exists(instance_player(0))) {
     if (global.misc_feed == true && item_feed == -1) {
         item_feed = ds_list_create();
     }
@@ -265,14 +254,14 @@ if (item_feed != -1) {
         if (ds_list_find_value(item_feed, ds_list_size(item_feed) - 1) == global.display_width / 2+ (ds_list_size(item_feed) / 2 - 1) * 9 - (ds_list_size(item_feed) / 2 - 1) * 18) {
             if (item_alarm > 0) {
                 item_alarm -= 1;
-                
+
                 // Hide:
                 if (item_alarm <= 60) {
                     item_hide = sync_rate(item_alarm, 2, 2);
                 } else {
                     item_hide = false;
                 }
-                
+
                 // Clear feed:
                 if (item_alarm <= 0) {
                     ds_list_clear(item_feed);
@@ -301,7 +290,7 @@ applies_to=self
 */
 /// Draw Default HUD
 
-// Don't bother if HUD isn't default:
+// Exit if HUD isn't default:
 if (global.misc_hud != 1) {
     exit;
 }
@@ -326,20 +315,6 @@ draw_sprite(hud_index, 2, view_xview[view_current] + air_x_current, view_yview[v
 draw_text(view_xview[view_current] + air_x_current + 29, view_yview[view_current] + hud_y + 57, string_place_value(air_value, 2));
 
 /*
-// Timer:
-draw_sprite(spr_hud, 0, view_xview[view_current] + hud_position, view_yview[view_current] + 6);
-draw_text(view_xview[view_current] + hud_position + 29, view_yview[view_current] + 11, string_place_value(global.game_time div 3600, 2));
-draw_text(view_xview[view_current] + hud_position + 54, view_yview[view_current] + 11, string_place_value((global.game_time div 60) mod 60, 2));
-draw_text(view_xview[view_current] + hud_position + 79, view_yview[view_current] + 11, string_place_value(floor(global.game_time * 1.667) mod 100, 2));
-
-// Rings:
-draw_sprite(spr_hud, 1, view_xview[view_current] + hud_position, view_yview[view_current] + 32);
-draw_text(view_xview[view_current] + hud_position + 29, view_yview[view_current] + 37, string_place_value(global.game_rings, 3));
-
-// Air:
-draw_sprite(spr_hud, 2, view_xview[view_current] + air_position, view_yview[view_current] + 58);
-draw_text(view_xview[view_current] + air_position + 29, view_yview[view_current] + 63, string_place_value(air_value, 2));
-
 // Action gauge:
 draw_sprite(spr_hud, 3, view_xview[view_current] + hud_position + 6, view_yview[view_current] + global.display_height - 29);
 draw_sprite_part(spr_action_gauge, 0, 0, 0, sprite_get_width(spr_action_gauge) * ((global.player_instance[0].clock_up_duration - global.player_instance[0].clock_up_timer)/global.player_instance[0].clock_up_duration), sprite_get_height(spr_action_gauge), view_xview[view_current] + hud_position + 6 + 8, view_yview[view_current] + global.display_height - 29 + 12);
@@ -357,7 +332,7 @@ applies_to=self
 */
 /// Draw S4E2 HUD
 
-// Don't bother if HUD isn't S4E2:
+// Exit if HUD isn't S4E2:
 if (global.misc_hud != 2) {
     exit;
 }
@@ -407,10 +382,12 @@ applies_to=self
 */
 /// Draw Status
 
-// Don't bother if HUD isn't default or status is disabled:
+// Exit if HUD isn't default or status is disabled:
 if (global.misc_hud != 1 || global.misc_status == 0) {
     exit;
 }
+
+var status_count;
 
 // Reset status count:
 status_count = 0;
@@ -443,7 +420,7 @@ applies_to=self
 */
 /// Draw Item Feed
 
-// Don't bother if feed has been disabled:
+// Exit if feed has been disabled:
 if (global.misc_hud == 0) {
     exit;
 }
@@ -462,7 +439,8 @@ if (item_feed != -1) {
             if (ds_list_find_value(item_feed, i + 1) != item_target) {
                 ds_list_replace(item_feed, i + 1, ds_list_find_value(item_feed, i + 1) + item_speed);
             }
-            
+
+            // Icon:
             draw_sprite_ext(spr_items, ds_list_find_value(item_feed, i), view_xview[view_current] + ds_list_find_value(item_feed, i + 1), view_yview[view_current] + view_hview[view_current] - 33, 1, 1, 0, c_white, !item_hide);
         }
     }

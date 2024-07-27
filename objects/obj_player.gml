@@ -294,8 +294,8 @@ applies_to=self
 */
 ///  Inputs
 
-// Don't bother if the stage is paused or text is active:
-if (game_is_paused()) {
+// Exit if the stage is paused or text is active:
+if (game_ispaused()) {
     exit;
 }
 
@@ -408,8 +408,8 @@ applies_to=self
 */
 /// Actions
 
-// Don't bother if the stage is paused or text is active:
-if (game_is_paused()) {
+// Exit if the stage is paused or text is active:
+if (game_ispaused()) {
     exit;
 }
 
@@ -428,8 +428,8 @@ applies_to=self
 */
 /// Handle List
 
-// Don't bother if the stage is paused or text is active:
-if (game_is_paused()) {
+// Exit if the stage is paused or text is active:
+if (game_ispaused()) {
     exit;
 }
 
@@ -574,8 +574,8 @@ applies_to=self
 */
 /// Refill Air
 
-// Don't bother if the stage is paused or text is active:
-if (game_is_paused()) {
+// Exit if the stage is paused or text is active:
+if (game_ispaused()) {
     exit;
 }
 
@@ -605,15 +605,15 @@ applies_to=self
 */
 /// Alarms
 
-// Don't bother if the stage is paused:
-if (game_is_paused(ctrl_pause)) {
+// Exit if the stage is paused:
+if (game_ispaused(ctrl_pause)) {
     exit;
 }
 
 // Hurt invincibility:
 if (status_invin_alarm > 0) {
     status_invin_alarm -= 1;
-    
+
     if (status_invin_alarm == 0) {
         status_invin = INVIN_NONE;
     }
@@ -622,7 +622,7 @@ if (status_invin_alarm > 0) {
 // Speed shoes:
 if (status_speed_alarm > 0) {
     status_speed_alarm -= 1;
-    
+
     if (status_speed_alarm == 0) {
         status_speed = SPEED_NONE;
     }
@@ -631,7 +631,7 @@ if (status_speed_alarm > 0) {
 // Panic:
 if (status_panic_alarm > 0) {
     status_panic_alarm -= 1;
-    
+
     if (status_panic_alarm == 0) {
         status_panic = false;
     }
@@ -640,7 +640,7 @@ if (status_panic_alarm > 0) {
 // Spring:
 if (spring_alarm > 0) {
     spring_alarm -= 1;
-    
+
     if (spring_alarm <= 0) {
         spring_strength = 0;
         spring_angle    = 0;
@@ -675,8 +675,8 @@ applies_to=self
 */
 /// Air
 
-// Don't bother if the stage is paused or text is active:
-if (game_is_paused()) {
+// Exit if the stage is paused or text is active:
+if (game_ispaused()) {
     exit;
 }
 
@@ -739,8 +739,8 @@ applies_to=self
 /// Animation Target
 // Sets the animation target and then calls the animation core script.
 
-// Don't bother if the stage is paused:
-if (game_is_paused(ctrl_pause)) {
+// Exit if the stage is paused:
+if (game_ispaused(ctrl_pause)) {
     exit;
 }
 
@@ -765,112 +765,112 @@ switch (action_current) {
             }
         }
         break;
-    
+
     // Turn:
     case player_action_turn:
         if (animation_target != "turn" && animation_target != "turn_skid") {
             player_set_animation("turn");
         }
         break;
-    
+
     // Run:
     case player_action_run:
         // Walk:
         if (abs(g_speed) < 1.50) {
             if (animation_target != "walk") player_set_animation("walk");
         }
-        
+
         // Walk fast:
         else if (abs(g_speed) < 3.00) {
             if (animation_target != "walk_fast") player_set_animation("walk_fast");
         }
-        
+
         // Jog:
         else if (abs(g_speed) < 4.50) {
             if (animation_target != "jog") player_set_animation("jog");
         }
-        
+
         // Jog fast:
         else if (abs(g_speed) < 6.00) {
             if (animation_target != "jog") player_set_animation("jog");
         }
-        
+
         // Run:
         else {
             if (animation_target != "run") player_set_animation("run");
         }
         break;
-    
+
     // Air:
     case player_action_air:
         if (animation_target != "turn" && animation_target != "turn_skid" && animation_target != "spin" && animation_target != "skid" && animation_target != "spring_flight" && animation_target != "spring_fall") {
             player_set_animation("spring_fall");
         }
         break;
-    
+
     // Jump:
     case player_action_jump:
         if (animation_target != "spin") {
             player_set_animation("spin");
         }
         break;
-    
+
     // Look:
     case player_action_look:
         if (animation_target != "look") {
             player_set_animation("look");
         }
         break;
-    
+
     // Crouch:
     case player_action_crouch:
         if (animation_target != "crouch") {
             player_set_animation("crouch");
         }
         break;
-    
+
     // Spin Dash:
     case player_action_spin_dash:
         if (animation_target != "spin_dash" && animation_target != "spin_charge") {
             player_set_animation("spin_dash");
         }
         break;
-    
+
     // Roll:
     case player_action_roll:
         if (animation_target != "spin") {
             player_set_animation("spin");
         }
         break;
-    
+
     // Skid:
     case player_action_skid:
         if (animation_target != "skid" && animation_target != "skid_fast") {
             player_set_animation("skid");
         }
         break;
-    
+
     // Hurt:
     case player_action_hurt:
         if (animation_target != "hurt") {
             player_set_animation("hurt");
         }
         break;
-    
+
     // Death:
     case player_action_death:
         if (animation_target != "death") {
             player_set_animation("death");
         }
         break;
-    
+
     // Push:
     case player_action_push:
         if (animation_target != "push") {
             player_set_animation("push");
         }
         break;
-    
+
     // Spring:
     case player_action_spring:
         // Flight:
@@ -879,7 +879,7 @@ switch (action_current) {
                 player_set_animation("spring_flight");
             }
         }
-        
+
         // Fall:
         else {
             if (animation_target != "spring_fall") {
@@ -890,10 +890,10 @@ switch (action_current) {
 }
 
 // Wait:
-if (!game_is_paused(ctrl_text) && ground == true && input_lock == false && animation_target == "stand") {
+if (!game_ispaused(ctrl_text) && ground == true && input_lock == false && animation_target == "stand") {
     if (animation_alarm > 0) {
         animation_alarm -= 1;
-        
+
         if (animation_alarm == 0) {
             player_set_animation("wait");
         }
@@ -917,7 +917,7 @@ switch (animation_target) {
     case "spring_fall":
         // Tag variants
         break;
-    
+
     // Wait:
     case "wait":
         if (animation_target != animation_current) {
@@ -927,32 +927,32 @@ switch (animation_target) {
                 if (player_id == 0) {
                     animation_variant = 0;
                 }
-                
+
                 // Partner:
                 else {
                     animation_variant = 1;
                 }
             }
-            
+
             // Randomize wait:
             else {
                 animation_variant = choose(0, 1);
             }
         }
         break;
-    
+
     case "spin":
         // Spin flight & fall:
         if (action_current == player_action_jump) {
             animation_variant = 1;
         }
-        
+
         // Roll:
         else {
             animation_variant = 0;
         }
         break;
-    
+
     default:
         animation_variant = 0;
 }
@@ -973,8 +973,8 @@ applies_to=self
 /// Animation Angle
 // Sets the animation angle based on the current animation.
 
-// Don't bother if the stage is paused or text is active:
-if (game_is_paused()) {
+// Exit if the stage is paused or text is active:
+if (game_ispaused()) {
     exit;
 }
 
@@ -1006,7 +1006,7 @@ switch (animation_current) {
     case "goal":
         image_angle = 0;
         break;
-    
+
     // Spring angle:
     case "spring_flight":
     case "spring_fall":
@@ -1016,7 +1016,7 @@ switch (animation_current) {
             image_angle = approach_angle(image_angle, 0, 4);
         }
         break;
-    
+
     // Terrain angle:
     default:
         // Default angle behavior:
@@ -1027,14 +1027,14 @@ switch (animation_current) {
                 image_angle = approach_angle(image_angle, 0, 4);
             }
         }
-        
+
         // Classic/Tag angle behavior:
         else {
             if (ground == true) {
                 var angle_mod;
-                
+
                 angle_mod = animation_angle_mod;
-                
+
                 if (ground_angle <= 180) {
                     if (ground_angle < 36) {
                         angle_mod = 0;
@@ -1048,7 +1048,7 @@ switch (animation_current) {
                         angle_mod = ground_angle;
                     }
                 }
-                
+
                 if (abs(angle_difference(animation_angle_mod, angle_mod)) < 45) {
                     animation_angle_mod = approach_angle(animation_angle_mod, angle_mod, max(abs(x_speed), 4));
                 } else {
@@ -1057,7 +1057,7 @@ switch (animation_current) {
             } else {
                 animation_angle_mod = approach_angle(animation_angle_mod, 0, 4);
             }
-            
+
             // Rotate:
             image_angle = round(animation_angle_mod / 45) * 45;
         }
@@ -1134,7 +1134,7 @@ applies_to=self
 */
 /// Update Trail
 
-// Don't bother if trails are disabled:
+// Exit if trails are disabled:
 if (global.misc_trails == false) {
     exit;
 }
@@ -1477,7 +1477,7 @@ applies_to=self
 /// Draw Size
 
 // Exit if not in debug mode:
-if (debug_mode == false) {
+if (global.game_debug == false) {
     exit;
 }
 

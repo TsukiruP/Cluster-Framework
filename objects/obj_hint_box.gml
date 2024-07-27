@@ -50,8 +50,8 @@ applies_to=self
 */
 /// Animate
 
-// Don't bother if the stage is paused:
-if (game_is_paused(ctrl_pause)) {
+// Exit if the stage is paused:
+if (game_ispaused(ctrl_pause)) {
     exit;
 }
 
@@ -63,7 +63,7 @@ if (instance_exists(player_handle)) {
             player_handle.animation_trigger = true;
             player_handle.animation_reverse = true;
         }
-    
+
         // Clear text:
         if (player_handle.hint_wanted == false) {
             ctrl_text.text_clear = true;

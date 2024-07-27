@@ -33,8 +33,8 @@ applies_to=self
 */
 /// Movement
 
-// Don't bother if the stage is paused or text is active:
-if (game_is_paused()) {
+// Exit if the stage is paused or text is active:
+if (game_ispaused()) {
     exit;
 }
 
@@ -43,7 +43,7 @@ if (dropped == true) {
     if(!in_view()) {
         instance_destroy();
     }
-    
+
     // Add speed:
     x += x_speed * global.object_ratio;
 
@@ -67,17 +67,17 @@ applies_to=self
 */
 /// Magnetization
 
-// Don't bother if the stage is paused or text is active:
-if (game_is_paused()) {
+// Exit if the stage is paused or text is active:
+if (game_ispaused()) {
     exit;
 }
 
-if(player_exists(0) != noone) {
+if(instance_exists(instance_player(0))) {
     var player_handle;
-    
+
     // Player handle:
-    player_handle = player_exists(0);
-    
+    player_handle = instance_player(0);
+
     // Update status:
     if(player_handle.status_shield == SHIELD_MAGNETIC || player_handle.status_shield == SHIELD_LIGHTNING) {
         if(distance_to_object(global.player_instance[0]) < 64) {
@@ -94,15 +94,15 @@ applies_to=self
 */
 /// Lifespan
 
-// Don't bother if the stage is paused or text is active:
-if (game_is_paused()) {
+// Exit if the stage is paused or text is active:
+if (game_ispaused()) {
     exit;
 }
 
 if (dropped == true) {
     // Decrease lifespan alarm:
     lifespan = max(lifespan - 1 * global.object_ratio, 0);
-    
+
     // Destroy:
     if(lifespan <= 0) {
         instance_destroy();

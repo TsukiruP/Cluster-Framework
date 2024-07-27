@@ -31,16 +31,16 @@ applies_to=self
 */
 /// Movement
 
-// Don't bother if the stage is paused or text is active:
-if (game_is_paused()) {
+// Exit if the stage is paused or text is active:
+if (game_ispaused()) {
     exit;
 }
 
-if (player_exists(0) != noone) {
+if (instance_exists(instance_player(0))) {
     var player_handle, xx, yy;
 
     // Move towards the player:
-    player_handle = player_exists(0);
+    player_handle = instance_player(0);
     xx            = sign(player_handle.x - x);
     yy            = sign(player_handle.y - y);
 

@@ -5,8 +5,8 @@
 +System
 	|credits
 	+Game
-		|game_start
-		|game_is_paused
+		|game_ispaused
+		|stage_start
 	+Display
 		|window_resize
 		|in_view
@@ -128,7 +128,7 @@
 			|draw_background_tiled_vertical_part
 	+Misc.
 		|transition_create
-		|player_exists
+		|instance_player
 		|effect_create
 +Gameplay
 	+Player

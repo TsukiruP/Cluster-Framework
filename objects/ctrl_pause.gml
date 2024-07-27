@@ -10,26 +10,39 @@ applies_to=self
 sound_pause_all();
 
 // Menu variables:
-menu_level     = 0;
-menu_selection = 0;
+menu_current   = 0;
 menu_lock      = false;
+menu_count     = 2;
 
-sub_level      = 0;
-sub_selection  = 0;
+for (i = 0; i < menu_count; i += 1) {
+    menu_selection[i] = 0;
+}
 
 // Pause variables:
 pause_hide      = 0;
-pause_sprite    = spr_pause;
+pause_continue  = false;
 pause_delay     = 2;
 pause_active    = true;
 
-pause_x_current = global.display_width + sprite_get_width(pause_sprite);
-pause_x_target  = global.display_width / 2;
-pause_x_speed   = 0;
+pause_header    = spr_pause_header;
+pause_menu      = spr_pause_menu;
+pause_space     = 3;
 
-sub_distance    = pause_x_target + sprite_get_width(pause_sprite);
+for (i = 0; i < menu_count; i += 1) {
+    pause_x_current[i] = global.display_width + sprite_get_width(pause_menu);
+    pause_x_speed[i]   = 0;
+}
 
-// Handle:
+pause_count[0]  = (sprite_get_number(pause_menu) / 2) - 2;
+pause_count[1]  = 2;
+pause_height    = 0;
+
+pause_x         = 0;
+pause_y         = 0;
+
+event_user(1);
+
+// Handles:
 fade_handle       = noone;
 transition_handle = noone;
 #define Step_0
@@ -40,8 +53,8 @@ applies_to=self
 */
 /// Menu
 
-// Don't bother if text is active:
-if (game_is_paused(ctrl_text)) {
+// Exit if text is active:
+if (game_ispaused(ctrl_text)) {
     exit;
 }
 
@@ -63,7 +76,7 @@ if (pause_delay == 0) {
     // Cancel:
     if (input_get_check(INP_CANCEL, CHECK_PRESSED)) {
         if (pause_hide == 0) {
-            switch (menu_level) {
+            switch (menu_current) {
                 case 1:
                     event_user(1);
                     break;
@@ -106,29 +119,63 @@ menu_up   = input_get_check(INP_UP, CHECK_PRESSED);
 menu_direction = menu_down - menu_up;
 
 // Menu selection:
-if (menu_level == 0) {
-    menu_selection += menu_direction;
-    menu_selection  = wrap(menu_selection, 0, 2);
-}
-
-// Sub selection:
-else {
-    sub_selection += menu_direction;
-    sub_selection  = wrap(sub_selection, 0, 1);
-}
+menu_selection[menu_current] += menu_direction;
+menu_selection[menu_current]  = wrap(menu_selection[menu_current], 0, pause_count[menu_current] - 1);
 
 // Input delay:
 if (pause_delay == 0) {
     // Accept:
     if (input_get_check(INP_ACCEPT, CHECK_PRESSED)) {
-        switch (menu_level) {
-            // Pasue menu:
+        switch (menu_current) {
+            // Pause menu:
             case 0:
+                // Open confirm menu:
+                if (menu_selection[menu_current] != 0) {
+                    menu_current                 = 1;
+                    menu_selection[menu_current] = 0;
+                    pause_x_target[1]            = pause_x_target[0];
+                }
+
+                // Continue:
+                else {
+                    event_user(0);
+                }
+
+                // Move to the left:
+                pause_x_target[0] = -sprite_get_width(pause_menu);
+                break;
+
+            // Confirm menu:
+            case 1:
+                // Yes:
+                if (menu_selection[menu_current] == 0) {
+                    // Restart:
+                    if (menu_selection[0] == 1) {
+                        menu_lock   = true;
+                        fade_handle = fade_create(0.02, 2, depth);
+                    }
+
+                    // Move to the left:
+                    pause_x_target[menu_current] = -sprite_get_width(pause_menu);
+                }
+
+                // No:
+                else {
+                    event_user(1);
+                }
+                break;
+        }
+
+        /*
+        switch (menu_current) {
+            // Pause menu:
+            case 0:
+                // Pull up sub menu:
                 if (menu_selection != 0) {
-                    menu_level     =  1;
-                    sub_level      =  menu_selection - 1;
-                    sub_selection  =  0;
-                    pause_x_target = -sprite_get_width(pause_sprite);
+                    menu_current        =  1;
+                    sub_level         =  menu_selection - 1;
+                    sub_selection     =  0;
+                    pause_x_target[0] = -sprite_get_width(pause_menu);
                 }
 
                 // Return to gameplay:
@@ -140,13 +187,13 @@ if (pause_delay == 0) {
             // Sub menu:
             case 1:
                 if (sub_selection == 0) {
-                    switch (sub_level) {
-                        // Restart
-                        case 0:
-                            menu_lock   = true;
-                            fade_handle = fade_create(0.02, 2, depth);
-                            break;
+                    // Restart:
+                    if (sub_level == 0) {
+                        menu_lock   = true;
+                        fade_handle = fade_create(0.02, 2, depth);
                     }
+
+                    pause_x_target = -sprite_get_width(pause_menu) - sub_distance;
                 }
 
                 // Return to pause menu:
@@ -155,6 +202,7 @@ if (pause_delay == 0) {
                 }
                 break;
         }
+        */
     }
 
     // Start:
@@ -172,12 +220,13 @@ applies_to=self
 if (pause_delay > 0) {
     pause_delay -= 1;
 
-    if (pause_delay == 0 && menu_lock == true) {
-        pause_active   = false;
-        pause_x_target = global.display_width + sprite_get_width(pause_sprite);
+    if (pause_delay == 0) {
+        if (pause_continue == true) {
+            pause_active   =  false;
 
-        sound_resume_all();
-        fade_reverse(fade_handle);
+            sound_resume_all();
+            fade_reverse(fade_handle);
+        }
     }
 }
 /*"/*'/**//* YYD ACTION
@@ -213,14 +262,29 @@ applies_to=self
 */
 /// Movement
 
-if (pause_x_current != pause_x_target) {
-    var pause_x_distance;
+for (i = 0; i < menu_count; i += 1) {
+    if (pause_x_current[i] != pause_x_target[i]) {
+        var pause_x_distance;
 
-    // Pause distance:
-    pause_x_distance = pause_x_target - pause_x_current;
+        // Pause distance:
+        pause_x_distance = pause_x_target[i] - pause_x_current[i];
 
-    pause_x_speed    = ceil(abs(pause_x_distance) / 3);
-    pause_x_current += pause_x_speed * sign(pause_x_distance);
+        pause_x_speed[i]    = ceil(abs(pause_x_distance) / 3);
+        pause_x_current[i] += pause_x_speed[i] * sign(pause_x_distance);
+    }
+}
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Position
+
+// Height:
+for (i = 0; i < menu_count; i += 1) {
+    pause_height[i] = (sprite_get_height(pause_header) + pause_space) + (sprite_get_height(pause_menu) * pause_count[i]) + (pause_space * (pause_count[i] - 1));
+    pause_x[i]      = view_xview[view_current] + pause_x_current[i];
+    pause_y[i]      = (view_yview[view_current] + global.display_height / 2) - (pause_height[i] / 2);
 }
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -229,7 +293,22 @@ applies_to=self
 */
 /// Destroy
 
-if (pause_x_current == pause_x_target && !instance_exists(fade_handle)) {
+var pause_destroy;
+
+pause_destroy = false;
+
+for (i = 0; i < menu_count; i += 1) {
+    // Don't destroy yet:
+    if (pause_x_current[i] != pause_x_target[i]) {
+        break;
+    } else {
+        if (i = menu_count - 1) {
+            pause_destroy = true;
+        }
+    }
+}
+
+if (pause_destroy == true && !instance_exists(fade_handle)) {
     instance_destroy();
 }
 #define Other_10
@@ -240,8 +319,17 @@ applies_to=self
 */
 /// Set Pause Delay
 
-menu_lock   = true;
-pause_delay = 2;
+menu_lock      = true;
+pause_continue = true;
+pause_delay    = 2;
+
+pause_x_target[0] = -sprite_get_width(pause_menu);
+
+for (i = 0; i < menu_count; i += 1) {
+    if ((pause_x_target[i] != global.display_width + sprite_get_width(pause_menu)) && (pause_x_target[i] != -sprite_get_width(pause_menu))) {
+        pause_x_target[i] = -sprite_get_width(pause_menu);
+    }
+}
 #define Other_11
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -250,8 +338,12 @@ applies_to=self
 */
 /// Reset Menu
 
-menu_level     = 0;
-pause_x_target = global.display_width / 2;
+menu_current      = 0;
+pause_x_target[0] = global.display_width / 2;
+
+for (i = 1; i < menu_count; i += 1) {
+    pause_x_target[1] = global.display_width + sprite_get_width(pause_menu);
+}
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -265,8 +357,29 @@ if (pause_hide != 0) {
     exit;
 }
 
-// Pause menu:
-draw_sprite(pause_sprite, menu_selection, view_xview[view_current] + pause_x_current, view_yview[view_current] + global.display_height / 2);
+var menu_offset, menu_y, menu_height;
 
-// Sub menu:
-draw_sprite(pause_sprite, 3 + sub_selection + sub_level * 2, view_xview[view_current] + pause_x_current + sub_distance, view_yview[view_current] + global.display_height / 2);
+// Reset offset:
+menu_offset = 0;
+
+// Height:
+menu_height = sprite_get_height(pause_menu) + pause_space;
+
+for (i = 0; i < menu_count; i += 1) {
+    // Header:
+    if (i == 1) {
+        draw_sprite(pause_header, menu_selection[0], pause_x[i], pause_y[i]);
+    } else {
+        draw_sprite(pause_header, i, pause_x[i], pause_y[i]);
+    }
+    
+    // Menu:
+    menu_y = pause_y[i] + sprite_get_height(pause_header) + 3;
+    
+    for (j = 0; j < pause_count[i]; j += 1) {
+        draw_sprite(pause_menu, ((j + menu_offset) * 2) + (menu_selection[i] == j), pause_x[i], menu_y + (menu_height * j));
+    }
+    
+    // Update offset:
+    menu_offset += pause_count[i];
+}

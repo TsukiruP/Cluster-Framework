@@ -6,13 +6,13 @@ applies_to=self
 */
 /// Global Timers
 
-// Don't bother if the stage is paused:
-if (game_is_paused(ctrl_pause)) {
+// Exit if the stage is paused:
+if (game_ispaused(ctrl_pause)) {
     exit;
 }
 
 // Stage timer:
-if (global.time_allow == true && !game_is_paused(ctrl_text)) {
+if (global.time_allow == true && !game_ispaused(ctrl_text)) {
     global.game_time += global.object_ratio;
 }
 
@@ -26,12 +26,12 @@ applies_to=self
 */
 /// Pause
 
-// Don't bother if there's no player:
-if (player_exists(0) == noone) {
+// Exit if there's no player 1:
+if (!instance_exists(instance_player(0))) {
     exit;
 }
 
-if (!game_is_paused(ctrl_text) && global.pause_allow == true && !instance_exists(ctrl_pause) && input_get_check(INP_START, CHECK_PRESSED)) {
+if (!game_ispaused(ctrl_text) && global.pause_allow == true && !instance_exists(ctrl_pause) && input_get_check(INP_START, CHECK_PRESSED)) {
     var pause_fade;
 
     pause_fade = fade_create(0.06, 0.6, depth);

@@ -2,13 +2,13 @@ ctl_sonic_hurt
 ctl_spin_dash
 ctl_sonic_death
 draw_backdrop_tiled_area
-game_start
+stage_start
 ctl_ring_sparkle
 ctl_sonic_ready
 ctl_checkpoint_inactive
 player_set_input
 player_collision_object_bottom
-game_is_paused
+game_ispaused
 player_action_death
 player_action_look
 ctl_template
@@ -59,7 +59,7 @@ draw_background_tiled_horizontal_part
 
 draw_sprite_tiled_horizontal_yscale
 draw_sprite_tiled_vertical
-player_exists
+instance_player
 ctl_sonic_breathe
 
 
@@ -172,3 +172,4 @@ ctl_debuff
 
 joystick_get_check
 input_get_check
+
