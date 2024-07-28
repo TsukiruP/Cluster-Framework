@@ -17,6 +17,7 @@ pause_ignore = false;
 transition_type  = TRANS_FADE;
 transition_state = 0;
 transition_alarm = 0;
+transition_timer = 0;
 transition_room  = room;
 
 // Fade handle:
@@ -60,13 +61,14 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Alarm
+/// Alarm & Timer
 
 // Exit if the stage is paused:
 if (game_ispaused(ctrl_pause) && pause_ignore == false) {
     exit;
 }
 
+// Alarm:
 if (transition_alarm > 0) {
     transition_alarm -= 1;
 
@@ -99,6 +101,13 @@ if (transition_alarm > 0) {
             }
         }
     }
+}
+
+// Timer:
+if (transition_type == TRANS_CARD && transition_state == 2) {
+    transition_timer += 1;
+} else {
+    transition_timer = 0;
 }
 #define Step_2
 /*"/*'/**//* YYD ACTION
@@ -308,7 +317,7 @@ if (transition_type == TRANS_CARD) {
                 global.time_allow = false;
 
                 transition_state  = 2;
-                transition_alarm  = 60;
+                transition_alarm  = 120;
             }
         }
     }
@@ -563,6 +572,8 @@ applies_to=self
 /// Draw Title Card Transition
 
 if (transition_type == TRANS_CARD) {
+    var transition_character;
+
     // Font:
     draw_set_font(global.font_title_card);
 
@@ -573,11 +584,29 @@ if (transition_type == TRANS_CARD) {
     draw_sprite_tiled_vertical(spr_title_card_banner, 0, view_xview[view_current] + banner_x_current, view_yview[view_current] + banner_y_scroll);
 
     // Zone:
-    draw_text(view_xview[view_current] + zone_x_current, view_yview[view_current] + 87, room_zone);
+    draw_set_valign(fa_bottom);
+    draw_text(view_xview[view_current] + zone_x_current, view_yview[view_current] + 126, room_zone);
 
     // Act:
     if (room_act != 0) {
         draw_sprite(spr_title_card_acts, room_act, view_xview[view_current] + zone_x_current + 5, view_yview[view_current] + 128);
+    }
+
+    // Loading:
+    switch (global.player_data) {
+        default:
+            transition_character = spr_sonic_run;
+    }
+
+
+    if (transition_state == 2) {
+        // Stars:
+        draw_sprite(spr_title_card_stars, sync_rate(transition_timer, 6, sprite_get_number(spr_title_card_stars)), view_xview[view_current] + global.display_width - 27, view_yview[view_current] + global.display_height - 23 + 7);
+
+        // Character:
+        d3d_set_fog(true, c_white, 0, 0);
+        draw_sprite_ext(transition_character, sync_rate(transition_timer, 6, sprite_get_number(transition_character)), view_xview[view_current] + global.display_width - 27, view_yview[view_current] + global.display_height - 23, 1, 1, 0, c_white, 1);
+        d3d_set_fog(false, c_black, 0, 0);
     }
 
     // Reset:

@@ -13,7 +13,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Update Resolution
+/// Resolution
 
 switch (global.display_mode) {
     // 3DS ratios:
@@ -73,7 +73,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Update Fullscreen
+/// Fullscreen
 
 // Enter fullscreen:
 if (global.display_fullscreen == true) {
@@ -90,7 +90,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Update Window
+/// Resize
 
 window_resize();
 #define Other_4
@@ -99,6 +99,8 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Window Caption
+/// Caption
 
-if (room_caption != GAME_NAME) room_caption = GAME_NAME;
+if (room_caption != GAME_NAME) {
+    room_caption = GAME_NAME;
+}

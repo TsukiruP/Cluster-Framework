@@ -4,10 +4,11 @@
 	|fnt_system
 	+Title Card
 		+Default
-			|spr_title_card_banner
-			|spr_title_card_acts
-			|fnt_title_card_zone
-			|fnt_title_card_act
+		|spr_title_card_banner
+		|spr_title_card_acts
+		|spr_title_card_stars
+		|fnt_title_card_zone
+		|fnt_title_card_act
 	+HUD
 		+Default
 			|spr_hud
@@ -371,4 +372,3 @@
 		|mask_platform_fix
 		|mask_ledge
 	|spr_status_slow
-	|spr_pause

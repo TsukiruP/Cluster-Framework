@@ -45,9 +45,11 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Ring Panning
+/// Ring Pan
 
-if (sound_get_pan("snd_ring") != ring_pan) sound_pan("snd_ring", ring_pan);
+if (sound_get_pan("snd_ring") != ring_pan) {
+    sound_pan("snd_ring", ring_pan);
+}
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -57,8 +59,9 @@ applies_to=self
 
 // Fade Out:
 if (fade_out == true) {
-    if (sound_kind_get_volume(3) != 0) sound_kind_volume(3, max(sound_kind_get_volume(3) - 0.01, 0));
-    else {
+    if (sound_kind_get_volume(3) != 0) {
+        sound_kind_volume(3, max(sound_kind_get_volume(3) - 0.01, 0));
+    } else {
         // Discard music:
         if (music_instance != -1) {
             sound_stop(music_instance);
@@ -84,12 +87,16 @@ if (fade_out == false) {
     if (!sound_isplaying("bgm_drown")) {
         // Fade in jingle first:
         if (jingle_instance != -1) {
-            if (sound_get_volume(jingle_instance) != 1) sound_volume(jingle_instance, min(1, sound_get_volume(jingle_instance) + 0.01));
+            if (sound_get_volume(jingle_instance) != 1) {
+                sound_volume(jingle_instance, min(1, sound_get_volume(jingle_instance) + 0.01));
+            }
         }
         
         // Fade in music:
         else if (music_instance != -1) {
-            if (sound_get_volume(music_instance) != 1) sound_volume(music_instance, min(1, sound_get_volume(music_instance) + 0.01));
+            if (sound_get_volume(music_instance) != 1) {
+                sound_volume(music_instance, min(1, sound_get_volume(music_instance) + 0.01));
+            }
         }
     }
 }
@@ -104,11 +111,18 @@ applies_to=self
 if (!sound_isplaying("bgm_drown")) {
     // Next is the jingles:
     if (jingle_instance != -1) {
-        if (music_instance != -1) sound_volume(music_instance, 0);
+        if (music_instance != -1) {
+            sound_volume(music_instance, 0);
+        }
     }
 } else {
-    if (music_instance != -1) sound_volume(music_instance, 0);
-    if (jingle_instance != -1) sound_volume(jingle_instance, 0);
+    if (music_instance != -1) {
+        sound_volume(music_instance, 0);
+    }
+
+    if (jingle_instance != -1) {
+        sound_volume(jingle_instance, 0);
+    }
 }
 
 // Clear jingle:
