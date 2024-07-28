@@ -47,6 +47,21 @@ zone_x_target  = 40;
 zone_x_speed   = 0;
 zone_x_factor  = 9;
 
+// Loading variables:
+switch (global.player_data[0]) {
+    // Sonic:
+    default:
+        character_index    =  spr_sonic_run;
+        character_y_offset = -7;
+}
+
+character_x_current = -sprite_get_width(character_index);
+character_x_target  =  global.display_width - 27;
+character_x_speed   =  0;
+character_x_factor  =  12;
+
+stars_y             =  global.display_height - 16;
+
 // Retry variables:
 draw_set_font(global.font_title_card);
 
@@ -104,7 +119,7 @@ if (transition_alarm > 0) {
 }
 
 // Timer:
-if (transition_type == TRANS_CARD && transition_state == 2) {
+if (transition_type == TRANS_CARD) {
     transition_timer += 1;
 } else {
     transition_timer = 0;
@@ -292,6 +307,13 @@ if (transition_type == TRANS_CARD) {
         zone_x_target   = 40;
     }
 
+    // Character target:
+    if (transition_state >= 4) {
+        character_x_target = global.display_width + sprite_get_width(spr_title_card_stars);
+    } else {
+        character_x_target = global.display_width - 27;
+    }
+
     // Banner position:
     if (transition_state > 0 && banner_x_current != banner_x_target) {
         var banner_x_distance;
@@ -311,14 +333,17 @@ if (transition_type == TRANS_CARD) {
         if (zone_x_current >= zone_x_target && sign(zone_x_current) == sign(zone_x_target)) {
             zone_x_speed   = 0;
             zone_x_current = zone_x_target;
+        }
+    }
 
-            // Move to room change:
-            if (transition_state == 1) {
-                global.time_allow = false;
+    // Character position:
+    if (((background_y_current == background_y_target) || transition_state >= 4) &&character_x_current != character_x_target) {
+        character_x_speed    = ceil((character_x_target - character_x_current) / character_x_factor);
+        character_x_current += character_x_speed;
 
-                transition_state  = 2;
-                transition_alarm  = 120;
-            }
+        if (character_x_current >= character_x_target) {
+            character_x_speed   = 0;
+            character_x_current = character_x_target;
         }
     }
 
@@ -330,6 +355,17 @@ if (transition_type == TRANS_CARD) {
 
             if (zone_x_current != (-string_width(room_zone) - zone_x_factor)) {
                 zone_x_current = -string_width(room_zone) - zone_x_factor;
+            }
+            break;
+
+        // 1 - Room change:
+        case 1:
+            // Move to room change:
+            if (banner_x_current == banner_x_target && zone_x_current == zone_x_target && character_x_current == character_x_target) {
+                global.time_allow = false;
+
+                transition_state  = 2;
+                transition_alarm  = 120;
             }
             break;
 
@@ -592,22 +628,13 @@ if (transition_type == TRANS_CARD) {
         draw_sprite(spr_title_card_acts, room_act, view_xview[view_current] + zone_x_current + 5, view_yview[view_current] + 128);
     }
 
-    // Loading:
-    switch (global.player_data) {
-        default:
-            transition_character = spr_sonic_run;
-    }
+    // Stars:
+    draw_sprite(spr_title_card_stars, sync_rate(transition_timer, 4, sprite_get_number(spr_title_card_stars)), view_xview[view_current] + character_x_current, view_yview[view_current] + stars_y);
 
-
-    if (transition_state == 2) {
-        // Stars:
-        draw_sprite(spr_title_card_stars, sync_rate(transition_timer, 6, sprite_get_number(spr_title_card_stars)), view_xview[view_current] + global.display_width - 27, view_yview[view_current] + global.display_height - 23 + 7);
-
-        // Character:
-        d3d_set_fog(true, c_white, 0, 0);
-        draw_sprite_ext(transition_character, sync_rate(transition_timer, 6, sprite_get_number(transition_character)), view_xview[view_current] + global.display_width - 27, view_yview[view_current] + global.display_height - 23, 1, 1, 0, c_white, 1);
-        d3d_set_fog(false, c_black, 0, 0);
-    }
+    // Character:
+    d3d_set_fog(true, c_white, 0, 0);
+    draw_sprite(character_index, sync_rate(transition_timer, 4, sprite_get_number(character_index)), view_xview[view_current] + character_x_current, view_yview[view_current] + stars_y + character_y_offset);
+    d3d_set_fog(false, c_black, 0, 0);
 
     // Reset:
     draw_reset();
