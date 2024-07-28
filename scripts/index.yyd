@@ -86,7 +86,7 @@ player_ring_loss
 player_action_hurt_OLD
 player_handle_item_box
 player_handle_water_surface
-water_exists
+draw
 input_get_timer
 start_trail
 update_trail

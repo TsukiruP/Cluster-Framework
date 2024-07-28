@@ -223,4 +223,4 @@
 	|player_get_input
 	|joystick_check_pressed
 	|joystick_check_released
-	|water_exists
+	|draw

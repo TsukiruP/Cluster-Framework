@@ -36,8 +36,5 @@ draw_set_alpha(fade_alpha);
 
 draw_rectangle(view_xview[view_current], view_yview[view_current], view_xview[view_current] + global.display_width, view_yview[view_current] + global.display_height, false);
 
-// Reset draw variables:
-draw_set_color(c_white);
-draw_set_alpha(1);
-draw_set_halign(fa_left);
-draw_set_valign(fa_top);
+// Reset:
+draw_reset();

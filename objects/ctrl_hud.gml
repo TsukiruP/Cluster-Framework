@@ -320,11 +320,8 @@ draw_sprite(spr_hud, 3, view_xview[view_current] + hud_position + 6, view_yview[
 draw_sprite_part(spr_action_gauge, 0, 0, 0, sprite_get_width(spr_action_gauge) * ((global.player_instance[0].clock_up_duration - global.player_instance[0].clock_up_timer)/global.player_instance[0].clock_up_duration), sprite_get_height(spr_action_gauge), view_xview[view_current] + hud_position + 6 + 8, view_yview[view_current] + global.display_height - 29 + 12);
 */
 
-// Reset draw variables:
-draw_set_color(c_white);
-draw_set_alpha(1);
-draw_set_halign(fa_left);
-draw_set_valign(fa_top);
+// Reset:
+draw_reset();
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -370,11 +367,8 @@ if ((sync_rate(global.object_time, 8, 2) && global.game_rings == 0) || global.ga
     draw_text(view_xview[view_current] + hud_x_current - 5, view_yview[view_current] + hud_y + 11, string_place_value(global.game_rings, 3));
 }
 
-// Reset draw variables:
-draw_set_color(c_white);
-draw_set_alpha(1);
-draw_set_halign(fa_left);
-draw_set_valign(fa_top);
+// Reset:
+draw_reset();
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603

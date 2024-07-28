@@ -554,12 +554,6 @@ applies_to=self
 
 if (transition_type == TRANS_MENU) {
     draw_sprite(spr_transition_background, 0, view_xview[view_current], view_yview[view_current] + background_y_current);
-
-    // Reset draw variables:
-    draw_set_color(c_white);
-    draw_set_alpha(1);
-    draw_set_halign(fa_left);
-    draw_set_valign(fa_top);
 }
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -586,11 +580,8 @@ if (transition_type == TRANS_CARD) {
         draw_sprite(spr_title_card_acts, room_act, view_xview[view_current] + zone_x_current + 5, view_yview[view_current] + 128);
     }
 
-    // Reset draw variables:
-    draw_set_color(c_white);
-    draw_set_alpha(1);
-    draw_set_halign(fa_left);
-    draw_set_valign(fa_top);
+    // Reset:
+    draw_reset();
 }
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -612,9 +603,6 @@ if (transition_type == TRANS_RETRY) {
     // Try again:
     draw_text(view_xview[view_current] + retry_x_current, view_yview[view_current] + global.display_height / 2, retry_text);
 
-    // Reset draw variables:
-    draw_set_color(c_white);
-    draw_set_alpha(1);
-    draw_set_halign(fa_left);
-    draw_set_valign(fa_top);
+    // Reset:
+    draw_reset();
 }

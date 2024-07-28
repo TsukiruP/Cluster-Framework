@@ -396,11 +396,8 @@ draw_set_valign(fa_middle);
 
 draw_text(global.display_width / 2, global.display_height / 2, topic_message);
 
-// Reset draw variables:
-draw_set_color(c_white);
-draw_set_alpha(1);
-draw_set_halign(fa_left);
-draw_set_valign(fa_top);
+// Reset:
+draw_reset();
 d3d_set_viewport(0, 0, global.display_width, global.display_height);
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -440,11 +437,8 @@ if (text_overflow == true && text_scroll[4] == true && text_alpha[2] == 1) {
     draw_sprite(fnt_system, 95, (global.display_width / 2) - 6, global.display_height - 29);
 }
 
-// Reset draw variables:
-draw_set_color(c_white);
-draw_set_alpha(1);
-draw_set_halign(fa_left);
-draw_set_valign(fa_top);
+// Reset:
+draw_reset();
 d3d_set_viewport(0, 0, global.display_width, global.display_height);
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -476,9 +470,6 @@ draw_set_valign(fa_top);
 
 draw_text_ext(text_x / 2, -log_scroll, log_message, font_height, global.display_width - text_x);
 
-// Reset draw variables:
-draw_set_color(c_white);
-draw_set_alpha(1);
-draw_set_halign(fa_left);
-draw_set_valign(fa_top);
+// Reset:
+draw_reset();
 d3d_set_viewport(0, 0, global.display_width, global.display_height);
