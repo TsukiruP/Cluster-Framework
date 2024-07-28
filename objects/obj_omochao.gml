@@ -19,30 +19,6 @@ main_offset_y = 5;
 // Draw variables:
 draw_x = x;
 draw_y = y;
-#define Step_0
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Activate
-
-if (instance_exists(player_handle)) {
-    if (player_handle.hint_wanted == true) {
-        // Check current:
-        if (hint_current != hint_target) {
-            // Update text controller:
-            switch (hint_target) {
-                // Default:
-                default:
-                    text_set_message("Hello! I'm Omochao! Listen to me carefully and you will learn a lot. " + input_get_string(INP_JUMP));
-            }
-
-            // Set current:
-            hint_current = hint_target;
-        }
-    }
-}
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -78,20 +54,13 @@ if (instance_exists(player_handle)) {
             ctrl_text.text_clear = true;
         }
     } else {
-        // Reset current:
-        event_inherited();
-
         // Reset sprite index:
         sprite_index = spr_omochao_idle;
     }
 }
 
-// Reset:
-if (player_handle == noone && hint_current != -1) {
-    // Reset current:
-    event_inherited();
-
-    // Reset sprite index:
+// Reset sprite index:
+if (player_handle == noone && sprite_index != spr_omochao_idle) {
     sprite_index = spr_omochao_idle;
 }
 

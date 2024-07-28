@@ -1,3 +1,5 @@
+obj_ring,288,704,42BDD09E,0,1,1,4294967295,0,0
+obj_hint_box,176,720,FB35A283,0,1,1,4294967295,0,0
 obj_player_spawn,240,752,F4AE1C4E,0,1,1,4294967295,0,0
 obj_basic_test_collision_03,96,768,0D9C0381,0,1,1,4294967295,0,0
 obj_basic_test_collision_03,192,768,12114FF8,0,1,1,4294967295,0,0
@@ -86,7 +88,6 @@ obj_basic_test_collision_01,576,816,757C501C,0,1,1,4294967295,0,0
 obj_basic_test_collision_03,672,768,1DBA3F74,0,1,1,4294967295,0,0
 obj_basic_test_collision_01,672,720,FF86C6A9,0,1,1,4294967295,0,0
 obj_basic_test_collision_03,0,768,D5082484,0,1,1,4294967295,0,0
-obj_item_magnetic,304,752,47B5FFF0,0,1,1,4294967295,0,0
 obj_item_lightning,352,752,8F052C45,0,1,1,4294967295,0,0
-obj_hint_box,176,720,FB35A283,0,1,1,4294967295,0,0
 obj_item_panic,688,704,E0B2EBDC,0,1,1,4294967295,0,0
+obj_item_mine,304,752,51A173A1,0,1,1,4294967295,0,0

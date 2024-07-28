@@ -14,15 +14,17 @@ image_speed = 0;
 // Player handle:
 player_handle = noone;
 
-// Hint variables:
-hint_current = -1;
-hint_target  =  0;
-#define Step_2
+// Hint id:
+hint_id = 0;
+#define Other_10
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
 applies_to=self
 */
-/// Reset Current
+/// Message
 
-hint_current = -1;
+switch (hint_id) {
+    default:
+        text_set_message("This message is a test!");
+}

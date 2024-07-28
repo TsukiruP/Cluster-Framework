@@ -21,6 +21,7 @@ if (ground == true && input_cpu == false && player_collision_prop(hint_handle, S
         if (floor(g_speed) == 0 && input_player[INP_UP, CHECK_PRESSED]) {
             with (hint_handle) {
                 player_handle = other.id;
+                event_user(0);
             }
 
             // Set speed:
