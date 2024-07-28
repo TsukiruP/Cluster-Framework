@@ -428,8 +428,8 @@ applies_to=self
 */
 /// Handle List
 
-// Exit if the stage is paused or text is active:
-if (game_ispaused()) {
+// Exit if the stage is paused, text is active or in the middle of dying:
+if (game_ispaused() || action_current == player_action_death) {
     exit;
 }
 
@@ -437,7 +437,6 @@ player_handle_layer();
 player_handle_ring();
 player_handle_spring();
 player_handle_item_box();
-player_handle_water_surface();
 player_handle_hint();
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -534,6 +533,38 @@ applies_to=self
 /// Splashes
 
 if (instance_exists(obj_water_surface)) {
+    // Entry splash:
+    if (y > obj_water_surface.y && yprevious < obj_water_surface.y) {
+        x_speed *= 0.50;
+        y_speed *= 0.25;
+
+        // Create splash:
+        if (y_speed >= 2.50) {
+            effect_create(ctl_splash_large, floor(x), obj_water_surface.y, depth);
+        } else {
+            effect_create(ctl_splash_small, floor(x), obj_water_surface.y, depth);
+        }
+
+        // Play sound:
+        sound_play_single("snd_splash");
+    }
+
+    // Exit splash:
+    else if (y < obj_water_surface.y && yprevious > obj_water_surface.y) {
+        y_speed = max(y_speed * 2, -16);
+
+        // Create splash:
+        if (abs(y_speed) >= 6) {
+            effect_create(ctl_splash_large, floor(x), obj_water_surface.y, depth);
+        } else {
+            effect_create(ctl_splash_small, floor(x), obj_water_surface.y, depth);
+        }
+
+        // Play sound:
+        sound_play_single("snd_splash");
+    }
+
+    // Surface splashes:
     if (water_surface == true) {
         // Create step/run splash:
         if (ground == true && abs(g_speed) > 0) {
