@@ -174,7 +174,6 @@
 			|player_handle_ring
 			|player_handle_spring
 			|player_handle_item_box
-			|player_handle_water_surface
 			|player_handle_hint
 		+Animation
 			|player_animation_core
@@ -224,3 +223,4 @@
 	|joystick_check_pressed
 	|joystick_check_released
 	|draw
+	|player_handle_water_surface

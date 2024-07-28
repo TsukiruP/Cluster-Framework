@@ -1,6 +1,6 @@
 /// player_handle_water_surface()
 // Couldn't think of a joke. Multiplies the physics when entering or existing water.
-
+/*
 if (instance_exists(obj_water_surface)) {
     // Entering the water:
     if (y > obj_water_surface.y && yprevious < obj_water_surface.y) {
