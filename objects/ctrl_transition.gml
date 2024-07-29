@@ -128,7 +128,7 @@ if (transition_type == TRANS_CARD) {
 
 // Alpha:
 if (transition_type == TRANS_CARD) {
-    if (transition_state >= 4 && character_alpha > 0) {
+    if (transition_state >= 3 && character_alpha > 0) {
         character_alpha -= 0.05;
     }
 }
@@ -337,13 +337,15 @@ if (transition_type == TRANS_CARD) {
     }
 
     // Character position:
-    if (((background_y_current == background_y_target) || transition_state >= 4) &&character_x_current != character_x_target) {
+    if (character_x_current != character_x_target) {
         character_x_speed    = ceil((character_x_target - character_x_current) / character_x_factor);
         character_x_current += character_x_speed;
 
         if (character_x_current >= character_x_target) {
             character_x_speed   = 0;
             character_x_current = character_x_target;
+
+            transition_alarm = 45;
         }
     }
 
@@ -361,7 +363,7 @@ if (transition_type == TRANS_CARD) {
         // 1 - Room change:
         case 1:
             // Move to room change:
-            if (banner_x_current == banner_x_target && zone_x_current == zone_x_target && character_x_current == character_x_target) {
+            if (transition_alarm == 0 && banner_x_current == banner_x_target && zone_x_current == zone_x_target && character_x_current == character_x_target) {
                 global.time_allow = false;
 
                 transition_state  = 2;
