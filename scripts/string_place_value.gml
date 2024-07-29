@@ -6,7 +6,7 @@ var value, place;
 value = string(argument0);
 place = argument1 - string_length(value);
 
-while(place) {
+while (place) {
     value  = string(0) + value;
     place -= 1;
 }

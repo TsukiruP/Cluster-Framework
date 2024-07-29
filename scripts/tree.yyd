@@ -168,7 +168,8 @@
 				|player_action_push
 				|player_action_spring
 		+Traits
-			|classic_passive_clock_up
+			|player_trait_debug
+			|classic_trait_clock_up
 		+Handle
 			|player_handle_layer
 			|player_handle_ring
@@ -219,7 +220,6 @@
 		+Knuckles
 		+Amy
 		+Classic
-	|player_get_input
 	|joystick_check_pressed
 	|joystick_check_released
 	|hover

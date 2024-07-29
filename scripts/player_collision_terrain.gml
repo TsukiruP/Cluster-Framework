@@ -77,7 +77,7 @@ if (on_obstacle == false) {
 
         // Move down slopes:
         if (on_edge == false && (player_terrain_line(-main_left_rel, main_bottom + 16, true) || player_terrain_line(main_right_rel, main_bottom + 16, true))) {
-            while(!player_terrain_line(main_right_rel, main_bottom, true) && !player_terrain_line(-main_left_rel, main_bottom, true)) {
+            while (!player_terrain_line(main_right_rel, main_bottom, true) && !player_terrain_line(-main_left_rel, main_bottom, true)) {
                 x += x_direction;
                 y += y_direction;
             }

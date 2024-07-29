@@ -30,28 +30,5 @@ if (player_terrain_line(-main_left_rel, -main_top - 8) || player_terrain_line(ma
 }
 
 if (y >= room_height && action_current != player_action_death) {
-    // Set physics:
-    y_speed = -7;
-
-    // Underwater physics:
-    if (physics_type == PHYS_UNDERWATER) {
-        y_speed /= 2;
-    }
-
-    // Set action:
-    player_set_action(player_action_death);
-
-    // Play sound:
-    sound_play("snd_hurt");
-
-    // Player 1 specific:
-    if (input_cpu == false) {
-        // Disable pause:
-        global.pause_allow = false;
-
-        // Stop jingles:
-        with (ctrl_audio) {
-            event_user(2);
-        }
-    }
+    player_set_damage(self);
 }

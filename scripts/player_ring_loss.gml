@@ -12,7 +12,7 @@ ring_angle = 101.25;
 ring_speed = 4;
 
 // Scatter rings:
-while(ring_total) {
+while (ring_total) {
     ring_handle          =  instance_create(x, y, obj_ring);
     ring_handle.lifespan =  256;
     ring_handle.x_speed  =  dcos(round(ring_angle)) * ring_speed;

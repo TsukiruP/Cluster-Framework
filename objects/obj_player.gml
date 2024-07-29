@@ -426,6 +426,19 @@ lib_id=1
 action_id=603
 applies_to=self
 */
+/// Traits
+
+// Exit if the stage is paused or text is active:
+if (game_ispaused()) {
+    exit;
+}
+
+player_trait_debug();
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
 /// Handle List
 
 // Exit if the stage is paused, text is active or in the middle of dying:
@@ -749,8 +762,8 @@ if (action_current != player_action_death && !instance_exists(ctrl_tally)) {
                             // Set flag:
                             drowned = true;
 
-                            // Set action:
-                            player_set_action(player_action_death);
+                            // Set death:
+                            player_set_damage(self);
                         break;
                     }
 

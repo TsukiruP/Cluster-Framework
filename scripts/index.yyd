@@ -15,7 +15,7 @@ ctl_template
 ctl_sonic_land
 player_action_spring
 ctl_sonic_push
-player_get_input
+player_trait_debug
 player_movement
 key_get_string
 joy_get_char
@@ -97,7 +97,7 @@ miles_add_animations
 knuckles_add_animations
 classic_add_animations
 player_compile_animations
-classic_passive_clock_up
+classic_trait_clock_up
 joystick_check_pressed
 joystick_check_released
 player_action_roll
