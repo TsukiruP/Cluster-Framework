@@ -1,6 +1,11 @@
 /// player_set_damage(obj)
 //
 
+var damage_handle;
+
+// Damage handle:
+damage_handle = argument0;
+
 // Exit if already hurt, dying, or invincible:
 if (action_current == player_action_hurt || action_current == player_action_death || status_invin > 0) {
     exit;
@@ -9,10 +14,10 @@ if (action_current == player_action_hurt || action_current == player_action_deat
 var hurt_direction;
 
 // Hurt direction:
-if (sign(x - argument0.x) == 0) {
+if (sign(x - damage_handle.x) == 0) {
     hurt_direction = 1;
 } else {
-    hurt_direction = sign(x - argument0.x);
+    hurt_direction = sign(x - damage_handle.x);
 }
 
 // Hurt:
@@ -27,13 +32,9 @@ if ((input_cpu == false && (global.game_rings > 0 || status_shield != 0)) || inp
     // Set action:
     player_set_action(player_action_hurt);
 
-    // Play sound:
-    if ((input_cpu == false && status_shield != 0) || input_cpu == true) {
-        // Reset shield:
-        if (input_cpu == false) status_shield = 0;
-
-        if (object_is_ancestor(argument0.object_index, par_spike)) sound_play("snd_spike");
-        else sound_play("snd_hurt");
+    // Reset shield:
+    if (input_cpu == false && status_shield != 0) {
+        status_shield = 0;
     }
 
     // Ring loss:
@@ -50,14 +51,6 @@ else {
     // Set action:
     player_set_action(player_action_death);
 
-    // Play sound:
-    if (drowned == false) {
-        if (object_is_ancestor(argument0.object_index, par_spike)) sound_play("snd_spike");
-        else sound_play("snd_hurt");
-    } else {
-        sound_play("snd_drown");
-    }
-
     // Player 1 specific:
     if (input_cpu == false) {
         // Disable pause:
@@ -68,6 +61,18 @@ else {
             event_user(2);
         }
     }
+}
+
+// Play sound:
+if ((action_current == player_action_hurt && ((input_cpu == false && shield_handle != noone) || input_cpu == true)) ||
+    (action_current == player_action_death && drowned == false)) {
+    if (object_is_ancestor(damage_handle.object_index, par_spike)) {
+        sound_play("snd_spike");
+    } else {
+        sound_play("snd_hurt");
+    }
+} else if (action_current == player_action_death && drowned == true) {
+    sound_play("snd_drown");
 }
 
 // Underwater physics:
