@@ -14,7 +14,7 @@ if (spring_handle == noone) {
 // Activate spring:
 if (player_collision_prop(spring_handle, SIDE_MAIN) != 0) {
     // Spring ancestry:
-    spring_ancestry = object_is_ancestor(spring_handle.object_index, par_dash_ring) || object_is_ancestor(spring_handle.object_index, par_rainbow_ring);
+    spring_ancestry = object_is_ancestor(spring_handle.object_index, par_dash_ring);
 
     with (spring_handle) {
         if (spring_active == false) spring_active = true;
@@ -57,7 +57,7 @@ if (player_collision_prop(spring_handle, SIDE_MAIN) != 0) {
     }
 
     // Add to score:
-    if (object_is_ancestor(spring_handle.object_index, par_rainbow_ring)) {
+    if (spring_handle.rainbow_ring == true) {
         with (spring_handle) {
             if (rainbow_score == true) {
                 global.game_score += 1000;
@@ -72,9 +72,7 @@ if (player_collision_prop(spring_handle, SIDE_MAIN) != 0) {
             case par_dash_ring:
                 break;
 
-            case par_rainbow_ring:
-                break;
-
+            // Spring:
             default:
                 sound_play_single("snd_spring");
         }

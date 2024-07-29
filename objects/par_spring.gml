@@ -12,7 +12,7 @@ event_inherited();
 image_speed = 0;
 
 // Timeline initialization:
-if (!object_is_ancestor(self.object_index, par_dash_ring) || !object_is_ancestor(self.object_index, par_rainbow_ring)) {
+if (!object_is_ancestor(self.object_index, par_dash_ring)) {
     ctl_initialize(ctl_spring);
 }
 
@@ -41,7 +41,7 @@ applies_to=self
 /// Animate
 
 // Exit if the game is paused or the object is a dash or rainbow ring:
-if (game_ispaused(ctrl_pause)|| object_is_ancestor(self.object_index, par_dash_ring) || object_is_ancestor(self.object_index, par_rainbow_ring)) {
+if (game_ispaused(ctrl_pause)|| object_is_ancestor(self.object_index, par_dash_ring)) {
     exit;
 }
 

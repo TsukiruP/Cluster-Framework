@@ -16,3 +16,6 @@ main_bottom = 7;
 
 // Spring angle:
 spring_angle = ANGLE_RIGHT_UP;
+
+// Rainbow index:
+rainbow_index = spr_rainbow_ring_right_up;

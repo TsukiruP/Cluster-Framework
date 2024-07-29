@@ -251,15 +251,15 @@
 			|spr_dash_ring_left_down
 			|spr_dash_ring_right_up
 			|spr_dash_ring_right_down
-		+Rainbow Rings
-			|spr_rainbow_ring_left
-			|spr_rainbow_ring_right
-			|spr_rainbow_ring_up
-			|spr_rainbow_ring_down
-			|spr_rainbow_ring_left_up
-			|spr_rainbow_ring_left_down
-			|spr_rainbow_ring_right_up
-			|spr_rainbow_ring_right_down
+			+Rainbow
+				|spr_rainbow_ring_left
+				|spr_rainbow_ring_right
+				|spr_rainbow_ring_up
+				|spr_rainbow_ring_down
+				|spr_rainbow_ring_left_up
+				|spr_rainbow_ring_left_down
+				|spr_rainbow_ring_right_up
+				|spr_rainbow_ring_right_down
 		+Item Box
 			|spr_item_box
 			|spr_item_icon
@@ -315,7 +315,7 @@
 			|spr_splash_dash
 		+Misc.
 			|spr_ring_sparkle
-+Zones
++Stages
 	+Basic Test
 		+Collision
 			|spr_basic_test_collision_01
