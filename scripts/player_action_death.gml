@@ -22,6 +22,11 @@ switch (argument0) {
         // Death alarm:
         death_alarm = 128;
 
+        // Clock over:
+        if (clock_up_state != 0) {
+            classic_trait_clock_up(true);
+        }
+
         // Set depth:
         depth = -11000;
         break;

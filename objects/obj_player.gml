@@ -147,8 +147,8 @@ applies_to=self
 character_data = CHAR_SONIC;
 
 // Classic variables:
-clock_up_alarm    = 0;
 clock_up_state    = 0;
+clock_up_alarm    = 0;
 clock_up_timer    = 0;
 clock_up_duration = 900;
 /*"/*'/**//* YYD ACTION
@@ -434,6 +434,7 @@ if (game_ispaused()) {
 }
 
 player_trait_debug();
+classic_trait_clock_up();
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -441,7 +442,7 @@ applies_to=self
 */
 /// Handle List
 
-// Exit if the stage is paused, text is active or in the middle of dying:
+// Exit if the stage is paused, text is active or dying:
 if (game_ispaused() || action_current == player_action_death) {
     exit;
 }
@@ -691,6 +692,11 @@ if (spring_alarm > 0) {
         spring_alarm    = 0;
         spring_current  = noone;
     }
+}
+
+// Clock Up:
+if (clock_up_alarm > 0) {
+    clock_up_alarm -= 1;
 }
 /*"/*'/**//* YYD ACTION
 lib_id=1

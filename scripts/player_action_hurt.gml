@@ -8,6 +8,11 @@ switch (argument0) {
         if (ground == true) {
             ground = false;
         }
+
+        // Clock over:
+        if (clock_up_state != 0) {
+            classic_trait_clock_up(true);
+        }
         break;
 
     // Step:
