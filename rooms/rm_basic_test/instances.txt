@@ -90,4 +90,3 @@ obj_basic_test_collision_01,672,720,FF86C6A9,0,1,1,4294967295,0,0
 obj_basic_test_collision_03,0,768,D5082484,0,1,1,4294967295,0,0
 obj_item_lightning,352,752,8F052C45,0,1,1,4294967295,0,0
 obj_item_panic,688,704,E0B2EBDC,0,1,1,4294967295,0,0
-obj_item_mine,304,752,51A173A1,0,1,1,4294967295,0,0
