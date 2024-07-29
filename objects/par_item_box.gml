@@ -60,7 +60,7 @@ applies_to=self
 /// Draw Item Box
 
 // Item icon:
-draw_sprite(spr_items, item_data, x, y);
+draw_sprite(spr_item_icon, item_data, x, y);
 
 // Item box:
 draw_sprite(spr_item_box, 1, x, y);

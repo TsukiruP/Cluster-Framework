@@ -261,7 +261,7 @@
 			|spr_rainbow_ring_right_down
 		+Item Box
 			|spr_item_box
-			|spr_items
+			|spr_item_icon
 		+Spikes
 			|spr_spike_left
 			|spr_spike_right

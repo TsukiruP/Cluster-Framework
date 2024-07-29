@@ -389,15 +389,15 @@ status_count = 0;
 for (i = status_size; i >= 0; i -= 1) {
     if (((global.misc_status == 1 && status_active[i, 0] == true) || global.misc_status == 2) && status_active[i, 1] == true) {
         // Shadow:
-        draw_sprite_ext(spr_items, 0, view_xview[view_current] + view_wview[view_current] - hud_x_current - 8 - (sprite_get_width(spr_items) + 2) * status_count, view_yview[view_current] + 18, 1, 1, 0, c_black, 1);
+        draw_sprite_ext(spr_item_icon, 0, view_xview[view_current] + view_wview[view_current] - hud_x_current - 8 - (sprite_get_width(spr_item_icon) + 2) * status_count, view_yview[view_current] + 18, 1, 1, 0, c_black, 1);
 
         // Icons:
-        draw_sprite_ext(spr_items, status_icon[i], view_xview[view_current] + view_wview[view_current] - hud_x_current - 9 - (sprite_get_width(spr_items) + 2) * status_count, view_yview[view_current] + 17, 1, 1, 0, c_white, 1);
+        draw_sprite_ext(spr_item_icon, status_icon[i], view_xview[view_current] + view_wview[view_current] - hud_x_current - 9 - (sprite_get_width(spr_item_icon) + 2) * status_count, view_yview[view_current] + 17, 1, 1, 0, c_white, 1);
 
         // Gray out:
         if (global.misc_status == 2) {
             if (status_active[i, 0] == false) {
-                draw_sprite_ext(spr_items, status_icon[i], view_xview[view_current] + view_wview[view_current] - hud_x_current - 9 - (sprite_get_width(spr_items) + 2) * status_count, view_yview[view_current] + 17, 1, 1, 0, c_gray, 0.6);
+                draw_sprite_ext(spr_item_icon, status_icon[i], view_xview[view_current] + view_wview[view_current] - hud_x_current - 9 - (sprite_get_width(spr_item_icon) + 2) * status_count, view_yview[view_current] + 17, 1, 1, 0, c_gray, 0.6);
             }
         }
     }
@@ -435,7 +435,7 @@ if (item_feed != -1) {
             }
 
             // Icon:
-            draw_sprite_ext(spr_items, ds_list_find_value(item_feed, i), view_xview[view_current] + ds_list_find_value(item_feed, i + 1), view_yview[view_current] + view_hview[view_current] - 33, 1, 1, 0, c_white, !item_hide);
+            draw_sprite_ext(spr_item_icon, ds_list_find_value(item_feed, i), view_xview[view_current] + ds_list_find_value(item_feed, i + 1), view_yview[view_current] + view_hview[view_current] - 33, 1, 1, 0, c_white, !item_hide);
         }
     }
 }
