@@ -101,7 +101,7 @@ for (i = 0; i < global.player_count; i += 1) {
     global.setting_input_joy[i, INP_HELP]    = JOY_FACE4;
 
     // Other:
-    global.setting_input_deadzone[i] = ini_read_real("input", "joy" + string(i) + "_deadzone", 0.05);
+    global.setting_input_deadzone[i] = ini_read_real("input", "joy" + string(i) + "_deadzone", 0.1);
     global.setting_input_accept[i]   = ini_read_real("input", "joy" + string(i) + "_accept", 0);
 }
 
