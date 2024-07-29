@@ -222,5 +222,5 @@
 	|player_get_input
 	|joystick_check_pressed
 	|joystick_check_released
-	|draw
+	|hover
 	|player_handle_water_surface
