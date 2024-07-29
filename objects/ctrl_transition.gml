@@ -60,6 +60,7 @@ character_x_target  =  global.display_width - 27;
 character_x_speed   =  0;
 character_x_factor  =  12;
 
+character_alpha     =  1;
 stars_y             =  global.display_height - 16;
 
 // Retry variables:
@@ -123,6 +124,13 @@ if (transition_type == TRANS_CARD) {
     transition_timer += 1;
 } else {
     transition_timer = 0;
+}
+
+// Alpha:
+if (transition_type == TRANS_CARD) {
+    if (transition_state >= 4 && character_alpha > 0) {
+        character_alpha -= 0.05;
+    }
 }
 #define Step_2
 /*"/*'/**//* YYD ACTION
@@ -257,7 +265,7 @@ if (transition_type == TRANS_FADE) {
 
         // 3 - End fade:
         case 3:
-            // Start game:
+            // Start stage:
             stage_start();
 
             if (!instance_exists(fade_handle)) {
@@ -284,10 +292,9 @@ if (transition_type == TRANS_CARD) {
     banner_y_scroll  = banner_y_scroll mod (sprite_get_height(spr_title_card_banner));
 
     // Skip:
-    if (instance_exists(instance_player(0)) && (room_start == START_IDLE || room_start == START_READY) && transition_state >= 4 && transition_state != 6) {
+    if (instance_exists(instance_player(0)) && room_start == START_READY && transition_state >= 4 && transition_state != 6) {
         if (input_get_check(INP_ANY, CHECK_PRESSED) && !input_get_check(INP_START, CHECK_PRESSED)) {
             transition_state = 5;
-            transition_alarm = 1;
 
             // Skip ready animation:
             if (instance_player(0).animation_current == "ready") {
@@ -299,19 +306,12 @@ if (transition_type == TRANS_CARD) {
     }
 
     // Banner & zone target:
-    if (transition_state >= 6) {
+    if (transition_state >= 4) {
         banner_x_target = -sprite_get_width(spr_title_card_banner) - 12;
         zone_x_target   =  global.display_width + zone_x_factor;
     } else {
         banner_x_target = 0;
         zone_x_target   = 40;
-    }
-
-    // Character target:
-    if (transition_state >= 4) {
-        character_x_target = global.display_width + sprite_get_width(spr_title_card_stars);
-    } else {
-        character_x_target = global.display_width - 27;
     }
 
     // Banner position:
@@ -399,30 +399,20 @@ if (transition_type == TRANS_CARD) {
                 }
 
                 // Move to next state:
-                if (background_y_current == background_y_target) {
-                    if (room_start == START_IDLE || (room_start == START_READY && instance_player(0).animation_current != "ready")) {
-                        transition_state = 5
-                        transition_alarm = 30;
-                    }
+                if (room_start == START_IDLE || (room_start == START_READY && instance_player(0).animation_previous == "ready")) {
+                    transition_state = 5;
                 }
             }
 
             // Skip opener end, since there's no player:
             else {
-                transition_state = 6;
+                transition_state = 5;
             }
             break;
 
-        // 5 - Opener end:
+        // 5 - Title card end:
         case 5:
-            if (debug == true || ((room_start == START_IDLE || room_start == START_READY) && transition_alarm == 0)) {
-                transition_state = 6;
-            }
-            break;
-
-        // 6 - Title card end:
-        case 6:
-            // Start game:
+            // Start stage:
             stage_start();
 
             // Destroy:
@@ -503,7 +493,7 @@ if (transition_type == TRANS_RETRY) {
 
         // 5 - Retry end:
         case 5:
-            // Start game:
+            // Start stage:
             stage_start();
 
             if (background_y_current == background_y_target) {
@@ -629,11 +619,11 @@ if (transition_type == TRANS_CARD) {
     }
 
     // Stars:
-    draw_sprite(spr_title_card_stars, sync_rate(transition_timer, 4, sprite_get_number(spr_title_card_stars)), view_xview[view_current] + character_x_current, view_yview[view_current] + stars_y);
+    draw_sprite_ext(spr_title_card_stars, sync_rate(transition_timer, 4, sprite_get_number(spr_title_card_stars)), view_xview[view_current] + character_x_current, view_yview[view_current] + stars_y, 1, 1, 0, c_white, character_alpha);
 
     // Character:
     d3d_set_fog(true, c_white, 0, 0);
-    draw_sprite(character_index, sync_rate(transition_timer, 4, sprite_get_number(character_index)), view_xview[view_current] + character_x_current, view_yview[view_current] + stars_y + character_y_offset);
+    draw_sprite_ext(character_index, sync_rate(transition_timer, 4, sprite_get_number(character_index)), view_xview[view_current] + character_x_current, view_yview[view_current] + stars_y + character_y_offset, 1, 1, 0, c_white, character_alpha);
     d3d_set_fog(false, c_black, 0, 0);
 
     // Reset:
