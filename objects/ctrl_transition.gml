@@ -618,6 +618,11 @@ if (transition_type == TRANS_CARD) {
         draw_sprite(spr_title_card_acts, room_act, view_xview[view_current] + zone_x_current + 5, view_yview[view_current] + 128);
     }
 
+    // Loading:
+    if (transition_state == 2) {
+        draw_sprite(spr_title_card_load, 0, view_xview[view_current] + 4, view_yview[view_current] + global.display_height - 12);
+    }
+
     // Stars:
     draw_sprite_ext(spr_title_card_stars, sync_rate(transition_timer, 4, sprite_get_number(spr_title_card_stars)), view_xview[view_current] + character_x_current, view_yview[view_current] + stars_y, 1, 1, 0, c_white, character_alpha);
 

@@ -61,7 +61,7 @@ spr_spin_dash
 spr_spin_charge
 spr_skid
 spr_tag_call
-spr_status_slow
+spr_title_card_load
 spr_debuff
 spr_shield_basic
 spr_shield_magnetic
