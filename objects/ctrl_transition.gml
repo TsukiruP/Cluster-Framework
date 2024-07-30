@@ -210,7 +210,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Run Start
+/// Player Start
 
 // Exit if the stage is paused:
 if ((game_ispaused(ctrl_pause) && pause_ignore == false) || (transition_type != TRANS_CARD && transition_type != TRANS_RETRY)) {
@@ -218,6 +218,17 @@ if ((game_ispaused(ctrl_pause) && pause_ignore == false) || (transition_type != 
 }
 
 if (instance_exists(instance_player(0))) {
+    // Hide HUD:
+    if ((room_start == START_RUN || (room_start == START_READY && transition_type == TRANS_CARD)) && transition_state == 3) {
+        if (instance_exists(ctrl_hud)) {
+            with (ctrl_hud) {
+                hud_hide      = true;
+                hud_x_current = hud_x_target;
+            }
+        }
+    }
+
+    // Run start:
     if (room_start == START_RUN && room_run_target != -1 && transition_state >= 4) {
         // Reset target:
         if ((transition_type == TRANS_RETRY && (global.checkpoint_x != -1 && global.checkpoint_y != -1)) || instance_player(0).x >= room_run_target) {
@@ -292,7 +303,7 @@ if (transition_type == TRANS_CARD) {
     banner_y_scroll  = banner_y_scroll mod (sprite_get_height(spr_title_card_banner));
 
     // Skip:
-    if (instance_exists(instance_player(0)) && room_start == START_READY && transition_state >= 4 && transition_state != 6) {
+    if (room_start == START_READY && transition_state >= 4 && transition_state != 6 && instance_exists(instance_player(0))) {
         if (input_get_check(INP_ANY, CHECK_PRESSED) && !input_get_check(INP_START, CHECK_PRESSED)) {
             transition_state = 5;
 
@@ -380,7 +391,7 @@ if (transition_type == TRANS_CARD) {
 
         // 4 - Opener start:
         case 4:
-            if (instance_exists(instance_player(0)) && debug == false && (room_start != START_RUN || room_run_target != -1)) {
+            if (debug == false && (room_start != START_RUN || room_run_target != -1) && instance_exists(instance_player(0)) ) {
                 // Ready:
                 if (room_start == START_READY) {
                     // Time it with the background:
@@ -444,7 +455,7 @@ if (transition_type == TRANS_RETRY) {
     background_x_scroll  = background_x_scroll mod sprite_get_width(spr_transition_background);
 
     // Skip:
-    if (instance_exists(instance_player(0)) && transition_state < 2 && input_get_check(INP_ANY, CHECK_PRESSED)) {
+    if (transition_state < 2 && instance_exists(instance_player(0)) && input_get_check(INP_ANY, CHECK_PRESSED)) {
         transition_state = 2;
     }
 
