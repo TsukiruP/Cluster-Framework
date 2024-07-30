@@ -16,8 +16,11 @@ if (player_collision_prop(spring_handle, SIDE_MAIN) != 0) {
     // Spring ancestry:
     spring_ancestry = object_is_ancestor(spring_handle.object_index, par_dash_ring);
 
+    // Set active:
     with (spring_handle) {
-        if (spring_active == false) spring_active = true;
+        if (spring_active == false) {
+            spring_active = true;
+        }
     }
 
     // Set spring variables:

@@ -12,14 +12,16 @@ if (item_box_handle == noone) {
 }
 
 // Break item box:
-if (input_cpu == false && (player_collision_prop(item_box_handle, SIDE_MAIN) != 0 || player_collision_prop(item_box_handle, SIDE_MAIN, 1) != 0)) {
-    // Destroy item box:
-    with (item_box_handle) {
-        player_handle = other.id;
-        effect_create(ctl_explosion_small, x, y, depth - 1);
-        instance_destroy();
+if (player_collision_prop(item_box_handle, SIDE_MAIN) != 0 || player_collision_prop(item_box_handle, SIDE_MAIN, 1) != 0) {
+    if (input_cpu == false) {
+        // Destroy item box:
+        with (item_box_handle) {
+            player_handle = other.id;
+            effect_create(ctl_explosion_small, x, y, depth - 1);
+            instance_destroy();
+        }
+    
+        // Play sound:
+        sound_play("snd_destroy");
     }
-
-    // Play sound:
-    sound_play("snd_destroy");
 }
