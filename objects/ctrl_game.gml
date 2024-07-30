@@ -13,11 +13,11 @@ if (game_ispaused(ctrl_pause)) {
 
 // Stage timer:
 if (global.time_allow == true && !game_ispaused(ctrl_text)) {
-    global.game_time += global.object_ratio;
+    global.game_time += global.game_speed;
 }
 
 // Object timer
-global.object_time += global.object_ratio;
+global.object_time += global.game_speed;
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -36,7 +36,7 @@ if (!game_ispaused(ctrl_text) && global.pause_allow == true && !instance_exists(
 
     pause_fade = fade_create(0.06, 0.6, depth);
 
-    with(instance_create(0, 0, ctrl_pause)) {
+    with (instance_create(0, 0, ctrl_pause)) {
         fade_handle = pause_fade;
     }
 }
@@ -74,14 +74,14 @@ applies_to=self
 */
 /// Reset Game Variables
 
-global.game_time    = 0;
-global.game_rings   = 0;
-global.game_score   = 0;
+global.game_speed  = 1;
+global.game_time   = 0;
+global.game_rings  = 0;
+global.game_score  = 0;
 
-global.object_time  = 0;
-global.object_ratio = 1;
+global.object_time = 0;
 
-global.pause_allow  = true;
+global.pause_allow = true;
 #define Other_5
 /*"/*'/**//* YYD ACTION
 lib_id=1

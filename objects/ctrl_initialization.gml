@@ -16,7 +16,6 @@ global.player_data[0]        =   CHAR_SONIC;
 global.player_data[1]        =  -1;
 global.player_count          =   2;
 
-global.gravity_angle         =  0;
 global.animation_grid        = -1;
 global.animation_character   = -1;
 global.animation_coordinates = -1;
@@ -27,16 +26,17 @@ global.checkpoint_y          = -1;
 global.checkpoint_time       = -1;
 
 // Game initialization:
-global.game_debug   = false;
-global.game_time    = 0;
-global.game_rings   = 0;
-global.game_score   = 0;
+global.game_debug  = false;
 
-global.object_time  = 0;
-global.object_ratio = 1;
+global.game_speed  = 1;
+global.game_time   = 0;
+global.game_rings  = 0;
+global.game_score  = 0;
 
-global.time_allow   = false;
-global.pause_allow  = true;
+global.object_time = 0;
+
+global.time_allow  = false;
+global.pause_allow = true;
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603

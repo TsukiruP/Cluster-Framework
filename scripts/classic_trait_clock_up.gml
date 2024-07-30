@@ -12,8 +12,8 @@ if (argument_count >= 1) {
             sound_play("snd_clock_over");
         }
 
-        global.object_ratio = 1;
-        clock_up_state      = 0;
+        global.game_speed = 1;
+        clock_up_state    = 0;
     }
 } else {
     // Clock Up timer:
@@ -36,8 +36,8 @@ if (argument_count >= 1) {
     if (clock_up_timer != clock_up_duration && clock_up_alarm == 0 && input_player[INP_SUPER, CHECK_PRESSED] == true) {
         // Hyper:
         if (clock_up_state != 2 && (clock_up_state == 0 || clock_up_state != 0) && input_player[INP_ALT, CHECK_HELD] == true) {
-            global.object_ratio = 0;
-            clock_up_state      = 2;
+            global.game_speed = 0;
+            clock_up_state    = 2;
 
             // Play sound:
             sound_play("snd_clock_up_start");
@@ -46,8 +46,8 @@ if (argument_count >= 1) {
 
         // Normal:
         else if (clock_up_state != 1 && (clock_up_state == 0 || (clock_up_state == 2 && input_player[INP_ALT, CHECK_HELD] == true))) {
-            global.object_ratio = 0.25;
-            clock_up_state      = 1;
+            global.game_speed = 0.25;
+            clock_up_state    = 1;
 
             // Play sound:
             sound_play("snd_clock_up_start");
