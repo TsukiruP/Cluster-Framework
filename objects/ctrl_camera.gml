@@ -237,7 +237,7 @@ applies_to=self
 /// Draw Camera
 
 // Borders:
-draw_rectangle(floor(border_left), floor(border_top), floor(border_right), floor(border_bottom), true);
+draw_rectangle(floor(camera_x) - 8, floor(camera_y) - 32, floor(camera_x) + 8, floor(camera_y) + 32, true);
 
 // Center:
-draw_line(floor(border_left), floor(camera_y), floor(border_right), floor(camera_y));
+draw_line(floor(camera_x) - 8, floor(camera_y), floor(camera_x) + 8, floor(camera_y));
