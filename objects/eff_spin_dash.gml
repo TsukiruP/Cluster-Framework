@@ -7,9 +7,13 @@ applies_to=self
 /// Index
 
 if (floor(player_handle.spin_dash_charge) > 0) {
-    if (ctl_index != ctl_spin_charge) timeline_set(ctl_spin_charge);
+    if (ctl_index != ctl_spin_charge) {
+        timeline_set(ctl_spin_charge);
+    }
 } else {
-    if (ctl_index != ctl_spin_dash) timeline_set(ctl_spin_dash);
+    if (ctl_index != ctl_spin_dash) {
+        timeline_set(ctl_spin_dash);
+    }
 }
 /*"/*'/**//* YYD ACTION
 lib_id=1

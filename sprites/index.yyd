@@ -140,7 +140,7 @@ spr_explosion_badnik
 spr_explosion_water
 spr_ring
 spr_goal_ring
-spr_checkpoint_inactive
+spr_checkpoint
 spr_checkpoint_active
 spr_character_arrow
 spr_dash_ring_left_up
@@ -213,7 +213,7 @@ spr_spring_up
 spr_miles_tails
 spr_miles_fly_cancel
 spr_miles_boost_end
-spr_action_gauge
+spr_hud_gauge
 spr_classic_balance
 spr_sonic_push
 spr_miles_push

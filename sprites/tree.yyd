@@ -13,7 +13,7 @@
 	+HUD
 		+Default
 			|spr_hud
-			|spr_action_gauge
+			|spr_hud_gauge
 			|fnt_hud
 		+S4E2
 			|spr_hud_s4e2
@@ -230,8 +230,7 @@
 		+Rings
 			|spr_ring
 			|spr_goal_ring
-		|spr_checkpoint_inactive
-		|spr_checkpoint_active
+		|spr_checkpoint
 		+Springs
 			|spr_spring_left
 			|spr_spring_right
@@ -372,3 +371,4 @@
 		|mask_edge_line
 		|mask_platform_fix
 		|mask_ledge
+	|spr_checkpoint_active

@@ -25,33 +25,45 @@ if (player_handle.status_invin != INVIN_BUFF) {
     switch (player_handle.status_shield) {
         // Magnetic:
         case SHIELD_MAGNETIC:
-            if (ctl_index != ctl_shield_magnetic) timeline_set(ctl_shield_magnetic);
+            if (ctl_index != ctl_shield_magnetic) {
+                timeline_set(ctl_shield_magnetic);
+            }
             break;
 
         // Fire:
         case SHIELD_FIRE:
-            if (ctl_index != ctl_shield_fire) timeline_set(ctl_shield_fire);
+            if (ctl_index != ctl_shield_fire) {
+                timeline_set(ctl_shield_fire);
+            }
             break;
 
         // Bubble:
         case SHIELD_BUBBLE:
-            if (ctl_index != ctl_shield_bubble) timeline_set(ctl_shield_bubble);
+            if (ctl_index != ctl_shield_bubble) {
+                timeline_set(ctl_shield_bubble);
+            }
             break;
 
         // Bubble:
         case SHIELD_LIGHTNING:
-            if (ctl_index != ctl_shield_lightning) timeline_set(ctl_shield_lightning);
+            if (ctl_index != ctl_shield_lightning) {
+                timeline_set(ctl_shield_lightning);
+            }
             break;
 
         // Basic:
         default:
-            if (ctl_index != ctl_shield_basic) timeline_set(ctl_shield_basic);
+            if (ctl_index != ctl_shield_basic) {
+                timeline_set(ctl_shield_basic);
+            }
     }
 }
 
 // Invincibility:
 else {
-    if (ctl_index != ctl_shield_invin) timeline_set(ctl_shield_invin);
+    if (ctl_index != ctl_shield_invin) {
+        timeline_set(ctl_shield_invin);
+    }
 }
 /*"/*'/**//* YYD ACTION
 lib_id=1

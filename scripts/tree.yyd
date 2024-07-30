@@ -84,6 +84,7 @@
 				|ctl_spring
 				+Checkpoint
 					|ctl_checkpoint_inactive
+					|ctl_checkpoint_active
 			+Effects
 				+Player
 					|ctl_spin_dash
@@ -130,6 +131,7 @@
 		|transition_create
 		|instance_player
 		|effect_create
+		|hover
 +Gameplay
 	+Player
 		+Collision
@@ -198,7 +200,10 @@
 				|update_trail
 				|draw_trail
 	+Props
-		|prop_point_check
+		|prop_terrain_point
+		+Checkpoint
+			|joystick_check_pressed
+			|joystick_check_released
 +Trash
 	+Sonic Dash
 		+Main
@@ -220,7 +225,4 @@
 		+Knuckles
 		+Amy
 		+Classic
-	|joystick_check_pressed
-	|joystick_check_released
-	|hover
 	|player_handle_water_surface

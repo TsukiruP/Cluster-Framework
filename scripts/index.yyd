@@ -126,7 +126,7 @@ player_set_action
 player_set_animation
 player_collision_steps
 timeline_set
-prop_point_check
+prop_terrain_point
 ctl_initialize
 ctl_sonic_walk
 ctl_sonic_jog
@@ -173,3 +173,4 @@ ctl_debuff
 joystick_get_check
 input_get_check
 
+ctl_checkpoint_active

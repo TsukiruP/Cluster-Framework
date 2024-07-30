@@ -1,7 +1,7 @@
-sprite=spr_checkpoint_inactive
+sprite=spr_checkpoint
 visible=1
 solid=0
 persistent=0
-depth=10
-parent=
+depth=0
+parent=par_prop
 mask=
