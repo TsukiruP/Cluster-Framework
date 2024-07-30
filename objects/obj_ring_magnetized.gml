@@ -46,7 +46,7 @@ if (instance_exists(instance_player(0))) {
 
     hspeed += (xx * (0.1875 + (0.75 * (sign(hspeed) != xx))));
     vspeed += (yy * (0.1875 + (0.75 * (sign(vspeed) != yy))));
-    speed   = clamp(speed, -64, 64) * global.object_ratio;
+    speed   = clamp(speed, -64, 64) * global.game_speed;
 
     // Drop a normal ring when no longer magnetized:
     if (player_handle.status_shield != SHIELD_MAGNETIC && player_handle.status_shield != SHIELD_LIGHTNING) {

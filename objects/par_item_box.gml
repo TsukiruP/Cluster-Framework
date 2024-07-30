@@ -31,7 +31,9 @@ applies_to=self
 /// Give Item
 
 if (instance_exists(player_handle)) {
-    with (player_handle) player_get_item(other.item_data);
+    with (player_handle) {
+        player_get_item(other.item_data);
+    }
 }
 #define Step_0
 /*"/*'/**//* YYD ACTION

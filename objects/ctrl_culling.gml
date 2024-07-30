@@ -20,6 +20,8 @@ instance_activate_object(obj_ring_magnetized);
 instance_activate_region(view_xview[view_current] - 64, view_yview[view_current] - 64, view_wview[view_current] + 128, view_hview[view_current] + 128, true);
 
 // Activate region around players:
-with(obj_player) {
-    if(!in_view()) instance_activate_region(x - 64, y - 64, 128, 128, true);
+with (obj_player) {
+    if (!in_view()) {
+        instance_activate_region(x - 64, y - 64, 128, 128, true);
+    }
 }
