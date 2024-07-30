@@ -330,7 +330,6 @@ if (global.misc_hud != 1) {
 // Font:
 draw_set_font(global.font_hud);
 draw_set_color(c_white);
-draw_set_halign(fa_left);
 
 // Time:
 draw_sprite(hud_index, 0, view_xview[view_current] + hud_x_current, view_yview[view_current] + hud_y);
@@ -379,7 +378,6 @@ if (global.misc_hud != 2) {
 
 // Font:
 draw_set_color(c_white);
-draw_set_halign(fa_left);
 
 // HUD:
 draw_sprite(spr_hud_s4e2, 0, view_xview[view_current] + hud_x_current, view_yview[view_current] + hud_y);

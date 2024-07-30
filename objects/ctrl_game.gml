@@ -16,8 +16,14 @@ if (global.time_allow == true && !game_ispaused(ctrl_text)) {
     global.game_time += global.game_speed;
 }
 
-// Object timer
+// Object timer:
 global.object_time += global.game_speed;
+
+// Floor timers:
+if (global.game_speed == 1) {
+    global.game_time   = floor(global.game_time);
+    global.object_time = floor(global.object_time);
+}
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -66,23 +72,21 @@ if (instance_exists(ctrl_camera)) {
         if (!in_view()) instance_activate_region(x - 64, y - 64, 128, 128, true);
     }
 }
-#define Other_4
+#define Other_5
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
 applies_to=self
 */
-/// Reset Game Variables
+/// Reset Game
 
 global.game_speed  = 1;
 global.game_time   = 0;
+global.object_time = 0;
 global.game_rings  = 0;
 global.game_score  = 0;
 
-global.object_time = 0;
-
 global.pause_allow = true;
-#define Other_5
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603

@@ -9,11 +9,8 @@ applies_to=self
 // Add character SFX:
 sound_add_directory("data\audio\sfx\character\common", ".wav", 0, true);
 sound_add_directory("data\audio\sfx\character\sonic", ".wav", 0, true);
-sound_add_directory("data\audio\sfx\character\miles", ".wav", 0, true);
-sound_add_directory("data\audio\sfx\character\knuckles", ".wav", 0, true);
 sound_add_directory("data\audio\sfx\character\classic", ".wav", 0, true);
 sound_add_directory("data\audio\sfx\character\shield", ".wav", 0, true);
-sound_add_directory("data\audio\sfx\character\tag action", ".wav", 0, true);
 
 // Add prop SFX:
 sound_add_directory("data\audio\sfx\prop", ".wav", 0, true);
@@ -35,10 +32,7 @@ sound_kind_volume(3, global.audio_bgm / 100);
 
 // Set loop points:
 sound_set_loop("bgm_dev_title", 2304672, 9984665, unit_samples);
-
 sound_set_loop("bgm_basic_test_1", 1091072, 6462372, unit_samples);
-
-sound_set_loop("bgm_basic_test_2", 868576, 6161087, unit_samples);
 #define Step_0
 /*"/*'/**//* YYD ACTION
 lib_id=1

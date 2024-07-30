@@ -4,6 +4,20 @@ lib_id=1
 action_id=603
 applies_to=self
 */
+/// Font Initialization
+
+global.font_system     = font_add_sprite(fnt_system, ord(" "), true, 0);
+global.font_title_card = font_add_sprite(fnt_title_card_zone, ord(" "), true, -4);
+global.font_hud        = font_add_sprite(fnt_hud, ord("0"), false, 1);
+
+global.font_hud_s4e2   = font_add_sprite(fnt_hud_s4e2, ord("0"), false, 1);
+global.font_score_s4e2 = font_add_sprite(fnt_score_s4e2, ord("0"), false, 1);
+global.font_time_s4e2  = font_add_sprite(fnt_time_s4e2, ord("0"), false, 1);
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
 /// Text Initialization
 
 // Text variables:
@@ -31,6 +45,7 @@ text_alpha[3]    = 0.05; // Text rate
 
 // Topic variables:
 topic_complete = false;
+
 topic_message  = "";
 topic_alpha[0] = 0; // Bar alpha;
 topic_alpha[1] = 0; // Text alpha;
@@ -44,7 +59,9 @@ log_alpha[0] = 0; // Background alpha
 log_alpha[1] = 0; // Text alpha
 
 // Height variables:
-font_height  = 0;
+draw_set_font(global.font_system);
+
+font_height  = string_height("Test");
 topic_height = 0;
 topic_lines  = 0;
 text_height  = 0;
@@ -54,15 +71,18 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Font Initialization
+/// Debug Initialization
 
-global.font_system     = font_add_sprite(fnt_system, ord(" "), true, 0);
-global.font_title_card = font_add_sprite(fnt_title_card_zone, ord(" "), true, -4);
-global.font_hud        = font_add_sprite(fnt_hud, ord("0"), false, 1);
+debug_section = 3;
 
-global.font_hud_s4e2   = font_add_sprite(fnt_hud_s4e2, ord("0"), false, 1);
-global.font_score_s4e2 = font_add_sprite(fnt_score_s4e2, ord("0"), false, 1);
-global.font_time_s4e2  = font_add_sprite(fnt_time_s4e2, ord("0"), false, 1);
+debug_title   = "";
+debug_stats   = "";
+debug_message = "";
+
+debug_x1      = view_xview[view_current] + 4;
+debug_y1      = view_yview[view_current] + 4;
+debug_x2      = debug_x1;
+debug_y2      = debug_y1;
 #define Step_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -86,7 +106,6 @@ if (text_clear == false) {
         // Height:
         draw_set_font(global.font_system);
 
-        font_height  = string_height("Test");
         topic_height = string_height_ext(topic_message, font_height, global.display_width - (text_x * 2));
         topic_lines  = (topic_height / font_height) - 1;
         text_height  = string_height_ext(text_message[text_current], font_height, global.display_width - (text_x * 2));
@@ -190,6 +209,144 @@ if (text_overflow == true) {
         if (text_scroll[4] != true) text_scroll[4] = true;
     }
 }
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Debug
+
+var player_handle;
+
+// Player handle:
+player_handle = instance_player(0);
+
+// Sections
+switch (debug_section) {
+    // Player:
+    case 1:
+        // Title:
+        debug_title = "- Player -";
+
+        if (instance_exists(player_handle)) {
+            var player_x, player_y, player_action_current, player_action_previous, player_g_speed, player_x_speed, player_y_speed, player_ground, player_mode, player_layer, player_angle;
+
+            // Player variables:
+            player_x              = floor(player_handle.x);
+            player_y              = floor(player_handle.y);
+
+            player_action_current  = (script_get_name(player_handle.action_current));
+            player_action_previous = (script_get_name(player_handle.action_previous));
+
+            player_g_speed         = player_handle.g_speed;
+            player_x_speed         = player_handle.x_speed;
+            player_y_speed         = player_handle.y_speed;
+
+            player_ground          = player_handle.ground;
+            player_layer           = player_handle.layer;
+            player_angle           = player_handle.ground_angle;
+
+            // Stats:
+            debug_stats = "X: " + string(player_x) + "#" +
+                        "Y: " + string(player_y) + "#" + "#" +
+                        "Action: " + player_action_current + "#" +
+                        "Prev: " + player_action_previous + "#" + "#" +
+                        "Ground Speed: " + string(player_g_speed) + "#" +
+                        "X Speed: " + string(player_x_speed) + "#" +
+                        "Y Speed: " + string(player_y_speed);
+        }
+        break;
+
+    // Character:
+    case 2:
+        // Title:
+        debug_title = "- Character -";
+
+        if (instance_exists(player_handle)) {
+            // Stats:
+            switch (player_handle.character_data) {
+                default:
+                    debug_stats = "Clock Up State: " + string(player_handle.clock_up_state) + "#" +
+                                    "Clock Up Alarm: " + string(player_handle.clock_up_alarm) + "#" +
+                                    "Clock Up Timer: " + string(player_handle.clock_up_timer);
+            }
+        }
+        break;
+
+    // Status:
+    case 3:
+        // Title:
+        debug_title = "- Status -";
+
+        if (instance_exists(player_handle)) {
+            var player_shield, player_usable, player_state, player_invin, player_invin_alarm, player_speed, player_speed_alarm, player_panic, player_panic_alarm, player_swap, player_swap_alarm;
+
+            // Player variables:
+            player_shield      = player_handle.status_shield;
+            player_usable      = player_handle.status_shield_usable;
+            player_state       = player_handle.status_shield_state;
+
+            player_invin       = player_handle.status_invin;
+            player_invin_alarm = player_handle.status_invin_alarm;
+
+            player_speed       = player_handle.status_speed;
+            player_speed_alarm = player_handle.status_speed_alarm;
+
+            player_panic       = player_handle.status_panic;
+            player_panic_alarm = player_handle.status_panic_alarm;
+
+            player_swap        = player_handle.status_swap;
+            player_swap_alarm  = player_handle.status_swap_alarm;
+
+            // Stats:
+            debug_stats = "Shield: " + string(player_shield) + "#" +
+                            "Usable: " + string(player_usable) + "#" +
+                            "State: " + string(player_state) + "#" + "#" +
+                            "Invin: " + string(player_invin) + "#" +
+                            "Invin Alarm: " + string(player_invin_alarm);
+        }
+        break;
+
+    // Water:
+    case 4:
+        // Title:
+        debug_title = "- Water -";
+        break;
+
+    // Animation:
+    case 5:
+        // Title:
+        debug_title = "- Animation -";
+        break;
+
+    // Camera:
+    case 6:
+        // Title:
+        debug_title = "- Camera -";
+        break;
+
+    // Game:
+    default:
+        // Title:
+        debug_title = "- Game -";
+
+        // Stats:
+        debug_stats = "Time Allow: " + string(global.time_allow) + "#" +
+                        "Pause Allow: " + string(global.pause_allow) + "#" + "#" +
+
+                        "Game Speed: " + string_format(global.game_speed, 1, 2) + "#" +
+                        "Game Time: " + string(global.game_time) + "#" +
+                        "Object Time: " + string(global.object_time) + "#" +
+                        "Rings: " + string(global.game_rings) + "#" +
+                        "Score: " + string(global.game_score) + "#" + "#" +
+
+                        "Room: " + string(room) + "#" +
+                        "Room Name: " + room_name(room);
+}
+
+debug_message = debug_title + "#" + debug_stats;
+debug_x2      = debug_x1 + string_width(debug_message) + 8;
+debug_y2      = debug_y1 + string_height(debug_message) + 8;
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -391,6 +548,8 @@ draw_rectangle(0, (global.display_height / 2) - 9 - ((font_height / 2) * topic_l
 draw_set_font(global.font_system);
 draw_set_color(c_white);
 draw_set_alpha(topic_alpha[1]);
+
+// Topic:
 draw_set_halign(fa_center);
 draw_set_valign(fa_middle);
 
@@ -420,10 +579,12 @@ draw_rectangle(0, global.display_height - 19 - 59, global.display_width, global.
 // Viewport:
 d3d_set_viewport(0, global.display_height - text_y, global.display_width, font_height * 3);
 
-// Text:
+// Font:
 draw_set_font(global.font_system);
 draw_set_color(c_white);
 draw_set_alpha(text_alpha[2]);
+
+// Text:
 draw_set_halign(fa_left);
 draw_set_valign(fa_top);
 
@@ -461,10 +622,12 @@ draw_rectangle(0, 0, global.display_width, global.display_height, false);
 // Viewport:
 d3d_set_viewport(0, 16, global.display_width, global.display_height - 32);
 
-// Log:
+// Font:
 draw_set_font(global.font_system);
 draw_set_color(c_white);
 draw_set_alpha(log_alpha[1]);
+
+// Log:
 draw_set_halign(fa_left);
 draw_set_valign(fa_top);
 
@@ -473,3 +636,35 @@ draw_text_ext(text_x / 2, -log_scroll, log_message, font_height, global.display_
 // Reset:
 draw_reset();
 d3d_set_viewport(0, 0, global.display_width, global.display_height);
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Draw Debug
+
+// Box:
+draw_set_color(make_color_rgb(global.textbox_red, global.textbox_green, global.textbox_blue));
+draw_set_alpha(0.6);
+
+draw_rectangle(debug_x1, debug_y1, debug_x2, debug_y2, false);
+
+// Font:
+draw_set_font(global.font_system);
+draw_set_color(c_white);
+draw_set_alpha(1);
+
+// Title:
+draw_set_halign(fa_center);
+draw_set_valign(fa_top);
+
+draw_text_ext((debug_x1 + debug_x2) / 2, debug_y1 + 4, debug_title, font_height, debug_x2 - debug_x1);
+
+// Stats:
+draw_set_halign(fa_left);
+draw_set_valign(fa_top);
+
+draw_text_ext(debug_x1 + 4, debug_y1 + 4 + string_height(debug_title), debug_stats, font_height, debug_x2 - debug_x1);
+
+// Reset:
+draw_reset();

@@ -9,6 +9,17 @@ applies_to=self
 // Randomize:
 randomize();
 
+// Game initialization:
+global.game_debug  = false;
+global.time_allow  = false;
+global.pause_allow = true;
+
+global.game_speed  = 1;
+global.game_time   = 0;
+global.object_time = 0;
+global.game_rings  = 0;
+global.game_score  = 0;
+
 // Player initialization:
 global.player_instance[0]    =   noone;
 global.player_instance[1]    =   noone;
@@ -19,24 +30,11 @@ global.player_count          =   2;
 global.animation_grid        = -1;
 global.animation_character   = -1;
 global.animation_coordinates = -1;
-global.animation_initialized = false;
+global.animation_initialized =  false;
 
 global.checkpoint_x          = -1;
 global.checkpoint_y          = -1;
 global.checkpoint_time       = -1;
-
-// Game initialization:
-global.game_debug  = false;
-
-global.game_speed  = 1;
-global.game_time   = 0;
-global.game_rings  = 0;
-global.game_score  = 0;
-
-global.object_time = 0;
-
-global.time_allow  = false;
-global.pause_allow = true;
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
