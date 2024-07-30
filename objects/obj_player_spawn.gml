@@ -6,6 +6,12 @@ applies_to=self
 */
 /// Create Player
 
+// Move to checkpoint:
+if (checkpoint_isset()) {
+    x = global.checkpoint_x;
+    y = global.checkpoint_y - 20;
+}
+
 // Create players:
 for (i = 0; i < global.player_count; i += 1) {
     if (global.player_data[i] >= CHAR_SONIC) {

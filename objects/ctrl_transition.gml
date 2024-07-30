@@ -105,6 +105,7 @@ if (transition_alarm > 0) {
 
                 // Retry has its own room_goto call:
                 if (transition_type != TRANS_RETRY) {
+                    checkpoint_set(true);
                     room_goto(transition_room);
                 }
 

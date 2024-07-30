@@ -226,17 +226,25 @@ spring_current  = noone;
 // Gimmick lock variables:
 gimmick_lock       = false;
 gimmick_lock_alarm = 0;
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Water Initialization:
 
-// Water variables:
+// Surface variables:
 water_surface      = false;
 water_splash_alarm = 14;
 
-underwater         = false;
-air_remaining      = 30;
-air_alarm          = 60;
+// Underwater variables:
+underwater    = false;
+air_remaining = 30;
+air_alarm     = 60;
 
-drown_countdown    = 0;
-drowned            = false;
+// Drown variables:
+drown_countdown = 0;
+drowned         = false;
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -273,19 +281,6 @@ animation_reload    =  false;
 animation_alarm     =  360;
 
 animation_angle_mod =  0;
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Finish Initialization
-
-// Go to checkpoint:
-if (global.checkpoint_x != -1 && global.checkpoint_y != -1) {
-    x                = global.checkpoint_x;
-    y                = global.checkpoint_y;
-    global.game_time = global.checkpoint_time;
-}
 #define Step_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -449,6 +444,7 @@ if (game_ispaused() || action_current == player_action_death) {
 
 player_handle_layer();
 player_handle_ring();
+player_handle_checkpoint();
 player_handle_spring();
 player_handle_item_box();
 player_handle_hint();

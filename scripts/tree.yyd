@@ -175,6 +175,7 @@
 		+Handle
 			|player_handle_layer
 			|player_handle_ring
+			|player_handle_checkpoint
 			|player_handle_spring
 			|player_handle_item_box
 			|player_handle_hint
@@ -202,8 +203,8 @@
 	+Props
 		|prop_terrain_point
 		+Checkpoint
-			|joystick_check_pressed
-			|joystick_check_released
+			|checkpoint_set
+			|checkpoint_isset
 +Trash
 	+Sonic Dash
 		+Main
@@ -225,4 +226,3 @@
 		+Knuckles
 		+Amy
 		+Classic
-	|player_handle_water_surface

@@ -14,8 +14,20 @@ image_speed = 0;
 // Timeline initialization:
 ctl_initialize(ctl_checkpoint_inactive);
 
+// Size:
+main_left     = 13;
+main_right    = 14;
+main_top      = 37;
+main_bottom   = 0;
+
 // Checkpoint variables:
 checkpoint_active = false;
+
+// Activate:
+if (global.checkpoint_x == x && global.checkpoint_y == y) {
+    global.game_time  = global.checkpoint_time;
+    checkpoint_active = true;
+}
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1

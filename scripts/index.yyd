@@ -85,7 +85,7 @@ in_view
 player_ring_loss
 player_action_hurt_OLD
 player_handle_item_box
-player_handle_water_surface
+player_handle_checkpoint
 hover
 input_get_timer
 start_trail
@@ -98,8 +98,8 @@ knuckles_add_animations
 classic_add_animations
 player_compile_animations
 classic_trait_clock_up
-joystick_check_pressed
-joystick_check_released
+checkpoint_set
+checkpoint_isset
 player_action_roll
 player_action_push_OLD
 ctl_sonic_turn_skid
