@@ -7,7 +7,7 @@ applies_to=self
 /// HUD Initialization
 
 // HUD variables:
-hud_hide      =  true;
+hud_hide      =  false;
 
 hud_index     = spr_hud;
 hud_x_current = global.display_width;
@@ -18,11 +18,18 @@ hud_x_factor  = 4;
 hud_y         =  6;
 
 // Air variables:
-air_hide     =  false;
-air_value    =  30;
+air_hide      =  false;
+air_value     =  30;
 
 air_x_current = -sprite_get_width(hud_index);
 air_x_speed   =  0;
+
+// Gauge variables:
+gauge_hide      = false;
+
+gauge_index     = spr_hud_gauge;
+gauge_x_current = -sprite_get_width(hud_index);
+gauge_x_speed   =  0;
 
 // Item feed variables:
 item_hide  =  false;
@@ -66,13 +73,9 @@ switch (global.misc_hud) {
         hud_y        = 6;
 }
 
-if (input_get_check(INP_TAG, CHECK_PRESSED)) {
-    hud_hide = !hud_hide;
-}
-
 // HUD target:
 if (hud_hide == true) {
-    hud_x_target  = -(sprite_get_width(hud_index) + hud_x_factor);
+    hud_x_target  = -(sprite_get_width(hud_index) + (hud_x_factor * 2));
     hud_x_factor *= 3;
 } else {
     switch (global.misc_hud) {
@@ -158,6 +161,35 @@ if (global.misc_hud == 1) {
         air_x_speed    = ceil(abs(air_x_distance) / air_x_factor);
         air_x_current += air_x_speed * sign(air_x_distance);
     }
+}
+
+// Gauge:
+if (global.misc_hud == 1) {
+    var gauge_x_target, gauge_x_factor;
+
+    // Gauge target:
+    if (gauge_hide == false) {
+        gauge_x_target = hud_x_target + 6;
+    } else {
+        gauge_x_target = -sprite_get_width(hud_index) - hud_x_factor;
+    }
+
+    if (gauge_x_current != gauge_x_target) {
+        var gauge_x_distance;
+
+        // Gauge distance:
+        gauge_x_distance = gauge_x_target - gauge_x_current;
+
+        // Gauge factor:
+        gauge_x_factor = hud_x_factor * (1 + (2 * (hud_hide == false && gauge_hide == true)));
+
+        gauge_x_speed    = ceil(abs(gauge_x_distance) / hud_x_factor);
+        gauge_x_current += gauge_x_speed * sign(gauge_x_distance);
+    }
+}
+
+if (input_get_check(INP_TAG, CHECK_PRESSED)) {
+    gauge_hide = !gauge_hide;
 }
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -314,12 +346,23 @@ draw_text(view_xview[view_current] + hud_x_current + 29, view_yview[view_current
 draw_sprite(hud_index, 2, view_xview[view_current] + air_x_current, view_yview[view_current] + hud_y + 52);
 draw_text(view_xview[view_current] + air_x_current + 29, view_yview[view_current] + hud_y + 57, string_place_value(air_value, 2));
 
-/*
-// Action gauge:
-draw_sprite(spr_hud, 3, view_xview[view_current] + hud_position + 6, view_yview[view_current] + global.display_height - 29);
-draw_sprite_part(spr_action_gauge, 0, 0, 0, sprite_get_width(spr_action_gauge) * ((global.player_instance[0].clock_up_duration - global.player_instance[0].clock_up_timer)/global.player_instance[0].clock_up_duration), sprite_get_height(spr_action_gauge), view_xview[view_current] + hud_position + 6 + 8, view_yview[view_current] + global.display_height - 29 + 12);
-*/
 
+// Action gauge:
+if (instance_exists(instance_player(0))) {
+    var clock_up_percentage;
+    
+    // Gauge:
+    clock_up_percentage = (instance_player(0).clock_up_duration - instance_player(0).clock_up_timer) / instance_player(0).clock_up_duration;
+    
+    draw_sprite(spr_hud, 3, view_xview[view_current] + gauge_x_current, view_yview[view_current] + global.display_height - 29);
+    draw_sprite_part(gauge_index, 0, 0, 0, sprite_get_width(gauge_index) * clock_up_percentage, sprite_get_height(gauge_index), view_xview[view_current] + gauge_x_current + 8, view_yview[view_current] + global.display_height - 29 + 12);
+}
+
+/*
+draw_sprite(spr_hud, 3, view_xview[view_current] + hud_position + 6, view_yview[view_current] + global.display_height - 29);
+draw_sprite_part(spr_hud_gauge, 0, 0, 0, sprite_get_width(spr_action_gauge) * ((global.player_instance[0].clock_up_duration - global.player_instance[0].clock_up_timer)/global.player_instance[0].clock_up_duration), sprite_get_height(spr_action_gauge), view_xview[view_current] + hud_position + 6 + 8, view_yview[view_current] + global.display_height - 29 + 12);
+
+*/
 // Reset:
 draw_reset();
 /*"/*'/**//* YYD ACTION

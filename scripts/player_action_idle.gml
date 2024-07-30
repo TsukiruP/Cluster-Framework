@@ -4,6 +4,7 @@
 switch (argument0) {
     // Start:
     case ACTION_START:
+        // Land:
         if (ground == true && y_speed > 0) {
             player_set_animation("land");
         }
@@ -85,5 +86,9 @@ switch (argument0) {
 
     // Finish:
     case ACTION_FINISH:
+        // Reset balance:
+        if (balance_direction != 0) {
+            balance_direction = 0;
+        }
         break;
 }
