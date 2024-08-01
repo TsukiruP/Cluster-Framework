@@ -8,5 +8,5 @@ applies_to=self
 
 event_inherited();
 
-// Item data variable:
-item_data = ITEM_PANIC;
+// Item id:
+item_id = ITEM_PANIC;

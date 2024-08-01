@@ -42,7 +42,7 @@ if (instance_exists(player_handle)) {
         }
 
         // Change sprite index:
-        switch (player_handle.character_data) {
+        switch (player_handle.character_id) {
             // Sonic:
             case CHAR_SONIC:
                 sprite_index = spr_omochao_sonic;

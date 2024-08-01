@@ -268,6 +268,7 @@
 			|spr_spike_left
 			|spr_spike_right
 		+Badniks
+			|spr_spinner
 		+Water
 			|spr_water_surface
 			|spr_bubble_spawn
@@ -369,6 +370,5 @@
 		|mask_edge_line
 		|mask_platform_fix
 		|mask_ledge
-	|spr_checkpoint_active
 	|spr_basic_test_collision_plat_01
 	|spr_basic_test_collision_low_01

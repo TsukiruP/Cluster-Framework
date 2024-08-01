@@ -79,7 +79,7 @@ if (damage_handle == self.id) {
 }
 
 // Underwater physics:
-if (physics_type == PHYS_UNDERWATER) {
+if (physics_type == PHYS_WATER) {
     x_speed /= 2;
     y_speed /= 2;
 }

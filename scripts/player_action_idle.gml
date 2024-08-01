@@ -26,7 +26,7 @@ switch (argument0) {
         }
 
         // Turn:
-        if (global.advance_turn == true && character_data != CHAR_CLASSIC && image_xscale == -input_x_direction) {
+        if (global.advance_turn == true && character_id != CHAR_CLASSIC && image_xscale == -input_x_direction) {
             return player_set_action(player_action_turn);
         }
 

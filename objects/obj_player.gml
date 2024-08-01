@@ -12,8 +12,8 @@ image_speed = 0;
 // Timeline initialization:
 ctl_initialize();
 
-// Player id:
-player_id = 0;
+// Player slot:
+player_slot = 0;
 
 // Action variables:
 action_current  = player_action_idle;
@@ -144,7 +144,7 @@ applies_to=self
 /// Character Initialization
 
 // Character data:
-character_data = CHAR_SONIC;
+character_id = CHAR_SONIC;
 
 // Classic variables:
 clock_up_state    = 0;
@@ -298,14 +298,14 @@ if (game_ispaused()) {
 if (input_lock == false) {
     // Reset CPU alarm:
     if (input_cpu == true) {
-        if (input_get_check(INP_ANY, CHECK_HELD, DEV_JOYSTICK0 + player_id)) {
+        if (input_get_check(INP_ANY, CHECK_HELD, DEV_JOYSTICK0 + player_slot)) {
             input_cpu_alarm = 600;
         }
     }
 
     // Direct inputs:
     if (input_cpu == false || (input_cpu == true && input_cpu_alarm > 0)) {
-        player_set_input(player_id);
+        player_set_input(player_slot);
     } else {
 
     }
@@ -622,7 +622,7 @@ if (game_ispaused()) {
 }
 
 // Don't bother if in the middle of respawning/dying:
-if (action_current != player_action_death && physics_type == PHYS_UNDERWATER && !instance_exists(ctrl_tally)) {
+if (action_current != player_action_death && physics_type == PHYS_WATER && !instance_exists(ctrl_tally)) {
     // Refill air if in breathe action or bubble shield:
     if (status_shield == SHIELD_BUBBLE) {
         air_remaining = 30;
@@ -705,11 +705,15 @@ applies_to=self
 // Update physics type:
 if (instance_exists(obj_water_surface)) {
     if (y < obj_water_surface.y) {
-        if (physics_type != PHYS_DEFAULT) physics_type = PHYS_DEFAULT;
+        if (physics_type != PHYS_DEFAULT) {
+            physics_type = PHYS_DEFAULT;
+        }
     }
 
     if (y > obj_water_surface.y) {
-        if (physics_type != PHYS_UNDERWATER) physics_type = PHYS_UNDERWATER;
+        if (physics_type != PHYS_WATER) {
+            physics_type = PHYS_WATER;
+        }
     }
 }
 
@@ -729,7 +733,7 @@ if (game_ispaused()) {
 
 // Don't bother if in the middle of respawning/dying:
 if (action_current != player_action_death && !instance_exists(ctrl_tally)) {
-    if (physics_type == PHYS_UNDERWATER) {
+    if (physics_type == PHYS_WATER) {
         // Refill air if in breathe action or bubble shield:
         if (status_shield != SHIELD_BUBBLE) {
             if (air_alarm > 0) {
@@ -971,7 +975,7 @@ switch (animation_target) {
             // Leader & partner wait:
             if (instance_number(obj_player) > 0) {
                 // Leader:
-                if (player_id == 0) {
+                if (player_slot == 0) {
                     animation_variant = 0;
                 }
 
@@ -1057,7 +1061,7 @@ switch (animation_current) {
     // Spring angle:
     case "spring_flight":
     case "spring_fall":
-        if (action_current == player_action_spring && character_data != CHAR_CLASSIC && spring_angle != ANGLE_DOWN && spring_alarm > 0) {
+        if (action_current == player_action_spring && character_id != CHAR_CLASSIC && spring_angle != ANGLE_DOWN && spring_alarm > 0) {
             image_angle = spring_angle - 90;
         } else {
             image_angle = approach_angle(image_angle, 0, 4);
@@ -1067,7 +1071,7 @@ switch (animation_current) {
     // Terrain angle:
     default:
         // Default angle behavior:
-        if (character_data != CHAR_CLASSIC) {
+        if (character_id != CHAR_CLASSIC) {
             if (ground == true) {
                 image_angle = ground_angle;
             } else {
@@ -1188,15 +1192,18 @@ if (global.misc_trails == false) {
 
 // Color trail:
 if (global.misc_trails == true) {
-    switch (character_data) {
+    switch (character_id) {
+        // Miles:
         case CHAR_MILES:
             trail_color = c_yellow;
             break;
 
+        // Knuckles:
         case CHAR_KNUCKLES:
             trail_color = c_red;
             break;
 
+        // Sonic:
         default:
             trail_color = c_blue;
             break;

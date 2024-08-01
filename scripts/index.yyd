@@ -48,7 +48,7 @@ room_get_data
 transition_create
 room_view_set_all
 window_resize
-player_action_look_old
+ctl_spinner
 player_action_crouch_old
 player_action_spin_dash_old
 player_action_roll_old

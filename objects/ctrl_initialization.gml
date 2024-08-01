@@ -23,8 +23,8 @@ global.game_score  = 0;
 // Player initialization:
 global.player_instance[0]    =   noone;
 global.player_instance[1]    =   noone;
-global.player_data[0]        =   CHAR_SONIC;
-global.player_data[1]        =  -1;
+global.player_id[0]          =   CHAR_SONIC;
+global.player_id[1]          =  -1;
 global.player_count          =   2;
 
 global.animation_grid        = -1;
@@ -49,87 +49,87 @@ image_speed = 0;
 ini_open("settings.ini");
 
 // Read/create display settings:
-global.setting_display_mode       = ini_read_real("display", "mode", 0);
-global.setting_display_ratio      = ini_read_real("display", "ratio", 0);
-global.setting_display_scale      = ini_read_real("display", "scale", 1);
-global.setting_display_fullscreen = ini_read_real("display", "full", false);
-global.setting_display_vsync      = ini_read_real("display", "vsync", false);
+global.setting_display_mode       = ini_read_real("display", "mode", DEFAULT_DISPLAY_MODE);
+global.setting_display_ratio      = ini_read_real("display", "ratio", DEFAULT_DISPLAY_RATIO);
+global.setting_display_scale      = ini_read_real("display", "scale", DEFAULT_DISPLAY_SCALE);
+global.setting_display_fullscreen = ini_read_real("display", "full", DEFAULT_DISPLAY_FULL);
+global.setting_display_vsync      = ini_read_real("display", "vsync", DEFAULT_DISPLAY_VSYNC);
 
 // Read/create audio settings:
-global.setting_audio_bgm = ini_read_real("audio", "bgm", 0);
-global.setting_audio_sfx = ini_read_real("audio", "sfx", 100);
+global.setting_audio_bgm = ini_read_real("audio", "bgm", DEFAULT_AUDIO_BGM);
+global.setting_audio_sfx = ini_read_real("audio", "sfx", DEFAULT_AUDIO_SFX);
 
 // Read/create keyboard settings:
-global.setting_input_key[INP_UP]      = ini_read_real("input", "key_up", vk_up);
-global.setting_input_key[INP_DOWN]    = ini_read_real("input", "key_down", vk_down);
-global.setting_input_key[INP_LEFT]    = ini_read_real("input", "key_left", vk_left);
-global.setting_input_key[INP_RIGHT]   = ini_read_real("input", "key_right", vk_right);
+global.setting_input_key[INP_UP]      = ini_read_real("input", "key_up", DEFAULT_KEY_UP);
+global.setting_input_key[INP_DOWN]    = ini_read_real("input", "key_down", DEFAULT_KEY_DOWN);
+global.setting_input_key[INP_LEFT]    = ini_read_real("input", "key_left", DEFAULT_KEY_LEFT);
+global.setting_input_key[INP_RIGHT]   = ini_read_real("input", "key_right", DEFAULT_KEY_RIGHT);
 
-global.setting_input_key[INP_JUMP]    = ini_read_real("input", "key_jump", ord("A"));
-global.setting_input_key[INP_SPECIAL] = ini_read_real("input", "key_special", ord("S"));
-global.setting_input_key[INP_SWAP]    = ini_read_real("input", "key_swap", ord("W"));
-global.setting_input_key[INP_SUPER]   = ini_read_real("input", "key_super", ord("Q"));
-global.setting_input_key[INP_TAG]     = ini_read_real("input", "key_tag", ord("D"));
-global.setting_input_key[INP_ALT]     = ini_read_real("input", "key_alt", ord("E"));
+global.setting_input_key[INP_JUMP]    = ini_read_real("input", "key_jump", DEFAULT_KEY_JUMP);
+global.setting_input_key[INP_SPECIAL] = ini_read_real("input", "key_special", DEFAULT_KEY_SPECIAL);
+global.setting_input_key[INP_SWAP]    = ini_read_real("input", "key_swap", DEFAULT_KEY_SWAP);
+global.setting_input_key[INP_SUPER]   = ini_read_real("input", "key_super", DEFAULT_KEY_SUPER);
+global.setting_input_key[INP_TAG]     = ini_read_real("input", "key_tag", DEFAULT_KEY_TAG);
+global.setting_input_key[INP_ALT]     = ini_read_real("input", "key_alt", DEFAULT_KEY_ALT);
 
-global.setting_input_key[INP_START]   = ini_read_real("input", "key_start", vk_enter);
-global.setting_input_key[INP_SELECT]  = ini_read_real("input", "key_select", vk_shift);
-global.setting_input_key[INP_ACCEPT]  = ini_read_real("input", "key_accept", ord("A"));
-global.setting_input_key[INP_CANCEL]  = ini_read_real("input", "key_cancel", ord("S"));
-global.setting_input_key[INP_HELP]    = ini_read_real("input", "key_help", ord("W"));
+global.setting_input_key[INP_START]   = ini_read_real("input", "key_start", DEFAULT_KEY_START);
+global.setting_input_key[INP_SELECT]  = ini_read_real("input", "key_select", DEFAULT_KEY_SELECT);
+global.setting_input_key[INP_ACCEPT]  = ini_read_real("input", "key_accept", DEFAULT_KEY_ACCEPT);
+global.setting_input_key[INP_CANCEL]  = ini_read_real("input", "key_cancel", DEFAULT_KEY_CANCEL);
+global.setting_input_key[INP_HELP]    = ini_read_real("input", "key_help", DEFAULT_KEY_HELP);
 
 // Read/create joystick settings:
 for (i = 0; i < global.player_count; i += 1) {
-    global.setting_input_joy[i, INP_UP]      = JOY_UP;
-    global.setting_input_joy[i, INP_DOWN]    = JOY_DOWN;
-    global.setting_input_joy[i, INP_LEFT]    = JOY_LEFT;
-    global.setting_input_joy[i, INP_RIGHT]   = JOY_RIGHT;
+    global.setting_input_joy[i, INP_UP]      = DEFAULT_JOY_UP;
+    global.setting_input_joy[i, INP_DOWN]    = DEFAULT_JOY_DOWN;
+    global.setting_input_joy[i, INP_LEFT]    = DEFAULT_JOY_LEFT;
+    global.setting_input_joy[i, INP_RIGHT]   = DEFAULT_JOY_RIGHT;
 
-    global.setting_input_joy[i, INP_JUMP]    = ini_read_real("input", "joy" + string(i) + "_jump", JOY_FACE1);
-    global.setting_input_joy[i, INP_SPECIAL] = ini_read_real("input", "joy" + string(i) + "_special", JOY_FACE3);
-    global.setting_input_joy[i, INP_SWAP]    = ini_read_real("input", "joy" + string(i) + "_swap", JOY_FACE4);
-    global.setting_input_joy[i, INP_SUPER]   = ini_read_real("input", "joy" + string(i) + "_super", JOY_FACE2);
-    global.setting_input_joy[i, INP_TAG]     = ini_read_real("input", "joy" + string(i) + "_tag", JOY_BUMPERR);
-    global.setting_input_joy[i, INP_ALT]     = ini_read_real("input", "joy" + string(i) + "_alt", JOY_BUMPERL);
+    global.setting_input_joy[i, INP_JUMP]    = ini_read_real("input", "joy" + string(i) + "_jump", DEFAULT_JOY_JUMP);
+    global.setting_input_joy[i, INP_SPECIAL] = ini_read_real("input", "joy" + string(i) + "_special", DEFAULT_JOY_SPECIAL);
+    global.setting_input_joy[i, INP_SWAP]    = ini_read_real("input", "joy" + string(i) + "_swap", DEFAULT_JOY_SWAP);
+    global.setting_input_joy[i, INP_SUPER]   = ini_read_real("input", "joy" + string(i) + "_super", DEFAULT_JOY_SUPER);
+    global.setting_input_joy[i, INP_TAG]     = ini_read_real("input", "joy" + string(i) + "_tag", DEFAULT_JOY_TAG);
+    global.setting_input_joy[i, INP_ALT]     = ini_read_real("input", "joy" + string(i) + "_alt", DEFAULT_JOY_ALT);
 
-    global.setting_input_joy[i, INP_START]   = JOY_START;
-    global.setting_input_joy[i, INP_SELECT]  = JOY_SELECT;
-    global.setting_input_joy[i, INP_ACCEPT]  = JOY_FACE1;
-    global.setting_input_joy[i, INP_CANCEL]  = JOY_FACE2;
-    global.setting_input_joy[i, INP_HELP]    = JOY_FACE4;
+    global.setting_input_joy[i, INP_START]   = DEFAULT_JOY_START;
+    global.setting_input_joy[i, INP_SELECT]  = DEFAULT_JOY_SELECT;
+    global.setting_input_joy[i, INP_ACCEPT]  = DEFAULT_JOY_ACCEPT;
+    global.setting_input_joy[i, INP_CANCEL]  = DEFAULT_JOY_CANCEL;
+    global.setting_input_joy[i, INP_HELP]    = DEFAULT_JOY_HELP;
 
     // Other:
-    global.setting_input_deadzone[i] = ini_read_real("input", "joy" + string(i) + "_deadzone", 0.1);
-    global.setting_input_accept[i]   = ini_read_real("input", "joy" + string(i) + "_accept", 0);
+    global.setting_input_deadzone[i] = ini_read_real("input", "joy" + string(i) + "_deadzone", DEFAULT_JOY_DEADZONE);
+    global.setting_input_confirm[i]  = ini_read_real("input", "joy" + string(i) + "_confirm", DEFAULT_JOY_CONFIRM);
+    global.setting_input_style[i]    = ini_read_real("input", "joy" + string(i) + "_style", DEFAULT_JOY_STYLE);
 }
 
 // Read/create misc. input settings:
-global.setting_input_style = ini_read_real("input", "style", 0);
 global.setting_input_focus = ini_read_real("input", "focus", false);
 
 // Read/create textbox settings:
-global.setting_textbox_red   = ini_read_real("textbox", "red", 0);
-global.setting_textbox_green = ini_read_real("textbox", "green", 24);
-global.setting_textbox_blue  = ini_read_real("textbox", "blue", 176);
+global.setting_textbox_red   = ini_read_real("textbox", "red", DEFAULT_TEXT_RED);
+global.setting_textbox_green = ini_read_real("textbox", "green", DEFAULT_TEXT_GREEN);
+global.setting_textbox_blue  = ini_read_real("textbox", "blue", DEFAULT_TEXT_BLUE);
 
 // Read/create gameplay settings:
-global.setting_gameplay_elemental  = ini_read_real("gameplay", "elemental", true);
-global.setting_gameplay_debuffs    = ini_read_real("gameplay", "debuffs", true);
-global.setting_gameplay_checkpoint = ini_read_real("gameplay", "checkpoint", true);
+global.setting_gameplay_shields    = ini_read_real("gameplay", "shields", DEFAULT_GAME_SHIELDS);
+global.setting_gameplay_debuffs    = ini_read_real("gameplay", "debuffs", DEFAULT_GAME_DEBUFF);
+global.setting_gameplay_checkpoint = ini_read_real("gameplay", "checkpoint", DEFAULT_GAME_CHECKPOINT);
 
 // Read/create Advance settings:
-global.setting_advance_turn    = ini_read_real("advance", "turn", true);
-global.setting_advance_skid    = ini_read_real("advance", "skid", true);
-global.setting_advance_hurt    = ini_read_real("advance", "hurt", true);
-global.setting_advance_flicker = ini_read_real("advance", "flicker", true);
+global.setting_advance_turn    = ini_read_real("advance", "turn", DEFAULT_ADVANCE_TURN);
+global.setting_advance_skid    = ini_read_real("advance", "skid", DEFAULT_ADVANCE_SKID);
+global.setting_advance_hurt    = ini_read_real("advance", "hurt", DEFAULT_ADVANCE_HURT);
+global.setting_advance_flicker = ini_read_real("advance", "flicker", DEFAULT_ADVANCE_FLICKER);
 
 // Read/create misc. settings:
-global.setting_misc_hud     = ini_read_real("misc", "hud", 1);
-global.setting_misc_status  = ini_read_real("misc", "status", 1);
-global.setting_misc_feed    = ini_read_real("misc", "feed", true);
-global.setting_misc_trails  = ini_read_real("misc", "trails", true);
-global.setting_misc_lock_on = ini_read_real("misc", "lock_on", true);
-global.setting_misc_results = ini_read_real("misc", "results", 1);
+global.setting_misc_hud     = ini_read_real("misc", "hud", DEFAULT_MISC_HUD);
+global.setting_misc_status  = ini_read_real("misc", "status", DEFAULT_MISC_STATUS);
+global.setting_misc_feed    = ini_read_real("misc", "feed", DEFAULT_MISC_FEED);
+global.setting_misc_trails  = ini_read_real("misc", "trails", DEFAULT_MISC_TRAILS);
+global.setting_misc_lock_on = ini_read_real("misc", "lock_on", DEFAULT_MISC_LOCK);
+global.setting_misc_tally   = ini_read_real("misc", "tally", DEFAULT_MISC_TALLY);
 
 // Close settings file:
 ini_close();
@@ -160,11 +160,11 @@ for (i = 0; i < global.player_count; i += 1) {
 
     // Other settings:
     global.input_deadzone[i] = global.setting_input_deadzone[i];
-    global.input_accept[i]   = global.setting_input_accept[i];
+    global.input_confirm[i]  = global.setting_input_confirm[i];
+    global.input_style[i]    = global.setting_input_style[i];
 }
 
 // Apply misc. input settings:
-global.input_style = global.setting_input_style;
 global.input_focus = global.setting_input_focus;
 
 // Apply textbox settings
@@ -173,7 +173,7 @@ global.textbox_green = global.setting_textbox_green;
 global.textbox_blue  = global.setting_textbox_blue;
 
 // Apply gameplay settings:
-global.gameplay_elemental  = global.setting_gameplay_elemental;
+global.gameplay_shields    = global.setting_gameplay_shields;
 global.gameplay_debuffs    = global.setting_gameplay_debuffs;
 global.gameplay_checkpoint = global.setting_gameplay_checkpoint;
 
@@ -189,7 +189,7 @@ global.misc_status  = global.setting_misc_status;
 global.misc_feed    = global.setting_misc_feed;
 global.misc_trails  = global.setting_misc_trails;
 global.misc_lock_on = global.setting_misc_lock_on;
-global.misc_results = global.setting_misc_results;
+global.misc_yally   = global.setting_misc_tally;
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603

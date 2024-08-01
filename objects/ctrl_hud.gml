@@ -128,7 +128,7 @@ if (global.misc_hud == 1) {
         with (instance_player(0)) {
             // Hide:
             if (action_current != player_action_death) {
-                if (physics_type == PHYS_UNDERWATER && status_shield != SHIELD_BUBBLE) {
+                if (physics_type == PHYS_WATER && status_shield != SHIELD_BUBBLE) {
                     other.air_hide = false;
                 } else {
                     other.air_hide = true;

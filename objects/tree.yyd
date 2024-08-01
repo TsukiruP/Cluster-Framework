@@ -78,6 +78,7 @@
 			|par_spike
 		+Badniks
 			|par_badnik
+			|obj_spinner
 		+Water
 			|obj_water_surface
 		+Hints
@@ -133,7 +134,6 @@
 			|obj_basic_test_water_fall_01
 			|obj_basic_test_water_fall_02
 			|obj_basic_test_water_fall_03
-|object121
 |object122
 +Rainbow Rings
 	|par_rainbow_ring

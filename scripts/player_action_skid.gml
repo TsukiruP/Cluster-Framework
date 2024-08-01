@@ -12,7 +12,7 @@ switch (argument0) {
         }
 
         // Set direction:
-        if ((global.advance_skid == false || character_data == CHAR_CLASSIC) && g_speed != 0) {
+        if ((global.advance_skid == false || character_id == CHAR_CLASSIC) && g_speed != 0) {
             image_xscale = sign(g_speed);
         }
 
@@ -35,7 +35,7 @@ switch (argument0) {
                         g_speed = deceleration * input_x_direction;
 
                         // Turn:
-                        if (global.advance_turn == true && character_data != CHAR_CLASSIC && image_xscale != sign(g_speed)) {
+                        if (global.advance_turn == true && character_id != CHAR_CLASSIC && image_xscale != sign(g_speed)) {
                             player_set_animation("turn_skid");
                             return player_set_action(player_action_turn);
                         }
@@ -54,7 +54,7 @@ switch (argument0) {
         // Friction:
         else {
             // Run:
-            if (global.advance_skid == true && character_data != CHAR_CLASSIC) {
+            if (global.advance_skid == true && character_id != CHAR_CLASSIC) {
                 return player_set_action(player_action_run);
             }
 

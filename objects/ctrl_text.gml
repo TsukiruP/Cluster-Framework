@@ -277,7 +277,7 @@ switch (debug_section) {
 
         if (instance_exists(player_handle)) {
             // Stats:
-            switch (player_handle.character_data) {
+            switch (player_handle.character_id) {
                 default:
                     debug_stats = "Clock Up State: " + string(player_handle.clock_up_state) + "#" +
                                     "Clock Up Alarm: " + string(player_handle.clock_up_alarm) + "#" +

@@ -205,12 +205,12 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Joystick Accept
+/// Joystick Confirm
 
 // Update accept format:
 for (i = 0; i < global.player_count; i += 1) {
     // Nintendo accept:
-    if (global.input_accept[i] == 1) {
+    if (global.input_confirm[i] == 1) {
         global.input_joy[i, INP_ACCEPT] = JOY_FACE2;
         global.input_joy[i, INP_CANCEL] = JOY_FACE1;
     }

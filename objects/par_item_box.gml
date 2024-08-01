@@ -20,8 +20,8 @@ main_bottom   = 16;
 // Player handle:
 player_handle = noone;
 
-// Item data:
-item_data = ITEM_BONUS;
+// Item id:
+item_id = ITEM_BONUS;
 #define Destroy_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -32,7 +32,7 @@ applies_to=self
 
 if (instance_exists(player_handle)) {
     with (player_handle) {
-        player_get_item(other.item_data);
+        player_get_item(other.item_id);
     }
 }
 #define Step_0
@@ -43,15 +43,32 @@ applies_to=self
 */
 /// Replace Items
 
-// Elemental shields:
-if (global.gameplay_elemental == false) {
-    if (item_data == ITEM_FIRE || item_data == ITEM_BUBBLE) item_data = ITEM_BASIC;
-    if (item_data == ITEM_LIGHTNING) item_data = ITEM_MAGNETIC;
+// Shields:
+switch (global.gameplay_shields) {
+    // Adventure/Advance:
+    case 1:
+        if (item_id == ITEM_FIRE || item_id == ITEM_BUBBLE) {
+            item_id = ITEM_BASIC;
+        }
+
+        if (item_id == ITEM_LIGHTNING) {
+            item_id = ITEM_MAGNETIC;
+        }
+        break;
+
+    // Oops, all basic!:
+    case 2:
+        if (item_id >= ITEM_MAGNETIC && item_id <= ITEM_LIGHTNING) {
+            item_id = ITEM_BASIC;
+        }
+        break;
 }
 
 // Debuffs:
 if (global.gameplay_debuffs == false) {
-    if (item_data == ITEM_SLOW || item_data == ITEM_PANIC || item_data == ITEM_SWAP) item_data = ITEM_MINE;
+    if (item_id == ITEM_SLOW || item_id == ITEM_PANIC || item_id == ITEM_SWAP) {
+        item_id = ITEM_MINE;
+    }
 }
 #define Draw_0
 /*"/*'/**//* YYD ACTION
@@ -62,7 +79,7 @@ applies_to=self
 /// Draw Item Box
 
 // Item icon:
-draw_sprite(spr_item_icon, item_data, x, y);
+draw_sprite(spr_item_icon, item_id, x, y);
 
 // Item box:
 draw_sprite(spr_item_box, 1, x, y);

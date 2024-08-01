@@ -31,3 +31,8 @@ obj_basic_test_collision_28,576,720,2430393A,0,1,1,4294967295,0,0
 obj_basic_test_collision_28,672,720,D1D96F07,0,1,1,4294967295,0,0
 obj_basic_test_collision_28,768,720,445FB34C,0,1,1,4294967295,0,0
 obj_basic_test_collision_28,864,720,F1DFBE9F,0,1,1,4294967295,0,0
+obj_item_fire,336,688,956096E7,0,1,1,4294967295,0,0
+obj_item_basic,288,688,2909E73C,0,1,1,4294967295,0,0
+obj_item_magnetic,288,736,EBAF9044,0,1,1,4294967295,0,0
+obj_item_lightning,336,736,D6B8AC03,0,1,1,4294967295,0,0
+obj_spinner,432,720,AE05F1D0,0,1,1,4294967295,0,0

@@ -85,6 +85,8 @@
 				+Checkpoint
 					|ctl_checkpoint_inactive
 					|ctl_checkpoint_active
+				+Badniks
+					|ctl_spinner
 			+Effects
 				+Player
 					|ctl_spin_dash
@@ -214,7 +216,6 @@
 		+Bottom
 			|player_collision_object_bottom
 	+Actions (OLD)
-		|player_action_look_old
 		|player_action_crouch_old
 		|player_action_spin_dash_old
 		|player_action_roll_old

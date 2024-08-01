@@ -141,7 +141,7 @@ spr_explosion_water
 spr_ring
 spr_goal_ring
 spr_checkpoint
-spr_checkpoint_active
+spr_spinner
 spr_character_arrow
 spr_dash_ring_left_up
 spr_ring_sparkle

@@ -14,11 +14,11 @@ if (checkpoint_isset()) {
 
 // Create players:
 for (i = 0; i < global.player_count; i += 1) {
-    if (global.player_data[i] >= CHAR_SONIC) {
-        global.player_instance[i]                = instance_create(x - (30 * i), y, obj_player);
-        global.player_instance[i].player_id      = i;
-        global.player_instance[i].character_data = global.player_data[i];
-        global.player_instance.input_lock        = true;
+    if (global.player_id[i] >= CHAR_SONIC) {
+        global.player_instance[i]              = instance_create(x - (30 * i), y, obj_player);
+        global.player_instance[i].player_slot  = i;
+        global.player_instance[i].character_id = global.player_id[i];
+        global.player_instance.input_lock      = true;
 
         // Create HUD:
         if (i == 0) {
