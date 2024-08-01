@@ -49,34 +49,34 @@ image_speed = 0;
 ini_open("settings.ini");
 
 // Read/create display settings:
-global.setting_display_mode       = ini_read_real("display", "mode", DEFAULT_DISPLAY_MODE);
-global.setting_display_ratio      = ini_read_real("display", "ratio", DEFAULT_DISPLAY_RATIO);
-global.setting_display_scale      = ini_read_real("display", "scale", DEFAULT_DISPLAY_SCALE);
-global.setting_display_fullscreen = ini_read_real("display", "full", DEFAULT_DISPLAY_FULLSCREEN);
-global.setting_display_vsync      = ini_read_real("display", "vsync", DEFAULT_DISPLAY_VSYNC);
+global.setting_display_mode       = ini_read_real("display", "mode", 0);
+global.setting_display_ratio      = ini_read_real("display", "ratio", 0);
+global.setting_display_scale      = ini_read_real("display", "scale", 1);
+global.setting_display_fullscreen = ini_read_real("display", "full", false);
+global.setting_display_vsync      = ini_read_real("display", "vsync", false);
 
 // Read/create audio settings:
-global.setting_audio_bgm = ini_read_real("audio", "bgm", DEFAULT_AUDIO_BGM);
-global.setting_audio_sfx = ini_read_real("audio", "sfx", DEFAULT_AUDIO_SFX);
+global.setting_audio_bgm = ini_read_real("audio", "bgm", 0);
+global.setting_audio_sfx = ini_read_real("audio", "sfx", 100);
 
 // Read/create keyboard settings:
-global.setting_input_key[INP_UP]      = ini_read_real("input", "key_up", DEFAULT_KEY_UP);
-global.setting_input_key[INP_DOWN]    = ini_read_real("input", "key_down", DEFAULT_KEY_DOWN);
-global.setting_input_key[INP_LEFT]    = ini_read_real("input", "key_left", DEFAULT_KEY_LEFT);
-global.setting_input_key[INP_RIGHT]   = ini_read_real("input", "key_right", DEFAULT_KEY_RIGHT);
+global.setting_input_key[INP_UP]      = ini_read_real("input", "key_up", vk_up);
+global.setting_input_key[INP_DOWN]    = ini_read_real("input", "key_down", vk_down);
+global.setting_input_key[INP_LEFT]    = ini_read_real("input", "key_left", vk_left);
+global.setting_input_key[INP_RIGHT]   = ini_read_real("input", "key_right", vk_right);
 
-global.setting_input_key[INP_JUMP]    = ini_read_real("input", "key_jump", DEFAULT_KEY_JUMP);
-global.setting_input_key[INP_SPECIAL] = ini_read_real("input", "key_special", DEFAULT_KEY_SPECIAL);
-global.setting_input_key[INP_SWAP]    = ini_read_real("input", "key_swap", DEFAULT_KEY_SWAP);
-global.setting_input_key[INP_SUPER]   = ini_read_real("input", "key_super", DEFAULT_KEY_SUPER);
-global.setting_input_key[INP_TAG]     = ini_read_real("input", "key_tag", DEFAULT_KEY_TAG);
-global.setting_input_key[INP_ALT]     = ini_read_real("input", "key_tag", DEFAULT_KEY_ALT);
+global.setting_input_key[INP_JUMP]    = ini_read_real("input", "key_jump", ord("A"));
+global.setting_input_key[INP_SPECIAL] = ini_read_real("input", "key_special", ord("S"));
+global.setting_input_key[INP_SWAP]    = ini_read_real("input", "key_swap", ord("W"));
+global.setting_input_key[INP_SUPER]   = ini_read_real("input", "key_super", ord("Q"));
+global.setting_input_key[INP_TAG]     = ini_read_real("input", "key_tag", ord("D"));
+global.setting_input_key[INP_ALT]     = ini_read_real("input", "key_alt", ord("E"));
 
-global.setting_input_key[INP_START]   = ini_read_real("input", "key_start", DEFAULT_KEY_START);
-global.setting_input_key[INP_SELECT]  = ini_read_real("input", "key_select", DEFAULT_KEY_SELECT);
-global.setting_input_key[INP_ACCEPT]  = ini_read_real("input", "key_accept", DEFAULT_KEY_ACCEPT);
-global.setting_input_key[INP_CANCEL]  = ini_read_real("input", "key_cancel", DEFAULT_KEY_CANCEL);
-global.setting_input_key[INP_HELP]    = ini_read_real("input", "key_help", DEFAULT_KEY_HELP);
+global.setting_input_key[INP_START]   = ini_read_real("input", "key_start", vk_enter);
+global.setting_input_key[INP_SELECT]  = ini_read_real("input", "key_select", vk_shift);
+global.setting_input_key[INP_ACCEPT]  = ini_read_real("input", "key_accept", ord("A"));
+global.setting_input_key[INP_CANCEL]  = ini_read_real("input", "key_cancel", ord("S"));
+global.setting_input_key[INP_HELP]    = ini_read_real("input", "key_help", ord("W"));
 
 // Read/create joystick settings:
 for (i = 0; i < global.player_count; i += 1) {
@@ -104,13 +104,13 @@ for (i = 0; i < global.player_count; i += 1) {
 }
 
 // Read/create misc. input settings:
-global.setting_input_style = ini_read_real("input", "style", DEFAULT_MISC_STYLE);
+global.setting_input_style = ini_read_real("input", "style", 0);
 global.setting_input_focus = ini_read_real("input", "focus", false);
 
 // Read/create textbox settings:
-global.setting_textbox_red   = ini_read_real("textbox", "red", DEFAULT_TEXTBOX_RED);
-global.setting_textbox_green = ini_read_real("textbox", "green", DEFAULT_TEXTBOX_GREEN);
-global.setting_textbox_blue  = ini_read_real("textbox", "blue", DEFAULT_TEXTBOX_BLUE);
+global.setting_textbox_red   = ini_read_real("textbox", "red", 0);
+global.setting_textbox_green = ini_read_real("textbox", "green", 24);
+global.setting_textbox_blue  = ini_read_real("textbox", "blue", 176);
 
 // Read/create gameplay settings:
 global.setting_gameplay_elemental  = ini_read_real("gameplay", "elemental", true);

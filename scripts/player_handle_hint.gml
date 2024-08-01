@@ -50,6 +50,6 @@ if (ground == true && input_cpu == false && player_collision_prop(hint_handle, S
             hint_wanted = false;
         }
     }
-} else {
+} else if (hint_handle.player_handle == self.id) {
     hint_handle.player_handle = noone;
 }
