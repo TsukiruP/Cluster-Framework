@@ -18,12 +18,10 @@ main_top    = 19;
 main_bottom = 4;
 
 // Hitbox:
-hitbox_left    = 8;
-hitbox_right   = 7;
-hitbox_top     = 18;
-hitbox_bottom  = 4;
-
-hitbox_element = ELEM_LIGHTNING;
+hitbox_left   = 8;
+hitbox_right  = 7;
+hitbox_top    = 18;
+hitbox_bottom = 4;
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
