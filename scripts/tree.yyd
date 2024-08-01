@@ -81,10 +81,10 @@
 					|ctl_sonic_hurt
 					|ctl_sonic_death
 			+Props
-				|ctl_spring
 				+Checkpoint
 					|ctl_checkpoint_inactive
 					|ctl_checkpoint_active
+				|ctl_spring
 				+Badniks
 					|ctl_spinner
 			+Effects

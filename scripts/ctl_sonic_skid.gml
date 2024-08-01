@@ -1,8 +1,5 @@
 /// ctl_sonic_skid()
 
-// Set speed:
-ctl_update(1);
-
 // Start animation:
 if (ctl_position(0)) {
     // Set sprite:

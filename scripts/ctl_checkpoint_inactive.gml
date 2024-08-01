@@ -1,8 +1,5 @@
 /// ctl_checkpoint_inactive()
 
-// Set speed:
-ctl_update(1);
-
 // Start animation:
 if (ctl_position(0)) {
     sprite_index = spr_checkpoint;

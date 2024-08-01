@@ -47,6 +47,7 @@ if (game_ispaused(ctrl_pause)|| object_is_ancestor(self.object_index, par_dash_r
 
 // Execute script:
 if (spring_active == true) {
+    ctl_update();
     script_execute(ctl_index);
 }
 

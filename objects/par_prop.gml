@@ -23,6 +23,8 @@ hitbox_bottom   = 0;
 
 hitbox_offset_x = 0;
 hitbox_offset_y = 0;
+
+hitbox_element  = ELEM_NONE;
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1

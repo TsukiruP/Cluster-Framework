@@ -1,8 +1,5 @@
 /// ctl_sonic_spin_dash()
 
-// Set speed:
-ctl_update(1);
-
 // Start animation:
 if (ctl_position(0)) {
     // Set sprite:

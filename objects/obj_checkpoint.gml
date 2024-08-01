@@ -53,6 +53,7 @@ if (checkpoint_active == true) {
 
 // Execute timeline:
 if (ctl_index != noone) {
+    ctl_update();
     script_execute(ctl_index);
 }
 #define Draw_0

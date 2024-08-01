@@ -1,8 +1,5 @@
 /// ctl_sonic_ready()
 
-// Set speed:
-ctl_update(1);
-
 // Start effect:
 if (ctl_position(0)) {
     // Set sprite:

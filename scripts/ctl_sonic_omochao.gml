@@ -6,9 +6,6 @@ if (animation_trigger == true && animation_reverse == true) {
     animation_trigger = false;
 }
 
-// Set speed:
-ctl_update(1);
-
 // Forward:
 if (animation_reverse == false) {
     // Start animation:

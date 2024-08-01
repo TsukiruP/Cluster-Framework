@@ -1,8 +1,5 @@
 /// ctl_sonic_spring_fall()
 
-// Set speed:
-ctl_update(1);
-
 // Start animation:
 if (ctl_position(0)) {
     // Set sprite:

@@ -1,8 +1,5 @@
 /// ctl_shield_basic()
 
-// Set speed:
-ctl_update(1);
-
 // Start effect:
 if (ctl_position(0)) {
     sprite_index = spr_shield_basic;

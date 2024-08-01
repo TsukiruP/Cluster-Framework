@@ -1,8 +1,5 @@
 /// ctl_splash_1()
 
-// Set speed:
-ctl_update(1);
-
 // Start effect:
 if (ctl_position(0)) {
     sprite_index = spr_splash_1;

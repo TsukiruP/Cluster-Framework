@@ -7,5 +7,6 @@ if (argument_count >= 1) {
     ctl_index = noone;
 }
 
+ctl_speed         = 1;
 ctl_time          = 0;
 ctl_time_previous = 0;

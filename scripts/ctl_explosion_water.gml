@@ -1,8 +1,5 @@
 /// ctl_explosion_water()
 
-// Set speed:
-ctl_update(1);
-
 // Start effect:
 if (ctl_position(0)) {
     sprite_index = spr_explosion_water;

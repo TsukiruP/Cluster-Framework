@@ -26,5 +26,6 @@ if (game_ispaused(ctrl_pause)) {
 
 // Execute timeline:
 if (ctl_index != noone) {
+    ctl_update();
     script_execute(ctl_index);
 }

@@ -1,8 +1,5 @@
 /// ctl_sonic_run_3()
 
-// Set speed:
-ctl_update(clamp(abs(g_speed * 16 * 3) / 64, 0.5, 7));
-
 // Start animation:
 if (ctl_position(0)) {
     // Set sprite:
