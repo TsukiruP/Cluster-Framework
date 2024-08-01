@@ -12,6 +12,6 @@ if (sensor_handle == noone) {
 }
 
 // Change layer:
-if (player_collision_prop(sensor_handle, SIDE_MAIN) != 0) {
+if (player_collision_prop(sensor_handle, SIDE_MAIN)) {
     layer = sensor_handle.layer;
 }

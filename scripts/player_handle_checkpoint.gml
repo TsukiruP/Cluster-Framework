@@ -12,10 +12,10 @@ if (checkpoint_handle == noone) {
 }
 
 // Activate checkpoint:
-if (player_collision_prop(checkpoint_handle, SIDE_MAIN) != 0) {
+if (player_collision_prop(checkpoint_handle, SIDE_MAIN)) {
     if (input_cpu == false) {
         if (global.checkpoint_x != checkpoint_handle.x && global.checkpoint_y != checkpoint_handle.y && checkpoint_handle.checkpoint_active == false) {
-            // Set active:
+            // Activate:
             with (checkpoint_handle) {
                 checkpoint_active = true;
                 checkpoint_set();

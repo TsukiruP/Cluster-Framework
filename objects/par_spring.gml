@@ -66,5 +66,5 @@ applies_to=self
 // Spring:
 draw_self();
 
-// Size:
+// Collision:
 event_inherited();

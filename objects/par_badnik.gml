@@ -21,5 +21,5 @@ applies_to=self
 // Checkpoint:
 draw_self();
 
-// Size:
+// Collision:
 event_inherited();

@@ -11,11 +11,11 @@ event_inherited();
 // Image speed:
 image_speed = 0;
 
-// Size:
-main_left     = 13;
-main_right    = 12;
-main_top      = 16;
-main_bottom   = 16;
+// Main:
+main_left   = 13;
+main_right  = 12;
+main_top    = 16;
+main_bottom = 16;
 
 // Player handle:
 player_handle = noone;
@@ -84,5 +84,5 @@ draw_sprite(spr_item_icon, item_id, x, y);
 // Item box:
 draw_sprite(spr_item_box, 1, x, y);
 
-// Size:
+// Collision:
 event_inherited();

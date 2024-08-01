@@ -36,6 +36,12 @@ if (global.game_debug == false) {
     exit;
 }
 
+// Main:
 draw_set_color(c_red);
 
 draw_rectangle(x - main_left + main_offset_x, y - main_top + main_offset_y, x + main_right + main_offset_x, y + main_bottom + main_offset_y, true);
+
+// Hitbox:
+draw_set_color(c_lime);
+
+draw_rectangle(x - hitbox_left + hitbox_offset_x, y - hitbox_top + hitbox_offset_y, x + hitbox_right + hitbox_offset_x, y + hitbox_bottom + hitbox_offset_y, true);

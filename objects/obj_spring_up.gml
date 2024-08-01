@@ -8,7 +8,7 @@ applies_to=self
 
 event_inherited();
 
-// Size:
+// Main:
 main_left     = 5;
 main_right    = 5;
 main_top      = 10;

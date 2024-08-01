@@ -8,11 +8,12 @@ applies_to=self
 
 event_inherited();
 
-// Size:
+// Main:
 main_left     = 11;
 main_right    = 10;
 main_top      = 11;
 main_bottom   = 10;
+
 main_offset_x = 2;
 main_offset_y = 5;
 
@@ -100,5 +101,5 @@ applies_to=self
 // Omochao:
 draw_sprite_ext(sprite_index, image_index, draw_x + (image_xscale < 0), draw_y, image_xscale, 1, 0, c_white, 1);
 
-// Size:
+// Collision:
 event_inherited();

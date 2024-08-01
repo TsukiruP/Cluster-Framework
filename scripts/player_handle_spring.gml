@@ -12,11 +12,11 @@ if (spring_handle == noone) {
 }
 
 // Activate spring:
-if (player_collision_prop(spring_handle, SIDE_MAIN) != 0) {
+if (player_collision_prop(spring_handle, SIDE_MAIN)) {
     // Spring ancestry:
     spring_ancestry = object_is_ancestor(spring_handle.object_index, par_dash_ring);
 
-    // Set active:
+    // Activate:
     with (spring_handle) {
         if (spring_active == false) {
             spring_active = true;
@@ -32,7 +32,7 @@ if (player_collision_prop(spring_handle, SIDE_MAIN) != 0) {
     x_speed =  dcos(spring_angle) * spring_strength;
     y_speed = -dsin(spring_angle) * spring_strength;
 
-    // Move player:
+    // Move:
     if (spring_alarm == 0 || spring_current != spring_handle) {
         // Set positon:
         x = spring_handle.x;

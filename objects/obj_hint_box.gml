@@ -8,11 +8,12 @@ applies_to=self
 
 event_inherited();
 
-// Size:
+// Main:
 main_left     = 21;
 main_right    = 19;
 main_top      = 17;
 main_bottom   = 16;
+
 main_offset_x = 0;
 main_offset_y = 31;
 
@@ -60,5 +61,5 @@ applies_to=self
 // Hint Box:
 draw_sprite_ext(sprite_index, instance_exists(player_handle) + 1, x, draw_y, image_xscale, 1, 0, c_white, 1);
 
-// Size:
+// Collision:
 event_inherited();

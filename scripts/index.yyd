@@ -174,3 +174,4 @@ joystick_get_check
 input_get_check
 
 ctl_checkpoint_active
+player_handle_badnik

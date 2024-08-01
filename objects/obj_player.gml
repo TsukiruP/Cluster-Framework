@@ -99,7 +99,7 @@ touching_ceiling       = false;
 platform_instance = noone;
 platform_check    = false;
 
-// Main size variables:
+// Main variables:
 main_left      = 6;
 main_right     = 6;
 main_top       = 14;
@@ -447,6 +447,7 @@ player_handle_ring();
 player_handle_checkpoint();
 player_handle_spring();
 player_handle_item_box();
+player_handle_badnik();
 player_handle_hint();
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -1528,14 +1529,14 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Draw Size
+/// Draw Collision
 
 // Exit if not in debug mode:
 if (global.game_debug == false) {
     exit;
 }
 
-// Main size:
+// Main:
 var x1, y1, x2, y2;
 
 switch (mode) {

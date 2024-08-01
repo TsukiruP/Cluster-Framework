@@ -12,7 +12,7 @@ if (hint_handle == noone) {
 }
 
 // Interact:
-if (ground == true && input_cpu == false && player_collision_prop(hint_handle, SIDE_MAIN) != 0) {
+if (ground == true && input_cpu == false && player_collision_prop(hint_handle, SIDE_MAIN)) {
     // Set hint's player handle:
     hint_handle.player_handle = self.id;
 

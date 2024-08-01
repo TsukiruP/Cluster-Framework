@@ -11,7 +11,7 @@ event_inherited();
 // Image speed:
 image_speed = 0;
 
-// Size:
+// Main:
 main_left     = 8;
 main_right    = 7;
 main_top      = 8;

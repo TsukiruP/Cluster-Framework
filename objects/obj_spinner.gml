@@ -10,6 +10,18 @@ event_inherited();
 
 // Timeline initialization:
 ctl_initialize(ctl_spinner);
+
+// Main:
+main_left     = 20;
+main_right    = 20;
+main_top      = 19;
+main_bottom   = 4;
+
+// Hitbox:
+hitbox_left     = 8;
+hitbox_right    = 7;
+hitbox_top      = 18;
+hitbox_bottom   = 4;
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1

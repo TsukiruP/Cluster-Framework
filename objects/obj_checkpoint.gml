@@ -14,11 +14,11 @@ image_speed = 0;
 // Timeline initialization:
 ctl_initialize(ctl_checkpoint_inactive);
 
-// Size:
-main_left     = 13;
-main_right    = 14;
-main_top      = 37;
-main_bottom   = 0;
+// Main:
+main_left   = 13;
+main_right  = 14;
+main_top    = 37;
+main_bottom = 0;
 
 // Checkpoint variables:
 checkpoint_active = false;
@@ -66,5 +66,5 @@ applies_to=self
 // Checkpoint:
 draw_self();
 
-// Size:
+// Collision:
 event_inherited();

@@ -8,11 +8,11 @@ applies_to=self
 
 event_inherited();
 
-// Size:
-main_left     = 8;
-main_right    = 7;
-main_top      = 8;
-main_bottom   = 7;
+// Main:
+main_left   = 8;
+main_right  = 7;
+main_top    = 8;
+main_bottom = 7;
 
 // Layer variables:
 layer = 0;
@@ -27,5 +27,5 @@ applies_to=self
 // Sensor:
 draw_self();
 
-// Size:
+// Collision:
 event_inherited();
