@@ -38,16 +38,16 @@ if (player_handle.status_invin != INVIN_BUFF) {
             break;
 
         // Bubble:
-        case SHIELD_BUBBLE:
-            if (ctl_index != ctl_shield_bubble) {
-                timeline_set(ctl_shield_bubble);
+        case SHIELD_LIGHTNING:
+            if (ctl_index != ctl_shield_lightning) {
+                timeline_set(ctl_shield_lightning);
             }
             break;
 
         // Bubble:
-        case SHIELD_LIGHTNING:
-            if (ctl_index != ctl_shield_lightning) {
-                timeline_set(ctl_shield_lightning);
+        case SHIELD_BUBBLE:
+            if (ctl_index != ctl_shield_bubble) {
+                timeline_set(ctl_shield_bubble);
             }
             break;
 
@@ -72,9 +72,9 @@ applies_to=self
 */
 /// Animate
 
-var shield_advance;
-
 event_inherited();
+
+var shield_advance;
 
 // Update depth:
 if ((player_handle.status_shield == SHIELD_FIRE && (image_index mod 2) != 0) || (player_handle.status_shield == SHIELD_LIGHTNING && ctl_time > 48)) {

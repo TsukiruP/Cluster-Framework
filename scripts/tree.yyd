@@ -98,8 +98,8 @@
 					|ctl_shield_basic
 					|ctl_shield_magnetic
 					|ctl_shield_fire
-					|ctl_shield_bubble
 					|ctl_shield_lightning
+					|ctl_shield_bubble
 					|ctl_shield_invin
 				+Explosions
 					|ctl_explosion_small

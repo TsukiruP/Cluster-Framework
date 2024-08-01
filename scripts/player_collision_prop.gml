@@ -43,6 +43,11 @@ switch (pl_type) {
         pl_offset_y = 0;
 }
 
+// Return:
+if (pl_left == 0 && pl_right == 0 && pl_top == 0 && pl_bottom == 0) {
+    return false;
+}
+
 // Player collision:
 var pl_x1, pl_y1, pl_x2, pl_y2;
 
@@ -103,6 +108,11 @@ if (pr_hitbox == true) {
     pr_offset_y = argument[0].main_offset_y;
 }
 
+// Return:
+if (pr_left == 0 && pr_right == 0 && pr_top == 0 && pr_bottom == 0) {
+    return false;
+}
+
 var pr_x1, pr_y1, pr_x2, pr_y2;
 
 switch (argument[1]) {
@@ -142,5 +152,5 @@ switch (argument[1]) {
         break;
 }
 
-// Return collision:
+// Return:
 return rectangle_in_rectangle(pl_x1, pl_y1, pl_x2, pl_y2, pr_x1, pr_y1, pr_x2, pr_y2);

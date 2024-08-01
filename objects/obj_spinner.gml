@@ -12,16 +12,18 @@ event_inherited();
 ctl_initialize(ctl_spinner);
 
 // Main:
-main_left     = 20;
-main_right    = 20;
-main_top      = 19;
-main_bottom   = 4;
+main_left   = 20;
+main_right  = 20;
+main_top    = 19;
+main_bottom = 4;
 
 // Hitbox:
-hitbox_left     = 8;
-hitbox_right    = 7;
-hitbox_top      = 18;
-hitbox_bottom   = 4;
+hitbox_left    = 8;
+hitbox_right   = 7;
+hitbox_top     = 18;
+hitbox_bottom  = 4;
+
+hitbox_element = ELEM_LIGHTNING;
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -34,6 +36,9 @@ applies_to=self
 if (game_ispaused(ctrl_pause)) {
     exit;
 }
+
+// Timeline speed:
+ctl_speed = global.game_speed;
 
 // Execute timeline:
 if (ctl_index != noone) {

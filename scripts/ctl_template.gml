@@ -1,8 +1,5 @@
 /// ctl_template()
 
-// Set speed:
-ctl_update(1);
-
 // Start animation/effect:
 if (ctl_position(0)) {
     sprite_index = noone;

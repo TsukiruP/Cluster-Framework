@@ -2,7 +2,7 @@
 //
 
 // Exit if already hurt, dying, or invincible:
-if (action_current == player_action_hurt || action_current == player_action_death || status_invin > 0) {
+if (action_current == player_action_hurt || action_current == player_action_death || (status_invin != INVIN_NONE && argument0 != self)) {
     exit;
 }
 

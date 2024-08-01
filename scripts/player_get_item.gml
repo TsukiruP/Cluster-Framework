@@ -44,15 +44,6 @@ switch (argument0) {
         sound_play("snd_shield_fire");
         break;
 
-    // Bubble shield:
-    case ITEM_BUBBLE:
-        status_shield       = SHIELD_BUBBLE;
-        status_shield_state = 0;
-
-        // Play sound:
-        sound_play("snd_shield_bubble");
-        break;
-
     // Lightning shield:
     case ITEM_LIGHTNING:
         status_shield       = SHIELD_LIGHTNING;
@@ -60,6 +51,15 @@ switch (argument0) {
 
         // Play sound:
         sound_play("snd_shield_lightning");
+        break;
+
+    // Bubble shield:
+    case ITEM_BUBBLE:
+        status_shield       = SHIELD_BUBBLE;
+        status_shield_state = 0;
+
+        // Play sound:
+        sound_play("snd_shield_bubble");
         break;
 
     // Invincibility:

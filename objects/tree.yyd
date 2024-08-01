@@ -64,8 +64,8 @@
 				|obj_item_basic
 				|obj_item_magnetic
 				|obj_item_fire
-				|obj_item_bubble
 				|obj_item_lightning
+				|obj_item_bubble
 			+Buffs
 				|obj_item_invin
 				|obj_item_speed
@@ -91,8 +91,8 @@
 			|eff_afterimage
 			|eff_player
 			|eff_spin_dash
-			|eff_debuff
 			|eff_shield
+			|eff_debuff
 +Stages
 	+Parents
 		|par_terrain

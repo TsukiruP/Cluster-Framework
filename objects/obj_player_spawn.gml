@@ -9,7 +9,7 @@ applies_to=self
 // Move to checkpoint:
 if (checkpoint_isset()) {
     x = global.checkpoint_x;
-    y = global.checkpoint_y - 20;
+    y = global.checkpoint_y;
 }
 
 // Create players:

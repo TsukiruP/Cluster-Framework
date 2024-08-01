@@ -37,6 +37,6 @@ if ((player_collision_prop(badnik_handle, SIDE_MAIN) && status_invin == INVIN_BU
 }
 
 // Get hurt:
-else if (player_collision_prop(badnik_handle, SIDE_MAIN, 0, true) || player_collision_prop(badnik_handle, SIDE_MAIN, 1, true)) {
+else if ((player_collision_prop(badnik_handle, SIDE_MAIN, 0, true) || player_collision_prop(badnik_handle, SIDE_MAIN, 1, true)) && status_shield - SHIELD_MAGNETIC != badnik_handle.hitbox_element) {
     player_set_damage(badnik_handle);
 }
