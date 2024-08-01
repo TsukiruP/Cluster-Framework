@@ -218,6 +218,11 @@ applies_to=self
 */
 /// Debug
 
+// Exit if not in debug mode:
+if (global.game_debug == false) {
+    exit;
+}
+
 var menu_left, menu_right, menu_direction, player_handle;
 
 // Menu:
@@ -323,7 +328,7 @@ switch (debug_section) {
     // Water:
     case 4:
         // Title:
-        debug_title = "- W ater -";
+        debug_title = "- Water -";
 
         if (instance_exists(player_handle)) {
             var player_surface, player_splash, player_underwater, player_air, player_alarm, player_countdown;
@@ -698,6 +703,11 @@ action_id=603
 applies_to=self
 */
 /// Draw Debug
+
+// Exit if not in debug mode:
+if (global.game_debug == false) {
+    exit;
+}
 
 // Box:
 draw_set_color(make_color_rgb(global.textbox_red, global.textbox_green, global.textbox_blue));
