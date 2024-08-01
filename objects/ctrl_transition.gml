@@ -51,7 +51,7 @@ zone_x_factor  = 9;
 switch (global.player_data[0]) {
     // Sonic:
     default:
-        character_index    =  spr_sonic_run;
+        character_index    =  spr_sonic_run_4;
         character_y_offset = -7;
 }
 

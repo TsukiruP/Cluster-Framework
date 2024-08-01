@@ -234,8 +234,8 @@ applies_to=self
 /// Water Initialization:
 
 // Surface variables:
-water_surface      = false;
-water_splash_alarm = 14;
+water_surface = false;
+splash_alarm  = 14;
 
 // Underwater variables:
 underwater    = false;
@@ -550,9 +550,9 @@ if (instance_exists(obj_water_surface)) {
 
         // Create splash:
         if (y_speed >= 2.50) {
-            effect_create(ctl_splash_large, floor(x), obj_water_surface.y, depth);
+            effect_create(ctl_splash_1, floor(x), obj_water_surface.y, depth);
         } else {
-            effect_create(ctl_splash_small, floor(x), obj_water_surface.y, depth);
+            effect_create(ctl_splash_0, floor(x), obj_water_surface.y, depth);
         }
 
         // Play sound:
@@ -565,9 +565,9 @@ if (instance_exists(obj_water_surface)) {
 
         // Create splash:
         if (abs(y_speed) >= 6) {
-            effect_create(ctl_splash_large, floor(x), obj_water_surface.y, depth);
+            effect_create(ctl_splash_1, floor(x), obj_water_surface.y, depth);
         } else {
-            effect_create(ctl_splash_small, floor(x), obj_water_surface.y, depth);
+            effect_create(ctl_splash_0, floor(x), obj_water_surface.y, depth);
         }
 
         // Play sound:
@@ -578,27 +578,28 @@ if (instance_exists(obj_water_surface)) {
     if (water_surface == true) {
         // Create step/run splash:
         if (ground == true && abs(g_speed) > 0) {
-            if (water_splash_alarm > 0) {
-                water_splash_alarm -= 1;
 
-                if (water_splash_alarm == 0) {
+            if (splash_alarm > 0) {
+                splash_alarm -= 1;
+
+                if (splash_alarm == 0) {
                     if (abs(g_speed) >= 4.50) {
-                        effect_create(ctl_splash_run, floor(x), obj_water_surface.y, depth, image_xscale);
-                        water_splash_alarm = 7;
+                        effect_create(ctl_splash_3, floor(x), obj_water_surface.y, depth, image_xscale);
                     } else {
-                        effect_create(ctl_splash_step, floor(x), obj_water_surface.y, depth, image_xscale);
-                        water_splash_alarm = 14;
+                        effect_create(ctl_splash_2, floor(x), obj_water_surface.y, depth, image_xscale);
                     }
+
+                    splash_alarm = 9;
                 }
             }
         }
 
         // Create jump splash:
         if ((ground == false && y_speed < 0) || (ground == true && y_speed > 0)) {
-            effect_create(ctl_splash_run, floor(x), obj_water_surface.y, depth, image_xscale);
+            effect_create(ctl_splash_3, floor(x), obj_water_surface.y, depth, image_xscale);
         }
     } else {
-        water_splash_alarm = 14;
+        splash_alarm = 9;
     }
 
     // Water surface:
@@ -823,27 +824,27 @@ switch (action_current) {
     case player_action_run:
         // Walk:
         if (abs(g_speed) < 1.50) {
-            if (animation_target != "walk") player_set_animation("walk");
+            if (animation_target != "run_0") player_set_animation("run_0");
         }
 
         // Walk fast:
         else if (abs(g_speed) < 3.00) {
-            if (animation_target != "walk_fast") player_set_animation("walk_fast");
+            if (animation_target != "run_1") player_set_animation("run_1");
         }
 
         // Jog:
         else if (abs(g_speed) < 4.50) {
-            if (animation_target != "jog") player_set_animation("jog");
+            if (animation_target != "run_2") player_set_animation("run_2");
         }
 
         // Jog fast:
         else if (abs(g_speed) < 6.00) {
-            if (animation_target != "jog") player_set_animation("jog");
+            if (animation_target != "run_3") player_set_animation("run_3");
         }
 
         // Run:
         else {
-            if (animation_target != "run") player_set_animation("run");
+            if (animation_target != "run_4") player_set_animation("run_4");
         }
         break;
 

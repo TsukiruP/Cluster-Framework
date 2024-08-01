@@ -1,7 +1,7 @@
 /// sonic_animation_list()
 
 // Stand:
-player_add_animation(CHAR_SONIC, "stand",         ctl_sonic_stand) //,     tml_sonic_idle_tag);
+player_add_animation(CHAR_SONIC, "stand",         ctl_sonic_stand); //,     tml_sonic_idle_tag);
 
 // Balance:
 player_add_animation(CHAR_SONIC, "balance_front", ctl_sonic_balance_front);
@@ -24,11 +24,11 @@ player_add_animation(CHAR_SONIC, "turn",          ctl_sonic_turn) //,      tml_s
 player_add_animation(CHAR_SONIC, "turn_skid",     ctl_sonic_turn_skid);
 
 // Run:
-player_add_animation(CHAR_SONIC, "walk",          ctl_sonic_walk) //      tml_sonic_walk_tag);
-player_add_animation(CHAR_SONIC, "walk_fast",     ctl_sonic_walk_fast) // tml_sonic_walk_fast_tag);
-player_add_animation(CHAR_SONIC, "jog",           ctl_sonic_jog) //,       tml_sonic_jog_tag);
-player_add_animation(CHAR_SONIC, "jog_fast",      ctl_sonic_jog_fast);
-player_add_animation(CHAR_SONIC, "run",           ctl_sonic_run);
+player_add_animation(CHAR_SONIC, "run_0",         ctl_sonic_run_0) //      tml_sonic_walk_tag);
+player_add_animation(CHAR_SONIC, "run_1",         ctl_sonic_run_1) // tml_sonic_walk_fast_tag);
+player_add_animation(CHAR_SONIC, "run_2",         ctl_sonic_run_2) //,       tml_sonic_jog_tag);
+player_add_animation(CHAR_SONIC, "run_3",         ctl_sonic_run_3);
+player_add_animation(CHAR_SONIC, "run_4",         ctl_sonic_run_4);
 
 // Look:
 player_add_animation(CHAR_SONIC, "look",          ctl_sonic_look);

@@ -58,7 +58,7 @@ if (game_ispaused(ctrl_text)) {
     exit;
 }
 
-var menu_down, menu_up, menu_direction;
+var menu_up, menu_down, menu_direction;
 
 // Exit if some menu behavior has been executed:
 if (menu_lock == true) {
@@ -113,9 +113,8 @@ if (pause_hide != 0) {
 }
 
 // Menu direction:
-menu_down = input_get_check(INP_DOWN, CHECK_PRESSED);
-menu_up   = input_get_check(INP_UP, CHECK_PRESSED);
-
+menu_up        = input_get_check(INP_UP, CHECK_PRESSED);
+menu_down      = input_get_check(INP_DOWN, CHECK_PRESSED);
 menu_direction = menu_down - menu_up;
 
 // Menu selection:
@@ -165,44 +164,6 @@ if (pause_delay == 0) {
                 }
                 break;
         }
-
-        /*
-        switch (menu_current) {
-            // Pause menu:
-            case 0:
-                // Pull up sub menu:
-                if (menu_selection != 0) {
-                    menu_current        =  1;
-                    sub_level         =  menu_selection - 1;
-                    sub_selection     =  0;
-                    pause_x_target[0] = -sprite_get_width(pause_menu);
-                }
-
-                // Return to gameplay:
-                else {
-                    event_user(0);
-                }
-                break;
-
-            // Sub menu:
-            case 1:
-                if (sub_selection == 0) {
-                    // Restart:
-                    if (sub_level == 0) {
-                        menu_lock   = true;
-                        fade_handle = fade_create(0.02, 2, depth);
-                    }
-
-                    pause_x_target = -sprite_get_width(pause_menu) - sub_distance;
-                }
-
-                // Return to pause menu:
-                else {
-                    event_user(1);
-                }
-                break;
-        }
-        */
     }
 
     // Start:

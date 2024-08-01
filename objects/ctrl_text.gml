@@ -73,7 +73,7 @@ applies_to=self
 */
 /// Debug Initialization
 
-debug_section = 3;
+debug_section = 0;
 
 debug_title   = "";
 debug_stats   = "";
@@ -101,7 +101,7 @@ if (text_clear == false) {
     if (!game_ispaused(ctrl_pause) && (text_message != "" || topic_message != "" || log_alpha[1] != 0) && input_get_check(INP_SELECT, CHECK_PRESSED)) text_hide = !text_hide;
 
     if (text_hide == false) {
-        var scroll_min, scroll_max, scroll_direction;
+        var scroll_min, scroll_max, scroll_up, scroll_down, scroll_direction;
 
         // Height:
         draw_set_font(global.font_system);
@@ -180,7 +180,9 @@ if (text_clear == false) {
             scroll_max = ((log_height - log_scroll) > (global.display_height - 32));
         }
 
-        scroll_direction = ((input_get_check(INP_DOWN, CHECK_PRESSED) || input_get_timer(INP_DOWN, 30)) && scroll_max) - ((input_get_check(INP_UP, CHECK_PRESSED) || input_get_timer(INP_UP, 30)) && scroll_min > 0);
+        scroll_up        = ((input_get_check(INP_UP, CHECK_PRESSED) || input_get_timer(INP_UP, 30)) && scroll_min > 0);
+        scroll_down      = ((input_get_check(INP_DOWN, CHECK_PRESSED) || input_get_timer(INP_DOWN, 30)) && scroll_max);
+        scroll_direction = scroll_down - scroll_up;
 
         // Textbox scroll:
         if (log_hide == true && text_scroll[1] != 0 && (text_scroll[4] == true)) {
@@ -216,7 +218,18 @@ applies_to=self
 */
 /// Debug
 
-var player_handle;
+var menu_left, menu_right, menu_direction, player_handle;
+
+// Menu:
+menu_left      = keyboard_check_pressed(vk_numpad4);
+menu_right     = keyboard_check_pressed(vk_numpad6);
+menu_direction = menu_right - menu_left;
+
+if (menu_direction != 0) {
+    debug_section += menu_direction;
+}
+
+debug_section = wrap(debug_section, 0, 5);
 
 // Player handle:
 player_handle = instance_player(0);
@@ -310,19 +323,61 @@ switch (debug_section) {
     // Water:
     case 4:
         // Title:
-        debug_title = "- Water -";
+        debug_title = "- W ater -";
+
+        if (instance_exists(player_handle)) {
+            var player_surface, player_splash, player_underwater, player_air, player_alarm, player_countdown;
+
+            // Player variables:
+            player_surface    = player_handle.water_surface;
+            player_splash     = player_handle.splash_alarm;
+
+            player_underwater = player_handle.underwater;
+            player_air        = player_handle.air_remaining;
+            player_alarm      = player_handle.air_alarm;
+
+            player_countdown  = player_handle.drown_countdown;
+
+            // Stats:
+            debug_stats = "Surface: " + string(player_surface) + "#" +
+                            "Splash Alarm: " + string(player_splash) + "#" + "#" +
+
+                            "Underwater: " + string(player_underwater) + "#" +
+                            "Air: " + string(player_air) + "#" +
+                            "Air Alarm: " + string(player_alarm) + "#" + "#" +
+
+                            "Countdown: " + string(player_countdown);
+        }
         break;
 
     // Animation:
     case 5:
         // Title:
         debug_title = "- Animation -";
-        break;
 
-    // Camera:
-    case 6:
-        // Title:
-        debug_title = "- Camera -";
+        if (instance_exists(player_handle)) {
+            var player_current, player_target, player_previous, player_variant, player_finished, player_reverse, player_alarm;
+
+            // Player variables:
+            player_current  = player_handle.animation_current;
+            player_target   = player_handle.animation_target;
+            player_previous = player_handle.animation_previous;
+            player_variant  = player_handle.animation_variant;
+
+            player_finished = player_handle.animation_finished;
+            player_reverse  = player_handle.animation_reverse;
+            player_alarm    = player_handle.animation_alarm;
+
+            // Stats:
+            debug_stats = "Current: " + string(player_current) + "#" +
+                            "Target: " + string(player_target) + "#" +
+                            "Previous: " + string(player_previous) + "#" +
+                            "Variant: " + string(player_variant) + "#" + "#" +
+
+                            "Finished: " + string(player_finished) + "#" +
+                            "Reversed: " + string(player_reverse) + "#" +
+                            "Alarm: " + string(player_alarm);
+        }
         break;
 
     // Game:
@@ -331,17 +386,18 @@ switch (debug_section) {
         debug_title = "- Game -";
 
         // Stats:
-        debug_stats = "Time Allow: " + string(global.time_allow) + "#" +
-                        "Pause Allow: " + string(global.pause_allow) + "#" + "#" +
-
-                        "Game Speed: " + string_format(global.game_speed, 1, 2) + "#" +
+        debug_stats = "Game Speed: " + string_format(global.game_speed, 1, 2) + "#" +
                         "Game Time: " + string(global.game_time) + "#" +
                         "Object Time: " + string(global.object_time) + "#" +
                         "Rings: " + string(global.game_rings) + "#" +
                         "Score: " + string(global.game_score) + "#" + "#" +
 
                         "Room: " + string(room) + "#" +
-                        "Room Name: " + room_name(room);
+                        "Room Name: " + room_name(room) + "#" + "#" +
+
+                        "Checkpoint X: " + string(global.checkpoint_x) + "#" +
+                        "Checkpoint Y: " + string(global.checkpoint_y) + "#" +
+                        "Checkpoint Time: " + string(global.checkpoint_time);
 }
 
 debug_message = debug_title + "#" + debug_stats;
@@ -658,7 +714,7 @@ draw_set_alpha(1);
 draw_set_halign(fa_center);
 draw_set_valign(fa_top);
 
-draw_text_ext((debug_x1 + debug_x2) / 2, debug_y1 + 4, debug_title, font_height, debug_x2 - debug_x1);
+draw_text_ext((debug_x1 + debug_x2) div 2, debug_y1 + 4, debug_title, font_height, debug_x2 - debug_x1);
 
 // Stats:
 draw_set_halign(fa_left);

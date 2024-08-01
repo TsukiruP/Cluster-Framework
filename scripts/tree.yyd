@@ -53,11 +53,11 @@
 						|ctl_sonic_turn
 						|ctl_sonic_turn_skid
 					+Run
-						|ctl_sonic_walk
-						|ctl_sonic_walk_fast
-						|ctl_sonic_jog
-						|ctl_sonic_jog_fast
-						|ctl_sonic_run
+						|ctl_sonic_run_0
+						|ctl_sonic_run_1
+						|ctl_sonic_run_2
+						|ctl_sonic_run_3
+						|ctl_sonic_run_4
 					+Look
 						|ctl_sonic_look
 					+Crouch
@@ -105,11 +105,11 @@
 					|ctl_explosion_badnik
 					|ctl_explosion_water
 				+Splashes
-					|ctl_splash_small
-					|ctl_splash_large
-					|ctl_splash_step
-					|ctl_splash_run
-					|ctl_splash_dash
+					|ctl_splash_0
+					|ctl_splash_1
+					|ctl_splash_2
+					|ctl_splash_3
+					|ctl_splash_4
 				+Misc.
 					|ctl_ring_sparkle
 	+Math

@@ -45,12 +45,12 @@
 				|spr_sonic_turn_tag
 				|spr_sonic_turn_skid
 			+Run
-				|spr_sonic_walk
-				|spr_sonic_walk_fast
-				|spr_sonic_jog
-				|spr_sonic_jog_fast
-				|spr_sonic_run
-				|spr_sonic_dash
+				|spr_sonic_run_0
+				|spr_sonic_run_1
+				|spr_sonic_run_2
+				|spr_sonic_run_3
+				|spr_sonic_run_4
+				|spr_sonic_run_5
 				+Tag
 					|spr_sonic_walk_tag
 					|spr_sonic_walk_fast_tag
@@ -307,11 +307,11 @@
 			|spr_explosion_badnik
 			|spr_explosion_water
 		+Splashes
-			|spr_splash_small
-			|spr_splash_large
-			|spr_splash_step
-			|spr_splash_run
-			|spr_splash_dash
+			|spr_splash_0
+			|spr_splash_1
+			|spr_splash_2
+			|spr_splash_3
+			|spr_splash_4
 		+Misc.
 			|spr_ring_sparkle
 +Stages
@@ -355,9 +355,7 @@
 +Trash
 	+Solids
 	+Platforms
-		|spr_basic_test_collision_plat_01
 	+Low
-		|spr_basic_test_collision_low_01
 	+High
 		|spr_basic_test_collision_high_01
 	+Masks
@@ -372,3 +370,5 @@
 		|mask_platform_fix
 		|mask_ledge
 	|spr_checkpoint_active
+	|spr_basic_test_collision_plat_01
+	|spr_basic_test_collision_low_01
