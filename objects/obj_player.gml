@@ -486,7 +486,7 @@ if (status_speed == SPEED_SLOW) {
             g_speed = top_speed * sign(g_speed);
         }
 
-        // x speed:
+        // X speed:
         if (abs(x_speed) > top_speed) {
             x_speed = top_speed * sign(x_speed);
         }

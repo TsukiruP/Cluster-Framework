@@ -35,6 +35,8 @@ if (game_ispaused(ctrl_pause)) {
     exit;
 }
 
+event_inherited();
+
 // Timeline speed:
 ctl_speed = global.game_speed;
 

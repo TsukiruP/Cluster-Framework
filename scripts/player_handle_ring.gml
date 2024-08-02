@@ -14,14 +14,14 @@ if (ring_handle == noone) {
 // Collect ring:
 if (player_collision_prop(ring_handle, SIDE_MAIN)) {
     if (status_invin != INVIN_HURT || (status_invin == INVIN_HURT && status_invin_alarm > 0 && status_invin_alarm < 90)) {
+        // Total rings:
+        global.game_rings += 1;
+        
         // Destroy:
         with (ring_handle) {
             effect_create(ctl_ring_sparkle, x, y, depth - 1);
             instance_destroy();
         }
-        
-        // Total rings:
-        global.game_rings += 1;
         
         // Play sound:
         sound_play_single("snd_ring");

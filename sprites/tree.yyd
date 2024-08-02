@@ -307,6 +307,8 @@
 			|spr_explosion_large
 			|spr_explosion_badnik
 			|spr_explosion_water
+		+Badniks
+			|spr_badnik_health
 		+Splashes
 			|spr_splash_0
 			|spr_splash_1
@@ -370,5 +372,4 @@
 		|mask_edge_line
 		|mask_platform_fix
 		|mask_ledge
-	|spr_basic_test_collision_plat_01
 	|spr_basic_test_collision_low_01
