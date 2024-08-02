@@ -191,8 +191,7 @@ spin_dash_charge = 0;
 // Skid dust alarm:
 skid_dust_alarm = 3;
 
-// Shield variables:
-shield_insta  = noone;
+// Shield handle:
 shield_handle = noone;
 
 // Debuff handle:
@@ -551,9 +550,9 @@ if (instance_exists(obj_water_surface)) {
 
         // Create splash:
         if (y_speed >= 2.50) {
-            effect_create(ctl_splash_1, floor(x), obj_water_surface.y, depth);
+            effect_create(ctl_splash_1, floor(x), obj_water_surface.y, -10);
         } else {
-            effect_create(ctl_splash_0, floor(x), obj_water_surface.y, depth);
+            effect_create(ctl_splash_0, floor(x), obj_water_surface.y, -10);
         }
 
         // Play sound:
@@ -566,9 +565,9 @@ if (instance_exists(obj_water_surface)) {
 
         // Create splash:
         if (abs(y_speed) >= 6) {
-            effect_create(ctl_splash_1, floor(x), obj_water_surface.y, depth);
+            effect_create(ctl_splash_1, floor(x), obj_water_surface.y, -10);
         } else {
-            effect_create(ctl_splash_0, floor(x), obj_water_surface.y, depth);
+            effect_create(ctl_splash_0, floor(x), obj_water_surface.y, -10);
         }
 
         // Play sound:
@@ -862,7 +861,7 @@ switch (action_current) {
 
     // Jump:
     case player_action_jump:
-        if (animation_target != "spin") {
+        if (animation_target != "spin" && animation_target != "insta") {
             player_set_animation("spin");
         }
         break;
@@ -1538,6 +1537,9 @@ if (status_invin == INVIN_HURT && status_invin_alarm > 0) {
 if (sprite_exists(sprite_index)) {
     draw_sprite_ext(sprite_index, image_index, floor(x) + (image_xscale < 0), floor(y), image_xscale, image_yscale, image_angle, c_white, image_alpha);
 }
+
+// Reset:
+draw_reset();
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -1664,3 +1666,6 @@ if ((hitbox_left != 0 || hitbox_right != 0) && (hitbox_top != 0 || hitbox_bottom
 
     draw_rectangle(x1, y1, x2, y2, true);
 }
+
+// Reset:
+draw_reset();

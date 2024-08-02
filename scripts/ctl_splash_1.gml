@@ -37,6 +37,6 @@ else if (ctl_position(15)) {
 }
 
 // Finish effect:
-else if (ctl_position(17)) {
+else if (ctl_position(18)) {
     instance_destroy();
 }

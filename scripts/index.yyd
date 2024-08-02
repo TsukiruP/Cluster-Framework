@@ -49,7 +49,7 @@ transition_create
 room_view_set_all
 window_resize
 ctl_spinner
-player_action_crouch_old
+sonic_skill_list
 player_action_spin_dash_old
 player_action_roll_old
 player_action_push
@@ -175,3 +175,4 @@ input_get_check
 
 ctl_checkpoint_active
 player_handle_badnik
+ctl_sonic_insta

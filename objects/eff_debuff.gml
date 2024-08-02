@@ -21,7 +21,7 @@ applies_to=self
 event_inherited();
 
 // Update depth:
-depth = player_handle.depth;
+depth = player_handle.depth - 1;
 
 // Update angle:
 image_angle = player_handle.mode * 90;

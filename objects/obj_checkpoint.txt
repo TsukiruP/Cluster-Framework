@@ -2,6 +2,6 @@ sprite=spr_checkpoint
 visible=1
 solid=0
 persistent=0
-depth=0
+depth=10
 parent=par_prop
 mask=

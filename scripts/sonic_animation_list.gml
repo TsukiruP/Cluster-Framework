@@ -63,3 +63,6 @@ player_add_animation(CHAR_SONIC, "hurt",          ctl_sonic_hurt);
 
 // Death:
 player_add_animation(CHAR_SONIC, "death",         ctl_sonic_death);
+
+// Insta:
+player_add_animation(CHAR_SONIC, "insta",         ctl_sonic_insta);

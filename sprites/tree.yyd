@@ -274,10 +274,10 @@
 			|spr_bubble_spawn
 			|spr_bubble
 		+Hints
+			|spr_hint_box
 			+Omochao
 				|spr_omochao_idle
 				|spr_omochao_sonic
-			|spr_hint_box
 	+Effects
 		+Player
 			|spr_trail

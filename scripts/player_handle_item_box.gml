@@ -17,7 +17,7 @@ if (player_collision_prop(item_box_handle, SIDE_MAIN) || player_collision_prop(i
         // Destroy:
         with (item_box_handle) {
             player_handle = other.id;
-            effect_create(ctl_explosion_small, x, y, depth - 1);
+            effect_create(ctl_explosion_small, x, y);
             instance_destroy();
         }
     

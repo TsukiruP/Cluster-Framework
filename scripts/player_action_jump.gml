@@ -45,8 +45,22 @@ switch (argument0) {
         }
 
         // Jump skill:
+        if (input_player[INP_JUMP, CHECK_PRESSED] == true) {
+            switch (character_id) {
+                case CHAR_SONIC:
+                    sonic_skill_list(SONIC_JUMP);
+                    break;
+            }
+        }
 
         // Special skill:
+        if (input_player[INP_SPECIAL, CHECK_PRESSED] == true) {
+            switch (character_id) {
+                case CHAR_SONIC:
+                    sonic_skill_list(SONIC_SPECIAL_A);
+                    break;
+            }
+        }
 
         // Release:
         if (jump_complete == false && y_speed < jump_release && input_player[INP_JUMP, CHECK_HELD] == false) {

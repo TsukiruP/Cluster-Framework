@@ -8,6 +8,9 @@ applies_to=self
 
 event_inherited();
 
+// Depth:
+depth = 10;
+
 // Image index:
 image_index = 1;
 

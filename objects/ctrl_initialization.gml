@@ -197,53 +197,10 @@ applies_to=self
 */
 /// Save Initialization
 
-global.save_rings = 0;
-
-// Read/create Sonic skill settings:
-global.save_sonic_skill_jump     = 0;
-global.save_sonic_skill_special  = 0;
-global.save_sonic_skill_peel_out = false;
-global.save_sonic_skill_homing   = 0;
-global.save_sonic_skill_shield   = false;
-
-// Read/create Miles skill settings:
-global.save_miles_skill_attack  = 0;
-global.save_miles_skill_special = 0;
-global.save_miles_skill_shield  = false;
-
-// Read/create Knuckles skill settings:
-global.save_knuckles_skill_attack     = false;
-global.save_knuckles_skill_drill_claw = false;
-global.save_knuckles_skill_headbutt   = false;
-global.save_knuckles_skill_wall_dash  = false;
-global.save_knuckles_skill_shield     = false;
-
-// Read/create universal skill settings:
-global.save_skill_tag_action = false;
-global.save_skill_swap       = false;
-
-// Apply Sonic skill settings:
-global.sonic_skill_jump     = global.save_sonic_skill_jump;
-global.sonic_skill_special  = global.save_sonic_skill_special;
-global.sonic_skill_peel_out = global.save_sonic_skill_peel_out;
-global.sonic_skill_homing   = global.save_sonic_skill_homing;
-global.sonic_skill_shield   = global.save_sonic_skill_shield;
-
-// Apply Miles skill settings:
-global.miles_skill_attack  = global.save_miles_skill_attack;
-global.miles_skill_special = global.save_miles_skill_special;
-global.miles_skill_shield  = global.save_miles_skill_shield;
-
-// Apply Knuckles skill settings:
-global.knuckles_skill_attack     = global.save_knuckles_skill_attack;
-global.knuckles_skill_drill_claw = global.save_knuckles_skill_drill_claw;
-global.knuckles_skill_headbutt   = global.save_knuckles_skill_headbutt;
-global.knuckles_skill_wall_dash  = global.save_knuckles_skill_wall_dash;
-global.knuckles_skill_shield     = global.save_knuckles_skill_shield;
-
-// Apply universal skill settings:
-global.skill_tag_action = global.save_skill_tag_action;
-global.skill_swap       = global.save_skill_swap;
+// Sonic skills:
+for (i = SONIC_JUMP; i <= SONIC_SPECIAL_A; i += 1) {
+    global.sonic_skill[i] = 0;
+}
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603

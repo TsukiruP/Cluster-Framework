@@ -33,6 +33,7 @@ if (ground == true && input_cpu == false && player_collision_prop(hint_handle, S
             // Set action:
             player_set_action(player_action_idle);
 
+            // Set animation:
             switch (hint_handle.object_index) {
                 // Hint Box:
                 case obj_hint_box:

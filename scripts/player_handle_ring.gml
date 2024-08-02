@@ -19,7 +19,7 @@ if (player_collision_prop(ring_handle, SIDE_MAIN)) {
         
         // Destroy:
         with (ring_handle) {
-            effect_create(ctl_ring_sparkle, x, y, depth - 1);
+            effect_create(ctl_ring_sparkle, x, y, -10);
             instance_destroy();
         }
         

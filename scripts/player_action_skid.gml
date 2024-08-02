@@ -114,7 +114,7 @@ switch (argument0) {
                 skid_dust_alarm -= 1;
 
                 if (skid_dust_alarm == 0) {
-                    effect_create(ctl_skid, x, y + main_bottom, depth);
+                    effect_create(ctl_skid, x, y + main_bottom);
                     skid_dust_alarm = 3;
                 }
             }

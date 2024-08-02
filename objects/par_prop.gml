@@ -47,3 +47,6 @@ draw_rectangle(x - main_left + main_offset_x, y - main_top + main_offset_y, x + 
 draw_set_color(c_lime);
 
 draw_rectangle(x - hitbox_left + hitbox_offset_x, y - hitbox_top + hitbox_offset_y, x + hitbox_right + hitbox_offset_x, y + hitbox_bottom + hitbox_offset_y, true);
+
+// Reset:
+draw_reset();

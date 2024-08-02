@@ -7,7 +7,7 @@ var cdepth, xscale, yscale;
 if (argument_count >= 4) {
     cdepth = argument[3];
 } else{
-    cdepth = 0;
+    cdepth = depth;
 }
 
 // Set xscale:

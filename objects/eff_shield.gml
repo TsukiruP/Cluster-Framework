@@ -80,7 +80,7 @@ var shield_advance;
 if ((player_handle.status_shield == SHIELD_FIRE && (image_index mod 2) != 0) || (player_handle.status_shield == SHIELD_LIGHTNING && ctl_time > 48)) {
     depth = player_handle.depth + 1;
 } else {
-    depth = player_handle.depth - 1;
+    depth = player_handle.depth - 2;
 }
 
 // Advance shields:

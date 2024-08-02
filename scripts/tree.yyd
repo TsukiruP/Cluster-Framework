@@ -80,6 +80,7 @@
 					+Goal
 					|ctl_sonic_hurt
 					|ctl_sonic_death
+					|ctl_sonic_insta
 			+Props
 				+Checkpoint
 					|ctl_checkpoint_inactive
@@ -171,6 +172,8 @@
 				|player_action_death
 				|player_action_push
 				|player_action_spring
+				+Skill Lists
+					|sonic_skill_list
 		+Traits
 			|player_trait_debug
 			|classic_trait_clock_up
@@ -217,7 +220,6 @@
 		+Bottom
 			|player_collision_object_bottom
 	+Actions (OLD)
-		|player_action_crouch_old
 		|player_action_spin_dash_old
 		|player_action_roll_old
 		|player_action_skid_old

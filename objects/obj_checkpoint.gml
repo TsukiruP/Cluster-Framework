@@ -17,8 +17,8 @@ ctl_initialize(ctl_checkpoint_inactive);
 // Main:
 main_left   = 13;
 main_right  = 14;
-main_top    = 37;
-main_bottom = 0;
+main_top    = 22;
+main_bottom = 15;
 
 // Checkpoint variables:
 checkpoint_active = false;

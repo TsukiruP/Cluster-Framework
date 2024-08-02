@@ -26,6 +26,9 @@ if (on_obstacle == false) {
             g_speed = x_speed;
             player_set_angle();
 
+            // Reset shield:
+            status_shield_usable = true;
+
             // Landing speed (From 24 to 90 degrees):
             if (ground_angle >= 24 && ground_angle <= 90) {
                 if (ground_angle >= 45) {
@@ -67,8 +70,11 @@ if (on_obstacle == false) {
         var detach_distance;
 
         // Detach distance:
-        if (on_edge == true) detach_distance = 1;
-        else detach_distance = 16;
+        if (on_edge == true) {
+            detach_distance = 1;
+        } else {
+            detach_distance = 16;
+        }
 
         // Detach:
         if (detach_allow == true && roll_forced == false && !player_terrain_line(-main_left_rel, main_bottom + detach_distance, true) && !player_terrain_line(main_right_rel, main_bottom + detach_distance, true)) {

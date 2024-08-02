@@ -1,8 +1,8 @@
+|ctrl_culling
 +System
 	|ctrl_initialization
 	|par_indestructable
 	|par_overlay
-	|ctrl_culling
 	+Controllers
 		|ctrl_game
 		|ctrl_display
@@ -91,8 +91,8 @@
 			|eff_afterimage
 			|eff_player
 			|eff_spin_dash
-			|eff_shield
 			|eff_debuff
+			|eff_shield
 +Stages
 	+Parents
 		|par_terrain
