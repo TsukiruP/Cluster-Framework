@@ -10,8 +10,8 @@ switch (argument0) {
         }
 
         // Set speed:
-        x_speed -= dsin(ground_angle) * jump_force;
-        y_speed -= dcos(ground_angle) * jump_force;
+        x_speed -= jump_force * dsin(ground_angle);
+        y_speed -= jump_force * dcos(ground_angle);
         break;
 
     // Step:
@@ -63,7 +63,7 @@ switch (argument0) {
         }
 
         // Release:
-        if (jump_complete == false && y_speed < jump_release && input_player[INP_JUMP, CHECK_HELD] == false) {
+        if (y_speed < jump_release && jump_special == false && input_player[INP_JUMP, CHECK_HELD] == false) {
             y_speed = jump_release;
         }
 
@@ -85,6 +85,19 @@ switch (argument0) {
 
     // Finish:
     case ACTION_FINISH:
-        score_multiplier = 0;
+        // Reset jump:
+        if (jump_special != false) {
+            jump_special = false;
+        }
+
+        // Reset shield:
+        if (ground == true && status_shield_allow != true) {
+            status_shield_allow = true;
+        }
+
+        // Reset insta invincibility:
+        if (status_insta_alarm != 0) {
+            status_insta_alarm = 0;
+        }
         break;
 }

@@ -16,6 +16,8 @@
 		|input_get_timer
 		|input_get_string
 	+Text
+		|val_get_str
+		|val_get_bool
 		|key_get_string
 		|joy_get_char
 		|string_place_value
@@ -99,7 +101,9 @@
 					|ctl_shield_basic
 					|ctl_shield_magnetic
 					|ctl_shield_fire
+					|ctl_shield_fire_dash
 					|ctl_shield_lightning
+					|ctl_shield_lightning_spark
 					|ctl_shield_bubble
 					|ctl_shield_invin
 				+Explosions
@@ -171,9 +175,12 @@
 				|player_action_hurt
 				|player_action_death
 				|player_action_push
-				|player_action_spring
+				|player_action_bound
 				+Skill Lists
 					|sonic_skill_list
+		+Routines
+			|player_routine_insta
+			|player_routine_shield
 		+Traits
 			|player_trait_debug
 			|classic_trait_clock_up
@@ -218,10 +225,7 @@
 		+Right
 		+Top
 		+Bottom
-			|player_collision_object_bottom
 	+Actions (OLD)
-		|player_action_spin_dash_old
-		|player_action_roll_old
 		|player_action_skid_old
 		|player_action_push_OLD
 		|player_action_hurt_OLD

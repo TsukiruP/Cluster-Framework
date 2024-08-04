@@ -24,10 +24,10 @@ if (ctl_position(0)) {
     hurtbox_offset_y = 0;
 
     // Set hitbox:
-    hitbox_left     = 7;
-    hitbox_right    = 5;
-    hitbox_top      = 9;
-    hitbox_bottom   = 9;
+    hitbox_left     = 15;
+    hitbox_right    = 13;
+    hitbox_top      = 14;
+    hitbox_bottom   = 14;
 
     hitbox_offset_x = 0;
     hitbox_offset_y = 0;

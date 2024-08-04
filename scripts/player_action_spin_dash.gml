@@ -42,7 +42,9 @@ switch (argument0) {
             g_speed = image_xscale * (8 + (spin_dash_charge div 2));
 
             // Camera lag:
-            if (input_cpu == false) ctrl_camera.camera_lag_alarm = 16;
+            if (input_cpu == false) {
+                ctrl_camera.camera_lag_alarm = 16;
+            }
 
             // Play sound:
             sound_play_single("snd_spin_dash_release");

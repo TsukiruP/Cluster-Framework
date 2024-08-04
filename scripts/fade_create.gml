@@ -7,7 +7,7 @@ fade.fade_target = argument[1];
 
 // Set depth:
 if (argument_count >= 3) {
-fade.depth = argument[2];
+    fade.depth = argument[2];
 } else {
     fade.depth = self.depth + 1;
 }

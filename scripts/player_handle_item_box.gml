@@ -12,7 +12,7 @@ if (item_box_handle == noone) {
 }
 
 // Break item box:
-if (player_collision_prop(item_box_handle, SIDE_MAIN) || player_collision_prop(item_box_handle, SIDE_MAIN, 1)) {
+if (player_collision_prop(item_box_handle, SIDE_MAIN) || player_collision_prop(item_box_handle, SIDE_MAIN, 2)) {
     if (input_cpu == false) {
         // Destroy:
         with (item_box_handle) {

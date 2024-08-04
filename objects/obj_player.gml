@@ -45,9 +45,9 @@ push_animation    = false;
 hint_wanted       = false;
 
 // Jump variables:
-jump_force    =  6.5;
-jump_complete =  false;
-jump_release  = -4;
+jump_force   =  6.5;
+jump_release = -4;
+jump_special =  false;
 
 // Roll variables:
 roll_deceleration  = 0.125;
@@ -159,13 +159,14 @@ applies_to=self
 /// Status Initialization
 
 // Shield variables:
-status_shield        = SHIELD_NONE;
-status_shield_usable = true;
-status_shield_state  = 0;
+status_shield       = SHIELD_NONE;
+status_shield_allow = true;
+status_shield_state = 0;
 
 // Invincibility variables:
 status_invin       = 0;
 status_invin_alarm = 0;
+status_insta_alarm = 0;
 
 // Speed shoes variables:
 status_speed       = 0;
@@ -550,9 +551,9 @@ if (instance_exists(obj_water_surface)) {
 
         // Create splash:
         if (y_speed >= 2.50) {
-            effect_create(ctl_splash_1, floor(x), obj_water_surface.y, -10);
+            effect_create(ctl_splash_1, x, obj_water_surface.y, -10);
         } else {
-            effect_create(ctl_splash_0, floor(x), obj_water_surface.y, -10);
+            effect_create(ctl_splash_0, x, obj_water_surface.y, -10);
         }
 
         // Play sound:
@@ -565,9 +566,9 @@ if (instance_exists(obj_water_surface)) {
 
         // Create splash:
         if (abs(y_speed) >= 6) {
-            effect_create(ctl_splash_1, floor(x), obj_water_surface.y, -10);
+            effect_create(ctl_splash_1, x, obj_water_surface.y, -10);
         } else {
-            effect_create(ctl_splash_0, floor(x), obj_water_surface.y, -10);
+            effect_create(ctl_splash_0, x, obj_water_surface.y, -10);
         }
 
         // Play sound:
@@ -584,9 +585,9 @@ if (instance_exists(obj_water_surface)) {
 
                 if (splash_alarm == 0) {
                     if (abs(g_speed) >= 4.50) {
-                        effect_create(ctl_splash_3, floor(x), obj_water_surface.y, depth, image_xscale);
+                        effect_create(ctl_splash_3, x, obj_water_surface.y, depth, image_xscale);
                     } else {
-                        effect_create(ctl_splash_2, floor(x), obj_water_surface.y, depth, image_xscale);
+                        effect_create(ctl_splash_2, x, obj_water_surface.y, depth, image_xscale);
                     }
 
                     splash_alarm = 9;
@@ -596,7 +597,7 @@ if (instance_exists(obj_water_surface)) {
 
         // Create jump splash:
         if ((ground == false && y_speed < 0) || (ground == true && y_speed > 0)) {
-            effect_create(ctl_splash_3, floor(x), obj_water_surface.y, depth, image_xscale);
+            effect_create(ctl_splash_3, x, obj_water_surface.y, depth, image_xscale);
         }
     } else {
         splash_alarm = 9;
@@ -650,6 +651,11 @@ applies_to=self
 // Exit if the stage is paused:
 if (game_ispaused(ctrl_pause)) {
     exit;
+}
+
+// Insta invincibility:
+if (status_insta_alarm > 0) {
+    status_insta_alarm -= 1;
 }
 
 // Hurt invincibility:
@@ -713,6 +719,11 @@ if (instance_exists(obj_water_surface)) {
     if (y > obj_water_surface.y) {
         if (physics_type != PHYS_WATER) {
             physics_type = PHYS_WATER;
+
+            // Clear elemental shields:
+            if (status_shield == SHIELD_FIRE || status_shield == SHIELD_LIGHTNING) {
+                status_shield = SHIELD_NONE;
+            }
         }
     }
 }
@@ -854,8 +865,17 @@ switch (action_current) {
 
     // Air:
     case player_action_air:
-        if (animation_target != "turn" && animation_target != "turn_skid" && animation_target != "spin" && animation_target != "skid" && animation_target != "spring_flight" && animation_target != "spring_fall") {
-            player_set_animation("spring_fall");
+        if ((animation_target != "turn" && animation_target != "turn_skid" && animation_target != "spin" && animation_target != "skid" && animation_target != "spring_flight" && animation_target != "spring_fall") ||
+            (animation_current == "spring_flight" && y_speed >= 0) || spring_alarm > 0) {
+            // Flight:
+            if (y_speed < 0 || (spring_angle != ANGLE_DOWN && spring_alarm > 0)) {
+                player_set_animation("spring_flight");
+            }
+
+            // Fall:
+            else {
+                player_set_animation("spring_fall");
+            }
         }
         break;
 
@@ -923,6 +943,7 @@ switch (action_current) {
         break;
 
     // Spring:
+    /*
     case player_action_spring:
         // Flight:
         if (y_speed < 0 || (spring_angle != ANGLE_DOWN && spring_alarm > 0)) {
@@ -938,6 +959,7 @@ switch (action_current) {
             }
         }
         break;
+    */
 }
 
 // Wait:
@@ -1075,7 +1097,7 @@ switch (animation_current) {
     // Spring angle:
     case "spring_flight":
     case "spring_fall":
-        if (action_current == player_action_spring && character_id != CHAR_CLASSIC && spring_angle != ANGLE_DOWN && spring_alarm > 0) {
+        if (character_id != CHAR_CLASSIC && spring_angle != ANGLE_DOWN && spring_alarm > 0) {
             image_angle = spring_angle - 90;
         } else {
             image_angle = approach_angle(image_angle, 0, 4);

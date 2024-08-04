@@ -300,20 +300,20 @@ switch (debug_section) {
             var player_shield, player_usable, player_state, player_invin, player_invin_alarm, player_speed, player_speed_alarm, player_panic, player_panic_alarm, player_swap, player_swap_alarm;
 
             // Player variables:
-            player_shield      = player_handle.status_shield;
-            player_usable      = player_handle.status_shield_usable;
+            player_shield      = val_get_str(player_handle.status_shield, SHIELD_NONE, "None", "Basic", "Magnetic", "Fire", "Lightning", "Bubble");
+            player_usable      = val_get_bool(player_handle.status_shield_allow);
             player_state       = player_handle.status_shield_state;
 
-            player_invin       = player_handle.status_invin;
+            player_invin       = val_get_str(player_handle.status_invin, INVIN_NONE, "None", "Hurt", "Buff");
             player_invin_alarm = player_handle.status_invin_alarm;
 
-            player_speed       = player_handle.status_speed;
+            player_speed       = val_get_str(player_handle.status_speed, SPEED_NONE, "None", "Speed", "Slow");
             player_speed_alarm = player_handle.status_speed_alarm;
 
-            player_panic       = player_handle.status_panic;
+            player_panic       = val_get_bool(player_handle.status_panic);
             player_panic_alarm = player_handle.status_panic_alarm;
 
-            player_swap        = player_handle.status_swap;
+            player_swap        = val_get_bool(player_handle.status_swap);
             player_swap_alarm  = player_handle.status_swap_alarm;
 
             // Stats:
@@ -334,10 +334,10 @@ switch (debug_section) {
             var player_surface, player_splash, player_underwater, player_air, player_alarm, player_countdown;
 
             // Player variables:
-            player_surface    = player_handle.water_surface;
+            player_surface    = val_get_bool(player_handle.water_surface);
             player_splash     = player_handle.splash_alarm;
 
-            player_underwater = player_handle.underwater;
+            player_underwater = val_get_bool(player_handle.underwater);
             player_air        = player_handle.air_remaining;
             player_alarm      = player_handle.air_alarm;
 

@@ -10,35 +10,30 @@ if (skill_id == SONIC_SPECIAL_G) {
 
 }
 
+// Slam skills:
+else if (skill_id == SONIC_SLAM) {
+
+}
+
 // Air skills:
 else {
-    // Shield actions:
-
-    // Insta-shield:
-    if (global.sonic_skill[skill_id] == 0 && status_shield <= SHIELD_MAGNETIC && status_shield_usable == true) {
-        // Disable shield:
-        status_shield_usable = false;
-
-        // Set action:
-        player_set_action(player_action_jump);
-
-        // Set animation:
-        player_set_animation("insta");
-
-        // Create shield:
-        with (instance_create(x, y, eff_player)) {
-            ctl_initialize(ctl_shield_insta);
-
-            depth         = other.depth;
-            image_xscale  = other.image_xscale;
-            player_handle = other.id;
+    // Shields:
+    if (global.sonic_skill[skill_id] <= 1 && global.sonic_skill[skill_id] == true && status_shield_allow == true) {
+        // Elemental shields:
+        if (status_shield >= SHIELD_FIRE) {
+            player_routine_shield()
         }
 
-        // Play sound:
-        sound_play("snd_shield_insta");
+        // Insta-shield:
+        else if (global.sonic_skill[skill_id] == 1 && status_shield <= SHIELD_MAGNETIC) {
+            player_routine_insta();
+        }
     }
 
     // Air dash:
+    else if (global.sonic_skill[skill_id] == 2) {
+
+    }
 
     // Jump exclusive:
 

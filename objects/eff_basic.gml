@@ -11,6 +11,25 @@ image_speed = 0;
 
 // Timeline initialization:
 ctl_initialize();
+
+// Effect variables:
+e_speed = 0;
+angle   = 0;
+#define Step_0
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Movement
+
+// Exit if the stage is paused:
+if (game_ispaused(ctrl_pause)) {
+    exit;
+}
+
+x += e_speed *  dcos(angle);
+y += e_speed * -dsin(angle);
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1

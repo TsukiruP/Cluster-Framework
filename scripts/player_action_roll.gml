@@ -45,12 +45,12 @@ switch (argument0) {
         if (ground_angle < 135 || ground_angle > 225) {
             // Rolling upwards:
             if (sign(g_speed) == sign(dsin(ground_angle))) {
-                g_speed -= dsin(ground_angle) * roll_friction_up;
+                g_speed -= roll_friction_up * dsin(ground_angle);
             }
 
             // Rolling downwards:
             else {
-                g_speed -= dsin(ground_angle) * roll_friction_down;
+                g_speed -= roll_friction_down * dsin(ground_angle);
             }
         }
 

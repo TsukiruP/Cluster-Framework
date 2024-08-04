@@ -32,7 +32,7 @@ if (player_handle.status_invin != INVIN_BUFF) {
 
         // Fire:
         case SHIELD_FIRE:
-            if (ctl_index != ctl_shield_fire) {
+            if (ctl_index != ctl_shield_fire && ctl_index != ctl_shield_fire_dash) {
                 timeline_set(ctl_shield_fire);
             }
             break;
@@ -77,10 +77,15 @@ event_inherited();
 var shield_advance;
 
 // Update depth:
-if ((player_handle.status_shield == SHIELD_FIRE && (image_index mod 2) != 0) || (player_handle.status_shield == SHIELD_LIGHTNING && ctl_time > 48)) {
+if ((player_handle.status_shield == SHIELD_FIRE && (image_index mod 2) != 0 && ctl_index != ctl_shield_fire_dash ) || (player_handle.status_shield == SHIELD_LIGHTNING && ctl_time > 48)) {
     depth = player_handle.depth + 1;
 } else {
     depth = player_handle.depth - 2;
+}
+
+// Reset direction:
+if (sprite_index != spr_shield_fire_dash) {
+    image_xscale = 1;
 }
 
 // Advance shields:
@@ -117,7 +122,7 @@ applies_to=self
 if (sprite_exists(sprite_index)) {
     // Shield:
     if (shield_hide == false) {
-        draw_sprite_ext(sprite_index, image_index, x, y, 1, 1, 0, c_white, shield_alpha);
+        draw_sprite_ext(sprite_index, image_index, x, y, image_xscale, 1, 0, c_white, shield_alpha);
     }
 
     // Switch to bubble shield shell:

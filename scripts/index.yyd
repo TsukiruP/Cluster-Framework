@@ -7,13 +7,13 @@ ctl_ring_sparkle
 ctl_sonic_ready
 ctl_checkpoint_inactive
 player_set_input
-player_collision_object_bottom
+ctl_shield_fire_dash
 game_ispaused
 player_action_death
 player_action_look
 ctl_template
 ctl_sonic_land
-player_action_spring
+player_action_bound
 ctl_sonic_push
 player_trait_debug
 player_movement
@@ -50,8 +50,8 @@ room_view_set_all
 window_resize
 ctl_spinner
 sonic_skill_list
-player_action_spin_dash_old
-player_action_roll_old
+player_routine_insta
+val_get_str
 player_action_push
 player_action_skid_old
 parallax_add_node
@@ -176,3 +176,6 @@ input_get_check
 ctl_checkpoint_active
 player_handle_badnik
 ctl_sonic_insta
+player_routine_shield
+val_get_bool
+ctl_shield_lightning_spark

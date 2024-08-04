@@ -1,33 +1,32 @@
 /// effect_create(timeline, x, y, [depth, xscale, yscale])
 // Creates an effect using the timeline given.
 
-var cdepth, xscale, yscale;
+var effect;
+
+effect = instance_create(floor(argument[1]), floor(argument[2]), eff_basic);
 
 // Set depth:
 if (argument_count >= 4) {
-    cdepth = argument[3];
-} else{
-    cdepth = depth;
+    effect.depth = argument[3];
+} else {
+    effect.depth = depth;
 }
 
 // Set xscale:
 if (argument_count >= 5) {
-    xscale = argument[4];
+    effect.image_xscale = argument[4];
 } else {
-    xscale = 1;
+    effect.image_xscale = 1;
 }
 
 // Set yscale:
 if (argument_count >= 6) {
-    yscale = argument[5];
+    effect.image_yscale = argument[5];
 } else {
-    yscale = 1;
+    effect.image_yscale = 1;
 }
 
-// Create effect:
-with (instance_create(argument[1], argument[2], eff_basic)) {
-    depth = cdepth;
+// Set timeline:
+with (effect) {
     timeline_set(argument[0]);
-    image_xscale = xscale;
-    image_yscale = yscale;
 }

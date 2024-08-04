@@ -19,7 +19,9 @@ y += y_speed / steps;
 wall_height = 0;
 
 // Wall offset height on flat ground:
-if (ground == true && ground_angle == 0) wall_height = 4;
+if (ground == true && ground_angle == 0) {
+    wall_height = 4;
+}
 
 // Reset ceiling flag:
 touching_ceiling = false;

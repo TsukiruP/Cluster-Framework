@@ -51,18 +51,6 @@ if (camera_lag_alarm > 0) {
 } else {
     camera_lag_alarm = 0;
 }
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Debug
-
-if (global.game_debug == true) {
-    visible = true;
-} else {
-    visible = false;
-}
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -235,6 +223,11 @@ action_id=603
 applies_to=self
 */
 /// Draw Camera
+
+// Exit if not in debug mode:
+if (global.game_debug == false) {
+    exit;
+}
 
 // Borders:
 draw_rectangle(floor(camera_x) - 8, floor(camera_y) - 32, floor(camera_x) + 8, floor(camera_y) + 32, true);

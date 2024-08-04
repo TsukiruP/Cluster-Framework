@@ -28,9 +28,9 @@ if (player_collision_prop(spring_handle, SIDE_MAIN)) {
     spring_angle    = spring_handle.spring_angle;
 
     // Set physics:
-    g_speed =  dcos(spring_angle) * spring_strength;
-    x_speed =  dcos(spring_angle) * spring_strength;
-    y_speed = -dsin(spring_angle) * spring_strength;
+    g_speed = spring_strength *  dcos(spring_angle);
+    x_speed = spring_strength *  dcos(spring_angle);
+    y_speed = spring_strength * -dsin(spring_angle);
 
     // Move:
     if (spring_alarm == 0 || spring_current != spring_handle) {
@@ -45,7 +45,7 @@ if (player_collision_prop(spring_handle, SIDE_MAIN)) {
             ground = false;
 
             // Set action:
-            player_set_action(player_action_spring);
+            player_set_action(player_action_air);
         } else {
             input_lock_alarm = 16;
         }
@@ -60,11 +60,13 @@ if (player_collision_prop(spring_handle, SIDE_MAIN)) {
     }
 
     // Add to score:
-    if (spring_handle.rainbow_ring == true) {
-        with (spring_handle) {
-            if (rainbow_score == true) {
-                global.game_score += 1000;
-                rainbow_score      = false;
+    if (spring_ancestry == true) {
+        if (spring_handle.rainbow_ring == true) {
+            with (spring_handle) {
+                if (rainbow_score == true) {
+                    global.game_score += 1000;
+                    rainbow_score      = false;
+                }
             }
         }
     }

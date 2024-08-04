@@ -1,5 +1,5 @@
-/// player_action_air(phase)
-// Falling with style.
+/// player_action_bound()
+//
 
 switch (argument0) {
     // Start:
@@ -27,18 +27,13 @@ switch (argument0) {
             return false;
         }
 
-        // Land:
+        // Jump:
         if (ground == true) {
-            if (x_speed == 0) {
-                return player_set_action(player_action_idle);
-            } else {
-                return player_set_action(player_action_run);
-            }
-        }
+            player_set_action(player_action_jump);
 
-        // Ignore physics and inputs if the alarm is still active:
-        if (spring_alarm > 0) {
-            return false;
+            x_speed     -= 7.5 * dsin(ground_angle);
+            y_speed     -= 7.5 * dcos(ground_angle);
+            jump_special = true;
         }
 
         // Air drag:
@@ -59,10 +54,5 @@ switch (argument0) {
 
     // Finish:
     case ACTION_FINISH:
-        // Reset spring:
-        spring_strength = 0;
-        spring_angle    = 0;
-        spring_alarm    = 0;
-        spring_current  = noone;
         break;
 }

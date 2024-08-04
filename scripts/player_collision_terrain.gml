@@ -26,9 +26,6 @@ if (on_obstacle == false) {
             g_speed = x_speed;
             player_set_angle();
 
-            // Reset shield:
-            status_shield_usable = true;
-
             // Landing speed (From 24 to 90 degrees):
             if (ground_angle >= 24 && ground_angle <= 90) {
                 if (ground_angle >= 45) {
