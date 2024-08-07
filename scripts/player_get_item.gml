@@ -32,7 +32,7 @@ switch (argument0) {
         status_shield_state = 0;
 
         // Play sound:
-        sound_play("snd_shield_lightning");
+        sound_play("snd_shield_basic");
         break;
 
     // Fire shield:

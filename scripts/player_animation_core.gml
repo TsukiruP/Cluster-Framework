@@ -1,7 +1,7 @@
 /// player_animation_core()
 // Core of the animation system.
 
-if ((ctl_index != player_get_animation(animation_target, animation_variant)) || animation_reload = true) {
+if ((ctl_index != player_get_animation(animation_target, animation_variant)) || animation_reload == true) {
     // Store previous animation:
     animation_previous = animation_current;
 

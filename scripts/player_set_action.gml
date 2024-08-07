@@ -1,6 +1,15 @@
 /// player_set_action(action, [reset])
 
-if (action_current != argument[0]) {
+var action_reset;
+
+// Set reset:
+if (argument_count >= 2) {
+    action_reset = argument[1];
+} else {
+    action_reset = false;
+}
+
+if (action_current != argument[0] || action_reset == true) {
     action_previous = action_current;
     action_current  = argument[0];
     action_changed  = true;
