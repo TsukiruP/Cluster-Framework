@@ -74,11 +74,11 @@ if (game_ispaused()) {
     exit;
 }
 
-if (instance_exists(instance_player(0))) {
+if (instance_exists(player_get_instance(0))) {
     var player_handle;
 
     // Player handle:
-    player_handle = instance_player(0);
+    player_handle = player_get_instance(0);
 
     // Update status:
     if (player_handle.status_shield == SHIELD_MAGNETIC || player_handle.status_shield == SHIELD_LIGHTNING) {

@@ -1,4 +1,4 @@
-/// player_action_jump(phase)
+/// player_state_jump(phase)
 // A jump to the sky turns to a rider kick.
 
 switch (argument0) {
@@ -31,16 +31,16 @@ switch (argument0) {
         player_collision_steps();
 
         // Changed:
-        if (action_changed == true) {
+        if (state_changed == true) {
             return false;
         }
 
         // Land:
         if (ground == true) {
             if (x_speed == 0) {
-                return player_set_action(player_action_idle);
+                return player_set_state(player_state_idle);
             } else {
-                return player_set_action(player_action_run);
+                return player_set_state(player_state_run);
             }
         }
 

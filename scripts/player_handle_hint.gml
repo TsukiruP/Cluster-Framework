@@ -30,8 +30,8 @@ if (ground == true && input_cpu == false && player_collision_prop(hint_handle, S
             // Set hint:
             hint_wanted  = true;
 
-            // Set action:
-            player_set_action(player_action_idle);
+            // Set state:
+            player_set_state(player_state_idle);
 
             // Set animation:
             switch (hint_handle.object_index) {

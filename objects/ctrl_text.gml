@@ -237,7 +237,7 @@ if (menu_direction != 0) {
 debug_section = wrap(debug_section, 0, 5);
 
 // Player handle:
-player_handle = instance_player(0);
+player_handle = player_get_instance(0);
 
 // Sections
 switch (debug_section) {
@@ -245,7 +245,7 @@ switch (debug_section) {
     case 1:
         // Title:
         debug_title = "- Player -";
-
+        /*
         if (instance_exists(player_handle)) {
             var player_x, player_y, player_action_current, player_action_previous, player_g_speed, player_x_speed, player_y_speed, player_ground, player_mode, player_layer, player_angle;
 
@@ -273,6 +273,7 @@ switch (debug_section) {
                         "X Speed: " + string(player_x_speed) + "#" +
                         "Y Speed: " + string(player_y_speed);
         }
+        */
         break;
 
     // Character:

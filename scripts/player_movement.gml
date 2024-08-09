@@ -15,6 +15,9 @@ if (ground == true) {
 x += x_speed / steps;
 y += y_speed / steps;
 
+// Keep within camera:
+// Harmony code goes here.
+
 // Reset wall height:
 wall_height = 0;
 
@@ -31,6 +34,6 @@ if (player_terrain_line(-main_left_rel, -main_top - 8) || player_terrain_line(ma
     touching_ceiling = true;
 }
 
-if (y >= room_height && action_current != player_action_death) {
+if (y >= room_height && state_current != player_state_death) {
     player_set_damage(self);
 }

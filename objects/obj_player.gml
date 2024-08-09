@@ -16,9 +16,9 @@ ctl_initialize();
 player_slot = 0;
 
 // Action variables:
-action_current  = player_action_idle;
-action_previous = action_current;
-action_changed  = false;
+state_current  = player_state_idle;
+state_previous = state_current;
+state_changed  = false;
 
 // Physics variables:
 top_speed        = 6;
@@ -356,13 +356,13 @@ if (input_lock == false) {
                 input_player[INP_DOWN, CHECK_HELD] = queue_down;
 
                 // Jump:
-                if (ground == true && action_current != player_action_look && action_current != player_action_crouch && player_handle.y < y - 50 && player_handle.ground == false) {
+                if (ground == true && state_current != player_state_look && state_current != player_state_crouch && player_handle.y < y - 50 && player_handle.ground == false) {
                     input_player[INP_JUMP, CHECK_PRESSED] = true;
                 } else {
                     input_player[INP_JUMP, CHECK_PRESSED] = false;
                 }
 
-                if (action_current == player_action_jump) {
+                if (state_current == player_state_jump) {
                     input_player[INP_JUMP, CHECK_HELD] = true;
                 } else {
                     input_player[INP_JUMP, CHECK_HELD] = false;
@@ -401,19 +401,19 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Actions
+/// States
 
 // Exit if the stage is paused or text is active:
 if (game_ispaused()) {
     exit;
 }
 
-// Execute action:
-if (script_exists(action_current)) {
-    script_execute(action_current, ACTION_STEP);
+// Execute state:
+if (script_exists(state_current)) {
+    script_execute(state_current, ACTION_STEP);
 
-    if (action_changed != false) {
-        action_changed = false;
+    if (state_changed != false) {
+        state_changed = false;
     }
 }
 /*"/*'/**//* YYD ACTION
@@ -438,7 +438,7 @@ applies_to=self
 /// Handle List
 
 // Exit if the stage is paused, text is active or dying:
-if (game_ispaused() || action_current == player_action_death) {
+if (game_ispaused() || state_current == player_state_death) {
     exit;
 }
 
@@ -531,7 +531,7 @@ if (status_speed == SPEED_UP) {
 }
 
 // Set trail:
-if (action_current == player_action_roll) {
+if (state_current == player_state_roll) {
     trail_draw = true;
 } else {
     trail_draw = false;
@@ -623,8 +623,8 @@ if (game_ispaused()) {
 }
 
 // Don't bother if in the middle of respawning/dying:
-if (action_current != player_action_death && physics_type == PHYS_WATER && !instance_exists(ctrl_tally)) {
-    // Refill air if in breathe action or bubble shield:
+if (state_current != player_state_death && physics_type == PHYS_WATER && !instance_exists(ctrl_tally)) {
+    // Refill air if in breathe state or bubble shield:
     if (status_shield == SHIELD_BUBBLE) {
         air_remaining = 30;
         air_alarm     = 60;
@@ -743,9 +743,9 @@ if (game_ispaused()) {
 }
 
 // Don't bother if in the middle of respawning/dying:
-if (action_current != player_action_death && !instance_exists(ctrl_tally)) {
+if (state_current != player_state_death && !instance_exists(ctrl_tally)) {
     if (physics_type == PHYS_WATER) {
-        // Refill air if in breathe action or bubble shield:
+        // Refill air if in breathe state or bubble shield:
         if (status_shield != SHIELD_BUBBLE) {
             if (air_alarm > 0) {
                 air_alarm -= 1;
@@ -811,9 +811,9 @@ var main_bottom_temp;
 
 main_bottom_temp = main_bottom;
 
-switch (action_current) {
+switch (state_current) {
     // Idle:
-    case player_action_idle:
+    case player_state_idle:
         if (balance_direction == 0) {
             if (animation_target != "stand" && animation_target != "wait" && animation_target != "ready" && animation_target != "land" && animation_target != "omochao" &&
                 animation_target != "look" && animation_target != "crouch") {
@@ -829,14 +829,14 @@ switch (action_current) {
         break;
 
     // Turn:
-    case player_action_turn:
+    case player_state_turn:
         if (animation_target != "turn" && animation_target != "turn_skid") {
             player_set_animation("turn");
         }
         break;
 
     // Run:
-    case player_action_run:
+    case player_state_run:
         // Walk:
         if (abs(g_speed) < 1.50) {
             if (animation_target != "run_0") player_set_animation("run_0");
@@ -864,7 +864,7 @@ switch (action_current) {
         break;
 
     // Air:
-    case player_action_air:
+    case player_state_air:
         if ((animation_target != "turn" && animation_target != "turn_skid" && animation_target != "spin" && animation_target != "skid" && animation_target != "spring_flight" && animation_target != "spring_fall") ||
             (animation_current == "spring_flight" && y_speed >= 0) || spring_alarm > 0) {
             // Flight:
@@ -880,63 +880,63 @@ switch (action_current) {
         break;
 
     // Jump:
-    case player_action_jump:
+    case player_state_jump:
         if (animation_target != "spin" && animation_target != "insta") {
             player_set_animation("spin");
         }
         break;
 
     // Look:
-    case player_action_look:
+    case player_state_look:
         if (animation_target != "look") {
             player_set_animation("look");
         }
         break;
 
     // Crouch:
-    case player_action_crouch:
+    case player_state_crouch:
         if (animation_target != "crouch") {
             player_set_animation("crouch");
         }
         break;
 
     // Spin Dash:
-    case player_action_spin_dash:
+    case player_state_spin_dash:
         if (animation_target != "spin_dash" && animation_target != "spin_charge") {
             player_set_animation("spin_dash");
         }
         break;
 
     // Roll:
-    case player_action_roll:
+    case player_state_roll:
         if (animation_target != "spin") {
             player_set_animation("spin");
         }
         break;
 
     // Skid:
-    case player_action_skid:
+    case player_state_skid:
         if (animation_target != "skid" && animation_target != "skid_fast") {
             player_set_animation("skid");
         }
         break;
 
     // Hurt:
-    case player_action_hurt:
+    case player_state_hurt:
         if (animation_target != "hurt") {
             player_set_animation("hurt");
         }
         break;
 
     // Death:
-    case player_action_death:
+    case player_state_death:
         if (animation_target != "death") {
             player_set_animation("death");
         }
         break;
 
     // Push:
-    case player_action_push:
+    case player_state_push:
         if (animation_target != "push") {
             player_set_animation("push");
         }
@@ -944,7 +944,7 @@ switch (action_current) {
 
     // Spring:
     /*
-    case player_action_spring:
+    case player_state_spring:
         // Flight:
         if (y_speed < 0 || (spring_angle != ANGLE_DOWN && spring_alarm > 0)) {
             if (animation_target != "spring_flight") {
@@ -1016,7 +1016,7 @@ switch (animation_target) {
 
     case "spin":
         // Spin flight & fall:
-        if (action_current == player_action_jump) {
+        if (state_current == player_state_jump) {
             animation_variant = 1;
         }
 
@@ -1048,7 +1048,7 @@ switch (animation_target) {
 player_animation_core();
 
 // Position fix:
-if ((ground == true && ceiling_lock_alarm == 0) || (mode == 0 && action_current == player_action_jump && animation_current == "spin" && animation_variant == 2)) {
+if ((ground == true && ceiling_lock_alarm == 0) || (mode == 0 && state_current == player_state_jump && animation_current == "spin" && animation_variant == 2)) {
     x += (main_bottom_temp - main_bottom) * x_direction;
     y += (main_bottom_temp - main_bottom) * y_direction;
 }

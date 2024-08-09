@@ -9,23 +9,23 @@ ctl_checkpoint_inactive
 player_set_input
 ctl_shield_fire_dash
 game_ispaused
-player_action_death
-player_action_look
+player_state_death
+player_state_look
 ctl_template
 ctl_sonic_land
-player_action_bound
+player_state_bound
 ctl_sonic_push
 player_trait_debug
 player_movement
 key_get_string
 joy_get_char
-player_action_run
-player_action_skid
+player_state_run
+player_state_skid
 wrap_angle
 input_get_string
 player_get_physics
-player_action_jump
-player_action_air
+player_state_jump
+player_state_air
 ctl_update
 ctl_position
 ctl_sonic_stand
@@ -41,7 +41,7 @@ player_animation_core
 player_get_animation
 player_add_animation
 player_set_damage
-player_action_idle
+player_state_idle
 fade_create
 room_set_data
 room_get_data
@@ -52,14 +52,14 @@ ctl_spinner
 sonic_skill_list
 player_routine_insta
 val_get_str
-player_action_push
-player_action_skid_old
+player_state_push
+player_get_character
 parallax_add_node
 draw_background_tiled_horizontal_part
 
 draw_sprite_tiled_horizontal_yscale
 draw_sprite_tiled_vertical
-instance_player
+player_get_instance
 ctl_sonic_breathe
 
 
@@ -100,10 +100,10 @@ player_compile_animations
 classic_trait_clock_up
 checkpoint_set
 checkpoint_isset
-player_action_roll
+player_state_roll
 player_action_push_OLD
 ctl_sonic_turn_skid
-player_action_spin_dash
+player_state_spin_dash
 ctl_sonic_spring_flight
 collision_rectangle_list
 collision_line_list
@@ -121,8 +121,8 @@ player_collision_prop
 player_collision_obstacle
 player_collision_wall
 ctl_sonic_look
-player_action_turn
-player_set_action
+player_state_turn
+player_set_state
 player_set_animation
 player_collision_steps
 timeline_set
@@ -165,9 +165,9 @@ ctl_shield_lightning
 player_handle_layer
 ctl_spring
 player_handle_spring
-player_action_template
-player_action_crouch
-player_action_hurt
+player_state_template
+player_state_crouch
+player_state_hurt
 ctl_debuff
 
 joystick_get_check

@@ -4,8 +4,8 @@
 // Disable shield:
 status_shield_allow = false;
 
-// Set action:
-player_set_action(player_action_jump);
+// Set state:
+player_set_state(player_state_jump);
 
 switch (status_shield) {
     // Fire:
@@ -77,6 +77,6 @@ switch (status_shield) {
             x_speed = 0;
             y_speed = 8;
 
-            return player_set_action(player_action_bound);
+            return player_set_state(player_state_bound);
             break;
 }

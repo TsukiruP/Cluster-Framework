@@ -1,5 +1,5 @@
 /// fade_create(speed, target, [depth, color])
-// A handy list of the action scripts.
+// Returns a newly created fade object.
 
 fade             = instance_create(0, 0, ctrl_fade);
 fade.fade_speed  = argument[0];

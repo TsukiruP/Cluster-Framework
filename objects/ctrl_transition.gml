@@ -23,6 +23,9 @@ transition_room  = room;
 // Fade handle:
 fade_handle = noone;
 
+// Player handle:
+player_handle = noone;
+
 // Background variables:
 background_y_current      = -15;
 background_y_target       =  global.display_height + 15;
@@ -48,7 +51,7 @@ zone_x_speed   = 0;
 zone_x_factor  = 9;
 
 // Loading variables:
-switch (global.player_id[0]) {
+switch (player_get_character(0)) {
     // Sonic:
     default:
         character_index    =  spr_sonic_run_4;
@@ -218,7 +221,7 @@ if ((game_ispaused(ctrl_pause) && pause_ignore == false) || (transition_type != 
     exit;
 }
 
-if (instance_exists(instance_player(0))) {
+if (instance_exists(player_get_instance(0))) {
     // Hide HUD:
     if ((room_start == START_RUN || (room_start == START_READY && transition_type == TRANS_CARD)) && transition_state == 3) {
         if (instance_exists(ctrl_hud)) {
@@ -232,7 +235,7 @@ if (instance_exists(instance_player(0))) {
     // Run start:
     if (room_start == START_RUN && room_run_target != -1 && transition_state >= 4) {
         // Reset target:
-        if ((transition_type == TRANS_RETRY && (global.checkpoint_x != -1 && global.checkpoint_y != -1)) || instance_player(0).x >= room_run_target) {
+        if ((transition_type == TRANS_RETRY && (global.checkpoint_x != -1 && global.checkpoint_y != -1)) || player_get_instance(0).x >= room_run_target) {
             room_run_target = -1;
         }
 
@@ -304,12 +307,12 @@ if (transition_type == TRANS_CARD) {
     banner_y_scroll  = banner_y_scroll mod (sprite_get_height(spr_title_card_banner));
 
     // Skip:
-    if (room_start == START_READY && transition_state >= 4 && transition_state != 6 && instance_exists(instance_player(0))) {
+    if (room_start == START_READY && transition_state >= 4 && transition_state != 6 && instance_exists(player_get_instance(0))) {
         if (input_get_check(INP_ANY, CHECK_PRESSED) && !input_get_check(INP_START, CHECK_PRESSED)) {
             transition_state = 5;
 
             // Skip ready animation:
-            if (instance_player(0).animation_current == "ready") {
+            if (player_get_instance(0).animation_current == "ready") {
                 with (obj_player) {
                     player_set_animation("stand");
                 }
@@ -392,11 +395,11 @@ if (transition_type == TRANS_CARD) {
 
         // 4 - Opener start:
         case 4:
-            if (debug == false && (room_start != START_RUN || room_run_target != -1) && instance_exists(instance_player(0)) ) {
+            if (debug == false && (room_start != START_RUN || room_run_target != -1) && instance_exists(player_get_instance(0)) ) {
                 // Ready:
                 if (room_start == START_READY) {
                     // Time it with the background:
-                    if (background_y_current <= floor(instance_player(0).y + instance_player(0).main_bottom - view_yview[view_current])) {
+                    if (background_y_current <= floor(player_get_instance(0).y + player_get_instance(0).main_bottom - view_yview[view_current])) {
                         with (obj_player) {
                             if (animation_current != "ready" && animation_previous != "ready") {
                                 player_set_animation("ready");
@@ -413,7 +416,7 @@ if (transition_type == TRANS_CARD) {
                 }
 
                 // Move to next state:
-                if (room_start == START_IDLE || (room_start == START_READY && instance_player(0).animation_previous == "ready")) {
+                if (room_start == START_IDLE || (room_start == START_READY && player_get_instance(0).animation_previous == "ready")) {
                     transition_state = 5;
                 }
             }
@@ -456,7 +459,7 @@ if (transition_type == TRANS_RETRY) {
     background_x_scroll  = background_x_scroll mod sprite_get_width(spr_transition_background);
 
     // Skip:
-    if (transition_state < 2 && instance_exists(instance_player(0)) && input_get_check(INP_ANY, CHECK_PRESSED)) {
+    if (transition_state < 2 && instance_exists(player_get_instance(0)) && input_get_check(INP_ANY, CHECK_PRESSED)) {
         transition_state = 2;
     }
 

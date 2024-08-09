@@ -7,8 +7,8 @@ status_shield_allow = false;
 // Set invincibility
 status_insta_alarm = 8;
 
-// Set action:
-player_set_action(player_action_jump);
+// Set state:
+player_set_state(player_state_jump);
 
 // Set animation:
 player_set_animation("insta");

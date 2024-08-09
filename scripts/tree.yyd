@@ -136,11 +136,13 @@
 			|draw_background_tiled_vertical_part
 	+Misc.
 		|transition_create
-		|instance_player
 		|effect_create
 		|hover
 +Gameplay
 	+Player
+		+Data
+			|player_get_character
+			|player_get_instance
 		+Collision
 			+Utilities
 				|angle_sensor
@@ -158,24 +160,24 @@
 		+Angle
 			|player_set_angle
 			|player_get_angle
-		+Actions
-			|player_set_action
-			|player_action_template
+		+States
+			|player_set_state
+			|player_state_template
 			+Indexes
-				|player_action_idle
-				|player_action_turn
-				|player_action_run
-				|player_action_air
-				|player_action_jump
-				|player_action_look
-				|player_action_crouch
-				|player_action_spin_dash
-				|player_action_roll
-				|player_action_skid
-				|player_action_hurt
-				|player_action_death
-				|player_action_push
-				|player_action_bound
+				|player_state_idle
+				|player_state_turn
+				|player_state_run
+				|player_state_air
+				|player_state_jump
+				|player_state_look
+				|player_state_crouch
+				|player_state_spin_dash
+				|player_state_roll
+				|player_state_skid
+				|player_state_hurt
+				|player_state_death
+				|player_state_push
+				|player_state_bound
 				+Skill Lists
 					|sonic_skill_list
 		+Routines
@@ -226,7 +228,6 @@
 		+Top
 		+Bottom
 	+Actions (OLD)
-		|player_action_skid_old
 		|player_action_push_OLD
 		|player_action_hurt_OLD
 		+Sonic

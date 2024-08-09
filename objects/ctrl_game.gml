@@ -33,7 +33,7 @@ applies_to=self
 /// Pause
 
 // Exit if there's no player 1:
-if (!instance_exists(instance_player(0))) {
+if (!instance_exists(player_get_instance(0))) {
     exit;
 }
 

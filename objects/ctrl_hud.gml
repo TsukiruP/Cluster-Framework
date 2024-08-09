@@ -124,10 +124,10 @@ if (global.misc_hud == 1) {
     var air_x_target;
 
     // Value:
-    if (instance_exists(instance_player(0))) {
-        with (instance_player(0)) {
+    if (instance_exists(player_get_instance(0))) {
+        with (player_get_instance(0)) {
             // Hide:
-            if (action_current != player_action_death) {
+            if (state_current != player_state_death) {
                 if (physics_type == PHYS_WATER && status_shield != SHIELD_BUBBLE) {
                     other.air_hide = false;
                 } else {
@@ -203,8 +203,8 @@ if (game_ispaused(ctrl_pause)) {
     exit;
 }
 
-if (instance_exists(instance_player(0))) {
-    with (instance_player(0)) {
+if (instance_exists(player_get_instance(0))) {
+    with (player_get_instance(0)) {
         // Shield:
         if (status_shield != SHIELD_NONE) {
             other.status_icon[STATUS_SHIELD] = status_shield + 2;
@@ -274,7 +274,7 @@ if (game_ispaused(ctrl_pause)) {
 }
 
 // Create feed:
-if (instance_exists(instance_player(0))) {
+if (instance_exists(player_get_instance(0))) {
     if (global.misc_feed == true && item_feed == -1) {
         item_feed = ds_list_create();
     }
@@ -347,6 +347,7 @@ draw_text(view_xview[view_current] + air_x_current + 29, view_yview[view_current
 
 
 // Action gauge:
+/*
 if (instance_exists(instance_player(0))) {
     var clock_up_percentage;
     
@@ -356,12 +357,8 @@ if (instance_exists(instance_player(0))) {
     draw_sprite(spr_hud, 3, view_xview[view_current] + gauge_x_current, view_yview[view_current] + global.display_height - 29);
     draw_sprite_part(gauge_index, 0, 0, 0, sprite_get_width(gauge_index) * clock_up_percentage, sprite_get_height(gauge_index), view_xview[view_current] + gauge_x_current + 8, view_yview[view_current] + global.display_height - 29 + 12);
 }
-
-/*
-draw_sprite(spr_hud, 3, view_xview[view_current] + hud_position + 6, view_yview[view_current] + global.display_height - 29);
-draw_sprite_part(spr_hud_gauge, 0, 0, 0, sprite_get_width(spr_action_gauge) * ((global.player_instance[0].clock_up_duration - global.player_instance[0].clock_up_timer)/global.player_instance[0].clock_up_duration), sprite_get_height(spr_action_gauge), view_xview[view_current] + hud_position + 6 + 8, view_yview[view_current] + global.display_height - 29 + 12);
-
 */
+
 // Reset:
 draw_reset();
 /*"/*'/**//* YYD ACTION

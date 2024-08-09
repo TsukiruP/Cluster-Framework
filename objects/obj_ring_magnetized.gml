@@ -36,11 +36,11 @@ if (game_ispaused()) {
     exit;
 }
 
-if (instance_exists(instance_player(0))) {
+if (instance_exists(player_get_instance(0))) {
     var player_handle, xx, yy;
 
     // Move towards the player:
-    player_handle = instance_player(0);
+    player_handle = player_get_instance(0);
     xx            = sign(player_handle.x - x);
     yy            = sign(player_handle.y - y);
 

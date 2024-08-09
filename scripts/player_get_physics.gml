@@ -7,7 +7,7 @@ acceleration = 0.046875;
 deceleration = 0.5
 
 // Vertical variables:
-if (action_current == player_action_hurt) {
+if (state_current == player_state_hurt) {
     gravity_force = 0.1875;
 } else {
     gravity_force = gravity_force_temp;
@@ -31,7 +31,7 @@ if (physics_type == PHYS_WATER) {
     roll_friction *= 0.5;
     
     // Vertical variables:
-    if (action_current == player_action_hurt) {
+    if (state_current == player_state_hurt) {
         gravity_force = 0.09375;
     } else {
         gravity_force = 0.0625;

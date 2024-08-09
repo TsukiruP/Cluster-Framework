@@ -28,7 +28,7 @@ if (argument_count >= 1) {
     }
 
     // Exit if hurt or dying:
-    if (action_current == player_action_hurt || action_current == player_action_death) {
+    if (state_current == player_state_hurt || state_current == player_state_death) {
         exit;
     }
 

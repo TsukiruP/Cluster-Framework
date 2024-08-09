@@ -16,7 +16,7 @@ limit_top    = 0;
 limit_bottom = room_height;
 
 // Focus handle:
-focus_handle = instance_player(0);
+focus_handle = player_get_instance(0);
 
 // Camera variables:
 camera_x                 = x;
@@ -65,12 +65,12 @@ if (game_ispaused(ctrl_pause)) {
 }
 
 // Shift around the player:
-if (instance_exists(instance_player(0))) {
-    if (focus_handle == instance_player(0)) {
+if (instance_exists(player_get_instance(0))) {
+    if (focus_handle == player_get_instance(0)) {
         var look_direction;
 
         // Look direction:
-        look_direction = (focus_handle.action_current == player_action_crouch) - (focus_handle.action_current == player_action_look);
+        look_direction = (focus_handle.state_current == player_state_crouch) - (focus_handle.state_current == player_state_look);
 
         // Look timer:
         camera_look_timer = clamp(camera_look_timer + (1 * look_direction), -120, 120);
@@ -95,7 +95,7 @@ if (instance_exists(instance_player(0))) {
         }
 
         // Camera pan:
-        //if ((focus_handle.action_state == ACTION_PEEL_OUT && focus_handle.peel_out_timer > 15) || focus_handle.peel_out_flag == true) {
+        //if ((focus_handle.state_state == ACTION_PEEL_OUT && focus_handle.peel_out_timer > 15) || focus_handle.peel_out_flag == true) {
             //camera_x_shift = approach(camera_x_shift, 64 * focus_handle.image_xscale, 2);
         //} else {
             camera_x_shift = max(0, abs(camera_x_shift - 2) * sign(camera_x_shift));
@@ -122,7 +122,7 @@ if (game_ispaused(ctrl_pause)) {
 
 if (instance_exists(focus_handle)) {
     // Player focus:
-    if (focus_handle == instance_player(0)) {
+    if (focus_handle == player_get_instance(0)) {
         if (camera_position_distance == 0) {
             if (camera_lag_alarm == 0) {
                 // Move left:
@@ -136,7 +136,7 @@ if (instance_exists(focus_handle)) {
                 }
 
                 // Vertical movement:
-                if (focus_handle.action_current != player_action_death) {
+                if (focus_handle.state_current != player_state_death) {
                     var focus_y;
 
                     // Have the camera compare a bit higher on the screen:

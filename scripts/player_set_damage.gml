@@ -2,7 +2,7 @@
 //
 
 // Exit if already hurt, dying, or invincible:
-if (action_current == player_action_death || ((action_current == player_action_hurt || status_insta_alarm > 0 || status_invin != INVIN_NONE) && argument0 != self)) {
+if (state_current == player_state_death || ((state_current == player_state_hurt || status_insta_alarm > 0 || status_invin != INVIN_NONE) && argument0 != self)) {
     exit;
 }
 
@@ -25,8 +25,8 @@ if (damage_handle == self.id || (input_cpu == false && global.game_rings == 0 &&
         y_speed = -7;
     }
 
-    // Set action:
-    player_set_action(player_action_death);
+    // Set state:
+    player_set_state(player_state_death);
 
     // Player 1 specific:
     if (input_cpu == false) {
@@ -49,8 +49,8 @@ else {
     // Set invincibility:
     status_invin = INVIN_HURT;
 
-    // Set action:
-    player_set_action(player_action_hurt);
+    // Set state:
+    player_set_state(player_state_hurt);
 
     // Reset shield:
     if (input_cpu == false && status_shield != 0) {
@@ -70,7 +70,7 @@ if (damage_handle == self.id) {
     } else {
         sound_play("snd_hurt");
     }
-} else if ((input_cpu == false && shield_handle != noone) || input_cpu == true || action_current == player_action_death) {
+} else if ((input_cpu == false && shield_handle != noone) || input_cpu == true || state_current == player_state_death) {
     if (object_is_ancestor(damage_handle.object_index, par_spike)) {
         sound_play("snd_spike");
     } else {

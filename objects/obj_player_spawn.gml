@@ -14,22 +14,28 @@ if (checkpoint_isset()) {
 
 // Create players:
 for (i = 0; i < global.player_count; i += 1) {
-    if (global.player_id[i] >= CHAR_SONIC) {
-        global.player_instance[i]              = instance_create(x - (30 * i), y, obj_player);
-        global.player_instance[i].player_slot  = i;
-        global.player_instance[i].character_id = global.player_id[i];
-        global.player_instance.input_lock      = true;
+    var player_handle, player_character;
+
+    player_character = global.player_data[i, 0];
+
+    if (player_character >= CHAR_SONIC) {
+        global.player_data[i, 1] = instance_create(x - (30 * i), y, obj_player);
+
+        player_handle              = player_get_instance(0);
+        player_handle.player_slot  = i;
+        player_handle.character_id = player_character;
+        player_handle.input_lock   = true;
 
         // Create HUD:
         if (i == 0) {
             // Create camera:
             camera              = instance_create(x, y, ctrl_camera);
-            camera.focus_handle = global.player_instance[0];
+            camera.focus_handle = player_handle;
 
             // Create HUD:
             instance_create(0, 0, ctrl_hud);
         } else if (i > 0) {
-            global.player_instance[i].input_cpu = true;
+            player_handle.input_cpu = true;
         }
     }
 }

@@ -26,7 +26,7 @@ if (on_obstacle == false) {
             g_speed = x_speed;
             player_set_angle();
 
-            // Landing speed (From 24 to 90 degrees):
+            // Landing speed (20 to 90 degrees):
             if (ground_angle >= 24 && ground_angle <= 90) {
                 if (ground_angle >= 45) {
                     if (abs(x_speed) <= abs(y_speed)) {
@@ -35,16 +35,13 @@ if (on_obstacle == false) {
                         g_speed = x_speed;
                     }
                 } else {
-                    if (abs(x_speed) <= abs(y_speed)) {
+                    if (abs(x_speed) <= abs(y_speed / 2)) {
                         g_speed = (y_speed / 2) * -1;
                     } else {
                         g_speed = x_speed;
                     }
                 }
-            }
-
-            // Landing speed (From 270 to 336 degrees):
-            else if (ground_angle >= 270 && ground_angle <= 336) {
+            } else if (ground_angle >= 270 && ground_angle <= 336) {
                 if (ground_angle <= 315) {
                     if (abs(x_speed) <= abs(y_speed)) {
                         g_speed = y_speed;
@@ -52,7 +49,7 @@ if (on_obstacle == false) {
                         g_speed = x_speed;
                     }
                 } else {
-                    if (abs(x_speed) <= abs(y_speed)) {
+                    if (abs(x_speed) <= abs(y_speed / 2)) {
                         g_speed = y_speed / 2;
                     } else {
                         g_speed = x_speed;
@@ -137,7 +134,7 @@ if (on_obstacle == false) {
                 ceiling_lock_alarm = 16;
                 input_lock_alarm   = 2;
 
-                player_set_action(player_action_run);
+                player_set_state(player_state_run);
             }
         }
 

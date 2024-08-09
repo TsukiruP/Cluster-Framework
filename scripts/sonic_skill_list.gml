@@ -1,5 +1,7 @@
 /// sonic_skill_list(id)
+//
 
+/*
 var skill_id;
 
 // Skill id:

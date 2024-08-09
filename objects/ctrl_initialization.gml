@@ -21,11 +21,14 @@ global.game_rings  = 0;
 global.game_score  = 0;
 
 // Player initialization:
-global.player_instance[0]    =   noone;
-global.player_instance[1]    =   noone;
-global.player_id[0]          =   CHAR_SONIC;
-global.player_id[1]          =  -1;
-global.player_count          =   2;
+global.player_count = 2;
+
+for (i = 0; i < global.player_count; i += 1) {
+    global.player_data[i, 0] = -1;
+    global.player_data[i, 1] =  noone;
+}
+
+global.player_data[0, 0] = CHAR_SONIC;
 
 global.animation_grid        = -1;
 global.animation_character   = -1;

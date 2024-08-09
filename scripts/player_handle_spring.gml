@@ -44,8 +44,8 @@ if (player_collision_prop(spring_handle, SIDE_MAIN)) {
             // Set ground:
             ground = false;
 
-            // Set action:
-            player_set_action(player_action_air);
+            // Set state:
+            player_set_state(player_state_air);
         } else {
             input_lock_alarm = 16;
         }
