@@ -3,7 +3,7 @@
 
 switch (argument0) {
     // Start:
-    case ACTION_START:
+    case STATE_START:
         // Set physics
         if (g_speed == 0) {
             g_speed = 2 * input_x_direction;
@@ -11,7 +11,7 @@ switch (argument0) {
         break;
 
     // Step:
-    case ACTION_STEP:
+    case STATE_STEP:
         // Input:
         if (input_x_direction != 0) {
             if (input_lock_alarm == 0) {
@@ -74,6 +74,6 @@ switch (argument0) {
         break;
 
     // Finish:
-    case ACTION_FINISH:
+    case STATE_FINISH:
         break;
 }

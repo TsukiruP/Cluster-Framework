@@ -3,11 +3,11 @@
 
 switch (argument0) {
     // Start:
-    case ACTION_START:
+    case STATE_START:
         break;
 
     // Step:
-    case ACTION_STEP:
+    case STATE_STEP:
         // Input:
         if (input_x_direction != 0 && spring_alarm == 0) {
             if (abs(x_speed) < top_speed || sign(x_speed) != input_x_direction) {
@@ -53,6 +53,6 @@ switch (argument0) {
         break;
 
     // Finish:
-    case ACTION_FINISH:
+    case STATE_FINISH:
         break;
 }

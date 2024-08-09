@@ -3,14 +3,14 @@
 
 switch (argument0) {
     // Start:
-    case ACTION_START:
+    case STATE_START:
         break;
 
     // Step:
-    case ACTION_STEP:
+    case STATE_STEP:
         break;
 
     // Finish:
-    case ACTION_FINISH:
+    case STATE_FINISH:
         break;
 }

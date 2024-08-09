@@ -3,7 +3,7 @@
 
 switch (argument0) {
     // Start:
-    case ACTION_START:
+    case STATE_START:
         // Set ground:
         if (ground == true) {
             ground = false;
@@ -15,7 +15,7 @@ switch (argument0) {
         break;
 
     // Step:
-    case ACTION_STEP:
+    case STATE_STEP:
         // Input:
         if (input_x_direction != 0) {
             if (abs(x_speed) < top_speed) {
@@ -86,7 +86,7 @@ switch (argument0) {
         break;
 
     // Finish:
-    case ACTION_FINISH:
+    case STATE_FINISH:
         /*
         // Reset jump:
         if (jump_special != false) {

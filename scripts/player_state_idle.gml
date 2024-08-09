@@ -3,7 +3,7 @@
 
 switch (argument0) {
     // Start:
-    case ACTION_START:
+    case STATE_START:
         // Land:
         if (ground == true && y_speed > 0) {
             player_set_animation("land");
@@ -11,7 +11,7 @@ switch (argument0) {
         break;
 
     // Step:
-    case ACTION_STEP:
+    case STATE_STEP:
         // Collision steps:
         player_collision_steps();
 
@@ -87,7 +87,7 @@ switch (argument0) {
         break;
 
     // Finish:
-    case ACTION_FINISH:
+    case STATE_FINISH:
         // Reset balance:
         if (balance_direction != 0) {
             balance_direction = 0;

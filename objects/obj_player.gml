@@ -410,7 +410,7 @@ if (game_ispaused()) {
 
 // Execute state:
 if (script_exists(state_current)) {
-    script_execute(state_current, ACTION_STEP);
+    script_execute(state_current, STATE_STEP);
 
     if (state_changed != false) {
         state_changed = false;

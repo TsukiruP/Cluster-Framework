@@ -16,11 +16,11 @@ if (state_current != argument[0] || state_reset == true) {
 
     // Finish previous state:
     if (script_exists(state_previous)) {
-        script_execute(state_previous, ACTION_FINISH);
+        script_execute(state_previous, STATE_FINISH);
     }
 
     // Start current state:
     if (script_exists(state_current)) {
-        script_execute(state_current, ACTION_START);
+        script_execute(state_current, STATE_START);
     }
 }
