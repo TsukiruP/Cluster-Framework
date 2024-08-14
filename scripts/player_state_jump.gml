@@ -54,11 +54,11 @@ switch (argument0) {
             }
         }
 
-        // Special skill:
-        if (input_player[INP_SPECIAL, CHECK_PRESSED] == true) {
+        // Auxiliary skill:
+        if (input_player[INP_AUX, CHECK_PRESSED] == true) {
             switch (character_id) {
                 case CHAR_SONIC:
-                    sonic_skill_list(SONIC_SPECIAL_A);
+                    sonic_skill_list(SONIC_AUX_A);
                     break;
             }
         }

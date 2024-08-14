@@ -160,7 +160,7 @@ if (instance_exists(focus_handle)) {
                         var camera_speed_cap;
 
                         // Speed cap:
-                        if (focus_handle.g_speed >= 8) {
+                        if (focus_handle.x_speed >= 8) {
                             camera_speed_cap = 24;
                         } else {
                             camera_speed_cap = 6;

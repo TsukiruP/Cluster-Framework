@@ -1,27 +1,24 @@
-/// player_collision_wall()
+/// player_collision_wall(radius)
+// Returns whether any solids are in collision with the wall sensor of the player's bounding box.
 
-// Obstacle collision:
-var obstacle;
+// Initialize
+var total_solids, n, inst;
 
-obstacle = player_obstacle_rectangle(wall_left + 1, main_top, wall_right + 1, main_bottom);
+total_solids = ds_list_size(solid_list);
 
-if (obstacle != false) {
-    if (y + main_bottom + yprevious - y >= obstacle.bbox_top) {
-        if ((((g_speed < 0 && ground) || (x_speed < 0 && !ground)) && player_obstacle_rectangle(0, main_top, wall_right + 1, main_bottom) && (x + wall_right) + xprevious - x <= obstacle.bbox_left) ||
-            (((g_speed > 0 && ground) || (x_speed > 0 && !ground)) && player_obstacle_rectangle(wall_left + 1, main_top, 0, main_bottom) && (x - wall_left) + xprevious - x >= obstacle.bbox_right)) {
-            if (ground == true) g_speed = 0;
-            x_speed = 0;
-            // [PLACEHOLDER] Glide speed.
-        }
+// Evaluate all solids
+for (n = 0; n < total_solids; n += 1) {
+    // Get the current solid:
+    inst = ds_list_find_value(solid_list, n);
+
+    // Continue if not colliding with/passing through the current solid:
+    if (collision_ray(wall_radius + argument0, 0, mask_rotation, inst) == noone || inst.semisolid) {
+        continue;
     }
+
+    // Confirm
+    return inst;
 }
 
-// Terrain:
-if (input_lock_alarm == 0) {
-    // Wall collision:
-    if ((((g_speed < 0 && ground) || (x_speed < 0 && !ground)) && player_terrain_point(-wall_left - 1, wall_height)) ||
-        (((g_speed > 0 && ground) || (x_speed > 0 && !ground)) && player_terrain_point(wall_right +  1, wall_height))) {
-        if (ground == true) g_speed = 0;
-        x_speed = 0;
-    }
-}
+// If there was no collision:
+return noone;

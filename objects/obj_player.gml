@@ -24,20 +24,18 @@ state_changed  = false;
 top_speed        = 6;
 max_speed        = 16;
 
-g_speed          = 0;
-
 x_allow          = true;
 x_direction      = 0;
 x_speed          = 0;
 acceleration     = 0.046875;
 deceleration     = 0.5;
+air_friction     = 0.96875;
 
 y_allow            = true;
 y_direction        = 1;
 y_speed            = 0;
 gravity_force      = 0.21875;
 gravity_force_temp = 0.21875;
-gravity_angle      = 0;
 
 // Default variables:
 balance_direction = 0;
@@ -72,34 +70,21 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Collision Initialization
+/// Collision
 
-// Collision flags:
-collision_allow        = true;
-ground_collision_allow = true;
-ground                 = true;
-landed                 = false;
-mode                   = 0;
-layer                  = 0;
-ground_angle           = 0;
-angle_mode             = 0;
-physics_type           = PHYS_DEFAULT;
+solid_list        = ds_list_create();
+wall_direction    = 0;
+collision_layer   = 1;
+balance_direction = 0;
 
-on_edge                = false;
-on_obstacle            = false;
-
-detach_allow           = true;
-
-ceiling_allow          = true;
-ceiling_landing        = 0;
-ceiling_lock_alarm     = 0;
-touching_ceiling       = false;
-
-// Platform variables:
-platform_instance = noone;
-platform_check    = false;
+// Reset:
+player_reset_air();
 
 // Main variables:
+x_radius    = 6;
+y_radius    = 14;
+wall_radius = x_radius + 2;
+
 main_left      = 6;
 main_right     = 6;
 main_top       = 14;
@@ -257,6 +242,7 @@ input_y_direction = 0;
 
 input_lock        = false;
 input_lock_alarm  = 0;
+
 input_cpu         = false;
 input_cpu_alarm   = 0;
 
@@ -281,6 +267,81 @@ animation_reload    =  false;
 animation_alarm     =  360;
 
 animation_angle_mod =  0;
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=605
+invert=0
+arg0=Harmony
+*/
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Collision Initialization
+
+// Collision flags:
+collision_allow        = true;
+ground_collision_allow = true;
+ground                 = true;
+landed                 = false;
+mode                   = 0;
+layer                  = 0;
+ground_angle           = 0;
+angle_mode             = 0;
+physics_type           = PHYS_DEFAULT;
+
+on_edge                = false;
+on_obstacle            = false;
+
+detach_allow           = true;
+
+ceiling_allow          = true;
+ceiling_landing        = 0;
+ceiling_lock_alarm     = 0;
+touching_ceiling       = false;
+
+// Platform variables:
+platform_instance = noone;
+platform_check    = false;
+
+// Main variables:
+main_left      = 6;
+main_right     = 6;
+main_top       = 14;
+main_bottom    = 14;
+
+main_left_rel  = 0;
+main_right_rel = 0;
+
+wall_left      = main_left + 3;
+wall_right     = main_right + 3;
+wall_top       = 0;
+wall_bottom    = 0;
+
+// Hurtbox variables:
+hurtbox_left      = 0;
+hurtbox_right     = 0;
+hurtbox_top       = 0;
+hurtbox_bottom    = 0;
+
+hurtbox_offset_x  = 0;
+hurtbox_offset_y  = 0;
+
+hurtbox_left_rel  = 0;
+hurtbox_right_rel = 0;
+
+// Hitbox variables:
+hitbox_left      = 0;
+hitbox_right     = 0;
+hitbox_top       = 0;
+hitbox_bottom    = 0;
+
+hitbox_offset_x  = 0;
+hitbox_offset_y  = 0;
+
+hitbox_left_rel  = 0;
+hitbox_right_rel = 0;
 #define Step_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -442,6 +503,7 @@ if (game_ispaused() || state_current == player_state_death) {
     exit;
 }
 
+/*
 player_handle_layer();
 player_handle_ring();
 player_handle_checkpoint();
@@ -477,7 +539,8 @@ if (status_invin >= INVIN_BUFF) {
     }
 }
 
-//
+/*
+// Slow:
 if (status_speed == SPEED_SLOW) {
     // Cap speed:
     if (spring_strength == 0) {
@@ -838,22 +901,22 @@ switch (state_current) {
     // Run:
     case player_state_run:
         // Walk:
-        if (abs(g_speed) < 1.50) {
+        if (abs(x_speed) < 1.50) {
             if (animation_target != "run_0") player_set_animation("run_0");
         }
 
         // Walk fast:
-        else if (abs(g_speed) < 3.00) {
+        else if (abs(x_speed) < 3.00) {
             if (animation_target != "run_1") player_set_animation("run_1");
         }
 
         // Jog:
-        else if (abs(g_speed) < 4.50) {
+        else if (abs(x_speed) < 4.50) {
             if (animation_target != "run_2") player_set_animation("run_2");
         }
 
         // Jog fast:
-        else if (abs(g_speed) < 6.00) {
+        else if (abs(x_speed) < 6.00) {
             if (animation_target != "run_3") player_set_animation("run_3");
         }
 
@@ -1037,7 +1100,7 @@ switch (animation_target) {
     case "run_2":
     case "run_3":
     case "run_4":
-        ctl_speed = clamp(abs(g_speed * 16 * 3) / 64, 0.5, 7);
+        ctl_speed = clamp(abs(x_speed * 16 * 3) / 64, 0.5, 7);
         break;
 
     default:
@@ -1047,6 +1110,7 @@ switch (animation_target) {
 // Animation core:
 player_animation_core();
 
+/*
 // Position fix:
 if ((ground == true && ceiling_lock_alarm == 0) || (mode == 0 && state_current == player_state_jump && animation_current == "spin" && animation_variant == 2)) {
     x += (main_bottom_temp - main_bottom) * x_direction;

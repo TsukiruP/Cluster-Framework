@@ -1,7 +1,3 @@
-+GMS2
-	|collision_line_list
-	|collision_rectangle_list
-	|collision_point_list
 +System
 	|credits
 	+Game
@@ -139,27 +135,24 @@
 		|effect_create
 		|hover
 +Gameplay
+	+Collision
+		|collision_box
+		|collision_box_vertical
+		|collision_ray
+		|collision_ray_vertical
 	+Player
 		+Data
 			|player_get_character
 			|player_get_instance
 		+Collision
-			+Utilities
-				|angle_sensor
-				|player_terrain_point
-				|player_terrain_line
-				|player_obstacle_rectangle
-			|player_movement
-			|player_collision_semisolids
-			|player_collision_terrain
-			|player_collision_obstacle
-			|player_collision_prop
-			|player_collision_mode
+			|player_collision_floor
 			|player_collision_wall
-			|player_collision_steps
-		+Angle
-			|player_set_angle
-			|player_get_angle
+		+Wall
+			|player_wall_eject
+		+Movement
+			|player_reset_air
+			|player_movement_ground
+			|player_movement_air
 		+States
 			|player_set_state
 			|player_state_template
@@ -205,12 +198,19 @@
 				|knuckles_add_animations
 				|classic_add_animations
 			|player_compile_animations
-		+Misc.
-			|player_set_input
-			|player_ring_loss
-			|player_set_damage
-			|player_get_item
+		+Getters
+			|player_get_solids
+			|player_get_angle
 			|player_get_physics
+			|player_get_item
+		+Setters
+			|player_set_input
+			|player_set_ground
+			|player_set_damage
+		+Misc.
+			|player_react
+			|player_ring_loss
+			|player_rotate_mask
 			+Trail
 				|start_trail
 				|update_trail
@@ -220,6 +220,7 @@
 		+Checkpoint
 			|checkpoint_set
 			|checkpoint_isset
+	|gravity_angle
 +Trash
 	+Sonic Dash
 		+Main
@@ -235,3 +236,23 @@
 		+Knuckles
 		+Amy
 		+Classic
+	+Collision
+		+Utilities
+			|angle_sensor
+			|player_terrain_point
+			|player_terrain_line
+			|player_obstacle_rectangle
+		|player_movement
+		|player_collision_semisolids
+		|player_collision_terrain
+		|player_collision_obstacle
+		|player_collision_prop
+		|player_collision_mode
+		|player_collision_wall_OLD
+		|player_collision_steps
+	+Angle
+		|player_set_angle
+	+GMS2
+		|collision_line_list
+		|collision_rectangle_list
+		|collision_point_list

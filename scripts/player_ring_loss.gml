@@ -1,5 +1,5 @@
 /// player_ring_loss()
-// Drop a ring of rings:
+// Drop a ring of rings.
 
 var ring_total, ring_angle, ring_speed, ring_handle;
 

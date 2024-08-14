@@ -13,6 +13,9 @@ switch (argument0) {
             if (image_xscale != input_x_direction) {
                 return player_set_state(player_state_idle);
             } else {
+                // Set direction:
+                image_xscale = input_x_direction;
+
                 if (abs(g_speed) < top_speed) {
                     g_speed += acceleration * input_x_direction;
 

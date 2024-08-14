@@ -5,15 +5,48 @@ switch (argument0) {
     // Start:
     case STATE_START:
         // Land:
+        /*
         if (ground == true && y_speed > 0) {
             player_set_animation("land");
         }
+        */
         break;
 
     // Step:
     case STATE_STEP:
+        // Movement:
+        if (!player_movement_ground()) {
+            exit;
+        }
+
+        // Changed:
+        if (state_changed == true) {
+            return false;
+        }
+
+        // Fall:
+        if (on_ground == false) {
+            return player_set_state(player_state_air);
+        }
+
+        // Steep slants:
+        // [PLACEHOLDER]
+
+        // Turn:
+        // [PLACEHOLDER]
+
+        // Run:
+        if (x_speed != 0 || input_x_direction != 0) {
+            return player_set_state(player_state_run);
+        }
+
+        /*
         // Collision steps:
         player_collision_steps();
+
+        if (!player_movement_ground()) {
+            exit;
+        }
 
         // Changed:
         if (state_changed == true || hint_wanted == true) {
@@ -21,12 +54,12 @@ switch (argument0) {
         }
 
         // Air:
-        if (ground == false || (ground_angle >= 90 && ground_angle <= 270)) {
-            return player_set_state(player_state_air);
+        if (ground == false || (angle >= 90 && angle <= 270)) {
+            //return player_set_state(player_state_air);
         }
 
         // Turn:
-        if (global.advance_turn == true && character_id != CHAR_CLASSIC && image_xscale == -input_x_direction) {
+        if (global.advance_turn == false && character_id != CHAR_CLASSIC && image_xscale == -input_x_direction) {
             return player_set_state(player_state_turn);
         }
 
@@ -42,19 +75,20 @@ switch (argument0) {
         }
 
         // Slope friction:
-        if (ground_angle < 135 || ground_angle > 225) {
+        if (angle < 135 || angle > 225) {
             if (abs(g_speed) > 0.125 || input_lock_alarm != 0) {
-                g_speed -= 0.125 * dsin(ground_angle);
+                g_speed -= 0.125 * dsin(angle);
             }
         }
 
         // Jump:
         if (ground == true && touching_ceiling == false && input_player[INP_JUMP, CHECK_PRESSED] == true) {
             sound_play_single("snd_jump");
-            return player_set_state(player_state_jump);
+            //return player_set_state(player_state_jump);
         }
 
         // Balance:
+
         var edge_left, edge_right;
 
         edge_left  = (!player_terrain_line(main_right_rel, main_bottom + 16, true));
@@ -84,6 +118,7 @@ switch (argument0) {
                     break;
             }
         }
+        */
         break;
 
     // Finish:

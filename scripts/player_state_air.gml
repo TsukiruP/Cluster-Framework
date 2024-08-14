@@ -10,6 +10,9 @@ switch (argument0) {
     case STATE_STEP:
         // Input:
         if (input_x_direction != 0 && spring_alarm == 0) {
+            // Set direction:
+            image_xscale = input_x_direction;
+
             if (abs(x_speed) < top_speed || sign(x_speed) != input_x_direction) {
                 x_speed += (2 * acceleration) * input_x_direction;
 
@@ -19,6 +22,26 @@ switch (argument0) {
             }
         }
 
+        // Movement:
+        if (!player_movement_air()) {
+            exit;
+        }
+
+        // Land:
+        if (on_ground == true) {
+            if (x_speed == 0) {
+                return player_set_state(player_state_idle);
+            } else {
+                return player_set_state(player_state_run);
+            }
+        }
+
+        // Gravity:
+        if (y_allow == true) {
+            y_speed += gravity_force;
+        }
+
+        /*
         // Collision steps:
         player_collision_steps();
 
@@ -50,11 +73,7 @@ switch (argument0) {
         if (y_allow == true) {
             y_speed += gravity_force;
         }
-
-        // Set direction:
-        if (input_x_direction != 0 && image_xscale == -input_x_direction) {
-            image_xscale = input_x_direction;
-        }
+        */
         break;
 
     // Finish:

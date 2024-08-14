@@ -8,7 +8,7 @@ var skill_id;
 skill_id = argument0;
 
 // Ground skills:
-if (skill_id == SONIC_SPECIAL_G) {
+if (skill_id == SONIC_AUX_G) {
 
 }
 
@@ -39,5 +39,5 @@ else {
 
     // Jump exclusive:
 
-    // Special exclusive:
+    // Auxiliary exclusive:
 }
