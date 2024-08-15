@@ -49,6 +49,5 @@ obj_basic_test_collision_03,192,288,062EF6A6,0,1,1,4294967295,0,0
 obj_basic_test_collision_03,288,288,2033B5B6,0,1,1,4294967295,0,0
 obj_basic_test_collision_03,384,288,73F2AF43,0,1,1,4294967295,0,0
 obj_basic_test_collision_03,480,288,188F3F2B,0,1,1,4294967295,0,0
-obj_basic_test_collision_03,480,192,9B100A08,0,1,1,4294967295,0,0
 obj_basic_test_collision_03,480,96,CCFB2A5B,0,1,1,4294967295,0,0
 obj_basic_test_collision_03,480,0,83EB4059,0,1,1,4294967295,0,0

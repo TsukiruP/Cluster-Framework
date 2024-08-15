@@ -4,12 +4,6 @@
 switch (argument0) {
     // Start:
     case STATE_START:
-        // Land:
-        /*
-        if (ground == true && y_speed > 0) {
-            player_set_animation("land");
-        }
-        */
         break;
 
     // Step:
@@ -38,6 +32,11 @@ switch (argument0) {
         // Run:
         if (x_speed != 0 || input_x_direction != 0) {
             return player_set_state(player_state_run);
+        }
+
+        // Jump:
+        if (player_routine_jump()) {
+            return true;
         }
 
         /*

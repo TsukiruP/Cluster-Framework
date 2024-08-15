@@ -4,14 +4,19 @@
 switch (argument0) {
     // Start:
     case STATE_START:
-        // Set ground:
-        if (ground == true) {
-            ground = false;
-        }
+        on_ground = false;
+
+        var g_speed;
+        g_speed = x_speed;
+        x_speed = dcos(relative_angle) * g_speed;
+        y_speed = -(dsin(relative_angle) * g_speed);
 
         // Set speed:
-        x_speed -= jump_force * dsin(ground_angle);
-        y_speed -= jump_force * dcos(ground_angle);
+        x_speed -= jump_force * dsin(relative_angle);
+        y_speed -= jump_force * dcos(relative_angle);
+
+        // Reset air:
+        player_reset_air();
         break;
 
     // Step:
@@ -27,6 +32,50 @@ switch (argument0) {
             }
         }
 
+        // Movement:
+        if (!player_movement_air()) {
+            exit;
+        }
+
+        // Changed:
+        if (state_changed == true) {
+            return false;
+        }
+
+        // Land:
+        if (on_ground == true) {
+            if (x_speed == 0) {
+                return player_set_state(player_state_idle);
+            } else {
+                return player_set_state(player_state_run);
+            }
+        }
+
+        // Jump Action:
+
+        // Auxiliary Action:
+
+        // Release:
+        if (y_speed < jump_release && jump_special == false && input_player[INP_JUMP, CHECK_HELD] == false) {
+            y_speed = jump_release;
+        }
+
+        // Air friction:
+        if (abs(x_speed) > air_friction_threshold && y_speed > -4 && y_speed < 0) {
+            x_speed *= air_friction;
+        }
+
+        // Gravity:
+        if (y_allow == true) {
+            y_speed += gravity_force;
+        }
+
+        // Direction:
+        if (input_x_direction != 0 && image_xscale == -input_x_direction) {
+            image_xscale = input_x_direction;
+        }
+
+        /*
         // Collision steps:
         player_collision_steps();
 
@@ -44,7 +93,7 @@ switch (argument0) {
             }
         }
 
-        /*
+
         // Jump skill:
         if (input_player[INP_JUMP, CHECK_PRESSED] == true) {
             switch (character_id) {
@@ -62,7 +111,7 @@ switch (argument0) {
                     break;
             }
         }
-        */
+
 
         // Release:
         if (y_speed < jump_release && jump_special == false && input_player[INP_JUMP, CHECK_HELD] == false) {
@@ -83,6 +132,7 @@ switch (argument0) {
         if (input_x_direction != 0 && image_xscale == -input_x_direction) {
             image_xscale = input_x_direction;
         }
+        */
         break;
 
     // Finish:

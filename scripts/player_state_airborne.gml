@@ -1,10 +1,10 @@
-/// player_state_air(phase)
+/// player_state_airborne(phase)
 // Falling with style.
 
 switch (argument0) {
     // Start:
     case STATE_START:
-        on_ground  = false;
+        on_ground = false;
 
         var g_speed;
 
@@ -12,6 +12,13 @@ switch (argument0) {
         g_speed =  x_speed;
         x_speed =  dcos(relative_angle) * g_speed;
         y_speed = -(dsin(relative_angle) * g_speed);
+
+        // Jump:
+        if (jump_state == true) {
+            // Set speed:
+            x_speed -= jump_force * dsin(relative_angle);
+            y_speed -= jump_force * dcos(relative_angle);
+        }
 
         // Reset air:
         player_reset_air();
@@ -62,6 +69,10 @@ switch (argument0) {
             }
         }
 
+        // Jump Action:
+
+        // Auxiliary Action:
+
         // Variable jump:
         if (jump_state == true) {
             if (jump_special == false) {
@@ -77,10 +88,6 @@ switch (argument0) {
                 return false;
             }
         }
-
-        // Jump Action:
-
-        // Auxiliary Action:
 
         // Air friction:
         if (abs(x_speed) > air_friction_threshold && y_speed > -4 && y_speed < 0) {
@@ -135,9 +142,6 @@ switch (argument0) {
 
     // Finish:
     case STATE_FINISH:
-        // Reset jump:
-        jump_state = false;
-
         // Reset spring:
         spring_strength = 0;
         spring_angle    = 0;

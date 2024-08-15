@@ -43,6 +43,7 @@ push_animation    = false;
 hint_wanted       = false;
 
 // Jump variables:
+jump_state   = false;
 jump_force   =  6.5;
 jump_release = -4;
 jump_special =  false;
@@ -70,7 +71,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Collision
+/// Collision Initialization
 
 solid_list        = ds_list_create();
 wall_direction    = 0;
@@ -80,47 +81,15 @@ balance_direction = 0;
 // Reset:
 player_reset_air();
 
-// Main variables:
+// Thresholds:
+ceiling_land_threshold = -4;
+slide_threshold        = 2.5;
+air_friction_threshold = 0.125;
+
+// Radii:
 x_radius    = 6;
 y_radius    = 14;
 wall_radius = x_radius + 2;
-
-main_left      = 6;
-main_right     = 6;
-main_top       = 14;
-main_bottom    = 14;
-
-main_left_rel  = 0;
-main_right_rel = 0;
-
-wall_left      = main_left + 3;
-wall_right     = main_right + 3;
-wall_top       = 0;
-wall_bottom    = 0;
-
-// Hurtbox variables:
-hurtbox_left      = 0;
-hurtbox_right     = 0;
-hurtbox_top       = 0;
-hurtbox_bottom    = 0;
-
-hurtbox_offset_x  = 0;
-hurtbox_offset_y  = 0;
-
-hurtbox_left_rel  = 0;
-hurtbox_right_rel = 0;
-
-// Hitbox variables:
-hitbox_left      = 0;
-hitbox_right     = 0;
-hitbox_top       = 0;
-hitbox_bottom    = 0;
-
-hitbox_offset_x  = 0;
-hitbox_offset_y  = 0;
-
-hitbox_left_rel  = 0;
-hitbox_right_rel = 0;
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -928,16 +897,22 @@ switch (state_current) {
 
     // Air:
     case player_state_air:
-        if ((animation_target != "turn" && animation_target != "turn_skid" && animation_target != "spin" && animation_target != "skid" && animation_target != "spring_flight" && animation_target != "spring_fall") ||
-            (animation_current == "spring_flight" && y_speed >= 0) || spring_alarm > 0) {
-            // Flight:
-            if (y_speed < 0 || (spring_angle != ANGLE_DOWN && spring_alarm > 0)) {
-                player_set_animation("spring_flight");
+        if (jump_state == true) {
+            if (animation_target != "spin" && animation_target != "insta") {
+                player_set_animation("spin");
             }
+        } else {
+            if ((animation_target != "turn" && animation_target != "turn_skid" && animation_target != "spin" && animation_target != "skid" && animation_target != "spring_flight" && animation_target != "spring_fall") ||
+                (animation_current == "spring_flight" && y_speed >= 0) || spring_alarm > 0) {
+                // Flight:
+                if (y_speed < 0 || (spring_angle != ANGLE_DOWN && spring_alarm > 0)) {
+                    player_set_animation("spring_flight");
+                }
 
-            // Fall:
-            else {
-                player_set_animation("spring_fall");
+                // Fall:
+                else {
+                    player_set_animation("spring_fall");
+                }
             }
         }
         break;
@@ -1079,7 +1054,7 @@ switch (animation_target) {
 
     case "spin":
         // Spin flight & fall:
-        if (state_current == player_state_jump) {
+        if (jump_state == true) {
             animation_variant = 1;
         }
 
@@ -1638,6 +1613,7 @@ if (global.game_debug == false) {
     exit;
 }
 
+/*
 // Main:
 var x1, y1, x2, y2;
 

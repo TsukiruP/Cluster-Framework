@@ -77,55 +77,54 @@ repeat (total_steps) {
             player_set_ground(hit_floor);
         }
     } else {
-        /*
-        // Ceiling collision
+        // Ceiling collision:
         hit_floor = player_collision_ceiling(y_radius);
 
         if (hit_floor != noone) {
             // Trigger reaction
             //if (player_react(hit_floor, COLL_TOP)) return false;
 
-            // Rotate mask to ceiling
-            mask_rotation = angle_wrap(mask_rotation + 180);
+            // Rotate mask:
+            mask_rotation = wrap_angle(mask_rotation + 180);
 
-            // Get ceiling data
+            // Set ceiling:
             player_set_ground(hit_floor);
 
-            // Abort if rising too slow or relative angle is too flat
-            if (y_speed > ceiling_land_threshold or (relative_angle > 135 and relative_angle < 225))
-            {
+            // Abort if rising too slow or relative angle is too flat:
+            if (y_speed > ceiling_land_threshold || (relative_angle > 135 && relative_angle < 225)) {
                 // Slide against ceiling
                 var sine, csine, g_speed;
-                sine = dsin(relative_angle);
-                csine = dcos(relative_angle);
-                g_speed = (csine * x_speed) - (sine * y_speed);
-                x_speed = csine * g_speed;
+
+                sine    = dsin(relative_angle);
+                csine   = dcos(relative_angle);
+
+                g_speed =  (csine * x_speed) - (sine * y_speed);
+                x_speed =  csine * g_speed;
                 y_speed = -(sine * g_speed);
 
-                // Reset air state and exit loop
-                player_in_air();
+                // Reset air:
+                player_reset_air();
                 break;
             }
         }
-        */
     }
 
     // Land:
     if (ground_id != noone) {
-        // Calculate landing speed
-        if (abs(x_speed) <= abs(y_speed) and relative_angle >= 22.5 and relative_angle <= 337.5) {
-            // Scale speed to incline
+        // Calculate landing speed:
+        if (abs(x_speed) <= abs(y_speed) && relative_angle >= 22.5 && relative_angle <= 337.5) {
+            // Scale speed to incline:
             x_speed = -y_speed * sign(dsin(relative_angle));
 
-            if (relative_angle < 45 or relative_angle > 315) {
+            if (relative_angle < 45 || relative_angle > 315) {
                 x_speed *= 0.5;
             }
         }
 
-        // Stop falling
+        // Stop falling:
         y_speed = 0;
 
-        // Exit loop
+        // Exit loop:
         break;
     }
 

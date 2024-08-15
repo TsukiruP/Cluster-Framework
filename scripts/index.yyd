@@ -194,3 +194,5 @@ player_set_ground
 gravity_angle
 player_rotate_mask
 player_movement_air
+player_collision_ceiling
+player_routine_jump

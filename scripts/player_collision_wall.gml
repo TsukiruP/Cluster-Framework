@@ -1,7 +1,6 @@
 /// player_collision_wall(radius)
 // Returns whether any solids are in collision with the wall sensor of the player's bounding box.
 
-// Initialize
 var total_solids, n, inst;
 
 total_solids = ds_list_size(solid_list);

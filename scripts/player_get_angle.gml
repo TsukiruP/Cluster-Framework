@@ -44,6 +44,7 @@ if (argument0.shape == -1) {
 
         x_int = floor(x);
         y_int = floor(y);
+
         sine  = dsin(angle);
         csine = dcos(angle);
 
@@ -61,6 +62,7 @@ var xscale, yscale, left, right, top, bottom;
 
 xscale = sign(argument0.image_xscale);
 yscale = sign(argument0.image_yscale);
+
 left   = argument0.bbox_left;
 right  = argument0.bbox_right + 1;
 top    = argument0.bbox_top;
