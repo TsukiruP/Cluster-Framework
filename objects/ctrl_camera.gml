@@ -143,7 +143,7 @@ if (instance_exists(focus_handle)) {
                     focus_y = focus_handle.y;
 
                     // Airborne:
-                    if (focus_handle.ground == false) {
+                    if (focus_handle.on_ground == false) {
                         // Move up:
                         if (focus_y < border_top) {
                             camera_y -= min(border_top - focus_y, 24);
@@ -156,7 +156,7 @@ if (instance_exists(focus_handle)) {
                     }
 
                     // Ground:
-                    else if (focus_handle.ground == true) {
+                    else if (focus_handle.on_ground == true) {
                         var camera_speed_cap;
 
                         // Speed cap:

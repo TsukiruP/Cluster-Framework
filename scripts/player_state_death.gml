@@ -5,8 +5,8 @@ switch (argument0) {
     // Start:
     case STATE_START:
         // Reset ground:
-        if (ground == true) {
-            ground = false;
+        if (on_ground == true) {
+            on_ground = false;
         }
 
         // Set physics:

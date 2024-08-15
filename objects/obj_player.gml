@@ -418,7 +418,7 @@ input_x_direction = input_player[INP_RIGHT, CHECK_HELD] - input_player[INP_LEFT,
 input_y_direction = input_player[INP_DOWN, CHECK_HELD] - input_player[INP_UP, CHECK_HELD];
 
 // Input lock:
-if (ground == true && input_lock_alarm > 0) {
+if (on_ground == true && input_lock_alarm > 0) {
     input_lock_alarm -= 1;
 }
 
@@ -1612,6 +1612,31 @@ applies_to=self
 if (global.game_debug == false) {
     exit;
 }
+
+var x_int, y_int, sine, csine;
+
+x_int = floor(x);
+y_int = floor(y);
+
+// Bounding box:
+draw_set_color(c_orange);
+
+if ((mask_rotation mod 180) != 0) {
+    draw_rectangle(x_int - y_radius, y_int - x_radius, x_int + y_radius, y_int + x_radius, true);
+} else {
+    draw_rectangle(x_int - x_radius, y_int - y_radius, x_int + x_radius, y_int + y_radius, true);
+}
+
+// Wall radius:
+sine  = dsin(mask_rotation);
+csine = dcos(mask_rotation);
+
+draw_set_color(c_white);
+
+draw_line(x_int - csine * wall_radius, y_int + sine * wall_radius, x_int + csine * wall_radius, y_int - sine * wall_radius);
+
+// Reset:
+draw_reset();
 
 /*
 // Main:
