@@ -21,6 +21,8 @@ state_previous = state_current;
 state_changed  = false;
 
 // Physics variables:
+physics_type     = PHYS_DEFAULT;
+
 top_speed        = 6;
 max_speed        = 16;
 
@@ -29,6 +31,7 @@ x_direction      = 0;
 x_speed          = 0;
 acceleration     = 0.046875;
 deceleration     = 0.5;
+slope_friction   = 0.125;
 air_friction     = 0.96875;
 
 y_allow            = true;
@@ -37,13 +40,11 @@ y_speed            = 0;
 gravity_force      = 0.21875;
 gravity_force_temp = 0.21875;
 
-// Default variables:
-balance_direction = 0;
-push_animation    = false;
-hint_wanted       = false;
+// Idle variables:
+hint_wanted = false;
 
 // Jump variables:
-jump_state   = false;
+jump_state   =  false;
 jump_force   =  6.5;
 jump_release = -4;
 jump_special =  false;
@@ -54,7 +55,6 @@ roll_friction      = 0.0234375;
 roll_friction_up   = 0.078125;
 roll_friction_down = 0.3125;
 roll_rebounce      = false;
-roll_forced        = false;
 roll_offset        = 0;
 
 // Death variables:
@@ -62,9 +62,7 @@ death_alarm  = -5;
 death_handle = noone;
 
 // Misc. variables:
-wall_stop        =  true;
 depth_default    =  0;
-tunnel_lock      =  false;
 score_multiplier =  0;
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -83,13 +81,34 @@ player_reset_air();
 
 // Thresholds:
 ceiling_land_threshold = -4;
-slide_threshold        = 2.5;
-air_friction_threshold = 0.125;
+slide_threshold        =  2.5;
+air_friction_threshold =  0.125;
 
 // Radii:
 x_radius    = 6;
 y_radius    = 14;
 wall_radius = x_radius + 2;
+
+// Hurtbox variables:
+hurtbox_left      = 0;
+hurtbox_right     = 0;
+hurtbox_top       = 0;
+hurtbox_bottom    = 0;
+
+hurtbox_offset_x  = 0;
+hurtbox_offset_y  = 0;
+
+hurtbox_left_rel  = 0;
+hurtbox_right_rel = 0;
+
+// Hitbox variables:
+hitbox_left      = 0;
+hitbox_right     = 0;
+hitbox_top       = 0;
+hitbox_bottom    = 0;
+
+hitbox_offset_x  = 0;
+hitbox_offset_y  = 0;
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -236,81 +255,6 @@ animation_reload    =  false;
 animation_alarm     =  360;
 
 animation_angle_mod =  0;
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=605
-invert=0
-arg0=Harmony
-*/
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Collision Initialization
-
-// Collision flags:
-collision_allow        = true;
-ground_collision_allow = true;
-ground                 = true;
-landed                 = false;
-mode                   = 0;
-layer                  = 0;
-ground_angle           = 0;
-angle_mode             = 0;
-physics_type           = PHYS_DEFAULT;
-
-on_edge                = false;
-on_obstacle            = false;
-
-detach_allow           = true;
-
-ceiling_allow          = true;
-ceiling_landing        = 0;
-ceiling_lock_alarm     = 0;
-touching_ceiling       = false;
-
-// Platform variables:
-platform_instance = noone;
-platform_check    = false;
-
-// Main variables:
-main_left      = 6;
-main_right     = 6;
-main_top       = 14;
-main_bottom    = 14;
-
-main_left_rel  = 0;
-main_right_rel = 0;
-
-wall_left      = main_left + 3;
-wall_right     = main_right + 3;
-wall_top       = 0;
-wall_bottom    = 0;
-
-// Hurtbox variables:
-hurtbox_left      = 0;
-hurtbox_right     = 0;
-hurtbox_top       = 0;
-hurtbox_bottom    = 0;
-
-hurtbox_offset_x  = 0;
-hurtbox_offset_y  = 0;
-
-hurtbox_left_rel  = 0;
-hurtbox_right_rel = 0;
-
-// Hitbox variables:
-hitbox_left      = 0;
-hitbox_right     = 0;
-hitbox_top       = 0;
-hitbox_bottom    = 0;
-
-hitbox_offset_x  = 0;
-hitbox_offset_y  = 0;
-
-hitbox_left_rel  = 0;
-hitbox_right_rel = 0;
 #define Step_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -574,7 +518,7 @@ action_id=603
 applies_to=self
 */
 /// Splashes
-
+/*
 if (instance_exists(obj_water_surface)) {
     // Entry splash:
     if (y > obj_water_surface.y && yprevious < obj_water_surface.y) {
@@ -841,7 +785,7 @@ if (game_ispaused(ctrl_pause)) {
 // Store previous height:
 var main_bottom_temp;
 
-main_bottom_temp = main_bottom;
+//main_bottom_temp = main_bottom;
 
 switch (state_current) {
     // Idle:
@@ -979,29 +923,10 @@ switch (state_current) {
             player_set_animation("push");
         }
         break;
-
-    // Spring:
-    /*
-    case player_state_spring:
-        // Flight:
-        if (y_speed < 0 || (spring_angle != ANGLE_DOWN && spring_alarm > 0)) {
-            if (animation_target != "spring_flight") {
-                player_set_animation("spring_flight");
-            }
-        }
-
-        // Fall:
-        else {
-            if (animation_target != "spring_fall") {
-                player_set_animation("spring_fall");
-            }
-        }
-        break;
-    */
 }
 
 // Wait:
-if (!game_ispaused(ctrl_text) && ground == true && input_lock == false && animation_target == "stand") {
+if (!game_ispaused(ctrl_text) && on_ground == true && input_lock == false && animation_target == "stand") {
     if (animation_alarm > 0) {
         animation_alarm -= 1;
 
@@ -1084,13 +1009,6 @@ switch (animation_target) {
 
 // Animation core:
 player_animation_core();
-
-/*
-// Position fix:
-if ((ground == true && ceiling_lock_alarm == 0) || (mode == 0 && state_current == player_state_jump && animation_current == "spin" && animation_variant == 2)) {
-    x += (main_bottom_temp - main_bottom) * x_direction;
-    y += (main_bottom_temp - main_bottom) * y_direction;
-}
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -1130,7 +1048,7 @@ switch (animation_current) {
     case "push":
     case "breathe":
     case "goal":
-        image_angle = 0;
+        image_angle = gravity_angle();
         break;
 
     // Spring angle:
@@ -1139,7 +1057,7 @@ switch (animation_current) {
         if (character_id != CHAR_CLASSIC && spring_angle != ANGLE_DOWN && spring_alarm > 0) {
             image_angle = spring_angle - 90;
         } else {
-            image_angle = approach_angle(image_angle, 0, 4);
+            image_angle = approach_angle(image_angle, gravity_angle(), 4);
         }
         break;
 
@@ -1147,31 +1065,31 @@ switch (animation_current) {
     default:
         // Default angle behavior:
         if (character_id != CHAR_CLASSIC) {
-            if (ground == true) {
-                image_angle = ground_angle;
+            if (on_ground == true) {
+                image_angle = angle;
             } else {
-                image_angle = approach_angle(image_angle, 0, 4);
+                image_angle = approach_angle(image_angle, gravity_angle(), 4);
             }
         }
 
         // Classic/Tag angle behavior:
         else {
-            if (ground == true) {
+            if (on_ground == true) {
                 var angle_mod;
 
                 angle_mod = animation_angle_mod;
 
-                if (ground_angle <= 180) {
-                    if (ground_angle < 36) {
+                if (angle <= 180) {
+                    if (angle < 36) {
                         angle_mod = 0;
                     } else {
-                        angle_mod =ground_angle;
+                        angle_mod =angle;
                     }
                 } else {
-                    if (ground_angle > 324) {
+                    if (angle > 324) {
                         angle_mod = 0;
                     } else {
-                        angle_mod = ground_angle;
+                        angle_mod = angle;
                     }
                 }
 
@@ -1286,8 +1204,8 @@ if (global.misc_trails == true) {
 }
 
 // Update trail:
-update_trail(floor(x) + (dcos(ground_angle + 90) * (-2 - (1 * ground_angle == 90)) * (trail_draw == true)) + dcos(ground_angle) * x_speed,
-    floor(y) - (dsin(ground_angle + 90) * (-3 - (1 * ground_angle != 0)) * (trail_draw == true)) + y_speed - dsin(ground_angle) * x_speed,
+update_trail(floor(x) + (dcos(angle + 90) * (-2 - (1 * angle == 90)) * (trail_draw == true)) + dcos(angle) * x_speed,
+    floor(y) - (dsin(angle + 90) * (-3 - (1 * angle != 0)) * (trail_draw == true)) + y_speed - dsin(angle) * x_speed,
     (trail_draw == true));
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -1634,6 +1552,8 @@ csine = dcos(mask_rotation);
 draw_set_color(c_white);
 
 draw_line(x_int - csine * wall_radius, y_int + sine * wall_radius, x_int + csine * wall_radius, y_int - sine * wall_radius);
+
+draw_text(x_int, y_int, self.x);
 
 // Reset:
 draw_reset();

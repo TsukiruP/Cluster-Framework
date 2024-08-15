@@ -43,5 +43,5 @@ applies_to=self
 /// Draw Spin Dash Dust
 
 if (sprite_exists(sprite_index)) {
-    draw_sprite_ext(sprite_index, image_index, x + (image_xscale < 0), y + floor(player_handle.main_bottom), image_xscale, 1, 0, c_white, 1);
+    draw_sprite_ext(sprite_index, image_index, x + (image_xscale < 0), y + floor(player_handle.y_radius), image_xscale, 1, 0, c_white, 1);
 }

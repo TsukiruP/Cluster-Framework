@@ -23,4 +23,8 @@ if (state_current != argument[0] || state_reset == true) {
     if (script_exists(state_current)) {
         script_execute(state_current, STATE_START);
     }
+
+    return true;
 }
+
+return false;

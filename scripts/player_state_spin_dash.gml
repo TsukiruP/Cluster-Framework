@@ -18,28 +18,30 @@ switch (argument0) {
 
     // Step:
     case STATE_STEP:
-        // Collision steps:
-        player_collision_steps();
+        // Movement:
+        if (!player_movement_ground()) {
+            exit;
+        }
 
         // Changed:
         if (state_changed == true) {
             return false;
         }
 
-        // Air:
-        if (ground == false || (ground_angle >= 90 && ground_angle <= 270)) {
-            return player_set_state(player_state_air);
-        }
-
-        // Lock:
-        if (mode != 0) {
-            input_lock_alarm = 30;
-            return player_set_state(player_state_roll);
+        // Slide off:
+        if (relative_angle >= 45 && relative_angle <= 315) {
+            // Fall:
+            if (relative_angle >= 90 && relative_angle <= 270) {
+                return player_set_state(player_state_air);
+            } else {
+                input_lock_alarm = 30;
+                return player_set_state(player_state_roll);
+            }
         }
 
         // Release:
         if (input_player[INP_DOWN, CHECK_HELD] == false) {
-            g_speed = image_xscale * (8 + (spin_dash_charge div 2));
+            x_speed = image_xscale * (8 + (spin_dash_charge div 2));
 
             // Camera lag:
             if (input_cpu == false) {

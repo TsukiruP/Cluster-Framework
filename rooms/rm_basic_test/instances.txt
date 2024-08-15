@@ -9,12 +9,10 @@ obj_basic_test_collision_09,480,720,D0DF3086,0,1,1,4294967295,0,0
 obj_basic_test_collision_01,384,816,47924C1D,0,1,1,4294967295,0,0
 obj_basic_test_collision_01,480,816,1D7D97F7,0,1,1,4294967295,0,0
 obj_basic_test_collision_03,0,768,D5082484,0,1,1,4294967295,0,0
-obj_basic_test_collision_08,576,768,73C1818F,0,1,1,4294967295,0,0
 obj_basic_test_collision_09,672,768,ACEA2DB2,0,1,1,4294967295,0,0
 obj_basic_test_collision_01,768,864,45DC33C5,0,1,1,4294967295,0,0
 obj_basic_test_collision_01,672,864,9121205F,0,1,1,4294967295,0,0
 obj_basic_test_collision_01,864,864,209B2701,0,1,1,4294967295,0,0
-obj_basic_test_collision_01,576,864,A460E2C7,0,1,1,4294967295,0,0
 obj_basic_test_collision_03,960,864,45B586C0,0,1,1,4294967295,0,0
 obj_basic_test_collision_03,960,768,E19506C0,0,1,1,4294967295,0,0
 obj_basic_test_collision_01,960,720,7C9754EA,0,1,1,4294967295,0,0
@@ -29,7 +27,6 @@ obj_basic_test_collision_03,1440,768,5E85158D,0,1,1,4294967295,0,0
 obj_basic_test_collision_03,1536,768,4CC24C4C,0,1,1,4294967295,0,0
 obj_basic_test_collision_03,1632,768,4924E7C8,0,1,1,4294967295,0,0
 obj_basic_test_collision_03,1728,768,CD6D1F08,0,1,1,4294967295,0,0
-obj_basic_test_collision_28,576,720,2430393A,0,1,1,4294967295,0,0
 obj_basic_test_collision_28,672,720,D1D96F07,0,1,1,4294967295,0,0
 obj_basic_test_collision_28,768,720,445FB34C,0,1,1,4294967295,0,0
 obj_basic_test_collision_28,864,720,F1DFBE9F,0,1,1,4294967295,0,0
@@ -51,3 +48,6 @@ obj_basic_test_collision_03,384,288,73F2AF43,0,1,1,4294967295,0,0
 obj_basic_test_collision_03,480,288,188F3F2B,0,1,1,4294967295,0,0
 obj_basic_test_collision_03,480,96,CCFB2A5B,0,1,1,4294967295,0,0
 obj_basic_test_collision_03,480,0,83EB4059,0,1,1,4294967295,0,0
+obj_basic_test_collision_03,96,0,0B579036,0,1,1,4294967295,0,0
+obj_basic_test_collision_03,192,0,B924BE53,0,1,1,4294967295,0,0
+obj_basic_test_collision_03,288,0,684BCD89,0,1,1,4294967295,0,0

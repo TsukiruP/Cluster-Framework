@@ -5,7 +5,7 @@ switch (argument0) {
     // Start:
     case STATE_START:
         // Reset speed:
-        g_speed = 0;
+        x_speed = 0;
 
         // Flip direction:
         image_xscale *= -1;
@@ -13,44 +13,42 @@ switch (argument0) {
 
     // Step:
     case STATE_STEP:
-        // Collision steps:
-        player_collision_steps();
+        // Movement:
+        if (!player_movement_ground()) {
+            exit;
+        }
 
         // Changed:
         if (state_changed == true) {
             return false;
         }
 
-        // Air:
-        if (ground == false) {
+        // Fall:
+        if (on_ground == false) {
             return player_set_state(player_state_air);
         }
 
-        // Slope friction:
-        if (ground_angle < 135 || ground_angle > 225) {
-            if (abs(g_speed) > 0.125 || input_lock_alarm != 0) {
-                g_speed -= 0.125 * dsin(ground_angle);
-            }
-        }
-
-        // Fall down slopes:
-        if (mode != 0 && abs(g_speed) < 2.5) {
-            if (ground_angle >= 90 && ground_angle <= 270) {
+        // Slide off:
+        if (relative_angle >= 45 && relative_angle <= 315) {
+            // Fall:
+            if (relative_angle >= 90 && relative_angle <= 270) {
                 return player_set_state(player_state_air);
             } else {
                 input_lock_alarm = 30;
+                return player_set_state(player_state_run);
             }
-        }
-
-        // Jump:
-        if (touching_ceiling == false && input_player[INP_JUMP, CHECK_PRESSED] == true) {
-            sound_play_single("snd_jump");
-            return player_set_state(player_state_jump);
         }
 
         // Idle:
         if (animation_finished == true) {
             player_set_state(player_state_idle);
+        }
+
+        // Auxiliary Action:
+
+        // Jump:
+        if (player_routine_jump()) {
+            return true;
         }
         break;
 

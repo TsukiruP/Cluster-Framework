@@ -13,6 +13,9 @@ if (player_collision_ceiling(y_radius + 5) == noone && input_player[INP_JUMP, CH
     x_speed -= jump_force * dsin(relative_angle);
     y_speed -= jump_force * dcos(relative_angle);
 
+    // Play sound:
+    sound_play_single("snd_jump");
+
     return true;
 }
 

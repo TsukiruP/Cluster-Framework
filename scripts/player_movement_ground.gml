@@ -46,7 +46,7 @@ repeat (total_steps) {
     y -= dsin(angle) * step;
 
     // Keep in bounds:
-    // [PLACEHOLDER]
+    player_inbounds();
 
     // Prop collision
     // [PLACEHOLDER]

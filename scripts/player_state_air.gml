@@ -4,7 +4,10 @@
 switch (argument0) {
     // Start:
     case STATE_START:
-        on_ground  = false;
+        // Reset ground:
+        if (on_ground == true) {
+            on_ground = false;
+        }
 
         var g_speed;
 
@@ -78,10 +81,6 @@ switch (argument0) {
             }
         }
 
-        // Jump Action:
-
-        // Auxiliary Action:
-
         // Air friction:
         if (abs(x_speed) > air_friction_threshold && y_speed > -4 && y_speed < 0) {
             x_speed *= air_friction;
@@ -98,39 +97,10 @@ switch (argument0) {
                 image_xscale = input_x_direction;
             }
         }
-        /*
-        // Collision steps:
-        player_collision_steps();
 
-        // Changed:
-        if (state_changed == true) {
-            return false;
-        }
+        // Jump Action:
 
-        // Land:
-        if (ground == true) {
-            if (x_speed == 0) {
-                return player_set_state(player_state_idle);
-            } else {
-                return player_set_state(player_state_run);
-            }
-        }
-
-        // Ignore physics and inputs if the alarm is still active:
-        if (spring_alarm > 0) {
-            return false;
-        }
-
-        // Air drag:
-        if (abs(x_speed) > 0.125 && y_speed > -4 && y_speed < 0) {
-            x_speed *= 0.96875;
-        }
-
-        // Gravity:
-        if (y_allow == true) {
-            y_speed += gravity_force;
-        }
-        */
+        // Auxiliary Action:
         break;
 
     // Finish:

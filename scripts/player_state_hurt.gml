@@ -4,9 +4,9 @@
 switch (argument0) {
     // Start:
     case STATE_START:
-        // Set ground:
-        if (ground == true) {
-            ground = false;
+        // Reset ground:
+        if (on_ground == true) {
+            on_ground = false;
         }
 
         // Clock over:
@@ -17,8 +17,10 @@ switch (argument0) {
 
     // Step:
     case STATE_STEP:
-        // Collision steps:
-        player_collision_steps();
+        // Movement:
+        if (!player_movement_ground()) {
+            exit;
+        }
 
         // Changed:
         if (state_changed == true) {
@@ -26,9 +28,12 @@ switch (argument0) {
         }
 
         // Land:
-        if (ground == true) {
+        if (on_ground == true) {
             // Reset speed:
-            if (global.advance_hurt == false) g_speed = 0;
+            if (global.advance_hurt == false) {
+                x_speed = 0;
+            }
+
             y_speed = 0;
 
             return player_set_state(player_state_idle);

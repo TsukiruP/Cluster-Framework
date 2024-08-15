@@ -1,7 +1,7 @@
 /// player_reset_air()
 // Sets the player into an aerial state.
 
-angle          = 0;
+angle          = gravity_angle();
 relative_angle = 0;
 mask_rotation  = angle;
 ground_id      = noone;
