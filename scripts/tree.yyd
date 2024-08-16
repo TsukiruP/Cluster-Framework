@@ -216,6 +216,7 @@
 			|player_react
 			|player_inbounds
 			|player_get_balance
+			|player_slope_factor
 			|player_ring_loss
 			|player_rotate_mask
 			+Trail
@@ -236,7 +237,6 @@
 		+Bottom
 	+Actions (OLD)
 		|player_action_push_OLD
-		|player_action_hurt_OLD
 		+Sonic
 		+Miles
 		+Knuckles

@@ -84,31 +84,14 @@ slide_threshold        =  2.5;
 air_friction_threshold =  0.125;
 
 // Radii:
-x_radius    = 6;
-y_radius    = 14;
-
-wall_offset = 3;
+player_set_radii(6, 14, 3, 0);
 wall_radius = x_radius + wall_offset;
 
-y_offset    = 0;
+// Hurtbox:
+set_hurtbox();
 
-// Hurtbox variables:
-hurtbox_left      = 0;
-hurtbox_top       = 0;
-hurtbox_right     = 0;
-hurtbox_bottom    = 0;
-
-hurtbox_x_offset  = 0;
-hurtbox_y_offset  = 0;
-
-// Hitbox variables:
-hitbox_left      = 0;
-hitbox_top       = 0;
-hitbox_right     = 0;
-hitbox_bottom    = 0;
-
-hitbox_x_offset  = 0;
-hitbox_y_offset  = 0;
+// Hitbox:
+set_hitbox();
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603

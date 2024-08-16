@@ -5,14 +5,11 @@ action_id=603
 applies_to=self
 */
 /// Sensor Initialization
-/*
+
 event_inherited();
 
-// Main:
-main_left   = 8;
-main_right  = 7;
-main_top    = 8;
-main_bottom = 7;
+// Hurtbox:
+set_hurtbox(8, 8, 7, 7, 8, 8);
 
 // Collision layer:
 collision_layer = 0;
@@ -24,7 +21,12 @@ applies_to=self
 */
 /// Draw Sensor
 
-// Sensor:
+// Exit if not in debug mode:
+if (global.game_debug == false) {
+    exit;
+}
+
+// Self:
 draw_self();
 
 // Collision:

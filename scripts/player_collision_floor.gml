@@ -17,7 +17,7 @@ for (oy = 0; oy < argument0; oy += 1) {
             continue; // Not colliding with the current solid
         }
         
-        if (oy == 0 && inst.semisolid) {
+        if (oy == 0 && inst.semi_solid) {
             continue; // Passing through the current solid
         }
 

@@ -85,12 +85,8 @@ switch (argument0) {
             }
         }
 
-        // Slope friction:
-        if (relative_angle < 135 || relative_angle > 225) {
-            if (x_speed != 0 || input_lock_alarm > 0) {
-                x_speed -= slope_friction * dsin(relative_angle);
-            }
-        }
+        // Slope factor:
+        x_speed += player_slope_factor(slope_friction, acceleration);
 
         // Idle:
         if (x_speed == 0 && input_x_direction == 0) {

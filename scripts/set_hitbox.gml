@@ -1,7 +1,7 @@
 /// set_hitbox(left, top, right, bottom, [x offset, y offset])
 // Sets the object's hitbox values.
 
-var left, top, right, bottom, x_off, y_off;
+var left, top, right, bottom, off_x, off_y;
 
 // Initialize:
 left   = 0;
@@ -9,8 +9,8 @@ top    = 0;
 right  = 0;
 bottom = 0;
 
-x_off  = 0;
-y_off  = 0;
+off_x  = 0;
+off_y  = 0;
 
 // Assign hitbox:
 if (argument_count >= 4) {
@@ -20,11 +20,11 @@ if (argument_count >= 4) {
     bottom = argument[3];
     
     if (argument_count >= 5) {
-        x_off = argument[4];
+        off_x = argument[4];
     }
     
     if (argument_count >= 6) {
-        y_off = argument[5];
+        off_y = argument[5];
     }
 }
 
@@ -34,5 +34,5 @@ hitbox_top      = top;
 hitbox_right    = right;
 hitbox_bottom   = bottom;
 
-hitbox_x_offset = x_off;
-hitbox_y_offset = y_off;
+hitbox_offset_x = off_x;
+hitbox_offset_y = off_y;

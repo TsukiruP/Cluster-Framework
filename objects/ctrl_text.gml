@@ -704,7 +704,7 @@ action_id=603
 applies_to=self
 */
 /// Draw Debug
-
+/*
 // Exit if not in debug mode:
 if (global.game_debug == false) {
     exit;

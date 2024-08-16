@@ -83,7 +83,7 @@ player_get_item
 credits
 in_view
 player_ring_loss
-player_action_hurt_OLD
+player_slope_factor
 player_handle_item_box
 player_handle_checkpoint
 hover

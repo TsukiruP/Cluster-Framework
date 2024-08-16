@@ -23,8 +23,8 @@ obj_basic_test_collision_01,1248,768,A540E4C4,0,1,1,4294967295,0,0
 obj_basic_test_collision_28,672,720,D1D96F07,0,1,1,4294967295,0,0
 obj_basic_test_collision_28,768,720,445FB34C,0,1,1,4294967295,0,0
 obj_basic_test_collision_28,864,720,F1DFBE9F,0,1,1,4294967295,0,0
-obj_spring_up,352,752,12DCB06C,0,1,1,4294967295,0,0
 obj_basic_test_collision_08,576,768,8B41D5D5,0,1,1,4294967295,0,0
 obj_basic_test_collision_01,576,864,87608800,0,1,1,4294967295,0,0
 obj_basic_test_collision_03,0,672,C16D50A3,0,1,1,4294967295,0,0
 obj_basic_test_collision_03,384,672,8186091E,0,1,1,4294967295,0,0
+obj_sensor_layer_a,320,688,593598E6,0,1,1,4294967295,0,0

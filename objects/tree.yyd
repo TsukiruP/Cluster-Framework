@@ -23,11 +23,10 @@
 		|obj_player_spawn
 		|obj_player
 	+Props
-		+Sensors
-			+Layer Sensors
-				|par_sensor_layer
-				|obj_sensor_layer_a
-				|obj_sensor_layer_b
+		+Layer Sensors
+			|par_sensor_layer
+			|obj_sensor_layer_a
+			|obj_sensor_layer_b
 		+Rings
 			|par_ring
 			|obj_ring
