@@ -24,7 +24,7 @@ event_inherited();
 depth = player_handle.depth - 1;
 
 // Update angle:
-image_angle = player_handle.mode * 90;
+image_angle = player_handle.mask_rotation;
 
 // Destroy:
 if (player_handle.status_speed != SPEED_SLOW && player_handle.status_panic == false) {
@@ -41,8 +41,8 @@ applies_to=self
 
 var draw_x, draw_y;
 
-draw_x = x - (16 * player_handle.x_direction);
-draw_y = y - (16 * player_handle.y_direction);
+draw_x = x;
+draw_y = y;
 
 if (sprite_exists(sprite_index)) {
     draw_sprite_ext(sprite_index, image_index, draw_x, draw_y, 1, 1, image_angle, c_white, 1);

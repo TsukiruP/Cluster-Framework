@@ -1450,7 +1450,7 @@ if (status_invin == INVIN_HURT && status_invin_alarm > 0) {
 
 // Player:
 if (sprite_exists(sprite_index)) {
-    draw_sprite_ext(sprite_index, image_index, floor(x) + (image_xscale < 0), floor(y), image_xscale, image_yscale, image_angle, c_white, image_alpha);
+    draw_sprite_ext(sprite_index, image_index, floor(x), floor(y), image_xscale, image_yscale, image_angle, c_white, image_alpha);
 }
 
 // Reset:

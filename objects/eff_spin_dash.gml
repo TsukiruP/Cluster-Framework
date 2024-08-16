@@ -30,6 +30,9 @@ depth = player_handle.depth;
 // Update direction:
 image_xscale = player_handle.image_xscale;
 
+// Update angle:
+image_angle = player_handle.mask_rotation;
+
 // Destroy:
 if (player_handle.state_current != player_state_spin_dash) {
     instance_destroy();
@@ -42,6 +45,12 @@ applies_to=self
 */
 /// Draw Spin Dash Dust
 
+var player_rotation, sine, csine;
+
+player_rotation = player_handle.mask_rotation;
+sine            = dsin(player_handle.mask_rotation);
+csine           = dcos(player_handle.mask_rotation);
+
 if (sprite_exists(sprite_index)) {
-    draw_sprite_ext(sprite_index, image_index, x + (image_xscale < 0), y + floor(player_handle.y_radius), image_xscale, 1, 0, c_white, 1);
+    draw_sprite_ext(sprite_index, image_index, x + sine * floor(player_handle.y_radius), y + csine * floor(player_handle.y_radius), image_xscale, 1, image_angle, c_white, 1);
 }

@@ -6,31 +6,10 @@ if (ctl_position(0)) {
     sprite_index = spr_sonic_spin_charge;
     image_index  = 0;
 
-    // Set size:
-    main_left   = 6;
-    main_right  = 6;
-    main_top    = 9;
-    main_bottom = 9;
-
-    roll_offset = 5;
-
-    // Set hurtbox:
-    hurtbox_left     = 8;
-    hurtbox_right    = 8;
-    hurtbox_top      = 8;
-    hurtbox_bottom   = 8;
-
-    hurtbox_offset_x = 0;
-    hurtbox_offset_y = 0;
-
-    // Set hitbox:
-    hitbox_left     = 8;
-    hitbox_right    = 8;
-    hitbox_top      = 8;
-    hitbox_bottom   = 8;
-
-    hitbox_offset_x = 0;
-    hitbox_offset_y = 0;
+    // Set collision:
+    player_set_radii(6, 9, 3, 5);
+    set_hurtbox(8, 8, 8, 8);
+    set_hitbox(8, 8, 8, 8);
 }
 
 // Change frame:

@@ -14,16 +14,10 @@ if (animation_reverse == false) {
         sprite_index = spr_sonic_omochao;
         image_index  = 0;
 
-        // Set radii:
-        x_radius    = 6;
-        y_radius    = 14;
-        y_offset    = 0;
-
-        wall_offset = 3;
-
-        // Set hurtbox:
-
-        // Set hitbox:
+        // Set collision:
+        player_set_radii(6, 14, 3);
+        set_hurtbox(6, 16, 6, 15);
+        set_hitbox();
     }
 
     // Change frame:
@@ -65,16 +59,10 @@ else {
         sprite_index = spr_sonic_omochao;
         image_index  = 6;
 
-        // Set radii:
-        x_radius    = 6;
-        y_radius    = 14;
-        y_offset    = 0;
-
-        wall_offset = 3;
-
-        // Set hurtbox:
-
-        // Set hitbox:
+        // Set collision:
+        player_set_radii(6, 14, 3);
+        set_hurtbox(6, 16, 6, 15);
+        set_hitbox();
     }
 
     // Change frame:
