@@ -45,12 +45,15 @@ applies_to=self
 */
 /// Draw Spin Dash Dust
 
-var player_rotation, sine, csine;
+var player_rotation, sine, csine, draw_x, draw_y;
 
 player_rotation = player_handle.mask_rotation;
 sine            = dsin(player_handle.mask_rotation);
 csine           = dcos(player_handle.mask_rotation);
 
+draw_x = x + sine * floor(player_handle.y_radius);
+draw_y = y + csine * floor(player_handle.y_radius);
+
 if (sprite_exists(sprite_index)) {
-    draw_sprite_ext(sprite_index, image_index, x + sine * floor(player_handle.y_radius), y + csine * floor(player_handle.y_radius), image_xscale, 1, image_angle, c_white, 1);
+    draw_sprite_ext(sprite_index, image_index, draw_x, draw_y, image_xscale, 1, image_angle, c_white, 1);
 }
