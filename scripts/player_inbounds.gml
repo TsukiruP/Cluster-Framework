@@ -3,12 +3,14 @@
 
 var player_id, player_handle;
 
+// Initialize:
+player_id     = 0;
+player_handle = self;
+
+// Set player:
 if (argument_count >= 1) {
     player_id     = argument[0];
     player_handle = player_get_instance(player_id);
-} else {
-    player_id     = 0;
-    player_handle = self;
 }
 
 switch (player_handle.mask_rotation) {

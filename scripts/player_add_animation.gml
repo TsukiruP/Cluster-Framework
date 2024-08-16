@@ -21,9 +21,9 @@ if (global.animation_grid == -1) {
 if (global.animation_character != -1) global.animation_coordinates[global.animation_character, 1] = animation_row;
 
 // Set animation character:
-if (argument[0] != global.animation_character) {
+if (argument0 != global.animation_character) {
     // Change the animation character:
-    global.animation_character = argument[0];
+    global.animation_character = argument0;
 
     // Set the current character's start:
     global.animation_coordinates[global.animation_character, 0] = max(0, animation_row);

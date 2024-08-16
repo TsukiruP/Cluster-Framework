@@ -1,10 +1,11 @@
 /// transition_create(room, [transition])
 
 transition                 = instance_create(0, 0, ctrl_transition);
-transition.transition_room = argument[0];
+transition.transition_type = TRANS_FADE;
+transition.transition_room = argument0;
 
 with (transition) {
-    room_get_data(argument[0]);
+    room_get_data(argument0);
 }
 
 // Override transition type:

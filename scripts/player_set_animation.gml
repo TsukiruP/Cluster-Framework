@@ -1,12 +1,11 @@
 /// player_set_animation(animation, [start])
 //
 
-// Animation moment:
+// Initialize:
+animation_target = argument0;
+animation_moment = 0;
+
+// Set moment:
 if (argument_count >= 2) {
     animation_moment = argument[1];
-} else {
-    animation_moment = 0;
 }
-
-// Animation target:
-animation_target = argument[0];

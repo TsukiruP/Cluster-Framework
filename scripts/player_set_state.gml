@@ -2,16 +2,18 @@
 
 var state_reset;
 
-// Set reset:
+// Initialize:
+state_reset = false;
+
+// Reset:
 if (argument_count >= 2) {
     state_reset = argument[1];
-} else {
-    state_reset = false;
 }
 
-if (state_current != argument[0] || state_reset == true) {
+// Set state:
+if (state_current != argument0 || state_reset == true) {
     state_previous = state_current;
-    state_current  = argument[0];
+    state_current  = argument0;
     state_changed  = true;
 
     // Finish previous state:
@@ -24,7 +26,9 @@ if (state_current != argument[0] || state_reset == true) {
         script_execute(state_current, STATE_START);
     }
 
+    // Success:
     return true;
 }
 
+// Failure:
 return false;

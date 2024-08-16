@@ -1,15 +1,11 @@
 /// timeline_set(timeline, [start])
 
-var moment_target;
-
-// Moment target:
-if (argument_count >= 2) {
-    moment_target = argument[1];
-} else {
-    moment_target = 0;
-}
-
-// Update timeline:
-ctl_index         = argument[0];
-ctl_time          = moment_target;
+// Set timeline:
+ctl_index         = argument0;
+ctl_time          = 0;
 ctl_time_previous = 0;
+
+// Set moment:
+if (argument_count >= 2) {
+    ctl_time = argument[1];
+}
