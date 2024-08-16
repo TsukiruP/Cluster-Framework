@@ -7,7 +7,7 @@ par_dash_ring
 obj_dash_ring_left
 obj_basic_test_collision_01
 obj_player
-par_deactivable
+par_deactivatable
 
 ctrl_initialization
 ctrl_input

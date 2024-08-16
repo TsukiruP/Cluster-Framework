@@ -55,7 +55,7 @@ applies_to=self
 
 if (instance_exists(ctrl_camera)) {
     // Deactivate objects:
-    instance_deactivate_object(par_deactivable);
+    instance_deactivate_object(par_deactivatable);
 
     // Activate region around view:
     instance_activate_region(view_xview[view_current] - 64, view_yview[view_current] - 64, view_wview[view_current] + 128, view_hview[view_current] + 128, true);

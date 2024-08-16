@@ -765,10 +765,10 @@ if (game_ispaused(ctrl_pause)) {
     exit;
 }
 
-// Store previous height:
-var main_bottom_temp;
+var y_radius_temp;
 
-//main_bottom_temp = main_bottom;
+// Store previous radius:
+y_radius_temp = y_radius;
 
 switch (state_current) {
     // Idle:
@@ -987,6 +987,12 @@ switch (animation_target) {
 
 // Animation core:
 player_animation_core();
+
+// Position fix:
+if (on_ground == true) {
+    x += (y_radius_temp - y_radius) * dsin(mask_rotation);
+    y += (y_radius_temp - y_radius) * dcos(mask_rotation);
+}
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
