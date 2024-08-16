@@ -5,7 +5,7 @@ action_id=603
 applies_to=self
 */
 /// Help Initialization
-
+/*
 event_inherited();
 
 // Depth:

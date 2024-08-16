@@ -134,12 +134,15 @@
 		|transition_create
 		|effect_create
 		|hover
+		|set_hurtbox
+		|set_hitbox
 +Gameplay
 	+Collision
 		|collision_box
 		|collision_box_vertical
 		|collision_ray
 		|collision_ray_vertical
+		|gravity_angle
 	+Player
 		+Data
 			|player_get_character
@@ -150,6 +153,7 @@
 			|player_collision_wall
 		+Wall
 			|player_wall_eject
+			|player_wall_push
 		+Movement
 			|player_reset_air
 			|player_movement_ground
@@ -169,7 +173,6 @@
 				|player_state_skid
 				|player_state_hurt
 				|player_state_death
-				|player_state_push
 				|player_state_bound
 				+Skill Lists
 					|sonic_skill_list
@@ -205,6 +208,7 @@
 			|player_get_physics
 			|player_get_item
 		+Setters
+			|player_set_radii
 			|player_set_input
 			|player_set_ground
 			|player_set_damage
@@ -223,8 +227,6 @@
 		+Checkpoint
 			|checkpoint_set
 			|checkpoint_isset
-	|gravity_angle
-	|player_state_jump
 +Trash
 	+Sonic Dash
 		+Main
@@ -260,3 +262,4 @@
 		|collision_line_list
 		|collision_rectangle_list
 		|collision_point_list
+	|player_state_jump

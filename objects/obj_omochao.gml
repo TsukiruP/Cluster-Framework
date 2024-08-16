@@ -5,7 +5,7 @@ action_id=603
 applies_to=self
 */
 /// Omochao Initialization
-
+/*
 event_inherited();
 
 // Main:
@@ -27,7 +27,7 @@ action_id=603
 applies_to=self
 */
 /// Animate
-
+/*
 // Exit if the stage is paused:
 if (game_ispaused(ctrl_pause)) {
     exit;
@@ -97,7 +97,7 @@ action_id=603
 applies_to=self
 */
 /// Draw Omochao
-
+/*
 // Omochao:
 draw_sprite_ext(sprite_index, image_index, draw_x + (image_xscale < 0), draw_y, image_xscale, 1, 0, c_white, 1);
 

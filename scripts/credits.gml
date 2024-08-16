@@ -10,13 +10,14 @@ Sonic Mania Decompilation by Rubberduckycooly
 Sonic Advance 2 Decompilation by SAT-R
 
 Harinezumi Engine/S8E by A.NB
-S9E Engine by Akuma
-
-Harmony Framework by Dark
-    Original player collision
+S9E Engine by Monolith
 
 SonicForGMS (for GMS1) by VectorSatyr
+    States machine
     Animation timelines concept
+
+Sonic Studio Engine by VectorSatyr & ported by Monolith
+    Original player collision
 
 Osminium by The Valeev
     Springs/Dash Panels/Dash Rings
@@ -104,9 +105,15 @@ Vebilis
 
 SOUND
 
+TOOLS
+Velocitas by RPatry
+
+AdvanceTools by MainMemory
+
+Game Maker 8.2
 
 SPECIAL THANKS
-Akuma
+Monolith
 renex
 floogle
 ";

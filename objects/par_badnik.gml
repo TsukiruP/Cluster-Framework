@@ -5,7 +5,7 @@ action_id=603
 applies_to=self
 */
 /// Badnik Initialization
-
+/*
 event_inherited();
 
 // Depth:
@@ -25,7 +25,7 @@ action_id=603
 applies_to=self
 */
 /// Invincibility
-
+/*
 if (badnik_invin > 0) {
     badnik_invin -= 1;
 }
@@ -36,7 +36,7 @@ action_id=603
 applies_to=self
 */
 /// Draw Badnik
-
+/*
 // Badnik:
 draw_self();
 

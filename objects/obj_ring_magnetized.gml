@@ -5,7 +5,7 @@ action_id=603
 applies_to=self
 */
 /// Magnetized Ring Initialization
-
+/*
 event_inherited();
 #define Destroy_0
 /*"/*'/**//* YYD ACTION
@@ -14,7 +14,7 @@ action_id=603
 applies_to=self
 */
 /// Create Ring
-
+/*
 if (dropped == true) {
     with (instance_create(x, y, obj_ring)) {
         lifespan = 256;
@@ -30,7 +30,7 @@ action_id=603
 applies_to=self
 */
 /// Movement
-
+/*
 // Exit if the stage is paused or text is active:
 if (game_ispaused()) {
     exit;
@@ -61,6 +61,6 @@ action_id=603
 applies_to=self
 */
 /// Draw Ring
-
+/*
 // Ring:
 draw_sprite_ext(sprite_index, -1, x, y, image_xscale, image_yscale, image_angle, image_blend, image_alpha);

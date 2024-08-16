@@ -1,7 +1,7 @@
 /// player_movement_ground()
 // Performs a movement step for the player on the ground.
 
-var ox, oy, total_steps, step, hit_object, hit_wall, hit_floor;
+var ox, oy, total_steps, step, hit_object, hit_wall, hit_push, hit_floor;
 
 // Snap to platforms:
 if (instance_exists(ground_id)) {
@@ -70,8 +70,19 @@ repeat (total_steps) {
         // Stop moving:
         if (sign(x_speed) == wall_direction) {
             x_speed = 0;
-            // Push:
-            // [PLACEHOLDER]
+        }
+    }
+
+    // Push collision:
+    hit_push = player_collision_wall(1);
+
+    if (hit_push != noone) {
+        var push_direction;
+
+        push_direction = sign(hit_push.x - x);
+
+        if (input_x_direction == push_direction) {
+            player_wall_push(hit_push);
         }
     }
 
@@ -79,7 +90,7 @@ repeat (total_steps) {
     hit_floor = player_collision_floor(y_radius * 2);
 
     if (hit_floor != noone) {
-        // React
+        // React:
         // [PLACEHOLDER]
 
         // Set floor:

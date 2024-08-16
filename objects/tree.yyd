@@ -1,7 +1,10 @@
 +System
 	|ctrl_initialization
-	|par_indestructable
-	|par_overlay
+	+Parents
+		|par_overlay
+		|par_deactivable
+		|par_prop
+		|par_terrain
 	+Controllers
 		|ctrl_game
 		|ctrl_display
@@ -20,7 +23,6 @@
 		|obj_player_spawn
 		|obj_player
 	+Props
-		|par_prop
 		+Sensors
 			+Layer Sensors
 				|par_sensor_layer
@@ -73,8 +75,6 @@
 				|obj_item_slow
 				|obj_item_panic
 				|obj_item_swap
-		+Spikes
-			|par_spike
 		+Badniks
 			|par_badnik
 			|obj_spinner
@@ -84,19 +84,18 @@
 			|par_hint
 			|obj_hint_box
 			|obj_omochao
-	+Effects
-		|eff_basic
-		+Player
-			|eff_afterimage
-			|eff_player
-			|eff_spin_dash
-			|eff_debuff
-			|eff_shield
-+Stages
-	+Parents
-		|par_terrain
-		|par_obstacle
-		|par_moving_platform
+		+Effects
+			|eff_basic
+			+Player
+				|eff_afterimage
+				|eff_player
+				|eff_spin_dash
+				|eff_debuff
+				|eff_shield
+	+Obstacles
+		+Spikes
+			|par_spike
++Zones
 	+Basic Test
 		|obj_basic_test_parallax
 		+Collision
@@ -134,6 +133,8 @@
 			|obj_basic_test_water_fall_02
 			|obj_basic_test_water_fall_03
 |ctrl_culling
+|par_obstacle
+|par_moving_platform
 |object122
 +Rainbow Rings
 	|par_rainbow_ring

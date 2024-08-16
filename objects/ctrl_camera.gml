@@ -167,13 +167,13 @@ if (instance_exists(focus_handle)) {
                         }
 
                         // Move up:
-                        if (focus_y < (camera_y - focus_handle.roll_offset)) {
-                            camera_y -= min((camera_y - focus_handle.roll_offset) - focus_y, camera_speed_cap);
+                        if (focus_y < (camera_y - focus_handle.y_offset)) {
+                            camera_y -= min((camera_y - focus_handle.y_offset) - focus_y, camera_speed_cap);
                         }
 
                         // Move down:
-                        else if (focus_y > (camera_y + focus_handle.roll_offset)) {
-                            camera_y += min(focus_y - (camera_y + focus_handle.roll_offset), camera_speed_cap);
+                        else if (focus_y > (camera_y + focus_handle.y_offset)) {
+                            camera_y += min(focus_y - (camera_y + focus_handle.y_offset), camera_speed_cap);
                         }
                     }
                 }

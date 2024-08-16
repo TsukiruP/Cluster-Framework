@@ -5,7 +5,7 @@ action_id=603
 applies_to=self
 */
 /// Hint Box Initialization
-
+/*
 event_inherited();
 
 // Main:
@@ -26,7 +26,7 @@ action_id=603
 applies_to=self
 */
 /// Animate
-
+/*
 // Exit if the stage is paused:
 if (game_ispaused(ctrl_pause)) {
     exit;

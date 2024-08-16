@@ -43,34 +43,31 @@ switch (argument0) {
             return player_set_state(player_state_air);
         }
 
-        // Slope friction:
-        if (ground_angle < 135 || ground_angle > 225) {
-            // Rolling upwards:
-            if (sign(x_speed) == sign(dsin(ground_angle))) {
-                x_speed -= roll_friction_up * dsin(ground_angle);
-            }
-
-            // Rolling downwards:
-            else {
-                x_speed -= roll_friction_down * dsin(ground_angle);
-            }
-        }
-
-        // Fall down slopes:
-        if (mode != 0 && abs(x_speed) < 2.5) {
-            if (ground_angle >= 90 && ground_angle <= 270) {
+        // Slide off:
+        if (abs(x_speed) < slide_threshold && relative_angle >= 45 && relative_angle <= 315) {
+            // Fall:
+            if (relative_angle >= 90 && relative_angle <= 270) {
                 return player_set_state(player_state_air);
             }
         }
 
+        // Slope friction:
+        if (relative_angle < 135 || relative_angle > 225) {
+            // Roll upwards:
+            if (sign(x_speed) == sign(dsin(relative_angle))) {
+                x_speed -= roll_friction_up * dsin(relative_angle);
+            } else {
+                x_speed -= roll_friction_down * dsin(relative_angle);
+            }
+        }
+
         // Jump:
-        if (touching_ceiling == false && input_player[INP_JUMP, CHECK_PRESSED] == true) {
-            sound_play_single("snd_jump");
-            return player_set_state(player_state_jump);
+        if (player_routine_jump()) {
+            return true;
         }
 
         // Uncurl:
-        if (mode == 0 && abs(x_speed) < 0.5) {
+        if (abs(x_speed) < 0.5 && mask_rotation == gravity_angle()) {
             return player_set_state(player_state_run);
         }
         break;

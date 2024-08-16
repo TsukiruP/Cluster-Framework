@@ -53,7 +53,7 @@ switch (player_handle.mask_rotation) {
 
         // Right limit:
         if (x > ctrl_camera.limit_right + y_radius) {
-            // [PLACEHOLDER]
+            player_set_damage(self);
             return false;
         }
 
@@ -98,7 +98,7 @@ switch (player_handle.mask_rotation) {
 
         // Top limit:
         if (y < ctrl_camera.limit_top - y_radius) {
-            // [PLACEHOLDER]
+            player_set_damage(self);
             return false;
         }
 
@@ -112,7 +112,7 @@ switch (player_handle.mask_rotation) {
     case 270:
         // Left limit:
         if (x < ctrl_camera.limit_left - y_radius) {
-            // [PLACEHOLDER]
+            player_set_damage(self);
             return false;
         }
 

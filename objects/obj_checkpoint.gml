@@ -5,7 +5,7 @@ action_id=603
 applies_to=self
 */
 /// Checkpoint Initialization
-
+/*
 event_inherited();
 
 // Image speed:
@@ -35,7 +35,7 @@ action_id=603
 applies_to=self
 */
 /// Animate
-
+/*
 // Exit if the stage is paused:
 if (game_ispaused(ctrl_pause)) {
     exit;

@@ -34,7 +34,7 @@ switch (argument0) {
     // Step:
     case STATE_STEP:
         // Collision steps:
-        y += y_speed;
+        y += y_speed * dcos(gravity_angle());
 
         // Gravity:
         y_speed += gravity_force;

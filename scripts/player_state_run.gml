@@ -20,7 +20,7 @@ switch (argument0) {
 
                     // Skid:
                     if (abs(x_speed) > 4) {
-                        //return player_set_state(player_state_skid);
+                        return player_set_state(player_state_skid);
                     }
 
                     x_speed += deceleration * input_x_direction;

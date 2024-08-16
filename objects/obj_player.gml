@@ -55,7 +55,6 @@ roll_friction      = 0.0234375;
 roll_friction_up   = 0.078125;
 roll_friction_down = 0.3125;
 roll_rebounce      = false;
-roll_offset        = 0;
 
 // Death variables:
 death_alarm  = -5;
@@ -87,28 +86,29 @@ air_friction_threshold =  0.125;
 // Radii:
 x_radius    = 6;
 y_radius    = 14;
-wall_radius = x_radius + 2;
+
+wall_offset = 3;
+wall_radius = x_radius + wall_offset;
+
+y_offset    = 0;
 
 // Hurtbox variables:
 hurtbox_left      = 0;
-hurtbox_right     = 0;
 hurtbox_top       = 0;
+hurtbox_right     = 0;
 hurtbox_bottom    = 0;
 
-hurtbox_offset_x  = 0;
-hurtbox_offset_y  = 0;
-
-hurtbox_left_rel  = 0;
-hurtbox_right_rel = 0;
+hurtbox_x_offset  = 0;
+hurtbox_y_offset  = 0;
 
 // Hitbox variables:
 hitbox_left      = 0;
-hitbox_right     = 0;
 hitbox_top       = 0;
+hitbox_right     = 0;
 hitbox_bottom    = 0;
 
-hitbox_offset_x  = 0;
-hitbox_offset_y  = 0;
+hitbox_x_offset  = 0;
+hitbox_y_offset  = 0;
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -813,29 +813,31 @@ switch (state_current) {
 
     // Run:
     case player_state_run:
-        // Walk:
-        if (abs(x_speed) < 1.50) {
-            if (animation_target != "run_0") player_set_animation("run_0");
-        }
+        if (animation_target != "push") {
+            // Walk:
+            if (abs(x_speed) < 1.50) {
+                if (animation_target != "run_0") player_set_animation("run_0");
+            }
 
-        // Walk fast:
-        else if (abs(x_speed) < 3.00) {
-            if (animation_target != "run_1") player_set_animation("run_1");
-        }
+            // Walk fast:
+            else if (abs(x_speed) < 3.00) {
+                if (animation_target != "run_1") player_set_animation("run_1");
+            }
 
-        // Jog:
-        else if (abs(x_speed) < 4.50) {
-            if (animation_target != "run_2") player_set_animation("run_2");
-        }
+            // Jog:
+            else if (abs(x_speed) < 4.50) {
+                if (animation_target != "run_2") player_set_animation("run_2");
+            }
 
-        // Jog fast:
-        else if (abs(x_speed) < 6.00) {
-            if (animation_target != "run_3") player_set_animation("run_3");
-        }
+            // Jog fast:
+            else if (abs(x_speed) < 6.00) {
+                if (animation_target != "run_3") player_set_animation("run_3");
+            }
 
-        // Run:
-        else {
-            if (animation_target != "run_4") player_set_animation("run_4");
+            // Run:
+            else {
+                if (animation_target != "run_4") player_set_animation("run_4");
+            }
         }
         break;
 
@@ -914,13 +916,6 @@ switch (state_current) {
     case player_state_death:
         if (animation_target != "death") {
             player_set_animation("death");
-        }
-        break;
-
-    // Push:
-    case player_state_push:
-        if (animation_target != "push") {
-            player_set_animation("push");
         }
         break;
 }
@@ -1075,73 +1070,14 @@ switch (animation_current) {
         // Classic/Tag angle behavior:
         else {
             if (on_ground == true) {
-                var angle_mod;
-
-                angle_mod = animation_angle_mod;
-
-                if (angle <= 180) {
-                    if (angle < 36) {
-                        angle_mod = 0;
-                    } else {
-                        angle_mod =angle;
-                    }
-                } else {
-                    if (angle > 324) {
-                        angle_mod = 0;
-                    } else {
-                        angle_mod = angle;
-                    }
-                }
-
-                if (abs(angle_difference(animation_angle_mod, angle_mod)) < 45) {
-                    animation_angle_mod = approach_angle(animation_angle_mod, angle_mod, max(abs(x_speed), 4));
-                } else {
-                    animation_angle_mod = angle_mod;
+                if (angle mod 45 != 0) {
+                    image_angle = roundto(angle, 45);
                 }
             } else {
-                animation_angle_mod = approach_angle(animation_angle_mod, 0, 4);
+                image_angle = approach_angle(image_angle, gravity_angle(), 4);
             }
-
-            // Rotate:
-            image_angle = round(animation_angle_mod / 45) * 45;
         }
 }
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Collision Direction
-
-if (image_xscale < 0) {
-    // Main:
-    main_left_rel  = main_right;
-    main_right_rel = main_left;
-
-    // Hurtbox:
-    hurtbox_left_rel  = hurtbox_right;
-    hurtbox_right_rel = hurtbox_left;
-
-    // Hitbox:
-    hitbox_left_rel  = hitbox_right;
-    hitbox_right_rel = hitbox_left;
-} else {
-    // Main:
-    main_left_rel  = main_left;
-    main_right_rel = main_right;
-
-    // Hurtbox:
-    hurtbox_left_rel  = hurtbox_left;
-    hurtbox_right_rel = hurtbox_right;
-
-    // Hitbox:
-    hitbox_left_rel  = hitbox_left;
-    hitbox_right_rel = hitbox_right;
-}
-
-// Wall direction:
-wall_left  = main_left_rel + 3;
-wall_right = main_right_rel + 3;
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -1176,7 +1112,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Update Trail
+/// Trail
 
 // Exit if trails are disabled:
 if (global.misc_trails == false) {
@@ -1537,142 +1473,17 @@ x_int = floor(x);
 y_int = floor(y);
 
 // Bounding box:
-draw_set_color(c_orange);
-
 if ((mask_rotation mod 180) != 0) {
-    draw_rectangle(x_int - y_radius, y_int - x_radius, x_int + y_radius, y_int + x_radius, true);
+    draw_rectangle_color(x_int - y_radius, y_int - x_radius, x_int + y_radius, y_int + x_radius, c_orange, c_orange, c_orange, c_orange, true);
 } else {
-    draw_rectangle(x_int - x_radius, y_int - y_radius, x_int + x_radius, y_int + y_radius, true);
+    draw_rectangle_color(x_int - x_radius, y_int - y_radius, x_int + x_radius, y_int + y_radius, c_orange, c_orange, c_orange, c_orange, true);
 }
 
 // Wall radius:
 sine  = dsin(mask_rotation);
 csine = dcos(mask_rotation);
 
-draw_set_color(c_white);
-
-draw_line(x_int - csine * wall_radius, y_int + sine * wall_radius, x_int + csine * wall_radius, y_int - sine * wall_radius);
-
-draw_text(x_int, y_int, self.x);
-
-// Reset:
-draw_reset();
-
-/*
-// Main:
-var x1, y1, x2, y2;
-
-switch (mode) {
-    case 0:
-        x1 = floor(x) - main_left_rel;
-        y1 = floor(y) - main_top;
-        x2 = floor(x) + main_right_rel;
-        y2 = floor(y) + main_bottom;
-        break;
-
-    case 1:
-        x1 = floor(x) - main_top;
-        y1 = floor(y) - main_right_rel;
-        x2 = floor(x) + main_bottom;
-        y2 = floor(y) + main_left_rel;
-        break;
-
-    case 2:
-        x1 = floor(x) - main_right_rel;
-        y1 = floor(y) - main_bottom;
-        x2 = floor(x) + main_left_rel;
-        y2 = floor(y) + main_top;
-        break;
-
-    case 3:
-        x1 = floor(x) - main_bottom;
-        y1 = floor(y) - main_left_rel;
-        x2 = floor(x) + main_top;
-        y2 = floor(y) + main_right_rel;
-        break;
-}
-
-draw_set_color(c_orange);
-
-draw_rectangle(x1, y1, x2, y2, true);
-
-// Hurtbox:
-var x1, y1, x2, y2;
-
-switch (mode) {
-    case 0:
-        x1 = floor(x) - hurtbox_left_rel + (hurtbox_offset_x * image_xscale);
-        y1 = floor(y) - hurtbox_top + hurtbox_offset_y;
-        x2 = floor(x) + hurtbox_right_rel + (hurtbox_offset_x * image_xscale);
-        y2 = floor(y) + hurtbox_bottom + hurtbox_offset_y;
-        break;
-
-    case 1:
-        x1 = floor(x) - hurtbox_top + hurtbox_offset_y;
-        y1 = floor(y) - hurtbox_right_rel + (hurtbox_offset_x * image_xscale);
-        x2 = floor(x) + hurtbox_bottom + hurtbox_offset_y;
-        y2 = floor(y) + hurtbox_left_rel + (hurtbox_offset_x * image_xscale);
-        break;
-
-    case 2:
-        x1 = floor(x) - hurtbox_right_rel + (hurtbox_offset_x * image_xscale);
-        y1 = floor(y) - hurtbox_bottom + hurtbox_offset_y;
-        x2 = floor(x) + hurtbox_left_rel + (hurtbox_offset_x * image_xscale);
-        y2 = floor(y) + hurtbox_top + hurtbox_offset_y;
-        break;
-
-    case 3:
-        x1 = floor(x) - hurtbox_bottom + hurtbox_offset_y;
-        y1 = floor(y) - hurtbox_left_rel + (hurtbox_offset_x * image_xscale);
-        x2 = floor(x) + hurtbox_top + hurtbox_offset_y;
-        y2 = floor(y) + hurtbox_right_rel + (hurtbox_offset_x * image_xscale);
-        break;
-}
-
-if ((hurtbox_left != 0 || hurtbox_right != 0) && (hurtbox_top != 0 || hurtbox_bottom != 0)) {
-    draw_set_color(c_red);
-
-    draw_rectangle(x1, y1, x2, y2, true);
-}
-
-// Hitbox:
-var x1, y1, x2, y2;
-
-switch (mode) {
-    case 0:
-        x1 = floor(x) - hitbox_left_rel + (hurtbox_offset_x * image_xscale);
-        y1 = floor(y) - hitbox_top + hitbox_offset_y;
-        x2 = floor(x) + hitbox_right_rel + (hurtbox_offset_x * image_xscale);
-        y2 = floor(y) + hitbox_bottom + hitbox_offset_y;
-        break;
-
-    case 1:
-        x1 = floor(x) - hitbox_top + hitbox_offset_y;
-        y1 = floor(y) - hitbox_right_rel + (hurtbox_offset_x * image_xscale);
-        x2 = floor(x) + hitbox_bottom + hitbox_offset_y;
-        y2 = floor(y) + hitbox_left_rel + (hurtbox_offset_x * image_xscale);
-        break;
-
-    case 2:
-        x1 = floor(x) - hitbox_right_rel + (hurtbox_offset_x * image_xscale);
-        y1 = floor(y) - hitbox_bottom + hitbox_offset_y;
-        x2 = floor(x) + hitbox_left_rel + (hurtbox_offset_x * image_xscale);
-        y2 = floor(y) + hitbox_top + hitbox_offset_y;
-        break;
-
-    case 3:
-        x1 = floor(x) - hitbox_bottom + hitbox_offset_y;
-        y1 = floor(y) - hitbox_left_rel + (hurtbox_offset_x * image_xscale);
-        x2 = floor(x) + hitbox_top + hitbox_offset_y;
-        y2 = floor(y) + hitbox_right_rel + (hurtbox_offset_x * image_xscale);
-        break;
-}
-
-if ((hitbox_left != 0 || hitbox_right != 0) && (hitbox_top != 0 || hitbox_bottom != 0)) {
-    draw_set_color(c_lime);
-
-    draw_rectangle(x1, y1, x2, y2, true);
-}
+draw_line_color(x_int - csine * wall_radius, y_int + sine * wall_radius, x_int + csine * wall_radius, y_int - sine * wall_radius, c_white, c_white);
 
 // Reset:
 draw_reset();

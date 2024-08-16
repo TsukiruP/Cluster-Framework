@@ -28,6 +28,9 @@ switch (argument0) {
             // Fall:
             if (relative_angle >= 90 && relative_angle <= 270) {
                 return player_set_state(player_state_air);
+            } else {
+                input_lock_alarm = 30;
+                return player_set_state(player_state_run);
             }
         }
 

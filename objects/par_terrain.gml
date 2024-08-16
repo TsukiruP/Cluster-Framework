@@ -6,14 +6,7 @@ applies_to=self
 */
 /// Terrain Initialization
 
-// Image speed:
-image_speed = 0;
-
-// Terrain variables:
-collision      =  true;
-type           =  SOLID_FULL;
-layer          = -1;
-platform_check =  true;
+event_inherited();
 
 // Collision data
 collision_layer = 0; // No collision happens with the player on layer mismatch

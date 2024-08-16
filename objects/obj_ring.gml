@@ -5,7 +5,7 @@ action_id=603
 applies_to=self
 */
 /// Ring Initialization
-
+/*
 event_inherited();
 
 // Flags:
@@ -34,7 +34,7 @@ action_id=603
 applies_to=self
 */
 /// Movement
-
+/*
 // Exit if the stage is paused or text is active:
 if (game_ispaused()) {
     exit;
@@ -68,7 +68,7 @@ action_id=603
 applies_to=self
 */
 /// Magnetization
-
+/*
 // Exit if the stage is paused or text is active:
 if (game_ispaused()) {
     exit;
@@ -95,7 +95,7 @@ action_id=603
 applies_to=self
 */
 /// Lifespan
-
+/*
 // Exit if the stage is paused or text is active:
 if (game_ispaused()) {
     exit;

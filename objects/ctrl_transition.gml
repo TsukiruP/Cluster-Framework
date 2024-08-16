@@ -399,7 +399,7 @@ if (transition_type == TRANS_CARD) {
                 // Ready:
                 if (room_start == START_READY) {
                     // Time it with the background:
-                    if (background_y_current <= floor(player_get_instance(0).y + player_get_instance(0).main_bottom - view_yview[view_current])) {
+                    if (background_y_current <= floor(player_get_instance(0).y + player_get_instance(0).y_radius - view_yview[view_current])) {
                         with (obj_player) {
                             if (animation_current != "ready" && animation_previous != "ready") {
                                 player_set_animation("ready");

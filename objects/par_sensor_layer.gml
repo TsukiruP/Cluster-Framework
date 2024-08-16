@@ -5,7 +5,7 @@ action_id=603
 applies_to=self
 */
 /// Sensor Initialization
-
+/*
 event_inherited();
 
 // Main:
@@ -14,8 +14,8 @@ main_right  = 7;
 main_top    = 8;
 main_bottom = 7;
 
-// Layer variables:
-layer = 0;
+// Collision layer:
+collision_layer = 0;
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1

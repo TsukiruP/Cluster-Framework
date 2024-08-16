@@ -6,13 +6,12 @@ if (ctl_position(0)) {
     sprite_index = spr_sonic_land;
     image_index  = 0;
 
-    // Set size:
-    main_left   = 6;
-    main_right  = 6;
-    main_top    = 14;
-    main_bottom = 14;
+    // Set radii:
+    x_radius    = 6;
+    y_radius    = 14;
+    y_offset    = 0;
 
-    roll_offset = 0;
+    wall_offset = 3;
 
     // Set hurtbox:
     hurtbox_left     = 6;
