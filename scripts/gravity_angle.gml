@@ -1,4 +1,14 @@
-/// gravity_angle()
+/// gravity_angle([obj])
 // Returns the gravity direction of the calling instance rotated to standard unit circle projection.
 
-return wrap_angle(gravity_direction + 90);
+var obj_handle;
+
+// Object handle:
+obj_handle = self;
+
+// Assign object handle:
+if (argument_count >= 1) {
+    obj_handle = argument[0];
+}
+
+return wrap_angle(obj_handle.gravity_direction + 90);
