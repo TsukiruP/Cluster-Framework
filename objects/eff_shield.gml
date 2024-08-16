@@ -9,8 +9,8 @@ applies_to=self
 event_inherited();
 
 // Shield variables:
-shield_hide  = false;
-shield_alpha = 0.6;
+shield_hide    = false;
+shield_advance = false;
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -74,18 +74,11 @@ applies_to=self
 
 event_inherited();
 
-var shield_advance;
-
-// Update depth:
+// Depth:
 if ((player_handle.status_shield == SHIELD_FIRE && (image_index mod 2) != 0 && ctl_index != ctl_shield_fire_dash ) || (player_handle.status_shield == SHIELD_LIGHTNING && ctl_time > 48)) {
     depth = player_handle.depth + 1;
 } else {
     depth = player_handle.depth - 2;
-}
-
-// Reset direction:
-if (sprite_index != spr_shield_fire_dash) {
-    image_xscale = 1;
 }
 
 // Advance shields:
@@ -97,13 +90,6 @@ if (!game_ispaused(ctrl_pause) && (player_handle.status_shield == SHIELD_BUBBLE 
     shield_hide = sync_rate(ctl_time, 2, 2);
 } else {
     shield_hide = false;
-}
-
-// Alpha:
-if ((global.advance_flicker == true && shield_advance == true) || shield_advance == false) {
-    shield_alpha = 1;
-} else {
-    shield_alpha = 0.6;
 }
 
 // Destroy:
@@ -119,15 +105,32 @@ applies_to=self
 */
 /// Draw Shield
 
+var player_rotation, sine, csine, draw_x, draw_y;
+
+// Rotation:
+player_rotation = gravity_angle(player_handle);
+
+// Reset direction:
+if (sprite_index != spr_shield_fire_dash) {
+    image_xscale = 1;
+}
+
+// Alpha:
+if ((global.advance_flicker == true && shield_advance == true) || shield_advance == false) {
+    image_alpha = 1;
+} else {
+    image_alpha = 0.6;
+}
+
 if (sprite_exists(sprite_index)) {
     // Shield:
     if (shield_hide == false) {
-        draw_sprite_ext(sprite_index, image_index, x, y, image_xscale, 1, 0, c_white, shield_alpha);
+        draw_sprite_ext(sprite_index, image_index, x, y, image_xscale, 1, player_rotation, c_white, image_alpha);
     }
 
     // Switch to bubble shield shell:
     else if (player_handle.status_shield == SHIELD_BUBBLE) {
-        draw_sprite(spr_shield_bubble_shell, ctl_time_previous div 12, x, y)
+        draw_sprite_ext(spr_shield_bubble_shell, ctl_time_previous div 12, x, y, image_xscale, 1, player_rotation, c_white, image_alpha);
     }
 
 }
