@@ -10,7 +10,7 @@ applies_to=self
 randomize();
 
 // Game initialization:
-global.game_debug  = false;
+global.game_debug  = debug_mode;
 global.time_allow  = false;
 global.pause_allow = true;
 
