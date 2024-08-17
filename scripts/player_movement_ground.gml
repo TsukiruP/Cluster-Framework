@@ -79,7 +79,11 @@ repeat (total_steps) {
     if (hit_push != noone) {
         var push_direction;
 
-        push_direction = sign(hit_push.x - x);
+        if ((mask_rotation mod 180) != 0) {
+            push_direction = sign(hit_push.y - y) * -dsin(gravity_angle());
+        } else {
+            push_direction = sign(hit_push.x - x) * dcos(gravity_angle());
+        }
 
         if (input_x_direction == push_direction) {
             player_wall_push(hit_push);
