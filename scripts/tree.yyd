@@ -186,14 +186,6 @@
 		+Traits
 			|player_trait_debug
 			|classic_trait_clock_up
-		+Handle
-			|player_handle_layer
-			|player_handle_ring
-			|player_handle_checkpoint
-			|player_handle_spring
-			|player_handle_item_box
-			|player_handle_badnik
-			|player_handle_hint
 		+Reactions
 			|player_reaction_checkpoint
 			|player_reaction_item_box
@@ -266,3 +258,11 @@
 		|collision_line_list
 		|collision_rectangle_list
 		|collision_point_list
+	+Handle
+		|player_handle_layer
+		|player_handle_ring
+		|player_handle_checkpoint
+		|player_handle_spring
+		|player_handle_item_box
+		|player_handle_badnik
+		|player_handle_hint
