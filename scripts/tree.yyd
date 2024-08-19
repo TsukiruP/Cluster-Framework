@@ -165,19 +165,21 @@
 			|player_set_state
 			|player_state_template
 			+Indexes
-				|player_state_idle
-				|player_state_turn
-				|player_state_run
-				|player_state_air
-				|player_state_look
-				|player_state_crouch
-				|player_state_spin_dash
-				|player_state_roll
-				|player_state_skid
-				|player_state_hurt
-				|player_state_death
-				|player_state_hammer
-				+Skill Lists
+				+Common
+					|player_state_idle
+					|player_state_turn
+					|player_state_run
+					|player_state_air
+					|player_state_look
+					|player_state_crouch
+					|player_state_spin_dash
+					|player_state_roll
+					|player_state_skid
+					|player_state_hurt
+					|player_state_death
+					+Auxiliary
+						|player_state_hammer
+				+Sonic
 					|sonic_skill_list
 		+Routines
 			|player_routine_jump
