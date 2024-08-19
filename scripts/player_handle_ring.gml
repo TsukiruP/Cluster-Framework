@@ -1,6 +1,6 @@
 /// player_handle_ring()
 // Nom nom nom.
-
+/*
 var ring_handle;
 
 // Nearest ring:

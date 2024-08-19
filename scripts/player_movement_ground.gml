@@ -1,7 +1,7 @@
 /// player_movement_ground()
 // Performs a movement step for the player on the ground.
 
-var ox, oy, total_steps, step, hit_object, hit_wall, hit_push, hit_floor;
+var ox, oy, total_steps, step, prop_handle, hit_prop, hit_wall, hit_push, hit_floor;
 
 // Snap to platforms:
 if (instance_exists(ground_id)) {
@@ -48,8 +48,18 @@ repeat (total_steps) {
     // Keep in bounds:
     player_inbounds();
 
-    // Prop collision
-    // [PLACEHOLDER]
+    // Prop collision:
+    prop_handle = instance_nearest(floor(x), floor(y), par_prop);
+    hit_prop    = player_collision_object(prop_handle);
+
+    if (hit_prop != false) {
+        // React:
+        player_react(prop_handle, hit_prop);
+
+        if (state_changed == true) {
+            return false;
+        }
+    }
 
     // Get solids:
     player_get_solids();
@@ -79,7 +89,7 @@ repeat (total_steps) {
     if (hit_push != noone) {
         var push_direction;
 
-        if ((mask_rotation mod 180) != 0) {
+        if (mask_rotation mod 180 != 0) {
             push_direction = sign(hit_push.y - y) * -dsin(gravity_angle());
         } else {
             push_direction = sign(hit_push.x - x) * dcos(gravity_angle());

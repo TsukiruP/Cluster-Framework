@@ -64,5 +64,8 @@ player_add_animation(CHAR_SONIC, "hurt",          ctl_sonic_hurt);
 // Death:
 player_add_animation(CHAR_SONIC, "death",         ctl_sonic_death);
 
+// Hammer:
+player_add_animation(CHAR_SONIC, "hammer",        ctl_sonic_hammer);
+
 // Insta:
 player_add_animation(CHAR_SONIC, "insta",         ctl_sonic_insta);

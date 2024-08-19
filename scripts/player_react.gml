@@ -1,14 +1,14 @@
-/// player_react(obj, [side])
+/// player_react(obj, collision, [side])
 // Executes the reaction script of the given instance.
 
 // Abort:
-if (!script_exists(argument0.reaction_script)) {
+if (!script_exists(argument0.reaction_index)) {
     return false;
 }
 
 // Execute reaction:
-if (argument_count < 2) {
-    return script_execute(argument0.reaction_script, argument0);
+if (argument_count < 3) {
+    return script_execute(argument0.reaction_index, argument0, argument1);
 }
 
-return script_execute(argument0.reaction_script, argument[1]);
+return script_execute(argument0.reaction_index, argument1, argument[2]);

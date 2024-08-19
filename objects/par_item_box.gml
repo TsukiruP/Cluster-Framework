@@ -14,11 +14,11 @@ depth = 10;
 // Image speed:
 image_speed = 0;
 
-// Main:
-main_left   = 13;
-main_right  = 12;
-main_top    = 16;
-main_bottom = 16;
+// Hurtbox:
+set_hurtbox(13, 16, 12, 16);
+
+// Reaction:
+reaction_index = player_reaction_item_box;
 
 // Player handle:
 player_handle = noone;

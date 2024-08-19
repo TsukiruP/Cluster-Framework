@@ -125,14 +125,22 @@ if (instance_exists(focus_handle)) {
     if (focus_handle == player_get_instance(0)) {
         if (camera_position_distance == 0) {
             if (camera_lag_alarm == 0) {
+                var player_offset;
+
+                if (focus_handle.on_ground == true) {
+                    player_offset = focus_handle.y_offset * dsin(focus_handle.mask_rotation);
+                } else {
+                    player_offset = 0;
+                }
+
                 // Move left:
-                if (focus_handle.x < border_left) {
-                    camera_x -= min(border_left - focus_handle.x, 24);
+                if (focus_handle.x < (border_left - player_offset)) {
+                    camera_x -= min((border_left - player_offset) - focus_handle.x, 24);
                 }
 
                 // Move right:
-                else if (focus_handle.x > border_right) {
-                    camera_x += min(focus_handle.x - border_right, 24);
+                else if (focus_handle.x > (border_right + player_offset)) {
+                    camera_x += min(focus_handle.x - (border_right + player_offset), 24);
                 }
 
                 // Vertical movement:

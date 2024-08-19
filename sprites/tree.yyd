@@ -87,6 +87,7 @@
 				|spr_sonic_fly_carry
 				|spr_sonic_throw
 				|spr_sonic_glide_carry
+			|spr_sonic_hammer
 			|spr_sonic_insta
 		+Classic
 			|spr_classic_stand
@@ -241,7 +242,6 @@
 	+Platforms
 	+Low
 	+High
-		|spr_basic_test_collision_high_01
 	+Masks
 		|mask_main
 		|mask_large

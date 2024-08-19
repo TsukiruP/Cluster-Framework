@@ -66,6 +66,9 @@ switch (argument0) {
         }
 
         // Auxiliary Action:
+        if (input_player[INP_AUX, CHECK_PRESSED]) {
+            return player_set_state(player_state_hammer);
+        }
 
         // Jump:
         if (player_routine_jump()) {

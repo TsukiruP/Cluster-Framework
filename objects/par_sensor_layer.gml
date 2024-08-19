@@ -26,7 +26,7 @@ if (global.game_debug == false) {
     exit;
 }
 
-// Self:
+// Sensor:
 draw_self();
 
 // Collision:

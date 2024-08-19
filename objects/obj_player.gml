@@ -901,6 +901,13 @@ switch (state_current) {
             player_set_animation("death");
         }
         break;
+
+    // Hammer:
+    case player_state_hammer:
+        if (animation_target != "hammer") {
+            player_set_animation("hammer");
+        }
+        break;
 }
 
 // Wait:
@@ -1462,7 +1469,7 @@ x_int = floor(x);
 y_int = floor(y);
 
 // Bounding box:
-if ((mask_rotation mod 180) != 0) {
+if (mask_rotation mod 180 != 0) {
     draw_rectangle_color(x_int - y_radius, y_int - x_radius, x_int + y_radius, y_int + x_radius, c_orange, c_orange, c_orange, c_orange, true);
 } else {
     draw_rectangle_color(x_int - x_radius, y_int - y_radius, x_int + x_radius, y_int + y_radius, c_orange, c_orange, c_orange, c_orange, true);
@@ -1473,6 +1480,12 @@ sine  = dsin(mask_rotation);
 csine = dcos(mask_rotation);
 
 draw_line_color(x_int - csine * wall_radius, y_int + sine * wall_radius, x_int + csine * wall_radius, y_int - sine * wall_radius, c_white, c_white);
+
+// Hurtbox:
+draw_collision(hurtbox_left, hurtbox_top, hurtbox_right, hurtbox_bottom, hurtbox_offset_x, hurtbox_offset_y, image_xscale, mask_rotation, c_maroon);
+
+// Hitbox:
+draw_collision(hitbox_left, hitbox_top, hitbox_right, hitbox_bottom, hitbox_offset_x, hitbox_offset_y, image_xscale, mask_rotation, c_green);
 
 // Reset:
 draw_reset();

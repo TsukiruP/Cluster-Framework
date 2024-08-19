@@ -8,7 +8,7 @@ if (ctl_position(0)) {
 
     // Set collision:
     player_set_radii(6, 14, 3);
-    set_hurtbox(8, 8, 8, 8, -1);
+    set_hurtbox(6, 13, 6, 15);
     set_hitbox();
 }
 

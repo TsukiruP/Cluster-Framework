@@ -32,7 +32,7 @@ if (global.game_debug == false) {
 
 // Mask:
 if (mask == true) {
-    draw_sprite(sprite_index, 0, x, y);
+    draw_self();
 }
 
 // Collision:

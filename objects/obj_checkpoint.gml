@@ -5,7 +5,7 @@ action_id=603
 applies_to=self
 */
 /// Checkpoint Initialization
-/*
+
 event_inherited();
 
 // Image speed:
@@ -14,11 +14,11 @@ image_speed = 0;
 // Timeline initialization:
 ctl_initialize(ctl_checkpoint_inactive);
 
-// Main:
-main_left   = 13;
-main_right  = 14;
-main_top    = 22;
-main_bottom = 15;
+// Hurtbox:
+set_hurtbox(13, 22, 14, 16);
+
+// Reaction:
+reaction_index = player_reaction_checkpoint;
 
 // Checkpoint variables:
 checkpoint_active = false;
@@ -35,7 +35,7 @@ action_id=603
 applies_to=self
 */
 /// Animate
-/*
+
 // Exit if the stage is paused:
 if (game_ispaused(ctrl_pause)) {
     exit;

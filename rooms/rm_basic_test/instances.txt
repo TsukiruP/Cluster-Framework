@@ -1,3 +1,4 @@
+obj_checkpoint,1008,704,D216079E,0,1,1,4294967295,0,0
 obj_player_spawn,240,752,F4AE1C4E,0,1,1,4294967295,0,0
 obj_basic_test_collision_03,96,768,0D9C0381,0,1,1,4294967295,0,0
 obj_basic_test_collision_03,192,768,12114FF8,0,1,1,4294967295,0,0
@@ -11,7 +12,6 @@ obj_basic_test_collision_09,672,768,ACEA2DB2,0,1,1,4294967295,0,0
 obj_basic_test_collision_01,768,864,45DC33C5,0,1,1,4294967295,0,0
 obj_basic_test_collision_01,672,864,9121205F,0,1,1,4294967295,0,0
 obj_basic_test_collision_01,864,864,209B2701,0,1,1,4294967295,0,0
-obj_basic_test_collision_03,960,864,45B586C0,0,1,1,4294967295,0,0
 obj_basic_test_collision_03,960,768,E19506C0,0,1,1,4294967295,0,0
 obj_basic_test_collision_01,960,720,7C9754EA,0,1,1,4294967295,0,0
 obj_basic_test_collision_01,1056,720,2B4D2146,0,1,1,4294967295,0,0
@@ -25,6 +25,13 @@ obj_basic_test_collision_28,768,720,445FB34C,0,1,1,4294967295,0,0
 obj_basic_test_collision_28,864,720,F1DFBE9F,0,1,1,4294967295,0,0
 obj_basic_test_collision_08,576,768,8B41D5D5,0,1,1,4294967295,0,0
 obj_basic_test_collision_01,576,864,87608800,0,1,1,4294967295,0,0
-obj_basic_test_collision_03,0,672,C16D50A3,0,1,1,4294967295,0,0
-obj_basic_test_collision_03,384,672,8186091E,0,1,1,4294967295,0,0
-obj_sensor_layer_a,320,688,593598E6,0,1,1,4294967295,0,0
+obj_basic_test_collision_28,576,720,63DF8115,0,1,1,4294967295,0,0
+obj_basic_test_collision_01,960,864,E27BBB3F,0,1,1,4294967295,0,0
+obj_basic_test_collision_03,0,672,C8647A6A,0,1,1,4294967295,0,0
+obj_basic_test_collision_03,0,576,F17C41F3,0,1,1,4294967295,0,0
+obj_basic_test_collision_03,0,480,D6EF2A96,0,1,1,4294967295,0,0
+obj_item_bonus,784,848,CBC70077,0,1,1,4294967295,0,0
+obj_item_super_bonus,816,848,86B79CF7,0,1,1,4294967295,0,0
+obj_item_random_bonus,848,848,0C53B6A2,0,1,1,4294967295,0,0
+obj_item_basic,880,848,F10F977A,0,1,1,4294967295,0,0
+obj_item_fire,912,848,83EF295C,0,1,1,4294967295,0,0

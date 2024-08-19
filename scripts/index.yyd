@@ -13,7 +13,7 @@ player_state_death
 player_state_look
 ctl_template
 ctl_sonic_land
-player_state_bound
+player_state_hammer
 ctl_sonic_push
 player_trait_debug
 player_movement
@@ -24,7 +24,7 @@ player_state_skid
 wrap_angle
 input_get_string
 player_get_physics
-player_state_jump
+player_reaction_item_box
 player_state_air
 ctl_update
 ctl_position
@@ -109,7 +109,7 @@ collision_rectangle_list
 collision_line_list
 collision_point_list
 player_terrain_point
-angle_sensor
+draw_collision
 player_terrain_line
 player_obstacle_rectangle
 player_collision_terrain
@@ -117,7 +117,7 @@ player_get_angle
 player_set_angle
 player_collision_mode
 player_collision_semisolids
-player_collision_prop
+player_collision_prop_OLD
 player_collision_obstacle
 player_collision_wall_OLD
 ctl_sonic_look
@@ -126,7 +126,7 @@ player_set_state
 player_set_animation
 player_collision_steps
 timeline_set
-prop_terrain_point
+player_reaction_checkpoint
 ctl_initialize
 ctl_sonic_run_0
 ctl_sonic_run_2
@@ -201,3 +201,5 @@ player_get_balance
 player_set_radii
 set_hurtbox
 set_hitbox
+player_collision_object
+ctl_sonic_hammer

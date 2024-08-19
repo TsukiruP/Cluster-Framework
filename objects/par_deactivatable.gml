@@ -14,6 +14,9 @@ set_hurtbox();
 
 // Hitbox:
 set_hitbox();
+
+// Reaction:
+reaction_index = -1;
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -27,12 +30,8 @@ if (global.game_debug == false) {
     exit;
 }
 
-var x_int, y_int;
-
-x_int = floor(x) + hurtbox_offset_x;
-y_int = floor(y) + hurtbox_offset_y;
-
 // Hurtbox:
-if !(hurtbox_left == 0 && hurtbox_top == 0 && hurtbox_right == 0 && hurtbox_bottom == 0) {
-    draw_rectangle_color(x_int - hurtbox_left, y_int - hurtbox_top, x_int + hurtbox_right, y_int + hurtbox_bottom, c_red, c_red, c_red, c_red, true);
-}
+draw_collision(hurtbox_left, hurtbox_top, hurtbox_right, hurtbox_bottom, hurtbox_offset_x, hurtbox_offset_y, image_xscale, gravity_angle(), c_maroon);
+
+// Hitbox:
+draw_collision(hitbox_left, hitbox_top, hitbox_right, hitbox_bottom, hitbox_offset_x, hitbox_offset_y, image_xscale, gravity_angle(), c_green);

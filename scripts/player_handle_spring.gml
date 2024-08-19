@@ -1,6 +1,6 @@
 /// player_handle_spring()
 // Bounce Pad! Wait, that's not right.
-
+/*
 var spring_handle, spring_ancestry;
 
 // Nearest spring:

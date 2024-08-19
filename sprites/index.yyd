@@ -90,7 +90,7 @@ spr_pause_header
 spr_basic_test_collision_low_01
 spr_basic_test_water_fall_02
 fnt_hud_s4e2
-spr_basic_test_collision_high_01
+spr_sonic_hammer
 spr_miles_spin_dash
 spr_miles_roll
 spr_miles_land

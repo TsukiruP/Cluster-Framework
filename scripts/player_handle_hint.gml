@@ -1,6 +1,6 @@
 /// player_handle_hint()
 // Press the jump button to jump!
-
+/*
 var hint_handle;
 
 // Nearest hint:

@@ -78,6 +78,7 @@
 					+Goal
 					|ctl_sonic_hurt
 					|ctl_sonic_death
+					|ctl_sonic_hammer
 					|ctl_sonic_insta
 			+Props
 				+Checkpoint
@@ -120,6 +121,7 @@
 		|wrap_angle
 		|sync_rate
 	+Draw
+		|draw_collision
 		|parallax_add_node
 		|draw_backdrop_tiled_area
 		+Sprites
@@ -131,11 +133,11 @@
 			|draw_background_tiled_horizontal_part_yscale
 			|draw_background_tiled_vertical_part
 	+Misc.
-		|transition_create
-		|effect_create
 		|hover
 		|set_hurtbox
 		|set_hitbox
+		|transition_create
+		|effect_create
 +Gameplay
 	+Collision
 		|collision_box
@@ -148,9 +150,10 @@
 			|player_get_character
 			|player_get_instance
 		+Collision
-			|player_collision_ceiling
-			|player_collision_floor
+			|player_collision_object
 			|player_collision_wall
+			|player_collision_floor
+			|player_collision_ceiling
 		+Wall
 			|player_wall_eject
 			|player_wall_push
@@ -173,7 +176,7 @@
 				|player_state_skid
 				|player_state_hurt
 				|player_state_death
-				|player_state_bound
+				|player_state_hammer
 				+Skill Lists
 					|sonic_skill_list
 		+Routines
@@ -191,6 +194,9 @@
 			|player_handle_item_box
 			|player_handle_badnik
 			|player_handle_hint
+		+Reactions
+			|player_reaction_checkpoint
+			|player_reaction_item_box
 		+Animation
 			|player_animation_core
 			|player_add_animation
@@ -224,7 +230,6 @@
 				|update_trail
 				|draw_trail
 	+Props
-		|prop_terrain_point
 		+Checkpoint
 			|checkpoint_set
 			|checkpoint_isset
@@ -244,7 +249,6 @@
 		+Classic
 	+Collision
 		+Utilities
-			|angle_sensor
 			|player_terrain_point
 			|player_terrain_line
 			|player_obstacle_rectangle
@@ -252,7 +256,7 @@
 		|player_collision_semisolids
 		|player_collision_terrain
 		|player_collision_obstacle
-		|player_collision_prop
+		|player_collision_prop_OLD
 		|player_collision_mode
 		|player_collision_wall_OLD
 		|player_collision_steps
@@ -262,4 +266,3 @@
 		|collision_line_list
 		|collision_rectangle_list
 		|collision_point_list
-	|player_state_jump

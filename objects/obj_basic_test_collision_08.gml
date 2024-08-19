@@ -9,4 +9,4 @@ applies_to=self
 event_inherited();
 
 // Shape:
-shape = -1;
+shape = SHAPE_RECTANGLE;

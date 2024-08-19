@@ -3,8 +3,8 @@
 
 var effect;
 
-effect       = instance_create(floor(argument1), floor(argument2), eff_basic);
-effect.depth = depth;
+// Initialize:
+effect = instance_create(floor(argument1), floor(argument2), eff_basic);
 
 // Set timeline:
 with (effect) {
