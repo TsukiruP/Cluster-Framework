@@ -19,8 +19,18 @@ repeat (total_steps) {
     // Keep in bounds:
     player_inbounds();
 
-    // Prop collision
-    // [PLACEHOLDER]
+    // Prop collision:
+    prop_handle = instance_nearest(floor(x), floor(y), par_prop);
+    hit_prop    = player_collision_object(prop_handle);
+
+    if (hit_prop != false) {
+        // React:
+        player_react(prop_handle, hit_prop);
+
+        if (state_changed == true) {
+            return false;
+        }
+    }
 
     // Get solids:
     player_get_solids();
