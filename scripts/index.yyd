@@ -21,7 +21,7 @@ key_get_string
 joy_get_char
 player_state_run
 player_state_skid
-wrap_angle
+angle_wrap
 input_get_string
 player_get_physics
 player_reaction_item_box

@@ -10,7 +10,7 @@ var difference, new_rotation, new_angle, new_difference;
 
 // Calculate offsets:
 difference   = angle_difference(mask_rotation, angle); // Rotational offset between angle and mask rotation
-new_rotation = wrap_angle(mask_rotation + 90 * sign(difference)); // New mask rotation
+new_rotation = angle_wrap(mask_rotation + 90 * sign(difference)); // New mask rotation
 
 // Calculate ground angle from new mask rotation:
 new_angle = player_get_angle(ground_id, new_rotation);

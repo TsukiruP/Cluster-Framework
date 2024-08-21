@@ -901,13 +901,6 @@ switch (state_current) {
             player_set_animation("death");
         }
         break;
-
-    // Hammer:
-    case player_state_hammer:
-        if (animation_target != "hammer") {
-            player_set_animation("hammer");
-        }
-        break;
 }
 
 // Wait:

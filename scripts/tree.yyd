@@ -118,7 +118,7 @@
 					|ctl_ring_sparkle
 	+Math
 		|wrap
-		|wrap_angle
+		|angle_wrap
 		|sync_rate
 	+Draw
 		|draw_collision

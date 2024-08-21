@@ -9,7 +9,7 @@ on_ground = true;
 
 // Calculate and set new ground angle:
 angle          = player_get_angle(ground_id, mask_rotation);
-relative_angle = wrap_angle(angle - gravity_angle());
+relative_angle = angle_wrap(angle - gravity_angle());
 
 sine  = dsin(mask_rotation);
 csine = dcos(mask_rotation);

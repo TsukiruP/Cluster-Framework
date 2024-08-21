@@ -53,7 +53,7 @@ if (argument0.shape == -1) {
         x2 = x_int + (csine * x_radius) + (sine * dist2);
         y2 = y_int - (sine * x_radius) + (csine * dist2);
 
-        return wrap_angle(round(point_direction(x1, y1, x2, y2)));
+        return angle_wrap(round(point_direction(x1, y1, x2, y2)));
     }
 }
 
@@ -115,7 +115,7 @@ if (argument1 mod 180 != 0) {
 
 // If the solid's angle is hard-coded, return it
 if (argument0.surface_angle > -1) {
-    return wrap_angle(argument0.surface_angle);
+    return angle_wrap(argument0.surface_angle);
 }
 
 // Determine calculation method
@@ -139,7 +139,7 @@ if (argument0.shape == SHAPE_SLANT) {
     }
     
     // Calculate slant angle
-    return wrap_angle(round(point_direction(x1, y1, x2, y2)));
+    return angle_wrap(round(point_direction(x1, y1, x2, y2)));
 }
 
 // Curves:
@@ -169,7 +169,7 @@ else if (argument0.shape != SHAPE_RECTANGLE) {
         dir = point_direction(x2, y2, x1, y1);
     }
     
-    return wrap_angle(round(dir) + 90);
+    return angle_wrap(round(dir) + 90);
 }
 
 // Default

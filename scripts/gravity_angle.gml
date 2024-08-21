@@ -11,4 +11,4 @@ if (argument_count >= 1) {
     object_handle = argument[0];
 }
 
-return wrap_angle(object_handle.gravity_direction + 90);
+return angle_wrap(object_handle.gravity_direction + 90);

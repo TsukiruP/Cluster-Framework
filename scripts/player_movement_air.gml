@@ -95,7 +95,7 @@ repeat (total_steps) {
             //if (player_react(hit_floor, COLL_TOP)) return false;
 
             // Rotate mask:
-            mask_rotation = wrap_angle(mask_rotation + 180);
+            mask_rotation = angle_wrap(mask_rotation + 180);
 
             // Set ceiling:
             player_set_ground(hit_floor);

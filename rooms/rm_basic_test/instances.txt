@@ -30,8 +30,7 @@ obj_basic_test_collision_01,960,864,E27BBB3F,0,1,1,4294967295,0,0
 obj_basic_test_collision_03,0,672,C8647A6A,0,1,1,4294967295,0,0
 obj_basic_test_collision_03,0,576,F17C41F3,0,1,1,4294967295,0,0
 obj_basic_test_collision_03,0,480,D6EF2A96,0,1,1,4294967295,0,0
-obj_item_bonus,784,848,CBC70077,0,1,1,4294967295,0,0
-obj_item_super_bonus,816,848,86B79CF7,0,1,1,4294967295,0,0
-obj_item_random_bonus,848,848,0C53B6A2,0,1,1,4294967295,0,0
-obj_item_basic,880,848,F10F977A,0,1,1,4294967295,0,0
-obj_item_fire,912,848,83EF295C,0,1,1,4294967295,0,0
+obj_basic_test_collision_22,864,816,A5901884,0,1,1,4294967295,0,0
+obj_basic_test_collision_01,1344,768,2C29013A,0,1,1,4294967295,0,0
+obj_basic_test_collision_21,1440,576,54988349,0,1,1,4294967295,0,0
+obj_basic_test_collision_19,1440,672,53BFBC93,0,1,1,4294967295,0,0

@@ -4,6 +4,8 @@
 switch (argument0) {
     // Start:
     case STATE_START:
+        // Set animation:
+        player_set_animation("hammer");
         break;
 
     // Step:
