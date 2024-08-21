@@ -142,3 +142,6 @@ switch (player_handle.mask_rotation) {
         }
         break;
 }
+
+// Success:
+return true;

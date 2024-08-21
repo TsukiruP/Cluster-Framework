@@ -46,7 +46,9 @@ repeat (total_steps) {
     y -= dsin(angle) * step;
 
     // Keep in bounds:
-    player_inbounds();
+    if (!player_inbounds()) {
+        return false;
+    }
 
     // Prop collision:
     prop_handle = instance_nearest(floor(x), floor(y), par_prop);
