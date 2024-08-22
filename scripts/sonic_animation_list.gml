@@ -75,3 +75,4 @@ player_add_animation(CHAR_SONIC, "insta",         ctl_sonic_insta);
 // Skid:
 player_add_animation(CHAR_SONIC, "somersault",    ctl_sonic_somersault);
 player_add_animation(CHAR_SONIC, "skid",          ctl_sonic_skid);
+player_add_animation(CHAR_SONIC, "skid_end",      ctl_sonic_skid_end);

@@ -14,19 +14,28 @@ switch (argument0) {
     // Step:
     case STATE_STEP:
         // Friction:
-        if (animation_current == "skid") {
-            x_speed -= min(abs(x_speed), 0.125) * sign(x_speed);
-        } else {
-            x_speed -= min(abs(x_speed), acceleration) * sign(x_speed);
+        if (on_ground == true) {
+            if (animation_current == "skid") {
+                x_speed -= min(abs(x_speed), 0.125) * sign(x_speed);
+            } else {
+                x_speed -= min(abs(x_speed), acceleration) * sign(x_speed);
+            }
         }
 
         // Movement:
-        if (!player_movement_ground()) {
-            exit;
+        if (on_ground == false && animation_current == "skid") {
+            if (!player_movement_air()) {
+                exit;
+            }
+        } else {
+            if (!player_movement_ground()) {
+                exit;
+            }
         }
 
         // Fall:
-        if (on_ground == false) {
+        if (on_ground == false && animation_current != "skid") {
+            jump_state = true;
             return player_set_state(player_state_air);
         }
 
@@ -38,18 +47,52 @@ switch (argument0) {
             }
         }
 
-        // Change to slide:
-        if (animation_current == "somersault" && animation_finished == true) {
-            x_speed = 4 * image_xscale;
-            player_set_animation("skid");
+        // Finish animation:
+        if (animation_finished == true) {
+            switch (animation_current) {
+                // Skid:
+                case "somersault":
+                    x_speed = 4 * image_xscale;
+                    player_set_animation("skid");
+                    break;
+
+                // Idle:
+                case "skid_end":
+                    return player_set_state(player_state_idle);
+                    break;
+            }
         }
 
-        // Skid alarm:
-        if (skid_alarm > 0 && animation_current == "skid") {
-            skid_alarm -= 1;
+        // Skid behavior:
+        if (animation_current == "skid") {
+            // Skid alarm:
+            if (skid_alarm > 0) {
+                skid_alarm -= 1;
 
-            if (skid_alarm == 0) {
-                return player_set_state(player_state_idle);
+                if (skid_alarm == 0) {
+                    // Get up:
+                    if (on_ground == true) {
+                        player_set_animation("skid_end");
+                    }
+
+                    // Jump:
+                    else {
+                        jump_state = true;
+                        return player_set_state(player_state_air, false);
+                    }
+                }
+            }
+
+            // Reset air:
+            if (on_ground == false && ground_id != noone) {
+                player_reset_air();
+            }
+
+            // Gravity:
+            if (on_ground == false) {
+                if (y_allow == true) {
+                    y_speed += gravity_force;
+                }
             }
         }
         break;

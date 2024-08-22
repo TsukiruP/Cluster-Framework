@@ -862,13 +862,6 @@ switch (state_target) {
         }
         break;
 
-    // Jump:
-    case player_state_jump:
-        if (animation_target != "spin" && animation_target != "insta") {
-            player_set_animation("spin");
-        }
-        break;
-
     // Look:
     case player_state_look:
         if (animation_target != "look") {
@@ -927,7 +920,7 @@ switch (state_target) {
 
     // Skid:
     case sonic_state_skid:
-        if (animation_target != "somersault" && animation_target != "skid") {
+        if (animation_target != "somersault" && animation_target != "skid" && animation_target != "skid_end") {
             player_set_animation("somersault");
         }
         break;
