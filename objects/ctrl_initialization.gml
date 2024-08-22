@@ -122,7 +122,7 @@ global.setting_gameplay_checkpoint = ini_read_real("gameplay", "checkpoint", DEF
 
 // Read/create Advance settings:
 global.setting_advance_turn    = ini_read_real("advance", "turn", DEFAULT_ADVANCE_TURN);
-global.setting_advance_skid    = ini_read_real("advance", "skid", DEFAULT_ADVANCE_SKID);
+global.setting_advance_brake   = ini_read_real("advance", "brake", DEFAULT_ADVANCE_BRAKE);
 global.setting_advance_hurt    = ini_read_real("advance", "hurt", DEFAULT_ADVANCE_HURT);
 global.setting_advance_flicker = ini_read_real("advance", "flicker", DEFAULT_ADVANCE_FLICKER);
 
@@ -182,7 +182,7 @@ global.gameplay_checkpoint = global.setting_gameplay_checkpoint;
 
 // Apply Advance settings:
 global.advance_turn    = global.setting_advance_turn;
-global.advance_skid    = global.setting_advance_skid;
+global.advance_brake   = global.setting_advance_brake;
 global.advance_hurt    = global.setting_advance_hurt;
 global.advance_flicker = global.setting_advance_flicker;
 

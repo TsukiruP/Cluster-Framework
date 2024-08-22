@@ -21,7 +21,7 @@ player_add_animation(CHAR_SONIC, "omochao",       ctl_sonic_omochao);
 
 // Turn:
 player_add_animation(CHAR_SONIC, "turn",          ctl_sonic_turn) //,      tml_sonic_turn_tag);
-player_add_animation(CHAR_SONIC, "turn_skid",     ctl_sonic_turn_skid);
+player_add_animation(CHAR_SONIC, "turn_brake",    ctl_sonic_turn_brake);
 
 // Run:
 player_add_animation(CHAR_SONIC, "run_0",         ctl_sonic_run_0) //      tml_sonic_walk_tag);
@@ -45,9 +45,9 @@ player_add_animation(CHAR_SONIC, "spin_charge",   ctl_sonic_spin_charge);
 // Spin:
 player_add_animation(CHAR_SONIC, "spin",          ctl_sonic_roll, ctl_sonic_spin_flight, ctl_sonic_spin_fall);
 
-// Skid:
-player_add_animation(CHAR_SONIC, "skid",          ctl_sonic_skid);
-player_add_animation(CHAR_SONIC, "skid_fast",     ctl_sonic_skid_fast);
+// Brake:
+player_add_animation(CHAR_SONIC, "brake",         ctl_sonic_brake);
+player_add_animation(CHAR_SONIC, "brake_fast",    ctl_sonic_brake_fast);
 
 // Push:
 player_add_animation(CHAR_SONIC, "push",          ctl_sonic_push);
@@ -66,9 +66,9 @@ player_add_animation(CHAR_SONIC, "hurt",          ctl_sonic_hurt);
 // Death:
 player_add_animation(CHAR_SONIC, "death",         ctl_sonic_death);
 
-// Slide:
+// Skid:
 player_add_animation(CHAR_SONIC, "somersault",    ctl_sonic_somersault);
-player_add_animation(CHAR_SONIC, "slide",         ctl_sonic_slide);
+player_add_animation(CHAR_SONIC, "skid",          ctl_sonic_skid);
 
 // Hammer:
 player_add_animation(CHAR_SONIC, "hammer",        ctl_sonic_hammer);

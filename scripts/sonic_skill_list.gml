@@ -10,7 +10,7 @@ if (skill_id == SONIC_AUX_G) {
     switch (global.sonic_skill[skill_id]) {
         // Slide:
         case 1:
-            return player_set_state(sonic_state_slide);
+            return player_set_state(sonic_state_skid);
             break;
 
         // Hammer;

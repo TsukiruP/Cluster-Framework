@@ -42,7 +42,7 @@
 			+Turn
 				|spr_sonic_turn
 				|spr_sonic_turn_tag
-				|spr_sonic_turn_skid
+				|spr_sonic_turn_brake
 			+Run
 				|spr_sonic_run_0
 				|spr_sonic_run_1
@@ -67,10 +67,10 @@
 				|spr_sonic_roll
 				|spr_sonic_spin_flight
 				|spr_sonic_spin_fall
-			+Skid
-				|spr_sonic_skid
-				|spr_sonic_skid_fast
-				|spr_sonic_skid_tag
+			+Brake
+				|spr_sonic_brake
+				|spr_sonic_brake_fast
+				|spr_sonic_brake_tag
 			|spr_sonic_hurt
 			|spr_sonic_death
 			|spr_sonic_push
@@ -87,7 +87,7 @@
 				|spr_sonic_throw
 				|spr_sonic_glide_carry
 			|spr_sonic_hammer
-			|spr_sonic_slide
+			|spr_sonic_skid
 			|spr_sonic_insta
 		+Classic
 			|spr_classic_stand
@@ -166,7 +166,7 @@
 			|spr_trail
 			|spr_spin_dash
 			|spr_spin_charge
-			|spr_skid
+			|spr_brake
 			|spr_drop_dash
 			|spr_debuff
 			|spr_homing_reticle

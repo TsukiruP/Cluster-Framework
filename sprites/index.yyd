@@ -1,4 +1,4 @@
-spr_sonic_slide
+spr_sonic_skid
 mask_large
 mask_big
 mask_mid
@@ -39,8 +39,8 @@ spr_sonic_crouch_tag
 spr_sonic_spin_dash
 spr_sonic_spin_charge
 spr_sonic_roll
-spr_sonic_skid
-spr_sonic_skid_tag
+spr_sonic_brake
+spr_sonic_brake_tag
 spr_sonic_land
 spr_sonic_breathe
 spr_sonic_spring
@@ -59,7 +59,7 @@ spr_classic_misc
 spr_classic_push
 spr_spin_dash
 spr_spin_charge
-spr_skid
+spr_brake
 spr_tag_call
 spr_title_card_load
 spr_debuff
@@ -220,8 +220,8 @@ spr_miles_push
 spr_sonic_balance_front
 spr_sonic_balance_back
 spr_sonic_turn
-spr_sonic_turn_skid
-spr_sonic_skid_fast
+spr_sonic_turn_brake
+spr_sonic_brake_fast
 spr_sonic_turn_tag
 spr_sonic_goal
 spr_sonic_goal_gold

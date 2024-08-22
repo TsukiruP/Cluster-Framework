@@ -148,8 +148,8 @@ applies_to=self
 // Spin dash charge:
 spin_dash_charge = 0;
 
-// Skid dust alarm:
-skid_dust_alarm = 3;
+// Brake dust alarm:
+brake_dust_alarm = 3;
 
 // Shield handle:
 shield_handle = noone;
@@ -802,7 +802,7 @@ switch (state_target) {
 
     // Turn:
     case player_state_turn:
-        if (animation_target != "turn" && animation_target != "turn_skid") {
+        if (animation_target != "turn" && animation_target != "turn_brake") {
             player_set_animation("turn");
         }
         break;
@@ -844,7 +844,7 @@ switch (state_target) {
                 player_set_animation("spin");
             }
         } else {
-            if ((animation_target != "turn" && animation_target != "turn_skid" && animation_target != "spin" && animation_target != "skid" && animation_target != "spring_flight" && animation_target != "spring_fall") ||
+            if ((animation_target != "turn" && animation_target != "turn_brake" && animation_target != "spin" && animation_target != "brake" && animation_target != "spring_flight" && animation_target != "spring_fall") ||
                 (animation_current == "spring_flight" && y_speed >= 0) || spring_alarm > 0) {
                 // Flight:
                 if (y_speed < 0 || (spring_angle != ANGLE_DOWN && spring_alarm > 0)) {
@@ -894,10 +894,10 @@ switch (state_target) {
         }
         break;
 
-    // Skid:
-    case player_state_skid:
-        if (animation_target != "skid" && animation_target != "skid_fast") {
-            player_set_animation("skid");
+    // Brake:
+    case player_state_brake:
+        if (animation_target != "brake" && animation_target != "brake_fast") {
+            player_set_animation("brake");
         }
         break;
 
@@ -922,9 +922,9 @@ switch (state_target) {
         }
         break;
 
-    // Slide:
-    case sonic_state_slide:
-        if (animation_target != "somersault" && animation_target != "slide") {
+    // Skid:
+    case sonic_state_skid:
+        if (animation_target != "somersault" && animation_target != "skid") {
             player_set_animation("somersault");
         }
         break;
@@ -955,7 +955,7 @@ switch (animation_target) {
     case "look_end":
     case "crouch":
     case "crouch_end":
-    case "skid":
+    case "brake":
     case "spring_flight":
     case "spring_fall":
         // Tag variants
@@ -1048,7 +1048,7 @@ switch (animation_current) {
     case "land":
     case "omochao":
     case "turn":
-    case "turn_skid":
+    case "turn_brake":
     case "look":
     case "look_end":
     case "crouch":
@@ -1056,8 +1056,8 @@ switch (animation_current) {
     case "spin_dash":
     case "spin_charge":
     case "spin":
-    case "skid":
-    case "skid_fast":
+    case "brake":
+    case "brake_fast":
     case "hurt":
     case "death":
     case "push":

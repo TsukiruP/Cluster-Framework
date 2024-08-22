@@ -49,7 +49,7 @@
 							|ctl_sonic_omochao
 					+Turn
 						|ctl_sonic_turn
-						|ctl_sonic_turn_skid
+						|ctl_sonic_turn_brake
 					+Run
 						|ctl_sonic_run_0
 						|ctl_sonic_run_1
@@ -69,9 +69,9 @@
 						|ctl_sonic_roll
 						|ctl_sonic_spin_flight
 						|ctl_sonic_spin_fall
-					+Skid
-						|ctl_sonic_skid
-						|ctl_sonic_skid_fast
+					+Brake
+						|ctl_sonic_brake
+						|ctl_sonic_brake_fast
 					|ctl_sonic_push
 					+Spring
 						|ctl_sonic_spring_flight
@@ -80,9 +80,9 @@
 					+Goal
 					|ctl_sonic_hurt
 					|ctl_sonic_death
-					+Slide
+					+Skid
 						|ctl_sonic_somersault
-						|ctl_sonic_slide
+						|ctl_sonic_skid
 					|ctl_sonic_hammer
 					|ctl_sonic_insta
 			+Props
@@ -96,7 +96,7 @@
 				+Player
 					|ctl_spin_dash
 					|ctl_spin_charge
-					|ctl_skid
+					|ctl_brake
 					|ctl_debuff
 				+Shields
 					|ctl_shield_insta
@@ -179,14 +179,14 @@
 					|player_state_crouch
 					|player_state_spin_dash
 					|player_state_roll
-					|player_state_skid
+					|player_state_brake
 					|player_state_hurt
 					|player_state_death
 					+Auxiliary
 						|player_state_hammer
 				+Sonic
 					|sonic_skill_list
-					|sonic_state_slide
+					|sonic_state_skid
 		+Routines
 			|player_routine_skill
 			|player_routine_jump

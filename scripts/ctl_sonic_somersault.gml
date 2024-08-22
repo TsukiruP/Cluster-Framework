@@ -2,7 +2,7 @@
 
 // Start animation:
 if (ctl_position(0)) {
-    sprite_index = spr_sonic_slide;
+    sprite_index = spr_sonic_skid;
     image_index  = 0;
 
     // Set collision:
