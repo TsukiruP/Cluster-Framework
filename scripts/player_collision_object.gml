@@ -5,7 +5,6 @@ var ax_int, ay_int, aleft, atop, aright, abottom, aoff_x, aoff_y, adir, arot, ax
 var object_handle, bx_int, by_int, bleft, btop, bright, bbottom, boff_x, boff_y, bdir, brot, bx1, by1, bx2, by2;
 var phase, collision;
 
-// Initialize:
 object_handle = argument0;
 phase         = 0;
 collision     = 0;

@@ -5,7 +5,7 @@ var total_solids, n, inst;
 
 total_solids = ds_list_size(solid_list);
 
-// Evaluate all solids
+// Evaluate all solids:
 for (n = 0; n < total_solids; n += 1) {
     // Get the current solid:
     inst = ds_list_find_value(solid_list, n);
@@ -15,7 +15,7 @@ for (n = 0; n < total_solids; n += 1) {
         continue;
     }
 
-    // Confirm
+    // Confirm:
     return inst;
 }
 

@@ -200,9 +200,9 @@ applies_to=self
 */
 /// Save Initialization
 
-// Sonic skills:
+// Sonic actions:
 for (i = SONIC_JUMP; i <= SONIC_SHIELD; i += 1) {
-    global.sonic_skill[i] = true;
+    global.sonic_skill[i] = 1;
 }
 /*"/*'/**//* YYD ACTION
 lib_id=1

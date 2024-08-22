@@ -1,30 +1,19 @@
 /// player_movement_ground()
 // Performs a movement step for the player on the ground.
 
-var ox, oy, total_steps, step, prop_handle, hit_prop, hit_wall, hit_push, hit_floor;
+var ox, oy, total_steps, step, hit_object, hit_wall, hit_floor, hit_push;
 
-// Snap to platforms:
+// Snap to moving platforms:
 if (instance_exists(ground_id)) {
-    // Vectors:
+    // Initialize vectors:
     ox = ground_id.x - ground_id.xprevious;
     oy = ground_id.y - ground_id.yprevious;
-
-    if (ground_id.hspeed != 0) {
-        ox = ground_id.hspeed;
-    }
-
-    if (ground_id.vspeed != 0) {
-        oy = ground_id.vspeed;
-    }
+    if (ground_id.hspeed != 0) ox = ground_id.hspeed;
+    if (ground_id.vspeed != 0) oy = ground_id.vspeed;
 
     // Move:
-    if (ox != 0) {
-        x += ox;
-    }
-
-    if (oy != 0) {
-        y += oy;
-    }
+    if (ox != 0) x += ox;
+    if (oy != 0) y += oy;
 }
 
 // Fall off:
@@ -33,15 +22,15 @@ else {
 }
 
 // Reset wall direction:
-wall_direction = 0;
+wall_sign = 0;
 
-// Initialize steps:
+// Initialize movement loop:
 total_steps = 1 + (abs(x_speed) div x_radius);
 step        = x_speed / total_steps;
 
-// Process steps:
+// Process movement loop:
 repeat (total_steps) {
-    // Apply movement:
+    // Apply movement step:
     x += dcos(angle) * step;
     y -= dsin(angle) * step;
 
@@ -63,26 +52,42 @@ repeat (total_steps) {
         }
     }
 
-    // Get solids:
+    // Get colliding solids:
     player_get_solids();
 
     // Wall collision:
     hit_wall = player_collision_wall(0);
 
     if (hit_wall != noone) {
-        // Get crushed:
+        // Get crushed if applicable:
         // [PLACEHOLDER]
 
-        // Eject:
-        wall_direction = player_wall_eject(hit_wall);
+        // Eject from wall:
+        wall_sign = player_wall_eject(hit_wall);
 
+        // Trigger reaction:
+        // [PLACEHOLDER]
+
+        // Stop if moving towards wall:
+        if (sign(x_speed) == wall_sign) {
+            x_speed = 0;
+        }
+    }
+
+    // Floor collision
+    hit_floor = player_collision_floor(y_radius * 2);
+
+    if (hit_floor != noone) {
         // React:
         // [PLACEHOLDER]
 
-        // Stop moving:
-        if (sign(x_speed) == wall_direction) {
-            x_speed = 0;
-        }
+        // Get floor data:
+        player_set_ground(hit_floor);
+    }
+
+    // Fall off:
+    else {
+        on_ground = false;
     }
 
     // Push collision:
@@ -102,25 +107,9 @@ repeat (total_steps) {
         }
     }
 
-    // Floor collision:
-    hit_floor = player_collision_floor(y_radius * 2);
-
-    if (hit_floor != noone) {
-        // React:
-        // [PLACEHOLDER]
-
-        // Set floor:
-        player_set_ground(hit_floor);
-    }
-
-    // Fall off:
-    else {
-        on_ground = false;
-    }
-
-    // Rotate mask:
+    // Handle mask rotation:
     player_rotate_mask();
 }
 
-// Success:
+// Success
 return true;

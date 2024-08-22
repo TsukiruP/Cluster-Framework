@@ -3,7 +3,6 @@
 	|spr_transition_background
 	|fnt_system
 	+Title Card
-		+Default
 		|spr_title_card_banner
 		|spr_title_card_acts
 		|spr_title_card_load
@@ -88,6 +87,7 @@
 				|spr_sonic_throw
 				|spr_sonic_glide_carry
 			|spr_sonic_hammer
+			|spr_sonic_slide
 			|spr_sonic_insta
 		+Classic
 			|spr_classic_stand
@@ -243,7 +243,6 @@
 	+Low
 	+High
 	+Masks
-		|mask_main
 		|mask_large
 		|mask_big
 		|mask_mid

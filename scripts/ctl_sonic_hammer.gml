@@ -97,7 +97,7 @@ else if (ctl_position(23)) {
     image_index = 13;
 }
 
-// Change animation:
+// Finish animation:
 else if (ctl_position(25)) {
-    player_set_animation("stand");
+    animation_finished = true;
 }

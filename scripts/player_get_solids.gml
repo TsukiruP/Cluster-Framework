@@ -9,7 +9,6 @@ ds_list_clear(solid_list);
 // Initialize bounding rectangle:
 x_int = floor(x);
 y_int = floor(y);
-
 sine  = dsin(mask_rotation);
 csine = dcos(mask_rotation);
 

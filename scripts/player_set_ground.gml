@@ -1,14 +1,21 @@
 /// player_set_ground(obj)
 // Assigns the given solid as the player's current ground.
 
-var sine, csine;
+var new_angle, sine, csine;
 
 // Confirm assignment:
 ground_id = argument0;
 on_ground = true;
 
-// Calculate and set new ground angle:
-angle          = player_get_angle(ground_id, mask_rotation);
+// Calculate ground angle:
+new_angle = player_get_angle(ground_id, mask_rotation);
+
+if (new_angle < 0) {
+    new_angle = angle;
+}
+
+// Set new ground angle:
+angle          = new_angle;
 relative_angle = angle_wrap(angle - gravity_angle());
 
 sine  = dsin(mask_rotation);

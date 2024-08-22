@@ -12,9 +12,6 @@ if ((ctl_index != player_get_animation(animation_target, animation_variant)) || 
     // Reset finished:
     animation_finished = false;
 
-    // Reset reverse:
-    animation_reverse = false;
-
     // Reset trigger:
     animation_trigger = false;
 

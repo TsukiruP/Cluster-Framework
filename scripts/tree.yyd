@@ -58,8 +58,10 @@
 						|ctl_sonic_run_4
 					+Look
 						|ctl_sonic_look
+						|ctl_sonic_look_end
 					+Crouch
 						|ctl_sonic_crouch
+						|ctl_sonic_crouch_end
 					+Spin Dash
 						|ctl_sonic_spin_dash
 						|ctl_sonic_spin_charge
@@ -78,6 +80,9 @@
 					+Goal
 					|ctl_sonic_hurt
 					|ctl_sonic_death
+					+Slide
+						|ctl_sonic_somersault
+						|ctl_sonic_slide
 					|ctl_sonic_hammer
 					|ctl_sonic_insta
 			+Props
@@ -181,7 +186,9 @@
 						|player_state_hammer
 				+Sonic
 					|sonic_skill_list
+					|sonic_state_slide
 		+Routines
+			|player_routine_skill
 			|player_routine_jump
 			|player_routine_insta
 			|player_routine_shield
@@ -215,10 +222,10 @@
 		+Misc.
 			|player_react
 			|player_inbounds
+			|player_rotate_mask
 			|player_get_balance
 			|player_slope_factor
 			|player_ring_loss
-			|player_rotate_mask
 			+Trail
 				|start_trail
 				|update_trail
@@ -235,7 +242,6 @@
 		+Top
 		+Bottom
 	+Actions (OLD)
-		|player_action_push_OLD
 		+Sonic
 		+Miles
 		+Knuckles
@@ -255,7 +261,6 @@
 		|player_collision_wall_OLD
 		|player_collision_steps
 	+Angle
-		|player_set_angle
 	+GMS2
 		|collision_line_list
 		|collision_rectangle_list

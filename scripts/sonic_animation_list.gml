@@ -32,9 +32,11 @@ player_add_animation(CHAR_SONIC, "run_4",         ctl_sonic_run_4);
 
 // Look:
 player_add_animation(CHAR_SONIC, "look",          ctl_sonic_look);
+player_add_animation(CHAR_SONIC, "look_end",      ctl_sonic_look_end);
 
 // Crouch:
 player_add_animation(CHAR_SONIC, "crouch",        ctl_sonic_crouch);
+player_add_animation(CHAR_SONIC, "crouch_end",    ctl_sonic_crouch_end);
 
 // Spin Dash:
 player_add_animation(CHAR_SONIC, "spin_dash",     ctl_sonic_spin_dash);
@@ -63,6 +65,10 @@ player_add_animation(CHAR_SONIC, "hurt",          ctl_sonic_hurt);
 
 // Death:
 player_add_animation(CHAR_SONIC, "death",         ctl_sonic_death);
+
+// Slide:
+player_add_animation(CHAR_SONIC, "somersault",    ctl_sonic_somersault);
+player_add_animation(CHAR_SONIC, "slide",         ctl_sonic_slide);
 
 // Hammer:
 player_add_animation(CHAR_SONIC, "hammer",        ctl_sonic_hammer);

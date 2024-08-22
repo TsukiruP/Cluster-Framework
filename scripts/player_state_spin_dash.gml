@@ -23,11 +23,6 @@ switch (argument0) {
             exit;
         }
 
-        // Changed:
-        if (state_changed == true) {
-            return false;
-        }
-
         // Slide off:
         if (relative_angle >= 45 && relative_angle <= 315) {
             // Fall:

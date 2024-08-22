@@ -1,9 +1,8 @@
 /// player_get_angle(x, y, [floor_mode])
-// Calculates the angle of the given solid using its image and collision data.
+// Calculates the angle of the given solid using its image && collision data.
 
 // Unspecified solid shape:
 if (argument0.shape == -1) {
-    // Initialize:
     var total_solids, dist1, dist2, oy, n, inst;
 
     total_solids =  ds_list_size(solid_list);
@@ -18,9 +17,7 @@ if (argument0.shape == -1) {
             inst = ds_list_find_value(solid_list, n);
 
             // Continue if not colliding with the current solid:
-            if (collision_ray(x_radius, oy, angle, inst) == noone) {
-                continue;
-            }
+            if (collision_ray(x_radius, oy, angle, inst) == noone) continue;
 
             // Get sensor heights:
             if (dist1 < 0 && collision_ray_vertical(-x_radius, oy, angle, inst) != noone) {
@@ -38,23 +35,31 @@ if (argument0.shape == -1) {
         }
     }
 
-    // Calculate angle from sensors:
-    if (dist1 > -1 && dist2 > -1 && dist1 != dist2) {
-        var x_int, y_int, sine, csine, x1, y1, x2, y2;
-
-        x_int = floor(x);
-        y_int = floor(y);
-
-        sine  = dsin(angle);
-        csine = dcos(angle);
-
-        x1 = x_int - (csine * x_radius) + (sine * dist1);
-        y1 = y_int + (sine * x_radius) + (csine * dist1);
-        x2 = x_int + (csine * x_radius) + (sine * dist2);
-        y2 = y_int - (sine * x_radius) + (csine * dist2);
-
-        return angle_wrap(round(point_direction(x1, y1, x2, y2)));
+    // Sensor failure:
+    if (dist1 < 0 || dist2 < 0) {
+        return -1;
     }
+
+    // Default:
+    if (dist1 == dist2) {
+        return argument1;
+    }
+
+    // Calculate angle from sensors:
+    var x_int, y_int, sine, csine, x1, y1, x2, y2;
+
+    x_int = floor(x);
+    y_int = floor(y);
+
+    sine  = dsin(angle);
+    csine = dcos(angle);
+
+    x1 = x_int - (csine * x_radius) + (sine * dist1);
+    y1 = y_int + (sine * x_radius) + (csine * dist1);
+    x2 = x_int + (csine * x_radius) + (sine * dist2);
+    y2 = y_int - (sine * x_radius) + (csine * dist2);
+
+    return angle_wrap(round(point_direction(x1, y1, x2, y2)));
 }
 
 // Get the solid's image data:
@@ -69,10 +74,10 @@ top    = argument0.bbox_top;
 bottom = argument0.bbox_bottom + 1;
 
 // Abort if colliding on the wrong side of the solid:
-if ((argument1 == 0 && yscale == -1) || (argument1 == 90 && xscale == -1) or
+if ((argument1 == 0 && yscale == -1) || (argument1 == 90 && xscale == -1) ||
     (argument1 == 180 && yscale == 1) || (argument1 == 270 && xscale == 1)) {
     return argument1;
-    }
+}
 
 // Abort if out of the solid's bounds:
 if (argument1 mod 180 != 0) {
@@ -113,16 +118,15 @@ if (argument1 mod 180 != 0) {
     }
 }
 
-// If the solid's angle is hard-coded, return it
+// If the solid's angle is hard-coded, return it:
 if (argument0.surface_angle > -1) {
     return angle_wrap(argument0.surface_angle);
 }
 
-// Determine calculation method
+// Determine calculation method:
 var x1, y1, x2, y2;
-
 if (argument0.shape == SHAPE_SLANT) {
-    // Set offsets
+    // Set offsets:
     x1 = left;
     y1 = bottom;
     x2 = right;
@@ -138,13 +142,13 @@ if (argument0.shape == SHAPE_SLANT) {
         y2 = bottom;
     }
     
-    // Calculate slant angle
+    // Calculate slant angle:
     return angle_wrap(round(point_direction(x1, y1, x2, y2)));
 }
 
 // Curves:
 else if (argument0.shape != SHAPE_RECTANGLE) {
-    // Set corner offset
+    // Set corner offset:
     x1 = right;
     y1 = bottom;
     
@@ -156,11 +160,11 @@ else if (argument0.shape != SHAPE_RECTANGLE) {
         y1 = top;
     }
     
-    // Set mask offset
+    // Set mask offset:
     x2 = x + (x_radius * xscale * (argument1 mod 180 == 0));
     y2 = y + (x_radius * yscale * (argument1 mod 180 != 0));
     
-    // Calculate curve angle
+    // Calculate curve angle:
     var dir;
     
     dir = point_direction(x1, y1, x2, y2);
@@ -168,9 +172,8 @@ else if (argument0.shape != SHAPE_RECTANGLE) {
     if (argument0.shape == SHAPE_CONVEX) {
         dir = point_direction(x2, y2, x1, y1);
     }
-    
     return angle_wrap(round(dir) + 90);
 }
 
-// Default
+// Default:
 return argument1;

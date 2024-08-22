@@ -15,11 +15,6 @@ switch (argument0) {
             exit;
         }
 
-        // Changed:
-        if (state_changed == true) {
-            return false;
-        }
-
         // Fall:
         if (on_ground == false) {
             return player_set_state(player_state_air);
@@ -51,23 +46,23 @@ switch (argument0) {
             switch (input_y_direction) {
                 // Look:
                 case -1:
-                    if (animation_current != "look") {
+                    if (animation_current != "look_end") {
                         return player_set_state(player_state_look);
                     }
                     break;
 
                 // Crouch:
                 case 1:
-                    if (animation_current != "crouch") {
+                    if (animation_current != "crouch_end") {
                         return player_set_state(player_state_crouch);
                     }
                     break;
             }
         }
 
-        // Auxiliary Action:
-        if (input_player[INP_AUX, CHECK_PRESSED]) {
-            return player_set_state(player_state_hammer);
+        // Skill:
+        if (player_routine_skill()) {
+            return true;
         }
 
         // Jump:

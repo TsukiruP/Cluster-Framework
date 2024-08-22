@@ -22,11 +22,6 @@ switch (argument0) {
             exit;
         }
 
-        // Changed:
-        if (state_changed == true) {
-            return false;
-        }
-
         // Land:
         if (on_ground == true) {
             // Reset speed:

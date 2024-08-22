@@ -17,8 +17,10 @@ player_slot = 0;
 
 // Action variables:
 state_current  = player_state_idle;
+state_target   = state_current;
 state_previous = state_current;
 state_changed  = false;
+state_start    = true;
 
 // Physics variables:
 physics_type     = PHYS_DEFAULT;
@@ -32,6 +34,7 @@ x_speed          = 0;
 acceleration     = 0.046875;
 deceleration     = 0.5;
 slope_friction   = 0.125;
+air_acceleration = 0.09375;
 air_friction     = 0.96875;
 
 y_allow            = true;
@@ -226,18 +229,21 @@ applies_to=self
 /// Animation Initialization
 
 animation_grid      = -1;
+
 animation_current   =  "";
 animation_target    =  "";
 animation_previous  =  animation_current;
+
 animation_variant   =  0;
 animation_moment    =  0;
+
 animation_finished  =  false;
 animation_trigger   =  false;
 animation_reverse   =  false;
 animation_reload    =  false;
 animation_alarm     =  360;
 
-animation_angle_mod =  0;
+animation_direction = image_xscale;
 #define Step_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -365,13 +371,22 @@ if (game_ispaused()) {
     exit;
 }
 
-// Execute state:
+// Set current state:
+if (state_changed == true) {
+    state_current = state_target;
+    state_changed = false;
+
+    // Start current state:
+    if (state_start == true) {
+        if (script_exists(state_current)) {
+            script_execute(state_current, STATE_START);
+        }
+    }
+}
+
+// Execute current state:
 if (script_exists(state_current)) {
     script_execute(state_current, STATE_STEP);
-
-    if (state_changed != false) {
-        state_changed = false;
-    }
 }
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -751,14 +766,12 @@ if (state_current != player_state_death && !instance_exists(ctrl_tally)) {
         }
     }
 }
-#define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
 applies_to=self
 */
 /// Animation Target
-// Sets the animation target and then calls the animation core script.
 
 // Exit if the stage is paused:
 if (game_ispaused(ctrl_pause)) {
@@ -770,12 +783,12 @@ var y_radius_temp;
 // Store previous radius:
 y_radius_temp = y_radius;
 
-switch (state_current) {
+switch (state_target) {
     // Idle:
     case player_state_idle:
         if (balance_direction == 0) {
             if (animation_target != "stand" && animation_target != "wait" && animation_target != "ready" && animation_target != "land" && animation_target != "omochao" &&
-                animation_target != "look" && animation_target != "crouch") {
+                animation_target != "look_end" && animation_target != "crouch_end") {
                 player_set_animation("stand");
             }
         } else {
@@ -901,6 +914,20 @@ switch (state_current) {
             player_set_animation("death");
         }
         break;
+
+    // Hammer:
+    case player_state_hammer:
+        if (animation_target != "hammer" && animation_previous != "hammer") {
+            player_set_animation("hammer");
+        }
+        break;
+
+    // Slide:
+    case sonic_state_slide:
+        if (animation_target != "somersault" && animation_target != "slide") {
+            player_set_animation("somersault");
+        }
+        break;
 }
 
 // Wait:
@@ -925,7 +952,9 @@ switch (animation_target) {
     case "walk_fast":
     case "jog":
     case "look":
+    case "look_end":
     case "crouch":
+    case "crouch_end":
     case "skid":
     case "spring_flight":
     case "spring_fall":
@@ -993,13 +1022,13 @@ if (on_ground == true) {
     x += (y_radius_temp - y_radius) * dsin(mask_rotation);
     y += (y_radius_temp - y_radius) * dcos(mask_rotation);
 }
+#define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
 applies_to=self
 */
-/// Animation Angle
-// Sets the animation angle based on the current animation.
+/// Image Angle
 
 // Exit if the stage is paused or text is active:
 if (game_ispaused()) {
@@ -1021,7 +1050,9 @@ switch (animation_current) {
     case "turn":
     case "turn_skid":
     case "look":
+    case "look_end":
     case "crouch":
+    case "crouch_end":
     case "spin_dash":
     case "spin_charge":
     case "spin":

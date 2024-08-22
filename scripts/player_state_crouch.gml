@@ -13,11 +13,6 @@ switch (argument0) {
             exit;
         }
 
-        // Changed:
-        if (state_changed == true) {
-            return false;
-        }
-
         // Fall:
         if (on_ground == false) {
             return player_set_state(player_state_air);
@@ -36,11 +31,14 @@ switch (argument0) {
 
         // Idle:
         if (animation_trigger == true && input_player[INP_DOWN, CHECK_HELD] == false) {
-            animation_reverse = true;
+            player_set_animation("crouch_end");
             return player_set_state(player_state_idle);
         }
 
-        // Auxiliary Action:
+        // Skill:
+        if (player_routine_skill()) {
+            return true;
+        }
 
         // Spin Dash:
         if (input_player[INP_JUMP, CHECK_PRESSED] == true) {

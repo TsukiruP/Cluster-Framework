@@ -1,5 +1,5 @@
 /// player_collision_terrain()
-
+/*
 // Exit if ground collision is disabled:
 if (ground_collision_allow == false) {
     exit;

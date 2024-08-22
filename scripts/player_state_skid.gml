@@ -73,11 +73,6 @@ switch (argument0) {
             exit;
         }
 
-        // Changed:
-        if (state_changed == true) {
-            return false;
-        }
-
         // Fall:
         if (on_ground == false) {
             return player_set_state(player_state_air);
@@ -104,6 +99,11 @@ switch (argument0) {
         // Idle:
         if (x_speed == 0 && input_x_direction == 0) {
             return player_set_state(player_state_idle);
+        }
+
+        // Skill:
+        if (player_routine_skill()) {
+            return true;
         }
 
         // Jump:

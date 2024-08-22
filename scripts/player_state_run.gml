@@ -1,5 +1,5 @@
 /// player_state_run(phase)
-//
+// Gotta go fast.
 
 switch (argument0) {
     // Start:
@@ -85,15 +85,15 @@ switch (argument0) {
             }
         }
 
-        // Slope factor:
-        x_speed += player_slope_factor(slope_friction, acceleration);
-
         // Idle:
         if (x_speed == 0 && input_x_direction == 0) {
             return player_set_state(player_state_idle);
         }
 
-        // Auxiliary Action:
+        // Skill:
+        if (player_routine_skill()) {
+            return true;
+        }
 
         // Jump:
         if (player_routine_jump()) {

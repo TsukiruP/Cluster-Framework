@@ -101,7 +101,7 @@ classic_trait_clock_up
 checkpoint_set
 checkpoint_isset
 player_state_roll
-player_action_push_OLD
+player_routine_skill
 ctl_sonic_turn_skid
 player_state_spin_dash
 ctl_sonic_spring_flight
@@ -114,7 +114,7 @@ player_terrain_line
 player_obstacle_rectangle
 player_collision_terrain
 player_get_angle
-player_set_angle
+sonic_state_slide
 player_collision_mode
 player_collision_semisolids
 player_collision_prop_OLD
@@ -203,3 +203,7 @@ set_hurtbox
 set_hitbox
 player_collision_object
 ctl_sonic_hammer
+ctl_sonic_slide
+ctl_sonic_somersault
+ctl_sonic_crouch_end
+ctl_sonic_look_end

@@ -16,44 +16,45 @@ switch (argument0) {
         x_speed =  dcos(relative_angle) * g_speed;
         y_speed = -(dsin(relative_angle) * g_speed);
 
+        // Jump:
+        if (jump_state == true) {
+            x_speed -= jump_force * dsin(relative_angle);
+            y_speed -= jump_force * dcos(relative_angle);
+        }
+
         // Reset air:
         player_reset_air();
         break;
 
     // Step:
     case STATE_STEP:
-        // Input:
-        if (input_x_direction != 0) {
-            if (jump_state == true) {
-                if (abs(x_speed) < top_speed) {
-                    x_speed += (2 * acceleration) * input_x_direction;
-
-                    if (abs(x_speed) > top_speed) {
-                        x_speed = top_speed * input_x_direction;
+        if (spring_alarm == 0) {
+            // Input:
+            switch (input_x_direction) {
+                // Left:
+                case -1:
+                    if (x_speed > -top_speed) {
+                        x_speed -= air_acceleration;
                     }
-                }
-            } else if (spring_alarm == 0) {
-                // Set direction:
+                    break;
+
+                // Right:
+                case 1:
+                    if (x_speed < top_speed) {
+                        x_speed += air_acceleration;
+                    }
+                    break;
+            }
+
+            // Direction:
+            if (input_x_direction != 0) {
                 image_xscale = input_x_direction;
-
-                if (abs(x_speed) < top_speed || sign(x_speed) != input_x_direction) {
-                    x_speed += (2 * acceleration) * input_x_direction;
-
-                    if (abs(x_speed) > top_speed && sign(x_speed) == input_x_direction) {
-                        x_speed = top_speed * input_x_direction;
-                    }
-                }
             }
         }
 
         // Movement:
         if (!player_movement_air()) {
             exit;
-        }
-
-        // Changed:
-        if (state_changed == true) {
-            return false;
         }
 
         // Land:
@@ -81,7 +82,7 @@ switch (argument0) {
             }
         }
 
-        // Air friction:
+        // Friction:
         if (abs(x_speed) > air_friction_threshold && y_speed > -4 && y_speed < 0) {
             x_speed *= air_friction;
         }
@@ -89,13 +90,6 @@ switch (argument0) {
         // Gravity:
         if (y_allow == true) {
             y_speed += gravity_force;
-        }
-
-        // Jump direction:
-        if (jump_state == true) {
-            if (input_x_direction != 0 && image_xscale == -input_x_direction) {
-                image_xscale = input_x_direction;
-            }
         }
 
         // Jump Action:

@@ -1,11 +1,11 @@
 /// player_state_hammer()
-//
+// Gigant hammer.
 
 switch (argument0) {
     // Start:
     case STATE_START:
-        // Set animation:
-        player_set_animation("hammer");
+        // Set speed:
+        x_speed = 0;
         break;
 
     // Step:
@@ -15,14 +15,14 @@ switch (argument0) {
             exit;
         }
 
-        // Changed:
-        if (state_changed == true) {
-            return false;
-        }
-
         // Fall:
         if (on_ground == false) {
             return player_set_state(player_state_air);
+        }
+
+        // Idle:
+        if (animation_finished == true) {
+            return player_set_state(player_state_idle);
         }
 
         // Jump:
