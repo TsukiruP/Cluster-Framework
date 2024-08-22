@@ -87,8 +87,8 @@
 				|spr_sonic_throw
 				|spr_sonic_glide_carry
 			|spr_sonic_hammer
-			|spr_sonic_skid
 			|spr_sonic_insta
+			|spr_sonic_skid
 		+Classic
 			|spr_classic_stand
 			|spr_classic_jog

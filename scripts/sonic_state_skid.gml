@@ -6,12 +6,19 @@ switch (argument0) {
     case STATE_START:
         // Set speed:
         x_speed = 3 * image_xscale;
+
+        // Skid alarm:
+        skid_alarm = 32;
         break;
 
     // Step:
     case STATE_STEP:
         // Friction:
-        x_speed -= min(abs(x_speed), roll_friction) * sign(x_speed);
+        if (animation_current == "skid") {
+            x_speed -= min(abs(x_speed), 0.125) * sign(x_speed);
+        } else {
+            x_speed -= min(abs(x_speed), acceleration) * sign(x_speed);
+        }
 
         // Movement:
         if (!player_movement_ground()) {
@@ -35,6 +42,15 @@ switch (argument0) {
         if (animation_current == "somersault" && animation_finished == true) {
             x_speed = 4 * image_xscale;
             player_set_animation("skid");
+        }
+
+        // Skid alarm:
+        if (skid_alarm > 0 && animation_current == "skid") {
+            skid_alarm -= 1;
+
+            if (skid_alarm == 0) {
+                return player_set_state(player_state_idle);
+            }
         }
         break;
 

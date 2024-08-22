@@ -66,12 +66,12 @@ player_add_animation(CHAR_SONIC, "hurt",          ctl_sonic_hurt);
 // Death:
 player_add_animation(CHAR_SONIC, "death",         ctl_sonic_death);
 
-// Skid:
-player_add_animation(CHAR_SONIC, "somersault",    ctl_sonic_somersault);
-player_add_animation(CHAR_SONIC, "skid",          ctl_sonic_skid);
-
 // Hammer:
 player_add_animation(CHAR_SONIC, "hammer",        ctl_sonic_hammer);
 
 // Insta:
 player_add_animation(CHAR_SONIC, "insta",         ctl_sonic_insta);
+
+// Skid:
+player_add_animation(CHAR_SONIC, "somersault",    ctl_sonic_somersault);
+player_add_animation(CHAR_SONIC, "skid",          ctl_sonic_skid);

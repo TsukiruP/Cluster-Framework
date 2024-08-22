@@ -105,6 +105,9 @@ applies_to=self
 // Character data:
 character_id = CHAR_SONIC;
 
+// Sonic variables:
+skid_alarm = 0;
+
 // Classic variables:
 clock_up_state    = 0;
 clock_up_alarm    = 0;
@@ -1063,6 +1066,9 @@ switch (animation_current) {
     case "push":
     case "breathe":
     case "goal":
+    case "hammer":
+    case "insta":
+    case "skid":
         image_angle = gravity_angle();
         break;
 
