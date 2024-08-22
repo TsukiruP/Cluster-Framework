@@ -1,5 +1,11 @@
 /// ctl_sonic_spin_flight()
 
+// Skip:
+if (animation_skip == true) {
+    ctl_skip(5);
+    sprite_index = spr_sonic_spin_flight;
+}
+
 // Start animation:
 if (ctl_position(0)) {
     // Set sprite:

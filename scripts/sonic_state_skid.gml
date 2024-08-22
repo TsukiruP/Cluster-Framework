@@ -35,8 +35,10 @@ switch (argument0) {
 
         // Fall:
         if (on_ground == false && animation_current != "skid") {
-            jump_state = true;
-            return player_set_state(player_state_air);
+            jump_state     = true;
+            animation_skip = true;
+            player_reset_air();
+            return player_set_state(player_state_air, false);
         }
 
         // Slide off:
@@ -77,7 +79,8 @@ switch (argument0) {
 
                     // Jump:
                     else {
-                        jump_state = true;
+                        jump_state     = true;
+                        animation_skip = true;
                         return player_set_state(player_state_air, false);
                     }
                 }

@@ -29,6 +29,7 @@
 	+Timelines
 		|ctl_initialize
 		|ctl_update
+		|ctl_skip
 		|ctl_position
 		|timeline_set
 		|ctl_template

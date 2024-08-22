@@ -242,11 +242,9 @@ animation_moment    =  0;
 
 animation_finished  =  false;
 animation_trigger   =  false;
-animation_reverse   =  false;
 animation_reload    =  false;
+animation_skip      =  false;
 animation_alarm     =  360;
-
-animation_direction = image_xscale;
 #define Step_0
 /*"/*'/**//* YYD ACTION
 lib_id=1

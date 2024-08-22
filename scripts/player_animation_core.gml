@@ -22,3 +22,8 @@ if ((ctl_index != player_get_animation(animation_target, animation_variant)) || 
 // Execute custom timeline:
 ctl_update();
 script_execute(ctl_index);
+
+// Reset skip:
+if (animation_skip == true) {
+    animation_skip = false;
+}
