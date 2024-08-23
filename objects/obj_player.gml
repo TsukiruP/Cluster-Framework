@@ -52,7 +52,7 @@ hint_wanted = false;
 jump_state   =  false;
 jump_force   =  6.5;
 jump_release = -4;
-jump_special =  false;
+bound_state  =  0;
 
 // Roll variables:
 roll_deceleration  = 0.125;

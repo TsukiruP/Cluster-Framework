@@ -31,6 +31,7 @@ switch (argument0) {
             } else {
                 input_lock_alarm = 30;
                 sound_play_single("snd_roll");
+
                 return player_set_state(player_state_roll);
             }
         }

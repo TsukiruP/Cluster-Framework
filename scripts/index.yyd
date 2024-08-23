@@ -83,7 +83,7 @@ player_get_item
 credits
 in_view
 player_ring_loss
-player_slope_factor
+player_slope_friction
 player_handle_item_box
 player_handle_checkpoint
 hover
@@ -210,3 +210,6 @@ ctl_sonic_look_end
 ctl_sonic_skid_end
 ctl_skip
 player_routine_dust
+player_state_bound
+ctl_shield_bubble_bound
+ctl_shield_bubble_recoil

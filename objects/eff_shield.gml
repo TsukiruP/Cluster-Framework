@@ -46,7 +46,7 @@ if (player_handle.status_invin != INVIN_BUFF) {
 
         // Bubble:
         case SHIELD_BUBBLE:
-            if (ctl_index != ctl_shield_bubble) {
+            if (ctl_index != ctl_shield_bubble && ctl_index != ctl_shield_bubble_bound && ctl_index != ctl_shield_bubble_recoil) {
                 timeline_set(ctl_shield_bubble);
             }
             break;
@@ -85,7 +85,7 @@ if ((player_handle.status_shield == SHIELD_FIRE && (image_index mod 2) != 0 && c
 shield_advance = (player_handle.status_shield == SHIELD_BASIC || player_handle.status_shield == SHIELD_MAGNETIC || player_handle.status_invin == INVIN_BUFF);
 
 // Hide:
-if (!game_ispaused(ctrl_pause) && (player_handle.status_shield == SHIELD_BUBBLE || (global.advance_flicker == true && shield_advance == true))) {
+if (!game_ispaused(ctrl_pause) && ((player_handle.status_shield == SHIELD_BUBBLE && ctl_index == ctl_shield_bubble) || (global.advance_flicker == true && shield_advance == true))) {
     // Hide:
     shield_hide = sync_rate(ctl_time, 2, 2);
 } else {
@@ -97,6 +97,35 @@ if (player_handle.status_shield == SHIELD_NONE && player_handle.status_invin != 
     player_handle.shield_handle = noone;
     instance_destroy();
 }
+#define Other_10
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Set Index
+
+switch (player_handle.status_shield) {
+    // Fire dash:
+    case SHIELD_FIRE:
+        image_xscale = player_handle.image_xscale;
+        timeline_set(ctl_shield_fire_dash);
+        break;
+
+    // Bubble bound:
+    case SHIELD_BUBBLE:
+        timeline_set(ctl_shield_bubble_bound);
+        break;
+}
+#define Other_11
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Bubble Recoil
+
+timeline_set(ctl_shield_bubble_recoil);
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1

@@ -1,5 +1,5 @@
 /// player_state_bound()
-//
+// No bracelet required!
 
 switch (argument0) {
     // Start:
@@ -9,46 +9,58 @@ switch (argument0) {
     // Step:
     case STATE_STEP:
         // Input:
-        if (input_x_direction != 0 && spring_alarm == 0) {
-            if (abs(x_speed) < top_speed || sign(x_speed) != input_x_direction) {
-                x_speed += (2 * acceleration) * input_x_direction;
+        switch (input_x_direction) {
+            // Left:
+            case -1:
+                if (x_speed > -top_speed) {
+                    x_speed -= air_acceleration;
+                }
+                break;
 
-                if (abs(x_speed) > top_speed && sign(x_speed) == input_x_direction) {
-                    x_speed = top_speed * input_x_direction;
+            // Right:
+            case 1:
+                if (x_speed < top_speed) {
+                    x_speed += air_acceleration;
+                }
+                break;
+        }
+
+        // Direction:
+        if (input_x_direction != 0) {
+            image_xscale = input_x_direction;
+        }
+
+        // Movement:
+        if (!player_movement_air()) {
+            exit;
+        }
+
+        // Land:
+        if (on_ground == true) {
+            player_set_state(player_state_air, true);
+            jump_state  = true;
+
+            // Set timeline:
+            if (instance_exists(shield_handle)) {
+                with (shield_handle) {
+                    event_user(1);
                 }
             }
+
+            // Play sound:
+            sound_play_single("snd_shield_bubble_bound");
+
+            return true;
         }
 
-        // Collision steps:
-        player_collision_steps();
-
-        // Changed:
-        if (state_changed == true) {
-            return false;
-        }
-
-        // Jump:
-        if (ground == true) {
-            player_set_state(player_state_jump);
-
-            x_speed     -= 7.5 * dsin(ground_angle);
-            y_speed     -= 7.5 * dcos(ground_angle);
-            jump_special = true;
-        }
-
-        // Air drag:
-        if (abs(x_speed) > 0.125 && y_speed > -4 && y_speed < 0) {
-            x_speed *= 0.96875;
+        // Air friction:
+        if (abs(x_speed) > air_friction_threshold && y_speed > -4 && y_speed < 0) {
+            x_speed *= air_friction;
         }
 
         // Gravity:
         if (y_allow == true) {
             y_speed += gravity_force;
-        }
-
-        // Set direction:
-        if (input_x_direction != 0 && image_xscale == -input_x_direction) {
-            image_xscale = input_x_direction;
         }
         break;
 

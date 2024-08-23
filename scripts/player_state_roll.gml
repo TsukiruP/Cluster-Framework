@@ -47,17 +47,20 @@ switch (argument0) {
         }
 
         // Slope friction:
-        if (relative_angle < 135 || relative_angle > 225) {
-            // Roll upwards:
-            if (sign(x_speed) == sign(dsin(relative_angle))) {
-                x_speed -= roll_friction_up * dsin(relative_angle);
-            } else {
-                x_speed -= roll_friction_down * dsin(relative_angle);
-            }
+        if (sign(dsin(relative_angle)) == sign(x_speed)) {
+            player_slope_friction(roll_friction_up, roll_friction);
+        } else {
+            player_slope_friction(roll_friction_down, roll_friction);
         }
 
         // Jump:
-        if (player_routine_jump()) {
+        if (player_collision_ceiling(y_radius + 5) == noone && input_player[INP_JUMP, CHECK_PRESSED] == true) {
+            player_set_state(player_state_air);
+            jump_state = true;
+
+            // Play sound:
+            sound_play_single("snd_jump");
+
             return true;
         }
 

@@ -82,6 +82,7 @@ switch (argument0) {
                 player_set_state(player_state_air, false);
                 jump_state     = true;
                 animation_skip = true;
+
                 return true;
             }
         }
@@ -115,6 +116,7 @@ switch (argument0) {
                     player_set_state(player_state_air, false);
                     jump_state     = true;
                     animation_skip = true;
+
                     return true;
                 }
             }

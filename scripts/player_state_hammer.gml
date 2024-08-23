@@ -26,7 +26,13 @@ switch (argument0) {
         }
 
         // Jump:
-        if (player_routine_jump()) {
+        if (player_collision_ceiling(y_radius + 5) == noone && input_player[INP_JUMP, CHECK_PRESSED] == true) {
+            player_set_state(player_state_air);
+            jump_state = true;
+
+            // Play sound:
+            sound_play_single("snd_jump");
+
             return true;
         }
         break;

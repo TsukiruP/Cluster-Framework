@@ -25,13 +25,18 @@ switch (argument0) {
                 return player_set_state(player_state_air);
             } else {
                 input_lock_alarm = 30;
+
                 return player_set_state(player_state_run);
             }
         }
 
+        // Slope friction:
+        player_slope_friction(slope_friction, acceleration);
+
         // Idle:
         if (animation_trigger == true && input_player[INP_DOWN, CHECK_HELD] == false) {
             player_set_animation("crouch_end");
+
             return player_set_state(player_state_idle);
         }
 

@@ -42,7 +42,7 @@ if (argument0.shape == -1) {
 
     // Default:
     if (dist1 == dist2) {
-        return argument1;
+        return angle;
     }
 
     // Calculate angle from sensors:

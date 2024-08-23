@@ -1,5 +1,5 @@
 /// player_set_animation(animation, [start])
-//
+// Sets the target animation to be loaded next frame.
 
 // Initialize:
 animation_target = argument0;

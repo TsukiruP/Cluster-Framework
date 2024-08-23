@@ -1,9 +1,11 @@
 /// player_state_air(phase)
-// Falling with style.
+// A jump to the sky turns to a rider kick.
 
 switch (argument0) {
     // Start:
     case STATE_START:
+        var air_force;
+
         // Reset ground:
         if (on_ground == true) {
             on_ground = false;
@@ -16,10 +18,17 @@ switch (argument0) {
         x_speed =  dcos(relative_angle) * g_speed;
         y_speed = -(dsin(relative_angle) * g_speed);
 
+        // Air force:
+        if (bound_state == 1) {
+            air_force = 7.5;
+        } else {
+            air_force = jump_force;
+        }
+
         // Jump:
         if (jump_state == true) {
-            x_speed -= jump_force * dsin(relative_angle);
-            y_speed -= jump_force * dcos(relative_angle);
+            x_speed -= air_force * dsin(relative_angle);
+            y_speed -= air_force * dcos(relative_angle);
         }
 
         // Reset air:
@@ -68,10 +77,8 @@ switch (argument0) {
 
         // Variable jump:
         if (jump_state == true) {
-            if (jump_special == false) {
-                if (y_speed < jump_release && input_player[INP_JUMP, CHECK_HELD] == false) {
-                    y_speed = jump_release;
-                }
+            if (y_speed < jump_release && input_player[INP_JUMP, CHECK_HELD] == false) {
+                y_speed = jump_release;
             }
         }
 
@@ -82,7 +89,7 @@ switch (argument0) {
             }
         }
 
-        // Friction:
+        // Air friction:
         if (abs(x_speed) > air_friction_threshold && y_speed > -4 && y_speed < 0) {
             x_speed *= air_friction;
         }
@@ -92,15 +99,26 @@ switch (argument0) {
             y_speed += gravity_force;
         }
 
-        // Jump Action:
-
-        // Auxiliary Action:
+        // Skill:
+        if (player_routine_skill()) {
+            return true;
+        }
         break;
 
     // Finish:
     case STATE_FINISH:
         // Reset jump:
         jump_state = false;
+
+        // Reset shield:
+        if (on_ground == true && status_shield_allow != true) {
+            status_shield_allow = true;
+        }
+
+        // Reset bound:
+        if (state_target != player_state_bound) {
+            bound_state = 0;
+        }
 
         // Reset spring:
         spring_strength = 0;

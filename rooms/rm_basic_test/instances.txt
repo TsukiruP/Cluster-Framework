@@ -32,6 +32,6 @@ obj_basic_test_collision_03,0,576,F17C41F3,0,1,1,4294967295,0,0
 obj_basic_test_collision_03,0,480,D6EF2A96,0,1,1,4294967295,0,0
 obj_basic_test_collision_22,864,816,A5901884,0,1,1,4294967295,0,0
 obj_basic_test_collision_01,1344,768,2C29013A,0,1,1,4294967295,0,0
-obj_basic_test_collision_21,1440,576,54988349,0,1,1,4294967295,0,0
-obj_basic_test_collision_19,1440,672,53BFBC93,0,1,1,4294967295,0,0
-obj_item_basic,288,736,002C8B4C,0,1,1,4294967295,0,0
+obj_item_fire,624,704,64DE67CF,0,1,1,4294967295,0,0
+obj_item_lightning,656,704,ED83B810,0,1,1,4294967295,0,0
+obj_item_bubble,688,704,996CAAC2,0,1,1,4294967295,0,0

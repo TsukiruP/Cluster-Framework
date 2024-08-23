@@ -25,13 +25,18 @@ switch (argument0) {
                 return player_set_state(player_state_air);
             } else {
                 input_lock_alarm = 30;
+
                 return player_set_state(player_state_run);
             }
         }
 
+        // Slope friction:
+        player_slope_friction(slope_friction, acceleration);
+
         // Idle:
         if (animation_trigger == true && input_player[INP_UP, CHECK_HELD] == false) {
             player_set_animation("look_end");
+
             return player_set_state(player_state_idle);
         }
 
@@ -41,7 +46,13 @@ switch (argument0) {
         }
 
         // Jump:
-        if (player_routine_jump()) {
+        if (player_collision_ceiling(y_radius + 5) == noone && input_player[INP_JUMP, CHECK_PRESSED] == true) {
+            player_set_state(player_state_air);
+            jump_state = true;
+
+            // Play sound:
+            sound_play_single("snd_jump");
+
             return true;
         }
         break;

@@ -182,7 +182,7 @@
 			|spr_shield_lightning_spark
 			|spr_shield_bubble_shell
 			|spr_shield_bubble_wave
-			|spr_shield_bubble_bounce
+			|spr_shield_bubble_bound
 			|spr_shield_invin
 		+Explosions
 			|spr_explosion_small

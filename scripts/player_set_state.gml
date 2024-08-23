@@ -1,4 +1,6 @@
 /// player_set_state(state, [start])
+// Sets the target state to be loaded next frame while finishing the current state.
+// If given [start], the current state will always reset, but will decide if the state's start funciton will execute.
 
 var state_reset;
 

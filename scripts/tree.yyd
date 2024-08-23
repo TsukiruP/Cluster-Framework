@@ -109,6 +109,8 @@
 					|ctl_shield_lightning
 					|ctl_shield_lightning_spark
 					|ctl_shield_bubble
+					|ctl_shield_bubble_bound
+					|ctl_shield_bubble_recoil
 					|ctl_shield_invin
 				+Explosions
 					|ctl_explosion_small
@@ -184,6 +186,7 @@
 					|player_state_brake
 					|player_state_hurt
 					|player_state_death
+					|player_state_bound
 					+Auxiliary
 						|player_state_hammer
 				+Sonic
@@ -191,7 +194,6 @@
 					|sonic_state_skid
 		+Routines
 			|player_routine_skill
-			|player_routine_jump
 			|player_routine_insta
 			|player_routine_shield
 			|player_routine_dust
@@ -224,7 +226,7 @@
 			|player_inbounds
 			|player_rotate_mask
 			|player_get_balance
-			|player_slope_factor
+			|player_slope_friction
 			|player_ring_loss
 			+Trail
 				|start_trail
@@ -276,3 +278,4 @@
 	|miles_add_animations
 	|knuckles_add_animations
 	|classic_add_animations
+	|player_routine_jump

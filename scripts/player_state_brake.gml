@@ -15,9 +15,6 @@ switch (argument0) {
         if ((global.advance_brake == false || character_id == CHAR_CLASSIC) && x_speed != 0) {
             image_xscale = sign(x_speed);
         }
-
-        // Play sound:
-        sound_play_single("snd_brake");
         break;
 
     // Step:
@@ -60,6 +57,8 @@ switch (argument0) {
             // Roll:
             if (abs(x_speed) > 0.5) {
                 if (input_player[INP_DOWN, CHECK_HELD] == true) {
+                    sound_play_single("snd_roll");
+
                     return player_set_state(player_state_roll);
                 }
             }
@@ -82,16 +81,13 @@ switch (argument0) {
                 return player_set_state(player_state_air);
             } else {
                 input_lock_alarm = 30;
+
                 return player_set_state(player_state_run);
             }
         }
 
         // Slope friction:
-        if (relative_angle < 135 || relative_angle > 225) {
-            if (x_speed != 0 || input_lock_alarm > 0) {
-                x_speed -= slope_friction * dsin(relative_angle);
-            }
-        }
+        player_slope_friction(slope_friction, acceleration);
 
         // Idle:
         if (x_speed == 0 && input_x_direction == 0) {
@@ -104,7 +100,13 @@ switch (argument0) {
         }
 
         // Jump:
-        if (player_routine_jump()) {
+        if (player_collision_ceiling(y_radius + 5) == noone && input_player[INP_JUMP, CHECK_PRESSED] == true) {
+            player_set_state(player_state_air);
+            jump_state = true;
+
+            // Play sound:
+            sound_play_single("snd_jump");
+
             return true;
         }
 

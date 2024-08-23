@@ -1,12 +1,6 @@
 /// player_routine_shield()
 // Or barriers, for the nerds.
 
-// Disable shield:
-status_shield_allow = false;
-
-// Set state:
-player_set_state(player_state_jump);
-
 switch (status_shield) {
     // Fire:
     case SHIELD_FIRE:
@@ -15,27 +9,20 @@ switch (status_shield) {
         y_speed = 0;
 
         // Set timeline:
-        if (status_invin != INVIN_BUFF && instance_exists(shield_handle)) {
+        if (instance_exists(shield_handle)) {
             with (shield_handle) {
-                image_xscale = other.image_xscale;
-                timeline_set(ctl_shield_fire_dash);
+                event_user(0);
             }
         }
 
         // Camera lag:
         ctrl_camera.camera_lag_alarm = 16;
-
-        // Play sound:
-        sound_play_single("snd_shield_fire_dash");
         break;
 
     // Lightning:
     case SHIELD_LIGHTNING:
         // Set speed:
         y_speed = -5.5;
-
-        // Jump special:
-        jump_special = true;
 
         // Sparks:
         for (i = 0; i < 4; i += 1) {
@@ -66,17 +53,22 @@ switch (status_shield) {
                     break;
             }
         }
-
-        // Play sound:
-        sound_play_single("snd_shield_lightning_jump");
         break;
 
-    // Bubble;
-        case SHIELD_BUBBLE:
-            // Set speed:
-            x_speed = 0;
-            y_speed = 8;
+    // Bubble:
+    case SHIELD_BUBBLE:
+        // Set speed:
+        x_speed = 0;
+        y_speed = 8;
 
-            return player_set_state(player_state_bound);
-            break;
+        // Bound:
+        bound_state = 1;
+
+        // Set timeline:
+        if (instance_exists(shield_handle)) {
+            with (shield_handle) {
+                event_user(0);
+            }
+        }
+        break;
 }
