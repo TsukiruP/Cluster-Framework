@@ -17,25 +17,27 @@ player_slot = 0;
 
 // Action variables:
 state_current  = player_state_idle;
-state_target   = state_current;
-state_previous = state_current;
-state_changed  = false;
-state_start    = true;
+state_target   =  state_current;
+state_previous =  state_current;
+state_changed  =  false;
+state_start    =  true;
+
+routine_queued = -1;
 
 // Physics variables:
-physics_type     = PHYS_DEFAULT;
+physics_type       = PHYS_DEFAULT;
 
-top_speed        = 6;
-max_speed        = 16;
+top_speed          = 6;
+max_speed          = 16;
 
-x_allow          = true;
-x_direction      = 0;
-x_speed          = 0;
-acceleration     = 0.046875;
-deceleration     = 0.5;
-slope_friction   = 0.125;
-air_acceleration = 0.09375;
-air_friction     = 0.96875;
+x_allow            = true;
+x_direction        = 0;
+x_speed            = 0;
+acceleration       = 0.046875;
+deceleration       = 0.5;
+slope_friction     = 0.125;
+air_acceleration   = 0.09375;
+air_friction       = 0.96875;
 
 y_allow            = true;
 y_direction        = 1;
@@ -61,11 +63,11 @@ roll_rebounce      = false;
 
 // Death variables:
 death_alarm  = -5;
-death_handle = noone;
+death_handle =  noone;
 
 // Misc. variables:
-depth_default    =  0;
-score_multiplier =  0;
+depth_default    = 0;
+score_multiplier = 0;
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -244,6 +246,7 @@ animation_finished  =  false;
 animation_trigger   =  false;
 animation_reload    =  false;
 animation_skip      =  false;
+animation_timer     =  0;
 animation_alarm     =  360;
 #define Step_0
 /*"/*'/**//* YYD ACTION
@@ -365,11 +368,18 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// States
+/// States & Routines
 
 // Exit if the stage is paused or text is active:
 if (game_ispaused()) {
     exit;
+}
+
+// Execute the queued routine:
+if (script_exists(routine_queued)) {
+    script_execute(routine_queued);
+
+    routine_queued = -1;
 }
 
 // Set current state:

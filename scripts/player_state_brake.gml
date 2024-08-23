@@ -18,9 +18,6 @@ switch (argument0) {
 
         // Play sound:
         sound_play_single("snd_brake");
-
-        // Dust alarm:
-        brake_dust_alarm = 3;
         break;
 
     // Step:
@@ -113,14 +110,7 @@ switch (argument0) {
 
         // Dust:
         if (x_speed != 0) {
-            if (brake_dust_alarm > 0) {
-                brake_dust_alarm -= 1;
-
-                if (brake_dust_alarm == 0) {
-                    effect_create(ctl_brake, x, y + y_radius);
-                    brake_dust_alarm = 3;
-                }
-            }
+            player_routine_dust();
         }
         break;
 

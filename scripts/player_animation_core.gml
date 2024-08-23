@@ -1,6 +1,7 @@
 /// player_animation_core()
 // Core of the animation system.
 
+// Load target animation:
 if ((ctl_index != player_get_animation(animation_target, animation_variant)) || animation_reload == true) {
     // Store previous animation:
     animation_previous = animation_current;
@@ -17,6 +18,14 @@ if ((ctl_index != player_get_animation(animation_target, animation_variant)) || 
 
     // Reset reload:
     animation_reload = false;
+
+    // Reset timer:
+    animation_timer = 1;
+}
+
+// Increment timer:
+else {
+    animation_timer += 1;
 }
 
 // Execute custom timeline:

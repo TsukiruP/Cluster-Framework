@@ -209,3 +209,4 @@ ctl_sonic_crouch_end
 ctl_sonic_look_end
 ctl_sonic_skid_end
 ctl_skip
+player_routine_dust
