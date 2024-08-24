@@ -42,7 +42,7 @@ obj_water_surface
 
 obj_basic_test_parallax
 ctrl_culling
-par_badnik
+par_enemy
 obj_ring
 eff_player
 par_item_box

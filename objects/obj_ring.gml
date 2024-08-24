@@ -5,17 +5,17 @@ action_id=603
 applies_to=self
 */
 /// Ring Initialization
-/*
+
 event_inherited();
 
 // Flags:
 magnetized = false;
 lifespan   = 0;
 
-// Movement variables:
-x_speed   = 0;
-y_speed   = 0;
-y_gravity = 0.09375;
+// Physics variables:
+x_speed       = 0;
+y_speed       = 0;
+gravity_force = 0.09375;
 #define Destroy_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -34,12 +34,30 @@ action_id=603
 applies_to=self
 */
 /// Movement
-/*
+
 // Exit if the stage is paused or text is active:
-if (game_ispaused()) {
+if (game_ispaused() || dropped == false) {
     exit;
 }
 
+// Destroy if out of view:
+if (!in_view()) {
+    instance_destroy();
+}
+
+// Apply x speed:
+if (x_speed != 0) {
+    x += dsin(gravity_direction) * x_speed;
+    y += dcos(gravity_direction) * x_speed;
+}
+
+// Apply y speed:
+if (y_speed != 0) {
+    x += dcos(gravity_direction) * y_speed;
+    y -= dsin(gravity_direction) * y_speed;
+}
+
+/*
 if (dropped == true) {
     // Destroy if out of view:
     if (!in_view()) {
@@ -68,7 +86,7 @@ action_id=603
 applies_to=self
 */
 /// Magnetization
-/*
+
 // Exit if the stage is paused or text is active:
 if (game_ispaused()) {
     exit;

@@ -5,20 +5,14 @@ action_id=603
 applies_to=self
 */
 /// Ring Initialization
-/*
-event_inherited();
 
-// Depth:
-depth = 10;
+event_inherited();
 
 // Image speed:
 image_speed = 0;
 
-// Main:
-main_left     = 8;
-main_right    = 7;
-main_top      = 8;
-main_bottom   = 7;
+// Hurtbox:
+set_hurtbox(8, 8, 7, 7, 0, 0);
 
 // Dropped:
 dropped = false;
@@ -35,4 +29,4 @@ if (game_ispaused(ctrl_pause)) {
     exit;
 }
 
-image_index = sync_rate(global.object_time, 8 / (1 + (dropped == true)), sprite_get_number(sprite_index));
+//image_index = sync_rate(global.object_time, 8 / (1 + (dropped == true)), sprite_get_number(sprite_index));

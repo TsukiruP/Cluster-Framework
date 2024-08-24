@@ -1,6 +1,10 @@
 /// player_routine_shield()
 // Or barriers, for the nerds.
 
+// Set status:
+status_shield_allow = false;
+
+// Shield behavior:
 switch (status_shield) {
     // Fire:
     case SHIELD_FIRE:

@@ -11,6 +11,9 @@ event_inherited();
 // Hurtbox:
 set_hurtbox(8, 8, 7, 7, 8, 8);
 
+// Reaction:
+reaction_index = player_reaction_sensor_layer;
+
 // Collision layer:
 collision_layer = 0;
 #define Draw_0

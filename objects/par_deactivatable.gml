@@ -6,6 +6,9 @@ applies_to=self
 */
 /// Deactivatable Initialization
 
+// Depth:
+depth = 10;
+
 // Image speed:
 image_speed = 0;
 

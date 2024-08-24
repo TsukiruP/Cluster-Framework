@@ -1,8 +1,9 @@
 /// player_routine_insta()
 // It's not even really a shield...
 
-// Set invincibility:
-status_insta_alarm = 8;
+// Set status:
+status_shield_allow = false;
+status_insta_alarm  = 8;
 
 // Create shield:
 if (character_id == CHAR_SONIC) {

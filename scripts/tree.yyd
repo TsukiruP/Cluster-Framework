@@ -193,14 +193,15 @@
 					|sonic_skill_list
 					|sonic_state_skid
 		+Routines
+			|player_routine_land
 			|player_routine_skill
 			|player_routine_insta
 			|player_routine_shield
-			|player_routine_dust
 		+Traits
 			|player_trait_debug
 			|classic_trait_clock_up
 		+Reactions
+			|player_reaction_sensor_layer
 			|player_reaction_checkpoint
 			|player_reaction_item_box
 		+Animation
@@ -211,11 +212,15 @@
 			+Animation Lists
 				|sonic_animation_list
 			|player_compile_animations
+		+Effects
+			|player_effect_dust
+			|player_effect_splash
 		+Getters
 			|player_get_solids
 			|player_get_angle
 			|player_get_physics
 			|player_get_item
+			|player_get_balance
 		+Setters
 			|player_set_radii
 			|player_set_input
@@ -225,7 +230,6 @@
 			|player_react
 			|player_inbounds
 			|player_rotate_mask
-			|player_get_balance
 			|player_slope_friction
 			|player_ring_loss
 			+Trail
@@ -254,7 +258,6 @@
 			|player_terrain_point
 			|player_terrain_line
 			|player_obstacle_rectangle
-		|player_movement
 		|player_collision_semisolids
 		|player_collision_terrain
 		|player_collision_obstacle

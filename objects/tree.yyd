@@ -74,8 +74,8 @@
 				|obj_item_slow
 				|obj_item_panic
 				|obj_item_swap
-		+Badniks
-			|par_badnik
+		+Enemies
+			|par_enemy
 			|obj_spinner
 		+Water
 			|obj_water_surface

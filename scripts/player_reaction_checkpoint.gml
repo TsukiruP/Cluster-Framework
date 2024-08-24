@@ -3,7 +3,6 @@
 
 var checkpoint_handle, collision;
 
-// Initialize:
 checkpoint_handle = argument0;
 collision         = argument1;
 

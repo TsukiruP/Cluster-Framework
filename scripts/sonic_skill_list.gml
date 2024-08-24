@@ -26,9 +26,9 @@ else {
     if (global.sonic_skill[skill_id] <= 1 && global.sonic_skill[SONIC_SHIELD] == true && status_shield_allow == true) {
         // Elemental shields:
         if (status_shield >= SHIELD_FIRE) {
-            routine_queued = player_routine_shield;
-            jump_state     = true;
-            animation_skip = true;
+            routine_queue       = player_routine_shield;
+            jump_state          = true;
+            animation_skip      = true;
 
             // Play sound:
             switch (status_shield) {
@@ -49,7 +49,9 @@ else {
             }
 
             if (status_shield == SHIELD_BUBBLE) {
-                return player_set_state(player_state_bound);
+                player_set_state(player_state_bound);
+                jump_aux = input_player[INP_AUX, CHECK_PRESSED];
+                return true;
             } else {
                 return player_set_state(player_state_air);
             }
@@ -57,11 +59,9 @@ else {
 
         // Insta-shield:
         else if (global.sonic_skill[skill_id] == 1 && status_shield <= SHIELD_MAGNETIC) {
+            routine_queue       = player_routine_insta;
             jump_state          = true;
-            status_shield_allow = false;
-            routine_queued      = player_routine_insta;
             player_set_animation("insta");
-
             return player_set_state(player_state_air);
         }
     }

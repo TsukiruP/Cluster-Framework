@@ -4,14 +4,7 @@
 switch (argument0) {
     // Start:
     case STATE_START:
-        var air_force;
-
-        // Reset ground:
-        if (on_ground == true) {
-            on_ground = false;
-        }
-
-        var g_speed;
+        var g_speed, air_force;
 
         // Set speed:
         g_speed =  x_speed;
@@ -19,10 +12,10 @@ switch (argument0) {
         y_speed = -(dsin(relative_angle) * g_speed);
 
         // Air force:
+        air_force = jump_force;
+
         if (bound_state == 1) {
             air_force = 7.5;
-        } else {
-            air_force = jump_force;
         }
 
         // Jump:
@@ -30,6 +23,14 @@ switch (argument0) {
             x_speed -= air_force * dsin(relative_angle);
             y_speed -= air_force * dcos(relative_angle);
         }
+
+        // Reset shield:
+        if (on_ground == true && status_shield_allow != true) {
+            status_shield_allow = true;
+        }
+
+        // Splash:
+        player_effect_splash();
 
         // Reset air:
         player_reset_air();
@@ -67,17 +68,21 @@ switch (argument0) {
         }
 
         // Land:
-        if (on_ground == true) {
-            if (x_speed == 0) {
-                return player_set_state(player_state_idle);
-            } else {
-                return player_set_state(player_state_run);
-            }
+        if (player_routine_land()) {
+            return true;
         }
 
         // Variable jump:
         if (jump_state == true) {
-            if (y_speed < jump_release && input_player[INP_JUMP, CHECK_HELD] == false) {
+            var input_held;
+
+            input_held = input_player[INP_JUMP, CHECK_HELD];
+
+            if (jump_aux == true) {
+                input_held = input_player[INP_AUX, CHECK_HELD];
+            }
+
+            if (y_speed < jump_release && input_held == false) {
                 y_speed = jump_release;
             }
         }
@@ -109,11 +114,7 @@ switch (argument0) {
     case STATE_FINISH:
         // Reset jump:
         jump_state = false;
-
-        // Reset shield:
-        if (on_ground == true && status_shield_allow != true) {
-            status_shield_allow = true;
-        }
+        jump_aux   = false;
 
         // Reset bound:
         if (state_target != player_state_bound) {

@@ -16,7 +16,7 @@ ctl_sonic_land
 player_state_hammer
 ctl_sonic_push
 player_trait_debug
-player_movement
+player_routine_land
 key_get_string
 joy_get_char
 player_state_run
@@ -209,7 +209,9 @@ ctl_sonic_crouch_end
 ctl_sonic_look_end
 ctl_sonic_skid_end
 ctl_skip
-player_routine_dust
+player_effect_dust
 player_state_bound
 ctl_shield_bubble_bound
 ctl_shield_bubble_recoil
+player_effect_splash
+player_reaction_sensor_layer

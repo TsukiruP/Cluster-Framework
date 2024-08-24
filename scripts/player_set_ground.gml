@@ -4,8 +4,9 @@
 var new_angle, sine, csine;
 
 // Confirm assignment:
-ground_id = argument0;
-on_ground = true;
+ground_id     = argument0;
+on_ground     = true;
+on_surface    = false;
 
 // Calculate ground angle:
 new_angle = player_get_angle(ground_id, mask_rotation);
@@ -38,5 +39,12 @@ repeat (y_radius * 2) {
         y += csine;
     } else {
         break;
+    }
+}
+
+// Water surface:
+if (instance_exists(obj_water_surface)) {
+    if (mask_rotation == 0 && floor(y) + y_radius + 1 == obj_water_surface.y) {
+        on_surface = true;
     }
 }

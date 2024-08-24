@@ -4,12 +4,7 @@
 switch (argument0) {
     // Start:
     case STATE_START:
-        // Reset ground:
-        if (on_ground == true) {
-            on_ground = false;
-        }
-
-        // Set physics:
+        // Set speed:
         x_speed = 0;
 
         // Reset stats:
@@ -26,6 +21,9 @@ switch (argument0) {
         if (clock_up_state != 0) {
             classic_trait_clock_up(true);
         }
+
+        // Reset air:
+        player_reset_air();
 
         // Set depth:
         depth = -11000;

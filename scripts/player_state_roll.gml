@@ -4,7 +4,7 @@
 switch (argument0) {
     // Start:
     case STATE_START:
-        // Set physics
+        // Set speed:
         if (x_speed == 0) {
             x_speed = 2 * input_x_direction;
         }

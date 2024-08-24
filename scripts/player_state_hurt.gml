@@ -4,34 +4,31 @@
 switch (argument0) {
     // Start:
     case STATE_START:
-        // Reset ground:
-        if (on_ground == true) {
-            on_ground = false;
-        }
-
         // Clock over:
         if (clock_up_state != 0) {
             classic_trait_clock_up(true);
         }
+
+        // Reset air:
+        player_reset_air();
         break;
 
     // Step:
     case STATE_STEP:
         // Movement:
-        if (!player_movement_ground()) {
+        if (!player_movement_air()) {
             exit;
         }
 
         // Land:
-        if (on_ground == true) {
-            // Reset speed:
+        if (player_routine_land()) {
             if (global.advance_hurt == false) {
                 x_speed = 0;
             }
 
             y_speed = 0;
 
-            return player_set_state(player_state_idle);
+            return true;
         }
 
         // Gravity:

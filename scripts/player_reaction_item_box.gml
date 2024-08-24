@@ -3,7 +3,6 @@
 
 var item_box_handle, collision;
 
-// Initialize:
 item_box_handle = argument0;
 collision       = argument1;
 

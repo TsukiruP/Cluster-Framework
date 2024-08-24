@@ -20,8 +20,8 @@ if (sign(x - damage_handle.x) == 0) {
 
 // Death:
 if (damage_handle == self.id || (input_cpu == false && global.game_rings == 0 && status_shield == 0)) {
-    // Set physics:
-    if (drowned == false) {
+    // Set speed:
+    if (drown == false) {
         y_speed = -7;
     }
 
@@ -42,7 +42,7 @@ if (damage_handle == self.id || (input_cpu == false && global.game_rings == 0 &&
 
 // Hurt:
 else {
-    // Set physics:
+    // Set speed:
     x_speed =  2 * hurt_direction;
     y_speed = -4;
 
@@ -65,12 +65,12 @@ else {
 
 // Play sound:
 if (damage_handle == self.id) {
-    if (drowned == true) {
+    if (drown == true) {
         sound_play("snd_drown");
     } else {
         sound_play("snd_hurt");
     }
-} else if ((input_cpu == false && shield_handle != noone) || input_cpu == true || state_current == player_state_death) {
+} else if ((input_cpu == false && shield_handle != noone) || input_cpu == true || state_target == player_state_death) {
     if (object_is_ancestor(damage_handle.object_index, par_spike)) {
         sound_play("snd_spike");
     } else {

@@ -8,9 +8,6 @@ applies_to=self
 /*
 event_inherited();
 
-// Depth:
-depth = 10;
-
 // Image speed:
 image_speed = 0;
 

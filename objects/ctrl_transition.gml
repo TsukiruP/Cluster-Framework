@@ -242,7 +242,7 @@ if (instance_exists(player_get_instance(0))) {
         // Run:
         else {
             with (obj_player) {
-                g_speed                             = top_speed;
+                x_speed                             = top_speed;
                 input_player[INP_RIGHT, CHECK_HELD] = true;
             }
         }

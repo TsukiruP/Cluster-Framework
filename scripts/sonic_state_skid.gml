@@ -16,13 +16,9 @@ switch (argument0) {
                 exit;
             }
 
-            // Land;
-            if (on_ground == true) {
-                if (x_speed == 0) {
-                    return player_set_state(player_state_idle);
-                } else {
-                    return player_set_state(player_state_run);
-                }
+            // Land:
+            if (player_routine_land()) {
+                return true;
             }
 
             // Gravity:
@@ -89,21 +85,13 @@ switch (argument0) {
 
         // Skid behavior:
         if (animation_current == "skid") {
-            // Cancel:
+            // Dust:
             if (on_ground == true) {
-                // Cancel:
-                if (input_player[INP_AUX, CHECK_PRESSED] == true) {
-                    if (x_speed == 0) {
-                        return player_set_state(player_state_idle);
-                    } else {
-                        return player_set_state(player_state_run);
-                    }
-                }
-
                 // Dust:
-                player_routine_dust();
+                player_effect_dust();
             }
 
+            // Time out:
             if (animation_timer >= 32) {
                 // Get up:
                 if (on_ground == true) {

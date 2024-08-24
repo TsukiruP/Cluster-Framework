@@ -85,7 +85,7 @@ switch (argument0) {
         player_set_damage(other);
 
         // Create explosion:
-        effect_create(ctl_explosion_large, other.x, other.y, -10);
+        effect_create(ctl_explosion_large, other.x, other.y, depth);
         break;
 
     // Slow:

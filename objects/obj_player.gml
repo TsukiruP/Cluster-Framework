@@ -16,13 +16,13 @@ ctl_initialize();
 player_slot = 0;
 
 // Action variables:
-state_current  = player_state_idle;
+state_current  =  player_state_idle;
 state_target   =  state_current;
 state_previous =  state_current;
 state_changed  =  false;
 state_start    =  true;
 
-routine_queued = -1;
+routine_queue  = -1;
 
 // Physics variables:
 physics_type       = PHYS_DEFAULT;
@@ -52,6 +52,7 @@ hint_wanted = false;
 jump_state   =  false;
 jump_force   =  6.5;
 jump_release = -4;
+jump_aux     =  false;
 bound_state  =  0;
 
 // Roll variables:
@@ -77,7 +78,7 @@ applies_to=self
 
 solid_list        = ds_list_create();
 wall_direction    = 0;
-collision_layer   = 1;
+collision_layer   = 0;
 balance_direction = 0;
 
 // Reset:
@@ -153,9 +154,6 @@ applies_to=self
 // Spin dash charge:
 spin_dash_charge = 0;
 
-// Brake dust alarm:
-brake_dust_alarm = 3;
-
 // Shield handle:
 shield_handle = noone;
 
@@ -195,11 +193,11 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Water Initialization:
+/// Water Initialization
 
 // Surface variables:
-water_surface = false;
-splash_alarm  = 14;
+on_surface    = false;
+surface_timer = 0;
 
 // Underwater variables:
 underwater    = false;
@@ -207,8 +205,8 @@ air_remaining = 30;
 air_alarm     = 60;
 
 // Drown variables:
-drown_countdown = 0;
-drowned         = false;
+drown_index = 0;
+drown       = false;
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -376,10 +374,10 @@ if (game_ispaused()) {
 }
 
 // Execute the queued routine:
-if (script_exists(routine_queued)) {
-    script_execute(routine_queued);
+if (script_exists(routine_queue)) {
+    script_execute(routine_queue);
 
-    routine_queued = -1;
+    routine_queue = -1;
 }
 
 // Set current state:
@@ -461,17 +459,11 @@ if (status_invin >= INVIN_BUFF) {
     }
 }
 
-/*
+
 // Slow:
 if (status_speed == SPEED_SLOW) {
     // Cap speed:
     if (spring_strength == 0) {
-        // Ground speed:
-        if (abs(g_speed) > top_speed) {
-            g_speed = top_speed * sign(g_speed);
-        }
-
-        // X speed:
         if (abs(x_speed) > top_speed) {
             x_speed = top_speed * sign(x_speed);
         }
@@ -526,8 +518,8 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Splashes
-/*
+/// Splash
+
 if (instance_exists(obj_water_surface)) {
     // Entry splash:
     if (y > obj_water_surface.y && yprevious < obj_water_surface.y) {
@@ -560,39 +552,21 @@ if (instance_exists(obj_water_surface)) {
         sound_play_single("snd_splash");
     }
 
-    // Surface splashes:
-    if (water_surface == true) {
-        // Create step/run splash:
-        if (ground == true && abs(g_speed) > 0) {
 
-            if (splash_alarm > 0) {
-                splash_alarm -= 1;
+    // Surface timer:
+    if (on_surface == true && abs(x_speed) > 0) {
+        surface_timer += 1;
 
-                if (splash_alarm == 0) {
-                    if (abs(g_speed) >= 4.50) {
-                        effect_create(ctl_splash_3, x, obj_water_surface.y, depth, image_xscale);
-                    } else {
-                        effect_create(ctl_splash_2, x, obj_water_surface.y, depth, image_xscale);
-                    }
-
-                    splash_alarm = 9;
-                }
+        // Splash:
+        if (surface_timer mod 9 == 0) {
+            if (abs(x_speed) >= 4.50) {
+                effect_create(ctl_splash_3, x, obj_water_surface.y, depth, image_xscale);
+            } else {
+                effect_create(ctl_splash_2, x, obj_water_surface.y, depth, image_xscale);
             }
         }
-
-        // Create jump splash:
-        if ((ground == false && y_speed < 0) || (ground == true && y_speed > 0)) {
-            effect_create(ctl_splash_3, x, obj_water_surface.y, depth, image_xscale);
-        }
     } else {
-        splash_alarm = 9;
-    }
-
-    // Water surface:
-    if (floor(y) + main_bottom + 1 == obj_water_surface.y) {
-        water_surface = true;
-    } else {
-        water_surface = false;
+        surface_timer = 0;
     }
 }
 /*"/*'/**//* YYD ACTION
@@ -754,16 +728,16 @@ if (state_current != player_state_death && !instance_exists(ctrl_tally)) {
                         case 6:
                         case 4:
                         case 2:
-                            drown_countdown += 1;
+                            drown_index += 1;
                             break;
 
                         // Drown:
                         case 0:
-                            // Set physics:
-                            g_speed = 0;
+                            // Set speed:
+                            x_speed = 0;
 
-                            // Set flag:
-                            drowned = true;
+                            // Drown:
+                            drown = true;
 
                             // Set death:
                             player_set_damage(self);
@@ -919,6 +893,13 @@ switch (state_target) {
         }
         break;
 
+    // Death:
+    case player_state_bound:
+        if (animation_target != "spin") {
+            player_set_animation("spin");
+        }
+        break;
+
     // Hammer:
     case player_state_hammer:
         if (animation_target != "hammer" && animation_previous != "hammer") {
@@ -969,7 +950,7 @@ switch (animation_target) {
     case "wait":
         if (animation_target != animation_current) {
             // Leader & partner wait:
-            if (instance_number(obj_player) > 0) {
+            if (instance_number(obj_player) > 1) {
                 // Leader:
                 if (player_slot == 0) {
                     animation_variant = 0;
@@ -1020,6 +1001,9 @@ switch (animation_target) {
 
 // Animation core:
 player_animation_core();
+
+// Animation timer:
+animation_timer += 1;
 
 // Position fix:
 if (on_ground == true) {

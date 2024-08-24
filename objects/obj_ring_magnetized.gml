@@ -5,7 +5,7 @@ action_id=603
 applies_to=self
 */
 /// Magnetized Ring Initialization
-/*
+
 event_inherited();
 #define Destroy_0
 /*"/*'/**//* YYD ACTION

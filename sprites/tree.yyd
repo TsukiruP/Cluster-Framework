@@ -150,7 +150,7 @@
 			|spr_spike_down
 			|spr_spike_left
 			|spr_spike_right
-		+Badniks
+		+Enemies
 			|spr_spinner
 		+Water
 			|spr_water_surface

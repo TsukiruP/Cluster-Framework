@@ -20,12 +20,7 @@ if ((ctl_index != player_get_animation(animation_target, animation_variant)) || 
     animation_reload = false;
 
     // Reset timer:
-    animation_timer = 1;
-}
-
-// Increment timer:
-else {
-    animation_timer += 1;
+    animation_timer = 0;
 }
 
 // Execute custom timeline:
