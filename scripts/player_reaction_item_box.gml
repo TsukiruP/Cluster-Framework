@@ -1,20 +1,22 @@
 /// player_reaction_item_box(obj, collision)
 // Get equipped with.... ring?!
 
-var item_box_handle, collision;
+var reaction_handle, collision;
 
-item_box_handle = argument0;
+reaction_handle = argument0;
 collision       = argument1;
 
 // Break item box:
 if ((collision & COLL_HURT) || (collision & COLL_HURT_RADIUS)) {
-    // Destroy:
-    with (item_box_handle) {
-        player_handle = other.id;
-        effect_create(ctl_explosion_small, x, y, -depth);
-        instance_destroy();
-    }
+    if (input_cpu == false || (input_cpu == true && input_cpu_alarm > 0)) {
+        // Destroy:
+        with (reaction_handle) {
+            player_handle = other.id;
+            effect_create(ctl_explosion_small, x, y, -depth);
+            instance_destroy();
+        }
 
-    // Play sound:
-    sound_play("snd_destroy");
+        // Play sound:
+        sound_play("snd_destroy");
+    }
 }

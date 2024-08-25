@@ -70,6 +70,14 @@ if (global.gameplay_debuffs == false) {
         item_id = ITEM_MINE;
     }
 }
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Image Angle
+
+image_angle = gravity_angle();
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -79,10 +87,10 @@ applies_to=self
 /// Draw Item Box
 
 // Item icon:
-draw_sprite(spr_item_icon, item_id, x, y);
+draw_sprite_ext(spr_item_icon, item_id, x, y, 1, 1, image_angle, c_white, 1);
 
 // Item box:
-draw_sprite(spr_item_box, 1, x, y);
+draw_sprite_ext(spr_item_box, 1, x, y, 1, 1, image_angle, c_white, 1);
 
 // Collision:
 event_inherited();

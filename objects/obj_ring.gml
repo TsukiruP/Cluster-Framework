@@ -45,47 +45,65 @@ if (!in_view()) {
     instance_destroy();
 }
 
+var sine, csine;
+
+sine  = dsin(gravity_angle());
+csine = dcos(gravity_angle());
+
+// Add gravity:
+y_speed += gravity_force * global.game_speed;
+
 // Apply x speed:
 if (x_speed != 0) {
-    x += dsin(gravity_direction) * x_speed;
-    y += dcos(gravity_direction) * x_speed;
+    x += dcos(gravity_angle()) * (x_speed * global.game_speed);
+    y -= dsin(gravity_angle()) * (x_speed * global.game_speed);
 }
 
 // Apply y speed:
 if (y_speed != 0) {
-    x += dcos(gravity_direction) * y_speed;
-    y -= dsin(gravity_direction) * y_speed;
+    x += dsin(gravity_angle()) * (y_speed * global.game_speed);
+    y += dcos(gravity_angle()) * (y_speed * global.game_speed);
 }
 
-/*
-if (dropped == true) {
-    // Destroy if out of view:
-    if (!in_view()) {
-        instance_destroy();
-    }
+// Left eject:
+while (collision_ray_vertical(-hurtbox_left, 0, gravity_angle(), par_terrain)) {
+    x += csine * hurtbox_left;
+    y -= sine * hurtbox_left;
+}
 
-    // Add speed:
-    x += x_speed * global.game_speed;
+// Right eject:
+while (collision_ray_vertical(hurtbox_right, 0, gravity_angle(), par_terrain)) {
+    x -= csine * hurtbox_right;
+    y += sine * hurtbox_right;
+}
 
-    // Add gravity:
-    y_speed += y_gravity * global.game_speed;
-    y       += y_speed * global.game_speed;
+// Inverse x speed:
+if (collision_ray_vertical(-(hurtbox_left + 1), 0, gravity_angle(), par_terrain) || collision_ray_vertical(hurtbox_right + 1, 0, gravity_angle(), par_terrain)) {
+    x_speed *= -1;
+}
 
-    // Terrain collision:
-    if ((prop_terrain_point(bbox_left, y) && x_speed < 0) || (prop_terrain_point(bbox_right, y) && x_speed > 0)) {
-        x_speed *= -1;
-    }
+// Rise up:
+while (collision_box_vertical(hurtbox_left, hurtbox_bottom, gravity_angle(), par_terrain)) {
+    x -= sine;
+    y -= csine;
+}
 
-    if ((prop_terrain_point(x, bbox_top) && y_speed < 0) || (prop_terrain_point(x, bbox_bottom) && y_speed > 0)) {
-        y_speed *= -1;
-    }
+// Sink down:
+while (collision_box_vertical(hurtbox_left, hurtbox_top + 1, angle_wrap(gravity_angle() + 180), par_terrain)) {
+    x += sine;
+    y += csine;
+}
+
+// Inverse y speed:
+if (collision_box_vertical(hurtbox_left, hurtbox_bottom + 1, gravity_angle(), par_terrain) || collision_box_vertical(hurtbox_left, hurtbox_top + 2, angle_wrap(gravity_angle() + 180), par_terrain)) {
+    y_speed *= -1;
 }
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
 applies_to=self
 */
-/// Magnetization
+/// Magnetize
 
 // Exit if the stage is paused or text is active:
 if (game_ispaused()) {
@@ -98,7 +116,7 @@ if (instance_exists(player_get_instance(0))) {
     // Player handle:
     player_handle = player_get_instance(0);
 
-    // Update status:
+    // Change instance:
     if (player_handle.status_shield == SHIELD_MAGNETIC || player_handle.status_shield == SHIELD_LIGHTNING) {
         if (distance_to_object(player_handle) < 64) {
             magnetized = true;
@@ -113,7 +131,7 @@ action_id=603
 applies_to=self
 */
 /// Lifespan
-/*
+
 // Exit if the stage is paused or text is active:
 if (game_ispaused()) {
     exit;

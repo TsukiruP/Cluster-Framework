@@ -29,6 +29,8 @@ if (object_handle != noone) {
 
     adir    = image_xscale;
     arot    = mask_rotation;
+    asine   = dsin(arot);
+    acsine  = dcos(arot);
 
     // Initialize object:
     bx_int  = floor(object_handle.x);
@@ -44,6 +46,8 @@ if (object_handle != noone) {
 
     bdir    = object_handle.image_xscale;
     brot    = gravity_angle(object_handle);
+    bsine   = dsin(brot);
+    bcsine  = dcos(brot);
 
     if (phase == 1) {
         // Swap to player hurtbox values:
@@ -71,45 +75,24 @@ if (object_handle != noone) {
         if (bdir == -1) {
             var temp;
 
-            temp    = bleft;
+            temp   = bleft;
             bleft  = bright;
             bright = temp;
         }
 
-        // Rotate object:
-        switch (brot) {
-            // Down:
-            case 0:
-                bx1 = bx_int - bleft + boff_x;
-                by1 = by_int - btop + boff_y;
-                bx2 = bx_int + bright + boff_x;
-                by2 = by_int + bbottom + boff_y;
-                break;
-
-            // Right:
-            case 90:
-                bx1 = bx_int - btop + boff_y;
-                by1 = by_int - bright - boff_x;
-                bx2 = bx_int + bbottom + boff_y;
-                by2 = by_int + bleft - boff_x;
-                break;
-
-            // Up:
-            case 180:
-                bx1 = bx_int - bright - boff_x;
-                by1 = by_int - bbottom - boff_y;
-                bx2 = bx_int + bleft - boff_x;
-                by2 = by_int + btop - boff_y;
-                break;
-
-            // Left:
-            case 270:
-                bx1 = bx_int - bbottom - boff_y;
-                by1 = by_int - bleft + boff_x;
-                bx2 = bx_int + btop - boff_y;
-                by2 = by_int + bright + boff_x;
-                break;
+        // Flip top and bottom:
+        if (brot div 90 >= 2) {
+            bleft   *= -1;
+            btop    *= -1;
+            bright  *= -1;
+            bbottom *= -1;
         }
+
+        // Rotate object:
+        bx1 = bx_int - (bcsine * bleft) + (bcsine * boff_x) - (bsine * btop) + (bsine * boff_y) ;
+        by1 = by_int - (bcsine * btop) + (bcsine * boff_y) - (bsine * bright) - (bsine * boff_x);
+        bx2 = bx_int + (bcsine * bright) + (bcsine * boff_x) + (bsine * bbottom) + (bsine * boff_y);
+        by2 = by_int + (bcsine * bbottom) + (bcsine * boff_y) + (bsine * bleft) - (bsine * boff_x);
 
         if !(aleft == 0 && atop == 0 && aright == 0 && abottom == 0) {
             // Flip player direction:
@@ -122,39 +105,10 @@ if (object_handle != noone) {
             }
 
             // Rotate player:
-            switch (arot) {
-                // Down:
-                case 0:
-                    ax1 = ax_int - aleft + aoff_x;
-                    ay1 = ay_int - atop + aoff_y;
-                    ax2 = ax_int + aright + aoff_x;
-                    ay2 = ay_int + abottom + aoff_y;
-                    break;
-
-                // Right:
-                case 90:
-                    ax1 = ax_int - atop + aoff_y;
-                    ay1 = ay_int - aright - aoff_x;
-                    ax2 = ax_int + abottom + aoff_y;
-                    ay2 = ay_int + aleft - aoff_x;
-                    break;
-
-                // Up:
-                case 180:
-                    ax1 = ax_int - aright - aoff_x;
-                    ay1 = ay_int - abottom - aoff_y;
-                    ax2 = ax_int + aleft - aoff_x;
-                    ay2 = ay_int + atop - aoff_y;
-                    break;
-
-                // Left:
-                case 270:
-                    ax1 = ax_int - abottom - aoff_y;
-                    ay1 = ay_int - aleft + aoff_x;
-                    ax2 = ax_int + atop - aoff_y;
-                    ay2 = ay_int + aright + aoff_x;
-                    break;
-            }
+            ax1 = ax_int - (acsine * aleft) + (acsine * aoff_x) - (asine * atop) + (asine * aoff_y) ;
+            ay1 = ay_int - (acsine * atop) + (acsine * aoff_y) - (asine * aright) - (asine * aoff_x);
+            ax2 = ax_int + (acsine * aright) + (acsine * aoff_x) + (asine * abottom) + (asine * aoff_y);
+            ay2 = ay_int + (acsine * abottom) + (acsine * aoff_y) + (asine * aleft) - (asine * aoff_x);
 
             // Special collision:
             if (rectangle_in_rectangle(ax1, ay1, ax2, ay2, bx1, by1, bx2, by2)) {

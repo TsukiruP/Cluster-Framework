@@ -1,12 +1,12 @@
 /// player_reaction_sensor_layer(obj, collision)
 // Like an onion.
 
-var layer_handle, collision;
+var reaction_handle, collision;
 
-layer_handle = argument0;
-collision    = argument1;
+reaction_handle = argument0;
+collision       = argument1;
 
 // Set layer:
 if (collision && COLL_HURT_RADIUS) {
-    collision_layer = layer_handle.collision_layer;
+    collision_layer = reaction_handle.collision_layer;
 }

@@ -202,6 +202,7 @@
 			|classic_trait_clock_up
 		+Reactions
 			|player_reaction_sensor_layer
+			|player_reaction_ring
 			|player_reaction_checkpoint
 			|player_reaction_item_box
 		+Animation

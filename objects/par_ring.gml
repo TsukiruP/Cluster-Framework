@@ -14,6 +14,9 @@ image_speed = 0;
 // Hurtbox:
 set_hurtbox(8, 8, 7, 7, 0, 0);
 
+// Reaction:
+reaction_index = player_reaction_ring;
+
 // Dropped:
 dropped = false;
 #define Step_2
@@ -29,4 +32,4 @@ if (game_ispaused(ctrl_pause)) {
     exit;
 }
 
-//image_index = sync_rate(global.object_time, 8 / (1 + (dropped == true)), sprite_get_number(sprite_index));
+image_index = sync_rate(global.object_time, 8 / (1 + (dropped == true)), sprite_get_number(sprite_index));

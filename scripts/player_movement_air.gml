@@ -51,7 +51,9 @@ repeat (total_steps) {
         // [PLACEHOLDER]
 
         // Stop if moving towards wall:
-        if (sign(x_speed) == wall_sign) x_speed = 0;
+        if (sign(x_speed) == wall_sign) {
+            x_speed = 0;
+        }
     }
 }
 

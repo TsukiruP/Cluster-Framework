@@ -902,7 +902,7 @@ switch (state_target) {
 
     // Hammer:
     case player_state_hammer:
-        if (animation_target != "hammer" && animation_previous != "hammer") {
+        if (animation_target != "hammer") {
             player_set_animation("hammer");
         }
         break;

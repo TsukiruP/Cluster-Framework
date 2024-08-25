@@ -215,3 +215,4 @@ ctl_shield_bubble_bound
 ctl_shield_bubble_recoil
 player_effect_splash
 player_reaction_sensor_layer
+player_reaction_ring

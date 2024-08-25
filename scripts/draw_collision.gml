@@ -17,6 +17,8 @@ off_y  = argument5;
 
 dir    = argument6;
 rot    = round(argument7 / 90) * 90;
+sine   = dsin(rot);
+csine  = dcos(rot);
 
 // Flip direction:
 if (dir == -1) {
@@ -28,39 +30,10 @@ if (dir == -1) {
 }
 
 // Set coordinates:
-switch (rot) {
-    // Down:
-    case 0:
-        x1 = x_int - left + off_x;
-        y1 = y_int - top + off_y;
-        x2 = x_int + right + off_x;
-        y2 = y_int + bottom + off_y;
-        break;
-
-    // Right:
-    case 90:
-        x1 = x_int - top + off_y;
-        y1 = y_int - right - off_x;
-        x2 = x_int + bottom + off_y;
-        y2 = y_int + left - off_x;
-        break;
-
-    // Up:
-    case 180:
-        x1 = x_int - right - off_x;
-        y1 = y_int - bottom - off_y;
-        x2 = x_int + left - off_x;
-        y2 = y_int + top - off_y;
-        break;
-
-    // Left:
-    case 270:
-        x1 = x_int - bottom - off_y;
-        y1 = y_int - left + off_x;
-        x2 = x_int + top - off_y;
-        y2 = y_int + right + off_x;
-        break;
-}
+x1 = x_int - (csine * left) + (csine * off_x) - (sine * top) + (sine * off_y) ;
+y1 = y_int - (csine * top) + (csine * off_y) - (sine * right) - (sine * off_x);
+x2 = x_int + (csine * right) + (csine * off_x) + (sine * bottom) + (sine * off_y);
+y2 = y_int + (csine * bottom) + (csine * off_y) + (sine * left) - (sine * off_x);
 
 // Draw rectangle:
 if !(left == 0 && top == 0 && right == 0 && bottom == 0) {
