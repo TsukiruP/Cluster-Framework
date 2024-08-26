@@ -4,8 +4,8 @@
 switch (argument0) {
     // Start:
     case STATE_START:
-        // Balance:
-        player_get_balance();
+        // Cliff:
+        player_set_cliff();
         break;
 
     // Step:

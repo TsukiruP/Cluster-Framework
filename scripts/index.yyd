@@ -197,7 +197,7 @@ player_movement_air
 player_collision_ceiling
 player_routine_jump
 player_inbounds
-player_get_balance
+player_set_cliff
 player_set_radii
 set_hurtbox
 set_hitbox

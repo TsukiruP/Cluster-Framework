@@ -226,7 +226,7 @@
 			|player_set_radii
 			|player_set_input
 			|player_set_ground
-			|player_get_balance
+			|player_set_cliff
 			|player_set_damage
 		+Misc.
 			|player_react
