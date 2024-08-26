@@ -1,10 +1,10 @@
-/// player_get_balance()
-// Returns the direction of the nearest cliff.
+/// player_set_cliff()
+// Determines the direction of the nearest cliff.
 
 var total_solids, left, right, center, n, inst;
 
 // Reset direction:
-balance_direction = 0;
+cliff_direction = 0;
 
 total_solids = ds_list_size(solid_list);
 left         = noone;
@@ -37,11 +37,11 @@ for (n = 0; n < total_solids; n += 1) {
 if (center == noone && (left != noone ^^ right != noone)) {
     // Face right:
     if (left != noone) {
-        balance_direction = 1;
+        cliff_direction = 1;
     }
 
     // Face left:
     if (right != noone) {
-        balance_direction = -1;
+        cliff_direction = -1;
     }
 }

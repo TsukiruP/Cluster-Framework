@@ -4,8 +4,8 @@
 player_add_animation(CHAR_SONIC, "stand",         ctl_sonic_stand); //,     tml_sonic_idle_tag);
 
 // Balance:
-player_add_animation(CHAR_SONIC, "balance_front", ctl_sonic_balance_front);
-player_add_animation(CHAR_SONIC, "balance_back",  ctl_sonic_balance_back);
+player_add_animation(CHAR_SONIC, "cliff_front",   ctl_sonic_cliff_front);
+player_add_animation(CHAR_SONIC, "cliff_back",    ctl_sonic_cliff_back);
 
 // Wait:
 player_add_animation(CHAR_SONIC, "wait",          ctl_sonic_wait_leader, ctl_sonic_wait_partner);

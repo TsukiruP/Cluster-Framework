@@ -38,9 +38,9 @@
 				+Sonic
 					+Idle
 						|ctl_sonic_stand
-						+Balance
-							|ctl_sonic_balance_front
-							|ctl_sonic_balance_back
+						+Cliff
+							|ctl_sonic_cliff_front
+							|ctl_sonic_cliff_back
 						+Wait
 							|ctl_sonic_wait_leader
 							|ctl_sonic_wait_partner
@@ -179,6 +179,7 @@
 					|player_state_turn
 					|player_state_run
 					|player_state_air
+					|player_state_jump
 					|player_state_look
 					|player_state_crouch
 					|player_state_spin_dash
@@ -194,17 +195,15 @@
 					|sonic_state_skid
 		+Routines
 			|player_routine_land
-			|player_routine_skill
-			|player_routine_insta
 			|player_routine_shield
+			|player_routine_skill
+		+Effects
+			|player_effect_dust
+			|player_effect_queue
+			+Queues
 		+Traits
 			|player_trait_debug
 			|classic_trait_clock_up
-		+Reactions
-			|player_reaction_sensor_layer
-			|player_reaction_ring
-			|player_reaction_checkpoint
-			|player_reaction_item_box
 		+Animation
 			|player_animation_core
 			|player_add_animation
@@ -213,19 +212,21 @@
 			+Animation Lists
 				|sonic_animation_list
 			|player_compile_animations
-		+Effects
-			|player_effect_dust
-			|player_effect_splash
+		+Reactions
+			|player_reaction_sensor_layer
+			|player_reaction_ring
+			|player_reaction_checkpoint
+			|player_reaction_item_box
 		+Getters
+			|player_get_physics
 			|player_get_solids
 			|player_get_angle
-			|player_get_physics
 			|player_get_item
-			|player_get_balance
 		+Setters
 			|player_set_radii
 			|player_set_input
 			|player_set_ground
+			|player_get_balance
 			|player_set_damage
 		+Misc.
 			|player_react
@@ -283,3 +284,6 @@
 	|knuckles_add_animations
 	|classic_add_animations
 	|player_routine_jump
+	|player_effect_splash
+	|player_routine_insta
+	|player_routine_shield_old

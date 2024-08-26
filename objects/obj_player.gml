@@ -16,13 +16,11 @@ ctl_initialize();
 player_slot = 0;
 
 // Action variables:
-state_current  =  player_state_idle;
-state_target   =  state_current;
-state_previous =  state_current;
-state_changed  =  false;
-state_start    =  true;
-
-routine_queue  = -1;
+state_current  = player_state_idle;
+state_target   = state_current;
+state_previous = state_current;
+state_changed  = false;
+state_start    = true;
 
 // Physics variables:
 physics_type       = PHYS_DEFAULT;
@@ -49,10 +47,10 @@ gravity_force_temp = 0.21875;
 hint_wanted = false;
 
 // Jump variables:
-jump_state   =  false;
+jump_aux     =  false;
 jump_force   =  6.5;
 jump_release = -4;
-jump_aux     =  false;
+
 bound_state  =  0;
 
 // Roll variables:
@@ -76,10 +74,10 @@ applies_to=self
 */
 /// Collision Initialization
 
-solid_list        = ds_list_create();
-wall_direction    = 0;
-collision_layer   = 0;
-balance_direction = 0;
+solid_list      = ds_list_create();
+wall_direction  = 0;
+collision_layer = 0;
+cliff_direction = 0;
 
 // Reset:
 player_reset_air();
@@ -126,7 +124,6 @@ applies_to=self
 // Shield variables:
 status_shield       = SHIELD_NONE;
 status_shield_allow = true;
-status_shield_state = 0;
 
 // Invincibility variables:
 status_invin       = 0;
@@ -150,6 +147,9 @@ action_id=603
 applies_to=self
 */
 /// Effect Initialization
+
+// Effect queue:
+effect_queue = -1;
 
 // Spin dash charge:
 spin_dash_charge = 0;
@@ -366,36 +366,28 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// States & Routines
+/// State
 
 // Exit if the stage is paused or text is active:
 if (game_ispaused()) {
     exit;
 }
 
-// Execute the queued routine:
-if (script_exists(routine_queue)) {
-    script_execute(routine_queue);
-
-    routine_queue = -1;
-}
-
 // Set current state:
-if (state_changed == true) {
+if (state_current != state_target) {
     state_current = state_target;
-    state_changed = false;
-
-    // Start current state:
-    if (state_start == true) {
-        if (script_exists(state_current)) {
-            script_execute(state_current, STATE_START);
-        }
-    }
 }
 
-// Execute current state:
+// Effect queue:
+player_effect_queue();
+
+// Execute state step:
 if (script_exists(state_current)) {
     script_execute(state_current, STATE_STEP);
+
+    if (state_changed != false) {
+        state_changed = false;
+    }
 }
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -518,63 +510,66 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Splash
+/// Splashes
 
-if (instance_exists(obj_water_surface)) {
-    // Entry splash:
-    if (y > obj_water_surface.y && yprevious < obj_water_surface.y) {
-        x_speed *= 0.50;
-        y_speed *= 0.25;
+// Exit if there's no water surface:
+if (!instance_exists(obj_water_surface)) {
+    exit;
+}
 
-        // Create splash:
-        if (y_speed >= 2.50) {
-            effect_create(ctl_splash_1, x, obj_water_surface.y, -10);
-        } else {
-            effect_create(ctl_splash_0, x, obj_water_surface.y, -10);
-        }
+// Entry splash:
+if (y > obj_water_surface.y && yprevious < obj_water_surface.y) {
+    x_speed *= 0.50;
+    y_speed *= 0.25;
 
-        // Play sound:
-        sound_play_single("snd_splash");
-    }
-
-    // Exit splash:
-    else if (y < obj_water_surface.y && yprevious > obj_water_surface.y) {
-        y_speed = max(y_speed * 2, -16);
-
-        // Create splash:
-        if (abs(y_speed) >= 6) {
-            effect_create(ctl_splash_1, x, obj_water_surface.y, -10);
-        } else {
-            effect_create(ctl_splash_0, x, obj_water_surface.y, -10);
-        }
-
-        // Play sound:
-        sound_play_single("snd_splash");
-    }
-
-
-    // Surface timer:
-    if (on_surface == true && abs(x_speed) > 0) {
-        surface_timer += 1;
-
-        // Splash:
-        if (surface_timer mod 9 == 0) {
-            if (abs(x_speed) >= 4.50) {
-                effect_create(ctl_splash_3, x, obj_water_surface.y, depth, image_xscale);
-            } else {
-                effect_create(ctl_splash_2, x, obj_water_surface.y, depth, image_xscale);
-            }
-        }
+    // Create splash:
+    if (y_speed >= 2.50) {
+        effect_create(ctl_splash_1, x, obj_water_surface.y, -10);
     } else {
-        surface_timer = 0;
+        effect_create(ctl_splash_0, x, obj_water_surface.y, -10);
     }
+
+    // Play sound:
+    sound_play_single("snd_splash");
+}
+
+// Exit splash:
+else if (y < obj_water_surface.y && yprevious > obj_water_surface.y) {
+    y_speed = max(y_speed * 2, -16);
+
+    // Create splash:
+    if (abs(y_speed) >= 6) {
+        effect_create(ctl_splash_1, x, obj_water_surface.y, -10);
+    } else {
+        effect_create(ctl_splash_0, x, obj_water_surface.y, -10);
+    }
+
+    // Play sound:
+    sound_play_single("snd_splash");
+}
+
+
+// Surface timer:
+if (on_surface == true && abs(x_speed) > 0) {
+    surface_timer += 1;
+
+    // Splash:
+    if (surface_timer mod 9 == 0) {
+        if (abs(x_speed) >= 4.50) {
+            effect_create(ctl_splash_3, x, obj_water_surface.y, depth, image_xscale);
+        } else {
+            effect_create(ctl_splash_2, x, obj_water_surface.y, depth, image_xscale);
+        }
+    }
+} else {
+    surface_timer = 0;
 }
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
 applies_to=self
 */
-/// Refill Air
+/// Air
 
 // Exit if the stage is paused or text is active:
 if (game_ispaused()) {
@@ -771,16 +766,16 @@ y_radius_temp = y_radius;
 switch (state_target) {
     // Idle:
     case player_state_idle:
-        if (balance_direction == 0) {
+        if (cliff_direction == 0) {
             if (animation_target != "stand" && animation_target != "wait" && animation_target != "ready" && animation_target != "land" && animation_target != "omochao" &&
                 animation_target != "look_end" && animation_target != "crouch_end") {
                 player_set_animation("stand");
             }
         } else {
-            if (image_xscale == balance_direction) {
-                if (animation_target != "balance_front") player_set_animation("balance_front");
+            if (image_xscale == cliff_direction) {
+                if (animation_target != "cliff_front") player_set_animation("cliff_front");
             } else {
-                if (animation_target != "balance_back") player_set_animation("balance_back");
+                if (animation_target != "cliff_back") player_set_animation("cliff_back");
             }
         }
         break;
@@ -824,23 +819,24 @@ switch (state_target) {
 
     // Air:
     case player_state_air:
-        if (jump_state == true) {
-            if (animation_target != "spin" && animation_target != "insta") {
-                player_set_animation("spin");
+        if ((animation_target != "turn" && animation_target != "turn_brake" && animation_target != "spin" && animation_target != "brake" && animation_target != "spring_flight" && animation_target != "spring_fall") ||
+            (animation_current == "spring_flight" && y_speed >= 0) || spring_alarm > 0) {
+            // Flight:
+            if (y_speed < 0 || (spring_angle != ANGLE_DOWN && spring_alarm > 0)) {
+                player_set_animation("spring_flight");
             }
-        } else {
-            if ((animation_target != "turn" && animation_target != "turn_brake" && animation_target != "spin" && animation_target != "brake" && animation_target != "spring_flight" && animation_target != "spring_fall") ||
-                (animation_current == "spring_flight" && y_speed >= 0) || spring_alarm > 0) {
-                // Flight:
-                if (y_speed < 0 || (spring_angle != ANGLE_DOWN && spring_alarm > 0)) {
-                    player_set_animation("spring_flight");
-                }
 
-                // Fall:
-                else {
-                    player_set_animation("spring_fall");
-                }
+            // Fall:
+            else {
+                player_set_animation("spring_fall");
             }
+        }
+        break;
+
+    // Jump:
+    case player_state_jump:
+        if (animation_target != "spin" && animation_target != "insta") {
+            player_set_animation("spin");
         }
         break;
 
@@ -971,7 +967,7 @@ switch (animation_target) {
 
     case "spin":
         // Spin flight & fall:
-        if (jump_state == true) {
+        if (state_target == player_state_jump) {
             animation_variant = 1;
         }
 
@@ -1029,8 +1025,8 @@ var angle_mod;
 switch (animation_current) {
     // Reset angle:
     case "stand":
-    case "balance_front":
-    case "balance_back":
+    case "cliff_front":
+    case "cliff_back":
     case "wait":
     case "ready":
     case "land":

@@ -7,13 +7,11 @@ switch (argument0) {
         // Charge:
         spin_dash_charge = 0;
 
+        // Queue effect:
+        effect_queue = EFF_SPIN_DASH;
+
         // Play sound:
         sound_play_single("snd_spin_dash_charge");
-
-        // Dust:
-        with (instance_create(x, y, eff_spin_dash)) {
-            player_handle = other.id;
-        }
         break;
 
     // Step:
@@ -30,6 +28,8 @@ switch (argument0) {
                 return player_set_state(player_state_air);
             } else {
                 input_lock_alarm = 30;
+
+                // Play sound:
                 sound_play_single("snd_roll");
 
                 return player_set_state(player_state_roll);

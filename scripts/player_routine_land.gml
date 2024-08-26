@@ -1,8 +1,10 @@
 /// player_routine_land()
 
 if (on_ground == true) {
-    // Splash:
-    player_effect_splash();
+    // Queue effect:
+    if (on_surface == true) {
+        effect_queue = EFF_SPLASH;
+    }
 
     if (x_speed == 0) {
         player_set_animation("land");

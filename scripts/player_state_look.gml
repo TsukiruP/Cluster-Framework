@@ -35,6 +35,7 @@ switch (argument0) {
 
         // Idle:
         if (animation_trigger == true && input_player[INP_UP, CHECK_HELD] == false) {
+            // Set animation:
             player_set_animation("look_end");
 
             return player_set_state(player_state_idle);
@@ -47,13 +48,10 @@ switch (argument0) {
 
         // Jump:
         if (player_collision_ceiling(y_radius + 5) == noone && input_player[INP_JUMP, CHECK_PRESSED] == true) {
-            player_set_state(player_state_air);
-            jump_state = true;
-
             // Play sound:
             sound_play_single("snd_jump");
 
-            return true;
+            return player_set_state(player_state_jump);
         }
         break;
 

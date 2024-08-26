@@ -55,6 +55,7 @@ switch (argument0) {
             // Roll:
             if (abs(x_speed) > 0.5) {
                 if (input_player[INP_DOWN, CHECK_HELD] == true) {
+                    // Play sound:
                     sound_play_single("snd_roll");
 
                     return player_set_state(player_state_roll);
@@ -103,13 +104,10 @@ switch (argument0) {
 
         // Jump:
         if (player_collision_ceiling(y_radius + 5) == noone && input_player[INP_JUMP, CHECK_PRESSED] == true) {
-            player_set_state(player_state_air);
-            jump_state = true;
-
             // Play sound:
             sound_play_single("snd_jump");
 
-            return true;
+            return player_set_state(player_state_jump);
         }
         break;
 

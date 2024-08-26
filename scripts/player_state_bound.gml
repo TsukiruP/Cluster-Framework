@@ -37,13 +37,10 @@ switch (argument0) {
 
         // Land:
         if (on_ground == true) {
-            player_set_state(player_state_air, true);
-            jump_state          = true;
+            // Set state:
+            player_set_state(player_state_jump, true);
             animation_skip      = true;
             status_shield_allow = true;
-
-            // Splash:
-            player_effect_splash();
 
             // Set timeline:
             if (instance_exists(shield_handle)) {
@@ -71,5 +68,10 @@ switch (argument0) {
 
     // Finish:
     case STATE_FINISH:
+        // Reset bound:
+        if (state_target != player_state_jump) {
+            jump_aux    = false;
+            bound_state = 0;
+        }
         break;
 }

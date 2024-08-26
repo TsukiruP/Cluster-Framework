@@ -29,9 +29,9 @@
 			+Idle
 				|spr_sonic_stand
 				|spr_sonic_stand_tag
-				+Balance
-					|spr_sonic_balance_front
-					|spr_sonic_balance_back
+				+Cliff
+					|spr_sonic_cliff_front
+					|spr_sonic_cliff_back
 				+Wait
 					|spr_sonic_wait_leader
 					|spr_sonic_wait_partner

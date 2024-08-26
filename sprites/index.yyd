@@ -217,8 +217,8 @@ spr_hud_gauge
 spr_classic_balance
 spr_sonic_push
 spr_miles_push
-spr_sonic_balance_front
-spr_sonic_balance_back
+spr_sonic_cliff_front
+spr_sonic_cliff_back
 spr_sonic_turn
 spr_sonic_turn_brake
 spr_sonic_brake_fast

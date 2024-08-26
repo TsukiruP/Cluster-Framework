@@ -75,8 +75,7 @@ switch (argument0) {
 
             // Jump:
             if (animation_finished == true) {
-                player_set_state(player_state_air, false);
-                jump_state     = true;
+                player_set_state(player_state_jump, false);
                 animation_skip = true;
 
                 return true;
@@ -101,8 +100,7 @@ switch (argument0) {
                 // Jump:
                 else {
                     player_reset_air();
-                    player_set_state(player_state_air, false);
-                    jump_state     = true;
+                    player_set_state(player_state_jump, false);
                     animation_skip = true;
 
                     return true;
