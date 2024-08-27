@@ -23,57 +23,15 @@
 		|obj_player_spawn
 		|obj_player
 	+Props
-		+Layer Sensors
-			|par_sensor_layer
-			|obj_sensor_layer_a
-			|obj_sensor_layer_b
+		|par_sensor_layer
 		+Rings
 			|par_ring
 			|obj_ring
 			|obj_ring_magnetized
 		|obj_checkpoint
-		+Springs
-			|par_spring
-			|obj_spring_up
-			|obj_spring_down
-			|obj_spring_left
-			|obj_spring_right
-			|obj_spring_left_up
-			|obj_spring_left_down
-			|obj_spring_right_up
-			|obj_spring_right_down
-		+Dash Panels
-		+Dash Rings
-			|par_dash_ring
-			|obj_dash_ring_overlay
-			|obj_dash_ring_up
-			|obj_dash_ring_down
-			|obj_dash_ring_left
-			|obj_dash_ring_right
-			|obj_dash_ring_left_up
-			|obj_dash_ring_left_down
-			|obj_dash_ring_right_up
-			|obj_dash_ring_right_down
-		+Item Boxes
-			|par_item_box
-			+Rings
-				|obj_item_bonus
-				|obj_item_super_bonus
-				|obj_item_random_bonus
-			+Shields
-				|obj_item_basic
-				|obj_item_magnetic
-				|obj_item_fire
-				|obj_item_lightning
-				|obj_item_bubble
-			+Buffs
-				|obj_item_invin
-				|obj_item_speed
-			|obj_item_mine
-			+Debuffs
-				|obj_item_slow
-				|obj_item_panic
-				|obj_item_swap
+		|par_spring
+		|par_dash_ring
+		|par_item_box
 		+Enemies
 			|par_enemy
 			|obj_spinner
@@ -94,6 +52,7 @@
 			|eff_spin_dash
 			|eff_debuff
 			|eff_shield
+		|obj_dash_ring_overlay
 +Zones
 	+Basic Test
 		|obj_basic_test_parallax
@@ -131,18 +90,59 @@
 			|obj_basic_test_water_fall_01
 			|obj_basic_test_water_fall_02
 			|obj_basic_test_water_fall_03
-|ctrl_culling
-|par_obstacle
-|par_moving_platform
-|object122
-+Rainbow Rings
-	|par_rainbow_ring
-	|obj_rainbow_ring_overlay
-	|obj_rainbow_ring_left
-	|obj_rainbow_ring_right
-	|obj_rainbow_ring_up
-	|obj_rainbow_ring_down
-	|obj_rainbow_ring_left_up
-	|obj_rainbow_ring_left_down
-	|obj_rainbow_ring_right_up
-	|obj_rainbow_ring_right_down
++Trash
+	|ctrl_culling
+	|par_obstacle
+	|par_moving_platform
+	|object122
+	+Rainbow Rings
+		|par_rainbow_ring
+		|obj_rainbow_ring_overlay
+		|obj_rainbow_ring_left
+		|obj_rainbow_ring_right
+		|obj_rainbow_ring_up
+		|obj_rainbow_ring_down
+		|obj_rainbow_ring_left_up
+		|obj_rainbow_ring_left_down
+		|obj_rainbow_ring_right_up
+		|obj_rainbow_ring_right_down
+	|obj_sensor_layer_a
+	|obj_sensor_layer_b
+	+Springs
+		|obj_spring_up
+		|obj_spring_down
+		|obj_spring_left
+		|obj_spring_right
+		|obj_spring_left_up
+		|obj_spring_left_down
+		|obj_spring_right_up
+		|obj_spring_right_down
+	+Dash Panels
+	+Dash Rings
+		|obj_dash_ring_up
+		|obj_dash_ring_down
+		|obj_dash_ring_left
+		|obj_dash_ring_right
+		|obj_dash_ring_left_up
+		|obj_dash_ring_left_down
+		|obj_dash_ring_right_up
+		|obj_dash_ring_right_down
+	+Item Boxes
+		+Rings
+			|obj_item_bonus
+			|obj_item_super_bonus
+			|obj_item_random_bonus
+		+Shields
+			|obj_item_basic
+			|obj_item_magnetic
+			|obj_item_fire
+			|obj_item_lightning
+			|obj_item_bubble
+		+Buffs
+			|obj_item_invin
+			|obj_item_speed
+		|obj_item_mine
+		+Debuffs
+			|obj_item_slow
+			|obj_item_panic
+			|obj_item_swap

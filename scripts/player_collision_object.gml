@@ -104,6 +104,14 @@ if (object_handle != noone) {
                 aright = temp;
             }
 
+            // Flip top and bottom:
+            if (arot div 90 >= 2) {
+                aleft   *= -1;
+                atop    *= -1;
+                aright  *= -1;
+                abottom *= -1;
+            }
+
             // Rotate player:
             ax1 = ax_int - (acsine * aleft) + (acsine * aoff_x) - (asine * atop) + (asine * aoff_y) ;
             ay1 = ay_int - (acsine * atop) + (acsine * aoff_y) - (asine * aright) - (asine * aoff_x);

@@ -202,7 +202,7 @@ applies_to=self
 
 // Sonic actions:
 for (i = SONIC_JUMP; i <= SONIC_SHIELD; i += 1) {
-    global.sonic_skill[i] = 1;
+    global.sonic_skill[i] = 2;
 }
 /*"/*'/**//* YYD ACTION
 lib_id=1

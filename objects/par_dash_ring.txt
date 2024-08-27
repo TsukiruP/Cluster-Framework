@@ -1,4 +1,4 @@
-sprite=
+sprite=spr_dash_ring_up
 visible=0
 solid=0
 persistent=0

@@ -78,6 +78,23 @@ applies_to=self
 /// Image Angle
 
 image_angle = gravity_angle();
+#define Other_4
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Field Initialization
+
+//field item_field: enum(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13)
+//field text_field: string
+
+item_id = item_field;
+
+/*preview
+    draw_sprite(Sprite("spr_item_icon", Field("item_field", 0)), 0, x, y)
+    draw_sprite(Sprite("spr_item_box", 1), 0, x, y)
+*/
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
