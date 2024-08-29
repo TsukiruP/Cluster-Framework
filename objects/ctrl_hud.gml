@@ -339,7 +339,7 @@ draw_text(view_xview[view_current] + hud_x_current + 79, view_yview[view_current
 
 // Rings
 draw_sprite(hud_index, 1, view_xview[view_current] + hud_x_current, view_yview[view_current] + hud_y + 26);
-draw_text(view_xview[view_current] + hud_x_current + 29, view_yview[view_current] + hud_y + 31, string_place_value(global.game_rings, 3));
+draw_text(view_xview[view_current] + hud_x_current + 29, view_yview[view_current] + hud_y + 31, string_pad(global.game_rings, 3));//string_place_value(global.game_rings, 3));
 
 // Air:
 draw_sprite(hud_index, 2, view_xview[view_current] + air_x_current, view_yview[view_current] + hud_y + 52);

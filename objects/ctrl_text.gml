@@ -601,20 +601,15 @@ if (text_hide == true) {
 d3d_set_viewport(0, 0, global.display_width, global.display_height);
 
 // Box:
-draw_set_color(make_color_rgb(global.textbox_red, global.textbox_green, global.textbox_blue));
-draw_set_alpha(topic_alpha[0]);
-
+draw_set1(make_color_rgb(global.textbox_red, global.textbox_green, global.textbox_blue), topic_alpha[0]);
 draw_rectangle(0, (global.display_height / 2) - 9 - ((font_height / 2) * topic_lines), global.display_width, (global.display_height / 2) + 10 + ((font_height / 2) * topic_lines), false);
 
 // Topic:
 draw_set_font(global.font_system);
-draw_set_color(c_white);
-draw_set_alpha(topic_alpha[1]);
+draw_set1(c_white, topic_alpha[1]);
 
 // Topic:
-draw_set_halign(fa_center);
-draw_set_valign(fa_middle);
-
+draw_set2(fa_center, fa_middle);
 draw_text(global.display_width / 2, global.display_height / 2, topic_message);
 
 // Reset:
@@ -633,9 +628,7 @@ if (text_hide == true) {
 }
 
 // Box:
-draw_set_color(make_color_rgb(global.textbox_red, global.textbox_green, global.textbox_blue));
-draw_set_alpha(text_alpha[0]);
-
+draw_set1(make_color_rgb(global.textbox_red, global.textbox_green, global.textbox_blue), text_alpha[0]);
 draw_rectangle(0, global.display_height - 19 - 59, global.display_width, global.display_height - 19, false);
 
 // Viewport:
@@ -643,13 +636,10 @@ d3d_set_viewport(0, global.display_height - text_y, global.display_width, font_h
 
 // Font:
 draw_set_font(global.font_system);
-draw_set_color(c_white);
-draw_set_alpha(text_alpha[2]);
+draw_set1(c_white, text_alpha[2]);
 
 // Text:
-draw_set_halign(fa_left);
-draw_set_valign(fa_top);
-
+draw_set2(fa_left, fa_top);
 draw_text_ext(text_x, -text_scroll[0], text_message[text_current], font_height, global.display_width - (text_x * 2));
 
 // Arrow:
@@ -676,9 +666,7 @@ if (text_hide == true) {
 }
 
 // Background:
-draw_set_color(c_black);
-draw_set_alpha(log_alpha[0]);
-
+draw_set1(c_black, log_alpha[0]);
 draw_rectangle(0, 0, global.display_width, global.display_height, false);
 
 // Viewport:
@@ -686,13 +674,10 @@ d3d_set_viewport(0, 16, global.display_width, global.display_height - 32);
 
 // Font:
 draw_set_font(global.font_system);
-draw_set_color(c_white);
-draw_set_alpha(log_alpha[1]);
+draw_set1(c_white, log_alpha[1]);
 
 // Log:
-draw_set_halign(fa_left);
-draw_set_valign(fa_top);
-
+draw_set2(fa_left, fa_top);
 draw_text_ext(text_x / 2, -log_scroll, log_message, font_height, global.display_width - text_x);
 
 // Reset:

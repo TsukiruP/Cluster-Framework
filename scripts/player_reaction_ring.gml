@@ -13,10 +13,15 @@ if (collision & COLL_HURT_RADIUS) {
         global.game_rings += 1;
 
         // Destroy:
+        /*
         with (reaction_handle) {
             effect_create(ctl_ring_sparkle, x, y, -depth);
             instance_destroy();
         }
+        */
+
+        effect_create(ctl_ring_sparkle, reaction_handle.x, reaction_handle.y, -reaction_handle.depth);
+        instance_destroy_id(reaction_handle);
 
         // Play sound:
         sound_play_single("snd_ring");

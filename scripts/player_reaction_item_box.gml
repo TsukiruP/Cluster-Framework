@@ -10,11 +10,16 @@ collision       = argument1;
 if ((collision & COLL_HURT) || (collision & COLL_HURT_RADIUS)) {
     if (input_cpu == false || (input_cpu == true && input_cpu_alarm > 0)) {
         // Destroy:
+        /*
         with (reaction_handle) {
             player_handle = other.id;
             effect_create(ctl_explosion_small, x, y, -depth);
             instance_destroy();
-        }
+        }*/
+
+        player_get_item(reaction_handle.item_id);
+        effect_create(ctl_explosion_small, reaction_handle.x, reaction_handle.y, -reaction_handle.depth);
+        instance_destroy_id(reaction_handle);
 
         // Play sound:
         sound_play("snd_destroy");

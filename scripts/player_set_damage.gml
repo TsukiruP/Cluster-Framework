@@ -12,11 +12,7 @@ var damage_handle, hurt_direction;
 damage_handle = argument0.id;
 
 // Hurt direction:
-if (sign(x - damage_handle.x) == 0) {
-    hurt_direction = 1;
-} else {
-    hurt_direction = sign(x - damage_handle.x);
-}
+hurt_direction = esign(x - damage_handle.x, 1);
 
 // Death:
 if (damage_handle == self.id || (input_cpu == false && global.game_rings == 0 && status_shield == 0)) {

@@ -661,8 +661,7 @@ applies_to=self
 if (transition_type == TRANS_RETRY) {
     // Font:
     draw_set_font(global.font_title_card);
-    draw_set_halign(fa_center);
-    draw_set_valign(fa_middle);
+    draw_set2(fa_center, fa_middle);
 
     // Background:
     draw_sprite_tiled_horizontal(spr_transition_background, 1, view_xview[view_current] + background_x_scroll, view_yview[view_current] + background_y_current);

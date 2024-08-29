@@ -29,7 +29,7 @@ action_id=603
 applies_to=self
 */
 /// Give Item
-
+/*
 if (instance_exists(player_handle)) {
     with (player_handle) {
         player_get_item(other.item_id);
