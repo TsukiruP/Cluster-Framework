@@ -29,16 +29,13 @@ top_speed          = 6;
 max_speed          = 16;
 
 x_allow            = true;
-x_direction        = 0;
 x_speed            = 0;
 acceleration       = 0.046875;
 deceleration       = 0.5;
 slope_friction     = 0.125;
-air_acceleration   = 0.09375;
 air_friction       = 0.96875;
 
 y_allow            = true;
-y_direction        = 1;
 y_speed            = 0;
 gravity_force      = 0.21875;
 gravity_force_temp = 0.21875;

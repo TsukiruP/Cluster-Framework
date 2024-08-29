@@ -8,12 +8,6 @@ applies_to=self
 /*
 event_inherited();
 
-// Depth:
-depth = 10;
-
-// Image speed:
-image_speed = 0;
-
 // Badnik variables:
 badnik_super  = false;
 badnik_health = 1;

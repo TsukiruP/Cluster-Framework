@@ -23,14 +23,14 @@ switch (argument0) {
                 // Left:
                 case -1:
                     if (x_speed > -top_speed) {
-                        x_speed -= air_acceleration;
+                        x_speed -= acceleration * 2;
                     }
                     break;
 
                 // Right:
                 case 1:
                     if (x_speed < top_speed) {
-                        x_speed += air_acceleration;
+                        x_speed += acceleration * 2;
                     }
                     break;
             }

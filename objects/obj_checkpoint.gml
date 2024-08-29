@@ -8,9 +8,6 @@ applies_to=self
 
 event_inherited();
 
-// Image speed:
-image_speed = 0;
-
 // Timeline initialization:
 ctl_initialize(ctl_checkpoint_inactive);
 

@@ -1,10 +1,10 @@
++Parents
+	|par_overlay
+	|par_deactivatable
+	|par_prop
+	|par_terrain
 +System
 	|ctrl_initialization
-	+Parents
-		|par_overlay
-		|par_deactivatable
-		|par_prop
-		|par_terrain
 	+Controllers
 		|ctrl_game
 		|ctrl_display
@@ -23,15 +23,15 @@
 		|obj_player_spawn
 		|obj_player
 	+Props
-		|par_sensor_layer
+		|obj_sensor_layer
 		+Rings
 			|par_ring
 			|obj_ring
 			|obj_ring_magnetized
 		|obj_checkpoint
-		|par_spring
-		|par_dash_ring
-		|par_item_box
+		|obj_spring
+		|obj_dash_ring
+		|obj_item_box
 		+Enemies
 			|par_enemy
 			|obj_spinner

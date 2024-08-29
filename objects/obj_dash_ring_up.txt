@@ -1,7 +1,7 @@
-sprite=spr_dash_ring_up
+sprite=spr_dash_ring_vertical
 visible=1
 solid=0
 persistent=0
 depth=0
-parent=par_dash_ring
+parent=obj_dash_ring
 mask=
