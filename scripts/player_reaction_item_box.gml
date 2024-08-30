@@ -9,16 +9,13 @@ collision       = argument1;
 // Break item box:
 if ((collision & COLL_HURT) || (collision & COLL_HURT_RADIUS)) {
     if (input_cpu == false || (input_cpu == true && input_cpu_alarm > 0)) {
-        // Destroy:
-        /*
-        with (reaction_handle) {
-            player_handle = other.id;
-            effect_create(ctl_explosion_small, x, y, -depth);
-            instance_destroy();
-        }*/
+        // Link:
+        reaction_handle.player_handle = self.id;
 
-        player_get_item(reaction_handle.item_id);
+        // Explode:
         effect_create(ctl_explosion_small, reaction_handle.x, reaction_handle.y, -reaction_handle.depth);
+
+        // Destroy:
         instance_destroy_id(reaction_handle);
 
         // Play sound:

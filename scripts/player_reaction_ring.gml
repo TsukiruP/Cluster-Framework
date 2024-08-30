@@ -12,15 +12,10 @@ if (collision & COLL_HURT_RADIUS) {
         // Add to total:
         global.game_rings += 1;
 
-        // Destroy:
-        /*
-        with (reaction_handle) {
-            effect_create(ctl_ring_sparkle, x, y, -depth);
-            instance_destroy();
-        }
-        */
-
+        // Sparkle:
         effect_create(ctl_ring_sparkle, reaction_handle.x, reaction_handle.y, -reaction_handle.depth);
+
+        // Destroy:
         instance_destroy_id(reaction_handle);
 
         // Play sound:
