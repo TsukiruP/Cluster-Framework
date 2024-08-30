@@ -17,12 +17,12 @@ player_state_hammer
 ctl_sonic_push
 player_trait_debug
 player_routine_land
-key_get_string
-joy_get_char
+string_key
+char_joy
 player_state_run
 player_state_brake
 angle_wrap
-input_get_string
+string_input
 player_get_physics
 player_reaction_item_box
 player_state_air
@@ -51,7 +51,7 @@ window_resize
 ctl_spinner
 sonic_skill_list
 player_routine_insta
-val_get_str
+pick_offset
 player_wall_push
 player_get_character
 parallax_add_node
@@ -76,7 +76,7 @@ draw_sprite_tiled_horizontal
 draw_background_tiled_horizontal_part_yscale
 effect_create
 
-string_place_value
+player_reaction_spring
 topic_set_message
 player_handle_ring
 player_get_item
@@ -177,7 +177,7 @@ ctl_checkpoint_active
 player_handle_badnik
 ctl_sonic_insta
 player_routine_shield_old
-val_get_bool
+string_bool
 ctl_shield_lightning_spark
 player_movement_ground
 player_reset_air
@@ -219,3 +219,4 @@ player_reaction_ring
 player_state_jump
 player_routine_shield
 player_effect_queue
+script221

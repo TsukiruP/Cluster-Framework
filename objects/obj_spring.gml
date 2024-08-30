@@ -17,12 +17,13 @@ if (!object_is_ancestor(self.object_index, obj_dash_ring)) {
 set_hurtbox(8, 8, 8, 8);
 
 // Reaction:
-reaction_index = -1;
+reaction_index = player_reaction_spring;
 
 // Spring variables:
-spring_type     = SPRING_HORIZONTAL
-spring_strength = 8;
+spring_type     = SPRING_VERTICAL;
 spring_angle    = 0;
+spring_strength = 8;
+
 spring_active   = false;
 spring_sfx      = 0;
 
@@ -36,7 +37,7 @@ action_id=603
 applies_to=self
 */
 /// SFX
-/*
+
 if (spring_sfx > 0) {
     spring_sfx -= 1;
 }
@@ -47,9 +48,9 @@ action_id=603
 applies_to=self
 */
 /// Animate
-/*
+
 // Exit if the game is paused or the object is a dash/rainbow ring:
-if (game_ispaused(ctrl_pause)|| object_is_ancestor(self.object_index, par_dash_ring)) {
+if (game_ispaused(ctrl_pause)|| object_is_ancestor(self.object_index, obj_dash_ring)) {
     exit;
 }
 
@@ -74,7 +75,6 @@ applies_to=self
 
 //field spring_type: enum(0, 1, 2)
 //field spring_strength: number
-//field spring_angle: enum(90, 270, 180, 0, 135, 225, 45, 315)
 //field flip_x: bool
 //field flip_y: bool
 
@@ -115,25 +115,28 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Spring Creation
+/// Spring Initialization
 
 // Sprite index:
 switch (spring_type) {
     // Vertical:
     case SPRING_VERTICAL:
         sprite_index = spr_spring_vertical;
+        spring_angle = ANGLE_UP;
         set_hurtbox(5, 4, 5, 15);
         break;
 
     // Horizontal:
     case SPRING_HORIZONTAL:
         sprite_index = spr_spring_horizontal;
+        spring_angle = ANGLE_RIGHT;
         set_hurtbox(16, 5, 4, 5);
         break;
 
     // Diagonal:
     case SPRING_DIAGONAL:
         sprite_index = spr_spring_diagonal;
+        spring_angle = ANGLE_RIGHT_UP;
         set_hurtbox(6, 2, 4, 8);
         break;
 }
@@ -141,11 +144,13 @@ switch (spring_type) {
 // Flip x:
 if (flip_x == true) {
     image_xscale = -1;
+    spring_angle = 180 - spring_angle;
 }
 
 // Flip y:
 if (flip_y == true) {
     image_yscale = -1;
+    spring_angle = 360 - spring_angle;
 }
 #define Draw_0
 /*"/*'/**//* YYD ACTION
@@ -157,6 +162,8 @@ applies_to=self
 
 // Spring:
 draw_self();
+
+draw_text(x, y, string_better(spring_angle));
 
 // Collision:
 event_inherited();

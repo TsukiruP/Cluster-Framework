@@ -9,14 +9,16 @@ collision       = argument1;
 // Collect ring:
 if (collision & COLL_HURT_RADIUS) {
     if (status_invin != INVIN_HURT || (status_invin == INVIN_HURT && status_invin_alarm > 0 && status_invin_alarm < 90)) {
-        // Add to total:
+        // Collect:
         global.game_rings += 1;
 
-        // Sparkle:
-        effect_create(ctl_ring_sparkle, reaction_handle.x, reaction_handle.y, -reaction_handle.depth);
+        with (reaction_handle) {
+            // Sparkle:
+            effect_create(ctl_ring_sparkle, x, y, -depth);
 
-        // Destroy:
-        instance_destroy_id(reaction_handle);
+            // Destroy:
+            instance_destroy();
+        }
 
         // Play sound:
         sound_play_single("snd_ring");

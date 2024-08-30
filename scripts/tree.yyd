@@ -10,13 +10,11 @@
 		|joystick_get_check
 		|input_get_check
 		|input_get_timer
-		|input_get_string
 	+Text
-		|val_get_str
-		|val_get_bool
-		|key_get_string
-		|joy_get_char
-		|string_place_value
+		|string_bool
+		|string_key
+		|char_joy
+		|string_input
 		|text_set_message
 		|topic_set_message
 	+Room
@@ -143,10 +141,11 @@
 			|draw_background_tiled_vertical_part
 	+Misc.
 		|hover
-		|set_hurtbox
-		|set_hitbox
+		|pick_offset
 		|transition_create
 		|effect_create
+		|set_hurtbox
+		|set_hitbox
 +Gameplay
 	+Collision
 		|collision_box
@@ -216,6 +215,7 @@
 			|player_reaction_sensor_layer
 			|player_reaction_ring
 			|player_reaction_checkpoint
+			|player_reaction_spring
 			|player_reaction_item_box
 		+Getters
 			|player_get_physics
@@ -287,3 +287,4 @@
 	|player_effect_splash
 	|player_routine_insta
 	|player_routine_shield_old
+|script221

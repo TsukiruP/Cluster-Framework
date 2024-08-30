@@ -1,8 +1,8 @@
 /// player_collision_object(obj, [phase])
 // Returns whether the player is colliding with an object.
 
-var ax_int, ay_int, aleft, atop, aright, abottom, aoff_x, aoff_y, adir, arot, ax1, ay1, ax2, ay2;
-var object_handle, bx_int, by_int, bleft, btop, bright, bbottom, boff_x, boff_y, bdir, brot, bx1, by1, bx2, by2;
+var ax_int, ay_int, aleft, atop, aright, abottom, aoff_x, aoff_y, adir_x, adir_y, arot, ax1, ay1, ax2, ay2;
+var object_handle, bx_int, by_int, bleft, btop, bright, bbottom, boff_x, boff_y, bdir_x, bdir_y, brot, bx1, by1, bx2, by2;
 var phase, collision;
 
 object_handle = argument0;
@@ -24,10 +24,12 @@ if (object_handle != noone) {
     aright  = hitbox_right;
     abottom = hitbox_bottom;
 
-    aoff_x  = hitbox_offset_x * image_xscale;
-    aoff_y  = hitbox_offset_y;
+    adir_x  = image_xscale;
+    adir_y  = image_yscale;
 
-    adir    = image_xscale;
+    aoff_x  = hitbox_offset_x * adir_x;
+    aoff_y  = hitbox_offset_y * adir_y;
+
     arot    = mask_rotation;
     asine   = dsin(arot);
     acsine  = dcos(arot);
@@ -41,10 +43,12 @@ if (object_handle != noone) {
     bright  = object_handle.hurtbox_right;
     bbottom = object_handle.hurtbox_bottom;
 
-    boff_x  = object_handle.hurtbox_offset_x * object_handle.image_xscale;
-    boff_y  = object_handle.hurtbox_offset_y;
+    bdir_x  = object_handle.image_xscale;
+    bdir_y  = object_handle.image_yscale;
 
-    bdir    = object_handle.image_xscale;
+    boff_x  = object_handle.hurtbox_offset_x * bdir_x;
+    boff_y  = object_handle.hurtbox_offset_y * bdir_y;
+
     brot    = gravity_angle(object_handle);
     bsine   = dsin(brot);
     bcsine  = dcos(brot);
@@ -72,12 +76,20 @@ if (object_handle != noone) {
     // Check object collision:
     if !(bleft == 0 && btop == 0 && bright == 0 && bbottom == 0) {
         // Flip object direction:
-        if (bdir == -1) {
+        if (bdir_x == -1) {
             var temp;
 
             temp   = bleft;
             bleft  = bright;
             bright = temp;
+        }
+
+        if (bdir_y == -1) {
+            var temp;
+
+            temp    = btop;
+            btop    = bbottom;
+            bbottom = temp;
         }
 
         // Flip top and bottom:
@@ -96,12 +108,20 @@ if (object_handle != noone) {
 
         if !(aleft == 0 && atop == 0 && aright == 0 && abottom == 0) {
             // Flip player direction:
-            if (adir == -1) {
+            if (adir_x == -1) {
                 var temp;
 
                 temp   = aleft;
                 aleft  = aright
                 aright = temp;
+            }
+
+            if (adir_y == -1) {
+                var temp;
+
+                temp    = atop;
+                atop    = abottom;
+                abottom = temp;
             }
 
             // Flip top and bottom:

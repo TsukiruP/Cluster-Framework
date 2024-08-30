@@ -222,7 +222,7 @@ applies_to=self
 if (global.game_debug == false) {
     exit;
 }
-
+/*
 var menu_left, menu_right, menu_direction, player_handle;
 
 // Menu:
@@ -273,7 +273,7 @@ switch (debug_section) {
                         "X Speed: " + string(player_x_speed) + "#" +
                         "Y Speed: " + string(player_y_speed);
         }
-        */
+
         break;
 
     // Character:

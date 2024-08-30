@@ -1,3 +1,3 @@
 //gm82 fields begin
-item_id= 10
+spring_type= 2
 //gm82 fields end

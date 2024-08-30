@@ -32,7 +32,7 @@ applies_to=self
 /// Draw Badnik
 /*
 // Badnik:
-draw_self();
+draw_self_floored();
 
 // Health:
 if (badnik_super == true && badnik_health > 0 && badnik_health < 3 && badnik_invin > 0) {

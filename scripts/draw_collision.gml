@@ -1,4 +1,4 @@
-/// draw_collision(left, top, right, bottom, x offset, y offset, direction, angle, color)
+/// draw_collision(left, top, right, bottom, x offset, y offset, angle, color)
 //
 
 var x_int, y_int, left, top, right, bottom, off_x, off_y, dir, rot, x1, y1, x2, y2;
@@ -12,21 +12,31 @@ top    = argument1;
 right  = argument2;
 bottom = argument3;
 
-off_x  = argument4 * argument6;
-off_y  = argument5;
+dir_x  = image_xscale;
+dir_y  = image_yscale;
 
-dir    = argument6;
+off_x  = argument4 * dir_x;
+off_y  = argument5 * dir_y;
+
 rot    = round(argument7 / 90) * 90;
 sine   = dsin(rot);
 csine  = dcos(rot);
 
-// Flip direction:
-if (dir == -1) {
+// Flip x direction:
+if (dir_x == -1) {
     var temp;
 
     temp  = left;
     left  = right;
     right = temp;
+}
+
+if (dir_y == -1) {
+    var temp;
+
+    temp   = top;
+    top    = bottom;
+    bottom = temp;
 }
 
 // Set coordinates:
