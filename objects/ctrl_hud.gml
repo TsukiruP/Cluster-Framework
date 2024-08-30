@@ -333,17 +333,17 @@ draw_set_color(c_white);
 
 // Time:
 draw_sprite(hud_index, 0, view_xview[view_current] + hud_x_current, view_yview[view_current] + hud_y);
-draw_text(view_xview[view_current] + hud_x_current + 29, view_yview[view_current] + hud_y + 5, string_place_value(global.game_time div 3600, 2));
-draw_text(view_xview[view_current] + hud_x_current + 54, view_yview[view_current] + hud_y + 5, string_place_value((global.game_time div 60) mod 60, 2));
-draw_text(view_xview[view_current] + hud_x_current + 79, view_yview[view_current] + hud_y + 5, string_place_value(floor(global.game_time * 1.667) mod 100, 2));
+draw_text(view_xview[view_current] + hud_x_current + 29, view_yview[view_current] + hud_y + 5, string_pad(global.game_time div 3600, 2));
+draw_text(view_xview[view_current] + hud_x_current + 54, view_yview[view_current] + hud_y + 5, string_pad((global.game_time div 60) mod 60, 2));
+draw_text(view_xview[view_current] + hud_x_current + 79, view_yview[view_current] + hud_y + 5, string_pad(floor(global.game_time * 1.667) mod 100, 2));
 
 // Rings
 draw_sprite(hud_index, 1, view_xview[view_current] + hud_x_current, view_yview[view_current] + hud_y + 26);
-draw_text(view_xview[view_current] + hud_x_current + 29, view_yview[view_current] + hud_y + 31, string_pad(global.game_rings, 3));//string_place_value(global.game_rings, 3));
+draw_text(view_xview[view_current] + hud_x_current + 29, view_yview[view_current] + hud_y + 31, string_pad(global.game_rings, 3));
 
 // Air:
 draw_sprite(hud_index, 2, view_xview[view_current] + air_x_current, view_yview[view_current] + hud_y + 52);
-draw_text(view_xview[view_current] + air_x_current + 29, view_yview[view_current] + hud_y + 57, string_place_value(air_value, 2));
+draw_text(view_xview[view_current] + air_x_current + 29, view_yview[view_current] + hud_y + 57, string_pad(air_value, 2));
 
 
 // Action gauge:
@@ -381,15 +381,15 @@ draw_sprite(spr_hud_s4e2, 0, view_xview[view_current] + hud_x_current, view_yvie
 
 // Score:
 draw_set_font(global.font_score_s4e2);
-draw_text(view_xview[view_current] + hud_x_current + 37, view_yview[view_current] + hud_y + 3, string_place_value(global.game_score, 9));
+draw_text(view_xview[view_current] + hud_x_current + 37, view_yview[view_current] + hud_y + 3, string_pad(global.game_score, 9));
 
 // Time:
 draw_set_font(global.font_time_s4e2);
 draw_text(view_xview[view_current] + hud_x_current + 58, view_yview[view_current] + hud_y + 18, global.game_time div 3600);
 draw_text(view_xview[view_current] + hud_x_current + 58 + 10, view_yview[view_current] + hud_y + 18, ":");
-draw_text(view_xview[view_current] + hud_x_current + 58 + 16, view_yview[view_current] + hud_y + 18, string_place_value((global.game_time div 60) mod 60, 2));
+draw_text(view_xview[view_current] + hud_x_current + 58 + 16, view_yview[view_current] + hud_y + 18, string_pad((global.game_time div 60) mod 60, 2));
 draw_text(view_xview[view_current] + hud_x_current + 58 + 35, view_yview[view_current] + hud_y + 18, ";");
-draw_text(view_xview[view_current] + hud_x_current + 58 + 44, view_yview[view_current] + hud_y + 18, string_place_value(floor(global.game_time * 1.667) mod 100, 2));
+draw_text(view_xview[view_current] + hud_x_current + 58 + 44, view_yview[view_current] + hud_y + 18, string_pad(floor(global.game_time * 1.667) mod 100, 2));
 
 // Rings:
 draw_set_font(global.font_hud_s4e2);
@@ -402,7 +402,7 @@ if ((sync_rate(global.object_time, 8, 2) && global.game_rings == 0) || global.ga
         draw_set_color(c_white);
     }
 
-    draw_text(view_xview[view_current] + hud_x_current - 5, view_yview[view_current] + hud_y + 11, string_place_value(global.game_rings, 3));
+    draw_text(view_xview[view_current] + hud_x_current - 5, view_yview[view_current] + hud_y + 11, string_pad(global.game_rings, 3));
 }
 
 // Reset:
