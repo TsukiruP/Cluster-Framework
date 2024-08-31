@@ -163,7 +163,7 @@ ctl_shield_fire
 ctl_shield_bubble
 ctl_shield_lightning
 player_handle_layer
-ctl_spring
+ctl_spring_diagonal
 player_handle_spring
 player_state_template
 player_state_crouch
@@ -220,3 +220,5 @@ player_state_jump
 player_routine_shield
 player_effect_queue
 script221
+ctl_spring_vertical
+ctl_spring_horizontal

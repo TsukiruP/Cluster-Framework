@@ -1,4 +1,3 @@
 //gm82 fields begin
-spring_type= 1
-flip_x=true
+spring_type= 2
 //gm82 fields end

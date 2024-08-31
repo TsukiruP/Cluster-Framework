@@ -8,11 +8,6 @@ applies_to=self
 
 event_inherited();
 
-// Timeline initialization:
-if (!object_is_ancestor(self.object_index, obj_dash_ring)) {
-    ctl_initialize(ctl_spring);
-}
-
 // Reaction:
 reaction_index = player_reaction_spring;
 
@@ -59,7 +54,7 @@ if (spring_active == true) {
 
 // Reset frame:
 if (spring_active == false) {
-    timeline_set(ctl_spring);
+    timeline_set(ctl_index);
     image_index = 0;
 }
 #define Other_4
@@ -120,6 +115,7 @@ switch (spring_type) {
     case SPRING_VERTICAL:
         sprite_index = spr_spring_vertical;
         spring_angle = ANGLE_UP;
+        ctl_initialize(ctl_spring_vertical);
         set_hurtbox(5, 4, 5, 15);
         break;
 
@@ -127,6 +123,7 @@ switch (spring_type) {
     case SPRING_HORIZONTAL:
         sprite_index = spr_spring_horizontal;
         spring_angle = ANGLE_RIGHT;
+        ctl_initialize(ctl_spring_horizontal);
         set_hurtbox(16, 5, 4, 5);
         break;
 
@@ -134,6 +131,7 @@ switch (spring_type) {
     case SPRING_DIAGONAL:
         sprite_index = spr_spring_diagonal;
         spring_angle = ANGLE_RIGHT_UP;
+        ctl_initialize(ctl_spring_diagonal);
         set_hurtbox(6, 2, 4, 8);
         break;
 }

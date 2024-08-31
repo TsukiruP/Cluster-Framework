@@ -89,7 +89,10 @@
 				+Checkpoint
 					|ctl_checkpoint_inactive
 					|ctl_checkpoint_active
-				|ctl_spring
+				+Spring
+					|ctl_spring_vertical
+					|ctl_spring_horizontal
+					|ctl_spring_diagonal
 				+Badniks
 					|ctl_spinner
 			+Effects
