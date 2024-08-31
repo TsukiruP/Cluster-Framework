@@ -15,13 +15,6 @@ ctl_initialize();
 // Player slot:
 player_slot = 0;
 
-// Action variables:
-state_current  = player_state_idle;
-state_target   = state_current;
-state_previous = state_current;
-state_changed  = false;
-state_start    = true;
-
 // Physics variables:
 physics_type       = PHYS_DEFAULT;
 
@@ -39,6 +32,13 @@ y_allow            = true;
 y_speed            = 0;
 gravity_force      = 0.21875;
 gravity_force_temp = 0.21875;
+
+// State variables:
+state_current  = player_state_idle;
+state_target   = state_current;
+state_previous = state_current;
+state_changed  = false;
+state_start    = true;
 
 // Idle variables:
 hint_wanted = false;
