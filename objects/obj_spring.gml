@@ -13,9 +13,6 @@ if (!object_is_ancestor(self.object_index, obj_dash_ring)) {
     ctl_initialize(ctl_spring);
 }
 
-// Hurtbox:
-set_hurtbox(8, 8, 8, 8);
-
 // Reaction:
 reaction_index = player_reaction_spring;
 
@@ -162,8 +159,6 @@ applies_to=self
 
 // Spring:
 draw_self();
-
-draw_text(x, y, string_better(spring_angle));
 
 // Collision:
 event_inherited();

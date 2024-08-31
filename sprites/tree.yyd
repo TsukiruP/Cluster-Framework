@@ -102,9 +102,7 @@
 			|spr_classic_death
 	+Props
 		|spr_sensor_layer
-		+Rings
-			|spr_ring
-			|spr_goal_ring
+		|spr_ring
 		|spr_checkpoint
 		+Springs
 			|spr_spring_vertical
@@ -149,6 +147,7 @@
 			+Omochao
 				|spr_omochao_idle
 				|spr_omochao_sonic
+		|spr_goal_ring
 	+Effects
 		+Player
 			|spr_trail

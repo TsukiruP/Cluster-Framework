@@ -51,11 +51,11 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// (De)activate Instances
+/// Cull Instances
 
 if (instance_exists(ctrl_camera)) {
     // Deactivate objects:
-    instance_deactivate_object(par_deactivatable);
+    instance_deactivate_object(par_culled);
 
     // Activate region around view:
     instance_activate_region(view_xview[view_current] - 64, view_yview[view_current] - 64, view_wview[view_current] + 128, view_hview[view_current] + 128, true);

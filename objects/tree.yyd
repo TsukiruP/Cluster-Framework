@@ -1,6 +1,6 @@
 +Parents
 	|par_overlay
-	|par_deactivatable
+	|par_culled
 	|par_prop
 	|par_terrain
 +System
@@ -24,7 +24,7 @@
 		|obj_player
 	+Props
 		|obj_sensor_layer
-		+Rings
+		+Ring
 			|par_ring
 			|obj_ring
 			|obj_ring_magnetized

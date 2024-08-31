@@ -41,8 +41,20 @@ if (collision & COLL_HURT_RADIUS) {
             image_xscale = sign(dcos(spring_angle));
         }
 
+        // Register:
         spring_alarm   = spring_strength + 15;
         spring_current = reaction_handle;
+
+        // Score:
+        if (is_dash_ring == true) {
+            if (reaction_handle.rainbow_score == true) {
+                global.game_score += 1000;
+
+                with (reaction_handle) {
+                    rainbow_score = false;
+                }
+            }
+        }
 
         // Activate:
         with (reaction_handle) {

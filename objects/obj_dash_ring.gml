@@ -13,7 +13,7 @@ image_index = 1;
 
 // Rainbow variables:
 rainbow_ring  = false;
-rainbow_index = spr_rainbow_ring_left;
+rainbow_index = spr_rainbow_ring_vertical;
 rainbow_score = true;
 
 // Overlay:
@@ -33,6 +33,7 @@ if (game_ispaused(ctrl_pause)) {
     exit;
 }
 
+// Set rainbow ring:
 if (rainbow_ring == true) {
     sprite_index = rainbow_index;
     image_index  = sync_rate(global.object_time, 4, 6) + 1;
@@ -43,27 +44,99 @@ lib_id=1
 action_id=603
 applies_to=self
 */
+/// Field Initialization
 
 event_inherited();
+
+//field rainbow_ring: bool
 
 /*preview
     var spring_type, flip_x, flip_y;
 
-    spring_type = Field("spring_type", 0);
-    flip_x      = Field("flip_x", 0);
-    flip_y      = Field("flip_y", 0);
+    spring_type  = Field("spring_type", 0);
+    flip_x       = Field("flip_x", 0);
+    flip_y       = Field("flip_y", 0);
+    rainbow_ring = Field("rainbow_ring", 0);
 
     switch (spring_type) {
         case 0:
-            sprite_index = Sprite("spr_dash_ring_vertical",  0);
+            if (rainbow_ring == true) {
+                sprite_index = Sprite("spr_rainbow_ring_vertical",  0);
+            } else {
+                sprite_index = Sprite("spr_dash_ring_vertical",  0);
+            }
             break;
 
         case 1:
-            sprite_index = Sprite("spr_dash_ring_horizontal", 0);
+            if (rainbow_ring == true) {
+                sprite_index = Sprite("spr_rainbow_ring_horizontal",  0);
+            } else {
+                sprite_index = Sprite("spr_dash_ring_horizontal",  0);
+            }
             break;
 
         case 2:
-            sprite_index = Sprite("spr_dash_ring_diagonal", 0);
+            if (rainbow_ring == true) {
+                sprite_index = Sprite("spr_rainbow_ring_diagonal",  0);
+            } else {
+                sprite_index = Sprite("spr_dash_ring_diagonal",  0);
+            }
             break;
     }
+
+    image_xscale = 1;
+    image_yscale = 1;
+
+    if (flip_x == true) {
+        image_xscale = -1;
+    }
+
+    if (flip_y == true) {
+        image_yscale = -1;
+    }
 */
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Dash Ring Initialization
+
+// Sprite index:
+switch (spring_type) {
+    // Vertical:
+    case SPRING_VERTICAL:
+        sprite_index  = spr_dash_ring_vertical;
+        rainbow_index = spr_rainbow_ring_vertical;
+        spring_ANGLE  = ANGLE_UP;
+        set_hurtbox(26, 5, 26, 6);
+        break;
+
+    // Horizontal:
+    case SPRING_HORIZONTAL:
+        sprite_index  = spr_dash_ring_horizontal;
+        rainbow_index = spr_rainbow_ring_horizontal;
+        spring_ANGLE  = ANGLE_RIGHT;
+        set_hurtbox(6, 24, 7, 26);
+        break;
+
+    // Diagonal:
+    case SPRING_DIAGONAL:
+        sprite_index  = spr_dash_ring_diagonal;
+        rainbow_index = spr_rainbow_ring_diagonal;
+        spring_ANGLE  = ANGLE_RIGHT;
+        set_hurtbox(9, 9, 9, 9);
+        break;
+}
+
+// Flip x:
+if (flip_x == true) {
+    image_xscale = -1;
+    spring_angle = 180 - spring_angle;
+}
+
+// Flip y:
+if (flip_y == true) {
+    image_yscale = -1;
+    spring_angle = 360 - spring_angle;
+}
