@@ -19,6 +19,7 @@ applies_to=self
 */
 /// Animate
 
+// Set sprite:
 if (instance_exists(overlay_handle)) {
     if (overlay_handle.rainbow_ring == true) {
         sprite_index = overlay_handle.rainbow_index;

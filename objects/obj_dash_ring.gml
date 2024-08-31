@@ -15,11 +15,6 @@ image_index = 1;
 rainbow_ring  = false;
 rainbow_index = spr_rainbow_ring_vertical;
 rainbow_score = true;
-
-// Overlay:
-with (instance_create(x, y, obj_dash_ring_overlay)) {
-    overlay_handle = other.id;
-}
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -108,7 +103,7 @@ switch (spring_type) {
     case SPRING_VERTICAL:
         sprite_index  = spr_dash_ring_vertical;
         rainbow_index = spr_rainbow_ring_vertical;
-        spring_ANGLE  = ANGLE_UP;
+        spring_angle  = ANGLE_UP;
         set_hurtbox(26, 5, 26, 6);
         break;
 
@@ -116,7 +111,7 @@ switch (spring_type) {
     case SPRING_HORIZONTAL:
         sprite_index  = spr_dash_ring_horizontal;
         rainbow_index = spr_rainbow_ring_horizontal;
-        spring_ANGLE  = ANGLE_RIGHT;
+        spring_angle  = ANGLE_RIGHT;
         set_hurtbox(6, 24, 7, 26);
         break;
 
@@ -124,7 +119,7 @@ switch (spring_type) {
     case SPRING_DIAGONAL:
         sprite_index  = spr_dash_ring_diagonal;
         rainbow_index = spr_rainbow_ring_diagonal;
-        spring_ANGLE  = ANGLE_RIGHT;
+        spring_angle  = ANGLE_RIGHT_UP;
         set_hurtbox(9, 9, 9, 9);
         break;
 }
@@ -139,4 +134,12 @@ if (flip_x == true) {
 if (flip_y == true) {
     image_yscale = -1;
     spring_angle = 360 - spring_angle;
+}
+
+// Overlay:
+with (instance_create(x, y, obj_dash_ring_overlay)) {
+    overlay_handle = other.id;
+    image_xscale   = other.image_xscale;
+    image_yscale   = other.image_yscale;
+    image_angle    = other.image_angle;
 }
