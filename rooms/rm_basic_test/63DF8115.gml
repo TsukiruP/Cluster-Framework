@@ -1,3 +1,3 @@
 //gm82 fields begin
-spring_type= 2
+semi_solid=true
 //gm82 fields end

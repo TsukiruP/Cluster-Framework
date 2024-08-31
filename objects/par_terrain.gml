@@ -17,6 +17,16 @@ mask            =  true;
 // Flags:
 semi_solid = false; // Only the bottom half of the player's mask will collide, and only if their top half isn't also colliding
 can_crush  = false; // If the player is embedded inside this solid, they will die
+#define Other_4
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Field Initialization
+
+//field collision_layer: enum(0, 1)
+//field semi_solid: bool
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
