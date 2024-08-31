@@ -23,14 +23,14 @@ if (skill_id == SONIC_AUX_G) {
 
 // Air skills:
 else {
-    if (global.sonic_skill[skill_id] <= 1 && global.sonic_skill[SONIC_SHIELD] == true && status_shield_allow == true) {
+    if (global.sonic_skill[skill_id] <= 1 && status_shield_allow == true) {
         // Elemental shields:
-        if (status_shield >= SHIELD_FIRE) {
+        if (global.sonic_skill[SONIC_SHIELD] == true && status_shield >= SHIELD_FIRE) {
             return player_routine_shield();
         }
 
         // Insta-shield:
-        else if (global.sonic_skill[skill_id] == 1 && status_shield <= SHIELD_MAGNETIC) {
+        else if (global.sonic_skill[skill_id] == 1) {
             // Set status:
             status_shield_allow = false;
             status_insta_alarm  = 8;
