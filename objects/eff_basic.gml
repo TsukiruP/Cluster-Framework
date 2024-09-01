@@ -9,7 +9,7 @@ applies_to=self
 // Image speed:
 image_speed = 0;
 
-// Timeline initialization:
+// Timeline:
 ctl_initialize();
 
 // Effect variables:

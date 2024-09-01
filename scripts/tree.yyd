@@ -116,7 +116,7 @@
 				+Explosions
 					|ctl_explosion_small
 					|ctl_explosion_large
-					|ctl_explosion_badnik
+					|ctl_explosion_enemy
 					|ctl_explosion_water
 				+Splashes
 					|ctl_splash_0
@@ -220,6 +220,7 @@
 			|player_reaction_checkpoint
 			|player_reaction_spring
 			|player_reaction_item_box
+			|player_reaction_enemy
 		+Getters
 			|player_get_physics
 			|player_get_solids

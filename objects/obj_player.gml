@@ -9,7 +9,7 @@ applies_to=self
 // Image speed:
 image_speed = 0;
 
-// Timeline initialization:
+// Timeline:
 ctl_initialize();
 
 // Player slot:
@@ -400,26 +400,6 @@ if (game_ispaused()) {
 
 player_trait_debug();
 classic_trait_clock_up();
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Handle List
-
-// Exit if the stage is paused, text is active or dying:
-if (game_ispaused() || state_current == player_state_death) {
-    exit;
-}
-
-/*
-player_handle_layer();
-player_handle_ring();
-player_handle_checkpoint();
-player_handle_spring();
-player_handle_item_box();
-player_handle_badnik();
-player_handle_hint();
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603

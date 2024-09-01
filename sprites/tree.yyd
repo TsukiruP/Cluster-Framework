@@ -176,8 +176,8 @@
 			|spr_explosion_large
 			|spr_explosion_badnik
 			|spr_explosion_water
-		+Badniks
-			|spr_badnik_health
+		+Enemies
+			|spr_enemy_health
 		+Splashes
 			|spr_splash_0
 			|spr_splash_1

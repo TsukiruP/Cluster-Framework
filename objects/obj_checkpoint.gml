@@ -8,7 +8,7 @@ applies_to=self
 
 event_inherited();
 
-// Timeline initialization:
+// Timeline:
 ctl_initialize(ctl_checkpoint_inactive);
 
 // Hurtbox:

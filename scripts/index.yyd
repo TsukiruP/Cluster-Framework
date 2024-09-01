@@ -148,7 +148,7 @@ ctl_sonic_omochao
 player_handle_hint
 ctl_explosion_small
 ctl_explosion_large
-ctl_explosion_badnik
+ctl_explosion_enemy
 ctl_explosion_water
 ctl_splash_0
 ctl_splash_1
@@ -222,3 +222,4 @@ player_effect_queue
 script221
 ctl_spring_vertical
 ctl_spring_horizontal
+player_reaction_enemy

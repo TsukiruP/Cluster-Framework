@@ -1,4 +1,3 @@
 //gm82 fields begin
-spring_type= 2
-flip_y=false
+item_id= 6
 //gm82 fields end
