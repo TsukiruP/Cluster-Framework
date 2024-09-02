@@ -136,7 +136,7 @@ spr_splash_4
 spr_splash_3
 spr_explosion_small
 spr_explosion_large
-spr_explosion_badnik
+spr_explosion_enemy
 spr_explosion_water
 spr_ring
 spr_goal_ring
@@ -191,7 +191,7 @@ spr_knuckles_climb
 spr_knuckles_climb_dash
 spr_spike_left
 spr_spike_right
-spr_spike_up
+spr_spike
 spr_spike_down
 spr_homing_reticle
 spr_sonic_leap

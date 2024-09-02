@@ -16,7 +16,6 @@ set_hurtbox(20, 19, 20, 4);
 
 // Hitbox:
 set_hitbox(8, 18, 7, 4);
-hitbox_element = ELEM_LIGHTNING
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1

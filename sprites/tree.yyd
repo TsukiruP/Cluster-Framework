@@ -135,7 +135,7 @@
 		+Item Box
 			|spr_item_box
 			|spr_item_icon
-		|spr_spike_up
+		|spr_spike
 		+Enemies
 			|spr_spinner
 		+Water
@@ -174,7 +174,7 @@
 		+Explosions
 			|spr_explosion_small
 			|spr_explosion_large
-			|spr_explosion_badnik
+			|spr_explosion_enemy
 			|spr_explosion_water
 		+Enemies
 			|spr_enemy_health

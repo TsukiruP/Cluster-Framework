@@ -5,8 +5,11 @@ action_id=603
 applies_to=self
 */
 /// Help Initialization
-/*
+
 event_inherited();
+
+// Reaction:
+reaction_index = player_reaction_hint;
 
 // Player handle:
 player_handle = noone;

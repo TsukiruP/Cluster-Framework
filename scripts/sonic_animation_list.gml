@@ -18,6 +18,7 @@ player_add_animation(CHAR_SONIC, "land",          ctl_sonic_land);
 
 // Omochao:
 player_add_animation(CHAR_SONIC, "omochao",       ctl_sonic_omochao);
+player_add_animation(CHAR_SONIC, "omochao_end",   ctl_sonic_omochao_end);
 
 // Turn:
 player_add_animation(CHAR_SONIC, "turn",          ctl_sonic_turn) //,      tml_sonic_turn_tag);

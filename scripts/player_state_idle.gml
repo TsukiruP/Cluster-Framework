@@ -15,6 +15,11 @@ switch (argument0) {
             exit;
         }
 
+        // Hint:
+        if (hint_allow == false) {
+            return false;
+        }
+
         // Fall:
         if (on_ground == false) {
             return player_set_state(player_state_air);

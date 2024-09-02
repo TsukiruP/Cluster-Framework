@@ -219,7 +219,10 @@ player_reaction_ring
 player_state_jump
 player_routine_shield
 player_effect_queue
-script221
+player_reaction_hint
 ctl_spring_vertical
 ctl_spring_horizontal
 player_reaction_enemy
+ctl_sonic_omochao_end
+player_state_hint
+script227

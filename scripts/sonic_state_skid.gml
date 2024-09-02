@@ -49,6 +49,11 @@ switch (argument0) {
                 }
             }
 
+            // Cancel
+            if (x_speed != 0 && sign(x_speed) != image_xscale) {
+                return player_set_state(player_state_run);
+            }
+
             // Finish animation:
             if (animation_finished == true) {
                 switch (animation_current) {

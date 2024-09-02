@@ -40,8 +40,8 @@ state_previous = state_current;
 state_changed  = false;
 state_start    = true;
 
-// Idle variables:
-hint_wanted = false;
+//
+hint_allow = true;
 
 // Jump variables:
 jump_aux     =  false;
@@ -728,7 +728,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Animation Target
+/// Animation
 
 // Exit if the stage is paused:
 if (game_ispaused(ctrl_pause)) {
@@ -744,8 +744,9 @@ switch (state_target) {
     // Idle:
     case player_state_idle:
         if (cliff_direction == 0) {
-            if (animation_target != "stand" && animation_target != "wait" && animation_target != "ready" && animation_target != "land" && animation_target != "omochao" &&
-                animation_target != "look_end" && animation_target != "crouch_end") {
+            if (animation_target != "stand" && animation_target != "wait" && animation_target != "ready" && animation_target != "land" &&
+                animation_target != "look_end" && animation_target != "crouch_end" &&
+                animation_target != "look" && animation_target != "omochao" && animation_target != "omochao_end") {
                 player_set_animation("stand");
             }
         } else {
@@ -866,7 +867,7 @@ switch (state_target) {
         }
         break;
 
-    // Death:
+    // Bound:
     case player_state_bound:
         if (animation_target != "spin") {
             player_set_animation("spin");

@@ -5,17 +5,11 @@ action_id=603
 applies_to=self
 */
 /// Omochao Initialization
-/*
+
 event_inherited();
 
-// Main:
-main_left     = 11;
-main_right    = 10;
-main_top      = 11;
-main_bottom   = 10;
-
-main_offset_x = 2;
-main_offset_y = 5;
+// Hurtbox:
+set_hurtbox(11, 11, 10, 10, 2, 5);
 
 // Draw variables:
 draw_x = x;
@@ -27,7 +21,7 @@ action_id=603
 applies_to=self
 */
 /// Animate
-/*
+
 // Exit if the stage is paused:
 if (game_ispaused(ctrl_pause)) {
     exit;
@@ -35,13 +29,7 @@ if (game_ispaused(ctrl_pause)) {
 
 // Match player:
 if (instance_exists(player_handle)) {
-    if (player_handle.hint_wanted == true) {
-        // Put down Omochao:
-        if (ctrl_text.text_clear == true && player_handle.animation_current == "omochao" && player_handle.animation_reverse == false) {
-            player_handle.animation_trigger = true;
-            player_handle.animation_reverse = true;
-        }
-
+    if (player_handle.hint_allow == false) {
         // Change sprite index:
         switch (player_handle.character_id) {
             // Sonic:
@@ -50,12 +38,21 @@ if (instance_exists(player_handle)) {
                 break;
         }
 
-        // Clear text:
-        if (player_handle.hint_wanted == false) {
-            ctrl_text.text_clear = true;
+        with (player_handle) {
+            // Clear text:
+            if (ctrl_text.text_clear == true && animation_current == "omochao") {
+                    player_set_animation("omochao_end");
+            }
+
+            // Reset hint:
+            if (ctrl_text.text_alpha[0] == 0 && animation_current == "stand") {
+                hint_allow = true;
+            }
         }
-    } else {
-        // Reset sprite index:
+    }
+
+    // Reset immediately:
+    if (player_handle.hint_allow == true) {
         sprite_index = spr_omochao_idle;
     }
 }
@@ -97,7 +94,7 @@ action_id=603
 applies_to=self
 */
 /// Draw Omochao
-/*
+
 // Omochao:
 draw_sprite_ext(sprite_index, image_index, draw_x, draw_y, image_xscale, 1, 0, c_white, 1);
 

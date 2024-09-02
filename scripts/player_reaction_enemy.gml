@@ -8,27 +8,43 @@ collision       = argument1;
 
 // Player advantage:
 if ((collision & COLL_HURT) || ((collision & COLL_HURT_RADIUS) && status_invin == INVIN_BUFF)) {
-    // Subtract:
-    if (y > reaction_handle.y || sign(y_speed) == -1) {
-        y_speed -= 1;
+    // Basic react:
+    if (reaction_handle.enemy_class == ENE_BASIC) {
+        // Subtract:
+        if (y > reaction_handle.y || sign(y_speed) == -1) {
+            y_speed -= 1;
+        }
+
+        // Rebound:
+        else if (y < reaction_handle.y && sign(y_speed) == 1) {
+            y_speed *= -1;
+        }
     }
 
-    // Rebound:
-    else if (y < reaction_handle.y && sign(y_speed) == 1) {
-        y_speed *= -1;
+    // Super react:
+    if (reaction_handle.enemy_class == ENE_SUPER && reaction_handle.enemy_invin == 0) {
+        // Set speed:
+        x_speed *= -0.5;
+        y_speed *= -0.5;
+
+        // Decrease health:
+        reaction_handle.enemy_health -= 1;
+        reaction_handle.enemy_invin   = 32;
     }
 
     // Score:
-    global.game_score += 100;
+    if (reaction_handle.enemy_class == ENE_BASIC || (reaction_handle.enemy_class == ENE_SUPER && (reaction_handle.enemy_health == 0 || status_invin == INVIN_BUFF))) {
+        global.game_score += 100 + (400 * reaction_handle.enemy_class);
 
-    // Destroy:
-    with (reaction_handle) {
-        effect_create(ctl_explosion_enemy, x, y, -depth);
-        instance_destroy();
+        // Destroy:
+        with (reaction_handle) {
+            effect_create(ctl_explosion_enemy, x, y, -depth);
+            instance_destroy();
+        }
+
+        // Play sound:
+        sound_play_single("snd_destroy");
     }
-
-    // Play sound:
-    sound_play_single("snd_destroy");
 }
 
 // Enemy advantage:

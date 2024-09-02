@@ -9,25 +9,16 @@ switch (argument0) {
     // Step:
     case STATE_STEP:
         // Input:
-        switch (input_x_direction) {
-            // Left:
-            case -1:
-                if (x_speed > -top_speed) {
-                    x_speed -= acceleration * 2;
-                }
-                break;
-
-            // Right:
-            case 1:
-                if (x_speed < top_speed) {
-                    x_speed += acceleration * 2;
-                }
-                break;
-        }
-
-        // Direction:
         if (input_x_direction != 0) {
             image_xscale = input_x_direction;
+
+            if (abs(x_speed) < top_speed || sign(x_speed) != input_x_direction) {
+                x_speed += (acceleration * 2) * input_x_direction;
+
+                if (abs(x_speed) > top_speed && sign(x_speed) == input_x_direction) {
+                    x_speed = top_speed * input_x_direction;
+                }
+            }
         }
 
         // Movement:

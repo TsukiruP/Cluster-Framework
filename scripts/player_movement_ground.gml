@@ -1,7 +1,7 @@
 /// player_movement_ground()
 // Performs a movement step for the player on the ground.
 
-var ox, oy, total_steps, step, hit_object, hit_wall, hit_floor, hit_push;
+var ox, oy, total_steps, step, hit_object, hit_wall, hit_floor;
 
 // Snap to moving platforms:
 if (instance_exists(ground_id)) {
@@ -71,6 +71,8 @@ repeat (total_steps) {
         // Stop if moving towards wall:
         if (sign(x_speed) == wall_sign) {
             x_speed = 0;
+
+            player_wall_push(hit_push);
         }
     }
 
@@ -88,23 +90,6 @@ repeat (total_steps) {
     // Fall off:
     else {
         on_ground = false;
-    }
-
-    // Push collision:
-    hit_push = player_collision_wall(1);
-
-    if (hit_push != noone) {
-        var push_direction;
-
-        if (mask_rotation mod 180 != 0) {
-            push_direction = sign(hit_push.y - y) * -dsin(gravity_angle());
-        } else {
-            push_direction = sign(hit_push.x - x) * dcos(gravity_angle());
-        }
-
-        if (input_x_direction == push_direction) {
-            player_wall_push(hit_push);
-        }
     }
 
     // Handle mask rotation:

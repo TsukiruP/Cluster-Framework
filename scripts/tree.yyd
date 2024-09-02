@@ -42,10 +42,9 @@
 						+Wait
 							|ctl_sonic_wait_leader
 							|ctl_sonic_wait_partner
-						+Misc.
-							|ctl_sonic_ready
-							|ctl_sonic_land
+						+Omochao
 							|ctl_sonic_omochao
+							|ctl_sonic_omochao_end
 					+Turn
 						|ctl_sonic_turn
 						|ctl_sonic_turn_brake
@@ -75,16 +74,19 @@
 					+Spring
 						|ctl_sonic_spring_flight
 						|ctl_sonic_spring_fall
-					|ctl_sonic_breathe
 					+Goal
 					|ctl_sonic_hurt
 					|ctl_sonic_death
+					|ctl_sonic_breathe
 					+Skid
 						|ctl_sonic_somersault
 						|ctl_sonic_skid
 						|ctl_sonic_skid_end
 					|ctl_sonic_hammer
 					|ctl_sonic_insta
+					+Misc.
+						|ctl_sonic_ready
+						|ctl_sonic_land
 			+Props
 				+Checkpoint
 					|ctl_checkpoint_inactive
@@ -221,6 +223,7 @@
 			|player_reaction_spring
 			|player_reaction_item_box
 			|player_reaction_enemy
+			|player_reaction_hint
 		+Getters
 			|player_get_physics
 			|player_get_solids
@@ -291,4 +294,5 @@
 	|player_effect_splash
 	|player_routine_insta
 	|player_routine_shield_old
-|script221
+	|player_state_hint
+|script227

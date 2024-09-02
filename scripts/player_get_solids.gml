@@ -20,7 +20,7 @@ y2 = y_int - (sine * wall_radius * 2) + (csine * y_radius * 2);
 // Evaluate all solids:
 with (par_terrain) {
     // Continue:
-    if (collision_layer > 0 && collision_layer != other.collision_layer) {
+    if (collision_layer > -1 && collision_layer != other.collision_layer) {
         continue; // Layer mismatch
     }
 
