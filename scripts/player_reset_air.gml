@@ -8,5 +8,3 @@ mask_rotation       = angle;
 ground_id           = noone;
 on_ground           = false;
 on_surface          = false;
-
-status_shield_allow = true;

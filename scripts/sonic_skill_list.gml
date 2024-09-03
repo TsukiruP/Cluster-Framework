@@ -23,7 +23,7 @@ if (skill_id == SONIC_AUX_G) {
 
 // Air skills:
 else {
-    if (global.sonic_skill[skill_id] <= 1 && status_shield_allow == true) {
+    if (global.sonic_skill[skill_id] <= 1 && status_shield_state == 0) {
         // Elemental shields:
         if (global.sonic_skill[SONIC_SHIELD] == true && status_shield >= SHIELD_FIRE) {
             return player_routine_shield();
@@ -32,11 +32,8 @@ else {
         // Insta-shield:
         else if (global.sonic_skill[skill_id] == 1) {
             // Set status:
-            status_shield_allow = false;
+            status_shield_state = 1;
             status_insta_alarm  = 8;
-
-            // Queue effect:
-            effect_queue = EFF_INSTA;
 
             // Set animation:
             player_set_animation("insta");

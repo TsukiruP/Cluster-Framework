@@ -45,9 +45,6 @@ switch (status_shield) {
         break;
 }
 
-// Queue effect:
-effect_queue = EFF_ELEMENT;
-
 // Return:
 if (status_shield == SHIELD_BUBBLE) {
     player_set_state(player_state_bound);

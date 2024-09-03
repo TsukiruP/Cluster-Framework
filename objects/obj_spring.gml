@@ -12,12 +12,12 @@ event_inherited();
 reaction_index = player_reaction_spring;
 
 // Spring variables:
-spring_type     = SPRING_VERTICAL;
-spring_angle    = 0;
-spring_strength = 8;
+spring_orientation = ORIEN_VERTICAL;
+spring_angle       = 0;
+spring_strength    = 8;
 
-spring_active   = false;
-spring_sfx      = 0;
+spring_active      = false;
+spring_sfx         = 0;
 
 // Flip variables:
 flip_x = false;
@@ -65,19 +65,19 @@ applies_to=self
 */
 /// Field Initialization
 
-//field spring_type: enum(0, 1, 2)
+//field spring_orientation: enum(0, 1, 2)
 //field spring_strength: number
 //field flip_x: bool
 //field flip_y: bool
 
 /*preview
-    var spring_type, flip_x, flip_y;
+    var spring_orientation, flip_x, flip_y;
 
-    spring_type = Field("spring_type", 0);
-    flip_x      = Field("flip_x", 0);
-    flip_y      = Field("flip_y", 0);
+    spring_orientation = Field("spring_orientation", 0);
+    flip_x             = Field("flip_x", 0);
+    flip_y             = Field("flip_y", 0);
 
-    switch (spring_type) {
+    switch (spring_orientation) {
         case 0:
             sprite_index = Sprite("spr_spring_vertical",  0);
             break;
@@ -110,7 +110,7 @@ applies_to=self
 /// Spring Initialization
 
 // Sprite index:
-switch (spring_type) {
+switch (spring_orientation) {
     // Vertical:
     case SPRING_VERTICAL:
         sprite_index = spr_spring_vertical;

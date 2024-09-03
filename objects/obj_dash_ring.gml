@@ -46,14 +46,14 @@ event_inherited();
 //field rainbow_ring: bool
 
 /*preview
-    var spring_type, flip_x, flip_y;
+    var spring_orientation, flip_x, flip_y;
 
-    spring_type  = Field("spring_type", 0);
-    flip_x       = Field("flip_x", 0);
-    flip_y       = Field("flip_y", 0);
-    rainbow_ring = Field("rainbow_ring", 0);
+    spring_orientation = Field("spring_orientation", 0);
+    flip_x             = Field("flip_x", 0);
+    flip_y             = Field("flip_y", 0);
+    rainbow_ring       = Field("rainbow_ring", 0);
 
-    switch (spring_type) {
+    switch (spring_orientation) {
         case 0:
             if (rainbow_ring == true) {
                 sprite_index = Sprite("spr_rainbow_ring_vertical",  0);
@@ -98,7 +98,7 @@ applies_to=self
 /// Dash Ring Initialization
 
 // Sprite index:
-switch (spring_type) {
+switch (spring_orientation) {
     // Vertical:
     case SPRING_VERTICAL:
         sprite_index  = spr_dash_ring_vertical;

@@ -95,4 +95,22 @@ switch (argument0) {
             bound_state = 0;
         }
         break;
+
+    // Animate:
+    case STATE_ANIMATE:
+        if (status_shield_state >= 1) {
+            switch (status_shield) {
+                // Insta-shield:
+                default:
+                    with (instance_create(x, y, eff_player)) {
+                        ctl_initialize(ctl_shield_insta);
+
+                        depth         = other.depth;
+                        image_xscale  = other.image_xscale;
+                        image_angle   = gravity_angle(other);
+                        player_handle = other.id;
+                    }
+            }
+        }
+        break;
 }

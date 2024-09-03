@@ -4,9 +4,11 @@
 var new_angle, sine, csine;
 
 // Confirm assignment:
-ground_id     = argument0;
-on_ground     = true;
-on_surface    = false;
+ground_id           = argument0;
+on_ground           = true;
+on_surface          = false;
+
+status_shield_state = 0;
 
 // Calculate ground angle:
 new_angle = player_get_angle(ground_id, mask_rotation);
