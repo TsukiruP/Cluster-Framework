@@ -23,7 +23,7 @@ roll_deceleration_up   = 0.078125;
 roll_deceleration_down = 0.3125;
 
 // Underwater multiplier:
-if (physics_type == PHYS_WATER) {
+if (physics_id == PHYS_WATER) {
     // Horizontal variables:
     top_speed     *= 0.5;
     acceleration  *= 0.5;

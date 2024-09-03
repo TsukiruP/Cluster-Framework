@@ -14,7 +14,7 @@ debug        = false;
 pause_ignore = false;
 
 // Transition variables:
-transition_type  = TRANS_FADE;
+transition_id    = TRANS_FADE;
 transition_state = 0;
 transition_alarm = 0;
 transition_timer = 0;
@@ -92,7 +92,7 @@ if (transition_alarm > 0) {
     transition_alarm -= 1;
 
     if (transition_alarm <= 0) {
-        if ((transition_type != TRANS_CARD && transition_state == 1) || (transition_type == TRANS_CARD && transition_state == 2)) {
+        if ((transition_id != TRANS_CARD && transition_state == 1) || (transition_id == TRANS_CARD && transition_state == 2)) {
             // Open debug topic:
             if (debug == true) {
                 topic_set_message("Debug");
@@ -107,7 +107,7 @@ if (transition_alarm > 0) {
                 }
 
                 // Retry has its own room_goto call:
-                if (transition_type != TRANS_RETRY) {
+                if (transition_id != TRANS_RETRY) {
                     checkpoint_set(true);
                     room_goto(transition_room);
                 }
@@ -115,7 +115,7 @@ if (transition_alarm > 0) {
                 transition_state += 1;
 
                 // Title card calls a delay:
-                if (transition_type == TRANS_CARD) {
+                if (transition_id == TRANS_CARD) {
                     transition_alarm = 90;
                 }
             }
@@ -124,14 +124,14 @@ if (transition_alarm > 0) {
 }
 
 // Timer:
-if (transition_type == TRANS_CARD) {
+if (transition_id == TRANS_CARD) {
     transition_timer += 1;
 } else {
     transition_timer = 0;
 }
 
 // Alpha:
-if (transition_type == TRANS_CARD) {
+if (transition_id == TRANS_CARD) {
     if (transition_state >= 3 && character_alpha > 0) {
         character_alpha -= 0.05;
     }
@@ -150,17 +150,17 @@ if (game_ispaused(ctrl_pause) && pause_ignore == false) {
 }
 
 // Background target - bottom of screen:
-if ((transition_type == TRANS_MENU && transition_state < 2) || (transition_type == TRANS_CARD && transition_state < 4)) {
+if ((transition_id == TRANS_MENU && transition_state < 2) || (transition_id == TRANS_CARD && transition_state < 4)) {
     background_y_target = global.display_height + 15;
 }
 
 // Background target - retry letterbox:
-else if (transition_type == TRANS_RETRY && (transition_state < 2 || transition_state == 4)) {
+else if (transition_id == TRANS_RETRY && (transition_state < 2 || transition_state == 4)) {
     background_y_target = 32;
 }
 
 // Background target - middle of screen:
-else if (transition_type == TRANS_RETRY && (transition_state == 2 || transition_state == 3)) {
+else if (transition_id == TRANS_RETRY && (transition_state == 2 || transition_state == 3)) {
     background_y_target = global.display_height / 2 + 15;
 }
 
@@ -174,7 +174,7 @@ if (background_y_current != background_y_target) {
     var background_y_factor, background_x_distance;
 
     // Background factor:
-    if (transition_type == TRANS_RETRY) {
+    if (transition_id == TRANS_RETRY) {
         background_y_factor = 15;
     } else {
         background_y_factor = 5;
@@ -190,7 +190,7 @@ if (background_y_current != background_y_target) {
         background_y_speed = 0;
 
         // Transition behavior:
-        switch (transition_type) {
+        switch (transition_id) {
             // Menu:
             case TRANS_MENU:
                 // Move to change rooms:
@@ -217,13 +217,13 @@ applies_to=self
 /// Player Start
 
 // Exit if the stage is paused:
-if ((game_ispaused(ctrl_pause) && pause_ignore == false) || (transition_type != TRANS_CARD && transition_type != TRANS_RETRY)) {
+if ((game_ispaused(ctrl_pause) && pause_ignore == false) || (transition_id != TRANS_CARD && transition_id != TRANS_RETRY)) {
     exit;
 }
 
 if (instance_exists(player_get_instance(0))) {
     // Hide HUD:
-    if ((room_start == START_RUN || (room_start == START_READY && transition_type == TRANS_CARD)) && transition_state == 3) {
+    if ((room_start == START_RUN || (room_start == START_READY && transition_id == TRANS_CARD)) && transition_state == 3) {
         if (instance_exists(ctrl_hud)) {
             with (ctrl_hud) {
                 hud_hide      = true;
@@ -235,7 +235,7 @@ if (instance_exists(player_get_instance(0))) {
     // Run start:
     if (room_start == START_RUN && room_run_target != -1 && transition_state >= 4) {
         // Reset target:
-        if ((transition_type == TRANS_RETRY && (global.checkpoint_x != -1 && global.checkpoint_y != -1)) || player_get_instance(0).x >= room_run_target) {
+        if ((transition_id == TRANS_RETRY && (global.checkpoint_x != -1 && global.checkpoint_y != -1)) || player_get_instance(0).x >= room_run_target) {
             room_run_target = -1;
         }
 
@@ -255,7 +255,7 @@ applies_to=self
 */
 /// Fade
 
-if (transition_type == TRANS_FADE) {
+if (transition_id == TRANS_FADE) {
     switch (transition_state) {
         // 0 - Start fade:
         case 0:
@@ -301,7 +301,7 @@ if (game_ispaused(ctrl_pause) && pause_ignore == false) {
     exit;
 }
 
-if (transition_type == TRANS_CARD) {
+if (transition_id == TRANS_CARD) {
     // Banner scroll:
     banner_y_scroll += banner_y_scroll_speed;
     banner_y_scroll  = banner_y_scroll mod (sprite_get_height(spr_title_card_banner));
@@ -453,7 +453,7 @@ if (game_ispaused(ctrl_pause) && pause_ignore == false) {
     exit;
 }
 
-if (transition_type == TRANS_RETRY) {
+if (transition_id == TRANS_RETRY) {
     // Background scroll:
     background_x_scroll += background_x_scroll_speed;
     background_x_scroll  = background_x_scroll mod sprite_get_width(spr_transition_background);
@@ -604,7 +604,7 @@ applies_to=self
 */
 /// Draw Menu Transition
 
-if (transition_type == TRANS_MENU) {
+if (transition_id == TRANS_MENU) {
     draw_sprite(spr_transition_background, 0, view_xview[view_current], view_yview[view_current] + background_y_current);
 }
 /*"/*'/**//* YYD ACTION
@@ -614,7 +614,7 @@ applies_to=self
 */
 /// Draw Title Card Transition
 
-if (transition_type == TRANS_CARD) {
+if (transition_id == TRANS_CARD) {
     var transition_character;
 
     // Font:
@@ -658,7 +658,7 @@ applies_to=self
 */
 /// Draw Retry Transition
 
-if (transition_type == TRANS_RETRY) {
+if (transition_id == TRANS_RETRY) {
     // Font:
     draw_set_font(global.font_title_card);
     draw_set2(fa_center, fa_middle);

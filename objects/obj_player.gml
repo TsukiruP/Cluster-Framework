@@ -16,7 +16,7 @@ ctl_initialize();
 player_slot = 0;
 
 // Physics variables:
-physics_type       = PHYS_DEFAULT;
+physics_id         = PHYS_DEFAULT;
 
 top_speed          = 6;
 max_speed          = 16;
@@ -554,7 +554,7 @@ if (game_ispaused()) {
 }
 
 // Don't bother if in the middle of respawning/dying:
-if (state_current != player_state_death && physics_type == PHYS_WATER && !instance_exists(ctrl_tally)) {
+if (state_current != player_state_death && physics_id == PHYS_WATER && !instance_exists(ctrl_tally)) {
     // Refill air if in breathe state or bubble shield:
     if (status_shield == SHIELD_BUBBLE) {
         air_remaining = 30;
@@ -642,14 +642,14 @@ applies_to=self
 // Update physics type:
 if (instance_exists(obj_water_surface)) {
     if (y < obj_water_surface.y) {
-        if (physics_type != PHYS_DEFAULT) {
-            physics_type = PHYS_DEFAULT;
+        if (physics_id != PHYS_DEFAULT) {
+            physics_id = PHYS_DEFAULT;
         }
     }
 
     if (y > obj_water_surface.y) {
-        if (physics_type != PHYS_WATER) {
-            physics_type = PHYS_WATER;
+        if (physics_id != PHYS_WATER) {
+            physics_id = PHYS_WATER;
 
             // Clear elemental shields:
             if (status_shield == SHIELD_FIRE || status_shield == SHIELD_LIGHTNING) {
@@ -675,7 +675,7 @@ if (game_ispaused()) {
 
 // Don't bother if in the middle of respawning/dying:
 if (state_current != player_state_death && !instance_exists(ctrl_tally)) {
-    if (physics_type == PHYS_WATER) {
+    if (physics_id == PHYS_WATER) {
         // Refill air if in breathe state or bubble shield:
         if (status_shield != SHIELD_BUBBLE) {
             if (air_alarm > 0) {

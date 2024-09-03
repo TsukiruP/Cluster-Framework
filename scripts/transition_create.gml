@@ -1,7 +1,7 @@
 /// transition_create(room, [transition])
 
 transition                 = instance_create(0, 0, ctrl_transition);
-transition.transition_type = TRANS_FADE;
+transition.transition_id   = TRANS_FADE;
 transition.transition_room = argument0;
 
 with (transition) {
@@ -10,7 +10,7 @@ with (transition) {
 
 // Override transition type:
 if (argument_count >= 2) {
-    transition.transition_type = argument[1];
+    transition.transition_id = argument[1];
 }
 
 if (ctrl_audio.music_instance != -1) {

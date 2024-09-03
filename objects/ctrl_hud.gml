@@ -128,7 +128,7 @@ if (global.misc_hud == 1) {
         with (player_get_instance(0)) {
             // Hide:
             if (state_current != player_state_death) {
-                if (physics_type == PHYS_WATER && status_shield != SHIELD_BUBBLE) {
+                if (physics_id == PHYS_WATER && status_shield != SHIELD_BUBBLE) {
                     other.air_hide = false;
                 } else {
                     other.air_hide = true;

@@ -72,7 +72,7 @@ repeat (total_steps) {
         if (sign(x_speed) == wall_sign) {
             x_speed = 0;
 
-            player_wall_push(hit_push);
+            player_wall_push(hit_wall);
         }
     }
 
