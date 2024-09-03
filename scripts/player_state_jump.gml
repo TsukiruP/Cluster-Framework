@@ -98,8 +98,19 @@ switch (argument0) {
 
     // Animate:
     case STATE_ANIMATE:
-        if (status_shield_state >= 1) {
+        if (status_shield_state == 1) {
+            // Start animation:
             switch (status_shield) {
+                // Bubble shield:
+                case SHIELD_BUBBLE:
+                    // Set timeline:
+                    if (instance_exists(shield_handle)) {
+                        with (shield_handle) {
+                            event_user(1);
+                        }
+                    }
+                    break;
+
                 // Insta-shield:
                 default:
                     with (instance_create(x, y, eff_player)) {
@@ -111,6 +122,9 @@ switch (argument0) {
                         player_handle = other.id;
                     }
             }
+
+            // No more effects:
+            status_shield_state = 2;
         }
         break;
 }

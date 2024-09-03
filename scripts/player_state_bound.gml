@@ -30,15 +30,8 @@ switch (argument0) {
         if (on_ground == true) {
             // Set state:
             player_set_state(player_state_jump, true);
+            status_shield_state = 1;
             animation_skip      = true;
-            status_shield_allow = true;
-
-            // Set timeline:
-            if (instance_exists(shield_handle)) {
-                with (shield_handle) {
-                    event_user(1);
-                }
-            }
 
             // Play sound:
             sound_play_single("snd_shield_bubble_bound");
@@ -63,6 +56,16 @@ switch (argument0) {
         if (state_target != player_state_jump) {
             jump_aux    = false;
             bound_state = 0;
+        }
+        break;
+
+    // Animate:
+    case STATE_ANIMATE:
+        // Set timeline:
+        if (instance_exists(shield_handle)) {
+            with (shield_handle) {
+                event_user(0);
+            }
         }
         break;
 }
