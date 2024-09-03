@@ -42,8 +42,7 @@
 			|obj_hint_box
 			|obj_omochao
 	+Obstacles
-		+Spikes
-			|par_spike
+		|par_spike
 	+Effects
 		|eff_basic
 		+Player

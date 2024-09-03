@@ -1,5 +1,5 @@
 spr_sonic_skid
-mask_large
+spr_blockade_vertical
 mask_big
 mask_mid
 mask_small
@@ -284,3 +284,4 @@ fnt_score_s4e2
 fnt_time_s4e2
 
 spr_pause_menu
+spr_blockade_horizontal

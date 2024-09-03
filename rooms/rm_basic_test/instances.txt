@@ -15,11 +15,7 @@ obj_basic_test_collision_01,864,864,209B2701,0,1,1,4294967295,0,0
 obj_basic_test_collision_03,960,768,E19506C0,0,1,1,4294967295,0,0
 obj_basic_test_collision_01,960,720,7C9754EA,0,1,1,4294967295,0,0
 obj_basic_test_collision_01,1056,720,2B4D2146,0,1,1,4294967295,0,0
-obj_basic_test_collision_08,1152,672,5DD43218,0,1,1,4294967295,0,0
-obj_basic_test_collision_09,1248,672,6B4DC034,0,1,1,4294967295,0,0
 obj_basic_test_collision_01,1056,768,01996125,0,1,1,4294967295,0,0
-obj_basic_test_collision_01,1152,768,480D7754,0,1,1,4294967295,0,0
-obj_basic_test_collision_01,1248,768,A540E4C4,0,1,1,4294967295,0,0
 obj_basic_test_collision_28,672,720,D1D96F07,0,1,1,4294967295,0,1
 obj_basic_test_collision_28,768,720,445FB34C,0,1,1,4294967295,0,1
 obj_basic_test_collision_28,864,720,F1DFBE9F,0,1,1,4294967295,0,1
@@ -27,5 +23,5 @@ obj_basic_test_collision_08,576,768,8B41D5D5,0,1,1,4294967295,0,0
 obj_basic_test_collision_01,576,864,87608800,0,1,1,4294967295,0,0
 obj_basic_test_collision_28,576,720,63DF8115,0,1,1,4294967295,0,1
 obj_basic_test_collision_01,960,864,E27BBB3F,0,1,1,4294967295,0,0
-obj_basic_test_collision_01,1344,768,2C29013A,0,1,1,4294967295,0,0
-obj_spring,944,848,6F32BF0F,0,1,1,4294967295,0,0
+par_spike,944,848,F69801F1,0,1,1,4294967295,0,0
+par_spike,912,848,C27A77C7,0,1,1,4294967295,0,0

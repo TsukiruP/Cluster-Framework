@@ -120,7 +120,7 @@ switch (spring_type) {
         sprite_index  = spr_dash_ring_diagonal;
         rainbow_index = spr_rainbow_ring_diagonal;
         spring_angle  = ANGLE_RIGHT_UP;
-        set_hurtbox(9, 9, 9, 9);
+        set_hurtbox(7, 7, 7, 7);
         break;
 }
 

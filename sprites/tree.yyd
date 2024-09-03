@@ -135,7 +135,6 @@
 		+Item Box
 			|spr_item_box
 			|spr_item_icon
-		|spr_spike
 		+Enemies
 			|spr_spinner
 		+Water
@@ -148,6 +147,11 @@
 				|spr_omochao_idle
 				|spr_omochao_sonic
 		|spr_goal_ring
+	+Obstacles
+		|spr_spike
+		+Blockades
+			|spr_blockade_vertical
+			|spr_blockade_horizontal
 	+Effects
 		+Player
 			|spr_trail
@@ -230,7 +234,6 @@
 	+Low
 	+High
 	+Masks
-		|mask_large
 		|mask_big
 		|mask_mid
 		|mask_small
