@@ -119,7 +119,10 @@ applies_to=self
 /// Status Initialization
 
 // Shield variables:
-status_shield       = SHIELD_NONE;
+status_shield         = SHIELD_NONE;
+status_shield_allow   = true;
+status_shield_animate = false;
+
 status_shield_state = 0;
 
 // Invincibility variables:
@@ -144,9 +147,6 @@ action_id=603
 applies_to=self
 */
 /// Effect Initialization
-
-// Effect queue:
-effect_queue = -1;
 
 // Spin dash charge:
 spin_dash_charge = 0;

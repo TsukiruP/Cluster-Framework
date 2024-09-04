@@ -30,6 +30,13 @@ if (player_handle.status_invin != INVIN_BUFF) {
             }
             break;
 
+        // Bubble:
+        case SHIELD_BUBBLE:
+            if (ctl_index != ctl_shield_bubble && ctl_index != ctl_shield_bubble_bound && ctl_index != ctl_shield_bubble_recoil) {
+                timeline_set(ctl_shield_bubble);
+            }
+            break;
+
         // Fire:
         case SHIELD_FIRE:
             if (ctl_index != ctl_shield_fire && ctl_index != ctl_shield_fire_dash) {
@@ -37,17 +44,10 @@ if (player_handle.status_invin != INVIN_BUFF) {
             }
             break;
 
-        // Bubble:
+        // Lightning:
         case SHIELD_LIGHTNING:
             if (ctl_index != ctl_shield_lightning) {
                 timeline_set(ctl_shield_lightning);
-            }
-            break;
-
-        // Bubble:
-        case SHIELD_BUBBLE:
-            if (ctl_index != ctl_shield_bubble && ctl_index != ctl_shield_bubble_bound && ctl_index != ctl_shield_bubble_recoil) {
-                timeline_set(ctl_shield_bubble);
             }
             break;
 
@@ -106,15 +106,15 @@ applies_to=self
 /// Set Index
 
 switch (player_handle.status_shield) {
+    // Bubble bound:
+    case SHIELD_BUBBLE:
+        timeline_set(ctl_shield_bubble_bound);
+        break;
+
     // Fire dash:
     case SHIELD_FIRE:
         image_xscale = player_handle.image_xscale;
         timeline_set(ctl_shield_fire_dash);
-        break;
-
-    // Bubble bound:
-    case SHIELD_BUBBLE:
-        timeline_set(ctl_shield_bubble_bound);
         break;
 }
 #define Other_11
@@ -158,7 +158,7 @@ if (sprite_exists(sprite_index)) {
     }
 
     // Switch to bubble shield shell:
-    else if (player_handle.status_shield == SHIELD_BUBBLE) {
+    else if (player_handle.status_shield == SHIELD_BUBBLE && player_handle.status_invin != INVIN_BUFF) {
         draw_sprite_ext(spr_shield_bubble_shell, ctl_time_previous div 12, x, y, image_xscale, 1, player_rotation, c_white, image_alpha);
     }
 

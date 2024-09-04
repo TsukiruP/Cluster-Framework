@@ -98,8 +98,8 @@ switch (argument0) {
 
     // Animate:
     case STATE_ANIMATE:
-        if (status_shield_state == 1) {
-            // Start animation:
+        // Animate shield:
+        if (status_shield_animate == true) {
             switch (status_shield) {
                 // Bubble shield:
                 case SHIELD_BUBBLE:
@@ -107,6 +107,52 @@ switch (argument0) {
                     if (instance_exists(shield_handle)) {
                         with (shield_handle) {
                             event_user(1);
+                        }
+                    }
+                    break;
+
+                // Fire dash:
+                case SHIELD_FIRE:
+                    // Camera lag:
+                    ctrl_camera.camera_lag_alarm = 16;
+
+                    // Set timeline:
+                    if (instance_exists(shield_handle)) {
+                        with (shield_handle) {
+                            event_user(0);
+                        }
+                    }
+                    break;
+
+                // Lightning jump:
+                case SHIELD_LIGHTNING:
+                    // Sparks:
+                    for (i = 0; i < 4; i += 1) {
+                        var spark_handle;
+
+                        spark_handle         = instance_create(floor(x), floor(y), eff_basic);
+                        spark_handle.e_speed = 2;
+
+                        with (spark_handle) {
+                            ctl_initialize(ctl_shield_lightning_spark);
+                        }
+
+                        switch (i) {
+                            case 0:
+                                spark_handle.angle = ANGLE_LEFT_UP;
+                                break;
+
+                            case 1:
+                                spark_handle.angle = ANGLE_RIGHT_UP;
+                                break;
+
+                            case 2:
+                                spark_handle.angle = ANGLE_LEFT_DOWN;
+                                break;
+
+                            case 3:
+                                spark_handle.angle = ANGLE_RIGHT_DOWN;
+                                break;
                         }
                     }
                     break;
@@ -123,8 +169,8 @@ switch (argument0) {
                     }
             }
 
-            // No more effects:
-            status_shield_state = 2;
+            // Reset:
+            status_shield_animate = false;
         }
         break;
 }

@@ -1,8 +1,9 @@
 /// player_routine_shield()
 // Or barriers, for the nerds.
 
-// Shield state:
-status_shield_state = 1;
+// Shield:
+status_shield_allow   = false;
+status_shield_animate = true;
 
 // Animation skip:
 animation_skip = true;

@@ -8,7 +8,8 @@ ground_id           = argument0;
 on_ground           = true;
 on_surface          = false;
 
-status_shield_state = 0;
+// Reset shield:
+status_shield_allow = true;
 
 // Calculate ground angle:
 new_angle = player_get_angle(ground_id, mask_rotation);

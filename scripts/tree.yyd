@@ -204,7 +204,6 @@
 		+Effects
 			|player_effect_dust
 			|player_effect_queue
-			+Queues
 		+Traits
 			|player_trait_debug
 			|classic_trait_clock_up

@@ -20,7 +20,7 @@ switch (argument0) {
     // Basic shield:
     case ITEM_BASIC:
         status_shield       = SHIELD_BASIC;
-        status_shield_state = 0;
+        status_shield_allow = true;
 
         // Play sound:
         sound_play("snd_shield_basic");
@@ -29,16 +29,25 @@ switch (argument0) {
     // Magnetic shield:
     case ITEM_MAGNETIC:
         status_shield       = SHIELD_MAGNETIC;
-        status_shield_state = 0;
+        status_shield_allow = true;
 
         // Play sound:
         sound_play("snd_shield_basic");
         break;
 
+    // Bubble shield:
+    case ITEM_BUBBLE:
+        status_shield       = SHIELD_BUBBLE;
+        status_shield_allow = true;
+
+        // Play sound:
+        sound_play("snd_shield_bubble");
+        break;
+
     // Fire shield:
     case ITEM_FIRE:
         status_shield       = SHIELD_FIRE;
-        status_shield_state = 0;
+        status_shield_allow = true;
 
         // Play sound:
         sound_play("snd_shield_fire");
@@ -47,19 +56,10 @@ switch (argument0) {
     // Lightning shield:
     case ITEM_LIGHTNING:
         status_shield       = SHIELD_LIGHTNING;
-        status_shield_state = 0;
+        status_shield_allow = true;
 
         // Play sound:
         sound_play("snd_shield_lightning");
-        break;
-
-    // Bubble shield:
-    case ITEM_BUBBLE:
-        status_shield       = SHIELD_BUBBLE;
-        status_shield_state = 0;
-
-        // Play sound:
-        sound_play("snd_shield_bubble");
         break;
 
     // Invincibility:
