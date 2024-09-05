@@ -72,14 +72,4 @@ switch (argument0) {
         spring_alarm    = 0;
         spring_current  = noone;
         break;
-
-    // Animate:
-    case STATE_ANIMATE:
-        // Snap to spring:
-        x = spring_current.x;
-
-        if (spring_angle == ANGLE_LEFT || spring_angle == ANGLE_RIGHT) {
-            y = spring_current.y;
-        }
-        break;
 }

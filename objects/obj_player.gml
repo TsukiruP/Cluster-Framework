@@ -177,7 +177,7 @@ applies_to=self
 /// Handle Initialization
 
 // Spring variables:
-spring_snap     = false;
+spring_snap     = 0;
 spring_strength = 0;
 spring_angle    = 0;
 spring_alarm    = 0;
@@ -619,6 +619,27 @@ animation_timer += 1;
 if (on_ground == true) {
     x += (y_radius_temp - y_radius) * dsin(mask_rotation);
     y += (y_radius_temp - y_radius) * dcos(mask_rotation);
+}
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Snap
+
+// Exit if the stage is paused or text is active:
+if (game_ispaused() || !instance_exists(spring_current)) {
+    exit;
+}
+
+switch (spring_snap) {
+    case 2:
+        y = spring_current.y;
+
+    case 1:
+        x           = spring_current.x;
+        spring_snap = 0;
+        break;
 }
 /*"/*'/**//* YYD ACTION
 lib_id=1

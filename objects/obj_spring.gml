@@ -112,7 +112,7 @@ applies_to=self
 // Sprite index:
 switch (spring_orientation) {
     // Vertical:
-    case SPRING_VERTICAL:
+    case ORIEN_VERTICAL:
         sprite_index = spr_spring_vertical;
         spring_angle = ANGLE_UP;
         ctl_initialize(ctl_spring_vertical);
@@ -120,7 +120,7 @@ switch (spring_orientation) {
         break;
 
     // Horizontal:
-    case SPRING_HORIZONTAL:
+    case ORIEN_HORIZONTAL:
         sprite_index = spr_spring_horizontal;
         spring_angle = ANGLE_RIGHT;
         ctl_initialize(ctl_spring_horizontal);
@@ -128,7 +128,7 @@ switch (spring_orientation) {
         break;
 
     // Diagonal:
-    case SPRING_DIAGONAL:
+    case ORIEN_DIAGONAL:
         sprite_index = spr_spring_diagonal;
         spring_angle = ANGLE_RIGHT_UP;
         ctl_initialize(ctl_spring_diagonal);
