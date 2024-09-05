@@ -66,9 +66,20 @@ switch (argument0) {
     // Finish:
     case STATE_FINISH:
         // Reset spring:
+        spring_snap     = false;
         spring_strength = 0;
         spring_angle    = 0;
         spring_alarm    = 0;
         spring_current  = noone;
+        break;
+
+    // Animate:
+    case STATE_ANIMATE:
+        // Snap to spring:
+        x = spring_current.x;
+
+        if (spring_angle == ANGLE_LEFT || spring_angle == ANGLE_RIGHT) {
+            y = spring_current.y;
+        }
         break;
 }

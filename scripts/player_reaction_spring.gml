@@ -16,17 +16,12 @@ if (collision & COLL_HURT_RADIUS) {
     // React:
     if (spring_alarm == 0 || spring_current != reaction_handle) {
         if (!(on_ground == true && (reaction_handle.spring_angle == ANGLE_LEFT || reaction_handle.spring_angle == ANGLE_RIGHT)) || is_dash_ring == true) {
-            // Set position:
-            y = reaction_handle.y;
-
             // Set state:
             player_set_state(player_state_air, true);
+            player_reset_skill();
         } else {
             input_lock_alarm = 16;
         }
-
-        // Set position:
-        x = reaction_handle.x;
 
         // Set spring:
         spring_angle    = reaction_handle.spring_angle;

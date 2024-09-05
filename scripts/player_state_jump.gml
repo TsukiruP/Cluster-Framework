@@ -98,79 +98,73 @@ switch (argument0) {
 
     // Animate:
     case STATE_ANIMATE:
-        // Animate shield:
-        if (status_shield_animate == true) {
-            switch (status_shield) {
-                // Bubble shield:
-                case SHIELD_BUBBLE:
-                    // Set timeline:
-                    if (instance_exists(shield_handle)) {
-                        with (shield_handle) {
-                            event_user(1);
-                        }
+        switch (status_shield) {
+            // Bubble shield:
+            case SHIELD_BUBBLE:
+                // Set timeline:
+                if (instance_exists(shield_handle)) {
+                    with (shield_handle) {
+                        event_user(1);
                     }
-                    break;
+                }
+                break;
 
-                // Fire dash:
-                case SHIELD_FIRE:
-                    // Camera lag:
-                    ctrl_camera.camera_lag_alarm = 16;
+            // Fire dash:
+            case SHIELD_FIRE:
+                // Camera lag:
+                ctrl_camera.camera_lag_alarm = 16;
 
-                    // Set timeline:
-                    if (instance_exists(shield_handle)) {
-                        with (shield_handle) {
-                            event_user(0);
-                        }
+                // Set timeline:
+                if (instance_exists(shield_handle)) {
+                    with (shield_handle) {
+                        event_user(0);
                     }
-                    break;
+                }
+                break;
 
-                // Lightning jump:
-                case SHIELD_LIGHTNING:
-                    // Sparks:
-                    for (i = 0; i < 4; i += 1) {
-                        var spark_handle;
+            // Lightning jump:
+            case SHIELD_LIGHTNING:
+                // Sparks:
+                for (i = 0; i < 4; i += 1) {
+                    var spark_handle;
 
-                        spark_handle         = instance_create(floor(x), floor(y), eff_basic);
-                        spark_handle.e_speed = 2;
+                    spark_handle         = instance_create(floor(x), floor(y), eff_basic);
+                    spark_handle.e_speed = 2;
 
-                        with (spark_handle) {
-                            ctl_initialize(ctl_shield_lightning_spark);
-                        }
-
-                        switch (i) {
-                            case 0:
-                                spark_handle.angle = ANGLE_LEFT_UP;
-                                break;
-
-                            case 1:
-                                spark_handle.angle = ANGLE_RIGHT_UP;
-                                break;
-
-                            case 2:
-                                spark_handle.angle = ANGLE_LEFT_DOWN;
-                                break;
-
-                            case 3:
-                                spark_handle.angle = ANGLE_RIGHT_DOWN;
-                                break;
-                        }
+                    with (spark_handle) {
+                        ctl_initialize(ctl_shield_lightning_spark);
                     }
-                    break;
 
-                // Insta-shield:
-                default:
-                    with (instance_create(x, y, eff_player)) {
-                        ctl_initialize(ctl_shield_insta);
+                    switch (i) {
+                        case 0:
+                            spark_handle.angle = ANGLE_LEFT_UP;
+                            break;
 
-                        depth         = other.depth;
-                        image_xscale  = other.image_xscale;
-                        image_angle   = gravity_angle(other);
-                        player_handle = other.id;
+                        case 1:
+                            spark_handle.angle = ANGLE_RIGHT_UP;
+                            break;
+
+                        case 2:
+                            spark_handle.angle = ANGLE_LEFT_DOWN;
+                            break;
+
+                        case 3:
+                            spark_handle.angle = ANGLE_RIGHT_DOWN;
+                            break;
                     }
-            }
+                }
+                break;
 
-            // Reset:
-            status_shield_animate = false;
+            // Insta-shield:
+            default:
+                with (instance_create(x, y, eff_player)) {
+                    ctl_initialize(ctl_shield_insta);
+
+                    depth         = other.depth;
+                    image_xscale  = other.image_xscale;
+                    image_angle   = gravity_angle(other);
+                    player_handle = other.id;
+                }
         }
         break;
 }

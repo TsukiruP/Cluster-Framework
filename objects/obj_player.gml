@@ -38,9 +38,9 @@ state_current  = player_state_idle;
 state_target   = state_current;
 state_previous = state_current;
 state_changed  = false;
-state_start    = true;
+state_animate  = false;
 
-//
+// Hint allow
 hint_allow = true;
 
 // Jump variables:
@@ -177,6 +177,7 @@ applies_to=self
 /// Handle Initialization
 
 // Spring variables:
+spring_snap     = false;
 spring_strength = 0;
 spring_angle    = 0;
 spring_alarm    = 0;
@@ -357,369 +358,6 @@ if (on_ground == true && input_lock_alarm > 0) {
 // Panic:
 if (status_panic == true && input_lock_alarm == 0) {
     input_x_direction *= -1;
-}
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// State
-
-// Exit if the stage is paused or text is active:
-if (game_ispaused()) {
-    exit;
-}
-
-// Set current state:
-if (state_current != state_target) {
-    state_current = state_target;
-}
-
-// Execute state step:
-if (script_exists(state_current)) {
-    if (state_changed == true) {
-        script_execute(state_current, STATE_ANIMATE);
-        state_changed = false;
-    }
-
-    script_execute(state_current, STATE_STEP);
-}
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Traits
-
-// Exit if the stage is paused or text is active:
-if (game_ispaused()) {
-    exit;
-}
-
-player_trait_debug();
-classic_trait_clock_up();
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Debuffs
-
-// Immunity:
-if (status_invin >= INVIN_BUFF) {
-    // Clear speed down:
-    if (status_speed == SPEED_SLOW) {
-        status_speed       = SPEED_NONE;
-        status_speed_alarm = 0;
-    }
-
-    // Clear panic:
-    if (status_panic == true) {
-        status_panic       = false;
-        status_panic_alarm = 0;
-    }
-
-    // Clear swap:
-    if (status_swap == true) {
-        status_swap       = false;
-        status_swap_alarm = 0;
-    }
-}
-
-
-// Slow:
-if (status_speed == SPEED_SLOW) {
-    // Cap speed:
-    if (spring_strength == 0) {
-        if (abs(x_speed) > top_speed) {
-            x_speed = top_speed * sign(x_speed);
-        }
-    }
-
-    // Stop jingle:
-    if (sound_isplaying("bgm_speed")) {
-        sound_stop("bgm_speed");
-    }
-}
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Effects
-
-// Create shield:
-if ((status_shield != SHIELD_NONE || status_invin != INVIN_NONE) && shield_handle == noone) {
-    shield_handle = instance_create(x, y, eff_shield);
-
-    with (shield_handle) {
-        player_handle = other.id;
-    }
-}
-
-// Create debuff:
-if ((status_speed == SPEED_SLOW || status_panic == true) && debuff_handle == noone) {
-    debuff_handle = instance_create(x, y, eff_debuff);
-
-    with (debuff_handle) {
-        player_handle = other.id;
-    }
-}
-
-// Set afterimage:
-if (status_speed == SPEED_UP) {
-    afterimage_draw = true;
-} else {
-    afterimage_draw  = false;
-    afterimage_alarm = 6;
-}
-
-// Set trail:
-if (state_current == player_state_roll) {
-    trail_draw = true;
-} else {
-    trail_draw = false;
-}
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Splashes
-
-// Exit if there's no water surface:
-if (!instance_exists(obj_water_surface)) {
-    exit;
-}
-
-// Entry splash:
-if (y > obj_water_surface.y && yprevious < obj_water_surface.y) {
-    x_speed *= 0.50;
-    y_speed *= 0.25;
-
-    // Create splash:
-    if (y_speed >= 2.50) {
-        effect_create(ctl_splash_1, x, obj_water_surface.y, -10);
-    } else {
-        effect_create(ctl_splash_0, x, obj_water_surface.y, -10);
-    }
-
-    // Play sound:
-    sound_play_single("snd_splash");
-}
-
-// Exit splash:
-else if (y < obj_water_surface.y && yprevious > obj_water_surface.y) {
-    y_speed = max(y_speed * 2, -16);
-
-    // Create splash:
-    if (abs(y_speed) >= 6) {
-        effect_create(ctl_splash_1, x, obj_water_surface.y, -10);
-    } else {
-        effect_create(ctl_splash_0, x, obj_water_surface.y, -10);
-    }
-
-    // Play sound:
-    sound_play_single("snd_splash");
-}
-
-
-// Surface timer:
-if (on_surface == true && abs(x_speed) > 0) {
-    surface_timer += 1;
-
-    // Splash:
-    if (surface_timer mod 9 == 0) {
-        if (abs(x_speed) >= 4.50) {
-            effect_create(ctl_splash_3, x, obj_water_surface.y, depth, image_xscale);
-        } else {
-            effect_create(ctl_splash_2, x, obj_water_surface.y, depth, image_xscale);
-        }
-    }
-} else {
-    surface_timer = 0;
-}
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Air
-
-// Exit if the stage is paused or text is active:
-if (game_ispaused()) {
-    exit;
-}
-
-// Don't bother if in the middle of respawning/dying:
-if (state_current != player_state_death && physics_id == PHYS_WATER && !instance_exists(ctrl_tally)) {
-    // Refill air if in breathe state or bubble shield:
-    if (status_shield == SHIELD_BUBBLE) {
-        air_remaining = 30;
-        air_alarm     = 60;
-
-        // Stop jingle:
-        if (input_cpu == false) sound_stop("bgm_drown");
-    }
-
-} else {
-    air_remaining = 30;
-    air_alarm     = 60;
-
-    // Stop jingle:
-    sound_stop("bgm_drown");
-}
-#define Step_1
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Alarms
-
-// Exit if the stage is paused:
-if (game_ispaused(ctrl_pause)) {
-    exit;
-}
-
-// Insta invincibility:
-if (status_insta_alarm > 0) {
-    status_insta_alarm -= 1;
-}
-
-// Hurt invincibility:
-if (status_invin_alarm > 0) {
-    status_invin_alarm -= 1;
-
-    if (status_invin_alarm == 0) {
-        status_invin = INVIN_NONE;
-    }
-}
-
-// Speed shoes:
-if (status_speed_alarm > 0) {
-    status_speed_alarm -= 1;
-
-    if (status_speed_alarm == 0) {
-        status_speed = SPEED_NONE;
-    }
-}
-
-// Panic:
-if (status_panic_alarm > 0) {
-    status_panic_alarm -= 1;
-
-    if (status_panic_alarm == 0) {
-        status_panic = false;
-    }
-}
-
-// Spring:
-if (spring_alarm > 0) {
-    spring_alarm -= 1;
-
-    if (spring_alarm <= 0) {
-        spring_strength = 0;
-        spring_angle    = 0;
-        spring_alarm    = 0;
-        spring_current  = noone;
-    }
-}
-
-// Clock Up:
-if (clock_up_alarm > 0) {
-    clock_up_alarm -= 1;
-}
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Physics
-
-// Update physics type:
-if (instance_exists(obj_water_surface)) {
-    if (y < obj_water_surface.y) {
-        if (physics_id != PHYS_DEFAULT) {
-            physics_id = PHYS_DEFAULT;
-        }
-    }
-
-    if (y > obj_water_surface.y) {
-        if (physics_id != PHYS_WATER) {
-            physics_id = PHYS_WATER;
-
-            // Clear elemental shields:
-            if (status_shield == SHIELD_FIRE || status_shield == SHIELD_LIGHTNING) {
-                status_shield = SHIELD_NONE;
-            }
-        }
-    }
-}
-
-// Physics:
-player_get_physics();
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Air
-
-// Exit if the stage is paused or text is active:
-if (game_ispaused()) {
-    exit;
-}
-
-// Don't bother if in the middle of respawning/dying:
-if (state_current != player_state_death && !instance_exists(ctrl_tally)) {
-    if (physics_id == PHYS_WATER) {
-        // Refill air if in breathe state or bubble shield:
-        if (status_shield != SHIELD_BUBBLE) {
-            if (air_alarm > 0) {
-                air_alarm -= 1;
-
-                if (air_alarm == 0) {
-                    switch (air_remaining) {
-                        // Drown alert:
-                        case 25:
-                        case 20:
-                        case 15:
-                            if (input_cpu == false) sound_play("snd_drown_alert");
-                            break;
-
-                        // Drown jingle:
-                        case 12:
-                            if (input_cpu == false) sound_play("bgm_drown");
-
-                        // Drown countdown:
-                        case 10:
-                        case 8:
-                        case 6:
-                        case 4:
-                        case 2:
-                            drown_index += 1;
-                            break;
-
-                        // Drown:
-                        case 0:
-                            // Set speed:
-                            x_speed = 0;
-
-                            // Drown:
-                            drown = true;
-
-                            // Set death:
-                            player_set_damage(self);
-                        break;
-                    }
-
-                    air_remaining -= 1;
-                    air_alarm      = 60;
-                }
-            }
-        }
-    }
 }
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -981,6 +619,375 @@ animation_timer += 1;
 if (on_ground == true) {
     x += (y_radius_temp - y_radius) * dsin(mask_rotation);
     y += (y_radius_temp - y_radius) * dcos(mask_rotation);
+}
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// State
+
+// Exit if the stage is paused or text is active:
+if (game_ispaused()) {
+    exit;
+}
+
+// Set current state:
+if (state_current != state_target) {
+    state_current = state_target;
+}
+
+// Execute state step:
+if (script_exists(state_current)) {
+    // Animate:
+    if (state_animate == true) {
+        state_animate = false;
+        script_execute(state_current, STATE_ANIMATE);
+    }
+
+    script_execute(state_current, STATE_STEP);
+
+    // Reset:
+    if (state_changed == true) {
+        state_changed = false;
+    }
+}
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Traits
+
+// Exit if the stage is paused or text is active:
+if (game_ispaused()) {
+    exit;
+}
+
+player_trait_debug();
+classic_trait_clock_up();
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Debuffs
+
+// Immunity:
+if (status_invin >= INVIN_BUFF) {
+    // Clear speed down:
+    if (status_speed == SPEED_SLOW) {
+        status_speed       = SPEED_NONE;
+        status_speed_alarm = 0;
+    }
+
+    // Clear panic:
+    if (status_panic == true) {
+        status_panic       = false;
+        status_panic_alarm = 0;
+    }
+
+    // Clear swap:
+    if (status_swap == true) {
+        status_swap       = false;
+        status_swap_alarm = 0;
+    }
+}
+
+
+// Slow:
+if (status_speed == SPEED_SLOW) {
+    // Cap speed:
+    if (spring_strength == 0) {
+        if (abs(x_speed) > top_speed) {
+            x_speed = top_speed * sign(x_speed);
+        }
+    }
+
+    // Stop jingle:
+    if (sound_isplaying("bgm_speed")) {
+        sound_stop("bgm_speed");
+    }
+}
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Effects
+
+// Create shield:
+if ((status_shield != SHIELD_NONE || status_invin != INVIN_NONE) && shield_handle == noone) {
+    shield_handle = instance_create(x, y, eff_shield);
+
+    with (shield_handle) {
+        player_handle = other.id;
+    }
+}
+
+// Create debuff:
+if ((status_speed == SPEED_SLOW || status_panic == true) && debuff_handle == noone) {
+    debuff_handle = instance_create(x, y, eff_debuff);
+
+    with (debuff_handle) {
+        player_handle = other.id;
+    }
+}
+
+// Set afterimage:
+if (status_speed == SPEED_UP) {
+    afterimage_draw = true;
+} else {
+    afterimage_draw  = false;
+    afterimage_alarm = 6;
+}
+
+// Set trail:
+if (state_current == player_state_roll) {
+    trail_draw = true;
+} else {
+    trail_draw = false;
+}
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Splash
+
+// Exit if there's no water surface:
+if (!instance_exists(obj_water_surface)) {
+    exit;
+}
+
+// Entry splash:
+if (y > obj_water_surface.y && yprevious < obj_water_surface.y) {
+    x_speed *= 0.50;
+    y_speed *= 0.25;
+
+    // Create splash:
+    if (y_speed >= 2.50) {
+        effect_create(ctl_splash_1, x, obj_water_surface.y, -10);
+    } else {
+        effect_create(ctl_splash_0, x, obj_water_surface.y, -10);
+    }
+
+    // Play sound:
+    sound_play_single("snd_splash");
+}
+
+// Exit splash:
+else if (y < obj_water_surface.y && yprevious > obj_water_surface.y) {
+    y_speed = max(y_speed * 2, -16);
+
+    // Create splash:
+    if (abs(y_speed) >= 6) {
+        effect_create(ctl_splash_1, x, obj_water_surface.y, -10);
+    } else {
+        effect_create(ctl_splash_0, x, obj_water_surface.y, -10);
+    }
+
+    // Play sound:
+    sound_play_single("snd_splash");
+}
+
+
+// Surface timer:
+if (on_surface == true && abs(x_speed) > 0) {
+    surface_timer += 1;
+
+    // Splash:
+    if (surface_timer mod 9 == 0) {
+        if (abs(x_speed) >= 4.50) {
+            effect_create(ctl_splash_3, x, obj_water_surface.y, depth, image_xscale);
+        } else {
+            effect_create(ctl_splash_2, x, obj_water_surface.y, depth, image_xscale);
+        }
+    }
+} else {
+    surface_timer = 0;
+}
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Air
+
+// Exit if the stage is paused or text is active:
+if (game_ispaused()) {
+    exit;
+}
+
+// Don't bother if in the middle of respawning/dying:
+if (state_current != player_state_death && physics_id == PHYS_WATER && !instance_exists(ctrl_tally)) {
+    // Refill air if in breathe state or bubble shield:
+    if (status_shield == SHIELD_BUBBLE) {
+        air_remaining = 30;
+        air_alarm     = 60;
+
+        // Stop jingle:
+        if (input_cpu == false) sound_stop("bgm_drown");
+    }
+
+} else {
+    air_remaining = 30;
+    air_alarm     = 60;
+
+    // Stop jingle:
+    sound_stop("bgm_drown");
+}
+#define Step_1
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Alarms
+
+// Exit if the stage is paused:
+if (game_ispaused(ctrl_pause)) {
+    exit;
+}
+
+// Insta invincibility:
+if (status_insta_alarm > 0) {
+    status_insta_alarm -= 1;
+}
+
+// Hurt invincibility:
+if (status_invin_alarm > 0) {
+    status_invin_alarm -= 1;
+
+    if (status_invin_alarm == 0) {
+        status_invin = INVIN_NONE;
+    }
+}
+
+// Speed shoes:
+if (status_speed_alarm > 0) {
+    status_speed_alarm -= 1;
+
+    if (status_speed_alarm == 0) {
+        status_speed = SPEED_NONE;
+    }
+}
+
+// Panic:
+if (status_panic_alarm > 0) {
+    status_panic_alarm -= 1;
+
+    if (status_panic_alarm == 0) {
+        status_panic = false;
+    }
+}
+
+// Spring:
+if (spring_alarm > 0) {
+    spring_alarm -= 1;
+
+    if (spring_alarm <= 0) {
+        spring_strength = 0;
+        spring_angle    = 0;
+        spring_alarm    = 0;
+        spring_current  = noone;
+    }
+}
+
+// Clock Up:
+if (clock_up_alarm > 0) {
+    clock_up_alarm -= 1;
+}
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Physics
+
+// Update physics type:
+if (instance_exists(obj_water_surface)) {
+    if (y < obj_water_surface.y) {
+        if (physics_id != PHYS_DEFAULT) {
+            physics_id = PHYS_DEFAULT;
+        }
+    }
+
+    if (y > obj_water_surface.y) {
+        if (physics_id != PHYS_WATER) {
+            physics_id = PHYS_WATER;
+
+            // Clear elemental shields:
+            if (status_shield == SHIELD_FIRE || status_shield == SHIELD_LIGHTNING) {
+                status_shield = SHIELD_NONE;
+            }
+        }
+    }
+}
+
+// Physics:
+player_get_physics();
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Air
+
+// Exit if the stage is paused or text is active:
+if (game_ispaused()) {
+    exit;
+}
+
+// Don't bother if in the middle of respawning/dying:
+if (state_current != player_state_death && !instance_exists(ctrl_tally)) {
+    if (physics_id == PHYS_WATER) {
+        // Refill air if in breathe state or bubble shield:
+        if (status_shield != SHIELD_BUBBLE) {
+            if (air_alarm > 0) {
+                air_alarm -= 1;
+
+                if (air_alarm == 0) {
+                    switch (air_remaining) {
+                        // Drown alert:
+                        case 25:
+                        case 20:
+                        case 15:
+                            if (input_cpu == false) sound_play("snd_drown_alert");
+                            break;
+
+                        // Drown jingle:
+                        case 12:
+                            if (input_cpu == false) sound_play("bgm_drown");
+
+                        // Drown countdown:
+                        case 10:
+                        case 8:
+                        case 6:
+                        case 4:
+                        case 2:
+                            drown_index += 1;
+                            break;
+
+                        // Drown:
+                        case 0:
+                            // Set speed:
+                            x_speed = 0;
+
+                            // Drown:
+                            drown = true;
+
+                            // Set death:
+                            player_set_damage(self);
+                        break;
+                    }
+
+                    air_remaining -= 1;
+                    air_alarm      = 60;
+                }
+            }
+        }
+    }
 }
 #define Step_2
 /*"/*'/**//* YYD ACTION

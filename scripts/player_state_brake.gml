@@ -110,7 +110,7 @@ switch (argument0) {
 
         // Dust:
         if (x_speed != 0) {
-            player_effect_dust();
+            player_brake_dust();
         }
         break;
 

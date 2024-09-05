@@ -4,12 +4,10 @@
 var new_angle, sine, csine;
 
 // Confirm assignment:
-ground_id           = argument0;
-on_ground           = true;
-on_surface          = false;
-
-// Reset shield:
-status_shield_allow = true;
+ground_id  = argument0;
+on_ground  = true;
+on_surface = false;
+player_reset_skill();
 
 // Calculate ground angle:
 new_angle = player_get_angle(ground_id, mask_rotation);

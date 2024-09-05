@@ -92,7 +92,7 @@ switch (argument0) {
             // Dust:
             if (on_ground == true) {
                 // Dust:
-                player_effect_dust();
+                player_brake_dust();
             }
 
             // Time out:

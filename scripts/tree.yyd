@@ -162,6 +162,14 @@
 		+Data
 			|player_get_character
 			|player_get_instance
+		+Animation
+			|player_animation_core
+			|player_add_animation
+			|player_get_animation
+			|player_set_animation
+			+Animation Lists
+				|sonic_animation_list
+			|player_compile_animations
 		+Collision
 			|player_collision_object
 			|player_collision_wall
@@ -201,20 +209,9 @@
 			|player_routine_land
 			|player_routine_shield
 			|player_routine_skill
-		+Effects
-			|player_effect_dust
-			|player_effect_queue
 		+Traits
 			|player_trait_debug
 			|classic_trait_clock_up
-		+Animation
-			|player_animation_core
-			|player_add_animation
-			|player_get_animation
-			|player_set_animation
-			+Animation Lists
-				|sonic_animation_list
-			|player_compile_animations
 		+Reactions
 			|player_reaction_sensor_layer
 			|player_reaction_ring
@@ -240,6 +237,8 @@
 			|player_rotate_mask
 			|player_slope_friction
 			|player_ring_loss
+			|player_brake_dust
+			|player_reset_skill
 			+Trail
 				|start_trail
 				|update_trail
@@ -294,4 +293,4 @@
 	|player_routine_insta
 	|player_routine_shield_old
 	|player_state_hint
-|script227
+|player_effect_queue

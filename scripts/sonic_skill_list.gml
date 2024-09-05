@@ -32,9 +32,9 @@ else {
         // Insta-shield:
         else if (global.sonic_skill[skill_id] == 1) {
             // Set status:
-            status_shield_allow   = false;
-            status_shield_animate = true;
-            status_insta_alarm    = 8;
+            state_animate       = true;
+            status_shield_allow = false;
+            status_insta_alarm  = 8;
 
             // Set animation:
             player_set_animation("insta");
