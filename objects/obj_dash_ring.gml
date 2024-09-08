@@ -21,7 +21,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Animate
+/// Animation
 
 // Don't bother if the stage is paused:
 if (game_ispaused(ctrl_pause)) {
@@ -46,22 +46,17 @@ event_inherited();
 //field rainbow_ring: bool
 
 /*preview
-    var spring_orientation, flip_x, flip_y;
+    var spring_orientation, spring_flip_x, spring_flip_y;
 
+    image_xscale       = 1;
+    image_yscale       = 1;
     spring_orientation = Field("spring_orientation", 0);
-    flip_x             = Field("flip_x", 0);
-    flip_y             = Field("flip_y", 0);
+    spring_flip_x      = Field("spring_flip_x", 0);
+    spring_flip_y      = Field("spring_flip_y", 0);
     rainbow_ring       = Field("rainbow_ring", 0);
 
     switch (spring_orientation) {
-        case 0:
-            if (rainbow_ring == true) {
-                sprite_index = Sprite("spr_rainbow_ring_vertical",  0);
-            } else {
-                sprite_index = Sprite("spr_dash_ring_vertical",  0);
-            }
-            break;
-
+        // Horizontal:
         case 1:
             if (rainbow_ring == true) {
                 sprite_index = Sprite("spr_rainbow_ring_horizontal",  0);
@@ -70,6 +65,7 @@ event_inherited();
             }
             break;
 
+        // Diagonal:
         case 2:
             if (rainbow_ring == true) {
                 sprite_index = Sprite("spr_rainbow_ring_diagonal",  0);
@@ -77,16 +73,23 @@ event_inherited();
                 sprite_index = Sprite("spr_dash_ring_diagonal",  0);
             }
             break;
+
+        // Vertical
+        default:
+            if (rainbow_ring == true) {
+                sprite_index = Sprite("spr_rainbow_ring_vertical",  0);
+            } else {
+                sprite_index = Sprite("spr_dash_ring_vertical",  0);
+            }
     }
 
-    image_xscale = 1;
-    image_yscale = 1;
-
-    if (flip_x == true) {
+    /// Flip x:
+    if (spring_flip_x == true) {
         image_xscale = -1;
     }
 
-    if (flip_y == true) {
+    // Flip y:
+    if (spring_flip_y == true) {
         image_yscale = -1;
     }
 */
@@ -97,18 +100,10 @@ applies_to=self
 */
 /// Dash Ring Initialization
 
-// Sprite index:
+// Spring orientation:
 switch (spring_orientation) {
-    // Vertical:
-    case SPRING_VERTICAL:
-        sprite_index  = spr_dash_ring_vertical;
-        rainbow_index = spr_rainbow_ring_vertical;
-        spring_angle  = ANGLE_UP;
-        set_hurtbox(26, 5, 26, 6);
-        break;
-
     // Horizontal:
-    case SPRING_HORIZONTAL:
+    case ORIEN_HORIZONTAL:
         sprite_index  = spr_dash_ring_horizontal;
         rainbow_index = spr_rainbow_ring_horizontal;
         spring_angle  = ANGLE_RIGHT;
@@ -116,22 +111,30 @@ switch (spring_orientation) {
         break;
 
     // Diagonal:
-    case SPRING_DIAGONAL:
+    case ORIEN_DIAGONAL:
         sprite_index  = spr_dash_ring_diagonal;
         rainbow_index = spr_rainbow_ring_diagonal;
         spring_angle  = ANGLE_RIGHT_UP;
         set_hurtbox(7, 7, 7, 7);
         break;
+
+    // Vertical:
+    default:
+        sprite_index  = spr_dash_ring_vertical;
+        rainbow_index = spr_rainbow_ring_vertical;
+        spring_angle  = ANGLE_UP;
+        set_hurtbox(26, 5, 26, 6);
+
 }
 
 // Flip x:
-if (flip_x == true) {
+if (spring_flip_x == true) {
     image_xscale = -1;
     spring_angle = 180 - spring_angle;
 }
 
 // Flip y:
-if (flip_y == true) {
+if (spring_flip_y == true) {
     image_yscale = -1;
     spring_angle = 360 - spring_angle;
 }

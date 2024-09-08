@@ -226,3 +226,6 @@ player_reaction_enemy
 ctl_sonic_omochao_end
 player_state_hint
 player_reset_skill
+player_reaction_spike
+script229
+player_reaction_blockade

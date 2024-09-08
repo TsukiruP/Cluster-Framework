@@ -9,6 +9,7 @@ applies_to=self
 event_inherited();
 
 // Shield variables:
+shield_reset   = false;
 shield_hide    = false;
 shield_advance = false;
 #define Step_2
@@ -18,6 +19,8 @@ action_id=603
 applies_to=self
 */
 /// Index
+
+var ctl_target;
 
 // Shields:
 if (player_handle.status_invin != INVIN_BUFF) {
@@ -32,14 +35,14 @@ if (player_handle.status_invin != INVIN_BUFF) {
 
         // Bubble:
         case SHIELD_BUBBLE:
-            if (ctl_index != ctl_shield_bubble && ctl_index != ctl_shield_bubble_bound && ctl_index != ctl_shield_bubble_recoil) {
+            if ((ctl_index != ctl_shield_bubble && ctl_index != ctl_shield_bubble_bound && ctl_index != ctl_shield_bubble_recoil) || shield_reset == true) {
                 timeline_set(ctl_shield_bubble);
             }
             break;
 
         // Fire:
         case SHIELD_FIRE:
-            if (ctl_index != ctl_shield_fire && ctl_index != ctl_shield_fire_dash) {
+            if ((ctl_index != ctl_shield_fire && ctl_index != ctl_shield_fire_dash) || shield_reset == true) {
                 timeline_set(ctl_shield_fire);
             }
             break;
@@ -65,12 +68,15 @@ else {
         timeline_set(ctl_shield_invin);
     }
 }
+
+// Reset:
+shield_reset = false;
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
 applies_to=self
 */
-/// Animate
+/// Animation
 
 event_inherited();
 

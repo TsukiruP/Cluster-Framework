@@ -17,7 +17,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Animate
+/// Animation
 
 // Set sprite:
 if (instance_exists(overlay_handle)) {

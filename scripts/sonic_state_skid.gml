@@ -49,7 +49,7 @@ switch (argument0) {
                 }
             }
 
-            // Cancel
+            // Cancel:
             if (x_speed != 0 && sign(x_speed) != image_xscale) {
                 return player_set_state(player_state_run);
             }

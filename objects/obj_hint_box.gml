@@ -33,7 +33,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Animate
+/// Animation
 
 // Exit if the stage is paused:
 if (game_ispaused(ctrl_pause)) {

@@ -1,7 +1,7 @@
 par_terrain
 ctrl_fade
 obj_spring
-par_obstacle
+obj_blockade
 par_moving_platform
 obj_dash_ring
 obj_dash_ring_left
@@ -50,7 +50,7 @@ obj_basic_test_water_fall_01
 obj_basic_test_water_fall_02
 obj_basic_test_water_fall_03
 obj_item_bonus
-par_spike
+obj_spike
 obj_item_super_bonus
 obj_item_random_bonus
 obj_item_basic
@@ -122,3 +122,4 @@ obj_rainbow_ring_right_down
 obj_spinner
 object122
 eff_debuff
+par_obstacle

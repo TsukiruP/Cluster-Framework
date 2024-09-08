@@ -34,6 +34,19 @@ repeat (total_steps) {
         }
     }
 
+    // Obstacle collision:
+    obstacle_handle = instance_nearest(floor(x), floor(y), par_obstacle);
+    hit_obstacle    = player_collision_object(obstacle_handle);
+
+    if (hit_obstacle != 0) {
+        // React:
+        player_react(obstacle_handle, hit_obstacle, angle_wrap(round(point_direction(obstacle_handle.x, obstacle_handle.y, x, y) / 90) * 90));
+
+        if (state_changed == true) {
+            return false;
+        }
+    }
+
     // Get colliding solids:
     player_get_solids();
 
@@ -79,6 +92,19 @@ repeat (total_steps) {
     if (hit_prop != false) {
         // React:
         player_react(prop_handle, hit_prop);
+
+        if (state_changed == true) {
+            return false;
+        }
+    }
+
+    // Obstacle collision:
+    obstacle_handle = instance_nearest(floor(x), floor(y), par_obstacle);
+    hit_obstacle    = player_collision_object(obstacle_handle);
+
+    if (hit_obstacle != 0) {
+        // React:
+        player_react(obstacle_handle, hit_obstacle, angle_wrap(round(point_direction(obstacle_handle.x, obstacle_handle.y, x, y) / 90) * 90));
 
         if (state_changed == true) {
             return false;

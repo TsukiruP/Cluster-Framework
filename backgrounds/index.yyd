@@ -1,4 +1,4 @@
-tls_basic_test_96x96
+tls_basic_test
 tls_isolated_isle_64x64
 tls_isolated_isle_64x96
 pbg_basic_test_sky
@@ -7,10 +7,11 @@ pbg_basic_test_rock_medium
 pbg_basic_test_rock_small
 pbg_basic_test_rock_large
 pbg_basic_test_under
-tls_basic_test_edges
+tls_sunset_forest
 
 
 
 
 
 
+background16

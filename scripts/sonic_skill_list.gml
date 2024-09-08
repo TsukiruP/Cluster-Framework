@@ -33,6 +33,7 @@ else {
         else if (global.sonic_skill[skill_id] == 1) {
             // Set status:
             state_animate       = true;
+            jump_cap            = false;
             status_shield_allow = false;
             status_insta_alarm  = 8;
 

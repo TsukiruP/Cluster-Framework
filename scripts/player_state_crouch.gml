@@ -48,6 +48,7 @@ switch (argument0) {
 
         // Spin Dash:
         if (input_player[INP_JUMP, CHECK_PRESSED] == true) {
+            state_animate = true;
             return player_set_state(player_state_spin_dash);
         }
         break;

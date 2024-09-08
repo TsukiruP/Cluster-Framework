@@ -23,7 +23,7 @@ if (dropped == true) {
         y_speed  = other.vspeed;
     }
 }
-#define Step_0
+#define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603

@@ -15,7 +15,7 @@ ctl_initialize();
 // Effect variables:
 e_speed = 0;
 angle   = 0;
-#define Step_0
+#define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603

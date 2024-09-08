@@ -25,5 +25,5 @@ if (instance_exists(player_handle)) {
     instance_destroy();
 }
 
-// Animate:
+// Animation:
 event_inherited();

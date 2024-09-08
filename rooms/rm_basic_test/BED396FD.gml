@@ -1,3 +1,3 @@
 //gm82 fields begin
-spring_orientation= 1
+item_id= 10
 //gm82 fields end

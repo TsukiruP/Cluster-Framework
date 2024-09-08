@@ -148,7 +148,9 @@
 				|spr_omochao_sonic
 		|spr_goal_ring
 	+Obstacles
-		|spr_spike
+		+Spikes
+			|spr_spike_vertical
+			|spr_spike_horizontal
 		+Blockades
 			|spr_blockade_vertical
 			|spr_blockade_horizontal
@@ -190,6 +192,7 @@
 			|spr_splash_4
 		+Misc.
 			|spr_ring_sparkle
+			|spr_blockade_rubble
 +Stages
 	+Basic Test
 		+Collision

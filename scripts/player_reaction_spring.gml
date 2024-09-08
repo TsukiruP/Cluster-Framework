@@ -18,14 +18,15 @@ if (collision & COLL_HURT_RADIUS) {
         if (!(on_ground == true && (reaction_handle.spring_angle == ANGLE_LEFT || reaction_handle.spring_angle == ANGLE_RIGHT)) || is_dash_ring == true) {
             // Set state:
             player_set_state(player_state_air, true);
-            spring_snap = 2;
+            y = reaction_handle.y;
 
             // Reset skills:
             player_reset_skill();
         } else {
-            spring_snap      = 1;
             input_lock_alarm = 16;
         }
+
+        x = reaction_handle.x;
 
         // Set spring:
         spring_angle    = reaction_handle.spring_angle;

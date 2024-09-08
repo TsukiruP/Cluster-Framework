@@ -9,4 +9,4 @@ push_handle = argument0.id;
 // Abort:
 
 // Push:
-player_set_animation("push");
+//player_set_animation("push");

@@ -11,4 +11,4 @@ if (argument_count < 3) {
     return script_execute(argument0.reaction_index, argument0, argument1);
 }
 
-return script_execute(argument0.reaction_index, argument1, argument[2]);
+return script_execute(argument0.reaction_index, argument0, argument1, argument[2]);

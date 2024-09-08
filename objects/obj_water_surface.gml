@@ -4,7 +4,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Animate
+/// Animation
 
 image_index = sync_rate(global.object_time, 6, sprite_get_number(spr_water_surface));
 #define Draw_0

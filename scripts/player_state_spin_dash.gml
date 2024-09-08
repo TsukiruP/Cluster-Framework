@@ -7,9 +7,6 @@ switch (argument0) {
         // Charge:
         spin_dash_charge = 0;
 
-        // Queue effect:
-        effect_queue = EFF_SPIN_DASH;
-
         // Play sound:
         sound_play_single("snd_spin_dash_charge");
         break;

@@ -66,7 +66,6 @@ switch (argument0) {
     // Finish:
     case STATE_FINISH:
         // Reset spring:
-        spring_snap     = false;
         spring_strength = 0;
         spring_angle    = 0;
         spring_alarm    = 0;

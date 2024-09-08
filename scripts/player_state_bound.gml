@@ -56,6 +56,13 @@ switch (argument0) {
         if (state_target != player_state_jump) {
             jump_aux    = false;
             bound_state = 0;
+
+            // Reset shield:
+            if (instance_exists(shield_handle)) {
+                with (shield_handle) {
+                    shield_reset = true;
+                }
+            }
         }
         break;
 

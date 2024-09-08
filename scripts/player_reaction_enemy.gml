@@ -18,6 +18,7 @@ if ((collision & COLL_HURT) || ((collision & COLL_HURT_RADIUS) && status_invin =
         // Rebound:
         else if (y < reaction_handle.y && sign(y_speed) == 1) {
             y_speed *= -1;
+            jump_cap = true;
         }
     }
 

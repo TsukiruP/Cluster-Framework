@@ -1,5 +1,5 @@
 /// player_set_damage(obj)
-//
+// Sets whether the player gets hurt or dies. Setting obj to the player is instant death.
 
 // Exit if already hurt, dying, or invincible:
 if (state_current == player_state_death || ((state_current == player_state_hurt || status_insta_alarm > 0 || status_invin != INVIN_NONE) && argument0 != self)) {
@@ -67,7 +67,7 @@ if (damage_handle == self.id) {
         sound_play("snd_hurt");
     }
 } else if ((input_cpu == false && shield_handle != noone) || input_cpu == true || state_target == player_state_death) {
-    if (object_is_ancestor(damage_handle.object_index, par_spike)) {
+    if (damage_handle.object_index == obj_spike) {
         sound_play("snd_spike");
     } else {
         sound_play("snd_hurt");

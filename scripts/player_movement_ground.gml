@@ -1,7 +1,7 @@
 /// player_movement_ground()
 // Performs a movement step for the player on the ground.
 
-var ox, oy, total_steps, step, hit_object, hit_wall, hit_floor;
+var ox, oy, total_steps, step, prop_handle, hit_prop, obstacle_handle, hit_obstacle, hit_wall, hit_floor;
 
 // Snap to moving platforms:
 if (instance_exists(ground_id)) {
@@ -43,9 +43,22 @@ repeat (total_steps) {
     prop_handle = instance_nearest(floor(x), floor(y), par_prop);
     hit_prop    = player_collision_object(prop_handle);
 
-    if (hit_prop != false) {
+    if (hit_prop != 0) {
         // React:
         player_react(prop_handle, hit_prop);
+
+        if (state_changed == true) {
+            return false;
+        }
+    }
+
+    // Obstacle collision:
+    obstacle_handle = instance_nearest(floor(x), floor(y), par_obstacle);
+    hit_obstacle    = player_collision_object(obstacle_handle);
+
+    if (hit_obstacle != 0) {
+        // React:
+        player_react(obstacle_handle, hit_obstacle, angle_wrap(round(point_direction(obstacle_handle.x, obstacle_handle.y, x, y) / 90) * 90));
 
         if (state_changed == true) {
             return false;

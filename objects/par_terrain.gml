@@ -33,15 +33,10 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Draw Collision
+/// Draw Terrain
 
-// Exit if not in debug mode:
-if (global.game_debug == false) {
-    exit;
-}
-
-// Mask:
-if (mask == true) {
+// Terrain:
+if ((mask == true && global.game_debug == true) || mask == false) {
     draw_self();
 }
 

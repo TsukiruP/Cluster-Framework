@@ -22,11 +22,6 @@ switch (argument0) {
         x_speed -= leap_force * dsin(relative_angle);
         y_speed -= leap_force * dcos(relative_angle);
 
-        // Queue effect:
-        if (on_surface == true) {
-            effect_queue = EFF_SPLASH;
-        }
-
         // Reset air:
         player_reset_air();
         break;
@@ -57,16 +52,18 @@ switch (argument0) {
         }
 
         // Variable jump:
-        var input_held;
+        if (jump_cap == true) {
+            var input_held;
 
-        input_held = input_player[INP_JUMP, CHECK_HELD];
+            input_held = input_player[INP_JUMP, CHECK_HELD];
 
-        if (jump_aux == true) {
-            input_held = input_player[INP_AUX, CHECK_HELD];
-        }
+            if (jump_aux == true) {
+                input_held = input_player[INP_AUX, CHECK_HELD];
+            }
 
-        if (y_speed < jump_release && input_held == false) {
-            y_speed = jump_release;
+            if (y_speed < jump_release && input_held == false) {
+                y_speed = jump_release;
+            }
         }
 
         // Air friction:
@@ -87,12 +84,20 @@ switch (argument0) {
 
     // Finish:
     case STATE_FINISH:
-        // Reset aux jump:
+        // Reset jump:
+        jump_cap = true;
         jump_aux = false;
 
         // Reset bound:
         if (state_target != player_state_bound) {
             bound_state = 0;
+
+            // Reset shield:
+            if (instance_exists(shield_handle)) {
+                with (shield_handle) {
+                    shield_reset = true;
+                }
+            }
         }
         break;
 

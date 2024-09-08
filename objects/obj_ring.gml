@@ -27,7 +27,29 @@ applies_to=self
 if (magnetized == true) {
     instance_create(x, y, obj_ring_magnetized);
 }
-#define Step_0
+#define Step_1
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Lifespan
+
+// Exit if the stage is paused or text is active:
+if (game_ispaused()) {
+    exit;
+}
+
+if (dropped == true) {
+    // Decrease lifespan alarm:
+    lifespan = max(lifespan - 1 * global.game_speed, 0);
+
+    // Destroy:
+    if (lifespan <= 0) {
+        instance_destroy();
+    }
+}
+#define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -35,10 +57,14 @@ applies_to=self
 */
 /// Movement
 
+// Animation:
+event_inherited();
+
 // Exit if the stage is paused or text is active:
 if (game_ispaused() || dropped == false) {
     exit;
 }
+
 
 // Destroy if out of view:
 if (!in_view()) {
@@ -122,28 +148,6 @@ if (instance_exists(player_get_instance(0))) {
             magnetized = true;
             instance_destroy();
         }
-    }
-}
-#define Step_1
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Lifespan
-
-// Exit if the stage is paused or text is active:
-if (game_ispaused()) {
-    exit;
-}
-
-if (dropped == true) {
-    // Decrease lifespan alarm:
-    lifespan = max(lifespan - 1 * global.game_speed, 0);
-
-    // Destroy:
-    if (lifespan <= 0) {
-        instance_destroy();
     }
 }
 #define Draw_0

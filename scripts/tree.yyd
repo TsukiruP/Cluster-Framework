@@ -220,6 +220,8 @@
 			|player_reaction_item_box
 			|player_reaction_enemy
 			|player_reaction_hint
+			|player_reaction_spike
+			|player_reaction_blockade
 		+Getters
 			|player_get_physics
 			|player_get_solids
@@ -294,3 +296,4 @@
 	|player_routine_shield_old
 	|player_state_hint
 |player_effect_queue
+|script229

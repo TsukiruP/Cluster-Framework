@@ -4,7 +4,6 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Obstacle Initialization
+/// Prop Initialization
 
-collision = true;
-type      = SOLID_FULL;
+event_inherited();
