@@ -58,7 +58,7 @@ repeat (total_steps) {
 
     if (hit_obstacle != 0) {
         // React:
-        player_react(obstacle_handle, hit_obstacle, angle_wrap(round(point_direction(obstacle_handle.x, obstacle_handle.y, x, y) / 45) * 45));
+        player_react(obstacle_handle, hit_obstacle, angle_wrap(round(point_direction(obstacle_handle.x, obstacle_handle.y, x, y) / ANGLE_UP) * ANGLE_UP));
 
         if (state_changed == true) {
             return false;

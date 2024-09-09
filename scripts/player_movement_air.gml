@@ -40,7 +40,7 @@ repeat (total_steps) {
 
     if (hit_obstacle != 0) {
         // React:
-        player_react(obstacle_handle, hit_obstacle, angle_wrap(round(point_direction(obstacle_handle.x, obstacle_handle.y, x, y) / 45) * 45));
+        player_react(obstacle_handle, hit_obstacle, angle_wrap(round(point_direction(obstacle_handle.x, obstacle_handle.y, x, y) / ANGLE_UP) * ANGLE_UP));
 
         if (state_changed == true) {
             return false;
@@ -104,7 +104,7 @@ repeat (total_steps) {
 
     if (hit_obstacle != 0) {
         // React:
-        player_react(obstacle_handle, hit_obstacle, angle_wrap(round(point_direction(obstacle_handle.x, obstacle_handle.y, x, y) / 45) * 45));
+        player_react(obstacle_handle, hit_obstacle, angle_wrap(round(point_direction(obstacle_handle.x, obstacle_handle.y, x, y) / ANGLE_UP) * ANGLE_UP));
 
         if (state_changed == true) {
             return false;
@@ -164,8 +164,8 @@ repeat (total_steps) {
         // Calculate landing speed:
         if (abs(x_speed) <= abs(y_speed) && relative_angle >= 22.5 && relative_angle <= 337.5) {
             // Scale speed to incline:
-
             x_speed = -y_speed * sign(dsin(relative_angle));
+
             if (relative_angle < 45 || relative_angle > 315) {
                 x_speed *= 0.5;
             }

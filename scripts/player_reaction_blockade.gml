@@ -9,14 +9,25 @@ side            = argument2;
 
 // Activate hint:
 if (collision & COLL_HURT) {
-    if (((abs(angle_difference(side, ANGLE_LEFT)) <= 45 || abs(angle_difference(side, ANGLE_RIGHT)) <= 45) && reaction_handle.blockade_orientation == ORIEN_VERTICAL)) {
+    if (((side == ANGLE_LEFT || side == ANGLE_RIGHT) && reaction_handle.blockade_orientation == ORIEN_VERTICAL) ||
+        ((side == ANGLE_UP || side == ANGLE_DOWN) && reaction_handle.blockade_orientation == ORIEN_HORIZONTAL && sign(y_speed) == dsin(side))) {
+        // Eject:
+        if (y_speed < 0 && side == ANGLE_DOWN) {
+            mask_rotation = angle_wrap(mask_rotation + 180);
+        }
+
+        if (side == ANGLE_UP || side == ANGLE_DOWN) {
+            player_set_ground(reaction_handle);
+        }
+
         // Rebound:
         player_wall_eject(reaction_handle);
         player_set_state(player_state_jump, false);
         player_reset_air();
         player_set_animation("spin");
-        x_speed = -2 * esign(x_speed, image_xscale);
-        y_speed = -2;
+
+        x_speed = -2.25 * esign(x_speed, dcos(side));
+        y_speed = -2.25 * esign(y_speed, 1);
 
         // Crack:
         reaction_handle.blockade_health -=  1;
@@ -42,7 +53,3 @@ if (collision & COLL_HURT) {
         }
     }
 }
-
-/*
- ||
-        ((side == ANGLE_UP || side == ANGLE_DOWN) && reaction_handle.blockade_orientation == ORIEN_HORIZONTAL && sign(y_speed) == dsin(side))

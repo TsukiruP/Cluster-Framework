@@ -61,7 +61,7 @@ switch (blockade_orientation) {
     // Vertical:
     default:
         sprite_index = spr_blockade_vertical;
-        set_hurtbox(14, 24, 13, 23);
+        set_hurtbox(13, 24, 12, 23);
 }
 #define Draw_0
 /*"/*'/**//* YYD ACTION
