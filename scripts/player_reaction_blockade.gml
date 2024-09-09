@@ -11,11 +11,12 @@ side            = argument2;
 if (collision & COLL_HURT) {
     if (((abs(angle_difference(side, ANGLE_LEFT)) <= 45 || abs(angle_difference(side, ANGLE_RIGHT)) <= 45) && reaction_handle.blockade_orientation == ORIEN_VERTICAL)) {
         // Rebound:
+        player_wall_eject(reaction_handle);
         player_set_state(player_state_jump, false);
-        player_set_animation("spin");
         player_reset_air();
-        x_speed = -2.10 * esign(x_speed, image_xscale);
-        y_speed = -2.10;
+        player_set_animation("spin");
+        x_speed = -2 * esign(x_speed, image_xscale);
+        y_speed = -2;
 
         // Crack:
         reaction_handle.blockade_health -=  1;
