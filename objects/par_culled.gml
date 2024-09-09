@@ -20,6 +20,9 @@ set_hitbox();
 
 // Reaction:
 reaction_index = -1;
+
+// Collision:
+collision = true;
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1

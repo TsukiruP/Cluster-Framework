@@ -192,7 +192,7 @@
 			|spr_splash_4
 		+Misc.
 			|spr_ring_sparkle
-			|spr_blockade_rubble
+			|spr_blockade_debris
 +Stages
 	+Basic Test
 		+Collision

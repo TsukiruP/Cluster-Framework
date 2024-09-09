@@ -128,6 +128,7 @@
 					|ctl_splash_4
 				+Misc.
 					|ctl_ring_sparkle
+					|ctl_blockade_debris
 	+Math
 		|wrap
 		|angle_wrap

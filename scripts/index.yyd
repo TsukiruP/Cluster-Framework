@@ -229,3 +229,4 @@ player_reset_skill
 player_reaction_spike
 script229
 player_reaction_blockade
+ctl_blockade_debris

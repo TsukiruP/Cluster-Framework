@@ -58,7 +58,7 @@ repeat (total_steps) {
 
     if (hit_obstacle != 0) {
         // React:
-        player_react(obstacle_handle, hit_obstacle, angle_wrap(round(point_direction(obstacle_handle.x, obstacle_handle.y, x, y) / 90) * 90));
+        player_react(obstacle_handle, hit_obstacle, angle_wrap(round(point_direction(obstacle_handle.x, obstacle_handle.y, x, y) / 45) * 45));
 
         if (state_changed == true) {
             return false;
@@ -78,7 +78,7 @@ repeat (total_steps) {
         // Eject from wall:
         wall_sign = player_wall_eject(hit_wall);
 
-        // Trigger reaction:
+        // React:
         // [PLACEHOLDER]
 
         // Stop if moving towards wall:
