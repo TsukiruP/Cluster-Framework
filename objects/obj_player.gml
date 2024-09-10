@@ -48,6 +48,7 @@ jump_cap     =  true;
 jump_aux     =  false;
 jump_force   =  6.5;
 jump_release = -4;
+jump_uncurl  =  0;
 
 bound_state  =  0;
 
@@ -449,8 +450,29 @@ switch (state_target) {
 
     // Jump:
     case player_state_jump:
-        if (animation_target != "spin" && animation_target != "insta") {
-            player_set_animation("spin");
+        switch (jump_uncurl) {
+            // Blockade uncurl:
+            case 2:
+                if (y_speed >= 0 && animation_target != "spring_fall") {
+                    player_set_animation("spring_fall");
+                    animation_skip = true;
+                }
+
+                if (animation_target != "spin" && animation_target != "spring_fall") {
+                    if (y_speed >= 0) {
+                        player_set_animation("spring_fall");
+                        animation_skip = true;
+                    } else {
+                        player_set_animation("spin");
+                    }
+                }
+                break;
+
+            // No uncurl:
+            default:
+                if (animation_target != "spin" && animation_target != "insta") {
+                    player_set_animation("spin");
+                }
         }
         break;
 
@@ -553,7 +575,6 @@ switch (animation_target) {
     case "brake":
     case "spring_flight":
     case "spring_fall":
-        // Tag variants
         break;
 
     // Wait:
@@ -579,6 +600,7 @@ switch (animation_target) {
         }
         break;
 
+    // Spin:
     case "spin":
         // Spin flight & fall:
         if (state_target == player_state_jump) {
@@ -591,6 +613,7 @@ switch (animation_target) {
         }
         break;
 
+    // Default:
     default:
         animation_variant = 0;
 }

@@ -85,8 +85,9 @@ switch (argument0) {
     // Finish:
     case STATE_FINISH:
         // Reset jump:
-        jump_cap = true;
-        jump_aux = false;
+        jump_cap    = true;
+        jump_aux    = false;
+        jump_uncurl = 0;
 
         // Reset bound:
         if (state_target != player_state_bound) {

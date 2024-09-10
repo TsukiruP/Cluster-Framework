@@ -1,5 +1,16 @@
 /// ctl_sonic_spring_fall()
 
+// Skip:
+if (animation_skip == true) {
+    ctl_skip(9);
+    sprite_index = spr_sonic_spring;
+
+    // Set collision:
+    player_set_radii(6, 14, 3);
+    set_hurtbox(6, 16, 6, 16);
+    set_hitbox();
+}
+
 // Start animation:
 if (ctl_position(0)) {
     // Set sprite:

@@ -225,10 +225,11 @@
 			|spr_basic_test_collision_27
 			|spr_basic_test_collision_28
 			|spr_basic_test_collision_29
-	+Sunset Hill
+		+Decals
+			|spr_basic_test_water_fall
+	+Sunset Forest
 		+Collision
 		+Gimmicks
-			|spr_basic_test_water_fall_01
 			|spr_basic_test_water_fall_02
 			|spr_basic_test_water_fall_03
 +Trash
