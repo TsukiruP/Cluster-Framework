@@ -9,7 +9,7 @@ collision       = argument1;
 // Activate checkpoint:
 if (collision & COLL_HURT_RADIUS) {
     if (input_cpu == false) {
-        if (global.checkpoint_x != reaction_handle.x && global.checkpoint_y != reaction_handle.y && reaction_handle.checkpoint_active == false) {
+        if (global.checkpoint_x != reaction_handle.x && global.checkpoint_y != reaction_handle.y && reaction_handle.active == false) {
             // Bonuses:
             if (global.gameplay_checkpoint == true) {
                 if (global.game_rings >= 20) {
@@ -49,7 +49,7 @@ if (collision & COLL_HURT_RADIUS) {
 
             // Activate:
             with (reaction_handle) {
-                checkpoint_active = true;
+                active = true;
                 checkpoint_set();
             }
 

@@ -24,6 +24,7 @@ if (collision & COLL_HURT) {
         player_wall_eject(reaction_handle);
         player_set_state(player_state_jump, false);
         player_reset_air();
+        player_set_animation("spin", 0);
         jump_uncurl = 2;
 
         x_speed = -2 * esign(x_speed, dcos(side));

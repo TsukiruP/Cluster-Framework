@@ -457,15 +457,6 @@ switch (state_target) {
                     player_set_animation("spring_fall");
                     animation_skip = true;
                 }
-
-                if (animation_target != "spin" && animation_target != "spring_fall") {
-                    if (y_speed >= 0) {
-                        player_set_animation("spring_fall");
-                        animation_skip = true;
-                    } else {
-                        player_set_animation("spin");
-                    }
-                }
                 break;
 
             // No uncurl:

@@ -183,7 +183,7 @@
 			|spr_explosion_enemy
 			|spr_explosion_water
 		+Enemies
-			|spr_enemy_health
+			|spr_enemy_vitality
 		+Splashes
 			|spr_splash_0
 			|spr_splash_1

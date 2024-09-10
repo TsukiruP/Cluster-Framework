@@ -42,7 +42,7 @@ draw_self_floored();
 
 // Health:
 if (enemy_class == ENE_SUPER && enemy_health > 0 && enemy_health < 3 && enemy_invin > 0) {
-    draw_sprite(spr_enemy_health, enemy_health - 1, floor(x), floor(y) - 40);
+    draw_sprite(spr_enemy_vitality, enemy_health - 1, floor(x), floor(y) - 40);
 }
 
 // Collision:

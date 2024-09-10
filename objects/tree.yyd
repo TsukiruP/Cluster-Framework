@@ -2,11 +2,12 @@
 	|par_overlay
 	|par_culled
 	|par_prop
-	|par_terrain
 	|par_ring
 	|par_enemy
 	|par_hint
+	|par_terrain
 	|par_obstacle
+	|eff_basic
 +System
 	|ctrl_initialization
 	+Controllers
@@ -46,7 +47,6 @@
 		|obj_spike
 		|obj_blockade
 	+Effects
-		|eff_basic
 		+Player
 			|eff_afterimage
 			|eff_player
