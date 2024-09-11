@@ -1,7 +1,8 @@
 /// sonic_state_skid(phase)
 // Sliiiide to the left, sliiiide to the right. Criss cross!
 
-switch (argument0) {
+switch (argument0)
+{
     // Start:
     case STATE_START:
         // Set speed:
@@ -11,59 +12,73 @@ switch (argument0) {
     // Step:
     case STATE_STEP:
         // Air movement:
-        if (on_ground == false) {
-            if (!player_movement_air()) {
+        if (on_ground == false)
+        {
+            if (!player_movement_air())
+            {
                 exit;
             }
 
             // Land:
-            if (player_routine_land()) {
+            if (player_routine_land())
+            {
                 return true;
             }
 
             // Gravity:
-            if (y_allow == true) {
+            if (y_allow == true)
+            {
                 y_speed += gravity_force;
             }
         }
 
         // Ground movement:
-        else {
+        else
+        {
             // Friction:
-            if (animation_current == "skid") {
+            if (animation_current == "skid")
+            {
                 x_speed -= min(abs(x_speed), 0.125) * sign(x_speed);
-            } else {
+            }
+            else
+            {
                 x_speed -= min(abs(x_speed), acceleration) * sign(x_speed);
             }
 
             // Movement:
-            if (!player_movement_ground()) {
+            if (!player_movement_ground())
+            {
                 exit;
             }
 
             // Slide off:
-            if (abs(x_speed) < slide_threshold && relative_angle >= 45 && relative_angle <= 315) {
+            if (abs(x_speed) < slide_threshold && relative_angle >= 45 && relative_angle <= 315)
+            {
                 // Fall:
-                if (relative_angle >= 90 && relative_angle <= 270) {
+                if (relative_angle >= 90 && relative_angle <= 270)
+                {
                     return player_set_state(player_state_air);
                 }
             }
 
             // Cancel:
-            if (x_speed != 0 && sign(x_speed) != image_xscale) {
+            if (x_speed != 0 && sign(x_speed) != image_xscale)
+            {
                 return player_set_state(player_state_run);
             }
 
             // Finish animation:
-            if (animation_finished == true) {
-                switch (animation_current) {
+            if (animation_finished == true)
+            {
+                switch (animation_current)
+                {
                     // Skid:
                     case "somersault":
                         x_speed = 4 * image_xscale;
                         player_set_animation("skid");
                         break;
 
-                    // Idle:
+                        // Idle:
                     case "skid_end":
                         return player_set_state(player_state_idle);
                         break;
@@ -72,14 +87,17 @@ switch (argument0) {
         }
 
         // Fall:
-        if (on_ground == false) {
+        if (on_ground == false)
+        {
             // Reset air:
-            if (ground_id != noone) {
+            if (ground_id != noone)
+            {
                 player_reset_air();
             }
 
             // Jump:
-            if (animation_finished == true) {
+            if (animation_finished == true)
+            {
                 player_set_state(player_state_jump, false);
                 animation_skip = true;
 
@@ -88,24 +106,29 @@ switch (argument0) {
         }
 
         // Skid behavior:
-        if (animation_current == "skid") {
+        if (animation_current == "skid")
+        {
             // Dust:
-            if (on_ground == true) {
+            if (on_ground == true)
+            {
                 // Dust:
                 player_brake_dust();
             }
 
             // Time out:
-            if (animation_timer >= 32) {
+            if (animation_timer >= 32)
+            {
                 // Get up:
-                if (on_ground == true) {
+                if (on_ground == true)
+                {
                     player_set_animation("skid_end");
                 }
 
                 // Jump:
-                else {
-                    player_reset_air();
+                else
+                {
                     player_set_state(player_state_jump, false);
+                    player_reset_air();
                     animation_skip = true;
 
                     return true;

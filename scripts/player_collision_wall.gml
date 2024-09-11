@@ -6,15 +6,17 @@ var total_solids, n, inst;
 total_solids = ds_list_size(solid_list);
 
 // Evaluate all solids:
-for (n = 0; n < total_solids; n += 1) {
+for (n = 0; n < total_solids; n += 1)
+{
     // Get the current solid:
     inst = ds_list_find_value(solid_list, n);
-
+    
     // Continue if not colliding with/passing through the current solid:
-    if (collision_ray(wall_radius + argument0, 0, mask_rotation, inst) == noone || inst.semi_solid) {
+    if (collision_ray(wall_radius + argument0, 0, mask_rotation, inst) == noone || inst.semi_solid)
+    {
         continue;
     }
-
+    
     // Confirm:
     return inst;
 }

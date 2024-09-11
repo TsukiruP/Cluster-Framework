@@ -7,7 +7,8 @@ var object_handle;
 object_handle = self;
 
 // Assign object handle:
-if (argument_count >= 1) {
+if (argument_count >= 1)
+{
     object_handle = argument[0];
 }
 

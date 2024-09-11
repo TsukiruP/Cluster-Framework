@@ -2,8 +2,10 @@
 // Executes player skills based on the character.
 
 // Ground skill:
-if (on_ground == true && input_player[INP_AUX, CHECK_PRESSED] == true) {
-    switch (character_id) {
+if (on_ground == true && input_player[INP_AUX, CHECK_PRESSED] == true)
+{
+    switch (character_id)
+    {
         // Sonic:
         case CHAR_SONIC:
             return sonic_skill_list(SONIC_AUX_G);
@@ -12,10 +14,13 @@ if (on_ground == true && input_player[INP_AUX, CHECK_PRESSED] == true) {
 }
 
 // Air skill:
-else if (on_ground == false) {
+else if (on_ground == false)
+{
     // Jump skill:
-    if (input_player[INP_JUMP, CHECK_PRESSED] == true) {
-        switch (character_id) {
+    if (input_player[INP_JUMP, CHECK_PRESSED] == true)
+    {
+        switch (character_id)
+        {
             // Sonic:
             case CHAR_SONIC:
                 return sonic_skill_list(SONIC_JUMP);
@@ -24,8 +29,10 @@ else if (on_ground == false) {
     }
 
     // Auxiliary skill:
-    if (input_player[INP_AUX, CHECK_PRESSED] == true) {
-        switch (character_id) {
+    if (input_player[INP_AUX, CHECK_PRESSED] == true)
+    {
+        switch (character_id)
+        {
             // Sonic:
             case CHAR_SONIC:
                 return sonic_skill_list(SONIC_AUX_A);

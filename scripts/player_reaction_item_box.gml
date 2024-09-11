@@ -7,10 +7,13 @@ reaction_handle = argument0;
 collision       = argument1;
 
 // Break item box:
-if ((collision & COLL_HURT) || (collision & COLL_HURT_RADIUS)) {
-    if (input_cpu == false || (input_cpu == true && input_cpu_alarm > 0)) {
+if ((collision & COLL_HURT) || (collision & COLL_HURT_RADIUS))
+{
+    if (input_cpu == false || (input_cpu == true && input_cpu_alarm > 0))
+    {
         // Break:
-        with (reaction_handle) {
+        with (reaction_handle)
+        {
             // Link:
             player_handle = other.id;
 

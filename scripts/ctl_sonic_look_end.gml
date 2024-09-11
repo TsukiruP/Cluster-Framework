@@ -1,7 +1,8 @@
 /// ctl_sonic_look_end()
 
 // Start animation:
-if (ctl_position(0)) {
+if (ctl_position(0))
+{
     // Set sprite:
     sprite_index = spr_sonic_look;
     image_index  = 1;
@@ -13,11 +14,13 @@ if (ctl_position(0)) {
 }
 
 // Change frame:
-else if (ctl_position(2)) {
+else if (ctl_position(2))
+{
     image_index = 0;
 }
 
 // Null frame:
-else if (ctl_position(3)) {
+else if (ctl_position(3))
+{
     player_set_animation("stand");
 }

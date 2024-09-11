@@ -1,7 +1,8 @@
 /// ctl_sonic_push()
 
 // Start animation:
-if (ctl_position(0)) {
+if (ctl_position(0))
+{
     // Set sprite:
     sprite_index = spr_sonic_push;
     image_index  = 0;
@@ -13,46 +14,55 @@ if (ctl_position(0)) {
 }
 
 // Change frame:
-else if (ctl_position(4)) {
+else if (ctl_position(4))
+{
     image_index = 1;
 }
 
 // Change frame:
-else if (ctl_position(10)) {
+else if (ctl_position(10))
+{
     image_index = 2;
 }
 
 // Change frame:
-else if (ctl_position(16)) {
+else if (ctl_position(16))
+{
     image_index = 3;
 }
 
 // Cange frame:
-else if (ctl_position(22)) {
+else if (ctl_position(22))
+{
     image_index = 4;
 }
 
 // Change frame:
-else if (ctl_position(28)) {
+else if (ctl_position(28))
+{
     image_index = 5;
 }
 
 // Change frame:
-else if (ctl_position(34)) {
+else if (ctl_position(34))
+{
     image_index = 6;
 }
 
 // Change frame:
-else if (ctl_position(40)) {
+else if (ctl_position(40))
+{
     image_index = 7;
 }
 
 // Change frame:
-else if (ctl_position(46)) {
+else if (ctl_position(46))
+{
     image_index = 8;
 }
 
 // Null frame:
-else if (ctl_position(51)) {
+else if (ctl_position(51))
+{
     ctl_time = 4;
 }

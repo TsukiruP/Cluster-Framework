@@ -1,7 +1,9 @@
 /// ctl_sonic_skid_end()
 
 // Start animation:
-if (ctl_position(0)) {
+if (ctl_position(0))
+{
+    // Set sprite:
     sprite_index = spr_sonic_crouch;
     image_index  = 3;
 
@@ -12,12 +14,14 @@ if (ctl_position(0)) {
 }
 
 // Change frame:
-else if (ctl_position(1)) {
+else if (ctl_position(1))
+{
     image_index = 1;
 }
 
 // Finish animation:
-else if (ctl_position(2)) {
-    image_index        = 0;
+else if (ctl_position(2))
+{
+    image_index = 0;
     animation_finished = true;
 }

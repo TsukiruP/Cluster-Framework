@@ -7,6 +7,7 @@ ctl_time          = 0;
 ctl_time_previous = 0;
 
 // Set index:
-if (argument_count >= 1) {
+if (argument_count >= 1)
+{
     ctl_index = argument[0];
 }

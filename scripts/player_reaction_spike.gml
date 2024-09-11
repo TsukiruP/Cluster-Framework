@@ -8,8 +8,10 @@ collision       = argument1;
 side            = argument2;
 
 // Activate hint:
-if (collision & COLL_HURT_RADIUS) {
-    if (side == reaction_handle.spike_angle) {
+if (collision & COLL_HURT_RADIUS)
+{
+    if (side == reaction_handle.spike_angle)
+    {
         player_set_damage(reaction_handle);
     }
 }

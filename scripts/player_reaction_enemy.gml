@@ -4,26 +4,31 @@
 var reaction_handle, collision;
 
 reaction_handle = argument0;
-collision       = argument1;
+collision = argument1;
 
 // Player advantage:
-if ((collision & COLL_HURT) || ((collision & COLL_HURT_RADIUS) && status_invin == INVIN_BUFF)) {
+if ((collision & COLL_HURT) || ((collision & COLL_HURT_RADIUS) && status_invin == INVIN_BUFF))
+{
     // Basic react:
-    if (reaction_handle.enemy_class == ENE_BASIC) {
+    if (reaction_handle.enemy_class == ENE_BASIC)
+    {
         // Subtract:
-        if (y > reaction_handle.y || sign(y_speed) == -1) {
+        if (y > reaction_handle.y || sign(y_speed) == -1)
+        {
             y_speed -= 1;
         }
 
         // Rebound:
-        else if (y < reaction_handle.y && sign(y_speed) == 1) {
+        else if (y < reaction_handle.y && sign(y_speed) == 1)
+        {
             y_speed *= -1;
             jump_cap = true;
         }
     }
 
     // Super react:
-    if (reaction_handle.enemy_class == ENE_SUPER && reaction_handle.enemy_invin == 0) {
+    if (reaction_handle.enemy_class == ENE_SUPER && reaction_handle.enemy_invin == 0)
+    {
         // Set speed:
         x_speed *= -0.5;
         y_speed *= -0.5;
@@ -34,11 +39,13 @@ if ((collision & COLL_HURT) || ((collision & COLL_HURT_RADIUS) && status_invin =
     }
 
     // Score:
-    if (reaction_handle.enemy_class == ENE_BASIC || (reaction_handle.enemy_class == ENE_SUPER && (reaction_handle.enemy_health == 0 || status_invin == INVIN_BUFF))) {
+    if (reaction_handle.enemy_class == ENE_BASIC || (reaction_handle.enemy_class == ENE_SUPER && (reaction_handle.enemy_health == 0 || status_invin == INVIN_BUFF)))
+    {
         global.game_score += 100 + (400 * reaction_handle.enemy_class);
 
         // Destroy:
-        with (reaction_handle) {
+        with (reaction_handle)
+        {
             effect_create(ctl_explosion_enemy, x, y, -depth);
             instance_destroy();
         }
@@ -49,6 +56,7 @@ if ((collision & COLL_HURT) || ((collision & COLL_HURT_RADIUS) && status_invin =
 }
 
 // Enemy advantage:
-else if (((collision & COLL_HIT) || (collision & COLL_HIT_RADIUS)) && status_shield - SHIELD_BUBBLE != reaction_handle.hitbox_element) {
+else if (((collision & COLL_HIT) || (collision & COLL_HIT_RADIUS)) && status_shield - SHIELD_BUBBLE != reaction_handle.hitbox_element)
+{
     player_set_damage(reaction_handle);
 }

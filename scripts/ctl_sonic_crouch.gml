@@ -1,7 +1,8 @@
 /// ctl_sonic_crouch()
 
 // Start animation:
-if (ctl_position(0)) {
+if (ctl_position(0))
+{
     // Set sprite:
     sprite_index = spr_sonic_crouch;
     image_index  = 0;
@@ -13,7 +14,8 @@ if (ctl_position(0)) {
 }
 
 // Change frame:
-else if (ctl_position(1)) {
+else if (ctl_position(1))
+{
     image_index = 1;
 
     // Animation trigger:
@@ -21,11 +23,13 @@ else if (ctl_position(1)) {
 }
 
 // Change frame:
-else if (ctl_position(2)) {
+else if (ctl_position(2))
+{
     image_index = 2;
 }
 
 // Change frame:
-else if (ctl_position(3)) {
+else if (ctl_position(3))
+{
     image_index = 3;
 }

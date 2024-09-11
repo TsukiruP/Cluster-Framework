@@ -180,7 +180,6 @@
 			|player_wall_eject
 			|player_wall_push
 		+Movement
-			|player_reset_air
 			|player_movement_ground
 			|player_movement_air
 		+States
@@ -234,6 +233,8 @@
 			|player_set_ground
 			|player_set_cliff
 			|player_set_damage
+			|player_reset_air
+			|player_reset_skill
 		+Misc.
 			|player_react
 			|player_inbounds
@@ -241,7 +242,6 @@
 			|player_slope_friction
 			|player_ring_loss
 			|player_brake_dust
-			|player_reset_skill
 			+Trail
 				|start_trail
 				|update_trail

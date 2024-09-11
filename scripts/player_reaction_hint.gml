@@ -4,20 +4,25 @@
 var reaction_handle, collision;
 
 reaction_handle = argument0;
-collision       = argument1;
+collision = argument1;
 
 // Activate hint:
-if (collision & COLL_HURT_RADIUS) {
-    if (mask_rotation == gravity_angle(reaction_handle) && on_ground == true && input_cpu == false) {
+if (collision & COLL_HURT_RADIUS)
+{
+    if (mask_rotation == gravity_angle(reaction_handle) && on_ground == true && input_cpu == false)
+    {
         // Link:
-        with (reaction_handle) {
+        with (reaction_handle)
+        {
             player_handle = other.id;
         }
 
         // Activate:
-        if (floor(x_speed) == 0 && input_player[INP_UP, CHECK_PRESSED] == true) {
+        if (floor(x_speed) == 0 && input_player[INP_UP, CHECK_PRESSED] == true)
+        {
             // Set state:
-            if (hint_allow == true) {
+            if (hint_allow == true)
+            {
                 // Set state:
                 player_set_state(player_state_idle);
 
@@ -28,20 +33,22 @@ if (collision & COLL_HURT_RADIUS) {
                 hint_allow = false;
 
                 // Set animation:
-                switch (reaction_handle.object_index) {
+                switch (reaction_handle.object_index)
+                {
                     // Hint Box:
                     case obj_hint_box:
                         player_set_animation("look");
                         break;
 
-                    // Omochao:
+                        // Omochao:
                     case obj_omochao:
                         player_set_animation("omochao");
                         break;
                 }
 
                 // Call text:
-                with (reaction_handle) {
+                with(reaction_handle)
+                {
                     event_user(0);
                 }
             }

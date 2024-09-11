@@ -23,7 +23,8 @@ sine   = dsin(rot);
 csine  = dcos(rot);
 
 // Flip x direction:
-if (dir_x == -1) {
+if (dir_x == -1)
+{
     var temp;
 
     temp  = left;
@@ -31,7 +32,8 @@ if (dir_x == -1) {
     right = temp;
 }
 
-if (dir_y == -1) {
+if (dir_y == -1)
+{
     var temp;
 
     temp   = top;
@@ -40,12 +42,13 @@ if (dir_y == -1) {
 }
 
 // Set coordinates:
-x1 = x_int - (csine * left) + (csine * off_x) - (sine * top) + (sine * off_y) ;
+x1 = x_int - (csine * left) + (csine * off_x) - (sine * top) + (sine * off_y);
 y1 = y_int - (csine * top) + (csine * off_y) - (sine * right) - (sine * off_x);
 x2 = x_int + (csine * right) + (csine * off_x) + (sine * bottom) + (sine * off_y);
 y2 = y_int + (csine * bottom) + (csine * off_y) + (sine * left) - (sine * off_x);
 
 // Draw rectangle:
-if !(left == 0 && top == 0 && right == 0 && bottom == 0) {
+if !(left == 0 && top == 0 && right == 0 && bottom == 0)
+{
     draw_rectangle_color(x1, y1, x2, y2, argument8, argument8, argument8, argument8, true);
 }

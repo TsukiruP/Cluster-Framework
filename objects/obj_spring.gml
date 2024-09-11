@@ -20,16 +20,24 @@ spring_angle       = 0;
 
 spring_active      = false;
 spring_sfx         = 0;
+
+orientation = ORIEN_VERTICAL;
+flip_x      = false;
+flip_y      = false;
+force       = 8;
+angle       = 0;
+activated   = false;
+sfx_alarm   = 0;
 #define Step_1
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
 applies_to=self
 */
-/// SFX
+/// Alarm
 
-if (spring_sfx > 0) {
-    spring_sfx -= 1;
+if (sfx_alarm > 0) {
+    sfx_alarm -= 1;
 }
 #define Step_2
 /*"/*'/**//* YYD ACTION
@@ -45,13 +53,13 @@ if (game_ispaused(ctrl_pause)|| object_is_ancestor(self.object_index, obj_dash_r
 }
 
 // Execute script:
-if (spring_active == true) {
+if (activated == true) {
     ctl_update();
     script_execute(ctl_index);
 }
 
 // Reset frame:
-if (spring_active == false) {
+if (activated == false) {
     timeline_set(ctl_index);
     image_index = 0;
 }
@@ -63,21 +71,21 @@ applies_to=self
 */
 /// Field Initialization
 
-//field spring_orientation: enum(0, 1, 2)
-//field spring_flip_x: bool
-//field spring_flip_y: bool
-//field spring_strength: number
+//field orientation: enum(0, 1, 2)
+//field flip_x: bool
+//field flip_y: bool
+//field force: number
 
 /*preview
-    var spring_orientation, spring_flip_x, spring_flip_y;
+    var orientation, flip_x, flip_y;
 
-    image_xscale       = 1;
-    image_yscale       = 1;
-    spring_orientation = Field("spring_orientation", 0);
-    spring_flip_x      = Field("spring_flip_x", 0);
-    spring_flip_y      = Field("spring_flip_y", 0);
+    image_xscale = 1;
+    image_yscale = 1;
+    orientation  = Field("orientation", 0);
+    flip_x       = Field("flip_x", 0);
+    flip_y       = Field("flip_y", 0);
 
-    switch (spring_orientation) {
+    switch (orientation) {
         // Horizontal:
         case 1:
             sprite_index = Sprite("spr_spring_horizontal", 0);
@@ -94,12 +102,12 @@ applies_to=self
     }
 
     // Flip x:
-    if (spring_flip_x == true) {
+    if (flip_x == true) {
         image_xscale = -1;
     }
 
     // Flip y:
-    if (spring_flip_y == true) {
+    if (flip_y == true) {
         image_yscale = -1;
     }
 */
@@ -111,11 +119,11 @@ applies_to=self
 /// Spring Initialization
 
 // Spring orientation:
-switch (spring_orientation) {
+switch (orientation) {
     // Horizontal:
     case ORIEN_HORIZONTAL:
         sprite_index = spr_spring_horizontal;
-        spring_angle = ANGLE_RIGHT;
+        angle        = ANGLE_RIGHT;
         ctl_initialize(ctl_spring_horizontal);
         set_hurtbox(16, 5, 4, 5);
         break;
@@ -123,7 +131,7 @@ switch (spring_orientation) {
     // Diagonal:
     case ORIEN_DIAGONAL:
         sprite_index = spr_spring_diagonal;
-        spring_angle = ANGLE_RIGHT_UP;
+        angle        = ANGLE_RIGHT_UP;
         ctl_initialize(ctl_spring_diagonal);
         set_hurtbox(6, 2, 4, 8);
         break;
@@ -131,21 +139,21 @@ switch (spring_orientation) {
     // Vertical:
     default:
         sprite_index = spr_spring_vertical;
-        spring_angle = ANGLE_UP;
+        angle        = ANGLE_UP;
         ctl_initialize(ctl_spring_vertical);
         set_hurtbox(5, 4, 5, 15);
 }
 
 // Flip x:
-if (spring_flip_x == true) {
+if (flip_x == true) {
     image_xscale = -1;
-    spring_angle = 180 - spring_angle;
+    angle = 180 - angle;
 }
 
 // Flip y:
-if (spring_flip_y == true) {
+if (flip_y == true) {
     image_yscale = -1;
-    spring_angle = 360 - spring_angle;
+    angle = 360 - angle;
 }
 #define Draw_0
 /*"/*'/**//* YYD ACTION

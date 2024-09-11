@@ -1,7 +1,9 @@
 /// ctl_sonic_skid()
 
 // Start animation:
-if (ctl_position(0)) {
+if (ctl_position(0))
+{
+    // Set sprite:
     sprite_index = spr_sonic_skid;
     image_index  = 11;
 
@@ -12,16 +14,19 @@ if (ctl_position(0)) {
 }
 
 // Change frame:
-else if (ctl_position(2)) {
+else if (ctl_position(2))
+{
     image_index = 12;
 }
 
 // Change frame:
-else if (ctl_position(4)) {
+else if (ctl_position(4))
+{
     image_index = 13;
 }
 
 // Null frame:
-else if (ctl_position(5)) {
+else if (ctl_position(5))
+{
     ctl_time = 0;
 }

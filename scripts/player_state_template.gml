@@ -1,16 +1,17 @@
 /// player_state_template(phase)
 //
 
-switch (argument0) {
+switch (argument0)
+{
     // Start:
     case STATE_START:
         break;
 
-    // Step:
+        // Step:
     case STATE_STEP:
         break;
 
-    // Finish:
+        // Finish:
     case STATE_FINISH:
         break;
 }

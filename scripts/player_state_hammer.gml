@@ -1,7 +1,8 @@
 /// player_state_hammer()
 // Gigant hammer.
 
-switch (argument0) {
+switch (argument0)
+{
     // Start:
     case STATE_START:
         // Set speed:
@@ -11,22 +12,26 @@ switch (argument0) {
     // Step:
     case STATE_STEP:
         // Movement:
-        if (!player_movement_ground()) {
+        if (!player_movement_ground())
+        {
             exit;
         }
 
         // Fall:
-        if (on_ground == false) {
+        if (on_ground == false)
+        {
             return player_set_state(player_state_air);
         }
 
         // Idle:
-        if (animation_finished == true) {
+        if (animation_finished == true)
+        {
             return player_set_state(player_state_idle);
         }
 
         // Jump:
-        if (player_collision_ceiling(y_radius + 5) == noone && input_player[INP_JUMP, CHECK_PRESSED] == true) {
+        if (player_collision_ceiling(y_radius + 5) == noone && input_player[INP_JUMP, CHECK_PRESSED] == true)
+        {
             // Play sound:
             sound_play_single("snd_jump");
 

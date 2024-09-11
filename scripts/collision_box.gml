@@ -6,7 +6,8 @@ var x_int, y_int;
 x_int = floor(x);
 y_int = floor(y);
 
-if (argument2) {
+if (argument2)
+{
     return collision_rectangle(x_int - argument1, y_int - argument0, x_int + argument1, y_int + argument0, argument3, true, true);
 }
 

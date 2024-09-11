@@ -1,21 +1,31 @@
-/// fade_create(speed, target, [depth, color])
-// Returns a newly created fade object.
+/// transition_create(room, [transition])
 
-// Initialize:
-fade             = instance_create(0, 0, ctrl_fade);
-fade.fade_speed  = argument0;
-fade.fade_target = argument1;
-fade.depth       = self.depth + 1;
+transition                 = instance_create(0, 0, ctrl_transition);
+transition.transition_id   = TRANS_FADE;
+transition.transition_room = argument0;
 
-// Set depth:
-if (argument_count >= 3) {
-    fade.depth = argument[2];
+with (transition)
+{
+    room_get_data(argument0);
 }
 
-// Set color:
-if (argument_count >= 4) {
-    fade.fade_color = argument[3];
+// Override transition type:
+if (argument_count >= 2)
+{
+    transition.transition_id = argument[1];
 }
 
-// Return the fade controller:
-return fade;
+if (ctrl_audio.music_instance != -1)
+{
+    if (transition.room_music != "")
+    {
+        if (!sound_isplaying(transition.room_music)) ctrl_audio.fade_out = true;
+    }
+    else
+    {
+        ctrl_audio.fade_out = true;
+    }
+}
+
+// Return the transition controller:
+return transition;

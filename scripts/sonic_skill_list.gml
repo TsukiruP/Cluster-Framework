@@ -6,8 +6,10 @@ var skill_id;
 skill_id = argument0;
 
 // Ground skill:
-if (skill_id == SONIC_AUX_G) {
-    switch (global.sonic_skill[skill_id]) {
+if (skill_id == SONIC_AUX_G)
+{
+    switch (global.sonic_skill[skill_id])
+    {
         // Slide:
         case 1:
             return player_set_state(sonic_state_skid);
@@ -22,18 +24,23 @@ if (skill_id == SONIC_AUX_G) {
 }
 
 // Air skills:
-else {
-    if (global.sonic_skill[skill_id] <= 1 && status_shield_allow == true) {
+else
+{
+    if (global.sonic_skill[skill_id] <= 1 && status_shield_allow == true)
+    {
         // Elemental shields:
-        if (global.sonic_skill[SONIC_SHIELD] == true && status_shield >= SHIELD_BUBBLE) {
+        if (global.sonic_skill[SONIC_SHIELD] == true && status_shield >= SHIELD_BUBBLE)
+        {
             return player_routine_shield();
         }
 
         // Insta-shield:
-        else if (global.sonic_skill[skill_id] == 1) {
+        else if (global.sonic_skill[skill_id] == 1)
+        {
             // Set status:
             state_animate       = true;
             jump_cap            = false;
+
             status_shield_allow = false;
             status_insta_alarm  = 8;
 
@@ -48,7 +55,8 @@ else {
     }
 
     // Jump Dash:
-    else if (global.sonic_skill[skill_id] == 2) {
+    else if (global.sonic_skill[skill_id] == 2)
+    {
 
     }
 }

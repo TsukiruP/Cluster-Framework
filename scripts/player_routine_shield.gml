@@ -5,11 +5,12 @@
 status_shield_allow = false;
 
 // Animation variables:
-state_animate  = true;
+state_animate = true;
 animation_skip = true;
 
 // Shield behavior:
-switch (status_shield) {
+switch (status_shield)
+{
     // Fire:
     case SHIELD_FIRE:
         // Set speed:
@@ -17,13 +18,16 @@ switch (status_shield) {
         y_speed = 0;
 
         // Camera lag:
-        ctrl_camera.camera_lag_alarm = 16;
+        if (input_cpu == false)
+        {
+            ctrl_camera.camera_lag_alarm = 16;
+        }
 
         // Play sound:
         sound_play_single("snd_shield_fire_dash");
         break;
 
-    // Lightning:
+        // Lightning:
     case SHIELD_LIGHTNING:
         // Set speed:
         y_speed = -5.5;
@@ -32,7 +36,7 @@ switch (status_shield) {
         sound_play_single("snd_shield_lightning_jump");
         break;
 
-    // Bubble:
+        // Bubble:
     case SHIELD_BUBBLE:
         // Set speed:
         x_speed = 0;
@@ -47,13 +51,16 @@ switch (status_shield) {
 }
 
 // Return:
-if (status_shield == SHIELD_BUBBLE) {
+if (status_shield == SHIELD_BUBBLE)
+{
     player_set_state(player_state_bound);
 
     // Jump aux:
     jump_aux = input_player[INP_AUX, CHECK_PRESSED];
 
     return true;
-} else {
+}
+else
+{
     return player_set_state(player_state_jump, false);
 }

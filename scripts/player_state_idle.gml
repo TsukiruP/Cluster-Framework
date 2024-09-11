@@ -1,7 +1,8 @@
 /// player_state_idle(phase)
 // Standing here, I realize...
 
-switch (argument0) {
+switch (argument0)
+{
     // Start:
     case STATE_START:
         // Cliff:
@@ -11,26 +12,33 @@ switch (argument0) {
     // Step:
     case STATE_STEP:
         // Movement:
-        if (!player_movement_ground()) {
+        if (!player_movement_ground())
+        {
             exit;
         }
 
         // Hint:
-        if (hint_allow == false) {
+        if (hint_allow == false)
+        {
             return false;
         }
 
         // Fall:
-        if (on_ground == false) {
+        if (on_ground == false)
+        {
             return player_set_state(player_state_air);
         }
 
         // Slide off:
-        if (relative_angle >= 45 && relative_angle <= 315) {
+        if (relative_angle >= 45 && relative_angle <= 315)
+        {
             // Fall:
-            if (relative_angle >= 90 && relative_angle <= 270) {
+            if (relative_angle >= 90 && relative_angle <= 270)
+            {
                 return player_set_state(player_state_air);
-            } else {
+            }
+            else
+            {
                 input_lock_alarm = 30;
 
                 return player_set_state(player_state_run);
@@ -38,28 +46,34 @@ switch (argument0) {
         }
 
         // Turn:
-        if (global.advance_turn == true && input_x_direction != 0 && image_xscale != input_x_direction) {
+        if (global.advance_turn == true && input_x_direction != 0 && image_xscale != input_x_direction)
+        {
             return player_set_state(player_state_turn);
         }
 
         // Run:
-        if (x_speed != 0 || input_x_direction != 0) {
+        if (x_speed != 0 || input_x_direction != 0)
+        {
             return player_set_state(player_state_run);
         }
 
         // Look:
-        if (cliff_direction == 0) {
-            switch (input_y_direction) {
+        if (cliff_direction == 0)
+        {
+            switch (input_y_direction)
+            {
                 // Look:
                 case -1:
-                    if (animation_current != "look_end") {
+                    if (animation_current != "look_end")
+                    {
                         return player_set_state(player_state_look);
                     }
                     break;
 
-                // Crouch:
+                    // Crouch:
                 case 1:
-                    if (animation_current != "crouch_end") {
+                    if (animation_current != "crouch_end")
+                    {
                         return player_set_state(player_state_crouch);
                     }
                     break;
@@ -67,12 +81,14 @@ switch (argument0) {
         }
 
         // Skill:
-        if (player_routine_skill()) {
+        if (player_routine_skill())
+        {
             return true;
         }
 
         // Jump:
-        if (player_collision_ceiling(y_radius + 5) == noone && input_player[INP_JUMP, CHECK_PRESSED] == true) {
+        if (player_collision_ceiling(y_radius + 5) == noone && input_player[INP_JUMP, CHECK_PRESSED] == true)
+        {
             // Play sound:
             sound_play_single("snd_jump");
 

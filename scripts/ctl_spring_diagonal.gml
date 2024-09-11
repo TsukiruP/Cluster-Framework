@@ -1,7 +1,8 @@
 /// ctl_spring_diagonal()
 
 // Start animation:
-if (ctl_position(0)) {
+if (ctl_position(0))
+{
     image_index = 1;
 
     // Set hurtbox:
@@ -9,7 +10,8 @@ if (ctl_position(0)) {
 }
 
 // Change frame:
-else if (ctl_position(2)) {
+else if (ctl_position(2))
+{
     image_index = 2;
 
     // Set hurtbox:
@@ -17,7 +19,8 @@ else if (ctl_position(2)) {
 }
 
 // Change frame:
-else if (ctl_position(6)) {
+else if (ctl_position(6))
+{
     image_index = 3;
 
     // Set hurtbox:
@@ -25,7 +28,8 @@ else if (ctl_position(6)) {
 }
 
 // Change frame:
-else if (ctl_position(8)) {
+else if (ctl_position(8))
+{
     image_index = 4;
 
     // Set hurtbox:
@@ -33,7 +37,8 @@ else if (ctl_position(8)) {
 }
 
 // Change frame:
-else if (ctl_position(12)) {
+else if (ctl_position(12))
+{
     image_index = 5;
 
     // Set hurtbox:
@@ -41,8 +46,9 @@ else if (ctl_position(12)) {
 }
 
 // Change frame:
-else if (ctl_position(14)) {
-    spring_active = false;
+else if (ctl_position(14))
+{
+    activated = false;
 
     // Set hurtbox:
     set_hurtbox(6, 2, 4, 8);

@@ -1,7 +1,8 @@
 /// player_state_spin_dash(phase)
 // Charge and Up.
 
-switch (argument0) {
+switch (argument0)
+{
     // Start:
     case STATE_START:
         // Charge:
@@ -14,16 +15,21 @@ switch (argument0) {
     // Step:
     case STATE_STEP:
         // Movement:
-        if (!player_movement_ground()) {
+        if (!player_movement_ground())
+        {
             exit;
         }
 
         // Slide off:
-        if (relative_angle >= 45 && relative_angle <= 315) {
+        if (relative_angle >= 45 && relative_angle <= 315)
+        {
             // Fall:
-            if (relative_angle >= 90 && relative_angle <= 270) {
+            if (relative_angle >= 90 && relative_angle <= 270)
+            {
                 return player_set_state(player_state_air);
-            } else {
+            }
+            else
+            {
                 input_lock_alarm = 30;
 
                 // Play sound:
@@ -34,11 +40,13 @@ switch (argument0) {
         }
 
         // Release:
-        if (input_player[INP_DOWN, CHECK_HELD] == false) {
+        if (input_player[INP_DOWN, CHECK_HELD] == false)
+        {
             x_speed = image_xscale * (8 + (spin_dash_charge div 2));
 
             // Camera lag:
-            if (input_cpu == false) {
+            if (input_cpu == false)
+            {
                 ctrl_camera.camera_lag_alarm = 16;
             }
 
@@ -52,7 +60,8 @@ switch (argument0) {
         }
 
         // Charge:
-        if (input_player[INP_JUMP, CHECK_PRESSED] == true) {
+        if (input_player[INP_JUMP, CHECK_PRESSED] == true)
+        {
             var sfx_spin_dash;
 
             spin_dash_charge = min(spin_dash_charge + 2, 8);
@@ -67,7 +76,8 @@ switch (argument0) {
         }
 
         // Atrophy:
-        if (spin_dash_charge > 0) {
+        if (spin_dash_charge > 0)
+        {
             spin_dash_charge *= 0.96875;
         }
         break;
@@ -78,7 +88,8 @@ switch (argument0) {
 
     // Animate:
     case STATE_ANIMATE:
-        with (instance_create(x, y, eff_spin_dash)) {
+        with (instance_create(x, y, eff_spin_dash))
+        {
             player_handle = other.id;
         }
         break;

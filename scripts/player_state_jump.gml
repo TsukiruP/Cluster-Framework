@@ -1,20 +1,22 @@
 /// player_state_jump(phase)
 // A jump to the sky turns to a rider kick.
 
-switch (argument0) {
+switch (argument0)
+{
     // Start:
     case STATE_START:
         var g_speed, leap_force;
 
         // Set speed:
-        g_speed =  x_speed;
-        x_speed =  dcos(relative_angle) * g_speed;
+        g_speed = x_speed;
+        x_speed = dcos(relative_angle) * g_speed;
         y_speed = -(dsin(relative_angle) * g_speed);
 
         // Air force:
         leap_force = jump_force;
 
-        if (bound_state == 1) {
+        if (bound_state == 1)
+        {
             leap_force = 7.5;
         }
 
@@ -29,55 +31,66 @@ switch (argument0) {
     // Step:
     case STATE_STEP:
         // Input:
-        if (input_x_direction != 0) {
+        if (input_x_direction != 0)
+        {
             image_xscale = input_x_direction;
 
-            if (abs(x_speed) < top_speed || sign(x_speed) != input_x_direction) {
+            if (abs(x_speed) < top_speed || sign(x_speed) != input_x_direction)
+            {
                 x_speed += (acceleration * 2) * input_x_direction;
 
-                if (abs(x_speed) > top_speed && sign(x_speed) == input_x_direction) {
+                if (abs(x_speed) > top_speed && sign(x_speed) == input_x_direction)
+                {
                     x_speed = top_speed * input_x_direction;
                 }
             }
         }
 
         // Movement:
-        if (!player_movement_air()) {
+        if (!player_movement_air())
+        {
             exit;
         }
 
         // Land:
-        if (player_routine_land()) {
+        if (player_routine_land())
+        {
             return true;
         }
 
         // Variable jump:
-        if (jump_cap == true) {
+        if (jump_cap == true)
+        {
             var input_held;
 
             input_held = input_player[INP_JUMP, CHECK_HELD];
 
-            if (jump_aux == true) {
+            if (jump_aux == true)
+            {
                 input_held = input_player[INP_AUX, CHECK_HELD];
             }
 
-            if (y_speed < jump_release && input_held == false) {
+            if (y_speed < jump_release && input_held == false)
+            {
                 y_speed = jump_release;
             }
         }
 
         // Air friction:
-        if (abs(x_speed) > air_friction_threshold && y_speed > -4 && y_speed < 0) {
+        if (abs(x_speed) > air_friction_threshold && y_speed > -4 && y_speed < 0)
+        {
             x_speed *= air_friction;
         }
 
         // Gravity:
-        if (y_allow == true) {
+        if (y_allow == true)
+        {
             y_speed += gravity_force;
         }
 
         // Skill:
-        if (player_routine_skill()) {
+        if (player_routine_skill())
+        {
             return true;
         }
         break;
@@ -90,12 +103,15 @@ switch (argument0) {
         jump_uncurl = 0;
 
         // Reset bound:
-        if (state_target != player_state_bound) {
+        if (state_target != player_state_bound)
+        {
             bound_state = 0;
 
             // Reset shield:
-            if (instance_exists(shield_handle)) {
-                with (shield_handle) {
+            if (instance_exists(shield_handle))
+            {
+                with (shield_handle)
+                {
                     shield_reset = true;
                 }
             }
@@ -104,12 +120,15 @@ switch (argument0) {
 
     // Animate:
     case STATE_ANIMATE:
-        switch (status_shield) {
+        switch (status_shield)
+        {
             // Bubble shield:
             case SHIELD_BUBBLE:
                 // Set timeline:
-                if (instance_exists(shield_handle)) {
-                    with (shield_handle) {
+                if (instance_exists(shield_handle))
+                {
+                    with (shield_handle)
+                    {
                         event_user(1);
                     }
                 }
@@ -121,8 +140,10 @@ switch (argument0) {
                 ctrl_camera.camera_lag_alarm = 16;
 
                 // Set timeline:
-                if (instance_exists(shield_handle)) {
-                    with (shield_handle) {
+                if (instance_exists(shield_handle))
+                {
+                    with (shield_handle)
+                    {
                         event_user(0);
                     }
                 }
@@ -131,17 +152,20 @@ switch (argument0) {
             // Lightning jump:
             case SHIELD_LIGHTNING:
                 // Sparks:
-                for (i = 0; i < 4; i += 1) {
+                for (i = 0; i < 4; i += 1)
+                {
                     var spark_handle;
 
                     spark_handle         = instance_create(floor(x), floor(y), eff_basic);
                     spark_handle.e_speed = 2;
 
-                    with (spark_handle) {
+                    with (spark_handle)
+                    {
                         ctl_initialize(ctl_shield_lightning_spark);
                     }
 
-                    switch (i) {
+                    switch (i)
+                    {
                         case 0:
                             spark_handle.angle = ANGLE_LEFT_UP;
                             break;
@@ -163,7 +187,8 @@ switch (argument0) {
 
             // Insta-shield:
             default:
-                with (instance_create(x, y, eff_player)) {
+                with (instance_create(x, y, eff_player))
+                {
                     ctl_initialize(ctl_shield_insta);
 
                     depth         = other.depth;

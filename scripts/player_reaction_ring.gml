@@ -7,12 +7,15 @@ reaction_handle = argument0;
 collision       = argument1;
 
 // Collect ring:
-if (collision & COLL_HURT_RADIUS) {
-    if (status_invin != INVIN_HURT || (status_invin == INVIN_HURT && status_invin_alarm > 0 && status_invin_alarm < 90)) {
+if (collision & COLL_HURT_RADIUS)
+{
+    if (status_invin != INVIN_HURT || (status_invin == INVIN_HURT && status_invin_alarm > 0 && status_invin_alarm < 90))
+    {
         // Collect:
         global.game_rings += 1;
 
-        with (reaction_handle) {
+        with (reaction_handle)
+        {
             // Sparkle:
             effect_create(ctl_ring_sparkle, x, y, -depth);
 

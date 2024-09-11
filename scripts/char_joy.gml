@@ -8,7 +8,8 @@ button_id   = argument0;
 input_style = 0;
 
 // Set style:
-if (argument_count >= 2) {
+if (argument_count >= 2)
+{
     input_style = argument[1];
 }
 

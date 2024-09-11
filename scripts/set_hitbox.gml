@@ -13,17 +13,20 @@ off_x  = 0;
 off_y  = 0;
 
 // Assign hitbox:
-if (argument_count >= 4) {
+if (argument_count >= 4)
+{
     left   = argument[0];
     top    = argument[1];
     right  = argument[2];
     bottom = argument[3];
     
-    if (argument_count >= 5) {
+    if (argument_count >= 5)
+    {
         off_x = argument[4];
     }
     
-    if (argument_count >= 6) {
+    if (argument_count >= 6)
+    {
         off_y = argument[5];
     }
 }

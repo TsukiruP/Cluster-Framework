@@ -1,67 +1,80 @@
 /// ctl_shield_fire_dash()
 
 // Start effect:
-if (ctl_position(0)) {
+if (ctl_position(0))
+{
     sprite_index = spr_shield_fire_dash;
     image_index  = 0;
 }
 
 // Change frame:
-else if (ctl_position(2)) {
+else if (ctl_position(2))
+{
     image_index = 1;
 }
 
 // Change frame:
-else if (ctl_position(4)) {
+else if (ctl_position(4))
+{
     image_index = 2;
 }
 
 // Change frame:
-else if (ctl_position(6)) {
+else if (ctl_position(6))
+{
     image_index = 3;
 }
 
 // Change frame:
-else if (ctl_position(8)) {
+else if (ctl_position(8))
+{
     image_index = 2;
 }
 
 // Change frame:
-else if (ctl_position(10)) {
+else if (ctl_position(10))
+{
     image_index = 4;
 }
 
 // Change frame:
-else if (ctl_position(12)) {
+else if (ctl_position(12))
+{
     image_index = 0;
 }
 
 // Change frame:
-else if (ctl_position(14)) {
+else if (ctl_position(14))
+{
     image_index = 1;
 }
 
 // Change frame:
-else if (ctl_position(16)) {
+else if (ctl_position(16))
+{
     image_index = 2;
 }
 
 // Change frame:
-else if (ctl_position(18)) {
+else if (ctl_position(18))
+{
     image_index = 3;
 }
 
 // Change frame:
-else if (ctl_position(20)) {
+else if (ctl_position(20))
+{
     image_index = 2;
 }
 
 // Change frame:
-else if (ctl_position(22)) {
+else if (ctl_position(22))
+{
     image_index = 4;
 }
 
 // Null frame:
-else if (ctl_position(23)) {
+else if (ctl_position(23))
+{
     timeline_set(ctl_shield_fire);
 }

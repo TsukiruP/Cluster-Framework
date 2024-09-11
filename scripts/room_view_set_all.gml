@@ -5,7 +5,8 @@ var room_handle;
 
 room_handle = room_first;
 
-while (room_handle != -1) {
+while (room_handle != -1)
+{
     room_set_view_enabled(room_handle, true);
     room_set_view(room_handle, 0, true, 0, 0, global.display_width, global.display_height, 0, 0, global.display_width, global.display_height, global.display_width / 2, global.display_height / 2, -1, -1, noone);
 

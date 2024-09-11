@@ -8,25 +8,30 @@ state_reset = false;
 state_start = true;
 
 // Reset:
-if (argument_count >= 2) {
+if (argument_count >= 2)
+{
     state_reset = true;
     state_start = argument[1];
 }
 
 // Set state:
-if (state_target != argument0 || state_reset == true) {
+if (state_target != argument0 || state_reset == true)
+{
     state_previous = state_current;
     state_target   = argument0;
     state_changed  = true;
-
+    
     // Finish previous state:
-    if (script_exists(state_previous)) {
+    if (script_exists(state_previous))
+    {
         script_execute(state_previous, STATE_FINISH);
     }
     
     // Start target state:
-    if (state_start == true) {
-        if (script_exists(state_target)) {
+    if (state_start == true)
+    {
+        if (script_exists(state_target))
+        {
             script_execute(state_target, STATE_START);
         }
     }
