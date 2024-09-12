@@ -28,7 +28,7 @@ wall_sign = 0;
 
 // Initialize movement loop:
 total_steps = 1 + (abs(x_speed) div x_radius);
-step        = x_speed / total_steps;
+step = x_speed / total_steps;
 
 // Process movement loop:
 repeat(total_steps)
@@ -45,7 +45,7 @@ repeat(total_steps)
 
     // Prop collision:
     prop_handle = instance_nearest(floor(x), floor(y), par_prop);
-    hit_prop    = player_collision_object(prop_handle);
+    hit_prop = player_collision_object(prop_handle);
 
     if (hit_prop != 0)
     {
@@ -60,7 +60,7 @@ repeat(total_steps)
 
     // Obstacle collision:
     obstacle_handle = instance_nearest(floor(x), floor(y), par_obstacle);
-    hit_obstacle    = player_collision_object(obstacle_handle);
+    hit_obstacle = player_collision_object(obstacle_handle);
 
     if (hit_obstacle != 0)
     {

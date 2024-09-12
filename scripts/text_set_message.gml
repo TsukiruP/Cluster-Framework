@@ -14,5 +14,5 @@ with (ctrl_text)
 
     // Reset current & target:
     text_current = 0;
-    text_target  = 0;
+    text_target = 0;
 }

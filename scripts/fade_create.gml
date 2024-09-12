@@ -1,7 +1,7 @@
 /// transition_create(room, [transition])
 
-transition                 = instance_create(0, 0, ctrl_transition);
-transition.transition_id   = TRANS_FADE;
+transition = instance_create(0, 0, ctrl_transition);
+transition.transition_id = TRANS_FADE;
 transition.transition_room = argument0;
 
 with (transition)

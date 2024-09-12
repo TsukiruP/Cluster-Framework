@@ -40,7 +40,7 @@ if (collision & COLL_HURT)
         // Destroy:
         if (reaction_handle.blockade_health == 0)
         {
-            with(reaction_handle)
+            with (reaction_handle)
             {
                 // Debris:
                 for (i = 0; i < 6; i += 1)
@@ -51,7 +51,7 @@ if (collision & COLL_HURT)
                     debris_handle.e_speed = 4;
                     debris_handle.angle = ANGLE_DOWN + irandom_range(-45, 45);
 
-                    with(debris_handle)
+                    with (debris_handle)
                     {
                         ctl_initialize(ctl_blockade_debris);
                     }

@@ -3,13 +3,13 @@
 // Initialize:
 transition_id = argument0;
 
-room_music       = "";
-room_background  = -1;
-room_zone        = "Placeholder";
-room_act         = 0;
+room_music = "";
+room_background = -1;
+room_zone = "Placeholder";
+room_act = 0;
 room_water_level = -1;
-room_start       = START_IDLE;
-room_run_target  = -1;
+room_start = START_IDLE;
+room_run_target = -1;
 
 // Set music:
 if (argument_count >= 2)

@@ -4,7 +4,7 @@
 var input_id, input_device;
 
 // Initialize:
-input_id     = argument0;
+input_id = argument0;
 input_device = DEV_USER;
 
 // Any fix:
@@ -46,7 +46,7 @@ else
     {
         return string_input(input_id, DEV_JOYSTICK0);
     }
-    
+
     // Default to keyboard otherwise:
     else
     {

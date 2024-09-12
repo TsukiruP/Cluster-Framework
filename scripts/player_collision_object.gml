@@ -6,8 +6,8 @@ var ax_int, ay_int, aleft, atop, aright, abottom, aoff_x, aoff_y, adir_x, adir_y
 var object_handle, bx_int, by_int, bleft, btop, bright, bbottom, boff_x, boff_y, bdir_x, bdir_y, brot, bx1, by1, bx2, by2;
 
 object_handle = argument0;
-phase         = 0;
-collision     = 0;
+phase = 0;
+collision = 0;
 
 // Hitbox flag:
 if (argument_count >= 2)
@@ -18,62 +18,62 @@ if (argument_count >= 2)
 if (object_handle != noone)
 {
     // Initialize player:
-    ax_int  = floor(x);
-    ay_int  = floor(y);
+    ax_int = floor(x);
+    ay_int = floor(y);
 
-    aleft   = hitbox_left;
-    atop    = hitbox_top;
-    aright  = hitbox_right;
+    aleft = hitbox_left;
+    atop = hitbox_top;
+    aright = hitbox_right;
     abottom = hitbox_bottom;
 
-    adir_x  = image_xscale;
-    adir_y  = image_yscale;
+    adir_x = image_xscale;
+    adir_y = image_yscale;
 
-    aoff_x  = hitbox_offset_x * adir_x;
-    aoff_y  = hitbox_offset_y * adir_y;
+    aoff_x = hitbox_offset_x * adir_x;
+    aoff_y = hitbox_offset_y * adir_y;
 
-    arot    = mask_rotation;
-    asine   = dsin(arot);
-    acsine  = dcos(arot);
+    arot = mask_rotation;
+    asine = dsin(arot);
+    acsine = dcos(arot);
 
     // Initialize object:
-    bx_int  = floor(object_handle.x);
-    by_int  = floor(object_handle.y);
+    bx_int = floor(object_handle.x);
+    by_int = floor(object_handle.y);
 
-    bleft   = object_handle.hurtbox_left;
-    btop    = object_handle.hurtbox_top;
-    bright  = object_handle.hurtbox_right;
+    bleft = object_handle.hurtbox_left;
+    btop = object_handle.hurtbox_top;
+    bright = object_handle.hurtbox_right;
     bbottom = object_handle.hurtbox_bottom;
 
-    bdir_x  = object_handle.image_xscale;
-    bdir_y  = object_handle.image_yscale;
+    bdir_x = object_handle.image_xscale;
+    bdir_y = object_handle.image_yscale;
 
-    boff_x  = object_handle.hurtbox_offset_x * bdir_x;
-    boff_y  = object_handle.hurtbox_offset_y * bdir_y;
+    boff_x = object_handle.hurtbox_offset_x * bdir_x;
+    boff_y = object_handle.hurtbox_offset_y * bdir_y;
 
-    brot    = gravity_angle(object_handle);
-    bsine   = dsin(brot);
-    bcsine  = dcos(brot);
+    brot = gravity_angle(object_handle);
+    bsine = dsin(brot);
+    bcsine = dcos(brot);
 
     if (phase == 1)
     {
         // Swap to player hurtbox values:
-        aleft   = hurtbox_left;
-        atop    = hurtbox_top;
-        aright  = hurtbox_right;
+        aleft = hurtbox_left;
+        atop = hurtbox_top;
+        aright = hurtbox_right;
         abottom = hurtbox_bottom;
 
-        aoff_x  = hurtbox_offset_x * image_xscale;
-        aoff_y  = hurtbox_offset_y;
+        aoff_x = hurtbox_offset_x * image_xscale;
+        aoff_y = hurtbox_offset_y;
 
         // Swap to object hitbox values:
-        bleft   = object_handle.hitbox_left;
-        btop    = object_handle.hitbox_top;
-        bright  = object_handle.hitbox_right;
+        bleft = object_handle.hitbox_left;
+        btop = object_handle.hitbox_top;
+        bright = object_handle.hitbox_right;
         bbottom = object_handle.hitbox_bottom;
 
-        boff_x  = object_handle.hitbox_offset_x * object_handle.image_xscale;
-        boff_y  = object_handle.hitbox_offset_y;
+        boff_x = object_handle.hitbox_offset_x * object_handle.image_xscale;
+        boff_y = object_handle.hitbox_offset_y;
     }
 
     // Check object collision:
@@ -84,8 +84,8 @@ if (object_handle != noone)
         {
             var temp;
 
-            temp   = bleft;
-            bleft  = bright;
+            temp = bleft;
+            bleft = bright;
             bright = temp;
         }
 
@@ -93,17 +93,17 @@ if (object_handle != noone)
         {
             var temp;
 
-            temp    = btop;
-            btop    = bbottom;
+            temp = btop;
+            btop = bbottom;
             bbottom = temp;
         }
 
         // Flip top and bottom:
         if (brot div 90 >= 2)
         {
-            bleft   *= -1;
-            btop    *= -1;
-            bright  *= -1;
+            bleft *= -1;
+            btop *= -1;
+            bright *= -1;
             bbottom *= -1;
         }
 
@@ -120,8 +120,8 @@ if (object_handle != noone)
             {
                 var temp;
 
-                temp   = aleft;
-                aleft  = aright
+                temp = aleft;
+                aleft = aright
                 aright = temp;
             }
 
@@ -129,17 +129,17 @@ if (object_handle != noone)
             {
                 var temp;
 
-                temp    = atop;
-                atop    = abottom;
+                temp = atop;
+                atop = abottom;
                 abottom = temp;
             }
 
             // Flip top and bottom:
             if (arot div 90 >= 2)
             {
-                aleft   *= -1;
-                atop    *= -1;
-                aright  *= -1;
+                aleft *= -1;
+                atop *= -1;
+                aright *= -1;
                 abottom *= -1;
             }
 

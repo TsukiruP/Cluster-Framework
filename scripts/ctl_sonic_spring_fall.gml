@@ -19,7 +19,7 @@ if (ctl_position(0))
 {
     // Set sprite:
     sprite_index = spr_sonic_spring;
-    image_index  = 4;
+    image_index = 4;
 
     // Set collision:
     player_set_radii(6, 14, 3);

@@ -14,7 +14,7 @@ if (ctl_position(0))
 {
     // Set sprite:
     sprite_index = spr_sonic_spin_flight;
-    image_index  = 0;
+    image_index = 0;
 
     // Set collision:
     player_set_radii(6, 14, 3);
@@ -61,7 +61,7 @@ else if (ctl_position(11))
 else if (ctl_position(13))
 {
     sprite_index = spr_sonic_roll;
-    image_index  = 0;
+    image_index = 0;
 }
 
 // Change frame:
@@ -86,7 +86,7 @@ else if (ctl_position(19))
 else if (ctl_position(21))
 {
     sprite_index = spr_sonic_spin_flight;
-    image_index  = 2;
+    image_index = 2;
 }
 
 // Null frame:

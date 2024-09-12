@@ -4,7 +4,7 @@
 var button_id, input_style;
 
 // Initialize:
-button_id   = argument0;
+button_id = argument0;
 input_style = 0;
 
 // Set style:

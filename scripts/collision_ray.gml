@@ -5,7 +5,7 @@ var x_int, y_int, sine, csine, x1, y1, x2, y2;
 
 x_int = floor(x);
 y_int = floor(y);
-sine  = dsin(argument2);
+sine = dsin(argument2);
 csine = dcos(argument2);
 
 x1 = x_int - (csine * argument0) + (sine * argument1);

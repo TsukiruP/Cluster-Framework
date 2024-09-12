@@ -47,7 +47,7 @@ if (collision & COLL_HURT_RADIUS)
                 }
 
                 // Call text:
-                with(reaction_handle)
+                with (reaction_handle)
                 {
                     event_user(0);
                 }

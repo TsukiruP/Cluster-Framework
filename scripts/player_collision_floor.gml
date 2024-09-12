@@ -13,19 +13,19 @@ for (oy = 0; oy < argument0; oy += 1)
     {
         // Get the current solid:
         inst = ds_list_find_value(solid_list, n);
-        
+
         // Not colliding with the current solid:
         if (collision_box_vertical(x_radius, oy, mask_rotation, inst) == noone)
         {
             continue;
         }
-        
+
         // Passing through the current solid:
         if (oy == 0 && inst.semi_solid)
         {
             continue;
         }
-        
+
         // Confirm:
         return inst;
     }

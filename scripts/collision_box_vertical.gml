@@ -3,10 +3,10 @@
 
 var rot, x_int, y_int, sine, csine, x1, y1, x2, y2;
 
-rot   = round(argument2 / 90) * 90;
+rot = round(argument2 / 90) * 90;
 x_int = floor(x);
 y_int = floor(y);
-sine  = dsin(rot);
+sine = dsin(rot);
 csine = dcos(rot);
 
 x1 = x_int - (csine * argument0);

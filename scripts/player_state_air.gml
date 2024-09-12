@@ -78,8 +78,8 @@ switch (argument0)
     case STATE_FINISH:
         // Reset spring:
         spring_strength = 0;
-        spring_angle    = 0;
-        spring_alarm    = 0;
-        spring_current  = noone;
+        spring_angle = 0;
+        spring_alarm = 0;
+        spring_current = noone;
         break;
 }

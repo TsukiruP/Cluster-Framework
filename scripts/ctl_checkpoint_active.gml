@@ -4,7 +4,7 @@
 if (ctl_position(0))
 {
     sprite_index = spr_checkpoint;
-    image_index  = 6;
+    image_index = 6;
 }
 
 // Change frame:

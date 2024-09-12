@@ -1,7 +1,8 @@
 /// player_get_item(id)
 // Performs a certain event based on the given item id.
 
-switch (argument0) {
+switch (argument0)
+{
     // Ring bonus:
     case ITEM_BONUS:
         global.game_rings += 5;
@@ -19,7 +20,7 @@ switch (argument0) {
 
     // Basic shield:
     case ITEM_BASIC:
-        status_shield       = SHIELD_BASIC;
+        status_shield = SHIELD_BASIC;
         status_shield_allow = true;
 
         // Play sound:
@@ -28,7 +29,7 @@ switch (argument0) {
 
     // Magnetic shield:
     case ITEM_MAGNETIC:
-        status_shield       = SHIELD_MAGNETIC;
+        status_shield = SHIELD_MAGNETIC;
         status_shield_allow = true;
 
         // Play sound:
@@ -37,7 +38,7 @@ switch (argument0) {
 
     // Bubble shield:
     case ITEM_BUBBLE:
-        status_shield       = SHIELD_BUBBLE;
+        status_shield = SHIELD_BUBBLE;
         status_shield_allow = true;
 
         // Play sound:
@@ -46,7 +47,7 @@ switch (argument0) {
 
     // Fire shield:
     case ITEM_FIRE:
-        status_shield       = SHIELD_FIRE;
+        status_shield = SHIELD_FIRE;
         status_shield_allow = true;
 
         // Play sound:
@@ -55,7 +56,7 @@ switch (argument0) {
 
     // Lightning shield:
     case ITEM_LIGHTNING:
-        status_shield       = SHIELD_LIGHTNING;
+        status_shield = SHIELD_LIGHTNING;
         status_shield_allow = true;
 
         // Play sound:
@@ -64,7 +65,7 @@ switch (argument0) {
 
     // Invincibility:
     case ITEM_INVIN:
-        status_invin       = 2;
+        status_invin = 2;
         status_invin_alarm = 1380;
 
         // Play jingle:
@@ -73,7 +74,7 @@ switch (argument0) {
 
     // Speed up:
     case ITEM_SPEED:
-        status_speed       = SPEED_UP;
+        status_speed = SPEED_UP;
         status_speed_alarm = 900;
 
         // Play jingle:
@@ -90,16 +91,18 @@ switch (argument0) {
 
     // Slow:
     case ITEM_SLOW:
-        if (status_invin < INVIN_BUFF) {
-            status_speed       = SPEED_SLOW;
+        if (status_invin < INVIN_BUFF)
+        {
+            status_speed = SPEED_SLOW;
             status_speed_alarm = 1200;
         }
         break;
 
     // Panic:
     case ITEM_PANIC:
-        if (status_invin < INVIN_BUFF) {
-            status_panic       = true;
+        if (status_invin < INVIN_BUFF)
+        {
+            status_panic = true;
             status_panic_alarm = 1200;
         }
         break;
@@ -110,8 +113,10 @@ switch (argument0) {
 }
 
 // Update item feed:
-if (global.misc_feed == true) {
-    with (ctrl_hud) {
+if (global.misc_feed == true)
+{
+    with (ctrl_hud)
+    {
         ds_list_add(item_feed, argument0);
         ds_list_add(item_feed, -8);
         item_alarm = 120;

@@ -4,7 +4,7 @@
 if (ctl_position(0))
 {
     sprite_index = spr_splash_4;
-    image_index  = 0;
+    image_index = 0;
 }
 
 // Change frame:

@@ -8,7 +8,7 @@ wall_sign = 0;
 
 // Initialize horizontal movement loop:
 total_steps = 1 + (abs(x_speed) div x_radius);
-step        = x_speed / total_steps;
+step = x_speed / total_steps;
 
 // Process horizontal movement loop:
 repeat(total_steps)
@@ -25,7 +25,7 @@ repeat(total_steps)
 
     // Prop collision:
     prop_handle = instance_nearest(floor(x), floor(y), par_prop);
-    hit_prop    = player_collision_object(prop_handle);
+    hit_prop = player_collision_object(prop_handle);
 
     if (hit_prop != false)
     {
@@ -40,7 +40,7 @@ repeat(total_steps)
 
     // Obstacle collision:
     obstacle_handle = instance_nearest(floor(x), floor(y), par_obstacle);
-    hit_obstacle    = player_collision_object(obstacle_handle);
+    hit_obstacle = player_collision_object(obstacle_handle);
 
     if (hit_obstacle != 0)
     {
@@ -97,7 +97,7 @@ repeat(total_steps)
 
     // Prop collision:
     prop_handle = instance_nearest(floor(x), floor(y), par_prop);
-    hit_prop    = player_collision_object(prop_handle);
+    hit_prop = player_collision_object(prop_handle);
 
     if (hit_prop != false)
     {
@@ -112,7 +112,7 @@ repeat(total_steps)
 
     // Obstacle collision:
     obstacle_handle = instance_nearest(floor(x), floor(y), par_obstacle);
-    hit_obstacle    = player_collision_object(obstacle_handle);
+    hit_obstacle = player_collision_object(obstacle_handle);
 
     if (hit_obstacle != 0)
     {
@@ -165,7 +165,7 @@ repeat(total_steps)
                 // Slide against ceiling:
                 var sine, csine, g_speed;
 
-                sine  = dsin(relative_angle);
+                sine = dsin(relative_angle);
                 csine = dcos(relative_angle);
 
                 g_speed = (csine * x_speed) - (sine * y_speed);

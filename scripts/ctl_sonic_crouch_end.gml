@@ -5,7 +5,7 @@ if (ctl_position(0))
 {
     // Set sprite:
     sprite_index = spr_sonic_crouch;
-    image_index  = 1;
+    image_index = 1;
 
     // Set collision:
     player_set_radii(6, 14, 3);
@@ -17,6 +17,5 @@ if (ctl_position(0))
 else if (ctl_position(1))
 {
     image_index = 0;
-
     player_set_animation("stand");
 }

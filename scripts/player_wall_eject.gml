@@ -3,7 +3,7 @@
 
 var sine, csine, ox;
 
-sine  = dsin(mask_rotation);
+sine = dsin(mask_rotation);
 csine = dcos(mask_rotation);
 
 // Get collision offset:
@@ -28,7 +28,7 @@ if (ox < 0)
             y -= sine * (wall_radius + ox);
             return -1;
         }
-        
+
         // Left side:
         if (collision_ray_vertical(-ox, 0, mask_rotation, argument0) == noone)
         {
