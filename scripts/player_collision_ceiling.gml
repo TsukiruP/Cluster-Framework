@@ -15,7 +15,7 @@ for (oy = 0; oy < argument0; oy += 1)
         inst = ds_list_find_value(solid_list, n);
 
         // Continue if not colliding with/passing through the current solid:
-        if (collision_box_vertical(x_radius, -oy, mask_rotation, inst) == noone || inst.semi_solid)
+        if (collision_box_vertical(x_radius, -oy, mask_rotation, inst) == noone || inst.semisolid)
         {
             continue;
         }

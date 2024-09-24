@@ -12,7 +12,7 @@ if (argument_count >= 1)
     object_handle = argument[0];
 }
 
-with (object_handle)
+with(object_handle)
 {
     return ((bbox_right > view_xview[view_current]) && (bbox_left < view_xview[view_current] + view_wview[view_current]) && (bbox_bottom > view_yview[view_current]) && (bbox_top < view_yview[view_current] + view_hview[view_current]));
 }

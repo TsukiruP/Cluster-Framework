@@ -4,7 +4,7 @@
 var input_id, input_device, input_keyboard, input_joystick, input_user;
 
 // Initialize:
-input_id     = argument0;
+input_id = argument0;
 input_device = DEV_USER;
 
 // Default to false:
