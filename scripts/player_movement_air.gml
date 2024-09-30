@@ -11,7 +11,7 @@ total_steps = 1 + (abs(x_speed) div x_radius);
 step = x_speed / total_steps;
 
 // Process horizontal movement loop:
-repeat(total_steps)
+repeat (total_steps)
 {
     // Apply movement step:
     x += dcos(angle) * step;
@@ -83,7 +83,7 @@ total_steps = 1 + (abs(y_speed) div y_radius);
 step = y_speed / total_steps;
 
 // Process vertical movement loop:
-repeat(total_steps)
+repeat (total_steps)
 {
     // Apply movement step:
     x += dsin(angle) * step;

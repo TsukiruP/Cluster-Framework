@@ -4,7 +4,7 @@
 var reaction_handle, collision;
 
 reaction_handle = argument0;
-collision       = argument1;
+collision = argument1;
 
 // Activate spring:
 if (collision & COLL_HURT_RADIUS)
@@ -48,7 +48,7 @@ if (collision & COLL_HURT_RADIUS)
         }
 
         // Register:
-        spring_alarm   = spring_force + 15;
+        spring_alarm = spring_force + 15;
         spring_current = reaction_handle;
 
         // Score:

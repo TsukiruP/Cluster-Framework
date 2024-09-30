@@ -18,7 +18,7 @@ if (argument_count >= 1)
         }
 
         global.game_speed = 1;
-        clock_up_state    = 0;
+        clock_up_state = 0;
     }
 }
 else
@@ -49,7 +49,7 @@ else
         if (clock_up_state != 2 && (clock_up_state == 0 || clock_up_state != 0) && input_player[INP_ALT, CHECK_HELD] == true)
         {
             global.game_speed = 0;
-            clock_up_state    = 2;
+            clock_up_state = 2;
 
             // Play sound:
             sound_play("snd_clock_up_start");
@@ -60,7 +60,7 @@ else
         else if (clock_up_state != 1 && (clock_up_state == 0 || (clock_up_state == 2 && input_player[INP_ALT, CHECK_HELD] == true)))
         {
             global.game_speed = 0.25;
-            clock_up_state    = 1;
+            clock_up_state = 1;
 
             // Play sound:
             sound_play("snd_clock_up_start");

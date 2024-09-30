@@ -7,11 +7,11 @@ switch (argument0)
     case STATE_START:
         break;
 
-        // Step:
+    // Step:
     case STATE_STEP:
         break;
 
-        // Finish:
+    // Finish:
     case STATE_FINISH:
         break;
 }

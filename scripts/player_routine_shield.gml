@@ -11,6 +11,28 @@ animation_skip = true;
 // Shield behavior:
 switch (status_shield)
 {
+    // Bubble:
+    case SHIELD_BUBBLE:
+        // Set speed:
+        x_speed = 0;
+        y_speed = 8;
+
+        // Bound:
+        bound_state = 1;
+
+        // Play sound:
+        sound_play_single("snd_shield_bubble_bound");
+
+        // Shield:
+        if (instance_exists(shield_handle))
+        {
+            with (shield_handle)
+            {
+                event_user(0);
+            }
+        }
+        break;
+
     // Fire:
     case SHIELD_FIRE:
         // Set speed:
@@ -25,28 +47,57 @@ switch (status_shield)
 
         // Play sound:
         sound_play_single("snd_shield_fire_dash");
+
+        // Shield:
+        if (instance_exists(shield_handle))
+        {
+            with (shield_handle)
+            {
+                event_user(0);
+            }
+        }
         break;
 
-        // Lightning:
+    // Lightning:
     case SHIELD_LIGHTNING:
         // Set speed:
         y_speed = -5.5;
 
         // Play sound:
         sound_play_single("snd_shield_lightning_jump");
-        break;
 
-        // Bubble:
-    case SHIELD_BUBBLE:
-        // Set speed:
-        x_speed = 0;
-        y_speed = 8;
+        // Sparks:
+        for (i = 0; i < 4; i += 1)
+        {
+            var spark_handle;
 
-        // Bound:
-        bound_state = 1;
+            spark_handle = instance_create(floor(x), floor(y), eff_basic);
+            spark_handle.e_speed = 2;
 
-        // Play sound:
-        sound_play_single("snd_shield_bubble_bound");
+            with (spark_handle)
+            {
+                ctl_initialize(ctl_shield_lightning_spark);
+            }
+
+            switch (i)
+            {
+                case 0:
+                    spark_handle.angle = ANGLE_LEFT_UP;
+                    break;
+
+                case 1:
+                    spark_handle.angle = ANGLE_RIGHT_UP;
+                    break;
+
+                case 2:
+                    spark_handle.angle = ANGLE_LEFT_DOWN;
+                    break;
+
+                case 3:
+                    spark_handle.angle = ANGLE_RIGHT_DOWN;
+                    break;
+            }
+        }
         break;
 }
 

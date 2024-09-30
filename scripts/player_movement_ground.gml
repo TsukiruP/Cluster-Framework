@@ -9,6 +9,7 @@ if (instance_exists(ground_id))
     // Initialize vectors:
     ox = ground_id.x - ground_id.xprevious;
     oy = ground_id.y - ground_id.yprevious;
+
     if (ground_id.hspeed != 0) ox = ground_id.hspeed;
     if (ground_id.vspeed != 0) oy = ground_id.vspeed;
 
@@ -31,7 +32,7 @@ total_steps = 1 + (abs(x_speed) div x_radius);
 step = x_speed / total_steps;
 
 // Process movement loop:
-repeat(total_steps)
+repeat (total_steps)
 {
     // Apply movement step:
     x += dcos(angle) * step;
@@ -94,7 +95,7 @@ repeat(total_steps)
         if (sign(x_speed) == wall_sign)
         {
             x_speed = 0;
-            player_wall_push(hit_wall);
+            //player_wall_push(hit_wall);
         }
     }
 

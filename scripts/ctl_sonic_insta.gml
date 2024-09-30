@@ -81,7 +81,7 @@ else if (ctl_position(14))
 }
 
 // Change animation:
-else if (ctl_position(15))
+else if (ctl_position(16))
 {
     player_set_animation("spin", 4);
 }

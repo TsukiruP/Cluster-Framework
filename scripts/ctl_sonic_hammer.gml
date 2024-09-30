@@ -112,7 +112,7 @@ else if (ctl_position(23))
 }
 
 // Finish animation:
-else if (ctl_position(25))
+else if (ctl_position(26))
 {
     animation_finished = true;
 }

@@ -14,7 +14,7 @@ if (ctl_position(0))
 }
 
 // Change frame:
-else if (ctl_position(1))
+else if (ctl_position(2))
 {
     image_index = 0;
     player_set_animation("stand");

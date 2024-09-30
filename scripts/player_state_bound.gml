@@ -36,11 +36,20 @@ switch (argument0)
         {
             // Set state:
             player_set_state(player_state_jump, true);
-            state_animate  = true;
+            state_animate = true;
             animation_skip = true;
 
             // Play sound:
             sound_play_single("snd_shield_bubble_bound");
+
+            // Shield:
+            if (instance_exists(shield_handle))
+            {
+                with (shield_handle)
+                {
+                    event_user(1);
+                }
+            }
 
             return true;
         }
@@ -61,9 +70,9 @@ switch (argument0)
     // Finish:
     case STATE_FINISH:
         // Reset bound:
-        if (state_target != player_state_jump)
+        if (state_current != player_state_jump)
         {
-            jump_aux    = false;
+            jump_aux = false;
             bound_state = 0;
 
             // Reset shield:
@@ -73,18 +82,6 @@ switch (argument0)
                 {
                     shield_reset = true;
                 }
-            }
-        }
-        break;
-
-    // Animate:
-    case STATE_ANIMATE:
-        // Animate shield:
-        if (instance_exists(shield_handle))
-        {
-            with (shield_handle)
-            {
-                event_user(0);
             }
         }
         break;

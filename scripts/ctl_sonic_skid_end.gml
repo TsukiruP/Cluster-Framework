@@ -19,9 +19,14 @@ else if (ctl_position(1))
     image_index = 1;
 }
 
-// Finish animation:
-else if (ctl_position(2))
+// Change frame:
+else if (ctl_position(1))
 {
-    image_index = 0;
+    image_index = 2;
+}
+
+// Finish animation:
+else if (ctl_position(3))
+{
     animation_finished = true;
 }

@@ -93,7 +93,7 @@ update_trail
 draw_trail
 ctl_sonic_cliff_front
 sonic_animation_list
-miles_add_animations
+player_animation_speed
 knuckles_add_animations
 classic_add_animations
 player_compile_animations
@@ -218,7 +218,7 @@ player_reaction_sensor_layer
 player_reaction_ring
 player_state_jump
 player_routine_shield
-player_effect_queue
+player_animation_variant
 player_reaction_hint
 ctl_spring_vertical
 ctl_spring_horizontal
@@ -227,6 +227,9 @@ ctl_sonic_omochao_end
 player_state_hint
 player_reset_skill
 player_reaction_spike
-script229
+player_animation_default
 player_reaction_blockade
 ctl_blockade_debris
+
+
+ctl_sonic_air_dash

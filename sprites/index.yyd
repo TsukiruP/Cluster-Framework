@@ -1,6 +1,6 @@
 spr_sonic_skid
 spr_blockade_vertical
-mask_big
+spr_sonic_air_dash
 mask_mid
 mask_small
 mask_dot

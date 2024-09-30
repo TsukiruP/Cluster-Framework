@@ -77,3 +77,6 @@ player_add_animation(CHAR_SONIC, "insta",         ctl_sonic_insta);
 player_add_animation(CHAR_SONIC, "somersault",    ctl_sonic_somersault);
 player_add_animation(CHAR_SONIC, "skid",          ctl_sonic_skid);
 player_add_animation(CHAR_SONIC, "skid_end",      ctl_sonic_skid_end);
+
+// Air Dash:
+player_add_animation(CHAR_SONIC, "air_dash",      ctl_sonic_air_dash);

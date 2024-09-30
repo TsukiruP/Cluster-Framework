@@ -32,7 +32,7 @@ else if (ctl_position(6))
 }
 
 // Finish animation:
-else if (ctl_position(7))
+else if (ctl_position(8))
 {
     animation_finished = true;
 }

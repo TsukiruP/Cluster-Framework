@@ -24,7 +24,8 @@ applies_to=self
 */
 /// Message
 
-switch (hint_id) {
+switch (hint_id)
+{
     default:
         text_set_message("This message is a test!");
 }

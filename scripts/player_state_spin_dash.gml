@@ -10,6 +10,12 @@ switch (argument0)
 
         // Play sound:
         sound_play_single("snd_spin_dash_charge");
+
+        // Dust:
+        with (instance_create(x, y, eff_spin_dash))
+        {
+            player_handle = other.id;
+        }
         break;
 
     // Step:
@@ -84,13 +90,5 @@ switch (argument0)
 
     // Finish:
     case STATE_FINISH:
-        break;
-
-    // Animate:
-    case STATE_ANIMATE:
-        with (instance_create(x, y, eff_spin_dash))
-        {
-            player_handle = other.id;
-        }
         break;
 }

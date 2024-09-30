@@ -70,9 +70,14 @@ else if (ctl_position(12))
     image_index = 9;
 }
 
-// Finish animation:
+// Change frame:
 else if (ctl_position(13))
 {
     image_index = 10;
+}
+
+// Finish animation:
+else if (ctl_position(14))
+{
     animation_finished = true;
 }

@@ -8,7 +8,7 @@ effect = instance_create(floor(argument1), floor(argument2), eff_basic);
 effect.depth = depth;
 
 // Set timeline:
-with(effect)
+with (effect)
 {
     timeline_set(argument0);
 }

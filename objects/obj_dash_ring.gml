@@ -12,7 +12,7 @@ event_inherited();
 image_index = 1;
 
 // Rainbow variables:
-rainbow_ring  = false;
+rainbow_ring = false;
 rainbow_score = true;
 #define Step_2
 /*"/*'/**//* YYD ACTION
@@ -23,13 +23,15 @@ applies_to=self
 /// Animation
 
 // Don't bother if the stage is paused:
-if (game_ispaused(ctrl_pause)) {
+if (game_ispaused(ctrl_pause))
+{
     exit;
 }
 
 // Set rainbow ring:
-if (rainbow_ring == true) {
-    image_index  = sync_rate(global.object_time, 4, 6) + 1;
+if (rainbow_ring == true)
+{
+    image_index = sync_rate(global.object_time, 4, 6) + 1;
 }
 #define Other_4
 /*"/*'/**//* YYD ACTION
@@ -48,46 +50,58 @@ event_inherited();
 
     image_xscale = 1;
     image_yscale = 1;
-    orientation  = Field("orientation", 0);
-    flip_x       = Field("flip_x", 0);
-    flip_y       = Field("flip_y", 0);
+    orientation = Field("orientation", 0);
+    flip_x = Field("flip_x", 0);
+    flip_y = Field("flip_y", 0);
     rainbow_ring = Field("rainbow_ring", 0);
 
-    switch (spring_orientation) {
+    switch (spring_orientation)
+    {
         // Horizontal:
         case 1:
-            if (rainbow_ring == true) {
+            if (rainbow_ring == true)
+            {
                 sprite_index = Sprite("spr_rainbow_ring_horizontal",  0);
-            } else {
+            }
+            else
+            {
                 sprite_index = Sprite("spr_dash_ring_horizontal",  0);
             }
             break;
 
         // Diagonal:
         case 2:
-            if (rainbow_ring == true) {
+            if (rainbow_ring == true)
+            {
                 sprite_index = Sprite("spr_rainbow_ring_diagonal",  0);
-            } else {
+            }
+            else
+            {
                 sprite_index = Sprite("spr_dash_ring_diagonal",  0);
             }
             break;
 
         // Vertical
         default:
-            if (rainbow_ring == true) {
+            if (rainbow_ring == true)
+            {
                 sprite_index = Sprite("spr_rainbow_ring_vertical",  0);
-            } else {
+            }
+            else
+            {
                 sprite_index = Sprite("spr_dash_ring_vertical",  0);
             }
     }
 
     /// Flip x:
-    if (flip_x == true) {
+    if (flip_x == true)
+    {
         image_xscale = -1;
     }
 
     // Flip y:
-    if (flip_y == true) {
+    if (flip_y == true)
+    {
         image_yscale = -1;
     }
 */
@@ -99,13 +113,17 @@ applies_to=self
 /// Dash Ring Initialization
 
 // Spring orientation:
-switch (orientation) {
+switch (orientation)
+{
     // Horizontal:
     case ORIEN_HORIZONTAL:
-        if (rainbow_ring == true) {
-            sprite_index  = spr_rainbow_ring_horizontal;
-        } else {
-            sprite_index  = spr_dash_ring_horizontal;
+        if (rainbow_ring == true)
+        {
+            sprite_index = spr_rainbow_ring_horizontal;
+        }
+        else
+        {
+            sprite_index = spr_dash_ring_horizontal;
         }
 
         angle = ANGLE_RIGHT;
@@ -114,10 +132,13 @@ switch (orientation) {
 
     // Diagonal:
     case ORIEN_DIAGONAL:
-        if (rainbow_ring == true) {
-            sprite_index  = spr_rainbow_ring_diagonal;
-        } else {
-            sprite_index  = spr_dash_ring_diagonal;
+        if (rainbow_ring == true)
+        {
+            sprite_index = spr_rainbow_ring_diagonal;
+        }
+        else
+        {
+            sprite_index = spr_dash_ring_diagonal;
         }
 
         angle = ANGLE_RIGHT_UP;
@@ -126,10 +147,13 @@ switch (orientation) {
 
     // Vertical:
     default:
-        if (rainbow_ring == true) {
-            sprite_index  = spr_rainbow_ring_vertical;
-        } else {
-            sprite_index  = spr_dash_ring_vertical;
+        if (rainbow_ring == true)
+        {
+            sprite_index = spr_rainbow_ring_vertical;
+        }
+        else
+        {
+            sprite_index = spr_dash_ring_vertical;
         }
 
         angle = ANGLE_UP;
@@ -138,13 +162,15 @@ switch (orientation) {
 }
 
 // Flip x:
-if (flip_x == true) {
+if (flip_x == true)
+{
     image_xscale = -1;
     angle = 180 - angle;
 }
 
 // Flip y:
-if (flip_y == true) {
+if (flip_y == true)
+{
     image_yscale = -1;
     angle = 360 - angle;
 }

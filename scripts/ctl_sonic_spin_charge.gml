@@ -32,7 +32,7 @@ else if (ctl_position(6))
 }
 
 // Null frame:
-else if (ctl_position(7))
+else if (ctl_position(8))
 {
     player_set_animation("spin_dash");
 }

@@ -25,7 +25,8 @@ applies_to=self
 /// Animation
 
 // Exit if the stage is paused:
-if (game_ispaused(ctrl_pause)) {
+if (game_ispaused(ctrl_pause))
+{
     exit;
 }
 
@@ -35,7 +36,8 @@ event_inherited();
 ctl_speed = global.game_speed;
 
 // Execute timeline:
-if (ctl_index != noone) {
+if (ctl_index != noone)
+{
     ctl_update();
     script_execute(ctl_index);
 }

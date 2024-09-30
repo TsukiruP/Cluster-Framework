@@ -4,7 +4,7 @@ transition = instance_create(0, 0, ctrl_transition);
 transition.transition_id = TRANS_FADE;
 transition.transition_room = argument0;
 
-with(transition)
+with (transition)
 {
     room_get_data(argument0);
 }

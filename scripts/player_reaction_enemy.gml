@@ -10,7 +10,7 @@ collision = argument1;
 if ((collision & COLL_HURT) || ((collision & COLL_HURT_RADIUS) && status_invin == INVIN_BUFF))
 {
     // Basic react:
-    if (reaction_handle.enemy_class == ENE_BASIC)
+    if (reaction_handle.class == ENE_BASIC)
     {
         // Subtract:
         if (y > reaction_handle.y || sign(y_speed) == -1)
@@ -27,21 +27,21 @@ if ((collision & COLL_HURT) || ((collision & COLL_HURT_RADIUS) && status_invin =
     }
 
     // Super react:
-    if (reaction_handle.enemy_class == ENE_SUPER && reaction_handle.enemy_invin == 0)
+    if (reaction_handle.class == ENE_SUPER && reaction_handle.invin_alarm == 0)
     {
         // Set speed:
         x_speed *= -0.5;
         y_speed *= -0.5;
 
         // Decrease health:
-        reaction_handle.enemy_health -= 1;
-        reaction_handle.enemy_invin   = 32;
+        reaction_handle.vitality -= 1;
+        reaction_handle.invin_alarm = 32;
     }
 
     // Score:
-    if (reaction_handle.enemy_class == ENE_BASIC || (reaction_handle.enemy_class == ENE_SUPER && (reaction_handle.enemy_health == 0 || status_invin == INVIN_BUFF)))
+    if (reaction_handle.class == ENE_BASIC || (reaction_handle.class == ENE_SUPER && (reaction_handle.vitality == 0 || status_invin == INVIN_BUFF)))
     {
-        global.game_score += 100 + (400 * reaction_handle.enemy_class);
+        global.game_score += 100 + (400 * reaction_handle.class);
 
         // Destroy:
         with (reaction_handle)

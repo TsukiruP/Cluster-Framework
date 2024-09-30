@@ -18,11 +18,13 @@ applies_to=self
 */
 /// Fade Alpha
 
-if (fade_alpha != fade_target) {
+if (fade_alpha != fade_target)
+{
     fade_alpha += fade_speed;
 
     // Destroy:
-    if (fade_alpha <= 0 && sign(fade_speed) == -1) {
+    if (fade_alpha <= 0 && sign(fade_speed) == -1)
+    {
         instance_destroy();
     }
 }

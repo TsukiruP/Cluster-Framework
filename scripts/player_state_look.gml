@@ -43,10 +43,11 @@ switch (argument0)
         // Idle:
         if (animation_trigger == true && input_player[INP_UP, CHECK_HELD] == false)
         {
-            // Set animation:
+            // Look end:
+            player_set_state(player_state_idle);
             player_set_animation("look_end");
 
-            return player_set_state(player_state_idle);
+            return true;
         }
 
         // Skill:

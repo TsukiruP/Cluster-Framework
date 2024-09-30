@@ -43,10 +43,11 @@ switch (argument0)
         // Idle:
         if (animation_trigger == true && input_player[INP_DOWN, CHECK_HELD] == false)
         {
-            // Set animation:
+            // Crouch end::
+            player_set_state(player_state_idle);
             player_set_animation("crouch_end");
 
-            return player_set_state(player_state_idle);
+            return true;
         }
 
         // Skill:

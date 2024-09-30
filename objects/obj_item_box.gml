@@ -30,8 +30,10 @@ applies_to=self
 */
 /// Give Item
 
-if (instance_exists(player_handle)) {
-    with (player_handle) {
+if (instance_exists(player_handle))
+{
+    with (player_handle)
+    {
         player_get_item(other.item_id);
     }
 }
@@ -44,29 +46,35 @@ applies_to=self
 /// Replace Items
 
 // Shields:
-switch (global.gameplay_shields) {
+switch (global.gameplay_shields)
+{
     // Adventure/Advance:
     case 1:
-        if (item_id == ITEM_FIRE || item_id == ITEM_BUBBLE) {
+        if (item_id == ITEM_FIRE || item_id == ITEM_BUBBLE)
+        {
             item_id = ITEM_BASIC;
         }
 
-        if (item_id == ITEM_LIGHTNING) {
+        if (item_id == ITEM_LIGHTNING)
+        {
             item_id = ITEM_MAGNETIC;
         }
         break;
 
     // Oops, all basic!:
     case 2:
-        if (item_id >= ITEM_MAGNETIC && item_id <= ITEM_LIGHTNING) {
+        if (item_id >= ITEM_MAGNETIC && item_id <= ITEM_LIGHTNING)
+        {
             item_id = ITEM_BASIC;
         }
         break;
 }
 
 // Debuffs:
-if (global.gameplay_debuffs == false) {
-    if (item_id == ITEM_SLOW || item_id == ITEM_PANIC || item_id == ITEM_SWAP) {
+if (global.gameplay_debuffs == false)
+{
+    if (item_id == ITEM_SLOW || item_id == ITEM_PANIC || item_id == ITEM_SWAP)
+    {
         item_id = ITEM_MINE;
     }
 }
@@ -83,9 +91,9 @@ applies_to=self
 /*preview
     var item_id, item_icon, item_box;
 
-    item_id   = Field("item_id", 0);
+    item_id = Field("item_id", 0);
     item_icon = Sprite("spr_item_icon", item_id);
-    item_box  = Sprite("spr_item_box", 1);
+    item_box = Sprite("spr_item_box", 1);
 
     draw_sprite(item_icon, 0, x, y);
     draw_sprite(item_box, 0, x, y);

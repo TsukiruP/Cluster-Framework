@@ -23,47 +23,57 @@ applies_to=self
 /// Animation
 
 // Exit if the stage is paused:
-if (game_ispaused(ctrl_pause)) {
+if (game_ispaused(ctrl_pause))
+{
     exit;
 }
 
 // Match player:
-if (instance_exists(player_handle)) {
-    if (player_handle.hint_allow == false) {
+if (instance_exists(player_handle))
+{
+    if (player_handle.hint_allow == false)
+    {
         // Change sprite index:
-        switch (player_handle.character_id) {
+        switch (player_handle.character_id)
+        {
             // Sonic:
             case CHAR_SONIC:
                 sprite_index = spr_omochao_sonic;
                 break;
         }
 
-        with (player_handle) {
+        with (player_handle)
+        {
             // Clear text:
-            if (ctrl_text.text_clear == true && animation_current == "omochao") {
-                    player_set_animation("omochao_end");
+            if (ctrl_text.text_clear == true && animation_current == "omochao")
+            {
+                player_set_animation("omochao_end");
             }
 
             // Reset hint:
-            if (ctrl_text.text_alpha[0] == 0 && animation_current == "stand") {
+            if (ctrl_text.text_alpha[0] == 0 && animation_current == "stand")
+            {
                 hint_allow = true;
             }
         }
     }
 
     // Reset immediately:
-    if (player_handle.hint_allow == true) {
+    if (player_handle.hint_allow == true)
+    {
         sprite_index = spr_omochao_idle;
     }
 }
 
 // Reset sprite index:
-if (player_handle == noone && sprite_index != spr_omochao_idle) {
+if (player_handle == noone && sprite_index != spr_omochao_idle)
+{
     sprite_index = spr_omochao_idle;
 }
 
 // Idle:
-if (sprite_index == spr_omochao_idle) {
+if (sprite_index == spr_omochao_idle)
+{
     // Image index:
     image_index = sync_rate(global.object_time, 3, sprite_get_number(sprite_index));
 
@@ -76,7 +86,8 @@ if (sprite_index == spr_omochao_idle) {
 }
 
 // Picked up:
-else {
+else
+{
     // Image index:
     image_index = player_handle.image_index;
 

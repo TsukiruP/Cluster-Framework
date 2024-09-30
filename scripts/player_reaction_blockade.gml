@@ -4,14 +4,14 @@
 var reaction_handle, collision;
 
 reaction_handle = argument0;
-collision       = argument1;
-side            = argument2;
+collision = argument1;
+side = argument2;
 
 // Activate hint:
 if (collision & COLL_HURT)
 {
-    if (((side == ANGLE_LEFT || side == ANGLE_RIGHT) && reaction_handle.blockade_orientation == ORIEN_VERTICAL) ||
-        ((side == ANGLE_UP || side == ANGLE_DOWN) && reaction_handle.blockade_orientation == ORIEN_HORIZONTAL && sign(y_speed) == dsin(side)))
+    if (((side == ANGLE_LEFT || side == ANGLE_RIGHT) && reaction_handle.orientation == ORIEN_VERTICAL) ||
+        ((side == ANGLE_UP || side == ANGLE_DOWN) && reaction_handle.orientation == ORIEN_HORIZONTAL && sign(y_speed) == dsin(side)))
     {
         // Eject:
         if (y_speed < 0 && side == ANGLE_DOWN)
@@ -31,14 +31,14 @@ if (collision & COLL_HURT)
         player_set_animation("spin", 0);
         jump_uncurl = 2;
 
-        x_speed = -2 * esign(x_speed, dcos(side));
+        x_speed = -2 * esign(x_speed, -dcos(side));
         y_speed = -2 * esign(y_speed, 1);
 
         // Crack:
-        reaction_handle.blockade_health -= 1;
+        reaction_handle.vitality -= 1;
 
         // Destroy:
-        if (reaction_handle.blockade_health == 0)
+        if (reaction_handle.vitality == 0)
         {
             with (reaction_handle)
             {

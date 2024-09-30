@@ -6,13 +6,13 @@ applies_to=self
 */
 /// Font Initialization
 
-global.font_system     = font_add_sprite(fnt_system, ord(" "), true, 0);
+global.font_system = font_add_sprite(fnt_system, ord(" "), true, 0);
 global.font_title_card = font_add_sprite(fnt_title_card_zone, ord(" "), true, -4);
-global.font_hud        = font_add_sprite(fnt_hud, ord("0"), false, 1);
+global.font_hud = font_add_sprite(fnt_hud, ord("0"), false, 1);
 
-global.font_hud_s4e2   = font_add_sprite(fnt_hud_s4e2, ord("0"), false, 1);
+global.font_hud_s4e2 = font_add_sprite(fnt_hud_s4e2, ord("0"), false, 1);
 global.font_score_s4e2 = font_add_sprite(fnt_score_s4e2, ord("0"), false, 1);
-global.font_time_s4e2  = font_add_sprite(fnt_time_s4e2, ord("0"), false, 1);
+global.font_time_s4e2 = font_add_sprite(fnt_time_s4e2, ord("0"), false, 1);
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -21,39 +21,39 @@ applies_to=self
 /// Text Initialization
 
 // Text variables:
-text_hide        = false;
-text_overflow    = false;
-text_clear       = false;
+text_hide = false;
+text_overflow = false;
+text_clear = false;
 
 text_message = "";
-text_length  = 0;
+text_length = 0;
 text_current = 0;
-text_target  = 0;
-text_x       = 42;
-text_y       = 70;
+text_target = 0;
+text_x = 42;
+text_y = 70;
 
-text_scroll[0]   = 0;     // Scroll current
-text_scroll[1]   = 0;     // Scroll target
-text_scroll[2]   = 42;    // Scroll rate
-text_scroll[3]   = 3;     // Scroll max
-text_scroll[4]   = false; // Scroll complete
+text_scroll[0] = 0; // Scroll current
+text_scroll[1] = 0; // Scroll target
+text_scroll[2] = 42; // Scroll rate
+text_scroll[3] = 3; // Scroll max
+text_scroll[4] = false; // Scroll complete
 
-text_alpha[0]    = 0;    // Box alpha
-text_alpha[1]    = 0.03; // Box rate
-text_alpha[2]    = 0;    // Text alpha
-text_alpha[3]    = 0.05; // Text rate
+text_alpha[0] = 0; // Box alpha
+text_alpha[1] = 0.03; // Box rate
+text_alpha[2] = 0; // Text alpha
+text_alpha[3] = 0.05; // Text rate
 
 // Topic variables:
 topic_complete = false;
 
-topic_message  = "";
+topic_message = "";
 topic_alpha[0] = 0; // Bar alpha;
 topic_alpha[1] = 0; // Text alpha;
 
 // Log variables:
-log_hide     = true;
-log_message  = "";
-log_scroll   = 0;
+log_hide = true;
+log_message = "";
+log_scroll = 0;
 
 log_alpha[0] = 0; // Background alpha
 log_alpha[1] = 0; // Text alpha
@@ -61,11 +61,11 @@ log_alpha[1] = 0; // Text alpha
 // Height variables:
 draw_set_font(global.font_system);
 
-font_height  = string_height("Test");
+font_height = string_height("Test");
 topic_height = 0;
-topic_lines  = 0;
-text_height  = 0;
-log_height   = 0;
+topic_lines = 0;
+text_height = 0;
+log_height = 0;
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -75,14 +75,14 @@ applies_to=self
 
 debug_section = 0;
 
-debug_title   = "";
-debug_stats   = "";
+debug_title = "";
+debug_stats = "";
 debug_message = "";
 
-debug_x1      = view_xview[view_current] + 4;
-debug_y1      = view_yview[view_current] + 4;
-debug_x2      = debug_x1;
-debug_y2      = debug_y1;
+debug_x1 = view_xview[view_current] + 4;
+debug_y1 = view_yview[view_current] + 4;
+debug_x2 = debug_x1;
+debug_y2 = debug_y1;
 #define Step_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -92,71 +92,88 @@ applies_to=self
 /// Inputs
 
 // Skip:
-if (text_clear == false && log_hide == true && (text_alpha[2] == 1 || topic_alpha[1] == 1) && input_get_check(INP_START, CHECK_PRESSED)) {
+if (text_clear == false && log_hide == true && (text_alpha[2] == 1 || topic_alpha[1] == 1) && input_get_check(INP_START, CHECK_PRESSED))
+{
     text_clear = true;
 }
 
-if (text_clear == false) {
+if (text_clear == false)
+{
     // Hide:
     if (!game_ispaused(ctrl_pause) && (text_message != "" || topic_message != "" || log_alpha[1] != 0) && input_get_check(INP_SELECT, CHECK_PRESSED)) text_hide = !text_hide;
 
-    if (text_hide == false) {
+    if (text_hide == false)
+    {
         var scroll_min, scroll_max, scroll_up, scroll_down, scroll_direction;
 
         // Height:
         draw_set_font(global.font_system);
 
         topic_height = string_height_ext(topic_message, font_height, global.display_width - (text_x * 2));
-        topic_lines  = (topic_height / font_height) - 1;
-        text_height  = string_height_ext(text_message[text_current], font_height, global.display_width - (text_x * 2));
-        log_height   = string_height_ext(log_message, font_height, global.display_width - text_x);
+        topic_lines = (topic_height / font_height) - 1;
+        text_height = string_height_ext(text_message[text_current], font_height, global.display_width - (text_x * 2));
+        log_height = string_height_ext(log_message, font_height, global.display_width - text_x);
 
         // Overflow:
-        if (((text_height / font_height) - (text_scroll[0] / font_height) <= text_scroll[3]) && (text_scroll[0] == text_scroll[1])) {
+        if (((text_height / font_height) - (text_scroll[0] / font_height) <= text_scroll[3]) && (text_scroll[0] == text_scroll[1]))
+        {
             text_overflow = false;
-        } else {
+        }
+        else
+        {
             if (text_scroll[4] == false) text_overflow = true;
         }
 
         // Open log:
-        if ((game_ispaused(ctrl_pause) || text_message != "" || topic_message != "") && log_message != "" && (log_alpha[1] == 0 || log_alpha[1] == 1) && input_get_check(INP_HELP, CHECK_PRESSED)) {
+        if ((game_ispaused(ctrl_pause) || text_message != "" || topic_message != "") && log_message != "" && (log_alpha[1] == 0 || log_alpha[1] == 1) && input_get_check(INP_HELP, CHECK_PRESSED))
+        {
             log_hide = !log_hide;
 
-            if (log_hide == false && log_height > global.display_height - 32) {
+            if (log_hide == false && log_height > global.display_height - 32)
+            {
                 log_scroll = log_height - (global.display_height - 32);
             }
         }
 
         // Text box:
-        if (log_hide == true) {
+        if (log_hide == true)
+        {
             // Accept:
-            if (input_get_check(INP_ACCEPT, CHECK_PRESSED)) {
+            if (input_get_check(INP_ACCEPT, CHECK_PRESSED))
+            {
                 // Topic:
-                if (topic_complete == false && topic_message != "" && topic_alpha[1] == 1) {
+                if (topic_complete == false && topic_message != "" && topic_alpha[1] == 1)
+                {
                     topic_complete = true;
                 }
 
                 // Text:
-                else if (text_current == text_target && text_alpha[2] == 1) {
+                else if (text_current == text_target && text_alpha[2] == 1)
+                {
                     // Advance text:
-                    if (text_overflow == false) {
+                    if (text_overflow == false)
+                    {
                         // Update text target:
-                        if (text_target != text_length) {
+                        if (text_target != text_length)
+                        {
                             text_target += 1;
                         }
 
                         // Clear text:
-                        else {
+                        else
+                        {
                             text_clear = true;
                         }
                     }
 
                     // Advance scroll:
-                    else {
+                    else
+                    {
                         // Update scroll target:
-                        if (text_scroll[4] == true) {
+                        if (text_scroll[4] == true)
+                        {
                             text_scroll[1] += text_scroll[2];
-                            text_scroll[4]  = false;
+                            text_scroll[4] = false;
                         }
                     }
                 }
@@ -164,50 +181,65 @@ if (text_clear == false) {
         }
 
         // Log:
-        else {
+        else
+        {
             // Cancel:
-            if (input_get_check(INP_CANCEL, CHECK_PRESSED)) {
+            if (input_get_check(INP_CANCEL, CHECK_PRESSED))
+            {
                 log_hide = true;
             }
         }
 
         // Manual Scroll:
-        if (log_hide == true) {
+        if (log_hide == true)
+        {
             scroll_min = text_scroll[0];
             scroll_max = (text_scroll[0] < text_scroll[1]);
-        } else {
+        }
+        else
+        {
             scroll_min = log_scroll;
             scroll_max = ((log_height - log_scroll) > (global.display_height - 32));
         }
 
-        scroll_up        = ((input_get_check(INP_UP, CHECK_PRESSED) || input_get_timer(INP_UP, 30)) && scroll_min > 0);
-        scroll_down      = ((input_get_check(INP_DOWN, CHECK_PRESSED) || input_get_timer(INP_DOWN, 30)) && scroll_max);
+        scroll_up = ((input_get_check(INP_UP, CHECK_PRESSED) || input_get_timer(INP_UP, 30)) && scroll_min > 0);
+        scroll_down = ((input_get_check(INP_DOWN, CHECK_PRESSED) || input_get_timer(INP_DOWN, 30)) && scroll_max);
         scroll_direction = scroll_down - scroll_up;
 
         // Textbox scroll:
-        if (log_hide == true && text_scroll[1] != 0 && (text_scroll[4] == true)) {
+        if (log_hide == true && text_scroll[1] != 0 && (text_scroll[4] == true))
+        {
             text_scroll[0] += scroll_direction;
         }
 
         // Log scroll:
-        else if (log_hide == false && (log_height > global.display_height - 32)) {
+        else if (log_hide == false && (log_height > global.display_height - 32))
+        {
             log_scroll += scroll_direction;
         }
     }
 }
 
 // Automatic Scroll:
-if (text_overflow == true) {
-    if (text_scroll[4] == false) {
-        if (text_scroll[0] < text_scroll[1]) {
+if (text_overflow == true)
+{
+    if (text_scroll[4] == false)
+    {
+        if (text_scroll[0] < text_scroll[1])
+        {
             text_scroll[0] += 1;
-        } else {
+        }
+        else
+        {
             text_scroll[0] = text_scroll[1];
             text_scroll[4] = true;
         }
     }
-} else {
-    if (text_scroll[0] == text_scroll[1] && text_scroll[1] != 0) {
+}
+else
+{
+    if (text_scroll[0] == text_scroll[1] && text_scroll[1] != 0)
+    {
         if (text_scroll[4] != true) text_scroll[4] = true;
     }
 }
@@ -219,7 +251,8 @@ applies_to=self
 /// Debug
 
 // Exit if not in debug mode:
-if (global.game_debug == false) {
+if (global.game_debug == false)
+{
     exit;
 }
 /*
@@ -418,38 +451,52 @@ applies_to=self
 /// Topic Alpha
 
 // Fade in topic:
-if (text_clear == false && topic_complete == false && topic_message != "") {
+if (text_clear == false && topic_complete == false && topic_message != "")
+{
     // Bar:
-    if (topic_alpha[0] < 0.6) {
+    if (topic_alpha[0] < 0.6)
+    {
         topic_alpha[0] += text_alpha[1];
-    } else {
+    }
+    else
+    {
         topic_alpha[0] = 0.6;
     }
 
     // Topic:
-    if (topic_alpha[1] < 1) {
+    if (topic_alpha[1] < 1)
+    {
         // Add topic to log:
         if (topic_alpha[1] == 0) log_message += topic_message + "#";
 
         topic_alpha[1] += text_alpha[3];
-    } else {
+    }
+    else
+    {
         topic_alpha[1] = 1;
     }
 }
 
 // Fade out topic:
-else {
+else
+{
     // Bar:
-    if (topic_alpha[0] > 0) {
+    if (topic_alpha[0] > 0)
+    {
         topic_alpha[0] -= text_alpha[1];
-    } else {
+    }
+    else
+    {
         topic_alpha[0] = 0;
     }
 
     // Topic:
-    if (topic_alpha[1] > 0) {
+    if (topic_alpha[1] > 0)
+    {
         topic_alpha[1] -= text_alpha[3];
-    } else {
+    }
+    else
+    {
         topic_alpha[1] = 0;
     }
 }
@@ -461,81 +508,100 @@ applies_to=self
 /// Text Alpha
 
 // Fade in text:
-if (text_clear == false && text_message != "" && (topic_complete == true || topic_message == "")) {
+if (text_clear == false && text_message != "" && (topic_complete == true || topic_message == ""))
+{
     // Box:
-    if (text_alpha[0] < 0.6) {
+    if (text_alpha[0] < 0.6)
+    {
         text_alpha[0] += text_alpha[1];
-    } else {
+    }
+    else
+    {
         text_alpha[0] = 0.6;
     }
 
     // Text:
-    if (text_current == text_target) {
-        if (text_alpha[2] < 1) {
+    if (text_current == text_target)
+    {
+        if (text_alpha[2] < 1)
+        {
             // Add text to log:
             if (text_alpha[2] == 0) log_message += text_message[text_current] + "#";
 
             text_alpha[2] += text_alpha[3];
-        } else {
+        }
+        else
+        {
             text_alpha[2] = 1;
         }
     }
 
     // Fade out text:
-    else {
-        if (text_alpha[2] > -0.5) {
+    else
+    {
+        if (text_alpha[2] > -0.5)
+        {
             text_alpha[2] -= text_alpha[3];
 
-            if (text_alpha[2] == -0.5) {
-                text_current   = text_target;
+            if (text_alpha[2] == -0.5)
+            {
+                text_current = text_target;
 
                 text_scroll[0] = 0;
                 text_scroll[1] = 0;
                 text_scroll[4] = false;
 
-                text_alpha[2]  = 0;
+                text_alpha[2] = 0;
 
-                text_overflow  = false;
+                text_overflow = false;
             }
         }
     }
 }
 
 // Fade out text:
-else {
+else
+{
     // Box:
-    if (text_alpha[0] > 0) {
+    if (text_alpha[0] > 0)
+    {
         text_alpha[0] -= text_alpha[1];
-    } else {
+    }
+    else
+    {
         text_alpha[0] = 0;
     }
 
     // Text:
-    if (text_alpha[2] > 0) {
+    if (text_alpha[2] > 0)
+    {
         text_alpha[2] -= text_alpha[3];
-    } else {
+    }
+    else
+    {
         text_alpha[2] = 0;
     }
 }
 
-if (text_clear == true && (text_message != "" || topic_message != "") && text_alpha[2] == 0 && topic_alpha[0] == 0) {
-    text_hide      = false;
-    text_clear     = false;
+if (text_clear == true && (text_message != "" || topic_message != "") && text_alpha[2] == 0 && topic_alpha[0] == 0)
+{
+    text_hide = false;
+    text_clear = false;
 
-    text_message   = "";
-    text_length    = 0;
-    text_current   = 0;
-    text_target    = 0;
+    text_message = "";
+    text_length = 0;
+    text_current = 0;
+    text_target = 0;
 
     text_scroll[0] = 0;
     text_scroll[1] = 0;
     text_scroll[4] = false;
 
     topic_complete = false;
-    topic_message  = "";
+    topic_message = "";
 
-    log_hide       = true;
-    log_message   += "#";
+    log_hide = true;
+    log_message += "#";
 }
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -544,32 +610,47 @@ applies_to=self
 */
 /// Log Alpha
 
-if (log_hide == false) {
+if (log_hide == false)
+{
     // Background:
-    if (log_alpha[0] < 0.6) {
+    if (log_alpha[0] < 0.6)
+    {
         log_alpha[0] += text_alpha[1];
-    } else {
+    }
+    else
+    {
         log_alpha[0] = 0.6;
     }
 
     // Log:
-    if (log_alpha[1] < 1) {
+    if (log_alpha[1] < 1)
+    {
         log_alpha[1] += text_alpha[3];
-    } else {
+    }
+    else
+    {
         log_alpha[1] = 1;
     }
-} else {
+}
+else
+{
     // Background:
-    if (log_alpha[0] > 0) {
+    if (log_alpha[0] > 0)
+    {
         log_alpha[0] -= text_alpha[1];
-    } else {
+    }
+    else
+    {
         log_alpha[0] = 0;
     }
 
     // Log:
-    if (log_alpha[1] > 0) {
+    if (log_alpha[1] > 0)
+    {
         log_alpha[1] -= text_alpha[3];
-    } else {
+    }
+    else
+    {
         log_alpha[1] = 0;
     }
 }
@@ -593,7 +674,8 @@ applies_to=self
 /// Draw Topic
 
 // Don't draw if hidden:
-if (text_hide == true) {
+if (text_hide == true)
+{
     exit;
 }
 
@@ -623,7 +705,8 @@ applies_to=self
 /// Draw Text
 
 // Don't draw if hidden:
-if (text_hide == true) {
+if (text_hide == true)
+{
     exit;
 }
 
@@ -646,7 +729,8 @@ draw_text_ext(text_x, -text_scroll[0], text_message[text_current], font_height, 
 draw_set_alpha(1);
 d3d_set_viewport(0, 0, global.display_width, global.display_height);
 
-if (text_overflow == true && text_scroll[4] == true && text_alpha[2] == 1) {
+if (text_overflow == true && text_scroll[4] == true && text_alpha[2] == 1)
+{
     draw_sprite(fnt_system, 95, (global.display_width / 2) - 6, global.display_height - 29);
 }
 
@@ -661,7 +745,8 @@ applies_to=self
 /// Draw Log
 
 // Don't draw if hidden:
-if (text_hide == true) {
+if (text_hide == true)
+{
     exit;
 }
 

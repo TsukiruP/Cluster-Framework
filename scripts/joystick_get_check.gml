@@ -1,7 +1,7 @@
 /// joystick_get_check(id, button, check)
 // Returns whether the button meets the check.
 
-with(ctrl_input)
+with (ctrl_input)
 {
     var joystick_id, button_id, button_check;
 

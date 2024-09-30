@@ -33,7 +33,7 @@ if (physics_id == PHYS_WATER)
     acceleration *= 0.5;
     deceleration *= 0.5;
     roll_friction *= 0.5;
-
+    
     // Vertical variables:
     if (state_current == player_state_hurt)
     {
@@ -43,7 +43,7 @@ if (physics_id == PHYS_WATER)
     {
         gravity_force = 0.0625;
     }
-
+    
     jump_force -= 3;
     jump_release *= 0.5;
 }
@@ -56,7 +56,7 @@ else
         acceleration *= 2;
         roll_friction *= 2;
     }
-
+    
     // Speed down multiplier:
     else if (status_speed == SPEED_SLOW)
     {

@@ -24,12 +24,14 @@ applies_to=self
 /// Animation
 
 // Exit if the stage is paused:
-if (game_ispaused(ctrl_pause)) {
+if (game_ispaused(ctrl_pause))
+{
     exit;
 }
 
 // Execute timeline:
-if (ctl_index != noone) {
+if (ctl_index != noone)
+{
     ctl_update();
     script_execute(ctl_index);
 }
@@ -41,9 +43,10 @@ applies_to=self
 /// Movement
 
 // Exit if the stage is paused:
-if (game_ispaused(ctrl_pause)) {
+if (game_ispaused(ctrl_pause))
+{
     exit;
 }
 
-x += e_speed *  dcos(angle);
+x += e_speed * dcos(angle);
 y += e_speed * -dsin(angle);

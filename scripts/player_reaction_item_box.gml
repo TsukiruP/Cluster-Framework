@@ -4,7 +4,7 @@
 var reaction_handle, collision;
 
 reaction_handle = argument0;
-collision       = argument1;
+collision = argument1;
 
 // Break item box:
 if ((collision & COLL_HURT) || (collision & COLL_HURT_RADIUS))

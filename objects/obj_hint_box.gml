@@ -22,7 +22,8 @@ applies_to=self
 /// Reset
 
 // Exit if the stage is paused or text is active:
-if (game_ispaused()) {
+if (game_ispaused())
+{
     exit;
 }
 
@@ -36,20 +37,25 @@ applies_to=self
 /// Animation
 
 // Exit if the stage is paused:
-if (game_ispaused(ctrl_pause)) {
+if (game_ispaused(ctrl_pause))
+{
     exit;
 }
 
 // Match player:
-if (instance_exists(player_handle)) {
-    with (player_handle) {
+if (instance_exists(player_handle))
+{
+    with (player_handle)
+    {
         // Clear text:
-        if (ctrl_text.text_clear == true && animation_current == "look") {
+        if (ctrl_text.text_clear == true && animation_current == "look")
+        {
             player_set_animation("look_end");
         }
 
         // Reset hint:
-        if (ctrl_text.text_alpha[0] == 0 && animation_current == "stand") {
+        if (ctrl_text.text_alpha[0] == 0 && animation_current == "stand")
+        {
             hint_allow = true;
         }
     }

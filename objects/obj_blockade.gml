@@ -15,8 +15,8 @@ mask = false;
 reaction_index = player_reaction_blockade;
 
 // Blockade variables:
-blockade_orientation = ORIEN_VERTICAL;
-blockade_health      = 3;
+orientation = ORIEN_VERTICAL;
+vitality = 3;
 #define Other_4
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -28,11 +28,12 @@ applies_to=self
 //field blockade_orientation: enum(0, 1)
 
 /*preview
-    var blockade_orientation, spike_flip;
+    var orientation;
 
-    spike_orientation = Field("blockade_orientation", 0);
+    orientation = Field("orientation", 0);
 
-    switch (spike_orientation) {
+    switch (orientation)
+    {
         // Horizontal:
         case 1:
             sprite_index = Sprite("spr_blockade_horizontal", 0);
@@ -51,7 +52,8 @@ applies_to=self
 /// Blockade Initialization
 
 // Blockade orientation:
-switch (blockade_orientation) {
+switch (orientation)
+{
     // Horizontal:
     case ORIEN_HORIZONTAL:
         sprite_index = spr_blockade_horizontal;
@@ -72,7 +74,7 @@ applies_to=self
 /// Draw Blockade
 
 // Blockade:
-image_index = image_number - blockade_health;
+image_index = image_number - vitality;
 draw_self();
 
 // Collision:

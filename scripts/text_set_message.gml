@@ -1,7 +1,7 @@
 /// text_set_message(str1, str2, ...)
 // Sets the message of the text box.
 
-with(ctrl_text)
+with (ctrl_text)
 {
     // Text length:
     text_length = argument_count - 1;

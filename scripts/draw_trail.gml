@@ -3,7 +3,7 @@
 
 var pth, wid, stp, stp_i, xt, xt_i, sgn, a, a_i, x1, y1, x2, y2, i, px, py, nx, ny, vert_count;
 
-xt  = 0
+xt = 0
 wid = argument1 / 2;
 col = draw_get_color();
 
@@ -16,7 +16,8 @@ py = ds_list_find_value(trail_y, 0);
 draw_primitive_begin_texture(pr_trianglestrip, sprite_get_texture(argument0, 0));
 size = ds_list_size(trail_x)
 
-for (i = 0; i < size; i += 1) {
+for (i = 0; i < size; i += 1)
+{
     nx = ds_list_find_value(trail_x, i)
     ny = ds_list_find_value(trail_y, i)
 

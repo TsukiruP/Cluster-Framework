@@ -5,8 +5,8 @@ switch (argument0)
 {
     // Start:
     case STATE_START:
-        // Animate:
-        state_animate = true;
+        // Flip:
+        image_xscale *= -1;
 
         // Reset speed:
         x_speed = 0;
@@ -65,11 +65,5 @@ switch (argument0)
 
     // Finish:
     case STATE_FINISH:
-        break;
-
-    // Animate:
-    case STATE_ANIMATE:
-        // Flip direction:
-        image_xscale *= -1;
         break;
 }

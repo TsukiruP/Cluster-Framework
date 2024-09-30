@@ -81,12 +81,13 @@
 					|ctl_sonic_hurt
 					|ctl_sonic_death
 					|ctl_sonic_breathe
+					|ctl_sonic_hammer
 					+Skid
 						|ctl_sonic_somersault
 						|ctl_sonic_skid
 						|ctl_sonic_skid_end
-					|ctl_sonic_hammer
 					|ctl_sonic_insta
+					|ctl_sonic_air_dash
 			+Props
 				+Checkpoint
 					|ctl_checkpoint_inactive
@@ -165,6 +166,9 @@
 			|player_get_instance
 		+Animation
 			|player_animation_core
+			|player_animation_default
+			|player_animation_variant
+			|player_animation_speed
 			|player_add_animation
 			|player_get_animation
 			|player_set_animation
@@ -288,7 +292,6 @@
 		|player_handle_item_box
 		|player_handle_badnik
 		|player_handle_hint
-	|miles_add_animations
 	|knuckles_add_animations
 	|classic_add_animations
 	|player_routine_jump
@@ -296,5 +299,3 @@
 	|player_routine_insta
 	|player_routine_shield_old
 	|player_state_hint
-|player_effect_queue
-|script229

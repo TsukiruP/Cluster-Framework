@@ -37,12 +37,12 @@ else
         // Insta-shield:
         else if (global.sonic_skill[skill_id] == 1)
         {
-            // Set status:
-            state_animate       = true;
-            jump_cap            = false;
+            // Set state:
+            player_set_state(player_state_jump, false);
+            jump_cap = false;
 
             status_shield_allow = false;
-            status_insta_alarm  = 8;
+            status_insta_alarm = 8;
 
             // Set animation:
             player_set_animation("insta");
@@ -50,14 +50,33 @@ else
             // Play sound:
             sound_play("snd_shield_insta");
 
-            return player_set_state(player_state_jump, false);
+            // Shield:
+            with (instance_create(x, y, eff_player))
+            {
+                ctl_initialize(ctl_shield_insta);
+
+                depth = other.depth;
+                image_xscale = other.image_xscale;
+                image_angle = gravity_angle(other);
+                player_handle = other.id;
+            }
+
+            return true;
         }
     }
 
-    // Jump Dash:
+    // Air Dash:
     else if (global.sonic_skill[skill_id] == 2)
     {
+        // Set speed:
+        x_speed += 2.25 * image_xscale;
+        y_speed  = 0;
 
+        // Set state:
+        player_set_state(player_state_air, false);
+        player_set_animation("air_dash");
+
+        return true;
     }
 }
 

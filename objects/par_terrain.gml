@@ -36,7 +36,8 @@ applies_to=self
 /// Draw Terrain
 
 // Terrain:
-if ((mask == true && global.game_debug == true) || mask == false) {
+if ((mask == true && global.game_debug == true) || mask == false)
+{
     draw_self();
 }
 

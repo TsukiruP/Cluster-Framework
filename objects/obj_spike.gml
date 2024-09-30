@@ -15,9 +15,9 @@ mask = false;
 reaction_index = player_reaction_spike;
 
 // Spike variables:
-spike_orientation = ORIEN_VERTICAL;
-spike_flip        = false;
-spike_angle       = ANGLE_UP;
+orientation = ORIEN_VERTICAL;
+flip = false;
+angle = ANGLE_UP;
 #define Other_4
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -26,23 +26,25 @@ applies_to=self
 */
 /// Field Initialization
 
-//field spike_orientation: enum(0, 1)
-//field spike_flip: bool
+//field orientation: enum(0, 1)
+//field flip: bool
 
 /*preview
-    var spike_orientation, spike_flip;
+    var orientation, flip;
 
-    image_xscale      = 1;
-    image_yscale      = 1;
-    spike_orientation = Field("spike_orientation", 0);
-    spike_flip        = Field("spike_flip", 0);
+    image_xscale = 1;
+    image_yscale = 1;
+    orientation = Field("orientation", 0);
+    flip = Field("flip", 0);
 
-    switch (spike_orientation) {
+    switch (orientation)
+    {
         // Horizontal:
         case 1:
             sprite_index = Sprite("spr_spike_horizontal", 0);
 
-            if (spike_flip == true) {
+            if (flip == true)
+            {
                 image_xscale = -1;
             }
             break;
@@ -51,7 +53,8 @@ applies_to=self
         default:
             sprite_index = Sprite("spr_spike_vertical", 0);
 
-            if (spike_flip == true) {
+            if (flip == true)
+            {
                 image_yscale = -1;
             }
     }
@@ -64,28 +67,31 @@ applies_to=self
 /// Spike Initialization
 
 // Spike orientation:
-switch (spike_orientation) {
+switch (orientation)
+{
     // Horizontal:
     case ORIEN_HORIZONTAL:
         sprite_index = spr_spike_horizontal;
-        spike_angle  = ANGLE_RIGHT;
+        angle = ANGLE_RIGHT;
         set_hurtbox(16, 16, 8, 15);
 
-        if (spike_flip == true) {
+        if (flip == true)
+        {
             image_xscale = -1;
-            spike_angle  = ANGLE_LEFT;
+            angle = ANGLE_LEFT;
         }
         break;
 
     // Vertical:
     default:
         sprite_index = spr_spike_vertical;
-        spike_angle  = ANGLE_UP;
+        angle = ANGLE_UP;
         set_hurtbox(16, 8, 15, 15);
 
-        if (spike_flip == true) {
+        if (flip == true)
+        {
             image_yscale = -1;
-            spike_angle  = ANGLE_DOWN;
+            angle = ANGLE_DOWN;
         }
 }
 #define Draw_0

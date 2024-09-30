@@ -4,27 +4,29 @@
 var x_rad, y_rad, y_off, wall_off;
 
 // Initialize:
-x_rad    = 0;
-y_rad    = 0;
+x_rad = 0;
+y_rad = 0;
 
-y_off    = 0;
+y_off = 0;
 wall_off = 0;
 
 // Assign radii:
-if (argument_count >= 3) {
-    x_rad    = argument[0];
-    y_rad    = argument[1];
+if (argument_count >= 3)
+{
+    x_rad = argument[0];
+    y_rad = argument[1];
     
     wall_off = argument[2];
     
-    if (argument_count >= 4) {
-        y_off    = argument[3];
+    if (argument_count >= 4)
+    {
+        y_off = argument[3];
     }
 }
 
 // Set radii:
-x_radius    = x_rad;
-y_radius    = y_rad;
+x_radius = x_rad;
+y_radius = y_rad;
 
-y_offset    = y_off;
+y_offset = y_off;
 wall_offset = wall_off;

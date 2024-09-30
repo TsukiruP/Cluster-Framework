@@ -89,6 +89,7 @@
 			|spr_sonic_hammer
 			|spr_sonic_insta
 			|spr_sonic_skid
+			|spr_sonic_air_dash
 		+Classic
 			|spr_classic_stand
 			|spr_classic_jog
@@ -238,7 +239,6 @@
 	+Low
 	+High
 	+Masks
-		|mask_big
 		|mask_mid
 		|mask_small
 		|mask_dot

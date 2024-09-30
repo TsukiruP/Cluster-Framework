@@ -230,7 +230,7 @@ else if (ctl_position(154))
 }
 
 // Null frame:
-else if (ctl_position(161))
+else if (ctl_position(162))
 {
     player_set_animation("stand");
 }

@@ -9,8 +9,8 @@ applies_to=self
 event_inherited();
 
 // Shield variables:
-shield_reset   = false;
-shield_hide    = false;
+shield_reset = false;
+shield_hide = false;
 shield_advance = false;
 #define Step_2
 /*"/*'/**//* YYD ACTION
@@ -23,48 +23,57 @@ applies_to=self
 var ctl_target;
 
 // Shields:
-if (player_handle.status_invin != INVIN_BUFF) {
+if (player_handle.status_invin != INVIN_BUFF)
+{
     // Update shield:
-    switch (player_handle.status_shield) {
+    switch (player_handle.status_shield)
+    {
         // Magnetic:
         case SHIELD_MAGNETIC:
-            if (ctl_index != ctl_shield_magnetic) {
+            if (ctl_index != ctl_shield_magnetic)
+            {
                 timeline_set(ctl_shield_magnetic);
             }
             break;
 
         // Bubble:
         case SHIELD_BUBBLE:
-            if ((ctl_index != ctl_shield_bubble && ctl_index != ctl_shield_bubble_bound && ctl_index != ctl_shield_bubble_recoil) || shield_reset == true) {
+            if ((ctl_index != ctl_shield_bubble && ctl_index != ctl_shield_bubble_bound && ctl_index != ctl_shield_bubble_recoil) || shield_reset == true)
+            {
                 timeline_set(ctl_shield_bubble);
             }
             break;
 
         // Fire:
         case SHIELD_FIRE:
-            if ((ctl_index != ctl_shield_fire && ctl_index != ctl_shield_fire_dash) || shield_reset == true) {
+            if ((ctl_index != ctl_shield_fire && ctl_index != ctl_shield_fire_dash) || shield_reset == true)
+            {
                 timeline_set(ctl_shield_fire);
             }
             break;
 
         // Lightning:
         case SHIELD_LIGHTNING:
-            if (ctl_index != ctl_shield_lightning) {
+            if (ctl_index != ctl_shield_lightning)
+            {
                 timeline_set(ctl_shield_lightning);
             }
             break;
 
         // Basic:
         default:
-            if (ctl_index != ctl_shield_basic) {
+            if (ctl_index != ctl_shield_basic)
+            {
                 timeline_set(ctl_shield_basic);
             }
     }
 }
 
 // Invincibility:
-else {
-    if (ctl_index != ctl_shield_invin) {
+else
+{
+    if (ctl_index != ctl_shield_invin)
+    {
         timeline_set(ctl_shield_invin);
     }
 }
@@ -81,9 +90,12 @@ applies_to=self
 event_inherited();
 
 // Depth:
-if ((player_handle.status_shield == SHIELD_FIRE && (image_index mod 2) != 0 && ctl_index != ctl_shield_fire_dash ) || (player_handle.status_shield == SHIELD_LIGHTNING && ctl_time > 48)) {
+if ((player_handle.status_shield == SHIELD_FIRE && (image_index mod 2) != 0 && ctl_index != ctl_shield_fire_dash) || (player_handle.status_shield == SHIELD_LIGHTNING && ctl_time > 48))
+{
     depth = player_handle.depth + 2;
-} else {
+}
+else
+{
     depth = player_handle.depth - 2;
 }
 
@@ -91,15 +103,19 @@ if ((player_handle.status_shield == SHIELD_FIRE && (image_index mod 2) != 0 && c
 shield_advance = (player_handle.status_shield == SHIELD_BASIC || player_handle.status_shield == SHIELD_MAGNETIC || player_handle.status_invin == INVIN_BUFF);
 
 // Hide:
-if (!game_ispaused(ctrl_pause) && ((player_handle.status_shield == SHIELD_BUBBLE && ctl_index == ctl_shield_bubble) || (global.advance_flicker == true && shield_advance == true))) {
+if (!game_ispaused(ctrl_pause) && ((player_handle.status_shield == SHIELD_BUBBLE && ctl_index == ctl_shield_bubble) || (global.advance_flicker == true && shield_advance == true)))
+{
     // Hide:
     shield_hide = sync_rate(ctl_time, 2, 2);
-} else {
+}
+else
+{
     shield_hide = false;
 }
 
 // Destroy:
-if (player_handle.status_shield == SHIELD_NONE && player_handle.status_invin != INVIN_BUFF) {
+if (player_handle.status_shield == SHIELD_NONE && player_handle.status_invin != INVIN_BUFF)
+{
     player_handle.shield_handle = noone;
     instance_destroy();
 }
@@ -111,13 +127,14 @@ applies_to=self
 */
 /// Set Index
 
-switch (player_handle.status_shield) {
+switch (player_handle.status_shield)
+{
     // Bubble bound:
     case SHIELD_BUBBLE:
         timeline_set(ctl_shield_bubble_bound);
         break;
 
-    // Fire dash:
+        // Fire dash:
     case SHIELD_FIRE:
         image_xscale = player_handle.image_xscale;
         timeline_set(ctl_shield_fire_dash);
@@ -146,25 +163,32 @@ var player_rotation, sine, csine, draw_x, draw_y;
 player_rotation = gravity_angle(player_handle);
 
 // Reset direction:
-if (sprite_index != spr_shield_fire_dash) {
+if (sprite_index != spr_shield_fire_dash)
+{
     image_xscale = 1;
 }
 
 // Alpha:
-if ((global.advance_flicker == true && shield_advance == true) || shield_advance == false) {
+if ((global.advance_flicker == true && shield_advance == true) || shield_advance == false)
+{
     image_alpha = 1;
-} else {
+}
+else
+{
     image_alpha = 0.6;
 }
 
-if (sprite_exists(sprite_index)) {
+if (sprite_exists(sprite_index))
+{
     // Shield:
-    if (shield_hide == false) {
+    if (shield_hide == false)
+    {
         draw_sprite_ext(sprite_index, image_index, x, y, image_xscale, 1, player_rotation, c_white, image_alpha);
     }
 
     // Switch to bubble shield shell:
-    else if (player_handle.status_shield == SHIELD_BUBBLE && player_handle.status_invin != INVIN_BUFF) {
+    else if (player_handle.status_shield == SHIELD_BUBBLE && player_handle.status_invin != INVIN_BUFF)
+    {
         draw_sprite_ext(spr_shield_bubble_shell, ctl_time_previous div 12, x, y, image_xscale, 1, player_rotation, c_white, image_alpha);
     }
 

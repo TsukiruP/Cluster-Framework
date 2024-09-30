@@ -7,12 +7,14 @@ applies_to=self
 /// Global Timers
 
 // Exit if the stage is paused:
-if (game_ispaused(ctrl_pause)) {
+if (game_ispaused(ctrl_pause))
+{
     exit;
 }
 
 // Stage timer:
-if (global.time_allow == true && !game_ispaused(ctrl_text)) {
+if (global.time_allow == true && !game_ispaused(ctrl_text))
+{
     global.game_time += global.game_speed;
 }
 
@@ -20,8 +22,9 @@ if (global.time_allow == true && !game_ispaused(ctrl_text)) {
 global.object_time += global.game_speed;
 
 // Floor timers:
-if (global.game_speed == 1) {
-    global.game_time   = floor(global.game_time);
+if (global.game_speed == 1)
+{
+    global.game_time = floor(global.game_time);
     global.object_time = floor(global.object_time);
 }
 #define Step_2
@@ -33,16 +36,19 @@ applies_to=self
 /// Pause
 
 // Exit if there's no player 1:
-if (!instance_exists(player_get_instance(0))) {
+if (!instance_exists(player_get_instance(0)))
+{
     exit;
 }
 
-if (!game_ispaused(ctrl_text) && global.pause_allow == true && !instance_exists(ctrl_pause) && input_get_check(INP_START, CHECK_PRESSED)) {
+if (!game_ispaused(ctrl_text) && global.pause_allow == true && !instance_exists(ctrl_pause) && input_get_check(INP_START, CHECK_PRESSED))
+{
     var pause_fade;
-
+    
     pause_fade = fade_create(0.06, 0.6, depth);
-
-    with (instance_create(0, 0, ctrl_pause)) {
+    
+    with (instance_create(0, 0, ctrl_pause))
+    {
         fade_handle = pause_fade;
     }
 }
@@ -53,7 +59,8 @@ applies_to=self
 */
 /// Cull Instances
 
-if (instance_exists(ctrl_camera)) {
+if (instance_exists(ctrl_camera))
+{
     // Deactivate objects:
     instance_deactivate_object(par_culled);
 
@@ -61,8 +68,10 @@ if (instance_exists(ctrl_camera)) {
     instance_activate_region(view_xview[view_current] - 64, view_yview[view_current] - 64, view_wview[view_current] + 128, view_hview[view_current] + 128, true);
 
     // Activate region around players:
-    with (obj_player) {
-        if (!in_view()) {
+    with (obj_player)
+    {
+        if (!in_view())
+        {
             instance_activate_region(x - 64, y - 64, 128, 128, true);
         }
     }
@@ -75,11 +84,11 @@ applies_to=self
 */
 /// Reset Game
 
-global.game_speed  = 1;
-global.game_time   = 0;
+global.game_speed = 1;
+global.game_time = 0;
 global.object_time = 0;
-global.game_rings  = 0;
-global.game_score  = 0;
+global.game_rings = 0;
+global.game_score = 0;
 
 global.pause_allow = true;
 /*"/*'/**//* YYD ACTION
@@ -89,7 +98,8 @@ applies_to=self
 */
 /// Reset Animations
 
-if (global.animation_grid != -1) {
+if (global.animation_grid != -1)
+{
     global.animation_initialized = false;
     ds_grid_destroy(global.animation_grid);
     global.animation_grid = -1;

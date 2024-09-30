@@ -15,11 +15,11 @@ if (argument_count >= 2)
 }
 
 // Set state:
-if (state_target != argument0 || state_reset == true)
+if (state_current != argument0 || state_reset == true)
 {
     state_previous = state_current;
-    state_target   = argument0;
-    state_changed  = true;
+    state_current = argument0;
+    state_changed = true;
     
     // Finish previous state:
     if (script_exists(state_previous))
@@ -30,11 +30,14 @@ if (state_target != argument0 || state_reset == true)
     // Start target state:
     if (state_start == true)
     {
-        if (script_exists(state_target))
+        if (script_exists(state_current))
         {
-            script_execute(state_target, STATE_START);
+            script_execute(state_current, STATE_START);
         }
     }
+    
+    // Set animation:
+    player_animation_default();
     
     // Success:
     return true;
