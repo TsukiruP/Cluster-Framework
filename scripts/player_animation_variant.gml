@@ -20,7 +20,7 @@ switch (animation_current)
 
     // Wait:
     case "wait":
-        if (animation_current != animation_current)
+        if (animation_changed == true)
         {
             // Leader & partner wait:
             if (instance_number(obj_player) > 1)

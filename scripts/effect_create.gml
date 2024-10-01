@@ -4,7 +4,7 @@
 var effect;
 
 // Initialize:
-effect = instance_create(floor(argument1), floor(argument2), eff_basic);
+effect = instance_create(floor(argument1), floor(argument2), par_effect);
 effect.depth = depth;
 
 // Set timeline:

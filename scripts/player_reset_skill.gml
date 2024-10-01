@@ -3,3 +3,6 @@
 
 // Reset shield:
 status_shield_allow = true;
+
+// Reset sonic:
+air_dash_allow = true;

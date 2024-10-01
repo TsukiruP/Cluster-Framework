@@ -32,7 +32,7 @@ switch (status_shield) {
         for (i = 0; i < 4; i += 1) {
             var spark_handle;
 
-            spark_handle         = instance_create(floor(x), floor(y), eff_basic);
+            spark_handle         = instance_create(floor(x), floor(y), par_effect);
             spark_handle.e_speed = 2;
 
             with (spark_handle) {

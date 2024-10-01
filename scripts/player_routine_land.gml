@@ -3,16 +3,12 @@
 
 if (on_ground == true)
 {
-    // Splash:
-    if (on_surface == true)
-    {}
-
     if (x_speed == 0)
     {
-        player_set_state(player_state_idle);
+        // Set animation:
         player_set_animation("land");
 
-        return true;
+        return player_set_state(player_state_idle);
     }
     else
     {

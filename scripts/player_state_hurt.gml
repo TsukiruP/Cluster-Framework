@@ -13,6 +13,9 @@ switch (argument0)
 
         // Reset air:
         player_reset_air();
+
+        // Set animation:
+        player_set_animation("hurt");
         break;
 
     // Step:

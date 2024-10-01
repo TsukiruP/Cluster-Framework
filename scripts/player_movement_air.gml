@@ -141,6 +141,9 @@ repeat (total_steps)
 
             // Get floor data:
             player_set_ground(hit_floor);
+
+            // Splash:
+            player_surface_splash();
         }
     }
     else

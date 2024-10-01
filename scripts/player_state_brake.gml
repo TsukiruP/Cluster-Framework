@@ -10,6 +10,16 @@ switch (argument0)
         {
             image_xscale = sign(x_speed);
         }
+
+        // Set animation:
+        if (x_speed >= 6.00)
+        {
+            player_set_animation("brake_fast");
+        }
+        else
+        {
+            player_set_animation("brake");
+        }
         break;
 
     // Step:
@@ -30,10 +40,10 @@ switch (argument0)
                         // Turn:
                         if (global.advance_turn == true && character_id != CHAR_CLASSIC && image_xscale != sign(x_speed))
                         {
-                            player_set_state(player_state_turn);
+                            // Set animation:
                             player_set_animation("turn_brake");
 
-                            return true;
+                            return player_set_state(player_state_turn);
                         }
 
                         // Run:

@@ -37,7 +37,7 @@ else if (ctl_position(30))
     image_index = 5;
 }
 
-// Null frame:
+// Loop animation:
 else if (ctl_position(35))
 {
     ctl_time = 0;

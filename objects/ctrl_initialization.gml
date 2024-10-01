@@ -208,8 +208,10 @@ applies_to=self
 // Sonic skills:
 for (i = SONIC_JUMP; i <= SONIC_SHIELD; i += 1)
 {
-    global.sonic_skill[i] = 2;
+    global.sonic_skill[i] = 1;
 }
+
+global.sonic_skill[SONIC_AUX_A] = 2;
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603

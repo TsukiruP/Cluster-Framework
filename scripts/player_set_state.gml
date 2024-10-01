@@ -36,9 +36,6 @@ if (state_current != argument0 || state_reset == true)
         }
     }
     
-    // Set animation:
-    player_animation_default();
-    
     // Success:
     return true;
 }

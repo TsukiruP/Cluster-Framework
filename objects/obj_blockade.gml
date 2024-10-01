@@ -25,7 +25,7 @@ applies_to=self
 */
 /// Field Initialization
 
-//field blockade_orientation: enum(0, 1)
+//field orientation: enum(0, 1)
 
 /*preview
     var orientation;

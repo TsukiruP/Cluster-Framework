@@ -11,6 +11,9 @@ switch (argument0)
         // Play sound:
         sound_play_single("snd_spin_dash_charge");
 
+        // Set animation:
+        player_set_animation("spin_dash");
+
         // Dust:
         with (instance_create(x, y, eff_spin_dash))
         {

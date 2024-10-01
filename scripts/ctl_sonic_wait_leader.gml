@@ -139,7 +139,7 @@ else if (ctl_position(293))
     image_index = 14;
 }
 
-// Null frame:
+// Loop animation:
 else if (ctl_position(312))
 {
     ctl_time = 233;

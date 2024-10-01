@@ -1,5 +1,14 @@
 /// ctl_sonic_air_dash()
 
+// Skip:
+if (animation_skip == true)
+{
+    ctl_skip(8);
+
+    // Set sprite:
+    sprite_index = spr_sonic_air_dash;
+}
+
 // Start animation:
 if (ctl_position(0))
 {
@@ -9,7 +18,7 @@ if (ctl_position(0))
 
     // Set collision:
     player_set_radii(6, 14, 3);
-    set_hurtbox(6, 16, 6, 15);
+    set_hurtbox(8, 12, 4, 19);
     set_hitbox();
 }
 
@@ -35,6 +44,11 @@ else if (ctl_position(6))
 else if (ctl_position(8))
 {
     image_index = 4;
+
+    // Set collision:
+    player_set_radii(6, 14, 3);
+    set_hurtbox(8, 13, 6, 17);
+    set_hitbox();
 }
 
 // Change frame:
@@ -49,8 +63,8 @@ else if (ctl_position(12))
     image_index = 6;
 }
 
-// Change frame:
+// Loop animation:
 else if (ctl_position(13))
 {
-    ctl_skip(8);
+    ctl_time = 8;
 }

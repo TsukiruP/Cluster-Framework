@@ -10,6 +10,9 @@ switch (argument0)
         {
             x_speed = 2 * input_x_direction;
         }
+
+        // Set animation:
+        player_set_animation("spin");
         break;
 
     // Step:

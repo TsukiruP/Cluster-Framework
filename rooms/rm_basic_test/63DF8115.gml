@@ -1,3 +1,3 @@
 //gm82 fields begin
-item_id= 6
+semisolid=true
 //gm82 fields end

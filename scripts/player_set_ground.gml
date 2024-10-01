@@ -6,6 +6,7 @@ var sine, csine;
 // Confirm assignment
 ground_id = argument0;
 on_ground = true;
+on_surface = false;
 player_reset_skill();
 
 // Calculate and set new ground angle

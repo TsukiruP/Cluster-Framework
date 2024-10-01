@@ -29,6 +29,9 @@ switch (argument0)
 
         // Set depth:
         depth = -11000;
+
+        // Set animation:
+        player_set_animation("death");
         break;
 
     // Step:

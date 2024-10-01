@@ -7,7 +7,7 @@ if (ctl_position(0))
     image_index = 0;
 }
 
-// Null frame:
+// Null/Change/Finish/Loop frame/effect/animation:
 else if (ctl_position(15))
 {
     ctl_time = 0;

@@ -17,14 +17,28 @@ if (collision & COLL_HURT_RADIUS)
     // React:
     if (spring_alarm == 0 || spring_current != reaction_handle)
     {
-        if (!(on_ground == true && (reaction_handle.angle == ANGLE_LEFT || reaction_handle.angle == ANGLE_RIGHT)) || is_dash_ring == true)
+        // Reset:
+        player_reset_spring();
+
+        // Set spring:
+        spring_current = reaction_handle;
+        spring_force = spring_current.force;
+        spring_angle = spring_current.angle;
+        spring_alarm = spring_force + 15;
+
+        // Set speed:
+        x_speed = spring_force * dcos(spring_angle);
+        y_speed = spring_force * -dsin(spring_angle);
+
+        // Set state:
+        if (!(on_ground == true && (spring_angle == ANGLE_LEFT || spring_angle == ANGLE_RIGHT)) || is_dash_ring == true)
         {
             // Set state:
-            player_set_state(player_state_air, true);
-            y = reaction_handle.y;
-
-            // Reset skills:
+            player_reset_air();
             player_reset_skill();
+            player_animation_air();
+            player_set_state(player_state_air, false);
+            y = reaction_handle.y;
         }
         else
         {
@@ -33,23 +47,11 @@ if (collision & COLL_HURT_RADIUS)
 
         x = reaction_handle.x;
 
-        // Set spring:
-        spring_angle = reaction_handle.angle;
-        spring_force = reaction_handle.force;
-
-        // Set speed:
-        x_speed = spring_force * dcos(spring_angle);
-        y_speed = spring_force * -dsin(spring_angle);
-
         // Set direction:
         if (dcos(spring_angle) != 0)
         {
             image_xscale = sign(dcos(spring_angle));
         }
-
-        // Register:
-        spring_alarm = spring_force + 15;
-        spring_current = reaction_handle;
 
         // Score:
         if (is_dash_ring == true)

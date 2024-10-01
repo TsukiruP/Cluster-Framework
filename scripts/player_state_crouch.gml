@@ -5,6 +5,8 @@ switch (argument0)
 {
     // Start:
     case STATE_START:
+        // Set animation:
+        player_set_animation("crouch");
         break;
 
     // Step:
@@ -43,11 +45,10 @@ switch (argument0)
         // Idle:
         if (animation_trigger == true && input_player[INP_DOWN, CHECK_HELD] == false)
         {
-            // Crouch end::
-            player_set_state(player_state_idle);
+            // Set animation:
             player_set_animation("crouch_end");
 
-            return true;
+            return player_set_state(player_state_idle);
         }
 
         // Skill:
@@ -59,7 +60,6 @@ switch (argument0)
         // Spin Dash:
         if (input_player[INP_JUMP, CHECK_PRESSED] == true)
         {
-            state_animate = true;
             return player_set_state(player_state_spin_dash);
         }
         break;

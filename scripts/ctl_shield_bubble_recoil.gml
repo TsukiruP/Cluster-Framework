@@ -13,7 +13,7 @@ else if (ctl_position(12))
     image_index = 0;
 }
 
-// Null frame:
+// Change effect:
 else if (ctl_position(17))
 {
     timeline_set(ctl_shield_bubble);

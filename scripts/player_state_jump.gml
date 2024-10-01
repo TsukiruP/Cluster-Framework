@@ -26,6 +26,9 @@ switch (argument0)
 
         // Reset air:
         player_reset_air();
+
+        // Set animation:
+        player_set_animation("spin");
         break;
 
     // Step:
@@ -92,6 +95,21 @@ switch (argument0)
         if (player_routine_skill())
         {
             return true;
+        }
+
+        // Animation:
+        if (y_speed >= 0)
+        {
+            switch (jump_uncurl)
+            {
+                // Blockade
+                case 1:
+                    if (animation_current != "spring_fall")
+                    {
+                        animation_skip = true;
+                        player_set_animation("spring_fall");
+                    }
+            }
         }
         break;
 

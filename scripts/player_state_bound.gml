@@ -5,6 +5,8 @@ switch (argument0)
 {
     // Start:
     case STATE_START:
+        // Set animation:
+        player_set_animation("spin");
         break;
 
     // Step:
@@ -35,9 +37,8 @@ switch (argument0)
         if (on_ground == true)
         {
             // Set state:
-            player_set_state(player_state_jump, true);
-            state_animate = true;
             animation_skip = true;
+            player_set_state(player_state_jump, true);
 
             // Play sound:
             sound_play_single("snd_shield_bubble_bound");

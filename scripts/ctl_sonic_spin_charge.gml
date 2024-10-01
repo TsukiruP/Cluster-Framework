@@ -31,7 +31,7 @@ else if (ctl_position(6))
     image_index = 3;
 }
 
-// Null frame:
+// Change animation:
 else if (ctl_position(8))
 {
     player_set_animation("spin_dash");

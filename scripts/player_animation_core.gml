@@ -6,7 +6,7 @@ var y_radius_temp;
 // Store previous radius:
 y_radius_temp = y_radius;
 
-// Animation
+// Animation:
 player_animation_variant();
 player_animation_speed();
 
@@ -38,6 +38,12 @@ animation_timer += 1;
 if (animation_skip == true)
 {
     animation_skip = false;
+}
+
+// Reset changed:
+if (animation_changed == true)
+{
+    animation_changed = false;
 }
 
 // Position fix:

@@ -94,8 +94,8 @@ draw_trail
 ctl_sonic_cliff_front
 sonic_animation_list
 player_animation_speed
-knuckles_add_animations
-classic_add_animations
+player_animation_air
+player_surface_splash
 player_compile_animations
 classic_trait_clock_up
 checkpoint_set
@@ -227,9 +227,10 @@ ctl_sonic_omochao_end
 player_state_hint
 player_reset_skill
 player_reaction_spike
-player_animation_default
+player_animation_run
 player_reaction_blockade
 ctl_blockade_debris
 
 
 ctl_sonic_air_dash
+player_reset_spring

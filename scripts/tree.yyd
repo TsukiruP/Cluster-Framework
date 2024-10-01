@@ -166,9 +166,10 @@
 			|player_get_instance
 		+Animation
 			|player_animation_core
-			|player_animation_default
 			|player_animation_variant
 			|player_animation_speed
+			|player_animation_run
+			|player_animation_air
 			|player_add_animation
 			|player_get_animation
 			|player_set_animation
@@ -238,6 +239,7 @@
 			|player_set_cliff
 			|player_set_damage
 			|player_reset_air
+			|player_reset_spring
 			|player_reset_skill
 		+Misc.
 			|player_react
@@ -246,6 +248,7 @@
 			|player_slope_friction
 			|player_ring_loss
 			|player_brake_dust
+			|player_surface_splash
 			+Trail
 				|start_trail
 				|update_trail
@@ -292,8 +295,6 @@
 		|player_handle_item_box
 		|player_handle_badnik
 		|player_handle_hint
-	|knuckles_add_animations
-	|classic_add_animations
 	|player_routine_jump
 	|player_effect_splash
 	|player_routine_insta

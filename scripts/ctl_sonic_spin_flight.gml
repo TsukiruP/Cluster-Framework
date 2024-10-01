@@ -89,7 +89,7 @@ else if (ctl_position(21))
     image_index = 2;
 }
 
-// Null frame:
+// Loop animation:
 else if (ctl_position(22))
 {
     ctl_time = 7;

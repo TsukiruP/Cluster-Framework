@@ -45,7 +45,7 @@ else if (ctl_position(44))
     image_index = 4;
 }
 
-// Change frame:
+// Loop animation:
 else if (ctl_position(55))
 {
     ctl_time = 8;

@@ -52,3 +52,6 @@ if (center == noone && (left != noone ^^ right != noone))
         cliff_direction = -1;
     }
 }
+
+// Return:
+return cliff_direction;

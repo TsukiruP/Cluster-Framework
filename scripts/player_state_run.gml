@@ -5,6 +5,8 @@ switch (argument0)
 {
     // Start:
     case STATE_START:
+        // Set animation:
+        player_animation_run();
         break;
 
     // Step:
@@ -131,6 +133,9 @@ switch (argument0)
 
             return player_set_state(player_state_jump);
         }
+
+        // Set animation:
+        player_animation_run();
         break;
 
     // Finish:

@@ -73,7 +73,7 @@ else if (ctl_position(22))
     image_index = 4;
 }
 
-// Null frame:
+// Change effect:
 else if (ctl_position(23))
 {
     timeline_set(ctl_shield_fire);

@@ -1,7 +1,7 @@
 /// player_get_angle(x, y, [floor_mode])
 // Calculates the angle of the given solid using its image && collision data.
 
-var xscale, yscale, left, right, top, bottom, kind;
+var xscale, yscale, left, right, top, bottom, kind, temp_radius;
 
 xscale = sign(argument0.image_xscale);
 yscale = sign(argument0.image_yscale);
@@ -10,6 +10,7 @@ right = argument0.bbox_right + 1;
 top = argument0.bbox_top;
 bottom = argument0.bbox_bottom + 1;
 kind = argument0.shape;
+temp_radius = 10;
 
 // Default if...
 if (kind != -1)
@@ -21,8 +22,8 @@ if (kind != -1)
     // Out of the solid's bounds:
     if (argument1 mod 180 != 0)
     {
-        if (yscale == -1 and y - x_radius < top) return argument1;
-        if (yscale == 1 and y + x_radius > bottom) return argument1;
+        if (yscale == -1 and y - temp_radius < top) return argument1;
+        if (yscale == 1 and y + temp_radius > bottom) return argument1;
         if (kind == SHAPE_CONCAVE)
         {
             if (xscale == 1 and x + y_radius < left) return argument1;
@@ -31,8 +32,8 @@ if (kind != -1)
     }
     else
     {
-        if (xscale == -1 and x - x_radius < left) return argument1;
-        if (xscale == 1 and x + x_radius > right) return argument1;
+        if (xscale == -1 and x - temp_radius < left) return argument1;
+        if (xscale == 1 and x + temp_radius > right) return argument1;
         if (kind == SHAPE_CONCAVE)
         {
             if (yscale == 1 and y + y_radius < top) return argument1;
@@ -91,8 +92,8 @@ switch (kind)
         }
 
         // Set mask offset:
-        x2 = x + (x_radius * xscale * (argument1 mod 180 == 0));
-        y2 = y + (x_radius * yscale * (argument1 mod 180 != 0));
+        x2 = x + (temp_radius * xscale * (argument1 mod 180 == 0));
+        y2 = y + (temp_radius * yscale * (argument1 mod 180 != 0));
 
         // Calculate curve angle:
         var dir;
@@ -119,10 +120,10 @@ switch (kind)
         sine = dsin(dir);
         csine = dcos(dir);
 
-        x1 = x_int - (csine * x_radius) + (sine * y_radius);
-        y1 = y_int + (sine * x_radius) + (csine * y_radius);
-        x2 = x_int + (csine * x_radius) + (sine * y_radius);
-        y2 = y_int - (sine * x_radius) + (csine * y_radius);
+        x1 = x_int - (csine * temp_radius) + (sine * y_radius);
+        y1 = y_int + (sine * temp_radius) + (csine * y_radius);
+        x2 = x_int + (csine * temp_radius) + (sine * y_radius);
+        y2 = y_int - (sine * temp_radius) + (csine * y_radius);
 
         left = noone;
         right = noone;

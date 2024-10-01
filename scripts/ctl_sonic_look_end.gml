@@ -19,7 +19,7 @@ else if (ctl_position(2))
     image_index = 0;
 }
 
-// Null frame:
+// Change animation:
 else if (ctl_position(4))
 {
     player_set_animation("stand");

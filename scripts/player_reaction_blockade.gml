@@ -26,10 +26,11 @@ if (collision & COLL_HURT)
 
         // Rebound:
         player_wall_eject(reaction_handle);
-        player_set_state(player_state_jump, false);
         player_reset_air();
+        player_set_state(player_state_jump, false);
         player_set_animation("spin", 0);
-        jump_uncurl = 2;
+
+        jump_uncurl = 1;
 
         x_speed = -2 * esign(x_speed, -dcos(side));
         y_speed = -2 * esign(y_speed, 1);
@@ -47,7 +48,7 @@ if (collision & COLL_HURT)
                 {
                     var debris_handle;
 
-                    debris_handle = instance_create(floor(x), floor(y), eff_basic);
+                    debris_handle = instance_create(floor(x), floor(y), par_effect);
                     debris_handle.e_speed = 4;
                     debris_handle.angle = ANGLE_DOWN + irandom_range(-45, 45);
 

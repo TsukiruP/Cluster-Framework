@@ -145,7 +145,7 @@ else if (ctl_position(270))
     image_index = 2;
 }
 
-// Null frame:
+// Loop animation:
 else if (ctl_position(277))
 {
     ctl_time = 24;

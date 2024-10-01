@@ -85,7 +85,7 @@ obj_basic_test_collision_27
 par_prop
 par_rainbow_ring
 eff_spin_dash
-eff_basic
+par_effect
 par_overlay
 obj_omochao
 eff_shield

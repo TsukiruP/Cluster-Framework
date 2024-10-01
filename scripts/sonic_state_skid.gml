@@ -7,6 +7,9 @@ switch (argument0)
     case STATE_START:
         // Set speed:
         x_speed = 3 * image_xscale;
+
+        // Set animation:
+        player_set_animation("somersault");
         break;
 
     // Step:
@@ -81,7 +84,6 @@ switch (argument0)
                         // Idle:
                     case "skid_end":
                         return player_set_state(player_state_idle);
-                        break;
                 }
             }
         }
@@ -98,10 +100,10 @@ switch (argument0)
             // Jump:
             if (animation_finished == true)
             {
-                player_set_state(player_state_jump, false);
                 animation_skip = true;
+                player_set_animation("spin");
 
-                return true;
+                return player_set_state(player_state_jump, false);
             }
         }
 
@@ -127,11 +129,11 @@ switch (argument0)
                 // Jump:
                 else
                 {
-                    player_set_state(player_state_jump, false);
                     player_reset_air();
                     animation_skip = true;
+                    player_set_animation("spin");
 
-                    return true;
+                    return player_set_state(player_state_jump, false);
                 }
             }
         }

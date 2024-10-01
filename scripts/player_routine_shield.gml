@@ -5,7 +5,6 @@
 status_shield_allow = false;
 
 // Animation variables:
-state_animate = true;
 animation_skip = true;
 
 // Shield behavior:
@@ -71,7 +70,7 @@ switch (status_shield)
         {
             var spark_handle;
 
-            spark_handle = instance_create(floor(x), floor(y), eff_basic);
+            spark_handle = instance_create(floor(x), floor(y), par_effect);
             spark_handle.e_speed = 2;
 
             with (spark_handle)
@@ -104,6 +103,7 @@ switch (status_shield)
 // Return:
 if (status_shield == SHIELD_BUBBLE)
 {
+    // Set state:
     player_set_state(player_state_bound);
 
     // Jump aux:
@@ -113,5 +113,8 @@ if (status_shield == SHIELD_BUBBLE)
 }
 else
 {
+    // Set animation:
+    player_set_animation("spin");
+
     return player_set_state(player_state_jump, false);
 }

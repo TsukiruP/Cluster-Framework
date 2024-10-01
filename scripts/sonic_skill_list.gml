@@ -66,17 +66,18 @@ else
     }
 
     // Air Dash:
-    else if (global.sonic_skill[skill_id] == 2)
+    else if (global.sonic_skill[skill_id] == 2 && air_dash_allow == true)
     {
         // Set speed:
         x_speed += 2.25 * image_xscale;
         y_speed  = 0;
 
-        // Set state:
-        player_set_state(player_state_air, false);
+        // Set animation:
+        animation_skip = (animation_current != "spin");
         player_set_animation("air_dash");
+        air_dash_allow = false;
 
-        return true;
+        return player_set_state(player_state_air, false);
     }
 }
 

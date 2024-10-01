@@ -7,6 +7,9 @@ switch (argument0)
     case STATE_START:
         // Set speed:
         x_speed = 0;
+
+        // Set animation:
+        player_set_animation("hammer");
         break;
 
     // Step:

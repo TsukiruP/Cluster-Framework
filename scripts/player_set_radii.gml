@@ -7,8 +7,9 @@ var x_rad, y_rad, y_off, wall_off;
 x_rad = 0;
 y_rad = 0;
 
-y_off = 0;
 wall_off = 0;
+y_off = 0;
+
 
 // Assign radii:
 if (argument_count >= 3)
@@ -28,5 +29,8 @@ if (argument_count >= 3)
 x_radius = x_rad;
 y_radius = y_rad;
 
-y_offset = y_off;
 wall_offset = wall_off;
+y_offset = y_off;
+
+// Update wall radius:
+wall_radius = x_radius + wall_offset;

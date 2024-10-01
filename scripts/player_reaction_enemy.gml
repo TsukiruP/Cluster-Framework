@@ -56,7 +56,7 @@ if ((collision & COLL_HURT) || ((collision & COLL_HURT_RADIUS) && status_invin =
 }
 
 // Enemy advantage:
-else if (((collision & COLL_HIT) || (collision & COLL_HIT_RADIUS)) && status_shield - SHIELD_BUBBLE != reaction_handle.hitbox_element)
+else if (((collision & COLL_HIT) || (collision & COLL_HIT_RADIUS)) && (reaction_handle.hitbox_element == 0 || (status_shield - SHIELD_BUBBLE != reaction_handle.hitbox_element)))
 {
     player_set_damage(reaction_handle);
 }

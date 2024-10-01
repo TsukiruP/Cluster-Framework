@@ -11,6 +11,9 @@ event_inherited();
 // Image index:
 image_index = 1;
 
+// Cover:
+cover = noone;
+
 // Rainbow variables:
 rainbow_ring = false;
 rainbow_score = true;
@@ -28,10 +31,11 @@ if (game_ispaused(ctrl_pause))
     exit;
 }
 
-// Set rainbow ring:
+// Rainbow ring index:
 if (rainbow_ring == true)
 {
     image_index = sync_rate(global.object_time, 4, 6) + 1;
+    cover.image_index = image_index + 6;
 }
 #define Other_4
 /*"/*'/**//* YYD ACTION
@@ -55,7 +59,7 @@ event_inherited();
     flip_y = Field("flip_y", 0);
     rainbow_ring = Field("rainbow_ring", 0);
 
-    switch (spring_orientation)
+    switch (orientation)
     {
         // Horizontal:
         case 1:
@@ -173,4 +177,16 @@ if (flip_y == true)
 {
     image_yscale = -1;
     angle = 360 - angle;
+}
+
+// Cover:
+cover = instance_create(x, y, par_effect);
+cover.depth = -10;
+cover.sprite_index = sprite_index;
+cover.image_xscale = image_xscale;
+cover.image_yscale = image_yscale;
+
+if (rainbow_ring == false)
+{
+    cover.image_index = 2;
 }

@@ -25,7 +25,7 @@ else if (ctl_position(6))
     image_index = 3;
 }
 
-// Null frame:
+// Loop effect:
 else if (ctl_position(7))
 {
     ctl_time = 0;

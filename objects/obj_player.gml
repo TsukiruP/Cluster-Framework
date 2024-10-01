@@ -39,7 +39,8 @@ state_previous = state_current;
 state_changed = false;
 state_animate = false;
 
-// Hint allow
+// Idle variables:
+wait_alarm = 360;
 hint_allow = true;
 
 // Jump variables:
@@ -105,7 +106,7 @@ applies_to=self
 character_id = CHAR_SONIC;
 
 // Sonic variables:
-skid_alarm = 0;
+air_dash_allow = true;
 
 // Classic variables:
 clock_up_state = 0;
@@ -179,10 +180,10 @@ applies_to=self
 /// Handle Initialization
 
 // Spring variables:
-spring_strength = 0;
+spring_current = noone;
+spring_force = 0;
 spring_angle = 0;
 spring_alarm = 0;
-spring_current = noone;
 
 // Gimmick lock variables:
 gimmick_lock = false;
@@ -233,8 +234,8 @@ applies_to=self
 animation_grid = -1;
 
 animation_current = "";
-animation_target = "";
 animation_previous = animation_current;
+animation_changed = false;
 
 animation_variant = 0;
 animation_moment = 0;
@@ -244,7 +245,6 @@ animation_trigger = false;
 animation_reload = false;
 animation_skip = false;
 animation_timer = 0;
-animation_alarm = 360;
 #define Step_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -459,7 +459,7 @@ if (status_invin >= INVIN_BUFF)
 if (status_speed == SPEED_SLOW)
 {
     // Cap speed:
-    if (spring_strength == 0)
+    if (spring_force == 0)
     {
         if (abs(x_speed) > top_speed)
         {
@@ -693,10 +693,7 @@ if (spring_alarm > 0)
 
     if (spring_alarm <= 0)
     {
-        spring_strength = 0;
-        spring_angle = 0;
-        spring_alarm = 0;
-        spring_current = noone;
+        player_reset_spring();
     }
 }
 

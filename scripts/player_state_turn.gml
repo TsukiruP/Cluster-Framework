@@ -10,6 +10,12 @@ switch (argument0)
 
         // Reset speed:
         x_speed = 0;
+
+        // Set animation:
+        if (animation_current != "turn" && animation_current != "turn_brake")
+        {
+            player_set_animation("turn");
+        }
         break;
 
     // Step:

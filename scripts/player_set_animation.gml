@@ -4,6 +4,7 @@
 // Initialize:
 animation_previous = animation_current;
 animation_current = argument0;
+animation_changed = true;
 animation_moment = 0;
 
 // Set moment:

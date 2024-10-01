@@ -43,7 +43,7 @@ else if (ctl_position(23))
     image_index = 5;
 }
 
-// Null frame:
+// Loop animation:
 else if (ctl_position(25))
 {
     ctl_time = 20;

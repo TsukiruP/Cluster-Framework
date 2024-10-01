@@ -14,13 +14,13 @@ if (ctl_position(0))
 }
 
 // Change frame:
-else if (ctl_position(2))
+else if (ctl_position(1))
 {
     image_index = 1;
 }
 
 // Finish animation:
-else if (ctl_position(3))
+else if (ctl_position(2))
 {
     animation_finished = true;
 }

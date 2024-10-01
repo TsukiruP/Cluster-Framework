@@ -5,16 +5,28 @@ switch (argument0)
 {
     // Start:
     case STATE_START:
-        // Cliff:
-        player_set_cliff();
+        // Wait alarm:
+        wait_alarm = 360;
 
-        if (image_xscale == cliff_direction)
+        // Cliff:
+        if (player_set_cliff() != 0)
         {
-            if (animation_current != "cliff_front") player_set_animation("cliff_front");
+            if (image_xscale == cliff_direction)
+            {
+                if (animation_current != "cliff_front") player_set_animation("cliff_front");
+            }
+            else
+            {
+                if (animation_current != "cliff_back") player_set_animation("cliff_back");
+            }
         }
-        else
+
+        // Set animation:
+        if (animation_current != "stand" && animation_current != "wait" && animation_current != "ready" && animation_current != "land" &&
+            animation_current != "look_end" && animation_current != "crouch_end" &&
+            animation_current != "look" && animation_current != "omochao" && animation_current != "omochao_end")
         {
-            if (animation_current != "cliff_back") player_set_animation("cliff_back");
+            player_set_animation("stand");
         }
         break;
 
@@ -102,6 +114,17 @@ switch (argument0)
             sound_play_single("snd_jump");
 
             return player_set_state(player_state_jump);
+        }
+
+        // Wait:
+        if (!game_ispaused(ctrl_text) && on_ground == true && input_lock == false && animation_current == "stand") {
+            if (wait_alarm > 0) {
+                wait_alarm -= 1;
+
+                if (wait_alarm == 0) {
+                    player_set_animation("wait");
+                }
+            }
         }
         break;
 

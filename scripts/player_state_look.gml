@@ -5,6 +5,8 @@ switch (argument0)
 {
     // Start:
     case STATE_START:
+        // Set animation:
+        player_set_animation("look");
         break;
 
     // Step:
@@ -43,11 +45,10 @@ switch (argument0)
         // Idle:
         if (animation_trigger == true && input_player[INP_UP, CHECK_HELD] == false)
         {
-            // Look end:
-            player_set_state(player_state_idle);
+            // Set animation:
             player_set_animation("look_end");
 
-            return true;
+            return player_set_state(player_state_idle);
         }
 
         // Skill:

@@ -7,7 +7,7 @@
 	|par_hint
 	|par_terrain
 	|par_obstacle
-	|eff_basic
+	|par_effect
 +System
 	|ctrl_initialization
 	+Controllers

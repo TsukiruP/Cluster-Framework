@@ -45,7 +45,7 @@ else if (ctl_position(12))
     set_hurtbox(6, 2, 4, 8, 3, -4);
 }
 
-// Change frame:
+// Finish animation:
 else if (ctl_position(14))
 {
     activated = false;
