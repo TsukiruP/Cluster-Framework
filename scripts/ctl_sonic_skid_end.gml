@@ -22,7 +22,7 @@ else if (ctl_position(1))
 // Change frame:
 else if (ctl_position(2))
 {
-    image_index = 2;
+    image_index = 0;
 }
 
 // Finish animation:
