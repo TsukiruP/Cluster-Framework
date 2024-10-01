@@ -242,7 +242,6 @@ animation_moment = 0;
 
 animation_finished = false;
 animation_trigger = false;
-animation_reload = false;
 animation_skip = false;
 animation_timer = 0;
 #define Step_0

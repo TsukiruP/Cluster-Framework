@@ -4,9 +4,6 @@
 // Disable shield:
 status_shield_allow = false;
 
-// Animation variables:
-animation_skip = true;
-
 // Shield behavior:
 switch (status_shield)
 {
@@ -114,7 +111,10 @@ if (status_shield == SHIELD_BUBBLE)
 else
 {
     // Set animation:
-    player_set_animation("spin");
+    if (animation_current != "spin")
+    {
+        player_set_animation("spin");
+    }
 
     return player_set_state(player_state_jump, false);
 }

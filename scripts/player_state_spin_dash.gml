@@ -75,9 +75,8 @@ switch (argument0)
 
             spin_dash_charge = min(spin_dash_charge + 2, 8);
 
-            // Animation:
+            // Set animation:
             player_set_animation("spin_charge");
-            animation_reload = true;
 
             // Play sound:
             sfx_spin_dash = sound_play_single("snd_spin_dash_charge");

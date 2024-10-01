@@ -11,7 +11,7 @@ player_animation_variant();
 player_animation_speed();
 
 // Load target animation:
-if ((ctl_index != player_get_animation(animation_current, animation_variant)) || animation_reload == true)
+if (ctl_index != player_get_animation(animation_current, animation_variant))
 {
     // Set animation:
     timeline_set(player_get_animation(animation_current, animation_variant), animation_moment);
@@ -21,9 +21,6 @@ if ((ctl_index != player_get_animation(animation_current, animation_variant)) ||
 
     // Reset trigger:
     animation_trigger = false;
-
-    // Reset reload:
-    animation_reload = false;
 
     // Reset timer:
     animation_timer = 0;
