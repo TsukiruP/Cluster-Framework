@@ -32,7 +32,7 @@ sound_kind_volume(3, global.audio_bgm / 100);
 
 // Set loop points:
 sound_set_loop("bgm_dev_title", 2304672, 9984665, unit_samples);
-sound_set_loop("bgm_basic_test_1", 1091072, 6462372, unit_samples);
+sound_set_loop("bgm_basic_test_1", 1024258, 5121290, unit_samples);
 #define Step_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
