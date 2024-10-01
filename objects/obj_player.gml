@@ -196,7 +196,6 @@ applies_to=self
 /// Water Initialization
 
 // Surface variables:
-on_surface = false;
 surface_timer = 0;
 
 // Underwater variables:
