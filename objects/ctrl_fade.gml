@@ -6,10 +6,10 @@ applies_to=self
 */
 /// Fade Initialization
 
-fade_speed  = 0;
-fade_alpha  = 0;
-fade_target = 0;
-fade_color  = c_black;
+fade_alpha = 0;
+fade_target = 1;
+fade_speed = 0.02;
+fade_color = c_black;
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1

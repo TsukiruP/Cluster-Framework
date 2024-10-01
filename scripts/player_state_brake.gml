@@ -12,7 +12,7 @@ switch (argument0)
         }
 
         // Set animation:
-        if (x_speed >= 6.00)
+        if (abs(x_speed) >= 6.00)
         {
             player_set_animation("brake_fast");
         }

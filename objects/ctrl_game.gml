@@ -45,7 +45,7 @@ if (!game_ispaused(ctrl_text) && global.pause_allow == true && !instance_exists(
 {
     var pause_fade;
     
-    pause_fade = fade_create(0.06, 0.6, depth);
+    pause_fade = fade_create(0.6, 0.06, depth);
     
     with (instance_create(0, 0, ctrl_pause))
     {

@@ -175,7 +175,7 @@ if (pause_delay == 0)
                     if (menu_selection[0] == 1)
                     {
                         menu_lock = true;
-                        fade_handle = fade_create(0.02, 2, depth);
+                        fade_handle = fade_create(2, 0.02, depth);
                     }
 
                     // Move to the left:

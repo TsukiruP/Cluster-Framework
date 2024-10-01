@@ -301,7 +301,7 @@ if (transition_id == TRANS_FADE)
         case 0:
             if (fade_handle == noone)
             {
-                fade_handle = fade_create(transition_speed, 1);
+                fade_handle = fade_create();
                 fade_handle.persistent = true;
             }
 
