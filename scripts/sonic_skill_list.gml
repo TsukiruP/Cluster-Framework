@@ -73,7 +73,7 @@ else
         y_speed  = 0;
 
         // Set animation:
-        animation_skip = (animation_current != "spin");
+        animation_skip = (animation_current != "spin" && animation_current != "insta");
         player_set_animation("air_dash");
         air_dash_allow = false;
 
