@@ -233,7 +233,7 @@ applies_to=self
 
 animation_grid = -1;
 
-animation_current = "";
+animation_current = "stand";
 animation_previous = animation_current;
 animation_changed = false;
 
