@@ -1,15 +1,14 @@
-/// room_get_data(room)
+/// room_get_data([room])
+/* Gets the room data based on the room.
+Defaults to the current room should no room be provided. */
+
+// Initialize:
+room_handle = room;
 
 // Set handle:
 if (argument_count == 1)
 {
     room_handle = argument[0];
-}
-
-// Default to current room:
-else
-{
-    room_handle = room;
 }
 
 switch (room_handle)

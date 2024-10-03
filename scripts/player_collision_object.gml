@@ -1,5 +1,9 @@
 /// player_collision_object(obj, [phase])
-// Returns whether the player is colliding with an object.
+/* Returns a set of bit flags detailing the player's collision with the object.
+This is done by using GM82's rectangle_in_rectangle, and rotating each according to their gravity_direction.
+This occurs in two phases, first checking against the object's hurtbox, and then the object's hitbox.
+If either the player or object's hitbox/hurtbox is empty (all 0), then these checks aren't done.
+The first phase checks the object's hurtbox against the player's hitbox and radii, and the second checks the object's hitbox against the player's hurtbox and radii. */
 
 var phase, collision;
 var ax_int, ay_int, aleft, atop, aright, abottom, aoff_x, aoff_y, adir_x, adir_y, arot, ax1, ay1, ax2, ay2;

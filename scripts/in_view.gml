@@ -1,5 +1,6 @@
 /// in_view([obj])
-// Returns whether the object is within the current view.
+/* Returns whether the object is within the current view.
+obj: object to check. Defaults to the script caller. */
 
 var object_handle;
 

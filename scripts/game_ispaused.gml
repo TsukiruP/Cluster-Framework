@@ -1,5 +1,6 @@
 /// game_ispaused([controller])
-// Returns whether the text box and/or pause menu is currently active.
+/* Returns true or false based on the variables of the text controller or pause controller.
+Defaults to checking both controllers should neither be the argument given, or no argument was given. */
 
 var pause_text, pause_stage;
 

@@ -1,11 +1,12 @@
 /// room_set_data(transition, [music, background, zone, act, water level, start, run end x])
+// Sets the room data.
 
 // Initialize:
 transition_id = argument0;
 
 room_music = "";
 room_background = -1;
-room_zone = "Placeholder";
+room_zone = "";
 room_act = 0;
 room_water_level = -1;
 room_start = START_IDLE;
