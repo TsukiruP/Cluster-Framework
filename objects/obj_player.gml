@@ -966,8 +966,8 @@ if (global.misc_trails == true)
 }
 
 // Update trail:
-update_trail(floor(x) + (dcos(angle + 90) * (-2 - (1 * angle == 90)) * (trail_draw == true)) + dcos(angle) * x_speed,
-    floor(y) - (dsin(angle + 90) * (-3 - (1 * angle != 0)) * (trail_draw == true)) + y_speed - dsin(angle) * x_speed,
+update_trail(floor(x) + (dcos(angle + 90) * (trail_draw == true)) + dcos(angle) * x_speed,
+    floor(y) - (dsin(angle + 90) * (trail_draw == true)) + y_speed - dsin(angle) * x_speed,
     (trail_draw == true));
 #define Draw_0
 /*"/*'/**//* YYD ACTION
