@@ -97,18 +97,15 @@ switch (argument0)
             return true;
         }
 
-        // Animation:
+        // Uncurl:
         if (y_speed >= 0)
         {
             switch (jump_uncurl)
             {
-                // Blockade
+                // Blockade:
                 case 1:
-                    if (animation_current != "spring_fall")
-                    {
-                        animation_skip = true;
-                        player_set_animation("spring_fall");
-                    }
+                    animation_skip = (animation_current != "spring_fall");
+                    player_set_animation("spring_fall");
             }
         }
         break;

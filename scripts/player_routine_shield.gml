@@ -111,10 +111,7 @@ if (status_shield == SHIELD_BUBBLE)
 else
 {
     // Set animation:
-    if (animation_current != "spin")
-    {
-        player_set_animation("spin");
-    }
+    player_set_animation("spin");
 
     return player_set_state(player_state_jump, false);
 }

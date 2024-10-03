@@ -13,11 +13,11 @@ switch (argument0)
         {
             if (image_xscale == cliff_direction)
             {
-                if (animation_current != "cliff_front") player_set_animation("cliff_front");
+                player_set_animation("cliff_front");
             }
             else
             {
-                if (animation_current != "cliff_back") player_set_animation("cliff_back");
+                player_set_animation("cliff_back");
             }
         }
 
