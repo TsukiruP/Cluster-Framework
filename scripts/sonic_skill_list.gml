@@ -1,83 +1,104 @@
 /// sonic_skill_list(id)
 //
 
-var skill_id;
-
-skill_id = argument0;
+// Homing attack:
+/*
+if ((global.sonic_skill[SONIC_HOMING] == HOMING_AUX && global.sonic_skill[SONIC_HOMING_F] == true && on_ground == true && input_player[INP_AUX, CHECK_PRESSED] == true) ||
+    (on_ground == false && ((global.sonic_skill[SONIC_HOMING] == HOMING_JUMP && input_player[INP_AUX, CHECK_PRESSED] == true) || (global.sonic_skill[SONIC_HOMING] == HOMING_AUX && input_player[INP_AUX, CHECK_PRESSED] == true))))
+{
+}
 
 // Ground skill:
-if (skill_id == SONIC_AUX_G)
+else*/ if (on_ground == true && input_player[INP_AUX, CHECK_PRESSED] == true)
 {
-    switch (global.sonic_skill[skill_id])
+    switch (global.sonic_skill[SONIC_AUX_G])
     {
         // Slide:
         case 1:
             return player_set_state(sonic_state_skid);
-            break;
 
         // Hammer;
         case 2:
             return player_set_state(player_state_hammer);
-            break;
 
     }
 }
 
-// Air skills:
-else
+// Aerial skill:
+else if (on_ground == false)
 {
-    if (global.sonic_skill[skill_id] <= 1 && status_shield_allow == true)
+    var skill_id;
+
+    // Skill id:
+    skill_id = -1;
+
+    // Check Jump skill:
+    if (input_player[INP_JUMP, CHECK_PRESSED] == true)
     {
-        // Elemental shields:
-        if (global.sonic_skill[SONIC_SHIELD] == true && status_shield >= SHIELD_BUBBLE)
-        {
-            return player_routine_shield();
-        }
-
-        // Insta-shield:
-        else if (global.sonic_skill[skill_id] == 1)
-        {
-            // Set state:
-            player_set_state(player_state_jump, false);
-            jump_cap = false;
-
-            status_shield_allow = false;
-            status_insta_alarm = 8;
-
-            // Set animation:
-            player_set_animation("insta");
-
-            // Play sound:
-            sound_play("snd_shield_insta");
-
-            // Shield:
-            with (instance_create(x, y, eff_player))
-            {
-                ctl_initialize(ctl_shield_insta);
-
-                depth = other.depth;
-                image_xscale = other.image_xscale;
-                image_angle = gravity_angle(other);
-                player_handle = other.id;
-            }
-
-            return true;
-        }
+        skill_id = SONIC_JUMP;
     }
 
-    // Air Dash:
-    else if (global.sonic_skill[skill_id] == 2 && air_dash_allow == true)
+    // Check Aux skill:
+    else if (input_player[INP_AUX, CHECK_PRESSED] == true)
     {
-        // Set speed:
-        x_speed += 2.25 * image_xscale;
-        y_speed  = 0;
+        skill_id = SONIC_AUX_A;
+    }
 
-        // Set animation:
-        animation_skip = (animation_current != "spin" && animation_current != "insta");
-        player_set_animation("air_dash");
-        air_dash_allow = false;
+    if (skill_id != -1)
+    {
+        if (global.sonic_skill[skill_id] <= 1 && status_shield_allow == true)
+        {
+            // Elemental shields:
+            if (global.sonic_skill[SONIC_SHIELD] == true && status_shield >= SHIELD_BUBBLE)
+            {
+                return player_routine_shield();
+            }
 
-        return player_set_state(player_state_air, false);
+            // Insta-shield:
+            else if (global.sonic_skill[skill_id] == 1)
+            {
+                // Set state:
+                player_set_state(player_state_jump, false);
+                jump_cap = false;
+
+                status_shield_allow = false;
+                status_insta_alarm = 8;
+
+                // Set animation:
+                player_set_animation("insta");
+
+                // Play sound:
+                sound_play("snd_shield_insta");
+
+                // Shield:
+                with (instance_create(x, y, eff_player))
+                {
+                    ctl_initialize(ctl_shield_insta);
+
+                    depth = other.depth;
+                    image_xscale = other.image_xscale;
+                    image_angle = gravity_angle(other);
+                    player_handle = other.id;
+                }
+
+                return true;
+            }
+        }
+
+        // Air Dash:
+        else if (global.sonic_skill[skill_id] == 2 && air_dash_allow == true)
+        {
+            // Set speed:
+            x_speed += 2.25 * image_xscale;
+            y_speed  = 0;
+
+            // Set animation:
+            animation_skip = (animation_current != "spin" && animation_current != "insta");
+            player_set_animation("air_dash");
+            air_dash_allow = false;
+
+            return player_set_state(player_state_air, false);
+        }
     }
 }
 
