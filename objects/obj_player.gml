@@ -37,7 +37,6 @@ gravity_force_temp = 0.21875;
 state_current = player_state_idle;
 state_previous = state_current;
 state_changed = false;
-state_animate = false;
 
 // Idle variables:
 wait_alarm = 360;
