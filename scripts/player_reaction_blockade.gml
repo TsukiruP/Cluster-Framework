@@ -30,7 +30,7 @@ if (collision & COLL_HURT)
         player_set_state(player_state_jump, false);
         player_set_animation("spin", 0);
 
-        jump_uncurl = 1;
+        jump_uncurl = UNCURL_BLOCKADE;
 
         x_speed = -2 * esign(x_speed, -dcos(side));
         y_speed = -2 * esign(y_speed, 1);

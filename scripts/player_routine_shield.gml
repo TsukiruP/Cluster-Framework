@@ -14,7 +14,7 @@ switch (status_shield)
         y_speed = 8;
 
         // Bound:
-        bound_state = 1;
+        jump_bound = BOUND_SHIELD;
 
         // Play sound:
         sound_play_single("snd_shield_bubble_bound");

@@ -74,7 +74,7 @@ switch (argument0)
         if (state_current != player_state_jump)
         {
             jump_aux = false;
-            bound_state = 0;
+            jump_bound = BOUND_NONE;
 
             // Reset shield:
             if (instance_exists(shield_handle))

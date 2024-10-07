@@ -47,9 +47,8 @@ jump_cap = true;
 jump_aux = false;
 jump_force = 6.5;
 jump_release = -4;
-jump_uncurl = 0;
-
-bound_state = 0;
+jump_uncurl = UNCURL_DEFAULT;
+jump_bound = BOUND_NONE;
 
 // Roll variables:
 roll_deceleration = 0.125;

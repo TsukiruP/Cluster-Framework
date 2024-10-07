@@ -13,13 +13,13 @@ else*/ if (on_ground == true && input_player[INP_AUX, CHECK_PRESSED] == true)
 {
     switch (global.sonic_skill[SONIC_AUX_G])
     {
-        // Slide:
-        case 1:
-            return player_set_state(sonic_state_skid);
-
         // Hammer;
-        case 2:
+        case SKILL_HAMMER:
             return player_set_state(player_state_hammer);
+
+        // Skid:
+        case SKILL_SKID:
+            return player_set_state(sonic_state_skid);
 
     }
 }
@@ -46,7 +46,7 @@ else if (on_ground == false)
 
     if (skill_id != -1)
     {
-        if (global.sonic_skill[skill_id] <= 1 && status_shield_allow == true)
+        if (global.sonic_skill[skill_id] <= SKILL_INSTA && status_shield_allow == true)
         {
             // Elemental shields:
             if (global.sonic_skill[SONIC_SHIELD] == true && status_shield >= SHIELD_BUBBLE)
@@ -55,7 +55,7 @@ else if (on_ground == false)
             }
 
             // Insta-shield:
-            else if (global.sonic_skill[skill_id] == 1)
+            else if (global.sonic_skill[skill_id] == SKILL_INSTA)
             {
                 // Set state:
                 player_set_state(player_state_jump, false);
@@ -86,7 +86,7 @@ else if (on_ground == false)
         }
 
         // Air Dash:
-        else if (global.sonic_skill[skill_id] == 2 && air_dash_allow == true)
+        else if (global.sonic_skill[skill_id] == SKILL_DASH && air_dash_allow == true)
         {
             // Set speed:
             x_speed += 2.25 * image_xscale;

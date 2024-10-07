@@ -15,7 +15,7 @@ switch (argument0)
         // Air force:
         leap_force = jump_force;
 
-        if (bound_state == 1)
+        if (jump_bound == BOUND_SHIELD)
         {
             leap_force = 7.5;
         }
@@ -103,7 +103,7 @@ switch (argument0)
             switch (jump_uncurl)
             {
                 // Blockade:
-                case 1:
+                case UNCURL_BLOCKADE:
                     animation_skip = (animation_current != "spring_fall");
                     player_set_animation("spring_fall");
             }
@@ -115,12 +115,12 @@ switch (argument0)
         // Reset jump:
         jump_cap = true;
         jump_aux = false;
-        jump_uncurl = 0;
+        jump_uncurl = UNCURL_DEFAULT;
 
         // Reset bound:
         if (state_current != player_state_bound)
         {
-            bound_state = 0;
+            jump_bound = BOUND_SHIELD;
 
             // Reset shield:
             if (instance_exists(shield_handle))
