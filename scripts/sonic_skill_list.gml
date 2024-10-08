@@ -9,15 +9,15 @@ _dummy = instance_nearest_dir_x(x, y, obj_item_box, image_xscale);
 
 // Homing attack:
 /*
-if ((global.sonic_skill[SONIC_HOMING] == HOMING_AUX && global.sonic_skill[SONIC_HOMING_F] == true && on_ground == true && input_player[INP_AUX, CHECK_PRESSED] == true) ||
-    (on_ground == false && ((global.sonic_skill[SONIC_HOMING] == HOMING_JUMP && input_player[INP_AUX, CHECK_PRESSED] == true) || (global.sonic_skill[SONIC_HOMING] == HOMING_AUX && input_player[INP_AUX, CHECK_PRESSED] == true))))
+if ((global.skill_sonic[SONIC_HOMING] == HOMING_AUX && global.skill_sonic[SONIC_HOMING_F] == true && on_ground == true && input_player[INP_AUX, CHECK_PRESSED] == true) ||
+    (on_ground == false && ((global.skill_sonic[SONIC_HOMING] == HOMING_JUMP && input_player[INP_AUX, CHECK_PRESSED] == true) || (global.skill_sonic[SONIC_HOMING] == HOMING_AUX && input_player[INP_AUX, CHECK_PRESSED] == true))))
 {
 }
 
 // Ground skill:
 else*/ if (on_ground == true && input_player[INP_AUX, CHECK_PRESSED] == true)
 {
-    switch (global.sonic_skill[SONIC_AUX_G])
+    switch (global.skill_sonic[SONIC_AUX_G])
     {
         // Hammer;
         case SKILL_HAMMER:
@@ -52,16 +52,16 @@ else if (on_ground == false)
 
     if (skill_id != -1)
     {
-        if (global.sonic_skill[skill_id] <= SKILL_INSTA && status_shield_allow == true)
+        if (global.skill_sonic[skill_id] <= SKILL_INSTA && status_shield_allow == true)
         {
             // Elemental shields:
-            if (global.sonic_skill[SONIC_SHIELD] == true && status_shield >= SHIELD_BUBBLE)
+            if (global.skill_sonic[SONIC_SHIELD] == true && status_shield >= SHIELD_BUBBLE)
             {
                 return player_routine_shield();
             }
 
             // Insta-shield:
-            else if (global.sonic_skill[skill_id] == SKILL_INSTA)
+            else if (global.skill_sonic[skill_id] == SKILL_INSTA)
             {
                 // Set state:
                 player_set_state(player_state_jump, false);
@@ -92,7 +92,7 @@ else if (on_ground == false)
         }
 
         // Air Dash:
-        else if (global.sonic_skill[skill_id] == SKILL_DASH && air_dash_allow == true)
+        else if (global.skill_sonic[skill_id] == SKILL_DASH && air_dash_allow == true)
         {
             // Set speed:
             x_speed += 2.25 * image_xscale;
