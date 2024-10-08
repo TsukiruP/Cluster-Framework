@@ -21,10 +21,7 @@ if (input_player[INP_ALT, CHECK_HELD] == false)
         {
             if (distance_to_object(homing_candidate) <= homing_range)
             {
-                if (!instance_exists(homing_handle))
-                {
-                    homing_handle = homing_candidate;
-                }
+                homing_handle = homing_candidate;
             }
         }
     }

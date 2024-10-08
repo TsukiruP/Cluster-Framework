@@ -1059,10 +1059,5 @@ draw_collision(hurtbox_left, hurtbox_top, hurtbox_right, hurtbox_bottom, hurtbox
 // Hitbox:
 draw_collision(hitbox_left, hitbox_top, hitbox_right, hitbox_bottom, hitbox_offset_x, hitbox_offset_y, image_xscale, mask_rotation, c_green);
 
-var dummy_test;
-dummy_test =  dcos(round(direction_to_object(inst) / ANGLE_LEFT) * ANGLE_LEFT);
-
-draw_text(x, y, string_better(dummy_test));
-draw_text(x + 10, y, string_better(image_xscale));
 // Reset:
 draw_reset();

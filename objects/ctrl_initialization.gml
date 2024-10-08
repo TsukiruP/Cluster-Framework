@@ -133,7 +133,7 @@ global.setting_misc_hud = ini_read_real("misc", "hud", DEFAULT_MISC_HUD);
 global.setting_misc_status = ini_read_real("misc", "status", DEFAULT_MISC_STATUS);
 global.setting_misc_feed = ini_read_real("misc", "feed", DEFAULT_MISC_FEED);
 global.setting_misc_trails = ini_read_real("misc", "trails", DEFAULT_MISC_TRAILS);
-global.setting_misc_lock_on = ini_read_real("misc", "lock_on", DEFAULT_MISC_LOCK);
+global.setting_misc_reticle = ini_read_real("misc", "reticle", DEFAULT_MISC_RETICLE);
 global.setting_misc_tally = ini_read_real("misc", "tally", DEFAULT_MISC_TALLY);
 
 // Close settings file:
@@ -196,7 +196,7 @@ global.misc_hud = global.setting_misc_hud;
 global.misc_status = global.setting_misc_status;
 global.misc_feed = global.setting_misc_feed;
 global.misc_trails = global.setting_misc_trails;
-global.misc_lock_on = global.setting_misc_lock_on;
+global.misc_reticle = global.setting_misc_reticle;
 global.misc_yally = global.setting_misc_tally;
 /*"/*'/**//* YYD ACTION
 lib_id=1
