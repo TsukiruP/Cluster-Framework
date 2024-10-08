@@ -92,7 +92,7 @@ else if (on_ground == false)
         }
 
         // Air Dash:
-        else if (global.skill_sonic[skill_id] == SKILL_DASH && air_dash_allow == true)
+        else if (global.skill_sonic[skill_id] == SKILL_AIR_DASH && air_dash_allow == true)
         {
             // Set speed:
             x_speed += 2.25 * image_xscale;
