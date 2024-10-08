@@ -164,6 +164,7 @@
 			|spr_drop_dash
 			|spr_debuff
 			|spr_reticle
+			|spr_reticle_colors
 			|spr_character_arrow
 			|spr_tag_call
 		+Shields
@@ -239,7 +240,6 @@
 	+Low
 	+High
 	+Masks
-		|mask_mid
 		|mask_small
 		|mask_dot
 		|mask_lines

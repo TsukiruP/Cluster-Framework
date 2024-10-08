@@ -1,7 +1,7 @@
 spr_sonic_skid
 spr_blockade_vertical
 spr_sonic_air_dash
-mask_mid
+spr_reticle_colors
 mask_small
 mask_dot
 mask_lines
