@@ -1,11 +1,36 @@
 /// sonic_skill_list(id)
 // Manages all of Sonic's actions.
 
+var homing_handle_temp;
+
+// Reset homing:
+homing_handle_temp = homing_handle;
+homing_handle = noone;
+
+if ((global.skill_sonic[SONIC_HOMING] >= HOMING_ADVENTURE && on_ground == false) || global.skill_sonic[SONIC_HOMING] == HOMING_FRONTIERS)
+{
+    var homing_candidate;
+    
+    // Homing candidate:
+    homing_candidate = instance_nearest_dir_x(x, y, obj_item_box, image_xscale);
+    
+    if (instance_exists(homing_candidate))
+    {
+        if (distance_to_object(homing_candidate) <= homing_range)
+        {
+            if (!instance_exists(homing_handle))
+            {
+                homing_handle = homing_candidate;
+            }
+        }
+    }
+}
+
+/*
 // Homing target:
 var _dummy;
 
 _dummy = instance_nearest_dir_x(x, y, obj_item_box, image_xscale);
-homing_handle = noone;
 
 if (instance_exists(_dummy))
 {
@@ -16,10 +41,10 @@ if (instance_exists(_dummy))
             homing_handle = _dummy;
         }
     }
-}
+}*/
 
 // Homing attack:
-if ((on_ground == false && global.skill_sonic[SONIC_HOMING] == HOMING_UNLEASHED && input_player[INP_AUX, CHECK_PRESSED] == true) && instance_exists(homing_handle))
+if ((global.skill_sonic[SONIC_HOMING] >= HOMING_UNLEASHED && input_player[INP_AUX, CHECK_PRESSED] == true) && instance_exists(homing_handle))
 {
     return player_set_state(sonic_state_homing);
 }

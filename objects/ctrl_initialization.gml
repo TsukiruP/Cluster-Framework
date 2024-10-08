@@ -214,7 +214,7 @@ for (i = SONIC_JUMP; i <= SONIC_SHIELD; i += 1)
 global.skill_sonic[SONIC_JUMP] = SKILL_INSTA;
 global.skill_sonic[SONIC_AUX_G] = SKILL_SKID;
 global.skill_sonic[SONIC_AUX_A] = SKILL_AIR_DASH;
-global.skill_sonic[SONIC_HOMING] = HOMING_UNLEASHED;
+global.skill_sonic[SONIC_HOMING] = HOMING_FRONTIERS;
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603

@@ -13,6 +13,9 @@ switch (argument0)
         x_speed = lengthdir_x(homing_speed, homing_angle);
         y_speed = lengthdir_y(homing_speed, homing_angle);
 
+        // Reset air:
+        player_reset_air();
+
         // Set animation:
         player_set_animation("spin");
         break;
