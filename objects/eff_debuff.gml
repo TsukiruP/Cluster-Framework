@@ -26,7 +26,6 @@ depth = player_handle.depth - 1;
 // Destroy:
 if (player_handle.status_speed != SPEED_SLOW && player_handle.status_panic == false)
 {
-    player_handle.debuff_handle = noone;
     instance_destroy();
 }
 #define Draw_0

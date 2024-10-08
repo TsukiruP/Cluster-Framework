@@ -299,7 +299,7 @@ if (transition_id == TRANS_FADE)
     {
         // 0 - Start fade:
         case 0:
-            if (fade_handle == noone)
+            if (!instance_exists(fade_handle))
             {
                 fade_handle = fade_create();
                 fade_handle.persistent = true;

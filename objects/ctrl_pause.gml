@@ -236,7 +236,7 @@ if (instance_exists(fade_handle))
 {
     if (fade_handle.fade_alpha == 2)
     {
-        if (transition_handle == noone)
+        if (!instance_exists(transition_handle))
         {
             transition_handle = transition_create(room);
             transition_handle.depth = depth;

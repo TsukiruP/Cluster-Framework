@@ -161,6 +161,9 @@ shield_handle = noone;
 // Debuff handle:
 debuff_handle = noone;
 
+// Reticle handle:
+reticle_handle = noone;
+
 // After image variables:
 afterimage_draw = false;
 afterimage_alarm = 6;
@@ -481,7 +484,7 @@ applies_to=self
 /// Effects
 
 // Create shield:
-if ((status_shield != SHIELD_NONE || status_invin != INVIN_NONE) && shield_handle == noone)
+if ((status_shield != SHIELD_NONE || status_invin != INVIN_NONE) && !instance_exists(shield_handle))
 {
     shield_handle = instance_create(x, y, eff_shield);
 
@@ -492,7 +495,7 @@ if ((status_shield != SHIELD_NONE || status_invin != INVIN_NONE) && shield_handl
 }
 
 // Create debuff:
-if ((status_speed == SPEED_SLOW || status_panic == true) && debuff_handle == noone)
+if ((status_speed == SPEED_SLOW || status_panic == true) && !instance_exists(debuff_handle))
 {
     debuff_handle = instance_create(x, y, eff_debuff);
 
@@ -503,9 +506,11 @@ if ((status_speed == SPEED_SLOW || status_panic == true) && debuff_handle == noo
 }
 
 // Create reticle:
-if (instance_exists(homing_handle) && !instance_exists(eff_reticle))
+if (instance_exists(homing_handle) && !instance_exists(reticle_handle))
 {
-    with (instance_create(x, y, eff_reticle))
+    reticle_handle = instance_create(x, y, eff_reticle);
+
+    with (reticle_handle)
     {
         player_handle = other.id;
     }
