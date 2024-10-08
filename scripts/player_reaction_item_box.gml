@@ -12,7 +12,7 @@ if ((collision & COLL_HURT) || (collision & COLL_HURT_RADIUS))
     if (input_cpu == false || (input_cpu == true && input_cpu_alarm > 0))
     {
         // Homing:
-        if (instance_exists(homing_handle))
+        if (state_current == sonic_state_homing)
         {
             // Set state:
             x_speed = 0;
