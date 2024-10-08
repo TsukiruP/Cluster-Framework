@@ -7,41 +7,28 @@ var homing_handle_temp;
 homing_handle_temp = homing_handle;
 homing_handle = noone;
 
-if ((global.skill_sonic[SONIC_HOMING] >= HOMING_ADVENTURE && on_ground == false) || global.skill_sonic[SONIC_HOMING] == HOMING_FRONTIERS)
+// Disable homing:
+if (input_player[INP_ALT, CHECK_HELD] == false)
 {
-    var homing_candidate;
-    
-    // Homing candidate:
-    homing_candidate = instance_nearest_dir_x(x, y, obj_item_box, image_xscale);
-    
-    if (instance_exists(homing_candidate))
+    if ((global.skill_sonic[SONIC_HOMING] >= HOMING_ADVENTURE && on_ground == false) || global.skill_sonic[SONIC_HOMING] == HOMING_FRONTIERS)
     {
-        if (distance_to_object(homing_candidate) <= homing_range)
+        var homing_candidate;
+        
+        // Homing candidate:
+        homing_candidate = instance_nearest_dir_x(x, y, obj_item_box, image_xscale);
+        
+        if (instance_exists(homing_candidate))
         {
-            if (!instance_exists(homing_handle))
+            if (distance_to_object(homing_candidate) <= homing_range)
             {
-                homing_handle = homing_candidate;
+                if (!instance_exists(homing_handle))
+                {
+                    homing_handle = homing_candidate;
+                }
             }
         }
     }
 }
-
-/*
-// Homing target:
-var _dummy;
-
-_dummy = instance_nearest_dir_x(x, y, obj_item_box, image_xscale);
-
-if (instance_exists(_dummy))
-{
-    if (distance_to_object(_dummy) <= homing_range)
-    {
-        if (!instance_exists(homing_handle))
-        {
-            homing_handle = _dummy;
-        }
-    }
-}*/
 
 // Homing attack:
 if (((global.skill_sonic[SONIC_HOMING] == HOMING_ADVENTURE && input_player[INP_JUMP, CHECK_PRESSED] == true) || (global.skill_sonic[SONIC_HOMING] >= HOMING_UNLEASHED && input_player[INP_AUX, CHECK_PRESSED] == true)) &&
