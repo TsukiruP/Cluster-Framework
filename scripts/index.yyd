@@ -195,7 +195,7 @@ gravity_angle
 player_rotate_mask
 player_movement_air
 player_collision_ceiling
-player_routine_jump
+instance_nearest_dir_x
 player_inbounds
 player_set_cliff
 player_set_radii
@@ -213,7 +213,7 @@ player_brake_dust
 player_state_bound
 ctl_shield_bubble_bound
 ctl_shield_bubble_recoil
-player_effect_splash
+instance_nth_nearest
 player_reaction_sensor_layer
 player_reaction_ring
 player_state_jump

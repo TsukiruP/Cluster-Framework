@@ -106,6 +106,11 @@ character_id = CHAR_SONIC;
 // Sonic variables:
 air_dash_allow = true;
 
+homing_allow = true;
+homing_handle = noone;
+homing_range = 128;
+homing_speed = 8;
+
 // Classic variables:
 clock_up_state = 0;
 clock_up_alarm = 0;
@@ -1042,6 +1047,11 @@ draw_collision(hurtbox_left, hurtbox_top, hurtbox_right, hurtbox_bottom, hurtbox
 
 // Hitbox:
 draw_collision(hitbox_left, hitbox_top, hitbox_right, hitbox_bottom, hitbox_offset_x, hitbox_offset_y, image_xscale, mask_rotation, c_green);
+
+var dummy_test;
+dummy_test = dcos(round(direction_to_object(obj_item_box) / ANGLE_LEFT) * ANGLE_LEFT);
+
+draw_text(x, y, string_better(dummy_test));
 
 // Reset:
 draw_reset();

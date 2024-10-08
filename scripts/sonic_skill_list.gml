@@ -1,5 +1,11 @@
 /// sonic_skill_list(id)
-//
+// Manages all of Sonic's actions.
+
+// Homing target:
+var _dummy;
+
+_dummy = instance_nearest_dir_x(x, y, obj_item_box, image_xscale);
+
 
 // Homing attack:
 /*
@@ -16,7 +22,7 @@ else*/ if (on_ground == true && input_player[INP_AUX, CHECK_PRESSED] == true)
         // Hammer;
         case SKILL_HAMMER:
             return player_set_state(player_state_hammer);
-
+        
         // Skid:
         case SKILL_SKID:
             return player_set_state(sonic_state_skid);

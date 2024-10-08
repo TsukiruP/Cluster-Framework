@@ -153,6 +153,8 @@
 		|effect_create
 		|set_hurtbox
 		|set_hitbox
+		|instance_nth_nearest
+		|instance_nearest_dir_x
 +Gameplay
 	+Collision
 		|collision_box
@@ -295,8 +297,6 @@
 		|player_handle_item_box
 		|player_handle_badnik
 		|player_handle_hint
-	|player_routine_jump
-	|player_effect_splash
 	|player_routine_insta
 	|player_routine_shield_old
 	|player_state_hint
