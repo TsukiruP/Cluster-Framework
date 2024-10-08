@@ -15,14 +15,11 @@ if (input_player[INP_ALT, CHECK_HELD] == false)
         var homing_candidate;
         
         // Homing candidate:
-        homing_candidate = instance_nearest_dir_x(x, y, obj_item_box, image_xscale);
+        homing_candidate = instance_nearest_dir_x(x, y, obj_item_box, image_xscale, homing_range);
         
         if (instance_exists(homing_candidate))
         {
-            if (distance_to_object(homing_candidate) <= homing_range)
-            {
-                homing_handle = homing_candidate;
-            }
+            homing_handle = homing_candidate;
         }
     }
 }

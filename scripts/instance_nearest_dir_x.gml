@@ -1,22 +1,22 @@
-/// instance_nearest_dir_x(x, y, obj, dir)
+/// instance_nearest_dir_x(x, y, obj, dir, dist)
 // Returns the nearest object in a direction.
 
-var x_int, y_int, obj, dir;
+var x_int, y_int, obj, dir, n, inst, inst_dir;
 
 x_int = argument0;
 y_int = argument1;
 obj = argument2;
 dir = argument3;
+dist = argument4;
+n = 1;
 
 // Evaluate all objects:
 repeat (instance_number(obj))
 {
-    var inst, inst_dir;
-
-    inst = instance_nearest(x_int, y_int, obj); //instance_nth_nearest(x_int, y_int, obj, 1);
+    inst = instance_nth_nearest(x_int, y_int, obj, n);
 
     // Abort:
-    if (!inst)
+    if (distance_to_object(inst) > dist || !instance_exists(inst))
     {
         break;
     }
@@ -28,6 +28,8 @@ repeat (instance_number(obj))
     {
         return inst;
     }
+
+    n += 1;
 }
 
 // Failure:
