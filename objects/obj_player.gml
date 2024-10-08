@@ -106,7 +106,6 @@ character_id = CHAR_SONIC;
 // Sonic variables:
 air_dash_allow = true;
 
-homing_allow = true;
 homing_handle = noone;
 homing_range = 128;
 homing_speed = 8;
@@ -503,6 +502,15 @@ if ((status_speed == SPEED_SLOW || status_panic == true) && debuff_handle == noo
     }
 }
 
+// Create reticle:
+if (instance_exists(homing_handle) && !instance_exists(eff_reticle))
+{
+    with (instance_create(x, y, eff_reticle))
+    {
+        player_handle = other.id;
+    }
+}
+
 // Set afterimage:
 if (status_speed == SPEED_UP)
 {
@@ -515,7 +523,7 @@ else
 }
 
 // Set trail:
-if (state_current == player_state_roll)
+if (state_current == player_state_roll || state_current == sonic_state_homing)
 {
     trail_draw = true;
 }
@@ -523,8 +531,6 @@ else
 {
     trail_draw = false;
 }
-
-// Land:
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -1049,9 +1055,9 @@ draw_collision(hurtbox_left, hurtbox_top, hurtbox_right, hurtbox_bottom, hurtbox
 draw_collision(hitbox_left, hitbox_top, hitbox_right, hitbox_bottom, hitbox_offset_x, hitbox_offset_y, image_xscale, mask_rotation, c_green);
 
 var dummy_test;
-dummy_test = dcos(round(direction_to_object(obj_item_box) / ANGLE_LEFT) * ANGLE_LEFT);
+dummy_test =  dcos(round(direction_to_object(inst) / ANGLE_LEFT) * ANGLE_LEFT);
 
 draw_text(x, y, string_better(dummy_test));
-
+draw_text(x + 10, y, string_better(image_xscale));
 // Reset:
 draw_reset();

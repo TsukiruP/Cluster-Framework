@@ -52,8 +52,8 @@
 			|eff_player
 			|eff_spin_dash
 			|eff_debuff
+			|eff_reticle
 			|eff_shield
-		|obj_dash_ring_overlay
 +Zones
 	+Basic Test
 		|obj_basic_test_parallax

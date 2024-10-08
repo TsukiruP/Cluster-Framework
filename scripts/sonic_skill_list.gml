@@ -5,17 +5,27 @@
 var _dummy;
 
 _dummy = instance_nearest_dir_x(x, y, obj_item_box, image_xscale);
+homing_handle = noone;
 
+if (instance_exists(_dummy))
+{
+    if (distance_to_object(_dummy) <= homing_range)
+    {
+        if (!instance_exists(homing_handle))
+        {
+            homing_handle = _dummy;
+        }
+    }
+}
 
 // Homing attack:
-/*
-if ((global.skill_sonic[SONIC_HOMING] == HOMING_AUX && global.skill_sonic[SONIC_HOMING_F] == true && on_ground == true && input_player[INP_AUX, CHECK_PRESSED] == true) ||
-    (on_ground == false && ((global.skill_sonic[SONIC_HOMING] == HOMING_JUMP && input_player[INP_AUX, CHECK_PRESSED] == true) || (global.skill_sonic[SONIC_HOMING] == HOMING_AUX && input_player[INP_AUX, CHECK_PRESSED] == true))))
+if ((on_ground == false && global.skill_sonic[SONIC_HOMING] == HOMING_UNLEASHED && input_player[INP_AUX, CHECK_PRESSED] == true) && instance_exists(homing_handle))
 {
+    return player_set_state(sonic_state_homing);
 }
 
 // Ground skill:
-else*/ if (on_ground == true && input_player[INP_AUX, CHECK_PRESSED] == true)
+else if (on_ground == true && input_player[INP_AUX, CHECK_PRESSED] == true)
 {
     switch (global.skill_sonic[SONIC_AUX_G])
     {

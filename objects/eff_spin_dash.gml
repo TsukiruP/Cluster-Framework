@@ -43,7 +43,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Draw Spin Dash Dust
+/// Draw Dust
 
 var player_rotation, sine, csine, draw_x, draw_y;
 

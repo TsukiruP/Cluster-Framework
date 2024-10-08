@@ -163,7 +163,7 @@
 			|spr_brake
 			|spr_drop_dash
 			|spr_debuff
-			|spr_homing_reticle
+			|spr_reticle
 			|spr_character_arrow
 			|spr_tag_call
 		+Shields

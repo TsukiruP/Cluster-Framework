@@ -50,7 +50,7 @@ room_view_set_all
 window_resize
 ctl_spinner
 sonic_skill_list
-player_routine_insta
+sonic_state_homing
 pick_offset
 player_wall_push
 player_get_character
@@ -234,3 +234,4 @@ ctl_blockade_debris
 
 ctl_sonic_air_dash
 player_reset_spring
+ctl_reticle

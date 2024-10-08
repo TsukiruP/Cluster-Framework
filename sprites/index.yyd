@@ -193,7 +193,7 @@ spr_spike_left
 spr_spike_right
 spr_spike_vertical
 spr_spike_down
-spr_homing_reticle
+spr_reticle
 spr_sonic_leap
 spr_sonic_fly_carry
 spr_sonic_throw

@@ -11,6 +11,16 @@ if ((collision & COLL_HURT) || (collision & COLL_HURT_RADIUS))
 {
     if (input_cpu == false || (input_cpu == true && input_cpu_alarm > 0))
     {
+        // Homing:
+        if (instance_exists(homing_handle))
+        {
+            // Set state:
+            x_speed = 0;
+            jump_aux = (global.skill_sonic[SONIC_HOMING] >= HOMING_UNLEASHED);
+            animation_skip = true;
+            player_set_state(player_state_jump);
+        }
+
         // Break:
         with (reaction_handle)
         {

@@ -102,7 +102,7 @@ obj_spring_down
 obj_spring_left_up
 obj_spring_left_down
 obj_spring_right_down
-obj_dash_ring_overlay
+eff_reticle
 obj_dash_ring_right
 obj_dash_ring_up
 obj_dash_ring_down

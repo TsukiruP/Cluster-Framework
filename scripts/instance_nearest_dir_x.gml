@@ -24,7 +24,7 @@ repeat (instance_number(obj))
     inst_dir = dcos(round(direction_to_object(inst) / ANGLE_LEFT) * ANGLE_LEFT);
 
     // Return:
-    if (dir == inst_dir)
+    if (inst_dir == dir)
     {
         return inst;
     }
