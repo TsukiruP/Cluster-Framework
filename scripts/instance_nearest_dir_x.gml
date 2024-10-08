@@ -13,7 +13,7 @@ repeat (instance_number(obj))
 {
     var inst, inst_dir;
 
-    inst = instance_nth_nearest(x_int, y_int, obj, 1);
+    inst = instance_nearest(x_int, y_int, obj); //instance_nth_nearest(x_int, y_int, obj, 1);
 
     // Abort:
     if (!inst)
