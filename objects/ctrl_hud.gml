@@ -344,7 +344,7 @@ if (item_feed != -1)
                 item_alarm -= 1;
 
                 // Hide:
-                if (item_alarm <= 60)
+                if (item_alarm <= 30)
                 {
                     item_hide = sync_rate(item_alarm, 2, 2);
                 }

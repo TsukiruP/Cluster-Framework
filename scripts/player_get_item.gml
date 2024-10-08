@@ -119,6 +119,6 @@ if (global.misc_feed == true)
     {
         ds_list_add(item_feed, argument0);
         ds_list_add(item_feed, -8);
-        item_alarm = 120;
+        item_alarm = 90;
     }
 }
