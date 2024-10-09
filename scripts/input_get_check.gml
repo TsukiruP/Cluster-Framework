@@ -30,12 +30,12 @@ if (input_device == DEV_KEYBOARD)
                 input_keyboard = keyboard_check_pressed(vk_anykey);
                 break;
 
-                // Released:
+            // Released:
             case CHECK_RELEASED:
                 input_keyboard = keyboard_check_released(vk_anykey);
                 break;
 
-                // Held:
+            // Held:
             default:
                 input_keyboard = keyboard_check(vk_anykey);
         }
