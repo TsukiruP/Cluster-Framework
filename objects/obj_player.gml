@@ -506,7 +506,7 @@ if ((status_speed == SPEED_SLOW || status_panic == true) && !instance_exists(deb
 }
 
 // Create reticle:
-if (instance_exists(homing_handle) && !instance_exists(reticle_handle))
+if (global.misc_reticle > 0 && instance_exists(homing_handle) && !instance_exists(reticle_handle))
 {
     reticle_handle = instance_create(x, y, eff_reticle);
 

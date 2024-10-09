@@ -10,22 +10,38 @@ homing_handle = noone;
 // Disable homing:
 if (input_player[INP_ALT, CHECK_HELD] == false)
 {
-    if ((global.skill_sonic[SONIC_HOMING] >= HOMING_ADVENTURE && on_ground == false) || global.skill_sonic[SONIC_HOMING] == HOMING_FRONTIERS)
+    if ((global.skill_sonic[SONIC_HOMING_STYLE] >= HOMING_ADVENTURE && on_ground == false) || global.skill_sonic[SONIC_HOMING_STYLE] == HOMING_FRONTIERS)
     {
-        var homing_candidate;
+        var homing_candidate, homing_fail, homing_solid;
         
         // Homing candidate:
-        homing_candidate = instance_nearest_dir_x(x, y, obj_item_box, image_xscale, homing_range);
+        homing_candidate = instance_nearest_dir_x(x, y, par_homing, image_xscale, homing_range);
         
         if (instance_exists(homing_candidate))
         {
-            homing_handle = homing_candidate;
+            // Fail when interacting with solids:
+            homing_fail = false;
+            homing_solid = collision_line(x, y, homing_candidate.x, homing_candidate.y, par_terrain, true, true);
+            
+            if (instance_exists(homing_solid))
+            {
+                if ((y < homing_candidate.y && homing_solid.semisolid) || homing_solid.collision_layer == -1 || collision_layer == homing_solid.collision_layer)
+                {
+                    homing_fail = true;
+                }
+            }
+            
+            // Set homing handle:
+            if (homing_fail == false)
+            {
+                homing_handle = homing_candidate;
+            }
         }
     }
 }
 
 // Homing attack:
-if (((global.skill_sonic[SONIC_HOMING] == HOMING_ADVENTURE && input_player[INP_JUMP, CHECK_PRESSED] == true) || (global.skill_sonic[SONIC_HOMING] >= HOMING_UNLEASHED && input_player[INP_AUX, CHECK_PRESSED] == true)) &&
+if (((global.skill_sonic[SONIC_HOMING_STYLE] == HOMING_ADVENTURE && input_player[INP_JUMP, CHECK_PRESSED] == true) || (global.skill_sonic[SONIC_HOMING_STYLE] >= HOMING_UNLEASHED && input_player[INP_AUX, CHECK_PRESSED] == true)) &&
     instance_exists(homing_handle))
 {
     return player_set_state(sonic_state_homing);
