@@ -9,7 +9,14 @@ applies_to=self
 event_inherited();
 
 // Set index:
-timeline_set(ctl_reticle);
+if (global.misc_reticle == 2)
+{
+    timeline_set(ctl_reticle_colors);
+}
+else
+{
+    timeline_set(ctl_reticle);
+}
 
 // Homing handle:
 homing_handle = noone;

@@ -176,7 +176,7 @@ input_get_check
 ctl_checkpoint_active
 player_handle_badnik
 ctl_sonic_insta
-player_routine_shield_old
+ctl_reticle_colors
 string_bool
 ctl_shield_lightning_spark
 player_movement_ground
@@ -224,7 +224,7 @@ ctl_spring_vertical
 ctl_spring_horizontal
 player_reaction_enemy
 ctl_sonic_omochao_end
-player_state_hint
+player_routine_homing
 player_reset_skill
 player_reaction_spike
 player_animation_run

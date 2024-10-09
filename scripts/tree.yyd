@@ -105,6 +105,7 @@
 					|ctl_brake
 					|ctl_debuff
 					|ctl_reticle
+					|ctl_reticle_colors
 				+Shields
 					|ctl_shield_insta
 					|ctl_shield_basic
@@ -218,6 +219,7 @@
 			|player_routine_land
 			|player_routine_shield
 			|player_routine_skill
+			|player_routine_homing
 		+Traits
 			|player_trait_debug
 			|classic_trait_clock_up
@@ -299,5 +301,3 @@
 		|player_handle_item_box
 		|player_handle_badnik
 		|player_handle_hint
-	|player_routine_shield_old
-	|player_state_hint
