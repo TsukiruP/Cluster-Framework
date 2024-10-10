@@ -43,8 +43,11 @@ if (animation_changed == true)
     animation_changed = false;
 }
 
-// SSE fix:
-x_radius = 8;
+// SSE bandaid:
+if (x_radius < 8)
+{
+    x_radius = 8;
+}
 
 // Position fix:
 if (on_ground == true)
