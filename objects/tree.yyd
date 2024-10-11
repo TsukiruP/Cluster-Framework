@@ -2,7 +2,7 @@
 	|par_overlay
 	|par_culled
 	|par_prop
-	|par_homing
+	|par_target
 	|par_ring
 	|par_enemy
 	|par_hint

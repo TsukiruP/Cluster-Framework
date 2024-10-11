@@ -14,27 +14,36 @@ if (input_player[INP_ALT, CHECK_HELD] == false)
     {
         var homing_candidate, homing_fail, homing_solid;
         
-        // Homing candidate:
-        homing_candidate = instance_nearest_dir_x(x, y, par_homing, image_xscale, homing_range);
-        
-        if (instance_exists(homing_candidate))
+        for (i = 0; i <= 2; i += 1)
         {
-            // Fail when interacting with solids:
-            homing_fail = false;
-            homing_solid = collision_line(x, y, homing_candidate.x, homing_candidate.y, par_terrain, true, true);
+            homing_candidate = instance_nearest_dir_x(x, y, par_target, image_xscale, homing_range, i + 1);
             
-            if (instance_exists(homing_solid))
+            if (instance_exists(homing_candidate))
             {
-                if ((y < homing_candidate.y && homing_solid.semisolid) || homing_solid.collision_layer == -1 || collision_layer == homing_solid.collision_layer)
+                // Continue if the candidate isn't targetable:
+                if (homing_candidate.targetable == false)
                 {
-                    homing_fail = true;
+                    continue;
                 }
-            }
-            
-            // Set homing handle:
-            if (homing_fail == false)
-            {
-                homing_handle = homing_candidate;
+
+                // Fail when interacting with solids:
+                homing_fail = false;
+                homing_solid = collision_line(x, y, homing_candidate.x, homing_candidate.y, par_terrain, true, true);
+
+                if (instance_exists(homing_solid))
+                {
+                    if ((y < homing_candidate.y && homing_solid.semisolid) || homing_solid.collision_layer == -1 || collision_layer == homing_solid.collision_layer)
+                    {
+                        homing_fail = true;
+                    }
+                }
+
+                // Set homing handle:
+                if (homing_fail == false)
+                {
+                    homing_handle = homing_candidate;
+                    break;
+                }
             }
         }
     }
@@ -55,7 +64,7 @@ else if (on_ground == true && input_player[INP_AUX, CHECK_PRESSED] == true)
         // Hammer;
         case SKILL_HAMMER:
             return player_set_state(player_state_hammer);
-        
+
         // Skid:
         case SKILL_SKID:
             return player_set_state(sonic_state_skid);

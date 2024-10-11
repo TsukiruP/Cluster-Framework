@@ -1,4 +1,4 @@
-/// instance_nearest_dir_x(x, y, obj, dir, dist)
+/// instance_nearest_dir_x(x, y, obj, dir, dist, [n])
 // Returns the nearest object in a direction.
 
 var x_int, y_int, obj, dir, n, inst, inst_dir;
@@ -9,6 +9,11 @@ obj = argument2;
 dir = argument3;
 dist = argument4;
 n = 1;
+
+if (argument_count >= 6)
+{
+    n = argument[5];
+}
 
 // Evaluate all objects:
 repeat (instance_number(obj))
