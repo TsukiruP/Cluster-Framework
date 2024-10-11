@@ -16,7 +16,7 @@ for (ox = wall_radius; ox > -1; ox -= 1)
 }
 
 // If the offset is negative, we're stuck:
-if (ox < 0)
+if (ox <= 0)
 {
     // Find the closest edge outside of collision:
     for (ox = wall_radius; ox < wall_radius * 2; ox += 1)
