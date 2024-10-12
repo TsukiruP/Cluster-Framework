@@ -22,7 +22,7 @@ if (argument_count >= 3)
 }
 else
 {
-    fade.depth = self.depth + 1;
+    fade.depth = depth + 1;
 }
 
 // Set color:

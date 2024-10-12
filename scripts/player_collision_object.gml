@@ -11,7 +11,7 @@ collision_list = ds_list_create();
 with (par_culled)
 {
     // Continue if it's not interactable:
-    if ((!object_is_child_of(par_prop) && !object_is_child_of(par_obstacle)) || !script_exists(reaction_index))
+    if (!object_is_child_of(par_prop) && !object_is_child_of(par_obstacle))
     {
         continue;
     }
@@ -37,13 +37,12 @@ total_objects = ds_list_size(collision_list);
 for (n = 0; n < total_objects; n += 1)
 {
     inst = ds_list_find_value(collision_list, n);
-    result = player_get_collision(inst);
     
-    player_react(inst, result);
+    player_react(inst);
     
     if (state_changed == true)
     {
-        return false;
+        return true;
     }
 }
 
