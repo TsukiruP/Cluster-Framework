@@ -11,7 +11,7 @@ player_reset_skill();
 
 // Calculate and set new ground angle
 angle = player_get_angle(ground_id, mask_rotation);
-relative_angle = angle_wrap(angle - gravity_angle());
+relative_angle = angle_wrap(angle - gravity_direction);
 
 sine = dsin(mask_rotation);
 csine = dcos(mask_rotation);

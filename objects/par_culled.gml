@@ -12,6 +12,9 @@ depth = 10;
 // Image speed:
 image_speed = 0;
 
+// Gravity direction:
+gravity_direction = 0;
+
 // Hurtbox:
 set_hurtbox();
 
@@ -38,7 +41,7 @@ if (global.game_debug == false)
 }
 
 // Hurtbox:
-draw_collision(hurtbox_left, hurtbox_top, hurtbox_right, hurtbox_bottom, hurtbox_offset_x, hurtbox_offset_y, image_xscale, gravity_angle(), c_maroon);
+draw_collision(hurtbox_left, hurtbox_top, hurtbox_right, hurtbox_bottom, hurtbox_offset_x, hurtbox_offset_y, image_xscale, gravity_direction, c_maroon);
 
 // Hitbox:
-draw_collision(hitbox_left, hitbox_top, hitbox_right, hitbox_bottom, hitbox_offset_x, hitbox_offset_y, image_xscale, gravity_angle(), c_green);
+draw_collision(hitbox_left, hitbox_top, hitbox_right, hitbox_bottom, hitbox_offset_x, hitbox_offset_y, image_xscale, gravity_direction, c_green);

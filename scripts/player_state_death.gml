@@ -37,8 +37,8 @@ switch (argument0)
     // Step:
     case STATE_STEP:
         // Movement:
-        x += y_speed * dsin(gravity_angle());
-        y += y_speed * dcos(gravity_angle());
+        x += y_speed * dsin(gravity_direction);
+        y += y_speed * dcos(gravity_direction);
 
         // Gravity:
         y_speed += gravity_force;

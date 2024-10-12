@@ -159,7 +159,7 @@ applies_to=self
 var player_rotation, sine, csine, draw_x, draw_y;
 
 // Rotation:
-player_rotation = gravity_angle(player_handle);
+player_rotation = player_handle.gravity_direction;
 
 // Reset direction:
 if (sprite_index != spr_shield_fire_dash)

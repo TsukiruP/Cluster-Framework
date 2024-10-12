@@ -55,7 +55,7 @@ if (inst != noone)
     boff_x = inst.hurtbox_offset_x * bdir_x;
     boff_y = inst.hurtbox_offset_y * bdir_y;
 
-    brot = gravity_angle(inst);
+    brot = inst.gravity_direction;
     bsine = dsin(brot);
     bcsine = dcos(brot);
 

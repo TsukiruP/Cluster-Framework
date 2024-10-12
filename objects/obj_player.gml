@@ -32,6 +32,7 @@ y_allow = true;
 y_speed = 0;
 gravity_force = 0.21875;
 gravity_force_temp = 0.21875;
+gravity_direction = 0;
 
 // State variables:
 state_current = player_state_idle;
@@ -864,7 +865,7 @@ switch (animation_current)
     case "hammer":
     case "insta":
     case "skid":
-        image_angle = gravity_angle();
+        image_angle = gravity_direction;
         break;
 
     // Spring angle:
@@ -876,7 +877,7 @@ switch (animation_current)
         }
         else
         {
-            image_angle = approach_angle(image_angle, gravity_angle(), 4);
+            image_angle = approach_angle(image_angle, gravity_direction, 4);
         }
         break;
 
@@ -891,7 +892,7 @@ switch (animation_current)
             }
             else
             {
-                image_angle = approach_angle(image_angle, gravity_angle(), 4);
+                image_angle = approach_angle(image_angle, gravity_direction, 4);
             }
         }
 
@@ -907,7 +908,7 @@ switch (animation_current)
             }
             else
             {
-                image_angle = approach_angle(image_angle, gravity_angle(), 4);
+                image_angle = approach_angle(image_angle, gravity_direction, 4);
             }
         }
 }

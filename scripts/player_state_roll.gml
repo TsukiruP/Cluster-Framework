@@ -79,7 +79,7 @@ switch (argument0)
         }
 
         // Uncurl:
-        if (abs(x_speed) < 0.5 && mask_rotation == gravity_angle())
+        if (abs(x_speed) < 0.5 && mask_rotation == gravity_direction)
         {
             return player_set_state(player_state_run);
         }

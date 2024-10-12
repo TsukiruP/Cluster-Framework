@@ -125,7 +125,7 @@ else if (on_ground == false)
 
                     depth = other.depth;
                     image_xscale = other.image_xscale;
-                    image_angle = gravity_angle(other);
+                    image_angle = other.gravity_direction;
                     player_handle = other.id;
                 }
 

@@ -23,5 +23,5 @@ if (abs(new_difference) <= 45 or abs(new_difference) >= 90) exit; // New offset 
 
 // Confirm rotation:
 angle = new_angle;
-relative_angle = angle_wrap(angle - gravity_angle());
+relative_angle = angle_wrap(angle - gravity_direction);
 mask_rotation = new_rotation;
