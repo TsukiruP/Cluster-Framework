@@ -5,9 +5,9 @@ This occurs in two phases, first checking against the object's hurtbox, and then
 If either the player or object's hitbox/hurtbox is empty (all 0), then these checks aren't done.
 The first phase checks the object's hurtbox against the player's hitbox and radii, and the second checks the object's hitbox against the player's hurtbox and radii. */
 
-var phase, collision;
+var object_handle, phase, collision;
 var ax_int, ay_int, aleft, atop, aright, abottom, aoff_x, aoff_y, adir_x, adir_y, arot, ax1, ay1, ax2, ay2;
-var object_handle, bx_int, by_int, bleft, btop, bright, bbottom, boff_x, boff_y, bdir_x, bdir_y, brot, bx1, by1, bx2, by2;
+var bx_int, by_int, bleft, btop, bright, bbottom, boff_x, boff_y, bdir_x, bdir_y, brot, bx1, by1, bx2, by2;
 
 object_handle = argument0;
 phase = 0;
