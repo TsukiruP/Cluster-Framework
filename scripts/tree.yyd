@@ -237,6 +237,7 @@
 			|player_get_physics
 			|player_get_solids
 			|player_get_angle
+			|player_get_collision
 			|player_get_item
 		+Setters
 			|player_set_radii
@@ -301,4 +302,3 @@
 		|player_handle_item_box
 		|player_handle_badnik
 		|player_handle_hint
-|script237

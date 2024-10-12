@@ -16,7 +16,7 @@ damage_handle = argument0.id;
 hurt_direction = esign(x - damage_handle.x, 1);
 
 // Death:
-if (damage_handle == self.id || (input_cpu == false && global.game_rings == 0 && status_shield == 0))
+if (damage_handle == id || (input_cpu == false && global.game_rings == 0 && status_shield == 0))
 {
     // Set speed:
     if (drown == false)
@@ -68,7 +68,7 @@ else
 }
 
 // Play sound:
-if (damage_handle == self.id)
+if (damage_handle == id)
 {
     if (drown == true)
     {

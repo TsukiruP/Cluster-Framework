@@ -201,7 +201,7 @@ player_set_cliff
 player_set_radii
 set_hurtbox
 set_hitbox
-player_collision_object
+player_get_collision
 ctl_sonic_hammer
 ctl_sonic_skid
 ctl_sonic_somersault
@@ -235,4 +235,4 @@ ctl_blockade_debris
 ctl_sonic_air_dash
 player_reset_spring
 ctl_reticle
-script237
+player_collision_object

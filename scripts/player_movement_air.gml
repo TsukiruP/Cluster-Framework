@@ -23,34 +23,10 @@ repeat (total_steps)
         return false;
     }
 
-    // Prop collision:
-    prop_handle = instance_nearest(floor(x), floor(y), par_prop);
-    hit_prop = player_collision_object(prop_handle);
-
-    if (hit_prop != false)
+    // Object collision:
+    if (player_collision_object())
     {
-        // React:
-        player_react(prop_handle, hit_prop);
-
-        if (state_changed == true)
-        {
-            return false;
-        }
-    }
-
-    // Obstacle collision:
-    obstacle_handle = instance_nearest(floor(x), floor(y), par_obstacle);
-    hit_obstacle = player_collision_object(obstacle_handle);
-
-    if (hit_obstacle != 0)
-    {
-        // React:
-        player_react(obstacle_handle, hit_obstacle, angle_wrap(round(point_direction(obstacle_handle.x, obstacle_handle.y, x, y) / ANGLE_UP) * ANGLE_UP));
-
-        if (state_changed == true)
-        {
-            return false;
-        }
+        return false;
     }
 
     // Get colliding solids:
@@ -95,34 +71,10 @@ repeat (total_steps)
         return false;
     }
 
-    // Prop collision:
-    prop_handle = instance_nearest(floor(x), floor(y), par_prop);
-    hit_prop = player_collision_object(prop_handle);
-
-    if (hit_prop != false)
+    // Object collision:
+    if (player_collision_object())
     {
-        // React:
-        player_react(prop_handle, hit_prop);
-
-        if (state_changed == true)
-        {
-            return false;
-        }
-    }
-
-    // Obstacle collision:
-    obstacle_handle = instance_nearest(floor(x), floor(y), par_obstacle);
-    hit_obstacle = player_collision_object(obstacle_handle);
-
-    if (hit_obstacle != 0)
-    {
-        // React:
-        player_react(obstacle_handle, hit_obstacle, angle_wrap(round(point_direction(obstacle_handle.x, obstacle_handle.y, x, y) / ANGLE_UP) * ANGLE_UP));
-
-        if (state_changed == true)
-        {
-            return false;
-        }
+        return false;
     }
 
     // Get colliding solids:
