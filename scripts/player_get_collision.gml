@@ -7,9 +7,9 @@ The first phase checks the object's hurtbox against the player's hitbox and radi
 
 var phase, collision;
 var ax_int, ay_int, aleft, atop, aright, abottom, aoff_x, aoff_y, adir_x, adir_y, arot, ax1, ay1, ax2, ay2;
-var object_handle, bx_int, by_int, bleft, btop, bright, bbottom, boff_x, boff_y, bdir_x, bdir_y, brot, bx1, by1, bx2, by2;
+var inst, bx_int, by_int, bleft, btop, bright, bbottom, boff_x, boff_y, bdir_x, bdir_y, brot, bx1, by1, bx2, by2;
 
-object_handle = argument0;
+inst = argument0;
 phase = 0;
 collision = 0;
 
@@ -19,7 +19,7 @@ if (argument_count >= 2)
     phase = argument[1];
 }
 
-if (object_handle != noone)
+if (inst != noone)
 {
     // Initialize player:
     ax_int = floor(x);
@@ -41,21 +41,21 @@ if (object_handle != noone)
     acsine = dcos(arot);
 
     // Initialize object:
-    bx_int = floor(object_handle.x);
-    by_int = floor(object_handle.y);
+    bx_int = floor(inst.x);
+    by_int = floor(inst.y);
 
-    bleft = object_handle.hurtbox_left;
-    btop = object_handle.hurtbox_top;
-    bright = object_handle.hurtbox_right;
-    bbottom = object_handle.hurtbox_bottom;
+    bleft = inst.hurtbox_left;
+    btop = inst.hurtbox_top;
+    bright = inst.hurtbox_right;
+    bbottom = inst.hurtbox_bottom;
 
-    bdir_x = object_handle.image_xscale;
-    bdir_y = object_handle.image_yscale;
+    bdir_x = inst.image_xscale;
+    bdir_y = inst.image_yscale;
 
-    boff_x = object_handle.hurtbox_offset_x * bdir_x;
-    boff_y = object_handle.hurtbox_offset_y * bdir_y;
+    boff_x = inst.hurtbox_offset_x * bdir_x;
+    boff_y = inst.hurtbox_offset_y * bdir_y;
 
-    brot = gravity_angle(object_handle);
+    brot = gravity_angle(inst);
     bsine = dsin(brot);
     bcsine = dcos(brot);
 
@@ -71,13 +71,13 @@ if (object_handle != noone)
         aoff_y = hurtbox_offset_y;
 
         // Swap to object hitbox values:
-        bleft = object_handle.hitbox_left;
-        btop = object_handle.hitbox_top;
-        bright = object_handle.hitbox_right;
-        bbottom = object_handle.hitbox_bottom;
+        bleft = inst.hitbox_left;
+        btop = inst.hitbox_top;
+        bright = inst.hitbox_right;
+        bbottom = inst.hitbox_bottom;
 
-        boff_x = object_handle.hitbox_offset_x * object_handle.image_xscale;
-        boff_y = object_handle.hitbox_offset_y;
+        boff_x = inst.hitbox_offset_x * inst.image_xscale;
+        boff_y = inst.hitbox_offset_y;
     }
 
     // Check object collision:
