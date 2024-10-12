@@ -163,7 +163,6 @@
 		|collision_box_vertical
 		|collision_ray
 		|collision_ray_vertical
-		|gravity_angle
 	+Player
 		+Data
 			|player_get_character
@@ -302,4 +301,5 @@
 		|player_handle_item_box
 		|player_handle_badnik
 		|player_handle_hint
+|gravity_angle
 |script238
