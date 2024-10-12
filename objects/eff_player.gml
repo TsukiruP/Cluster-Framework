@@ -18,12 +18,15 @@ applies_to=self
 */
 /// Attach to Player
 
-if (instance_exists(player_handle)) {
+if (instance_exists(player_handle))
+{
     x = floor(player_handle.x);
     y = floor(player_handle.y);
-} else {
+}
+else
+{
     instance_destroy();
 }
 
-// Animate:
+// Animation:
 event_inherited();

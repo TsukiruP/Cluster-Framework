@@ -1,56 +1,71 @@
 /// player_state_turn(phase)
 // Turn around, every now and then I get a little bit lonely...
 
-switch (argument0) {
+switch (argument0)
+{
     // Start:
     case STATE_START:
-        // Reset speed:
-        g_speed = 0;
-
-        // Flip direction:
+        // Flip:
         image_xscale *= -1;
+
+        // Reset speed:
+        x_speed = 0;
+
+        // Set animation:
+        if (animation_current != "turn" && animation_current != "turn_brake")
+        {
+            player_set_animation("turn");
+        }
         break;
 
     // Step:
     case STATE_STEP:
-        // Collision steps:
-        player_collision_steps();
-
-        // Changed:
-        if (state_changed == true) {
-            return false;
+        // Movement:
+        if (!player_movement_ground())
+        {
+            exit;
         }
 
-        // Air:
-        if (ground == false) {
+        // Fall:
+        if (on_ground == false)
+        {
             return player_set_state(player_state_air);
         }
 
-        // Slope friction:
-        if (ground_angle < 135 || ground_angle > 225) {
-            if (abs(g_speed) > 0.125 || input_lock_alarm != 0) {
-                g_speed -= 0.125 * dsin(ground_angle);
-            }
-        }
-
-        // Fall down slopes:
-        if (mode != 0 && abs(g_speed) < 2.5) {
-            if (ground_angle >= 90 && ground_angle <= 270) {
+        // Slide off:
+        if (relative_angle >= 45 && relative_angle <= 315)
+        {
+            // Fall:
+            if (relative_angle >= 90 && relative_angle <= 270)
+            {
                 return player_set_state(player_state_air);
-            } else {
-                input_lock_alarm = 30;
             }
-        }
-
-        // Jump:
-        if (touching_ceiling == false && input_player[INP_JUMP, CHECK_PRESSED] == true) {
-            sound_play_single("snd_jump");
-            return player_set_state(player_state_jump);
+            else
+            {
+                input_lock_alarm = 30;
+                return player_set_state(player_state_run);
+            }
         }
 
         // Idle:
-        if (animation_finished == true) {
+        if (animation_finished == true)
+        {
             player_set_state(player_state_idle);
+        }
+
+        // Skill:
+        if (player_routine_skill())
+        {
+            return true;
+        }
+
+        // Jump:
+        if (player_collision_ceiling(y_radius + 5) == noone && input_player[INP_JUMP, CHECK_PRESSED] == true)
+        {
+            // Play sound:
+            sound_play_single("snd_jump");
+
+            return player_set_state(player_state_jump);
         }
         break;
 

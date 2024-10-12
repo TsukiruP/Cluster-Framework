@@ -3,14 +3,13 @@
 
 var button_id, input_style;
 
-// Button id:
-button_id = argument[0];
+// Initialize:
+button_id   = argument0;
+input_style = 0;
 
 // Set style:
 if (argument_count >= 2) {
     input_style = argument[1];
-} else {
-    input_style = 0;
 }
 
 // Return chracter:

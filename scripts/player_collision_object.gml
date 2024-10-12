@@ -1,76 +1,49 @@
-/// player_collision_object(side, obj)
+/// player_collision_object()
+// IDK yet.
 
-// Player data:
-var x1, y1, x2, y2;
-switch (mode) {
-    case 0:
-        x1 = floor(x) - main_width;
-        y1 = floor(y) - main_height;
-        x2 = floor(x) + main_width;
-        y2 = floor(y) + main_height;
-        break;
+var player, collision_list, result, total_objects, inst, n;
 
-    case 1:
-        x1 = floor(x) - main_height;
-        y1 = floor(y) - main_width;
-        x2 = floor(x) + main_height;
-        y2 = floor(y) + main_width;
-        break;
+// Initialize:
+player = id;
+collision_list = ds_list_create();
 
-    case 2:
-        x1 = floor(x) - main_width;
-        y1 = floor(y) - main_height;
-        x2 = floor(x) + main_width;
-        y2 = floor(y) + main_height;
-        break;
-
-    case 3:
-        x1 = floor(x) - main_height;
-        y1 = floor(y) - main_width;
-        x2 = floor(x) + main_height;
-        y2 = floor(y) + main_width;
-        break;
+// Evaluate culled objects:
+with (par_culled)
+{
+    // Continue if it's not interactable:
+    if (!object_is_child_of(par_prop) && !object_is_child_of(par_obstacle))
+    {
+        continue;
+    }
+    
+    // Evaluate collision:
+    with (player)
+    {
+        result = player_get_collision(other);
+    }
+    
+    // Continue if not colliding:
+    if (result == 0)
+    {
+        continue;
+    }
+    
+    // Add to collision list:
+    ds_list_add(collision_list, id);
 }
 
-// Object data:
-switch (argument0) {
-    case SIDE_MAIN:
-        ox1 = floor(argument1.x) - argument1.prop_width + argument1.prop_offset_x;
-        oy1 = floor(argument1.y) - argument1.prop_height + argument1.prop_offset_y;
-        ox2 = floor(argument1.x) + argument1.prop_width + argument1.prop_offset_x;
-        oy2 = floor(argument1.y) + argument1.prop_height + argument1.prop_offset_y;
-        break;
-
-    case SIDE_LEFT:
-        ox1 = floor(argument1.x) - argument1.prop_width + argument1.prop_offset_x - 1;
-        oy1 = floor(argument1.y) - argument1.prop_height + argument1.prop_offset_y;
-        ox2 = floor(argument1.x);
-        oy2 = floor(argument1.y) + argument1.prop_height + argument1.prop_offset_y;
-        break;
-
-    case SIDE_RIGHT:
-        ox1 = floor(argument1.x);
-        oy1 = floor(argument1.y) - argument1.prop_height + argument1.prop_offset_y;
-        ox2 = floor(argument1.x) + argument1.prop_width + argument1.prop_offset_x + 1;
-        oy2 = floor(argument1.y) + argument1.prop_height + argument1.prop_offset_y;
-        break;
-
-    case SIDE_TOP:
-        ox1 = floor(argument1.x) - argument1.prop_width + argument1.prop_offset_x;
-        oy1 = floor(argument1.y) - argument1.prop_height + argument1.prop_offset_y - 1;
-        ox2 = floor(argument1.x) + argument1.prop_width + argument1.prop_offset_x;
-        oy2 = floor(argument1.y);
-        break;
-
-    case SIDE_BOTTOM:
-        ox1 = floor(argument1.x) - argument1.prop_width + argument1.prop_offset_x;
-        oy1 = floor(argument1.y);
-        ox2 = floor(argument1.x) + argument1.prop_width + argument1.prop_offset_x;
-        oy2 = floor(argument1.y) + argument1.prop_height + argument1.prop_offset_y + 1;
-        break;
+// React:
+total_objects = ds_list_size(collision_list);
+for (n = 0; n < total_objects; n += 1)
+{
+    inst = ds_list_find_value(collision_list, n);
+    
+    player_react(inst);
+    
+    if (state_changed == true)
+    {
+        return true;
+    }
 }
 
-// Collision test:
-collision_test = rectangle_in_rectangle(x1, y1, x2, y2, ox1, oy1, ox2, oy2);
-
-return collision_test;
+return false;

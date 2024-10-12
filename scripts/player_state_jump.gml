@@ -1,107 +1,138 @@
 /// player_state_jump(phase)
 // A jump to the sky turns to a rider kick.
 
-switch (argument0) {
+switch (argument0)
+{
     // Start:
     case STATE_START:
-        // Set ground:
-        if (ground == true) {
-            ground = false;
-        }
+        var g_speed, leap_force;
 
         // Set speed:
-        x_speed -= jump_force * dsin(ground_angle);
-        y_speed -= jump_force * dcos(ground_angle);
+        g_speed = x_speed;
+        x_speed = dcos(relative_angle) * g_speed;
+        y_speed = -(dsin(relative_angle) * g_speed);
+
+        // Air force:
+        leap_force = jump_force;
+
+        if (jump_bound == BOUND_SHIELD)
+        {
+            leap_force = 7.5;
+        }
+
+        // Jump:
+        x_speed -= leap_force * dsin(relative_angle);
+        y_speed -= leap_force * dcos(relative_angle);
+
+        // Reset air:
+        player_reset_air();
+
+        // Set animation:
+        player_set_animation("spin");
         break;
 
     // Step:
     case STATE_STEP:
         // Input:
-        if (input_x_direction != 0) {
-            if (abs(x_speed) < top_speed) {
-                x_speed += (2 * acceleration) * input_x_direction;
+        if (input_x_direction != 0)
+        {
+            image_xscale = input_x_direction;
 
-                if (abs(x_speed) > top_speed) {
+            if (abs(x_speed) < top_speed || sign(x_speed) != input_x_direction)
+            {
+                x_speed += (acceleration * 2) * input_x_direction;
+
+                if (abs(x_speed) > top_speed && sign(x_speed) == input_x_direction)
+                {
                     x_speed = top_speed * input_x_direction;
                 }
             }
         }
 
-        // Collision steps:
-        player_collision_steps();
-
-        // Changed:
-        if (state_changed == true) {
-            return false;
+        // Movement:
+        if (!player_movement_air())
+        {
+            exit;
         }
 
         // Land:
-        if (ground == true) {
-            if (x_speed == 0) {
-                return player_set_state(player_state_idle);
-            } else {
-                return player_set_state(player_state_run);
+        if (player_routine_land())
+        {
+            return true;
+        }
+
+        // Variable jump:
+        if (jump_cap == true)
+        {
+            var input_held;
+
+            input_held = input_player[INP_JUMP, CHECK_HELD];
+
+            if (jump_aux == true)
+            {
+                input_held = input_player[INP_AUX, CHECK_HELD];
+            }
+
+            if (y_speed < jump_release && input_held == false)
+            {
+                y_speed = jump_release;
             }
         }
 
-        /*
-        // Jump skill:
-        if (input_player[INP_JUMP, CHECK_PRESSED] == true) {
-            switch (character_id) {
-                case CHAR_SONIC:
-                    sonic_skill_list(SONIC_JUMP);
-                    break;
-            }
-        }
-
-        // Special skill:
-        if (input_player[INP_SPECIAL, CHECK_PRESSED] == true) {
-            switch (character_id) {
-                case CHAR_SONIC:
-                    sonic_skill_list(SONIC_SPECIAL_A);
-                    break;
-            }
-        }
-        */
-
-        // Release:
-        if (y_speed < jump_release && jump_special == false && input_player[INP_JUMP, CHECK_HELD] == false) {
-            y_speed = jump_release;
-        }
-
-        // Air drag:
-        if (abs(x_speed) > 0.125 && y_speed > -4 && y_speed < 0) {
-            x_speed *= 0.96875;
+        // Air friction:
+        if (abs(x_speed) > air_friction_threshold && y_speed > -4 && y_speed < 0)
+        {
+            x_speed *= air_friction;
         }
 
         // Gravity:
-        if (y_allow == true) {
+        if (y_allow == true)
+        {
             y_speed += gravity_force;
         }
 
-        // Direction:
-        if (input_x_direction != 0 && image_xscale == -input_x_direction) {
-            image_xscale = input_x_direction;
+        // Skill:
+        if (player_routine_skill())
+        {
+            return true;
+        }
+
+        // Uncurl:
+        if (y_speed >= 0)
+        {
+            switch (jump_uncurl)
+            {
+                // Blockade:
+                case UNCURL_BLOCKADE:
+                    animation_skip = (animation_current != "spring_fall");
+                    player_set_animation("spring_fall");
+            }
         }
         break;
 
     // Finish:
     case STATE_FINISH:
-        /*
         // Reset jump:
-        if (jump_special != false) {
-            jump_special = false;
-        }
+        jump_cap = true;
+        jump_aux = false;
+        jump_uncurl = UNCURL_DEFAULT;
 
-        // Reset shield:
-        if (ground == true && status_shield_allow != true) {
-            status_shield_allow = true;
-        }
+        // Reset bound:
+        if (state_current != player_state_bound)
+        {
+            jump_bound = BOUND_SHIELD;
 
-        // Reset insta invincibility:
-        if (status_insta_alarm != 0) {
-            status_insta_alarm = 0;
+            // Reset shield:
+            if (instance_exists(shield_handle))
+            {
+                with (shield_handle)
+                {
+                    if (ctl_index == ctl_shield_bubble_bound)
+                    {
+                        shield_reset = true;
+                    }
+                }
+            }
         }
-        */
         break;
 }

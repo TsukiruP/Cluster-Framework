@@ -8,17 +8,14 @@ applies_to=self
 
 event_inherited();
 
-// Depth:
-depth = 10;
-
 // Image speed:
 image_speed = 0;
 
-// Main:
-main_left   = 13;
-main_right  = 12;
-main_top    = 16;
-main_bottom = 16;
+// Hurtbox:
+set_hurtbox(13, 16, 12, 16);
+
+// Reaction:
+reaction_index = player_reaction_item_box;
 
 // Player handle:
 player_handle = noone;
@@ -73,6 +70,31 @@ if (global.gameplay_debuffs == false) {
         item_id = ITEM_MINE;
     }
 }
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Image Angle
+
+image_angle = gravity_angle();
+#define Other_4
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Field Initialization
+
+//field item_field: enum(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13)
+//field text_field: string
+
+item_id = item_field;
+
+/*preview
+    draw_sprite(Sprite("spr_item_icon", Field("item_field", 0)), 0, x, y)
+    draw_sprite(Sprite("spr_item_box", 1), 0, x, y)
+*/
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -82,10 +104,10 @@ applies_to=self
 /// Draw Item Box
 
 // Item icon:
-draw_sprite(spr_item_icon, item_id, x, y);
+draw_sprite_ext(spr_item_icon, item_id, x, y, 1, 1, image_angle, c_white, 1);
 
 // Item box:
-draw_sprite(spr_item_box, 1, x, y);
+draw_sprite_ext(spr_item_box, 1, x, y, 1, 1, image_angle, c_white, 1);
 
 // Collision:
 event_inherited();

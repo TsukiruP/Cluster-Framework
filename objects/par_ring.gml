@@ -8,17 +8,11 @@ applies_to=self
 
 event_inherited();
 
-// Depth:
-depth = 10;
+// Hurtbox:
+set_hurtbox(8, 8, 7, 7, 0, 0);
 
-// Image speed:
-image_speed = 0;
-
-// Main:
-main_left     = 8;
-main_right    = 7;
-main_top      = 8;
-main_bottom   = 7;
+// Reaction:
+reaction_index = player_reaction_ring;
 
 // Dropped:
 dropped = false;
@@ -28,10 +22,11 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Animate
+/// Animation
 
 // Exit if the stage is paused:
-if (game_ispaused(ctrl_pause)) {
+if (game_ispaused(ctrl_pause))
+{
     exit;
 }
 

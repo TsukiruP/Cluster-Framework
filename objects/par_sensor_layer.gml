@@ -8,14 +8,14 @@ applies_to=self
 
 event_inherited();
 
-// Main:
-main_left   = 8;
-main_right  = 7;
-main_top    = 8;
-main_bottom = 7;
+// Hurtbox:
+set_hurtbox(8, 8, 7, 7, 8, 8);
 
-// Layer variables:
-layer = 0;
+// Reaction:
+reaction_index = player_reaction_sensor_layer;
+
+// Collision layer:
+collision_layer = 0;
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -23,6 +23,11 @@ action_id=603
 applies_to=self
 */
 /// Draw Sensor
+
+// Exit if not in debug mode:
+if (global.game_debug == false) {
+    exit;
+}
 
 // Sensor:
 draw_self();

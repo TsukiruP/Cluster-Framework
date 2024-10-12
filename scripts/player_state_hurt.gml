@@ -1,41 +1,47 @@
 /// player_state_hurt(phase)
 // Ouchie ouch ouch.
 
-switch (argument0) {
+switch (argument0)
+{
     // Start:
     case STATE_START:
-        // Set ground:
-        if (ground == true) {
-            ground = false;
-        }
-
         // Clock over:
-        if (clock_up_state != 0) {
+        if (clock_up_state != 0)
+        {
             classic_trait_clock_up(true);
         }
+
+        // Reset air:
+        player_reset_air();
+
+        // Set animation:
+        player_set_animation("hurt");
         break;
 
     // Step:
     case STATE_STEP:
-        // Collision steps:
-        player_collision_steps();
-
-        // Changed:
-        if (state_changed == true) {
-            return false;
+        // Movement:
+        if (!player_movement_air())
+        {
+            exit;
         }
 
         // Land:
-        if (ground == true) {
-            // Reset speed:
-            if (global.advance_hurt == false) g_speed = 0;
+        if (player_routine_land())
+        {
+            if (global.advance_hurt == false)
+            {
+                x_speed = 0;
+            }
+
             y_speed = 0;
 
-            return player_set_state(player_state_idle);
+            return true;
         }
 
         // Gravity:
-        if (y_allow == true) {
+        if (y_allow == true)
+        {
             y_speed += gravity_force;
         }
         break;

@@ -1,6 +1,6 @@
 /// player_handle_badnik()
 //
-
+/*
 var badnik_handle;
 
 // Nearest badnik:

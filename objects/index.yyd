@@ -1,13 +1,13 @@
 par_terrain
 ctrl_fade
-par_spring
-par_obstacle
+obj_spring
+obj_blockade
 par_moving_platform
-par_dash_ring
+obj_dash_ring
 obj_dash_ring_left
 obj_basic_test_collision_01
 obj_player
-par_indestructable
+par_culled
 
 ctrl_initialization
 ctrl_input
@@ -42,15 +42,15 @@ obj_water_surface
 
 obj_basic_test_parallax
 ctrl_culling
-par_badnik
+par_enemy
 obj_ring
 eff_player
-par_item_box
+obj_item_box
 obj_basic_test_water_fall_01
 obj_basic_test_water_fall_02
 obj_basic_test_water_fall_03
 obj_item_bonus
-par_spike
+obj_spike
 obj_item_super_bonus
 obj_item_random_bonus
 obj_item_basic
@@ -85,14 +85,14 @@ obj_basic_test_collision_27
 par_prop
 par_rainbow_ring
 eff_spin_dash
-eff_basic
+par_effect
 par_overlay
 obj_omochao
 eff_shield
 par_hint
 obj_sensor_layer_a
 obj_sensor_layer_b
-par_sensor_layer
+obj_sensor_layer
 obj_hint_box
 obj_spring_up
 obj_spring_right_up
@@ -102,7 +102,7 @@ obj_spring_down
 obj_spring_left_up
 obj_spring_left_down
 obj_spring_right_down
-obj_dash_ring_overlay
+eff_reticle
 obj_dash_ring_right
 obj_dash_ring_up
 obj_dash_ring_down
@@ -122,3 +122,6 @@ obj_rainbow_ring_right_down
 obj_spinner
 object122
 eff_debuff
+par_obstacle
+eff_debris
+par_target

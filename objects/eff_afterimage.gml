@@ -16,12 +16,16 @@ applies_to=self
 /// Fade Out
 
 // Exit if the stage is paused:
-if (game_ispaused(ctrl_pause)) {
+if (game_ispaused(ctrl_pause))
+{
     exit;
 }
 
-if (image_alpha > 0) {
+if (image_alpha > 0)
+{
     image_alpha -= 0.1;
-} else {
+}
+else
+{
     instance_destroy();
 }

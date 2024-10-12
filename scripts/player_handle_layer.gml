@@ -1,6 +1,6 @@
 /// player_handle_layer()
 // Like an onion.
-
+/*
 var sensor_handle;
 
 // Nearest sensor:

@@ -1,0 +1,59 @@
+/// player_wall_eject(obj)
+// Ejects the player from the given solid by calculating the distance between them needed to escape collision.
+
+var sine, csine, ox;
+
+sine = dsin(mask_rotation);
+csine = dcos(mask_rotation);
+
+// Get collision offset:
+for (ox = wall_radius; ox > -1; ox -= 1)
+{
+    if (collision_ray(ox, 0, mask_rotation, argument0) == noone)
+    {
+        break;
+    }
+}
+
+// If the offset is negative, we're stuck:
+if (ox <= 0)
+{
+    // Find the closest edge outside of collision:
+    for (ox = wall_radius; ox < wall_radius * 2; ox += 1)
+    {
+        // Right side:
+        if (collision_ray_vertical(ox, 0, mask_rotation, argument0) == noone)
+        {
+            x += csine * (wall_radius + ox);
+            y -= sine * (wall_radius + ox);
+            return -1;
+        }
+
+        // Left side:
+        if (collision_ray_vertical(-ox, 0, mask_rotation, argument0) == noone)
+        {
+            x -= csine * (wall_radius + ox);
+            y += sine * (wall_radius + ox);
+            return 1;
+        }
+    }
+}
+
+// Right side only:
+else if (collision_ray_vertical(ox + 1, 0, mask_rotation, argument0) != noone)
+{
+    x -= csine * (wall_radius - ox);
+    y += sine * (wall_radius - ox);
+    return 1;
+}
+
+// Left side only:
+else if (collision_ray_vertical(-(ox + 1), 0, mask_rotation, argument0) != noone)
+{
+    x += csine * (wall_radius - ox);
+    y -= sine * (wall_radius - ox);
+    return -1;
+}
+
+// Failure:
+return 0;

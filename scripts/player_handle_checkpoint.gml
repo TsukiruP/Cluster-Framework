@@ -1,6 +1,6 @@
 /// player_handle_checkpoint()
 //
-
+/*
 var checkpoint_handle;
 
 // Nearest checkpoint:

@@ -8,14 +8,8 @@ applies_to=self
 
 event_inherited();
 
-// Main:
-main_left     = 11;
-main_right    = 10;
-main_top      = 11;
-main_bottom   = 10;
-
-main_offset_x = 2;
-main_offset_y = 5;
+// Hurtbox:
+set_hurtbox(11, 11, 10, 10, 2, 5);
 
 // Draw variables:
 draw_x = x;
@@ -26,47 +20,60 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Animate
+/// Animation
 
 // Exit if the stage is paused:
-if (game_ispaused(ctrl_pause)) {
+if (game_ispaused(ctrl_pause))
+{
     exit;
 }
 
 // Match player:
-if (instance_exists(player_handle)) {
-    if (player_handle.hint_wanted == true) {
-        // Put down Omochao:
-        if (ctrl_text.text_clear == true && player_handle.animation_current == "omochao" && player_handle.animation_reverse == false) {
-            player_handle.animation_trigger = true;
-            player_handle.animation_reverse = true;
-        }
-
+if (instance_exists(player_handle))
+{
+    if (player_handle.hint_allow == false)
+    {
         // Change sprite index:
-        switch (player_handle.character_id) {
+        switch (player_handle.character_id)
+        {
             // Sonic:
             case CHAR_SONIC:
                 sprite_index = spr_omochao_sonic;
                 break;
         }
 
-        // Clear text:
-        if (player_handle.hint_wanted == false) {
-            ctrl_text.text_clear = true;
+        with (player_handle)
+        {
+            // Clear text:
+            if (ctrl_text.text_clear == true && animation_current == "omochao")
+            {
+                player_set_animation("omochao_end");
+            }
+
+            // Reset hint:
+            if (ctrl_text.text_alpha[0] == 0 && animation_current == "stand")
+            {
+                hint_allow = true;
+            }
         }
-    } else {
-        // Reset sprite index:
+    }
+
+    // Reset immediately:
+    if (player_handle.hint_allow == true)
+    {
         sprite_index = spr_omochao_idle;
     }
 }
 
 // Reset sprite index:
-if (player_handle == noone && sprite_index != spr_omochao_idle) {
+if (player_handle == noone && sprite_index != spr_omochao_idle)
+{
     sprite_index = spr_omochao_idle;
 }
 
 // Idle:
-if (sprite_index == spr_omochao_idle) {
+if (sprite_index == spr_omochao_idle)
+{
     // Image index:
     image_index = sync_rate(global.object_time, 3, sprite_get_number(sprite_index));
 
@@ -79,7 +86,8 @@ if (sprite_index == spr_omochao_idle) {
 }
 
 // Picked up:
-else {
+else
+{
     // Image index:
     image_index = player_handle.image_index;
 
@@ -99,7 +107,7 @@ applies_to=self
 /// Draw Omochao
 
 // Omochao:
-draw_sprite_ext(sprite_index, image_index, draw_x + (image_xscale < 0), draw_y, image_xscale, 1, 0, c_white, 1);
+draw_sprite_ext(sprite_index, image_index, draw_x, draw_y, image_xscale, 1, 0, c_white, 1);
 
 // Collision:
 event_inherited();

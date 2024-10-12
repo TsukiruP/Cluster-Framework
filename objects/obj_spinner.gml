@@ -8,30 +8,25 @@ applies_to=self
 
 event_inherited();
 
-// Timeline initialization:
+// Timeline:
 ctl_initialize(ctl_spinner);
 
-// Main:
-main_left   = 20;
-main_right  = 20;
-main_top    = 19;
-main_bottom = 4;
+// Hurtbox:
+set_hurtbox(20, 19, 20, 4);
 
 // Hitbox:
-hitbox_left   = 8;
-hitbox_right  = 7;
-hitbox_top    = 18;
-hitbox_bottom = 4;
+set_hitbox(8, 18, 7, 4);
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
 applies_to=self
 */
-/// Animate
+/// Animation
 
 // Exit if the stage is paused:
-if (game_ispaused(ctrl_pause)) {
+if (game_ispaused(ctrl_pause))
+{
     exit;
 }
 
@@ -41,7 +36,8 @@ event_inherited();
 ctl_speed = global.game_speed;
 
 // Execute timeline:
-if (ctl_index != noone) {
+if (ctl_index != noone)
+{
     ctl_update();
     script_execute(ctl_index);
 }

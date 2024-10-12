@@ -1,4 +1,4 @@
-/// player_terrain_line(radius_x, radius_y, [semi_solid])
+/// player_terrain_line(radius_x, radius_y, [semisolid])
 
 // Exit if collision is disabled:
 if (collision_allow == false) {
@@ -6,16 +6,16 @@ if (collision_allow == false) {
 }
 
 // Set up arguments:
-var radius_x, radius_y, semi_solid;
+var radius_x, radius_y, semisolid;
 
 radius_x = argument[0];
 radius_y = argument[1];
 
 // Set semi solid:
 if (argument_count >= 3) {
-    semi_solid = argument[2];
+    semisolid = argument[2];
 } else {
-    semi_solid = false;
+    semisolid = false;
 }
 
 // Set up x and y:
@@ -64,7 +64,7 @@ if (collision_line(floor(x) + x1, floor(y) + y1, floor(x) + x2, floor(y) + y2, p
         
         if (terrain_instance.collision == true) {
             if ((terrain_instance.type == SOLID_FULL && (terrain_instance.layer == -1 || terrain_instance.layer == layer)) ||
-                (terrain_instance.type == SOLID_SEMI && terrain_instance.platform_check == true && platform_check == true && semi_solid == true)) {
+                (terrain_instance.type == SOLID_SEMI && terrain_instance.platform_check == true && platform_check == true && semisolid == true)) {
                 ds_list_destroy(terrain_collisions);
                 return true;
             }

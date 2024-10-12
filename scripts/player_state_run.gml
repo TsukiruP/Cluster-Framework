@@ -1,112 +1,141 @@
 /// player_state_run(phase)
-//
+// Gotta go fast.
 
-switch (argument0) {
+switch (argument0)
+{
     // Start:
     case STATE_START:
+        // Set animation:
+        player_animation_run();
         break;
 
     // Step:
     case STATE_STEP:
         // Input:
-        if (input_x_direction != 0) {
-            // Turn:
-            if (global.advance_turn == true && abs(g_speed) <= 4 && image_xscale == -input_x_direction) {
-                if (input_lock_alarm == 0) {
-                    return player_set_state(player_state_turn);
-                }
-            }
-
+        if (input_x_direction != 0)
+        {
             // Decelerate:
-            else if (g_speed != 0 && sign(g_speed) != input_x_direction) {
-                if (input_lock_alarm == 0) {
-                    // Skid:
-                    if (abs(g_speed) > 4) {
-                        return player_set_state(player_state_skid);
+            if (x_speed != 0 && sign(x_speed) != input_x_direction)
+            {
+                if (input_lock_alarm == 0)
+                {
+                    // Turn:
+                    if (global.advance_turn == true && abs(x_speed) <= 4 && image_xscale == -input_x_direction)
+                    {
+                        return player_set_state(player_state_turn);
                     }
 
-                    g_speed += deceleration * input_x_direction;
+                    // Brake:
+                    if (abs(x_speed) > 4)
+                    {
+                        sound_play_single("snd_brake");
 
-                    if (sign(g_speed) == input_x_direction) {
-                        g_speed = deceleration * input_x_direction;
+                        return player_set_state(player_state_brake);
+                    }
+
+                    x_speed += deceleration * input_x_direction;
+
+                    if (sign(x_speed) == input_x_direction)
+                    {
+                        x_speed = deceleration * input_x_direction;
                     }
                 }
             }
 
             // Accelerate:
-            else {
-                if (abs(g_speed) < top_speed) {
-                    g_speed += acceleration * input_x_direction;
-
-                    if (abs(g_speed) > top_speed) {
-                        g_speed = top_speed * input_x_direction;
-                    }
-                }
-
+            else
+            {
                 // Set direction:
                 image_xscale = input_x_direction;
+
+                if (abs(x_speed) < top_speed)
+                {
+                    x_speed += acceleration * input_x_direction;
+
+                    if (abs(x_speed) > top_speed)
+                    {
+                        x_speed = top_speed * input_x_direction;
+                    }
+                }
             }
         }
 
         // Friction:
-        else {
-            g_speed -= min(abs(g_speed), acceleration) * sign(g_speed);
+        else
+        {
+            x_speed -= min(abs(x_speed), acceleration) * sign(x_speed);
 
             // Roll:
-            if (abs(g_speed) > 0.5) {
-                if (input_player[INP_DOWN, CHECK_HELD] == true) {
+            if (abs(x_speed) > 0.5)
+            {
+                if (input_player[INP_DOWN, CHECK_HELD] == true)
+                {
+                    // Play sound:
                     sound_play_single("snd_roll");
+
                     return player_set_state(player_state_roll);
                 }
             }
         }
 
-        // Collision steps:
-        player_collision_steps();
+        // Movement:
+        if (!player_movement_ground())
+        {
+            exit;
+        }
 
         // Changed:
-        if (state_changed == true) {
+        if (state_changed == true)
+        {
             return false;
         }
 
-        // Air:
-        if (ground == false) {
+        // Fall:
+        if (on_ground == false)
+        {
             return player_set_state(player_state_air);
         }
 
-        // Slope friction:
-        if (ground_angle < 135 || ground_angle > 225) {
-            if (abs(g_speed) > 0.125 || input_lock_alarm != 0) {
-                g_speed -= 0.125 * dsin(ground_angle);
-            }
-        }
-
-        // Fall down slopes:
-        if (mode != 0 && abs(g_speed) < 2.5) {
-            if (ground_angle >= 90 && ground_angle <= 270) {
+        // Slide off:
+        if (abs(x_speed) < slide_threshold && relative_angle >= 45 && relative_angle <= 315)
+        {
+            // Fall:
+            if (relative_angle >= 90 && relative_angle <= 270)
+            {
                 return player_set_state(player_state_air);
-            } else {
+            }
+            else
+            {
                 input_lock_alarm = 30;
             }
         }
 
-        // Jump:
-        if (touching_ceiling == false && input_player[INP_JUMP, CHECK_PRESSED] == true) {
-            sound_play_single("snd_jump");
-            return player_set_state(player_state_jump);
-        }
+        // Slope friction:
+        player_slope_friction(slope_friction, acceleration);
 
         // Idle:
-        if (g_speed == 0 && input_x_direction == 0) {
+        if (x_speed == 0 && input_x_direction == 0)
+        {
             return player_set_state(player_state_idle);
         }
 
-        // Push:
-        if (image_xscale == input_x_direction &&
-            ((image_xscale == -1 && (player_terrain_point(-(wall_left + 1), wall_bottom)) || (image_xscale == 1 && player_terrain_point((wall_right + 1), wall_bottom))) && abs(g_speed) <= acceleration + 0.5) ||
-            (player_obstacle_rectangle(wall_left + 1, main_top, main_right + 1, main_bottom) && abs(g_speed) <= acceleration)) {
-                player_set_state(player_state_push);
-            }
+        // Skill:
+        if (player_routine_skill())
+        {
+            return true;
+        }
+
+        // Jump:
+        if (player_collision_ceiling(y_radius + 5) == noone && input_player[INP_JUMP, CHECK_PRESSED] == true)
+        {
+            // Play sound:
+            sound_play_single("snd_jump");
+
+            return player_set_state(player_state_jump);
+        }
+
+        // Set animation:
+        player_animation_run();
         break;
 
     // Finish:

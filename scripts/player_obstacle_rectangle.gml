@@ -1,4 +1,4 @@
-/// player_obstacle_rectangle(left, top, right, bottom, [semi_solid])
+/// player_obstacle_rectangle(left, top, right, bottom, [semisolid])
 
 // Exit if collision is disabled:
 if (collision_allow == false) {
@@ -15,9 +15,9 @@ y2 = argument[3];
 
 // Set semi obstacle:
 if (argument_count >= 5) {
-    semi_solid = argument[4];
+    semisolid = argument[4];
 } else {
-    semi_solid = false;
+    semisolid = false;
 }
 
 // Trigger the collision:
@@ -34,7 +34,7 @@ if (collision_rectangle(floor(x) - x1, floor(y) - y1, floor(x) + x2, floor(y) + 
         
         if (obstacle_instance.collision == true) {
             if (obstacle_instance.type == SOLID_FULL
-            || (obstacle_instance.type == SOLID_SEMI && y < obstacle_instance.bbox_top + (y - yprevious) && y_speed >= 0 && semi_solid)) {
+            || (obstacle_instance.type == SOLID_SEMI && y < obstacle_instance.bbox_top + (y - yprevious) && y_speed >= 0 && semisolid)) {
                 ds_list_destroy(obstacle_collisions);
                 return obstacle_instance;
             }

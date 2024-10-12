@@ -1,96 +1,134 @@
 /// player_state_idle(phase)
 // Standing here, I realize...
 
-switch (argument0) {
+switch (argument0)
+{
     // Start:
     case STATE_START:
-        // Land:
-        if (ground == true && y_speed > 0) {
-            player_set_animation("land");
+        // Wait alarm:
+        wait_alarm = 360;
+
+        // Cliff:
+        if (player_set_cliff() != 0)
+        {
+            if (image_xscale == cliff_direction)
+            {
+                player_set_animation("cliff_front");
+            }
+            else
+            {
+                player_set_animation("cliff_back");
+            }
+        }
+
+        // Set animation:
+        if (animation_current != "stand" && animation_current != "wait" && animation_current != "ready" && animation_current != "land" &&
+            animation_current != "look_end" && animation_current != "crouch_end" &&
+            animation_current != "look" && animation_current != "omochao" && animation_current != "omochao_end")
+        {
+            player_set_animation("stand");
         }
         break;
 
     // Step:
     case STATE_STEP:
-        // Collision steps:
-        player_collision_steps();
+        // Movement:
+        if (!player_movement_ground())
+        {
+            exit;
+        }
 
-        // Changed:
-        if (state_changed == true || hint_wanted == true) {
+        // Hint:
+        if (hint_allow == false)
+        {
             return false;
         }
 
-        // Air:
-        if (ground == false || (ground_angle >= 90 && ground_angle <= 270)) {
+        // Fall:
+        if (on_ground == false)
+        {
             return player_set_state(player_state_air);
         }
 
-        // Turn:
-        if (global.advance_turn == true && character_id != CHAR_CLASSIC && image_xscale == -input_x_direction) {
-            return player_set_state(player_state_turn);
-        }
+        // Slide off:
+        if (relative_angle >= 45 && relative_angle <= 315)
+        {
+            // Fall:
+            if (relative_angle >= 90 && relative_angle <= 270)
+            {
+                return player_set_state(player_state_air);
+            }
+            else
+            {
+                input_lock_alarm = 30;
 
-        // Lock:
-        if (mode != 0) {
-            input_lock_alarm = 30;
-            return player_set_state(player_state_run);
-        }
-
-        // Run:
-        if (g_speed != 0 || input_x_direction != 0) {
-            return player_set_state(player_state_run);
-        }
-
-        // Slope friction:
-        if (ground_angle < 135 || ground_angle > 225) {
-            if (abs(g_speed) > 0.125 || input_lock_alarm != 0) {
-                g_speed -= 0.125 * dsin(ground_angle);
+                return player_set_state(player_state_run);
             }
         }
 
-        // Jump:
-        if (ground == true && touching_ceiling == false && input_player[INP_JUMP, CHECK_PRESSED] == true) {
-            sound_play_single("snd_jump");
-            return player_set_state(player_state_jump);
+        // Turn:
+        if (global.advance_turn == true && input_x_direction != 0 && image_xscale != input_x_direction)
+        {
+            return player_set_state(player_state_turn);
         }
 
-        // Balance:
-        var edge_left, edge_right;
-
-        edge_left  = (!player_terrain_line(main_right_rel, main_bottom + 16, true));
-        edge_right = (!player_terrain_line(-main_left_rel, main_bottom + 16, true));
-
-        if (mode == 0) {
-            balance_direction = (edge_left - edge_right);
-        } else {
-            balance_direction = 0;
+        // Run:
+        if (x_speed != 0 || input_x_direction != 0)
+        {
+            return player_set_state(player_state_run);
         }
 
-        if (balance_direction == 0) {
-            // Look & crouch:
-            switch (input_y_direction) {
+        // Look:
+        if (cliff_direction == 0)
+        {
+            switch (input_y_direction)
+            {
                 // Look:
                 case -1:
-                    if (animation_current != "look") {
+                    if (animation_current != "look_end")
+                    {
                         return player_set_state(player_state_look);
                     }
                     break;
 
-                // Crouch:
+                    // Crouch:
                 case 1:
-                    if (animation_current != "crouch") {
+                    if (animation_current != "crouch_end")
+                    {
                         return player_set_state(player_state_crouch);
                     }
                     break;
+            }
+        }
+
+        // Skill:
+        if (player_routine_skill())
+        {
+            return true;
+        }
+
+        // Jump:
+        if (player_collision_ceiling(y_radius + 5) == noone && input_player[INP_JUMP, CHECK_PRESSED] == true)
+        {
+            // Play sound:
+            sound_play_single("snd_jump");
+
+            return player_set_state(player_state_jump);
+        }
+
+        // Wait:
+        if (!game_ispaused(ctrl_text) && on_ground == true && input_lock == false && animation_current == "stand") {
+            if (wait_alarm > 0) {
+                wait_alarm -= 1;
+
+                if (wait_alarm == 0) {
+                    player_set_animation("wait");
+                }
             }
         }
         break;
 
     // Finish:
     case STATE_FINISH:
-        // Reset balance:
-        if (balance_direction != 0) {
-            balance_direction = 0;
-        }
         break;
 }

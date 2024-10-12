@@ -1,17 +1,9 @@
 /// player_routine_insta()
 // It's not even really a shield...
 
-// Disable shield:
+// Set status:
 status_shield_allow = false;
-
-// Set invincibility
-status_insta_alarm = 8;
-
-// Set state:
-player_set_state(player_state_jump);
-
-// Set animation:
-player_set_animation("insta");
+status_insta_alarm  = 8;
 
 // Create shield:
 if (character_id == CHAR_SONIC) {
@@ -20,6 +12,7 @@ if (character_id == CHAR_SONIC) {
     
         depth         = other.depth;
         image_xscale  = other.image_xscale;
+        image_angle   = gravity_angle(other);
         player_handle = other.id;
     }
 }

@@ -1,7 +1,3 @@
-+GMS2
-	|collision_line_list
-	|collision_rectangle_list
-	|collision_point_list
 +System
 	|credits
 	+Game
@@ -14,13 +10,11 @@
 		|joystick_get_check
 		|input_get_check
 		|input_get_timer
-		|input_get_string
 	+Text
-		|val_get_str
-		|val_get_bool
-		|key_get_string
-		|joy_get_char
-		|string_place_value
+		|string_bool
+		|string_key
+		|char_joy
+		|string_input
 		|text_set_message
 		|topic_set_message
 	+Room
@@ -33,6 +27,7 @@
 	+Timelines
 		|ctl_initialize
 		|ctl_update
+		|ctl_skip
 		|ctl_position
 		|timeline_set
 		|ctl_template
@@ -41,19 +36,21 @@
 				+Sonic
 					+Idle
 						|ctl_sonic_stand
-						+Balance
-							|ctl_sonic_balance_front
-							|ctl_sonic_balance_back
+						+Cliff
+							|ctl_sonic_cliff_front
+							|ctl_sonic_cliff_back
 						+Wait
 							|ctl_sonic_wait_leader
 							|ctl_sonic_wait_partner
+						+Omochao
+							|ctl_sonic_omochao
+							|ctl_sonic_omochao_end
 						+Misc.
 							|ctl_sonic_ready
 							|ctl_sonic_land
-							|ctl_sonic_omochao
 					+Turn
 						|ctl_sonic_turn
-						|ctl_sonic_turn_skid
+						|ctl_sonic_turn_brake
 					+Run
 						|ctl_sonic_run_0
 						|ctl_sonic_run_1
@@ -62,8 +59,10 @@
 						|ctl_sonic_run_4
 					+Look
 						|ctl_sonic_look
+						|ctl_sonic_look_end
 					+Crouch
 						|ctl_sonic_crouch
+						|ctl_sonic_crouch_end
 					+Spin Dash
 						|ctl_sonic_spin_dash
 						|ctl_sonic_spin_charge
@@ -71,31 +70,42 @@
 						|ctl_sonic_roll
 						|ctl_sonic_spin_flight
 						|ctl_sonic_spin_fall
-					+Skid
-						|ctl_sonic_skid
-						|ctl_sonic_skid_fast
+					+Brake
+						|ctl_sonic_brake
+						|ctl_sonic_brake_fast
 					|ctl_sonic_push
 					+Spring
 						|ctl_sonic_spring_flight
 						|ctl_sonic_spring_fall
-					|ctl_sonic_breathe
 					+Goal
 					|ctl_sonic_hurt
 					|ctl_sonic_death
+					|ctl_sonic_breathe
+					|ctl_sonic_hammer
+					+Skid
+						|ctl_sonic_somersault
+						|ctl_sonic_skid
+						|ctl_sonic_skid_end
 					|ctl_sonic_insta
+					|ctl_sonic_air_dash
 			+Props
 				+Checkpoint
 					|ctl_checkpoint_inactive
 					|ctl_checkpoint_active
-				|ctl_spring
+				+Spring
+					|ctl_spring_vertical
+					|ctl_spring_horizontal
+					|ctl_spring_diagonal
 				+Badniks
 					|ctl_spinner
 			+Effects
 				+Player
 					|ctl_spin_dash
 					|ctl_spin_charge
-					|ctl_skid
+					|ctl_brake
 					|ctl_debuff
+					|ctl_reticle
+					|ctl_reticle_colors
 				+Shields
 					|ctl_shield_insta
 					|ctl_shield_basic
@@ -105,11 +115,13 @@
 					|ctl_shield_lightning
 					|ctl_shield_lightning_spark
 					|ctl_shield_bubble
+					|ctl_shield_bubble_bound
+					|ctl_shield_bubble_recoil
 					|ctl_shield_invin
 				+Explosions
 					|ctl_explosion_small
 					|ctl_explosion_large
-					|ctl_explosion_badnik
+					|ctl_explosion_enemy
 					|ctl_explosion_water
 				+Splashes
 					|ctl_splash_0
@@ -119,11 +131,13 @@
 					|ctl_splash_4
 				+Misc.
 					|ctl_ring_sparkle
+					|ctl_blockade_debris
 	+Math
 		|wrap
-		|wrap_angle
+		|angle_wrap
 		|sync_rate
 	+Draw
+		|draw_collision
 		|parallax_add_node
 		|draw_backdrop_tiled_area
 		+Sprites
@@ -135,88 +149,117 @@
 			|draw_background_tiled_horizontal_part_yscale
 			|draw_background_tiled_vertical_part
 	+Misc.
+		|hover
+		|pick_offset
 		|transition_create
 		|effect_create
-		|hover
+		|set_hurtbox
+		|set_hitbox
+		|instance_nth_nearest
+		|instance_nearest_dir_x
 +Gameplay
+	+Collision
+		|collision_box
+		|collision_box_vertical
+		|collision_ray
+		|collision_ray_vertical
 	+Player
 		+Data
 			|player_get_character
 			|player_get_instance
-		+Collision
-			+Utilities
-				|angle_sensor
-				|player_terrain_point
-				|player_terrain_line
-				|player_obstacle_rectangle
-			|player_movement
-			|player_collision_semisolids
-			|player_collision_terrain
-			|player_collision_obstacle
-			|player_collision_prop
-			|player_collision_mode
-			|player_collision_wall
-			|player_collision_steps
-		+Angle
-			|player_set_angle
-			|player_get_angle
-		+States
-			|player_set_state
-			|player_state_template
-			+Indexes
-				|player_state_idle
-				|player_state_turn
-				|player_state_run
-				|player_state_air
-				|player_state_jump
-				|player_state_look
-				|player_state_crouch
-				|player_state_spin_dash
-				|player_state_roll
-				|player_state_skid
-				|player_state_hurt
-				|player_state_death
-				|player_state_push
-				|player_state_bound
-				+Skill Lists
-					|sonic_skill_list
-		+Routines
-			|player_routine_insta
-			|player_routine_shield
-		+Traits
-			|player_trait_debug
-			|classic_trait_clock_up
-		+Handle
-			|player_handle_layer
-			|player_handle_ring
-			|player_handle_checkpoint
-			|player_handle_spring
-			|player_handle_item_box
-			|player_handle_badnik
-			|player_handle_hint
 		+Animation
 			|player_animation_core
+			|player_animation_variant
+			|player_animation_speed
+			|player_animation_run
+			|player_animation_air
 			|player_add_animation
 			|player_get_animation
 			|player_set_animation
 			+Animation Lists
 				|sonic_animation_list
-				|miles_add_animations
-				|knuckles_add_animations
-				|classic_add_animations
 			|player_compile_animations
-		+Misc.
-			|player_set_input
-			|player_ring_loss
-			|player_set_damage
-			|player_get_item
+		+Collision
+			|player_collision_object
+			|player_collision_wall
+			|player_collision_floor
+			|player_collision_ceiling
+		+Wall
+			|player_wall_eject
+			|player_wall_push
+		+Movement
+			|player_movement_ground
+			|player_movement_air
+		+States
+			|player_set_state
+			|player_state_template
+			+Indexes
+				+Common
+					|player_state_idle
+					|player_state_turn
+					|player_state_run
+					|player_state_air
+					|player_state_jump
+					|player_state_look
+					|player_state_crouch
+					|player_state_spin_dash
+					|player_state_roll
+					|player_state_brake
+					|player_state_hurt
+					|player_state_death
+					|player_state_bound
+					+Auxiliary
+						|player_state_hammer
+				+Sonic
+					|sonic_skill_list
+					|sonic_state_skid
+					|sonic_state_homing
+		+Routines
+			|player_routine_land
+			|player_routine_shield
+			|player_routine_skill
+			|player_routine_homing
+		+Traits
+			|player_trait_debug
+			|classic_trait_clock_up
+		+Reactions
+			|player_reaction_sensor_layer
+			|player_reaction_ring
+			|player_reaction_checkpoint
+			|player_reaction_spring
+			|player_reaction_item_box
+			|player_reaction_enemy
+			|player_reaction_hint
+			|player_reaction_spike
+			|player_reaction_blockade
+		+Getters
 			|player_get_physics
+			|player_get_solids
+			|player_get_angle
+			|player_get_collision
+			|player_get_item
+		+Setters
+			|player_set_radii
+			|player_set_input
+			|player_set_ground
+			|player_set_cliff
+			|player_set_damage
+			|player_reset_air
+			|player_reset_spring
+			|player_reset_skill
+		+Misc.
+			|player_react
+			|player_inbounds
+			|player_rotate_mask
+			|player_slope_friction
+			|player_ring_loss
+			|player_brake_dust
+			|player_surface_splash
 			+Trail
 				|start_trail
 				|update_trail
 				|draw_trail
 	+Props
-		|prop_terrain_point
 		+Checkpoint
 			|checkpoint_set
 			|checkpoint_isset
@@ -228,10 +271,35 @@
 		+Top
 		+Bottom
 	+Actions (OLD)
-		|player_action_push_OLD
-		|player_action_hurt_OLD
 		+Sonic
 		+Miles
 		+Knuckles
 		+Amy
 		+Classic
+	+Collision
+		+Utilities
+			|player_terrain_point
+			|player_terrain_line
+			|player_obstacle_rectangle
+		|player_collision_semisolids
+		|player_collision_terrain
+		|player_collision_obstacle
+		|player_collision_prop_OLD
+		|player_collision_mode
+		|player_collision_wall_OLD
+		|player_collision_steps
+	+Angle
+	+GMS2
+		|collision_line_list
+		|collision_rectangle_list
+		|collision_point_list
+	+Handle
+		|player_handle_layer
+		|player_handle_ring
+		|player_handle_checkpoint
+		|player_handle_spring
+		|player_handle_item_box
+		|player_handle_badnik
+		|player_handle_hint
+|gravity_angle
+|script238

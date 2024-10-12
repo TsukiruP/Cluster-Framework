@@ -1,32 +1,57 @@
 /// player_routine_shield()
-//
+// Or barriers, for the nerds.
 
 // Disable shield:
 status_shield_allow = false;
 
-// Set state:
-player_set_state(player_state_jump);
+// Shield behavior:
+switch (status_shield)
+{
+    // Bubble:
+    case SHIELD_BUBBLE:
+        // Set speed:
+        x_speed = 0;
+        y_speed = 8;
 
-switch (status_shield) {
+        // Bound:
+        jump_bound = BOUND_SHIELD;
+
+        // Play sound:
+        sound_play_single("snd_shield_bubble_bound");
+
+        // Shield:
+        if (instance_exists(shield_handle))
+        {
+            with (shield_handle)
+            {
+                event_user(0);
+            }
+        }
+        break;
+
     // Fire:
     case SHIELD_FIRE:
         // Set speed:
         x_speed = 8 * image_xscale;
         y_speed = 0;
 
-        // Set timeline:
-        if (status_invin != INVIN_BUFF && instance_exists(shield_handle)) {
-            with (shield_handle) {
-                image_xscale = other.image_xscale;
-                timeline_set(ctl_shield_fire_dash);
-            }
-        }
-
         // Camera lag:
-        ctrl_camera.camera_lag_alarm = 16;
+        if (input_cpu == false)
+        {
+            ctrl_camera.camera_lag_alarm = 16;
+        }
 
         // Play sound:
         sound_play_single("snd_shield_fire_dash");
+
+        // Shield:
+        if (instance_exists(shield_handle))
+        {
+            with (shield_handle)
+            {
+                event_user(0);
+            }
+        }
         break;
 
     // Lightning:
@@ -34,21 +59,24 @@ switch (status_shield) {
         // Set speed:
         y_speed = -5.5;
 
-        // Jump special:
-        jump_special = true;
+        // Play sound:
+        sound_play_single("snd_shield_lightning_jump");
 
         // Sparks:
-        for (i = 0; i < 4; i += 1) {
+        for (i = 0; i < 4; i += 1)
+        {
             var spark_handle;
 
-            spark_handle         = instance_create(floor(x), floor(y), eff_basic);
+            spark_handle = instance_create(floor(x), floor(y), par_effect);
             spark_handle.e_speed = 2;
 
-            with (spark_handle) {
+            with (spark_handle)
+            {
                 ctl_initialize(ctl_shield_lightning_spark);
             }
 
-            switch (i) {
+            switch (i)
+            {
                 case 0:
                     spark_handle.angle = ANGLE_LEFT_UP;
                     break;
@@ -66,17 +94,24 @@ switch (status_shield) {
                     break;
             }
         }
-
-        // Play sound:
-        sound_play_single("snd_shield_lightning_jump");
         break;
+}
 
-    // Bubble;
-        case SHIELD_BUBBLE:
-            // Set speed:
-            x_speed = 0;
-            y_speed = 8;
+// Return:
+if (status_shield == SHIELD_BUBBLE)
+{
+    // Set state:
+    player_set_state(player_state_bound);
 
-            return player_set_state(player_state_bound);
-            break;
+    // Jump aux:
+    jump_aux = input_player[INP_AUX, CHECK_PRESSED];
+
+    return true;
+}
+else
+{
+    // Set animation:
+    player_set_animation("spin");
+
+    return player_set_state(player_state_jump, false);
 }

@@ -1,4 +1,4 @@
-sprite=spr_basic_test_water_fall_01
+sprite=spr_basic_test_water_fall
 visible=1
 solid=0
 persistent=0

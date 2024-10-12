@@ -3,7 +3,6 @@
 	|spr_transition_background
 	|fnt_system
 	+Title Card
-		+Default
 		|spr_title_card_banner
 		|spr_title_card_acts
 		|spr_title_card_load
@@ -30,9 +29,9 @@
 			+Idle
 				|spr_sonic_stand
 				|spr_sonic_stand_tag
-				+Balance
-					|spr_sonic_balance_front
-					|spr_sonic_balance_back
+				+Cliff
+					|spr_sonic_cliff_front
+					|spr_sonic_cliff_back
 				+Wait
 					|spr_sonic_wait_leader
 					|spr_sonic_wait_partner
@@ -43,7 +42,7 @@
 			+Turn
 				|spr_sonic_turn
 				|spr_sonic_turn_tag
-				|spr_sonic_turn_skid
+				|spr_sonic_turn_brake
 			+Run
 				|spr_sonic_run_0
 				|spr_sonic_run_1
@@ -68,10 +67,10 @@
 				|spr_sonic_roll
 				|spr_sonic_spin_flight
 				|spr_sonic_spin_fall
-			+Skid
-				|spr_sonic_skid
-				|spr_sonic_skid_fast
-				|spr_sonic_skid_tag
+			+Brake
+				|spr_sonic_brake
+				|spr_sonic_brake_fast
+				|spr_sonic_brake_tag
 			|spr_sonic_hurt
 			|spr_sonic_death
 			|spr_sonic_push
@@ -87,7 +86,10 @@
 				|spr_sonic_fly_carry
 				|spr_sonic_throw
 				|spr_sonic_glide_carry
+			|spr_sonic_hammer
 			|spr_sonic_insta
+			|spr_sonic_skid
+			|spr_sonic_air_dash
 		+Classic
 			|spr_classic_stand
 			|spr_classic_jog
@@ -100,56 +102,41 @@
 			|spr_classic_misc
 			|spr_classic_death
 	+Props
-		+Sensors
-			+Layer Sensors
-				|spr_sensor_layer_a
-				|spr_sensor_layer_b
-			+Platform Sensors
-				|spr_sensor_platform_left
-				|spr_sensor_platform_right
-				|spr_sensor_platform_up
-				|spr_sensor_platform_down
-		+Rings
-			|spr_ring
-			|spr_goal_ring
+		|spr_sensor_layer
+		|spr_ring
 		|spr_checkpoint
 		+Springs
-			|spr_spring_up
+			|spr_spring_vertical
+			|spr_spring_horizontal
+			|spr_spring_diagonal
 			|spr_spring_down
 			|spr_spring_left
-			|spr_spring_right
 			|spr_spring_left_up
 			|spr_spring_left_down
-			|spr_spring_right_up
 			|spr_spring_right_down
-		+Dash Panels
+		|spr_dash_panel
 		+Dash Rings
-			|spr_dash_ring_up
+			|spr_dash_ring_vertical
+			|spr_dash_ring_horizontal
+			|spr_dash_ring_diagonal
 			|spr_dash_ring_down
 			|spr_dash_ring_left
-			|spr_dash_ring_right
 			|spr_dash_ring_left_up
 			|spr_dash_ring_left_down
-			|spr_dash_ring_right_up
 			|spr_dash_ring_right_down
 			+Rainbow
+				|spr_rainbow_ring_vertical
+				|spr_rainbow_ring_horizontal
+				|spr_rainbow_ring_diagonal
 				|spr_rainbow_ring_left
-				|spr_rainbow_ring_right
-				|spr_rainbow_ring_up
 				|spr_rainbow_ring_down
 				|spr_rainbow_ring_left_up
 				|spr_rainbow_ring_left_down
-				|spr_rainbow_ring_right_up
 				|spr_rainbow_ring_right_down
 		+Item Box
 			|spr_item_box
 			|spr_item_icon
-		+Spikes
-			|spr_spike_up
-			|spr_spike_down
-			|spr_spike_left
-			|spr_spike_right
-		+Badniks
+		+Enemies
 			|spr_spinner
 		+Water
 			|spr_water_surface
@@ -160,15 +147,24 @@
 			+Omochao
 				|spr_omochao_idle
 				|spr_omochao_sonic
+		|spr_goal_ring
+	+Obstacles
+		+Spikes
+			|spr_spike_vertical
+			|spr_spike_horizontal
+		+Blockades
+			|spr_blockade_vertical
+			|spr_blockade_horizontal
 	+Effects
 		+Player
 			|spr_trail
 			|spr_spin_dash
 			|spr_spin_charge
-			|spr_skid
+			|spr_brake
 			|spr_drop_dash
 			|spr_debuff
-			|spr_homing_reticle
+			|spr_reticle
+			|spr_reticle_colors
 			|spr_character_arrow
 			|spr_tag_call
 		+Shields
@@ -181,15 +177,15 @@
 			|spr_shield_lightning_spark
 			|spr_shield_bubble_shell
 			|spr_shield_bubble_wave
-			|spr_shield_bubble_bounce
+			|spr_shield_bubble_bound
 			|spr_shield_invin
 		+Explosions
 			|spr_explosion_small
 			|spr_explosion_large
-			|spr_explosion_badnik
+			|spr_explosion_enemy
 			|spr_explosion_water
-		+Badniks
-			|spr_badnik_health
+		+Enemies
+			|spr_enemy_vitality
 		+Splashes
 			|spr_splash_0
 			|spr_splash_1
@@ -198,6 +194,7 @@
 			|spr_splash_4
 		+Misc.
 			|spr_ring_sparkle
+			|spr_blockade_debris
 +Stages
 	+Basic Test
 		+Collision
@@ -230,10 +227,11 @@
 			|spr_basic_test_collision_27
 			|spr_basic_test_collision_28
 			|spr_basic_test_collision_29
-	+Sunset Hill
+		+Decals
+			|spr_basic_test_water_fall
+	+Sunset Forest
 		+Collision
 		+Gimmicks
-			|spr_basic_test_water_fall_01
 			|spr_basic_test_water_fall_02
 			|spr_basic_test_water_fall_03
 +Trash
@@ -241,19 +239,13 @@
 	+Platforms
 	+Low
 	+High
-		|spr_basic_test_collision_high_01
 	+Masks
-		|mask_main
-		|mask_large
-		|mask_big
-		|mask_mid
 		|mask_small
 		|mask_dot
 		|mask_lines
 		|mask_edge_line
 		|mask_platform_fix
 		|mask_ledge
-	|spr_basic_test_collision_low_01
 	+Miles
 		+Default
 			|spr_miles_stand
@@ -372,3 +364,16 @@
 				|spr_knuckles_leap
 				|spr_knuckles_fly_carry
 	+Amy
+	+Sensors
+		+Layer Sensors
+			|spr_sensor_layer_b
+		+Platform Sensors
+			|spr_sensor_platform_left
+			|spr_sensor_platform_right
+			|spr_sensor_platform_up
+			|spr_sensor_platform_down
+	+Dash Panels
+	+Spikes
+		|spr_spike_down
+		|spr_spike_left
+		|spr_spike_right

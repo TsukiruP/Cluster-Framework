@@ -3,9 +3,11 @@
 
 var input_id, input_device;
 
-// Input id:
-input_id = argument[0];
+// Initialize:
+input_id     = argument0;
+input_device = DEV_USER;
 
+// Any fix:
 if (input_id == INP_ANY) {
     input_id = irandom_range(INP_UP, INP_HELP);
 }
@@ -13,8 +15,6 @@ if (input_id == INP_ANY) {
 // Set device:
 if (argument_count >= 2) {
     input_device = argument[1];
-} else {
-    input_device = DEV_USER;
 }
 
 // Keyboard:

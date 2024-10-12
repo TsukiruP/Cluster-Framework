@@ -8,42 +8,55 @@ applies_to=self
 
 event_inherited();
 
-// Main:
-main_left     = 21;
-main_right    = 19;
-main_top      = 17;
-main_bottom   = 16;
-
-main_offset_x = 0;
-main_offset_y = 31;
+// Hurtbox:
+set_hurtbox(21, 17, 19, 16, 0, 31);
 
 // Draw variables:
 draw_y = 0;
+#define Step_1
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Reset
+
+// Exit if the stage is paused or text is active:
+if (game_ispaused())
+{
+    exit;
+}
+
+player_handle = noone;
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
 applies_to=self
 */
-/// Animate
+/// Animation
 
 // Exit if the stage is paused:
-if (game_ispaused(ctrl_pause)) {
+if (game_ispaused(ctrl_pause))
+{
     exit;
 }
 
 // Match player:
-if (instance_exists(player_handle)) {
-    if (player_handle.hint_wanted == true) {
-        // Look down:
-        if (ctrl_text.text_clear == true && player_handle.animation_current == "look" && player_handle.animation_reverse == false) {
-            player_handle.animation_trigger = true;
-            player_handle.animation_reverse = true;
+if (instance_exists(player_handle))
+{
+    with (player_handle)
+    {
+        // Clear text:
+        if (ctrl_text.text_clear == true && animation_current == "look")
+        {
+            player_set_animation("look_end");
         }
 
-        // Clear text:
-        if (player_handle.hint_wanted == false) {
-            ctrl_text.text_clear = true;
+        // Reset hint:
+        if (ctrl_text.text_alpha[0] == 0 && animation_current == "stand")
+        {
+            hint_allow = true;
         }
     }
 }

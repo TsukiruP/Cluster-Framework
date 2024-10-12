@@ -8,11 +8,8 @@ applies_to=self
 
 event_inherited();
 
-// Depth:
-depth = 10;
-
-// Image speed:
-image_speed = 0;
+// Reaction:
+reaction_index = player_reaction_hint;
 
 // Player handle:
 player_handle = noone;
@@ -27,7 +24,8 @@ applies_to=self
 */
 /// Message
 
-switch (hint_id) {
+switch (hint_id)
+{
     default:
         text_set_message("This message is a test!");
 }

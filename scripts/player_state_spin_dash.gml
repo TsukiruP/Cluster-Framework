@@ -1,7 +1,8 @@
 /// player_state_spin_dash(phase)
 // Charge and Up.
 
-switch (argument0) {
+switch (argument0)
+{
     // Start:
     case STATE_START:
         // Charge:
@@ -10,39 +11,51 @@ switch (argument0) {
         // Play sound:
         sound_play_single("snd_spin_dash_charge");
 
+        // Set animation:
+        player_set_animation("spin_dash");
+
         // Dust:
-        with (instance_create(x, y, eff_spin_dash)) {
+        with (instance_create(x, y, eff_spin_dash))
+        {
             player_handle = other.id;
         }
         break;
 
     // Step:
     case STATE_STEP:
-        // Collision steps:
-        player_collision_steps();
-
-        // Changed:
-        if (state_changed == true) {
-            return false;
+        // Movement:
+        if (!player_movement_ground())
+        {
+            exit;
         }
 
-        // Air:
-        if (ground == false || (ground_angle >= 90 && ground_angle <= 270)) {
-            return player_set_state(player_state_air);
-        }
+        // Slide off:
+        if (relative_angle >= 45 && relative_angle <= 315)
+        {
+            // Fall:
+            if (relative_angle >= 90 && relative_angle <= 270)
+            {
+                return player_set_state(player_state_air);
+            }
+            else
+            {
+                input_lock_alarm = 30;
 
-        // Lock:
-        if (mode != 0) {
-            input_lock_alarm = 30;
-            return player_set_state(player_state_roll);
+                // Play sound:
+                sound_play_single("snd_roll");
+
+                return player_set_state(player_state_roll);
+            }
         }
 
         // Release:
-        if (input_player[INP_DOWN, CHECK_HELD] == false) {
-            g_speed = image_xscale * (8 + (spin_dash_charge div 2));
+        if (input_player[INP_DOWN, CHECK_HELD] == false)
+        {
+            x_speed = image_xscale * (8 + (spin_dash_charge div 2));
 
             // Camera lag:
-            if (input_cpu == false) {
+            if (input_cpu == false)
+            {
                 ctrl_camera.camera_lag_alarm = 16;
             }
 
@@ -56,14 +69,14 @@ switch (argument0) {
         }
 
         // Charge:
-        if (input_player[INP_JUMP, CHECK_PRESSED] == true) {
+        if (input_player[INP_JUMP, CHECK_PRESSED] == true)
+        {
             var sfx_spin_dash;
 
             spin_dash_charge = min(spin_dash_charge + 2, 8);
 
-            // Animation:
+            // Set animation:
             player_set_animation("spin_charge");
-            animation_reload = true;
 
             // Play sound:
             sfx_spin_dash = sound_play_single("snd_spin_dash_charge");
@@ -71,7 +84,8 @@ switch (argument0) {
         }
 
         // Atrophy:
-        if (spin_dash_charge > 0) {
+        if (spin_dash_charge > 0)
+        {
             spin_dash_charge *= 0.96875;
         }
         break;

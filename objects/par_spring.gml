@@ -5,11 +5,8 @@ action_id=603
 applies_to=self
 */
 /// Spring Initialization
-
+/*
 event_inherited();
-
-// Depth:
-depth = 10;
 
 // Image speed:
 image_speed = 0;
@@ -31,7 +28,7 @@ action_id=603
 applies_to=self
 */
 /// SFX
-
+/*
 if (spring_sfx > 0) {
     spring_sfx -= 1;
 }
@@ -42,7 +39,7 @@ action_id=603
 applies_to=self
 */
 /// Animate
-
+/*
 // Exit if the game is paused or the object is a dash/rainbow ring:
 if (game_ispaused(ctrl_pause)|| object_is_ancestor(self.object_index, par_dash_ring)) {
     exit;
