@@ -107,5 +107,3 @@ draw_self();
 
 // Collision:
 event_inherited();
-
-draw_text(x, y, string(object_is_child_of(par_obstacle)));
