@@ -39,3 +39,10 @@ obj_ring,1056,560,8E8077FF,0,1,1,4294967295,0,0
 obj_ring,1080,560,65DBACBA,0,1,1,4294967295,0,0
 obj_ring,1032,560,171AED67,0,1,1,4294967295,0,0
 obj_basic_test_collision_01,864,912,A2B77DAD,0,1,1,4294967295,0,0
+obj_basic_test_collision_03,1344,864,DD4F60BE,0,1,1,4294967295,0,0
+obj_basic_test_collision_18,1440,768,9FFBAC88,0,1,1,4294967295,0,0
+obj_basic_test_collision_20,1440,672,5EA16AC2,0,1,1,4294967295,0,0
+obj_basic_test_collision_21,1536,672,C06C5DAC,0,1,1,4294967295,0,0
+obj_basic_test_collision_19,1536,768,95C5C988,0,1,1,4294967295,0,0
+obj_basic_test_collision_03,1440,864,61B92A0F,0,1,1,4294967295,0,0
+obj_basic_test_collision_03,1536,864,5951E45A,0,1,1,4294967295,0,0
