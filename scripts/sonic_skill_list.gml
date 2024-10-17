@@ -1,54 +1,6 @@
 /// sonic_skill_list(id)
 // Manages all of Sonic's actions.
 
-var homing_handle_temp;
-
-// Reset homing:
-homing_handle_temp = homing_handle;
-homing_handle = noone;
-
-// Disable homing:
-if (input_player[INP_ALT, CHECK_HELD] == false)
-{
-    if ((global.skill_sonic[SONIC_HOMING_STYLE] >= HOMING_ADVENTURE && on_ground == false) || global.skill_sonic[SONIC_HOMING_STYLE] == HOMING_FRONTIERS)
-    {
-        var homing_candidate, homing_fail, homing_solid;
-        
-        for (i = 0; i <= 2; i += 1)
-        {
-            homing_candidate = instance_nearest_dir_x(x, y, par_target, image_xscale, homing_range, i + 1);
-            
-            if (instance_exists(homing_candidate))
-            {
-                // Continue if the candidate isn't targetable:
-                if (homing_candidate.targetable == false)
-                {
-                    continue;
-                }
-
-                // Fail when interacting with solids:
-                homing_fail = false;
-                homing_solid = collision_line(x, y, homing_candidate.x, homing_candidate.y, par_terrain, true, true);
-
-                if (instance_exists(homing_solid))
-                {
-                    if ((y < homing_candidate.y && homing_solid.semisolid) || homing_solid.collision_layer == -1 || collision_layer == homing_solid.collision_layer)
-                    {
-                        homing_fail = true;
-                    }
-                }
-
-                // Set homing handle:
-                if (homing_fail == false)
-                {
-                    homing_handle = homing_candidate;
-                    break;
-                }
-            }
-        }
-    }
-}
-
 // Homing attack:
 if (((global.skill_sonic[SONIC_HOMING_STYLE] == HOMING_ADVENTURE && input_player[INP_JUMP, CHECK_PRESSED] == true) || (global.skill_sonic[SONIC_HOMING_STYLE] >= HOMING_UNLEASHED && input_player[INP_AUX, CHECK_PRESSED] == true)) &&
     instance_exists(homing_handle))

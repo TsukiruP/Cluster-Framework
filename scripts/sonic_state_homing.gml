@@ -33,6 +33,12 @@ switch (argument0)
         {
             return true;
         }
+
+        // Reset:
+        if (!instance_exists(homing_handle))
+        {
+            player_set_state(player_state_jump, false);
+        }
         break;
 
     // Finish:

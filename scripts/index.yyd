@@ -236,4 +236,4 @@ ctl_sonic_air_dash
 player_reset_spring
 ctl_reticle
 player_collision_object
-script238
+sonic_trait_reticle

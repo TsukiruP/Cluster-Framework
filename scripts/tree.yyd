@@ -190,6 +190,10 @@
 		+Movement
 			|player_movement_ground
 			|player_movement_air
+		+Traits
+			|player_trait_debug
+			|sonic_trait_reticle
+			|classic_trait_clock_up
 		+States
 			|player_set_state
 			|player_state_template
@@ -218,11 +222,7 @@
 			|player_routine_land
 			|player_routine_shield
 			|player_routine_skill
-			|script238
 			|sonic_routine_homing
-		+Traits
-			|player_trait_debug
-			|classic_trait_clock_up
 		+Reactions
 			|player_reaction_sensor_layer
 			|player_reaction_ring

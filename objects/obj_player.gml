@@ -108,7 +108,6 @@ character_id = CHAR_SONIC;
 air_dash_allow = true;
 
 homing_handle = noone;
-homing_handle_temp = homing_handle;
 homing_range = 128;
 homing_speed = 8;
 
@@ -394,13 +393,17 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Homing Reset
+/// Traits
 
-if (state_current != sonic_state_homing)
+// Exit if the stage is paused or text is active:
+if (game_ispaused())
 {
-    homing_handle_temp = homing_handle;
-    homing_handle = noone;
+    exit;
 }
+
+player_trait_debug();
+sonic_trait_reticle();
+classic_trait_clock_up();
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -425,21 +428,6 @@ if (script_exists(state_current))
         state_changed = false;
     }
 }
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Traits
-
-// Exit if the stage is paused or text is active:
-if (game_ispaused())
-{
-    exit;
-}
-
-player_trait_debug();
-classic_trait_clock_up();
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
