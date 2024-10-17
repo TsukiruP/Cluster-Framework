@@ -218,7 +218,8 @@
 			|player_routine_land
 			|player_routine_shield
 			|player_routine_skill
-			|player_routine_homing
+			|script238
+			|sonic_routine_homing
 		+Traits
 			|player_trait_debug
 			|classic_trait_clock_up
@@ -302,4 +303,3 @@
 		|player_handle_badnik
 		|player_handle_hint
 |gravity_angle
-|script238

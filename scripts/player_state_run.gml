@@ -84,12 +84,6 @@ switch (argument0)
             exit;
         }
 
-        // Changed:
-        if (state_changed == true)
-        {
-            return false;
-        }
-
         // Fall:
         if (on_ground == false)
         {

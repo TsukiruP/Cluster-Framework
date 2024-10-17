@@ -224,7 +224,7 @@ ctl_spring_vertical
 ctl_spring_horizontal
 player_reaction_enemy
 ctl_sonic_omochao_end
-player_routine_homing
+sonic_routine_homing
 player_reset_skill
 player_reaction_spike
 player_animation_run

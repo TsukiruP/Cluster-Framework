@@ -108,6 +108,7 @@ character_id = CHAR_SONIC;
 air_dash_allow = true;
 
 homing_handle = noone;
+homing_handle_temp = homing_handle;
 homing_range = 128;
 homing_speed = 8;
 
@@ -388,6 +389,18 @@ if (game_ispaused(ctrl_pause))
 
 // Animation core:
 player_animation_core();
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Homing Reset
+
+if (state_current != sonic_state_homing)
+{
+    homing_handle_temp = homing_handle;
+    homing_handle = noone;
+}
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603

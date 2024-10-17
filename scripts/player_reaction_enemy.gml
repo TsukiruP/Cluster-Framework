@@ -44,7 +44,7 @@ if ((collision & COLL_HURT) || ((collision & COLL_HURT_RADIUS) && status_invin =
         global.game_score += 100 + (400 * reaction_handle.class);
 
         // Homing:
-        player_routine_homing();
+        sonic_routine_homing();
 
         // Destroy:
         with (reaction_handle)

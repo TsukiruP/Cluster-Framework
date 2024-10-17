@@ -12,7 +12,7 @@ if ((collision & COLL_HURT) || (collision & COLL_HURT_RADIUS))
     if (input_cpu == false || (input_cpu == true && input_cpu_alarm > 0))
     {
         // Homing:
-        player_routine_homing();
+        sonic_routine_homing();
 
         // Break:
         with (reaction_handle)
