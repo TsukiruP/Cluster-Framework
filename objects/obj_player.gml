@@ -393,22 +393,6 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Traits
-
-// Exit if the stage is paused or text is active:
-if (game_ispaused())
-{
-    exit;
-}
-
-player_trait_debug();
-sonic_trait_reticle();
-classic_trait_clock_up();
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
 /// State
 
 // Exit if the stage is paused or text is active:
@@ -428,6 +412,22 @@ if (script_exists(state_current))
         state_changed = false;
     }
 }
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Traits
+
+// Exit if the stage is paused or text is active:
+if (game_ispaused())
+{
+    exit;
+}
+
+player_trait_debug();
+sonic_trait_reticle();
+classic_trait_clock_up();
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
