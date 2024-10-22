@@ -1,5 +1,5 @@
 caption=
-width=1632
+width=1724
 height=1536
 snap_x=8
 snap_y=8
