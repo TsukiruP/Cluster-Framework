@@ -82,31 +82,31 @@ global.setting_input_key[INP_ACCEPT] = ini_read_real("input", "key_accept", DEFA
 global.setting_input_key[INP_CANCEL] = ini_read_real("input", "key_cancel", DEFAULT_KEY_CANCEL);
 global.setting_input_key[INP_HELP] = ini_read_real("input", "key_help", DEFAULT_KEY_HELP);
 
-// Read/create joystick settings:
+// Read/create gamepad settings:
 for (i = 0; i < global.player_count; i += 1)
 {
-    global.setting_input_joy[i, INP_UP] = DEFAULT_JOY_UP;
-    global.setting_input_joy[i, INP_DOWN] = DEFAULT_JOY_DOWN;
-    global.setting_input_joy[i, INP_LEFT] = DEFAULT_JOY_LEFT;
-    global.setting_input_joy[i, INP_RIGHT] = DEFAULT_JOY_RIGHT;
+    global.setting_input_pad[i, INP_UP] = DEFAULT_PAD_UP;
+    global.setting_input_pad[i, INP_DOWN] = DEFAULT_PAD_DOWN;
+    global.setting_input_pad[i, INP_LEFT] = DEFAULT_PAD_LEFT;
+    global.setting_input_pad[i, INP_RIGHT] = DEFAULT_PAD_RIGHT;
 
-    global.setting_input_joy[i, INP_JUMP] = ini_read_real("input", "joy" + string(i) + "_jump", DEFAULT_JOY_JUMP);
-    global.setting_input_joy[i, INP_AUX] = ini_read_real("input", "joy" + string(i) + "_aux", DEFAULT_JOY_AUX);
-    global.setting_input_joy[i, INP_SWAP] = ini_read_real("input", "joy" + string(i) + "_swap", DEFAULT_JOY_SWAP);
-    global.setting_input_joy[i, INP_SUPER] = ini_read_real("input", "joy" + string(i) + "_super", DEFAULT_JOY_SUPER);
-    global.setting_input_joy[i, INP_TAG] = ini_read_real("input", "joy" + string(i) + "_tag", DEFAULT_JOY_TAG);
-    global.setting_input_joy[i, INP_ALT] = ini_read_real("input", "joy" + string(i) + "_alt", DEFAULT_JOY_ALT);
+    global.setting_input_pad[i, INP_JUMP] = ini_read_real("input", "joy" + string(i) + "_jump", DEFAULT_PAD_JUMP);
+    global.setting_input_pad[i, INP_AUX] = ini_read_real("input", "joy" + string(i) + "_aux", DEFAULT_PAD_AUX);
+    global.setting_input_pad[i, INP_SWAP] = ini_read_real("input", "joy" + string(i) + "_swap", DEFAULT_PAD_SWAP);
+    global.setting_input_pad[i, INP_SUPER] = ini_read_real("input", "joy" + string(i) + "_super", DEFAULT_PAD_SUPER);
+    global.setting_input_pad[i, INP_TAG] = ini_read_real("input", "joy" + string(i) + "_tag", DEFAULT_PAD_TAG);
+    global.setting_input_pad[i, INP_ALT] = ini_read_real("input", "joy" + string(i) + "_alt", DEFAULT_PAD_ALT);
 
-    global.setting_input_joy[i, INP_START] = DEFAULT_JOY_START;
-    global.setting_input_joy[i, INP_SELECT] = DEFAULT_JOY_SELECT;
-    global.setting_input_joy[i, INP_ACCEPT] = DEFAULT_JOY_ACCEPT;
-    global.setting_input_joy[i, INP_CANCEL] = DEFAULT_JOY_CANCEL;
-    global.setting_input_joy[i, INP_HELP] = DEFAULT_JOY_HELP;
+    global.setting_input_pad[i, INP_START] = DEFAULT_PAD_START;
+    global.setting_input_pad[i, INP_SELECT] = DEFAULT_PAD_SELECT;
+    global.setting_input_pad[i, INP_ACCEPT] = DEFAULT_PAD_ACCEPT;
+    global.setting_input_pad[i, INP_CANCEL] = DEFAULT_PAD_CANCEL;
+    global.setting_input_pad[i, INP_HELP] = DEFAULT_PAD_HELP;
 
     // Other:
-    global.setting_input_deadzone[i] = ini_read_real("input", "joy" + string(i) + "_deadzone", DEFAULT_JOY_DEADZONE);
-    global.setting_input_confirm[i] = ini_read_real("input", "joy" + string(i) + "_confirm", DEFAULT_JOY_CONFIRM);
-    global.setting_input_style[i] = ini_read_real("input", "joy" + string(i) + "_style", DEFAULT_JOY_STYLE);
+    global.setting_input_deadzone[i] = ini_read_real("input", "joy" + string(i) + "_deadzone", DEFAULT_PAD_DEADZONE);
+    global.setting_input_confirm[i] = ini_read_real("input", "joy" + string(i) + "_confirm", DEFAULT_PAD_CONFIRM);
+    global.setting_input_style[i] = ini_read_real("input", "joy" + string(i) + "_style", DEFAULT_PAD_STYLE);
 }
 
 // Read/create misc. input settings:
@@ -158,12 +158,12 @@ for (i = INP_UP; i <= INP_HELP; i += 1)
     global.input_key[i] = global.setting_input_key[i];
 }
 
-// Apply joystick settings:
+// Apply gamepad settings:
 for (i = 0; i < global.player_count; i += 1)
 {
     for (j = INP_UP; j <= INP_HELP; j += 1)
     {
-        global.input_joy[i, j] = global.setting_input_joy[i, j];
+        global.input_pad[i, j] = global.setting_input_pad[i, j];
     }
 
     // Other settings:

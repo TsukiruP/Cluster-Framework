@@ -29,22 +29,22 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Joystick Initialization
+/// Gamepad Initialization
 
-// Joystick devices:
+// Gamepad devices:
 for (i = 0; i < global.player_count; i += 1)
 {
-    joystick_device[i, 0] = -1;
-    joystick_device[i, 1] = -1;
+    gamepad_device[i, 0] = -1;
+    gamepad_device[i, 1] = -1;
 }
 
-// Joystick buttons:
-for (i = JOY_FACE1; i <= JOY_DOWN; i += 1)
+// Gamepad buttons:
+for (i = PAD_FACE1; i <= PAD_DOWN; i += 1)
 {
-    joystick_button[i] = -1;
+    gamepad_button[i] = -1;
 }
 
-// Joystick inputs::
+// Gamepad inputs:
 for (i = 0; i < global.player_count; i += 1)
 {
     for (j = INP_UP; j <= INP_HELP; j += 1)
@@ -55,16 +55,16 @@ for (i = 0; i < global.player_count; i += 1)
             if (j <= INP_RIGHT)
             {
                 // D-pad inputs:
-                joystick_dpad[j, k + (i * 3)] = false;
+                gamepad_dpad[j, k + (i * 3)] = false;
 
                 // Analog stick inputs:
-                joystick_analog[j, k + (i * 3)] = false;
+                gamepad_analog[j, k + (i * 3)] = false;
             }
 
             // Trigger inputs:
             if (j <= TRG_RIGHT)
             {
-                joystick_trigger[j, k + (i * 3)] = false;
+                gamepad_trigger[j, k + (i * 3)] = false;
             }
         }
     }
@@ -77,108 +77,108 @@ applies_to=self
 /// Button Initialization
 
 // Xbox buttons:
-joystick_button[JOY_FACE1, 0] = 0;
-joystick_button[JOY_FACE2, 0] = 1;
-joystick_button[JOY_FACE3, 0] = 2;
-joystick_button[JOY_FACE4, 0] = 3;
-joystick_button[JOY_BUMPERL, 0] = 4;
-joystick_button[JOY_BUMPERR, 0] = 5;
-joystick_button[JOY_TRIGGERL, 0] = 4;
-joystick_button[JOY_TRIGGERR, 0] = 5;
-joystick_button[JOY_SELECT, 0] = 6;
-joystick_button[JOY_START, 0] = 7;
-joystick_button[JOY_STICKL, 0] = 8;
-joystick_button[JOY_STICKR, 0] = 9;
-joystick_button[JOY_HOME, 0] = 10;
-joystick_button[JOY_SHARE, 0] = 11;
+gamepad_button[PAD_FACE1, 0] = 0;
+gamepad_button[PAD_FACE2, 0] = 1;
+gamepad_button[PAD_FACE3, 0] = 2;
+gamepad_button[PAD_FACE4, 0] = 3;
+gamepad_button[PAD_BUMPERL, 0] = 4;
+gamepad_button[PAD_BUMPERR, 0] = 5;
+gamepad_button[PAD_TRIGGERL, 0] = 4;
+gamepad_button[PAD_TRIGGERR, 0] = 5;
+gamepad_button[PAD_SELECT, 0] = 6;
+gamepad_button[PAD_START, 0] = 7;
+gamepad_button[PAD_STICKL, 0] = 8;
+gamepad_button[PAD_STICKR, 0] = 9;
+gamepad_button[PAD_HOME, 0] = 10;
+gamepad_button[PAD_SHARE, 0] = 11;
 
 // DualSense buttons:
-joystick_button[JOY_FACE1, 1] = 0;
-joystick_button[JOY_FACE2, 1] = 1;
-joystick_button[JOY_FACE3, 1] = 2;
-joystick_button[JOY_FACE4, 1] = 3;
-joystick_button[JOY_BUMPERL, 1] = 9;
-joystick_button[JOY_BUMPERR, 1] = 10;
-joystick_button[JOY_TRIGGERL, 1] = 4;
-joystick_button[JOY_TRIGGERR, 1] = 5;
-joystick_button[JOY_SELECT, 1] = 15;
-joystick_button[JOY_START, 1] = 6;
-joystick_button[JOY_STICKL, 1] = 7;
-joystick_button[JOY_STICKR, 1] = 8;
-joystick_button[JOY_LEFT, 1] = 13;
-joystick_button[JOY_RIGHT, 1] = 14;
-joystick_button[JOY_UP, 1] = 11;
-joystick_button[JOY_DOWN, 1] = 12;
-joystick_button[JOY_HOME, 1] = 5;
-joystick_button[JOY_SHARE, 1] = 4;
+gamepad_button[PAD_FACE1, 1] = 0;
+gamepad_button[PAD_FACE2, 1] = 1;
+gamepad_button[PAD_FACE3, 1] = 2;
+gamepad_button[PAD_FACE4, 1] = 3;
+gamepad_button[PAD_BUMPERL, 1] = 9;
+gamepad_button[PAD_BUMPERR, 1] = 10;
+gamepad_button[PAD_TRIGGERL, 1] = 4;
+gamepad_button[PAD_TRIGGERR, 1] = 5;
+gamepad_button[PAD_SELECT, 1] = 15;
+gamepad_button[PAD_START, 1] = 6;
+gamepad_button[PAD_STICKL, 1] = 7;
+gamepad_button[PAD_STICKR, 1] = 8;
+gamepad_button[PAD_LEFT, 1] = 13;
+gamepad_button[PAD_RIGHT, 1] = 14;
+gamepad_button[PAD_UP, 1] = 11;
+gamepad_button[PAD_DOWN, 1] = 12;
+gamepad_button[PAD_HOME, 1] = 5;
+gamepad_button[PAD_SHARE, 1] = 4;
 
 // Pro Controller buttons:
-joystick_button[JOY_FACE1, 2] = 1;
-joystick_button[JOY_FACE2, 2] = 0;
-joystick_button[JOY_FACE3, 2] = 3;
-joystick_button[JOY_FACE4, 2] = 2;
-joystick_button[JOY_BUMPERL, 2] = 9;
-joystick_button[JOY_BUMPERR, 2] = 10;
-joystick_button[JOY_TRIGGERL, 2] = 4;
-joystick_button[JOY_TRIGGERR, 2] = 5;
-joystick_button[JOY_SELECT, 2] = 4;
-joystick_button[JOY_START, 2] = 6;
-joystick_button[JOY_STICKL, 2] = 7;
-joystick_button[JOY_STICKR, 2] = 8;
-joystick_button[JOY_LEFT, 2] = 13;
-joystick_button[JOY_RIGHT, 2] = 14;
-joystick_button[JOY_UP, 2] = 11;
-joystick_button[JOY_DOWN, 2] = 12;
-joystick_button[JOY_HOME, 2] = 5;
-joystick_button[JOY_SHARE, 2] = 15;
+gamepad_button[PAD_FACE1, 2] = 1;
+gamepad_button[PAD_FACE2, 2] = 0;
+gamepad_button[PAD_FACE3, 2] = 3;
+gamepad_button[PAD_FACE4, 2] = 2;
+gamepad_button[PAD_BUMPERL, 2] = 9;
+gamepad_button[PAD_BUMPERR, 2] = 10;
+gamepad_button[PAD_TRIGGERL, 2] = 4;
+gamepad_button[PAD_TRIGGERR, 2] = 5;
+gamepad_button[PAD_SELECT, 2] = 4;
+gamepad_button[PAD_START, 2] = 6;
+gamepad_button[PAD_STICKL, 2] = 7;
+gamepad_button[PAD_STICKR, 2] = 8;
+gamepad_button[PAD_LEFT, 2] = 13;
+gamepad_button[PAD_RIGHT, 2] = 14;
+gamepad_button[PAD_UP, 2] = 11;
+gamepad_button[PAD_DOWN, 2] = 12;
+gamepad_button[PAD_HOME, 2] = 5;
+gamepad_button[PAD_SHARE, 2] = 15;
 #define Step_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
 applies_to=self
 */
-/// Joystick Registration
+/// Gamepad Registration
 
-// Find joysticks:
+// Find Gamepads:
 if (joystick_found())
 {
     // Set seeking devices:
     for (i = 0; i < global.player_count; i += 1)
     {
-        // Check if current joystick has been removed:
-        if (joystick_device[i, 0] > joystick_count() - 1)
+        // Check if current gamepad has been removed:
+        if (gamepad_device[i, 0] > joystick_count() - 1)
         {
-            joystick_device[i, 0] = -1;
+            gamepad_device[i, 0] = -1;
         }
 
-        // Check current joystick is set to seeking:
-        if (joystick_device[i, 0] == -1)
+        // Check current gamepad is set to seeking:
+        if (gamepad_device[i, 0] == -1)
         {
-            // Check there's enough joysticks:
+            // Check there's enough gamepads:
             if (joystick_count() > 0)
             {
-                // Iterate through currently connected joysticks:
+                // Iterate through currently connected gamepads:
                 for (j = 0; j < joystick_count(); j += 1)
                 {
-                    var joystick_available;
+                    var gamepad_available;
                     
-                    joystick_available = true;
+                    gamepad_available = true;
                     
-                    // Iterate through every registered joysticks:
+                    // Iterate through every registered gamepads:
                     for (k = 0; k < global.player_count; k += 1)
                     {
                         
                         // If the device is already registered, move on:
-                        if (joystick_device[k, 0] == j)
+                        if (gamepad_device[k, 0] == j)
                         {
-                            joystick_available = false;
+                            gamepad_available = false;
                         }
                     }
                     
                     // Register the device:
-                    if (joystick_available = true)
+                    if (gamepad_available = true)
                     {
-                        joystick_device[i, 0] = j;
+                        gamepad_device[i, 0] = j;
                         break;
                     }
                 }
@@ -192,19 +192,19 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Joystick Layout
+/// Gamepad Layout
 
 // Update device buttons:
 for (i = 0; i < global.player_count; i += 1)
 {
-    // Check if the current joystick exists:
-    if (joystick_device[i, 0] > -1)
+    // Check if the current gamepad exists:
+    if (gamepad_device[i, 0] > -1)
     {
-        // Check if the current joystick has a POV/D-Pad:
+        // Check if the current gamepad has a POV/D-Pad:
         if (joystick_has_pov(i))
         {
             // Set to Xbox layout:
-            joystick_device[i, 1] = 0;
+            gamepad_device[i, 1] = 0;
         }
 
         // Other layouts:
@@ -214,12 +214,12 @@ for (i = 0; i < global.player_count; i += 1)
             {
                 // Pro Controller:
                 case "Nintendo Switch Pro Controller":
-                    joystick_device[i, 1] = 2;
+                    gamepad_device[i, 1] = 2;
                     break;
 
                 // DualShock:
                 default:
-                    joystick_device[i, 1] = 1;
+                    gamepad_device[i, 1] = 1;
             }
         }
     }
@@ -229,7 +229,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Joystick Confirm
+/// Gamepad Confirm
 
 // Update accept format:
 for (i = 0; i < global.player_count; i += 1)
@@ -237,15 +237,15 @@ for (i = 0; i < global.player_count; i += 1)
     // Nintendo accept:
     if (global.input_confirm[i] == 1)
     {
-        global.input_joy[i, INP_ACCEPT] = JOY_FACE2;
-        global.input_joy[i, INP_CANCEL] = JOY_FACE1;
+        global.input_pad[i, INP_ACCEPT] = PAD_FACE2;
+        global.input_pad[i, INP_CANCEL] = PAD_FACE1;
     }
 
     // Xbox accept:
     else
     {
-        global.input_joy[i, INP_ACCEPT] = JOY_FACE1;
-        global.input_joy[i, INP_CANCEL] = JOY_FACE2;
+        global.input_pad[i, INP_ACCEPT] = PAD_FACE1;
+        global.input_pad[i, INP_CANCEL] = PAD_FACE2;
     }
 }
 /*"/*'/**//* YYD ACTION
@@ -257,33 +257,33 @@ applies_to=self
 
 for (i = 0; i < global.player_count; i += 1)
 {
-    var joystick_id;
+    var gamepad_id;
 
-    // Joystick id:
-    joystick_id = joystick_device[i, 0];
+    // Gamepad id:
+    gamepad_id = gamepad_device[i, 0];
 
-    if (joystick_id > -1)
+    if (gamepad_id > -1)
     {
         // Read POV:
-        if (joystick_has_pov(joystick_id))
+        if (joystick_has_pov(gamepad_id))
         {
             // Pressed:
-            joystick_dpad[INP_UP, CHECK_PRESSED + (i * 3)] = (joystick_pov_y(joystick_id) == -1 && joystick_dpad[INP_UP, CHECK_HELD + (i * 3)] == false);
-            joystick_dpad[INP_DOWN, CHECK_PRESSED + (i * 3)] = (joystick_pov_y(joystick_id) == 1 && joystick_dpad[INP_DOWN, CHECK_HELD + (i * 3)] == false);
-            joystick_dpad[INP_LEFT, CHECK_PRESSED + (i * 3)] = (joystick_pov_x(joystick_id) == -1 && joystick_dpad[INP_LEFT, CHECK_HELD + (i * 3)] == false);
-            joystick_dpad[INP_RIGHT, CHECK_PRESSED + (i * 3)] = (joystick_pov_x(joystick_id) == 1 && joystick_dpad[INP_RIGHT, CHECK_HELD + (i * 3)] == false);
+            gamepad_dpad[INP_UP, CHECK_PRESSED + (i * 3)] = (joystick_pov_y(gamepad_id) == -1 && gamepad_dpad[INP_UP, CHECK_HELD + (i * 3)] == false);
+            gamepad_dpad[INP_DOWN, CHECK_PRESSED + (i * 3)] = (joystick_pov_y(gamepad_id) == 1 && gamepad_dpad[INP_DOWN, CHECK_HELD + (i * 3)] == false);
+            gamepad_dpad[INP_LEFT, CHECK_PRESSED + (i * 3)] = (joystick_pov_x(gamepad_id) == -1 && gamepad_dpad[INP_LEFT, CHECK_HELD + (i * 3)] == false);
+            gamepad_dpad[INP_RIGHT, CHECK_PRESSED + (i * 3)] = (joystick_pov_x(gamepad_id) == 1 && gamepad_dpad[INP_RIGHT, CHECK_HELD + (i * 3)] == false);
 
             // Released:
-            joystick_dpad[INP_UP, CHECK_RELEASED + (i * 3)] = (joystick_pov_y(joystick_id) != -1 && joystick_dpad[INP_UP, CHECK_HELD + (i * 3)] == true);
-            joystick_dpad[INP_DOWN, CHECK_RELEASED + (i * 3)] = (joystick_pov_y(joystick_id) != 1 && joystick_dpad[INP_DOWN, CHECK_HELD + (i * 3)] == true);
-            joystick_dpad[INP_LEFT, CHECK_RELEASED + (i * 3)] = (joystick_pov_x(joystick_id) != -1 && joystick_dpad[INP_LEFT, CHECK_HELD + (i * 3)] == true);
-            joystick_dpad[INP_RIGHT, CHECK_RELEASED + (i * 3)] = (joystick_pov_x(joystick_id) != 1 && joystick_dpad[INP_RIGHT, CHECK_HELD + (i * 3)] == true);
+            gamepad_dpad[INP_UP, CHECK_RELEASED + (i * 3)] = (joystick_pov_y(gamepad_id) != -1 && gamepad_dpad[INP_UP, CHECK_HELD + (i * 3)] == true);
+            gamepad_dpad[INP_DOWN, CHECK_RELEASED + (i * 3)] = (joystick_pov_y(gamepad_id) != 1 && gamepad_dpad[INP_DOWN, CHECK_HELD + (i * 3)] == true);
+            gamepad_dpad[INP_LEFT, CHECK_RELEASED + (i * 3)] = (joystick_pov_x(gamepad_id) != -1 && gamepad_dpad[INP_LEFT, CHECK_HELD + (i * 3)] == true);
+            gamepad_dpad[INP_RIGHT, CHECK_RELEASED + (i * 3)] = (joystick_pov_x(gamepad_id) != 1 && gamepad_dpad[INP_RIGHT, CHECK_HELD + (i * 3)] == true);
 
             // Held:
-            joystick_dpad[INP_UP, CHECK_HELD + (i * 3)] = (joystick_pov_y(joystick_id) == -1);
-            joystick_dpad[INP_DOWN, CHECK_HELD + (i * 3)] = (joystick_pov_y(joystick_id) == 1);
-            joystick_dpad[INP_LEFT, CHECK_HELD + (i * 3)] = (joystick_pov_x(joystick_id) == -1);
-            joystick_dpad[INP_RIGHT, CHECK_HELD + (i * 3)] = (joystick_pov_x(joystick_id) == 1);
+            gamepad_dpad[INP_UP, CHECK_HELD + (i * 3)] = (joystick_pov_y(gamepad_id) == -1);
+            gamepad_dpad[INP_DOWN, CHECK_HELD + (i * 3)] = (joystick_pov_y(gamepad_id) == 1);
+            gamepad_dpad[INP_LEFT, CHECK_HELD + (i * 3)] = (joystick_pov_x(gamepad_id) == -1);
+            gamepad_dpad[INP_RIGHT, CHECK_HELD + (i * 3)] = (joystick_pov_x(gamepad_id) == 1);
         }
 
         // Read buttons:
@@ -292,13 +292,13 @@ for (i = 0; i < global.player_count; i += 1)
             for (j = INP_UP; j <= INP_RIGHT; j += 1)
             {
                 // Pressed:
-                joystick_dpad[j, CHECK_PRESSED + (i * 3)] = joystick_check_button_pressed(device_id, joystick_button[JOY_LEFT + j, joystick_device[i, 1]]);
+                gamepad_dpad[j, CHECK_PRESSED + (i * 3)] = joystick_check_button_pressed(device_id, gamepad_button[PAD_LEFT + j, gamepad_device[i, 1]]);
 
                 // Released:
-                joystick_dpad[j, CHECK_RELEASED + (i * 3)] = joystick_check_button_released(device_id, joystick_button[JOY_LEFT + j, joystick_device[i, 1]]);
+                gamepad_dpad[j, CHECK_RELEASED + (i * 3)] = joystick_check_button_released(device_id, gamepad_button[PAD_LEFT + j, gamepad_device[i, 1]]);
 
                 // Held:
-                joystick_dpad[j, CHECK_HELD + (i * 3)] = joystick_check_button(device_id, joystick_button[JOY_LEFT + j, joystick_device[i, 1]]);
+                gamepad_dpad[j, CHECK_HELD + (i * 3)] = joystick_check_button(device_id, gamepad_button[PAD_LEFT + j, gamepad_device[i, 1]]);
             }
         }
     }
@@ -310,7 +310,7 @@ for (i = 0; i < global.player_count; i += 1)
         {
             for (k = CHECK_PRESSED; k <= CHECK_HELD; k += 1)
             {
-                joystick_dpad[j, k + (i * 3)] = false;
+                gamepad_dpad[j, k + (i * 3)] = false;
             }
         }
     }
@@ -324,34 +324,34 @@ applies_to=self
 
 for (i = 0; i < global.player_count; i += 1)
 {
-    var joystick_id;
+    var gamepad_id;
 
-    // Joystick id:
-    joystick_id = joystick_device[i, 0];
+    // Gamepad id:
+    gamepad_id = gamepad_device[i, 0];
 
     // Read analog values:
-    if (joystick_id > -1 && global.input_deadzone[i] != 0)
+    if (gamepad_id > -1 && global.input_deadzone[i] != 0)
     {
         // Set deadzone:
         joystick_set_deadzone(global.input_deadzone[i]);
 
         // Pressed:
-        joystick_analog[INP_UP, CHECK_PRESSED + (i * 3)] = (sign(joystick_axis(joystick_id, 1)) == -1 && joystick_analog[INP_UP, CHECK_HELD + (i * 3)] == false);
-        joystick_analog[INP_DOWN, CHECK_PRESSED + (i * 3)] = (sign(joystick_axis(joystick_id, 1)) == 1 && joystick_analog[INP_DOWN, CHECK_HELD + (i * 3)] == false);
-        joystick_analog[INP_LEFT, CHECK_PRESSED + (i * 3)] = (sign(joystick_axis(joystick_id, 0)) == -1 && joystick_analog[INP_LEFT, CHECK_HELD + (i * 3)] == false);
-        joystick_analog[INP_RIGHT, CHECK_PRESSED + (i * 3)] = (sign(joystick_axis(joystick_id, 0)) == 1 && joystick_analog[INP_RIGHT, CHECK_HELD + (i * 3)] == false);
+        gamepad_analog[INP_UP, CHECK_PRESSED + (i * 3)] = (sign(joystick_axis(gamepad_id, 1)) == -1 && gamepad_analog[INP_UP, CHECK_HELD + (i * 3)] == false);
+        gamepad_analog[INP_DOWN, CHECK_PRESSED + (i * 3)] = (sign(joystick_axis(gamepad_id, 1)) == 1 && gamepad_analog[INP_DOWN, CHECK_HELD + (i * 3)] == false);
+        gamepad_analog[INP_LEFT, CHECK_PRESSED + (i * 3)] = (sign(joystick_axis(gamepad_id, 0)) == -1 && gamepad_analog[INP_LEFT, CHECK_HELD + (i * 3)] == false);
+        gamepad_analog[INP_RIGHT, CHECK_PRESSED + (i * 3)] = (sign(joystick_axis(gamepad_id, 0)) == 1 && gamepad_analog[INP_RIGHT, CHECK_HELD + (i * 3)] == false);
 
         // Released:
-        joystick_analog[INP_UP, CHECK_RELEASED + (i * 3)] = (sign(joystick_axis(joystick_id, 1)) != -1 && joystick_analog[INP_UP, CHECK_HELD + (i * 3)] == true);
-        joystick_analog[INP_DOWN, CHECK_RELEASED + (i * 3)] = (sign(joystick_axis(joystick_id, 1)) != 1 && joystick_analog[INP_DOWN, CHECK_HELD + (i * 3)] == true);
-        joystick_analog[INP_LEFT, CHECK_RELEASED + (i * 3)] = (sign(joystick_axis(joystick_id, 0)) != -1 && joystick_analog[INP_LEFT, CHECK_HELD + (i * 3)] == true);
-        joystick_analog[INP_RIGHT, CHECK_RELEASED + (i * 3)] = (sign(joystick_axis(joystick_id, 0)) != 1 && joystick_analog[INP_RIGHT, CHECK_HELD + (i * 3)] == true);
+        gamepad_analog[INP_UP, CHECK_RELEASED + (i * 3)] = (sign(joystick_axis(gamepad_id, 1)) != -1 && gamepad_analog[INP_UP, CHECK_HELD + (i * 3)] == true);
+        gamepad_analog[INP_DOWN, CHECK_RELEASED + (i * 3)] = (sign(joystick_axis(gamepad_id, 1)) != 1 && gamepad_analog[INP_DOWN, CHECK_HELD + (i * 3)] == true);
+        gamepad_analog[INP_LEFT, CHECK_RELEASED + (i * 3)] = (sign(joystick_axis(gamepad_id, 0)) != -1 && gamepad_analog[INP_LEFT, CHECK_HELD + (i * 3)] == true);
+        gamepad_analog[INP_RIGHT, CHECK_RELEASED + (i * 3)] = (sign(joystick_axis(gamepad_id, 0)) != 1 && gamepad_analog[INP_RIGHT, CHECK_HELD + (i * 3)] == true);
 
         // Held:
-        joystick_analog[INP_UP, CHECK_HELD + (i * 3)] = (sign(joystick_axis(joystick_id, 1)) == -1);
-        joystick_analog[INP_DOWN, CHECK_HELD + (i * 3)] = (sign(joystick_axis(joystick_id, 1)) == 1);
-        joystick_analog[INP_LEFT, CHECK_HELD + (i * 3)] = (sign(joystick_axis(joystick_id, 0)) == -1);
-        joystick_analog[INP_RIGHT, CHECK_HELD + (i * 3)] = (sign(joystick_axis(joystick_id, 0)) == 1);
+        gamepad_analog[INP_UP, CHECK_HELD + (i * 3)] = (sign(joystick_axis(gamepad_id, 1)) == -1);
+        gamepad_analog[INP_DOWN, CHECK_HELD + (i * 3)] = (sign(joystick_axis(joystick_id, 1)) == 1);
+        gamepad_analog[INP_LEFT, CHECK_HELD + (i * 3)] = (sign(joystick_axis(gamepad_id, 0)) == -1);
+        gamepad_analog[INP_RIGHT, CHECK_HELD + (i * 3)] = (sign(joystick_axis(gamepad_id, 0)) == 1);
     }
 
     // Reset:
@@ -361,7 +361,7 @@ for (i = 0; i < global.player_count; i += 1)
         {
             for (k = CHECK_PRESSED; k <= CHECK_HELD; k += 1)
             {
-                joystick_analog[j, k + (i * 3)] = false;
+                gamepad_analog[j, k + (i * 3)] = false;
             }
         }
     }
@@ -375,31 +375,31 @@ applies_to=self
 
 for (i = 0; i < global.player_count; i += 1)
 {
-    var joystick_id;
+    var gamepad_id;
 
-    // Joystick id:
-    joystick_id = joystick_device[i, 0];
+    // Gamepad id:
+    gamepad_id = gamepad_device[i, 0];
 
-    if (joystick_id > -1)
+    if (gamepad_id > -1)
     {
         for (j = TRG_LEFT; j <= TRG_RIGHT; j += 1)
         {
             var trigger_id;
 
             // Trigger id:
-            trigger_id = joystick_button[JOY_TRIGGERL + j, joystick_device[i, 1]];
+            trigger_id = gamepad_button[PAD_TRIGGERL + j, gamepad_device[i, 1]];
 
             // Trigger axis:
-            trigger_axis = joystick_axis(joystick_id, trigger_id);
+            trigger_axis = joystick_axis(gamepad_id, trigger_id);
 
             // Pressed:
-            joystick_trigger[j, CHECK_PRESSED + (i * 3)] = (trigger_axis > 0 && joystick_trigger[j, CHECK_HELD + (i * 3)] == false);
+            gamepad_trigger[j, CHECK_PRESSED + (i * 3)] = (trigger_axis > 0 && gamepad_trigger[j, CHECK_HELD + (i * 3)] == false);
 
             // Released:
-            joystick_trigger[j, CHECK_RELEASED + (i * 3)] = (trigger_axis <= 0 && joystick_trigger[j, CHECK_HELD + (i * 3)] == true);
+            gamepad_trigger[j, CHECK_RELEASED + (i * 3)] = (trigger_axis <= 0 && gamepad_trigger[j, CHECK_HELD + (i * 3)] == true);
 
             // Held:
-            joystick_trigger[j, CHECK_HELD + (i * 3)] = trigger_axis > 0;
+            gamepad_trigger[j, CHECK_HELD + (i * 3)] = trigger_axis > 0;
         }
     }
 }
@@ -423,15 +423,15 @@ for (i = INP_UP; i <= INP_HELP; i += 1)
     input_keyboard[i, CHECK_RELEASED] = keyboard_check_released(global.input_key[i]);
 }
 
-// Joystick:
+// Gamepad:
 for (i = 0; i < global.player_count; i += 1)
 {
-    var joystick_id;
+    var gamepad_id;
 
-    // Joystick id:
-    joystick_id = joystick_device[i, 0];
+    // Gamepad id:
+    gamepad_id = gamepad_device[i, 0];
 
-    if (joystick_id > -1)
+    if (gamepad_id > -1)
     {
         for (j = INP_UP; j <= INP_HELP; j += 1)
         {
@@ -440,13 +440,13 @@ for (i = 0; i < global.player_count; i += 1)
                 // Directional inputs:
                 if (j <= INP_RIGHT)
                 {
-                    input_joystick[j, k + (i * 3)] = (joystick_get_check(joystick_id, global.input_joy[i, j], k) || joystick_analog[j, k + (i * 3)]);
+                    input_gamepad[j, k + (i * 3)] = (gamepad_get_check(gamepad_id, global.input_pad[i, j], k) || gamepad_analog[j, k + (i * 3)]);
                 }
 
                 // Every other input:
                 else
                 {
-                    input_joystick[j, k + (i * 3)] = joystick_get_check(joystick_id, global.input_joy[i, j], k);
+                    input_gamepad[j, k + (i * 3)] = gamepad_get_check(gamepad_id, global.input_pad[i, j], k);
                 }
             }
         }
@@ -459,7 +459,7 @@ for (i = 0; i < global.player_count; i += 1)
         {
             for (k = CHECK_PRESSED; k <= CHECK_HELD; k += 1)
             {
-                input_joystick[j, k + (i * 3)] = false;
+                input_gamepad[j, k + (i * 3)] = false;
             }
         }
     }
@@ -469,13 +469,13 @@ for (i = 0; i < global.player_count; i += 1)
 for (i = INP_UP; i <= INP_HELP; i += 1)
 {
     // Held:
-    input_user[i, CHECK_HELD] = (input_keyboard[i, CHECK_HELD] || input_joystick[i, CHECK_HELD]);
+    input_user[i, CHECK_HELD] = (input_keyboard[i, CHECK_HELD] || input_gamepad[i, CHECK_HELD]);
 
     // Pressed:
-    input_user[i, CHECK_PRESSED] = ((input_keyboard[i, CHECK_PRESSED] && !input_joystick[i, CHECK_HELD]) || (input_joystick[i, CHECK_PRESSED] && !input_keyboard[i, CHECK_HELD]));
+    input_user[i, CHECK_PRESSED] = ((input_keyboard[i, CHECK_PRESSED] && !input_gamepad[i, CHECK_HELD]) || (input_gamepad[i, CHECK_PRESSED] && !input_keyboard[i, CHECK_HELD]));
 
     // Released:
-    input_user[i, CHECK_RELEASED] = ((input_keyboard[i, CHECK_RELEASED] && !input_joystick[i, CHECK_HELD]) || (input_joystick[i, CHECK_RELEASED] && !input_keyboard[i, CHECK_HELD]));
+    input_user[i, CHECK_RELEASED] = ((input_keyboard[i, CHECK_RELEASED] && !input_gamepad[i, CHECK_HELD]) || (input_gamepad[i, CHECK_RELEASED] && !input_keyboard[i, CHECK_HELD]));
 }
 /*"/*'/**//* YYD ACTION
 lib_id=1

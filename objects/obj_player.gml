@@ -269,7 +269,7 @@ if (input_lock == false)
     // Reset CPU alarm:
     if (input_cpu == true)
     {
-        if (input_get_check(INP_ANY, CHECK_HELD, DEV_JOYSTICK0 + player_slot))
+        if (input_get_check(INP_ANY, CHECK_HELD, DEV_GAMEPAD0 + player_slot))
         {
             input_cpu_alarm = 600;
         }

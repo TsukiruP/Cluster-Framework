@@ -7,13 +7,13 @@
 		|window_resize
 		|in_view
 	+Input
-		|joystick_get_check
+		|gamepad_get_check
 		|input_get_check
 		|input_get_timer
 	+Text
 		|string_bool
 		|string_key
-		|char_joy
+		|char_pad
 		|string_input
 		|text_set_message
 		|topic_set_message
