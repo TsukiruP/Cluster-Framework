@@ -1,7 +1,7 @@
 /// input_get_check(input, check, [device])
 // Returns whether the input meets the check.
 
-var input_id, input_device, input_keyboard, input_joystick, input_user;
+var input_id, input_device, input_keyboard, input_gamepad, input_user;
 
 // Initialize:
 input_id = argument0;
@@ -9,7 +9,7 @@ input_device = DEV_USER;
 
 // Default to false:
 input_keyboard = false;
-input_joystick = false;
+input_gamepad = false;
 
 // Set device:
 if (argument_count >= 3)
@@ -50,35 +50,35 @@ if (input_device == DEV_KEYBOARD)
     return input_keyboard;
 }
 
-// Joystick:
-else if (input_device >= DEV_JOYSTICK0)
+// Gamepad:
+else if (input_device >= DEV_GAMEPAD0)
 {
-    var joystick_id;
+    var gamepad_id;
 
-    // Joystick offset:
-    input_device -= DEV_JOYSTICK0;
+    // Gamepad offset:
+    input_device -= DEV_GAMEPAD0;
 
-    // Joystick id:
-    joystick_id = ctrl_input.joystick_device[input_device, 0];
+    // Gamepad id:
+    gamepad_id = ctrl_input.gamepad_device[input_device, 0];
 
-    // Joystick range:
+    // Gamepad range:
     if (input_id == INP_ANY)
     {
-        for (i = JOY_FACE1; i <= JOY_SHARE; i += 1)
+        for (i = PAD_FACE1; i <= PAD_SHARE; i += 1)
         {
-            if (joystick_get_check(input_device, i, argument1))
+            if (gamepad_get_check(input_device, i, argument1))
             {
-                input_joystick = true;
+                input_gamepad = true;
             }
         }
     }
     else
     {
-        input_joystick = ctrl_input.input_joystick[input_id, argument1 + (input_device * 3)];
+        input_gamepad = ctrl_input.input_gamepad[input_id, argument1 + (input_device * 3)];
     }
 
     // Return:
-    return input_joystick;
+    return input_gamepad;
 }
 
 // User:
@@ -86,7 +86,7 @@ else
 {
     if (input_id == INP_ANY)
     {
-        input_user = (input_get_check(input_id, argument1, DEV_KEYBOARD) || input_get_check(input_id, argument1, DEV_JOYSTICK0));
+        input_user = (input_get_check(input_id, argument1, DEV_KEYBOARD) || input_get_check(input_id, argument1, DEV_GAMEPAD0));
     }
     else
     {

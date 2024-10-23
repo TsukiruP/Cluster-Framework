@@ -26,25 +26,25 @@ if (input_device == DEV_KEYBOARD)
     return string_key(global.input_key[input_id]);
 }
 
-// Joystick:
-else if (input_device >= DEV_JOYSTICK0)
+// Gamepad:
+else if (input_device >= DEV_GAMEPAD0)
 {
-    var joystick_id;
+    var gamepad_id;
 
-    // Joystick offset:
-    input_device -= DEV_JOYSTICK0;
+    // Gamepad offset:
+    input_device -= DEV_GAMEPAD0;
 
     // Return:
-    return char_joy(global.input_joy[input_device, input_id], global.input_style[input_device]);
+    return char_pad(global.input_pad[input_device, input_id], global.input_style[input_device]);
 }
 
 // User:
 else
 {
-    // Return joystick if it's connected:
-    if (ctrl_input.joystick_device[0, 0] > -1)
+    // Return gamepad if it's connected:
+    if (ctrl_input.gamepad_device[0, 0] > -1)
     {
-        return string_input(input_id, DEV_JOYSTICK0);
+        return string_input(input_id, DEV_GAMEPAD0);
     }
 
     // Default to keyboard otherwise:

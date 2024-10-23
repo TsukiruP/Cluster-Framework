@@ -7,13 +7,13 @@
 		|window_resize
 		|in_view
 	+Input
-		|joystick_get_check
+		|gamepad_get_check
 		|input_get_check
 		|input_get_timer
 	+Text
 		|string_bool
 		|string_key
-		|char_joy
+		|char_pad
 		|string_input
 		|text_set_message
 		|topic_set_message
@@ -218,9 +218,10 @@
 			|player_routine_land
 			|player_routine_shield
 			|player_routine_skill
-			|player_routine_homing
+			|sonic_routine_homing
 		+Traits
 			|player_trait_debug
+			|sonic_trait_reticle
 			|classic_trait_clock_up
 		+Reactions
 			|player_reaction_sensor_layer
@@ -302,4 +303,3 @@
 		|player_handle_badnik
 		|player_handle_hint
 |gravity_angle
-|script238

@@ -18,7 +18,7 @@ ctl_sonic_push
 player_trait_debug
 player_routine_land
 string_key
-char_joy
+char_pad
 player_state_run
 player_state_brake
 angle_wrap
@@ -170,7 +170,7 @@ player_state_crouch
 player_state_hurt
 ctl_debuff
 
-joystick_get_check
+gamepad_get_check
 input_get_check
 
 ctl_checkpoint_active
@@ -224,7 +224,7 @@ ctl_spring_vertical
 ctl_spring_horizontal
 player_reaction_enemy
 ctl_sonic_omochao_end
-player_routine_homing
+sonic_routine_homing
 player_reset_skill
 player_reaction_spike
 player_animation_run
@@ -236,4 +236,4 @@ ctl_sonic_air_dash
 player_reset_spring
 ctl_reticle
 player_collision_object
-script238
+sonic_trait_reticle
