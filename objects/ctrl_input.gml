@@ -349,7 +349,7 @@ for (i = 0; i < global.player_count; i += 1)
 
         // Held:
         gamepad_analog[INP_UP, CHECK_HELD + (i * 3)] = (sign(joystick_axis(gamepad_id, 1)) == -1);
-        gamepad_analog[INP_DOWN, CHECK_HELD + (i * 3)] = (sign(joystick_axis(joystick_id, 1)) == 1);
+        gamepad_analog[INP_DOWN, CHECK_HELD + (i * 3)] = (sign(joystick_axis(gamepad_id, 1)) == 1);
         gamepad_analog[INP_LEFT, CHECK_HELD + (i * 3)] = (sign(joystick_axis(gamepad_id, 0)) == -1);
         gamepad_analog[INP_RIGHT, CHECK_HELD + (i * 3)] = (sign(joystick_axis(gamepad_id, 0)) == 1);
     }
