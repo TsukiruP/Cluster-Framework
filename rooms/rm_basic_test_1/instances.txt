@@ -46,3 +46,5 @@ obj_basic_test_collision_21,1536,672,C06C5DAC,0,1,1,4294967295,0,0
 obj_basic_test_collision_19,1536,768,95C5C988,0,1,1,4294967295,0,0
 obj_basic_test_collision_03,1440,864,61B92A0F,0,1,1,4294967295,0,0
 obj_basic_test_collision_03,1536,864,5951E45A,0,1,1,4294967295,0,0
+obj_item_box,1536,560,4F7364ED,0,1,1,4294967295,0,0
+obj_spring,840,824,BB82817C,0,1,1,4294967295,0,0
