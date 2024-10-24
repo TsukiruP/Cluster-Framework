@@ -68,7 +68,7 @@ else if (on_ground == false)
                 player_set_animation("insta");
 
                 // Play sound:
-                sound_play("snd_shield_insta");
+                //sound_play("snd_shield_insta");
 
                 // Shield:
                 with (instance_create(x, y, eff_player))

@@ -28,6 +28,6 @@ if ((collision & COLL_HURT) || (collision & COLL_HURT_RADIUS))
         }
 
         // Play sound:
-        sound_play("snd_destroy");
+        //sound_play("snd_destroy");
     }
 }

@@ -62,7 +62,7 @@ if (collision & COLL_HURT_RADIUS)
             }
 
             // Play sound:
-            sound_play_single("snd_checkpoint");
+            //sound_play_single("snd_checkpoint");
         }
     }
 }

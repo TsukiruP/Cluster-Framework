@@ -620,7 +620,7 @@ action_id=603
 applies_to=self
 */
 /// Play Music
-
+/*
 // Reset music volume:
 if (sound_kind_get_volume(3) != global.audio_bgm / 100)
 {

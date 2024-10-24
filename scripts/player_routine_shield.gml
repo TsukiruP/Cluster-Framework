@@ -17,7 +17,7 @@ switch (status_shield)
         jump_bound = BOUND_SHIELD;
 
         // Play sound:
-        sound_play_single("snd_shield_bubble_bound");
+        //sound_play_single("snd_shield_bubble_bound");
 
         // Shield:
         if (instance_exists(shield_handle))
@@ -42,7 +42,7 @@ switch (status_shield)
         }
 
         // Play sound:
-        sound_play_single("snd_shield_fire_dash");
+        //sound_play_single("snd_shield_fire_dash");
 
         // Shield:
         if (instance_exists(shield_handle))
@@ -60,7 +60,7 @@ switch (status_shield)
         y_speed = -5.5;
 
         // Play sound:
-        sound_play_single("snd_shield_lightning_jump");
+        //sound_play_single("snd_shield_lightning_jump");
 
         // Sparks:
         for (i = 0; i < 4; i += 1)

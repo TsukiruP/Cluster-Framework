@@ -41,7 +41,7 @@ switch (argument0)
             player_set_state(player_state_jump, true);
 
             // Play sound:
-            sound_play_single("snd_shield_bubble_bound");
+            //sound_play_single("snd_shield_bubble_bound");
 
             // Shield:
             if (instance_exists(shield_handle))

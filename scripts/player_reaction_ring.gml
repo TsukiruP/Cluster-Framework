@@ -24,7 +24,7 @@ if (collision & COLL_HURT_RADIUS)
         }
 
         // Play sound:
-        sound_play_single("snd_ring");
+        //sound_play_single("snd_ring");
         ctrl_audio.ring_pan *= -1;
     }
 }

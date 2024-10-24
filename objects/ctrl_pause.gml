@@ -7,7 +7,7 @@ applies_to=self
 /// Pause Initialization
 
 // Pause audio:
-sound_pause_all();
+//sound_pause_all();
 
 // Menu variables:
 menu_current = 0;
@@ -214,7 +214,7 @@ if (pause_delay > 0)
         {
             pause_active = false;
 
-            sound_resume_all();
+            //sound_resume_all();
             fade_reverse(fade_handle);
         }
     }
@@ -244,8 +244,8 @@ if (instance_exists(fade_handle))
             transition_handle.transition_alarm = 0;
         }
 
-        sound_stop_all();
-        sound_resume_all();
+        //sound_stop_all();
+        //sound_resume_all();
     }
 }
 #define Step_2

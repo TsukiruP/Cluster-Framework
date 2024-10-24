@@ -111,7 +111,8 @@ switch (argument0)
         if (player_collision_ceiling(y_radius + 5) == noone && input_player[INP_JUMP, CHECK_PRESSED] == true)
         {
             // Play sound:
-            sound_play_single("snd_jump");
+            //sound_play_single("snd_jump");
+            audio_play(ds_map_find_value(ctrl_audio.sfx_map, "snd_jump"));
 
             return player_set_state(player_state_jump);
         }

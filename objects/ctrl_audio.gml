@@ -6,6 +6,9 @@ applies_to=self
 */
 /// Audio Initialization
 
+// Load SFX:
+
+/*
 // Add character SFX:
 sound_add_directory("data\audio\sfx\character\common", ".wav", 0, true);
 sound_add_directory("data\audio\sfx\character\sonic", ".wav", 0, true);
@@ -40,7 +43,7 @@ action_id=603
 applies_to=self
 */
 /// Ring Pan
-
+/*
 if (sound_get_pan("snd_ring") != ring_pan)
 {
     sound_pan("snd_ring", ring_pan);
@@ -51,7 +54,7 @@ action_id=603
 applies_to=self
 */
 /// Fade Music
-
+/*
 // Fade Out:
 if (fade_out == true)
 {
@@ -113,7 +116,7 @@ action_id=603
 applies_to=self
 */
 /// Quiet Music
-
+/*
 // Drowning takes priority:
 if (!sound_isplaying("bgm_drown"))
 {
@@ -152,7 +155,7 @@ action_id=603
 applies_to=self
 */
 /// Release Audio
-
+/*
 // Sound list:
 sound_list = sound_kind_list(0);
 
@@ -181,7 +184,7 @@ action_id=603
 applies_to=self
 */
 /// Play Invincibility Jingle
-
+/*
 // Clear jingle:
 if (jingle_instance != -1)
 {
@@ -202,7 +205,7 @@ action_id=603
 applies_to=self
 */
 /// Play Speed Jingle
-
+/*
 // Clear jingle:
 if (jingle_instance != -1)
 {
@@ -223,7 +226,7 @@ action_id=603
 applies_to=self
 */
 /// Clear Jingle
-
+/*
 // Clear:
 if (sound_isplaying("bgm_invin"))
 {

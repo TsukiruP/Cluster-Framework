@@ -82,9 +82,9 @@ if (collision & COLL_HURT_RADIUS)
                 case obj_dash_ring:
                     break;
 
-                    // Spring:
+                // Spring:
                 default:
-                    sound_play_single("snd_spring");
+                    //sound_play_single("snd_spring");
             }
 
             // SFX alarm:

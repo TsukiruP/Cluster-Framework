@@ -24,7 +24,7 @@ switch (argument0)
         status_shield_allow = true;
 
         // Play sound:
-        sound_play("snd_shield_basic");
+        //sound_play("snd_shield_basic");
         break;
 
     // Magnetic shield:
@@ -33,7 +33,7 @@ switch (argument0)
         status_shield_allow = true;
 
         // Play sound:
-        sound_play("snd_shield_basic");
+        //sound_play("snd_shield_basic");
         break;
 
     // Bubble shield:
@@ -42,7 +42,7 @@ switch (argument0)
         status_shield_allow = true;
 
         // Play sound:
-        sound_play("snd_shield_bubble");
+        //sound_play("snd_shield_bubble");
         break;
 
     // Fire shield:
@@ -51,7 +51,7 @@ switch (argument0)
         status_shield_allow = true;
 
         // Play sound:
-        sound_play("snd_shield_fire");
+        //sound_play("snd_shield_fire");
         break;
 
     // Lightning shield:
@@ -60,7 +60,7 @@ switch (argument0)
         status_shield_allow = true;
 
         // Play sound:
-        sound_play("snd_shield_lightning");
+        //sound_play("snd_shield_lightning");
         break;
 
     // Invincibility:

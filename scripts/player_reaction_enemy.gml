@@ -54,7 +54,7 @@ if ((collision & COLL_HURT) || ((collision & COLL_HURT_RADIUS) && status_invin =
         }
 
         // Play sound:
-        sound_play_single("snd_destroy");
+        //sound_play_single("snd_destroy");
     }
 }
 
