@@ -191,7 +191,7 @@ collision_ray_vertical
 player_collision_floor
 collision_box_vertical
 player_set_ground
-gravity_angle
+player_routine_jump
 player_rotate_mask
 player_movement_air
 player_collision_ceiling

@@ -120,12 +120,9 @@ switch (argument0)
         }
 
         // Jump:
-        if (player_collision_ceiling(y_radius + 5) == noone && input_player[INP_JUMP, CHECK_PRESSED] == true)
+        if (player_routine_jump())
         {
-            // Play sound:
-            //sound_play_single("snd_jump");
-
-            return player_set_state(player_state_jump);
+            return true;
         }
 
         // Set animation:

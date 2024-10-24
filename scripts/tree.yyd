@@ -216,6 +216,7 @@
 					|sonic_state_homing
 		+Routines
 			|player_routine_land
+			|player_routine_jump
 			|player_routine_shield
 			|player_routine_skill
 			|sonic_routine_homing
@@ -302,4 +303,3 @@
 		|player_handle_item_box
 		|player_handle_badnik
 		|player_handle_hint
-|gravity_angle

@@ -7,6 +7,7 @@ applies_to=self
 /// Audio Initialization
 
 // Load SFX:
+sfx_map = audio_load_directory("data\audio\sfx");
 
 /*
 // Add character SFX:
