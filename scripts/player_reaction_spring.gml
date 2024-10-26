@@ -73,7 +73,7 @@ if (collision & COLL_HURT_RADIUS)
             activated = true;
         }
 
-        // Play sound:
+        // Play sfx:
         if (reaction_handle.sfx_alarm == 0)
         {
             switch (reaction_handle.object_index)
@@ -84,7 +84,7 @@ if (collision & COLL_HURT_RADIUS)
 
                 // Spring:
                 default:
-                    //sound_play_single("snd_spring");
+                    sfx_play("snd_spring", true);
             }
 
             // SFX alarm:

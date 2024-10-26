@@ -27,7 +27,7 @@ if ((collision & COLL_HURT) || (collision & COLL_HURT_RADIUS))
             instance_destroy();
         }
 
-        // Play sound:
-        //sound_play("snd_destroy");
+        // Play sfx:
+        sfx_play("snd_destroy", true);
     }
 }

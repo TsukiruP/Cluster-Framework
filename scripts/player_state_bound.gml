@@ -40,8 +40,8 @@ switch (argument0)
             animation_skip = true;
             player_set_state(player_state_jump, true);
 
-            // Play sound:
-            //sound_play_single("snd_shield_bubble_bound");
+            // Play sfx:
+            sfx_play("snd_shield_bubble_bound", true);
 
             // Shield:
             if (instance_exists(shield_handle))

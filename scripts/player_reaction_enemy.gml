@@ -53,8 +53,8 @@ if ((collision & COLL_HURT) || ((collision & COLL_HURT_RADIUS) && status_invin =
             instance_destroy();
         }
 
-        // Play sound:
-        //sound_play_single("snd_destroy");
+        // Play sfx:
+        sfx_play("snd_destroy", true);
     }
 }
 

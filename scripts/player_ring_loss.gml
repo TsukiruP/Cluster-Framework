@@ -3,8 +3,8 @@
 
 var ring_total, ring_angle, ring_speed, ring_handle;
 
-// Play sound:
-//sound_play("snd_ring_loss");
+// Play sfx:
+sfx_play("snd_ring_loss");
 
 // Ring variables:
 ring_total = min(global.game_rings, 32);

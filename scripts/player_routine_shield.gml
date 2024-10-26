@@ -16,8 +16,8 @@ switch (status_shield)
         // Bound:
         jump_bound = BOUND_SHIELD;
 
-        // Play sound:
-        //sound_play_single("snd_shield_bubble_bound");
+        // Play sfx:
+        sfx_play("snd_shield_bubble_bound", true);
 
         // Shield:
         if (instance_exists(shield_handle))
@@ -41,8 +41,8 @@ switch (status_shield)
             ctrl_camera.camera_lag_alarm = 16;
         }
 
-        // Play sound:
-        //sound_play_single("snd_shield_fire_dash");
+        // Play sfx:
+        sfx_play("snd_shield_fire_dash", true);
 
         // Shield:
         if (instance_exists(shield_handle))
@@ -59,8 +59,8 @@ switch (status_shield)
         // Set speed:
         y_speed = -5.5;
 
-        // Play sound:
-        //sound_play_single("snd_shield_lightning_jump");
+        // Play sfx:
+        sfx_play("snd_shield_lightning_jump", true);
 
         // Sparks:
         for (i = 0; i < 4; i += 1)

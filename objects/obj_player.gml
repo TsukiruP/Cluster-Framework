@@ -567,8 +567,8 @@ if (y > obj_water_surface.y && yprevious < obj_water_surface.y)
         effect_create(ctl_splash_0, x, obj_water_surface.y, -10);
     }
     
-    // Play sound:
-    //sound_play_single("snd_splash");
+    // Play sfx:
+    sfx_play("snd_splash", true);
 }
 
 // Exit splash:
@@ -586,8 +586,8 @@ else if (y < obj_water_surface.y && yprevious > obj_water_surface.y)
         effect_create(ctl_splash_0, x, obj_water_surface.y, -10);
     }
     
-    // Play sound:
-    //sound_play_single("snd_splash");
+    // Play sfx:
+    sfx_play("snd_splash", true);
 }
 
 // Surface timer:
@@ -787,14 +787,14 @@ if (state_current != player_state_death && !instance_exists(ctrl_tally))
                         case 20:
                         case 15:
                             if (input_cpu == false) {
-                                //sound_play("snd_drown_alert");
+                                sfx_play("snd_drown_alert");
                             }
                             break;
                             
                         // Drown jingle:
                         case 12:
                             if (input_cpu == false) {
-                                //sound_play("bgm_drown");
+                                sfx_play("bgm_drown");
                             }
                             
                         // Drown countdown:
