@@ -40,7 +40,7 @@ if (homing_allow == false || spring_alarm != 0)
 // Set homing handle:
 if (input_player[INP_ALT, CHECK_HELD] == false)
 {
-    if ((global.skill_sonic[SONIC_HOMING_STYLE] >= HOMING_ADVENTURE && on_ground == false) || global.skill_sonic[SONIC_HOMING_STYLE] == HOMING_FRONTIERS)
+    if ((global.skill_sonic[SONIC_HOMING] >= HOMING_ADVENTURE && on_ground == false) || global.skill_sonic[SONIC_HOMING] == HOMING_FRONTIERS)
     {
         var homing_candidate, homing_fail, homing_solid;
 
