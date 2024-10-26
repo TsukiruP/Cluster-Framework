@@ -23,8 +23,8 @@ if (collision & COLL_HURT_RADIUS)
             instance_destroy();
         }
 
-        // Play sound:
-        //sound_play_single("snd_ring");
+        // Play sfx:
+        sfx_play("snd_ring", true, ctrl_audio.ring_pan);
         ctrl_audio.ring_pan *= -1;
     }
 }

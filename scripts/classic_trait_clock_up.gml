@@ -6,15 +6,14 @@ if (argument_count >= 1)
 {
     if (argument[0] == true && clock_up_state != 0)
     {
-        // Play sound:
-        // Since this is dependent on the Clock Up state, we play the sound first.
+        // Play sfx:
         if (clock_up_state == 2)
         {
-            //sound_play("snd_hyper_clock_over");
+            sfx_play("snd_hyper_clock_over");
         }
         else
         {
-            //sound_play("snd_clock_over");
+            sfx_play("snd_clock_over");
         }
 
         global.game_speed = 1;
@@ -51,9 +50,9 @@ else
             global.game_speed = 0;
             clock_up_state = 2;
 
-            // Play sound:
-            //sound_play("snd_clock_up_start");
-            //sound_play("snd_hyper_clock_up");
+            // Play sfx:
+            sfx_play("snd_clock_up_start");
+            sfx_play("snd_hyper_clock_up");
         }
 
         // Normal:
@@ -62,9 +61,9 @@ else
             global.game_speed = 0.25;
             clock_up_state = 1;
 
-            // Play sound:
-            //sound_play("snd_clock_up_start");
-            //sound_play("snd_clock_up");
+            // Play sfx:
+            sfx_play("snd_clock_up_start");
+            sfx_play("snd_clock_up");
         }
 
         // Over:

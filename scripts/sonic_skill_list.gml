@@ -14,7 +14,7 @@ else if (on_ground == true && input_player[INP_AUX, CHECK_PRESSED] == true)
 {
     switch (global.skill_sonic[SONIC_AUX_G])
     {
-        // Hammer;
+        // Hammer:
         case SKILL_HAMMER:
             return player_set_state(player_state_hammer);
 
@@ -68,8 +68,8 @@ else if (on_ground == false)
                 // Set animation:
                 player_set_animation("insta");
 
-                // Play sound:
-                //sound_play("snd_shield_insta");
+                // Play sfx:
+                sfx_play("snd_shield_insta");
 
                 // Shield:
                 with (instance_create(x, y, eff_player))

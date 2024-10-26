@@ -61,8 +61,8 @@ if (collision & COLL_HURT_RADIUS)
                 checkpoint_set();
             }
 
-            // Play sound:
-            //sound_play_single("snd_checkpoint");
+            // Play sfx:
+            sfx_play("snd_checkpoint", true);
         }
     }
 }

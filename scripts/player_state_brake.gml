@@ -76,8 +76,8 @@ switch (argument0)
             {
                 if (input_player[INP_DOWN, CHECK_HELD] == true)
                 {
-                    // Play sound:
-                    //sound_play_single("snd_roll");
+                    // Play sfx:
+                    sfx_play("snd_roll", true);
 
                     return player_set_state(player_state_roll);
                 }
