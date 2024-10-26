@@ -72,6 +72,12 @@ if (input_player[INP_ALT, CHECK_HELD] == false)
                 if (homing_fail == false)
                 {
                     homing_handle = homing_candidate;
+                    
+                    // Play sfx:
+                    if (homing_handle != homing_handle_temp)
+                    {
+                        sfx_play("snd_reticle");
+                    }
                     break;
                 }
             }

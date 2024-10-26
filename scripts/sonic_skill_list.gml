@@ -97,6 +97,9 @@ else if (on_ground == false)
             animation_skip = (animation_current != "spin" && animation_current != "insta");
             player_set_animation("air_dash");
             air_dash_allow = false;
+            
+            // Play sfx:
+            sfx_play("snd_air_dash");
 
             return player_set_state(player_state_air, false);
         }

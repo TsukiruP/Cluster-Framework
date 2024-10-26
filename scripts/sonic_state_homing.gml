@@ -18,6 +18,9 @@ switch (argument0)
 
         // Set animation:
         player_set_animation("spin");
+
+        // Play sfx:
+        sfx_play("snd_air_dash");
         break;
 
     // Step:
