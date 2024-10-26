@@ -108,7 +108,7 @@ ctl_sonic_spring_flight
 collision_rectangle_list
 collision_line_list
 collision_point_list
-player_terrain_point
+sfx_play
 draw_collision
 player_terrain_line
 player_obstacle_rectangle
