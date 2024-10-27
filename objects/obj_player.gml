@@ -425,9 +425,22 @@ if (game_ispaused())
     exit;
 }
 
+// Debug:
 player_trait_debug();
-sonic_trait_reticle();
-classic_trait_clock_up();
+
+// Character traits:
+switch (character_id)
+{
+    // Sonic:
+    case CHAR_SONIC:
+        sonic_trait_reticle();
+        break;
+
+    // Classic:
+    case CHAR_CLASSIC:
+        classic_trait_clock_up();
+        break;
+}
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603

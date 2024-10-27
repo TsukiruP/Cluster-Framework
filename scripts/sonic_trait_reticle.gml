@@ -1,5 +1,5 @@
 /// sonic_trait_reticle()
-//
+// Resets the homing handle and sets it when in the proper states.
 
 // Don't reset during the homing attack:
 if (state_current == sonic_state_homing)
