@@ -20,7 +20,7 @@ switch (argument0)
         player_set_animation("spin");
 
         // Play sfx:
-        sfx_play("snd_air_dash");
+        sfx_play("snd_air_dash", true);
         break;
 
     // Step:

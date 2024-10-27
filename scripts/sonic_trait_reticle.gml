@@ -76,7 +76,7 @@ if (input_player[INP_ALT, CHECK_HELD] == false)
                     // Play sfx:
                     if (homing_handle != homing_handle_temp)
                     {
-                        sfx_play("snd_reticle");
+                        sfx_play("snd_reticle", true);
                     }
                     break;
                 }
