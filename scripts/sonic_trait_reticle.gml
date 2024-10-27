@@ -32,7 +32,7 @@ switch (state_current)
 }
 
 // Exit if homing isn't allowed or spring alarm is set:
-if (homing_allow == false || spring_alarm != 0)
+if (homing_allow == false || spring_alarm != 0 || input_lock == true || (input_cpu == true && input_cpu_alarm == 0))
 {
     exit;
 }
