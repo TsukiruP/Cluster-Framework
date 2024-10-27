@@ -84,6 +84,7 @@ switch (argument0)
                     case "somersault":
                         x_speed = 4 * image_xscale;
                         player_set_animation("skid");
+                        sfx_play("snd_skid", true);
                         break;
 
                     // Idle:
