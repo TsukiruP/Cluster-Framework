@@ -110,7 +110,7 @@ collision_line_list
 collision_point_list
 sfx_play
 draw_collision
-player_terrain_line
+sfx_stop
 player_obstacle_rectangle
 player_collision_terrain
 player_get_angle

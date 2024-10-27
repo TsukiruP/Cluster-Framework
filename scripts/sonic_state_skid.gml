@@ -147,5 +147,6 @@ switch (argument0)
 
     // Finish:
     case STATE_FINISH:
+        sfx_stop("snd_skid");
         break;
 }

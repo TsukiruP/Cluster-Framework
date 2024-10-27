@@ -8,6 +8,7 @@
 		|in_view
 	+Audio
 		|sfx_play
+		|sfx_stop
 	+Input
 		|gamepad_get_check
 		|input_get_check
@@ -270,7 +271,6 @@
 +Trash
 	+Collision
 		+Utilities
-			|player_terrain_line
 			|player_obstacle_rectangle
 		|player_collision_semisolids
 		|player_collision_terrain
