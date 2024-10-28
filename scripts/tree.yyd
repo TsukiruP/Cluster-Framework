@@ -155,10 +155,6 @@
 			|draw_background_tiled_horizontal_part
 			|draw_background_tiled_horizontal_part_yscale
 			|draw_background_tiled_vertical_part
-	+Collision
-		|radii_set
-		|hurtbox_set
-		|hitbox_set
 	+Misc.
 		|hover
 		|pick_offset
@@ -172,6 +168,9 @@
 		|collision_box_vertical
 		|collision_ray
 		|collision_ray_vertical
+		|radii_set
+		|hurtbox_set
+		|hitbox_set
 	+Player
 		+Data
 			|player_get_character
