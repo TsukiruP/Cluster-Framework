@@ -15,6 +15,9 @@ switch (argument0)
 
         // Set animation:
         player_set_animation("somersault");
+        
+        // Play sfx:
+        sfx_play("snd_somersault", true);
         break;
 
     // Step:
@@ -83,8 +86,12 @@ switch (argument0)
                     // Skid:
                     case "somersault":
                         x_speed = 4 * image_xscale;
+                        
+                        // Set animation:
                         player_set_animation("skid");
-                        sfx_play("snd_skid", true);
+                        
+                        // Play sfx:
+                        sfx_play("snd_air_dash", true);
                         break;
 
                     // Idle:
@@ -147,6 +154,5 @@ switch (argument0)
 
     // Finish:
     case STATE_FINISH:
-        sfx_stop("snd_skid");
         break;
 }
