@@ -1,0 +1,105 @@
+/// sonic_state_stomp(phase)
+//
+
+switch (argument0)
+{
+    // Start:
+    case STATE_START:
+        // Set speed:
+        x_speed = 0;
+        y_speed = 0;
+
+        // Reset air:
+        player_reset_air();
+
+        // Set animation:
+        player_set_animation("stomp");
+
+        // Play sfx:
+        sfx_play("snd_stomp", true);
+        break;
+
+    // Step:
+    case STATE_STEP:
+        // Air movement:
+        if (on_ground == false)
+        {
+            var stomp_allow;
+
+            // Stomp allow:
+            stomp_allow = (image_index >= 5)
+
+            if (stomp_allow == true)
+            {
+                // Set speed:
+                if (image_index == 5)
+                {
+                    x_speed = 10 * image_xscale;
+                    y_speed = 10;
+                }
+
+                // Movement:
+                if (!player_movement_air())
+                {
+                    exit;
+                }
+
+                // Land:
+                if (on_ground == true)
+                {
+                    // Set speed:
+                    x_speed = 0;
+
+                    // Set animation:
+                    player_set_animation("stomp_land");
+
+                    // Stop sfx:
+                    sfx_stop("snd_stomp");
+
+                    // Play sfx:
+                    sfx_play("snd_stomp_land", true);
+                }
+
+                // Gravity:
+                if (y_allow == true)
+                {
+                    y_speed += gravity_force;
+                }
+            }
+        }
+
+        // Ground movement:
+        else
+        {
+            // Movement:
+            if (!player_movement_ground())
+            {
+                exit;
+            }
+
+            // Fall:
+            if (on_ground == false)
+            {
+                return player_set_state(player_state_air);
+            }
+
+            // Spin Dash:
+            if (input_player[INP_DOWN, CHECK_HELD] == true && input_player[INP_JUMP, CHECK_PRESSED] == true)
+            {
+                return player_set_state(player_state_spin_dash);
+            }
+
+            // Idle:
+            if (animation_finished == true)
+            {
+                return player_set_state(player_state_idle);
+            }
+        }
+        break;
+
+    // Finish:
+    case STATE_FINISH:
+        // Stop sfx:
+        sfx_stop("snd_stomp");
+        break;
+}

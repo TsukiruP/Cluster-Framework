@@ -91,7 +91,9 @@
 						|ctl_sonic_skid_end
 					|ctl_sonic_insta
 					|ctl_sonic_air_dash
-					|ctl_sonic_stomp
+					+Stomp
+						|ctl_sonic_stomp
+						|ctl_sonic_stomp_land
 			+Props
 				+Checkpoint
 					|ctl_checkpoint_inactive
@@ -219,6 +221,7 @@
 					|sonic_skill_list
 					|sonic_state_skid
 					|sonic_state_homing
+					|sonic_state_stomp
 		+Routines
 			|player_routine_land
 			|player_routine_jump

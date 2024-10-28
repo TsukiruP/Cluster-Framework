@@ -238,3 +238,5 @@ ctl_reticle
 player_collision_object
 sonic_trait_reticle
 ctl_sonic_stomp
+ctl_sonic_stomp_land
+sonic_state_stomp

@@ -1,8 +1,14 @@
 /// sonic_skill_list(id)
 // Manages all of Sonic's actions.
 
+// Slam skill:
+if (global.skill_sonic[SONIC_SLAM] >= SKILL_STOMP && on_ground == false && input_player[INP_DOWN, CHECK_HELD] == true && input_player[INP_AUX, CHECK_PRESSED] == true)
+{
+    return player_set_state(sonic_state_stomp);
+}
+
 // Homing attack:
-if ((((global.skill_sonic[SONIC_HOMING] == HOMING_ADVENTURE || global.skill_sonic[SONIC_HOMING] == HOMING_GENERATIONS) && input_player[INP_JUMP, CHECK_PRESSED] == true) ||
+else if ((((global.skill_sonic[SONIC_HOMING] == HOMING_ADVENTURE || global.skill_sonic[SONIC_HOMING] == HOMING_GENERATIONS) && input_player[INP_JUMP, CHECK_PRESSED] == true) ||
     (global.skill_sonic[SONIC_HOMING] >= HOMING_UNLEASHED && input_player[INP_AUX, CHECK_PRESSED] == true)) && instance_exists(homing_handle))
 {
     return player_set_state(sonic_state_homing);
