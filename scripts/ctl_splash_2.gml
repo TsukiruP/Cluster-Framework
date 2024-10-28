@@ -3,6 +3,7 @@
 // Start effect:
 if (ctl_position(0))
 {
+    // Set sprite:
     sprite_index = spr_splash_2;
     image_index = 0;
 }

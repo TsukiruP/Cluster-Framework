@@ -3,6 +3,7 @@
 // Start animation:
 if (ctl_position(0))
 {
+    // Set sprite:
     image_index = 1;
 
     // Set hurtbox:

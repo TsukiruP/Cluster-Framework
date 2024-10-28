@@ -3,6 +3,7 @@
 // Start effect:
 if (ctl_position(0))
 {
+    // Set sprite:
     sprite_index = spr_blockade_debris
     image_index = irandom(sprite_get_number(sprite_index));
 }

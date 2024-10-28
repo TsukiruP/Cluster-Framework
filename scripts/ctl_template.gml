@@ -3,6 +3,7 @@
 // Start animation/effect:
 if (ctl_position(0))
 {
+    // Set sprite:
     sprite_index = noone;
     image_index = 0;
 }

@@ -3,6 +3,7 @@
 // Start effect:
 if (ctl_position(0))
 {
+    // Set sprite:
     sprite_index = spr_shield_fire_dash;
     image_index = 0;
 }

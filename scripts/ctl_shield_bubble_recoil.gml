@@ -3,6 +3,7 @@
 // Start effect:
 if (ctl_position(0))
 {
+    // Set sprite:
     sprite_index = spr_shield_bubble_bound;
     image_index = 1;
 }

@@ -108,8 +108,9 @@
 					|ctl_spin_charge
 					|ctl_brake
 					|ctl_debuff
-					|ctl_reticle
-					|ctl_reticle_colors
+					+Sonic
+						|ctl_reticle
+						|ctl_reticle_colors
 				+Shields
 					|ctl_shield_insta
 					|ctl_shield_basic

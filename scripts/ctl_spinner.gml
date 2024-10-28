@@ -3,6 +3,7 @@
 // Start animation:
 if (ctl_position(0))
 {
+    // Set sprite:
     sprite_index = spr_spinner;
     image_index = 0;
 }

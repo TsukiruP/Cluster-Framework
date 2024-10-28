@@ -3,6 +3,7 @@
 // Start animation:
 if (ctl_position(0))
 {
+    // Set sprite:
     sprite_index = spr_checkpoint;
     image_index = 6;
 }
