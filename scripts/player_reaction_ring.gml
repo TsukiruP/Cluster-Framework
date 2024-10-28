@@ -17,6 +17,7 @@ if (collision & COLL_HURT_RADIUS)
             global.game_rings += 10;
 
             // Play sfx:
+            sfx_play("snd_ring_super");
         }
         else
         {

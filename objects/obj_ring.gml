@@ -26,7 +26,10 @@ applies_to=self
 
 if (magnetized == true)
 {
-    instance_create(x, y, obj_ring_magnetized);
+    with (instance_create(x, y, obj_ring_magnetized))
+    {
+        ring_super = other.ring_super;
+    }
 }
 #define Step_1
 /*"/*'/**//* YYD ACTION

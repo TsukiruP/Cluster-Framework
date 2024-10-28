@@ -20,6 +20,24 @@ ring_rate = 8;
 
 // Dropped:
 dropped = false;
+#define Step_0
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Super Ring
+
+if (ring_super == true)
+{
+    sprite_index = spr_ring_super;
+    ring_rate = 6;
+}
+else
+{
+    sprite_index = spr_ring;
+    ring_rate = 8;
+}
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -34,4 +52,27 @@ if (game_ispaused(ctrl_pause))
     exit;
 }
 
-image_index = sync_rate(global.object_time, 8 / (1 + (dropped == true)), sprite_get_number(sprite_index));
+image_index = sync_rate(global.object_time, ring_rate / (1 + (dropped == true)), sprite_get_number(sprite_index));
+#define Other_4
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Field Initialization
+
+event_inherited();
+
+//field ring_super: bool
+
+/*preview
+    var ring_super;
+
+    ring_super = Field("ring_super", 0);
+    sprite_index = Sprite("spr_ring",  0);
+
+    if (ring_super == true)
+    {
+        sprite_index = Sprite("spr_ring_super",  0);
+    }
+*/

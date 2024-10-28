@@ -9,6 +9,9 @@ applies_to=self
 // Load SFX:
 sfx_map = audio_load_directory("data\audio\sfx");
 
+// Ring pan:
+ring_pan = 0;
+
 /*
 // Add character SFX:
 sound_add_directory("data\audio\sfx\character\common", ".wav", 0, true);

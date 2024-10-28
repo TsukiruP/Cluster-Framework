@@ -15,4 +15,5 @@ obj_basic_test_collision_01,864,864,9AF4E826,0,1,1,4294967295,0,0
 obj_basic_test_collision_28,576,768,55DF87CF,0,1,1,4294967295,0,1
 obj_basic_test_collision_28,672,768,EE52793A,0,1,1,4294967295,0,1
 obj_basic_test_collision_28,768,768,26474C78,0,1,1,4294967295,0,1
-obj_item_box,320,768,EABBD602,0,1,1,4294967295,0,0
+obj_ring,320,760,2CAC07CE,0,1,1,4294967295,0,1
+obj_item_box,288,792,05FE32B8,0,1,1,4294967295,0,1
