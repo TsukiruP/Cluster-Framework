@@ -104,36 +104,23 @@
 			|spr_classic_death
 	+Props
 		|spr_sensor_layer
-		|spr_ring
+		+Rings
+			|spr_ring
+			|spr_ring_super
 		|spr_checkpoint
 		+Springs
 			|spr_spring_vertical
 			|spr_spring_horizontal
 			|spr_spring_diagonal
-			|spr_spring_down
-			|spr_spring_left
-			|spr_spring_left_up
-			|spr_spring_left_down
-			|spr_spring_right_down
 		|spr_dash_panel
 		+Dash Rings
 			|spr_dash_ring_vertical
 			|spr_dash_ring_horizontal
 			|spr_dash_ring_diagonal
-			|spr_dash_ring_down
-			|spr_dash_ring_left
-			|spr_dash_ring_left_up
-			|spr_dash_ring_left_down
-			|spr_dash_ring_right_down
 			+Rainbow
 				|spr_rainbow_ring_vertical
 				|spr_rainbow_ring_horizontal
 				|spr_rainbow_ring_diagonal
-				|spr_rainbow_ring_left
-				|spr_rainbow_ring_down
-				|spr_rainbow_ring_left_up
-				|spr_rainbow_ring_left_down
-				|spr_rainbow_ring_right_down
 		+Item Box
 			|spr_item_box
 			|spr_item_icon
@@ -148,7 +135,8 @@
 			+Omochao
 				|spr_omochao_idle
 				|spr_omochao_sonic
-		|spr_goal_ring
+		+Goals
+			|spr_goal_ring
 	+Obstacles
 		+Spikes
 			|spr_spike_vertical
@@ -243,7 +231,6 @@
 	+Low
 	+High
 	+Masks
-		|mask_lines
 		|mask_edge_line
 		|mask_platform_fix
 		|mask_ledge
@@ -378,3 +365,18 @@
 		|spr_spike_down
 		|spr_spike_left
 		|spr_spike_right
+	|spr_spring_down
+	|spr_spring_left
+	|spr_spring_left_up
+	|spr_spring_left_down
+	|spr_spring_right_down
+	|spr_dash_ring_down
+	|spr_dash_ring_left
+	|spr_dash_ring_left_up
+	|spr_dash_ring_left_down
+	|spr_dash_ring_right_down
+	|spr_rainbow_ring_left
+	|spr_rainbow_ring_right_down
+	|spr_rainbow_ring_left_down
+	|spr_rainbow_ring_left_up
+	|spr_rainbow_ring_down

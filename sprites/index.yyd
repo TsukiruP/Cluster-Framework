@@ -4,7 +4,7 @@ spr_sonic_air_dash
 spr_reticle_colors
 spr_shockwave
 spr_sonic_stomp
-mask_lines
+spr_ring_super
 mask_edge_line
 mask_ledge
 spr_basic_test_collision_03
