@@ -885,6 +885,8 @@ switch (animation_current)
     case "hammer":
     case "insta":
     case "skid":
+    case "stomp":
+    case "stomp_land":
         image_angle = gravity_direction;
         break;
 
