@@ -8,9 +8,9 @@ if (ctl_position(0))
     image_index = 0;
 
     // Set collision:
-    player_set_radii(6, 14, 3);
-    set_hurtbox(4, 16, 8, 15);
-    set_hitbox();
+    radii_set(6, 14, 3);
+    hurtbox_set(4, 16, 8, 15);
+    hitbox_set();
 }
 
 // Change frame:

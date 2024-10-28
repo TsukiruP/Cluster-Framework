@@ -198,9 +198,9 @@ player_collision_ceiling
 instance_nearest_dir_x
 player_inbounds
 player_set_cliff
-player_set_radii
-set_hurtbox
-set_hitbox
+radii_set
+hurtbox_set
+hitbox_set
 player_get_collision
 ctl_sonic_hammer
 ctl_sonic_skid

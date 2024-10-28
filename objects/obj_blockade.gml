@@ -57,13 +57,13 @@ switch (orientation)
     // Horizontal:
     case ORIEN_HORIZONTAL:
         sprite_index = spr_blockade_horizontal;
-        set_hurtbox(24, 12, 23, 11);
+        hurtbox_set(24, 12, 23, 11);
         break;
 
     // Vertical:
     default:
         sprite_index = spr_blockade_vertical;
-        set_hurtbox(13, 24, 12, 23);
+        hurtbox_set(13, 24, 12, 23);
 }
 #define Draw_0
 /*"/*'/**//* YYD ACTION

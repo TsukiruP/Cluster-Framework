@@ -155,13 +155,15 @@
 			|draw_background_tiled_horizontal_part
 			|draw_background_tiled_horizontal_part_yscale
 			|draw_background_tiled_vertical_part
+	+Collision
+		|radii_set
+		|hurtbox_set
+		|hitbox_set
 	+Misc.
 		|hover
 		|pick_offset
 		|transition_create
 		|effect_create
-		|set_hurtbox
-		|set_hitbox
 		|instance_nth_nearest
 		|instance_nearest_dir_x
 +Gameplay
@@ -249,7 +251,6 @@
 			|player_get_collision
 			|player_get_item
 		+Setters
-			|player_set_radii
 			|player_set_input
 			|player_set_ground
 			|player_set_cliff

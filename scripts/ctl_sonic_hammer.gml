@@ -8,9 +8,9 @@ if (ctl_position(0))
     image_index = 0;
 
     // Set collision:
-    player_set_radii(6, 14, 3);
-    set_hurtbox(6, 13, 6, 15);
-    set_hitbox();
+    radii_set(6, 14, 3);
+    hurtbox_set(6, 13, 6, 15);
+    hitbox_set();
 }
 
 // Change frame:
@@ -19,7 +19,7 @@ else if (ctl_position(1))
     image_index = 1;
 
     // Set collision:
-    set_hurtbox(6, 13, 6, 15, -9);
+    hurtbox_set(6, 13, 6, 15, -9);
 }
 
 // Change frame:
@@ -28,7 +28,7 @@ else if (ctl_position(2))
     image_index = 2;
 
     // Set collision:
-    set_hurtbox(6, 13, 6, 15, -16);
+    hurtbox_set(6, 13, 6, 15, -16);
 }
 
 // Change frame:
@@ -55,7 +55,7 @@ else if (ctl_position(9))
     image_index = 6;
 
     // Set collision:
-    set_hurtbox(6, 13, 6, 15, -11);
+    hurtbox_set(6, 13, 6, 15, -11);
 }
 
 // Change frame:
@@ -64,8 +64,8 @@ else if (ctl_position(10))
     image_index = 7;
 
     // Set collision:
-    set_hurtbox(6, 13, 6, 15, -8);
-    set_hitbox(15, 15, 15, 18, 3, -20);
+    hurtbox_set(6, 13, 6, 15, -8);
+    hitbox_set(15, 15, 15, 18, 3, -20);
 }
 
 // Change frame:
@@ -74,8 +74,8 @@ else if (ctl_position(11))
     image_index = 8;
 
     // Set collision:
-    set_hurtbox(6, 13, 6, 15);
-    set_hitbox(16, 23, 16, 15, 16);
+    hurtbox_set(6, 13, 6, 15);
+    hitbox_set(16, 23, 16, 15, 16);
 }
 
 // Change frame:
@@ -102,7 +102,7 @@ else if (ctl_position(20))
     image_index = 12;
 
     // Set collision:
-    set_hitbox();
+    hitbox_set();
 }
 
 // Change frame:

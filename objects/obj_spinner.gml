@@ -12,10 +12,10 @@ event_inherited();
 ctl_initialize(ctl_spinner);
 
 // Hurtbox:
-set_hurtbox(20, 19, 20, 4);
+hurtbox_set(20, 19, 20, 4);
 
 // Hitbox:
-set_hitbox(8, 18, 7, 4);
+hitbox_set(8, 18, 7, 4);
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1

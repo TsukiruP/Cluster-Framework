@@ -12,7 +12,7 @@ event_inherited();
 ctl_initialize(ctl_checkpoint_inactive);
 
 // Hurtbox:
-set_hurtbox(13, 22, 14, 16);
+hurtbox_set(13, 22, 14, 16);
 
 // Reaction:
 reaction_index = player_reaction_checkpoint;

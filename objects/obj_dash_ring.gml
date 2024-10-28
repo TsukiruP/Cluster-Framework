@@ -131,7 +131,7 @@ switch (orientation)
         }
 
         angle = ANGLE_RIGHT;
-        set_hurtbox(6, 24, 7, 26);
+        hurtbox_set(6, 24, 7, 26);
         break;
 
     // Diagonal:
@@ -146,7 +146,7 @@ switch (orientation)
         }
 
         angle = ANGLE_RIGHT_UP;
-        set_hurtbox(7, 7, 7, 7);
+        hurtbox_set(7, 7, 7, 7);
         break;
 
     // Vertical:
@@ -161,7 +161,7 @@ switch (orientation)
         }
 
         angle = ANGLE_UP;
-        set_hurtbox(26, 5, 26, 6);
+        hurtbox_set(26, 5, 26, 6);
 
 }
 

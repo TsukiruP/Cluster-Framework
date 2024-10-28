@@ -12,7 +12,7 @@ event_inherited();
 image_speed = 0;
 
 // Hurtbox:
-set_hurtbox(13, 16, 12, 16);
+hurtbox_set(13, 16, 12, 16);
 
 // Reaction:
 reaction_index = player_reaction_item_box;

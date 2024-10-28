@@ -86,14 +86,14 @@ slide_threshold = 2.5;
 air_friction_threshold = 0.125;
 
 // Radii:
-player_set_radii(6, 14, 3, 0);
+radii_set(6, 14, 3, 0);
 wall_radius = x_radius + wall_offset;
 
 // Hurtbox:
-set_hurtbox();
+hurtbox_set();
 
 // Hitbox:
-set_hitbox();
+hitbox_set();
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603

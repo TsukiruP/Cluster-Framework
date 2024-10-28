@@ -9,7 +9,7 @@ applies_to=self
 event_inherited();
 
 // Hurtbox:
-set_hurtbox(21, 17, 19, 16, 0, 31);
+hurtbox_set(21, 17, 19, 16, 0, 31);
 
 // Draw variables:
 draw_y = 0;

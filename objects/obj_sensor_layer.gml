@@ -9,7 +9,7 @@ applies_to=self
 event_inherited();
 
 // Hurtbox:
-set_hurtbox(8, 8, 7, 7, 8, 8);
+hurtbox_set(8, 8, 7, 7, 8, 8);
 
 // Reaction:
 reaction_index = player_reaction_sensor_layer;

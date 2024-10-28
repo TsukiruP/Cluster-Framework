@@ -126,7 +126,7 @@ switch (orientation)
         sprite_index = spr_spring_horizontal;
         angle = ANGLE_RIGHT;
         ctl_initialize(ctl_spring_horizontal);
-        set_hurtbox(16, 5, 4, 5);
+        hurtbox_set(16, 5, 4, 5);
         break;
 
     // Diagonal:
@@ -134,7 +134,7 @@ switch (orientation)
         sprite_index = spr_spring_diagonal;
         angle = ANGLE_RIGHT_UP;
         ctl_initialize(ctl_spring_diagonal);
-        set_hurtbox(6, 2, 4, 8);
+        hurtbox_set(6, 2, 4, 8);
         break;
 
     // Vertical:
@@ -142,7 +142,7 @@ switch (orientation)
         sprite_index = spr_spring_vertical;
         angle = ANGLE_UP;
         ctl_initialize(ctl_spring_vertical);
-        set_hurtbox(5, 4, 5, 15);
+        hurtbox_set(5, 4, 5, 15);
 }
 
 // Flip x:

@@ -9,10 +9,14 @@ applies_to=self
 event_inherited();
 
 // Hurtbox:
-set_hurtbox(8, 8, 7, 7, 0, 0);
+hurtbox_set(8, 8, 7, 7, 0, 0);
 
 // Reaction:
 reaction_index = player_reaction_ring;
+
+// Ring variables:
+ring_super = false;
+ring_rate = 8;
 
 // Dropped:
 dropped = false;

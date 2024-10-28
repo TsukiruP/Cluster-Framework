@@ -16,10 +16,10 @@ image_speed = 0;
 gravity_direction = 0;
 
 // Hurtbox:
-set_hurtbox();
+hurtbox_set();
 
 // Hitbox:
-set_hitbox();
+hitbox_set();
 
 // Reaction:
 reaction_index = -1;
