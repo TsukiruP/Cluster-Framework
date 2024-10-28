@@ -67,13 +67,8 @@ switch (status_shield)
         {
             var spark_handle;
 
-            spark_handle = instance_create(floor(x), floor(y), par_effect);
+            spark_handle = effect_create(ctl_shield_lightning_spark, floor(x), floor(y));
             spark_handle.e_speed = 2;
-
-            with (spark_handle)
-            {
-                ctl_initialize(ctl_shield_lightning_spark);
-            }
 
             switch (i)
             {

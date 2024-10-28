@@ -48,14 +48,9 @@ if (collision & COLL_HURT)
                 {
                     var debris_handle;
 
-                    debris_handle = instance_create(floor(x), floor(y), par_effect);
+                    debris_handle = effect_create(ctl_blockade_debris, floor(x), floor(y));
                     debris_handle.e_speed = 4;
                     debris_handle.angle = ANGLE_DOWN + irandom_range(-45, 45);
-
-                    with (debris_handle)
-                    {
-                        ctl_initialize(ctl_blockade_debris);
-                    }
                 }
 
                 // Destroy:
