@@ -14,6 +14,9 @@ if ((collision & COLL_HURT) || (collision & COLL_HURT_RADIUS))
         // Homing:
         sonic_routine_homing();
 
+        // Play sfx:
+        sfx_play("snd_destroy", true);
+
         // Break:
         with (reaction_handle)
         {
@@ -26,8 +29,5 @@ if ((collision & COLL_HURT) || (collision & COLL_HURT_RADIUS))
             // Destroy:
             instance_destroy();
         }
-
-        // Play sfx:
-        sfx_play("snd_destroy", true);
     }
 }

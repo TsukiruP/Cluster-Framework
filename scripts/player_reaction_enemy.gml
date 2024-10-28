@@ -46,15 +46,15 @@ if ((collision & COLL_HURT) || ((collision & COLL_HURT_RADIUS) && status_invin =
         // Homing:
         sonic_routine_homing();
 
+        // Play sfx:
+        sfx_play("snd_destroy", true);
+
         // Destroy:
         with (reaction_handle)
         {
             effect_create(ctl_explosion_enemy, x, y, -depth);
             instance_destroy();
         }
-
-        // Play sfx:
-        sfx_play("snd_destroy", true);
     }
 }
 

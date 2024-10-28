@@ -12,8 +12,22 @@ if (collision & COLL_HURT_RADIUS)
     if (status_invin != INVIN_HURT || (status_invin == INVIN_HURT && status_invin_alarm > 0 && status_invin_alarm < 90))
     {
         // Collect:
-        global.game_rings += 1;
+        if (reaction_handle.ring_super == true)
+        {
+            global.game_rings += 10;
 
+            // Play sfx:
+        }
+        else
+        {
+            global.game_rings += 1
+
+            // Play sfx:
+            sfx_play("snd_ring", true, ctrl_audio.ring_pan);
+            ctrl_audio.ring_pan *= -1;
+        }
+
+        // Destroy:
         with (reaction_handle)
         {
             // Sparkle:
@@ -22,9 +36,5 @@ if (collision & COLL_HURT_RADIUS)
             // Destroy:
             instance_destroy();
         }
-
-        // Play sfx:
-        sfx_play("snd_ring", true, ctrl_audio.ring_pan);
-        ctrl_audio.ring_pan *= -1;
     }
 }

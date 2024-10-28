@@ -67,12 +67,6 @@ if (collision & COLL_HURT_RADIUS)
             }
         }
 
-        // Activate:
-        with (reaction_handle)
-        {
-            activated = true;
-        }
-
         // Play sfx:
         if (reaction_handle.sfx_alarm == 0)
         {
@@ -89,6 +83,12 @@ if (collision & COLL_HURT_RADIUS)
 
             // SFX alarm:
             reaction_handle.sfx_alarm = 8;
+        }
+
+        // Activate:
+        with (reaction_handle)
+        {
+            activated = true;
         }
     }
 }

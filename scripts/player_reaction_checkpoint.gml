@@ -54,15 +54,15 @@ if (collision & COLL_HURT_RADIUS)
                 }
             }
 
+            // Play sfx:
+            sfx_play("snd_checkpoint", true);
+
             // Activate:
             with (reaction_handle)
             {
                 active = true;
                 checkpoint_set();
             }
-
-            // Play sfx:
-            sfx_play("snd_checkpoint", true);
         }
     }
 }
