@@ -237,3 +237,4 @@ player_reset_spring
 ctl_reticle
 player_collision_object
 sonic_trait_reticle
+ctl_sonic_stomp

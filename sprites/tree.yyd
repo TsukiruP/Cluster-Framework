@@ -90,6 +90,7 @@
 			|spr_sonic_insta
 			|spr_sonic_skid
 			|spr_sonic_air_dash
+			|spr_sonic_stomp
 		+Classic
 			|spr_classic_stand
 			|spr_classic_jog
@@ -161,12 +162,14 @@
 			|spr_spin_dash
 			|spr_spin_charge
 			|spr_brake
-			|spr_drop_dash
 			|spr_debuff
-			|spr_reticle
-			|spr_reticle_colors
 			|spr_character_arrow
 			|spr_tag_call
+			+Sonic
+				|spr_drop_dash
+				|spr_reticle
+				|spr_reticle_colors
+				|spr_shockwave
 		+Shields
 			|spr_shield_insta
 			|spr_shield_basic
@@ -240,8 +243,6 @@
 	+Low
 	+High
 	+Masks
-		|mask_small
-		|mask_dot
 		|mask_lines
 		|mask_edge_line
 		|mask_platform_fix

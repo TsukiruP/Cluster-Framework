@@ -91,6 +91,7 @@
 						|ctl_sonic_skid_end
 					|ctl_sonic_insta
 					|ctl_sonic_air_dash
+					|ctl_sonic_stomp
 			+Props
 				+Checkpoint
 					|ctl_checkpoint_inactive
