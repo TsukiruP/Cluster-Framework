@@ -54,7 +54,6 @@ QuadFactor
     Tails - Sonic Battle
     Knuckles - Sonic Battle
 
-
 Blazefirelp
     Monitors - Sonic Colors (DS)
     Rainbow Rings - Sonic Rush
@@ -104,6 +103,14 @@ Vebilis
     Sonic Adventure Hint Box Sprites
 
 SOUND
+Azu
+    General Sound Effects - Sonic Colors
+
+Random Talking Bush
+    Sound Effects - Sonic Mania
+
+Tsukiru
+    Sonic Heroes
 
 TOOLS
 Velocitas by RPatry
