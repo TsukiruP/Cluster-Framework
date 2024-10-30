@@ -1,126 +1,110 @@
 /// credits()
 // Return the list of credits to be given.
-
-return
-"Developed by Tsukiru#
-
+/*
 CODE
-Sonic Mania Decompilation by Rubberduckycooly
+Rubberduckycooly
+Sonic Mania Decompilation
 
-Sonic Advance 2 Decompilation by SAT-R
+SAT-R
+Sonic Advance 2 Decompilation
 
-Harinezumi Engine/S8E by A.NB
-S9E Engine by Monolith
+VectorSatyr (SonicForGMS)
+States machine
+Animation timelines
 
-SonicForGMS (for GMS1) by VectorSatyr
-    States machine
-    Animation timelines concept
+A.NB
+Harinezumi Engine
 
-Sonic Studio Engine by VectorSatyr & ported by Monolith
-    Original player collision
+Monolith
+Starlight 9 Engine
+Sonic Studio Engine collision port
 
-Osminium by The Valeev
-    Springs/Dash Panels/Dash Rings
-    Trails
+The Valeev (Osminium)
+Springs/Dash Panels/Dash Rings
+Trails
 
 Pixelated Pope
-    Arc code for Tag Actions
+Arc code for Tag Actions
 
 INSPIRATION
 Sonic XG
-    Monitor HUD concept
+Status HUD concept
 
 Sonic the Hedgehog: Project '06
-    Bound Jump SFX
-    Action Gauge Concept
+Bound Jump SFX
+Action Gauge Concept
 
-Sonic (Project) Advance / Sonic Advance X
-    Title Card Concept
-    Death Transition Concept
+Sonic Advance X
+Title Card Concept
+Death Transition Concept
 
-SPRITE RIPS
-Tsukiru
-    Goal Ring - Sonic Colors (DS)
-    Water Effects - Sonic Colors (DS)
-    Status Effect - Sonic Advance 2
-    Status Effect - Sonic Advance 3
-    Explosions - Sonic Colors (DS)
-    Water Explosion - Sonic Rush Adventure
-    Step/Run/Dash Splash - Sonic Rush
-    Dash Ring - Sonic Colors
-
+RIPPED SPRITES
 QuadFactor
-    Sonic - Sonic Battle
-    Tails - Sonic Battle
-    Knuckles - Sonic Battle
-
-Blazefirelp
-    Monitors - Sonic Colors (DS)
-    Rainbow Rings - Sonic Rush
-
-IceisNice
-    Rainbow Rings - Sonic Rush
-    Diagonal Rings - Sonic Rush
-
-Techokami
-    Minigames & Zone Maps tiles - Sonic Advance 3
-    Hidden Island tiles - Sonic Rush Adventure
-
-TrishRowdy
-    Checkpoint - Sonic Colors (DS)
+Sonic Battle - Sonic
 
 Dolphman, Random Talking Bush
-    General Objects - Sonic Mania
+Sonic Mania - General Objects
 
 MainMemory
-    Everything Sonic Advance 1-3
+Sonic Advance 1
+Sonic Advance 2
+Sonic Advance 3
+
+RPatry
+Sonic Rush
+Sonic Rush Adventure
+Sonic Colors (DS)
 
 CUSTOM SPRITES
 Tsukiru
-    Sonic Generations-esque Font
-    Expanded HomingMissile333 Font
+Sonic Generations-esque Font
+Expanded HomingMissile333 Font
 
 jan300omega
-    Sprite Sheet Project - Sonic (My Palette)
+Sprite Sheet Project - Sonic (My Palette)
 
 TTuDa6upka
-    Sonic Peel Out sprites v 1.0
+Sonic Peel Out sprites v 1.0
 
 HomingMissile333
-    Sonic HUD Sprite Sheet (NEW)
-    Sonic Target Lock Sprite (NEW)
-    Sonic Custom Title Card Animated
-    Pause Menu
+Sonic HUD Sprite Sheet (NEW)
+Sonic Target Lock Sprite (NEW)
+Sonic Custom Title Card Animated
+Pause Menu
+
+Kainoso
+Sonic Unleashed 10-Rings
 
 CrazyAlec
-    Sonic Unleashed dash panel
-    Sonic Unleashed ramp
+Sonic Unleashed dash panel
+Sonic Unleashed ramp
 
 goncas23
-    Item Box Icons - custom
+Item Box Icons - custom
+Tileset for Meteor Herd
+Seaside Hill Tiles
+Sky Sanctuary Tileset
+Classic Sonic Spritesheet
 
 Vebilis
-    Sonic Adventure Hint Box Sprites
+Sonic Adventure Hint Box Sprites
 
-SOUND
+Zeronatt1233
+Rising Hopper ProgriseKey Realize Ver.
+
+RIPPED SOUNDS
+Tsukiru
+Sonic Heroes
+
 Azu
-    General Sound Effects - Sonic Colors
+Sonic Colors - General Sound Effects
 
 Random Talking Bush
-    Sound Effects - Sonic Mania
-
-Tsukiru
-    Sonic Heroes
+Sonic Mania - Sound Effects
 
 TOOLS
-Velocitas by RPatry
+MainMemory
+AdvanceTools
 
-AdvanceTools by MainMemory
-
-Game Maker 8.2
-
-SPECIAL THANKS
-Monolith
-renex
-floogle
-";
+RPatry
+Velocitas
