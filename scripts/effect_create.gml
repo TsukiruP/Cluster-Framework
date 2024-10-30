@@ -30,3 +30,6 @@ if (argument_count >= 6)
 {
     effect.image_yscale = argument[5];
 }
+
+// Return effect:
+return effect;
