@@ -14,37 +14,37 @@ if (ctl_position(0))
 }
 
 // Change frame:
-else if (ctl_position(2))
+else if (ctl_position(1))
 {
     image_index = 1;
 }
 
 // Change frame:
-else if (ctl_position(4))
+else if (ctl_position(2))
 {
     image_index = 2;
 }
 
 // Change frame:
-else if (ctl_position(6))
+else if (ctl_position(3))
 {
     image_index = 3;
 }
 
 // Change frame:
-else if (ctl_position(8))
+else if (ctl_position(4))
 {
     image_index = 4;
 }
 
 // Change frame:
-else if (ctl_position(12))
+else if (ctl_position(5))
 {
     image_index = 5;
 }
 
 // Change frame:
-else if (ctl_position(14))
+else if (ctl_position(6))
 {
     image_index = 6;
 
@@ -53,13 +53,8 @@ else if (ctl_position(14))
 }
 
 // Change frame:
-else if (ctl_position(16))
+else if (ctl_position(7))
 {
     image_index = 7;
-}
-
-// Loop animation:
-else if (ctl_position(17))
-{
-    ctl_time = 14;
+    ctl_time = 6;
 }
