@@ -47,6 +47,8 @@ switch (argument0)
                 // Land:
                 if (on_ground == true)
                 {
+                    var sine, csine;
+
                     // Set speed:
                     x_speed = 0;
 
@@ -58,6 +60,16 @@ switch (argument0)
 
                     // Play sfx:
                     sfx_play("snd_stomp_land", true);
+
+                    // Create shockwave:
+                    sine = dsin(mask_rotation);
+                    csine = dcos(mask_rotation);
+
+                    with(effect_create(ctl_shockwave, x + sine * y_radius, y + csine * y_radius))
+                    {
+                        image_angle = angle_wrap(other.mask_rotation - 90);
+                        image_alpha = 0.5;
+                    }
                 }
 
                 // Gravity:

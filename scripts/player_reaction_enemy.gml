@@ -52,7 +52,10 @@ if ((collision & COLL_HURT) || ((collision & COLL_HURT_RADIUS) && status_invin =
         // Destroy:
         with (reaction_handle)
         {
+            // Create explosion:
             effect_create(ctl_explosion_enemy, x, y, -depth);
+
+            // Destroy:
             instance_destroy();
         }
     }

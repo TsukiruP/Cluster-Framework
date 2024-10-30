@@ -31,7 +31,7 @@ if (collision & COLL_HURT_RADIUS)
         // Destroy:
         with (reaction_handle)
         {
-            // Sparkle:
+            // Create sparkle:
             effect_create(ctl_ring_sparkle, x, y, -depth);
 
             // Destroy:

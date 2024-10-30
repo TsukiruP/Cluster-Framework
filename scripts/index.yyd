@@ -111,7 +111,7 @@ collision_point_list
 sfx_play
 draw_collision
 sfx_stop
-player_obstacle_rectangle
+ctl_shockwave
 player_collision_terrain
 player_get_angle
 sonic_state_skid

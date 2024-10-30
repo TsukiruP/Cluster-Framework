@@ -113,6 +113,7 @@
 					+Sonic
 						|ctl_reticle
 						|ctl_reticle_colors
+						|ctl_shockwave
 				+Shields
 					|ctl_shield_insta
 					|ctl_shield_basic
@@ -276,7 +277,6 @@
 +Trash
 	+Collision
 		+Utilities
-			|player_obstacle_rectangle
 		|player_collision_semisolids
 		|player_collision_terrain
 		|player_collision_obstacle
