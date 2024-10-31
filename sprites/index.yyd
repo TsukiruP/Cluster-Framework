@@ -5,7 +5,7 @@ spr_reticle_colors
 spr_shockwave
 spr_sonic_stomp
 spr_ring_super
-mask_edge_line
+spr_sonic_peel_out
 mask_ledge
 spr_basic_test_collision_03
 spr_realizing_hopper

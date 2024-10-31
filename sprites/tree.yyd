@@ -91,6 +91,7 @@
 			|spr_sonic_skid
 			|spr_sonic_air_dash
 			|spr_sonic_stomp
+			|spr_sonic_peel_out
 		+Classic
 			|spr_classic_stand
 			|spr_classic_jog
@@ -231,7 +232,6 @@
 	+Low
 	+High
 	+Masks
-		|mask_edge_line
 		|mask_platform_fix
 		|mask_ledge
 	+Miles
