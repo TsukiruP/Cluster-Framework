@@ -9,9 +9,6 @@ switch (argument0)
         x_speed = 0;
         y_speed = 0;
 
-        // Reset air:
-        player_reset_air();
-
         // Set animation:
         player_set_animation("stomp");
 
