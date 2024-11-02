@@ -8,11 +8,11 @@ switch (argument0)
         // Charge:
         spin_dash_charge = 0;
 
-        // Play sfx:
-        sfx_play("snd_spin_dash_charge", true);
-
         // Set animation:
         player_set_animation("spin_dash");
+
+        // Play sfx:
+        sfx_play("snd_spin_dash_charge", true);
 
         // Dust:
         with (instance_create(x, y, eff_spin_dash))
@@ -51,7 +51,8 @@ switch (argument0)
         // Release:
         if (input_player[INP_DOWN, CHECK_HELD] == false)
         {
-            x_speed = image_xscale * (8 + (spin_dash_charge div 2));
+            // Set speed:
+            x_speed = (8 + (spin_dash_charge div 2)) * image_xscale;
 
             // Camera lag:
             if (input_cpu == false)
@@ -63,7 +64,7 @@ switch (argument0)
             sfx_play("snd_spin_dash_release", true);
 
             // Stop sfx:
-            audio_stop("snd_spin_dash_charge.wav");
+            sfx_stop("snd_spin_dash_charge");
 
             return player_set_state(player_state_roll);
         }
