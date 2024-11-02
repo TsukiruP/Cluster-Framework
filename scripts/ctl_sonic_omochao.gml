@@ -31,7 +31,7 @@ else if (ctl_position(18))
     image_index = 3;
 }
 
-// Cange frame:
+// Change frame:
 else if (ctl_position(22))
 {
     image_index = 4;

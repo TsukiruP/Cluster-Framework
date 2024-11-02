@@ -87,20 +87,25 @@ else if (ctl_position(30))
 }
 
 // Change frame:
-else if (ctl_position(31))
+else if (ctl_position(32))
 {
     image_index = 14;
 }
 
 // Change frame:
-else if (ctl_position(32))
+else if (ctl_position(34))
 {
     image_index = 15;
 }
 
 // Change frame:
-else if (ctl_position(33))
+else if (ctl_position(36))
 {
     image_index = 16;
+}
+
+// Loop animation:
+else if (ctl_position(37))
+{
     ctl_time = 30;
 }
