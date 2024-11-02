@@ -112,7 +112,7 @@ else if (on_ground == false)
 }
 
 // Super Peel Out:
-if (global.skill_sonic[SONIC_PEEL] == true && x_speed == 0 && input_player[INP_UP, CHECK_HELD] == true && input_player[INP_JUMP, CHECK_PRESSED] == true)
+if (global.skill_sonic[SONIC_PEEL] == false && x_speed == 0 && input_player[INP_UP, CHECK_HELD] == true && input_player[INP_JUMP, CHECK_PRESSED] == true)
 {
     return player_set_state(sonic_state_peel_out);
 }

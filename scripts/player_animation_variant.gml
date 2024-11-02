@@ -67,7 +67,7 @@ switch (animation_current)
 }
 
 // Reset Peel Out:
-if (abs(x_speed) < 10 && peel_out == true)
+if (state_current != sonic_state_skid && abs(x_speed) < 10 && peel_out == true)
 {
     peel_out = false;
 }

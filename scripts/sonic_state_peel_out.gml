@@ -6,7 +6,7 @@ switch (argument0)
     // Start:
     case STATE_START:
         // Charge:
-        peel_out_charge = 0;
+        peel_out_alarm = 30;
         
         // Set animation:
         player_set_animation("peel_out");
@@ -42,7 +42,7 @@ switch (argument0)
         // Release:
         if (input_player[INP_UP, CHECK_HELD] == false)
         {
-            if (peel_out_charge >= 30)
+            if (peel_out_alarm == 0)
             {
                 // Set speed:
                 x_speed = 12 * image_xscale;
@@ -67,14 +67,13 @@ switch (argument0)
         }
         
         // Charge:
-        if (peel_out_charge < 30)
+        if (peel_out_alarm > 0)
         {
-            peel_out_charge += 1;
+            peel_out_alarm -= 1;
         }
         break;
 
     // Finish:
     case STATE_FINISH:
-        peel_out_charge = false;
         break;
 }

@@ -112,7 +112,7 @@ homing_range = 128;
 homing_speed = 8;
 
 peel_out = false;
-peel_out_charge = 0;
+peel_out_alarm = 30;
 
 // Classic variables:
 clock_up_state = 0;
