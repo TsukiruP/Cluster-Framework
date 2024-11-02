@@ -111,5 +111,11 @@ else if (on_ground == false)
     }
 }
 
+// Super Peel Out:
+if (input_player[INP_UP, CHECK_HELD] == true && input_player[INP_JUMP, CHECK_PRESSED] == true)
+{
+    return player_set_state(sonic_state_peel_out);
+}
+
 // No skill takes place:
 return false;

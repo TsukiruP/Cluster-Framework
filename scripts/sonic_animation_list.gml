@@ -84,3 +84,6 @@ player_add_animation(CHAR_SONIC, "air_dash",      ctl_sonic_air_dash);
 // Stomp:
 player_add_animation(CHAR_SONIC, "stomp",         ctl_sonic_stomp);
 player_add_animation(CHAR_SONIC, "stomp_land",    ctl_sonic_stomp_land);
+
+// Super Peel Out:
+player_add_animation(CHAR_SONIC, "peel_out",      ctl_sonic_peel_out);
