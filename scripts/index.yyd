@@ -242,3 +242,4 @@ ctl_sonic_stomp_land
 sonic_state_stomp
 ctl_sonic_peel_out
 sonic_state_peel_out
+ctl_sonic_run_5

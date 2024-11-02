@@ -30,6 +30,7 @@ player_add_animation(CHAR_SONIC, "run_1",         ctl_sonic_run_1) // tml_sonic_
 player_add_animation(CHAR_SONIC, "run_2",         ctl_sonic_run_2) //,       tml_sonic_jog_tag);
 player_add_animation(CHAR_SONIC, "run_3",         ctl_sonic_run_3);
 player_add_animation(CHAR_SONIC, "run_4",         ctl_sonic_run_4);
+player_add_animation(CHAR_SONIC, "run_5",         ctl_sonic_run_5);
 
 // Look:
 player_add_animation(CHAR_SONIC, "look",          ctl_sonic_look);

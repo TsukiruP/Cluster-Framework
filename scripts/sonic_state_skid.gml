@@ -11,7 +11,10 @@ switch (argument0)
     // Start:
     case STATE_START:
         // Set speed:
-        x_speed = 3 * image_xscale;
+        if (peel_out == false)
+        {
+            x_speed = 3 * image_xscale;
+        }
 
         // Set animation:
         player_set_animation("somersault");
@@ -48,13 +51,16 @@ switch (argument0)
         else
         {
             // Friction:
-            if (animation_current == "skid")
+            if (peel_out == false)
             {
-                x_speed -= min(abs(x_speed), 0.125) * sign(x_speed);
-            }
-            else
-            {
-                x_speed -= min(abs(x_speed), acceleration) * sign(x_speed);
+                if (animation_current == "skid")
+                {
+                    x_speed -= min(abs(x_speed), 0.125) * sign(x_speed);
+                }
+                else
+                {
+                    x_speed -= min(abs(x_speed), acceleration) * sign(x_speed);
+                }
             }
 
             // Movement:
@@ -86,7 +92,11 @@ switch (argument0)
                 {
                     // Skid:
                     case "somersault":
-                        x_speed = 4 * image_xscale;
+                        // Set speed:
+                        if (peel_out == false)
+                        {
+                            x_speed = 4 * image_xscale;
+                        }
                         
                         // Set animation:
                         player_set_animation("skid");
@@ -137,7 +147,14 @@ switch (argument0)
                 // Get up:
                 if (on_ground == true)
                 {
-                    player_set_animation("skid_end");
+                    if (peel_out == false)
+                    {
+                        player_set_animation("skid_end");
+                    }
+                    else
+                    {
+                        return player_set_state(player_state_run);
+                    }
                 }
 
                 // Jump:

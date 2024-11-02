@@ -65,3 +65,9 @@ switch (animation_current)
     default:
         animation_variant = 0;
 }
+
+// Reset Peel Out:
+if (abs(x_speed) < 10 && peel_out == true)
+{
+    peel_out = false;
+}
