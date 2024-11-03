@@ -112,27 +112,13 @@ else if (on_ground == false)
         // Jump Skills:
         else if (skill_id == SONIC_JUMP)
         {
-            switch (global.skill_sonic[skill_id])
-            {
-                // Double Jump:
-                case SKILL_DOUBLE:
-                    if (player_routine_jump())
-                    {
-                        return true;
-                    }
-                    break;
-                
-                // Drop Dash:
-                case SKILL_DROP_DASH:
-                    return player_set_state(sonic_state_drop_dash);
-                    break;
-            }
+            return player_set_state(sonic_state_drop_dash);
         }
     }
 }
 
 // Super Peel Out:
-if (global.skill_sonic[SONIC_PEEL] == false && x_speed == 0 && input_player[INP_UP, CHECK_HELD] == true && input_player[INP_JUMP, CHECK_PRESSED] == true)
+if (global.skill_sonic[SONIC_PEEL] == true && x_speed == 0 && input_player[INP_UP, CHECK_HELD] == true && input_player[INP_JUMP, CHECK_PRESSED] == true)
 {
     return player_set_state(sonic_state_peel_out);
 }
