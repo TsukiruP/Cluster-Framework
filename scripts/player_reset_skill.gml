@@ -4,5 +4,5 @@
 // Reset shield:
 status_shield_allow = true;
 
-// Reset sonic:
+// Reset Sonic:
 air_dash_allow = true;
