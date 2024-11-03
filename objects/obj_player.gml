@@ -892,6 +892,7 @@ switch (animation_current)
     case "skid":
     case "stomp":
     case "stomp_land":
+    case "peel_out":
         image_angle = gravity_direction;
         break;
 
