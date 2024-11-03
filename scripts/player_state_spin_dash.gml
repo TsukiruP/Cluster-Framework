@@ -14,7 +14,7 @@ switch (argument0)
         // Play sfx:
         sfx_play("snd_spin_dash_charge", true);
 
-        // Dust:
+        // Create dust:
         with (instance_create(x, y, eff_spin_dash))
         {
             player_handle = other.id;

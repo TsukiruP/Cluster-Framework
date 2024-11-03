@@ -76,7 +76,7 @@ else if (on_ground == false)
                 // Play sfx:
                 sfx_play("snd_shield_insta", true);
 
-                // Shield:
+                // Create shield:
                 with (instance_create(x, y, eff_player))
                 {
                     ctl_initialize(ctl_shield_insta);
@@ -107,6 +107,26 @@ else if (on_ground == false)
             sfx_play("snd_air_dash", true);
 
             return player_set_state(player_state_air, false);
+        }
+        
+        // Jump Skills:
+        else if (skill_id == SONIC_JUMP)
+        {
+            switch (global.skill_sonic[skill_id])
+            {
+                // Double Jump:
+                case SKILL_DOUBLE:
+                    if (player_routine_jump())
+                    {
+                        return true;
+                    }
+                    break;
+                
+                // Drop Dash:
+                case SKILL_DROP_DASH:
+                    return player_set_state(sonic_state_drop_dash);
+                    break;
+            }
         }
     }
 }

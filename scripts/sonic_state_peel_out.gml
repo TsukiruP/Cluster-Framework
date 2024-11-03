@@ -5,7 +5,7 @@ switch (argument0)
 {
     // Start:
     case STATE_START:
-        // Charge:
+        // Alarm:
         peel_out_alarm = 30;
         
         // Set animation:
@@ -66,7 +66,7 @@ switch (argument0)
             return player_set_state(player_state_run);
         }
         
-        // Charge:
+        // Alarm:
         if (peel_out_alarm > 0)
         {
             peel_out_alarm -= 1;

@@ -107,6 +107,8 @@ character_id = CHAR_SONIC;
 // Sonic variables:
 air_dash_allow = true;
 
+drop_dash_alarm = 20;
+
 homing_handle = noone;
 homing_range = 128;
 homing_speed = 8;
