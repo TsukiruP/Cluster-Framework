@@ -21,6 +21,11 @@ switch (argument0)
 
     // Step:
     case STATE_STEP:
+        var bound_count_temp;
+
+        // Store bound count:
+        bound_count_temp = bound_count;
+
         // Input:
         if (input_x_direction != 0)
         {
@@ -47,7 +52,7 @@ switch (argument0)
         if (on_ground == true)
         {
             // Bound count:
-            bound_count = min(bound_count + 1, 2);
+            bound_count = min(bound_count_temp + 1, 2);
 
             // Set animation:
             animation_skip = true;
