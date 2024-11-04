@@ -2,9 +2,18 @@
 // Manages all of Sonic's actions.
 
 // Slam skill:
-if (global.skill_sonic[SONIC_SLAM] >= SKILL_STOMP && on_ground == false && input_player[INP_DOWN, CHECK_HELD] == true && input_player[INP_AUX, CHECK_PRESSED] == true)
+if (global.skill_sonic[SONIC_SLAM] >= SKILL_BOUND && on_ground == false && input_player[INP_DOWN, CHECK_HELD] == true && input_player[INP_AUX, CHECK_PRESSED] == true)
 {
-    return player_set_state(sonic_state_stomp);
+    switch (global.skill_sonic[SONIC_SLAM])
+    {
+        // Bound:
+        case SKILL_BOUND:
+            return player_set_state(sonic_state_bound);
+        
+        // Stomp:
+        case SKILL_STOMP:
+            return player_set_state(sonic_state_stomp);
+    }
 }
 
 // Homing attack:

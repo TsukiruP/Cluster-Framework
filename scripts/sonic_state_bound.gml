@@ -1,31 +1,22 @@
-/// player_state_bound()
-//
+/// sonic_state_bound()
+// No bracelet required!
 
 switch (argument0)
 {
     // Start:
     case STATE_START:
         // Set speed:
-        x_speed = 0;
-        y_speed = 8;
+        y_speed = 10;
 
         // Set bound:
-        jump_bound = BOUND_SHIELD;
+        jump_cap = false;
+        jump_bound = BOUND_SONIC;
 
         // Set animation:
         player_set_animation("spin");
 
         // Play sfx:
-        sfx_play("snd_shield_bubble_bound", true);
-
-        // Shield:
-        if (instance_exists(shield_handle))
-        {
-            with (shield_handle)
-            {
-                event_user(0);
-            }
-        }
+        sfx_play("snd_bound", true);
         break;
 
     // Step:
@@ -55,20 +46,14 @@ switch (argument0)
         // Land:
         if (on_ground == true)
         {
+            // Bound count:
+            bound_count = min(bound_count + 1, 2);
+
             // Set animation:
             animation_skip = true;
 
             // Play sfx:
-            sfx_play("snd_shield_bubble_bound", true);
-
-            // Shield:
-            if (instance_exists(shield_handle))
-            {
-                with (shield_handle)
-                {
-                    event_user(1);
-                }
-            }
+            sfx_play("snd_bound_land", true);
 
             return player_set_state(player_state_jump, true);
         }
@@ -92,15 +77,6 @@ switch (argument0)
         {
             jump_aux = false;
             jump_bound = BOUND_NONE;
-
-            // Reset shield:
-            if (instance_exists(shield_handle))
-            {
-                with (shield_handle)
-                {
-                    shield_reset = true;
-                }
-            }
         }
         break;
 }

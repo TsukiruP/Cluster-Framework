@@ -227,6 +227,7 @@
 					|sonic_state_skid
 					|sonic_state_drop_dash
 					|sonic_state_homing
+					|sonic_state_bound
 					|sonic_state_stomp
 					|sonic_state_peel_out
 		+Routines

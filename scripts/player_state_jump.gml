@@ -15,9 +15,18 @@ switch (argument0)
         // Air force:
         leap_force = jump_force;
 
-        if (jump_bound == BOUND_SHIELD)
+        // Bound force:
+        switch (jump_bound)
         {
-            leap_force = 7.5;
+            // Bubble bound:
+            case BOUND_SHIELD:
+                leap_force = 7.5;
+                break;
+
+            // Sonic bound:
+            case BOUND_SONIC:
+                leap_force = 6 + bound_count;
+                break;
         }
 
         // Jump:

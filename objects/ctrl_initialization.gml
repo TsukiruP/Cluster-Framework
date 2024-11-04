@@ -215,7 +215,7 @@ global.skill_sonic[SONIC_JUMP] = SKILL_DROP_DASH;
 global.skill_sonic[SONIC_AUX_G] = SKILL_SKID;
 global.skill_sonic[SONIC_AUX_A] = SKILL_AIR_DASH;
 global.skill_sonic[SONIC_HOMING] = HOMING_FRONTIERS;
-global.skill_sonic[SONIC_SLAM] = SKILL_STOMP;
+global.skill_sonic[SONIC_SLAM] = SKILL_BOUND;
 global.skill_sonic[SONIC_PEEL] = true;
 /*"/*'/**//* YYD ACTION
 lib_id=1

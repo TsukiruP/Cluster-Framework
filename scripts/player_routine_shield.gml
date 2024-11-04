@@ -7,28 +7,6 @@ status_shield_allow = false;
 // Shield behavior:
 switch (status_shield)
 {
-    // Bubble:
-    case SHIELD_BUBBLE:
-        // Set speed:
-        x_speed = 0;
-        y_speed = 8;
-
-        // Bound:
-        jump_bound = BOUND_SHIELD;
-
-        // Play sfx:
-        sfx_play("snd_shield_bubble_bound", true);
-
-        // Shield:
-        if (instance_exists(shield_handle))
-        {
-            with (shield_handle)
-            {
-                event_user(0);
-            }
-        }
-        break;
-
     // Fire:
     case SHIELD_FIRE:
         // Set speed:

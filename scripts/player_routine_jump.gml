@@ -1,5 +1,5 @@
 /// player_routine_jump()
-// A jump to the sky turns to a rider kick.
+// A rider kick to the sky takes off toward a dream.
 
 if (player_collision_ceiling(y_radius + 5) == noone && input_player[INP_JUMP, CHECK_PRESSED] == true)
 {
