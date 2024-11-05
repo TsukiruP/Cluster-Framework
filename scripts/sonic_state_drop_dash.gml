@@ -119,6 +119,26 @@ switch (argument0)
             }
         }
 
+        // Skill:
+        if (global.skill_sonic[SONIC_SLAM] == SKILL_BOUND && drop_dash_alarm == 0 && input_player[INP_DOWN, CHECK_HELD] == true && input_player[INP_AUX, CHECK_PRESSED] == true)
+        {
+            if (y_speed < bound_speed)
+            {
+                // Set speed:
+                y_speed = bound_speed;
+
+                // Play sfx:
+                sfx_play("snd_bound", true);
+            }
+        }
+        else
+        {
+            if (player_routine_skill())
+            {
+                return true;
+            }
+        }
+
         // Air friction:
         if (abs(x_speed) > air_friction_threshold && y_speed > -4 && y_speed < 0)
         {
