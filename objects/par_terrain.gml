@@ -17,6 +17,7 @@ mask =  true;
 // Flags:
 semisolid = false; // Only the bottom half of the player's mask will collide, and only if their top half isn't also colliding
 can_crush = false; // If the player is embedded inside this solid, they will die
+can_push = false; // The player can push this solid if they're moving against it
 #define Other_4
 /*"/*'/**//* YYD ACTION
 lib_id=1

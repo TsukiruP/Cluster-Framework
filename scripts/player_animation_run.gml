@@ -1,8 +1,17 @@
 /// player_animation_run()
 // Shorthand for run animation behavior.
 
+// PushL
+if (wall_push == true)
+{
+    if (animation_current != "push")
+    {
+        player_set_animation("push");
+    }
+}
+
 // Walk:
-if (abs(x_speed) < 1.50)
+else if (abs(x_speed) < 1.50)
 {
     if (animation_current != "run_0")
     {

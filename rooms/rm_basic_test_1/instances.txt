@@ -23,3 +23,4 @@ obj_basic_test_collision_01,1248,768,3018D18E,0,1,1,4294967295,0,0
 obj_basic_test_collision_03,1344,720,A833D054,0,1,1,4294967295,0,0
 obj_basic_test_collision_03,1440,720,02A542F2,0,1,1,4294967295,0,0
 obj_basic_test_collision_03,384,816,E481118A,0,1,1,4294967295,0,0
+obj_basic_test_collision_04,360,720,518D0948,0,1,1,4294967295,0,0

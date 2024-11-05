@@ -73,7 +73,7 @@ applies_to=self
 /// Collision Initialization
 
 solid_list = ds_list_create();
-wall_direction = 0;
+wall_push = false;
 collision_layer = 0;
 cliff_direction = 0;
 
@@ -835,7 +835,7 @@ if (state_current != player_state_death && !instance_exists(ctrl_tally))
                             // Drown:
                             drown = true;
                             
-                            // Set death:
+                            // Death:
                             player_set_damage(self);
                             break;
                     }

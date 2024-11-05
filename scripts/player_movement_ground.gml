@@ -24,8 +24,9 @@ else
     on_ground = false;
 }
 
-// Reset wall direction:
+// Reset wall:
 wall_sign = 0;
+wall_push = false;
 
 // Initialize movement loop:
 total_steps = 1 + (abs(x_speed) div x_radius);
@@ -58,8 +59,14 @@ repeat (total_steps)
 
     if (hit_wall != noone)
     {
-        // Get crushed if applicable:
-        // [PLACEHOLDER]
+        // Get crushed:
+        if (hit_wall.can_crush && collision_point(x, y, hit_wall, true, false) != noone)
+        {
+            // Death:
+            player_set_damage(self);
+
+            return true;
+        }
 
         // Eject from wall:
         wall_sign = player_wall_eject(hit_wall);
@@ -70,8 +77,14 @@ repeat (total_steps)
         // Stop if moving towards wall:
         if (sign(x_speed) == wall_sign)
         {
+            // Reset speed:
             x_speed = 0;
-            //player_wall_push(hit_wall);
+
+            // Push:
+            if (image_xscale == wall_sign)
+            {
+                player_wall_push(hit_wall, wall_sign);
+            }
         }
     }
 
