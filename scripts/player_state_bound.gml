@@ -72,6 +72,7 @@ switch (argument0)
 
             return player_set_state(player_state_jump, true);
         }
+
         // Air friction:
         if (abs(x_speed) > air_friction_threshold && y_speed > -4 && y_speed < 0)
         {
