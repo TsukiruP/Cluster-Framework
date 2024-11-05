@@ -37,8 +37,14 @@ repeat (total_steps)
 
     if (hit_wall != noone)
     {
-        // Get crushed if applicable:
-        // [PLACEHOLDER]
+        // Get crushed:
+        if (hit_wall.can_crush && collision_point(x, y, hit_wall, true, false) != noone)
+        {
+            // Death:
+            player_set_damage(self);
+
+            return true;
+        }
 
         // Eject from wall:
         wall_sign = player_wall_eject(hit_wall);
