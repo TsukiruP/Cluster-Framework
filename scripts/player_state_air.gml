@@ -58,6 +58,12 @@ switch (argument0)
             return false;
         }
 
+        // Skill:
+        if (player_routine_skill())
+        {
+            return true;
+        }
+
         // Air friction:
         if (abs(x_speed) > air_friction_threshold && y_speed > -4 && y_speed < 0)
         {
@@ -68,12 +74,6 @@ switch (argument0)
         if (y_allow == true)
         {
             y_speed += gravity_force;
-        }
-
-        // Skill:
-        if (player_routine_skill())
-        {
-            return true;
         }
 
         // Set animation:
