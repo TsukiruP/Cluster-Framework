@@ -120,7 +120,7 @@ switch (argument0)
         }
 
         // Skill:
-        if (global.skill_sonic[SONIC_SLAM] == SKILL_BOUND && drop_dash_alarm == 0 && input_player[INP_DOWN, CHECK_HELD] == true && input_player[INP_AUX, CHECK_PRESSED] == true)
+        if (global.skill_sonic[SONIC_SLAM] == SKILL_BOUND_ATTACK && drop_dash_alarm == 0 && input_player[INP_DOWN, CHECK_HELD] == true && input_player[INP_AUX, CHECK_PRESSED] == true)
         {
             if (y_speed < bound_speed)
             {

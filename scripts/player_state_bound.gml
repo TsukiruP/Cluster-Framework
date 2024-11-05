@@ -1,5 +1,5 @@
 /// player_state_bound()
-//
+// Not to be confused with the Bound Attack. Which is to say they're the same thing.
 
 switch (argument0)
 {
