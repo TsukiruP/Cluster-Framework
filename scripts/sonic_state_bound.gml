@@ -6,7 +6,10 @@ switch (argument0)
     // Start:
     case STATE_START:
         // Set speed:
-        y_speed = 10;
+        if (y_speed < bound_speed)
+        {
+            y_speed = bound_speed;
+        }
 
         // Set bound:
         jump_cap = false;
@@ -62,6 +65,7 @@ switch (argument0)
 
             return player_set_state(player_state_jump, true);
         }
+
         // Air friction:
         if (abs(x_speed) > air_friction_threshold && y_speed > -4 && y_speed < 0)
         {
@@ -80,7 +84,6 @@ switch (argument0)
         // Reset bound:
         if (state_current != player_state_jump)
         {
-            jump_aux = false;
             jump_bound = BOUND_NONE;
         }
         break;

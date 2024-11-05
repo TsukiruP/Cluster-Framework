@@ -113,6 +113,7 @@ homing_handle = noone;
 homing_range = 128;
 homing_speed = 8;
 
+bound_speed = 10;
 bound_count = 0;
 
 peel_out = false;
