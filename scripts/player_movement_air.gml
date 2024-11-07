@@ -43,7 +43,7 @@ repeat (total_steps)
             // Death:
             player_set_damage(self);
 
-            return true;
+            return false;
         }
 
         // Eject from wall:

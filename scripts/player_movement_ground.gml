@@ -24,9 +24,8 @@ else
     on_ground = false;
 }
 
-// Reset wall:
+// Reset wall data:
 wall_sign = 0;
-wall_push = false;
 
 // Initialize movement loop:
 total_steps = 1 + (abs(x_speed) div x_radius);
@@ -65,7 +64,7 @@ repeat (total_steps)
             // Death:
             player_set_damage(self);
 
-            return true;
+            return false;
         }
 
         // Eject from wall:
@@ -81,7 +80,7 @@ repeat (total_steps)
             x_speed = 0;
 
             // Push:
-            if (image_xscale == wall_sign)
+            if (image_xscale == wall_sign and input_x_direction == wall_sign)
             {
                 player_wall_push(hit_wall, wall_sign);
             }

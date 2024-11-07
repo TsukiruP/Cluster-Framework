@@ -5,8 +5,7 @@ switch (argument0)
 {
     // Start:
     case STATE_START:
-        // Set animation:
-        player_animation_run();
+        wall_push = false;
         break;
 
     // Step:
