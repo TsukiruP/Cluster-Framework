@@ -97,7 +97,7 @@ event_inherited();
             }
     }
 
-    /// Flip x:
+    // Flip x:
     if (flip_x == true)
     {
         image_xscale = -1;
