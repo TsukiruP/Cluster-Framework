@@ -26,8 +26,38 @@ applies_to=self
 */
 /// Field Initialization
 
-//field collision_layer: enum(0, 1)
+//field collision_layer: enum(-1, 0, 1)
 //field semisolid: bool
+
+/*preview
+    var collision_layer, semisolid;
+
+    collision_layer = Field("collision_layer", 0);
+    semisolid = Field("semisolid", 0);
+    image_blend = c_white;
+    image_alpha = 1;
+
+    // Layer color:
+    if (FieldDefined("collision_layer"))
+    {
+        switch (collision_layer)
+        {
+            case 0:
+                image_blend = c_blue;
+                break;
+
+            case 1:
+                image_blend = c_red;
+                break;
+        }
+    }
+
+    // Semisolid transparency:
+    if (semisolid == true)
+    {
+        image_alpha = 0.5;
+    }
+*/
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
