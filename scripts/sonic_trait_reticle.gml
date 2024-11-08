@@ -62,7 +62,7 @@ if (input_player[INP_ALT, CHECK_HELD] == false)
 
                 if (instance_exists(homing_solid))
                 {
-                    if ((y < homing_candidate.y && homing_solid.semisolid) || homing_solid.collision_layer == -1 || collision_layer == homing_solid.collision_layer)
+                    if ((y < homing_candidate.y && homing_solid.semisolid) || homing_solid.layer == -1 || layer == homing_solid.layer)
                     {
                         homing_fail = true;
                     }

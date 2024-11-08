@@ -21,7 +21,7 @@ y2 = y_int - (sine * wall_radius * 2) + (csine * y_radius * 2);
 with (par_terrain)
 {
     // Continue:
-    if ((collision_layer > -1 && collision_layer != other.collision_layer) || collision_rectangle(x1, y1, x2, y2, id, true, false) == noone)
+    if ((layer > -1 && layer != other.layer) || collision_rectangle(x1, y1, x2, y2, id, true, false) == noone)
     {
         continue;
     }

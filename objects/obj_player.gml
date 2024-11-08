@@ -73,9 +73,9 @@ applies_to=self
 /// Collision Initialization
 
 solid_list = ds_list_create();
-wall_push = false;
-collision_layer = 0;
+layer = 0;
 cliff_direction = 0;
+wall_push = false;
 
 // Reset:
 player_reset_air();

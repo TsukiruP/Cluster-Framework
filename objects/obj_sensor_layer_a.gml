@@ -8,5 +8,5 @@ applies_to=self
 
 event_inherited();
 
-// Collision layer:
-collision_layer = 0;
+// Layer:
+layer = 0;

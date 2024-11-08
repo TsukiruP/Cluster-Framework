@@ -14,8 +14,8 @@ hurtbox_set(8, 8, 7, 7, 8, 8);
 // Reaction:
 reaction_index = player_reaction_sensor_layer;
 
-// Collision layer:
-collision_layer = 0;
+// Layer:
+layer = 0;
 #define Other_4
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -24,14 +24,14 @@ applies_to=self
 */
 /// Field Initialization
 
-//field collision_layer: enum(0, 1)
+//field layer: enum(0, 1)
 
 /*preview
-    var collision_layer;
+    var layer;
 
-    collision_layer = Field("collision_layer", 0);
+    layer = Field("layer", 0);
 
-    draw_sprite(Sprite("spr_sensor_layer", collision_layer), 0, x, y);
+    draw_sprite(Sprite("spr_sensor_layer", layer), 0, x, y);
 */
 #define Draw_0
 /*"/*'/**//* YYD ACTION
@@ -48,7 +48,7 @@ if (global.game_debug == false)
 }
 
 // Image index:
-image_index = collision_layer;
+image_index = layer;
 
 // Sensor:
 draw_self();

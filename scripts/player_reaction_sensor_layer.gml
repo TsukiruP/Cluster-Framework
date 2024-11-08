@@ -9,5 +9,5 @@ collision = argument1;
 // Set layer:
 if (collision && COLL_HURT_RADIUS)
 {
-    collision_layer = reaction_handle.collision_layer;
+    layer = reaction_handle.layer;
 }

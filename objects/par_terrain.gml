@@ -9,7 +9,7 @@ applies_to=self
 event_inherited();
 
 // Collision variables:
-collision_layer = -1; // No collision happens with the player on layer mismatch
+layer = -1; // No collision happens with the player on layer mismatch
 surface_angle = -1; // Set this to > -1 to hard-code this solid's angle, otherwise it will be calculated based on its shape
 shape = -1; // SHAPE_RECTANGLE, SHAPE_SLANT, SHAPE_CONCAVE or SHAPE_CONVEX; ignored if surface angle > -1; if left as -1, this solid's angle will be calculated via sensor extension
 mask =  true;
@@ -26,21 +26,21 @@ applies_to=self
 */
 /// Field Initialization
 
-//field collision_layer: enum(-1, 0, 1)
+//field layer: enum(-1, 0, 1)
 //field semisolid: false
 
 /*preview
-    var collision_layer, semisolid;
+    var layer, semisolid;
 
-    collision_layer = Field("collision_layer", 0);
+    layer = Field("layer", 0);
     semisolid = Field("semisolid", 0);
     image_blend = c_white;
     image_alpha = 1;
 
     // Layer color:
-    if (FieldDefined("collision_layer"))
+    if (FieldDefined("layer"))
     {
-        switch (collision_layer)
+        switch (layer)
         {
             case 0:
                 image_blend = c_blue;
