@@ -5,6 +5,7 @@ switch (argument0)
 {
     // Start:
     case STATE_START:
+        // Wall push:
         wall_push = false;
         break;
 

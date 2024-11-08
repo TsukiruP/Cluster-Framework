@@ -61,7 +61,7 @@ repeat (total_steps)
         // Get crushed:
         if (hit_wall.can_crush && collision_point(x, y, hit_wall, true, false) != noone)
         {
-            // Death:
+            // Die:
             player_set_damage(self);
 
             return false;
