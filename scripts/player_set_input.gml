@@ -14,6 +14,11 @@ switch (argument0)
         }
         break;
 
+    // Player 2:
+    case 1:
+        input_player[INP_RIGHT, CHECK_HELD] = true;
+        break;
+
     // Reset:
     default:
         for (i = INP_UP; i <= INP_ALT; i += 1)
