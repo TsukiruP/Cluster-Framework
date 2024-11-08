@@ -12,9 +12,9 @@ obj_basic_test_collision_01,768,864,8CAEB8D0,0,1,1,4294967295,0,0
 obj_basic_test_collision_01,864,864,762D6718,0,1,1,4294967295,0,0
 obj_basic_test_collision_03,960,768,7FC18E41,0,1,1,4294967295,0,0
 obj_basic_test_collision_01,960,864,9AF4E826,0,1,1,4294967295,0,0
-obj_basic_test_collision_28,672,768,55DF87CF,0,1,1,4294967295,0,1
-obj_basic_test_collision_28,768,768,EE52793A,0,1,1,4294967295,0,1
-obj_basic_test_collision_28,864,768,26474C78,0,1,1,4294967295,0,1
+obj_basic_test_collision_28,672,768,55DF87CF,0,1,1,2164260863,0,1
+obj_basic_test_collision_28,768,768,EE52793A,0,1,1,2164260863,0,1
+obj_basic_test_collision_28,864,768,26474C78,0,1,1,2164260863,0,1
 obj_basic_test_collision_03,1056,768,BCA433F3,0,1,1,4294967295,0,0
 obj_basic_test_collision_10,1152,672,F144FE70,0,1,1,4294967295,0,0
 obj_basic_test_collision_11,1248,672,2EC1F12A,0,1,1,4294967295,0,0
