@@ -55,7 +55,7 @@ applies_to=self
     // Semisolid transparency:
     if (semisolid == true)
     {
-        image_alpha = 0.75;
+        image_alpha = 0.5;
     }
 */
 #define Draw_0
