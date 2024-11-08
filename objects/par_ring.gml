@@ -63,7 +63,7 @@ applies_to=self
 
 event_inherited();
 
-//field ring_super: bool
+//field ring_super: false
 
 /*preview
     var ring_super;

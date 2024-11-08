@@ -27,7 +27,7 @@ applies_to=self
 /// Field Initialization
 
 //field collision_layer: enum(-1, 0, 1)
-//field semisolid: bool
+//field semisolid: false
 
 /*preview
     var collision_layer, semisolid;
@@ -55,7 +55,7 @@ applies_to=self
     // Semisolid transparency:
     if (semisolid == true)
     {
-        image_alpha = 0.5;
+        image_alpha = 0.75;
     }
 */
 #define Draw_0

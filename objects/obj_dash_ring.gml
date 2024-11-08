@@ -47,7 +47,7 @@ applies_to=self
 
 event_inherited();
 
-//field rainbow_ring: bool
+//field rainbow_ring: false
 
 /*preview
     var orientation, flip_x, flip_y;

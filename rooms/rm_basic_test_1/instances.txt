@@ -1,7 +1,7 @@
 obj_basic_test_collision_03,0,816,6DBCD10C,0,1,1,4294967295,0,0
 obj_basic_test_collision_03,96,816,C3BD010E,0,1,1,4294967295,0,0
 obj_basic_test_collision_03,192,816,F56F7452,0,1,1,4294967295,0,0
-obj_basic_test_collision_03,288,816,5D1D597C,0,1,1,4294967295,0,0
+obj_basic_test_collision_03,288,816,5D1D597C,0,1,1,4294967295,0,1
 obj_player_spawn,240,800,32B78444,0,1,1,4294967295,0,0
 obj_basic_test_collision_08,480,768,7220E699,0,1,1,4294967295,0,0
 obj_basic_test_collision_09,576,768,C50D8BD1,0,1,1,4294967295,0,0

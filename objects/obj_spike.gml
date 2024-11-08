@@ -27,7 +27,7 @@ applies_to=self
 /// Field Initialization
 
 //field orientation: enum(0, 1)
-//field flip: bool
+//field flip: false
 
 /*preview
     var orientation, flip;
