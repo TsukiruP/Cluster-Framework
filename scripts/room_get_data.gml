@@ -20,5 +20,4 @@ switch (room_handle)
 
     default:
         room_set_data(TRANS_FADE);
-        break;
 }
