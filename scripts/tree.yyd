@@ -185,17 +185,17 @@
 			|player_get_character
 			|player_get_instance
 		+Animation
+			+Animation Lists
+				|sonic_animation_list
 			|player_animation_core
 			|player_animation_variant
 			|player_animation_speed
 			|player_animation_run
 			|player_animation_air
+			|player_compile_animations
 			|player_add_animation
 			|player_get_animation
 			|player_set_animation
-			+Animation Lists
-				|sonic_animation_list
-			|player_compile_animations
 		+Collision
 			|player_collision_object
 			|player_collision_wall
