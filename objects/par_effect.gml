@@ -10,11 +10,12 @@ applies_to=self
 image_speed = 0;
 
 // Timeline:
-ctl_initialize();
+ctl_init();
 
 // Effect variables:
-e_speed = 0;
-angle   = 0;
+x_speed = 0;
+y_speed = 0;
+angle = 0;
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -48,5 +49,5 @@ if (game_ispaused(mgr_pause))
     exit;
 }
 
-x += e_speed * dcos(angle);
-y += e_speed * -dsin(angle);
+x += x_speed * dcos(angle);
+y += y_speed * -dsin(angle);
