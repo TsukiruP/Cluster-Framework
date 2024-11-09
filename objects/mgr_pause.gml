@@ -241,6 +241,7 @@ if (instance_exists(fade_handle))
             transition_handle = transition_create(room);
             transition_handle.depth = depth;
             transition_handle.pause_ignore = true;
+            transition_handle.load_skip = true;
             transition_handle.transition_alarm = 0;
         }
 

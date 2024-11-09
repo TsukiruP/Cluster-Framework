@@ -12,6 +12,7 @@ image_speed = 0;
 // Flags:
 debug = false;
 pause_ignore = false;
+load_skip = false;
 
 // Transition variables:
 transition_id = TRANS_FADE;
@@ -90,7 +91,7 @@ if (game_ispaused(mgr_pause) && pause_ignore == false)
 }
 
 // Alarm:
-if (transition_alarm > 0)
+if (transition_alarm >= 0)
 {
     transition_alarm -= 1;
 
@@ -417,7 +418,7 @@ if (transition_id == TRANS_CARD)
             character_x_speed = 0;
             character_x_current = character_x_target;
 
-            transition_alarm = 45;
+            transition_alarm = 30;
         }
     }
 
@@ -442,7 +443,13 @@ if (transition_id == TRANS_CARD)
                 global.time_allow = false;
 
                 transition_state = 2;
-                transition_alarm = 120;
+                transition_alarm = 30;
+
+                // Load skip:
+                if (load_skip == true)
+                {
+                    transition_alarm = 0;
+                }
             }
             break;
 
@@ -614,6 +621,7 @@ applies_to=self
 /// Pause Ignore
 
 pause_ignore = false;
+persistent = false;
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -732,7 +740,7 @@ if (transition_id == TRANS_CARD)
     }
 
     // Loading:
-    if (transition_state == 2)
+    if (load_skip == false && transition_state == 2)
     {
         draw_sprite(spr_title_card_load, 0, view_xview[view_current] + 4, view_yview[view_current] + global.display_height - 12);
     }
