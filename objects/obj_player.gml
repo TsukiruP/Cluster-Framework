@@ -10,7 +10,7 @@ applies_to=self
 image_speed = 0;
 
 // Timeline:
-ctl_initialize();
+ctl_init();
 
 // Player slot:
 player_slot = 0;

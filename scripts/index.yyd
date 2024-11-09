@@ -112,11 +112,11 @@ sfx_play
 draw_collision
 sfx_stop
 ctl_shockwave
-player_collision_terrain
+skill_get
 player_get_angle
 sonic_state_skid
 player_collision_mode
-player_collision_semisolids
+skill_init
 player_collision_prop_OLD
 player_collision_obstacle
 player_collision_wall_OLD
@@ -127,7 +127,7 @@ player_set_animation
 player_collision_steps
 timeline_set
 player_reaction_checkpoint
-ctl_initialize
+ctl_init
 ctl_sonic_run_0
 ctl_sonic_run_2
 ctl_sonic_run_3
@@ -246,3 +246,4 @@ ctl_sonic_run_5
 sonic_state_drop_dash
 ctl_drop_dash
 sonic_state_bound
+skill_set

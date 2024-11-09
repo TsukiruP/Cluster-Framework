@@ -29,5 +29,4 @@ if (global.animation_grid != -1)
         // Return a timeline:
         return animation_check;
     }
-
 }

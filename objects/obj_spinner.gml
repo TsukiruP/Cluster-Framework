@@ -9,7 +9,7 @@ applies_to=self
 event_inherited();
 
 // Timeline:
-ctl_initialize(ctl_spinner);
+ctl_init(ctl_spinner);
 
 // Hurtbox:
 hurtbox_set(20, 19, 20, 4);

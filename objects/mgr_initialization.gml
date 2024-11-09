@@ -205,11 +205,9 @@ applies_to=self
 */
 /// Save Initialization
 
-// Sonic skills:
-for (i = SONIC_JUMP; i <= SONIC_SHIELD; i += 1)
-{
-    global.skill_sonic[i] = 0;
-}
+// Skills:
+skill_init();
+skill_set(CHAR_SONIC, SONIC_JUMP, SKILL_DROP_DASH);
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603

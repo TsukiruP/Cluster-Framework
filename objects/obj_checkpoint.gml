@@ -9,7 +9,7 @@ applies_to=self
 event_inherited();
 
 // Timeline:
-ctl_initialize(ctl_checkpoint_inactive);
+ctl_init(ctl_checkpoint_inactive);
 
 // Hurtbox:
 hurtbox_set(13, 22, 14, 16);

@@ -88,7 +88,7 @@ else if (on_ground == false)
                 // Create shield:
                 with (instance_create(x, y, eff_player))
                 {
-                    ctl_initialize(ctl_shield_insta);
+                    ctl_init(ctl_shield_insta);
 
                     depth = other.depth;
                     image_xscale = other.image_xscale;
