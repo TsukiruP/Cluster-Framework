@@ -1,5 +1,5 @@
 par_terrain
-ctrl_fade
+mgr_fade
 obj_spring
 obj_blockade
 par_moving_platform
@@ -9,17 +9,17 @@ obj_basic_test_mask_01
 obj_player
 par_culled
 
-ctrl_initialization
-ctrl_input
-ctrl_display
-ctrl_transition
-ctrl_camera
-ctrl_audio
-ctrl_text
-ctrl_game
+mgr_initialization
+mgr_input
+mgr_display
+mgr_transition
+mgr_camera
+mgr_audio
+mgr_text
+mgr_game
 obj_player_spawn
-ctrl_hud
-ctrl_pause
+mgr_hud
+mgr_pause
 obj_basic_test_mask_02
 obj_basic_test_mask_03
 obj_basic_test_mask_04
@@ -67,7 +67,7 @@ obj_item_swap
 eff_afterimage
 par_ring
 obj_ring_magnetized
-ctrl_tally
+mgr_tally
 obj_basic_test_mask_28
 obj_basic_test_mask_29
 obj_basic_test_mask_16

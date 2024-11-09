@@ -25,7 +25,6 @@ switch (argument0)
 
         // Play sfx:
         sfx_play("snd_shield_basic");
-
         break;
 
     // Magnetic shield:
@@ -70,7 +69,7 @@ switch (argument0)
         status_invin_alarm = 1380;
 
         // Play jingle:
-        with (ctrl_audio) event_user(0);
+        with (mgr_audio) event_user(0);
         break;
 
     // Speed up:
@@ -79,7 +78,7 @@ switch (argument0)
         status_speed_alarm = 900;
 
         // Play jingle:
-        with (ctrl_audio) event_user(1);
+        with (mgr_audio) event_user(1);
         break;
 
     // Mine:
@@ -116,7 +115,7 @@ switch (argument0)
 // Update item feed:
 if (global.misc_feed == true)
 {
-    with (ctrl_hud)
+    with (mgr_hud)
     {
         ds_list_add(item_feed, argument0);
         ds_list_add(item_feed, -8);

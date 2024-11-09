@@ -329,11 +329,11 @@ if (input_lock == false)
                 // Up & down:
                 var queue_up, queue_down;
 
-                queue_up   = ds_queue_dequeue(ctrl_input.partner_input_up);
-                queue_down = ds_queue_dequeue(ctrl_input.partner_input_down);
+                queue_up   = ds_queue_dequeue(mgr_input.partner_input_up);
+                queue_down = ds_queue_dequeue(mgr_input.partner_input_down);
 
-                ds_queue_enqueue(ctrl_input.partner_input_up, player_handle.input_player[INP_UP, CHECK_HELD]);
-                ds_queue_enqueue(ctrl_input.partner_input_down, player_handle.input_player[INP_DOWN, CHECK_HELD]);
+                ds_queue_enqueue(mgr_input.partner_input_up, player_handle.input_player[INP_UP, CHECK_HELD]);
+                ds_queue_enqueue(mgr_input.partner_input_down, player_handle.input_player[INP_DOWN, CHECK_HELD]);
 
                 input_player[INP_UP, CHECK_HELD] = queue_up;
                 input_player[INP_DOWN, CHECK_HELD] = queue_down;
@@ -389,7 +389,7 @@ applies_to=self
 /// Animation
 
 // Exit if the stage is paused:
-if (game_ispaused(ctrl_pause))
+if (game_ispaused(mgr_pause))
 {
     exit;
 }
@@ -647,7 +647,7 @@ if (game_ispaused())
 }
 
 // Don't bother if in the middle of respawning/dying:
-if (state_current != player_state_death && physics_id == PHYS_WATER && !instance_exists(ctrl_tally))
+if (state_current != player_state_death && physics_id == PHYS_WATER && !instance_exists(mgr_tally))
 {
     // Refill air if in breathe state or bubble shield:
     if (status_shield == SHIELD_BUBBLE)
@@ -679,7 +679,7 @@ applies_to=self
 /// Alarms
 
 // Exit if the stage is paused:
-if (game_ispaused(ctrl_pause))
+if (game_ispaused(mgr_pause))
 {
     exit;
 }
@@ -788,7 +788,7 @@ if (game_ispaused())
 }
 
 // Don't bother if in the middle of respawning/dying:
-if (state_current != player_state_death && !instance_exists(ctrl_tally))
+if (state_current != player_state_death && !instance_exists(mgr_tally))
 {
     if (physics_id == PHYS_WATER)
     {

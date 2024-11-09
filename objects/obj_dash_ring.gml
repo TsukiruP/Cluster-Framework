@@ -25,12 +25,6 @@ applies_to=self
 */
 /// Animation
 
-// Don't bother if the stage is paused:
-if (game_ispaused(ctrl_pause))
-{
-    exit;
-}
-
 // Rainbow ring index:
 if (rainbow_ring == true)
 {

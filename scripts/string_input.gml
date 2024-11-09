@@ -42,7 +42,7 @@ else if (input_device >= DEV_GAMEPAD0)
 else
 {
     // Return gamepad if it's connected:
-    if (ctrl_input.gamepad_device[0, 0] > -1)
+    if (mgr_input.gamepad_device[0, 0] > -1)
     {
         return string_input(input_id, DEV_GAMEPAD0);
     }

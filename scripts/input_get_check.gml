@@ -43,7 +43,7 @@ if (input_device == DEV_KEYBOARD)
 
     else
     {
-        input_keyboard = ctrl_input.input_keyboard[input_id, argument1];
+        input_keyboard = mgr_input.input_keyboard[input_id, argument1];
     }
 
     // Return:
@@ -59,7 +59,7 @@ else if (input_device >= DEV_GAMEPAD0)
     input_device -= DEV_GAMEPAD0;
 
     // Gamepad id:
-    gamepad_id = ctrl_input.gamepad_device[input_device, 0];
+    gamepad_id = mgr_input.gamepad_device[input_device, 0];
 
     // Gamepad range:
     if (input_id == INP_ANY)
@@ -74,7 +74,7 @@ else if (input_device >= DEV_GAMEPAD0)
     }
     else
     {
-        input_gamepad = ctrl_input.input_gamepad[input_id, argument1 + (input_device * 3)];
+        input_gamepad = mgr_input.input_gamepad[input_id, argument1 + (input_device * 3)];
     }
 
     // Return:
@@ -90,7 +90,7 @@ else
     }
     else
     {
-        input_user = ctrl_input.input_user[input_id, argument1];
+        input_user = mgr_input.input_user[input_id, argument1];
     }
 
     // Return:

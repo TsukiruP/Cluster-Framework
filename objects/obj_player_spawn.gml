@@ -33,11 +33,11 @@ for (i = 0; i < global.player_count; i += 1)
         if (i == 0)
         {
             // Create camera:
-            camera = instance_create(x, y, ctrl_camera);
+            camera = instance_create(x, y, mgr_camera);
             camera.focus_handle = player_handle;
 
             // Create HUD:
-            instance_create(0, 0, ctrl_hud);
+            instance_create(0, 0, mgr_hud);
         }
         else if (i > 0)
         {
@@ -47,7 +47,7 @@ for (i = 0; i < global.player_count; i += 1)
 }
 
 // Create partner queues:
-with (ctrl_input)
+with (mgr_input)
 {
     event_user(0);
 }

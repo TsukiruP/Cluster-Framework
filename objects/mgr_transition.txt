@@ -1,0 +1,7 @@
+sprite=
+visible=1
+solid=0
+persistent=1
+depth=-15000
+parent=par_overlay
+mask=

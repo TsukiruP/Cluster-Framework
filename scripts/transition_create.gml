@@ -1,6 +1,6 @@
 /// transition_create(room, [transition])
 
-transition = instance_create(0, 0, ctrl_transition);
+transition = instance_create(0, 0, mgr_transition);
 transition.transition_id = TRANS_FADE;
 transition.transition_room = argument0;
 
@@ -16,19 +16,19 @@ if (argument_count >= 2)
 }
 
 /*
-if (ctrl_audio.music_instance != -1)
+if (mgr_audio.music_instance != -1)
 {
     if (transition.room_music != "")
     {
         //if (!sound_isplaying(transition.room_music)) {
-            ctrl_audio.fade_out = true;
+            mgr_audio.fade_out = true;
         //}
     }
     else
     {
-        ctrl_audio.fade_out = true;
+        mgr_audio.fade_out = true;
     }
 }
 */
-// Return the transition controller:
+// Return the transition manager:
 return transition;

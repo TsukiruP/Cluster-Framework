@@ -17,7 +17,7 @@ if (instance_exists(player_get_instance(0)))
 global.time_allow = true;
 
 // Show HUD:
-if (instance_exists(ctrl_hud))
+if (instance_exists(mgr_hud))
 {
-    ctrl_hud.hud_hide = false;
+    mgr_hud.hud_hide = false;
 }

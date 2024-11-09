@@ -1,7 +1,7 @@
 /// topic_set_message(str)
 // Sets the topic of the text box.
 
-with (ctrl_text)
+with (mgr_text)
 {
     // Topic:
     topic_message = argument0;

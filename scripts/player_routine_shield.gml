@@ -16,7 +16,7 @@ switch (status_shield)
         // Camera lag:
         if (input_cpu == false)
         {
-            ctrl_camera.camera_lag_alarm = 16;
+            mgr_camera.camera_lag_alarm = 16;
         }
 
         // Play sfx:

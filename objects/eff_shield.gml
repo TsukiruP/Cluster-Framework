@@ -103,7 +103,7 @@ else
 shield_advance = (player_handle.status_shield == SHIELD_BASIC || player_handle.status_shield == SHIELD_MAGNETIC || player_handle.status_invin == INVIN_BUFF);
 
 // Hide:
-if (!game_ispaused(ctrl_pause) && ((player_handle.status_shield == SHIELD_BUBBLE && ctl_index == ctl_shield_bubble) || (global.advance_flicker == true && shield_advance == true)))
+if (!game_ispaused(mgr_pause) && ((player_handle.status_shield == SHIELD_BUBBLE && ctl_index == ctl_shield_bubble) || (global.advance_flicker == true && shield_advance == true)))
 {
     // Hide:
     shield_hide = sync_rate(ctl_time, 2, 2);

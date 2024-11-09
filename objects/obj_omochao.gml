@@ -23,7 +23,7 @@ applies_to=self
 /// Animation
 
 // Exit if the stage is paused:
-if (game_ispaused(ctrl_pause))
+if (game_ispaused(mgr_pause))
 {
     exit;
 }
@@ -45,13 +45,13 @@ if (instance_exists(player_handle))
         with (player_handle)
         {
             // Clear text:
-            if (ctrl_text.text_clear == true && animation_current == "omochao")
+            if (mgr_text.text_clear == true && animation_current == "omochao")
             {
                 player_set_animation("omochao_end");
             }
 
             // Reset hint:
-            if (ctrl_text.text_alpha[0] == 0 && animation_current == "stand")
+            if (mgr_text.text_alpha[0] == 0 && animation_current == "stand")
             {
                 hint_allow = true;
             }

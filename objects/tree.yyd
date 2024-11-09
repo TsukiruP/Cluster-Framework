@@ -10,20 +10,20 @@
 	|par_obstacle
 	|par_effect
 +System
-	|ctrl_initialization
-	+Controllers
-		|ctrl_game
-		|ctrl_display
-		|ctrl_audio
-		|ctrl_input
-		|ctrl_text
-		|ctrl_transition
-		|ctrl_fade
-		+Stage Controllers
-			|ctrl_camera
-			|ctrl_hud
-			|ctrl_pause
-			|ctrl_tally
+	|mgr_initialization
+	+Managers
+		|mgr_game
+		|mgr_display
+		|mgr_audio
+		|mgr_input
+		|mgr_text
+		|mgr_transition
+		|mgr_fade
+		+Stage Managers
+			|mgr_camera
+			|mgr_hud
+			|mgr_pause
+			|mgr_tally
 +Gameplay
 	+Player
 		|obj_player_spawn

@@ -6,7 +6,7 @@ if (is_string(argument0))
 {
     var sfx;
 
-    sfx = ds_map_find_value(ctrl_audio.sfx_map, argument0 + ".wav");
+    sfx = ds_map_find_value(mgr_audio.sfx_map, argument0 + ".wav");
     audio_stop(sfx);
 }
 

@@ -24,8 +24,8 @@ if (collision & COLL_HURT_RADIUS)
             global.game_rings += 1
 
             // Play sfx:
-            sfx_play("snd_ring", true, ctrl_audio.ring_pan);
-            ctrl_audio.ring_pan *= -1;
+            sfx_play("snd_ring", true, mgr_audio.ring_pan);
+            mgr_audio.ring_pan *= -1;
         }
 
         // Destroy:

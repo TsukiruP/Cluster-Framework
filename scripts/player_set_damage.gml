@@ -34,7 +34,7 @@ if (damage_handle == id || (input_cpu == false && global.game_rings == 0 && stat
         global.pause_allow = false;
 
         // Stop jingles:
-        with (ctrl_audio)
+        with (mgr_audio)
         {
             event_user(2);
         }

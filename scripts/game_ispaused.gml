@@ -1,16 +1,16 @@
-/// game_ispaused([controller])
-/* Returns true or false based on the variables of the text controller or pause controller.
-Defaults to checking both controllers should neither be the argument given, or no argument was given. */
+/// game_ispaused([manager])
+/* Returns true or false based on the variables of the text manager or pause manager.
+Defaults to checking both managers should neither be the argument given, or no argument was given. */
 
 var pause_text, pause_stage;
 
 // Text pause:
-pause_text = (ctrl_text.text_message != "" || ctrl_text.topic_message != "" || ctrl_text.log_alpha[1] != 0);
+pause_text = (mgr_text.text_message != "" || mgr_text.topic_message != "" || mgr_text.log_alpha[1] != 0);
 
 // Stage pause:
-if (instance_exists(ctrl_pause))
+if (instance_exists(mgr_pause))
 {
-    pause_stage = ctrl_pause.pause_active;
+    pause_stage = mgr_pause.pause_active;
 }
 else
 {
@@ -21,13 +21,13 @@ else
 if (argument_count >= 1)
 {
     // Text:
-    if (argument[0] == ctrl_text)
+    if (argument[0] == mgr_text)
     {
         return pause_text;
     }
 
     // Pause:
-    else if (argument[0] == ctrl_pause)
+    else if (argument[0] == mgr_pause)
     {
         return pause_stage;
     }
