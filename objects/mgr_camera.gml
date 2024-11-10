@@ -26,7 +26,6 @@ camera_y_shift = 0;
 camera_speed_cap = 16;
 camera_lag_alarm = 0;
 camera_look_timer = 0;
-camera_x_pan = false;
 camera_position_distance = 0;
 
 // Border variables:
