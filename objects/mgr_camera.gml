@@ -26,6 +26,7 @@ camera_y_shift = 0;
 camera_speed_cap = 16;
 camera_lag_alarm = 0;
 camera_look_timer = 0;
+camera_x_pan = false;
 camera_position_distance = 0;
 
 // Border variables:
@@ -118,6 +119,22 @@ if (instance_exists(player_get_instance(0)))
             if (camera_look_timer != 0)
             {
                 camera_look_timer = 0;
+            }
+        }
+
+        // Peel out pan:
+        if ((focus_handle.state_current == sonic_state_peel_out && focus_handle.peel_out_alarm <= 14) || focus_handle.peel_out == true)
+        {
+            if (camera_x_shift != 64 * focus_handle.image_xscale)
+            {
+                camera_x_shift += 2 * focus_handle.image_xscale;
+            }
+        }
+        else
+        {
+            if (camera_x_shift != 0)
+            {
+                camera_x_shift = max(abs(camera_x_shift) - 2, 0) * sign(camera_x_shift);
             }
         }
 
