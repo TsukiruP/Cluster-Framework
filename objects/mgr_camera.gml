@@ -51,10 +51,6 @@ if (camera_lag_alarm > 0)
 {
     camera_lag_alarm -= 1;
 }
-else
-{
-    camera_lag_alarm = 0;
-}
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -79,28 +75,79 @@ if (instance_exists(player_get_instance(0)))
         // Look direction:
         look_direction = (focus_handle.state_current == player_state_crouch) - (focus_handle.state_current == player_state_look);
 
-        // Look timer:
-        camera_look_timer = clamp(camera_look_timer + (1 * look_direction), -120, 120);
+        if (look_direction != 0)
+        {
+            // Look timer:
+            if (camera_look_timer < 120)
+            {
+                camera_look_timer += 1;
+            }
 
+            if (camera_look_timer == 120)
+            {
+                switch (look_direction)
+                {
+                    // Shift upwards:
+                    case -1:
+                        if (camera_y_shift > -104)
+                        {
+                            camera_y_shift -= 2;
+                        }
+                        break;
+
+                    // Shift downwards:
+                    case 1:
+                        if (camera_y_shift < 88)
+                        {
+                            camera_y_shift += 2;
+                        }
+                        break;
+                }
+            }
+        }
+
+        // Reset:
+        else
+        {
+            // Reset:
+            if (camera_y_shift != 0)
+            {
+                camera_y_shift = max(abs(camera_y_shift) - 2, 0) * sign(camera_y_shift);
+            }
+
+            if (camera_look_timer != 0)
+            {
+                camera_look_timer = 0;
+            }
+        }
+
+        /*
+        // Look timer:
+        if (abs(camera_look_timer) != 120)
+        {
+            camera_look_timer += look_direction;
+        }
+
+        // Reset:
         if (sign(camera_look_timer) != look_direction)
         {
             camera_look_timer = 0;
         }
 
         // Shift camera upwards:
-        if (camera_look_timer <= -120)
+        if (camera_y_shift > -104 && camera_look_timer <= -120)
         {
             camera_y_shift = max(camera_y_shift - 2, -104);
         }
 
         // Shift camera downwards:
-        else if (camera_look_timer >= 120)
+        else if (camera_y_shift < 88 && camera_look_timer >= 120)
         {
             camera_y_shift = min(camera_y_shift + 2, 88);
         }
 
         // Center camera:
-        else
+        else if (camera_y_shift != 0)
         {
             camera_y_shift = max(abs(camera_y_shift) - 2, 0) * sign(camera_y_shift);
         }
@@ -111,6 +158,7 @@ if (instance_exists(player_get_instance(0)))
         //} else {
         camera_x_shift = max(0, abs(camera_x_shift - 2) * sign(camera_x_shift));
         //}
+        */
     }
 }
 /*"/*'/**//* YYD ACTION
@@ -143,13 +191,12 @@ if (instance_exists(focus_handle))
             {
                 var player_offset;
 
+                // Player offset:
+                player_offset = 0;
+
                 if (focus_handle.on_ground == true)
                 {
                     player_offset = focus_handle.y_offset * dsin(focus_handle.mask_rotation);
-                }
-                else
-                {
-                    player_offset = 0;
                 }
 
                 // Move left:
@@ -194,13 +241,11 @@ if (instance_exists(focus_handle))
                         var camera_speed_cap;
 
                         // Speed cap:
+                        camera_speed_cap = 6;
+
                         if (focus_handle.x_speed >= 8)
                         {
                             camera_speed_cap = 24;
-                        }
-                        else
-                        {
-                            camera_speed_cap = 6;
                         }
 
                         // Move up:
