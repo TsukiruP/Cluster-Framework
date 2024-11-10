@@ -91,7 +91,7 @@ switch (argument0)
                     }
                     break;
 
-                    // Crouch:
+                // Crouch:
                 case 1:
                     if (animation_current != "crouch_end")
                     {
