@@ -9,7 +9,7 @@ switch (argument0)
         wait_alarm = 360;
 
         // Cliff:
-        if (player_set_cliff() != 0)
+        if (player_get_cliff() != 0)
         {
             if (image_xscale == cliff_direction)
             {
@@ -35,7 +35,7 @@ switch (argument0)
         // Movement:
         if (!player_movement_ground())
         {
-            exit;
+            return false;
         }
 
         // Hint:
@@ -60,8 +60,8 @@ switch (argument0)
             }
             else
             {
+                // Deploy input lock:
                 input_lock_alarm = 30;
-
                 return player_set_state(player_state_run);
             }
         }
@@ -104,13 +104,13 @@ switch (argument0)
         // Skill:
         if (player_routine_skill())
         {
-            return true;
+            return false;
         }
 
         // Jump:
         if (player_routine_jump())
         {
-            return true;
+            return false;
         }
 
         // Wait:

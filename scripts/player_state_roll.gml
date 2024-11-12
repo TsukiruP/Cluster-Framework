@@ -40,7 +40,7 @@ switch (argument0)
         // Movement:
         if (!player_movement_ground())
         {
-            exit;
+            return false;
         }
 
         // Fall:
@@ -57,22 +57,25 @@ switch (argument0)
             {
                 return player_set_state(player_state_air);
             }
+            else
+            {
+                input_lock_alarm = 30;
+            }
         }
 
         // Slope friction:
+        var roll_slope_friction;
+        roll_slope_friction = roll_friction_down;
         if (sign(dsin(relative_angle)) == sign(x_speed))
         {
-            player_slope_friction(roll_friction_up, roll_friction);
+            roll_slope_friction = roll_friction_up;
         }
-        else
-        {
-            player_slope_friction(roll_friction_down, roll_friction);
-        }
+        player_slope_friction(roll_slope_friction, roll_friction);
 
         // Jump:
         if (player_routine_jump())
         {
-            return true;
+            return false;
         }
 
         // Uncurl:

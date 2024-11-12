@@ -26,7 +26,7 @@ switch (argument0)
         // Movement:
         if (!player_movement_ground())
         {
-            exit;
+            return false;
         }
 
         // Slide off:
@@ -39,6 +39,7 @@ switch (argument0)
             }
             else
             {
+                // Deploy input lock:
                 input_lock_alarm = 30;
 
                 // Play sfx:

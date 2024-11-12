@@ -1,5 +1,5 @@
 /// player_state_run(phase)
-// Gotta go fast.
+// Gotta go fast!
 
 switch (argument0)
 {
@@ -82,7 +82,7 @@ switch (argument0)
         // Movement:
         if (!player_movement_ground())
         {
-            exit;
+            return false;
         }
 
         // Fall:
@@ -101,6 +101,7 @@ switch (argument0)
             }
             else
             {
+                // Deploy input lock:
                 input_lock_alarm = 30;
             }
         }
@@ -117,13 +118,13 @@ switch (argument0)
         // Skill:
         if (player_routine_skill())
         {
-            return true;
+            return false;
         }
 
         // Jump:
         if (player_routine_jump())
         {
-            return true;
+            return false;
         }
 
         // Set animation:

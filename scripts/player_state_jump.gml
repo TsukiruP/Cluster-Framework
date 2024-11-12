@@ -7,11 +7,6 @@ switch (argument0)
     case STATE_START:
         var g_speed, leap_force;
 
-        // Set speed:
-        g_speed = x_speed;
-        x_speed = dcos(relative_angle) * g_speed;
-        y_speed = -(dsin(relative_angle) * g_speed);
-
         // Air force:
         leap_force = jump_force;
 
@@ -29,9 +24,10 @@ switch (argument0)
                 break;
         }
 
-        // Jump:
-        x_speed -= leap_force * dsin(relative_angle);
-        y_speed -= leap_force * dcos(relative_angle);
+        // Leap:
+        g_speed = x_speed;
+        x_speed = (dcos(relative_angle) * g_speed) - (leap_force * dsin(relative_angle));
+        y_speed = -(dsin(relative_angle) * g_speed) - (leap_force * dcos(relative_angle));
 
         // Reset air:
         player_reset_air();
@@ -61,13 +57,13 @@ switch (argument0)
         // Movement:
         if (!player_movement_air())
         {
-            exit;
+            return false;
         }
 
         // Land:
         if (player_routine_land())
         {
-            return true;
+            return false;
         }
 
         // Variable jump:
@@ -91,7 +87,7 @@ switch (argument0)
         // Skill:
         if (player_routine_skill())
         {
-            return true;
+            return false;
         }
 
         // Air friction:

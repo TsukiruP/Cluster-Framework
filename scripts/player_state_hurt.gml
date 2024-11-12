@@ -23,7 +23,7 @@ switch (argument0)
         // Movement:
         if (!player_movement_air())
         {
-            exit;
+            return false;
         }
 
         // Land:
@@ -36,7 +36,7 @@ switch (argument0)
 
             y_speed = 0;
 
-            return true;
+            return false;
         }
 
         // Gravity:

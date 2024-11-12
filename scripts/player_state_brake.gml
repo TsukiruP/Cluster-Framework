@@ -87,7 +87,7 @@ switch (argument0)
         // Movement:
         if (!player_movement_ground())
         {
-            exit;
+            return false;
         }
 
         // Fall:
@@ -124,13 +124,13 @@ switch (argument0)
         // Skill:
         if (player_routine_skill())
         {
-            return true;
+            return false;
         }
 
         // Jump:
         if (player_routine_jump())
         {
-            return true;
+            return false;
         }
 
         // Dust:

@@ -1,4 +1,4 @@
-/// player_set_cliff()
+/// player_get_cliff()
 // I'm hanging on to the other side...
 
 var total_solids, left, right, center, n, inst;
