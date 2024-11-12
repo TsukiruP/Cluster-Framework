@@ -1,5 +1,5 @@
 /// hurtbox_set(left, top, right, bottom, [x offset, y offset])
-// Sets the object's hurtbox.
+// Sets the calling instance's hurtbox.
 
 var left, top, right, bottom, off_x, off_y;
 

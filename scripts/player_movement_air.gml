@@ -1,5 +1,6 @@
 /// player_movement_air()
-// Performs a movement step for the player in the air.
+/* Performs a movement step for the player in the air.
+Returns whether the player's current state should be aborted or not. */
 
 var total_steps, step, hit_object, hit_wall, hit_floor;
 

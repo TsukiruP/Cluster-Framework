@@ -1,5 +1,5 @@
 /// player_collision_floor(radius)
-// Returns whether any solids are in collision with the lower half of the player's bounding box.
+// Returns the id of the first solid that is in collision with the lower half of the player's bounding box, or noone on failure.
 
 var total_solids, oy, n, inst;
 
@@ -21,10 +21,10 @@ for (oy = 0; oy < argument0; oy += 1)
             continue;
         }
 
-        // Confirm:
+        // Confirm matching solid:
         return inst;
     }
 }
 
-// If there was no collision:
+// If no solids were found:
 return noone;

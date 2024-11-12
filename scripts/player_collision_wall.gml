@@ -1,5 +1,5 @@
 /// player_collision_wall(radius)
-// Returns whether any solids are in collision with the wall sensor of the player's bounding box.
+// Returns the id of the first solid that is in collision with the wall sensor of the player's bounding box, or noone on failure.
 
 var total_solids, n, inst;
 
@@ -17,9 +17,9 @@ for (n = 0; n < total_solids; n += 1)
         continue;
     }
 
-    // Confirm:
+    // Confirm matching solid:
     return inst;
 }
 
-// If there was no collision:
+// If no solids were found:
 return noone;

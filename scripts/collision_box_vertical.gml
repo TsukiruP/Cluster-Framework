@@ -1,5 +1,6 @@
 /// collision_box_vertical(ox, oy, rot, obj)
-// Returns whether the given instance is in collision with a rectangle of size {ox * 2, oy} that rotates with its top edge centered against the calling instance's center point.
+/* Returns the id of the given instance that is in collision with a rectangle of size {ox * 2, oy} centered on the calling instance, or noone on failure.
+This rectangle rotates with its top edge centered against the calling instance's center point. */
 
 var rot, x_int, y_int, sine, csine, x1, y1, x2, y2;
 
