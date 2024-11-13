@@ -8,13 +8,12 @@ if (on_ground == true)
         // Set animation:
         player_set_animation("land");
 
-        player_set_state(player_state_idle);
+        return player_set_state(player_state_idle);
     }
     else
     {
-        player_set_state(player_state_run);
+        return player_set_state(player_state_run);
     }
-    return true;
 }
 
 // No landing:

@@ -6,8 +6,7 @@ switch (character_id)
 {
     // Sonic:
     case CHAR_SONIC:
-        sonic_skill_list();
-        return true;
+        return sonic_skill_list();
 }
 
 // No skill takes place:
