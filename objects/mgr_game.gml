@@ -205,11 +205,13 @@ applies_to=self
 */
 /// Save Initialization
 
-// Skills:
-skill_init();
-skill_set(CHAR_SONIC, SONIC_JUMP, SKILL_DROP_DASH);
-skill_set(CHAR_SONIC, SONIC_SLAM, SKILL_STOMP);
-skill_set(CHAR_SONIC, SONIC_PEEL, true);
+savedata_init();
+
+// Sonic:
+for (i = SONIC_JUMP; i <= SONIC_SHIELD; i += 1)
+{
+    global.skill_sonic[i] = 0;
+}
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -331,3 +333,17 @@ if (global.animation_grid != -1)
     ds_grid_destroy(global.animation_grid);
     global.animation_grid = -1;
 }
+#define KeyPress_13
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+transition_create(rm_debug);
+#define KeyPress_32
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+text_set_message("This is to get the height of the textbox");

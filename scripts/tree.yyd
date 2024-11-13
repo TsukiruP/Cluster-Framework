@@ -3,6 +3,11 @@
 	+Game
 		|game_ispaused
 		|stage_start
+		+Save
+			|savedata_init
+			|savedata_default
+			|savedata_get
+			|savedata_set
 	+Display
 		|window_resize
 		|in_view
@@ -20,11 +25,6 @@
 		|string_input
 		|text_set_message
 		|topic_set_message
-	+Save
-		+Skill
-			|skill_init
-			|skill_get
-			|skill_set
 	+Room
 		|room_set_data
 		|room_get_data
@@ -288,7 +288,6 @@
 +Trash
 	+Collision
 		+Utilities
-		|player_collision_obstacle
 		|player_collision_prop_OLD
 		|player_collision_mode
 		|player_collision_wall_OLD

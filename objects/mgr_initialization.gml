@@ -206,10 +206,6 @@ applies_to=self
 /// Save Initialization
 
 // Skills:
-skill_init();
-skill_set(CHAR_SONIC, SONIC_JUMP, SKILL_DROP_DASH);
-skill_set(CHAR_SONIC, SONIC_SLAM, SKILL_STOMP);
-skill_set(CHAR_SONIC, SONIC_PEEL, true);
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603

@@ -1,5 +1,5 @@
 sprite=spr_realizing_hopper
-visible=1
+visible=0
 solid=0
 persistent=1
 depth=0

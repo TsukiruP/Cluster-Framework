@@ -112,13 +112,13 @@ sfx_play
 draw_collision
 sfx_stop
 ctl_shockwave
-skill_get
+savedata_get
 player_get_angle
 sonic_state_skid
 player_collision_mode
-skill_init
+savedata_init
 player_collision_prop_OLD
-player_collision_obstacle
+savedata_default
 player_collision_wall_OLD
 ctl_sonic_look
 player_state_turn
@@ -246,4 +246,4 @@ ctl_sonic_run_5
 sonic_state_drop_dash
 ctl_drop_dash
 sonic_state_bound
-skill_set
+savedata_set

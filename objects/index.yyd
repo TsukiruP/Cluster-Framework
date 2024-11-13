@@ -41,7 +41,7 @@ obj_water_surface
 
 
 obj_basic_test_parallax
-ctrl_culling
+mnu_save
 par_enemy
 obj_ring
 eff_player

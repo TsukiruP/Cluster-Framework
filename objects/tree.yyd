@@ -25,6 +25,7 @@
 			|mgr_tally
 	+Menus
 		|mnu_pause
+		|mnu_save
 +Gameplay
 	+Player
 		|obj_player_spawn
@@ -94,7 +95,6 @@
 			|obj_basic_test_water_fall_02
 			|obj_basic_test_water_fall_03
 +Trash
-	|ctrl_culling
 	|par_moving_platform
 	|object122
 	+Rainbow Rings
