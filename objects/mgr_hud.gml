@@ -463,11 +463,6 @@ if ((sync_rate(global.object_time, 8, 2) && global.game_rings == 0) || global.ga
     {
         draw_set_color(c_red);
     }
-    else
-    {
-        draw_set_color(c_white);
-    }
-    
     draw_text(view_xview[view_current] + hud_x_current - 5, view_yview[view_current] + hud_y + 11, string_pad(global.game_rings, 3));
 }
 
