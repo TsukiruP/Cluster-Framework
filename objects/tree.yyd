@@ -24,8 +24,8 @@
 			|mgr_hud
 			|mgr_tally
 	+Menus
-		|mnu_pause
 		|mnu_save
+		|mnu_pause
 +Gameplay
 	+Player
 		|obj_player_spawn

@@ -711,14 +711,14 @@ if (text_hide == true)
     exit;
 }
 
-var textbox_top, texbox_height;
+var textbox_bottom, texbox_height;
 
 // Box:
-textbox_top = 19;
+textbox_bottom = global.display_height - 19;
 textbox_height = 59;
 
 draw_set1(make_color_rgb(global.textbox_red, global.textbox_green, global.textbox_blue), text_alpha[0]);
-draw_rectangle(0, global.display_height - textbox_top - textbox_height, global.display_width, global.display_height - textbox_top, false);
+draw_rectangle(0, textbox_bottom - textbox_height, global.display_width, textbox_bottom, false);
 
 // Viewport:
 d3d_set_viewport(0, global.display_height - text_y, global.display_width, font_height * text_scroll[3]);

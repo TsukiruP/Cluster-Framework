@@ -227,6 +227,7 @@ instance_create(x, y, mgr_display);
 instance_create(x, y, mgr_audio);
 instance_create(x, y, mgr_input);
 instance_create(x, y, mgr_text);
+instance_create(x, y, mnu_save);
 #define Step_1
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -333,17 +334,3 @@ if (global.animation_grid != -1)
     ds_grid_destroy(global.animation_grid);
     global.animation_grid = -1;
 }
-#define KeyPress_13
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-transition_create(rm_debug);
-#define KeyPress_32
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-text_set_message("This is to get the height of the textbox");
