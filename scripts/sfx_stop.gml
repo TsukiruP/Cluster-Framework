@@ -1,17 +1,20 @@
 /// sfx_stop(sound)
 // Stops a sound or instance.
 
-// Stop resource:
-if (is_string(argument0))
+with (mgr_audio)
 {
-    var sfx;
+    // Stop resource:
+    if (is_string(argument0))
+    {
+        var sfx;
 
-    sfx = ds_map_find_value(mgr_audio.sfx_map, argument0 + ".wav");
-    audio_stop(sfx);
-}
+        sfx = ds_map_find_value(sfx_map, argument0 + ".wav");
+        audio_stop(sfx);
+    }
 
-// Stop instance:
-else
-{
-    audio_stop(argument0);
+    // Stop instance:
+    else
+    {
+        audio_stop(argument0);
+    }
 }

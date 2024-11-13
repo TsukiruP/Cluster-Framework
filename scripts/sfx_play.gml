@@ -1,29 +1,32 @@
 /// sfx_play(sound, [single, pan])
 // Plays a sound effect.
 
-var sfx, single, pan;
-
-// Initialize:
-sfx = ds_map_find_value(mgr_audio.sfx_map, argument0 + ".wav");
-single = false;
-pan = 0;
-
-// Set single:
-if (argument_count >= 2)
+with (mgr_audio)
 {
-    single = argument[1];
-}
+    var sfx, single, pan;
 
-// Set pan:
-if (argument_count >= 3)
-{
-    pan = argument[2];
-}
+    // Initialize:
+    sfx = ds_map_find_value(sfx_map, argument0 + ".wav");
+    single = false;
+    pan = 0;
 
-// Play sound:
-if (single == true)
-{
-    return audio_play_single_ext(sfx, global.audio_sfx, pan, 1, false);
-}
+    // Set single:
+    if (argument_count >= 2)
+    {
+        single = argument[1];
+    }
 
-return audio_play_ext(sfx, global.audio_sfx, pan, 1, false);
+    // Set pan:
+    if (argument_count >= 3)
+    {
+        pan = argument[2];
+    }
+
+    // Play sound:
+    if (single == true)
+    {
+        return audio_play_single_ext(sfx, global.audio_sfx, pan, 1, false);
+    }
+
+    return audio_play_ext(sfx, global.audio_sfx, pan, 1, false);
+}
