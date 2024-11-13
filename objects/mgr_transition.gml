@@ -621,7 +621,6 @@ applies_to=self
 /// Pause Ignore
 
 pause_ignore = false;
-persistent = false;
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603

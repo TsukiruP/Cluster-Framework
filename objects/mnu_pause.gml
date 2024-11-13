@@ -238,6 +238,11 @@ if (instance_exists(fade_handle))
     {
         if (!instance_exists(transition_handle))
         {
+            with (mgr_transition)
+            {
+                persistent = false;
+            }
+
             transition_handle = transition_create(room);
             transition_handle.depth = depth;
             transition_handle.pause_ignore = true;
