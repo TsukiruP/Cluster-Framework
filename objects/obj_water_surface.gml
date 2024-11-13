@@ -26,8 +26,7 @@ draw_set_color(make_color_rgb(57, 132, 222)); // < Change this if you want to us
 draw_rectangle(view_xview[view_current], view_yview[view_current] + water_height, view_xview[view_current] + view_wview[view_current], view_yview[view_current] + view_hview[view_current], 0);
 
 // Reset:
-draw_set_color(c_white);
-draw_set_blend_mode(bm_normal);
+draw_reset();
 
 // Draw surface:
 draw_sprite_tiled_horizontal(spr_water_surface, image_index, x, y);
