@@ -54,6 +54,7 @@ topic_alpha[1] = 0; // Text alpha;
 log_hide = true;
 log_message = "";
 log_scroll = 0;
+log_spacing = 32;
 
 log_alpha[0] = 0; // Background alpha
 log_alpha[1] = 0; // Text alpha
@@ -129,9 +130,9 @@ if (text_clear == false)
         {
             log_hide = !log_hide;
 
-            if (log_hide == false && log_height > global.display_height - 32)
+            if (log_hide == false && log_height > global.display_height - log_spacing)
             {
-                log_scroll = log_height - (global.display_height - 32);
+                log_scroll = log_height - (global.display_height - log_spacing);
             }
         }
 
@@ -199,7 +200,7 @@ if (text_clear == false)
         else
         {
             scroll_min = log_scroll;
-            scroll_max = ((log_height - log_scroll) > (global.display_height - 32));
+            scroll_max = ((log_height - log_scroll) > (global.display_height - log_spacing));
         }
 
         scroll_up = ((input_get_check(INP_UP, CHECK_PRESSED) || input_get_timer(INP_UP, 30)) && scroll_min > 0);
@@ -213,7 +214,7 @@ if (text_clear == false)
         }
 
         // Log scroll:
-        else if (log_hide == false && (log_height > global.display_height - 32))
+        else if (log_hide == false && (log_height > global.display_height - log_spacing))
         {
             log_scroll += scroll_direction;
         }
@@ -710,12 +711,17 @@ if (text_hide == true)
     exit;
 }
 
+var textbox_top, texbox_height;
+
 // Box:
+textbox_top = 19;
+textbox_height = 59;
+
 draw_set1(make_color_rgb(global.textbox_red, global.textbox_green, global.textbox_blue), text_alpha[0]);
-draw_rectangle(0, global.display_height - 19 - 59, global.display_width, global.display_height - 19, false);
+draw_rectangle(0, global.display_height - textbox_top - textbox_height, global.display_width, global.display_height - textbox_top, false);
 
 // Viewport:
-d3d_set_viewport(0, global.display_height - text_y, global.display_width, font_height * 3);
+d3d_set_viewport(0, global.display_height - text_y, global.display_width, font_height * text_scroll[3]);
 
 // Font:
 draw_set_font(global.font_system);
@@ -755,7 +761,7 @@ draw_set1(c_black, log_alpha[0]);
 draw_rectangle(0, 0, global.display_width, global.display_height, false);
 
 // Viewport:
-d3d_set_viewport(0, 16, global.display_width, global.display_height - 32);
+d3d_set_viewport(0, 16, global.display_width, global.display_height - log_spacing);
 
 // Font:
 draw_set_font(global.font_system);
