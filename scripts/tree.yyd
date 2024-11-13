@@ -3,7 +3,7 @@
 	+Game
 		|game_ispaused
 		|stage_start
-		+Save
+		+Savedata
 			|savedata_init
 			|savedata_default
 			|savedata_exists
