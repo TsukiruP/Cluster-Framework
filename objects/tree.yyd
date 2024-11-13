@@ -19,11 +19,12 @@
 		|mgr_text
 		|mgr_transition
 		|mgr_fade
-		+Stage Managers
+		+Stage
 			|mgr_camera
 			|mgr_hud
-			|mgr_pause
 			|mgr_tally
+	+Menus
+		|mnu_pause
 +Gameplay
 	+Player
 		|obj_player_spawn

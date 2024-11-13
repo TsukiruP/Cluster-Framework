@@ -100,7 +100,7 @@ if (text_clear == false && log_hide == true && (text_alpha[2] == 1 || topic_alph
 if (text_clear == false)
 {
     // Hide:
-    if (!game_ispaused(mgr_pause) && (text_message != "" || topic_message != "" || log_alpha[1] != 0) && input_get_check(INP_SELECT, CHECK_PRESSED)) text_hide = !text_hide;
+    if (!game_ispaused(mnu_pause) && (text_message != "" || topic_message != "" || log_alpha[1] != 0) && input_get_check(INP_SELECT, CHECK_PRESSED)) text_hide = !text_hide;
 
     if (text_hide == false)
     {
@@ -125,7 +125,7 @@ if (text_clear == false)
         }
 
         // Open log:
-        if ((game_ispaused(mgr_pause) || text_message != "" || topic_message != "") && log_message != "" && (log_alpha[1] == 0 || log_alpha[1] == 1) && input_get_check(INP_HELP, CHECK_PRESSED))
+        if ((game_ispaused(mnu_pause) || text_message != "" || topic_message != "") && log_message != "" && (log_alpha[1] == 0 || log_alpha[1] == 1) && input_get_check(INP_HELP, CHECK_PRESSED))
         {
             log_hide = !log_hide;
 

@@ -19,7 +19,7 @@ mgr_text
 mgr_game
 obj_player_spawn
 mgr_hud
-mgr_pause
+mnu_pause
 obj_basic_test_mask_02
 obj_basic_test_mask_03
 obj_basic_test_mask_04

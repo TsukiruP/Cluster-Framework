@@ -42,7 +42,7 @@ applies_to=self
 /// Lag
 
 // Exit if the stage is paused:
-if (game_ispaused(mgr_pause))
+if (game_ispaused(mnu_pause))
 {
     exit;
 }
@@ -60,7 +60,7 @@ applies_to=self
 /// Shift
 
 // Exit if the stage is paused:
-if (game_ispaused(mgr_pause))
+if (game_ispaused(mnu_pause))
 {
     exit;
 }
@@ -191,7 +191,7 @@ border_top = camera_y - 32;
 border_bottom = camera_y + 32;
 
 // Exit if the stage is paused:
-if (game_ispaused(mgr_pause))
+if (game_ispaused(mnu_pause))
 {
     exit;
 }

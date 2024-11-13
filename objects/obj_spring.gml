@@ -40,7 +40,7 @@ applies_to=self
 /// Animation
 
 // Exit if the game is paused or the object is a dash/rainbow ring:
-if (game_ispaused(mgr_pause) || object_is_ancestor(object_index, obj_dash_ring))
+if (game_ispaused(mnu_pause) || object_is_ancestor(object_index, obj_dash_ring))
 {
     exit;
 }

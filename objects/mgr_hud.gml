@@ -105,7 +105,7 @@ applies_to=self
 /// Movement
 
 // Exit if the stage is paused:
-if (game_ispaused(mgr_pause))
+if (game_ispaused(mnu_pause))
 {
     exit;
 }
@@ -227,7 +227,7 @@ applies_to=self
 /// Status
 
 // Exit if the stage is paused:
-if (game_ispaused(mgr_pause))
+if (game_ispaused(mnu_pause))
 {
     exit;
 }
@@ -318,7 +318,7 @@ applies_to=self
 /// Item Feed
 
 // Exit if the stage is paused:
-if (game_ispaused(mgr_pause))
+if (game_ispaused(mnu_pause))
 {
     exit;
 }

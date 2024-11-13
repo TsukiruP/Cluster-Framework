@@ -85,7 +85,7 @@ applies_to=self
 /// Alarm & Timer
 
 // Exit if the stage is paused:
-if (game_ispaused(mgr_pause) && pause_ignore == false)
+if (game_ispaused(mnu_pause) && pause_ignore == false)
 {
     exit;
 }
@@ -162,7 +162,7 @@ applies_to=self
 /// Background
 
 // Exit if the stage is paused:
-if (game_ispaused(mgr_pause) && pause_ignore == false)
+if (game_ispaused(mnu_pause) && pause_ignore == false)
 {
     exit;
 }
@@ -247,7 +247,7 @@ applies_to=self
 /// Player Start
 
 // Exit if the stage is paused:
-if ((game_ispaused(mgr_pause) && pause_ignore == false) || (transition_id != TRANS_CARD && transition_id != TRANS_RETRY))
+if ((game_ispaused(mnu_pause) && pause_ignore == false) || (transition_id != TRANS_CARD && transition_id != TRANS_RETRY))
 {
     exit;
 }
@@ -341,7 +341,7 @@ applies_to=self
 /// Title Card
 
 // Exit if the stage is paused:
-if (game_ispaused(mgr_pause) && pause_ignore == false)
+if (game_ispaused(mnu_pause) && pause_ignore == false)
 {
     exit;
 }
@@ -527,7 +527,7 @@ applies_to=self
 /// Retry
 
 // Exit if the stage is paused:
-if (game_ispaused(mgr_pause) && pause_ignore == false)
+if (game_ispaused(mnu_pause) && pause_ignore == false)
 {
     exit;
 }

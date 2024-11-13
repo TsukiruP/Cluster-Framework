@@ -8,9 +8,9 @@ var pause_text, pause_stage;
 pause_text = (mgr_text.text_message != "" || mgr_text.topic_message != "" || mgr_text.log_alpha[1] != 0);
 
 // Stage pause:
-if (instance_exists(mgr_pause))
+if (instance_exists(mnu_pause))
 {
-    pause_stage = mgr_pause.pause_active;
+    pause_stage = mnu_pause.pause_active;
 }
 else
 {
@@ -27,7 +27,7 @@ if (argument_count >= 1)
     }
 
     // Pause:
-    else if (argument[0] == mgr_pause)
+    else if (argument[0] == mnu_pause)
     {
         return pause_stage;
     }
