@@ -306,6 +306,15 @@ if (instance_exists(mgr_camera))
         }
     }
 }
+#define Other_3
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Destroy Savedata
+
+ds_map_destroy(savedata_map);
 #define Other_5
 /*"/*'/**//* YYD ACTION
 lib_id=1
