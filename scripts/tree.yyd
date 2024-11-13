@@ -8,6 +8,7 @@
 			|savedata_default
 			|savedata_get
 			|savedata_set
+			|savedata_exists
 	+Display
 		|window_resize
 		|in_view
@@ -288,7 +289,6 @@
 +Trash
 	+Collision
 		+Utilities
-		|player_collision_prop_OLD
 		|player_collision_mode
 		|player_collision_wall_OLD
 		|player_collision_steps

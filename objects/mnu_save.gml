@@ -45,14 +45,31 @@ for (i = 0; i < savedata_count; i += 1)
     draw_set1(make_color_rgb(global.textbox_red, global.textbox_green, global.textbox_blue), 0.6);
     draw_rectangle(savedata_x1 - 8, savedata_y1 - savedata_height / 2, savedata_x2 + 8, savedata_y2, false);
 
-    // Name and stage:
+    // Font:
     draw_set_font(global.font_system);
-    draw_set1(c_white, 1);
-    draw_set2(fa_left, fa_center);
-    draw_text(savedata_x1, savedata_y1, savedata_get("name") + "##" + room_get_name(savedata_get("room")));
+    draw_set1(c_gray, 1);
 
+    if (savedata_current == i)
+    {
+        draw_set_color(c_white);
+    }
 
-    // Time:
-    draw_set2(fa_right, fa_center);
-    draw_text(savedata_x2, savedata_y1, "##" + string_pad(savedata_get("time") div 216000, 3) + ":" + string_pad(savedata_get("time") div 3600, 2));
+    // Save:
+    if (savedata_exists(i))
+    {
+        // Name and stage:
+        draw_set2(fa_left, fa_center);
+        draw_text(savedata_x1, savedata_y1, savedata_get("name") + "##" + room_get_name(savedata_get("room")));
+
+        // Time:
+        draw_set2(fa_right, fa_center);
+        draw_text(savedata_x2, savedata_y1, "##" + string_pad(savedata_get("time") div 216000, 3) + ":" + string_pad(savedata_get("time") div 3600, 2));
+    }
+
+    // No data:
+    else
+    {
+        draw_set2(fa_middle, fa_center);
+        draw_text(savedata_x1 + savedata_width, savedata_y2 - savedata_height / 2, "No Data");
+    }
 }

@@ -117,7 +117,7 @@ player_get_angle
 sonic_state_skid
 player_collision_mode
 savedata_init
-player_collision_prop_OLD
+savedata_exists
 savedata_default
 player_collision_wall_OLD
 ctl_sonic_look
