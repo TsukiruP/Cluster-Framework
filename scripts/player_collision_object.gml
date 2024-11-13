@@ -1,7 +1,8 @@
 /// player_collision_object()
-// IDK yet.
+/* Checks if any interactable objects are colliding with the player's bounding box, triggering their reactions if so.
+Returns whether the player's current state should be aborted or not. */
 
-var player, collision_list, result, total_objects, inst, n;
+var player, collision_list, kind, result, total_objects;
 
 // Initialize:
 player = id;
@@ -19,31 +20,35 @@ with (par_culled)
     // Evaluate collision:
     with (player)
     {
-        result = player_get_collision(other);
+        kind = player_get_collision(other);
     }
     
     // Continue if not colliding:
-    if (result == 0)
-    {
-        continue;
-    }
+    if (kind == 0) continue;
     
     // Add to collision list:
     ds_list_add(collision_list, id);
 }
 
-// React:
+// Trigger reactions:
+result = false;
 total_objects = ds_list_size(collision_list);
-for (n = 0; n < total_objects; n += 1)
+if (total_objects > 0)
 {
-    inst = ds_list_find_value(collision_list, n);
-    
-    player_react(inst);
-    
-    if (state_changed == true)
+    var inst, n;
+    for (n = 0; n < total_objects; n += 1)
     {
-        return true;
+        inst = ds_list_find_value(collision_list, n);
+        
+        player_react(inst);
+        
+        if (state_changed == true)
+        {
+            result = true;
+            break;
+        }
     }
 }
+ds_list_destroy(collision_list);
 
-return false;
+return result;

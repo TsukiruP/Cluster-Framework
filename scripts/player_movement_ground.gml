@@ -1,5 +1,6 @@
 /// player_movement_ground()
-// Performs a movement step for the player on the ground.
+/* Performs a movement step for the player on the ground.
+Returns whether the player's current state should be aborted or not. */
 
 var ox, oy, total_steps, step, prop_handle, hit_prop, obstacle_handle, hit_obstacle, hit_wall, hit_floor;
 

@@ -14,7 +14,7 @@ switch (argument0)
         // Movement:
         if (!player_movement_ground())
         {
-            exit;
+            return false;
         }
 
         // Fall:
@@ -33,8 +33,8 @@ switch (argument0)
             }
             else
             {
+                // Deploy input lock:
                 input_lock_alarm = 30;
-
                 return player_set_state(player_state_run);
             }
         }
@@ -54,7 +54,7 @@ switch (argument0)
         // Skill:
         if (player_routine_skill())
         {
-            return true;
+            return false;
         }
 
         // Spin Dash:

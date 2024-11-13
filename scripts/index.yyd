@@ -197,7 +197,7 @@ player_movement_air
 player_collision_ceiling
 instance_nearest_dir_x
 player_inbounds
-player_set_cliff
+player_get_cliff
 radii_set
 hurtbox_set
 hitbox_set
