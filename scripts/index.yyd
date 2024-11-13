@@ -115,7 +115,7 @@ ctl_shockwave
 savedata_get
 player_get_angle
 sonic_state_skid
-player_collision_mode
+savedata_write
 savedata_init
 savedata_exists
 savedata_default

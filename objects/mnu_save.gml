@@ -11,6 +11,21 @@ savedata_current = 0;
 savedata_width = 98;
 savedata_height = (mgr_text.font_height * 3) + 16;
 savedata_kerning = 4;
+#define Step_0
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Menu
+
+if (!savedata_exists(savedata_current))
+{
+    if (input_get_check(INP_ACCEPT, CHECK_PRESSED))
+    {
+        savedata_write(savedata_current);
+    }
+}
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -59,7 +74,7 @@ for (i = 0; i < savedata_count; i += 1)
     {
         // Name and stage:
         draw_set2(fa_left, fa_center);
-        draw_text(savedata_x1, savedata_y1, savedata_get("name") + "##" + room_get_name(savedata_get("room")));
+        draw_text(savedata_x1, savedata_y1, savedata_get("name") + "##" + room_get_name(savedata_get("stage")));
 
         // Time:
         draw_set2(fa_right, fa_center);

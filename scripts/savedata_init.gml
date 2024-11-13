@@ -2,7 +2,7 @@
 // Initializes savedata.
 
 // Initialize:
-savedata_directory = "data\save\"
+savedata_directory = "data\saves\"
 savedata_file = "";
 savedata_count = 3;
 savedata_map = ds_map_create();
