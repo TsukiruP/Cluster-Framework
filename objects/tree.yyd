@@ -10,7 +10,6 @@
 	|par_obstacle
 	|par_effect
 +System
-	|mgr_initialization
 	+Managers
 		|mgr_game
 		|mgr_display
@@ -149,3 +148,4 @@
 			|obj_item_panic
 			|obj_item_swap
 	|eff_debris
+	|mgr_initialization
