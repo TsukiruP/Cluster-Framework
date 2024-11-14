@@ -1,4 +1,4 @@
-GAME_NAME="Cluster Framework 2"
+GAME_NAME="Cluster Framework"
 GAME_VERSION=1.00
 FRAMEWORK_VERSION=1.00
 PAD_FACE1=0
