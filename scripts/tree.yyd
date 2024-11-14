@@ -6,6 +6,7 @@
 		+Save
 			|save_init
 			|save_default
+			|save_preview
 			|save_exists
 			|save_get
 			|save_set
@@ -290,7 +291,6 @@
 +Trash
 	+Collision
 		+Utilities
-		|player_collision_wall_OLD
 		|player_collision_steps
 	+Angle
 	+GMS2

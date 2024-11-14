@@ -166,7 +166,7 @@ if (pause_delay == 0)
                 pause_x_target[0] = -sprite_get_width(pause_menu);
                 break;
 
-                // Confirm menu:
+            // Confirm menu:
             case 1:
                 // Yes:
                 if (menu_selection[menu_current] == 0)

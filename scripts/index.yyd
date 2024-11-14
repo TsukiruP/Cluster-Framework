@@ -119,7 +119,7 @@ save_write
 save_init
 save_exists
 save_default
-player_collision_wall_OLD
+save_preview
 ctl_sonic_look
 player_state_turn
 player_set_state
