@@ -52,10 +52,19 @@ menu_selection = wrap(menu_selection, 0, save_count - 1);
 // Accept:
 if (input_get_check(INP_ACCEPT, CHECK_PRESSED))
 {
-    if (!save_exists(menu_selection))
+    switch (ds_map_get(save_preview_map, "save" + string(menu_selection) + "_exists"))
     {
-        save_write(menu_selection);
-        event_user(0);
+        // Create new save:
+        case 0:
+            save_default();
+            save_write(menu_selection);
+            event_user(0);
+            break;
+
+        // Read existing save:
+        case 1:
+            save_read(menu_selection);
+            break;
     }
 }
 #define Other_5
@@ -119,32 +128,48 @@ for (i = 0; i < save_count; i += 1)
         draw_set_color(c_white);
     }
 
-    if (ds_map_get(save_preview_map, "save" + string(i) + "_exists") == true)
+    // Text:
+    switch (ds_map_get(save_preview_map, "save" + string(i) + "_exists"))
     {
-        var save_name, save_stage, save_time;
-
-        // Save data:
-        save_name = ds_map_get(save_preview_map, "save" + string(i) + "_name");
-        save_stage = ds_map_get(save_preview_map, "save" + string(i) + "_stage");
-        save_time = ds_map_get(save_preview_map, "save" + string(i) + "_time");
-
-        if (save_name == "")
-        {
-            save_name = "Slot " + string(i + 1);
-        }
-
-        // Name and stage:
-        draw_set2(fa_left, fa_center);
-        draw_text(save_x1, save_y1, save_name + "##" + room_get_name(save_stage));
-
-        // Time:
-        draw_set2(fa_right, fa_center);
-        draw_text(save_x2, save_y1, "##" + string_pad(save_time div 216000, 3) + ":" + string_pad(save_time div 3600, 2));
-    }
-    // No data:
-    else
-    {
-        draw_set2(fa_middle, fa_center);
-        draw_text(save_x1 + save_width, save_y2 - save_height / 2, "No Data");
+        // Save doesn't exist:
+        case 0:
+            draw_set2(fa_middle, fa_center);
+            draw_text(save_x1 + save_width, save_y2 - save_height / 2, "No Data");
+            break;
+        
+        // Save exists:
+        case 1:
+            var save_name, save_stage, save_time;
+    
+            // Save data:
+            save_name = ds_map_get(save_preview_map, "save" + string(i) + "_name");
+            save_stage = ds_map_get(save_preview_map, "save" + string(i) + "_stage");
+            save_time = ds_map_get(save_preview_map, "save" + string(i) + "_time");
+            
+            if (save_name == "")
+            {
+                save_name = "Slot " + string(i + 1);
+            }
+            
+            // Name and stage:
+            draw_set2(fa_left, fa_center);
+            draw_text(save_x1, save_y1, save_name + "##" + room_get_name(save_stage));
+    
+            // Time:
+            draw_set2(fa_right, fa_center);
+            draw_text(save_x2, save_y1, "##" + string_pad(save_time div 216000, 3) + ":" + string_pad(save_time div 3600, 2));
+            break;
+        
+        // Game mismatch:
+        case 2:
+            draw_set2(fa_middle, fa_center);
+            draw_text(save_x1 + save_width, save_y2 - save_height / 2, "Game Mismatch");
+            break;
+        
+        // Version mismatch:
+        case 3:
+            draw_set2(fa_middle, fa_center);
+            draw_text(save_x1 + save_width, save_y2 - save_height / 2, "Version Mismatch");
+            break;
     }
 }

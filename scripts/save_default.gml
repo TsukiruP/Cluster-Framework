@@ -3,6 +3,7 @@
 
 // Game information:
 save_set("game", GAME_NAME);
+save_set("version", GAME_VERSION);
 
 // Player information:
 save_set("name", "");

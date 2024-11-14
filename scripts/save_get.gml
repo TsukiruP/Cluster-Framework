@@ -3,5 +3,11 @@
 
 with (mgr_game)
 {
-    return ds_map_get(save_map, argument0);
+    var save_key;
+
+    // Initialize:
+    save_key = argument0;
+
+    // Return:
+    return ds_map_get(save_map, save_key);
 }
