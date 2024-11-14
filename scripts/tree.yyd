@@ -3,13 +3,13 @@
 	+Game
 		|game_ispaused
 		|stage_start
-		+Savedata
-			|savedata_init
-			|savedata_default
-			|savedata_exists
-			|savedata_get
-			|savedata_set
-			|savedata_write
+		+Save
+			|save_init
+			|save_default
+			|save_exists
+			|save_get
+			|save_set
+			|save_write
 	+Display
 		|window_resize
 		|in_view

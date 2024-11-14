@@ -205,7 +205,7 @@ applies_to=self
 */
 /// Save Initialization
 
-savedata_init();
+save_init();
 
 // Sonic:
 for (i = SONIC_JUMP; i <= SONIC_SHIELD; i += 1)
@@ -312,9 +312,9 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Destroy Savedata
+/// Destroy Save
 
-ds_map_destroy(savedata_map);
+ds_map_destroy(save_map);
 #define Other_5
 /*"/*'/**//* YYD ACTION
 lib_id=1
