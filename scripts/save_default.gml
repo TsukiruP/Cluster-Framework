@@ -5,6 +5,6 @@
 save_set("game", GAME_NAME);
 
 // Player information:
-save_set("name", "Slot 1");
+save_set("name", "");
 save_set("stage", rm_basic_test_1);
 save_set("time", 0);

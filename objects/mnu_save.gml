@@ -32,13 +32,11 @@ applies_to=self
 */
 /// Menu
 
-/*
 // Exit if text is active:
 if (game_ispaused(mgr_text))
 {
     exit;
 }
-*/
 
 var menu_up, menu_down, menu_direction;
 
@@ -57,6 +55,7 @@ if (input_get_check(INP_ACCEPT, CHECK_PRESSED))
     if (!save_exists(menu_selection))
     {
         save_write(menu_selection);
+        event_user(0);
     }
 }
 #define Other_5
@@ -68,6 +67,16 @@ applies_to=self
 /// Destroy Preview Map
 
 ds_map_destroy(save_preview_map);
+#define Other_10
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Refresh Preview
+
+ds_map_destroy(save_preview_map);
+save_preview_map = save_preview();
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -87,7 +96,7 @@ for (i = 0; i < save_count; i += 1)
 
     if (menu_selection == i)
     {
-        save_indent = 12;
+        save_indent = 8;
     }
 
     // Position:
@@ -119,6 +128,11 @@ for (i = 0; i < save_count; i += 1)
         save_stage = ds_map_get(save_preview_map, "save" + string(i) + "_stage");
         save_time = ds_map_get(save_preview_map, "save" + string(i) + "_time");
 
+        if (save_name == "")
+        {
+            save_name = "Slot " + string(i + 1);
+        }
+
         // Name and stage:
         draw_set2(fa_left, fa_center);
         draw_text(save_x1, save_y1, save_name + "##" + room_get_name(save_stage));
@@ -133,24 +147,4 @@ for (i = 0; i < save_count; i += 1)
         draw_set2(fa_middle, fa_center);
         draw_text(save_x1 + save_width, save_y2 - save_height / 2, "No Data");
     }
-    /*
-    // Save:
-    if (save_exists(i))
-    {
-        // Name and stage:
-        draw_set2(fa_left, fa_center);
-        draw_text(save_x1, save_y1, save_get("name") + "##" + room_get_name(save_get("stage")));
-
-        // Time:
-        draw_set2(fa_right, fa_center);
-        draw_text(save_x2, save_y1, "##" + string_pad(save_get("time") div 216000, 3) + ":" + string_pad(save_get("time") div 3600, 2));
-    }
-
-    // No data:
-    else
-    {
-        draw_set2(fa_middle, fa_center);
-        draw_text(save_x1 + save_width, save_y2 - save_height / 2, "No Data");
-    }
-    */
 }
