@@ -13,7 +13,7 @@ kind = argument0.shape;
 temp_radius = 10;
 
 // Default if...
-if (kind != -1)
+if (kind != SHAPE_UNDEFINED)
 {
     // Colliding on the wrong side of the solid:
     if ((argument1 == 0 and yscale == -1) or (argument1 == 90 and xscale == -1) or
@@ -107,7 +107,7 @@ switch (kind)
     }
 
     // Undefined solid shape:
-    case -1:
+    case SHAPE_UNDEFINED:
     {
         var dir, x_int, y_int, sine, csine, x1, y1, x2, y2, left, right, total_solids, n, inst;
 
