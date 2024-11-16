@@ -38,6 +38,7 @@ with (mgr_game)
                 ds_map_add(preview_map, "save" + string(i) + "_name", ds_map_get(save_temp, "name"));
                 ds_map_add(preview_map, "save" + string(i) + "_stage", ds_map_get(save_temp, "stage"));
                 ds_map_add(preview_map, "save" + string(i) + "_time", ds_map_get(save_temp, "time"));
+                ds_map_add(preview_map, "save" + string(i) + "_player", ds_map_get(save_temp, "player0"));
             }
 
             // Destroy temp map:

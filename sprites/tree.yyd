@@ -22,6 +22,7 @@
 	+Pause
 		|spr_pause_header
 		|spr_pause_menu
+	|spr_save_player
 +Gameplay
 	+Player
 		|spr_player_spawn
@@ -152,7 +153,7 @@
 			|spr_spin_charge
 			|spr_brake
 			|spr_debuff
-			|spr_character_arrow
+			|spr_arrow_player
 			|spr_tag_call
 			+Sonic
 				|spr_drop_dash
@@ -232,7 +233,6 @@
 	+Low
 	+High
 	+Masks
-		|mask_platform_fix
 		|mask_ledge
 	+Miles
 		+Default

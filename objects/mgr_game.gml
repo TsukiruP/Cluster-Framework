@@ -221,7 +221,7 @@ instance_create(x, y, mgr_display);
 instance_create(x, y, mgr_audio);
 instance_create(x, y, mgr_input);
 instance_create(x, y, mgr_text);
-transition_create(rm_basic_test_1);
+transition_create(rm_debug);
 #define Step_1
 /*"/*'/**//* YYD ACTION
 lib_id=1

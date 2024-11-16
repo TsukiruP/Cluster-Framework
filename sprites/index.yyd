@@ -142,7 +142,7 @@ spr_ring
 spr_goal_ring
 spr_checkpoint
 spr_spinner
-spr_character_arrow
+spr_arrow_player
 spr_dash_ring_left_up
 spr_ring_sparkle
 spr_hint_box
@@ -205,7 +205,7 @@ spr_knuckles_leap
 spr_knuckles_fly_carry
 spr_basic_test_water_fall_03
 spr_trail
-mask_platform_fix
+spr_save_player
 spr_drop_dash
 spr_shield_insta
 spr_shield_bubble_shell

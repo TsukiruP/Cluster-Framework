@@ -145,11 +145,16 @@ for (i = 0; i < save_count; i += 1)
             save_name = ds_map_get(save_preview_map, "save" + string(i) + "_name");
             save_stage = ds_map_get(save_preview_map, "save" + string(i) + "_stage");
             save_time = ds_map_get(save_preview_map, "save" + string(i) + "_time");
+            save_player = ds_map_get(save_preview_map, "save" + string(i) + "_player");
             
+            // Default to slot number:
             if (save_name == "")
             {
                 save_name = "Slot " + string(i + 1);
             }
+            
+            // Player:
+            draw_sprite_ext(spr_save_player, save_player, save_x1 - 8, save_y1 - save_height / 2, 1, 1, 0, c_white, 0.6);
             
             // Name and stage:
             draw_set2(fa_left, fa_center);
