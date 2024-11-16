@@ -94,12 +94,17 @@ applies_to=self
 */
 /// Draw Saves
 
-var save_top, save_indent, save_offset, save_x1, save_y1, save_x2, save_y2;
+var save_top;
 
 save_top = (global.display_height / 2) - ((save_height + save_kerning) * (save_count - 1)) / 2;
 
 for (i = 0; i < save_count; i += 1)
 {
+    var save_string, save_indent, save_offset, save_x1, save_y1, save_x2, save_y2;
+
+    // Save string:
+    save_string = "save" + string(i);
+
     // Indent:
     save_indent = 0;
 
@@ -129,7 +134,7 @@ for (i = 0; i < save_count; i += 1)
     }
 
     // Text:
-    switch (ds_map_get(save_preview_map, "save" + string(i) + "_exists"))
+    switch (ds_map_get(save_preview_map, save_string + "_exists"))
     {
         // Save doesn't exist:
         case 0:
@@ -142,10 +147,10 @@ for (i = 0; i < save_count; i += 1)
             var save_name, save_stage, save_time;
     
             // Save data:
-            save_name = ds_map_get(save_preview_map, "save" + string(i) + "_name");
-            save_stage = ds_map_get(save_preview_map, "save" + string(i) + "_stage");
-            save_time = ds_map_get(save_preview_map, "save" + string(i) + "_time");
-            save_player = ds_map_get(save_preview_map, "save" + string(i) + "_player");
+            save_name = ds_map_get(save_preview_map, save_string + "_name");
+            save_stage = ds_map_get(save_preview_map, save_string + "_stage");
+            save_time = ds_map_get(save_preview_map, save_string + "_time");
+            save_player = ds_map_get(save_preview_map, save_string + "_player");
             
             // Default to slot number:
             if (save_name == "")
