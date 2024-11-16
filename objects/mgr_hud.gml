@@ -31,9 +31,9 @@ gauge_index = spr_hud_gauge;
 gauge_x_current = -sprite_get_width(hud_index);
 gauge_x_speed = 0;
 
-// Item feed variables:
+// Item list variables:
 item_hide = false;
-item_feed = -1;
+item_list = -1;
 item_alarm = 0;
 
 // Status variables:
@@ -315,7 +315,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Item Feed
+/// Item List
 
 // Exit if the stage is paused:
 if (game_ispaused(mnu_pause))
@@ -323,21 +323,21 @@ if (game_ispaused(mnu_pause))
     exit;
 }
 
-// Create feed:
+// Create list:
 if (instance_exists(player_get_instance(0)))
 {
-    if (global.misc_feed == true && item_feed == -1)
+    if (global.misc_feed == true && item_list == -1)
     {
-        item_feed = ds_list_create();
+        item_list = ds_list_create();
     }
 }
 
-// Update feed:
-if (item_feed != -1)
+// Update list:
+if (item_list != -1)
 {
-    if (ds_list_size(item_feed) != 0)
+    if (ds_list_size(item_list) != 0)
     {
-        if (ds_list_find_value(item_feed, ds_list_size(item_feed) - 1) == global.display_width / 2 + (ds_list_size(item_feed) / 2 - 1) * 9 - (ds_list_size(item_feed) / 2 - 1) * 18)
+        if (ds_list_find_value(item_list, ds_list_size(item_list) - 1) == global.display_width / 2 + (ds_list_size(item_list) / 2 - 1) * 9 - (ds_list_size(item_list) / 2 - 1) * 18)
         {
             if (item_alarm > 0)
             {
@@ -353,10 +353,10 @@ if (item_feed != -1)
                     item_hide = false;
                 }
 
-                // Clear feed:
+                // Clear list:
                 if (item_alarm <= 0)
                 {
-                    ds_list_clear(item_feed);
+                    ds_list_clear(item_list);
                 }
             }
         }
@@ -368,12 +368,12 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Destroy Item Feed
+/// Destroy Item List
 
-if (item_feed != -1)
+if (item_list != -1)
 {
-    ds_list_destroy(item_feed);
-    item_feed = -1;
+    ds_list_destroy(item_list);
+    item_list = -1;
 }
 #define Draw_0
 /*"/*'/**//* YYD ACTION
@@ -517,35 +517,35 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Draw Item Feed
+/// Draw Item List
 
-// Exit if feed has been disabled:
+// Exit if list has been disabled:
 if (global.misc_hud == 0)
 {
     exit;
 }
 
-// Item feed:
-if (item_feed != -1)
+// Item list:
+if (item_list != -1)
 {
-    if (ds_list_size(item_feed) != 0)
+    if (ds_list_size(item_list) != 0)
     {
-        for (i = 0; i < ds_list_size(item_feed); i += 2)
+        for (i = 0; i < ds_list_size(item_list); i += 2)
         {
             var item_target, item_speed;
 
             draw_set_color(c_white);
 
-            item_target = global.display_width / 2 + (ds_list_size(item_feed) / 2 - 1) * 9 - i / 2 * 18; // No, I do not know what I was thinking with coding this. Nor do I know why it works.
-            item_speed = ceil(abs(ds_list_find_value(item_feed, i + 1) - item_target) / 4);
+            item_target = global.display_width / 2 + (ds_list_size(item_list) / 2 - 1) * 9 - i / 2 * 18; // No, I do not know what I was thinking with coding this. Nor do I know why it works.
+            item_speed = ceil(abs(ds_list_find_value(item_list, i + 1) - item_target) / 4);
 
-            if (ds_list_find_value(item_feed, i + 1) != item_target)
+            if (ds_list_find_value(item_list, i + 1) != item_target)
             {
-                ds_list_replace(item_feed, i + 1, ds_list_find_value(item_feed, i + 1) + item_speed);
+                ds_list_replace(item_list, i + 1, ds_list_find_value(item_list, i + 1) + item_speed);
             }
 
             // Icon:
-            draw_sprite_ext(spr_item_icon, ds_list_find_value(item_feed, i), view_xview[view_current] + ds_list_find_value(item_feed, i + 1), view_yview[view_current] + view_hview[view_current] - 33, 1, 1, 0, c_white, !item_hide);
+            draw_sprite_ext(spr_item_icon, ds_list_find_value(item_list, i), view_xview[view_current] + ds_list_find_value(item_list, i + 1), view_yview[view_current] + view_hview[view_current] - 33, 1, 1, 0, c_white, !item_hide);
         }
     }
 }

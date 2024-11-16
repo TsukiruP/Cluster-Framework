@@ -112,13 +112,13 @@ switch (argument0)
         break;
 }
 
-// Update item feed:
+// Update item list:
 if (global.misc_feed == true)
 {
     with (mgr_hud)
     {
-        ds_list_add(item_feed, argument0);
-        ds_list_add(item_feed, -8);
+        ds_list_add(item_list, argument0);
+        ds_list_add(item_list, -8);
         item_alarm = 90;
     }
 }
