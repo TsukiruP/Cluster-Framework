@@ -2,9 +2,9 @@
 // Manages all of Sonic's actions.
 
 // Slam skill:
-if (save_get("sonic_slam") >= SKILL_BOUND_ATTACK && on_ground == false && player_get_input(INP_DOWN, CHECK_HELD) && player_get_input(INP_AUX, CHECK_PRESSED))
+if (game_save_get("sonic_slam") >= SKILL_BOUND_ATTACK && on_ground == false && player_get_input(INP_DOWN, CHECK_HELD) && player_get_input(INP_AUX, CHECK_PRESSED))
 {
-    switch (save_get("sonic_slam"))
+    switch (game_save_get("sonic_slam"))
     {
         // Bound:
         case SKILL_BOUND_ATTACK:
@@ -17,8 +17,8 @@ if (save_get("sonic_slam") >= SKILL_BOUND_ATTACK && on_ground == false && player
 }
 
 // Homing attack:
-else if ((((save_get("sonic_homing") == HOMING_ADVENTURE || save_get("sonic_homing") == HOMING_GENERATIONS) && player_get_input(INP_JUMP, CHECK_PRESSED)) ||
-    (save_get("sonic_homing") >= HOMING_UNLEASHED && player_get_input(INP_AUX, CHECK_PRESSED))) && instance_exists(homing_handle))
+else if ((((game_save_get("sonic_homing") == HOMING_ADVENTURE || game_save_get("sonic_homing") == HOMING_GENERATIONS) && player_get_input(INP_JUMP, CHECK_PRESSED)) ||
+    (game_save_get("sonic_homing") >= HOMING_UNLEASHED && player_get_input(INP_AUX, CHECK_PRESSED))) && instance_exists(homing_handle))
 {
     return player_set_state(sonic_state_homing);
 }
@@ -26,7 +26,7 @@ else if ((((save_get("sonic_homing") == HOMING_ADVENTURE || save_get("sonic_homi
 // Ground skill:
 else if (on_ground == true && player_get_input(INP_AUX, CHECK_PRESSED))
 {
-    switch (save_get("sonic_aux_ground"))
+    switch (game_save_get("sonic_aux_ground"))
     {
         // Hammer:
         case SKILL_HAMMER:
@@ -61,16 +61,16 @@ else if (on_ground == false)
 
     if (skill_key != "")
     {
-        if (save_get(skill_key) <= SKILL_INSTA && status_shield_allow == true)
+        if (game_save_get(skill_key) <= SKILL_INSTA && status_shield_allow == true)
         {
             // Elemental shields:
-            if (save_get("sonic_shield") == true && status_shield >= SHIELD_BUBBLE)
+            if (game_save_get("sonic_shield") == true && status_shield >= SHIELD_BUBBLE)
             {
                 return player_routine_shield();
             }
 
             // Insta-shield:
-            else if (save_get(skill_key) == SKILL_INSTA)
+            else if (game_save_get(skill_key) == SKILL_INSTA)
             {
                 // Set state:
                 player_set_state(player_state_jump, false);
@@ -101,7 +101,7 @@ else if (on_ground == false)
         }
 
         // Air Dash:
-        else if (save_get(skill_key) == SKILL_AIR_DASH && air_dash_allow == true)
+        else if (game_save_get(skill_key) == SKILL_AIR_DASH && air_dash_allow == true)
         {
             // Set speed:
             x_speed += 2.25 * image_xscale;
@@ -127,7 +127,7 @@ else if (on_ground == false)
 }
 
 // Super Peel Out:
-if (save_get("sonic_peel") == true && x_speed == 0 && player_get_input(INP_UP, CHECK_HELD) && player_get_input(INP_JUMP, CHECK_PRESSED))
+if (game_save_get("sonic_peel") == true && x_speed == 0 && player_get_input(INP_UP, CHECK_HELD) && player_get_input(INP_JUMP, CHECK_PRESSED))
 {
     return player_set_state(sonic_state_peel_out);
 }

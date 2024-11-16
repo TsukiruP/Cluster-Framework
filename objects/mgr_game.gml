@@ -44,6 +44,14 @@ lib_id=1
 action_id=603
 applies_to=self
 */
+/// Game Initialization
+
+game_save_init();
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
 /// Settings Initialization
 
 // Image speed:
@@ -203,14 +211,6 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Save Initialization
-
-save_init();
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
 /// Manager Initialization
 
 // Set views:
@@ -221,7 +221,7 @@ instance_create(x, y, mgr_display);
 instance_create(x, y, mgr_audio);
 instance_create(x, y, mgr_input);
 instance_create(x, y, mgr_text);
-transition_create(rm_debug);
+transition_create(rm_basic_test_1);
 #define Step_1
 /*"/*'/**//* YYD ACTION
 lib_id=1

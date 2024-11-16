@@ -40,7 +40,7 @@ if (homing_allow == false || spring_alarm != 0 || input_lock == true || (input_c
 // Set homing handle:
 if (!player_get_input(INP_ALT, CHECK_HELD))
 {
-    if ((save_get("sonic_homing") >= HOMING_ADVENTURE && on_ground == false) || save_get("sonic_homing") == HOMING_FRONTIERS)
+    if ((game_save_get("sonic_homing") >= HOMING_ADVENTURE && on_ground == false) || game_save_get("sonic_homing") == HOMING_FRONTIERS)
     {
         var homing_candidate, homing_fail, homing_solid;
 

@@ -4,19 +4,19 @@
 		|game_ispaused
 		|stage_start
 		+Setting
-			|setting_init
-			|setting_get
-			|setting_set
-			|setting_default
+			|game_setting_init
+			|game_setting_get
+			|game_setting_set
+			|game_setting_default
 		+Save
-			|save_init
-			|save_get
-			|save_set
-			|save_exists
-			|save_read
-			|save_write
-			|save_default
-			|save_preview
+			|game_save_init
+			|game_save_get
+			|game_save_set
+			|game_save_exists
+			|game_save_read
+			|game_save_write
+			|game_save_default
+			|game_save_preview
 	+Display
 		|window_resize
 		|in_view

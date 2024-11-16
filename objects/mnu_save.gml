@@ -13,7 +13,7 @@ menu_selection = 0;
 save_width = 98;
 save_height = (mgr_text.font_height * 3) + 16;
 save_kerning = 4;
-save_preview_map = save_preview();
+save_preview_map = game_save_preview();
 save_count = mgr_game.save_count;
 #define Destroy_0
 /*"/*'/**//* YYD ACTION
@@ -56,14 +56,14 @@ if (input_get_check(INP_ACCEPT, CHECK_PRESSED))
     {
         // Create new save:
         case 0:
-            save_default();
-            save_write(menu_selection);
+            game_save_default();
+            game_save_write(menu_selection);
             event_user(0);
             break;
 
         // Read existing save:
         case 1:
-            save_read(menu_selection);
+            game_save_read(menu_selection);
             break;
     }
 }
@@ -85,7 +85,7 @@ applies_to=self
 /// Refresh Preview
 
 ds_map_destroy(save_preview_map);
-save_preview_map = save_preview();
+save_preview_map = game_save_preview();
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
