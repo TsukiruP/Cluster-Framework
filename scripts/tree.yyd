@@ -3,15 +3,20 @@
 	+Game
 		|game_ispaused
 		|stage_start
+		+Setting
+			|setting_init
+			|setting_get
+			|setting_set
+			|setting_default
 		+Save
 			|save_init
-			|save_default
-			|save_preview
-			|save_exists
 			|save_get
 			|save_set
+			|save_exists
 			|save_read
 			|save_write
+			|save_default
+			|save_preview
 	+Display
 		|window_resize
 		|in_view
@@ -292,12 +297,7 @@
 			|checkpoint_set
 			|checkpoint_isset
 +Trash
-	+Collision
-		+Utilities
-	+Angle
 	+GMS2
-		|collision_rectangle_list
-		|collision_point_list
 	+Handle
 		|player_handle_layer
 		|player_handle_ring
