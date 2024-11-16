@@ -31,19 +31,19 @@ with (mgr_game)
             // Game mismatch:
             if (ds_map_get(save_temp, "game") != GAME_NAME)
             {
-                ds_map_add(preview_map, save_string + "_exists", 2);
+                ds_map_set(preview_map, save_string + "_exists", 2);
             }
             else if (ds_map_get(save_temp, "version") != GAME_VERSION)
             {
-                ds_map_add(preview_map, save_string + "_exists", 3);
+                ds_map_set(preview_map, save_string + "_exists", 3);
             }
             else
             {
-                ds_map_add(preview_map, save_string + "_exists", 1);
-                ds_map_add(preview_map, save_string + "_name", ds_map_get(save_temp, "name"));
-                ds_map_add(preview_map, save_string + "_stage", ds_map_get(save_temp, "stage"));
-                ds_map_add(preview_map, save_string + "_time", ds_map_get(save_temp, "time"));
-                ds_map_add(preview_map, save_string + "_player", ds_map_get(save_temp, "player0"));
+                ds_map_set(preview_map, save_string + "_exists", 1);
+                ds_map_set(preview_map, save_string + "_name", ds_map_get(save_temp, "name"));
+                ds_map_set(preview_map, save_string + "_stage", ds_map_get(save_temp, "stage"));
+                ds_map_set(preview_map, save_string + "_time", ds_map_get(save_temp, "time"));
+                ds_map_set(preview_map, save_string + "_player", ds_map_get(save_temp, "player0"));
             }
 
             // Destroy temp map:
@@ -53,7 +53,7 @@ with (mgr_game)
         // Save file doesn't exist:
         else
         {
-            ds_map_add(preview_map, save_string + "_exists", 0);
+            ds_map_set(preview_map, save_string + "_exists", 0);
         }
     }
     
