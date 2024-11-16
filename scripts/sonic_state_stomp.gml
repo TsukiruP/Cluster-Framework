@@ -93,13 +93,13 @@ switch (argument0)
             }
 
             // Super Peel Out:
-            if (save_get("sonic_peel") == true && input_player[INP_UP, CHECK_HELD] == true && input_player[INP_JUMP, CHECK_PRESSED] == true)
+            if (save_get("sonic_peel") == true && player_get_input(INP_UP, CHECK_HELD) && player_get_input(INP_JUMP, CHECK_PRESSED))
             {
                 return player_set_state(sonic_state_peel_out);
             }
 
             // Spin Dash:
-            if (input_player[INP_DOWN, CHECK_HELD] == true && input_player[INP_JUMP, CHECK_PRESSED] == true)
+            if (player_get_input(INP_DOWN, CHECK_HELD) && player_get_input(INP_JUMP, CHECK_PRESSED))
             {
                 return player_set_state(player_state_spin_dash);
             }

@@ -38,7 +38,7 @@ if (homing_allow == false || spring_alarm != 0 || input_lock == true || (input_c
 }
 
 // Set homing handle:
-if (input_player[INP_ALT, CHECK_HELD] == false)
+if (!player_get_input(INP_ALT, CHECK_HELD))
 {
     if ((save_get("sonic_homing") >= HOMING_ADVENTURE && on_ground == false) || save_get("sonic_homing") == HOMING_FRONTIERS)
     {

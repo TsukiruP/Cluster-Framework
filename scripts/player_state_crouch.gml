@@ -43,7 +43,7 @@ switch (argument0)
         player_slope_friction(slope_friction, acceleration);
 
         // Idle:
-        if (animation_trigger == true && input_player[INP_DOWN, CHECK_HELD] == false)
+        if (animation_trigger == true && !player_get_input(INP_DOWN, CHECK_HELD))
         {
             // Set animation:
             player_set_animation("crouch_end");
@@ -58,7 +58,7 @@ switch (argument0)
         }
 
         // Spin Dash:
-        if (input_player[INP_JUMP, CHECK_PRESSED] == true)
+        if (player_get_input(INP_JUMP, CHECK_PRESSED))
         {
             return player_set_state(player_state_spin_dash);
         }

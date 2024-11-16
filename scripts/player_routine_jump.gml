@@ -1,7 +1,7 @@
 /// player_routine_jump()
 // A rider kick to the sky takes off toward a dream.
 
-if (player_collision_ceiling(y_radius + 5) == noone && input_player[INP_JUMP, CHECK_PRESSED] == true)
+if (player_collision_ceiling(y_radius + 5) == noone && player_get_input(INP_JUMP, CHECK_PRESSED))
 {
     // Play sfx:
     sfx_play("snd_jump", true);

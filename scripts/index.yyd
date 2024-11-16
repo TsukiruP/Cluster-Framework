@@ -106,7 +106,7 @@ ctl_sonic_turn_brake
 player_state_spin_dash
 ctl_sonic_spring_flight
 collision_rectangle_list
-collision_line_list
+player_get_input
 collision_point_list
 sfx_play
 draw_collision
@@ -247,3 +247,4 @@ sonic_state_drop_dash
 ctl_drop_dash
 sonic_state_bound
 save_set
+player_routine_roll

@@ -225,23 +225,6 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Input Initialization
-
-input_x_direction = 0;
-input_y_direction = 0;
-
-input_lock = false;
-input_lock_alarm = 0;
-
-input_cpu = false;
-input_cpu_alarm = 0;
-
-player_set_input(-1);
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
 /// Animation Initialization
 
 animation_grid = -1;
@@ -257,6 +240,23 @@ animation_finished = false;
 animation_trigger = false;
 animation_skip = false;
 animation_timer = 0;
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Input Initialization
+
+input_x_direction = 0;
+input_y_direction = 0;
+
+input_lock = false;
+input_lock_alarm = 0;
+
+input_cpu = false;
+input_cpu_alarm = 0;
+
+player_set_input(-1);
 #define Step_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -367,8 +367,8 @@ if (input_lock == false)
 }
 
 // Input direction:
-input_x_direction = input_player[INP_RIGHT, CHECK_HELD] - input_player[INP_LEFT, CHECK_HELD];
-input_y_direction = input_player[INP_DOWN, CHECK_HELD] - input_player[INP_UP, CHECK_HELD];
+input_x_direction = player_get_input(INP_RIGHT, CHECK_HELD) - player_get_input(INP_LEFT, CHECK_HELD);
+input_y_direction = player_get_input(INP_DOWN, CHECK_HELD) - player_get_input(INP_UP, CHECK_HELD);
 
 // Input lock:
 if (on_ground == true && input_lock_alarm > 0)

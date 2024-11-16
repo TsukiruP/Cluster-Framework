@@ -78,7 +78,7 @@ if (status_shield == SHIELD_BUBBLE)
     player_set_state(player_state_bound);
 
     // Jump aux:
-    jump_aux = input_player[INP_AUX, CHECK_PRESSED];
+    jump_aux = player_get_input(INP_AUX, CHECK_PRESSED);
 
     return true;
 }

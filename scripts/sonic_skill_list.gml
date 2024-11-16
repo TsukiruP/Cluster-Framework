@@ -2,7 +2,7 @@
 // Manages all of Sonic's actions.
 
 // Slam skill:
-if (save_get("sonic_slam") >= SKILL_BOUND_ATTACK && on_ground == false && input_player[INP_DOWN, CHECK_HELD] == true && input_player[INP_AUX, CHECK_PRESSED] == true)
+if (save_get("sonic_slam") >= SKILL_BOUND_ATTACK && on_ground == false && player_get_input(INP_DOWN, CHECK_HELD) && player_get_input(INP_AUX, CHECK_PRESSED))
 {
     switch (save_get("sonic_slam"))
     {
@@ -17,14 +17,14 @@ if (save_get("sonic_slam") >= SKILL_BOUND_ATTACK && on_ground == false && input_
 }
 
 // Homing attack:
-else if ((((save_get("sonic_homing") == HOMING_ADVENTURE || save_get("sonic_homing") == HOMING_GENERATIONS) && input_player[INP_JUMP, CHECK_PRESSED] == true) ||
-    (save_get("sonic_homing") >= HOMING_UNLEASHED && input_player[INP_AUX, CHECK_PRESSED] == true)) && instance_exists(homing_handle))
+else if ((((save_get("sonic_homing") == HOMING_ADVENTURE || save_get("sonic_homing") == HOMING_GENERATIONS) && player_get_input(INP_JUMP, CHECK_PRESSED)) ||
+    (save_get("sonic_homing") >= HOMING_UNLEASHED && player_get_input(INP_AUX, CHECK_PRESSED))) && instance_exists(homing_handle))
 {
     return player_set_state(sonic_state_homing);
 }
 
 // Ground skill:
-else if (on_ground == true && input_player[INP_AUX, CHECK_PRESSED] == true)
+else if (on_ground == true && player_get_input(INP_AUX, CHECK_PRESSED))
 {
     switch (save_get("sonic_aux_ground"))
     {
@@ -48,13 +48,13 @@ else if (on_ground == false)
     skill_key = "";
 
     // Check Jump skill:
-    if (input_player[INP_JUMP, CHECK_PRESSED] == true)
+    if (player_get_input(INP_JUMP, CHECK_PRESSED))
     {
         skill_key = "sonic_jump";
     }
 
     // Check Aux skill:
-    else if (input_player[INP_AUX, CHECK_PRESSED] == true)
+    else if (player_get_input(INP_AUX, CHECK_PRESSED))
     {
         skill_key = "sonic_aux_air";
     }
@@ -127,7 +127,7 @@ else if (on_ground == false)
 }
 
 // Super Peel Out:
-if (save_get("sonic_peel") == true && x_speed == 0 && input_player[INP_UP, CHECK_HELD] == true && input_player[INP_JUMP, CHECK_PRESSED] == true)
+if (save_get("sonic_peel") == true && x_speed == 0 && player_get_input(INP_UP, CHECK_HELD) && player_get_input(INP_JUMP, CHECK_PRESSED))
 {
     return player_set_state(sonic_state_peel_out);
 }

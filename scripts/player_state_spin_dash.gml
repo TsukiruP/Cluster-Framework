@@ -50,7 +50,7 @@ switch (argument0)
         }
 
         // Release:
-        if (input_player[INP_DOWN, CHECK_HELD] == false)
+        if (!player_get_input(INP_DOWN, CHECK_HELD))
         {
             // Set speed:
             x_speed = (8 + (spin_dash_charge div 2)) * image_xscale;
@@ -71,7 +71,7 @@ switch (argument0)
         }
 
         // Charge:
-        if (input_player[INP_JUMP, CHECK_PRESSED] == true)
+        if (player_get_input(INP_JUMP, CHECK_PRESSED))
         {
             var sfx_spin_dash;
 

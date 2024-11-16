@@ -71,11 +71,12 @@ switch (argument0)
         {
             var input_held;
 
-            input_held = input_player[INP_JUMP, CHECK_HELD];
+            // Held input:
+            input_held = player_get_input(INP_JUMP, CHECK_HELD);
 
             if (jump_aux == true)
             {
-                input_held = input_player[INP_AUX, CHECK_HELD];
+                input_held = player_get_input(INP_AUX, CHECK_HELD);
             }
 
             if (y_speed < jump_release && input_held == false)

@@ -86,7 +86,7 @@ switch (argument0)
         }
 
         // Release:
-        if (input_player[INP_JUMP, CHECK_HELD] == true)
+        if (player_get_input(INP_JUMP, CHECK_HELD))
         {
             if (drop_dash_alarm > 0)
             {
@@ -120,7 +120,7 @@ switch (argument0)
         }
 
         // Skill:
-        if (save_get("sonic_slam") == SKILL_BOUND_ATTACK && drop_dash_alarm == 0 && input_player[INP_DOWN, CHECK_HELD] == true && input_player[INP_AUX, CHECK_PRESSED] == true)
+        if (save_get("sonic_slam") == SKILL_BOUND_ATTACK && drop_dash_alarm == 0 && player_get_input(INP_DOWN, CHECK_HELD) && player_get_input(INP_AUX, CHECK_PRESSED))
         {
             if (y_speed < bound_speed)
             {

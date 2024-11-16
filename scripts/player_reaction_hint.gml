@@ -18,7 +18,7 @@ if (collision & COLL_HURT_RADIUS)
         }
 
         // Activate:
-        if (floor(x_speed) == 0 && input_player[INP_UP, CHECK_PRESSED] == true)
+        if (floor(x_speed) == 0 && player_get_input(INP_UP, CHECK_PRESSED))
         {
             // Set state:
             if (hint_allow == true)

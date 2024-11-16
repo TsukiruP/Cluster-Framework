@@ -67,15 +67,9 @@ switch (argument0)
             x_speed -= min(abs(x_speed), acceleration) * sign(x_speed);
 
             // Roll:
-            if (abs(x_speed) > 0.5)
+            if (player_routine_roll())
             {
-                if (input_player[INP_DOWN, CHECK_HELD] == true)
-                {
-                    // Play sfx:
-                    sfx_play("snd_roll", true);
-
-                    return player_set_state(player_state_roll);
-                }
+                return false;
             }
         }
 

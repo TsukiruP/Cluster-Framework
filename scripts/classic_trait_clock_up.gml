@@ -42,10 +42,10 @@ else
     }
 
     // Clock Up:
-    if (clock_up_timer != clock_up_duration && clock_up_alarm == 0 && input_player[INP_SUPER, CHECK_PRESSED] == true)
+    if (clock_up_timer != clock_up_duration && clock_up_alarm == 0 && player_get_input(INP_SUPER, CHECK_PRESSED))
     {
         // Hyper:
-        if (clock_up_state != 2 && (clock_up_state == 0 || clock_up_state != 0) && input_player[INP_ALT, CHECK_HELD] == true)
+        if (clock_up_state != 2 && (clock_up_state == 0 || clock_up_state != 0) && player_get_input(INP_ALT, CHECK_HELD))
         {
             global.game_speed = 0;
             clock_up_state = 2;
@@ -56,7 +56,7 @@ else
         }
 
         // Normal:
-        else if (clock_up_state != 1 && (clock_up_state == 0 || (clock_up_state == 2 && input_player[INP_ALT, CHECK_HELD] == true)))
+        else if (clock_up_state != 1 && (clock_up_state == 0 || (clock_up_state == 2 && player_get_input(INP_ALT, CHECK_HELD))))
         {
             global.game_speed = 0.25;
             clock_up_state = 1;

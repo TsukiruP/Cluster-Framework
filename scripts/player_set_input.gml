@@ -1,7 +1,12 @@
 /// player_set_input(id);
-// Sets
+// Sets the player's input array.
 
-switch (argument0)
+var player_id;
+
+// Initialize:
+player_id = argument0;
+
+switch (player_id)
 {
     // Player 1:
     case 0:

@@ -43,7 +43,7 @@ switch (argument0)
         player_slope_friction(slope_friction, acceleration);
 
         // Idle:
-        if (animation_trigger == true && input_player[INP_UP, CHECK_HELD] == false)
+        if (animation_trigger == true && !player_get_input(INP_UP, CHECK_HELD))
         {
             // Set animation:
             player_set_animation("look_end");

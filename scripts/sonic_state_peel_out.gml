@@ -40,7 +40,7 @@ switch (argument0)
         }
         
         // Release:
-        if (input_player[INP_UP, CHECK_HELD] == false)
+        if (!player_get_input(INP_UP, CHECK_HELD))
         {
             if (peel_out_alarm == 0)
             {

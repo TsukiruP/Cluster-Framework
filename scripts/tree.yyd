@@ -242,6 +242,7 @@
 		+Routines
 			|player_routine_land
 			|player_routine_jump
+			|player_routine_roll
 			|player_routine_shield
 			|player_routine_skill
 			|sonic_routine_homing
@@ -260,6 +261,7 @@
 			|player_reaction_spike
 			|player_reaction_blockade
 		+Getters
+			|player_get_input
 			|player_get_physics
 			|player_get_solids
 			|player_get_angle
@@ -294,7 +296,6 @@
 		+Utilities
 	+Angle
 	+GMS2
-		|collision_line_list
 		|collision_rectangle_list
 		|collision_point_list
 	+Handle
