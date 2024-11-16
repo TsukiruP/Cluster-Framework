@@ -11,6 +11,6 @@ with (mgr_game)
 
     // Buffer:
     buffer_write_hex(save_buffer, ds_map_write(save_map));
-    buffer_save(save_buffer, save_directory + "save" + string(argument0) + ".sav");
+    buffer_save(save_buffer, save_directory + "save" + string(save_id) + ".sav");
     buffer_destroy(save_buffer);
 }
