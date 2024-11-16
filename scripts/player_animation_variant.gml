@@ -26,7 +26,7 @@ switch (animation_current)
             if (instance_number(obj_player) > 1)
             {
                 // Leader:
-                if (player_slot == 0)
+                if (player_id == 0)
                 {
                     animation_variant = 0;
                 }

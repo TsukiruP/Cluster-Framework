@@ -25,7 +25,7 @@ for (i = 0; i < global.player_count; i += 1)
         global.player_data[i, 1] = instance_create(x - (30 * i), y, obj_player);
 
         player_handle = player_get_instance(0);
-        player_handle.player_slot = i;
+        player_handle.player_id = i;
         player_handle.character_id = player_character;
         player_handle.input_lock = true;
 

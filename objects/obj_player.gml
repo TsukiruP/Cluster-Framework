@@ -12,8 +12,8 @@ image_speed = 0;
 // Timeline:
 ctl_init();
 
-// Player slot:
-player_slot = 0;
+// Player id:
+player_id = 0;
 
 // Physics variables:
 physics_id = PHYS_DEFAULT;
@@ -277,7 +277,7 @@ if (input_lock == false)
     // Reset CPU alarm:
     if (input_cpu == true)
     {
-        if (input_get_check(INP_ANY, CHECK_HELD, DEV_GAMEPAD0 + player_slot))
+        if (input_get_check(INP_ANY, CHECK_HELD, DEV_GAMEPAD0 + player_id))
         {
             input_cpu_alarm = 600;
         }
@@ -286,7 +286,7 @@ if (input_lock == false)
     // Direct inputs:
     if (input_cpu == false || (input_cpu == true && input_cpu_alarm > 0))
     {
-        player_set_input(player_slot);
+        player_set_input(player_id);
     }
     else
     {
