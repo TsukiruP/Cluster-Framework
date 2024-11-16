@@ -3,13 +3,14 @@
 
 with (mgr_game)
 {
-    var save_buffer;
+    var save_buffer, save_id;
 
-    // Create buffer:
+    // Initialize:
+    save_id = argument0;
     save_buffer = buffer_create();
-    buffer_write_hex(save_buffer, ds_map_write(save_map));
 
-    // Save buffer:
+    // Buffer:
+    buffer_write_hex(save_buffer, ds_map_write(save_map));
     buffer_save(save_buffer, save_directory + "save" + string(argument0) + ".sav");
     buffer_destroy(save_buffer);
 }

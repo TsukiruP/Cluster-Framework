@@ -3,7 +3,7 @@
 
 with (mgr_game)
 {
-    var preview_map, buffer;
+    var preview_map, save_buffer;
 
     // Preview map:
     preview_map = ds_map_create();
@@ -18,15 +18,19 @@ with (mgr_game)
             // Temporary save map:
             save_temp = ds_map_create();
 
-            buffer = buffer_create();
-            buffer_load(buffer, save_directory + "save" + string(i) + ".sav");
-            ds_map_read(save_temp, buffer_read_hex(buffer, buffer_get_size(buffer)));
-            buffer_destroy(buffer);
+            save_buffer = buffer_create();
+            buffer_load(save_buffer, save_directory + "save" + string(i) + ".sav");
+            ds_map_read(save_temp, buffer_read_hex(save_buffer, buffer_get_size(save_buffer)));
+            buffer_destroy(save_buffer);
 
             // Game mismatch:
             if (ds_map_get(save_temp, "game") != GAME_NAME)
             {
                 ds_map_add(preview_map, "save" + string(i) + "_exists", 2);
+            }
+            else if (ds_map_get(save_temp, "version") != GAME_VERSION)
+            {
+                ds_map_add(preview_map, "save" + string(i) + "_exists", 3);
             }
             else
             {
