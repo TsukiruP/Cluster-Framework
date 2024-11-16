@@ -66,8 +66,6 @@ applies_to=self
 */
 /// Field Initialization
 
-event_inherited();
-
 //field orientation: enum(0, 1, 2)
 //field flip_x: false
 //field flip_y: false
