@@ -2,9 +2,9 @@
 // Manages all of Sonic's actions.
 
 // Slam skill:
-if (global.skill_sonic[SONIC_SLAM] >= SKILL_BOUND_ATTACK && on_ground == false && input_player[INP_DOWN, CHECK_HELD] == true && input_player[INP_AUX, CHECK_PRESSED] == true)
+if (save_get("sonic_slam") >= SKILL_BOUND_ATTACK && on_ground == false && input_player[INP_DOWN, CHECK_HELD] == true && input_player[INP_AUX, CHECK_PRESSED] == true)
 {
-    switch (global.skill_sonic[SONIC_SLAM])
+    switch (save_get("sonic_slam"))
     {
         // Bound:
         case SKILL_BOUND_ATTACK:
@@ -17,8 +17,8 @@ if (global.skill_sonic[SONIC_SLAM] >= SKILL_BOUND_ATTACK && on_ground == false &
 }
 
 // Homing attack:
-else if ((((global.skill_sonic[SONIC_HOMING] == HOMING_ADVENTURE || global.skill_sonic[SONIC_HOMING] == HOMING_GENERATIONS) && input_player[INP_JUMP, CHECK_PRESSED] == true) ||
-    (global.skill_sonic[SONIC_HOMING] >= HOMING_UNLEASHED && input_player[INP_AUX, CHECK_PRESSED] == true)) && instance_exists(homing_handle))
+else if ((((save_get("sonic_homing") == HOMING_ADVENTURE || save_get("sonic_homing") == HOMING_GENERATIONS) && input_player[INP_JUMP, CHECK_PRESSED] == true) ||
+    (save_get("sonic_homing") >= HOMING_UNLEASHED && input_player[INP_AUX, CHECK_PRESSED] == true)) && instance_exists(homing_handle))
 {
     return player_set_state(sonic_state_homing);
 }
@@ -26,7 +26,7 @@ else if ((((global.skill_sonic[SONIC_HOMING] == HOMING_ADVENTURE || global.skill
 // Ground skill:
 else if (on_ground == true && input_player[INP_AUX, CHECK_PRESSED] == true)
 {
-    switch (global.skill_sonic[SONIC_AUX_G])
+    switch (save_get("sonic_aux_ground"))
     {
         // Hammer:
         case SKILL_HAMMER:
@@ -42,35 +42,35 @@ else if (on_ground == true && input_player[INP_AUX, CHECK_PRESSED] == true)
 // Aerial skill:
 else if (on_ground == false)
 {
-    var skill_id;
+    var skill_key;
 
     // Skill id:
-    skill_id = -1;
+    skill_key = "";
 
     // Check Jump skill:
     if (input_player[INP_JUMP, CHECK_PRESSED] == true)
     {
-        skill_id = SONIC_JUMP;
+        skill_key = "sonic_jump";
     }
 
     // Check Aux skill:
     else if (input_player[INP_AUX, CHECK_PRESSED] == true)
     {
-        skill_id = SONIC_AUX_A;
+        skill_key = "sonic_aux_air";
     }
 
-    if (skill_id != -1)
+    if (skill_key != "")
     {
-        if (global.skill_sonic[skill_id] <= SKILL_INSTA && status_shield_allow == true)
+        if (save_get(skill_key) <= SKILL_INSTA && status_shield_allow == true)
         {
             // Elemental shields:
-            if (global.skill_sonic[SONIC_SHIELD] == true && status_shield >= SHIELD_BUBBLE)
+            if (save_get("sonic_shield") == true && status_shield >= SHIELD_BUBBLE)
             {
                 return player_routine_shield();
             }
 
             // Insta-shield:
-            else if (global.skill_sonic[skill_id] == SKILL_INSTA)
+            else if (save_get(skill_key) == SKILL_INSTA)
             {
                 // Set state:
                 player_set_state(player_state_jump, false);
@@ -101,7 +101,7 @@ else if (on_ground == false)
         }
 
         // Air Dash:
-        else if (global.skill_sonic[skill_id] == SKILL_AIR_DASH && air_dash_allow == true)
+        else if (save_get(skill_key) == SKILL_AIR_DASH && air_dash_allow == true)
         {
             // Set speed:
             x_speed += 2.25 * image_xscale;
@@ -119,7 +119,7 @@ else if (on_ground == false)
         }
         
         // Jump Skills:
-        else if (skill_id == SONIC_JUMP)
+        else if (skill_key == "sonic_jump")
         {
             return player_set_state(sonic_state_drop_dash);
         }
@@ -127,7 +127,7 @@ else if (on_ground == false)
 }
 
 // Super Peel Out:
-if (global.skill_sonic[SONIC_PEEL] == true && x_speed == 0 && input_player[INP_UP, CHECK_HELD] == true && input_player[INP_JUMP, CHECK_PRESSED] == true)
+if (save_get("sonic_peel") == true && x_speed == 0 && input_player[INP_UP, CHECK_HELD] == true && input_player[INP_JUMP, CHECK_PRESSED] == true)
 {
     return player_set_state(sonic_state_peel_out);
 }

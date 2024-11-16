@@ -1,5 +1,5 @@
 /// save_init()
-// Initializes save data.
+// Initializes the save system.
 
 // Initialize:
 save_directory = "data\saves\"

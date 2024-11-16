@@ -1,5 +1,5 @@
 /// save_write(id)
-// Writes the save to file.
+// Writes the save map to file.
 
 with (mgr_game)
 {

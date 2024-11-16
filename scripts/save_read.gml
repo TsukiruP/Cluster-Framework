@@ -1,17 +1,17 @@
 /// save_read(id)
-// Reads save data from a file and applies it to the game's memory.
+// Reads a save file and applies it to the save map.
 
 with (mgr_game)
 {
     var save_id;
-    
+
     // Initialize:
     save_id = argument0;
-    
+
     if (save_exists(save_id))
     {
         var save_buffer, save_temp;
-        
+
         // Buffer:
         save_buffer = buffer_create();
         buffer_load(save_buffer, save_directory + "save" + string(save_id) + ".sav");
