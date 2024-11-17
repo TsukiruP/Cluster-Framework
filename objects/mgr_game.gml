@@ -46,6 +46,7 @@ applies_to=self
 */
 /// Game Initialization
 
+game_setting_init();
 game_save_init();
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -59,13 +60,6 @@ image_speed = 0;
 
 // Open/create settings file:
 ini_open("settings.ini");
-
-// Read/create display settings:
-global.setting_display_mode = ini_read_real("display", "mode", DEFAULT_DISPLAY_MODE);
-global.setting_display_ratio = ini_read_real("display", "ratio", DEFAULT_DISPLAY_RATIO);
-global.setting_display_scale = ini_read_real("display", "scale", DEFAULT_DISPLAY_SCALE);
-global.setting_display_fullscreen = ini_read_real("display", "full", DEFAULT_DISPLAY_FULL);
-global.setting_display_vsync = ini_read_real("display", "vsync", DEFAULT_DISPLAY_VSYNC);
 
 // Read/create audio settings:
 global.setting_audio_bgm = ini_read_real("audio", "bgm", DEFAULT_AUDIO_BGM);
@@ -213,11 +207,7 @@ applies_to=self
 */
 /// Manager Initialization
 
-// Set views:
-room_view_set_all();
-
-// Create managers:
-instance_create(x, y, mgr_display);
+instance_create(x, y, mgr_screen);
 instance_create(x, y, mgr_audio);
 instance_create(x, y, mgr_input);
 instance_create(x, y, mgr_text);
@@ -306,8 +296,9 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Destroy Save
+/// Destroy Maps
 
+ds_map_destroy(setting_map);
 ds_map_destroy(save_map);
 #define Other_5
 /*"/*'/**//* YYD ACTION

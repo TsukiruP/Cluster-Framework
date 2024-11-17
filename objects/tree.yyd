@@ -12,7 +12,7 @@
 +System
 	+Managers
 		|mgr_game
-		|mgr_display
+		|mgr_screen
 		|mgr_audio
 		|mgr_input
 		|mgr_text

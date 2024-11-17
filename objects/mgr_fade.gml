@@ -37,7 +37,7 @@ applies_to=self
 /// Draw Fade
 
 draw_set1(fade_color, fade_alpha);
-draw_rectangle(view_xview[view_current], view_yview[view_current], view_xview[view_current] + global.display_width, view_yview[view_current] + global.display_height, false);
+draw_rectangle(view_xview[view_current], view_yview[view_current], view_xview[view_current] + screen_get_width(), view_yview[view_current] + screen_get_height(), false);
 
 // Reset:
 draw_reset();

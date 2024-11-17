@@ -31,7 +31,7 @@ pause_space = 3;
 
 for (i = 0; i < menu_count; i += 1)
 {
-    pause_x_current[i] = global.display_width + sprite_get_width(pause_menu);
+    pause_x_current[i] = screen_get_width() + sprite_get_width(pause_menu);
     pause_x_speed[i] = 0;
 }
 
@@ -287,7 +287,7 @@ for (i = 0; i < menu_count; i += 1)
 {
     pause_height[i] = (sprite_get_height(pause_header) + pause_space) + (sprite_get_height(pause_menu) * pause_count[i]) + (pause_space * (pause_count[i] - 1));
     pause_x[i] = view_xview[view_current] + pause_x_current[i];
-    pause_y[i] = (view_yview[view_current] + global.display_height / 2) - (pause_height[i] / 2);
+    pause_y[i] = (view_yview[view_current] + screen_get_height() / 2) - (pause_height[i] / 2);
 }
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -336,7 +336,7 @@ pause_x_target[0] = -sprite_get_width(pause_menu);
 
 for (i = 0; i < menu_count; i += 1)
 {
-    if ((pause_x_target[i] != global.display_width + sprite_get_width(pause_menu)) && (pause_x_target[i] != -sprite_get_width(pause_menu)))
+    if ((pause_x_target[i] != screen_get_width() + sprite_get_width(pause_menu)) && (pause_x_target[i] != -sprite_get_width(pause_menu)))
     {
         pause_x_target[i] = -sprite_get_width(pause_menu);
     }
@@ -350,11 +350,11 @@ applies_to=self
 /// Reset Menu
 
 menu_current = 0;
-pause_x_target[0] = global.display_width / 2;
+pause_x_target[0] = screen_get_width() / 2;
 
 for (i = 1; i < menu_count; i += 1)
 {
-    pause_x_target[1] = global.display_width + sprite_get_width(pause_menu);
+    pause_x_target[1] = screen_get_width() + sprite_get_width(pause_menu);
 }
 #define Draw_0
 /*"/*'/**//* YYD ACTION

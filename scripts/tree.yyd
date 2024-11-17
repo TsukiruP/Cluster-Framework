@@ -17,9 +17,13 @@
 			|game_save_write
 			|game_save_default
 			|game_save_preview
-	+Display
-		|window_resize
-		|in_view
+	+Screen
+		|screen_is_equal
+		|screen_get_width
+		|screen_get_height
+		|screen_set_size
+		|screen_set_window
+		|screen_set_resolution
 	+Audio
 		|sfx_play
 		|sfx_stop
@@ -37,7 +41,7 @@
 	+Room
 		|room_set_data
 		|room_get_data
-		|room_view_set_all
+		|room_set_view_all
 	+Fade
 		|fade_create
 		|fade_reverse
@@ -180,6 +184,7 @@
 		|effect_create
 		|instance_nth_nearest
 		|instance_nearest_dir_x
+		|in_view
 +Gameplay
 	+Collision
 		|collision_box
@@ -299,9 +304,6 @@
 +Trash
 	+GMS2
 	+Handle
-		|player_handle_layer
-		|player_handle_ring
-		|player_handle_checkpoint
 		|player_handle_spring
 		|player_handle_item_box
 		|player_handle_badnik

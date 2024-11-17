@@ -46,8 +46,8 @@ fade_create
 room_set_data
 room_get_data
 transition_create
-room_view_set_all
-window_resize
+room_set_view_all
+screen_set_window
 ctl_spinner
 sonic_skill_list
 sonic_state_homing
@@ -78,14 +78,14 @@ effect_create
 
 player_reaction_spring
 topic_set_message
-player_handle_ring
+screen_set_size
 player_get_item
 credits
 in_view
 player_ring_loss
 player_slope_friction
 player_handle_item_box
-player_handle_checkpoint
+screen_get_width
 hover
 input_get_timer
 start_trail
@@ -162,7 +162,7 @@ ctl_shield_insta
 ctl_shield_fire
 ctl_shield_bubble
 ctl_shield_lightning
-player_handle_layer
+screen_is_equal
 ctl_spring_diagonal
 player_handle_spring
 player_state_template
@@ -250,3 +250,5 @@ game_save_set
 player_routine_roll
 game_setting_set
 game_setting_get
+screen_get_height
+screen_set_resolution

@@ -110,10 +110,10 @@ if (text_clear == false)
         // Height:
         draw_set_font(global.font_system);
 
-        topic_height = string_height_ext(topic_message, font_height, global.display_width - (text_x * 2));
+        topic_height = string_height_ext(topic_message, font_height, screen_get_width() - (text_x * 2));
         topic_lines = (topic_height / font_height) - 1;
-        text_height = string_height_ext(text_message[text_current], font_height, global.display_width - (text_x * 2));
-        log_height = string_height_ext(log_message, font_height, global.display_width - text_x);
+        text_height = string_height_ext(text_message[text_current], font_height, screen_get_width() - (text_x * 2));
+        log_height = string_height_ext(log_message, font_height, screen_get_width() - text_x);
 
         // Overflow:
         if (((text_height / font_height) - (text_scroll[0] / font_height) <= text_scroll[3]) && (text_scroll[0] == text_scroll[1]))
@@ -130,9 +130,9 @@ if (text_clear == false)
         {
             log_hide = !log_hide;
 
-            if (log_hide == false && log_height > global.display_height - log_spacing)
+            if (log_hide == false && log_height > screen_get_height() - log_spacing)
             {
-                log_scroll = log_height - (global.display_height - log_spacing);
+                log_scroll = log_height - (screen_get_height() - log_spacing);
             }
         }
 
@@ -200,7 +200,7 @@ if (text_clear == false)
         else
         {
             scroll_min = log_scroll;
-            scroll_max = ((log_height - log_scroll) > (global.display_height - log_spacing));
+            scroll_max = ((log_height - log_scroll) > (screen_get_height() - log_spacing));
         }
 
         scroll_up = ((input_get_check(INP_UP, CHECK_PRESSED) || input_get_timer(INP_UP, 30)) && scroll_min > 0);
@@ -214,7 +214,7 @@ if (text_clear == false)
         }
 
         // Log scroll:
-        else if (log_hide == false && (log_height > global.display_height - log_spacing))
+        else if (log_hide == false && (log_height > screen_get_height() - log_spacing))
         {
             log_scroll += scroll_direction;
         }
@@ -681,11 +681,11 @@ if (text_hide == true)
 }
 
 // Viewport:
-d3d_set_viewport(0, 0, global.display_width, global.display_height);
+d3d_set_viewport(0, 0, screen_get_width(), screen_get_height());
 
 // Box:
 draw_set1(make_color_rgb(global.textbox_red, global.textbox_green, global.textbox_blue), topic_alpha[0]);
-draw_rectangle(0, (global.display_height / 2) - 9 - ((font_height / 2) * topic_lines), global.display_width, (global.display_height / 2) + 10 + ((font_height / 2) * topic_lines), false);
+draw_rectangle(0, (screen_get_height() / 2) - 9 - ((font_height / 2) * topic_lines), screen_get_width(), (screen_get_height() / 2) + 10 + ((font_height / 2) * topic_lines), false);
 
 // Topic:
 draw_set_font(global.font_system);
@@ -693,11 +693,11 @@ draw_set1(c_white, topic_alpha[1]);
 
 // Topic:
 draw_set2(fa_center, fa_middle);
-draw_text(global.display_width / 2, global.display_height / 2, topic_message);
+draw_text(screen_get_width() / 2, screen_get_height() / 2, topic_message);
 
 // Reset:
 draw_reset();
-d3d_set_viewport(0, 0, global.display_width, global.display_height);
+d3d_set_viewport(0, 0, screen_get_width(), screen_get_height());
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -714,14 +714,14 @@ if (text_hide == true)
 var textbox_bottom, texbox_height;
 
 // Box:
-textbox_bottom = global.display_height - 19;
+textbox_bottom = screen_get_height() - 19;
 textbox_height = 59;
 
 draw_set1(make_color_rgb(global.textbox_red, global.textbox_green, global.textbox_blue), text_alpha[0]);
-draw_rectangle(0, textbox_bottom - textbox_height, global.display_width, textbox_bottom, false);
+draw_rectangle(0, textbox_bottom - textbox_height, screen_get_width(), textbox_bottom, false);
 
 // Viewport:
-d3d_set_viewport(0, global.display_height - text_y, global.display_width, font_height * text_scroll[3]);
+d3d_set_viewport(0, screen_get_height() - text_y, screen_get_width(), font_height * text_scroll[3]);
 
 // Font:
 draw_set_font(global.font_system);
@@ -729,20 +729,20 @@ draw_set1(c_white, text_alpha[2]);
 
 // Text:
 draw_set2(fa_left, fa_top);
-draw_text_ext(text_x, -text_scroll[0], text_message[text_current], font_height, global.display_width - (text_x * 2));
+draw_text_ext(text_x, -text_scroll[0], text_message[text_current], font_height, screen_get_width() - (text_x * 2));
 
 // Arrow:
 draw_set_alpha(1);
-d3d_set_viewport(0, 0, global.display_width, global.display_height);
+d3d_set_viewport(0, 0, screen_get_width(), screen_get_height());
 
 if (text_overflow == true && text_scroll[4] == true && text_alpha[2] == 1)
 {
-    draw_sprite(fnt_system, 95, (global.display_width / 2) - 6, global.display_height - 29);
+    draw_sprite(fnt_system, 95, (screen_get_width() / 2) - 6, screen_get_height() - 29);
 }
 
 // Reset:
 draw_reset();
-d3d_set_viewport(0, 0, global.display_width, global.display_height);
+d3d_set_viewport(0, 0, screen_get_width(), screen_get_height());
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -758,10 +758,10 @@ if (text_hide == true)
 
 // Background:
 draw_set1(c_black, log_alpha[0]);
-draw_rectangle(0, 0, global.display_width, global.display_height, false);
+draw_rectangle(0, 0, screen_get_width(), screen_get_height(), false);
 
 // Viewport:
-d3d_set_viewport(0, 16, global.display_width, global.display_height - log_spacing);
+d3d_set_viewport(0, 16, screen_get_width(), screen_get_height() - log_spacing);
 
 // Font:
 draw_set_font(global.font_system);
@@ -769,11 +769,11 @@ draw_set1(c_white, log_alpha[1]);
 
 // Log:
 draw_set2(fa_left, fa_top);
-draw_text_ext(text_x / 2, -log_scroll, log_message, font_height, global.display_width - text_x);
+draw_text_ext(text_x / 2, -log_scroll, log_message, font_height, screen_get_width() - text_x);
 
 // Reset:
 draw_reset();
-d3d_set_viewport(0, 0, global.display_width, global.display_height);
+d3d_set_viewport(0, 0, screen_get_width(), screen_get_height());
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603

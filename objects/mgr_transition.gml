@@ -29,7 +29,7 @@ player_handle = noone;
 
 // Background variables:
 background_y_current = -15;
-background_y_target = global.display_height + 15;
+background_y_target = screen_get_height() + 15;
 background_y_speed = 0;
 background_y_factor = 5;
 
@@ -61,20 +61,20 @@ switch (player_get_character(0))
 }
 
 character_x_current = -sprite_get_width(character_index);
-character_x_target = global.display_width - 27;
+character_x_target = screen_get_width() - 27;
 character_x_speed = 0;
 character_x_factor = 12;
 
 character_alpha = 1;
-stars_y = global.display_height - 16;
+stars_y = screen_get_height() - 16;
 
 // Retry variables:
 draw_set_font(global.font_title_card);
 
 retry_text = "Try Again";
 retry_width = string_width(retry_text);
-retry_x_current = global.display_width + retry_width + zone_x_factor;
-retry_x_target = (global.display_width / 2) - 3;
+retry_x_current = screen_get_width() + retry_width + zone_x_factor;
+retry_x_target = (screen_get_width() / 2) - 3;
 retry_x_speed = 0;
 #define Step_1
 /*"/*'/**//* YYD ACTION
@@ -170,7 +170,7 @@ if (game_ispaused(mnu_pause) && pause_ignore == false)
 // Background target - bottom of screen:
 if ((transition_id == TRANS_MENU && transition_state < 2) || (transition_id == TRANS_CARD && transition_state < 4))
 {
-    background_y_target = global.display_height + 15;
+    background_y_target = screen_get_height() + 15;
 }
 
 // Background target - retry letterbox:
@@ -182,7 +182,7 @@ else if (transition_id == TRANS_RETRY && (transition_state < 2 || transition_sta
 // Background target - middle of screen:
 else if (transition_id == TRANS_RETRY && (transition_state == 2 || transition_state == 3))
 {
-    background_y_target = global.display_height / 2 + 15;
+    background_y_target = screen_get_height() / 2 + 15;
 }
 
 // Background target - top of screen:
@@ -374,7 +374,7 @@ if (transition_id == TRANS_CARD)
     if (transition_state >= 4)
     {
         banner_x_target = -sprite_get_width(spr_title_card_banner) - 12;
-        zone_x_target = global.display_width + zone_x_factor;
+        zone_x_target = screen_get_width() + zone_x_factor;
     }
     else
     {
@@ -551,7 +551,7 @@ if (transition_id == TRANS_RETRY)
     }
     else
     {
-        retry_x_target = (global.display_width / 2) - 3;
+        retry_x_target = (screen_get_width() / 2) - 3;
     }
 
     // Retry position:
@@ -741,7 +741,7 @@ if (transition_id == TRANS_CARD)
     // Loading:
     if (load_skip == false && transition_state == 2)
     {
-        draw_sprite(spr_title_card_load, 0, view_xview[view_current] + 4, view_yview[view_current] + global.display_height - 12);
+        draw_sprite(spr_title_card_load, 0, view_xview[view_current] + 4, view_yview[view_current] + screen_get_height() - 12);
     }
 
     // Stars:
@@ -770,10 +770,10 @@ if (transition_id == TRANS_RETRY)
 
     // Background:
     draw_sprite_tiled_horizontal(spr_transition_background, 1, view_xview[view_current] + background_x_scroll, view_yview[view_current] + background_y_current);
-    draw_sprite_tiled_horizontal_yscale(spr_transition_background, 1, view_xview[view_current] - 16 - background_x_scroll - 1, view_yview[view_current] + global.display_height - background_y_current, -1);
+    draw_sprite_tiled_horizontal_yscale(spr_transition_background, 1, view_xview[view_current] - 16 - background_x_scroll - 1, view_yview[view_current] + screen_get_height() - background_y_current, -1);
 
     // Try again:
-    draw_text(view_xview[view_current] + retry_x_current, view_yview[view_current] + global.display_height / 2, retry_text);
+    draw_text(view_xview[view_current] + retry_x_current, view_yview[view_current] + screen_get_height() / 2, retry_text);
 
     // Reset:
     draw_reset();

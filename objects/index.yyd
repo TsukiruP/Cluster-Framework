@@ -11,7 +11,7 @@ par_culled
 
 mgr_initialization
 mgr_input
-mgr_display
+mgr_screen
 mgr_transition
 mgr_camera
 mgr_audio

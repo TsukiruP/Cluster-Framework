@@ -96,7 +96,7 @@ applies_to=self
 
 var save_top;
 
-save_top = (global.display_height / 2) - ((save_height + save_kerning) * (save_count - 1)) / 2;
+save_top = (screen_get_height() / 2) - ((save_height + save_kerning) * (save_count - 1)) / 2;
 
 for (i = 0; i < save_count; i += 1)
 {
@@ -115,9 +115,9 @@ for (i = 0; i < save_count; i += 1)
 
     // Position:
     save_offset = (save_height + save_kerning) * i;
-    save_x1 = (global.display_width / 2) - save_width - save_indent;
+    save_x1 = (screen_get_width() / 2) - save_width - save_indent;
     save_y1 = save_top + save_offset;
-    save_x2 = (global.display_width / 2) + save_width - save_indent;
+    save_x2 = (screen_get_width() / 2) + save_width - save_indent;
     save_y2 = save_y1 + save_height / 2;
 
     // Box:

@@ -311,8 +311,8 @@ if (instance_exists(focus_handle))
 // Limit camera position:
 var view_xhalf, view_yhalf;
 
-view_xhalf = global.display_width / 2;
-view_yhalf = global.display_height / 2;
+view_xhalf = screen_get_width() / 2;
+view_yhalf = screen_get_height() / 2;
 x = clamp(x, limit_left + view_xhalf, limit_right - view_yhalf);
 y = clamp(y, limit_top + view_yhalf, limit_bottom - view_yhalf);
 

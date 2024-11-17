@@ -10,7 +10,7 @@ applies_to=self
 hud_hide = false;
 
 hud_index = spr_hud;
-hud_x_current = global.display_width;
+hud_x_current = screen_get_width();
 hud_x_target = 4;
 hud_x_speed = 0;
 hud_x_factor = 4;
@@ -114,7 +114,7 @@ if (game_ispaused(mnu_pause))
 if (hud_x_current != hud_x_target)
 {
     // Snap to target:
-    if (hud_x_current == global.display_width)
+    if (hud_x_current == screen_get_width())
     {
         hud_x_current = hud_x_target;
     }
@@ -337,7 +337,7 @@ if (item_list != -1)
 {
     if (ds_list_size(item_list) != 0)
     {
-        if (ds_list_find_value(item_list, ds_list_size(item_list) - 1) == global.display_width / 2 + (ds_list_size(item_list) / 2 - 1) * 9 - (ds_list_size(item_list) / 2 - 1) * 18)
+        if (ds_list_find_value(item_list, ds_list_size(item_list) - 1) == screen_get_width() / 2 + (ds_list_size(item_list) / 2 - 1) * 9 - (ds_list_size(item_list) / 2 - 1) * 18)
         {
             if (item_alarm > 0)
             {
@@ -415,8 +415,8 @@ if (instance_exists(instance_player(0))) {
     // Gauge:
     clock_up_percentage = (instance_player(0).clock_up_duration - instance_player(0).clock_up_timer) / instance_player(0).clock_up_duration;
     
-    draw_sprite(spr_hud, 3, view_xview[view_current] + gauge_x_current, view_yview[view_current] + global.display_height - 29);
-    draw_sprite_part(gauge_index, 0, 0, 0, sprite_get_width(gauge_index) * clock_up_percentage, sprite_get_height(gauge_index), view_xview[view_current] + gauge_x_current + 8, view_yview[view_current] + global.display_height - 29 + 12);
+    draw_sprite(spr_hud, 3, view_xview[view_current] + gauge_x_current, view_yview[view_current] + screen_get_height() - 29);
+    draw_sprite_part(gauge_index, 0, 0, 0, sprite_get_width(gauge_index) * clock_up_percentage, sprite_get_height(gauge_index), view_xview[view_current] + gauge_x_current + 8, view_yview[view_current] + screen_get_height() - 29 + 12);
 }
 */
 
@@ -536,7 +536,7 @@ if (item_list != -1)
 
             draw_set_color(c_white);
 
-            item_target = global.display_width / 2 + (ds_list_size(item_list) / 2 - 1) * 9 - i / 2 * 18; // No, I do not know what I was thinking with coding this. Nor do I know why it works.
+            item_target = screen_get_width() / 2 + (ds_list_size(item_list) / 2 - 1) * 9 - i / 2 * 18; // No, I do not know what I was thinking with coding this. Nor do I know why it works.
             item_speed = ceil(abs(ds_list_find_value(item_list, i + 1) - item_target) / 4);
 
             if (ds_list_find_value(item_list, i + 1) != item_target)

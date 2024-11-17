@@ -214,7 +214,7 @@ applies_to=self
 /// Manager Creation
 
 // Set views:
-room_view_set_all();
+//room_view_set_all();
 
 // Create managers:
 instance_create(x, y, mgr_game);
