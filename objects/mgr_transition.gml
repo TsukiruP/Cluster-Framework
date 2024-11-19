@@ -6,9 +6,6 @@ applies_to=self
 */
 /// Transition Initialization
 
-// Image speed:
-image_speed = 0;
-
 // Flags:
 debug = false;
 pause_ignore = false;

@@ -8,9 +8,6 @@ applies_to=self
 
 event_inherited();
 
-// Image speed:
-image_speed = 0;
-
 // Hurtbox:
 hurtbox_set(13, 16, 12, 16);
 
