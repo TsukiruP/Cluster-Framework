@@ -8,7 +8,6 @@ applies_to=self
 
 // Screen size:
 screen_set_size(480, 270);
-screen_set_resolution();
 #define Step_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
