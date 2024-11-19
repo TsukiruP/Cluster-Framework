@@ -141,15 +141,6 @@ global.setting_misc_tally = ini_read_real("misc", "tally", DEFAULT_MISC_TALLY);
 // Close settings file:
 ini_close();
 
-// Apply display settings:
-global.display_width = 480;
-global.display_height = 270;
-global.display_mode = global.setting_display_mode;
-global.display_ratio = global.setting_display_ratio;
-global.display_scale = global.setting_display_scale;
-global.display_fullscreen = global.setting_display_fullscreen;
-global.display_vsync = global.setting_display_vsync;
-
 // Apply audio settings:
 global.audio_bgm = global.setting_audio_bgm;
 global.audio_sfx = global.setting_audio_sfx;
