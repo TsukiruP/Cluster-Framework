@@ -43,7 +43,7 @@ applies_to=self
 /// Replace Items
 
 // Shields:
-switch (global.gameplay_shields)
+switch (game_setting_get("gameplay_shields"))
 {
     // Adventure/Advance:
     case 1:
@@ -68,7 +68,7 @@ switch (global.gameplay_shields)
 }
 
 // Debuffs:
-if (global.gameplay_debuffs == false)
+if (!game_setting_get("gameplay_debuffs"))
 {
     if (item_id == ITEM_SLOW || item_id == ITEM_PANIC || item_id == ITEM_SWAP)
     {

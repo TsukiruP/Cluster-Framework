@@ -25,8 +25,10 @@ with (mgr_audio)
     // Play sound:
     if (single == true)
     {
-        return audio_play_single_ext(sfx, global.audio_sfx, pan, 1, false);
+        // Return:
+        return audio_play_single_ext(sfx, game_setting_get("audio_sfx"), pan, 1, false);
     }
 
-    return audio_play_ext(sfx, global.audio_sfx, pan, 1, false);
+    // Return:
+    return audio_play_ext(sfx, game_setting_get("audio_sfx"), pan, 1, false);
 }

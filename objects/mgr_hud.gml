@@ -44,7 +44,7 @@ status_icon[STATUS_PANIC] = ITEM_PANIC;
 status_icon[STATUS_SWAP] = ITEM_SWAP;
 status_position = -1;
 status_speed = 0;
-status_size = 2 + 2 * global.gameplay_debuffs;
+status_size = 2 + 2 * game_setting_get("gameplay_debuffs");
 
 for (i = STATUS_SHIELD; i <= STATUS_SWAP; i += 1)
 {

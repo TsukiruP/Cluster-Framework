@@ -14,7 +14,7 @@ if (collision & COLL_HURT_RADIUS)
         if (global.checkpoint_x != reaction_handle.x && global.checkpoint_y != reaction_handle.y && reaction_handle.active == false)
         {
             // Bonuses:
-            if (global.gameplay_checkpoint == true)
+            if (game_setting_get("gameplay_checkpoint"))
             {
                 if (global.game_rings >= 20)
                 {
