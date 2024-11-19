@@ -185,6 +185,7 @@
 		|instance_nth_nearest
 		|instance_nearest_dir_x
 		|in_view
+		|interface_get_color
 +Gameplay
 	+Collision
 		|collision_box
@@ -302,9 +303,7 @@
 			|checkpoint_set
 			|checkpoint_isset
 +Trash
-	+GMS2
 	+Handle
-		|player_handle_spring
 		|player_handle_item_box
 		|player_handle_badnik
 		|player_handle_hint

@@ -121,7 +121,7 @@ for (i = 0; i < save_count; i += 1)
     save_y2 = save_y1 + save_height / 2;
 
     // Box:
-    draw_set1(make_color_rgb(global.textbox_red, global.textbox_green, global.textbox_blue), 0.6);
+    draw_set1(interface_get_color(), 0.6);
     draw_rectangle(save_x1 - 8, save_y1 - save_height / 2, save_x2 + 8, save_y2, false);
 
     // Font:

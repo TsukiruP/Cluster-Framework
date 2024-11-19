@@ -164,7 +164,7 @@ ctl_shield_bubble
 ctl_shield_lightning
 screen_is_equal
 ctl_spring_diagonal
-player_handle_spring
+interface_get_color
 player_state_template
 player_state_crouch
 player_state_hurt
