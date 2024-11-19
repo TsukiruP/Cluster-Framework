@@ -1033,14 +1033,12 @@ if (global.misc_trails == true)
     draw_set_blend_mode(bm_normal);
 }
 
-// Hurt alpha:
+// Image alpha:
+image_alpha = 1;
+
 if (status_invin == INVIN_HURT && status_invin_alarm > 0)
 {
     image_alpha = sync_rate(status_invin_alarm, 2, 2);
-}
-else
-{
-    image_alpha = 1;
 }
 
 // Player:
