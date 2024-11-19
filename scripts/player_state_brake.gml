@@ -6,7 +6,7 @@ switch (argument0)
     // Start:
     case STATE_START:
         // Set direction:
-        if ((global.advance_brake == false || character_id == CHAR_CLASSIC) && x_speed != 0)
+        if ((!game_setting_get("advance_brake") || character_id == CHAR_CLASSIC) && x_speed != 0)
         {
             image_xscale = sign(x_speed);
         }
@@ -38,7 +38,7 @@ switch (argument0)
                         x_speed = deceleration * input_x_direction;
 
                         // Turn:
-                        if (global.advance_turn == true && character_id != CHAR_CLASSIC && image_xscale != sign(x_speed))
+                        if (game_setting_get("advance_turn") && character_id != CHAR_CLASSIC && image_xscale != sign(x_speed))
                         {
                             // Set animation:
                             player_set_animation("turn_brake");
@@ -64,7 +64,7 @@ switch (argument0)
         else
         {
             // Run:
-            if (global.advance_brake == true && character_id != CHAR_CLASSIC)
+            if (game_setting_get("advance_brake") && character_id != CHAR_CLASSIC)
             {
                 return player_set_state(player_state_run);
             }

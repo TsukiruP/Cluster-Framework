@@ -33,7 +33,7 @@ applies_to=self
 /// Menu
 
 // Exit if text is active:
-if (game_ispaused(mgr_text))
+if (game_ispaused(mgr_text) || instance_exists(mgr_transition))
 {
     exit;
 }
@@ -64,6 +64,7 @@ if (input_get_check(INP_ACCEPT, CHECK_PRESSED))
         // Read existing save:
         case 1:
             game_save_read(menu_selection);
+            transition_create(rm_basic_test_1);
             break;
     }
 }
@@ -183,3 +184,6 @@ for (i = 0; i < save_count; i += 1)
             break;
     }
 }
+
+// Reset:
+draw_reset();

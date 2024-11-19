@@ -29,7 +29,7 @@ switch (argument0)
         // Land:
         if (player_routine_land())
         {
-            if (global.advance_hurt == false)
+            if (!game_setting_get("advance_hurt"))
             {
                 x_speed = 0;
             }
