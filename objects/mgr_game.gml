@@ -199,7 +199,7 @@ global.misc_status = global.setting_misc_status;
 global.misc_feed = global.setting_misc_feed;
 global.misc_trails = global.setting_misc_trails;
 global.misc_reticle = global.setting_misc_reticle;
-global.misc_yally = global.setting_misc_tally;
+global.misc_tally = global.setting_misc_tally;
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
