@@ -61,10 +61,6 @@ image_speed = 0;
 // Open/create settings file:
 ini_open("settings.ini");
 
-// Read/create audio settings:
-global.setting_audio_bgm = ini_read_real("audio", "bgm", DEFAULT_AUDIO_BGM);
-global.setting_audio_sfx = ini_read_real("audio", "sfx", DEFAULT_AUDIO_SFX);
-
 // Read/create keyboard settings:
 global.setting_input_key[INP_UP] = ini_read_real("input", "key_up", DEFAULT_KEY_UP);
 global.setting_input_key[INP_DOWN] = ini_read_real("input", "key_down", DEFAULT_KEY_DOWN);
@@ -114,36 +110,8 @@ for (i = 0; i < global.player_count; i += 1)
 // Read/create misc. input settings:
 global.setting_input_focus = ini_read_real("input", "focus", false);
 
-// Read/create textbox settings:
-global.setting_textbox_red = ini_read_real("textbox", "red", DEFAULT_TEXT_RED);
-global.setting_textbox_green = ini_read_real("textbox", "green", DEFAULT_TEXT_GREEN);
-global.setting_textbox_blue = ini_read_real("textbox", "blue", DEFAULT_TEXT_BLUE);
-
-// Read/create gameplay settings:
-global.setting_gameplay_shields = ini_read_real("gameplay", "shields", DEFAULT_GAME_SHIELDS);
-global.setting_gameplay_debuffs = ini_read_real("gameplay", "debuffs", DEFAULT_GAME_DEBUFF);
-global.setting_gameplay_checkpoint = ini_read_real("gameplay", "checkpoint", DEFAULT_GAME_CHECKPOINT);
-
-// Read/create Advance settings:
-global.setting_advance_turn = ini_read_real("advance", "turn", DEFAULT_ADVANCE_TURN);
-global.setting_advance_brake = ini_read_real("advance", "brake", DEFAULT_ADVANCE_BRAKE);
-global.setting_advance_hurt = ini_read_real("advance", "hurt", DEFAULT_ADVANCE_HURT);
-global.setting_advance_flicker = ini_read_real("advance", "flicker", DEFAULT_ADVANCE_FLICKER);
-
-// Read/create misc. settings:
-global.setting_misc_hud = ini_read_real("misc", "hud", DEFAULT_MISC_HUD);
-global.setting_misc_status = ini_read_real("misc", "status", DEFAULT_MISC_STATUS);
-global.setting_misc_feed = ini_read_real("misc", "feed", DEFAULT_MISC_FEED);
-global.setting_misc_trails = ini_read_real("misc", "trails", DEFAULT_MISC_TRAILS);
-global.setting_misc_reticle = ini_read_real("misc", "reticle", DEFAULT_MISC_RETICLE);
-global.setting_misc_tally = ini_read_real("misc", "tally", DEFAULT_MISC_TALLY);
-
 // Close settings file:
 ini_close();
-
-// Apply audio settings:
-global.audio_bgm = global.setting_audio_bgm;
-global.audio_sfx = global.setting_audio_sfx;
 
 // Apply keyboard settings:
 for (i = INP_UP; i <= INP_HELP; i += 1)
@@ -167,30 +135,6 @@ for (i = 0; i < global.player_count; i += 1)
 
 // Apply misc. input settings:
 global.input_focus = global.setting_input_focus;
-
-// Apply textbox settings
-global.textbox_red = global.setting_textbox_red;
-global.textbox_green = global.setting_textbox_green;
-global.textbox_blue = global.setting_textbox_blue;
-
-// Apply gameplay settings:
-global.gameplay_shields = global.setting_gameplay_shields;
-global.gameplay_debuffs = global.setting_gameplay_debuffs;
-global.gameplay_checkpoint = global.setting_gameplay_checkpoint;
-
-// Apply Advance settings:
-global.advance_turn = global.setting_advance_turn;
-global.advance_brake = global.setting_advance_brake;
-global.advance_hurt = global.setting_advance_hurt;
-global.advance_flicker = global.setting_advance_flicker;
-
-// Apply misc. settings:
-global.misc_hud = global.setting_misc_hud;
-global.misc_status = global.setting_misc_status;
-global.misc_feed = global.setting_misc_feed;
-global.misc_trails = global.setting_misc_trails;
-global.misc_reticle = global.setting_misc_reticle;
-global.misc_tally = global.setting_misc_tally;
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603

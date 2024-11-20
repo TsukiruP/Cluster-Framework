@@ -475,8 +475,8 @@ applies_to=self
 */
 /// Draw Status
 
-// Exit if status is disabled or HUD isn't default:
-if (game_setting_get("misc_status") == 0 || game_setting_get("misc_status") != 1)
+// Exit if HUD isn't default or status is disabled:
+if (game_setting_get("misc_hud") != 1 || game_setting_get("misc_status") == 0)
 {
     exit;
 }
@@ -488,7 +488,7 @@ status_count = 0;
 
 for (i = status_size; i >= 0; i -= 1)
 {
-    if (((global.misc_status == 1 && status_active[i, 0] == true) || global.misc_status == 2) && status_active[i, 1] == true)
+    if (((game_setting_get("misc_status") && status_active[i, 0] == true) || game_setting_get("misc_status") == 2) && status_active[i, 1] == true)
     {
         // Shadow:
         draw_sprite_ext(spr_item_icon, 0, view_xview[view_current] + view_wview[view_current] - hud_x_current - 8 - (sprite_get_width(spr_item_icon) + 2) * status_count, view_yview[view_current] + 18, 1, 1, 0, c_black, 1);
@@ -497,7 +497,7 @@ for (i = status_size; i >= 0; i -= 1)
         draw_sprite_ext(spr_item_icon, status_icon[i], view_xview[view_current] + view_wview[view_current] - hud_x_current - 9 - (sprite_get_width(spr_item_icon) + 2) * status_count, view_yview[view_current] + 17, 1, 1, 0, c_white, 1);
         
         // Gray out:
-        if (global.misc_status == 2)
+        if (game_setting_get("misc_status") == 2)
         {
             if (status_active[i, 0] == false)
             {
@@ -507,7 +507,7 @@ for (i = status_size; i >= 0; i -= 1)
     }
     
     // Increase status count:
-    if ((global.misc_status == 1 && status_active[i, 0] == true) || global.misc_status == 2)
+    if ((game_setting_get("misc_status") == 1 && status_active[i, 0] == true) || game_setting_get("misc_status") == 2)
     {
         status_count += 1;
     }
