@@ -7,7 +7,7 @@ applies_to=self
 /// Save Initialization
 
 // Menu variables:
-menu_screen = 0;
+menu_page = 0;
 menu_cursor = 0;
 menu_selection = 0;
 
@@ -18,8 +18,8 @@ save_kerning = 4;
 save_preview_map = game_save_preview();
 save_max = 3;
 
-// Screen count:
-screen_count = ceil(game_save_count() / save_max);
+// Page count:
+page_count = ceil(game_save_count() / save_max);
 #define Destroy_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -54,17 +54,17 @@ menu_up = input_get_check(INP_UP, CHECK_PRESSED);
 menu_down = input_get_check(INP_DOWN, CHECK_PRESSED);
 menu_y_direction = menu_down - menu_up;
 
-// Menu screen:
-menu_screen += menu_x_direction;
-menu_screen = wrap(menu_screen, 0, screen_count - 1);
+// Menu page:
+menu_page += menu_x_direction;
+menu_page = wrap(menu_page, 0, page_count - 1);
 
 // Menu selection:
-save_count = min(game_save_count() - (save_max * menu_screen), save_max);
+save_count = min(game_save_count() - (save_max * menu_page), save_max);
 menu_selection += menu_y_direction;
 menu_selection = wrap(menu_selection, 0, save_count - 1);
 
 // Menu save:
-menu_save = (menu_screen * save_max) + menu_selection;
+menu_save = (menu_page * save_max) + menu_selection;
 
 // Accept:
 if (input_get_check(INP_ACCEPT, CHECK_PRESSED))
@@ -112,21 +112,21 @@ applies_to=self
 */
 /// Draw Saves
 
-// Screens:
-for (i = 0; i < screen_count; i += 1)
+// Pages:
+for (i = 0; i < page_count; i += 1)
 {
-    var save_count, screen_top;
+    var save_count, page_top;
 
     // Save count:
     save_count = min(game_save_count() - (save_max * i), save_max);
 
     // Top:
-    screen_top = (screen_get_height() / 2) - ((save_height + save_kerning) * (save_count - 1)) / 2;
+    page_top = (screen_get_height() / 2) - ((save_height + save_kerning) * (save_count - 1)) / 2;
 
     // Saves:
     for (j = 0; j < save_count; j += 1)
     {
-        var save_id, save_string, save_indent, save_offset, save_x1, save_y1, save_x2, save_y2, screen_offset;
+        var save_id, save_string, save_indent, save_offset, save_x1, save_y1, save_x2, save_y2, page_offset;
 
         // Save string:
         save_id = (save_max * i) + j;
@@ -135,7 +135,7 @@ for (i = 0; i < screen_count; i += 1)
         // Indent:
         save_indent = 0;
 
-        if (menu_screen == i && menu_selection == j)
+        if (menu_page == i && menu_selection == j)
         {
             save_indent = 8;
         }
@@ -143,16 +143,16 @@ for (i = 0; i < screen_count; i += 1)
         // Position:
         save_offset = (save_height + save_kerning) * j;
         save_x1 = (screen_get_width() / 2) - save_width - save_indent;
-        save_y1 = screen_top + save_offset;
+        save_y1 = page_top + save_offset;
         save_x2 = (screen_get_width() / 2) + save_width - save_indent;
         save_y2 = save_y1 + save_height / 2;
 
-        // Screen offset:
-        screen_offset = save_x2 - ((screen_get_width() - save_x2) / 2);
-        save_x1 -= screen_offset * menu_screen;
-        save_x2 -= screen_offset * menu_screen;
-        save_x1 += screen_offset * i;
-        save_x2 += screen_offset * i;
+        // Page offset:
+        page_offset = save_x2 - ((screen_get_width() - save_x2) / 2);
+        save_x1 -= page_offset * menu_page;
+        save_x2 -= page_offset * menu_page;
+        save_x1 += page_offset * i;
+        save_x2 += page_offset * i;
 
         // Box:
         draw_set1(interface_get_color(), 0.6);
@@ -162,7 +162,7 @@ for (i = 0; i < screen_count; i += 1)
         draw_set_font(global.font_system);
         draw_set1(c_gray, 1);
 
-        if (menu_screen == i && menu_selection == j)
+        if (menu_page == i && menu_selection == j)
         {
             draw_set_color(c_white);
         }
