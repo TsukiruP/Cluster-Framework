@@ -10,6 +10,7 @@
 			|game_setting_default
 		+Save
 			|game_save_init
+			|game_save_count
 			|game_save_get
 			|game_save_set
 			|game_save_exists
@@ -304,6 +305,5 @@
 			|checkpoint_isset
 +Trash
 	+Handle
-		|player_handle_item_box
 		|player_handle_badnik
 		|player_handle_hint
