@@ -113,7 +113,7 @@ switch (argument0)
 }
 
 // Update item list:
-if (global.misc_feed == true)
+if (game_setting_get("misc_feed") == true)
 {
     with (mgr_hud)
     {

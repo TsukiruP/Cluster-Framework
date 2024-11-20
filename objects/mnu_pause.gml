@@ -76,7 +76,7 @@ if (pause_delay == 0)
     if (input_get_check(INP_SELECT, CHECK_PRESSED))
     {
         pause_hide += 1;
-        pause_hide = wrap(pause_hide, 0, 1 + (instance_exists(mgr_transition) || global.misc_hud != 0));
+        pause_hide = wrap(pause_hide, 0, 1 + (instance_exists(mgr_transition) || game_setting_get("misc_hud") != 0));
     }
 
     // Cancel:

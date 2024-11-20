@@ -182,7 +182,7 @@ trail_draw = false;
 trail_color = c_white;
 
 // Start trail:
-if (global.misc_trails == true)
+if (game_setting_get("misc_trails"))
 {
     start_trail(15);
 }
@@ -529,7 +529,7 @@ if ((status_speed == SPEED_SLOW || status_panic == true) && !instance_exists(deb
 }
 
 // Create reticle:
-if (global.misc_reticle > 0 && instance_exists(homing_handle) && !instance_exists(reticle_handle))
+if (game_setting_get("misc_reticle") > 0 && instance_exists(homing_handle) && !instance_exists(reticle_handle))
 {
     reticle_handle = instance_create(x, y, eff_reticle);
 
@@ -985,31 +985,28 @@ applies_to=self
 /// Trail
 
 // Exit if trails are disabled:
-if (global.misc_trails == false)
+if (!game_setting_get("misc_trails"))
 {
     exit;
 }
 
 // Color trail:
-if (global.misc_trails == true)
+switch (character_id)
 {
-    switch (character_id)
-    {
-        // Miles:
-        case CHAR_MILES:
-            trail_color = c_yellow;
-            break;
+    // Miles:
+    case CHAR_MILES:
+        trail_color = c_yellow;
+        break;
 
-        // Knuckles:
-        case CHAR_KNUCKLES:
-            trail_color = c_red;
-            break;
+    // Knuckles:
+    case CHAR_KNUCKLES:
+        trail_color = c_red;
+        break;
 
-        // Sonic:
-        default:
-            trail_color = c_blue;
-            break;
-    }
+    // Sonic:
+    default:
+        trail_color = c_blue;
+        break;
 }
 
 // Update trail:
@@ -1025,7 +1022,7 @@ applies_to=self
 /// Draw Player
 
 // Trail:
-if (global.misc_trails == true)
+if (game_setting_get("misc_trails"))
 {
     draw_set_blend_mode(bm_add);
     draw_set_color(trail_color);

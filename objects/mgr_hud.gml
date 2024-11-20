@@ -59,7 +59,7 @@ applies_to=self
 */
 /// Position
 
-switch (global.misc_hud)
+switch (game_setting_get("misc_hud"))
 {
     // S4E2:
     case 2:
@@ -83,7 +83,7 @@ if (hud_hide == true)
 }
 else
 {
-    switch (global.misc_hud)
+    switch (game_setting_get("misc_hud"))
     {
         // S4E2:
         case 2:
@@ -129,7 +129,7 @@ if (hud_x_current != hud_x_target)
 }
 
 // Air:
-if (global.misc_hud == 1)
+if (game_setting_get("misc_hud") == 1)
 {
     var air_x_target;
 
@@ -186,7 +186,7 @@ if (global.misc_hud == 1)
 }
 
 // Gauge:
-if (global.misc_hud == 1)
+if (game_setting_get("misc_hud") == 1)
 {
     var gauge_x_target, gauge_x_factor;
 
@@ -326,7 +326,7 @@ if (game_ispaused(mnu_pause))
 // Create list:
 if (instance_exists(player_get_instance(0)))
 {
-    if (global.misc_feed == true && item_list == -1)
+    if (game_setting_get("misc_feed") && item_list == -1)
     {
         item_list = ds_list_create();
     }
@@ -384,7 +384,7 @@ applies_to=self
 /// Draw Default HUD
 
 // Exit if HUD isn't default:
-if (global.misc_hud != 1)
+if (game_setting_get("misc_hud") != 1)
 {
     exit;
 }
@@ -430,7 +430,7 @@ applies_to=self
 /// Draw S4E2 HUD
 
 // Exit if HUD isn't S4E2:
-if (global.misc_hud != 2)
+if (game_setting_get("misc_hud") != 2)
 {
     exit;
 }
@@ -475,8 +475,8 @@ applies_to=self
 */
 /// Draw Status
 
-// Exit if HUD isn't default or status is disabled:
-if (global.misc_hud != 1 || global.misc_status == 0)
+// Exit if status is disabled or HUD isn't default:
+if (game_setting_get("misc_status") == 0 || game_setting_get("misc_status") != 1)
 {
     exit;
 }
@@ -520,7 +520,7 @@ applies_to=self
 /// Draw Item List
 
 // Exit if list has been disabled:
-if (global.misc_hud == 0)
+if (!game_setting_get("misc_feed"))
 {
     exit;
 }
