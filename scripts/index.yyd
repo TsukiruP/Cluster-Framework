@@ -84,7 +84,7 @@ credits
 in_view
 player_ring_loss
 player_slope_friction
-player_handle_item_box
+game_save_count
 screen_get_width
 hover
 input_get_timer
