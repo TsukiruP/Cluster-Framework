@@ -1,5 +1,5 @@
 /// game_setting_default()
-// Sets the setting map to default values.
+// Sets setting map to default values.
 
 // Interface:
 game_setting_set("interface_red", 0);
@@ -17,6 +17,9 @@ game_setting_set("screen_vsync", false);
 // Audio:
 game_setting_set("audio_bgm", 1);
 game_setting_set("audio_sfx", 1);
+
+// Input:
+game_setting_set("input_keyboard", game_keyboard_init());
 
 // Gameplay:
 game_setting_set("gameplay_shields", 0);

@@ -61,25 +61,6 @@ image_speed = 0;
 // Open/create settings file:
 ini_open("settings.ini");
 
-// Read/create keyboard settings:
-global.setting_input_key[INP_UP] = ini_read_real("input", "key_up", DEFAULT_KEY_UP);
-global.setting_input_key[INP_DOWN] = ini_read_real("input", "key_down", DEFAULT_KEY_DOWN);
-global.setting_input_key[INP_LEFT] = ini_read_real("input", "key_left", DEFAULT_KEY_LEFT);
-global.setting_input_key[INP_RIGHT] = ini_read_real("input", "key_right", DEFAULT_KEY_RIGHT);
-
-global.setting_input_key[INP_JUMP] = ini_read_real("input", "key_jump", DEFAULT_KEY_JUMP);
-global.setting_input_key[INP_AUX] = ini_read_real("input", "key_aux", DEFAULT_KEY_AUX);
-global.setting_input_key[INP_SWAP] = ini_read_real("input", "key_swap", DEFAULT_KEY_SWAP);
-global.setting_input_key[INP_SUPER] = ini_read_real("input", "key_super", DEFAULT_KEY_SUPER);
-global.setting_input_key[INP_TAG] = ini_read_real("input", "key_tag", DEFAULT_KEY_TAG);
-global.setting_input_key[INP_ALT] = ini_read_real("input", "key_alt", DEFAULT_KEY_ALT);
-
-global.setting_input_key[INP_START] = ini_read_real("input", "key_start", DEFAULT_KEY_START);
-global.setting_input_key[INP_SELECT] = ini_read_real("input", "key_select", DEFAULT_KEY_SELECT);
-global.setting_input_key[INP_ACCEPT] = ini_read_real("input", "key_accept", DEFAULT_KEY_ACCEPT);
-global.setting_input_key[INP_CANCEL] = ini_read_real("input", "key_cancel", DEFAULT_KEY_CANCEL);
-global.setting_input_key[INP_HELP] = ini_read_real("input", "key_help", DEFAULT_KEY_HELP);
-
 // Read/create gamepad settings:
 for (i = 0; i < global.player_count; i += 1)
 {
@@ -112,12 +93,6 @@ global.setting_input_focus = ini_read_real("input", "focus", false);
 
 // Close settings file:
 ini_close();
-
-// Apply keyboard settings:
-for (i = INP_UP; i <= INP_HELP; i += 1)
-{
-    global.input_key[i] = global.setting_input_key[i];
-}
 
 // Apply gamepad settings:
 for (i = 0; i < global.player_count; i += 1)
@@ -231,9 +206,10 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Destroy Maps
+/// Destroy Data Structures
 
 ds_map_destroy(setting_map);
+ds_list_destroy(keyboard_list);
 ds_map_destroy(save_map);
 #define Other_5
 /*"/*'/**//* YYD ACTION

@@ -23,7 +23,7 @@ if (argument_count >= 2)
 if (input_device == DEV_KEYBOARD)
 {
     // Return:
-    return string_key(global.input_key[input_id]);
+    return string_key(game_keyboard_get(input_id));
 }
 
 // Gamepad:

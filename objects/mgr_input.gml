@@ -414,13 +414,13 @@ applies_to=self
 for (i = INP_UP; i <= INP_HELP; i += 1)
 {
     // Held:
-    input_keyboard[i, CHECK_HELD] = keyboard_check(global.input_key[i]);
+    input_keyboard[i, CHECK_HELD] = keyboard_check(game_keyboard_get(i));
 
     // Pressed:
-    input_keyboard[i, CHECK_PRESSED] = keyboard_check_pressed(global.input_key[i]);
+    input_keyboard[i, CHECK_PRESSED] = keyboard_check_pressed(game_keyboard_get(i));
 
     // Released:
-    input_keyboard[i, CHECK_RELEASED] = keyboard_check_released(global.input_key[i]);
+    input_keyboard[i, CHECK_RELEASED] = keyboard_check_released(game_keyboard_get(i));
 }
 
 // Gamepad:

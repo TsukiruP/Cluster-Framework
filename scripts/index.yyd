@@ -145,7 +145,7 @@ fade_reverse
 wrap
 text_set_message
 ctl_sonic_omochao
-player_handle_hint
+game_keyboard_get
 ctl_explosion_small
 ctl_explosion_large
 ctl_explosion_enemy
@@ -174,7 +174,7 @@ gamepad_get_check
 input_get_check
 
 ctl_checkpoint_active
-player_handle_badnik
+game_keyboard_default
 ctl_sonic_insta
 ctl_reticle_colors
 string_bool
@@ -252,3 +252,4 @@ game_setting_set
 game_setting_get
 screen_get_height
 screen_set_resolution
+game_keyboard_init
