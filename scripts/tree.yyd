@@ -10,7 +10,6 @@
 			|game_setting_default
 		+Save
 			|game_save_init
-			|game_save_count
 			|game_save_get
 			|game_save_set
 			|game_save_exists
@@ -18,6 +17,9 @@
 			|game_save_write
 			|game_save_default
 			|game_save_preview
+		+Misc.
+			|game_get_interface_color
+			|game_get_save_count
 	+Screen
 		|screen_is_equal
 		|screen_get_width
@@ -186,7 +188,6 @@
 		|instance_nth_nearest
 		|instance_nearest_dir_x
 		|in_view
-		|interface_get_color
 +Gameplay
 	+Collision
 		|collision_box

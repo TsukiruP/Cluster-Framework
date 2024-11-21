@@ -684,7 +684,7 @@ if (text_hide == true)
 d3d_set_viewport(0, 0, screen_get_width(), screen_get_height());
 
 // Box:
-draw_set1(interface_get_color(), topic_alpha[0]);
+draw_set1(game_get_interface_color(), topic_alpha[0]);
 draw_rectangle(0, (screen_get_height() / 2) - 9 - ((font_height / 2) * topic_lines), screen_get_width(), (screen_get_height() / 2) + 10 + ((font_height / 2) * topic_lines), false);
 
 // Topic:
@@ -717,7 +717,7 @@ var textbox_bottom, texbox_height;
 textbox_bottom = screen_get_height() - 19;
 textbox_height = 59;
 
-draw_set1(interface_get_color(), text_alpha[0]);
+draw_set1(game_get_interface_color(), text_alpha[0]);
 draw_rectangle(0, textbox_bottom - textbox_height, screen_get_width(), textbox_bottom, false);
 
 // Viewport:
