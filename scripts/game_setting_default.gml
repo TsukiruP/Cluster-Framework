@@ -19,7 +19,8 @@ game_setting_set("audio_bgm", 1);
 game_setting_set("audio_sfx", 1);
 
 // Input:
-game_setting_set("input_keyboard", game_keyboard_init());
+game_keyboard_default();
+game_setting_set("input_keyboard", ds_list_write(keyboard_list));
 
 // Gameplay:
 game_setting_set("gameplay_shields", 0);

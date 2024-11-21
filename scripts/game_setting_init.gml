@@ -4,4 +4,5 @@
 // Initialize:
 setting_directory = "data\saves\"
 setting_map = ds_map_create();
+keyboard_list = ds_list_create();
 game_setting_default();

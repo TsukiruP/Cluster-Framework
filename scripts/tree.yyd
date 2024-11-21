@@ -9,8 +9,8 @@
 			|game_setting_set
 			|game_setting_default
 			+Keyboard
-				|game_keyboard_init
 				|game_keyboard_get
+				|game_keyboard_set
 				|game_keyboard_default
 		+Save
 			|game_save_init

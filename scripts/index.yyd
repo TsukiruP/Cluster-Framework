@@ -252,4 +252,4 @@ game_setting_set
 game_setting_get
 screen_get_height
 screen_set_resolution
-game_keyboard_init
+game_keyboard_set
