@@ -394,10 +394,14 @@ draw_set_font(global.font_hud);
 draw_set_color(c_white);
 
 // Time:
+var time_y;
+
+time_y = view_yview[view_current] + hud_y + 5;
+
 draw_sprite(hud_index, 0, view_xview[view_current] + hud_x_current, view_yview[view_current] + hud_y);
-draw_text(view_xview[view_current] + hud_x_current + 29, view_yview[view_current] + hud_y + 5, string_pad(global.game_time div 3600, 2));
-draw_text(view_xview[view_current] + hud_x_current + 54, view_yview[view_current] + hud_y + 5, string_pad((global.game_time div 60) mod 60, 2));
-draw_text(view_xview[view_current] + hud_x_current + 79, view_yview[view_current] + hud_y + 5, string_pad(floor(global.game_time * 1.667) mod 100, 2));
+draw_text(view_xview[view_current] + hud_x_current + 29, time_y, string_pad(global.game_time div 3600, 2));
+draw_text(view_xview[view_current] + hud_x_current + 54, time_y, string_pad((global.game_time div 60) mod 60, 2));
+draw_text(view_xview[view_current] + hud_x_current + 79, time_y, string_pad(floor(global.game_time * 1.667) mod 100, 2));
 
 // Rings
 draw_sprite(hud_index, 1, view_xview[view_current] + hud_x_current, view_yview[view_current] + hud_y + 26);
@@ -446,12 +450,17 @@ draw_set_font(global.font_score_s4e2);
 draw_text(view_xview[view_current] + hud_x_current + 37, view_yview[view_current] + hud_y + 3, string_pad(global.game_score, 9));
 
 // Time:
+var time_x, time_y;
+
+time_x = view_xview[view_current] + hud_x_current + 58;
+time_y = view_yview[view_current] + hud_y + 18;
+
 draw_set_font(global.font_time_s4e2);
-draw_text(view_xview[view_current] + hud_x_current + 58, view_yview[view_current] + hud_y + 18, global.game_time div 3600);
-draw_text(view_xview[view_current] + hud_x_current + 58 + 10, view_yview[view_current] + hud_y + 18, ":");
-draw_text(view_xview[view_current] + hud_x_current + 58 + 16, view_yview[view_current] + hud_y + 18, string_pad((global.game_time div 60) mod 60, 2));
-draw_text(view_xview[view_current] + hud_x_current + 58 + 35, view_yview[view_current] + hud_y + 18, ";");
-draw_text(view_xview[view_current] + hud_x_current + 58 + 44, view_yview[view_current] + hud_y + 18, string_pad(floor(global.game_time * 1.667) mod 100, 2));
+draw_text(time_x, time_y, global.game_time div 3600);
+draw_text(time_x + 10, time_y, ":");
+draw_text(time_x + 16, time_y, string_pad((global.game_time div 60) mod 60, 2));
+draw_text(time_x + 35, time_y, ";");
+draw_text(time_x + 44, time_y, string_pad(floor(global.game_time * 1.667) mod 100, 2));
 
 // Rings:
 draw_set_font(global.font_hud_s4e2);
@@ -481,14 +490,15 @@ if (game_setting_get("misc_hud") != 1 || game_setting_get("misc_status") == 0)
     exit;
 }
 
-var status_count;
+var status_setting, status_count;
 
 // Reset status count:
+status_setting = game_setting_get("misc_status");
 status_count = 0;
 
 for (i = status_size; i >= 0; i -= 1)
 {
-    if (((game_setting_get("misc_status") && status_active[i, 0] == true) || game_setting_get("misc_status") == 2) && status_active[i, 1] == true)
+    if (((status_setting && status_active[i, 0] == true) || status_setting == 2) && status_active[i, 1] == true)
     {
         // Shadow:
         draw_sprite_ext(spr_item_icon, 0, view_xview[view_current] + view_wview[view_current] - hud_x_current - 8 - (sprite_get_width(spr_item_icon) + 2) * status_count, view_yview[view_current] + 18, 1, 1, 0, c_black, 1);
@@ -497,7 +507,7 @@ for (i = status_size; i >= 0; i -= 1)
         draw_sprite_ext(spr_item_icon, status_icon[i], view_xview[view_current] + view_wview[view_current] - hud_x_current - 9 - (sprite_get_width(spr_item_icon) + 2) * status_count, view_yview[view_current] + 17, 1, 1, 0, c_white, 1);
         
         // Gray out:
-        if (game_setting_get("misc_status") == 2)
+        if (status_setting == 2)
         {
             if (status_active[i, 0] == false)
             {
@@ -507,7 +517,7 @@ for (i = status_size; i >= 0; i -= 1)
     }
     
     // Increase status count:
-    if ((game_setting_get("misc_status") == 1 && status_active[i, 0] == true) || game_setting_get("misc_status") == 2)
+    if ((status_setting == 1 && status_active[i, 0] == true) || status_setting == 2)
     {
         status_count += 1;
     }
