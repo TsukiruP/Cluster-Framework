@@ -112,6 +112,8 @@ applies_to=self
 */
 /// Draw Saves
 
+var i, j;
+
 // Pages:
 for (i = 0; i < page_count; i += 1)
 {

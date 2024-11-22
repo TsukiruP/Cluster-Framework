@@ -6,6 +6,8 @@ applies_to=self
 */
 /// HUD Initialization
 
+var i;
+
 // HUD variables:
 hud_hide = false;
 
@@ -490,7 +492,7 @@ if (game_setting_get("misc_hud") != 1 || game_setting_get("misc_status") == 0)
     exit;
 }
 
-var status_setting, status_count;
+var status_setting, status_count, i;
 
 // Reset status count:
 status_setting = game_setting_get("misc_status");
@@ -534,6 +536,8 @@ if (!game_setting_get("misc_feed"))
 {
     exit;
 }
+
+var i;
 
 // Item list:
 if (item_list != -1)

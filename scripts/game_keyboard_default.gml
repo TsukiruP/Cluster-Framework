@@ -1,5 +1,5 @@
 /// game_keyboard_default()
-// Sets keyboard inputs to default keys.
+// Sets keyboard to default keys.
 
 // Clear list:
 if (!ds_list_empty(keyboard_list))

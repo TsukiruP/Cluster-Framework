@@ -3,7 +3,7 @@
 
 var pth, wid, stp, stp_i, xt, xt_i, sgn, a, a_i, x1, y1, x2, y2, i, px, py, nx, ny, vert_count;
 
-xt = 0
+xt = 0;
 wid = argument1 / 2;
 col = draw_get_color();
 

@@ -6,6 +6,8 @@ applies_to=self
 */
 /// Spawn Player
 
+var i;
+
 // Move to checkpoint:
 if (checkpoint_isset())
 {

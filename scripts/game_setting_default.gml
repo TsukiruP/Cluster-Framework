@@ -1,6 +1,8 @@
 /// game_setting_default()
 // Sets setting map to default values.
 
+var i;
+
 // Interface:
 game_setting_set("interface_red", 0);
 game_setting_set("interface_green", 24);
@@ -21,6 +23,11 @@ game_setting_set("audio_sfx", 1);
 // Input:
 game_keyboard_default();
 game_setting_set("input_keyboard", ds_list_write(keyboard_list));
+
+for (i = 0; i < global.player_count; i += 1)
+{
+    game_gamepad_default(i);
+}
 
 // Gameplay:
 game_setting_set("gameplay_shields", 0);

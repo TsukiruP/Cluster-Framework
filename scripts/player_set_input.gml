@@ -1,6 +1,8 @@
 /// player_set_input(id);
 // Sets the player's input array.
 
+var i, j;
+
 switch (argument0)
 {
     // Player 1:

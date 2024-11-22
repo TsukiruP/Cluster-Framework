@@ -3,6 +3,8 @@
 
 with (mgr_text)
 {
+    var i;
+
     // Text length:
     text_length = argument_count - 1;
 

@@ -43,6 +43,8 @@ if (collision & COLL_HURT)
         {
             with (reaction_handle)
             {
+                var i;
+
                 // Debris:
                 for (i = 0; i < 6; i += 1)
                 {

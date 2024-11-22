@@ -6,6 +6,8 @@ applies_to=self
 */
 /// Pause Initialization
 
+var i;
+
 // Pause audio:
 //sound_pause_all();
 
@@ -262,6 +264,8 @@ applies_to=self
 */
 /// Movement
 
+var i;
+
 for (i = 0; i < menu_count; i += 1)
 {
     if (pause_x_current[i] != pause_x_target[i])
@@ -282,6 +286,8 @@ applies_to=self
 */
 /// Position
 
+var i;
+
 // Height:
 for (i = 0; i < menu_count; i += 1)
 {
@@ -296,7 +302,7 @@ applies_to=self
 */
 /// Destroy
 
-var pause_destroy;
+var pause_destroy, i;
 
 pause_destroy = false;
 
@@ -328,6 +334,8 @@ applies_to=self
 */
 /// Set Pause Delay
 
+var i;
+
 menu_lock = true;
 pause_continue = true;
 pause_delay = 2;
@@ -348,6 +356,8 @@ action_id=603
 applies_to=self
 */
 /// Reset Menu
+
+var i;
 
 menu_current = 0;
 pause_x_target[0] = screen_get_width() / 2;
@@ -370,7 +380,7 @@ if (pause_hide != 0)
     exit;
 }
 
-var menu_offset, menu_y, menu_height;
+var menu_offset, menu_height, i, menu_y, j;
 
 // Reset offset:
 menu_offset = 0;

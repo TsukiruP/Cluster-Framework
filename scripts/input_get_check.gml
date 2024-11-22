@@ -53,7 +53,7 @@ if (input_device == DEV_KEYBOARD)
 // Gamepad:
 else if (input_device >= DEV_GAMEPAD0)
 {
-    var gamepad_id;
+    var gamepad_id, i;
 
     // Gamepad offset:
     input_device -= DEV_GAMEPAD0;

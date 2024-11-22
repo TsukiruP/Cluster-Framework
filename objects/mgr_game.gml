@@ -6,6 +6,8 @@ applies_to=self
 */
 /// Engine Initialization
 
+var i;
+
 // Randomize:
 randomize();
 

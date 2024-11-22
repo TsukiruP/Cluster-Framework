@@ -34,6 +34,8 @@ switch (status_shield)
 
     // Lightning:
     case SHIELD_LIGHTNING:
+        var i;
+
         // Set speed:
         y_speed = -5.5;
 

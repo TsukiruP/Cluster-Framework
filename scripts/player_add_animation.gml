@@ -1,6 +1,6 @@
 /// player_add_animation(character, animation, timeline)
 
-var animation_row;
+var animation_row, i;
 
 // Create animation grid:
 if (global.animation_grid == -1)

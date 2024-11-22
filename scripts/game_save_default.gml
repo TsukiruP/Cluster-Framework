@@ -1,6 +1,8 @@
 /// game_save_default()
 // Sets save map to default values.
 
+var i;
+
 // Game data:
 game_save_set("game", GAME_NAME);
 game_save_set("version", GAME_VERSION);

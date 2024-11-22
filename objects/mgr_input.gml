@@ -6,6 +6,8 @@ applies_to=self
 */
 /// Input Initialization
 
+var i, j;
+
 // User & keyboard inputs:
 for (i = INP_UP; i <= INP_HELP; i += 1)
 {
@@ -30,6 +32,8 @@ action_id=603
 applies_to=self
 */
 /// Gamepad Initialization
+
+var i, j, k;
 
 // Gamepad devices:
 for (i = 0; i < global.player_count; i += 1)
@@ -139,6 +143,8 @@ applies_to=self
 */
 /// Gamepad Registration
 
+var i, j, k;
+
 // Find Gamepads:
 if (joystick_found())
 {
@@ -194,6 +200,8 @@ applies_to=self
 */
 /// Gamepad Layout
 
+var i;
+
 // Update device buttons:
 for (i = 0; i < global.player_count; i += 1)
 {
@@ -231,6 +239,8 @@ applies_to=self
 */
 /// Gamepad Confirm
 
+var i;
+
 // Update accept format:
 for (i = 0; i < global.player_count; i += 1)
 {
@@ -254,6 +264,8 @@ action_id=603
 applies_to=self
 */
 /// D-pad
+
+var i, j, k;
 
 for (i = 0; i < global.player_count; i += 1)
 {
@@ -322,6 +334,8 @@ applies_to=self
 */
 /// Analog
 
+var i, j, k;
+
 for (i = 0; i < global.player_count; i += 1)
 {
     var gamepad_id;
@@ -373,6 +387,8 @@ applies_to=self
 */
 /// Triggers
 
+var i;
+
 for (i = 0; i < global.player_count; i += 1)
 {
     var gamepad_id;
@@ -409,6 +425,8 @@ action_id=603
 applies_to=self
 */
 /// Inputs
+
+var i, j, k;
 
 // Keyboard:
 for (i = INP_UP; i <= INP_HELP; i += 1)
@@ -484,6 +502,8 @@ applies_to=self
 */
 /// Timers
 
+var i;
+
 for (i = INP_UP; i <= INP_RIGHT; i += 1)
 {
     // Increment:
@@ -508,6 +528,8 @@ applies_to=self
 */
 /// Conflicts
 
+var i;
+
 for (i = INP_UP; i <= INP_RIGHT; i += 2)
 {
     // Held:
@@ -517,12 +539,6 @@ for (i = INP_UP; i <= INP_RIGHT; i += 2)
         input_user[i + 1, CHECK_HELD] = false;
     }
 }
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Input Prompts
 #define Other_10
 /*"/*'/**//* YYD ACTION
 lib_id=1

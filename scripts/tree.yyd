@@ -12,6 +12,8 @@
 				|game_keyboard_get
 				|game_keyboard_set
 				|game_keyboard_default
+			+Gamepad
+				|game_gamepad_default
 		+Save
 			|game_save_init
 			|game_save_get
