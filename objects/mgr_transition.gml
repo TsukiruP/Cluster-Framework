@@ -103,7 +103,7 @@ if (transition_alarm >= 0)
             }
 
             // Close debug topic:
-            if (debug == false || (debug == true && input_get_check(INP_ACCEPT, CHECK_PRESSED)))
+            if (debug == false || (debug == true && input_get_check(INP_CONFIRM, CHECK_PRESSED)))
             {
                 if (debug == true)
                 {

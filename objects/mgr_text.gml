@@ -139,8 +139,8 @@ if (text_clear == false)
         // Text box:
         if (log_hide == true)
         {
-            // Accept:
-            if (input_get_check(INP_ACCEPT, CHECK_PRESSED))
+            // Confirm:
+            if (input_get_check(INP_CONFIRM, CHECK_PRESSED))
             {
                 // Topic:
                 if (topic_complete == false && topic_message != "" && topic_alpha[1] == 1)

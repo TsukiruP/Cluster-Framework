@@ -66,8 +66,8 @@ menu_selection = wrap(menu_selection, 0, save_count - 1);
 // Menu save:
 menu_save = (menu_page * save_max) + menu_selection;
 
-// Accept:
-if (input_get_check(INP_ACCEPT, CHECK_PRESSED))
+// Confirm:
+if (input_get_check(INP_CONFIRM, CHECK_PRESSED))
 {
     switch (ds_map_get(save_preview_map, "save" + string(menu_save) + "_exists"))
     {

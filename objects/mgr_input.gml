@@ -247,14 +247,14 @@ for (i = 0; i < global.player_count; i += 1)
     // Nintendo accept:
     if (global.input_confirm[i] == 1)
     {
-        global.input_pad[i, INP_ACCEPT] = PAD_FACE2;
+        global.input_pad[i, INP_CONFIRM] = PAD_FACE2;
         global.input_pad[i, INP_CANCEL] = PAD_FACE1;
     }
 
     // Xbox accept:
     else
     {
-        global.input_pad[i, INP_ACCEPT] = PAD_FACE1;
+        global.input_pad[i, INP_CONFIRM] = PAD_FACE1;
         global.input_pad[i, INP_CANCEL] = PAD_FACE2;
     }
 }

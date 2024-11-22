@@ -78,7 +78,7 @@ global.setting_input_key[INP_ALT] = ini_read_real("input", "key_alt", DEFAULT_KE
 
 global.setting_input_key[INP_START] = ini_read_real("input", "key_start", DEFAULT_KEY_START);
 global.setting_input_key[INP_SELECT] = ini_read_real("input", "key_select", DEFAULT_KEY_SELECT);
-global.setting_input_key[INP_ACCEPT] = ini_read_real("input", "key_accept", DEFAULT_KEY_ACCEPT);
+global.setting_input_key[INP_CONFIRM] = ini_read_real("input", "key_accept", DEFAULT_KEY_ACCEPT);
 global.setting_input_key[INP_CANCEL] = ini_read_real("input", "key_cancel", DEFAULT_KEY_CANCEL);
 global.setting_input_key[INP_HELP] = ini_read_real("input", "key_help", DEFAULT_KEY_HELP);
 
@@ -99,7 +99,7 @@ for (i = 0; i < global.player_count; i += 1)
 
     global.setting_input_pad[i, INP_START] = DEFAULT_PAD_START;
     global.setting_input_pad[i, INP_SELECT] = DEFAULT_PAD_SELECT;
-    global.setting_input_pad[i, INP_ACCEPT] = DEFAULT_PAD_ACCEPT;
+    global.setting_input_pad[i, INP_CONFIRM] = DEFAULT_PAD_ACCEPT;
     global.setting_input_pad[i, INP_CANCEL] = DEFAULT_PAD_CANCEL;
     global.setting_input_pad[i, INP_HELP] = DEFAULT_PAD_HELP;
 

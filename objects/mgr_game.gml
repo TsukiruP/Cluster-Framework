@@ -80,7 +80,7 @@ for (i = 0; i < global.player_count; i += 1)
 
     global.setting_input_pad[i, INP_START] = DEFAULT_PAD_START;
     global.setting_input_pad[i, INP_SELECT] = DEFAULT_PAD_SELECT;
-    global.setting_input_pad[i, INP_ACCEPT] = DEFAULT_PAD_ACCEPT;
+    global.setting_input_pad[i, INP_CONFIRM] = DEFAULT_PAD_ACCEPT;
     global.setting_input_pad[i, INP_CANCEL] = DEFAULT_PAD_CANCEL;
     global.setting_input_pad[i, INP_HELP] = DEFAULT_PAD_HELP;
 

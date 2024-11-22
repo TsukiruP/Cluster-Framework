@@ -143,8 +143,8 @@ menu_selection[menu_current] = wrap(menu_selection[menu_current], 0, pause_count
 // Input delay:
 if (pause_delay == 0)
 {
-    // Accept:
-    if (input_get_check(INP_ACCEPT, CHECK_PRESSED))
+    // Confirm:
+    if (input_get_check(INP_CONFIRM, CHECK_PRESSED))
     {
         switch (menu_current)
         {
