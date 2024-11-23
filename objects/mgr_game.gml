@@ -151,8 +151,16 @@ applies_to=self
 */
 /// Destroy Data Structures
 
-ds_map_destroy(setting_map);
+var i;
+
 ds_list_destroy(keyboard_list);
+
+for (i = 0; i < global.player_count; i += 1)
+{
+    ds_list_destroy(gamepad_list[i]);
+}
+
+ds_map_destroy(setting_map);
 ds_map_destroy(save_map);
 #define Other_5
 /*"/*'/**//* YYD ACTION
