@@ -1,5 +1,5 @@
 /// game_gamepad_default(i)
-// Sets the gamepad to default buttons.
+// Sets a gamepad list to default buttons.
 
 // Clear list:
 if (!ds_list_empty(gamepad_list[argument0]))

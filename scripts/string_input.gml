@@ -35,7 +35,7 @@ else if (input_device >= DEV_GAMEPAD0)
     input_device -= DEV_GAMEPAD0;
 
     // Return:
-    return char_pad(global.input_pad[input_device, input_id], global.input_style[input_device]);
+    return char_pad(game_gamepad_get(input_device, input_id), game_setting_get("input_gamepad" + string(input_device) + "_style"));
 }
 
 // User:

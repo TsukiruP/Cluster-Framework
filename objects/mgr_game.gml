@@ -4,9 +4,12 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Engine Initialization
+/// Game Initialization
 
 var i;
+
+// Image speed:
+image_speed = 0;
 
 // Randomize:
 randomize();
@@ -46,72 +49,10 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Game Initialization
+/// Data Initialization
 
 game_setting_init();
 game_save_init();
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Settings Initialization
-
-// Image speed:
-image_speed = 0;
-
-// Open/create settings file:
-ini_open("settings.ini");
-
-// Read/create gamepad settings:
-for (i = 0; i < global.player_count; i += 1)
-{
-    global.setting_input_pad[i, INP_UP] = DEFAULT_PAD_UP;
-    global.setting_input_pad[i, INP_DOWN] = DEFAULT_PAD_DOWN;
-    global.setting_input_pad[i, INP_LEFT] = DEFAULT_PAD_LEFT;
-    global.setting_input_pad[i, INP_RIGHT] = DEFAULT_PAD_RIGHT;
-
-    global.setting_input_pad[i, INP_JUMP] = ini_read_real("input", "joy" + string(i) + "_jump", DEFAULT_PAD_JUMP);
-    global.setting_input_pad[i, INP_AUX] = ini_read_real("input", "joy" + string(i) + "_aux", DEFAULT_PAD_AUX);
-    global.setting_input_pad[i, INP_SWAP] = ini_read_real("input", "joy" + string(i) + "_swap", DEFAULT_PAD_SWAP);
-    global.setting_input_pad[i, INP_SUPER] = ini_read_real("input", "joy" + string(i) + "_super", DEFAULT_PAD_SUPER);
-    global.setting_input_pad[i, INP_TAG] = ini_read_real("input", "joy" + string(i) + "_tag", DEFAULT_PAD_TAG);
-    global.setting_input_pad[i, INP_ALT] = ini_read_real("input", "joy" + string(i) + "_alt", DEFAULT_PAD_ALT);
-
-    global.setting_input_pad[i, INP_START] = DEFAULT_PAD_START;
-    global.setting_input_pad[i, INP_SELECT] = DEFAULT_PAD_SELECT;
-    global.setting_input_pad[i, INP_CONFIRM] = DEFAULT_PAD_ACCEPT;
-    global.setting_input_pad[i, INP_CANCEL] = DEFAULT_PAD_CANCEL;
-    global.setting_input_pad[i, INP_HELP] = DEFAULT_PAD_HELP;
-
-    // Other:
-    global.setting_input_deadzone[i] = ini_read_real("input", "joy" + string(i) + "_deadzone", DEFAULT_PAD_DEADZONE);
-    global.setting_input_confirm[i] = ini_read_real("input", "joy" + string(i) + "_confirm", DEFAULT_PAD_CONFIRM);
-    global.setting_input_style[i] = ini_read_real("input", "joy" + string(i) + "_style", DEFAULT_PAD_STYLE);
-}
-
-// Read/create misc. input settings:
-global.setting_input_focus = ini_read_real("input", "focus", false);
-
-// Close settings file:
-ini_close();
-
-// Apply gamepad settings:
-for (i = 0; i < global.player_count; i += 1)
-{
-    for (j = INP_UP; j <= INP_HELP; j += 1)
-    {
-        global.input_pad[i, j] = global.setting_input_pad[i, j];
-    }
-
-    // Other settings:
-    global.input_deadzone[i] = global.setting_input_deadzone[i];
-    global.input_confirm[i] = global.setting_input_confirm[i];
-    global.input_style[i] = global.setting_input_style[i];
-}
-
-// Apply misc. input settings:
-global.input_focus = global.setting_input_focus;
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603

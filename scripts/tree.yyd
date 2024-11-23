@@ -13,7 +13,10 @@
 				|game_keyboard_set
 				|game_keyboard_default
 			+Gamepad
+				|game_gamepad_get
+				|game_gamepad_set
 				|game_gamepad_default
+				|game_gamepad_confirm
 		+Save
 			|game_save_init
 			|game_save_get

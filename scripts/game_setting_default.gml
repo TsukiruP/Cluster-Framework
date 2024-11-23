@@ -20,14 +20,24 @@ game_setting_set("screen_vsync", false);
 game_setting_set("audio_bgm", 1);
 game_setting_set("audio_sfx", 1);
 
-// Input:
+// Keyboard::
 game_keyboard_default();
 game_setting_set("input_keyboard", ds_list_write(keyboard_list));
 
+// Gamepad:
 for (i = 0; i < global.player_count; i += 1)
 {
+    var gamepad_string;
+
+    gamepad_string = "input_gamepad" + string(i);
     game_gamepad_default(i);
+    game_setting_set(gamepad_string, ds_list_write(gamepad_list[i]));
+    game_setting_set(gamepad_string + "_deadzone", 0.1);
+    game_setting_set(gamepad_string + "_confirm", 0);
+    game_setting_set(gamepad_string + "_style", 0);
 }
+
+game_setting_set("input_gamepad_focus", true);
 
 // Gameplay:
 game_setting_set("gameplay_shields", 0);

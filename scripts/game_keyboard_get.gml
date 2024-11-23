@@ -1,5 +1,5 @@
 /// game_keyboard_get(input)
-// Returns the input stored in the keyboard list.
+// Returns a key from the keyboard list.
 
 with (mgr_game)
 {

@@ -1,5 +1,5 @@
 /// game_save_exists(id)
-// Returns whether the save file exists.
+// Returns whether a save file exists.
 
 with (mgr_game)
 {

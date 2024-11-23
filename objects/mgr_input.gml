@@ -237,32 +237,6 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Gamepad Confirm
-
-var i;
-
-// Update accept format:
-for (i = 0; i < global.player_count; i += 1)
-{
-    // Nintendo accept:
-    if (global.input_confirm[i] == 1)
-    {
-        global.input_pad[i, INP_CONFIRM] = PAD_FACE2;
-        global.input_pad[i, INP_CANCEL] = PAD_FACE1;
-    }
-
-    // Xbox accept:
-    else
-    {
-        global.input_pad[i, INP_CONFIRM] = PAD_FACE1;
-        global.input_pad[i, INP_CANCEL] = PAD_FACE2;
-    }
-}
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
 /// D-pad
 
 var i, j, k;
@@ -344,10 +318,10 @@ for (i = 0; i < global.player_count; i += 1)
     gamepad_id = gamepad_device[i, 0];
 
     // Read analog values:
-    if (gamepad_id > -1 && global.input_deadzone[i] != 0)
+    if (gamepad_id > -1 && game_setting_get("input_gamepad" + string(i) + "_deadzone") != 0)
     {
         // Set deadzone:
-        joystick_set_deadzone(global.input_deadzone[i]);
+        joystick_set_deadzone(game_setting_get("input_gamepad" + string(i) + "_deadzone"));
 
         // Pressed:
         gamepad_analog[INP_UP, CHECK_PRESSED + (i * 3)] = (sign(joystick_axis(gamepad_id, 1)) == -1 && gamepad_analog[INP_UP, CHECK_HELD + (i * 3)] == false);
@@ -449,7 +423,7 @@ for (i = 0; i < global.player_count; i += 1)
     // Gamepad id:
     gamepad_id = gamepad_device[i, 0];
 
-    if (gamepad_id > -1)
+    if (gamepad_id > -1 && (game_setting_get("input_gamepad_focus") || (window_has_focus() && !game_setting_get("input_gamepad_focus"))))
     {
         for (j = INP_UP; j <= INP_HELP; j += 1)
         {
@@ -458,13 +432,13 @@ for (i = 0; i < global.player_count; i += 1)
                 // Directional inputs:
                 if (j <= INP_RIGHT)
                 {
-                    input_gamepad[j, k + (i * 3)] = (gamepad_get_check(gamepad_id, global.input_pad[i, j], k) || gamepad_analog[j, k + (i * 3)]);
+                    input_gamepad[j, k + (i * 3)] = (gamepad_get_check(gamepad_id, game_gamepad_get(i, j), k) || gamepad_analog[j, k + (i * 3)]);
                 }
 
                 // Every other input:
                 else
                 {
-                    input_gamepad[j, k + (i * 3)] = gamepad_get_check(gamepad_id, global.input_pad[i, j], k);
+                    input_gamepad[j, k + (i * 3)] = gamepad_get_check(gamepad_id, game_gamepad_get(i, j), k);
                 }
             }
         }

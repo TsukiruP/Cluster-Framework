@@ -254,3 +254,6 @@ screen_get_height
 screen_set_resolution
 game_keyboard_set
 game_gamepad_default
+game_gamepad_get
+game_gamepad_set
+game_gamepad_confirm
