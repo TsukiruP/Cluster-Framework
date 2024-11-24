@@ -19,11 +19,11 @@ ds_list_add(keyboard_list, ord("S")); // Aux
 ds_list_add(keyboard_list, ord("W")); // Swap
 ds_list_add(keyboard_list, ord("Q")); // Super
 ds_list_add(keyboard_list, ord("D")); // Tag
-ds_list_add(keyboard_list, ord(vk_rshift)); // Alt
+ds_list_add(keyboard_list, ord("F")); // Alt
 
 // Menu keys:
 ds_list_add(keyboard_list, vk_enter); // Start
-ds_list_add(keyboard_list, vk_rshift); // Select
+ds_list_add(keyboard_list, vk_shift); // Select
 ds_list_add(keyboard_list, ord("A")); // Confirm
 ds_list_add(keyboard_list, ord("S")); // Cancel
 ds_list_add(keyboard_list, ord("W")); // Help
