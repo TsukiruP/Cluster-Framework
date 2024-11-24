@@ -257,3 +257,5 @@ game_gamepad_default
 game_gamepad_get
 game_gamepad_set
 game_gamepad_confirm
+animation_add
+animation_get

@@ -36,11 +36,6 @@ for (i = 0; i < global.player_count; i += 1)
 
 global.player_data[0, 0] = CHAR_SONIC;
 
-global.animation_grid = -1;
-global.animation_character = -1;
-global.animation_coordinates = -1;
-global.animation_initialized = false;
-
 global.checkpoint_x = -1;
 global.checkpoint_y = -1;
 global.checkpoint_time = -1;
@@ -60,10 +55,11 @@ applies_to=self
 */
 /// Manager Initialization
 
-instance_create(x, y, mgr_screen);
-instance_create(x, y, mgr_audio);
-instance_create(x, y, mgr_input);
-instance_create(x, y, mgr_text);
+instance_create(0, 0, mgr_screen);
+instance_create(0, 0, mgr_audio);
+instance_create(0, 0, mgr_input);
+instance_create(0, 0, mgr_text);
+instance_create(0, 0, mgr_animation);
 transition_create(rm_debug);
 #define Step_1
 /*"/*'/**//* YYD ACTION
@@ -162,31 +158,3 @@ for (i = 0; i < global.player_count; i += 1)
 
 ds_map_destroy(setting_map);
 ds_map_destroy(save_map);
-#define Other_5
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Reset Game
-
-global.game_speed = 1;
-global.game_time = 0;
-global.object_time = 0;
-global.game_rings = 0;
-global.game_score = 0;
-
-global.pause_allow = true;
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Reset Animations
-
-if (global.animation_grid != -1)
-{
-    global.animation_initialized = false;
-    ds_grid_destroy(global.animation_grid);
-    global.animation_grid = -1;
-}

@@ -54,11 +54,5 @@ with (mgr_input)
     event_user(0);
 }
 
-// Compile animations:
-if (global.animation_grid == -1)
-{
-    player_compile_animations();
-}
-
 // Destroy:
 instance_destroy();

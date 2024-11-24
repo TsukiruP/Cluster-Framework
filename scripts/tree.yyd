@@ -50,6 +50,9 @@
 		|string_input
 		|text_set_message
 		|topic_set_message
+	+Animation
+		|animation_add
+		|animation_get
 	+Room
 		|room_set_data
 		|room_get_data
@@ -218,10 +221,6 @@
 			|player_animation_speed
 			|player_animation_run
 			|player_animation_air
-			|player_compile_animations
-			|player_add_animation
-			|player_get_animation
-			|player_set_animation
 		+Collision
 			|player_collision_object
 			|player_collision_wall
@@ -283,6 +282,7 @@
 			|player_reaction_spike
 			|player_reaction_blockade
 		+Getters
+			|player_get_animation
 			|player_get_input
 			|player_get_physics
 			|player_get_solids
@@ -291,6 +291,7 @@
 			|player_get_item
 			|player_get_cliff
 		+Setters
+			|player_set_animation
 			|player_set_input
 			|player_set_ground
 			|player_set_damage
@@ -313,3 +314,6 @@
 		+Checkpoint
 			|checkpoint_set
 			|checkpoint_isset
+	+Trash
+		|player_compile_animations
+		|player_add_animation

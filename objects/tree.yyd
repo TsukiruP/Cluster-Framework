@@ -16,6 +16,7 @@
 		|mgr_audio
 		|mgr_input
 		|mgr_text
+		|mgr_animation
 		|mgr_transition
 		|mgr_fade
 		+Stage
@@ -148,4 +149,3 @@
 			|obj_item_panic
 			|obj_item_swap
 	|eff_debris
-	|mgr_initialization
