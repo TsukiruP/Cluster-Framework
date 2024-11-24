@@ -108,6 +108,10 @@ switch (argument0)
         return "Num Lock";
     case 145:
         return "Scroll Lock";
+    case 160:
+        return "Left Shift";
+    case 161:
+        return "Right Shift";
     case 186:
         return ";";
     case 187:
