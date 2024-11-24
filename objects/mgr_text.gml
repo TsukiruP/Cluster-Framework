@@ -20,6 +20,11 @@ applies_to=self
 */
 /// Text Initialization
 
+// Font height:
+draw_set_font(global.font_system);
+
+font_height = string_height("Test");
+
 // Text variables:
 text_hide = false;
 text_overflow = false;
@@ -31,22 +36,33 @@ text_current = 0;
 text_target = 0;
 text_x = 42;
 text_y = 70;
-
-text_scroll[0] = 0; // Scroll current
-text_scroll[1] = 0; // Scroll target
-text_scroll[2] = 42; // Scroll rate
-text_scroll[3] = 3; // Scroll max
-text_scroll[4] = false; // Scroll complete
+text_height = 0;
 
 text_alpha[0] = 0; // Box alpha
 text_alpha[1] = 0.03; // Box rate
 text_alpha[2] = 0; // Text alpha
 text_alpha[3] = 0.05; // Text rate
 
+// Text scroll variables:
+text_scroll[0] = 0; // Scroll current
+text_scroll[1] = 0; // Scroll target
+text_scroll[2] = 42; // Scroll rate
+text_scroll[3] = 3; // Scroll max
+text_scroll[4] = false; // Scroll complete
+
+text_scroll_complete = false;
+
+text_scroll_current = 0;
+text_scroll_target = 0;
+text_scroll_max = 3;
+text_scroll_rate = font_height * text_scroll_max;
+
 // Topic variables:
 topic_complete = false;
 
 topic_message = "";
+topic_height = 0;
+topic_lines = 0;
 topic_alpha[0] = 0; // Bar alpha;
 topic_alpha[1] = 0; // Text alpha;
 
@@ -55,18 +71,10 @@ log_hide = true;
 log_message = "";
 log_scroll = 0;
 log_spacing = 32;
+log_height = 0;
 
 log_alpha[0] = 0; // Background alpha
 log_alpha[1] = 0; // Text alpha
-
-// Height variables:
-draw_set_font(global.font_system);
-
-font_height = string_height("Test");
-topic_height = 0;
-topic_lines = 0;
-text_height = 0;
-log_height = 0;
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -116,13 +124,16 @@ if (text_clear == false)
         log_height = string_height_ext(log_message, font_height, screen_get_width() - text_x);
 
         // Overflow:
-        if (((text_height / font_height) - (text_scroll[0] / font_height) <= text_scroll[3]) && (text_scroll[0] == text_scroll[1]))
+        if (((text_height / font_height) - (text_scroll_current / font_height) <= text_scroll_max) && (text_scroll_current == text_scroll_target))
         {
             text_overflow = false;
         }
         else
         {
-            if (text_scroll[4] == false) text_overflow = true;
+            if (text_scroll_complete == false)
+            {
+                text_overflow = true;
+            }
         }
 
         // Open log:
@@ -171,10 +182,10 @@ if (text_clear == false)
                     else
                     {
                         // Update scroll target:
-                        if (text_scroll[4] == true)
+                        if (text_scroll_complete == true)
                         {
-                            text_scroll[1] += text_scroll[2];
-                            text_scroll[4] = false;
+                            text_scroll_target += text_scroll_rate;
+                            text_scroll_complete = false;
                         }
                     }
                 }
@@ -194,8 +205,8 @@ if (text_clear == false)
         // Manual Scroll:
         if (log_hide == true)
         {
-            scroll_min = text_scroll[0];
-            scroll_max = (text_scroll[0] < text_scroll[1]);
+            scroll_min = text_scroll_current;
+            scroll_max = (text_scroll_current < text_scroll_target);
         }
         else
         {
@@ -208,9 +219,9 @@ if (text_clear == false)
         scroll_direction = scroll_down - scroll_up;
 
         // Textbox scroll:
-        if (log_hide == true && text_scroll[1] != 0 && (text_scroll[4] == true))
+        if (log_hide == true && text_scroll_target != 0 && (text_scroll_complete == true))
         {
-            text_scroll[0] += scroll_direction;
+            text_scroll_current += scroll_direction;
         }
 
         // Log scroll:
@@ -224,24 +235,27 @@ if (text_clear == false)
 // Automatic Scroll:
 if (text_overflow == true)
 {
-    if (text_scroll[4] == false)
+    if (text_scroll_complete == false)
     {
-        if (text_scroll[0] < text_scroll[1])
+        if (text_scroll_current < text_scroll_target)
         {
-            text_scroll[0] += 1;
+            text_scroll_current += 1;
         }
         else
         {
-            text_scroll[0] = text_scroll[1];
-            text_scroll[4] = true;
+            text_scroll_current = text_scroll_target;
+            text_scroll_complete = true;
         }
     }
 }
 else
 {
-    if (text_scroll[0] == text_scroll[1] && text_scroll[1] != 0)
+    if (text_scroll_current == text_scroll_target && text_scroll_target != 0)
     {
-        if (text_scroll[4] != true) text_scroll[4] = true;
+        if (text_scroll_complete != true)
+        {
+            text_scroll_complete = true;
+        }
     }
 }
 /*"/*'/**//* YYD ACTION
@@ -548,9 +562,9 @@ if (text_clear == false && text_message != "" && (topic_complete == true || topi
             {
                 text_current = text_target;
 
-                text_scroll[0] = 0;
-                text_scroll[1] = 0;
-                text_scroll[4] = false;
+                text_scroll_current = 0;
+                text_scroll_target = 0;
+                text_scroll_complete = false;
 
                 text_alpha[2] = 0;
 
@@ -594,9 +608,9 @@ if (text_clear == true && (text_message != "" || topic_message != "") && text_al
     text_current = 0;
     text_target = 0;
 
-    text_scroll[0] = 0;
-    text_scroll[1] = 0;
-    text_scroll[4] = false;
+    text_scroll_current = 0;
+    text_scroll_target = 0;
+    text_scroll_complete = false;
 
     topic_complete = false;
     topic_message = "";
@@ -721,7 +735,7 @@ draw_set1(game_get_interface_color(), text_alpha[0]);
 draw_rectangle(0, textbox_bottom - textbox_height, screen_get_width(), textbox_bottom, false);
 
 // Viewport:
-d3d_set_viewport(0, screen_get_height() - text_y, screen_get_width(), font_height * text_scroll[3]);
+d3d_set_viewport(0, screen_get_height() - text_y, screen_get_width(), font_height * text_scroll_max);
 
 // Font:
 draw_set_font(global.font_system);
@@ -729,13 +743,13 @@ draw_set1(c_white, text_alpha[2]);
 
 // Text:
 draw_set2(fa_left, fa_top);
-draw_text_ext(text_x, -text_scroll[0], text_message[text_current], font_height, screen_get_width() - (text_x * 2));
+draw_text_ext(text_x, -text_scroll_current, text_message[text_current], font_height, screen_get_width() - (text_x * 2));
 
 // Arrow:
 draw_set_alpha(1);
 d3d_set_viewport(0, 0, screen_get_width(), screen_get_height());
 
-if (text_overflow == true && text_scroll[4] == true && text_alpha[2] == 1)
+if (text_overflow == true && text_alpha[2] == 1 && text_scroll_complete == true)
 {
     draw_sprite(fnt_system, 95, (screen_get_width() / 2) - 6, screen_get_height() - 29);
 }
