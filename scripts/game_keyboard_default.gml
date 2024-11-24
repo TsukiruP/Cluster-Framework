@@ -23,7 +23,7 @@ ds_list_add(keyboard_list, ord("E"));
 
 // Menu keys:
 ds_list_add(keyboard_list, vk_enter);
-ds_list_add(keyboard_list, vk_shift);
+ds_list_add(keyboard_list, vk_rshift);
 ds_list_add(keyboard_list, ord("A"));
 ds_list_add(keyboard_list, ord("S"));
 ds_list_add(keyboard_list, ord("W"));
