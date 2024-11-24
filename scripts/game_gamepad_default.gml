@@ -14,16 +14,16 @@ ds_list_add(gamepad_list[argument0], PAD_LEFT);
 ds_list_add(gamepad_list[argument0], PAD_RIGHT);
 
 // Gameplay buttons:
-ds_list_add(gamepad_list[argument0], PAD_FACE1);
-ds_list_add(gamepad_list[argument0], PAD_FACE3);
-ds_list_add(gamepad_list[argument0], PAD_FACE4);
-ds_list_add(gamepad_list[argument0], PAD_FACE2);
-ds_list_add(gamepad_list[argument0], PAD_BUMPERR);
-ds_list_add(gamepad_list[argument0], PAD_BUMPERL);
+ds_list_add(gamepad_list[argument0], PAD_FACE1); // Jump
+ds_list_add(gamepad_list[argument0], PAD_FACE3); // Aux
+ds_list_add(gamepad_list[argument0], PAD_FACE4); // Swap
+ds_list_add(gamepad_list[argument0], PAD_FACE2); // Super
+ds_list_add(gamepad_list[argument0], PAD_BUMPERR); // Tag
+ds_list_add(gamepad_list[argument0], PAD_BUMPERL); // Alt
 
 // Menu buttons:
-ds_list_add(gamepad_list[argument0], PAD_START);
-ds_list_add(gamepad_list[argument0], PAD_SELECT);
-ds_list_add(gamepad_list[argument0], PAD_FACE1);
-ds_list_add(gamepad_list[argument0], PAD_FACE2);
-ds_list_add(gamepad_list[argument0], PAD_FACE4);
+ds_list_add(gamepad_list[argument0], PAD_START); // Start
+ds_list_add(gamepad_list[argument0], PAD_SELECT); // Select
+ds_list_add(gamepad_list[argument0], PAD_FACE1); // Confirm
+ds_list_add(gamepad_list[argument0], PAD_FACE2); // Cancel
+ds_list_add(gamepad_list[argument0], PAD_FACE4); // Help
