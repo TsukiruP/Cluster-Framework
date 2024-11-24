@@ -54,7 +54,7 @@ if (instance_exists(player_handle))
         }
 
         // Reset hint:
-        if (mgr_text.text_alpha[0] == 0 && animation_current == "stand")
+        if (mgr_text.text_box_alpha == 0 && animation_current == "stand")
         {
             hint_allow = true;
         }

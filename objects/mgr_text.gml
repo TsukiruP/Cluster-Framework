@@ -38,18 +38,11 @@ text_x = 42;
 text_y = 70;
 text_height = 0;
 
-text_alpha[0] = 0; // Box alpha
-text_alpha[1] = 0.03; // Box rate
-text_alpha[2] = 0; // Text alpha
-text_alpha[3] = 0.05; // Text rate
+text_alpha = 0;
+text_alpha_rate = 0.05;
+text_box_alpha = 0;
 
 // Text scroll variables:
-text_scroll[0] = 0; // Scroll current
-text_scroll[1] = 0; // Scroll target
-text_scroll[2] = 42; // Scroll rate
-text_scroll[3] = 3; // Scroll max
-text_scroll[4] = false; // Scroll complete
-
 text_scroll_complete = false;
 
 text_scroll_current = 0;
@@ -63,8 +56,9 @@ topic_complete = false;
 topic_message = "";
 topic_height = 0;
 topic_lines = 0;
-topic_alpha[0] = 0; // Bar alpha;
-topic_alpha[1] = 0; // Text alpha;
+
+topic_alpha = 0;
+topic_box_alpha = 0;
 
 // Log variables:
 log_hide = true;
@@ -73,8 +67,8 @@ log_scroll = 0;
 log_spacing = 32;
 log_height = 0;
 
-log_alpha[0] = 0; // Background alpha
-log_alpha[1] = 0; // Text alpha
+log_alpha = 0;
+log_fade_alpha = 0;
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -101,7 +95,7 @@ applies_to=self
 /// Inputs
 
 // Skip:
-if (text_clear == false && log_hide == true && (text_alpha[2] == 1 || topic_alpha[1] == 1) && input_get_check(INP_START, CHECK_PRESSED))
+if (text_clear == false && log_hide == true && (text_alpha == 1 || topic_alpha == 1) && input_get_check(INP_START, CHECK_PRESSED))
 {
     text_clear = true;
 }
@@ -109,7 +103,7 @@ if (text_clear == false && log_hide == true && (text_alpha[2] == 1 || topic_alph
 if (text_clear == false)
 {
     // Hide:
-    if (!game_ispaused(mnu_pause) && (text_message != "" || topic_message != "" || log_alpha[1] != 0) && input_get_check(INP_SELECT, CHECK_PRESSED)) text_hide = !text_hide;
+    if (!game_ispaused(mnu_pause) && (text_message != "" || topic_message != "" || log_alpha != 0) && input_get_check(INP_SELECT, CHECK_PRESSED)) text_hide = !text_hide;
 
     if (text_hide == false)
     {
@@ -137,7 +131,7 @@ if (text_clear == false)
         }
 
         // Open log:
-        if ((game_ispaused(mnu_pause) || text_message != "" || topic_message != "") && log_message != "" && (log_alpha[1] == 0 || log_alpha[1] == 1) && input_get_check(INP_HELP, CHECK_PRESSED))
+        if ((game_ispaused(mnu_pause) || text_message != "" || topic_message != "") && log_message != "" && (log_alpha == 0 || log_alpha == 1) && input_get_check(INP_HELP, CHECK_PRESSED))
         {
             log_hide = !log_hide;
 
@@ -154,13 +148,13 @@ if (text_clear == false)
             if (input_get_check(INP_CONFIRM, CHECK_PRESSED))
             {
                 // Topic:
-                if (topic_complete == false && topic_message != "" && topic_alpha[1] == 1)
+                if (topic_complete == false && topic_message != "" && topic_alpha == 1)
                 {
                     topic_complete = true;
                 }
 
                 // Text:
-                else if (text_current == text_target && text_alpha[2] == 1)
+                else if (text_current == text_target && text_alpha == 1)
                 {
                     // Advance text:
                     if (text_overflow == false)
@@ -465,30 +459,38 @@ applies_to=self
 */
 /// Topic Alpha
 
+var topic_box_alpha_rate;
+
+// Box alpha rate:
+topic_box_alpha_rate = game_setting_get("interface_alpha") / 20;
+
 // Fade in topic:
 if (text_clear == false && topic_complete == false && topic_message != "")
 {
     // Bar:
-    if (topic_alpha[0] < 0.6)
+    if (topic_box_alpha < game_setting_get("interface_alpha"))
     {
-        topic_alpha[0] += text_alpha[1];
+        topic_box_alpha += topic_box_alpha_rate;
     }
     else
     {
-        topic_alpha[0] = 0.6;
+        topic_box_alpha = game_setting_get("interface_alpha");
     }
 
     // Topic:
-    if (topic_alpha[1] < 1)
+    if (topic_alpha < 1)
     {
         // Add topic to log:
-        if (topic_alpha[1] == 0) log_message += topic_message + "#";
+        if (topic_alpha == 0)
+        {
+            log_message += topic_message + "#";
+        }
 
-        topic_alpha[1] += text_alpha[3];
+        topic_alpha += text_alpha_rate;
     }
     else
     {
-        topic_alpha[1] = 1;
+        topic_alpha = 1;
     }
 }
 
@@ -496,23 +498,23 @@ if (text_clear == false && topic_complete == false && topic_message != "")
 else
 {
     // Bar:
-    if (topic_alpha[0] > 0)
+    if (topic_box_alpha > 0)
     {
-        topic_alpha[0] -= text_alpha[1];
+        topic_box_alpha -= topic_box_alpha_rate;
     }
     else
     {
-        topic_alpha[0] = 0;
+        topic_box_alpha = 0;
     }
 
     // Topic:
-    if (topic_alpha[1] > 0)
+    if (topic_alpha > 0)
     {
-        topic_alpha[1] -= text_alpha[3];
+        topic_alpha -= text_alpha_rate;
     }
     else
     {
-        topic_alpha[1] = 0;
+        topic_alpha = 0;
     }
 }
 /*"/*'/**//* YYD ACTION
@@ -522,43 +524,48 @@ applies_to=self
 */
 /// Text Alpha
 
+var text_box_alpha_rate;
+
+// Box alpha rate:
+text_box_alpha_rate = game_setting_get("interface_alpha") / 20;
+
 // Fade in text:
 if (text_clear == false && text_message != "" && (topic_complete == true || topic_message == ""))
 {
     // Box:
-    if (text_alpha[0] < 0.6)
+    if (text_box_alpha < game_setting_get("interface_alpha"))
     {
-        text_alpha[0] += text_alpha[1];
+        text_box_alpha += text_box_alpha_rate;
     }
     else
     {
-        text_alpha[0] = 0.6;
+        text_box_alpha = game_setting_get("interface_alpha");
     }
 
     // Text:
     if (text_current == text_target)
     {
-        if (text_alpha[2] < 1)
+        if (text_alpha < 1)
         {
             // Add text to log:
-            if (text_alpha[2] == 0) log_message += text_message[text_current] + "#";
+            if (text_alpha == 0) log_message += text_message[text_current] + "#";
 
-            text_alpha[2] += text_alpha[3];
+            text_alpha += text_alpha_rate;
         }
         else
         {
-            text_alpha[2] = 1;
+            text_alpha = 1;
         }
     }
 
     // Fade out text:
     else
     {
-        if (text_alpha[2] > -0.5)
+        if (text_alpha > -0.5)
         {
-            text_alpha[2] -= text_alpha[3];
+            text_alpha -= text_alpha_rate;
 
-            if (text_alpha[2] == -0.5)
+            if (text_alpha == -0.5)
             {
                 text_current = text_target;
 
@@ -566,7 +573,7 @@ if (text_clear == false && text_message != "" && (topic_complete == true || topi
                 text_scroll_target = 0;
                 text_scroll_complete = false;
 
-                text_alpha[2] = 0;
+                text_alpha = 0;
 
                 text_overflow = false;
             }
@@ -578,27 +585,27 @@ if (text_clear == false && text_message != "" && (topic_complete == true || topi
 else
 {
     // Box:
-    if (text_alpha[0] > 0)
+    if (text_box_alpha > 0)
     {
-        text_alpha[0] -= text_alpha[1];
+        text_box_alpha -= text_box_alpha_rate;
     }
     else
     {
-        text_alpha[0] = 0;
+        text_box_alpha = 0;
     }
 
     // Text:
-    if (text_alpha[2] > 0)
+    if (text_alpha > 0)
     {
-        text_alpha[2] -= text_alpha[3];
+        text_alpha -= text_alpha_rate;
     }
     else
     {
-        text_alpha[2] = 0;
+        text_alpha = 0;
     }
 }
 
-if (text_clear == true && (text_message != "" || topic_message != "") && text_alpha[2] == 0 && topic_alpha[0] == 0)
+if (text_clear == true && (text_message != "" || topic_message != "") && text_alpha == 0 && topic_alpha == 0)
 {
     text_hide = false;
     text_clear = false;
@@ -627,46 +634,46 @@ applies_to=self
 
 if (log_hide == false)
 {
-    // Background:
-    if (log_alpha[0] < 0.6)
+    // Fade:
+    if (log_fade_alpha < 0.6)
     {
-        log_alpha[0] += text_alpha[1];
+        log_fade_alpha += 0.03;
     }
     else
     {
-        log_alpha[0] = 0.6;
+        log_fade_alpha = 0.6;
     }
 
     // Log:
-    if (log_alpha[1] < 1)
+    if (log_alpha < 1)
     {
-        log_alpha[1] += text_alpha[3];
+        log_alpha += text_alpha_rate;
     }
     else
     {
-        log_alpha[1] = 1;
+        log_alpha = 1;
     }
 }
 else
 {
-    // Background:
-    if (log_alpha[0] > 0)
+    // Fade:
+    if (log_fade_alpha > 0)
     {
-        log_alpha[0] -= text_alpha[1];
+        log_fade_alpha -= 0.03;
     }
     else
     {
-        log_alpha[0] = 0;
+        log_fade_alpha = 0;
     }
 
     // Log:
-    if (log_alpha[1] > 0)
+    if (log_alpha > 0)
     {
-        log_alpha[1] -= text_alpha[3];
+        log_alpha -= text_alpha_rate;
     }
     else
     {
-        log_alpha[1] = 0;
+        log_alpha = 0;
     }
 }
 #define Other_3
@@ -698,12 +705,12 @@ if (text_hide == true)
 d3d_set_viewport(0, 0, screen_get_width(), screen_get_height());
 
 // Box:
-draw_set1(game_get_interface_color(), topic_alpha[0]);
+draw_set1(game_get_interface_color(), topic_box_alpha);
 draw_rectangle(0, (screen_get_height() / 2) - 9 - ((font_height / 2) * topic_lines), screen_get_width(), (screen_get_height() / 2) + 10 + ((font_height / 2) * topic_lines), false);
 
 // Topic:
 draw_set_font(global.font_system);
-draw_set1(c_white, topic_alpha[1]);
+draw_set1(c_white, topic_alpha);
 
 // Topic:
 draw_set2(fa_center, fa_middle);
@@ -731,7 +738,7 @@ var textbox_bottom, texbox_height;
 textbox_bottom = screen_get_height() - 19;
 textbox_height = 59;
 
-draw_set1(game_get_interface_color(), text_alpha[0]);
+draw_set1(game_get_interface_color(), text_box_alpha);
 draw_rectangle(0, textbox_bottom - textbox_height, screen_get_width(), textbox_bottom, false);
 
 // Viewport:
@@ -739,7 +746,7 @@ d3d_set_viewport(0, screen_get_height() - text_y, screen_get_width(), font_heigh
 
 // Font:
 draw_set_font(global.font_system);
-draw_set1(c_white, text_alpha[2]);
+draw_set1(c_white, text_alpha);
 
 // Text:
 draw_set2(fa_left, fa_top);
@@ -749,7 +756,7 @@ draw_text_ext(text_x, -text_scroll_current, text_message[text_current], font_hei
 draw_set_alpha(1);
 d3d_set_viewport(0, 0, screen_get_width(), screen_get_height());
 
-if (text_overflow == true && text_alpha[2] == 1 && text_scroll_complete == true)
+if (text_overflow == true && text_alpha == 1 && text_scroll_complete == true)
 {
     draw_sprite(fnt_system, 95, (screen_get_width() / 2) - 6, screen_get_height() - 29);
 }
@@ -770,8 +777,8 @@ if (text_hide == true)
     exit;
 }
 
-// Background:
-draw_set1(c_black, log_alpha[0]);
+// Fade:
+draw_set1(c_black, log_fade_alpha);
 draw_rectangle(0, 0, screen_get_width(), screen_get_height(), false);
 
 // Viewport:
@@ -779,7 +786,7 @@ d3d_set_viewport(0, 16, screen_get_width(), screen_get_height() - log_spacing);
 
 // Font:
 draw_set_font(global.font_system);
-draw_set1(c_white, log_alpha[1]);
+draw_set1(c_white, log_alpha);
 
 // Log:
 draw_set2(fa_left, fa_top);

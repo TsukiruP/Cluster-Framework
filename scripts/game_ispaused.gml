@@ -5,7 +5,7 @@ Defaults to checking both managers should neither be the argument given, or no a
 var pause_text, pause_stage;
 
 // Text pause:
-pause_text = (mgr_text.text_message != "" || mgr_text.topic_message != "" || mgr_text.log_alpha[1] != 0);
+pause_text = (mgr_text.text_message != "" || mgr_text.topic_message != "" || mgr_text.log_alpha != 0);
 
 // Stage pause:
 if (instance_exists(mnu_pause))
