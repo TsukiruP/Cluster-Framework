@@ -157,7 +157,7 @@ for (i = 0; i < page_count; i += 1)
         save_x2 += page_offset * i;
 
         // Box:
-        draw_set1(game_get_interface_color(), 0.6);
+        draw_set1(game_get_interface_color(), game_setting_get("interface_alpha"));
         draw_rectangle(save_x1 - 8, save_y1 - save_height / 2, save_x2 + 8, save_y2, false);
 
         // Font:
@@ -223,10 +223,3 @@ for (i = 0; i < page_count; i += 1)
 
 // Reset:
 draw_reset();
-#define KeyPress_32
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-text_set_message("A visible landmine. I would step on it. As a king.", "This is what you get for not watching your step, mongrel. if you were always looking down on the world as I do, this wouldn't happen.")
