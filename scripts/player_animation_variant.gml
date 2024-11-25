@@ -1,5 +1,5 @@
 /// player_animation_variant()
-//
+// Updates animation variant.
 
 switch (animation_current)
 {

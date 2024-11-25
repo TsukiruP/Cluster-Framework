@@ -1,5 +1,5 @@
 /// player_animation_speed()
-//
+// Updates animation speed.
 
 switch (animation_current)
 {

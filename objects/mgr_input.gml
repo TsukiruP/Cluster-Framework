@@ -423,7 +423,7 @@ for (i = 0; i < global.player_count; i += 1)
     // Gamepad id:
     gamepad_id = gamepad_device[i, 0];
 
-    if (gamepad_id > -1 && (game_setting_get("input_gamepad_focus") || (window_has_focus() && !game_setting_get("input_gamepad_focus"))))
+    if (gamepad_id > -1 && (game_setting_get("input_gamepad_focus") || (!game_setting_get("input_gamepad_focus") && window_has_focus())))
     {
         for (j = INP_UP; j <= INP_HELP; j += 1)
         {
