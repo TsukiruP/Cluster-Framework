@@ -65,12 +65,15 @@ switch (argument0)
 
         // Slope friction:
         var roll_slope_friction;
+
         roll_slope_friction = roll_friction_down;
+
         if (sign(dsin(relative_angle)) == sign(x_speed))
         {
             roll_slope_friction = roll_friction_up;
         }
-        player_slope_friction(roll_slope_friction, roll_friction);
+
+        player_slope_friction(roll_slope_friction);
 
         // Jump:
         if (player_routine_jump())

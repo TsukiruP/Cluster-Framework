@@ -40,7 +40,7 @@ switch (argument0)
         }
 
         // Slope friction:
-        player_slope_friction(slope_friction, acceleration);
+        player_slope_friction(slope_friction);
 
         // Idle:
         if (animation_trigger == true && !player_get_input(INP_DOWN, CHECK_HELD))

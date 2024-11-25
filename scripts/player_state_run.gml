@@ -101,7 +101,7 @@ switch (argument0)
         }
 
         // Slope friction:
-        player_slope_friction(slope_friction, acceleration);
+        player_slope_friction(slope_friction);
 
         // Idle:
         if (x_speed == 0 && input_x_direction == 0)
