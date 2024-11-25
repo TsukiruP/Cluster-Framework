@@ -29,5 +29,5 @@ else if (ctl_position(18))
 // Loop effect:
 else if (ctl_position(23))
 {
-    ctl_time = 0;
+    ctl_moment = 0;
 }

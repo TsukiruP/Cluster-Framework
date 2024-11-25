@@ -56,5 +56,5 @@ else if (ctl_position(6))
 else if (ctl_position(7))
 {
     image_index = 7;
-    ctl_time = 6;
+    ctl_moment = 6;
 }

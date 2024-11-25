@@ -1,11 +1,11 @@
 /// ctl_update()
 
-ctl_time_previous = ctl_time;
-ctl_time += ctl_speed;
+ctl_moment_previous = ctl_moment;
+ctl_moment += ctl_speed;
 
 // Floor time:
 if (frac(ctl_speed) == 0)
 {
-    floor(ctl_time);
-    floor(ctl_time_previous);
+    floor(ctl_moment);
+    floor(ctl_moment_previous);
 }

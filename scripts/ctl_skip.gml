@@ -1,5 +1,5 @@
 /// ctl_skip(step)
-// Skips to a step in the timeline so that step will execute immediately.
+// Skips to a moment in the timeline so that step will execute immediately.
 
-ctl_time = argument0 + 1;
-ctl_time_previous = argument0;
+ctl_moment = argument0 + 1;
+ctl_moment_previous = argument0;

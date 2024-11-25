@@ -64,5 +64,5 @@ else if (ctl_position(31))
 // Loop animation:
 else if (ctl_position(34))
 {
-    ctl_time = 3;
+    ctl_moment = 3;
 }

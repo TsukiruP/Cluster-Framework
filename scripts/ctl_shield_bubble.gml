@@ -59,5 +59,5 @@ else if (ctl_position(96))
 // Loop effect:
 else if (ctl_position(107))
 {
-    ctl_time = 0;
+    ctl_moment = 0;
 }

@@ -90,7 +90,7 @@ applies_to=self
 event_inherited();
 
 // Depth:
-if ((player_handle.status_shield == SHIELD_FIRE && (image_index mod 2) != 0 && ctl_index != ctl_shield_fire_dash) || (player_handle.status_shield == SHIELD_LIGHTNING && ctl_time > 48))
+if ((player_handle.status_shield == SHIELD_FIRE && (image_index mod 2) != 0 && ctl_index != ctl_shield_fire_dash) || (player_handle.status_shield == SHIELD_LIGHTNING && ctl_moment > 48))
 {
     depth = player_handle.depth + 2;
 }
@@ -106,7 +106,7 @@ shield_advance = (player_handle.status_shield == SHIELD_BASIC || player_handle.s
 if (!game_ispaused(mnu_pause) && ((player_handle.status_shield == SHIELD_BUBBLE && ctl_index == ctl_shield_bubble) || (game_setting_get("advance_flicker") && shield_advance == true)))
 {
     // Hide:
-    shield_hide = sync_rate(ctl_time, 2, 2);
+    shield_hide = sync_rate(ctl_moment, 2, 2);
 }
 else
 {
@@ -188,7 +188,7 @@ if (sprite_exists(sprite_index))
     // Switch to bubble shield shell:
     else if (player_handle.status_shield == SHIELD_BUBBLE && player_handle.status_invin != INVIN_BUFF)
     {
-        draw_sprite_ext(spr_shield_bubble_shell, ctl_time_previous div 12, x, y, image_xscale, 1, player_rotation, c_white, image_alpha);
+        draw_sprite_ext(spr_shield_bubble_shell, ctl_moment_previous div 12, x, y, image_xscale, 1, player_rotation, c_white, image_alpha);
     }
 
 }

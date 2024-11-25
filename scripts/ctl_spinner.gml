@@ -185,5 +185,5 @@ else if (ctl_position(87))
 // Loop animation:
 else if (ctl_position(89))
 {
-    ctl_time = 0;
+    ctl_moment = 0;
 }

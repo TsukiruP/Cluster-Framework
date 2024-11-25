@@ -92,5 +92,5 @@ else if (ctl_position(21))
 // Loop animation:
 else if (ctl_position(22))
 {
-    ctl_time = 7;
+    ctl_moment = 7;
 }

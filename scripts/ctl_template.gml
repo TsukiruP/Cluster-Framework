@@ -11,5 +11,5 @@ if (ctl_position(0))
 // Null/Change/Finish/Loop frame/effect/animation:
 else if (ctl_position(15))
 {
-    ctl_time = 0;
+    ctl_moment = 0;
 }
