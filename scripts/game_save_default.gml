@@ -13,7 +13,7 @@ game_save_set("stage", rm_basic_test_1);
 game_save_set("time", 0);
 
 // Player data:
-for (i = 0; i < global.player_count; i += 1)
+for (i = 0; i < game_get_player_count(); i += 1)
 {
     game_save_set("player" + string(i), -1);
 }

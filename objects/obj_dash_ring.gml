@@ -28,7 +28,7 @@ applies_to=self
 // Rainbow ring index:
 if (rainbow_ring == true)
 {
-    image_index = sync_rate(global.object_time, 4, 6) + 1;
+    image_index = sync_rate(game_get_timer(), 4, 6) + 1;
     cover.image_index = image_index + 6;
 }
 #define Other_4

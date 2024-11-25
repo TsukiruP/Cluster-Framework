@@ -20,6 +20,7 @@
 		|mgr_transition
 		|mgr_fade
 		+Stage
+			|mgr_stage
 			|mgr_camera
 			|mgr_hud
 			|mgr_tally

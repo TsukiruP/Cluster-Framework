@@ -16,7 +16,7 @@ damage_handle = argument0.id;
 hurt_direction = esign(x - damage_handle.x, 1);
 
 // Death:
-if (damage_handle == id || (input_cpu == false && global.game_rings == 0 && status_shield == 0))
+if (damage_handle == id || (stage_get_rings() == 0 && status_shield == 0 && input_cpu == false))
 {
     // Set speed:
     if (drown == false)
@@ -31,7 +31,7 @@ if (damage_handle == id || (input_cpu == false && global.game_rings == 0 && stat
     if (input_cpu == false)
     {
         // Disable pause:
-        global.pause_allow = false;
+        stage_set_pause_allow(false);
 
         // Stop jingles:
         with (mgr_audio)

@@ -2,6 +2,6 @@ sprite=spr_realizing_hopper
 visible=0
 solid=0
 persistent=1
-depth=-15000
+depth=0
 parent=
 mask=

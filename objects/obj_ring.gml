@@ -48,7 +48,7 @@ if (game_ispaused())
 if (dropped == true)
 {
     // Decrease lifespan alarm:
-    lifespan = max(lifespan - 1 * global.game_speed, 0);
+    lifespan = max(lifespan - 1 * game_get_speed(), 0);
 
     // Destroy:
     if (lifespan <= 0)
@@ -85,20 +85,20 @@ sine = dsin(gravity_direction);
 csine = dcos(gravity_direction);
 
 // Add gravity:
-y_speed += gravity_force * global.game_speed;
+y_speed += gravity_force * game_get_speed();
 
 // Apply x speed:
 if (x_speed != 0)
 {
-    x += dcos(gravity_direction) * (x_speed * global.game_speed);
-    y -= dsin(gravity_direction) * (x_speed * global.game_speed);
+    x += dcos(gravity_direction) * (x_speed * game_get_speed());
+    y -= dsin(gravity_direction) * (x_speed * game_get_speed());
 }
 
 // Apply y speed:
 if (y_speed != 0)
 {
-    x += dsin(gravity_direction) * (y_speed * global.game_speed);
-    y += dcos(gravity_direction) * (y_speed * global.game_speed);
+    x += dsin(gravity_direction) * (y_speed * game_get_speed());
+    y += dcos(gravity_direction) * (y_speed * game_get_speed());
 }
 
 // Left eject:
@@ -153,12 +153,12 @@ if (game_ispaused())
     exit;
 }
 
-if (instance_exists(player_get_instance(0)))
+if (instance_exists(stage_get_player(0)))
 {
     var player_handle;
 
     // Player handle:
-    player_handle = player_get_instance(0);
+    player_handle = stage_get_player(0);
 
     // Change instance:
     if (player_handle.status_shield == SHIELD_MAGNETIC || player_handle.status_shield == SHIELD_LIGHTNING)

@@ -7,7 +7,7 @@ var ring_total, ring_angle, ring_speed, ring_handle;
 sfx_play("snd_ring_loss");
 
 // Ring variables:
-ring_total = min(global.game_rings, 32);
+ring_total = min(stage_get_rings(), 32);
 ring_angle = 101.25;
 ring_speed = 4;
 
@@ -38,4 +38,4 @@ while (ring_total)
 }
 
 // Empty stage rings:
-global.game_rings = 0;
+stage_set_rings(0);

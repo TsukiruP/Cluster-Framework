@@ -20,10 +20,8 @@ reaction_index = player_reaction_checkpoint;
 // Active:
 active = false;
 
-// Activate:
-if (global.checkpoint_x == x && global.checkpoint_y == y)
+if (game_checkpoint_get_x() == x && game_checkpoint_get_y() == y)
 {
-    global.game_time = global.checkpoint_time;
     active = true;
 }
 #define Step_2

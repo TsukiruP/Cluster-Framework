@@ -30,19 +30,20 @@ pause_active = true;
 pause_header = spr_pause_header;
 pause_menu = spr_pause_menu;
 pause_space = 3;
+pause_fade = 0;
 
 for (i = 0; i < menu_count; i += 1)
 {
     pause_x_current[i] = screen_get_width() + sprite_get_width(pause_menu);
     pause_x_speed[i] = 0;
+
+    pause_height[i] = 0;
+    pause_x[i] = 0;
+    pause_y[i] = 0;
 }
 
 pause_count[0] = (sprite_get_number(pause_menu) / 2) - 2;
 pause_count[1] = 2;
-pause_height = 0;
-
-pause_x = 0;
-pause_y = 0;
 
 event_user(1);
 
@@ -103,16 +104,6 @@ if (pause_delay == 0)
             pause_hide = 0;
         }
     }
-}
-
-// Hide fade:
-if (pause_hide != 0)
-{
-    fade_handle.visible = false;
-}
-else
-{
-    fade_handle.visible = true;
 }
 
 // Hide overlays:
@@ -215,9 +206,7 @@ if (pause_delay > 0)
         if (pause_continue == true)
         {
             pause_active = false;
-
             //sound_resume_all();
-            fade_reverse(fade_handle);
         }
     }
 }
@@ -257,6 +246,27 @@ if (instance_exists(fade_handle))
     }
 }
 #define Step_2
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Fade
+
+if (pause_continue == true)
+{
+    if (pause_fade > 0)
+    {
+        pause_fade -= 0.06;
+    }
+}
+else
+{
+    if (pause_fade < 0.6)
+    {
+        pause_fade += 0.06;
+    }
+}
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -315,7 +325,7 @@ for (i = 0; i < menu_count; i += 1)
     }
     else
     {
-        if (i = menu_count - 1)
+        if (menu_lock == true && menu_count - 1 = i)
         {
             pause_destroy = true;
         }
@@ -384,6 +394,13 @@ var menu_offset, menu_height, i, menu_y, j;
 
 // Reset offset:
 menu_offset = 0;
+
+// Fade:
+draw_set1(c_black, pause_fade);
+draw_rectangle(view_xview[view_current], view_yview[view_current], view_xview[view_current] + screen_get_width(), view_yview[view_current] + screen_get_height(), false);
+
+// Reset:
+draw_reset();
 
 // Height:
 menu_height = sprite_get_height(pause_menu) + pause_space;

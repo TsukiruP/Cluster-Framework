@@ -5,17 +5,17 @@ switch (argument0)
 {
     // Ring bonus:
     case ITEM_BONUS:
-        global.game_rings += 5;
+        stage_add_rings(5)
         break;
 
     // Super ring bonus:
     case ITEM_SUPER_BONUS:
-        global.game_rings += 10;
+        stage_add_rings(10)
         break;
 
     // Random ring bonus:
     case ITEM_RANDOM_BONUS:
-        global.game_rings += choose(1, 5, 10, 30, 50);
+        stage_add_rings(choose(1, 5, 10, 30, 50));
         break;
 
     // Basic shield:

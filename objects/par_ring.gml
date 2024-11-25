@@ -52,7 +52,7 @@ if (game_ispaused(mnu_pause))
     exit;
 }
 
-image_index = sync_rate(global.object_time, ring_rate / (1 + (dropped == true)), sprite_get_number(sprite_index));
+image_index = sync_rate(game_get_timer(), ring_rate / (1 + (dropped == true)), sprite_get_number(sprite_index));
 #define Other_4
 /*"/*'/**//* YYD ACTION
 lib_id=1

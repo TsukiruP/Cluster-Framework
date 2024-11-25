@@ -58,7 +58,7 @@ if (collision & COLL_HURT_RADIUS)
         {
             if (reaction_handle.rainbow_score == true)
             {
-                global.game_score += 1000;
+                stage_add_score(1000);
 
                 with (reaction_handle)
                 {

@@ -11,7 +11,7 @@ player_handle = self;
 if (argument_count >= 1)
 {
     player_id = argument[0];
-    player_handle = player_get_instance(player_id);
+    player_handle = stage_get_player(player_id);
 }
 
 switch (player_handle.mask_rotation)

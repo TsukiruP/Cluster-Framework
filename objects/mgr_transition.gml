@@ -49,7 +49,7 @@ zone_x_speed = 0;
 zone_x_factor = 9;
 
 // Loading variables:
-switch (player_get_character(0))
+switch (game_save_get("player0"))
 {
     // Sonic:
     default:
@@ -116,7 +116,7 @@ if (transition_alarm >= 0)
                 // Retry has its own room_goto call:
                 if (transition_id != TRANS_RETRY)
                 {
-                    checkpoint_set(true);
+                    game_checkpoint_set(true);
                     room_goto(transition_room);
                 }
 
@@ -249,7 +249,7 @@ if ((game_ispaused(mnu_pause) && pause_ignore == false) || (transition_id != TRA
     exit;
 }
 
-if (instance_exists(player_get_instance(0)))
+if (instance_exists(stage_get_player(0)))
 {
     // Hide HUD:
     if ((room_start == START_RUN || (room_start == START_READY && transition_id == TRANS_CARD)) && transition_state == 3)
@@ -268,7 +268,7 @@ if (instance_exists(player_get_instance(0)))
     if (room_start == START_RUN && room_run_target != -1 && transition_state >= 4)
     {
         // Reset target:
-        if ((transition_id == TRANS_RETRY && (global.checkpoint_x != -1 && global.checkpoint_y != -1)) || player_get_instance(0).x >= room_run_target)
+        if ((transition_id == TRANS_RETRY && (game_checkpoint_get_x() != -1 && game_checkpoint_get_y() != -1)) || stage_get_player(0).x >= room_run_target)
         {
             room_run_target = -1;
         }
@@ -305,8 +305,7 @@ if (transition_id == TRANS_FADE)
 
             if (fade_handle.fade_alpha >= 1)
             {
-                global.time_allow = false;
-
+                stage_set_timer_allow(false);
                 transition_state = 1;
                 transition_alarm = 60;
             }
@@ -350,14 +349,14 @@ if (transition_id == TRANS_CARD)
     banner_y_scroll = banner_y_scroll mod(sprite_get_height(spr_title_card_banner));
 
     // Skip:
-    if (room_start == START_READY && transition_state >= 4 && transition_state != 6 && instance_exists(player_get_instance(0)))
+    if (room_start == START_READY && transition_state >= 4 && transition_state != 6 && instance_exists(stage_get_player(0)))
     {
         if (input_get_check(INP_ANY, CHECK_PRESSED) && !input_get_check(INP_START, CHECK_PRESSED))
         {
             transition_state = 5;
 
             // Skip ready animation:
-            if (player_get_instance(0).animation_current == "ready")
+            if (stage_get_player(0).animation_current == "ready")
             {
                 with (obj_player)
                 {
@@ -437,8 +436,7 @@ if (transition_id == TRANS_CARD)
             // Move to room change:
             if (transition_alarm == 0 && banner_x_current == banner_x_target && zone_x_current == zone_x_target && character_x_current == character_x_target)
             {
-                global.time_allow = false;
-
+                stage_set_timer_allow(false);
                 transition_state = 2;
                 transition_alarm = 30;
 
@@ -460,13 +458,13 @@ if (transition_id == TRANS_CARD)
 
         // 4 - Opener start:
         case 4:
-            if (debug == false && (room_start != START_RUN || room_run_target != -1) && instance_exists(player_get_instance(0)))
+            if (debug == false && (room_start != START_RUN || room_run_target != -1) && instance_exists(stage_get_player(0)))
             {
                 // Ready:
                 if (room_start == START_READY)
                 {
                     // Time it with the background:
-                    if (background_y_current <= floor(player_get_instance(0).y + player_get_instance(0).y_radius - view_yview[view_current]))
+                    if (background_y_current <= floor(stage_get_player(0).y + stage_get_player(0).y_radius - view_yview[view_current]))
                     {
                         with (obj_player)
                         {
@@ -488,7 +486,7 @@ if (transition_id == TRANS_CARD)
                 }
 
                 // Move to next state:
-                if (room_start == START_IDLE || (room_start == START_READY && player_get_instance(0).animation_previous == "ready"))
+                if (room_start == START_IDLE || (room_start == START_READY && stage_get_player(0).animation_previous == "ready"))
                 {
                     transition_state = 5;
                 }
@@ -509,8 +507,7 @@ if (transition_id == TRANS_CARD)
             // Destroy:
             if (banner_x_current == banner_x_target && zone_x_current == zone_x_target)
             {
-                global.time_allow = true;
-                
+                stage_set_timer_allow(true);
                 instance_destroy();
             }
             break;
@@ -536,7 +533,7 @@ if (transition_id == TRANS_RETRY)
     background_x_scroll = background_x_scroll mod sprite_get_width(spr_transition_background);
 
     // Skip:
-    if (transition_state < 2 && instance_exists(player_get_instance(0)) && input_get_check(INP_ANY, CHECK_PRESSED))
+    if (transition_state < 2 && instance_exists(stage_get_player(0)) && input_get_check(INP_ANY, CHECK_PRESSED))
     {
         transition_state = 2;
     }
@@ -682,17 +679,6 @@ action_id=603
 applies_to=self
 */
 /// Close Debug Header
-#define Other_12
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Enable Pause
-
-persistent = false;
-pause_ignore = false;
-global.pause_allow = true;
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1

@@ -25,7 +25,7 @@ game_keyboard_default();
 game_setting_set("input_keyboard", ds_list_write(keyboard_list));
 
 // Gamepad:
-for (i = 0; i < global.player_count; i += 1)
+for (i = 0; i < game_get_player_count(); i += 1)
 {
     var gamepad_string;
 

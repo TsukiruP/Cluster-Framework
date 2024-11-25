@@ -36,7 +36,7 @@ applies_to=self
 var i, j, k;
 
 // Gamepad devices:
-for (i = 0; i < global.player_count; i += 1)
+for (i = 0; i < game_get_player_count(); i += 1)
 {
     gamepad_device[i, 0] = -1;
     gamepad_device[i, 1] = -1;
@@ -49,7 +49,7 @@ for (i = PAD_FACE1; i <= PAD_DOWN; i += 1)
 }
 
 // Gamepad inputs:
-for (i = 0; i < global.player_count; i += 1)
+for (i = 0; i < game_get_player_count(); i += 1)
 {
     for (j = INP_UP; j <= INP_HELP; j += 1)
     {
@@ -149,7 +149,7 @@ var i, j, k;
 if (joystick_found())
 {
     // Set seeking devices:
-    for (i = 0; i < global.player_count; i += 1)
+    for (i = 0; i < game_get_player_count(); i += 1)
     {
         // Check if current gamepad has been removed:
         if (gamepad_device[i, 0] > joystick_count() - 1)
@@ -171,7 +171,7 @@ if (joystick_found())
                     gamepad_available = true;
                     
                     // Iterate through every registered gamepads:
-                    for (k = 0; k < global.player_count; k += 1)
+                    for (k = 0; k < game_get_player_count(); k += 1)
                     {
                         
                         // If the device is already registered, move on:
@@ -203,7 +203,7 @@ applies_to=self
 var i;
 
 // Update device buttons:
-for (i = 0; i < global.player_count; i += 1)
+for (i = 0; i < game_get_player_count(); i += 1)
 {
     // Check if the current gamepad exists:
     if (gamepad_device[i, 0] > -1)
@@ -241,7 +241,7 @@ applies_to=self
 
 var i, j, k;
 
-for (i = 0; i < global.player_count; i += 1)
+for (i = 0; i < game_get_player_count(); i += 1)
 {
     var gamepad_id;
 
@@ -310,7 +310,7 @@ applies_to=self
 
 var i, j, k;
 
-for (i = 0; i < global.player_count; i += 1)
+for (i = 0; i < game_get_player_count(); i += 1)
 {
     var gamepad_id;
 
@@ -363,7 +363,7 @@ applies_to=self
 
 var i;
 
-for (i = 0; i < global.player_count; i += 1)
+for (i = 0; i < game_get_player_count(); i += 1)
 {
     var gamepad_id;
 
@@ -416,7 +416,7 @@ for (i = INP_UP; i <= INP_HELP; i += 1)
 }
 
 // Gamepad:
-for (i = 0; i < global.player_count; i += 1)
+for (i = 0; i < game_get_player_count(); i += 1)
 {
     var gamepad_id;
 

@@ -33,7 +33,7 @@ if (game_ispaused(mnu_pause))
 event_inherited();
 
 // Timeline speed:
-ctl_speed = global.game_speed;
+ctl_speed = game_get_speed();
 
 // Execute timeline:
 if (ctl_index != noone)

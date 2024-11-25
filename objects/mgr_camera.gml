@@ -16,7 +16,7 @@ limit_top = 0;
 limit_bottom = room_height;
 
 // Focus handle:
-focus_handle = player_get_instance(0);
+focus_handle = stage_get_player(0);
 
 // Camera variables:
 camera_x = x;
@@ -66,9 +66,9 @@ if (game_ispaused(mnu_pause))
 }
 
 // Shift around the player:
-if (instance_exists(player_get_instance(0)))
+if (instance_exists(stage_get_player(0)))
 {
-    if (focus_handle == player_get_instance(0))
+    if (focus_handle == stage_get_player(0))
     {
         var look_direction;
 
@@ -199,7 +199,7 @@ if (game_ispaused(mnu_pause))
 if (instance_exists(focus_handle))
 {
     // Player focus:
-    if (focus_handle == player_get_instance(0))
+    if (focus_handle == stage_get_player(0))
     {
         if (camera_position_distance == 0)
         {

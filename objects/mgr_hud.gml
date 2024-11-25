@@ -136,9 +136,9 @@ if (game_setting_get("misc_hud") == 1)
     var air_x_target;
 
     // Value:
-    if (instance_exists(player_get_instance(0)))
+    if (instance_exists(stage_get_player(0)))
     {
-        with (player_get_instance(0))
+        with (stage_get_player(0))
         {
             // Hide:
             if (state_current != player_state_death)
@@ -216,11 +216,6 @@ if (game_setting_get("misc_hud") == 1)
         gauge_x_current += gauge_x_speed * sign(gauge_x_distance);
     }
 }
-
-if (input_get_check(INP_TAG, CHECK_PRESSED))
-{
-    gauge_hide = !gauge_hide;
-}
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -234,9 +229,9 @@ if (game_ispaused(mnu_pause))
     exit;
 }
 
-if (instance_exists(player_get_instance(0)))
+if (instance_exists(stage_get_player(0)))
 {
-    with (player_get_instance(0))
+    with (stage_get_player(0))
     {
         // Shield:
         if (status_shield != SHIELD_NONE)
@@ -326,7 +321,7 @@ if (game_ispaused(mnu_pause))
 }
 
 // Create list:
-if (instance_exists(player_get_instance(0)))
+if (instance_exists(stage_get_player(0)))
 {
     if (game_setting_get("misc_feed") && item_list == -1)
     {
@@ -401,13 +396,13 @@ var time_y;
 time_y = view_yview[view_current] + hud_y + 5;
 
 draw_sprite(hud_index, 0, view_xview[view_current] + hud_x_current, view_yview[view_current] + hud_y);
-draw_text(view_xview[view_current] + hud_x_current + 29, time_y, string_pad(global.game_time div 3600, 2));
-draw_text(view_xview[view_current] + hud_x_current + 54, time_y, string_pad((global.game_time div 60) mod 60, 2));
-draw_text(view_xview[view_current] + hud_x_current + 79, time_y, string_pad(floor(global.game_time * 1.667) mod 100, 2));
+draw_text(view_xview[view_current] + hud_x_current + 29, time_y, string_pad(stage_get_timer() div 3600, 2));
+draw_text(view_xview[view_current] + hud_x_current + 54, time_y, string_pad((stage_get_timer() div 60) mod 60, 2));
+draw_text(view_xview[view_current] + hud_x_current + 79, time_y, string_pad(floor(stage_get_timer() * 1.667) mod 100, 2));
 
 // Rings
 draw_sprite(hud_index, 1, view_xview[view_current] + hud_x_current, view_yview[view_current] + hud_y + 26);
-draw_text(view_xview[view_current] + hud_x_current + 29, view_yview[view_current] + hud_y + 31, string_pad(global.game_rings, 3));
+draw_text(view_xview[view_current] + hud_x_current + 29, view_yview[view_current] + hud_y + 31, string_pad(stage_get_rings(), 3));
 
 // Air:
 draw_sprite(hud_index, 2, view_xview[view_current] + air_x_current, view_yview[view_current] + hud_y + 52);
@@ -449,7 +444,7 @@ draw_sprite(spr_hud_s4e2, 0, view_xview[view_current] + hud_x_current, view_yvie
 
 // Score:
 draw_set_font(global.font_score_s4e2);
-draw_text(view_xview[view_current] + hud_x_current + 37, view_yview[view_current] + hud_y + 3, string_pad(global.game_score, 9));
+draw_text(view_xview[view_current] + hud_x_current + 37, view_yview[view_current] + hud_y + 3, string_pad(stage_get_score(), 9));
 
 // Time:
 var time_x, time_y;
@@ -458,23 +453,24 @@ time_x = view_xview[view_current] + hud_x_current + 58;
 time_y = view_yview[view_current] + hud_y + 18;
 
 draw_set_font(global.font_time_s4e2);
-draw_text(time_x, time_y, global.game_time div 3600);
+draw_text(time_x, time_y, stage_get_timer() div 3600);
 draw_text(time_x + 10, time_y, ":");
-draw_text(time_x + 16, time_y, string_pad((global.game_time div 60) mod 60, 2));
+draw_text(time_x + 16, time_y, string_pad((stage_get_timer() div 60) mod 60, 2));
 draw_text(time_x + 35, time_y, ";");
-draw_text(time_x + 44, time_y, string_pad(floor(global.game_time * 1.667) mod 100, 2));
+draw_text(time_x + 44, time_y, string_pad(floor(stage_get_timer() * 1.667) mod 100, 2));
 
 // Rings:
 draw_set_font(global.font_hud_s4e2);
 
-if ((sync_rate(global.object_time, 8, 2) && global.game_rings == 0) || global.game_rings > 0)
+if ((sync_rate(game_get_timer(), 8, 2) && stage_get_rings() == 0) || stage_get_rings() > 0)
 {
     // Flash red:
-    if (global.game_rings == 0)
+    if (stage_get_rings() == 0)
     {
         draw_set_color(c_red);
     }
-    draw_text(view_xview[view_current] + hud_x_current - 5, view_yview[view_current] + hud_y + 11, string_pad(global.game_rings, 3));
+    
+    draw_text(view_xview[view_current] + hud_x_current - 5, view_yview[view_current] + hud_y + 11, string_pad(stage_get_rings(), 3));
 }
 
 // Reset:

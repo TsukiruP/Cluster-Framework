@@ -34,18 +34,18 @@ if (game_ispaused())
     exit;
 }
 
-if (instance_exists(player_get_instance(0)))
+if (instance_exists(stage_get_player(0)))
 {
     var player_handle, xx, yy;
 
     // Move towards the player:
-    player_handle = player_get_instance(0);
+    player_handle = stage_get_player(0);
     xx = sign(player_handle.x - x);
     yy = sign(player_handle.y - y);
 
     hspeed += (xx * (0.1875 + (0.75 * (sign(hspeed) != xx))));
     vspeed += (yy * (0.1875 + (0.75 * (sign(vspeed) != yy))));
-    speed = clamp(speed, -64, 64) * global.game_speed;
+    speed = clamp(speed, -64, 64) * game_get_speed();
 
     // Drop a normal ring when no longer magnetized:
     if (player_handle.status_shield != SHIELD_MAGNETIC && player_handle.status_shield != SHIELD_LIGHTNING)

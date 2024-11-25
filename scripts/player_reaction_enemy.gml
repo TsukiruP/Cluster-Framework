@@ -41,7 +41,7 @@ if ((collision & COLL_HURT) || ((collision & COLL_HURT_RADIUS) && status_invin =
     // Score:
     if (reaction_handle.class == ENE_BASIC || (reaction_handle.class == ENE_SUPER && (reaction_handle.vitality == 0 || status_invin == INVIN_BUFF)))
     {
-        global.game_score += 100 + (400 * reaction_handle.class);
+        stage_add_score(100 + (400 * reaction_handle.class));
 
         // Homing:
         sonic_routine_homing();

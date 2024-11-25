@@ -2,9 +2,9 @@
 // Sets up everything for a stage to start.
 
 // Player input lock:
-if (instance_exists(player_get_instance(0)))
+if (instance_exists(stage_get_player(0)))
 {
-    with (player_get_instance(0))
+    with (stage_get_player(0))
     {
         if (input_lock != false)
         {
@@ -14,7 +14,7 @@ if (instance_exists(player_get_instance(0)))
 }
 
 // Allow time:
-global.time_allow = true;
+stage_set_timer_allow(true);
 
 // Show HUD:
 if (instance_exists(mgr_hud))

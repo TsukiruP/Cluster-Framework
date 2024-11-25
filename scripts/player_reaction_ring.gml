@@ -14,14 +14,14 @@ if (collision & COLL_HURT_RADIUS)
         // Collect:
         if (reaction_handle.ring_super == true)
         {
-            global.game_rings += 10;
+            stage_add_rings(10);
 
             // Play sfx:
             sfx_play("snd_ring_super");
         }
         else
         {
-            global.game_rings += 1
+            stage_add_rings(1);
 
             // Play sfx:
             sfx_play("snd_ring", true, mgr_audio.ring_pan);

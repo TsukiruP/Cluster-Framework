@@ -6,7 +6,7 @@ var i;
 // Input lists:
 keyboard_list = ds_list_create();
 
-for (i = 0; i < global.player_count; i += 1)
+for (i = 0; i < game_get_player_count(); i += 1)
 {
     gamepad_list[i] = ds_list_create();
 }

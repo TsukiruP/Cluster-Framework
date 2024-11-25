@@ -1054,7 +1054,7 @@ applies_to=self
 /// Draw Collision
 
 // Exit if not in debug mode:
-if (global.game_debug == false)
+if (!game_get_debug())
 {
     exit;
 }

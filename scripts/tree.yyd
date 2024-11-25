@@ -1,8 +1,26 @@
++Trash
+	|player_compile_animations
+	|player_add_animation
+	+Animation Lists
+		|sonic_animation_list
+	+Data
+		|player_get_character
+		|player_get_instance
+	+Pause
+		|stage_get_pause_allow
 +System
 	|credits
 	+Game
 		|game_ispaused
-		|stage_start
+		+Debug
+			|game_get_debug
+			|game_set_debug
+		+Checkpoint
+			|game_checkpoint_get_timer
+			|game_checkpoint_get_x
+			|game_checkpoint_get_y
+			|game_checkpoint_set
+			|game_checkpoint_isset
 		+Setting
 			|game_setting_init
 			|game_setting_get
@@ -27,6 +45,10 @@
 			|game_save_default
 			|game_save_preview
 		+Misc.
+			|game_get_player_count
+			|game_get_speed
+			|game_set_speed
+			|game_get_timer
 			|game_get_interface_color
 			|game_get_save_count
 	+Screen
@@ -60,6 +82,23 @@
 	+Fade
 		|fade_create
 		|fade_reverse
+	+Stage
+		|stage_start
+		|stage_set_pause_allow
+		+Score
+			|stage_add_score
+			|stage_get_score
+		+Timer
+			|stage_get_timer
+			|stage_set_timer
+			|stage_set_timer_allow
+		+Rings
+			|stage_add_rings
+			|stage_get_rings
+			|stage_set_rings
+		+Player
+			|stage_get_player
+			|stage_set_player
 	+Timelines
 		|ctl_init
 		|ctl_update
@@ -210,12 +249,7 @@
 		|hurtbox_set
 		|hitbox_set
 	+Player
-		+Data
-			|player_get_character
-			|player_get_instance
 		+Animation
-			+Animation Lists
-				|sonic_animation_list
 			|player_animation_core
 			|player_animation_variant
 			|player_animation_speed
@@ -311,9 +345,3 @@
 				|update_trail
 				|draw_trail
 	+Props
-		+Checkpoint
-			|checkpoint_set
-			|checkpoint_isset
-	+Trash
-		|player_compile_animations
-		|player_add_animation

@@ -3,5 +3,5 @@
 
 if (input_get_check(INP_ALT, CHECK_HELD) && input_get_check(INP_SELECT, CHECK_PRESSED))
 {
-    global.game_debug = !global.game_debug;
+    game_set_debug(!game_get_debug());
 }

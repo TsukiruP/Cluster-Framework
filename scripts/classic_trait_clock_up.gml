@@ -16,7 +16,7 @@ if (argument_count >= 1)
             sfx_play("snd_clock_over");
         }
 
-        global.game_speed = 1;
+        game_set_speed(1);
         clock_up_state = 0;
     }
 }
@@ -47,7 +47,7 @@ else
         // Hyper:
         if (clock_up_state != 2 && (clock_up_state == 0 || clock_up_state != 0) && player_get_input(INP_ALT, CHECK_HELD))
         {
-            global.game_speed = 0;
+            game_set_speed(0);
             clock_up_state = 2;
 
             // Play sfx:
@@ -58,7 +58,7 @@ else
         // Normal:
         else if (clock_up_state != 1 && (clock_up_state == 0 || (clock_up_state == 2 && player_get_input(INP_ALT, CHECK_HELD))))
         {
-            global.game_speed = 0.25;
+            game_set_speed(0.25);
             clock_up_state = 1;
 
             // Play sfx:

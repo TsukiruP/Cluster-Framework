@@ -4,46 +4,46 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Spawn Player
+/// Player Spawn
 
 var i;
 
+// Create stage manager:
+instance_create(0, 0, mgr_stage);
+
 // Move to checkpoint:
-if (checkpoint_isset())
+if (game_checkpoint_isset())
 {
-    x = global.checkpoint_x;
-    y = global.checkpoint_y;
+    stage_set_timer(game_checkpoint_get_timer());
+    x = game_checkpoint_get_x();
+    y = game_checkpoint_get_y();
 }
 
 // Create players:
-for (i = 0; i < global.player_count; i += 1)
+for (i = 0; i < game_get_player_count(); i += 1)
 {
-    var player_handle, player_character;
-
-    player_character = global.player_data[i, 0];
-
-    if (player_character >= CHAR_SONIC)
+    if (game_save_get("player" + string(i)) != -1)
     {
-        global.player_data[i, 1] = instance_create(x - (30 * i), y, obj_player);
+        stage_set_player(i, instance_create(x - (30 * i), y, obj_player));
 
-        player_handle = player_get_instance(0);
-        player_handle.player_id = i;
-        player_handle.character_id = player_character;
-        player_handle.input_lock = true;
-
-        // Create HUD:
-        if (i == 0)
+        with (stage_get_player(i))
         {
+            player_id = i;
+            character_id = game_save_get("player" + string(i));
+            input_lock = true;
+
             // Create camera:
-            camera = instance_create(x, y, mgr_camera);
-            camera.focus_handle = player_handle;
+            if (i == 0)
+            {
+                camera = instance_create(x, y, mgr_camera);
+                camera.focus_handle = stage_get_player(i);
+            }
 
-            // Create HUD:
-            instance_create(0, 0, mgr_hud);
-        }
-        else if (i > 0)
-        {
-            player_handle.input_cpu = true;
+            // CPU input:
+            else
+            {
+                input_cpu = true;
+            }
         }
     }
 }
