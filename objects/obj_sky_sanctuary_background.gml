@@ -33,7 +33,7 @@ cloud_x[5] = -sync_rate(game_get_time(), 5, background_get_width(bg_sky_sanctuar
 cloud_x[6] = -sync_rate(game_get_time(), 4, background_get_width(bg_sky_sanctuary_8));
 cloud_x[7] = -sync_rate(game_get_time(), 2, background_get_width(bg_sky_sanctuary_9));
 
-cloud_y = hover(0, game_get_time() * 0.01, 3);
+cloud_y = hover(0, game_get_time() * 0.01, 6);
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
