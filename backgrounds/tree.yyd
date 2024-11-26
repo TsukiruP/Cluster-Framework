@@ -6,8 +6,11 @@
 	|pbg_basic_test_rock_small
 	|pbg_basic_test_rock_large
 +Tilesets
+	+Sky Sanctuary
+		|tls_sky_sanctuary_0
+		|tls_sky_sanctuary_1
+		|tls_sky_sanctuary_2
+		|tls_sky_sanctuary_3
+		|tls_sky_sanctuary_4
 	|tls_basic_test
 	|tls_sunset_forest
-|background16
-|tls_isolated_isle_64x64
-|tls_isolated_isle_64x96

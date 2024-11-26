@@ -1,6 +1,6 @@
 tls_basic_test
-tls_isolated_isle_64x64
-tls_isolated_isle_64x96
+tls_sky_sanctuary_1
+tls_sky_sanctuary_2
 pbg_basic_test_sky
 pbg_basic_test_sea
 pbg_basic_test_rock_medium
@@ -14,4 +14,6 @@ tls_sunset_forest
 
 
 
-background16
+tls_sky_sanctuary_0
+tls_sky_sanctuary_3
+tls_sky_sanctuary_4
