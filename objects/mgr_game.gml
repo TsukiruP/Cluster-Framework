@@ -84,3 +84,12 @@ for (i = 0; i < game_get_player_count(); i += 1)
 
 ds_map_destroy(setting_map);
 ds_map_destroy(save_map);
+#define Other_5
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Reset Time
+
+game_time = 0;
