@@ -6,6 +6,8 @@ applies_to=self
 */
 /// Decoration Initialization
 
+event_inherited();
+
 // View Object:
 view_object[view_current] = id;
 #define Step_2
