@@ -19,7 +19,7 @@ ds_list_add(keyboard_list, ord("S")); // Aux
 ds_list_add(keyboard_list, ord("W")); // Swap
 ds_list_add(keyboard_list, ord("Q")); // Super
 ds_list_add(keyboard_list, ord("D")); // Tag
-ds_list_add(keyboard_list, ord("F")); // Alt
+ds_list_add(keyboard_list, ord("E")); // Alt
 
 // Menu keys:
 ds_list_add(keyboard_list, vk_enter); // Start
