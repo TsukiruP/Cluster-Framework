@@ -62,7 +62,7 @@ switch (argument0)
         }
 
         // Friction:
-        else
+        else if (input_lock_alarm == 0)
         {
             x_speed -= min(abs(x_speed), acceleration) * sign(x_speed);
 

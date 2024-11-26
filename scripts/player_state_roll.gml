@@ -35,7 +35,10 @@ switch (argument0)
         }
 
         // Friction:
-        x_speed -= min(abs(x_speed), roll_friction) * sign(x_speed);
+        if (input_lock_alarm == 0)
+        {
+            x_speed -= min(abs(x_speed), roll_friction) * sign(x_speed);
+        }
 
         // Movement:
         if (!player_movement_ground())
