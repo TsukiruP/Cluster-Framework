@@ -60,7 +60,7 @@
 			|eff_shield
 +Stages
 	+Sky Sanctuary
-		|obj_sky_sanctuary_background
+		|obj_sky_sanctuary_parallax
 		|obj_sky_sanctuary_fountain
 	+Basic Test
 		|obj_basic_test_parallax

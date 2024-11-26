@@ -2,7 +2,7 @@ par_terrain
 mgr_fade
 obj_spring
 obj_blockade
-obj_sky_sanctuary_background
+obj_sky_sanctuary_parallax
 obj_dash_ring
 obj_dash_ring_left
 obj_basic_test_mask_01
