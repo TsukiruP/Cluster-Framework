@@ -189,6 +189,9 @@
 			|spr_ring_sparkle
 			|spr_blockade_debris
 +Stages
+	+Sky Sanctuary
+		+Gimmicks
+			|spr_sky_sanctuary_fountain
 	+Basic Test
 		+Masks
 			|spr_basic_test_mask_01
@@ -220,10 +223,10 @@
 			|spr_basic_test_mask_27
 			|spr_basic_test_mask_28
 			|spr_basic_test_mask_29
-		+Decals
+		+Gimmicks
 			|spr_basic_test_water_fall
 	+Sunset Forest
-		+Collision
+		+Masks
 		+Gimmicks
 			|spr_basic_test_water_fall_02
 			|spr_basic_test_water_fall_03
