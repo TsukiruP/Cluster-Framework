@@ -1,3 +1,16 @@
+#define Create_0
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Decoration Initialization
+
+// Image speed:
+image_speed = 0;
+
+// View Object:
+view_object[view_current] = id;
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1

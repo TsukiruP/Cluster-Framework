@@ -5,7 +5,7 @@ var player_id, player_handle;
 
 // Initialize:
 player_id = 0;
-player_handle = self;
+player_handle = id;
 
 // Set player:
 if (argument_count >= 1)
