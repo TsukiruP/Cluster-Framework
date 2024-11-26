@@ -8,6 +8,11 @@
 		|player_get_instance
 	+Pause
 		|stage_get_pause_allow
+	+Background
+		|draw_background_tiled_horizontal_part
+		|draw_background_tiled_horizontal_part_yscale
+		|draw_background_tiled_vertical_part
+		|draw_backdrop_tiled_area
 +System
 	|credits
 	+Game
@@ -221,16 +226,11 @@
 		|sync_rate
 	+Draw
 		|draw_collision
-		|parallax_add_node
-		|draw_backdrop_tiled_area
 		+Sprites
 			|draw_sprite_tiled_horizontal
 			|draw_sprite_tiled_horizontal_yscale
 			|draw_sprite_tiled_vertical
-		+Background
-			|draw_background_tiled_horizontal_part
-			|draw_background_tiled_horizontal_part_yscale
-			|draw_background_tiled_vertical_part
+		|draw_background_tiled_view
 	+Misc.
 		|hover
 		|pick_offset

@@ -58,7 +58,10 @@
 			|eff_debuff
 			|eff_reticle
 			|eff_shield
-+Zones
++Stages
+	+Sky Sanctuary
+		|obj_sky_sanctuary_background
+		|obj_sky_sanctuary_fountain
 	+Basic Test
 		|obj_basic_test_parallax
 		+Masks
@@ -96,8 +99,6 @@
 			|obj_basic_test_water_fall_02
 			|obj_basic_test_water_fall_03
 +Trash
-	|par_moving_platform
-	|object122
 	+Rainbow Rings
 		|par_rainbow_ring
 		|obj_rainbow_ring_overlay

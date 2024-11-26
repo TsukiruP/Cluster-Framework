@@ -1,10 +1,3 @@
-+Parallax
-	|pbg_basic_test_sky
-	|pbg_basic_test_sea
-	|pbg_basic_test_under
-	|pbg_basic_test_rock_medium
-	|pbg_basic_test_rock_small
-	|pbg_basic_test_rock_large
 +Tilesets
 	+Sky Sanctuary
 		|tls_sky_sanctuary_0
@@ -14,3 +7,22 @@
 		|tls_sky_sanctuary_4
 	|tls_basic_test
 	|tls_sunset_forest
++Parallax
+	+Sky Sanctuary
+		|bg_sky_sanctuary_0
+		|bg_sky_sanctuary_1
+		|bg_sky_sanctuary_2
+		|bg_sky_sanctuary_3
+		|bg_sky_sanctuary_4
+		|bg_sky_sanctuary_5
+		|bg_sky_sanctuary_6
+		|bg_sky_sanctuary_7
+		|bg_sky_sanctuary_8
+		|bg_sky_sanctuary_9
+	+Basic Test
+		|bg_basic_test_sky
+		|bg_basic_test_sea
+		|bg_basic_test_under
+		|bg_basic_test_rock_medium
+		|bg_basic_test_rock_small
+		|bg_basic_test_rock_large

@@ -54,7 +54,7 @@ sonic_state_homing
 pick_offset
 player_wall_push
 player_get_character
-parallax_add_node
+draw_background_tiled_view
 draw_background_tiled_horizontal_part
 
 draw_sprite_tiled_horizontal_yscale
