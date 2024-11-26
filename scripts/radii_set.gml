@@ -1,4 +1,4 @@
-/// radii_set(x radius, y radius, wall offset, [y offset])
+/// radii_set(xradius, yradius, wall offset, [yoffset])
 // Sets the player's radii.
 
 var x_rad, y_rad, y_off, wall_off;

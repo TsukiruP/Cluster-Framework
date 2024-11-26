@@ -1,4 +1,4 @@
-/// draw_collision(left, top, right, bottom, x offset, y offset, angle, color)
+/// draw_collision(left, top, right, bottom, xoffset, yoffset, angle, color)
 //
 
 var x_int, y_int, left, top, right, bottom, off_x, off_y, dir, rot, x1, y1, x2, y2;

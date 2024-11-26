@@ -1,4 +1,4 @@
-/// hitbox_set(left, top, right, bottom, [x offset, y offset])
+/// hitbox_set(left, top, right, bottom, [xoffset, yoffset])
 // Sets the calling instance's hitbox.
 
 var left, top, right, bottom, off_x, off_y;
