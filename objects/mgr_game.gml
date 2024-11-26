@@ -51,15 +51,19 @@ applies_to=self
 */
 /// Time
 
-// Increase save time:
-game_save_set("time", game_save_get("time") + 1);
-
 // Exit if the stage is paused:
 if (game_ispaused(mnu_pause))
 {
     exit;
 }
 
+// Save time:
+if (instance_exists(mgr_stage))
+{
+    game_save_set("time", game_save_get("time") + 1);
+}
+
+// Game time:
 game_time += game_speed;
 #define Other_3
 /*"/*'/**//* YYD ACTION
