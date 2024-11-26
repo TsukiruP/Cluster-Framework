@@ -3,5 +3,5 @@
 
 with (mgr_game)
 {
-    return (checkpoint_timer > -1 || checkpoint_x > -1 || checkpoint_y > -1);
+    return (checkpoint_time > -1 || checkpoint_x > -1 || checkpoint_y > -1);
 }

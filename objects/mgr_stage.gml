@@ -9,12 +9,12 @@ applies_to=self
 var i;
 
 // Allow flags:
-timer_allow = false;
+time_allow = false;
 pause_allow = true;
 
 // Stage variables:
 stage_score = 0;
-stage_timer = 0;
+stage_time = 0;
 stage_rings = 0;
 
 for (i = 0; i < game_get_player_count(); i += 1)
@@ -30,15 +30,15 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Timer
+/// Time
 
 // Exit if the stage is paused:
-if (game_ispaused() || timer_allow == false)
+if (game_ispaused() || time_allow == false)
 {
     exit;
 }
 
-stage_timer += game_get_speed();
+stage_time += game_get_speed();
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1

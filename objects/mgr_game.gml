@@ -20,10 +20,10 @@ player_count = 2;
 // Game variables:
 game_debug = debug_mode;
 game_speed = 1;
-game_timer = 0;
+game_time = 0;
 
 // Checkpoint variables:
-checkpoint_timer = -1;
+checkpoint_time = -1;
 checkpoint_x = -1;
 checkpoint_y = -1;
 
@@ -49,7 +49,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Timers
+/// Time
 
 // Increase save time:
 game_save_set("time", game_save_get("time") + 1);
@@ -60,7 +60,7 @@ if (game_ispaused(mnu_pause))
     exit;
 }
 
-game_timer += game_speed;
+game_time += game_speed;
 #define Other_3
 /*"/*'/**//* YYD ACTION
 lib_id=1

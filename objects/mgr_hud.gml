@@ -396,9 +396,9 @@ var time_y;
 time_y = view_yview[view_current] + hud_y + 5;
 
 draw_sprite(hud_index, 0, view_xview[view_current] + hud_x_current, view_yview[view_current] + hud_y);
-draw_text(view_xview[view_current] + hud_x_current + 29, time_y, string_pad(stage_get_timer() div 3600, 2));
-draw_text(view_xview[view_current] + hud_x_current + 54, time_y, string_pad((stage_get_timer() div 60) mod 60, 2));
-draw_text(view_xview[view_current] + hud_x_current + 79, time_y, string_pad(floor(stage_get_timer() * 1.667) mod 100, 2));
+draw_text(view_xview[view_current] + hud_x_current + 29, time_y, string_pad(stage_get_time() div 3600, 2));
+draw_text(view_xview[view_current] + hud_x_current + 54, time_y, string_pad((stage_get_time() div 60) mod 60, 2));
+draw_text(view_xview[view_current] + hud_x_current + 79, time_y, string_pad(floor(stage_get_time() * 1.667) mod 100, 2));
 
 // Rings
 draw_sprite(hud_index, 1, view_xview[view_current] + hud_x_current, view_yview[view_current] + hud_y + 26);
@@ -453,16 +453,16 @@ time_x = view_xview[view_current] + hud_x_current + 58;
 time_y = view_yview[view_current] + hud_y + 18;
 
 draw_set_font(global.font_time_s4e2);
-draw_text(time_x, time_y, stage_get_timer() div 3600);
+draw_text(time_x, time_y, stage_get_time() div 3600);
 draw_text(time_x + 10, time_y, ":");
-draw_text(time_x + 16, time_y, string_pad((stage_get_timer() div 60) mod 60, 2));
+draw_text(time_x + 16, time_y, string_pad((stage_get_time() div 60) mod 60, 2));
 draw_text(time_x + 35, time_y, ";");
-draw_text(time_x + 44, time_y, string_pad(floor(stage_get_timer() * 1.667) mod 100, 2));
+draw_text(time_x + 44, time_y, string_pad(floor(stage_get_time() * 1.667) mod 100, 2));
 
 // Rings:
 draw_set_font(global.font_hud_s4e2);
 
-if ((sync_rate(game_get_timer(), 8, 2) && stage_get_rings() == 0) || stage_get_rings() > 0)
+if ((sync_rate(game_get_time(), 8, 2) && stage_get_rings() == 0) || stage_get_rings() > 0)
 {
     // Flash red:
     if (stage_get_rings() == 0)

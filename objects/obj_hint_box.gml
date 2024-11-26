@@ -62,7 +62,7 @@ if (instance_exists(player_handle))
 }
 
 // Float:
-draw_y = hover(y, floor(game_get_timer()) * 0.03, 2);
+draw_y = hover(y, floor(game_get_time()) * 0.03, 2);
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1

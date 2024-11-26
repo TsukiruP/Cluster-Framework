@@ -3,5 +3,5 @@
 
 with (mgr_game)
 {
-    game_timer = argument0;
+    game_speed = argument0;
 }

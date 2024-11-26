@@ -8,7 +8,7 @@ with (mgr_game)
     {
         if (argument[0] == true)
         {
-            checkpoint_timer = -1;
+            checkpoint_time = -1;
             checkpoint_x = -1;
             checkpoint_y = -1;
         }
@@ -17,7 +17,7 @@ with (mgr_game)
     }
 
     // Set checkpoint:
-    checkpoint_timer = floor(stage_get_timer());
+    checkpoint_time = floor(stage_get_time());
     checkpoint_x = floor(other.x);
     checkpoint_y = floor(other.y);
 }

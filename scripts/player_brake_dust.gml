@@ -1,7 +1,7 @@
 /// player_brake_dust()
 // Creates the brake effect every 4 frames.
 
-if (animation_timer mod 4 == 0)
+if (animation_time mod 4 == 0)
 {
     var sine, csine;
 

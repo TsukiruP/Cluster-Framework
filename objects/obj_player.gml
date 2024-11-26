@@ -122,7 +122,7 @@ peel_out_alarm = 30;
 // Classic variables:
 clock_up_state = 0;
 clock_up_alarm = 0;
-clock_up_timer = 0;
+clock_up_time = 0;
 clock_up_duration = 900;
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -210,7 +210,7 @@ applies_to=self
 /// Water Initialization
 
 // Surface variables:
-surface_timer = 0;
+surface_time = 0;
 
 // Underwater variables:
 underwater = false;
@@ -239,7 +239,7 @@ animation_moment = 0;
 animation_finished = false;
 animation_trigger = false;
 animation_skip = false;
-animation_timer = 0;
+animation_time = 0;
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -611,13 +611,13 @@ else if (y < obj_water_surface.y && yprevious > obj_water_surface.y)
     sfx_play("snd_splash", true);
 }
 
-// Surface timer:
+// Surface time:
 if (on_surface == true && abs(x_speed) > 0)
 {
-    surface_timer += 1;
+    surface_time += 1;
     
     // Splash:
-    if (surface_timer mod 9 == 0)
+    if (surface_time mod 9 == 0)
     {
         if (abs(x_speed) >= 4.50)
         {
@@ -631,7 +631,7 @@ if (on_surface == true && abs(x_speed) > 0)
 }
 else
 {
-    surface_timer = 0;
+    surface_time = 0;
 }
 /*"/*'/**//* YYD ACTION
 lib_id=1

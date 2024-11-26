@@ -21,10 +21,10 @@ for (i = INP_UP; i <= INP_HELP; i += 1)
     }
 }
 
-// Input timers:
+// Input times:
 for (i = INP_UP; i <= INP_RIGHT; i += 1)
 {
-    input_timer[i] = 0;
+    input_time[i] = 0;
 }
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -474,7 +474,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Timers
+/// Time
 
 var i;
 
@@ -483,15 +483,15 @@ for (i = INP_UP; i <= INP_RIGHT; i += 1)
     // Increment:
     if (input_user[i, CHECK_HELD] == true)
     {
-        input_timer[i] += 1;
+        input_time[i] += 1;
     }
 
     // Reset:
     else
     {
-        if (input_timer[i] != 0)
+        if (input_time[i] != 0)
         {
-            input_timer[i] = 0;
+            input_time[i] = 0;
         }
     }
 }

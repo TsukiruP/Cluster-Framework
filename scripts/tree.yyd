@@ -16,7 +16,7 @@
 			|game_get_debug
 			|game_set_debug
 		+Checkpoint
-			|game_checkpoint_get_timer
+			|game_checkpoint_get_time
 			|game_checkpoint_get_x
 			|game_checkpoint_get_y
 			|game_checkpoint_set
@@ -48,7 +48,7 @@
 			|game_get_player_count
 			|game_get_speed
 			|game_set_speed
-			|game_get_timer
+			|game_get_time
 			|game_get_interface_color
 			|game_get_save_count
 	+Screen
@@ -64,7 +64,7 @@
 	+Input
 		|gamepad_get_check
 		|input_get_check
-		|input_get_timer
+		|input_get_time
 	+Text
 		|string_bool
 		|string_key
@@ -89,9 +89,9 @@
 			|stage_add_score
 			|stage_get_score
 		+Timer
-			|stage_get_timer
-			|stage_set_timer
-			|stage_set_timer_allow
+			|stage_get_time
+			|stage_set_time
+			|stage_set_time_allow
 		+Rings
 			|stage_add_rings
 			|stage_get_rings

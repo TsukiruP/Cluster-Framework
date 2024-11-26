@@ -142,7 +142,7 @@ switch (argument0)
             }
 
             // Time out:
-            if (animation_timer >= 32)
+            if (animation_time >= 32)
             {
                 // Get up:
                 if (on_ground == true)

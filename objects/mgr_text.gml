@@ -208,8 +208,8 @@ if (text_clear == false)
             scroll_max = ((log_height - log_scroll) > (screen_get_height() - log_spacing));
         }
 
-        scroll_up = ((input_get_check(INP_UP, CHECK_PRESSED) || input_get_timer(INP_UP, 30)) && scroll_min > 0);
-        scroll_down = ((input_get_check(INP_DOWN, CHECK_PRESSED) || input_get_timer(INP_DOWN, 30)) && scroll_max);
+        scroll_up = ((input_get_check(INP_UP, CHECK_PRESSED) || input_get_time(INP_UP, 30)) && scroll_min > 0);
+        scroll_down = ((input_get_check(INP_DOWN, CHECK_PRESSED) || input_get_time(INP_DOWN, 30)) && scroll_max);
         scroll_direction = scroll_down - scroll_up;
 
         // Textbox scroll:

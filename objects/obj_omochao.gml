@@ -75,7 +75,7 @@ if (player_handle == noone && sprite_index != spr_omochao_idle)
 if (sprite_index == spr_omochao_idle)
 {
     // Image index:
-    image_index = sync_rate(game_get_timer(), 3, sprite_get_number(sprite_index));
+    image_index = sync_rate(game_get_time(), 3, sprite_get_number(sprite_index));
 
     // Draw coordinates:
     draw_x = x;

@@ -22,14 +22,14 @@ if (ctl_index != player_get_animation(animation_current, animation_variant))
     // Reset trigger:
     animation_trigger = false;
 
-    // Reset timer:
-    animation_timer = 0;
+    // Reset time:
+    animation_time = 0;
 }
 
 // Execute custom timeline:
 ctl_update();
 script_execute(ctl_index);
-animation_timer += 1;
+animation_time += 1;
 
 // Reset skip:
 if (animation_skip == true)

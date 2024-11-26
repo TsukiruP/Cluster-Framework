@@ -25,7 +25,7 @@ camera_x_shift = 0;
 camera_y_shift = 0;
 camera_speed_cap = 16;
 camera_lag_alarm = 0;
-camera_look_timer = 0;
+camera_look_alarm = 120;
 camera_position_distance = 0;
 
 // Border variables:
@@ -77,13 +77,13 @@ if (instance_exists(stage_get_player(0)))
 
         if (look_direction != 0)
         {
-            // Look timer:
-            if (camera_look_timer < 120)
+            // Look alarm:
+            if (camera_look_alarm > 0)
             {
-                camera_look_timer += 1;
+                camera_look_alarm -= 1;
             }
 
-            if (camera_look_timer == 120)
+            if (camera_look_alarm == 0)
             {
                 switch (look_direction)
                 {
@@ -115,9 +115,9 @@ if (instance_exists(stage_get_player(0)))
                 camera_y_shift = max(abs(camera_y_shift) - 2, 0) * sign(camera_y_shift);
             }
 
-            if (camera_look_timer != 0)
+            if (camera_look_alarm != 120)
             {
-                camera_look_timer = 0;
+                camera_look_alarm = 120;
             }
         }
 
@@ -136,45 +136,6 @@ if (instance_exists(stage_get_player(0)))
                 camera_x_shift = max(abs(camera_x_shift) - 2, 0) * sign(camera_x_shift);
             }
         }
-
-        /*
-        // Look timer:
-        if (abs(camera_look_timer) != 120)
-        {
-            camera_look_timer += look_direction;
-        }
-
-        // Reset:
-        if (sign(camera_look_timer) != look_direction)
-        {
-            camera_look_timer = 0;
-        }
-
-        // Shift camera upwards:
-        if (camera_y_shift > -104 && camera_look_timer <= -120)
-        {
-            camera_y_shift = max(camera_y_shift - 2, -104);
-        }
-
-        // Shift camera downwards:
-        else if (camera_y_shift < 88 && camera_look_timer >= 120)
-        {
-            camera_y_shift = min(camera_y_shift + 2, 88);
-        }
-
-        // Center camera:
-        else if (camera_y_shift != 0)
-        {
-            camera_y_shift = max(abs(camera_y_shift) - 2, 0) * sign(camera_y_shift);
-        }
-
-        // Camera pan:
-        //if ((focus_handle.state_state == ACTION_PEEL_OUT && focus_handle.peel_out_timer > 15) || focus_handle.peel_out_flag == true) {
-        //camera_x_shift = approach(camera_x_shift, 64 * focus_handle.image_xscale, 2);
-        //} else {
-        camera_x_shift = max(0, abs(camera_x_shift - 2) * sign(camera_x_shift));
-        //}
-        */
     }
 }
 /*"/*'/**//* YYD ACTION
