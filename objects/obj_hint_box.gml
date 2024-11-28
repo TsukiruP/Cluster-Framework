@@ -48,13 +48,13 @@ if (instance_exists(player_handle))
     with (player_handle)
     {
         // Clear text:
-        if (mgr_text.text_clear == true && animation_current == "look")
+        if (mgr_text.body_clear == true && animation_current == "look")
         {
             player_set_animation("look_end");
         }
 
         // Reset hint:
-        if (mgr_text.text_box_alpha == 0 && animation_current == "stand")
+        if (mgr_text.body_box_alpha == 0 && animation_current == "stand")
         {
             hint_allow = true;
         }

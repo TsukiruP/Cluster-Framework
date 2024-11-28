@@ -25,40 +25,40 @@ draw_set_font(global.font_system);
 
 font_height = string_height("Test");
 
-// Text variables:
-text_hide = false;
-text_overflow = false;
-text_clear = false;
+// Body variables:
+body_hide = false;
+body_overflow = false;
+body_clear = false;
 
-text_message = "";
-text_length = 0;
-text_current = 0;
-text_target = 0;
-text_x = 42;
-text_y = 70;
-text_height = 0;
+body_message = "";
+body_length = 0;
+body_current = 0;
+body_target = 0;
+body_x = 42;
+body_y = 70;
+body_height = 0;
 
-text_alpha = 0;
-text_alpha_rate = 0.05;
-text_box_alpha = 0;
+body_alpha = 0;
+body_alpha_rate = 0.05;
+body_box_alpha = 0;
 
-// Text scroll variables:
-text_scroll_complete = false;
+// Body scroll variables:
+body_scroll_complete = false;
 
-text_scroll_current = 0;
-text_scroll_target = 0;
-text_scroll_max = 3;
-text_scroll_rate = font_height * text_scroll_max;
+body_scroll_current = 0;
+body_scroll_target = 0;
+body_scroll_max = 3;
+body_scroll_rate = font_height * body_scroll_max;
 
-// Topic variables:
-topic_complete = false;
+// Subject variables:
+subject_complete = false;
 
-topic_message = "";
-topic_height = 0;
-topic_lines = 0;
+subject_message = "";
+subject_height = 0;
+subject_lines = 0;
 
-topic_alpha = 0;
-topic_box_alpha = 0;
+subject_alpha = 0;
+subject_box_alpha = 0;
 
 // Log variables:
 log_hide = true;
@@ -95,43 +95,43 @@ applies_to=self
 /// Inputs
 
 // Skip:
-if (text_clear == false && log_hide == true && (text_alpha == 1 || topic_alpha == 1) && input_get_check(INP_START, CHECK_PRESSED))
+if (body_clear == false && log_hide == true && (body_alpha == 1 || subject_alpha == 1) && input_get_check(INP_START, CHECK_PRESSED))
 {
-    text_clear = true;
+    body_clear = true;
 }
 
-if (text_clear == false)
+if (body_clear == false)
 {
     // Hide:
-    if (!game_ispaused(mnu_pause) && (text_message != "" || topic_message != "" || log_alpha != 0) && input_get_check(INP_SELECT, CHECK_PRESSED)) text_hide = !text_hide;
+    if (!game_ispaused(mnu_pause) && (body_message != "" || subject_message != "" || log_alpha != 0) && input_get_check(INP_SELECT, CHECK_PRESSED)) body_hide = !body_hide;
 
-    if (text_hide == false)
+    if (body_hide == false)
     {
         var scroll_min, scroll_max, scroll_up, scroll_down, scroll_direction;
 
         // Height:
         draw_set_font(global.font_system);
 
-        topic_height = string_height_ext(topic_message, font_height, screen_get_width() - (text_x * 2));
-        topic_lines = (topic_height / font_height) - 1;
-        text_height = string_height_ext(text_message[text_current], font_height, screen_get_width() - (text_x * 2));
-        log_height = string_height_ext(log_message, font_height, screen_get_width() - text_x);
+        subject_height = string_height_ext(subject_message, font_height, screen_get_width() - (body_x * 2));
+        subject_lines = (subject_height / font_height) - 1;
+        body_height = string_height_ext(body_message[body_current], font_height, screen_get_width() - (body_x * 2));
+        log_height = string_height_ext(log_message, font_height, screen_get_width() - body_x);
 
         // Overflow:
-        if (((text_height / font_height) - (text_scroll_current / font_height) <= text_scroll_max) && (text_scroll_current == text_scroll_target))
+        if (((body_height / font_height) - (body_scroll_current / font_height) <= body_scroll_max) && (body_scroll_current == body_scroll_target))
         {
-            text_overflow = false;
+            body_overflow = false;
         }
         else
         {
-            if (text_scroll_complete == false)
+            if (body_scroll_complete == false)
             {
-                text_overflow = true;
+                body_overflow = true;
             }
         }
 
         // Open log:
-        if ((game_ispaused(mnu_pause) || text_message != "" || topic_message != "") && log_message != "" && (log_alpha == 0 || log_alpha == 1) && input_get_check(INP_HELP, CHECK_PRESSED))
+        if ((game_ispaused(mnu_pause) || body_message != "" || subject_message != "") && log_message != "" && (log_alpha == 0 || log_alpha == 1) && input_get_check(INP_HELP, CHECK_PRESSED))
         {
             log_hide = !log_hide;
 
@@ -147,28 +147,28 @@ if (text_clear == false)
             // Confirm:
             if (input_get_check(INP_CONFIRM, CHECK_PRESSED))
             {
-                // Topic:
-                if (topic_complete == false && topic_message != "" && topic_alpha == 1)
+                // Subject:
+                if (subject_complete == false && subject_message != "" && subject_alpha == 1)
                 {
-                    topic_complete = true;
+                    subject_complete = true;
                 }
 
-                // Text:
-                else if (text_current == text_target && text_alpha == 1)
+                // Body:
+                else if (body_current == body_target && body_alpha == 1)
                 {
                     // Advance text:
-                    if (text_overflow == false)
+                    if (body_overflow == false)
                     {
                         // Update text target:
-                        if (text_target != text_length)
+                        if (body_target != body_length)
                         {
-                            text_target += 1;
+                            body_target += 1;
                         }
 
                         // Clear text:
                         else
                         {
-                            text_clear = true;
+                            body_clear = true;
                         }
                     }
 
@@ -176,10 +176,10 @@ if (text_clear == false)
                     else
                     {
                         // Update scroll target:
-                        if (text_scroll_complete == true)
+                        if (body_scroll_complete == true)
                         {
-                            text_scroll_target += text_scroll_rate;
-                            text_scroll_complete = false;
+                            body_scroll_target += body_scroll_rate;
+                            body_scroll_complete = false;
                         }
                     }
                 }
@@ -199,8 +199,8 @@ if (text_clear == false)
         // Manual Scroll:
         if (log_hide == true)
         {
-            scroll_min = text_scroll_current;
-            scroll_max = (text_scroll_current < text_scroll_target);
+            scroll_min = body_scroll_current;
+            scroll_max = (body_scroll_current < body_scroll_target);
         }
         else
         {
@@ -213,9 +213,9 @@ if (text_clear == false)
         scroll_direction = scroll_down - scroll_up;
 
         // Textbox scroll:
-        if (log_hide == true && text_scroll_target != 0 && (text_scroll_complete == true))
+        if (log_hide == true && body_scroll_target != 0 && (body_scroll_complete == true))
         {
-            text_scroll_current += scroll_direction;
+            body_scroll_current += scroll_direction;
         }
 
         // Log scroll:
@@ -227,28 +227,28 @@ if (text_clear == false)
 }
 
 // Automatic Scroll:
-if (text_overflow == true)
+if (body_overflow == true)
 {
-    if (text_scroll_complete == false)
+    if (body_scroll_complete == false)
     {
-        if (text_scroll_current < text_scroll_target)
+        if (body_scroll_current < body_scroll_target)
         {
-            text_scroll_current += 1;
+            body_scroll_current += 1;
         }
         else
         {
-            text_scroll_current = text_scroll_target;
-            text_scroll_complete = true;
+            body_scroll_current = body_scroll_target;
+            body_scroll_complete = true;
         }
     }
 }
 else
 {
-    if (text_scroll_current == text_scroll_target && text_scroll_target != 0)
+    if (body_scroll_current == body_scroll_target && body_scroll_target != 0)
     {
-        if (text_scroll_complete != true)
+        if (body_scroll_complete != true)
         {
-            text_scroll_complete = true;
+            body_scroll_complete = true;
         }
     }
 }
@@ -258,64 +258,64 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Topic Alpha
+/// Subject Alpha
 
-var topic_box_alpha_rate;
+var subject_box_alpha_rate;
 
 // Box alpha rate:
-topic_box_alpha_rate = game_setting_get("interface_alpha") / 20;
+subject_box_alpha_rate = game_setting_get("interface_alpha") / 20;
 
-// Fade in topic:
-if (text_clear == false && topic_complete == false && topic_message != "")
+// Fade in subject:
+if (body_clear == false && subject_complete == false && subject_message != "")
 {
     // Bar:
-    if (topic_box_alpha < game_setting_get("interface_alpha"))
+    if (subject_box_alpha < game_setting_get("interface_alpha"))
     {
-        topic_box_alpha += topic_box_alpha_rate;
+        subject_box_alpha += subject_box_alpha_rate;
     }
     else
     {
-        topic_box_alpha = game_setting_get("interface_alpha");
+        subject_box_alpha = game_setting_get("interface_alpha");
     }
 
-    // Topic:
-    if (topic_alpha < 1)
+    // Subject:
+    if (subject_alpha < 1)
     {
         // Add topic to log:
-        if (topic_alpha == 0)
+        if (subject_alpha == 0)
         {
-            log_message += topic_message + "#";
+            log_message += subject_message + "#";
         }
 
-        topic_alpha += text_alpha_rate;
+        subject_alpha += body_alpha_rate;
     }
     else
     {
-        topic_alpha = 1;
+        subject_alpha = 1;
     }
 }
 
-// Fade out topic:
+// Fade out subject:
 else
 {
     // Bar:
-    if (topic_box_alpha > 0)
+    if (subject_box_alpha > 0)
     {
-        topic_box_alpha -= topic_box_alpha_rate;
+        subject_box_alpha -= subject_box_alpha_rate;
     }
     else
     {
-        topic_box_alpha = 0;
+        subject_box_alpha = 0;
     }
 
-    // Topic:
-    if (topic_alpha > 0)
+    // Subject:
+    if (subject_alpha > 0)
     {
-        topic_alpha -= text_alpha_rate;
+        subject_alpha -= body_alpha_rate;
     }
     else
     {
-        topic_alpha = 0;
+        subject_alpha = 0;
     }
 }
 /*"/*'/**//* YYD ACTION
@@ -323,60 +323,60 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Text Alpha
+/// Body Alpha
 
-var text_box_alpha_rate;
+var body_box_alpha_rate;
 
 // Box alpha rate:
-text_box_alpha_rate = game_setting_get("interface_alpha") / 20;
+body_box_alpha_rate = game_setting_get("interface_alpha") / 20;
 
 // Fade in text:
-if (text_clear == false && text_message != "" && (topic_complete == true || topic_message == ""))
+if (body_clear == false && body_message != "" && (subject_complete == true || subject_message == ""))
 {
     // Box:
-    if (text_box_alpha < game_setting_get("interface_alpha"))
+    if (body_box_alpha < game_setting_get("interface_alpha"))
     {
-        text_box_alpha += text_box_alpha_rate;
+        body_box_alpha += body_box_alpha_rate;
     }
     else
     {
-        text_box_alpha = game_setting_get("interface_alpha");
+        body_box_alpha = game_setting_get("interface_alpha");
     }
 
     // Text:
-    if (text_current == text_target)
+    if (body_current == body_target)
     {
-        if (text_alpha < 1)
+        if (body_alpha < 1)
         {
             // Add text to log:
-            if (text_alpha == 0) log_message += text_message[text_current] + "#";
+            if (body_alpha == 0) log_message += body_message[body_current] + "#";
 
-            text_alpha += text_alpha_rate;
+            body_alpha += body_alpha_rate;
         }
         else
         {
-            text_alpha = 1;
+            body_alpha = 1;
         }
     }
 
     // Fade out text:
     else
     {
-        if (text_alpha > -0.5)
+        if (body_alpha > -0.5)
         {
-            text_alpha -= text_alpha_rate;
+            body_alpha -= body_alpha_rate;
 
-            if (text_alpha == -0.5)
+            if (body_alpha == -0.5)
             {
-                text_current = text_target;
+                body_current = body_target;
 
-                text_scroll_current = 0;
-                text_scroll_target = 0;
-                text_scroll_complete = false;
+                body_scroll_current = 0;
+                body_scroll_target = 0;
+                body_scroll_complete = false;
 
-                text_alpha = 0;
+                body_alpha = 0;
 
-                text_overflow = false;
+                body_overflow = false;
             }
         }
     }
@@ -386,42 +386,42 @@ if (text_clear == false && text_message != "" && (topic_complete == true || topi
 else
 {
     // Box:
-    if (text_box_alpha > 0)
+    if (body_box_alpha > 0)
     {
-        text_box_alpha -= text_box_alpha_rate;
+        body_box_alpha -= body_box_alpha_rate;
     }
     else
     {
-        text_box_alpha = 0;
+        body_box_alpha = 0;
     }
 
     // Text:
-    if (text_alpha > 0)
+    if (body_alpha > 0)
     {
-        text_alpha -= text_alpha_rate;
+        body_alpha -= body_alpha_rate;
     }
     else
     {
-        text_alpha = 0;
+        body_alpha = 0;
     }
 }
 
-if (text_clear == true && (text_message != "" || topic_message != "") && text_alpha == 0 && topic_alpha == 0)
+if (body_clear == true && (body_message != "" || subject_message != "") && body_alpha == 0 && subject_alpha == 0)
 {
-    text_hide = false;
-    text_clear = false;
+    body_hide = false;
+    body_clear = false;
 
-    text_message = "";
-    text_length = 0;
-    text_current = 0;
-    text_target = 0;
+    body_message = "";
+    body_length = 0;
+    body_current = 0;
+    body_target = 0;
 
-    text_scroll_current = 0;
-    text_scroll_target = 0;
-    text_scroll_complete = false;
+    body_scroll_current = 0;
+    body_scroll_target = 0;
+    body_scroll_complete = false;
 
-    topic_complete = false;
-    topic_message = "";
+    subject_complete = false;
+    subject_message = "";
 
     log_hide = true;
     log_message += "#";
@@ -448,7 +448,7 @@ if (log_hide == false)
     // Log:
     if (log_alpha < 1)
     {
-        log_alpha += text_alpha_rate;
+        log_alpha += body_alpha_rate;
     }
     else
     {
@@ -470,7 +470,7 @@ else
     // Log:
     if (log_alpha > 0)
     {
-        log_alpha -= text_alpha_rate;
+        log_alpha -= body_alpha_rate;
     }
     else
     {
@@ -494,10 +494,10 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Draw Topic
+/// Draw Subject
 
 // Don't draw if hidden:
-if (text_hide == true)
+if (body_hide == true)
 {
     exit;
 }
@@ -506,16 +506,16 @@ if (text_hide == true)
 d3d_set_viewport(0, 0, screen_get_width(), screen_get_height());
 
 // Box:
-draw_set1(game_get_interface_color(), topic_box_alpha);
-draw_rectangle(0, (screen_get_height() / 2) - 9 - ((font_height / 2) * topic_lines), screen_get_width(), (screen_get_height() / 2) + 10 + ((font_height / 2) * topic_lines), false);
+draw_set1(game_get_interface_color(), subject_box_alpha);
+draw_rectangle(0, (screen_get_height() / 2) - 9 - ((font_height / 2) * subject_lines), screen_get_width(), (screen_get_height() / 2) + 10 + ((font_height / 2) * subject_lines), false);
 
-// Topic:
+// Font:
 draw_set_font(global.font_system);
-draw_set1(c_white, topic_alpha);
+draw_set1(c_white, subject_alpha);
 
-// Topic:
+// Subject:
 draw_set2(fa_center, fa_middle);
-draw_text(screen_get_width() / 2, screen_get_height() / 2, topic_message);
+draw_text(screen_get_width() / 2, screen_get_height() / 2, subject_message);
 
 // Reset:
 draw_reset();
@@ -528,7 +528,7 @@ applies_to=self
 /// Draw Text
 
 // Don't draw if hidden:
-if (text_hide == true)
+if (body_hide == true)
 {
     exit;
 }
@@ -539,25 +539,25 @@ var textbox_bottom, texbox_height;
 textbox_bottom = screen_get_height() - 19;
 textbox_height = 59;
 
-draw_set1(game_get_interface_color(), text_box_alpha);
+draw_set1(game_get_interface_color(), body_box_alpha);
 draw_rectangle(0, textbox_bottom - textbox_height, screen_get_width(), textbox_bottom, false);
 
 // Viewport:
-d3d_set_viewport(0, screen_get_height() - text_y, screen_get_width(), font_height * text_scroll_max);
+d3d_set_viewport(0, screen_get_height() - body_y, screen_get_width(), font_height * body_scroll_max);
 
 // Font:
 draw_set_font(global.font_system);
-draw_set1(c_white, text_alpha);
+draw_set1(c_white, body_alpha);
 
-// Text:
+// Body:
 draw_set2(fa_left, fa_top);
-draw_text_ext(text_x, -text_scroll_current, text_message[text_current], font_height, screen_get_width() - (text_x * 2));
+draw_text_ext(body_x, -body_scroll_current, body_message[body_current], font_height, screen_get_width() - (body_x * 2));
 
 // Arrow:
 draw_set_alpha(1);
 d3d_set_viewport(0, 0, screen_get_width(), screen_get_height());
 
-if (text_overflow == true && text_alpha == 1 && text_scroll_complete == true)
+if (body_overflow == true && body_alpha == 1 && body_scroll_complete == true)
 {
     draw_sprite(fnt_system, 95, (screen_get_width() / 2) - 6, screen_get_height() - 29);
 }
@@ -573,7 +573,7 @@ applies_to=self
 /// Draw Log
 
 // Don't draw if hidden:
-if (text_hide == true)
+if (body_hide == true)
 {
     exit;
 }
@@ -591,7 +591,7 @@ draw_set1(c_white, log_alpha);
 
 // Log:
 draw_set2(fa_left, fa_top);
-draw_text_ext(text_x / 2, -log_scroll, log_message, font_height, screen_get_width() - text_x);
+draw_text_ext(body_x / 2, -log_scroll, log_message, font_height, screen_get_width() - body_x);
 
 // Reset:
 draw_reset();
