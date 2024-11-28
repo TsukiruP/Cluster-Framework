@@ -99,7 +99,7 @@ if (transition_alarm >= 0)
             // Open debug topic:
             if (debug == true)
             {
-                text_set_subject("Debug");
+                text_subject_set("Debug");
             }
 
             // Close debug topic:

@@ -48,7 +48,7 @@ if (instance_exists(player_handle))
     with (player_handle)
     {
         // Clear text:
-        if (mgr_text.text_clear == true && animation_current == "look")
+        if (text_get_clear() == true && animation_current == "look")
         {
             player_set_animation("look_end");
         }

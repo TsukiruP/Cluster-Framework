@@ -72,8 +72,9 @@
 			|input_get_check
 			|input_get_time
 		+Text
-			|text_set_body
-			|text_set_subject
+			|text_get_clear
+			|text_body_set
+			|text_subject_set
 		+Animation
 			|animation_add
 			|animation_get

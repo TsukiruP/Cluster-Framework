@@ -77,7 +77,7 @@ draw_background_tiled_horizontal_part_yscale
 effect_create
 
 player_reaction_spring
-text_set_subject
+text_subject_set
 screen_set_size
 player_get_item
 credits
@@ -143,7 +143,7 @@ ctl_spin_charge
 ctl_brake
 fade_reverse
 wrap
-text_set_body
+text_body_set
 ctl_sonic_omochao
 game_keyboard_get
 ctl_explosion_small
@@ -280,3 +280,4 @@ stage_get_player
 stage_set_player
 stage_get_pause_allow
 stage_set_pause_allow
+text_get_clear

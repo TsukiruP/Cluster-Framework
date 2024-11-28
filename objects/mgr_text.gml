@@ -34,7 +34,7 @@ text_alpha_rate = 0.05;
 // Body variables:
 body_overflow = false;
 
-body_string = "";
+body_list = ds_list_create();
 body_length = 0;
 body_current = 0;
 body_target = 0;
@@ -90,7 +90,7 @@ if (text_clear == false && log_hide == true && (body_alpha == 1 || subject_alpha
 if (text_clear == false)
 {
     // Hide:
-    if (!game_ispaused(mnu_pause) && (body_string != "" || subject_string != "" || log_alpha != 0) && input_get_check(INP_HIDE, CHECK_PRESSED))
+    if (!game_ispaused(mnu_pause) && (!ds_list_empty(body_list) || subject_string != "" || log_alpha != 0) && input_get_check(INP_HIDE, CHECK_PRESSED))
     {
         text_hide = !text_hide;
     }
@@ -105,7 +105,7 @@ if (text_clear == false)
         subject_height = string_height_ext(subject_string, font_height, screen_get_width() - (body_x * 2));
         subject_lines = (subject_height / font_height) - 1;
 
-        body_height = string_height_ext(body_string[body_current], font_height, screen_get_width() - (body_x * 2));
+        body_height = string_height_ext(ds_list_find_value(body_list, body_current), font_height, screen_get_width() - (body_x * 2));
 
         log_height = string_height_ext(log_string, font_height, screen_get_width() - body_x);
 
@@ -123,7 +123,7 @@ if (text_clear == false)
         }
 
         // Open log:
-        if ((game_ispaused(mnu_pause) || body_string != "" || subject_string != "") && log_string != "" && (log_alpha == 0 || log_alpha == 1) && input_get_check(INP_LOG, CHECK_PRESSED))
+        if ((game_ispaused(mnu_pause) || !ds_list_empty(body_list) || subject_string != "") && log_string != "" && (log_alpha == 0 || log_alpha == 1) && input_get_check(INP_LOG, CHECK_PRESSED))
         {
             log_hide = !log_hide;
 
@@ -323,7 +323,7 @@ var body_box_alpha_rate;
 body_box_alpha_rate = game_setting_get("interface_alpha") / 20;
 
 // Fade in text:
-if (text_clear == false && body_string != "" && (subject_complete == true || subject_string == ""))
+if (text_clear == false && !ds_list_empty(body_list) && (subject_complete == true || subject_string == ""))
 {
     // Box:
     if (body_box_alpha < game_setting_get("interface_alpha"))
@@ -341,7 +341,10 @@ if (text_clear == false && body_string != "" && (subject_complete == true || sub
         if (body_alpha < 1)
         {
             // Add text to log:
-            if (body_alpha == 0) log_string += body_string[body_current] + "#";
+            if (body_alpha == 0)
+            {
+                log_string += ds_list_find_value(body_list, body_current) + "#";
+            }
 
             body_alpha += text_alpha_rate;
         }
@@ -398,12 +401,12 @@ else
     }
 }
 
-if (text_clear == true && (body_string != "" || subject_string != "") && body_alpha == 0 && subject_alpha == 0)
+if (text_clear == true && (!ds_list_empty(body_list) || subject_string != "") && body_alpha == 0 && subject_alpha == 0)
 {
     text_hide = false;
     text_clear = false;
 
-    body_string = "";
+    ds_list_clear(body_list);
     body_length = 0;
     body_current = 0;
     body_target = 0;
@@ -480,6 +483,14 @@ applies_to=self
 font_delete(global.font_system);
 font_delete(global.font_title_card);
 font_delete(global.font_hud);
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Release Body List
+
+ds_list_destroy(body_list);
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -543,7 +554,7 @@ draw_set1(c_white, body_alpha);
 
 // Body:
 draw_set2(fa_left, fa_top);
-draw_text_ext(body_x, -body_scroll_current, body_string[body_current], font_height, screen_get_width() - (body_x * 2));
+draw_text_ext(body_x, -body_scroll_current, ds_list_find_value(body_list, body_current), font_height, screen_get_width() - (body_x * 2));
 
 // Arrow:
 draw_set_alpha(1);

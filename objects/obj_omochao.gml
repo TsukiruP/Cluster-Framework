@@ -45,7 +45,7 @@ if (instance_exists(player_handle))
         with (player_handle)
         {
             // Clear text:
-            if (mgr_text.text_clear == true && animation_current == "omochao")
+            if (text_get_clear() && animation_current == "omochao")
             {
                 player_set_animation("omochao_end");
             }

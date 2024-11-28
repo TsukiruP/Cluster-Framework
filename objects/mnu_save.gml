@@ -236,4 +236,4 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-text_set_body("This is a test!", "Test test test");
+text_body_set("This is a test!", "Test test test");
