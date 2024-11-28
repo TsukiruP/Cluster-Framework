@@ -56,7 +56,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Menu
+/// Inputs
 
 // Exit if text is active:
 if (game_ispaused(mgr_text))
@@ -76,7 +76,7 @@ if (menu_lock == true)
 if (pause_delay == 0)
 {
     // Hide pause:
-    if (input_get_check(INP_SELECT, CHECK_PRESSED))
+    if (input_get_check(INP_HIDE, CHECK_PRESSED))
     {
         pause_hide += 1;
         pause_hide = wrap(pause_hide, 0, 1 + (instance_exists(mgr_transition) || game_setting_get("misc_hud") != 0));

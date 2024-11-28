@@ -35,7 +35,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Menu
+/// Inputs
 
 // Exit if text is active:
 if (game_ispaused(mgr_text) || instance_exists(mgr_transition))
@@ -230,3 +230,10 @@ for (i = 0; i < page_count; i += 1)
 
 // Reset:
 draw_reset();
+#define KeyPress_32
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+text_set_body("This is a test!", "Test test test");

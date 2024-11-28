@@ -26,4 +26,5 @@ ds_list_add(gamepad_list[argument0], PAD_START); // Start
 ds_list_add(gamepad_list[argument0], PAD_SELECT); // Select
 ds_list_add(gamepad_list[argument0], PAD_FACE1); // Confirm
 ds_list_add(gamepad_list[argument0], PAD_FACE2); // Cancel
-ds_list_add(gamepad_list[argument0], PAD_FACE4); // Help
+ds_list_add(gamepad_list[argument0], PAD_FACE3); // Log
+ds_list_add(gamepad_list[argument0], PAD_FACE4); // Hide

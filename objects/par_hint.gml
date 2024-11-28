@@ -27,5 +27,5 @@ applies_to=self
 switch (hint_id)
 {
     default:
-        text_set_message("This message is a test!");
+        text_set_body("This message is a test!");
 }

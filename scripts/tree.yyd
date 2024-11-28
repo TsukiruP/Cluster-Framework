@@ -72,12 +72,8 @@
 			|input_get_check
 			|input_get_time
 		+Text
-			|string_bool
-			|string_key
-			|char_pad
-			|string_input
-			|text_set_message
-			|topic_set_message
+			|text_set_body
+			|text_set_subject
 		+Animation
 			|animation_add
 			|animation_get
@@ -234,6 +230,11 @@
 				|draw_sprite_tiled_horizontal_yscale
 				|draw_sprite_tiled_vertical
 			|draw_background_tiled_view
+		+Text
+			|string_bool
+			|string_key
+			|char_pad
+			|string_input
 		+Misc.
 			|hover
 			|pick_offset
