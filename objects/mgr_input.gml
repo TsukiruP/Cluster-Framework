@@ -9,7 +9,7 @@ applies_to=self
 var i, j;
 
 // User & keyboard inputs:
-for (i = INP_UP; i <= INP_HIDE; i += 1)
+for (i = INP_UP; i <= INP_LOG; i += 1)
 {
     for (j = CHECK_PRESSED; j <= CHECK_HELD; j += 1)
     {
@@ -51,7 +51,7 @@ for (i = PAD_FACE1; i <= PAD_DOWN; i += 1)
 // Gamepad inputs:
 for (i = 0; i < game_get_player_count(); i += 1)
 {
-    for (j = INP_UP; j <= INP_HIDE; j += 1)
+    for (j = INP_UP; j <= INP_LOG; j += 1)
     {
         for (k = CHECK_PRESSED; k <= CHECK_HELD; k += 1)
         {
@@ -403,7 +403,7 @@ applies_to=self
 var i, j, k;
 
 // Keyboard:
-for (i = INP_UP; i <= INP_HIDE; i += 1)
+for (i = INP_UP; i <= INP_LOG; i += 1)
 {
     // Held:
     input_keyboard[i, CHECK_HELD] = keyboard_check(game_keyboard_get(i));
@@ -425,7 +425,7 @@ for (i = 0; i < game_get_player_count(); i += 1)
 
     if (gamepad_id > -1 && (game_setting_get("input_gamepad_focus") || (!game_setting_get("input_gamepad_focus") && window_has_focus())))
     {
-        for (j = INP_UP; j <= INP_HIDE; j += 1)
+        for (j = INP_UP; j <= INP_LOG; j += 1)
         {
             for (k = CHECK_PRESSED; k <= CHECK_HELD; k += 1)
             {
@@ -447,7 +447,7 @@ for (i = 0; i < game_get_player_count(); i += 1)
     // Reset:
     else
     {
-        for (j = INP_UP; j <= INP_HIDE; j += 1)
+        for (j = INP_UP; j <= INP_LOG; j += 1)
         {
             for (k = CHECK_PRESSED; k <= CHECK_HELD; k += 1)
             {
@@ -458,7 +458,7 @@ for (i = 0; i < game_get_player_count(); i += 1)
 }
 
 // User:
-for (i = INP_UP; i <= INP_HIDE; i += 1)
+for (i = INP_UP; i <= INP_LOG; i += 1)
 {
     // Held:
     input_user[i, CHECK_HELD] = (input_keyboard[i, CHECK_HELD] || input_gamepad[i, CHECK_HELD]);

@@ -10,7 +10,7 @@ input_device = DEV_USER;
 // Any fix:
 if (input_id == INP_ANY)
 {
-    input_id = irandom_range(INP_UP, INP_HIDE);
+    input_id = irandom_range(INP_UP, INP_LOG);
 }
 
 // Set device:
