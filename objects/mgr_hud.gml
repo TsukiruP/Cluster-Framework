@@ -104,7 +104,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Movement
+/// HUD Movement
 
 // Exit if the stage is paused:
 if (game_ispaused(mnu_pause))
@@ -128,6 +128,18 @@ if (hud_x_current != hud_x_target)
 
     hud_x_speed = ceil(abs(hud_x_distance) / hud_x_factor);
     hud_x_current += hud_x_speed * sign(hud_x_distance);
+}
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Air Movement
+
+// Exit if the stage is paused:
+if (game_ispaused(mnu_pause))
+{
+    exit;
 }
 
 // Air:
@@ -185,6 +197,18 @@ if (game_setting_get("misc_hud") == 1)
         air_x_speed = ceil(abs(air_x_distance) / air_x_factor);
         air_x_current += air_x_speed * sign(air_x_distance);
     }
+}
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Gauge Movement
+
+// Exit if the stage is paused:
+if (game_ispaused(mnu_pause))
+{
+    exit;
 }
 
 // Gauge:
