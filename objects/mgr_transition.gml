@@ -616,7 +616,10 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Play Music
+/// Play BGM
+
+audio_bgm_load(room_bgm);
+
 /*
 // Reset music volume:
 if (sound_kind_get_volume(3) != global.audio_bgm / 100)
@@ -625,9 +628,9 @@ if (sound_kind_get_volume(3) != global.audio_bgm / 100)
 }
 
 // Set music:
-if (room_music != "")
+if (room_bgm != "")
 {
-    if (!sound_isplaying(room_music))
+    if (!sound_isplaying(room_bgm))
     {
         with (mgr_audio)
         {
@@ -639,7 +642,7 @@ if (room_music != "")
             }
 
             // Create music instance:
-            if (music_instance == -1) music_instance = sound_loop_single(other.room_music);
+            if (music_instance == -1) music_instance = sound_loop_single(other.room_bgm);
         }
     }
 }
@@ -667,14 +670,14 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Open Debug Topic
+/// Open Debug Subject
 #define Other_11
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
 applies_to=self
 */
-/// Close Debug Header
+/// Close Debug Subject
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1

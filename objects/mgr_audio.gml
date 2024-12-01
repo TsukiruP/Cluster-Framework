@@ -6,6 +6,9 @@ applies_to=self
 */
 /// Audio Initialization
 
+// BGM index:
+bgm_index = "";
+
 // SFX map:
 sfx_map = audio_load_directory("data\audio\sfx");
 
@@ -44,22 +47,6 @@ sound_kind_volume(3, global.audio_bgm / 100);
 sound_set_loop("bgm_dev_title", 2304672, 9984665, unit_samples);
 sound_set_loop("bgm_basic_test_1", 1024258, 5121290, unit_samples);
 #define Step_0
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// List
-
-var i, pos;
-
-for (i = 0; i < ds_list_size(sfx_list); i += 1)
-{
-    if (!audio_isplaying(ds_list_find_value(sfx_list, i)))
-    {
-        ds_list_delete(sfx_list, i);
-    }
-}
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -170,6 +157,23 @@ if (jingle_instance != -1 && !sound_isplaying("bgm_invin") && !sound_isplaying("
 {
     sound_discard(jingle_instance)
     jingle_instance = -1;
+}
+#define Step_2
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Clear List
+
+var i, pos;
+
+for (i = 0; i < ds_list_size(sfx_list); i += 1)
+{
+    if (!audio_isplaying(ds_list_find_value(sfx_list, i)))
+    {
+        ds_list_delete(sfx_list, i);
+    }
 }
 #define Other_3
 /*"/*'/**//* YYD ACTION

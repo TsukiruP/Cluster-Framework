@@ -66,6 +66,7 @@
 			|screen_set_window
 		+Audio
 			+BGM
+				|audio_bgm_load
 			+SFX
 				|audio_sfx_play
 				|audio_sfx_stop

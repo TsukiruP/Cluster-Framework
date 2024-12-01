@@ -18,9 +18,9 @@ if (argument_count >= 2)
 /*
 if (mgr_audio.music_instance != -1)
 {
-    if (transition.room_music != "")
+    if (transition.room_bgm != "")
     {
-        //if (!sound_isplaying(transition.room_music)) {
+        //if (!sound_isplaying(transition.room_bgm)) {
             mgr_audio.fade_out = true;
         //}
     }
