@@ -9,11 +9,11 @@ if (argument_count >= 1)
         // Play sfx:
         if (clock_up_state == 2)
         {
-            sfx_play("snd_hyper_clock_over");
+            audio_play_sfx("snd_hyper_clock_over");
         }
         else
         {
-            sfx_play("snd_clock_over");
+            audio_play_sfx("snd_clock_over");
         }
 
         game_set_speed(1);
@@ -51,8 +51,8 @@ else
             clock_up_state = 2;
 
             // Play sfx:
-            sfx_play("snd_clock_up_start");
-            sfx_play("snd_hyper_clock_up");
+            audio_play_sfx("snd_clock_up_start");
+            audio_play_sfx("snd_hyper_clock_up");
         }
 
         // Normal:
@@ -62,8 +62,8 @@ else
             clock_up_state = 1;
 
             // Play sfx:
-            sfx_play("snd_clock_up_start");
-            sfx_play("snd_clock_up");
+            audio_play_sfx("snd_clock_up_start");
+            audio_play_sfx("snd_clock_up");
         }
 
         // Over:

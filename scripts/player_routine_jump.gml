@@ -4,7 +4,7 @@
 if (player_collision_ceiling(y_radius + 5) == noone && player_get_input(INP_JUMP, CHECK_PRESSED))
 {
     // Play sfx:
-    sfx_play("snd_jump", true);
+    audio_play_sfx("snd_jump", true);
 
     return player_set_state(player_state_jump);
 }

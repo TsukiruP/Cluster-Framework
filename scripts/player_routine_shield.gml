@@ -20,7 +20,7 @@ switch (status_shield)
         }
 
         // Play sfx:
-        sfx_play("snd_shield_fire_dash", true);
+        audio_play_sfx("snd_shield_fire_dash", true);
 
         // Shield:
         if (instance_exists(shield_handle))
@@ -40,7 +40,7 @@ switch (status_shield)
         y_speed = -5.5;
 
         // Play sfx:
-        sfx_play("snd_shield_lightning_jump", true);
+        audio_play_sfx("snd_shield_lightning_jump", true);
 
         // Sparks:
         for (i = 0; i < 4; i += 1)

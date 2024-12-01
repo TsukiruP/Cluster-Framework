@@ -65,8 +65,8 @@
 			|screen_set_resolution
 			|screen_set_window
 		+Audio
-			|sfx_play
-			|sfx_stop
+			|audio_play_sfx
+			|audio_stop_sfx
 		+Input
 			|gamepad_get_check
 			|input_get_check

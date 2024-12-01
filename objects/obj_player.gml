@@ -589,7 +589,7 @@ if (y > obj_water_surface.y && yprevious < obj_water_surface.y)
     }
     
     // Play sfx:
-    sfx_play("snd_splash", true);
+    audio_play_sfx("snd_splash", true);
 }
 
 // Exit splash:
@@ -608,7 +608,7 @@ else if (y < obj_water_surface.y && yprevious > obj_water_surface.y)
     }
     
     // Play sfx:
-    sfx_play("snd_splash", true);
+    audio_play_sfx("snd_splash", true);
 }
 
 // Surface time:
@@ -807,15 +807,17 @@ if (state_current != player_state_death && !instance_exists(mgr_tally))
                         case 25:
                         case 20:
                         case 15:
-                            if (input_cpu == false) {
-                                sfx_play("snd_drown_alert");
+                            if (input_cpu == false)
+                            {
+                                audio_play_sfx("snd_drown_alert");
                             }
                             break;
                             
                         // Drown jingle:
                         case 12:
-                            if (input_cpu == false) {
-                                sfx_play("bgm_drown");
+                            if (input_cpu == false)
+                            {
+                                audio_play_sfx("bgm_drown");
                             }
                             
                         // Drown countdown:

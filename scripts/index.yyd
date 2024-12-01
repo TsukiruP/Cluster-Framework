@@ -108,9 +108,9 @@ ctl_sonic_spring_flight
 game_setting_init
 player_get_input
 game_setting_default
-sfx_play
+audio_play_sfx
 draw_collision
-sfx_stop
+audio_stop_sfx
 ctl_shockwave
 game_save_get
 player_get_angle

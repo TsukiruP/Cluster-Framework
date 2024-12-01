@@ -6,7 +6,7 @@ if (abs(x_speed) > 0.5)
     if (player_get_input(INP_DOWN, CHECK_HELD))
     {
         // Play sfx:
-        sfx_play("snd_roll", true);
+        audio_play_sfx("snd_roll", true);
 
         return player_set_state(player_state_roll);
     }

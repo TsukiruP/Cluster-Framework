@@ -13,7 +13,7 @@ switch (argument0)
         player_set_animation("stomp");
 
         // Play sfx:
-        sfx_play("snd_stomp", true);
+        audio_play_sfx("snd_stomp", true);
         break;
 
     // Step:
@@ -53,10 +53,10 @@ switch (argument0)
                     player_set_animation("stomp_land");
 
                     // Stop sfx:
-                    sfx_stop("snd_stomp");
+                    audio_stop_sfx("snd_stomp");
 
                     // Play sfx:
-                    sfx_play("snd_stomp_land", true);
+                    audio_play_sfx("snd_stomp_land", true);
 
                     // Create shockwave:
                     sine = dsin(mask_rotation);
@@ -115,6 +115,6 @@ switch (argument0)
     // Finish:
     case STATE_FINISH:
         // Stop sfx:
-        sfx_stop("snd_stomp");
+        audio_stop_sfx("snd_stomp");
         break;
 }

@@ -1,5 +1,5 @@
 /// sonic_state_homing(phase)
-//
+// In the middle of a jump, press A button to perform the Homing Attack. Remember to aim toward the enemy!
 
 switch (argument0)
 {
@@ -20,7 +20,7 @@ switch (argument0)
         player_set_animation("spin");
 
         // Play sfx:
-        sfx_play("snd_air_dash", true);
+        audio_play_sfx("snd_air_dash", true);
         break;
 
     // Step:

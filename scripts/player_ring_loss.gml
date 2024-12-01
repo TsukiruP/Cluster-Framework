@@ -4,7 +4,7 @@
 var ring_total, ring_angle, ring_speed, ring_handle;
 
 // Play sfx:
-sfx_play("snd_ring_loss");
+audio_play_sfx("snd_ring_loss");
 
 // Ring variables:
 ring_total = min(stage_get_rings(), 32);

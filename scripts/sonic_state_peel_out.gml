@@ -12,7 +12,7 @@ switch (argument0)
         player_set_animation("peel_out");
         
         // Play sfx:
-        sfx_play("snd_peel_out_charge", true);
+        audio_play_sfx("snd_peel_out_charge", true);
         break;
 
     // Step:
@@ -57,10 +57,10 @@ switch (argument0)
                 peel_out = true;
                 
                 // Play sfx:
-                sfx_play("snd_peel_out_release", true);
+                audio_play_sfx("snd_peel_out_release", true);
                 
                 // Stop sfx:
-                sfx_stop("snd_peel_out_charge")
+                audio_stop_sfx("snd_peel_out_charge")
             }
             
             return player_set_state(player_state_run);
