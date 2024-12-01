@@ -9,7 +9,7 @@ applies_to=self
 var i;
 
 // Pause audio:
-//sound_pause_all();
+audio_sfx_pause_all();
 
 // Menu variables:
 menu_current = 0;
@@ -206,7 +206,7 @@ if (pause_delay > 0)
         if (pause_continue == true)
         {
             pause_active = false;
-            //sound_resume_all();
+            audio_sfx_resume_all();
         }
     }
 }
@@ -241,8 +241,8 @@ if (instance_exists(fade_handle))
             transition_handle.transition_alarm = 0;
         }
 
-        //sound_stop_all();
-        //sound_resume_all();
+        // Stop all audio:
+        audio_global_stop(true);
     }
 }
 #define Step_2

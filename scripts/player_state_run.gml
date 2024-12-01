@@ -28,8 +28,8 @@ switch (argument0)
                     // Brake:
                     if (abs(x_speed) > 4)
                     {
-                        // Play sfx:
-                        audio_play_sfx("snd_brake");
+                        // Play SFX:
+                        audio_sfx_play("snd_brake");
 
                         return player_set_state(player_state_brake);
                     }

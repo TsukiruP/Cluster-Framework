@@ -19,8 +19,8 @@ switch (argument0)
         // Set animation:
         player_set_animation("somersault");
         
-        // Play sfx:
-        audio_play_sfx("snd_somersault", true);
+        // Play SFX:
+        audio_sfx_play("snd_somersault", true);
         break;
 
     // Step:
@@ -101,8 +101,8 @@ switch (argument0)
                         // Set animation:
                         player_set_animation("skid");
                         
-                        // Play sfx:
-                        audio_play_sfx("snd_air_dash", true);
+                        // Play SFX:
+                        audio_sfx_play("snd_air_dash", true);
                         break;
 
                     // Idle:

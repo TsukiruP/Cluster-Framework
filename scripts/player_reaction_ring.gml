@@ -16,15 +16,15 @@ if (collision & COLL_HURT_RADIUS)
         {
             stage_add_rings(10);
 
-            // Play sfx:
-            audio_play_sfx("snd_ring_super");
+            // Play SFX:
+            audio_sfx_play("snd_ring_super");
         }
         else
         {
             stage_add_rings(1);
 
-            // Play sfx:
-            audio_play_sfx("snd_ring", true, mgr_audio.ring_pan);
+            // Play SFX:
+            audio_sfx_play("snd_ring", true, mgr_audio.ring_pan);
             mgr_audio.ring_pan *= -1;
         }
 

@@ -14,8 +14,8 @@ if ((collision & COLL_HURT) || (collision & COLL_HURT_RADIUS))
         // Homing:
         sonic_routine_homing();
 
-        // Play sfx:
-        audio_play_sfx("snd_destroy", true);
+        // Play SFX:
+        audio_sfx_play("snd_destroy", true);
 
         // Break:
         with (reaction_handle)

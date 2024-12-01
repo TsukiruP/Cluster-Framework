@@ -67,27 +67,27 @@ else
     }
 }
 
-// Play sfx:
+// Play SFX:
 if (damage_handle == id)
 {
     if (drown == true)
     {
-        audio_play_sfx("snd_drown");
+        audio_sfx_play("snd_drown");
     }
     else
     {
-        audio_play_sfx("snd_hurt");
+        audio_sfx_play("snd_hurt");
     }
 }
 else if ((input_cpu == false && shield_handle != noone) || input_cpu == true || state_current == player_state_death)
 {
     if (damage_handle.object_index == obj_spike)
     {
-        audio_play_sfx("snd_spike");
+        audio_sfx_play("snd_spike");
     }
     else
     {
-        audio_play_sfx("snd_hurt");
+        audio_sfx_play("snd_hurt");
     }
 }
 

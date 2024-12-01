@@ -18,8 +18,8 @@ switch (argument0)
         // Set animation:
         player_set_animation("spin");
 
-        // Play sfx:
-        audio_play_sfx("snd_bound", true);
+        // Play SFX:
+        audio_sfx_play("snd_bound", true);
         break;
 
     // Step:
@@ -60,8 +60,8 @@ switch (argument0)
             // Set animation:
             animation_skip = true;
 
-            // Play sfx:
-            audio_play_sfx("snd_bound_land", true);
+            // Play SFX:
+            audio_sfx_play("snd_bound_land", true);
 
             return player_set_state(player_state_jump, true);
         }

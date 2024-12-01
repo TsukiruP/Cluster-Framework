@@ -11,8 +11,8 @@ switch (argument0)
         // Set animation:
         player_set_animation("spin_dash");
 
-        // Play sfx:
-        audio_play_sfx("snd_spin_dash_charge", true);
+        // Play SFX:
+        audio_sfx_play("snd_spin_dash_charge", true);
 
         // Create dust:
         with (instance_create(x, y, eff_spin_dash))
@@ -42,8 +42,8 @@ switch (argument0)
                 // Deploy input lock:
                 input_lock_alarm = 30;
 
-                // Play sfx:
-                audio_play_sfx("snd_roll", true);
+                // Play SFX:
+                audio_sfx_play("snd_roll", true);
 
                 return player_set_state(player_state_roll);
             }
@@ -61,11 +61,11 @@ switch (argument0)
                 mgr_camera.camera_lag_alarm = 16;
             }
 
-            // Play sfx:
-            audio_play_sfx("snd_spin_dash_release", true);
+            // Play SFX:
+            audio_sfx_play("snd_spin_dash_release", true);
 
-            // Stop sfx:
-            audio_stop_sfx("snd_spin_dash_charge");
+            // Stop SFX:
+            audio_sfx_stop("snd_spin_dash_charge");
 
             return player_set_state(player_state_roll);
         }
@@ -80,8 +80,8 @@ switch (argument0)
             // Set animation:
             player_set_animation("spin_charge");
 
-            // Play sfx:
-            sfx_spin_dash = audio_play_sfx("snd_spin_dash_charge", true);
+            // Play SFX:
+            sfx_spin_dash = audio_sfx_play("snd_spin_dash_charge", true);
             audio_pitch(sfx_spin_dash, 1 + spin_dash_charge * 0.0625);
         }
 

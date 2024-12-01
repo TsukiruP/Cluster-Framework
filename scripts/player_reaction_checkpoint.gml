@@ -54,8 +54,8 @@ if (collision & COLL_HURT_RADIUS)
                 }
             }
 
-            // Play sfx:
-            audio_play_sfx("snd_checkpoint", true);
+            // Play SFX:
+            audio_sfx_play("snd_checkpoint", true);
 
             // Activate:
             with (reaction_handle)

@@ -73,10 +73,10 @@ if (!player_get_input(INP_ALT, CHECK_HELD))
                 {
                     homing_handle = homing_candidate;
                     
-                    // Play sfx:
+                    // Play SFX:
                     if (homing_handle != homing_handle_temp)
                     {
-                        audio_play_sfx("snd_reticle", true);
+                        audio_sfx_play("snd_reticle", true);
                     }
                     break;
                 }

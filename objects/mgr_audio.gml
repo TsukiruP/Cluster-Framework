@@ -6,8 +6,11 @@ applies_to=self
 */
 /// Audio Initialization
 
-// Load SFX:
+// SFX map:
 sfx_map = audio_load_directory("data\audio\sfx");
+
+// SFX list:
+sfx_list = ds_list_create();
 
 // Ring pan:
 ring_pan = 0;
@@ -41,6 +44,22 @@ sound_kind_volume(3, global.audio_bgm / 100);
 sound_set_loop("bgm_dev_title", 2304672, 9984665, unit_samples);
 sound_set_loop("bgm_basic_test_1", 1024258, 5121290, unit_samples);
 #define Step_0
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// List
+
+var i, pos;
+
+for (i = 0; i < ds_list_size(sfx_list); i += 1)
+{
+    if (!audio_isplaying(ds_list_find_value(sfx_list, i)))
+    {
+        ds_list_delete(sfx_list, i);
+    }
+}
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -159,6 +178,10 @@ action_id=603
 applies_to=self
 */
 /// Release Audio
+
+ds_map_destroy(sfx_map);
+ds_list_destroy(sfx_list);
+
 /*
 // Sound list:
 sound_list = sound_kind_list(0);

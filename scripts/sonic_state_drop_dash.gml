@@ -62,11 +62,11 @@ switch (argument0)
                 // Set speed:
                 x_speed = drop_dash_speed * image_xscale;
 
-                // Play sfx:
-                audio_play_sfx("snd_spin_dash_release", true);
+                // Play SFX:
+                audio_sfx_play("snd_spin_dash_release", true);
 
-                // Stop sfx:
-                audio_stop_sfx("snd_drop_dash");
+                // Stop SFX:
+                audio_sfx_stop("snd_drop_dash");
 
                 // Create dust:
                 with (effect_create(ctl_drop_dash, x, y + y_radius))
@@ -97,8 +97,8 @@ switch (argument0)
                     // Set animation:
                     player_set_animation("spin");
 
-                    // Play sfx:
-                    audio_play_sfx("snd_drop_dash", true);
+                    // Play SFX:
+                    audio_sfx_play("snd_drop_dash", true);
                 }
             }
         }
@@ -127,8 +127,8 @@ switch (argument0)
                 // Set speed:
                 y_speed = bound_speed;
 
-                // Play sfx:
-                audio_play_sfx("snd_bound", true);
+                // Play SFX:
+                audio_sfx_play("snd_bound", true);
             }
         }
         else
