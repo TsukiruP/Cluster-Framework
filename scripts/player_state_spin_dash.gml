@@ -82,7 +82,7 @@ switch (argument0)
 
             // Play SFX:
             sfx_spin_dash = audio_sfx_play("snd_spin_dash_charge", true);
-            audio_pitch(sfx_spin_dash, 1 + spin_dash_charge * 0.0625);
+            audio_set_pitch(sfx_spin_dash, 1 + spin_dash_charge * 0.0625);
         }
 
         // Atrophy:
