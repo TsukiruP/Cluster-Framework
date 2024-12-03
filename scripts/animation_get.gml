@@ -3,21 +3,34 @@
 
 with (mgr_animation)
 {
-    var grid_x, grid_y, grid_timeline;
+    var grid_width, grid_height, grid_x, grid_y, grid_timeline;
+
+    // Grid size:
+    grid_width = ds_grid_width(animation_grid) - 1;
+    grid_height = ds_grid_height(animation_grid) - 1;
 
     // Grid column:
     grid_x = 2;
+    grid_y = 0;
 
-    // Grid row:
-    grid_y = ds_grid_value_y(animation_grid, 0, 0, ds_grid_width(animation_grid) - 1, ds_grid_height(animation_grid) - 1, argument0);
-
-    // Find animation:
-    grid_y = ds_grid_value_y(animation_grid, 0, grid_y, ds_grid_width(animation_grid) - 1, ds_grid_height(animation_grid) - 1, argument1);
-
-    // Find variant:
-    if (ds_grid_get(animation_grid, argument2 + 2, grid_y) != 0)
+    // Check character:
+    if (ds_grid_value_exists(animation_grid, 0, 0, grid_width, grid_height, argument0))
     {
-        grid_x = argument2 + 2;
+        // Grid row:
+        grid_y = ds_grid_value_y(animation_grid, 0, 0, grid_width, grid_height, argument0);
+
+        // Check animation:
+        if (ds_grid_value_exists(animation_grid, 0, grid_y, grid_width, grid_height, argument1))
+        {
+            // Find animation:
+            grid_y = ds_grid_value_y(animation_grid, 0, grid_y, grid_width, grid_height, argument1);
+
+            // Find variant:
+            if (ds_grid_get(animation_grid, argument2 + 2, grid_y) != 0)
+            {
+                grid_x = argument2 + 2;
+            }
+        }
     }
 
     // Return:
