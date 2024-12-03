@@ -73,16 +73,13 @@ switch (argument0)
         // Charge:
         if (player_get_input(INP_JUMP, CHECK_PRESSED))
         {
-            var sfx_spin_dash;
-
             spin_dash_charge = min(spin_dash_charge + 2, 8);
 
             // Set animation:
             player_set_animation("spin_charge");
 
             // Play SFX:
-            sfx_spin_dash = audio_sfx_play("snd_spin_dash_charge", true);
-            audio_set_pitch(sfx_spin_dash, 1 + spin_dash_charge * 0.0625);
+            audio_sfx_play("snd_spin_dash_charge", true, 1 + spin_dash_charge * 0.0625);
         }
 
         // Atrophy:

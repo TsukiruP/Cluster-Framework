@@ -65,13 +65,15 @@
 			|screen_set_resolution
 			|screen_set_window
 		+Audio
-			+BGM
-				|audio_bgm_load
+			|audio_ring_pan
+			|audio_stop_all
 			+SFX
 				|audio_sfx_play
 				|audio_sfx_stop
 				|audio_sfx_pause_all
 				|audio_sfx_resume_all
+			+BGM
+				|audio_bgm_load
 		+Input
 			|gamepad_get_check
 			|input_get_check

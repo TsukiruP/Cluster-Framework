@@ -241,8 +241,8 @@ if (instance_exists(fade_handle))
             transition_handle.transition_alarm = 0;
         }
 
-        // Stop all audio:
-        audio_global_stop(true);
+        // Stop audio:
+        audio_stop_all();
     }
 }
 #define Step_2

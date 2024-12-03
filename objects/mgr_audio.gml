@@ -6,6 +6,22 @@ applies_to=self
 */
 /// Audio Initialization
 
+// Character SFX:
+sound_add_directory("data\audio\sfx\character\common", ".wav", 0, true);
+sound_add_directory("data\audio\sfx\character\shield", ".wav", 0, true);
+sound_add_directory("data\audio\sfx\character\sonic", ".wav", 0, true);
+
+// Prop SFX:
+sound_add_directory("data\audio\sfx\prop", ".wav", 0, true);
+
+// Ring pan:
+ring_pan = 1;
+
+// BGM variables:
+bgm_index = "";
+bgm_handle = -1;
+
+/*
 // BGM index:
 bgm_index = "";
 
@@ -158,23 +174,6 @@ if (jingle_instance != -1 && !sound_isplaying("bgm_invin") && !sound_isplaying("
     sound_discard(jingle_instance)
     jingle_instance = -1;
 }
-#define Step_2
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Clear List
-
-var i, pos;
-
-for (i = 0; i < ds_list_size(sfx_list); i += 1)
-{
-    if (!audio_isplaying(ds_list_find_value(sfx_list, i)))
-    {
-        ds_list_delete(sfx_list, i);
-    }
-}
 #define Other_3
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -182,18 +181,13 @@ action_id=603
 applies_to=self
 */
 /// Release Audio
-
-ds_map_destroy(sfx_map);
-ds_list_destroy(sfx_list);
-
 /*
 // Sound list:
 sound_list = sound_kind_list(0);
 
 for (i = 0; i < ds_list_size(sound_list); i += 1)
 {
-    ds_list_find_value(sound_list, i);
-    ds_list_delete(sound_list, i);
+    sound_delete(ds_list_find_value(sound_list, i));
 }
 
 ds_list_destroy(sound_list);
@@ -203,8 +197,7 @@ music_list = sound_kind_list(3);
 
 for (i = 0; i < ds_list_size(music_list); i += 1)
 {
-    ds_list_find_value(music_list, i);
-    ds_list_delete(music_list, i);
+    sound_delete(ds_list_find_value(music_list, i));
 }
 
 ds_list_destroy(music_list);

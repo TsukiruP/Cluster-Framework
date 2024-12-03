@@ -1,13 +1,13 @@
-/// audio_sfx_play(sound, [single, pan])
+/// audio_sfx_play(index, [single, pitch, pan])
 // Plays a sound effect.
 
 with (mgr_audio)
 {
-    var sfx, single, pan, inst;
+    var single, pitch, pan;
 
     // Initialize:
-    sfx = ds_map_find_value(sfx_map, argument0 + ".wav");
     single = false;
+    pitch = 1;
     pan = 0;
 
     // Set single:
@@ -16,27 +16,35 @@ with (mgr_audio)
         single = argument[1];
     }
 
-    // Set pan:
+    // Set pitch:
     if (argument_count >= 3)
     {
-        pan = argument[2];
+        pitch = argument[2];
     }
 
-    // Play sound:
-    if (single == true)
+    // Set pan:
+    if (argument_count >= 4)
     {
-        // Instance:
-        inst = audio_play_single_ext(sfx, game_setting_get("audio_sfx"), pan, 1, false);
+        pan = argument[3];
+    }
+
+    // Check if sound exists:
+    if (sound_exists(argument0))
+    {
+        // Play sound:
+        if (single == true)
+        {
+            // Return:
+            return sound_play_single_ex(argument0, game_setting_get("audio_sfx"), pitch, pan);
+        }
+        else
+        {
+            // Return:
+            return sound_play_ex(argument0, game_setting_get("audio_sfx"), pitch, pan);
+        }
     }
     else
     {
-        // Instance:
-        inst = audio_play_ext(sfx, game_setting_get("audio_sfx"), pan, 1, false);
+        return noone;
     }
-
-    // Add to list:
-    ds_list_add(sfx_list, inst);
-
-    // Return:
-    return inst;
 }

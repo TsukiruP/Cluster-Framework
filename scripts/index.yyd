@@ -284,3 +284,5 @@ text_get_clear
 audio_sfx_pause_all
 audio_sfx_resume_all
 audio_bgm_load
+audio_stop_all
+audio_ring_pan

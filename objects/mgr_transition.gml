@@ -618,6 +618,7 @@ applies_to=self
 */
 /// Play BGM
 
+/*
 audio_bgm_load(room_bgm);
 
 /*
