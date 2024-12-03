@@ -92,7 +92,7 @@ applies_to=self
 /// Reset Time
 
 game_time = 0;
-#define KeyPress_32
+#define KeyPress_13
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
