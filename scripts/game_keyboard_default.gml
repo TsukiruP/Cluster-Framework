@@ -23,7 +23,7 @@ ds_list_add(keyboard_list, vk_shift); // Alt
 
 // Menu keys:
 ds_list_add(keyboard_list, vk_enter); // Start
-ds_list_add(keyboard_list, ord("\")); // Select
+ds_list_add(keyboard_list, 220); // Select
 ds_list_add(keyboard_list, ord("A")); // Confirm
 ds_list_add(keyboard_list, ord("S")); // Cancel
 ds_list_add(keyboard_list, vk_backspace); // Log
