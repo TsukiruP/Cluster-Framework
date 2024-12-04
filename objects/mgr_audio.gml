@@ -8,8 +8,8 @@ applies_to=self
 
 // Character SFX:
 sound_add_directory("data\audio\sfx\character\common", ".wav", 0, true);
-sound_add_directory("data\audio\sfx\character\shield", ".wav", 0, true);
 sound_add_directory("data\audio\sfx\character\sonic", ".wav", 0, true);
+sound_add_directory("data\audio\sfx\character\shield", ".wav", 0, true);
 
 // Prop SFX:
 sound_add_directory("data\audio\sfx\prop", ".wav", 0, true);
@@ -152,26 +152,26 @@ action_id=603
 applies_to=self
 */
 /// Release Audio
-/*
-// Sound list:
-sound_list = sound_kind_list(0);
 
-for (i = 0; i < ds_list_size(sound_list); i += 1)
+var i, j, audio_list, audio_index;
+
+audio_stop_all();
+
+for (i = 0; i < 4; i += 1)
 {
-    sound_delete(ds_list_find_value(sound_list, i));
+    audio_list = sound_kind_list(i);
+
+    for (j = 0; j < ds_list_size(audio_list); j += 1)
+    {
+        audio_index = ds_list_find_value(audio_list, i);
+
+        // Delete:
+        sound_delete(audio_index);
+        ds_list_delete(audio_list, i);
+    }
+
+    ds_list_destroy(audio_list);
 }
-
-ds_list_destroy(sound_list);
-
-// Music list:
-music_list = sound_kind_list(3);
-
-for (i = 0; i < ds_list_size(music_list); i += 1)
-{
-    sound_delete(ds_list_find_value(music_list, i));
-}
-
-ds_list_destroy(music_list);
 #define Other_4
 /*"/*'/**//* YYD ACTION
 lib_id=1
