@@ -1,14 +1,25 @@
 /// transition_create(room, [transition])
 
-transition = instance_create(0, 0, mgr_transition);
-transition.transition_room = argument0;
-transition.transition_id = game_room_get_transition(argument0);
+var transition;
 
-// Override transition type:
-if (argument_count >= 2)
+// Initialize:
+transition = instance_create(0, 0, mgr_transition);
+
+with (transition)
 {
-    transition.transition_id = argument[1];
+    transition_id = game_room_get_transition(argument0);
+    transition_room = argument0;
+    transition_run = game_room_get_run(argument0);
+
+    // Override:
+    if (argument_count >= 2)
+    {
+        transition_id = argument[1];
+    }
 }
+
+// Return:
+return transition;
 
 /*
 if (mgr_audio.music_instance != -1)
@@ -25,6 +36,3 @@ if (mgr_audio.music_instance != -1)
     }
 }
 */
-
-// Return:
-return transition;
