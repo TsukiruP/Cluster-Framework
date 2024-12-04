@@ -53,6 +53,7 @@ instance_create(0, 0, mgr_audio);
 instance_create(0, 0, mgr_input);
 instance_create(0, 0, mgr_text);
 instance_create(0, 0, mgr_animation);
+transition_create(rm_debug);
 #define Step_1
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -104,10 +105,3 @@ applies_to=self
 /// Reset Time
 
 game_time = 0;
-#define KeyPress_13
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-transition_create(rm_debug);
