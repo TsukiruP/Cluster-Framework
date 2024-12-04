@@ -4,7 +4,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Audio Initialization
+/// SFX Initialization
 
 // Character SFX:
 sound_add_directory("data\audio\sfx\character\common", ".wav", 0, true);
@@ -16,51 +16,22 @@ sound_add_directory("data\audio\sfx\prop", ".wav", 0, true);
 
 // Ring pan:
 ring_pan = 1;
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// BGM Initialization
+
+// Room BGM:
+sound_add_directory("data\audio\bgm", ".ogg", 1, true);
 
 // BGM variables:
 bgm_index = "";
 bgm_handle = -1;
 
-/*
-// BGM index:
-bgm_index = "";
-
-// SFX map:
-sfx_map = audio_load_directory("data\audio\sfx");
-
-// SFX list:
-sfx_list = ds_list_create();
-
-// Ring pan:
-ring_pan = 0;
-
-/*
-// Add character SFX:
-sound_add_directory("data\audio\sfx\character\common", ".wav", 0, true);
-sound_add_directory("data\audio\sfx\character\sonic", ".wav", 0, true);
-sound_add_directory("data\audio\sfx\character\classic", ".wav", 0, true);
-sound_add_directory("data\audio\sfx\character\shield", ".wav", 0, true);
-
-// Add prop SFX:
-sound_add_directory("data\audio\sfx\prop", ".wav", 0, true);
-
-// Add BGM:
-sound_add_directory("data\audio\bgm", ".ogg", 3, false);
-
-// Ring pan:
-ring_pan = 1;
-
-// Music variables:
-music_instance = -1;
-jingle_instance = -1;
-fade_out = false;
-
-// Set volume:
-sound_kind_volume(0, global.audio_sfx / 100);
-sound_kind_volume(3, global.audio_bgm / 100);
-
-// Set loop points:
-sound_set_loop("bgm_dev_title", 2304672, 9984665, unit_samples);
+// BGM loops:
+sound_set_loop("bgm_debug", 2304672, 9984665, unit_samples);
 sound_set_loop("bgm_basic_test_1", 1024258, 5121290, unit_samples);
 #define Step_0
 /*"/*'/**//* YYD ACTION

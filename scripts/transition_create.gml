@@ -1,13 +1,8 @@
 /// transition_create(room, [transition])
 
 transition = instance_create(0, 0, mgr_transition);
-transition.transition_id = TRANS_FADE;
 transition.transition_room = argument0;
-
-with (transition)
-{
-    room_get_data(argument0);
-}
+transition.transition_id = game_room_get_transition(argument0);
 
 // Override transition type:
 if (argument_count >= 2)
@@ -30,5 +25,6 @@ if (mgr_audio.music_instance != -1)
     }
 }
 */
-// Return the transition manager:
+
+// Return:
 return transition;

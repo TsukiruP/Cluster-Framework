@@ -257,7 +257,7 @@ game_gamepad_default
 game_gamepad_get
 game_gamepad_set
 game_gamepad_confirm
-animation_add
+animation_set
 animation_get
 stage_get_time
 game_get_speed
@@ -286,3 +286,13 @@ audio_sfx_resume_all
 audio_bgm_load
 audio_stop_all
 audio_ring_pan
+game_room_set
+animation_init_sonic
+game_room_get_transition
+game_room_get_bgm
+game_room_get_background
+game_room_get_zone
+game_room_get_act
+game_room_get_water
+game_room_get_start
+game_room_get_run

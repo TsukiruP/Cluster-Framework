@@ -6,7 +6,7 @@ Defaults to the current room should no room be provided. */
 room_handle = room;
 
 // Set handle:
-if (argument_count == 1)
+if (argument_count >= 1)
 {
     room_handle = argument[0];
 }

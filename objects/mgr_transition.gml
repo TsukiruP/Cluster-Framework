@@ -17,6 +17,7 @@ transition_state = 0;
 transition_alarm = 0;
 transition_time = 0;
 transition_room = room;
+transition_run = -1;
 
 // Fade handle:
 fade_handle = noone;
@@ -248,7 +249,7 @@ if ((game_ispaused(mnu_pause) && pause_ignore == false) || (transition_id != TRA
 if (instance_exists(stage_get_player(0)))
 {
     // Hide HUD:
-    if ((room_start == START_RUN || (room_start == START_READY && transition_id == TRANS_CARD)) && transition_state == 3)
+    if ((game_room_get_start() == START_RUN || (game_room_get_start() == START_READY && transition_id == TRANS_CARD)) && transition_state == 3)
     {
         if (instance_exists(mgr_hud))
         {
@@ -260,13 +261,13 @@ if (instance_exists(stage_get_player(0)))
         }
     }
 
-    // Run start:
-    if (room_start == START_RUN && room_run_target != -1 && transition_state >= 4)
+    // Run:
+    if (game_room_get_start() == START_RUN && transition_state >= 4 && transition_run != -1)
     {
-        // Reset target:
-        if ((transition_id == TRANS_RETRY && (game_checkpoint_get_x() != -1 && game_checkpoint_get_y() != -1)) || stage_get_player(0).x >= room_run_target)
+        // Reset run:
+        if ((transition_id == TRANS_RETRY && (game_checkpoint_get_x() != -1 && game_checkpoint_get_y() != -1)) || stage_get_player(0).x >= game_room_get_run())
         {
-            room_run_target = -1;
+            transition_run = -1;
         }
 
         // Run:
@@ -345,7 +346,7 @@ if (transition_id == TRANS_CARD)
     banner_y_scroll = banner_y_scroll mod(sprite_get_height(spr_title_card_banner));
 
     // Skip:
-    if (room_start == START_READY && transition_state >= 4 && transition_state != 6 && instance_exists(stage_get_player(0)))
+    if (game_room_get_start() == START_READY && transition_state >= 4 && transition_state != 6 && instance_exists(stage_get_player(0)))
     {
         if (input_get_check(INP_ANY, CHECK_PRESSED) && !input_get_check(INP_START, CHECK_PRESSED))
         {
@@ -421,9 +422,9 @@ if (transition_id == TRANS_CARD)
             // Font:
             draw_set_font(global.font_title_card);
 
-            if (zone_x_current != (-string_width(room_zone) - zone_x_factor))
+            if (zone_x_current != (-string_width(game_room_get_zone(transition_room)) - zone_x_factor))
             {
-                zone_x_current = -string_width(room_zone) - zone_x_factor;
+                zone_x_current = -string_width(game_room_get_zone(transition_room)) - zone_x_factor;
             }
             break;
 
@@ -454,10 +455,10 @@ if (transition_id == TRANS_CARD)
 
         // 4 - Opener start:
         case 4:
-            if (debug == false && (room_start != START_RUN || room_run_target != -1) && instance_exists(stage_get_player(0)))
+            if ((game_room_get_start() != START_RUN || transition_run != -1) && debug == false && instance_exists(stage_get_player(0)))
             {
                 // Ready:
-                if (room_start == START_READY)
+                if (game_room_get_start() == START_READY)
                 {
                     // Time it with the background:
                     if (background_y_current <= floor(stage_get_player(0).y + stage_get_player(0).y_radius - view_yview[view_current]))
@@ -472,8 +473,8 @@ if (transition_id == TRANS_CARD)
                     }
                 }
 
-                // Free player:
-                else if (room_start != START_IDLE && room_start != START_RUN)
+                // Unlock player:
+                else if (game_room_get_start() != START_IDLE && game_room_get_start() != START_RUN)
                 {
                     with (obj_player)
                     {
@@ -482,7 +483,7 @@ if (transition_id == TRANS_CARD)
                 }
 
                 // Move to next state:
-                if (room_start == START_IDLE || (room_start == START_READY && stage_get_player(0).animation_previous == "ready"))
+                if (game_room_get_start() == START_IDLE || (game_room_get_start() == START_READY && stage_get_player(0).animation_previous == "ready"))
                 {
                     transition_state = 5;
                 }
@@ -584,7 +585,7 @@ if (transition_id == TRANS_RETRY)
 
         // 4 - Opener end:
         case 4:
-            if (debug == true || room_start != START_RUN || (room_start == START_RUN && room_run_target == -1))
+            if (game_room_get_start() != START_RUN || (game_room_get_start() == START_RUN && transition_run == -1) || debug == true)
             {
                 transition_state = 5;
             }
@@ -617,6 +618,8 @@ action_id=603
 applies_to=self
 */
 /// Play BGM
+
+transition_run = game_room_get_run();
 
 /*
 audio_bgm_load(room_bgm);
@@ -655,15 +658,15 @@ applies_to=self
 /// Create Objects
 
 // Create background:
-if (room_background != -1)
+if (game_room_get_background() != -1)
 {
-    instance_create(0, 0, room_background);
+    instance_create(0, 0, game_room_get_background());
 }
 
 // Create water:
-if (room_water_level != -1)
+if (game_room_get_water() != -1)
 {
-    instance_create(0, room_water_level, obj_water_surface);
+    instance_create(0, game_room_get_water(), obj_water_surface);
 }
 #define Other_10
 /*"/*'/**//* YYD ACTION
@@ -713,12 +716,12 @@ if (transition_id == TRANS_CARD)
 
     // Zone:
     draw_set_valign(fa_bottom);
-    draw_text(view_xview[view_current] + zone_x_current, view_yview[view_current] + 126, room_zone);
+    draw_text(view_xview[view_current] + zone_x_current, view_yview[view_current] + 126, game_room_get_zone(transition_room));
 
     // Act:
-    if (room_act != 0)
+    if (game_room_get_act(transition_room) != 0)
     {
-        draw_sprite(spr_title_card_acts, room_act, view_xview[view_current] + zone_x_current + 5, view_yview[view_current] + 128);
+        draw_sprite(spr_title_card_acts, game_room_get_act(transition_room), view_xview[view_current] + zone_x_current + 5, view_yview[view_current] + 128);
     }
 
     // Loading:

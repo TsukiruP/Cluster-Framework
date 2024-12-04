@@ -1,5 +1,5 @@
 /// game_save_init()
-// Initializes the save system.
+// Initializes save data.
 
 // Initialize:
 save_directory = "data\saves\"

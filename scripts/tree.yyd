@@ -13,6 +13,9 @@
 		|draw_background_tiled_horizontal_part_yscale
 		|draw_background_tiled_vertical_part
 		|draw_backdrop_tiled_area
+	+Room
+		|room_set_data
+		|room_get_data
 +System
 	|credits
 	+Managers
@@ -50,6 +53,16 @@
 				|game_save_write
 				|game_save_default
 				|game_save_preview
+			+Room
+				|game_room_get_transition
+				|game_room_get_bgm
+				|game_room_get_background
+				|game_room_get_zone
+				|game_room_get_act
+				|game_room_get_water
+				|game_room_get_start
+				|game_room_get_run
+				|game_room_set
 			+Misc.
 				|game_get_player_count
 				|game_get_speed
@@ -83,8 +96,9 @@
 			|text_body_set
 			|text_subject_set
 		+Animation
-			|animation_add
 			|animation_get
+			|animation_set
+			|animation_init_sonic
 		+Fade
 			|fade_create
 			|fade_reverse
@@ -107,10 +121,6 @@
 				|stage_set_player
 	+Menus
 	+Utilities
-		+Room
-			|room_set_data
-			|room_get_data
-			|room_set_view_all
 		+Timelines
 			|ctl_init
 			|ctl_update
@@ -251,6 +261,7 @@
 			|instance_nth_nearest
 			|instance_nearest_dir_x
 			|in_view
+			|room_set_view_all
 +Gameplay
 	+Collision
 		|collision_box

@@ -4,6 +4,17 @@ lib_id=1
 action_id=603
 applies_to=self
 */
+/// Room Initialization
+
+// Room grid:
+room_grid = ds_grid_create(9, 0);
+game_room_set(rm_debug, TRANS_FADE, "bgm_debug", obj_sky_sanctuary_parallax);
+game_room_set(rm_basic_test_1, TRANS_CARD, "bgm_basic_test_1", -1, "Basic Test", 1, 864, START_READY);
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
 /// Game Initialization
 
 var i;
@@ -83,6 +94,7 @@ for (i = 0; i < game_get_player_count(); i += 1)
 
 ds_map_destroy(setting_map);
 ds_map_destroy(save_map);
+ds_grid_destroy(room_grid);
 #define Other_5
 /*"/*'/**//* YYD ACTION
 lib_id=1
