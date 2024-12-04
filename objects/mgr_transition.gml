@@ -609,53 +609,10 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Pause Ignore
+/// Room Initialization
 
+// Pause ignore:
 pause_ignore = false;
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Play BGM
-
-transition_run = game_room_get_run();
-
-/*
-audio_bgm_load(room_bgm);
-
-/*
-// Reset music volume:
-if (sound_kind_get_volume(3) != global.audio_bgm / 100)
-{
-    sound_kind_volume(3, global.audio_bgm / 100);
-}
-
-// Set music:
-if (room_bgm != "")
-{
-    if (!sound_isplaying(room_bgm))
-    {
-        with (mgr_audio)
-        {
-            // Discard music:
-            if (music_instance != -1)
-            {
-                sound_discard(music_instance);
-                music_instance = -1;
-            }
-
-            // Create music instance:
-            if (music_instance == -1) music_instance = sound_loop_single(other.room_bgm);
-        }
-    }
-}
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Create Objects
 
 // Create background:
 if (game_room_get_background() != -1)

@@ -18,9 +18,9 @@ game_setting_set("screen_vsync", false);
 
 // Audio:
 game_setting_set("audio_sfx", 1);
-game_setting_set("audio_bgm", 1);
+game_setting_set("audio_bgm", 0.5);
 
-// Keyboard::
+// Keyboard:
 game_keyboard_default();
 game_setting_set("input_keyboard", ds_list_write(keyboard_list));
 
