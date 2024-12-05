@@ -614,6 +614,9 @@ applies_to=self
 // Pause ignore:
 pause_ignore = false;
 
+// Play BGM:
+audio_bgm_play(game_room_get_bgm());
+
 // Create background:
 if (game_room_get_background() != -1)
 {

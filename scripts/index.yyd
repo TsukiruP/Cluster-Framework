@@ -297,3 +297,4 @@ game_room_get_water
 game_room_get_start
 game_room_get_run
 audio_bgm_get
+audio_bgm_play

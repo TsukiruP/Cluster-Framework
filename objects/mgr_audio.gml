@@ -155,6 +155,7 @@ applies_to=self
 
 var i, j, audio_list, audio_index;
 
+// Stop all audio:
 audio_stop_all();
 
 for (i = 0; i < 4; i += 1)
@@ -170,40 +171,8 @@ for (i = 0; i < 4; i += 1)
         ds_list_delete(audio_list, i);
     }
 
+    // Destroy:
     ds_list_destroy(audio_list);
-}
-#define Other_4
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Play BGM
-
-// Set volume:
-if (sound_kind_get_volume(1) != game_setting_get("audio_bgm"))
-{
-    sound_kind_volume(1, game_setting_get("audio_bgm"));
-}
-
-// Check BGM:
-if (game_room_get_bgm() != "")
-{
-    if (!sound_isplaying(game_room_get_bgm()))
-    {
-        // Discard BGM:
-        if (bgm_handle != -1)
-        {
-            sound_discard(bgm_handle);
-            bgm_handle = -1;
-        }
-
-        // Create BGM:
-        if (bgm_handle == -1)
-        {
-            bgm_handle = sound_loop(game_room_get_bgm());
-        }
-    }
 }
 #define Other_10
 /*"/*'/**//* YYD ACTION
