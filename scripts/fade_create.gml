@@ -3,6 +3,7 @@
 
 // Initialize:
 fade = instance_create(0, 0, mgr_fade);
+fade.depth = depth;
 
 with (fade)
 {
@@ -22,10 +23,6 @@ with (fade)
     if (argument_count >= 3)
     {
         depth = argument[2];
-    }
-    else
-    {
-        depth = depth + 1;
     }
 
     // Set color:
