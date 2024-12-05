@@ -10,6 +10,7 @@ var i;
 
 // Pause audio:
 audio_sfx_pause_all();
+audio_bgm_pause();
 
 // Menu variables:
 menu_current = 0;
@@ -206,7 +207,10 @@ if (pause_delay > 0)
         if (pause_continue == true)
         {
             pause_active = false;
+
+            // Resume audio:
             audio_sfx_resume_all();
+            audio_bgm_resume();
         }
     }
 }

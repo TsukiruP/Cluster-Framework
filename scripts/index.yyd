@@ -283,7 +283,7 @@ stage_set_pause_allow
 text_get_clear
 audio_sfx_pause_all
 audio_sfx_resume_all
-audio_bgm_load
+audio_bgm_pause
 audio_stop_all
 audio_ring_pan
 game_room_set
@@ -296,5 +296,6 @@ game_room_get_act
 game_room_get_water
 game_room_get_start
 game_room_get_run
-audio_bgm_get
+audio_bgm_stop
 audio_bgm_play
+audio_bgm_resume
