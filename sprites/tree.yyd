@@ -1,6 +1,7 @@
 +System
 	|spr_realizing_hopper
 	|spr_transition_background
+	|spr_save_player
 	|fnt_system
 	+Title Card
 		|spr_title_card_banner
@@ -22,7 +23,6 @@
 	+Pause
 		|spr_pause_header
 		|spr_pause_menu
-	|spr_save_player
 +Gameplay
 	+Player
 		|spr_player_spawn
