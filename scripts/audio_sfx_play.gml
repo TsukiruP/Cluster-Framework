@@ -3,35 +3,35 @@
 
 with (mgr_audio)
 {
-    var single, pitch, pan;
-
-    // Initialize:
-    single = false;
-    pitch = 1;
-    pan = 0;
-
-    // Set single:
-    if (argument_count >= 2)
-    {
-        single = argument[1];
-    }
-
-    // Set pitch:
-    if (argument_count >= 3)
-    {
-        pitch = argument[2];
-    }
-
-    // Set pan:
-    if (argument_count >= 4)
-    {
-        pan = argument[3];
-    }
-
-    // Check if sound exists:
+    // Check if index exists:
     if (sound_exists(argument0))
     {
-        // Play sound:
+        var single, pitch, pan;
+
+        // Initialize:
+        single = false;
+        pitch = 1;
+        pan = 0;
+
+        // Set single:
+        if (argument_count >= 2)
+        {
+            single = argument[1];
+        }
+
+        // Set pitch:
+        if (argument_count >= 3)
+        {
+            pitch = argument[2];
+        }
+
+        // Set pan:
+        if (argument_count >= 4)
+        {
+            pan = argument[3];
+        }
+
+        // Play SFX:
         if (single == true)
         {
             // Return:

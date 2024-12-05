@@ -3,15 +3,10 @@
 
 with (mgr_audio)
 {
-    // Set volume:
-    if (sound_kind_get_volume(1) != game_setting_get("audio_bgm"))
+    // Check if index exists:
+    if (sound_exists(argument0))
     {
-        sound_kind_volume(1, game_setting_get("audio_bgm"));
-    }
-
-    // Check BGM:
-    if (argument0 != "")
-    {
+        // Check if BGM isn't already playing
         if (!sound_isplaying(argument0))
         {
             // Discard BGM:
@@ -20,11 +15,11 @@ with (mgr_audio)
                 sound_discard(bgm_handle);
                 bgm_handle = -1;
             }
-
-            // Create BGM:
+            
+            // Play BGM:
             if (bgm_handle == -1)
             {
-                bgm_handle = sound_loop(argument0);
+                bgm_handle = sound_loop_ex(argument0, game_setting_get("audio_bgm"), 1, 0);
             }
         }
     }
