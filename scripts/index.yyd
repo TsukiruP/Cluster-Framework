@@ -299,3 +299,5 @@ game_room_get_run
 audio_bgm_stop
 audio_bgm_play
 audio_bgm_resume
+audio_pause_all
+audio_resume_all

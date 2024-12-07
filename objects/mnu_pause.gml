@@ -9,8 +9,7 @@ applies_to=self
 var i;
 
 // Pause audio:
-audio_sfx_pause_all();
-audio_bgm_pause();
+audio_pause_all();
 
 // Menu variables:
 menu_current = 0;
@@ -209,8 +208,7 @@ if (pause_delay > 0)
             pause_active = false;
 
             // Resume audio:
-            audio_sfx_resume_all();
-            audio_bgm_resume();
+            audio_resume_all();
         }
     }
 }
@@ -247,6 +245,7 @@ if (instance_exists(fade_handle))
 
         // Stop audio:
         audio_stop_all();
+        audio_resume_all();
     }
 }
 #define Step_2

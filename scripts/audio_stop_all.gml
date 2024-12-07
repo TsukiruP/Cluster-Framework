@@ -4,5 +4,4 @@
 with (mgr_audio)
 {
     sound_stop_all();
-    sound_resume_all();
 }

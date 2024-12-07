@@ -80,6 +80,8 @@
 		+Audio
 			|audio_ring_pan
 			|audio_stop_all
+			|audio_pause_all
+			|audio_resume_all
 			+SFX
 				|audio_sfx_play
 				|audio_sfx_stop
