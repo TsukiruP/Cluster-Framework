@@ -33,18 +33,13 @@ bgm_handle = -1;
 // BGM loops:
 sound_set_loop("bgm_debug", 2304672, 9984665, unit_samples);
 sound_set_loop("bgm_basic_test_1", 1024258, 5121290, unit_samples);
-#define Step_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
 applies_to=self
 */
-/// Ring Pan
-/*
-if (sound_get_pan("snd_ring") != ring_pan)
-{
-    sound_pan("snd_ring", ring_pan);
-}
+/// JNG Initialization
+#define Step_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603

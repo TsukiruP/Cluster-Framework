@@ -90,6 +90,7 @@
 				|audio_bgm_stop
 				|audio_bgm_pause
 				|audio_bgm_resume
+			+JNG
 		+Input
 			|gamepad_get_check
 			|input_get_check
