@@ -19,21 +19,6 @@ player_handle = noone;
 
 // Item id:
 item_id = ITEM_BONUS;
-#define Destroy_0
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Give Item
-
-if (instance_exists(player_handle))
-{
-    with (player_handle)
-    {
-        player_get_item(other.item_id);
-    }
-}
 #define Step_0
 /*"/*'/**//* YYD ACTION
 lib_id=1

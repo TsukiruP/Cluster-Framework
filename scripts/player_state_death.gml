@@ -9,11 +9,7 @@ switch (argument0)
         x_speed = 0;
 
         // Reset stats:
-        status_shield = SHIELD_NONE;
-        status_invin = INVIN_NONE;
-        status_speed = SPEED_NONE;
-        status_panic = false;
-        status_swap = false;
+        player_reset_status();
 
         // Death alarm:
         death_alarm = 128;

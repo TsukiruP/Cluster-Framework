@@ -352,6 +352,7 @@
 			|player_get_angle
 			|player_get_collision
 			|player_get_item
+			|script305
 			|player_get_cliff
 		+Setters
 			|player_set_state
@@ -362,6 +363,7 @@
 			|player_reset_air
 			|player_reset_spring
 			|player_reset_skill
+			|player_reset_status
 		+Misc.
 			|player_react
 			|player_inbounds

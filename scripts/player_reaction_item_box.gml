@@ -14,6 +14,9 @@ if ((collision & COLL_HURT) || (collision & COLL_HURT_RADIUS))
         // Homing:
         sonic_routine_homing();
 
+        // Get item:
+        player_get_item(reaction_handle, reaction_handle.item_id);
+
         // Play sound:
         audio_sfx_play("snd_destroy", true);
 

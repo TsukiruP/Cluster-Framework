@@ -303,3 +303,5 @@ audio_pause_all
 audio_resume_all
 audio_jng_play
 audio_jng_stop
+script305
+player_reset_status

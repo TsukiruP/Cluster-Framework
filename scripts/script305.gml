@@ -1,7 +1,7 @@
-/// player_get_item(obj, item)
-// Performs an event based on the given item id.
+/// player_get_item(id)
+// Performs a certain event based on the given item id.
 
-switch (argument1)
+switch (argument0)
 {
     // Ring bonus:
     case ITEM_BONUS:
@@ -82,10 +82,10 @@ switch (argument1)
 
     // Mine:
     case ITEM_MINE:
-        player_set_damage();
+        player_set_damage(other);
 
         // Create explosion:
-        //effect_create(ctl_explosion_large, argument0.x, argument0.y, depth);
+        effect_create(ctl_explosion_large, other.x, other.y, depth);
         break;
 
     // Slow:
@@ -116,7 +116,7 @@ if (game_setting_get("misc_feed") == true)
 {
     with (mgr_hud)
     {
-        ds_list_add(item_list, argument1);
+        ds_list_add(item_list, argument0);
         ds_list_add(item_list, -8);
         item_alarm = 90;
     }

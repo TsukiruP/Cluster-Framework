@@ -14,44 +14,49 @@ if (collision & COLL_HURT_RADIUS)
         if (game_checkpoint_get_x() != reaction_handle.x && game_checkpoint_get_y() != reaction_handle.y && reaction_handle.active == false)
         {
             // Bonuses:
-            if (game_setting_get("gameplay_checkpoint"))
+            if (game_setting_get("gameplay_checkpoint") && stage_get_rings() >= 20)
             {
-                if (stage_get_rings() >= 20)
+                var item_tier, item_id;
+
+                // Item tier:
+                item_tier = stage_get_rings() div 20;
+
+                // Item ID:
+                item_id = -1;
+
+                switch (item_tier)
                 {
-                    var checkpoint_tier;
+                    // Ring bonus:
+                    case 1:
+                        item_id = ITEM_BONUS;
+                        break;
 
-                    checkpoint_tier = stage_get_rings() div 20;
+                    // Super ring bonus:
+                    case 2:
+                        item_id = ITEM_SUPER_BONUS;
+                        break;
 
-                    switch (checkpoint_tier)
-                    {
-                        // Ring bonus:
-                        case 1:
-                            player_get_item(ITEM_BONUS);
-                            break;
+                    // Random ring bonus:
+                    case 3:
+                        item_id = ITEM_RANDOM_BONUS;
+                        break;
 
-                        // Super ring bonus:
-                        case 2:
-                            player_get_item(ITEM_SUPER_BONUS);
-                            break;
+                    // Speed up:
+                    case 4:
+                        item_id = ITEM_SPEED;
+                        break;
 
-                        // Random ring bonus:
-                        case 3:
-                            player_get_item(ITEM_RANDOM_BONUS);
-                            break;
-
-                        // Speed up:
-                        case 4:
-                            player_get_item(ITEM_SPEED);
-                            break;
-
-                        // Shield:
-                        default:
-                            if (status_shield == SHIELD_NONE)
-                            {
-                                player_get_item(choose(ITEM_BASIC, ITEM_MAGNETIC));
-                            }
-                    }
+                    // Shield:
+                    default:
+                        if (status_shield == SHIELD_NONE)
+                        {
+                            item_id = choose(ITEM_BASIC, ITEM_MAGNETIC);
+                        }
                 }
+
+
+                // Get item:
+                player_get_item(reaction_handle, item_id);
             }
 
             // Play sound:

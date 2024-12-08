@@ -1,5 +1,5 @@
 /// player_reset_spring()
-// Clears the player's spring variables.
+// Resets the player's spring variables.
 
 homing_handle = noone;
 
