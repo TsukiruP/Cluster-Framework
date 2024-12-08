@@ -303,5 +303,12 @@ audio_pause_all
 audio_resume_all
 audio_jng_play
 audio_jng_stop
-script305
+audio_drown_play
 player_reset_status
+audio_drown_stop
+audio_drown_isplaying
+audio_bgm_mute
+audio_jng_mute
+audio_jng_isplaying
+audio_bgm_fade
+audio_jng_fade

@@ -29,16 +29,18 @@ applies_to=self
 // Load music:
 sound_add_directory("data\audio\bgm", ".ogg", 1, true);
 
-// Volume:
-sound_kind_volume(1, 0);
-
-// Music variables:
-bgm_index = "";
-bgm_handle = -1;
-
 // Loop points:
 sound_set_loop("bgm_debug", 2304672, 9984665, unit_samples);
 sound_set_loop("bgm_basic_test_1", 1024258, 5121290, unit_samples);
+
+// Volume:
+sound_kind_volume(1, game_setting_get("audio_bgm"));
+
+// Music handle:
+bgm_handle = -1;
+
+// Fade out:
+fade_out = false;
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -52,8 +54,7 @@ sound_add_directory("data\audio\jng", ".ogg", 3, true);
 // Volume:
 sound_kind_volume(3, game_setting_get("audio_bgm"));
 
-// Jingle variables
-jng_index = "";
+// Jingle handle:
 jng_handle = -1;
 #define Step_0
 /*"/*'/**//* YYD ACTION
@@ -61,61 +62,21 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Fade Music
-/*
-// Fade Out:
-if (fade_out == true)
+/// Music Priority
+
+// Drowning music takes highest priority:
+if (audio_drown_isplaying())
 {
-    if (sound_kind_get_volume(3) != 0)
-    {
-        sound_kind_volume(3, max(sound_kind_get_volume(3) - 0.01, 0));
-    }
-    else
-    {
-        // Discard music:
-        if (music_instance != -1)
-        {
-            sound_stop(music_instance);
-            sound_discard(music_instance);
-            music_instance = -1;
-        }
-
-        // Discard jingle:
-        if (jingle_instance != -1)
-        {
-            sound_stop(jingle_instance);
-            sound_discard(jingle_instance);
-            jingle_instance = -1;
-        }
-
-        // Reset flag:
-        fade_out = false;
-    }
+    audio_bgm_mute();
+    audio_jng_mute();
 }
 
-// Fade In:
-if (fade_out == false)
+// Jingle has priority over music:
+else
 {
-    // Don't if drowning is playing:
-    if (!sound_isplaying("bgm_drown"))
+    if (audio_jng_isplaying())
     {
-        // Fade in jingle first:
-        if (jingle_instance != -1)
-        {
-            if (sound_get_volume(jingle_instance) != 1)
-            {
-                sound_volume(jingle_instance, min(1, sound_get_volume(jingle_instance) + 0.01));
-            }
-        }
-        
-        // Fade in music:
-        else if (music_instance != -1)
-        {
-            if (sound_get_volume(music_instance) != 1)
-            {
-                sound_volume(music_instance, min(1, sound_get_volume(music_instance) + 0.01));
-            }
-        }
+        audio_bgm_mute();
     }
 }
 /*"/*'/**//* YYD ACTION
@@ -123,38 +84,35 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Quiet Music
-/*
-// Drowning takes priority:
-if (!sound_isplaying("bgm_drown"))
+/// Music Fade
+
+// Fade out:
+if (fade_out == true)
 {
-    // Next is the jingles:
-    if (jingle_instance != -1)
+    audio_bgm_fade(true);
+    audio_jng_fade(true);
+
+    if (bgm_handle == -1 && jng_handle == -1)
     {
-        if (music_instance != -1)
-        {
-            sound_volume(music_instance, 0);
-        }
+        fade_out = false;
     }
 }
 else
 {
-    if (music_instance != -1)
+    if (!audio_drown_isplaying())
     {
-        sound_volume(music_instance, 0);
-    }
+        // Jingle:
+        if (audio_jng_isplaying() == true)
+        {
+            audio_jng_fade(false);
+        }
 
-    if (jingle_instance != -1)
-    {
-        sound_volume(jingle_instance, 0);
+        // Music:
+        else
+        {
+            audio_bgm_fade(false);
+        }
     }
-}
-
-// Clear jingle:
-if (jingle_instance != -1 && !sound_isplaying("bgm_invin") && !sound_isplaying("bgm_speed"))
-{
-    sound_discard(jingle_instance)
-    jingle_instance = -1;
 }
 #define Other_3
 /*"/*'/**//* YYD ACTION
@@ -189,3 +147,13 @@ for (i = 0; i < 4; i += 1)
     // Destroy:
     ds_list_destroy(audio_list);
 }
+#define Other_5
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Discard Audio
+
+audio_jng_stop();
+audio_drown_stop();

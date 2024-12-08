@@ -12,18 +12,13 @@ with (mgr_audio)
             // Check if music isn't already playing:
             if (!sound_isplaying(argument0))
             {
-                // Discard music:
-                if (bgm_handle != -1)
-                {
-                    sound_discard(bgm_handle);
-                    bgm_handle = -1;
-                }
+                // Stop music:
+                audio_bgm_stop();
                 
                 // Play music:
                 if (bgm_handle == -1)
                 {
-                    bgm_index = argument0;
-                    bgm_handle = sound_loop_ex(bgm_index, 1, 1, 0);
+                    bgm_handle = sound_loop_ex(argument0, 1, 1, 0);
                 }
             }
         }

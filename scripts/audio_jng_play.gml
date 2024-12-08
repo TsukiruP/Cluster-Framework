@@ -15,8 +15,13 @@ with (mgr_audio)
             // Play jingle:
             if (jng_handle == -1)
             {
-                jng_index = argument0;
-                jng_handle = sound_play_single(jng_index);
+                jng_handle = sound_play_single(argument0);
+            }
+
+            // Mute if drowning:
+            if (audio_drown_isplaying())
+            {
+                audio_jng_mute();
             }
         }
     }

@@ -494,6 +494,10 @@ if (status_speed == SPEED_SLOW)
     }
 
     // Stop jingle:
+    if (input_cpu == false)
+    {
+        audio_jng_stop("jng_speed");
+    }
 }
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -693,6 +697,12 @@ if (status_invin_alarm > 0)
     if (status_invin_alarm == 0)
     {
         status_invin = INVIN_NONE;
+
+        // Stop jingle:
+        if (input_cpu == false)
+        {
+            audio_jng_stop("jng_invin");
+        }
     }
 }
 
@@ -704,6 +714,12 @@ if (status_speed_alarm > 0)
     if (status_speed_alarm == 0)
     {
         status_speed = SPEED_NONE;
+
+        // Stop jingle:
+        if (input_cpu == false)
+        {
+            audio_jng_stop("jng_speed");
+        }
     }
 }
 

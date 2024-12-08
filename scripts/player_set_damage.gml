@@ -34,6 +34,7 @@ if (damage_handle == id || (stage_get_rings() == 0 && status_shield == 0 && inpu
         stage_set_pause_allow(false);
 
         // Stop jingle:
+        audio_jng_stop();
     }
 }
 

@@ -18,6 +18,9 @@ if (argument_count >= 1)
 
         game_set_speed(1);
         clock_up_state = 0;
+
+        // Resume music:
+        audio_bgm_resume();
     }
 }
 else
@@ -53,6 +56,9 @@ else
             // Play sound:
             audio_sfx_play("snd_clock_up_start");
             audio_sfx_play("snd_hyper_clock_up");
+
+            // Pause music:
+            audio_bgm_pause();
         }
 
         // Normal:
@@ -64,6 +70,9 @@ else
             // Play sound:
             audio_sfx_play("snd_clock_up_start");
             audio_sfx_play("snd_clock_up");
+
+            // Pause music:
+            audio_bgm_pause();
         }
 
         // Over:

@@ -16,7 +16,6 @@
 	+Room
 		|room_set_data
 		|room_get_data
-	|script305
 +System
 	|credits
 	+Managers
@@ -93,9 +92,18 @@
 				|audio_bgm_stop
 				|audio_bgm_pause
 				|audio_bgm_resume
+				|audio_bgm_mute
+				|audio_bgm_fade
 			+JNG
 				|audio_jng_play
 				|audio_jng_stop
+				|audio_jng_isplaying
+				|audio_jng_mute
+				|audio_jng_fade
+			+Drown
+				|audio_drown_play
+				|audio_drown_stop
+				|audio_drown_isplaying
 		+Input
 			|gamepad_get_check
 			|input_get_check
