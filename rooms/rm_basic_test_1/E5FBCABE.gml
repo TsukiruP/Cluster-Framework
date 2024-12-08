@@ -1,3 +1,3 @@
 //gm82 fields begin
-semisolid=false
+semisolid=true
 //gm82 fields end
