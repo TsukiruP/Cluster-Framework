@@ -44,7 +44,7 @@ else if (on_ground == false)
 {
     var skill_key;
 
-    // Skill id:
+    // Skill ID:
     skill_key = "";
 
     // Check Jump skill:
