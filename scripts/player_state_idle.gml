@@ -114,11 +114,14 @@ switch (argument0)
         }
 
         // Wait:
-        if (!game_ispaused(mgr_text) && on_ground == true && input_lock == false && animation_current == "stand") {
-            if (wait_alarm > 0) {
+        if (!game_ispaused(mgr_text) && on_ground == true && input_lock == false && animation_current == "stand")
+        {
+            if (wait_alarm > 0)
+            {
                 wait_alarm -= 1;
 
-                if (wait_alarm == 0) {
+                if (wait_alarm == 0)
+                {
                     player_set_animation("wait");
                 }
             }
