@@ -82,10 +82,10 @@ switch (argument1)
 
     // Mine:
     case ITEM_MINE:
-        player_set_damage();
+        player_set_damage(argument0);
 
         // Create explosion:
-        //effect_create(ctl_explosion_large, argument0.x, argument0.y, depth);
+        effect_create(ctl_explosion_large, argument0.x, argument0.y, depth);
         break;
 
     // Slow:

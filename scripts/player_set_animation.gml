@@ -17,7 +17,4 @@ if (animation_current != argument0 || argument_count >= 2)
 
     // Animate:
     player_animation_core();
-
-    // Object collision:
-    player_collision_object();
 }

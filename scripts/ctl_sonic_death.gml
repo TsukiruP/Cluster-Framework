@@ -8,8 +8,8 @@ if (ctl_position(0))
     image_index = 0;
 
     // Set collision:
-    radii_set(6, 14, 3);
-    hurtbox_set(6, 16, 6, 15);
+    radii_set();
+    hurtbox_set();
     hitbox_set();
 }
 

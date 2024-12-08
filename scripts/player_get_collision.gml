@@ -5,7 +5,7 @@ This occurs in two phases, first checking against the object's hurtbox, and then
 If either the player or object's hitbox/hurtbox is empty (all 0), then these checks aren't done.
 The first phase checks the object's hurtbox against the player's hitbox and radii, and the second checks the object's hitbox against the player's hurtbox and radii. */
 
-var inst, phase, collision;
+var inst, phase, collision, temp;
 var ax_int, ay_int, aleft, atop, aright, abottom, aoff_x, aoff_y, adir_x, adir_y, arot, ax1, ay1, ax2, ay2;
 var bx_int, by_int, bleft, btop, bright, bbottom, boff_x, boff_y, bdir_x, bdir_y, brot, bx1, by1, bx2, by2;
 
@@ -86,8 +86,6 @@ if (inst != noone)
         // Flip object direction:
         if (bdir_x == -1)
         {
-            var temp;
-
             temp = bleft;
             bleft = bright;
             bright = temp;
@@ -95,8 +93,6 @@ if (inst != noone)
 
         if (bdir_y == -1)
         {
-            var temp;
-
             temp = btop;
             btop = bbottom;
             bbottom = temp;
@@ -122,8 +118,6 @@ if (inst != noone)
             // Flip player direction:
             if (adir_x == -1)
             {
-                var temp;
-
                 temp = aleft;
                 aleft = aright
                 aright = temp;
@@ -131,8 +125,6 @@ if (inst != noone)
 
             if (adir_y == -1)
             {
-                var temp;
-
                 temp = atop;
                 atop = abottom;
                 abottom = temp;
@@ -168,26 +160,29 @@ if (inst != noone)
         }
 
         // Radius collision:
-        var upright;
-
-        upright = (arot mod 180 == 0);
-
-        if ((upright == true && rectangle_in_rectangle(ax_int - x_radius, ay_int - y_radius, ax_int + x_radius, ay_int + y_radius, bx1, by1, bx2, by2)) ||
-            (upright == false && rectangle_in_rectangle(ax_int - y_radius, ay_int - x_radius, ax_int + y_radius, ay_int + x_radius, bx1, by1, bx2, by2)))
+        if !(x_radius == 0 && y_radius == 0)
         {
+            var upright;
 
-            // We've hit the object's hitbox:
-            if (phase == 1)
+            upright = (arot mod 180 == 0);
+
+            if ((upright == true && rectangle_in_rectangle(ax_int - x_radius, ay_int - y_radius, ax_int + x_radius, ay_int + y_radius, bx1, by1, bx2, by2)) ||
+                (upright == false && rectangle_in_rectangle(ax_int - y_radius, ay_int - x_radius, ax_int + y_radius, ay_int + x_radius, bx1, by1, bx2, by2)))
             {
-                collision |= COLL_HIT_RADIUS;
-            }
 
-            // We've hit the object's hurtbox:
-            else
-            {
-                collision |= COLL_HURT_RADIUS;
-            }
+                // We've hit the object's hitbox:
+                if (phase == 1)
+                {
+                    collision |= COLL_HIT_RADIUS;
+                }
 
+                // We've hit the object's hurtbox:
+                else
+                {
+                    collision |= COLL_HURT_RADIUS;
+                }
+
+            }
         }
     }
 }

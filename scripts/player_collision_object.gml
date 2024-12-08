@@ -24,7 +24,10 @@ with (par_culled)
     }
     
     // Continue if not colliding:
-    if (kind == 0) continue;
+    if (kind == 0)
+    {
+        continue;
+    }
     
     // Add to collision list:
     ds_list_add(collision_list, id);
@@ -33,6 +36,7 @@ with (par_culled)
 // Trigger reactions:
 result = false;
 total_objects = ds_list_size(collision_list);
+
 if (total_objects > 0)
 {
     var inst, n;
@@ -49,6 +53,7 @@ if (total_objects > 0)
         }
     }
 }
+
 ds_list_destroy(collision_list);
 
 return result;

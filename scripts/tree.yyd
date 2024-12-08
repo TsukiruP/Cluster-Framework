@@ -16,6 +16,7 @@
 	+Room
 		|room_set_data
 		|room_get_data
+	|script305
 +System
 	|credits
 	+Managers
@@ -352,7 +353,6 @@
 			|player_get_angle
 			|player_get_collision
 			|player_get_item
-			|script305
 			|player_get_cliff
 		+Setters
 			|player_set_state
