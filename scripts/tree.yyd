@@ -82,6 +82,7 @@
 			|audio_stop_all
 			|audio_pause_all
 			|audio_resume_all
+			|audio_fade_out
 			+SFX
 				|audio_sfx_play
 				|audio_sfx_stop
@@ -104,6 +105,7 @@
 				|audio_drown_play
 				|audio_drown_stop
 				|audio_drown_isplaying
+				|audio_drown_fade
 		+Input
 			|gamepad_get_check
 			|input_get_check

@@ -14,16 +14,12 @@ with (mgr_audio)
     }
     else
     {
-        // Check if jingle exists:
-        if (jng_handle != -1)
+        // Check if jingle is playing:
+        if (audio_jng_isplaying())
         {
-            // Check if jingle is playing:
-            if (sound_isplaying(jng_handle))
-            {
-                sound_stop(jng_handle);
-                sound_discard(jng_handle);
-                jng_handle = -1;
-            }
+            sound_stop(jng_handle);
+            sound_discard(jng_handle);
+            jng_handle = -1;
         }
     }
 }

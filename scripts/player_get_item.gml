@@ -69,6 +69,7 @@ switch (argument1)
         status_invin_alarm = 1380;
 
         // Play jingle:
+        audio_jng_play("jng_invin");
         break;
 
     // Speed up:
@@ -94,6 +95,12 @@ switch (argument1)
         {
             status_speed = SPEED_SLOW;
             status_speed_alarm = 1200;
+
+            // Stop jingle:
+            if (input_cpu == false)
+            {
+                audio_jng_stop("jng_speed");
+            }
         }
         break;
 

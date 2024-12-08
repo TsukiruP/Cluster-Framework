@@ -86,6 +86,12 @@ else if ((input_cpu == false && shield_handle != noone) || input_cpu == true || 
     {
         audio_sfx_play("snd_hurt");
     }
+
+    // Stop drowning music:
+    if (input_cpu == false)
+    {
+        audio_drown_stop();
+    }
 }
 
 // Underwater physics:

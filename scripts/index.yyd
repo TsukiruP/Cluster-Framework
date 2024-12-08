@@ -312,3 +312,5 @@ audio_jng_mute
 audio_jng_isplaying
 audio_bgm_fade
 audio_jng_fade
+audio_drown_fade
+audio_fade_out

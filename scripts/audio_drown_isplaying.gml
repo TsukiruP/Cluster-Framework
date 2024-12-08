@@ -1,4 +1,13 @@
 /// audio_drown_isplaying()
 // Returns whether drowning music is playing.
 
-return sound_isplaying("jng_drown");
+with (mgr_audio)
+{
+    if (drown_handle != -1)
+    {
+        // Return:
+        return sound_isplaying(drown_handle);
+    }
+
+    return false;
+}

@@ -16,23 +16,18 @@ with (transition)
     {
         transition_id = argument[1];
     }
+
+    // Fade music:
+    if (game_room_get_music() != game_room_get_music(transition_room))
+    {
+        audio_fade_out();
+    }
+    else
+    {
+        audio_jng_fade(true);
+        audio_drown_fade(true);
+    }
 }
 
 // Return:
 return transition;
-
-/*
-if (mgr_audio.music_instance != -1)
-{
-    if (transition.room_bgm != "")
-    {
-        //if (!sound_isplaying(transition.room_bgm)) {
-            mgr_audio.fade_out = true;
-        //}
-    }
-    else
-    {
-        mgr_audio.fade_out = true;
-    }
-}
-*/

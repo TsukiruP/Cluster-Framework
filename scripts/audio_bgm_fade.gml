@@ -1,4 +1,4 @@
-/// audio_bgm_fade(out)
+// audio_bgm_fade(out)
 // Adjusts music volume to imitate fading in or out.
 
 // Fade out:
@@ -11,6 +11,7 @@ if (argument0 == true)
         if (sound_kind_get_volume(1) == 0)
         {
             audio_bgm_stop();
+            sound_kind_volume(1, game_setting_get("audio_bgm"));
         }
     }
 }

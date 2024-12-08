@@ -54,8 +54,9 @@ sound_add_directory("data\audio\jng", ".ogg", 3, true);
 // Volume:
 sound_kind_volume(3, game_setting_get("audio_bgm"));
 
-// Jingle handle:
+// Jingle handles:
 jng_handle = -1;
+drown_handle = -1;
 #define Step_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -91,7 +92,9 @@ if (fade_out == true)
 {
     audio_bgm_fade(true);
     audio_jng_fade(true);
+    audio_drown_fade(true);
 
+    // Reset:
     if (bgm_handle == -1 && jng_handle == -1)
     {
         fade_out = false;
