@@ -55,7 +55,7 @@
 				|game_save_preview
 			+Room
 				|game_room_get_transition
-				|game_room_get_bgm
+				|game_room_get_music
 				|game_room_get_background
 				|game_room_get_zone
 				|game_room_get_act
@@ -93,6 +93,8 @@
 				|audio_bgm_pause
 				|audio_bgm_resume
 			+JNG
+				|audio_jng_play
+				|audio_jng_stop
 		+Input
 			|gamepad_get_check
 			|input_get_check

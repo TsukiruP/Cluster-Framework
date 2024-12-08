@@ -1,5 +1,5 @@
 /// audio_bgm_resume()
-// Resumes background music.
+// Resumes music.
 
 with (mgr_audio)
 {

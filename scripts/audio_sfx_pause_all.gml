@@ -1,5 +1,5 @@
 /// audio_sfx_pause_all()
-// Pauses all playing sound effects.
+// Pauses all sounds.
 
 with (mgr_audio)
 {

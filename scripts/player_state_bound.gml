@@ -15,7 +15,7 @@ switch (argument0)
         // Set animation:
         player_set_animation("spin");
 
-        // Play SFX:
+        // Play sound:
         audio_sfx_play("snd_shield_bubble_bound", true);
 
         // Shield:
@@ -58,7 +58,7 @@ switch (argument0)
             // Set animation:
             animation_skip = true;
 
-            // Play SFX:
+            // Play sound:
             audio_sfx_play("snd_shield_bubble_bound", true);
 
             // Shield:

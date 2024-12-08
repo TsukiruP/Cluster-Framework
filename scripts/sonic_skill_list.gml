@@ -82,7 +82,7 @@ else if (on_ground == false)
                 // Set animation:
                 player_set_animation("insta");
 
-                // Play SFX:
+                // Play sound:
                 audio_sfx_play("snd_shield_insta", true);
 
                 // Create shield:
@@ -112,7 +112,7 @@ else if (on_ground == false)
             player_set_animation("air_dash");
             air_dash_allow = false;
             
-            // Play SFX:
+            // Play sound:
             audio_sfx_play("snd_air_dash", true);
 
             return player_set_state(player_state_air, false);

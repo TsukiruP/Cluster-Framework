@@ -73,7 +73,7 @@ if (!player_get_input(INP_ALT, CHECK_HELD))
                 {
                     homing_handle = homing_candidate;
                     
-                    // Play SFX:
+                    // Play sound:
                     if (homing_handle != homing_handle_temp)
                     {
                         audio_sfx_play("snd_reticle", true);

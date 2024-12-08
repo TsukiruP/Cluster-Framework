@@ -1,25 +1,30 @@
 /// audio_bgm_play(index)
-// Plays background music.
+// Plays music.
 
 with (mgr_audio)
 {
     // Check if index exists:
     if (sound_exists(argument0))
     {
-        // Check if BGM isn't already playing
-        if (!sound_isplaying(argument0))
+        // Check index kind:
+        if (sound_get_kind(argument0) == 1)
         {
-            // Discard BGM:
-            if (bgm_handle != -1)
+            // Check if music isn't already playing:
+            if (!sound_isplaying(argument0))
             {
-                sound_discard(bgm_handle);
-                bgm_handle = -1;
-            }
-            
-            // Play BGM:
-            if (bgm_handle == -1)
-            {
-                bgm_handle = sound_loop_ex(argument0, game_setting_get("audio_bgm"), 1, 0);
+                // Discard music:
+                if (bgm_handle != -1)
+                {
+                    sound_discard(bgm_handle);
+                    bgm_handle = -1;
+                }
+                
+                // Play music:
+                if (bgm_handle == -1)
+                {
+                    bgm_index = argument0;
+                    bgm_handle = sound_loop_ex(bgm_index, 1, 1, 0);
+                }
             }
         }
     }

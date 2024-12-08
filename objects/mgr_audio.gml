@@ -4,15 +4,18 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// SFX Initialization
+/// Sound Initialization
 
-// Character SFX:
+// Load character sounds:
 sound_add_directory("data\audio\sfx\character\common", ".wav", 0, true);
 sound_add_directory("data\audio\sfx\character\sonic", ".wav", 0, true);
 sound_add_directory("data\audio\sfx\character\shield", ".wav", 0, true);
 
-// Prop SFX:
+// Load prop sounds:
 sound_add_directory("data\audio\sfx\prop", ".wav", 0, true);
+
+// Volume:
+sound_kind_volume(0, game_setting_get("audio_sfx"));
 
 // Ring pan:
 ring_pan = 1;
@@ -21,16 +24,19 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// BGM Initialization
+/// Music Initialization
 
-// Room BGM:
+// Load music:
 sound_add_directory("data\audio\bgm", ".ogg", 1, true);
 
-// BGM variables:
+// Volume:
+sound_kind_volume(1, 0);
+
+// Music variables:
 bgm_index = "";
 bgm_handle = -1;
 
-// BGM loops:
+// Loop points:
 sound_set_loop("bgm_debug", 2304672, 9984665, unit_samples);
 sound_set_loop("bgm_basic_test_1", 1024258, 5121290, unit_samples);
 /*"/*'/**//* YYD ACTION
@@ -38,7 +44,17 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// JNG Initialization
+/// Jingle Initialization
+
+// Load jingles:
+sound_add_directory("data\audio\jng", ".ogg", 3, true);
+
+// Volume:
+sound_kind_volume(3, game_setting_get("audio_bgm"));
+
+// Jingle variables
+jng_index = "";
+jng_handle = -1;
 #define Step_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -161,72 +177,15 @@ for (i = 0; i < 4; i += 1)
     {
         audio_index = ds_list_find_value(audio_list, i);
 
-        // Delete:
-        sound_delete(audio_index);
+        if (sound_exists(audio_index))
+        {
+            // Delete:
+            sound_delete(audio_index);
+        }
+
         ds_list_delete(audio_list, i);
     }
 
     // Destroy:
     ds_list_destroy(audio_list);
-}
-#define Other_10
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Play Invincibility Jingle
-/*
-// Clear jingle:
-if (jingle_instance != -1)
-{
-    sound_stop(jingle_instance);
-    sound_discard(jingle_instance);
-    jingle_instance = -1;
-}
-
-// Set jingle:
-if (jingle_instance == -1)
-{
-    jingle_instance = sound_play_single("bgm_invin");
-}
-#define Other_11
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Play Speed Jingle
-/*
-// Clear jingle:
-if (jingle_instance != -1)
-{
-    sound_stop(jingle_instance);
-    sound_discard(jingle_instance);
-    jingle_instance = -1;
-}
-
-// Set jingle:
-if (jingle_instance == -1)
-{
-    jingle_instance = sound_play_single("bgm_speed");
-}
-#define Other_12
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Clear Jingle
-/*
-// Clear:
-if (sound_isplaying("bgm_invin"))
-{
-    sound_stop("bgm_invin");
-}
-
-//
-if (sound_isplaying("bgm_speed"))
-{
-    sound_stop("bgm_speed");
 }

@@ -1,5 +1,5 @@
 /// audio_bgm_pause()
-// Pauses background music.
+// Pauses music.
 
 with (mgr_audio)
 {

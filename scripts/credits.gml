@@ -31,7 +31,7 @@ Sonic XG
 Status HUD concept
 
 Sonic the Hedgehog: Project '06
-Bound Jump SFX
+Bound Jump Sound
 Action Gauge Concept
 
 Sonic Advance X

@@ -19,7 +19,7 @@ switch (status_shield)
             mgr_camera.camera_lag_alarm = 16;
         }
 
-        // Play SFX:
+        // Play sound:
         audio_sfx_play("snd_shield_fire_dash", true);
 
         // Shield:
@@ -39,7 +39,7 @@ switch (status_shield)
         // Set speed:
         y_speed = -5.5;
 
-        // Play SFX:
+        // Play sound:
         audio_sfx_play("snd_shield_lightning_jump", true);
 
         // Sparks:

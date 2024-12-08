@@ -12,7 +12,7 @@ switch (argument0)
         // Set animation:
         player_set_animation("stomp");
 
-        // Play SFX:
+        // Play sound:
         audio_sfx_play("snd_stomp", true);
         break;
 
@@ -52,10 +52,10 @@ switch (argument0)
                     // Set animation:
                     player_set_animation("stomp_land");
 
-                    // Stop SFX:
+                    // Stop sound:
                     audio_sfx_stop("snd_stomp");
 
-                    // Play SFX:
+                    // Play sound:
                     audio_sfx_play("snd_stomp_land", true);
 
                     // Create shockwave:
@@ -114,7 +114,7 @@ switch (argument0)
 
     // Finish:
     case STATE_FINISH:
-        // Stop SFX:
+        // Stop sound:
         audio_sfx_stop("snd_stomp");
         break;
 }

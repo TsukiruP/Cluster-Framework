@@ -19,7 +19,7 @@ switch (argument0)
         // Set animation:
         player_set_animation("somersault");
         
-        // Play SFX:
+        // Play sound:
         audio_sfx_play("snd_somersault", true);
         break;
 
@@ -101,7 +101,7 @@ switch (argument0)
                         // Set animation:
                         player_set_animation("skid");
                         
-                        // Play SFX:
+                        // Play sound:
                         audio_sfx_play("snd_air_dash", true);
                         break;
 

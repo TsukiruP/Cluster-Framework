@@ -1,5 +1,5 @@
 /// audio_sfx_resume_all()
-// Resumes all playing sound effects.
+// Resumes all sounds.
 
 with (mgr_audio)
 {

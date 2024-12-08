@@ -1,4 +1,4 @@
-/// game_room_set(room, [transition, bgm, background, zone, act, water, start, run])
+/// game_room_set(room, [transition, music, background, zone, act, water, start, run])
 // Sets room data in the room grid.
 
 with (mgr_game)
@@ -7,7 +7,7 @@ with (mgr_game)
 
     if (!ds_grid_value_exists(room_grid, 0, 0, ds_grid_width(room_grid) - 1, ds_grid_height(room_grid) - 1, argument0))
     {
-        var room_transition, room_bgm, room_background, room_zone, room_act, room_water, room_start, room_run;
+        var room_transition, room_music, room_background, room_zone, room_act, room_water, room_start, room_run;
 
         // Resize grid:
         ds_grid_resize(room_grid, ds_grid_width(room_grid), ds_grid_height(room_grid) + 1);
@@ -18,7 +18,7 @@ with (mgr_game)
 
         // Initialize room:
         room_transition = TRANS_FADE;
-        room_bgm = "";
+        room_music = "";
         room_background = -1;
         room_zone = "";
         room_act = 0;
@@ -34,13 +34,13 @@ with (mgr_game)
 
         ds_grid_set(room_grid, 1, grid_y, room_transition);
 
-        // Set BGM:
+        // Set music:
         if (argument_count >= 3)
         {
-            room_bgm = argument[2];
+            room_music = argument[2];
         }
 
-        ds_grid_set(room_grid, 2, grid_y, room_bgm);
+        ds_grid_set(room_grid, 2, grid_y, room_music);
 
         // Set background:
         if (argument_count >= 4)

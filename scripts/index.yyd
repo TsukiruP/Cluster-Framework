@@ -289,7 +289,7 @@ audio_ring_pan
 game_room_set
 animation_init_sonic
 game_room_get_transition
-game_room_get_bgm
+game_room_get_music
 game_room_get_background
 game_room_get_zone
 game_room_get_act
@@ -301,3 +301,5 @@ audio_bgm_play
 audio_bgm_resume
 audio_pause_all
 audio_resume_all
+audio_jng_play
+audio_jng_stop

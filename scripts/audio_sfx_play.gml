@@ -1,46 +1,50 @@
 /// audio_sfx_play(index, [single, pitch, pan])
-// Plays a sound effect.
+// Plays a sound.
 
 with (mgr_audio)
 {
     // Check if index exists:
     if (sound_exists(argument0))
     {
-        var single, pitch, pan;
-
-        // Initialize:
-        single = false;
-        pitch = 1;
-        pan = 0;
-
-        // Set single:
-        if (argument_count >= 2)
+        // Check index kind:
+        if (sound_get_kind(argument0) == 0)
         {
-            single = argument[1];
-        }
+            var single, pitch, pan;
 
-        // Set pitch:
-        if (argument_count >= 3)
-        {
-            pitch = argument[2];
-        }
+            // Initialize:
+            single = false;
+            pitch = 1;
+            pan = 0;
 
-        // Set pan:
-        if (argument_count >= 4)
-        {
-            pan = argument[3];
-        }
+            // Set single:
+            if (argument_count >= 2)
+            {
+                single = argument[1];
+            }
 
-        // Play SFX:
-        if (single == true)
-        {
-            // Return:
-            return sound_play_single_ex(argument0, game_setting_get("audio_sfx"), pitch, pan);
-        }
-        else
-        {
-            // Return:
-            return sound_play_ex(argument0, game_setting_get("audio_sfx"), pitch, pan);
+            // Set pitch:
+            if (argument_count >= 3)
+            {
+                pitch = argument[2];
+            }
+
+            // Set pan:
+            if (argument_count >= 4)
+            {
+                pan = argument[3];
+            }
+
+            // Play sound:
+            if (single == true)
+            {
+                // Return:
+                return sound_play_single_ex(argument0, 1, pitch, pan);
+            }
+            else
+            {
+                // Return:
+                return sound_play_ex(argument0, 1, pitch, pan);
+            }
         }
     }
     else

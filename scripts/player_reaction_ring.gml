@@ -14,16 +14,18 @@ if (collision & COLL_HURT_RADIUS)
         // Collect:
         if (reaction_handle.ring_super == true)
         {
+            // Add rings:
             stage_add_rings(10);
 
-            // Play SFX:
+            // Play sound:
             audio_sfx_play("snd_ring_super", true);
         }
         else
         {
+            // Add rings:
             stage_add_rings(1);
 
-            // Play SFX:
+            // Play sound:
             audio_sfx_play("snd_ring", true, 1, audio_ring_pan());
         }
 

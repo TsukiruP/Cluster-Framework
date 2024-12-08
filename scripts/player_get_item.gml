@@ -23,7 +23,7 @@ switch (argument0)
         status_shield = SHIELD_BASIC;
         status_shield_allow = true;
 
-        // Play SFX:
+        // Play sound:
         audio_sfx_play("snd_shield_basic");
         break;
 
@@ -32,7 +32,7 @@ switch (argument0)
         status_shield = SHIELD_MAGNETIC;
         status_shield_allow = true;
 
-        // Play SFX:
+        // Play sound:
         audio_sfx_play("snd_shield_basic");
         break;
 
@@ -41,7 +41,7 @@ switch (argument0)
         status_shield = SHIELD_BUBBLE;
         status_shield_allow = true;
 
-        // Play SFX:
+        // Play sound:
         audio_sfx_play("snd_shield_bubble");
         break;
 
@@ -50,7 +50,7 @@ switch (argument0)
         status_shield = SHIELD_FIRE;
         status_shield_allow = true;
 
-        // Play SFX:
+        // Play sound:
         audio_sfx_play("snd_shield_fire");
         break;
 
@@ -59,7 +59,7 @@ switch (argument0)
         status_shield = SHIELD_LIGHTNING;
         status_shield_allow = true;
 
-        // Play SFX:
+        // Play sound:
         audio_sfx_play("snd_shield_lightning");
         break;
 
@@ -69,7 +69,6 @@ switch (argument0)
         status_invin_alarm = 1380;
 
         // Play jingle:
-        with (mgr_audio) event_user(0);
         break;
 
     // Speed up:
@@ -78,7 +77,7 @@ switch (argument0)
         status_speed_alarm = 900;
 
         // Play jingle:
-        with (mgr_audio) event_user(1);
+        audio_jng_play("jng_speed");
         break;
 
     // Mine:

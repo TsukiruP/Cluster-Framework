@@ -3,9 +3,6 @@
 
 var ring_total, ring_angle, ring_speed, ring_handle;
 
-// Play SFX:
-audio_sfx_play("snd_ring_loss");
-
 // Ring variables:
 ring_total = min(stage_get_rings(), 32);
 ring_angle = 101.25;
@@ -39,3 +36,6 @@ while (ring_total)
 
 // Empty stage rings:
 stage_set_rings(0);
+
+// Play sound:
+audio_sfx_play("snd_ring_loss");

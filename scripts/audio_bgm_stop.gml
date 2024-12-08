@@ -1,5 +1,5 @@
 /// audio_bgm_stop()
-// Stops background music.
+// Stops music.
 
 with (mgr_audio)
 {

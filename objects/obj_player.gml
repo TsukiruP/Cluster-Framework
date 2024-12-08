@@ -494,10 +494,6 @@ if (status_speed == SPEED_SLOW)
     }
 
     // Stop jingle:
-    //if (sound_isplaying("bgm_speed"))
-    //{
-        //sound_stop("bgm_speed");
-    //}
 }
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -588,7 +584,7 @@ if (y > obj_water_surface.y && yprevious < obj_water_surface.y)
         effect_create(ctl_splash_0, x, obj_water_surface.y, -10);
     }
     
-    // Play SFX:
+    // Play sound:
     audio_sfx_play("snd_splash", true);
 }
 
@@ -607,7 +603,7 @@ else if (y < obj_water_surface.y && yprevious > obj_water_surface.y)
         effect_create(ctl_splash_0, x, obj_water_surface.y, -10);
     }
     
-    // Play SFX:
+    // Play sound:
     audio_sfx_play("snd_splash", true);
 }
 
@@ -656,8 +652,8 @@ if (state_current != player_state_death && physics_id == PHYS_WATER && !instance
         air_alarm = 60;
         
         // Stop jingle:
-        if (input_cpu == false) {
-            //sound_stop("bgm_drown");
+        if (input_cpu == false) 
+        {
         }
     }
     
@@ -668,7 +664,6 @@ else
     air_alarm = 60;
     
     // Stop jingle:
-    //sound_stop("bgm_drown");
 }
 #define Step_1
 /*"/*'/**//* YYD ACTION

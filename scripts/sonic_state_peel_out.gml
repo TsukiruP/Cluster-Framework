@@ -11,7 +11,7 @@ switch (argument0)
         // Set animation:
         player_set_animation("peel_out");
         
-        // Play SFX:
+        // Play sound:
         audio_sfx_play("snd_peel_out_charge", true);
         break;
 
@@ -56,10 +56,10 @@ switch (argument0)
                 // Peel Out:
                 peel_out = true;
                 
-                // Play SFX:
+                // Play sound:
                 audio_sfx_play("snd_peel_out_release", true);
                 
-                // Stop SFX:
+                // Stop sound:
                 audio_sfx_stop("snd_peel_out_charge")
             }
             

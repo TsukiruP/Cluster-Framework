@@ -33,11 +33,7 @@ if (damage_handle == id || (stage_get_rings() == 0 && status_shield == 0 && inpu
         // Disable pause:
         stage_set_pause_allow(false);
 
-        // Stop jingles:
-        with (mgr_audio)
-        {
-            event_user(2);
-        }
+        // Stop jingle:
     }
 }
 
@@ -67,7 +63,7 @@ else
     }
 }
 
-// Play SFX:
+// Play sound:
 if (damage_handle == id)
 {
     if (drown == true)

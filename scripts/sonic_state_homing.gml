@@ -19,7 +19,7 @@ switch (argument0)
         // Set animation:
         player_set_animation("spin");
 
-        // Play SFX:
+        // Play sound:
         audio_sfx_play("snd_air_dash", true);
         break;
 

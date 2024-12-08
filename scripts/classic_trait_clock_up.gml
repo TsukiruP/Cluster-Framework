@@ -6,7 +6,7 @@ if (argument_count >= 1)
 {
     if (argument[0] == true && clock_up_state != 0)
     {
-        // Play SFX:
+        // Play sound:
         if (clock_up_state == 2)
         {
             audio_sfx_play("snd_hyper_clock_over");
@@ -50,7 +50,7 @@ else
             game_set_speed(0);
             clock_up_state = 2;
 
-            // Play SFX:
+            // Play sound:
             audio_sfx_play("snd_clock_up_start");
             audio_sfx_play("snd_hyper_clock_up");
         }
@@ -61,7 +61,7 @@ else
             game_set_speed(0.25);
             clock_up_state = 1;
 
-            // Play SFX:
+            // Play sound:
             audio_sfx_play("snd_clock_up_start");
             audio_sfx_play("snd_clock_up");
         }
