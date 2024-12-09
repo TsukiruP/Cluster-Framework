@@ -25,7 +25,6 @@ with (transition)
     else
     {
         audio_jng_fade(true);
-        audio_drown_fade(true);
     }
 }
 
