@@ -558,80 +558,6 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Splash
-
-// Exit if there's no water surface:
-if (!instance_exists(obj_water_surface))
-{
-    exit;
-}
-
-// Entry splash:
-if (y > obj_water_surface.y && yprevious < obj_water_surface.y)
-{
-    x_speed *= 0.50;
-    y_speed *= 0.25;
-    
-    // Create splash:
-    if (y_speed >= 2.50)
-    {
-        effect_create(ctl_splash_1, x, obj_water_surface.y, -10);
-    }
-    else
-    {
-        effect_create(ctl_splash_0, x, obj_water_surface.y, -10);
-    }
-    
-    // Play sound:
-    audio_sfx_play("snd_splash", true);
-}
-
-// Exit splash:
-else if (y < obj_water_surface.y && yprevious > obj_water_surface.y)
-{
-    y_speed = max(y_speed * 2, -16);
-    
-    // Create splash:
-    if (abs(y_speed) >= 6)
-    {
-        effect_create(ctl_splash_1, x, obj_water_surface.y, -10);
-    }
-    else
-    {
-        effect_create(ctl_splash_0, x, obj_water_surface.y, -10);
-    }
-    
-    // Play sound:
-    audio_sfx_play("snd_splash", true);
-}
-
-// Surface time:
-if (on_surface == true && abs(x_speed) > 0)
-{
-    surface_time += 1;
-    
-    // Splash:
-    if (surface_time mod 9 == 0)
-    {
-        if (abs(x_speed) >= 4.50)
-        {
-            effect_create(ctl_splash_3, x, obj_water_surface.y, depth, image_xscale);
-        }
-        else
-        {
-            effect_create(ctl_splash_2, x, obj_water_surface.y, depth, image_xscale);
-        }
-    }
-}
-else
-{
-    surface_time = 0;
-}
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
 /// Air
 
 // Exit if the stage is paused or text is active:
@@ -1025,6 +951,80 @@ switch (character_id)
 update_trail(floor(x) + (dcos(angle + 90) * (trail_draw == true)) + dcos(angle) * x_speed,
     floor(y) - (dsin(angle + 90) * (trail_draw == true)) + y_speed - dsin(angle) * x_speed,
     (trail_draw == true));
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Splash
+
+// Exit if there's no water surface:
+if (!instance_exists(obj_water_surface))
+{
+    exit;
+}
+
+// Entry splash:
+if (y > obj_water_surface.y && yprevious < obj_water_surface.y)
+{
+    x_speed *= 0.50;
+    y_speed *= 0.25;
+    
+    // Create splash:
+    if (y_speed >= 2.50)
+    {
+        effect_create(ctl_splash_1, x, obj_water_surface.y, -10);
+    }
+    else
+    {
+        effect_create(ctl_splash_0, x, obj_water_surface.y, -10);
+    }
+    
+    // Play sound:
+    audio_sfx_play("snd_splash", true);
+}
+
+// Exit splash:
+else if (y < obj_water_surface.y && yprevious > obj_water_surface.y)
+{
+    y_speed = max(y_speed * 2, -16);
+    
+    // Create splash:
+    if (y_speed <= -6)
+    {
+        effect_create(ctl_splash_1, x, obj_water_surface.y, -10);
+    }
+    else
+    {
+        effect_create(ctl_splash_0, x, obj_water_surface.y, -10);
+    }
+    
+    // Play sound:
+    audio_sfx_play("snd_splash", true);
+}
+
+// Surface time:
+if (on_surface == true && abs(x_speed) > 0)
+{
+    surface_time += 1;
+    
+    // Splash:
+    if (surface_time mod 9 == 0)
+    {
+        if (abs(x_speed) >= 4.50)
+        {
+            effect_create(ctl_splash_3, x, obj_water_surface.y, depth, image_xscale);
+        }
+        else
+        {
+            effect_create(ctl_splash_2, x, obj_water_surface.y, depth, image_xscale);
+        }
+    }
+}
+else
+{
+    surface_time = 0;
+}
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
