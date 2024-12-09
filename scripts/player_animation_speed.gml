@@ -1,17 +1,28 @@
 /// player_animation_speed()
 // Updates animation speed.
 
-switch (animation_current)
+switch (character_id)
 {
-    case "run_0":
-    case "run_1":
-    case "run_2":
-    case "run_3":
-    case "run_4":
-    case "run_5":
-        ctl_speed = clamp(abs(x_speed * 3) / 4, 0.5, 7);
+    // Classic:
+    case CHAR_CLASSIC:
         break;
 
+    // Default:
     default:
-        ctl_speed = 1;
+        switch (animation_current)
+        {
+            // Run:
+            case "run_0":
+            case "run_1":
+            case "run_2":
+            case "run_3":
+            case "run_4":
+            case "run_5":
+                ctl_speed = clamp(abs(x_speed * 3) / 4, 0.5, 7);
+                break;
+
+            // Default:
+            default:
+                ctl_speed = 1;
+        }
 }

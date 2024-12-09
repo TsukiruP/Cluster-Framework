@@ -323,6 +323,7 @@
 				|player_state_brake
 				|player_state_hurt
 				|player_state_death
+				|player_state_spring
 				|player_state_bound
 				+Auxiliary
 					|player_state_hammer
