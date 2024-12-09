@@ -126,7 +126,7 @@ switch (argument0)
         // Reset bound:
         if (state_current != player_state_bound)
         {
-            jump_bound = BOUND_SHIELD;
+            jump_bound = BOUND_NONE;
 
             // Reset shield:
             if (instance_exists(shield_handle))
