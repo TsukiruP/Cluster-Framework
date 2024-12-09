@@ -11,6 +11,9 @@ event_inherited();
 // Image index:
 image_index = 1;
 
+// Targetable:
+targetable = false;
+
 // Cover:
 cover = noone;
 
