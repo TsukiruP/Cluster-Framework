@@ -176,64 +176,45 @@ for (i = 0; i < page_count; i += 1)
             draw_set_color(c_white);
         }
 
+
+
         // Text:
-        switch (ds_map_get(save_preview_map, save_string + "_exists"))
+        if (ds_map_get(save_preview_map, save_string + "_exists") == true)
         {
-            // Save doesn't exist:
-            case 0:
-                draw_set2(fa_middle, fa_center);
-                draw_text(save_x1 + save_width, save_y2 - save_height / 2, "No Data");
-                break;
-            
-            // Save exists:
-            case 1:
-                var save_name, save_stage, save_time;
-        
-                // Save data:
-                save_name = ds_map_get(save_preview_map, save_string + "_name");
-                save_stage = ds_map_get(save_preview_map, save_string + "_stage");
-                save_time = ds_map_get(save_preview_map, save_string + "_time");
-                save_player = ds_map_get(save_preview_map, save_string + "_player");
-                
-                // Default to slot number:
-                if (save_name == "")
-                {
-                    save_name = "Slot " + string(save_id);
-                }
-                
-                // Player:
-                draw_sprite_ext(spr_save_player, save_player, save_x1 - 8, save_y1 - save_height / 2, 1, 1, 0, c_white, 0.6);
-                
-                // Name and stage:
-                draw_set2(fa_left, fa_center);
-                draw_text(save_x1, save_y1, save_name + "##" + room_get_name(save_stage));
-        
-                // Time:
-                draw_set2(fa_right, fa_center);
-                draw_text(save_x2, save_y1, "##" + string_pad(save_time div 216000, 3) + ":" + string_pad(save_time div 3600, 2));
-                break;
-            
-            // Game mismatch:
-            case 2:
-                draw_set2(fa_middle, fa_center);
-                draw_text(save_x1 + save_width, save_y2 - save_height / 2, "Game Mismatch");
-                break;
-            
-            // Version mismatch:
-            case 3:
-                draw_set2(fa_middle, fa_center);
-                draw_text(save_x1 + save_width, save_y2 - save_height / 2, "Version Mismatch");
-                break;
+            var save_name, save_stage, save_time;
+
+            // Save data:
+            save_name = ds_map_get(save_preview_map, save_string + "_name");
+            save_stage = ds_map_get(save_preview_map, save_string + "_stage");
+            save_time = ds_map_get(save_preview_map, save_string + "_time");
+            save_player = ds_map_get(save_preview_map, save_string + "_player");
+
+            // Default to slot number:
+            if (save_name == "")
+            {
+                save_name = "Slot " + string(save_id);
+            }
+
+            // Player:
+            draw_sprite_ext(spr_save_player, save_player, save_x1 - 8, save_y1 - save_height / 2, 1, 1, 0, c_white, 0.6);
+
+            // Name and stage:
+            draw_set2(fa_left, fa_center);
+            draw_text(save_x1, save_y1, save_name + "##" + room_get_name(save_stage));
+
+            // Time:
+            draw_set2(fa_right, fa_center);
+            draw_text(save_x2, save_y1, "##" + string_pad(save_time div 216000, 3) + ":" + string_pad(save_time div 3600, 2));
+        }
+
+        // Save doesn't exist:
+        else
+        {
+            draw_set2(fa_middle, fa_center);
+            draw_text(save_x1 + save_width, save_y2 - save_height / 2, "No Data");
         }
     }
 }
 
 // Reset:
 draw_reset();
-#define KeyPress_32
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-text_body_set("This is a test!", "Test test test");
