@@ -53,6 +53,7 @@
 				|game_save_write
 				|game_save_default
 				|game_save_preview
+				|game_save_buffer_load
 			+Room
 				|game_room_get_transition
 				|game_room_get_music

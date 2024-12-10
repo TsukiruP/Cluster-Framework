@@ -3,7 +3,7 @@
 
 with (mgr_game)
 {
-    var preview_map, i, save_buffer;
+    var preview_map, i;
 
     // Preview map:
     preview_map = ds_map_create();
@@ -21,36 +21,13 @@ with (mgr_game)
             var save_temp;
 
             // Temporary save map:
-            save_temp = ds_map_create();
+            save_temp = game_save_buffer_load(i);
 
-            save_buffer = buffer_create();
-            buffer_load(save_buffer, save_directory + save_string + ".sav");
-
-            if (save_encryption != "")
-            {
-                buffer_rc4(save_buffer, save_encryption);
-            }
-
-            ds_map_read(save_temp, buffer_read_hex(save_buffer, buffer_get_size(save_buffer)));
-            buffer_destroy(save_buffer);
-
-            // Game mismatch:
-            if (ds_map_get(save_temp, "game") != GAME_NAME)
-            {
-                ds_map_set(preview_map, save_string + "_exists", 2);
-            }
-            else if (ds_map_get(save_temp, "version") != GAME_VERSION)
-            {
-                ds_map_set(preview_map, save_string + "_exists", 3);
-            }
-            else
-            {
-                ds_map_set(preview_map, save_string + "_exists", 1);
-                ds_map_set(preview_map, save_string + "_name", ds_map_get(save_temp, "name"));
-                ds_map_set(preview_map, save_string + "_stage", ds_map_get(save_temp, "stage"));
-                ds_map_set(preview_map, save_string + "_time", ds_map_get(save_temp, "time"));
-                ds_map_set(preview_map, save_string + "_player", ds_map_get(save_temp, "player0"));
-            }
+            ds_map_set(preview_map, save_string + "_exists", true);
+            ds_map_set(preview_map, save_string + "_name", ds_map_get(save_temp, "name"));
+            ds_map_set(preview_map, save_string + "_stage", ds_map_get(save_temp, "stage"));
+            ds_map_set(preview_map, save_string + "_time", ds_map_get(save_temp, "time"));
+            ds_map_set(preview_map, save_string + "_player", ds_map_get(save_temp, "player0"));
 
             // Destroy temp map:
             ds_map_destroy(save_temp);
@@ -59,7 +36,7 @@ with (mgr_game)
         // Save file doesn't exist:
         else
         {
-            ds_map_set(preview_map, save_string + "_exists", 0);
+            ds_map_set(preview_map, save_string + "_exists", false);
         }
     }
     
