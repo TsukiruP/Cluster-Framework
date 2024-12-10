@@ -21,21 +21,18 @@ switch (argument0)
 
     // Step:
     case STATE_STEP:
-        if (spring_alarm == 0)
+        // Input:
+        if (input_x_direction != 0)
         {
-            // Input:
-            if (input_x_direction != 0)
+            image_xscale = input_x_direction;
+
+            if (abs(x_speed) < top_speed || sign(x_speed) != input_x_direction)
             {
-                image_xscale = input_x_direction;
+                x_speed += (acceleration * 2) * input_x_direction;
 
-                if (abs(x_speed) < top_speed || sign(x_speed) != input_x_direction)
+                if (abs(x_speed) > top_speed && sign(x_speed) == input_x_direction)
                 {
-                    x_speed += (acceleration * 2) * input_x_direction;
-
-                    if (abs(x_speed) > top_speed && sign(x_speed) == input_x_direction)
-                    {
-                        x_speed = top_speed * input_x_direction;
-                    }
+                    x_speed = top_speed * input_x_direction;
                 }
             }
         }
@@ -48,12 +45,6 @@ switch (argument0)
 
         // Land:
         if (player_routine_land())
-        {
-            return false;
-        }
-
-        // Spring:
-        if (spring_alarm > 0)
         {
             return false;
         }

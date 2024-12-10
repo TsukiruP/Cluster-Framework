@@ -34,10 +34,7 @@ if (collision & COLL_HURT_RADIUS)
         if (!(on_ground == true && (spring_angle == ANGLE_LEFT || spring_angle == ANGLE_RIGHT)) || is_dash_ring == true)
         {
             // Set state:
-            player_reset_air();
-            player_reset_skill();
-            player_animation_air();
-            player_set_state(player_state_air, false);
+            player_set_state(player_state_spring, true);
             y = reaction_handle.y;
         }
         else

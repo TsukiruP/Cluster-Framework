@@ -297,6 +297,7 @@
 			|player_animation_speed
 			|player_animation_run
 			|player_animation_air
+			|player_animation_spring
 		+Collision
 			|player_collision_object
 			|player_collision_wall

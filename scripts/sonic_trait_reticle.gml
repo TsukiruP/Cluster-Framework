@@ -24,6 +24,7 @@ switch (state_current)
     case player_state_look:
     case player_state_crouch:
     case player_state_brake:
+    case sonic_state_spring:
         homing_allow = true;
         break;
     

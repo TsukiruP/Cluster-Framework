@@ -8,8 +8,11 @@ switch (argument0)
         // Reset air:
         player_reset_air();
 
+        // Reset skill:
+        player_reset_skill();
+
         // Set animation:
-        player_animation_air();
+        player_animation_spring();
         break;
 
     // Step:
@@ -70,7 +73,7 @@ switch (argument0)
         }
 
         // Set animation:
-        player_animation_air();
+        player_animation_spring();
         break;
 
     // Finish:

@@ -315,3 +315,4 @@ audio_jng_fade
 audio_drown_fade
 audio_fade_out
 player_state_spring
+player_animation_spring
