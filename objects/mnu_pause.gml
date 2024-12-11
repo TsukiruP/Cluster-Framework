@@ -10,6 +10,7 @@ var i;
 
 // Pause audio:
 audio_pause_all();
+audio_sfx_play("snd_pause", true);
 
 // Menu variables:
 menu_current = 0;
