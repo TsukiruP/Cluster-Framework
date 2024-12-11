@@ -84,16 +84,6 @@
 			|obj_basic_test_mask_17
 			|obj_basic_test_mask_18
 			|obj_basic_test_mask_19
-			|obj_basic_test_mask_20
-			|obj_basic_test_mask_21
-			|obj_basic_test_mask_22
-			|obj_basic_test_mask_23
-			|obj_basic_test_mask_24
-			|obj_basic_test_mask_25
-			|obj_basic_test_mask_26
-			|obj_basic_test_mask_27
-			|obj_basic_test_mask_28
-			|obj_basic_test_mask_29
 		+Gimmicks
 			|obj_basic_test_water_fall_01
 			|obj_basic_test_water_fall_02
@@ -151,3 +141,13 @@
 			|obj_item_panic
 			|obj_item_swap
 	|eff_debris
+	|obj_basic_test_mask_20
+	|obj_basic_test_mask_21
+	|obj_basic_test_mask_22
+	|obj_basic_test_mask_23
+	|obj_basic_test_mask_24
+	|obj_basic_test_mask_25
+	|obj_basic_test_mask_26
+	|obj_basic_test_mask_27
+	|obj_basic_test_mask_28
+	|obj_basic_test_mask_29

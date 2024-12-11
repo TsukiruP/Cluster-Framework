@@ -1,3 +1,4 @@
+|sprite290
 +System
 	|spr_realizing_hopper
 	|spr_transition_background
@@ -193,6 +194,17 @@
 		+Gimmicks
 			|spr_sky_sanctuary_fountain
 	+Basic Test
+		+Masks Old
+			|spr_basic_test_mask_20
+			|spr_basic_test_mask_21
+			|spr_basic_test_mask_22
+			|spr_basic_test_mask_23
+			|spr_basic_test_mask_24
+			|spr_basic_test_mask_25
+			|spr_basic_test_mask_26
+			|spr_basic_test_mask_27
+			|spr_basic_test_mask_28
+			|spr_basic_test_mask_29
 		+Masks
 			|spr_basic_test_mask_01
 			|spr_basic_test_mask_02
@@ -213,16 +225,6 @@
 			|spr_basic_test_mask_17
 			|spr_basic_test_mask_18
 			|spr_basic_test_mask_19
-			|spr_basic_test_mask_20
-			|spr_basic_test_mask_21
-			|spr_basic_test_mask_22
-			|spr_basic_test_mask_23
-			|spr_basic_test_mask_24
-			|spr_basic_test_mask_25
-			|spr_basic_test_mask_26
-			|spr_basic_test_mask_27
-			|spr_basic_test_mask_28
-			|spr_basic_test_mask_29
 		+Gimmicks
 			|spr_basic_test_water_fall
 	+Sunset Forest
