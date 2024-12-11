@@ -66,6 +66,12 @@ menu_selection = wrap(menu_selection, 0, save_count - 1);
 // Menu save:
 menu_save = (menu_page * save_max) + menu_selection;
 
+// Play sound:
+if (menu_x_direction != 0 || menu_y_direction != 0)
+{
+    audio_sfx_play("snd_selection", true);
+}
+
 // Confirm:
 if (input_get_check(INP_CONFIRM, CHECK_PRESSED))
 {
@@ -84,6 +90,9 @@ if (input_get_check(INP_CONFIRM, CHECK_PRESSED))
             transition_create(rm_basic_test_1);
             break;
     }
+
+    // Play sound:
+    audio_sfx_play("snd_confirm", true);
 }
 #define Other_5
 /*"/*'/**//* YYD ACTION

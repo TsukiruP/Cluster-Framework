@@ -90,13 +90,18 @@ if (pause_delay == 0)
         {
             switch (menu_current)
             {
+                // Restart menu:
                 case 1:
                     event_user(1);
                     break;
 
+                // Continue:
                 default:
                     event_user(0);
             }
+
+            // Play sound:
+            audio_sfx_play("snd_confirm");
         }
 
         // Reset appearance:
@@ -131,6 +136,12 @@ menu_direction = menu_down - menu_up;
 // Menu selection:
 menu_selection[menu_current] += menu_direction;
 menu_selection[menu_current] = wrap(menu_selection[menu_current], 0, pause_count[menu_current] - 1);
+
+// Play sound:
+if (menu_direction != 0)
+{
+    audio_sfx_play("snd_selection", true);
+}
 
 // Input delay:
 if (pause_delay == 0)
@@ -183,12 +194,18 @@ if (pause_delay == 0)
                 }
                 break;
         }
+
+        // Play sound:
+        audio_sfx_play("snd_confirm");
     }
 
     // Start:
     if (input_get_check(INP_START, CHECK_PRESSED))
     {
         event_user(0);
+
+        // Play sound:
+        audio_sfx_play("snd_pause", true);
     }
 }
 /*"/*'/**//* YYD ACTION
