@@ -96,6 +96,9 @@ RIPPED SOUNDS
 Tsukiru
 Sonic Heroes
 
+PkR
+Sonic Adventure Sound Overhaul
+
 Azu
 Sonic Colors - General Sound Effects
 
@@ -105,6 +108,10 @@ Sonic Mania - Sound Effects
 TOOLS
 MainMemory
 AdvanceTools
+SADXsndSharp
+
+Sewer56
+PACTool
 
 RPatry
 Velocitas

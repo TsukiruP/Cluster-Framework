@@ -1,11 +1,12 @@
 /// audio_bgm_stop()
 // Stops music.
 
-sound_kind_stop(1);
-
-// Discard music:
-if (bgm_handle != -1)
+with (mgr_audio)
 {
-    sound_discard(bgm_handle);
-    bgm_handle = -1;
+    if (bgm_handle != -1)
+    {
+        sound_stop(bgm_handle);
+        sound_discard(bgm_handle);
+        bgm_handle = -1;
+    }
 }

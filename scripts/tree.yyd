@@ -16,6 +16,7 @@
 	+Room
 		|room_set_data
 		|room_get_data
+	|audio_sfx_resume
 +System
 	|credits
 	+Managers
@@ -99,12 +100,16 @@
 			+JNG
 				|audio_jng_play
 				|audio_jng_stop
+				|audio_jng_pause
+				|audio_jng_resume
 				|audio_jng_isplaying
 				|audio_jng_mute
 				|audio_jng_fade
 			+Drown
 				|audio_drown_play
 				|audio_drown_stop
+				|audio_drown_pause
+				|audio_drown_resume
 				|audio_drown_isplaying
 				|audio_drown_fade
 		+Input

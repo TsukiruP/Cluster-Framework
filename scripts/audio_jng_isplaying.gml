@@ -1,7 +1,6 @@
 /// audio_jng_isplaying([index])
 // Returns whether a jingle is playing.
 
-
 with (mgr_audio)
 {
     if (argument_count >= 1)

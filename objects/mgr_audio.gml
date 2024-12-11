@@ -14,8 +14,14 @@ sound_add_directory("data\audio\sfx\character\shield", ".wav", 0, true);
 // Load prop sounds:
 sound_add_directory("data\audio\sfx\prop", ".wav", 0, true);
 
+// Load menu sounds:
+sound_add_directory("data\audio\sfx\menu", ".wav", 0, true);
+
 // Volume:
 sound_kind_volume(0, game_setting_get("audio_sfx"));
+
+// Sound list:
+sfx_list = ds_list_create();
 
 // Ring pan:
 ring_pan = 1;
@@ -58,6 +64,22 @@ sound_kind_volume(3, game_setting_get("audio_bgm"));
 jng_handle = -1;
 drown_handle = -1;
 #define Step_0
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Sound List
+
+var i, pos;
+
+for (i = 0; i < ds_list_size(sfx_list); i += 1)
+{
+    if (!sound_isplaying(ds_list_find_value(sfx_list, i)))
+    {
+        ds_list_delete(sfx_list, i);
+    }
+}
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -129,6 +151,7 @@ var i, j, audio_list, audio_index;
 
 // Stop all audio:
 audio_stop_all();
+ds_list_destroy(sfx_list);
 
 for (i = 0; i < 4; i += 1)
 {

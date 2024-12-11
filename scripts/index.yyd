@@ -317,3 +317,8 @@ audio_fade_out
 player_state_spring
 player_animation_spring
 game_save_buffer_load
+audio_sfx_resume
+audio_jng_pause
+audio_jng_resume
+audio_drown_pause
+audio_drown_resume

@@ -38,6 +38,9 @@ if (collision & COLL_HURT_RADIUS)
                     // Hint Box:
                     case obj_hint_box:
                         player_set_animation("look");
+
+                        // Play sound:
+                        audio_sfx_play("snd_hint_monitor", true);
                         break;
 
                         // Omochao:

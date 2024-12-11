@@ -1,4 +1,14 @@
 /// audio_sfx_resume_all()
-// Resumes all sounds.
+// Resumes all currently paused sounds.
 
-sound_kind_resume(0);
+with (mgr_audio)
+{
+    var i, sfx;
+
+    for (i = 0; i < ds_list_size(sfx_list); i += 1)
+    {
+        sfx = ds_list_find_value(sfx_list, i);
+
+        sound_resume(sfx);
+    }
+}
