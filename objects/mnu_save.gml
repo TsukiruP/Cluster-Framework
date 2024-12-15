@@ -26,7 +26,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Destroy Preview Map
+/// Cleanup
 
 ds_map_destroy(save_preview_map);
 #define Step_0
@@ -97,12 +97,10 @@ if (input_get_check(INP_CONFIRM, CHECK_PRESSED))
 #define Other_5
 /*"/*'/**//* YYD ACTION
 lib_id=1
-action_id=603
+action_id=203
 applies_to=self
+invert=0
 */
-/// Destroy Preview Map
-
-ds_map_destroy(save_preview_map);
 #define Other_10
 /*"/*'/**//* YYD ACTION
 lib_id=1

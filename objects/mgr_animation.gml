@@ -15,6 +15,6 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Destroy Animation Grid
+/// Cleanup
 
 ds_grid_destroy(animation_grid);

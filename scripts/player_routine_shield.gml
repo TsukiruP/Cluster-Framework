@@ -47,7 +47,7 @@ switch (status_shield)
         {
             var spark_handle;
 
-            spark_handle = effect_create(ctl_shield_lightning_spark, floor(x), floor(y));
+            spark_handle = effect_create(ctl_shield_lightning_spark, x, y);
             spark_handle.x_speed = 2;
             spark_handle.y_speed = 2;
 

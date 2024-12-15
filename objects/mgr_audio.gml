@@ -145,7 +145,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Release Audio
+/// Cleanup
 
 var i, j, audio_list, audio_index;
 
