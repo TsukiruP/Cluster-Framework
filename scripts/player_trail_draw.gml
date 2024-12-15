@@ -34,8 +34,8 @@ for (i = 1; i < size; i += 1)
     // Calculate alpha, then render:
     alpha = ds_list_find_value(trail_alpha, i) * ((i - 1) / size);
     
-    draw_vertex_texture_color(px + dx, py + dy, (i - 1) / size, 0, color, alpha);
-    draw_vertex_texture_color(px - dx, py - dy, (i - 1) / size, 1, color, alpha);
+    draw_vertex_texture_color(nx + dx, ny + dy, (i - 1) / size, 0, color, alpha);
+    draw_vertex_texture_color(nx - dx, ny - dy, (i - 1) / size, 1, color, alpha);
 }
 
 draw_primitive_end();

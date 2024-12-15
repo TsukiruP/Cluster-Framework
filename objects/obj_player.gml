@@ -103,8 +103,8 @@ y_list = ds_list_create();
 
 for (i = 0; i < 16; i += 1)
 {
-    ds_list_add(x_list, floor(x));
-    ds_list_add(y_list, floor(y));
+    ds_list_add(x_list, x);
+    ds_list_add(y_list, y);
 }
 /*"/*'/**//* YYD ACTION
 lib_id=1
