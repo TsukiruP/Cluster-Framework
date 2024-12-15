@@ -4,7 +4,7 @@
 with (mgr_audio)
 {
     // Check if a jingle is playing:
-    if (audio_jng_isplaying())
+    if (jng_handle != -1)
     {
         sound_volume(jng_handle, 0);
     }

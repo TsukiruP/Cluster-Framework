@@ -15,7 +15,7 @@ with (mgr_audio)
     else
     {
         // Check if jingle is playing:
-        if (audio_jng_isplaying())
+        if (jng_handle != -1)
         {
             sound_stop(jng_handle);
             sound_discard(jng_handle);
