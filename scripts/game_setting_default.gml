@@ -48,7 +48,7 @@ game_setting_set("gameplay_checkpoint", true);
 game_setting_set("advance_turn", true);
 game_setting_set("advance_brake", true);
 game_setting_set("advance_hurt", true);
-game_setting_set("advance_flicker", false);
+game_setting_set("advance_flicker", true);
 
 // Misc.:
 game_setting_set("misc_hud", 1);

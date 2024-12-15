@@ -517,7 +517,7 @@ if ((status_shield != SHIELD_NONE || status_invin == INVIN_BUFF) && !instance_ex
 }
 
 // Create invincibility sparkles:
-if (status_invin == INVIN_BUFF)
+if (game_setting_get("advance_flicker") && status_invin == INVIN_BUFF)
 {
     if (sync_rate(status_invin_alarm, 2, 4) == 0)
     {
