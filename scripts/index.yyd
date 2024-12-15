@@ -88,9 +88,9 @@ game_get_save_count
 screen_get_width
 hover
 input_get_time
-start_trail
-update_trail
-draw_trail
+player_trail_init
+player_trail_color
+player_trail_draw
 ctl_sonic_cliff_front
 sonic_animation_list
 player_animation_speed

@@ -72,6 +72,8 @@ applies_to=self
 */
 /// Collision Initialization
 
+var i;
+
 solid_list = ds_list_create();
 layer = 0;
 cliff_direction = 0;
@@ -94,6 +96,16 @@ hurtbox_set();
 
 // Hitbox:
 hitbox_set();
+
+// Position lists
+x_list = ds_list_create();
+y_list = ds_list_create();
+
+for (i = 0; i < 16; i += 1)
+{
+    ds_list_add(x_list, floor(x));
+    ds_list_add(y_list, floor(y));
+}
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -177,15 +189,8 @@ reticle_handle = noone;
 afterimage_draw = false;
 afterimage_alarm = 6;
 
-// Trail variables:
-trail_draw = false;
-trail_color = c_white;
-
-// Start trail:
-if (game_setting_get("misc_trails"))
-{
-    start_trail(15);
-}
+// Trail:
+player_trail_init();
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -791,6 +796,23 @@ lib_id=1
 action_id=603
 applies_to=self
 */
+/// Lists
+
+ds_list_delete(x_list, 0);
+ds_list_delete(y_list, 0);
+ds_list_add(x_list, floor(x));
+ds_list_add(y_list, floor(y));
+
+if (trail_alpha != -1)
+{
+    ds_list_delete(trail_alpha, 0);
+    ds_list_add(trail_alpha, (trail_draw == true));
+}
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
 /// Image Angle
 
 // Exit if the stage is paused or text is active:
@@ -920,42 +942,6 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Trail
-
-// Exit if trails are disabled:
-if (!game_setting_get("misc_trails"))
-{
-    exit;
-}
-
-// Color trail:
-switch (character_id)
-{
-    // Miles:
-    case CHAR_MILES:
-        trail_color = c_yellow;
-        break;
-
-    // Knuckles:
-    case CHAR_KNUCKLES:
-        trail_color = c_red;
-        break;
-
-    // Sonic:
-    default:
-        trail_color = c_blue;
-        break;
-}
-
-// Update trail:
-update_trail(floor(x) + (dcos(angle + 90) * (trail_draw == true)) + dcos(angle) * x_speed,
-    floor(y) - (dsin(angle + 90) * (trail_draw == true)) + y_speed - dsin(angle) * x_speed,
-    (trail_draw == true));
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
 /// Splash
 
 // Exit if there's no water surface:
@@ -1025,6 +1011,21 @@ else
 {
     surface_time = 0;
 }
+#define Other_5
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Destroy Lists
+
+ds_list_destroy(x_list);
+ds_list_destroy(y_list);
+
+if (trail_alpha != -1)
+{
+    ds_list_destroy(trail_alpha);
+}
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -1034,13 +1035,7 @@ applies_to=self
 /// Draw Player
 
 // Trail:
-if (game_setting_get("misc_trails"))
-{
-    draw_set_blend_mode(bm_add);
-    draw_set_color(trail_color);
-    draw_trail(spr_trail, 20, true);
-    draw_set_blend_mode(bm_normal);
-}
+player_trail_draw();
 
 // Image alpha:
 image_alpha = 1;
