@@ -173,6 +173,7 @@
 			|spr_shield_bubble_wave
 			|spr_shield_bubble_bound
 			|spr_shield_invin
+			|spr_shield_invin_spark
 		+Explosions
 			|spr_explosion_small
 			|spr_explosion_large
