@@ -66,7 +66,7 @@ else if (ctl_position(9))
 }
 
 // Change frame:
-else if (ctl_position(104))
+else if (ctl_position(10))
 {
     image_index = 1;
 }
