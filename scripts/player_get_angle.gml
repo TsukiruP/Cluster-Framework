@@ -50,6 +50,7 @@ if (argument0.surface_angle > -1)
 
 // Determine calculation method:
 var x1, y1, x2, y2;
+
 switch (kind)
 {
     case SHAPE_SLANT:

@@ -7,6 +7,7 @@ var total_solids, left, right, center, n, inst;
 cliff_direction = 0;
 
 total_solids = ds_list_size(solid_list);
+
 left = noone;
 right = noone;
 center = noone;

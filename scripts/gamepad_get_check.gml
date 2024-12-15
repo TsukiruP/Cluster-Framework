@@ -21,32 +21,26 @@ with (mgr_input)
             // Left trigger:
             case PAD_TRIGGERL:
                 return gamepad_trigger[TRG_LEFT, argument2 + (argument0 * 3)];
-                break;
 
             // Right trigger:
             case PAD_TRIGGERR:
                 return gamepad_trigger[TRG_RIGHT, argument2 + (argument0 * 3)];
-                break;
 
             // Down D-pad:
             case PAD_UP:
-                return gamepad_dpad[INP_UP, argument2 + (argument0 * 3)]
-                break;
+                return gamepad_dpad[INP_UP, argument2 + (argument0 * 3)];
 
             // Down D-pad:
             case PAD_DOWN:
-                return gamepad_dpad[INP_DOWN, argument2 + (argument0 * 3)]
-                break;
+                return gamepad_dpad[INP_DOWN, argument2 + (argument0 * 3)];
 
             // Left D-pad:
             case PAD_LEFT:
-                return gamepad_dpad[INP_LEFT, argument2 + (argument0 * 3)]
-                break;
+                return gamepad_dpad[INP_LEFT, argument2 + (argument0 * 3)];
 
             // Right D-pad:
             case PAD_RIGHT:
-                return gamepad_dpad[INP_RIGHT, argument2 + (argument0 * 3)]
-                break;
+                return gamepad_dpad[INP_RIGHT, argument2 + (argument0 * 3)];
 
             default:
                 // Button id:
