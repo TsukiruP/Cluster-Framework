@@ -322,3 +322,4 @@ audio_jng_pause
 audio_jng_resume
 audio_drown_pause
 audio_drown_resume
+ctl_shield_invin_spark

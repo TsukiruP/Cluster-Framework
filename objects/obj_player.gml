@@ -506,13 +506,22 @@ applies_to=self
 /// Effects
 
 // Create shield:
-if ((status_shield != SHIELD_NONE || status_invin != INVIN_NONE) && !instance_exists(shield_handle))
+if ((status_shield != SHIELD_NONE || status_invin == INVIN_BUFF) && !instance_exists(shield_handle))
 {
     shield_handle = instance_create(x, y, eff_shield);
 
     with (shield_handle)
     {
         player_handle = other.id;
+    }
+}
+
+// Create invincibility sparkles:
+if (status_invin == INVIN_BUFF)
+{
+    if (sync_rate(status_invin_alarm, 2, 4) == 0)
+    {
+        effect_create(ctl_shield_invin_spark, x + random_range(-x_radius, x_radius), y + random_range(-y_radius, y_radius));
     }
 }
 
@@ -798,6 +807,12 @@ applies_to=self
 */
 /// Lists
 
+// Exit if the stage is paused:
+if (game_ispaused(mnu_pause))
+{
+    exit;
+}
+
 ds_list_delete(x_list, 0);
 ds_list_delete(y_list, 0);
 ds_list_add(x_list, floor(x));
@@ -1017,7 +1032,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Destroy Lists
+/// Cleanup
 
 ds_list_destroy(x_list);
 ds_list_destroy(y_list);

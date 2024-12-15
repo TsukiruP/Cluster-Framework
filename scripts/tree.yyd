@@ -247,6 +247,7 @@
 					|ctl_shield_bubble_bound
 					|ctl_shield_bubble_recoil
 					|ctl_shield_invin
+					|ctl_shield_invin_spark
 				+Explosions
 					|ctl_explosion_small
 					|ctl_explosion_large
