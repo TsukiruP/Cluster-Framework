@@ -137,6 +137,12 @@ repeat (total_steps)
     // Landing:
     if (ground_id != noone)
     {
+        // Update mask rotation:
+        if (relative_angle > 45 and relative_angle < 315 and !player_rotate_mask())
+        {
+            mask_rotation = angle_wrap(mask_rotation + 90 * sign(angle_difference(mask_rotation, angle)));
+        }
+
         // Calculate landing speed:
         if (abs(x_speed) <= abs(y_speed) && relative_angle >= 22.5 && relative_angle <= 337.5)
         {
