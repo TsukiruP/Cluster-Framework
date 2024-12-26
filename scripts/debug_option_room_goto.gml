@@ -45,4 +45,8 @@ switch (argument0)
                 break;
         }
         return true;
+    
+    // Undefined:
+    default:
+        return undefined;
 }

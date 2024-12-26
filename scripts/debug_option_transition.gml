@@ -11,7 +11,7 @@ switch (argument0)
         debug_menu_set_next(debug_list_transition);
         break;
 
-    // Default:
+    // Undefined:
     default:
         return undefined;
 }

@@ -22,7 +22,7 @@ switch (argument0)
 
         return true;
 
-    // Default:
+    // Undefined:
     default:
         return undefined;
 }

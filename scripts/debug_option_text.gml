@@ -6,7 +6,7 @@ switch (argument0)
     case 0:
         return "Text Debug";
 
-    // Default:
+    // Undefined:
     default:
         return undefined;
 }

@@ -6,7 +6,7 @@ switch (argument0)
     case 0:
         return "Credits";
 
-    // Default:
+    // Undefined:
     default:
         return undefined;
 }
