@@ -4,7 +4,7 @@ switch (argument0)
 {
     // Text:
     case 0:
-        return "Room Goto";
+        return "Room Goto:";
 
     // Value:
     case 1:
@@ -16,4 +16,33 @@ switch (argument0)
         break;
 
     // Update:
+    case 3:
+        // Wrapping is a bit awkward because rooms aren't convenient to work with.
+        switch (sign(menu_x_direction))
+        {
+            // Left:
+            case -1:
+                if (menu_room != room_first)
+                {
+                    menu_room = room_previous(menu_room);
+                }
+                else
+                {
+                    menu_room = room_last;
+                }
+                break;
+            
+            // Right:
+            case 1:
+                if (menu_room != room_last)
+                {
+                    menu_room = room_next(menu_room);
+                }
+                else
+                {
+                    menu_room = room_first;
+                }
+                break;
+        }
+        return true;
 }

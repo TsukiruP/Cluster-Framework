@@ -7,15 +7,16 @@ applies_to=self
 /// Menu Initialization
 
 // Menu variables:
+menu_x_direction = 0;
 menu_index = debug_list_home;
 menu_cursor = 0;
 menu_option = 0;
 menu_scroll = 0;
 
-menu_y_direction = 0;
-
 menu_list = ds_list_create();
 debug_menu_set_list(menu_index);
+
+menu_room = room;
 
 // History stack:
 history_stack = ds_stack_create();

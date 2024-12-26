@@ -16,3 +16,6 @@ ds_stack_push(history_stack, history_list);
 
 // Set list:
 debug_menu_set_list(argument0);
+menu_cursor = 0;
+menu_option = 0;
+menu_scroll = 0;

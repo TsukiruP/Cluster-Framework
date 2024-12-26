@@ -9,7 +9,7 @@ switch (argument0)
 {
     // Text:
     case 0:
-        return "Peel Out:";
+        return "Shield Skills:";
 
     // Value:
     case 1:

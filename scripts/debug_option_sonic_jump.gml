@@ -16,7 +16,7 @@ switch (argument0)
         return pick(game_save_get(skill_key), "None", "Insta-Shield", "Air Dash", "Drop Dash");
 
     // Update:
-    case 4:
+    case 3:
         var skill_id;
 
         skill_id = game_save_get(skill_key);
