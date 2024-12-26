@@ -12,6 +12,8 @@ menu_cursor = 0;
 menu_option = 0;
 menu_scroll = 0;
 
+menu_y_direction = 0;
+
 menu_list = ds_list_create();
 debug_menu_set_list(menu_index);
 
@@ -43,13 +45,16 @@ applies_to=self
 */
 /// Menu
 
+// Reset x direction:
+menu_x_direction = 0;
+
 // Exit if text is active:
 if (game_ispaused(mgr_text) || instance_exists(mgr_transition))
 {
     exit;
 }
 
-var menu_left, menu_right, menu_x_direction, menu_up, menu_down, menu_y_direction, menu_size;
+var menu_left, menu_right, menu_up, menu_down, menu_y_direction, menu_size, option_confirm, option_update;
 
 // Menu direction:
 menu_left = input_get_check(INP_LEFT, CHECK_PRESSED);
@@ -97,10 +102,11 @@ if (input_get_check(INP_CONFIRM, CHECK_PRESSED))
 // Update:
 if (menu_x_direction != 0)
 {
-    if (!is_undefined(script_execute(ds_list_find_value(menu_list, menu_option), 3)))
+    option_update = script_execute(ds_list_find_value(menu_list, menu_option), 3);
+
+    if (!is_undefined(option_update))
     {
-        script_execute(ds_list_find_value(menu_list, menu_option), 4, menu_x_direction);
-        audio_sfx_play("snd_jump");
+        audio_sfx_play(pick(option_update, "snd_jump", "snd_roll"));
     }
 }
 

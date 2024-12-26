@@ -1,4 +1,4 @@
-/// debug_option_settings(phase)
+/// debug_option_settings(data)
 
 switch (argument0)
 {

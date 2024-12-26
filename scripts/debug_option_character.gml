@@ -1,4 +1,4 @@
-/// debug_option_character(phase)
+/// debug_option_character(data)
 
 switch (argument0)
 {

@@ -1,10 +1,10 @@
-/// debug_option_text(data)
+/// debug_option_credits(data)
 
 switch (argument0)
 {
     // Text:
     case 0:
-        return "Text Debug";
+        return "Credits";
 
     // Default:
     default:

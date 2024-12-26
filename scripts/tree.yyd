@@ -3,8 +3,6 @@
 	+Data
 	+Pause
 	+Background
-		|draw_background_tiled_horizontal_part_yscale
-		|draw_background_tiled_vertical_part
 	+Room
 		|room_set_data
 		|room_get_data
@@ -146,15 +144,44 @@
 					|debug_list_home
 					+Options
 						|debug_option_character
-						|debug_option_room
+						|debug_option_transition
 						|debug_option_save
 						|debug_option_text
 						|debug_option_settings
+						|debug_option_credits
 				+Character
 					|debug_list_character
 					+Options
 						|debug_option_player
 						|debug_option_partner
+				+Sonic
+					|debug_list_sonic
+					+Options
+						|debug_option_sonic_jump
+						|debug_option_sonic_aux_ground
+						|debug_option_sonic_aux_air
+						|debug_option_sonic_slam
+						|debug_option_sonic_peel
+						|debug_option_sonic_homing
+						|debug_option_sonic_shield
+				+Miles
+				+Knuckles
+				+Amy
+				+Transition
+					|debug_list_transition
+					+Options
+						|debug_option_room_goto
+				+File
+				+Text
+				+Settings
+				+Interface
+				+Screen
+				+Audio
+				+Keyboard
+				+Gamepad
+				+Gameplay
+				+Advance
+				+Misc.
 	+Timelines
 		|ctl_init
 		|ctl_update
@@ -284,6 +311,7 @@
 				|draw_sprite_tiled_horizontal_yscale
 				|draw_sprite_tiled_vertical
 			|draw_background_tiled_view
+			|draw_backdrop_tiled_area
 		+Text
 			|string_bool
 			|string_key
@@ -298,7 +326,6 @@
 			|instance_nearest_dir_x
 			|in_view
 			|room_set_view_all
-		|draw_backdrop_tiled_area
 +Gameplay
 	+Collision
 		|collision_box

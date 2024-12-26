@@ -1,10 +1,10 @@
-/// debug_option_text(data)
+/// debug_option_transition(data)
 
 switch (argument0)
 {
     // Text:
     case 0:
-        return "Text Debug";
+        return "Transition Debug";
 
     // Default:
     default:

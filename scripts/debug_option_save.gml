@@ -1,4 +1,4 @@
-/// debug_option_save(phase)
+/// debug_option_save(data)
 
 switch (argument0)
 {

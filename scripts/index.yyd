@@ -68,12 +68,12 @@ ctl_sonic_breathe
 
 
 
-draw_background_tiled_vertical_part
+debug_option_sonic_jump
 
 
 
 draw_sprite_tiled_horizontal
-draw_background_tiled_horizontal_part_yscale
+debug_list_sonic
 effect_create
 
 player_reaction_spring
@@ -323,8 +323,17 @@ audio_jng_resume
 audio_drown_pause
 audio_drown_resume
 ctl_shield_invin_spark
-debug_option_room
+debug_option_transition
 debug_option_save
 debug_option_settings
 debug_option_text
 debug_option_partner
+debug_option_credits
+debug_option_sonic_aux_ground
+debug_option_sonic_aux_air
+debug_option_sonic_slam
+debug_option_sonic_peel
+debug_option_sonic_shield
+debug_option_sonic_homing
+debug_list_transition
+debug_option_room_goto
