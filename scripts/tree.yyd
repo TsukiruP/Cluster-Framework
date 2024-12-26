@@ -1,22 +1,13 @@
 +Trash
-	|player_compile_animations
-	|player_add_animation
 	+Animation Lists
-		|sonic_animation_list
 	+Data
-		|player_get_character
-		|player_get_instance
 	+Pause
-		|stage_get_pause_allow
 	+Background
-		|draw_background_tiled_horizontal_part
 		|draw_background_tiled_horizontal_part_yscale
 		|draw_background_tiled_vertical_part
-		|draw_backdrop_tiled_area
 	+Room
 		|room_set_data
 		|room_get_data
-	|audio_sfx_resume
 +System
 	|credits
 	+Managers
@@ -145,6 +136,25 @@
 				|stage_get_player
 				|stage_set_player
 	+Menus
+		+Debug
+			|debug_menu_add_option
+			|debug_menu_set_list
+			|debug_menu_set_next
+			|debug_menu_set_previous
+			+Lists
+				+Home
+					|debug_list_home
+					+Options
+						|debug_option_character
+						|debug_option_room
+						|debug_option_save
+						|debug_option_text
+						|debug_option_settings
+				+Character
+					|debug_list_character
+					+Options
+						|debug_option_player
+						|debug_option_partner
 	+Timelines
 		|ctl_init
 		|ctl_update
@@ -288,6 +298,7 @@
 			|instance_nearest_dir_x
 			|in_view
 			|room_set_view_all
+		|draw_backdrop_tiled_area
 +Gameplay
 	+Collision
 		|collision_box

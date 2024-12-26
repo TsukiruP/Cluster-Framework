@@ -90,8 +90,8 @@ par_overlay
 obj_omochao
 eff_shield
 par_hint
-obj_sensor_layer_a
-obj_sensor_layer_b
+mnu_title
+mnu_debug
 obj_sensor_layer
 obj_hint_box
 obj_spring_up

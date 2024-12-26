@@ -19,7 +19,7 @@ menu_count = 2;
 
 for (i = 0; i < menu_count; i += 1)
 {
-    menu_selection[i] = 0;
+    menu_option[i] = 0;
 }
 
 // Pause variables:
@@ -57,7 +57,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Inputs
+/// Menu
 
 // Exit if text is active:
 if (game_ispaused(mgr_text))
@@ -134,13 +134,13 @@ menu_down = input_get_check(INP_DOWN, CHECK_PRESSED);
 menu_direction = menu_down - menu_up;
 
 // Menu selection:
-menu_selection[menu_current] += menu_direction;
-menu_selection[menu_current] = wrap(menu_selection[menu_current], 0, pause_count[menu_current] - 1);
+menu_option[menu_current] += menu_direction;
+menu_option[menu_current] = wrap(menu_option[menu_current], 0, pause_count[menu_current] - 1);
 
 // Play sound:
 if (menu_direction != 0)
 {
-    audio_sfx_play("snd_selection", true);
+    audio_sfx_play("snd_option", true);
 }
 
 // Input delay:
@@ -154,10 +154,10 @@ if (pause_delay == 0)
             // Pause menu:
             case 0:
                 // Open confirm menu:
-                if (menu_selection[menu_current] != 0)
+                if (menu_option[menu_current] != 0)
                 {
                     menu_current = 1;
-                    menu_selection[menu_current] = 0;
+                    menu_option[menu_current] = 0;
                     pause_x_target[1] = pause_x_target[0];
                 }
 
@@ -174,10 +174,10 @@ if (pause_delay == 0)
             // Confirm menu:
             case 1:
                 // Yes:
-                if (menu_selection[menu_current] == 0)
+                if (menu_option[menu_current] == 0)
                 {
                     // Restart:
-                    if (menu_selection[0] == 1)
+                    if (menu_option[0] == 1)
                     {
                         menu_lock = true;
                         fade_handle = fade_create(2, 0.02, depth);
@@ -431,7 +431,7 @@ for (i = 0; i < menu_count; i += 1)
     // Header:
     if (i == 1)
     {
-        draw_sprite(pause_header, menu_selection[0], pause_x[i], pause_y[i]);
+        draw_sprite(pause_header, menu_option[0], pause_x[i], pause_y[i]);
     }
     else
     {
@@ -443,7 +443,7 @@ for (i = 0; i < menu_count; i += 1)
     
     for (j = 0; j < pause_count[i]; j += 1)
     {
-        draw_sprite(pause_menu, ((j + menu_offset) * 2) + (menu_selection[i] == j), pause_x[i], menu_y + (menu_height * j));
+        draw_sprite(pause_menu, ((j + menu_offset) * 2) + (menu_option[i] == j), pause_x[i], menu_y + (menu_height * j));
     }
     
     // Update offset:

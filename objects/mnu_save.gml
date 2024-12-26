@@ -9,7 +9,7 @@ applies_to=self
 // Menu variables:
 menu_page = 0;
 menu_cursor = 0;
-menu_selection = 0;
+menu_option = 0;
 
 // Save variables:
 save_width = 98;
@@ -35,7 +35,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Inputs
+/// Menu
 
 // Exit if text is active:
 if (game_ispaused(mgr_text) || instance_exists(mgr_transition))
@@ -60,16 +60,16 @@ menu_page = wrap(menu_page, 0, page_count - 1);
 
 // Menu selection:
 save_count = min(game_get_save_count() - (save_max * menu_page), save_max);
-menu_selection += menu_y_direction;
-menu_selection = wrap(menu_selection, 0, save_count - 1);
+menu_option += menu_y_direction;
+menu_option = wrap(menu_option, 0, save_count - 1);
 
 // Menu save:
-menu_save = (menu_page * save_max) + menu_selection;
+menu_save = (menu_page * save_max) + menu_option;
 
 // Play sound:
 if (menu_x_direction != 0 || menu_y_direction != 0)
 {
-    audio_sfx_play("snd_selection", true);
+    audio_sfx_play("snd_option", true);
 }
 
 // Confirm:
@@ -144,7 +144,7 @@ for (i = 0; i < page_count; i += 1)
         // Indent:
         save_indent = 0;
 
-        if (menu_page == i && menu_selection == j)
+        if (menu_page == i && menu_option == j)
         {
             save_indent = 8;
         }
@@ -178,12 +178,10 @@ for (i = 0; i < page_count; i += 1)
         draw_set_font(global.font_system);
         draw_set1(c_gray, 1);
 
-        if (menu_page == i && menu_selection == j)
+        if (menu_page == i && menu_option == j)
         {
             draw_set_color(c_white);
         }
-
-
 
         // Text:
         if (ds_map_get(save_preview_map, save_string + "_exists") == true)

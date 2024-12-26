@@ -39,7 +39,7 @@ ctl_sonic_brake
 sync_rate
 player_animation_core
 player_get_animation
-player_add_animation
+debug_menu_add_option
 player_set_damage
 player_state_idle
 fade_create
@@ -53,13 +53,13 @@ sonic_skill_list
 sonic_state_homing
 pick_offset
 player_wall_push
-player_get_character
+debug_menu_set_list
 draw_background_tiled_view
-draw_background_tiled_horizontal_part
+debug_menu_set_previous
 
 draw_sprite_tiled_horizontal_yscale
 draw_sprite_tiled_vertical
-player_get_instance
+debug_list_character
 ctl_sonic_breathe
 
 
@@ -92,11 +92,11 @@ player_trail_init
 player_trail_color
 player_trail_draw
 ctl_sonic_cliff_front
-sonic_animation_list
+debug_option_player
 player_animation_speed
 player_animation_air
 player_surface_splash
-player_compile_animations
+debug_option_character
 classic_trait_clock_up
 game_checkpoint_set
 game_checkpoint_isset
@@ -278,7 +278,7 @@ game_checkpoint_get_y
 game_checkpoint_get_time
 stage_get_player
 stage_set_player
-stage_get_pause_allow
+debug_menu_set_next
 stage_set_pause_allow
 text_get_clear
 audio_sfx_pause_all
@@ -317,9 +317,14 @@ audio_fade_out
 player_state_spring
 player_animation_spring
 game_save_buffer_load
-audio_sfx_resume
+debug_list_home
 audio_jng_pause
 audio_jng_resume
 audio_drown_pause
 audio_drown_resume
 ctl_shield_invin_spark
+debug_option_room
+debug_option_save
+debug_option_settings
+debug_option_text
+debug_option_partner

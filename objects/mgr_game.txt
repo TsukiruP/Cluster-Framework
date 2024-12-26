@@ -1,4 +1,4 @@
-sprite=spr_realizing_hopper
+sprite=
 visible=0
 solid=0
 persistent=1

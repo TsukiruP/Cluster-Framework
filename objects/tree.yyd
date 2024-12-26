@@ -25,6 +25,8 @@
 			|mgr_hud
 			|mgr_tally
 	+Menus
+		|mnu_title
+		|mnu_debug
 		|mnu_save
 		|mnu_pause
 +Gameplay
@@ -100,8 +102,6 @@
 		|obj_rainbow_ring_left_down
 		|obj_rainbow_ring_right_up
 		|obj_rainbow_ring_right_down
-	|obj_sensor_layer_a
-	|obj_sensor_layer_b
 	+Springs
 		|obj_spring_up
 		|obj_spring_down
