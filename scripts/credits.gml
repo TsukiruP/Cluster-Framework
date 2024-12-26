@@ -100,9 +100,11 @@ PkR
 Sonic Adventure Sound Overhaul
 
 Azu
+Sonic the Hedgehog (2006) - General Sound Effects
 Sonic Colors - General Sound Effects
 
 Random Talking Bush
+Kamen Rider Battride War - Kamen Rider Kabuto
 Sonic Mania - Sound Effects
 
 TOOLS
