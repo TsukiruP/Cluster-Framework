@@ -121,7 +121,11 @@ else if (on_ground == false)
         // Jump Skills:
         else if (skill_key == "sonic_jump")
         {
-            return player_set_state(sonic_state_drop_dash);
+            // Drop Dash:
+            if (game_save_get(skill_key) == SKILL_DROP_DASH)
+            {
+                return player_set_state(sonic_state_drop_dash);
+            }
         }
     }
 }
