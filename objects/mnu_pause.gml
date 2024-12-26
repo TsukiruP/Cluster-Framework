@@ -10,7 +10,7 @@ var i;
 
 // Pause audio:
 audio_pause_all();
-audio_sfx_play("snd_pause", true);
+audio_sfx_play("snd_menu_open", true);
 
 // Menu variables:
 menu_current = 0;
@@ -101,7 +101,7 @@ if (pause_delay == 0)
             }
 
             // Play sound:
-            audio_sfx_play("snd_confirm");
+            audio_sfx_play("snd_menu_close", true);
         }
 
         // Reset appearance:
@@ -140,7 +140,7 @@ menu_option[menu_current] = wrap(menu_option[menu_current], 0, pause_count[menu_
 // Play sound:
 if (menu_direction != 0)
 {
-    audio_sfx_play("snd_option", true);
+    audio_sfx_play("snd_menu_move", true);
 }
 
 // Input delay:
@@ -196,7 +196,7 @@ if (pause_delay == 0)
         }
 
         // Play sound:
-        audio_sfx_play("snd_confirm");
+        audio_sfx_play("snd_menu_confirm", true);
     }
 
     // Start:
@@ -205,7 +205,7 @@ if (pause_delay == 0)
         event_user(0);
 
         // Play sound:
-        audio_sfx_play("snd_pause", true);
+        audio_sfx_play("snd_menu_close", true);
     }
 }
 /*"/*'/**//* YYD ACTION

@@ -94,10 +94,19 @@ else
     }
 }
 
+// Play sound:
+if (menu_y_direction != 0)
+{
+    audio_sfx_play("snd_menu_move", true);
+}
+
 // Confirm:
 if (input_get_check(INP_CONFIRM, CHECK_PRESSED))
 {
     script_execute(ds_list_find_value(menu_list, menu_option), 2);
+
+    // Play sound:
+    audio_sfx_play("snd_menu_confirm", true);
 }
 
 // Update:
@@ -105,9 +114,10 @@ if (menu_x_direction != 0)
 {
     option_update = script_execute(ds_list_find_value(menu_list, menu_option), 3);
 
+    // Play sound:
     if (!is_undefined(option_update))
     {
-        audio_sfx_play(pick(option_update, "snd_jump", "snd_roll"));
+        audio_sfx_play(pick(option_update, "snd_menu_cannot", "snd_menu_move"), true);
     }
 }
 
@@ -115,6 +125,9 @@ if (menu_x_direction != 0)
 if (input_get_check(INP_CANCEL, CHECK_PRESSED))
 {
     debug_menu_set_previous();
+
+    // Play sound:
+    audio_sfx_play("snd_menu_close", true);
 }
 #define Other_5
 /*"/*'/**//* YYD ACTION
