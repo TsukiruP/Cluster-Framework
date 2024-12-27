@@ -1,4 +1,4 @@
-/// debug_option_text(data)
+/// debug_option_text(return)
 
 switch (argument0)
 {

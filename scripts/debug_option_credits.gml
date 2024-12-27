@@ -1,4 +1,4 @@
-/// debug_option_credits(data)
+/// debug_option_credits(return)
 
 switch (argument0)
 {

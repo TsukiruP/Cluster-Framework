@@ -1,4 +1,4 @@
-/// debug_option_player(data)
+/// debug_option_player(return)
 
 switch (argument0)
 {
@@ -17,7 +17,11 @@ switch (argument0)
             // Sonic:
             case CHAR_SONIC:
                 debug_menu_set_next(debug_list_sonic);
-                break;
+                return true;
+
+            // Default:
+            default:
+                return false;
         }
         break;
 

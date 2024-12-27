@@ -1,4 +1,4 @@
-/// debug_option_sonic_homing(data)
+/// debug_option_sonic_homing(return)
 
 var skill_key;
 

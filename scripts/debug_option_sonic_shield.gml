@@ -1,4 +1,4 @@
-/// debug_option_sonic_shield(data)
+/// debug_option_sonic_shield(return)
 
 var skill_key;
 

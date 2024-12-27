@@ -1,4 +1,4 @@
-/// debug_option_character(data)
+/// debug_option_character(return)
 
 switch (argument0)
 {
@@ -9,7 +9,7 @@ switch (argument0)
     // Confirm:
     case 2:
         debug_menu_set_next(debug_list_character);
-        break;
+        return true;
 
     // Undefined:
     default:

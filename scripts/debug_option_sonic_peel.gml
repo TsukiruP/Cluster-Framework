@@ -1,4 +1,4 @@
-/// debug_option_sonic_peel(data)
+/// debug_option_sonic_peel(return)
 
 var skill_key;
 

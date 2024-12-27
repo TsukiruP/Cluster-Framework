@@ -1,4 +1,4 @@
-/// debug_option_transition(data)
+/// debug_option_transition(return)
 
 switch (argument0)
 {
@@ -9,7 +9,7 @@ switch (argument0)
     // Confirm:
     case 2:
         debug_menu_set_next(debug_list_transition);
-        break;
+        return true;
 
     // Undefined:
     default:

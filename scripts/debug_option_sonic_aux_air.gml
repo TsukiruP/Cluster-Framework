@@ -1,4 +1,4 @@
-/// debug_option_sonic_aux_air(data)
+/// debug_option_sonic_aux_air(return)
 
 var skill_key;
 

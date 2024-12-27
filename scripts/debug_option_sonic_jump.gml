@@ -1,4 +1,4 @@
-/// debug_option_sonic_jump(data)
+/// debug_option_sonic_jump(return)
 
 var skill_key;
 

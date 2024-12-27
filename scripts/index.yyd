@@ -324,7 +324,7 @@ audio_drown_pause
 audio_drown_resume
 ctl_shield_invin_spark
 debug_option_transition
-debug_option_save
+debug_option_data
 debug_option_settings
 debug_option_text
 debug_option_partner

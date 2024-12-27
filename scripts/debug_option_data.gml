@@ -1,10 +1,10 @@
-/// debug_option_settings(return)
+/// debug_option_data(return)
 
 switch (argument0)
 {
     // Text:
     case 0:
-        return "Settings";
+        return "Save Debug";
 
     // Undefined:
     default:

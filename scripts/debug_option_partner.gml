@@ -1,4 +1,4 @@
-/// debug_option_partner(data)
+/// debug_option_partner(return)
 
 switch (argument0)
 {

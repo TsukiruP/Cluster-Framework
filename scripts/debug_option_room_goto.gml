@@ -1,4 +1,4 @@
-/// debug_option_room_goto(data)
+/// debug_option_room_goto(return)
 
 switch (argument0)
 {
@@ -13,7 +13,7 @@ switch (argument0)
     // Confirm:
     case 2:
         transition_create(menu_room);
-        break;
+        return true;
 
     // Update:
     case 3:
