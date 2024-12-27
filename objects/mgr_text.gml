@@ -143,6 +143,11 @@ if (text_clear == false)
                 if (subject_complete == false && subject_string != "" && subject_alpha == 1)
                 {
                     subject_complete = true;
+
+                    if (ds_list_empty(body_list))
+                    {
+                        text_clear = true;
+                    }
                 }
 
                 // Body:

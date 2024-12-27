@@ -7,7 +7,7 @@ applies_to=self
 /// Transition Initialization
 
 // Flags:
-debug = false;
+preview = false;
 pause_ignore = false;
 load_skip = false;
 
@@ -74,6 +74,18 @@ retry_width = string_width(retry_text);
 retry_x_current = screen_get_width() + retry_width + zone_x_factor;
 retry_x_target = (screen_get_width() / 2) - 3;
 retry_x_speed = 0;
+#define Step_0
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Preview
+
+if (game_ispaused(mgr_text) && !text_get_clear() && preview == true && input_get_check(INP_CONFIRM, CHECK_PRESSED))
+{
+    transition_state += 1;
+}
 #define Step_1
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -97,23 +109,13 @@ if (transition_alarm >= 0)
     {
         if ((transition_id != TRANS_CARD && transition_state == 1) || (transition_id == TRANS_CARD && transition_state == 2))
         {
-            // Open debug topic:
-            if (debug == true)
+            // Open preview topic:
+            if (preview == true)
             {
                 text_subject_set("Debug");
             }
-
-            // Close debug topic:
-            if (debug == false || (debug == true && input_get_check(INP_CONFIRM, CHECK_PRESSED)))
+            else
             {
-                if (debug == true)
-                {
-                    with (mgr_text)
-                    {
-                        text_clear = true;
-                    }
-                }
-
                 // Retry has its own room_goto call:
                 if (transition_id != TRANS_RETRY)
                 {
@@ -220,6 +222,12 @@ if (background_y_current != background_y_target)
                 {
                     transition_state = 1;
                     transition_alarm = 60;
+                }
+
+                // Destroy:
+                if (transition_state == 2)
+                {
+                    instance_destroy();
                 }
                 break;
 
@@ -455,7 +463,7 @@ if (transition_id == TRANS_CARD)
 
         // 4 - Opener start:
         case 4:
-            if ((game_room_get_start() != START_RUN || transition_run != -1) && debug == false && instance_exists(stage_get_player(0)))
+            if ((game_room_get_start() != START_RUN || transition_run != -1) && preview == false && instance_exists(stage_get_player(0)))
             {
                 // Ready:
                 if (game_room_get_start() == START_READY)
@@ -574,7 +582,7 @@ if (transition_id == TRANS_RETRY)
         case 3:
             if (transition_alarm <= 0)
             {
-                if (debug == false)
+                if (preview == false)
                 {
                     room_goto(transition_room);
                 }
@@ -585,7 +593,7 @@ if (transition_id == TRANS_RETRY)
 
         // 4 - Opener end:
         case 4:
-            if (game_room_get_start() != START_RUN || (game_room_get_start() == START_RUN && transition_run == -1) || debug == true)
+            if (game_room_get_start() != START_RUN || (game_room_get_start() == START_RUN && transition_run == -1) || preview == true)
             {
                 transition_state = 5;
             }
