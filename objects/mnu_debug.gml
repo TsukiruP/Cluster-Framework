@@ -103,10 +103,13 @@ if (menu_y_direction != 0)
 // Confirm:
 if (input_get_check(INP_CONFIRM, CHECK_PRESSED))
 {
-    script_execute(ds_list_find_value(menu_list, menu_option), 2);
+    option_confirm = script_execute(ds_list_find_value(menu_list, menu_option), 2);
 
     // Play sound:
-    audio_sfx_play("snd_menu_confirm", true);
+    if (!is_undefined(option_confirm))
+    {
+        audio_sfx_play(pick(option_confirm, "snd_menu_cannot", "snd_menu_confirm"), true);
+    }
 }
 
 // Update:
@@ -148,43 +151,37 @@ var i;
 
 // Box:
 draw_set1(game_get_interface_color(), game_setting_get("interface_alpha"));
-draw_rectangle(screen_get_width() / 2 - 81, screen_get_height() / 2 - 52, screen_get_width() / 2 + 82, screen_get_height() / 2 + 25, false);
-
-// Viewport:
-d3d_set_viewport(screen_get_width() / 2 - 80, screen_get_height() / 2 - 41, 160, 57);
-
-// Font:
-draw_set_font(global.font_system);
-draw_set_alpha(1);
+draw_rectangle(view_xview[view_current] + screen_get_width() / 2 - 81, view_yview[view_current] + screen_get_height() / 2 - 52, view_xview[view_current] + screen_get_width() / 2 + 82, view_yview[view_current] + screen_get_height() / 2 + 25, false);
 
 // Text:
-for (i = 0; i < ds_list_size(menu_list); i += 1)
+for (i = 0; i < min(ds_list_size(menu_list), 4); i += 1)
 {
-    var option_text, option_value, option_x, option_y;
+    var option_id, option_text, option_value, option_x, option_y;
 
-    option_text = script_execute(ds_list_find_value(menu_list, i), 0);
-    option_value = script_execute(ds_list_find_value(menu_list, i), 1);
-    option_y = -(menu_scroll * mgr_text.font_height) + mgr_text.font_height * i;
+    option_id = i + menu_scroll;
+    option_text = script_execute(ds_list_find_value(menu_list, option_id), 0);
+    option_value = script_execute(ds_list_find_value(menu_list, option_id), 1);
+    option_x = view_xview[view_current] + screen_get_width() / 2;
+    option_y = view_yview[view_current] + screen_get_height() / 2 - 41 + mgr_text.font_height * i;
 
-    draw_set_color(c_gray);
+    // Font:
+    draw_set_font(global.font_system);
+    draw_set1(c_gray, 1);
 
-    if (menu_option == i)
+    if (menu_option == option_id)
     {
         draw_set_color(c_white);
     }
 
+    draw_set_halign(fa_center);
+
     if (!is_undefined(option_value))
     {
         draw_set_halign(fa_right);
-        draw_text(150, option_y, string(option_value));
+        draw_text(option_x + 70, option_y, string(option_value));
 
-        option_x = 10;
+        option_x -= 70;
         draw_set_halign(fa_left);
-    }
-    else
-    {
-        option_x = 80;
-        draw_set_halign(fa_center);
     }
 
     draw_text(option_x, option_y, option_text);
@@ -192,4 +189,10 @@ for (i = 0; i < ds_list_size(menu_list); i += 1)
 
 // Reset:
 draw_reset();
-d3d_set_viewport(0, 0, screen_get_width(), screen_get_height());
+#define KeyPress_32
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+text_body_set(string_input(INP_CONFIRM) + " Confirm " + string_input(INP_CANCEL) + "Cancel");

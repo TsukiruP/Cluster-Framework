@@ -522,7 +522,6 @@ draw_text(screen_get_width() / 2, screen_get_height() / 2, subject_string);
 
 // Reset:
 draw_reset();
-d3d_set_viewport(0, 0, screen_get_width(), screen_get_height());
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -567,7 +566,6 @@ if (body_overflow == true && body_alpha == 1 && body_scroll_complete == true)
 
 // Reset:
 draw_reset();
-d3d_set_viewport(0, 0, screen_get_width(), screen_get_height());
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -598,4 +596,3 @@ draw_text_ext(body_x / 2, -log_scroll, log_string, font_height, screen_get_width
 
 // Reset:
 draw_reset();
-d3d_set_viewport(0, 0, screen_get_width(), screen_get_height());
