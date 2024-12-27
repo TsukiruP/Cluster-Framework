@@ -16,7 +16,9 @@ menu_scroll = 0;
 menu_list = ds_list_create();
 debug_menu_set_list(menu_index);
 
-menu_room = room;
+// Transition variables:
+transition_room = room;
+transition_preview = TRANS_FADE;
 
 // History stack:
 history_stack = ds_stack_create();
