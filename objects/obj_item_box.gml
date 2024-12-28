@@ -25,10 +25,10 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Replace Items
+/// Replace
 
 // Shields:
-switch (game_setting_get("gameplay_shields"))
+switch (game_config_get("gameplay_shields"))
 {
     // Adventure/Advance:
     case 1:
@@ -53,7 +53,7 @@ switch (game_setting_get("gameplay_shields"))
 }
 
 // Debuffs:
-if (!game_setting_get("gameplay_debuffs"))
+if (!game_config_get("gameplay_debuffs"))
 {
     if (item_id == ITEM_SLOW || item_id == ITEM_PANIC || item_id == ITEM_SWAP)
     {

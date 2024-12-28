@@ -66,7 +66,7 @@ switch (argument0)
         }
 
         // Turn:
-        if (game_setting_get("advance_turn") && input_x_direction != 0 && image_xscale != input_x_direction)
+        if (game_config_get("advance_turn") && input_x_direction != 0 && image_xscale != input_x_direction)
         {
             return player_set_state(player_state_turn);
         }

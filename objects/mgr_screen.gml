@@ -19,9 +19,9 @@ applies_to=self
 screen_set_resolution();
 
 // Fullscreen
-if (window_get_fullscreen() != game_setting_get("screen_full"))
+if (window_get_fullscreen() != game_config_get("screen_full"))
 {
-    window_set_fullscreen(game_setting_get("screen_full"));
+    window_set_fullscreen(game_config_get("screen_full"));
 }
 #define Step_2
 /*"/*'/**//* YYD ACTION

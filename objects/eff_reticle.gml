@@ -9,13 +9,11 @@ applies_to=self
 event_inherited();
 
 // Set index:
-if (game_setting_get("misc_reticle") == 2)
+timeline_set(ctl_reticle);
+
+if (game_config_get("misc_reticle") == 2)
 {
     timeline_set(ctl_reticle_colors);
-}
-else
-{
-    timeline_set(ctl_reticle);
 }
 
 // Homing handle:

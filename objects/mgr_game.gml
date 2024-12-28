@@ -39,7 +39,7 @@ checkpoint_x = -1;
 checkpoint_y = -1;
 
 // Data:
-game_setting_init();
+game_config_init();
 game_save_init();
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -93,7 +93,7 @@ for (i = 0; i < game_get_player_count(); i += 1)
     ds_list_destroy(gamepad_list[i]);
 }
 
-ds_map_destroy(setting_map);
+ds_map_destroy(config_map);
 ds_map_destroy(save_map);
 ds_grid_destroy(room_grid);
 #define Other_5

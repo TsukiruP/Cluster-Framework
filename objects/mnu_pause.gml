@@ -80,7 +80,7 @@ if (pause_delay == 0)
     if (input_get_check(INP_HIDE, CHECK_PRESSED))
     {
         pause_hide += 1;
-        pause_hide = wrap(pause_hide, 0, 1 + (instance_exists(mgr_transition) || game_setting_get("misc_hud") != 0));
+        pause_hide = wrap(pause_hide, 0, 1 + (instance_exists(mgr_transition) || game_config_get("misc_hud") != 0));
     }
 
     // Cancel:
@@ -213,7 +213,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Continue
+/// Delay
 
 if (pause_delay > 0)
 {
@@ -221,6 +221,7 @@ if (pause_delay > 0)
 
     if (pause_delay == 0)
     {
+        // Continue:
         if (pause_continue == true)
         {
             pause_active = false;

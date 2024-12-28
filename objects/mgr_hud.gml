@@ -46,7 +46,7 @@ status_icon[STATUS_PANIC] = ITEM_PANIC;
 status_icon[STATUS_SWAP] = ITEM_SWAP;
 status_position = -1;
 status_speed = 0;
-status_size = 2 + 2 * game_setting_get("gameplay_debuffs");
+status_size = 2 + 2 * game_config_get("gameplay_debuffs");
 
 for (i = STATUS_SHIELD; i <= STATUS_SWAP; i += 1)
 {
@@ -61,7 +61,7 @@ applies_to=self
 */
 /// Position
 
-switch (game_setting_get("misc_hud"))
+switch (game_config_get("misc_hud"))
 {
     // S4E2:
     case 2:
@@ -85,7 +85,7 @@ if (hud_hide == true)
 }
 else
 {
-    switch (game_setting_get("misc_hud"))
+    switch (game_config_get("misc_hud"))
     {
         // S4E2:
         case 2:
@@ -143,7 +143,7 @@ if (game_ispaused(mnu_pause))
 }
 
 // Air:
-if (game_setting_get("misc_hud") == 1)
+if (game_config_get("misc_hud") == 1)
 {
     var air_x_target;
 
@@ -212,7 +212,7 @@ if (game_ispaused(mnu_pause))
 }
 
 // Gauge:
-if (game_setting_get("misc_hud") == 1)
+if (game_config_get("misc_hud") == 1)
 {
     var gauge_x_target, gauge_x_factor;
 
@@ -347,7 +347,7 @@ if (game_ispaused(mnu_pause))
 // Create list:
 if (instance_exists(stage_get_player(0)))
 {
-    if (game_setting_get("misc_feed") && item_list == -1)
+    if (game_config_get("misc_feed") && item_list == -1)
     {
         item_list = ds_list_create();
     }
@@ -405,7 +405,7 @@ applies_to=self
 /// Draw Default HUD
 
 // Exit if HUD isn't default:
-if (game_setting_get("misc_hud") != 1)
+if (game_config_get("misc_hud") != 1)
 {
     exit;
 }
@@ -455,7 +455,7 @@ applies_to=self
 /// Draw S4E2 HUD
 
 // Exit if HUD isn't S4E2:
-if (game_setting_get("misc_hud") != 2)
+if (game_config_get("misc_hud") != 2)
 {
     exit;
 }
@@ -507,20 +507,20 @@ applies_to=self
 /// Draw Status
 
 // Exit if HUD isn't default or status is disabled:
-if (game_setting_get("misc_hud") != 1 || game_setting_get("misc_status") == 0)
+if (game_config_get("misc_hud") != 1 || game_config_get("misc_status") == 0)
 {
     exit;
 }
 
-var status_setting, status_count, i;
+var status_config, status_count, i;
 
 // Reset status count:
-status_setting = game_setting_get("misc_status");
+status_config = game_config_get("misc_status");
 status_count = 0;
 
 for (i = status_size; i >= 0; i -= 1)
 {
-    if (((status_setting && status_active[i, 0] == true) || status_setting == 2) && status_active[i, 1] == true)
+    if (((status_config && status_active[i, 0] == true) || status_config == 2) && status_active[i, 1] == true)
     {
         // Shadow:
         draw_sprite_ext(spr_item_icon, 0, view_xview[view_current] + view_wview[view_current] - hud_x_current - 8 - (sprite_get_width(spr_item_icon) + 2) * status_count, view_yview[view_current] + 18, 1, 1, 0, c_black, 1);
@@ -529,7 +529,7 @@ for (i = status_size; i >= 0; i -= 1)
         draw_sprite_ext(spr_item_icon, status_icon[i], view_xview[view_current] + view_wview[view_current] - hud_x_current - 9 - (sprite_get_width(spr_item_icon) + 2) * status_count, view_yview[view_current] + 17, 1, 1, 0, c_white, 1);
         
         // Gray out:
-        if (status_setting == 2)
+        if (status_config == 2)
         {
             if (status_active[i, 0] == false)
             {
@@ -539,7 +539,7 @@ for (i = status_size; i >= 0; i -= 1)
     }
     
     // Increase status count:
-    if ((status_setting == 1 && status_active[i, 0] == true) || status_setting == 2)
+    if ((status_config == 1 && status_active[i, 0] == true) || status_config == 2)
     {
         status_count += 1;
     }
@@ -552,7 +552,7 @@ applies_to=self
 /// Draw Item List
 
 // Exit if list has been disabled:
-if (!game_setting_get("misc_feed"))
+if (!game_config_get("misc_feed"))
 {
     exit;
 }

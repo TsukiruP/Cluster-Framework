@@ -196,7 +196,7 @@ for (i = 0; i < page_count; i += 1)
 
 
         // Box:
-        draw_set1(game_get_interface_color(), game_setting_get("interface_alpha"));
+        draw_set1(game_get_interface_color(), game_config_get("interface_alpha"));
         draw_rectangle(save_x1 - 8, save_y1 - save_height / 2, save_x2 + 8, save_y2, false);
 
         // Font:

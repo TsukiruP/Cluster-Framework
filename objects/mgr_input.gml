@@ -318,10 +318,10 @@ for (i = 0; i < game_get_player_count(); i += 1)
     gamepad_id = gamepad_device[i, 0];
 
     // Read analog values:
-    if (gamepad_id > -1 && game_setting_get("input_gamepad" + string(i) + "_deadzone") != 0)
+    if (gamepad_id > -1 && game_config_get("input_gamepad" + string(i) + "_deadzone") != 0)
     {
         // Set deadzone:
-        joystick_set_deadzone(game_setting_get("input_gamepad" + string(i) + "_deadzone"));
+        joystick_set_deadzone(game_config_get("input_gamepad" + string(i) + "_deadzone"));
 
         // Pressed:
         gamepad_analog[INP_UP, CHECK_PRESSED + (i * 3)] = (sign(joystick_axis(gamepad_id, 1)) == -1 && gamepad_analog[INP_UP, CHECK_HELD + (i * 3)] == false);
@@ -423,7 +423,7 @@ for (i = 0; i < game_get_player_count(); i += 1)
     // Gamepad id:
     gamepad_id = gamepad_device[i, 0];
 
-    if (gamepad_id > -1 && (game_setting_get("input_gamepad_focus") || (!game_setting_get("input_gamepad_focus") && window_has_focus())))
+    if (gamepad_id > -1 && (game_config_get("input_gamepad_focus") || (!game_config_get("input_gamepad_focus") && window_has_focus())))
     {
         for (j = INP_UP; j <= INP_HIDE; j += 1)
         {

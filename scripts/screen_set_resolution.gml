@@ -1,11 +1,11 @@
 /// screen_set_resolution()
-// Sets the screen width and height based on settings.
+// Sets the screen width and height based on configs.
 
-switch (game_setting_get("screen_mode"))
+switch (game_config_get("screen_mode"))
 {
     // 3DS:
     case 1:
-        switch (game_setting_get("screen_ratio"))
+        switch (game_config_get("screen_ratio"))
         {
             // 4:3:
             case 1:
@@ -43,7 +43,7 @@ switch (game_setting_get("screen_mode"))
 
     // Default:
     default:
-        switch (game_setting_get("screen_ratio"))
+        switch (game_config_get("screen_ratio"))
         {
             // 4:3:
             case 1:

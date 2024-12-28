@@ -105,9 +105,9 @@ player_routine_skill
 ctl_sonic_turn_brake
 player_state_spin_dash
 ctl_sonic_spring_flight
-game_setting_init
+game_config_init
 player_get_input
-game_setting_default
+game_config_default
 audio_sfx_play
 draw_collision
 audio_sfx_stop
@@ -248,8 +248,8 @@ ctl_drop_dash
 sonic_state_bound
 game_save_set
 player_routine_roll
-game_setting_set
-game_setting_get
+game_config_set
+game_config_get
 screen_get_height
 screen_set_resolution
 game_keyboard_set

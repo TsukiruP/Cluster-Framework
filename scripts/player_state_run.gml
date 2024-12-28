@@ -20,7 +20,7 @@ switch (argument0)
                 if (input_lock_alarm == 0)
                 {
                     // Turn:
-                    if (game_setting_get("advance_turn") && abs(x_speed) <= 4 && image_xscale == -input_x_direction)
+                    if (game_config_get("advance_turn") && abs(x_speed) <= 4 && image_xscale == -input_x_direction)
                     {
                         return player_set_state(player_state_turn);
                     }

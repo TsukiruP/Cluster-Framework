@@ -260,19 +260,19 @@ applies_to=self
 var subject_box_alpha_rate;
 
 // Box alpha rate:
-subject_box_alpha_rate = game_setting_get("interface_alpha") / 20;
+subject_box_alpha_rate = game_config_get("interface_alpha") / 20;
 
 // Fade in subject:
 if (text_clear == false && subject_complete == false && subject_string != "")
 {
     // Bar:
-    if (subject_box_alpha < game_setting_get("interface_alpha"))
+    if (subject_box_alpha < game_config_get("interface_alpha"))
     {
         subject_box_alpha += subject_box_alpha_rate;
     }
     else
     {
-        subject_box_alpha = game_setting_get("interface_alpha");
+        subject_box_alpha = game_config_get("interface_alpha");
     }
 
     // Subject:
@@ -325,19 +325,19 @@ applies_to=self
 var body_box_alpha_rate;
 
 // Box alpha rate:
-body_box_alpha_rate = game_setting_get("interface_alpha") / 20;
+body_box_alpha_rate = game_config_get("interface_alpha") / 20;
 
 // Fade in text:
 if (text_clear == false && !ds_list_empty(body_list) && (subject_complete == true || subject_string == ""))
 {
     // Box:
-    if (body_box_alpha < game_setting_get("interface_alpha"))
+    if (body_box_alpha < game_config_get("interface_alpha"))
     {
         body_box_alpha += body_box_alpha_rate;
     }
     else
     {
-        body_box_alpha = game_setting_get("interface_alpha");
+        body_box_alpha = game_config_get("interface_alpha");
     }
 
     // Text:

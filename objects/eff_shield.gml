@@ -103,7 +103,7 @@ else
 shield_advance = (player_handle.status_shield == SHIELD_BASIC || player_handle.status_shield == SHIELD_MAGNETIC || player_handle.status_invin == INVIN_BUFF);
 
 // Hide:
-if (!game_ispaused(mnu_pause) && ((player_handle.status_shield == SHIELD_BUBBLE && ctl_index == ctl_shield_bubble) || (game_setting_get("advance_flicker") && shield_advance == true)))
+if (!game_ispaused(mnu_pause) && ((player_handle.status_shield == SHIELD_BUBBLE && ctl_index == ctl_shield_bubble) || (game_config_get("advance_flicker") && shield_advance == true)))
 {
     // Hide:
     shield_hide = sync_rate(ctl_moment, 2, 2);
@@ -168,7 +168,7 @@ if (sprite_index != spr_shield_fire_dash)
 }
 
 // Alpha:
-if ((game_setting_get("advance_flicker") && shield_advance == true) || shield_advance == false)
+if ((game_config_get("advance_flicker") && shield_advance == true) || shield_advance == false)
 {
     image_alpha = 1;
 }
