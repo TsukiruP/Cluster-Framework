@@ -106,9 +106,10 @@
 			|input_get_check
 			|input_get_time
 		+Text
+			|font_get_height
 			|text_get_clear
-			|text_subject_set
-			|text_body_set
+			|text_set_subject
+			|text_set_body
 		+Animation
 			|animation_get
 			|animation_set
