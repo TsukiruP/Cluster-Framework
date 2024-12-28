@@ -1,17 +1,4 @@
 /// player_trail_color()
 // Returns a color based on the character id.
 
-switch (character_id)
-{
-    // Miles:
-    case CHAR_MILES:
-        return c_yellow;
-
-    // Knuckles:
-    case CHAR_KNUCKLES:
-        return c_red;
-
-    // Sonic:
-    default:
-        return c_blue;
-}
+return pick(wrap(character_id, CHAR_SONIC, CHAR_AMY), c_blue, c_yellow, c_red, c_fuchsia);
