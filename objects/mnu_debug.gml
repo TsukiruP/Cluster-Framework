@@ -172,27 +172,6 @@ if (rename_allow == false)
     exit;
 }
 
-/*
-// Update keyboard string when it's empty:
-if (keyboard_string != rename_backup)
-{
-    keyboard_string = rename_backup;
-}
-
-// Check window focus:
-if (window_has_focus())
-{
-    rename_backup = keyboard_string;
-    
-    // Set name:
-    if (keyboard_check_pressed(vk_enter))
-    {
-        game_save_set("name", rename_backup);
-        rename_allow = false;
-    }
-}
-*/
-
 if (!window_has_focus())
 {
     if (keyboard_string == "" && keyboard_string != rename_backup)
@@ -203,11 +182,11 @@ if (!window_has_focus())
 else
 {
     rename_backup = keyboard_string;
-    
+
     // Set name:
     if (keyboard_check_pressed(vk_enter))
     {
-        game_save_set("name", rename_backup);
+        game_save_set("name", string_copy(rename_backup, 0, min(string_length(rename_backup), 10)));
         rename_allow = false;
     }
 }
