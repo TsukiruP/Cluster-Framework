@@ -10,4 +10,7 @@ with (mgr_game)
 
     // Buffer:
     buffer_write_hex(config_buffer, ds_map_write(config_map));
+
+    buffer_save(config_buffer, config_directory + "config.cfg");
+    buffer_destroy(config_buffer);
 }

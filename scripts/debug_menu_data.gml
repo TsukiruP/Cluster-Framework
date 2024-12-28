@@ -1,7 +1,8 @@
 /// debug_menu_data()
 
-debug_add_option(debug_option_write_data);
-debug_add_option(debug_option_read_data);
-debug_add_option(debug_option_delete_data);
-debug_add_option(debug_option_rename_data);
-debug_add_option(debug_option_format_data);
+debug_add_option(debug_option_save_write);
+debug_add_option(debug_option_save_read);
+debug_add_option(debug_option_save_delete);
+debug_add_option(debug_option_save_rename);
+debug_add_option(debug_option_save_format);
+debug_add_option(debug_option_config_write);

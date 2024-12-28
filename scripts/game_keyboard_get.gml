@@ -3,5 +3,5 @@
 
 with (mgr_game)
 {
-    return ds_list_find_value(game_config_get("input_keyboard"), argument0);;
+    return ds_list_find_value(game_config_get("input_keyboard"), argument0);
 }
