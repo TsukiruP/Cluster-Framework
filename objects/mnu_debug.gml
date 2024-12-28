@@ -283,7 +283,7 @@ if (rename_allow == false)
 
 // Box:
 draw_set1(game_get_interface_color(), game_setting_get("interface_alpha"));
-draw_rectangle(view_xview[view_current], view_yview[view_current] + (screen_get_height() / 2) - 9 - (font_get_height() / 2), view_xview[view_current] + screen_get_width(), view_yview[view_current] + (screen_get_height() / 2) + 10 + (font_get_height() / 2), false);
+draw_rectangle(view_xview[view_current], view_yview[view_current] + (screen_get_height() / 2) - 9, view_xview[view_current] + screen_get_width(), view_yview[view_current] + (screen_get_height() / 2) + 10, false);
 
 // Font:
 draw_set_font(global.font_system);
