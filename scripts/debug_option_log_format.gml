@@ -1,14 +1,14 @@
-/// debug_option_text(return)
+/// debug_option_log_format(return)
 
 switch (argument0)
 {
     // Text:
     case 0:
-        return "Text Debug";
+        return "Format Log";
 
     // Confirm:
     case 2:
-        debug_set_next(debug_menu_text);
+        mgr_text.log_string = "";
         return true;
 
     // Undefined:

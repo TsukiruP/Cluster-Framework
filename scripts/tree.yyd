@@ -4,8 +4,6 @@
 	+Pause
 	+Background
 	+Room
-		|room_set_data
-		|room_get_data
 +System
 	|credits
 	+Managers
@@ -186,6 +184,12 @@
 							|debug_option_config_format
 					|debug_option_text
 					+Text
+						|debug_menu_text
+						+Options
+							|debug_option_subject_test
+							|debug_option_body_test
+							|debug_option_log_open
+							|debug_option_log_format
 					|debug_option_settings
 					+Settings
 						+Interface

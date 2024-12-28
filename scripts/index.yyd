@@ -43,8 +43,8 @@ debug_add_option
 player_set_damage
 player_state_idle
 fade_create
-room_set_data
-room_get_data
+debug_menu_text
+debug_option_subject_test
 transition_create
 room_set_view_all
 screen_set_window
@@ -354,3 +354,6 @@ game_config_read
 game_config_exists
 debug_option_config_read
 debug_option_config_format
+debug_option_body_test
+debug_option_log_open
+debug_option_log_format

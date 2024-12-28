@@ -1,14 +1,14 @@
-/// debug_option_text(return)
+/// debug_option_subject_test(return)
 
 switch (argument0)
 {
     // Text:
     case 0:
-        return "Text Debug";
+        return "Subject Test";
 
     // Confirm:
     case 2:
-        debug_set_next(debug_menu_text);
+        text_set_subject("This message is a test!");
         return true;
 
     // Undefined:
