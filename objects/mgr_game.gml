@@ -25,9 +25,6 @@ image_speed = 0;
 // Randomize:
 randomize();
 
-// Player count:
-player_count = 2;
-
 // Game variables:
 game_debug = debug_mode;
 game_speed = 1;
@@ -88,7 +85,7 @@ var i;
 
 ds_list_destroy(game_config_get("input_keyboard"));
 
-for (i = 0; i < game_get_player_count(); i += 1)
+for (i = 0; i < PLAYER_COUNT; i += 1)
 {
     ds_list_destroy(game_config_get("input_gamepad" + string(i)));
 }

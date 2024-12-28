@@ -20,7 +20,7 @@ if (game_checkpoint_isset())
 }
 
 // Create players:
-for (i = 0; i < game_get_player_count(); i += 1)
+for (i = 0; i < PLAYER_COUNT; i += 1)
 {
     if (game_save_get("player" + string(i)) != -1)
     {

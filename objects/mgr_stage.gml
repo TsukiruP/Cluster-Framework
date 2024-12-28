@@ -17,7 +17,7 @@ stage_score = 0;
 stage_time = 0;
 stage_rings = 0;
 
-for (i = 0; i < game_get_player_count(); i += 1)
+for (i = 0; i < PLAYER_COUNT; i += 1)
 {
     stage_player[i] = noone;
 }

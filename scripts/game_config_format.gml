@@ -24,7 +24,7 @@ game_config_set("audio_bgm", 0);
 game_keyboard_format();
 
 // Gamepad:
-for (i = 0; i < game_get_player_count(); i += 1)
+for (i = 0; i < PLAYER_COUNT; i += 1)
 {
     var gamepad_string;
 
