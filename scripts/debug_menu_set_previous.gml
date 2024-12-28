@@ -17,4 +17,10 @@ if (!ds_stack_empty(history_stack))
 
     // Destroy list:
     ds_list_destroy(history_list);
+
+    // Success:
+    return true;
 }
+
+// Failure:
+return false;
