@@ -181,13 +181,21 @@ if (!window_has_focus())
 }
 else
 {
+    // Cap length:
+    if (string_length(keyboard_string) > 10)
+    {
+        keyboard_string = string_delete_end(keyboard_string, string_length(keyboard_string) - 10);
+    }
+
+    // Backup string:
     rename_backup = keyboard_string;
 
     // Set name:
     if (keyboard_check_pressed(vk_enter))
     {
-        game_save_set("name", string_copy(rename_backup, 0, min(string_length(rename_backup), 10)));
+        game_save_set("name", rename_backup);
         rename_allow = false;
+        rename_backup = "";
     }
 }
 #define Other_5
