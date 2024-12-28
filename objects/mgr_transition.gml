@@ -112,7 +112,7 @@ if (transition_alarm >= 0)
             // Open preview topic:
             if (preview == true)
             {
-                text_subject_set("Debug");
+                text_set_subject("Debug");
             }
             else
             {
