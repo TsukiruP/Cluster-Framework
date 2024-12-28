@@ -69,7 +69,7 @@ if (game_ispaused(mnu_pause))
 }
 
 // Save time:
-if (instance_exists(mgr_stage))
+if (!instance_exists(mgr_transition))
 {
     game_save_set("time", game_save_get("time") + 1);
 }
