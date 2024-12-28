@@ -350,3 +350,7 @@ font_get_height
 debug_option_config_write
 game_config_write
 game_config_buffer_load
+game_config_read
+game_config_exists
+debug_option_config_read
+debug_option_config_format

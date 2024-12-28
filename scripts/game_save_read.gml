@@ -1,5 +1,5 @@
 /// game_save_read(id)
-// Reads a save file and applies it to the save map.
+// Reads a save file and applies it.
 
 with (mgr_game)
 {

@@ -24,7 +24,9 @@
 				|game_config_init
 				|game_config_get
 				|game_config_set
+				|game_config_exists
 				|game_config_write
+				|game_config_read
 				|game_config_format
 				|game_config_buffer_load
 				+Keyboard
@@ -180,6 +182,8 @@
 							|debug_option_save_rename
 							|debug_option_save_format
 							|debug_option_config_write
+							|debug_option_config_read
+							|debug_option_config_format
 					|debug_option_text
 					+Text
 					|debug_option_settings
