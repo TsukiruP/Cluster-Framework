@@ -1,14 +1,14 @@
-/// debug_option_data(return)
+/// debug_option_read_data(return)
 
 switch (argument0)
 {
     // Text:
     case 0:
-        return "Data Debug";
+        return "Read Data";
 
     // Confirm:
     case 2:
-        debug_menu_set_next(debug_list_data);
+        save_menu_create(1);;
         return true;
 
     // Undefined:

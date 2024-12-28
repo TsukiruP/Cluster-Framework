@@ -1,15 +1,14 @@
-/// debug_option_data(return)
+/// debug_option_rename_data(return)
 
 switch (argument0)
 {
     // Text:
     case 0:
-        return "Data Debug";
+        return "Rename Data";
 
     // Confirm:
     case 2:
-        debug_menu_set_next(debug_list_data);
-        return true;
+        return false;
 
     // Undefined:
     default:

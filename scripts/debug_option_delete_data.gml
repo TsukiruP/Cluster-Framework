@@ -1,14 +1,14 @@
-/// debug_option_data(return)
+/// debug_option_delete_data(return)
 
 switch (argument0)
 {
     // Text:
     case 0:
-        return "Data Debug";
+        return "Delete Data";
 
     // Confirm:
     case 2:
-        debug_menu_set_next(debug_list_data);
+        save_menu_create(2);;
         return true;
 
     // Undefined:

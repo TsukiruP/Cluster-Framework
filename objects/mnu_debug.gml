@@ -51,8 +51,14 @@ applies_to=self
 // Reset x direction:
 menu_x_direction = 0;
 
+// Visibility:
+if (visible != !instance_exists(mnu_save))
+{
+    visible = !instance_exists(mnu_save);
+}
+
 // Exit if text is active:
-if (game_ispaused(mgr_text) || instance_exists(mgr_transition))
+if (game_ispaused(mgr_text) || instance_exists(mgr_transition) || instance_exists(mnu_save))
 {
     exit;
 }

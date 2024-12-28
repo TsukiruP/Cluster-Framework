@@ -119,7 +119,7 @@ game_save_write
 game_save_init
 game_save_exists
 game_save_default
-game_save_preview
+save_menu_preview
 ctl_sonic_look
 player_state_turn
 player_set_state
@@ -338,3 +338,11 @@ debug_option_sonic_homing
 debug_list_transition
 debug_option_transition_room
 debug_option_transition_preview
+save_menu_create
+game_save_delete
+debug_list_data
+debug_option_rename_data
+debug_option_format_data
+debug_option_write_data
+debug_option_read_data
+debug_option_delete_data

@@ -7,6 +7,7 @@ applies_to=self
 /// Save Initialization
 
 // Menu variables:
+menu_mode = 0;
 menu_page = 0;
 menu_cursor = 0;
 menu_option = 0;
@@ -15,7 +16,7 @@ menu_option = 0;
 save_width = 98;
 save_height = (mgr_text.font_height * 3) + 16;
 save_kerning = 4;
-save_preview_map = game_save_preview();
+save_preview_map = save_menu_preview();
 save_max = 3;
 
 // Page count:
@@ -75,24 +76,29 @@ if (menu_x_direction != 0 || menu_y_direction != 0)
 // Confirm:
 if (input_get_check(INP_CONFIRM, CHECK_PRESSED))
 {
-    switch (ds_map_get(save_preview_map, "save" + string(menu_save) + "_exists"))
+    if (menu_mode == 0 || ((menu_mode == 1 || menu_mode == 2) && ds_map_get(save_preview_map, "save" + string(menu_save) + "_exists") == true))
     {
-        // Create new save:
-        case 0:
-            game_save_default();
-            game_save_write(menu_save);
-            event_user(0);
-            break;
+        script_execute(pick(menu_mode, game_save_write, game_save_read, game_save_delete), menu_save);
+        event_user(0);
 
-        // Read existing save:
-        case 1:
-            game_save_read(menu_save);
-            transition_create(rm_basic_test_1);
-            break;
+        // Play sound:
+        audio_sfx_play("snd_menu_confirm", true);
     }
+    else
+    {
+        // Play sound:
+        audio_sfx_play("snd_menu_cannot", true);
+    }
+}
 
+// Cancel:
+if (input_get_check(INP_CANCEL, CHECK_PRESSED))
+{
     // Play sound:
-    audio_sfx_play("snd_menu_confirm", true);
+    audio_sfx_play("snd_menu_close", true);
+
+    // Destroy:
+    instance_destroy();
 }
 #define Other_5
 /*"/*'/**//* YYD ACTION
@@ -110,7 +116,7 @@ applies_to=self
 /// Refresh Preview
 
 ds_map_destroy(save_preview_map);
-save_preview_map = game_save_preview();
+save_preview_map = save_menu_preview();
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1

@@ -41,8 +41,8 @@
 				|game_save_exists
 				|game_save_read
 				|game_save_write
+				|game_save_delete
 				|game_save_default
-				|game_save_preview
 				|game_save_buffer_load
 			+Room
 				|game_room_get_transition
@@ -169,6 +169,13 @@
 							|debug_option_transition_preview
 					|debug_option_data
 					+Data
+						|debug_list_data
+						+Options
+							|debug_option_rename_data
+							|debug_option_format_data
+							|debug_option_write_data
+							|debug_option_read_data
+							|debug_option_delete_data
 					|debug_option_text
 					+Text
 					|debug_option_settings
@@ -182,6 +189,9 @@
 						+Advance
 						+Misc.
 					|debug_option_credits
+		+Save
+			|save_menu_create
+			|save_menu_preview
 	+Timelines
 		|ctl_init
 		|ctl_update
