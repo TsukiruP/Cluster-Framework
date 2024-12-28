@@ -147,8 +147,8 @@
 					+Character
 						|debug_list_character
 						+Options
-							|debug_option_player
-							|debug_option_partner
+							|debug_option_player0
+							|debug_option_player1
 						+Sonic
 							|debug_list_sonic
 							+Options

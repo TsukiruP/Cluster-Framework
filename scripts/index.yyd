@@ -92,7 +92,7 @@ player_trail_init
 player_trail_color
 player_trail_draw
 ctl_sonic_cliff_front
-debug_option_player
+debug_option_player0
 player_animation_speed
 player_animation_air
 player_surface_splash
@@ -327,7 +327,7 @@ debug_option_transition
 debug_option_data
 debug_option_settings
 debug_option_text
-debug_option_partner
+debug_option_player1
 debug_option_credits
 debug_option_sonic_aux_ground
 debug_option_sonic_aux_air

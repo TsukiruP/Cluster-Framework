@@ -17,14 +17,7 @@ switch (argument0)
 
     // Update:
     case 3:
-        var skill_id;
-
-        skill_id = game_save_get(skill_key);
-        skill_id += menu_x_direction;
-        skill_id = wrap(skill_id, SKILL_NONE, SKILL_SKID);
-
-        game_save_set(skill_key, skill_id);
-
+        game_save_set(skill_key, wrap(game_save_get(skill_key) + menu_x_direction, SKILL_NONE, SKILL_AIR_DASH));
         return true;
 
     // Undefined:

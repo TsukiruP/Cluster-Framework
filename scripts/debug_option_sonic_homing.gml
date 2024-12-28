@@ -17,14 +17,7 @@ switch (argument0)
 
     // Update:
     case 3:
-        var skill_id;
-
-        skill_id = game_save_get(skill_key);
-        skill_id += menu_x_direction;
-        skill_id = wrap(skill_id, HOMING_NONE, HOMING_GENERATIONS);
-
-        game_save_set(skill_key, skill_id);
-
+        game_save_set(skill_key, wrap(game_save_get(skill_key) + menu_x_direction, HOMING_NONE, HOMING_GENERATIONS));
         return true;
 
     // Undefined:
