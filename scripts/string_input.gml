@@ -33,23 +33,18 @@ else if (input_device >= DEV_GAMEPAD0)
 
     // Gamepad offset:
     input_device -= DEV_GAMEPAD0;
-
-    // Return:
     return char_pad(game_gamepad_get(input_device, input_id), game_setting_get("input_gamepad" + string(input_device) + "_style"));
 }
 
 // User:
 else
 {
-    // Return gamepad if it's connected:
+    // Gamepad:
     if (mgr_input.gamepad_device[0, 0] > -1)
     {
         return string_input(input_id, DEV_GAMEPAD0);
     }
 
-    // Default to keyboard otherwise:
-    else
-    {
-        return string_input(input_id, DEV_KEYBOARD);
-    }
+    // Keyboard:
+    return string_input(input_id, DEV_KEYBOARD);
 }

@@ -43,7 +43,6 @@ repeat (total_steps)
         {
             // Death:
             player_set_damage(self);
-
             return false;
         }
 

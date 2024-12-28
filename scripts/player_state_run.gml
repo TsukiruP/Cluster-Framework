@@ -30,7 +30,6 @@ switch (argument0)
                     {
                         // Play sound:
                         audio_sfx_play("snd_brake");
-
                         return player_set_state(player_state_brake);
                     }
 
@@ -93,11 +92,9 @@ switch (argument0)
             {
                 return player_set_state(player_state_air);
             }
-            else
-            {
-                // Deploy input lock:
-                input_lock_alarm = 30;
-            }
+
+            // Deploy input lock:
+            input_lock_alarm = 30;
         }
 
         // Slope friction:

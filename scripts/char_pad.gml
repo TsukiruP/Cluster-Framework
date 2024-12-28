@@ -13,5 +13,5 @@ if (argument_count >= 2)
     input_style = argument[1];
 }
 
-// Return chracter:
+// Return:
 return chr(128 + button_id + (input_style * 18));

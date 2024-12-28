@@ -35,7 +35,5 @@ if (object_is_ancestor(object_handle.object_index, par_obstacle))
 
     return script_execute(reaction, object_handle, collision, side);
 }
-else
-{
-    return script_execute(reaction, object_handle, collision);
-}
+
+return script_execute(reaction, object_handle, collision);

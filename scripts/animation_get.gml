@@ -33,6 +33,5 @@ with (mgr_animation)
         }
     }
 
-    // Return:
     return ds_grid_get(animation_grid, grid_x, grid_y);
 }

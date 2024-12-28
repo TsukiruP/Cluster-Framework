@@ -31,14 +31,7 @@ if (argument_count >= 1)
     {
         return pause_stage;
     }
+}
 
-    // Default to either:
-    else
-    {
-        return (pause_text || pause_stage);
-    }
-}
-else
-{
-    return (pause_text || pause_stage);
-}
+// Default to both:
+return (pause_text || pause_stage);

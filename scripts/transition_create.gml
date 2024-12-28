@@ -28,5 +28,4 @@ with (transition)
     }
 }
 
-// Return:
 return transition;

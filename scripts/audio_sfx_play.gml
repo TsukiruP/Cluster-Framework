@@ -45,12 +45,10 @@ with (mgr_audio)
             }
 
             ds_list_add(sfx_list, inst);
-
             return inst;
         }
     }
-    else
-    {
-        return noone;
-    }
+
+    // Return noone:
+    return noone;
 }

@@ -55,5 +55,4 @@ if (total_objects > 0)
 }
 
 ds_list_destroy(collision_list);
-
 return result;

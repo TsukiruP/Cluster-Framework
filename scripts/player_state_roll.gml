@@ -60,10 +60,9 @@ switch (argument0)
             {
                 return player_set_state(player_state_air);
             }
-            else
-            {
-                input_lock_alarm = 30;
-            }
+
+            // Deploy input lock:
+            input_lock_alarm = 30;
         }
 
         // Slope friction:

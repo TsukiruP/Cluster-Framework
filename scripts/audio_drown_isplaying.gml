@@ -5,7 +5,6 @@ with (mgr_audio)
 {
     if (drown_handle != -1)
     {
-        // Return:
         return sound_isplaying(drown_handle);
     }
 

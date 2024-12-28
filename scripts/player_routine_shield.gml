@@ -81,13 +81,9 @@ if (status_shield == SHIELD_BUBBLE)
 
     // Jump aux:
     jump_aux = player_get_input(INP_AUX, CHECK_PRESSED);
-
     return true;
 }
-else
-{
-    // Set animation:
-    player_set_animation("spin");
 
-    return player_set_state(player_state_jump, false);
-}
+// Set animation:
+player_set_animation("spin");
+return player_set_state(player_state_jump, false);

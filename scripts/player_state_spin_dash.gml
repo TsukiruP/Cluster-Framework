@@ -37,16 +37,13 @@ switch (argument0)
             {
                 return player_set_state(player_state_air);
             }
-            else
-            {
-                // Deploy input lock:
-                input_lock_alarm = 30;
 
-                // Play sound:
-                audio_sfx_play("snd_roll", true);
+            // Deploy input lock:
+            input_lock_alarm = 30;
 
-                return player_set_state(player_state_roll);
-            }
+            // Play sound:
+            audio_sfx_play("snd_roll", true);
+            return player_set_state(player_state_run);
         }
 
         // Release:
@@ -66,7 +63,6 @@ switch (argument0)
 
             // Stop sound:
             audio_sfx_stop("snd_spin_dash_charge");
-
             return player_set_state(player_state_roll);
         }
 

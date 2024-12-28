@@ -47,7 +47,6 @@ switch (argument0)
         {
             // Set animation:
             player_set_animation("crouch_end");
-
             return player_set_state(player_state_idle);
         }
 

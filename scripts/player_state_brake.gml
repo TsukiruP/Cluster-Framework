@@ -42,7 +42,6 @@ switch (argument0)
                         {
                             // Set animation:
                             player_set_animation("turn_brake");
-
                             return player_set_state(player_state_turn);
                         }
 
@@ -98,12 +97,10 @@ switch (argument0)
             {
                 return player_set_state(player_state_air);
             }
-            else
-            {
-                input_lock_alarm = 30;
 
-                return player_set_state(player_state_run);
-            }
+            // Deploy input lock:
+            input_lock_alarm = 30;
+            return player_set_state(player_state_run);
         }
 
         // Slope friction:

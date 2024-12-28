@@ -62,7 +62,6 @@ switch (argument0)
 
             // Play sound:
             audio_sfx_play("snd_bound_land", true);
-
             return player_set_state(player_state_jump, true);
         }
 

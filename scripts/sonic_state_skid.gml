@@ -124,9 +124,9 @@ switch (argument0)
             // Jump:
             if (animation_finished == true)
             {
+                // Set animation:
                 animation_skip = true;
                 player_set_animation("spin");
-
                 return player_set_state(player_state_jump, false);
             }
         }
@@ -160,10 +160,12 @@ switch (argument0)
                 // Jump:
                 else
                 {
+                    // Reset air:
                     player_reset_air();
+                    
+                    // Set animation:
                     animation_skip = true;
                     player_set_animation("spin");
-
                     return player_set_state(player_state_jump, false);
                 }
             }

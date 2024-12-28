@@ -177,6 +177,7 @@
 							|debug_option_delete_data
 							|debug_option_rename_data
 							|debug_option_format_data
+							|debug_option_write_config
 					|debug_option_text
 					+Text
 					|debug_option_settings

@@ -192,7 +192,5 @@ if (phase == 0)
 {
     return collision | player_get_collision(argument0, 1);
 }
-else
-{
-    return collision;
-}
+
+return collision;

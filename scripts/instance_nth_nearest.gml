@@ -24,6 +24,5 @@ repeat(n)
     nearest = ds_priority_delete_min(list);
 }
 
-// Return:
 ds_priority_destroy(list);
 return nearest;

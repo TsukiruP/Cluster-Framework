@@ -3,7 +3,7 @@
 
 with (mgr_input)
 {
-    var gamepad_id, button_id, button_check;
+    var gamepad_id, button_id;
 
     // Gamepad id:
     gamepad_id = gamepad_device[argument0, 0];
@@ -51,21 +51,18 @@ with (mgr_input)
                 {
                     // Pressed:
                     case CHECK_PRESSED:
-                        button_check = joystick_check_button_pressed(gamepad_id, button_id);
+                        return joystick_check_button_pressed(gamepad_id, button_id);
                         break;
 
                     // Release:
                     case CHECK_RELEASED:
-                        button_check = joystick_check_button_released(gamepad_id, button_id);
+                        return joystick_check_button_released(gamepad_id, button_id);
                         break;
 
                     // Held:
                     default:
-                        button_check = joystick_check_button(gamepad_id, button_id);
+                        return joystick_check_button(gamepad_id, button_id);
                 }
-
-                // Return:
-                return button_check;
         }
     }
 }

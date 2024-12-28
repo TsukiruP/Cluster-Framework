@@ -32,5 +32,4 @@ with (fade)
     }
 }
 
-// Return the fade:
 return fade;

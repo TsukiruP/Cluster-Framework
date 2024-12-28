@@ -21,8 +21,6 @@ with (mgr_game)
         var grid_y;
 
         grid_y = ds_grid_value_y(room_grid, 0, 0, 0, grid_height, room_handle);
-
-        // Return:
         return ds_grid_get(room_grid, 8, grid_y);
     }
 

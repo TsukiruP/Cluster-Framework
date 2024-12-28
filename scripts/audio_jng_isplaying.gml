@@ -8,7 +8,6 @@ with (mgr_audio)
         // Check if index exists:
         if (sound_exists(argument[0]))
         {
-            // Return:
             return sound_isplaying(argument[0]);
         }
     }
@@ -16,7 +15,6 @@ with (mgr_audio)
     {
         if (jng_handle != -1)
         {
-            // Return:
             return sound_isplaying(jng_handle);
         }
     }

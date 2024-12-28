@@ -4,7 +4,5 @@
 with (mgr_audio)
 {
     ring_pan = !ring_pan;
-
-    // Return:
     return ring_pan;
 }

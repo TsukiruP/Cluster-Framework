@@ -31,5 +31,4 @@ with (effect)
     }
 }
 
-// Return effect:
 return effect;

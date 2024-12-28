@@ -35,7 +35,6 @@ switch (argument0)
             }
 
             y_speed = 0;
-
             return false;
         }
 

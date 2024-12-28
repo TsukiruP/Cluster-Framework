@@ -347,3 +347,4 @@ debug_option_write_data
 debug_option_read_data
 debug_option_delete_data
 font_get_height
+debug_option_write_config
