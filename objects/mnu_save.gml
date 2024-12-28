@@ -14,7 +14,7 @@ menu_option = 0;
 
 // Save variables:
 save_width = 98;
-save_height = (mgr_text.font_height * 3) + 16;
+save_height = (font_get_height() * 3) + 16;
 save_kerning = 4;
 save_preview_map = save_menu_preview();
 save_max = 3;
@@ -78,7 +78,26 @@ if (input_get_check(INP_CONFIRM, CHECK_PRESSED))
 {
     if (menu_mode == 0 || ((menu_mode == 1 || menu_mode == 2) && ds_map_get(save_preview_map, "save" + string(menu_save) + "_exists") == true))
     {
+        var save_name;
+
+        // Save name:
+        if (menu_mode == 1 || menu_mode == 2)
+        {
+            save_name = ds_map_get(save_preview_map, "save" + string(menu_save) + "_name");
+        }
+        else
+        {
+            save_name = game_save_get("name");
+        }
+
+        // Default to slot number:
+        if (save_name == "")
+        {
+            save_name = "Slot " + string(menu_save);
+        }
+
         script_execute(pick(menu_mode, game_save_write, game_save_read, game_save_delete), menu_save);
+        script_execute(text_set_subject, save_name + " data has been " + pick(menu_mode, "saved.", "loaded.", "deleted."));
         event_user(0);
 
         // Play sound:

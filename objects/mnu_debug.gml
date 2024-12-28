@@ -7,6 +7,7 @@ applies_to=self
 /// Menu Initialization
 
 // Menu variables:
+menu_delay = 0;
 menu_x_direction = 0;
 menu_index = debug_list_home;
 menu_cursor = 0;
@@ -19,6 +20,10 @@ debug_menu_set_list(menu_index);
 // Transition variables:
 transition_room = room;
 transition_preview = TRANS_FADE;
+
+// Rename variables:
+rename_allow = false;
+rename_backup = "";
 
 // History stack:
 history_stack = ds_stack_create();
@@ -58,87 +63,153 @@ if (visible != !instance_exists(mnu_save))
 }
 
 // Exit if text is active:
-if (game_ispaused(mgr_text) || instance_exists(mgr_transition) || instance_exists(mnu_save))
+if (game_ispaused(mgr_text) || instance_exists(mgr_transition) || instance_exists(mnu_save) || rename_allow == true)
+{
+    // Delay:
+    if (menu_delay != 2)
+    {
+        menu_delay = 2;
+    }
+
+    exit;
+}
+
+if (menu_delay > 0)
+{
+    menu_delay -= 1;
+}
+else
+{
+    var menu_left, menu_right, menu_up, menu_down, menu_y_direction, menu_size, option_confirm, option_update;
+
+    // Menu direction:
+    menu_left = input_get_check(INP_LEFT, CHECK_PRESSED);
+    menu_right = input_get_check(INP_RIGHT, CHECK_PRESSED);
+    menu_x_direction = menu_right - menu_left;
+
+    menu_up = input_get_check(INP_UP, CHECK_PRESSED);
+    menu_down = input_get_check(INP_DOWN, CHECK_PRESSED);
+    menu_y_direction = menu_down - menu_up;
+
+    // Menu option:
+    menu_option += menu_y_direction;
+    menu_size = ds_list_size(menu_list) - 1;
+
+    if (menu_option < 0)
+    {
+        menu_cursor = min(3, menu_size);
+        menu_option = menu_size;
+        menu_scroll = max(0, menu_size - 3);
+    }
+    else if (menu_option > menu_size)
+    {
+        menu_cursor = 0;
+        menu_option = 0;
+        menu_scroll = 0;
+    }
+    else
+    {
+        if ((menu_cursor == 0 && sign(menu_y_direction) == -1) || (menu_cursor == 3 && sign(menu_y_direction) == 1))
+        {
+            menu_scroll += menu_y_direction;
+        }
+        else
+        {
+            menu_cursor += menu_y_direction;
+        }
+    }
+
+    // Play sound:
+    if (menu_y_direction != 0)
+    {
+        audio_sfx_play("snd_menu_move", true);
+    }
+
+    // Confirm:
+    if (input_get_check(INP_CONFIRM, CHECK_PRESSED))
+    {
+        option_confirm = script_execute(ds_list_find_value(menu_list, menu_option), 2);
+
+        // Play sound:
+        if (!is_undefined(option_confirm))
+        {
+            audio_sfx_play(pick(option_confirm, "snd_menu_cannot", "snd_menu_confirm"), true);
+        }
+    }
+
+    // Update:
+    if (menu_x_direction != 0)
+    {
+        option_update = script_execute(ds_list_find_value(menu_list, menu_option), 3);
+
+        // Play sound:
+        if (!is_undefined(option_update))
+        {
+            audio_sfx_play(pick(option_update, "snd_menu_cannot", "snd_menu_move"), true);
+        }
+    }
+
+    // Cancel:
+    if (input_get_check(INP_CANCEL, CHECK_PRESSED))
+    {
+        if (debug_menu_set_previous())
+        {
+            // Play sound:
+            audio_sfx_play("snd_menu_close", true);
+        }
+    }
+}
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Rename
+
+// Exit if not renaming:
+if (rename_allow == false)
 {
     exit;
 }
 
-var menu_left, menu_right, menu_up, menu_down, menu_y_direction, menu_size, option_confirm, option_update;
-
-// Menu direction:
-menu_left = input_get_check(INP_LEFT, CHECK_PRESSED);
-menu_right = input_get_check(INP_RIGHT, CHECK_PRESSED);
-menu_x_direction = menu_right - menu_left;
-
-menu_up = input_get_check(INP_UP, CHECK_PRESSED);
-menu_down = input_get_check(INP_DOWN, CHECK_PRESSED);
-menu_y_direction = menu_down - menu_up;
-
-// Menu option:
-menu_option += menu_y_direction;
-menu_size = ds_list_size(menu_list) - 1;
-
-if (menu_option < 0)
+/*
+// Update keyboard string when it's empty:
+if (keyboard_string != rename_backup)
 {
-    menu_cursor = min(3, menu_size);
-    menu_option = menu_size;
-    menu_scroll = max(0, menu_size - 3);
+    keyboard_string = rename_backup;
 }
-else if (menu_option > menu_size)
+
+// Check window focus:
+if (window_has_focus())
 {
-    menu_cursor = 0;
-    menu_option = 0;
-    menu_scroll = 0;
+    rename_backup = keyboard_string;
+    
+    // Set name:
+    if (keyboard_check_pressed(vk_enter))
+    {
+        game_save_set("name", rename_backup);
+        rename_allow = false;
+    }
+}
+*/
+
+if (!window_has_focus())
+{
+    if (keyboard_string == "" && keyboard_string != rename_backup)
+    {
+        keyboard_string = rename_backup;
+    }
 }
 else
 {
-    if ((menu_cursor == 0 && sign(menu_y_direction) == -1) || (menu_cursor == 3 && sign(menu_y_direction) == 1))
+    rename_backup = keyboard_string;
+    
+    // Set name:
+    if (keyboard_check_pressed(vk_enter))
     {
-        menu_scroll += menu_y_direction;
+        game_save_set("name", rename_backup);
+        rename_allow = false;
     }
-    else
-    {
-        menu_cursor += menu_y_direction;
-    }
-}
-
-// Play sound:
-if (menu_y_direction != 0)
-{
-    audio_sfx_play("snd_menu_move", true);
-}
-
-// Confirm:
-if (input_get_check(INP_CONFIRM, CHECK_PRESSED))
-{
-    option_confirm = script_execute(ds_list_find_value(menu_list, menu_option), 2);
-
-    // Play sound:
-    if (!is_undefined(option_confirm))
-    {
-        audio_sfx_play(pick(option_confirm, "snd_menu_cannot", "snd_menu_confirm"), true);
-    }
-}
-
-// Update:
-if (menu_x_direction != 0)
-{
-    option_update = script_execute(ds_list_find_value(menu_list, menu_option), 3);
-
-    // Play sound:
-    if (!is_undefined(option_update))
-    {
-        audio_sfx_play(pick(option_update, "snd_menu_cannot", "snd_menu_move"), true);
-    }
-}
-
-// Cancel:
-if (input_get_check(INP_CANCEL, CHECK_PRESSED))
-{
-    debug_menu_set_previous();
-
-    // Play sound:
-    audio_sfx_play("snd_menu_close", true);
 }
 #define Other_5
 /*"/*'/**//* YYD ACTION
@@ -170,7 +241,7 @@ for (i = 0; i < min(ds_list_size(menu_list), 4); i += 1)
     option_text = script_execute(ds_list_find_value(menu_list, option_id), 0);
     option_value = script_execute(ds_list_find_value(menu_list, option_id), 1);
     option_x = view_xview[view_current] + screen_get_width() / 2;
-    option_y = view_yview[view_current] + screen_get_height() / 2 - 41 + mgr_text.font_height * i;
+    option_y = view_yview[view_current] + screen_get_height() / 2 - 41 + font_get_height() * i;
 
     // Font:
     draw_set_font(global.font_system);
@@ -197,10 +268,30 @@ for (i = 0; i < min(ds_list_size(menu_list), 4); i += 1)
 
 // Reset:
 draw_reset();
-#define KeyPress_32
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
 applies_to=self
 */
-text_body_set(string_input(INP_CONFIRM) + " Confirm " + string_input(INP_CANCEL) + "Cancel");
+/// Draw Rename
+
+// Exit if not renaming:
+if (rename_allow == false)
+{
+    exit;
+}
+
+// Box:
+draw_set1(game_get_interface_color(), game_setting_get("interface_alpha"));
+draw_rectangle(view_xview[view_current], view_yview[view_current] + (screen_get_height() / 2) - 9 - (font_get_height() / 2), view_xview[view_current] + screen_get_width(), view_yview[view_current] + (screen_get_height() / 2) + 10 + (font_get_height() / 2), false);
+
+// Font:
+draw_set_font(global.font_system);
+draw_set1(c_white, 1);
+
+// Rename:
+draw_set2(fa_center, fa_middle);
+draw_text(screen_get_width() / 2, screen_get_height() / 2, rename_backup);
+
+// Reset:
+draw_reset();
