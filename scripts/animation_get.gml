@@ -9,27 +9,27 @@ with (mgr_animation)
     grid_width = ds_grid_width(animation_grid) - 1;
     grid_height = ds_grid_height(animation_grid) - 1;
 
-    // Grid column:
+    // Grid coordinates:
     grid_x = 2;
     grid_y = 0;
 
     // Check character:
     if (ds_grid_value_exists(animation_grid, 0, 0, grid_width, grid_height, argument0))
     {
-        // Grid row:
+        // Update y:
         grid_y = ds_grid_value_y(animation_grid, 0, 0, grid_width, grid_height, argument0);
+    }
 
-        // Check animation:
-        if (ds_grid_value_exists(animation_grid, 0, grid_y, grid_width, grid_height, argument1))
+    // Check animation:
+    if (ds_grid_value_exists(animation_grid, 0, grid_y, grid_width, grid_height, argument1))
+    {
+        // Find animation:
+        grid_y = ds_grid_value_y(animation_grid, 0, grid_y, grid_width, grid_height, argument1);
+
+        // Find variant:
+        if (ds_grid_get(animation_grid, argument2 + 2, grid_y) != 0)
         {
-            // Find animation:
-            grid_y = ds_grid_value_y(animation_grid, 0, grid_y, grid_width, grid_height, argument1);
-
-            // Find variant:
-            if (ds_grid_get(animation_grid, argument2 + 2, grid_y) != 0)
-            {
-                grid_x = argument2 + 2;
-            }
+            grid_x = argument2 + 2;
         }
     }
 
