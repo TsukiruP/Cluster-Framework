@@ -24,25 +24,27 @@
 				|game_config_init
 				|game_config_get
 				|game_config_set
-				|game_config_default
+				|game_config_write
+				|game_config_format
+				|game_config_buffer_load
 				+Keyboard
 					|game_keyboard_get
 					|game_keyboard_set
-					|game_keyboard_default
+					|game_keyboard_format
 				+Gamepad
 					|game_gamepad_get
 					|game_gamepad_set
-					|game_gamepad_default
+					|game_gamepad_format
 					|game_gamepad_confirm
 			+Save
 				|game_save_init
 				|game_save_get
 				|game_save_set
 				|game_save_exists
-				|game_save_read
 				|game_save_write
+				|game_save_read
 				|game_save_delete
-				|game_save_default
+				|game_save_format
 				|game_save_buffer_load
 			+Room
 				|game_room_get_transition
@@ -136,21 +138,21 @@
 				|stage_set_player
 	+Menus
 		+Debug
-			|debug_menu_add_option
-			|debug_menu_set_list
-			|debug_menu_set_next
-			|debug_menu_set_previous
-			+Home
-				|debug_list_home
+			|debug_add_option
+			|debug_set_menu
+			|debug_set_next
+			|debug_set_previous
+			+Indexes
+				|debug_menu_home
 				+Options
 					|debug_option_character
 					+Character
-						|debug_list_character
+						|debug_menu_character
 						+Options
 							|debug_option_player0
 							|debug_option_player1
 						+Sonic
-							|debug_list_sonic
+							|debug_menu_sonic
 							+Options
 								|debug_option_sonic_jump
 								|debug_option_sonic_aux_ground
@@ -164,13 +166,13 @@
 						+Amy
 					|debug_option_transition
 					+Transition
-						|debug_list_transition
+						|debug_menu_transition
 						+Options
 							|debug_option_transition_room
 							|debug_option_transition_preview
 					|debug_option_data
 					+Data
-						|debug_list_data
+						|debug_menu_data
 						+Options
 							|debug_option_write_data
 							|debug_option_read_data

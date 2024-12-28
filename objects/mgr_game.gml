@@ -86,11 +86,11 @@ applies_to=self
 
 var i;
 
-ds_list_destroy(keyboard_list);
+ds_list_destroy(game_config_get("input_keyboard"));
 
 for (i = 0; i < game_get_player_count(); i += 1)
 {
-    ds_list_destroy(gamepad_list[i]);
+    ds_list_destroy(game_config_get("input_gamepad" + string(i)));
 }
 
 ds_map_destroy(config_map);

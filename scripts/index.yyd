@@ -39,7 +39,7 @@ ctl_sonic_brake
 sync_rate
 player_animation_core
 player_get_animation
-debug_menu_add_option
+debug_add_option
 player_set_damage
 player_state_idle
 fade_create
@@ -53,13 +53,13 @@ sonic_skill_list
 sonic_state_homing
 pick_offset
 player_wall_push
-debug_menu_set_list
+debug_set_menu
 draw_background_tiled_view
-debug_menu_set_previous
+debug_set_previous
 
 draw_sprite_tiled_horizontal_yscale
 draw_sprite_tiled_vertical
-debug_list_character
+debug_menu_character
 ctl_sonic_breathe
 
 
@@ -73,7 +73,7 @@ debug_option_sonic_jump
 
 
 draw_sprite_tiled_horizontal
-debug_list_sonic
+debug_menu_sonic
 effect_create
 
 player_reaction_spring
@@ -107,7 +107,7 @@ player_state_spin_dash
 ctl_sonic_spring_flight
 game_config_init
 player_get_input
-game_config_default
+game_config_format
 audio_sfx_play
 draw_collision
 audio_sfx_stop
@@ -118,7 +118,7 @@ sonic_state_skid
 game_save_write
 game_save_init
 game_save_exists
-game_save_default
+game_save_format
 save_menu_preview
 ctl_sonic_look
 player_state_turn
@@ -174,7 +174,7 @@ gamepad_get_check
 input_get_check
 
 ctl_checkpoint_active
-game_keyboard_default
+game_keyboard_format
 ctl_sonic_insta
 ctl_reticle_colors
 string_bool
@@ -253,7 +253,7 @@ game_config_get
 screen_get_height
 screen_set_resolution
 game_keyboard_set
-game_gamepad_default
+game_gamepad_format
 game_gamepad_get
 game_gamepad_set
 game_gamepad_confirm
@@ -278,7 +278,7 @@ game_checkpoint_get_y
 game_checkpoint_get_time
 stage_get_player
 stage_set_player
-debug_menu_set_next
+debug_set_next
 stage_set_pause_allow
 text_get_clear
 audio_sfx_pause_all
@@ -317,7 +317,7 @@ audio_fade_out
 player_state_spring
 player_animation_spring
 game_save_buffer_load
-debug_list_home
+debug_menu_home
 audio_jng_pause
 audio_jng_resume
 audio_drown_pause
@@ -335,12 +335,12 @@ debug_option_sonic_slam
 debug_option_sonic_peel
 debug_option_sonic_shield
 debug_option_sonic_homing
-debug_list_transition
+debug_menu_transition
 debug_option_transition_room
 debug_option_transition_preview
 save_menu_create
 game_save_delete
-debug_list_data
+debug_menu_data
 debug_option_rename_data
 debug_option_format_data
 debug_option_write_data
@@ -348,3 +348,5 @@ debug_option_read_data
 debug_option_delete_data
 font_get_height
 debug_option_write_config
+game_config_write
+game_config_buffer_load

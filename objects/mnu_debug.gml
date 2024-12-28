@@ -9,13 +9,13 @@ applies_to=self
 // Menu variables:
 menu_delay = 0;
 menu_x_direction = 0;
-menu_index = debug_list_home;
+menu_index = debug_menu_home;
 menu_cursor = 0;
 menu_option = 0;
 menu_scroll = 0;
 
 menu_list = ds_list_create();
-debug_menu_set_list(menu_index);
+debug_set_menu(debug_menu_home);
 
 // Transition variables:
 transition_room = room;
@@ -152,7 +152,7 @@ else
     // Cancel:
     if (input_get_check(INP_CANCEL, CHECK_PRESSED))
     {
-        if (debug_menu_set_previous())
+        if (debug_set_previous())
         {
             // Play sound:
             audio_sfx_play("snd_menu_close", true);

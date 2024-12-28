@@ -8,7 +8,7 @@ switch (argument0)
 
     // Confirm:
     case 2:
-        game_save_default();
+        game_save_format();
         return true;
 
     // Undefined:

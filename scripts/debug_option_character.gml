@@ -8,7 +8,7 @@ switch (argument0)
 
     // Confirm:
     case 2:
-        debug_menu_set_next(debug_list_character);
+        debug_set_next(debug_menu_character);
         return true;
 
     // Undefined:

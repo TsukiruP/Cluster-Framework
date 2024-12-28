@@ -1,4 +1,4 @@
-/// debug_set_next(list)
+/// debug_set_next(index)
 // Sets the menu list and adds to the history stack.
 
 var history_list;
@@ -15,4 +15,7 @@ ds_list_add(history_list, menu_scroll);
 ds_stack_push(history_stack, history_list);
 
 // Set list:
-debug_set_list(argument0);
+debug_set_menu(argument0);
+menu_cursor = 0;
+menu_option = 0;
+menu_scroll = 0;

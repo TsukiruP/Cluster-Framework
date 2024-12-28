@@ -21,7 +21,7 @@ switch (argument0)
         {
             // Sonic:
             case CHAR_SONIC:
-                debug_menu_set_next(debug_list_sonic);
+                debug_set_next(debug_menu_sonic);
                 return true;
 
             // Default:

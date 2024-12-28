@@ -13,8 +13,14 @@ if (!ds_stack_empty(history_stack))
     menu_scroll = ds_list_find_value(history_list, 3);
 
     // Set list:
-    debug_set_list(menu_index);
+    debug_set_menu(menu_index);
 
     // Destroy list:
     ds_list_destroy(history_list);
+
+    // Success:
+    return true;
 }
+
+// Failure:
+return false;

@@ -1,14 +1,14 @@
 /// game_save_buffer_load(id)
-// Returns a ds map of the loaded save's data.
+// Returns a ds map of the loaded save.
 
 with (mgr_game)
 {
     var save_buffer, save_temp;
-    
+
     // Initialize:
     save_buffer = buffer_create();
     save_temp = ds_map_create();
-    
+
     // Buffer:
     buffer_load(save_buffer, save_directory + "save" + string(argument0) + ".sav");
 
@@ -19,6 +19,5 @@ with (mgr_game)
 
     ds_map_read(save_temp, buffer_read_hex(save_buffer, buffer_get_size(save_buffer)));
     buffer_destroy(save_buffer);
-    
     return save_temp;
 }
