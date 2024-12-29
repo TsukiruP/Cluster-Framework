@@ -67,6 +67,9 @@ if (collision & COLL_HURT_RADIUS)
         // Play sound:
         if (reaction_handle.sfx_alarm == 0)
         {
+            // Sound alarm:
+            reaction_handle.sfx_alarm = 8;
+
             switch (reaction_handle.object_index)
             {
                 // Dash ring:
@@ -77,9 +80,6 @@ if (collision & COLL_HURT_RADIUS)
                 default:
                     audio_sfx_play("snd_spring", true);
             }
-
-            // Sound alarm:
-            reaction_handle.sfx_alarm = 8;
         }
 
         // Activate:
