@@ -325,7 +325,7 @@ audio_drown_resume
 ctl_shield_invin_spark
 debug_option_transition
 debug_option_data
-debug_option_settings
+debug_option_config
 debug_option_text
 debug_option_player1
 debug_option_credits
@@ -357,3 +357,10 @@ debug_option_config_format
 debug_option_body_test
 debug_option_log_open
 debug_option_log_format
+debug_menu_config
+debug_option_interface
+debug_menu_interface
+debug_option_interface_red
+debug_option_interface_green
+debug_option_interface_blue
+debug_option_interface_alpha

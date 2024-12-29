@@ -1,9 +1,9 @@
 /// debug_option_sonic_jump(return)
 
-var skill_key;
+var save_key;
 
-// Skill key:
-skill_key = "sonic_jump";
+// Save key:
+save_key = "sonic_jump";
 
 switch (argument0)
 {
@@ -13,11 +13,11 @@ switch (argument0)
 
     // Value:
     case 1:
-        return pick(game_save_get(skill_key), "None", "Insta-Shield", "Air Dash", "Drop Dash");
+        return pick(game_save_get(save_key), "None", "Insta-Shield", "Air Dash", "Drop Dash");
 
     // Update:
     case 3:
-        game_save_set(skill_key, wrap(game_save_get(skill_key) + menu_x_direction, SKILL_NONE, SKILL_DROP_DASH));
+        game_save_set(save_key, wrap(game_save_get(save_key) + menu_x_direction, SKILL_NONE, SKILL_DROP_DASH));
         return true;
 
     // Undefined:

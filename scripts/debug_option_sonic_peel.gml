@@ -1,9 +1,9 @@
 /// debug_option_sonic_peel(return)
 
-var skill_key;
+var save_key;
 
-// Skill key:
-skill_key = "sonic_peel";
+// Save key:
+save_key = "sonic_peel";
 
 switch (argument0)
 {
@@ -13,11 +13,11 @@ switch (argument0)
 
     // Value:
     case 1:
-        return string_bool(game_save_get(skill_key));
+        return string_bool(game_save_get(save_key));
 
     // Update:
     case 3:
-        game_save_set(skill_key, wrap(game_save_get(skill_key) + menu_x_direction, false, true));
+        game_save_set(save_key, wrap(game_save_get(save_key) + menu_x_direction, false, true));
         return true;
 
     // Undefined:

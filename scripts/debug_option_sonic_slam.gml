@@ -1,9 +1,9 @@
 /// debug_option_sonic_slam(return)
 
-var skill_key;
+var save_key;
 
-// Skill key:
-skill_key = "sonic_slam";
+// Save key:
+save_key = "sonic_slam";
 
 switch (argument0)
 {
@@ -13,11 +13,11 @@ switch (argument0)
 
     // Value:
     case 1:
-        return pick(game_save_get(skill_key), "None", "Bound", "Stomp");
+        return pick(game_save_get(save_key), "None", "Bound", "Stomp");
 
     // Update:
     case 3:
-        game_save_set(skill_key, wrap(game_save_get(skill_key) + menu_x_direction, SKILL_NONE, SKILL_STOMP));
+        game_save_set(save_key, wrap(game_save_get(save_key) + menu_x_direction, SKILL_NONE, SKILL_STOMP));
         return true;
 
     // Undefined:

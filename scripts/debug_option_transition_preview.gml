@@ -22,7 +22,6 @@ switch (argument0)
     case 3:
         transition_preview += menu_x_direction;
         transition_preview = wrap(transition_preview, TRANS_FADE, TRANS_RETRY);
-
         return true;
 
     // Undefined:

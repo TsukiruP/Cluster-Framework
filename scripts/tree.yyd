@@ -190,16 +190,18 @@
 							|debug_option_body_test
 							|debug_option_log_open
 							|debug_option_log_format
-					|debug_option_settings
-					+Settings
-						+Interface
-						+Screen
-						+Audio
-						+Keyboard
-						+Gamepad
-						+Gameplay
-						+Advance
-						+Misc.
+					|debug_option_config
+					+Config
+						|debug_menu_config
+						+Options
+							|debug_option_interface
+							+Interface
+								|debug_menu_interface
+								+Options
+									|debug_option_interface_red
+									|debug_option_interface_green
+									|debug_option_interface_blue
+									|debug_option_interface_alpha
 					|debug_option_credits
 		+Save
 			|save_menu_create
