@@ -27,6 +27,9 @@ rename_backup = "";
 
 // History stack:
 history_stack = ds_stack_create();
+
+// Sound alarm:
+sfx_alarm = 0;
 #define Destroy_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -83,12 +86,12 @@ else
     var menu_left, menu_right, menu_up, menu_down, menu_y_direction, menu_size, option_confirm, option_update;
 
     // Menu direction:
-    menu_left = input_get_check(INP_LEFT, CHECK_PRESSED);
-    menu_right = input_get_check(INP_RIGHT, CHECK_PRESSED);
+    menu_left = (input_get_check(INP_LEFT, CHECK_PRESSED) || input_get_time(INP_LEFT, 30));
+    menu_right = (input_get_check(INP_RIGHT, CHECK_PRESSED) || input_get_time(INP_RIGHT, 30));
     menu_x_direction = menu_right - menu_left;
 
-    menu_up = input_get_check(INP_UP, CHECK_PRESSED);
-    menu_down = input_get_check(INP_DOWN, CHECK_PRESSED);
+    menu_up = (input_get_check(INP_UP, CHECK_PRESSED) || input_get_time(INP_UP, 30));
+    menu_down = (input_get_check(INP_DOWN, CHECK_PRESSED) || input_get_time(INP_DOWN, 30));
     menu_y_direction = menu_down - menu_up;
 
     // Menu option:
@@ -120,8 +123,9 @@ else
     }
 
     // Play sound:
-    if (menu_y_direction != 0)
+    if (menu_y_direction != 0 && sfx_alarm == 0)
     {
+        sfx_alarm = 8;
         audio_sfx_play("snd_menu_move", true);
     }
 
@@ -143,8 +147,9 @@ else
         option_update = script_execute(ds_list_find_value(menu_list, menu_option), 3);
 
         // Play sound:
-        if (!is_undefined(option_update))
+        if (!is_undefined(option_update) && sfx_alarm == 0)
         {
+            sfx_alarm = 8;
             audio_sfx_play(pick(option_update, "snd_menu_cannot", "snd_menu_move"), true);
         }
     }
@@ -197,6 +202,18 @@ else
         rename_allow = false;
         rename_backup = "";
     }
+}
+#define Step_1
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Alarm
+
+if (sfx_alarm > 0)
+{
+    sfx_alarm -= 1;
 }
 #define Other_5
 /*"/*'/**//* YYD ACTION

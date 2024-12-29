@@ -17,8 +17,13 @@ switch (argument0)
 
     // Update:
     case 3:
-        game_config_set(config_key, clamp(game_config_get(config_key) + menu_x_direction, 0, 255));
-        return true;
+        if (in_range(game_config_get(config_key) + menu_x_direction, 0, 255))
+        {
+            game_config_set(config_key, clamp(game_config_get(config_key) + menu_x_direction, 0, 255));
+            return true;
+        }
+
+        return false;
 
     // Undefined:
     default:
