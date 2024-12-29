@@ -202,6 +202,18 @@
 									|debug_option_interface_green
 									|debug_option_interface_blue
 									|debug_option_interface_alpha
+							|debug_option_screen
+							+Screen
+								|debug_menu_screen
+								+Options
+									|debug_option_screen_mode
+									|debug_option_screen_ratio
+							|debug_option_audio
+							+Audio
+								|debug_menu_audio
+								+Options
+									|debug_option_audio_sfx
+									|debug_option_audio_bgm
 					|debug_option_credits
 		+Save
 			|save_menu_create

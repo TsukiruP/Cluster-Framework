@@ -17,7 +17,7 @@ game_config_set("screen_full", false);
 game_config_set("screen_vsync", false);
 
 // Audio:
-game_config_set("audio_sfx", 0.5);
+game_config_set("audio_sfx", 50);
 game_config_set("audio_bgm", 0);
 
 // Keyboard:

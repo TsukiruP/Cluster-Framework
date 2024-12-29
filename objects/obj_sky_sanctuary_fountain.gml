@@ -7,10 +7,21 @@ applies_to=self
 /// Decoration Initialization
 
 event_inherited();
-
-// View Object:
-view_object[view_current] = id;
 #define Step_2
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// View Object
+
+if (room == rm_debug)
+{
+    if (view_xview[view_current] != x - screen_get_width() / 2)
+    {
+        view_xview[view_current] = x - screen_get_width() / 2;
+    }
+}
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603

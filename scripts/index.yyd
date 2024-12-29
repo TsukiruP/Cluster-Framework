@@ -364,3 +364,11 @@ debug_option_interface_red
 debug_option_interface_green
 debug_option_interface_blue
 debug_option_interface_alpha
+debug_option_audio
+debug_menu_audio
+debug_option_audio_sfx
+debug_option_audio_bgm
+debug_option_screen
+debug_menu_screen
+debug_option_screen_mode
+debug_option_screen_ratio
