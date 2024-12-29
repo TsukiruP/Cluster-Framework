@@ -17,7 +17,7 @@ switch (argument0)
 
     // Update:
     case 3:
-        game_save_set(save_key, wrap(game_save_get(save_key) + menu_x_direction, false, true));
+        game_save_set(save_key, !game_save_get(save_key));
         return true;
 
     // Undefined:
