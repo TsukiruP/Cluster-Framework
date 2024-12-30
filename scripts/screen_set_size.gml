@@ -5,5 +5,5 @@ with (mgr_screen)
 {
     screen_width = argument0;
     screen_height = argument1;
-    room_set_view_all();
+    return true;
 }

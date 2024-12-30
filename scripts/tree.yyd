@@ -208,6 +208,7 @@
 								+Options
 									|debug_option_screen_mode
 									|debug_option_screen_ratio
+									|debug_option_screen_scale
 							|debug_option_audio
 							+Audio
 								|debug_menu_audio
@@ -361,6 +362,8 @@
 			|instance_nth_nearest
 			|instance_nearest_dir_x
 			|in_view
+		+Room
+			|room_set_view_better
 			|room_set_view_all
 +Gameplay
 	+Collision
@@ -470,3 +473,4 @@
 			|player_brake_dust
 			|player_surface_splash
 	+Props
+|script376

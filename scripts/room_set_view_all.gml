@@ -1,13 +1,10 @@
-/// room_set_view_all()
+/// room_set_view_all(width, height)
 // Sets all the rooms to have views with the proper dimensions.
 
-var room_handle;
+var i;
 
-room_handle = room_first;
-
-while (room_handle != -1)
+for (i = room_first; i != -1; i = room_next(i))
 {
-    room_set_view_enabled(room_handle, true);
-    room_set_view(room_handle, 0, true, 0, 0, screen_width, screen_height, 0, 0, screen_width, screen_height, screen_width / 2, screen_height / 2, -1, -1, noone);
-    room_handle = room_next(room_handle);
+    room_set_view_enabled(i, true);
+    room_set_view(i, 0, true, 0, 0, argument0, argument1, 0, 0, argument0, argument1, argument0 / 2, argument1 / 2, -1, -1, noone);
 }

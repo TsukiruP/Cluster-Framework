@@ -8,28 +8,21 @@ applies_to=self
 
 // Screen size:
 screen_set_size(480, 270);
-#define Step_0
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Resolution
-
-screen_set_resolution();
-
-// Fullscreen
-if (window_get_fullscreen() != game_config_get("screen_full"))
-{
-    window_set_fullscreen(game_config_get("screen_full"));
-}
+room_set_view_all(screen_width, screen_height);
+window_resize_buffer(screen_width, screen_height, true, false);
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
 applies_to=self
 */
-/// Window
+/// Update
+
+if (screen_set_resolution())
+{
+    //room_set_view_better(screen_width, screen_height);
+    room_set_view_all(screen_width, screen_height);
+}
 
 screen_set_window();
 #define Other_4

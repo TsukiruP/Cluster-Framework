@@ -1,7 +1,11 @@
 /// screen_set_window()
 // Resizes the window to screen configs.
 
-if (!window_get_fullscreen())
+if (window_get_fullscreen())
+{
+
+}
+else
 {
     var screen_width, screen_height;
 
@@ -11,8 +15,9 @@ if (!window_get_fullscreen())
     if (window_get_width() != screen_width || window_get_height() != screen_height)
     {
         window_set_size(screen_width, screen_height);
-        window_set_region_size(screen_width, screen_height, false);
-        window_resize_buffer(screen_width, screen_height, true, false);
+        window_set_region_size(screen_get_width(), screen_get_height(), false);
+        window_set_region_scale(game_config_get("screen_scale"), false);
+        window_resize_buffer(screen_get_width(), screen_get_height(), false, false);
         window_center();
     }
 }

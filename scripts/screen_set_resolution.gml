@@ -11,7 +11,7 @@ switch (game_config_get("screen_mode"))
             case 1:
                 if (!screen_is_equal(320, 240))
                 {
-                    screen_set_size(320, 240);
+                    return screen_set_size(320, 240);
                 }
                 break;
 
@@ -19,7 +19,7 @@ switch (game_config_get("screen_mode"))
             case 2:
                 if (!screen_is_equal(400, 240))
                 {
-                    screen_set_size(400, 240);
+                    return screen_set_size(400, 240);
                 }
                 break;
 
@@ -27,9 +27,8 @@ switch (game_config_get("screen_mode"))
             default:
                 if (!screen_is_equal(426, 240))
                 {
-                    screen_set_size(426, 240);
+                    return screen_set_size(426, 240);
                 }
-                break;
         }
         break;
 
@@ -37,7 +36,7 @@ switch (game_config_get("screen_mode"))
     case 2:
         if (!screen_is_equal(420, 240))
         {
-            screen_set_size(420, 240);
+            return screen_set_size(420, 240);
         }
         break;
 
@@ -49,7 +48,7 @@ switch (game_config_get("screen_mode"))
             case 1:
                 if (!screen_is_equal(360, 270))
                 {
-                    screen_set_size(360, 270);
+                    return screen_set_size(360, 270);
                 }
                 break;
 
@@ -57,7 +56,9 @@ switch (game_config_get("screen_mode"))
             default:
                 if (!screen_is_equal(480, 270))
                 {
-                    screen_set_size(480, 270);
+                    return screen_set_size(480, 270);
                 }
         }
 }
+
+return false;

@@ -372,3 +372,6 @@ debug_option_screen
 debug_menu_screen
 debug_option_screen_mode
 debug_option_screen_ratio
+debug_option_screen_scale
+room_set_view_better
+script376
