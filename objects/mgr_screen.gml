@@ -18,13 +18,21 @@ applies_to=self
 */
 /// Update
 
+// Resolution:
 if (screen_set_resolution())
 {
-    //room_set_view_better(screen_width, screen_height);
+    room_set_view_better(screen_width, screen_height);
     room_set_view_all(screen_width, screen_height);
 }
 
+// Window:
 screen_set_window();
+
+// Config:
+if (game_config_get("screen_full") != window_get_fullscreen())
+{
+    game_config_set("screen_full", window_get_fullscreen());
+}
 #define Other_4
 /*"/*'/**//* YYD ACTION
 lib_id=1

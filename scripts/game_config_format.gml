@@ -14,7 +14,6 @@ game_config_set("screen_mode", 0);
 game_config_set("screen_ratio", 0);
 game_config_set("screen_scale", 1);
 game_config_set("screen_full", false);
-game_config_set("screen_vsync", false);
 
 // Audio:
 game_config_set("audio_sfx", 50);

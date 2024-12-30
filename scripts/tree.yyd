@@ -209,12 +209,15 @@
 									|debug_option_screen_mode
 									|debug_option_screen_ratio
 									|debug_option_screen_scale
+									|debug_option_screen_full
 							|debug_option_audio
 							+Audio
 								|debug_menu_audio
 								+Options
 									|debug_option_audio_sfx
 									|debug_option_audio_bgm
+							|debug_option_keyboard
+							|debug_option_gamepad
 					|debug_option_credits
 		+Save
 			|save_menu_create
@@ -473,4 +476,3 @@
 			|player_brake_dust
 			|player_surface_splash
 	+Props
-|script376
