@@ -262,6 +262,22 @@ input_cpu = false;
 input_cpu_alarm = 0;
 
 player_set_input(-1);
+#define Destroy_0
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Cleanup
+
+ds_list_destroy(solid_list);
+ds_list_destroy(x_list);
+ds_list_destroy(y_list);
+
+if (trail_alpha != -1)
+{
+    ds_list_destroy(trail_alpha);
+}
 #define Step_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -1029,18 +1045,10 @@ else
 #define Other_5
 /*"/*'/**//* YYD ACTION
 lib_id=1
-action_id=603
+action_id=203
 applies_to=self
+invert=0
 */
-/// Cleanup
-
-ds_list_destroy(x_list);
-ds_list_destroy(y_list);
-
-if (trail_alpha != -1)
-{
-    ds_list_destroy(trail_alpha);
-}
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
