@@ -54,4 +54,4 @@ game_config_set("misc_status", 1);
 game_config_set("misc_feed", true);
 game_config_set("misc_trails", true);
 game_config_set("misc_reticle", 1);
-game_config_set("misc_tally", true);
+game_config_set("misc_tally", false);
