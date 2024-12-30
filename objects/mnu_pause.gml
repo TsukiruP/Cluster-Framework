@@ -57,7 +57,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Menu
+/// Inputs
 
 // Exit if text is active:
 if (game_ispaused(mgr_text))

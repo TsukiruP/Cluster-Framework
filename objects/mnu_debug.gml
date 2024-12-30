@@ -54,7 +54,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Menu
+/// Inputs
 
 // Reset x direction:
 menu_x_direction = 0;

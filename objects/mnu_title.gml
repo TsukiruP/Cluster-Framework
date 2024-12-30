@@ -15,7 +15,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Menu
+/// Inputs
 
 if (title_start == false)
 {
