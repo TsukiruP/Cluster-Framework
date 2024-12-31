@@ -104,7 +104,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// HUD Movement
+/// HUD
 
 // Exit if the stage is paused:
 if (game_ispaused(mnu_pause))
@@ -112,7 +112,6 @@ if (game_ispaused(mnu_pause))
     exit;
 }
 
-// HUD:
 if (hud_x_current != hud_x_target)
 {
     // Snap to target:
@@ -134,7 +133,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Air Movement
+/// Air
 
 // Exit if the stage is paused:
 if (game_ispaused(mnu_pause))
@@ -142,7 +141,6 @@ if (game_ispaused(mnu_pause))
     exit;
 }
 
-// Air:
 if (game_config_get("misc_hud") == 1)
 {
     var air_x_target;
@@ -203,7 +201,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Gauge Movement
+/// Gauge
 
 // Exit if the stage is paused:
 if (game_ispaused(mnu_pause))
@@ -211,7 +209,6 @@ if (game_ispaused(mnu_pause))
     exit;
 }
 
-// Gauge:
 if (game_config_get("misc_hud") == 1)
 {
     var gauge_x_target, gauge_x_factor;
