@@ -1,0 +1,9 @@
+ERROR in
+action number 3
+of End Step Event
+for object mnu_pause:
+
+Error in code at line 8:   
+    pause_height[i] = (sprite_get_height(pause_header) + pause_space) + (sprite_get_height(pause_menu) * pause_count[i]) + (pause_space * (pause_count[i] - 1));                                                            ^at position 59: Unknown variable pause_space
+
+

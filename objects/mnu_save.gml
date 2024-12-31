@@ -9,13 +9,12 @@ applies_to=self
 // Menu variables:
 menu_mode = 0;
 menu_page = 0;
-menu_cursor = 0;
 menu_option = 0;
 
 // Save variables:
 save_width = 98;
 save_height = (font_get_height() * 3) + 16;
-save_kerning = 4;
+save_leading = 4;
 save_preview_map = save_menu_preview();
 save_max = 3;
 
@@ -59,7 +58,7 @@ menu_y_direction = menu_down - menu_up;
 menu_page += menu_x_direction;
 menu_page = wrap(menu_page, 0, page_count - 1);
 
-// Menu selection:
+// Menu option:
 save_count = min(game_get_save_count() - (save_max * menu_page), save_max);
 menu_option += menu_y_direction;
 menu_option = wrap(menu_option, 0, save_count - 1);
@@ -142,7 +141,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Draw Saves
+/// Draw Menu
 
 var i, j;
 
@@ -155,7 +154,7 @@ for (i = 0; i < page_count; i += 1)
     save_count = min(game_get_save_count() - (save_max * i), save_max);
 
     // Top:
-    page_top = (screen_get_height() / 2) - ((save_height + save_kerning) * (save_count - 1)) / 2;
+    page_top = (screen_get_height() / 2) - ((save_height + save_leading) * (save_count - 1)) / 2;
 
     // Saves:
     for (j = 0; j < save_count; j += 1)
@@ -175,7 +174,7 @@ for (i = 0; i < page_count; i += 1)
         }
 
         // Position:
-        save_offset = (save_height + save_kerning) * j;
+        save_offset = (save_height + save_leading) * j;
         save_x1 = (screen_get_width() / 2) - save_width - save_indent;
         save_y1 = page_top + save_offset;
         save_x2 = (screen_get_width() / 2) + save_width - save_indent;
