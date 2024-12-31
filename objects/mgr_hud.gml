@@ -512,7 +512,7 @@ if (game_config_get("misc_hud") != 1 || game_config_get("misc_status") == 0)
     exit;
 }
 
-var status_config, status_count, i;
+var i, status_config, status_count;
 
 // Reset status count:
 status_config = game_config_get("misc_status");

@@ -1,7 +1,7 @@
 /// animation_set(character, animation, variant0, variant1, ...)
 // Sets timelines in the animation grid.
 
-var grid_width, grid_y, i;
+var i, grid_width, grid_y;
 
 // Grid witdh:
 grid_width = max(ds_grid_width(animation_grid), argument_count);

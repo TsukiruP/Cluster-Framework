@@ -3,7 +3,7 @@
 
 with (mgr_game)
 {
-    var preview_map, i;
+    var i, preview_map;
 
     // Preview map:
     preview_map = ds_map_create();
