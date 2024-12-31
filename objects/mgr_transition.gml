@@ -26,6 +26,9 @@ fade_handle = noone;
 player_handle = noone;
 
 // Background variables:
+background_time = 0;
+background_duration = 45;
+
 background_y_current = -15;
 background_y_target = screen_get_height() + 15;
 background_y_speed = 0;
@@ -149,6 +152,12 @@ if (transition_id == TRANS_CARD)
         character_alpha -= 0.05;
     }
 }
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+background_time = approach(background_time, background_duration, 1);
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -203,10 +212,12 @@ if (background_y_current != background_y_target)
     }
 
     // Background distance:
-    background_x_distance = background_y_target - background_y_current;
+    //background_x_distance = background_y_target - background_y_current;
 
-    background_y_speed = ceil(abs(background_x_distance) / background_y_factor);
-    background_y_current += background_y_speed * sign(background_x_distance);
+    //background_y_speed = ceil(abs(background_x_distance) / background_y_factor);
+    //background_y_current += background_y_speed * sign(background_x_distance);
+
+    background_y_current = lerp(0, background_y_target, smoothstep(0, background_duration, background_time));
 
     if (background_y_current == background_y_target)
     {
@@ -636,20 +647,6 @@ if (game_room_get_water() != -1)
 {
     instance_create(0, game_room_get_water(), obj_water_surface);
 }
-#define Other_10
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Open Debug Subject
-#define Other_11
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Close Debug Subject
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
