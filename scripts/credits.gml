@@ -19,6 +19,9 @@ Monolith
 Starlight 9 Engine
 Sonic Studio Engine collision port
 
+renex and square (Square-Renex Engine)
+File save and load
+
 The Valeev (Osminium)
 Springs/Dash Panels/Dash Rings
 Trails
@@ -108,6 +111,9 @@ Kamen Rider Battride War - Kamen Rider Kabuto
 Sonic Mania - Sound Effects
 
 TOOLS
+renex and Floogle
+Game Maker 8.2
+
 MainMemory
 AdvanceTools
 SADXsndSharp
