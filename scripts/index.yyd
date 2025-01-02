@@ -397,3 +397,8 @@ debug_option_misc_trails
 debug_option_misc_reticle
 debug_option_misc_tally
 ease_in_out_back
+hud_set_hide
+text_set_handle
+text_set_clear
+text_get_handle
+camera_set_lag

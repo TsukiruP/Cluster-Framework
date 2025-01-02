@@ -55,7 +55,7 @@ switch (argument0)
             // Camera lag:
             if (input_cpu == false)
             {
-                mgr_camera.camera_lag_alarm = 16;
+                camera_set_lag(16);
             }
 
             // Play sound:

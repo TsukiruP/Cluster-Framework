@@ -87,8 +87,8 @@ if (preview == true && transition_alarm == 0)
 {
     if (transition_state == 1)
     {
+        text_set_handle(id);
         text_set_subject("Press " + string_input(INP_CONFIRM) + " to end the preview.");
-        mgr_text.text_handle = id;
     }
 }
 /*"/*'/**//* YYD ACTION
@@ -139,19 +139,6 @@ if ((game_ispaused(mnu_pause) && pause_ignore == false) || (transition_id != TRA
 
 if (instance_exists(stage_get_player(0)))
 {
-    // Hide HUD:
-    if ((game_room_get_start() == START_RUN || (game_room_get_start() == START_READY && transition_id == TRANS_CARD)) && transition_state == 3)
-    {
-        if (instance_exists(mgr_hud))
-        {
-            with (mgr_hud)
-            {
-                hud_hide = true;
-                //hud_x_current = hud_x_target;
-            }
-        }
-    }
-
     // Run:
     if (game_room_get_start() == START_RUN && transition_state >= 4 && transition_run != -1)
     {
@@ -314,7 +301,7 @@ if ((game_ispaused(mnu_pause) && pause_ignore == false) || transition_id != TRAN
 }
 
 // Skip:
-if (game_room_get_start() == START_READY && transition_state >= 3 && instance_exists(stage_get_player(0)))
+if (game_room_get_start() == START_READY && transition_state >= 4 && instance_exists(stage_get_player(0)))
 {
     if (input_get_check(INP_ANY, CHECK_PRESSED) && !input_get_check(INP_START, CHECK_PRESSED))
     {
@@ -342,16 +329,6 @@ if (zone_width == -1)
     draw_set_font(global.font_title_card);
     zone_width = string_width(game_room_get_zone(transition_room)) + zone_spacing;
 }
-
-/*
-if (transition_state >= 4)
-{
-    zone_x = lerp(40, screen_get_width() + zone_spacing, smoothstep(0, zone_duration, zone_time));
-}
-else
-{
-    zone_x = lerp(-zone_width, 40, smoothstep(0, zone_duration, zone_time));
-}*/
 
 if (transition_state >= 4)
 {
@@ -513,17 +490,6 @@ if (zone_width == -1)
     zone_width = floor((string_width("Try Again") + zone_spacing) / 2);
 }
 
-/*
-if (transition_state > 2)
-{
-    zone_x = lerp(-zone_width, screen_get_width() / 2, 1 - smoothstep(0, zone_duration, zone_time));
-}
-else
-{
-    zone_x = lerp(screen_get_width() / 2, screen_get_width() + zone_width, 1 - smoothstep(0, zone_duration, zone_time));
-}
-*/
-
 if (transition_state > 2)
 {
     zone_x = screen_get_width() - ease_in_out_back(zone_time, screen_get_width() / 2, screen_get_width() + zone_width, zone_duration);
@@ -638,9 +604,9 @@ applies_to=self
 */
 /// Preview
 
-if (!text_get_clear() && mgr_text.text_handle == id && input_get_check(INP_CONFIRM, CHECK_PRESSED))
+if (!text_get_clear() && text_get_handle() == id && input_get_check(INP_CONFIRM, CHECK_PRESSED))
 {
-    mgr_text.text_clear = true;
+    text_set_clear();
     transition_state = pick(transition_id, 2, 2, 3, 2);
 }
 #define Draw_0

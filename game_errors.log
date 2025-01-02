@@ -1,9 +1,9 @@
 ERROR in
-action number 3
-of Draw Event
-for object mgr_hud:
+action number 1
+of  Step Event
+for object mgr_text:
 
-Error in code at line 39:   
-    if ((status_config == 1 && status_active[status_id, 0] == true) || status_config == 2)                                                ^at position 47: Unknown variable status_id
+In script input_get_check:Error in code at line 74:   
+    return input_user[input_id, argument1];              ^at position 13: Unknown variable input_user or array index out of bounds
 
 

@@ -17,7 +17,4 @@ if (instance_exists(stage_get_player(0)))
 stage_set_time_allow(true);
 
 // Show HUD:
-if (instance_exists(mgr_hud))
-{
-    mgr_hud.hud_hide = false;
-}
+hud_set_hide(false);

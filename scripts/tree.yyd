@@ -110,6 +110,9 @@
 		+Text
 			|font_get_height
 			|text_get_clear
+			|text_set_clear
+			|text_get_handle
+			|text_set_handle
 			|text_set_subject
 			|text_set_body
 		+Animation
@@ -136,6 +139,10 @@
 			+Player
 				|stage_get_player
 				|stage_set_player
+		+Camera
+			|camera_set_lag
+		+HUD
+			|hud_set_hide
 	+Menus
 		+Debug
 			|debug_add_option
