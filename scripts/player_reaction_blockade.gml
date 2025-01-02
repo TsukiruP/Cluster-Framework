@@ -51,7 +51,8 @@ if (collision & COLL_HURT)
                     var debris_handle;
 
                     debris_handle = effect_create(ctl_blockade_debris, x, y);
-                    debris_handle.e_speed = 4;
+                    debris_handle.x_speed = 4;
+                    debris_handle.y_speed = 4;
                     debris_handle.angle = ANGLE_DOWN + irandom_range(-45, 45);
                 }
 

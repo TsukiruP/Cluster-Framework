@@ -50,25 +50,7 @@ switch (status_shield)
             spark_handle = effect_create(ctl_shield_lightning_spark, x, y);
             spark_handle.x_speed = 2;
             spark_handle.y_speed = 2;
-
-            switch (i)
-            {
-                case 0:
-                    spark_handle.angle = ANGLE_LEFT_UP;
-                    break;
-
-                case 1:
-                    spark_handle.angle = ANGLE_RIGHT_UP;
-                    break;
-
-                case 2:
-                    spark_handle.angle = ANGLE_LEFT_DOWN;
-                    break;
-
-                case 3:
-                    spark_handle.angle = ANGLE_RIGHT_DOWN;
-                    break;
-            }
+            spark_handle.angle = pick(i, ANGLE_LEFT_UP, ANGLE_RIGHT_UP, ANGLE_LEFT_DOWN, ANGLE_RIGHT_DOWN);
         }
         break;
 }
