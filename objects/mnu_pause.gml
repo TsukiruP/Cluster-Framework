@@ -300,12 +300,12 @@ switch (pause_mode)
                     transition_handle.depth = depth;
                     transition_handle.pause_ignore = true;
                     transition_handle.load_skip = true;
-                    transition_handle.transition_alarm = 0;
                     
                     if (pause_mode == 2)
                     {
                         fade_handle.persistent = true;
                         fade_handle.fade_alpha = 1;
+                        fade_handle.fade_target = 1;
                         transition_handle.transition_id = TRANS_FADE;
                         transition_handle.transition_state = 1;
                         transition_handle.transition_room = rm_debug;

@@ -47,7 +47,7 @@ spr_sonic_spring
 spr_sonic_ready
 spr_sonic_hurt
 spr_sonic_death
-spr_transition_background
+spr_transition_curtain
 spr_classic_stand
 spr_classic_jog
 spr_classic_run

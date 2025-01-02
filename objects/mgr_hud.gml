@@ -457,7 +457,7 @@ if (game_config_get("misc_hud") != 2)
     exit;
 }
 
-// Font:
+// Color:
 draw_set_color(c_white);
 
 // HUD:

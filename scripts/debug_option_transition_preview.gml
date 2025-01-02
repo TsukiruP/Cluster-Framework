@@ -12,10 +12,7 @@ switch (argument0)
 
     // Confirm:
     case 2:
-        with (transition_create(transition_room, transition_preview))
-        {
-            preview = true;
-        }
+        transition_create(transition_room, transition_preview, true)
         return true;
 
     // Update:

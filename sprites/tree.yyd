@@ -1,6 +1,6 @@
 +System
 	|fnt_system
-	|spr_transition_background
+	|spr_transition_curtain
 	+Title Card
 		|spr_title_card_banner
 		|spr_title_card_acts

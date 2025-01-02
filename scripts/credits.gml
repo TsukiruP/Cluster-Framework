@@ -63,6 +63,9 @@ Tsukiru
 Sonic Generations-esque Font
 Expanded HomingMissile333 Font
 
+BlueSpeedster
+System button font
+
 jan300omega
 Sprite Sheet Project - Sonic (My Palette)
 

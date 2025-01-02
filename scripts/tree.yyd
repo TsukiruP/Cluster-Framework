@@ -382,6 +382,11 @@
 			|string_key
 			|char_pad
 			|string_input
+		+Room
+			|room_set_view_better
+			|room_set_view_all
+		+Ease
+			|ease_in_out_back
 		+Misc.
 			|hover
 			|pick_offset
@@ -390,9 +395,6 @@
 			|instance_nth_nearest
 			|instance_nearest_dir_x
 			|in_view
-		+Room
-			|room_set_view_better
-			|room_set_view_all
 +Gameplay
 	+Collision
 		|collision_box

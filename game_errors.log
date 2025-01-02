@@ -1,9 +1,9 @@
 ERROR in
-action number 3
-of End Step Event
-for object mnu_pause:
+action number 2
+of Draw Event
+for object mgr_transition:
 
-Error in code at line 8:   
-    pause_height[i] = (sprite_get_height(pause_header) + pause_space) + (sprite_get_height(pause_menu) * pause_count[i]) + (pause_space * (pause_count[i] - 1));                                                            ^at position 59: Unknown variable pause_space
+Error in code at line 29:   
+    draw_sprite(spr_title_card_load, sync_rate(transiton_alarm, 20, sprite_get_number(spr_title_card_load)), view_xview[view_current] + 4, view_yview[view_current] + screen_get_height() - 12);                                                  ^at position 49: Unknown variable transiton_alarm
 
 

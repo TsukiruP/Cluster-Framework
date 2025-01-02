@@ -289,11 +289,9 @@ if (rename_allow == false)
 draw_set1(game_get_interface_color(), game_config_get("interface_alpha"));
 draw_rectangle(view_xview[view_current], view_yview[view_current] + (screen_get_height() / 2) - 9, view_xview[view_current] + screen_get_width(), view_yview[view_current] + (screen_get_height() / 2) + 10, false);
 
-// Font:
+// Rename:
 draw_set_font(global.font_system);
 draw_set1(c_white, 1);
-
-// Rename:
 draw_set2(fa_center, fa_middle);
 draw_text(screen_get_width() / 2, screen_get_height() / 2, rename_backup);
 

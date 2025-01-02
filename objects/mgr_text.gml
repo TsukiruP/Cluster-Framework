@@ -28,6 +28,7 @@ font_height = string_height("Test");
 // Text variables:
 text_hide = false;
 text_clear = false;
+text_handle = noone;
 
 text_alpha_rate = 0.05;
 
@@ -82,7 +83,7 @@ applies_to=self
 /// Inputs
 
 // Skip:
-if (text_clear == false && log_hide == true && (body_alpha == 1 || subject_alpha == 1) && input_get_check(INP_START, CHECK_PRESSED))
+if (text_clear == false && text_handle == noone && log_hide == true && (body_alpha == 1 || subject_alpha == 1) && input_get_check(INP_START, CHECK_PRESSED))
 {
     text_clear = true;
 }
@@ -137,7 +138,7 @@ if (text_clear == false)
         if (log_hide == true)
         {
             // Confirm:
-            if (input_get_check(INP_CONFIRM, CHECK_PRESSED))
+            if (text_handle == noone && input_get_check(INP_CONFIRM, CHECK_PRESSED))
             {
                 // Subject:
                 if (subject_complete == false && subject_string != "" && subject_alpha == 1)
@@ -410,6 +411,7 @@ if (text_clear == true && (!ds_list_empty(body_list) || subject_string != "") &&
 {
     text_hide = false;
     text_clear = false;
+    text_handle = noone;
 
     ds_list_clear(body_list);
     body_length = 0;
@@ -517,11 +519,9 @@ d3d_set_viewport(0, 0, screen_get_width(), screen_get_height());
 draw_set1(game_get_interface_color(), subject_box_alpha);
 draw_rectangle(0, (screen_get_height() / 2) - 9 - ((font_height / 2) * subject_lines), screen_get_width(), (screen_get_height() / 2) + 10 + ((font_height / 2) * subject_lines), false);
 
-// Font:
+// Subject:
 draw_set_font(global.font_system);
 draw_set1(c_white, subject_alpha);
-
-// Subject:
 draw_set2(fa_center, fa_middle);
 draw_text(screen_get_width() / 2, screen_get_height() / 2, subject_string);
 
@@ -552,11 +552,9 @@ draw_rectangle(0, text_box_bottom - text_box_height, screen_get_width(), text_bo
 // Viewport:
 d3d_set_viewport(0, screen_get_height() - body_y, screen_get_width(), font_height * body_scroll_max);
 
-// Font:
+// Body:
 draw_set_font(global.font_system);
 draw_set1(c_white, body_alpha);
-
-// Body:
 draw_set2(fa_left, fa_top);
 draw_text_ext(body_x, -body_scroll_current, ds_list_find_value(body_list, body_current), font_height, screen_get_width() - (body_x * 2));
 
@@ -591,11 +589,9 @@ draw_rectangle(0, 0, screen_get_width(), screen_get_height(), false);
 // Viewport:
 d3d_set_viewport(0, 16, screen_get_width(), screen_get_height() - log_spacing);
 
-// Font:
+// Log:
 draw_set_font(global.font_system);
 draw_set1(c_white, log_alpha);
-
-// Log:
 draw_set2(fa_left, fa_top);
 draw_text_ext(body_x / 2, -log_scroll, log_string, font_height, screen_get_width() - body_x);
 

@@ -1,4 +1,4 @@
-/// transition_create(room, [transition])
+/// transition_create(room, [transition, preview])
 
 var transition;
 
@@ -17,14 +17,23 @@ with (transition)
         transition_id = argument[1];
     }
 
-    // Fade music:
-    if (game_room_get_music() != game_room_get_music(transition_room))
+    // Preview:
+    if (argument_count >= 3)
     {
-        audio_fade_out();
+        preview = argument[2];
     }
-    else
+
+    // Fade music:
+    if (preview == false)
     {
-        audio_jng_fade(true);
+        if (game_room_get_music() != game_room_get_music(transition_room))
+        {
+            audio_fade_out();
+        }
+        else
+        {
+            audio_jng_fade(true);
+        }
     }
 }
 
