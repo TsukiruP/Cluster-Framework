@@ -147,7 +147,7 @@ if (instance_exists(stage_get_player(0)))
             with (mgr_hud)
             {
                 hud_hide = true;
-                hud_x_current = hud_x_target;
+                //hud_x_current = hud_x_target;
             }
         }
     }

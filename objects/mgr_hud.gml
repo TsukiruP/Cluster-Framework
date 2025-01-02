@@ -9,9 +9,47 @@ applies_to=self
 var i;
 
 // HUD variables:
-hud_hide = false;
+hud_hide = true;
+hud_time = 0;
+hud_duration = 15;
 
-hud_index = spr_hud;
+hud_x = 0;
+
+switch (game_config_get("misc_hud"))
+{
+    // S4E2:
+    case 2:
+        hud_index = spr_hud_s4e2;
+        hud_offset = 3;
+        hud_y = 14;
+        break;
+
+        // Default:
+    default:
+        hud_index = spr_hud;
+        hud_offset = 4;
+        hud_y = 6;
+}
+
+// Air variables:
+air_hide = true;
+air_time = 0;
+air_duration = 15;
+
+air_value = 30;
+air_x = 0;
+
+// Gauge variables:
+gauge_hide = true;
+gauge_time = 0;
+gauge_duration = 20;
+
+gauge_value = 0;
+gauge_max = 0;
+gauge_x = 0;
+
+/*
+
 hud_x_current = screen_get_width();
 hud_x_target = 4;
 hud_x_speed = 0;
@@ -61,6 +99,7 @@ applies_to=self
 */
 /// Position
 
+/*
 switch (game_config_get("misc_hud"))
 {
     // S4E2:
@@ -98,6 +137,33 @@ else
             break;
     }
 }
+#define Step_1
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Progress
+
+// Hud:
+if (hud_hide == false)
+{
+    hud_time = approach(hud_time, hud_duration, 1);
+}
+else
+{
+    hud_time = approach(hud_time, 0, 1);
+}
+
+// Air:
+if (air_hide == false)
+{
+    air_time = approach(air_time, air_duration, 1);
+}
+else
+{
+    air_time = approach(air_time, 0, 1);
+}
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -112,6 +178,9 @@ if (game_ispaused(mnu_pause))
     exit;
 }
 
+hud_x = lerp(-sprite_get_width(hud_index), hud_offset, smoothstep(0, hud_duration, hud_time));
+
+/*
 if (hud_x_current != hud_x_target)
 {
     // Snap to target:
@@ -135,12 +204,41 @@ applies_to=self
 */
 /// Air
 
-// Exit if the stage is paused:
-if (game_ispaused(mnu_pause))
+// Exit if the stage is paused or HUD isn't default:
+if (game_ispaused(mnu_pause) || game_config_get("misc_hud") != 1)
 {
     exit;
 }
 
+air_x = lerp(-sprite_get_width(hud_index), hud_x, smoothstep(0, air_duration, air_time));
+
+if (instance_exists(stage_get_player(0)))
+{
+    with (stage_get_player(0))
+    {
+        // Hide:
+        if (state_current != player_state_death)
+        {
+            if (physics_id == PHYS_WATER && status_shield != SHIELD_BUBBLE)
+            {
+                other.air_hide = false;
+            }
+            else
+            {
+                other.air_hide = true;
+            }
+            
+            // Air value is always updated.
+            other.air_value = air_remaining;
+        }
+    }
+}
+else
+{
+    air_value = 30;
+}
+
+/*
 if (game_config_get("misc_hud") == 1)
 {
     var air_x_target;
@@ -202,7 +300,7 @@ action_id=603
 applies_to=self
 */
 /// Gauge
-
+/*
 // Exit if the stage is paused:
 if (game_ispaused(mnu_pause))
 {
@@ -243,7 +341,7 @@ action_id=603
 applies_to=self
 */
 /// Status
-
+/*
 // Exit if the stage is paused:
 if (game_ispaused(mnu_pause))
 {
@@ -334,7 +432,7 @@ action_id=603
 applies_to=self
 */
 /// Item List
-
+/*
 // Exit if the stage is paused:
 if (game_ispaused(mnu_pause))
 {
@@ -387,7 +485,7 @@ action_id=603
 applies_to=self
 */
 /// Destroy Item List
-
+/*
 if (item_list != -1)
 {
     ds_list_destroy(item_list);
@@ -416,21 +514,22 @@ var time_y;
 
 time_y = view_yview[view_current] + hud_y + 5;
 
-draw_sprite(hud_index, 0, view_xview[view_current] + hud_x_current, view_yview[view_current] + hud_y);
-draw_text(view_xview[view_current] + hud_x_current + 29, time_y, string_pad(stage_get_time() div 3600, 2));
-draw_text(view_xview[view_current] + hud_x_current + 54, time_y, string_pad((stage_get_time() div 60) mod 60, 2));
-draw_text(view_xview[view_current] + hud_x_current + 79, time_y, string_pad(floor(stage_get_time() * 1.667) mod 100, 2));
+draw_sprite(hud_index, 0, view_xview[view_current] + hud_x, view_yview[view_current] + hud_y);
+draw_text(view_xview[view_current] + hud_x + 29, time_y, string_pad(stage_get_time() div 3600, 2));
+draw_text(view_xview[view_current] + hud_x + 54, time_y, string_pad((stage_get_time() div 60) mod 60, 2));
+draw_text(view_xview[view_current] + hud_x + 79, time_y, string_pad(floor(stage_get_time() * 1.667) mod 100, 2));
 
 // Rings
-draw_sprite(hud_index, 1, view_xview[view_current] + hud_x_current, view_yview[view_current] + hud_y + 26);
-draw_text(view_xview[view_current] + hud_x_current + 29, view_yview[view_current] + hud_y + 31, string_pad(stage_get_rings(), 3));
+draw_sprite(hud_index, 1, view_xview[view_current] + hud_x, view_yview[view_current] + hud_y + 26);
+draw_text(view_xview[view_current] + hud_x + 29, view_yview[view_current] + hud_y + 31, string_pad(stage_get_rings(), 3));
+
 
 // Air:
-draw_sprite(hud_index, 2, view_xview[view_current] + air_x_current, view_yview[view_current] + hud_y + 52);
-draw_text(view_xview[view_current] + air_x_current + 29, view_yview[view_current] + hud_y + 57, string_pad(air_value, 2));
-
-// Action gauge:
+draw_sprite(hud_index, 2, view_xview[view_current] + air_x, view_yview[view_current] + hud_y + 52);
+draw_text(view_xview[view_current] + air_x + 29, view_yview[view_current] + hud_y + 57, string_pad(air_value, 2));
 /*
+// Action gauge:
+
 if (instance_exists(instance_player(0))) {
     var clock_up_percentage;
     
@@ -450,7 +549,7 @@ action_id=603
 applies_to=self
 */
 /// Draw S4E2 HUD
-
+/*
 // Exit if HUD isn't S4E2:
 if (game_config_get("misc_hud") != 2)
 {
@@ -502,7 +601,7 @@ action_id=603
 applies_to=self
 */
 /// Draw Status
-
+/*
 // Exit if HUD isn't default or status is disabled:
 if (game_config_get("misc_hud") != 1 || game_config_get("misc_status") == 0)
 {
@@ -547,7 +646,7 @@ action_id=603
 applies_to=self
 */
 /// Draw Item List
-
+/*
 // Exit if list has been disabled:
 if (!game_config_get("misc_feed"))
 {

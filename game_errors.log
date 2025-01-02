@@ -1,9 +1,9 @@
 ERROR in
-action number 2
-of Draw Event
-for object mgr_transition:
+action number 3
+of  Step Event
+for object obj_player:
 
-Error in code at line 29:   
-    draw_sprite(spr_title_card_load, sync_rate(transiton_alarm, 20, sprite_get_number(spr_title_card_load)), view_xview[view_current] + 4, view_yview[view_current] + screen_get_height() - 12);                                                  ^at position 49: Unknown variable transiton_alarm
+In script player_reaction_item_box:In script player_get_item:Error in code at line 126:   
+        ds_list_add(item_list, argument1);                       ^at position 22: Unknown variable item_list
 
 

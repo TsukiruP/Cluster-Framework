@@ -117,7 +117,7 @@ switch (argument1)
     case ITEM_SWAP:
         break;
 }
-
+/*
 // Update item list:
 if (game_config_get("misc_feed") == true)
 {
