@@ -47,7 +47,7 @@ if ((collision & COLL_HURT) || ((collision & COLL_HURT_RADIUS) && status_invin =
         sonic_routine_homing();
 
         // Play sound:
-        audio_sfx_play("snd_destroy", true);
+        audio_play_sfx("snd_destroy", true);
 
         // Destroy:
         with (reaction_handle)

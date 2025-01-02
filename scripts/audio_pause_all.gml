@@ -3,7 +3,7 @@
 
 with (mgr_audio)
 {
-    audio_sfx_pause_all();
+    audio_pause_sfx_all();
     audio_bgm_pause();
     audio_jng_pause();
     audio_drown_pause();

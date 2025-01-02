@@ -78,7 +78,7 @@ if (collision & COLL_HURT_RADIUS)
 
                 // Spring:
                 default:
-                    audio_sfx_play("snd_spring", true);
+                    audio_play_sfx("snd_spring", true);
             }
         }
 

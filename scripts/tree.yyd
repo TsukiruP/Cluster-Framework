@@ -77,10 +77,10 @@
 			|audio_resume_all
 			|audio_fade_out
 			+SFX
-				|audio_sfx_play
-				|audio_sfx_stop
-				|audio_sfx_pause_all
-				|audio_sfx_resume_all
+				|audio_play_sfx
+				|audio_stop_sfx
+				|audio_pause_sfx_all
+				|audio_resume_sfx_all
 			+BGM
 				|audio_bgm_play
 				|audio_bgm_stop

@@ -9,5 +9,5 @@ if (!instance_exists(mnu_save))
     }
 
     // Play sound:
-    audio_sfx_play("snd_menu_open", true);
+    audio_play_sfx("snd_menu_open", true);
 }

@@ -18,7 +18,7 @@ if (collision & COLL_HURT_RADIUS)
             stage_add_rings(10);
 
             // Play sound:
-            audio_sfx_play("snd_ring_super", true);
+            audio_play_sfx("snd_ring_super", true);
         }
         else
         {
@@ -26,7 +26,7 @@ if (collision & COLL_HURT_RADIUS)
             stage_add_rings(1);
 
             // Play sound:
-            audio_sfx_play("snd_ring", true, 1, audio_ring_pan());
+            audio_play_sfx("snd_ring", true, 1, audio_ring_pan());
         }
 
         // Destroy:

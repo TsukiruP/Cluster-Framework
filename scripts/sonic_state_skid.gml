@@ -20,7 +20,7 @@ switch (argument0)
         player_set_animation("somersault");
         
         // Play sound:
-        audio_sfx_play("snd_somersault", true);
+        audio_play_sfx("snd_somersault", true);
         break;
 
     // Step:
@@ -102,7 +102,7 @@ switch (argument0)
                         player_set_animation("skid");
                         
                         // Play sound:
-                        audio_sfx_play("snd_air_dash", true);
+                        audio_play_sfx("snd_air_dash", true);
                         break;
 
                     // Idle:

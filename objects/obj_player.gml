@@ -775,7 +775,7 @@ if (state_current != player_state_death && !instance_exists(mgr_tally))
                         case 15:
                             if (input_cpu == false)
                             {
-                                audio_sfx_play("snd_drown_alert");
+                                audio_play_sfx("snd_drown_alert");
                             }
                             break;
                             
@@ -998,7 +998,7 @@ if (y > obj_water_surface.y && yprevious < obj_water_surface.y)
     }
     
     // Play sound:
-    audio_sfx_play("snd_splash", true);
+    audio_play_sfx("snd_splash", true);
 }
 
 // Exit splash:
@@ -1017,7 +1017,7 @@ else if (y < obj_water_surface.y && yprevious > obj_water_surface.y)
     }
     
     // Play sound:
-    audio_sfx_play("snd_splash", true);
+    audio_play_sfx("snd_splash", true);
 }
 
 // Surface time:

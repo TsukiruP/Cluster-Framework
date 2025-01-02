@@ -12,7 +12,7 @@ switch (argument0)
         player_set_animation("spin_dash");
 
         // Play sound:
-        audio_sfx_play("snd_spin_dash_charge", true);
+        audio_play_sfx("snd_spin_dash_charge", true);
 
         // Create dust:
         with (instance_create(x, y, eff_spin_dash))
@@ -42,7 +42,7 @@ switch (argument0)
             input_lock_alarm = 30;
 
             // Play sound:
-            audio_sfx_play("snd_roll", true);
+            audio_play_sfx("snd_roll", true);
             return player_set_state(player_state_run);
         }
 
@@ -59,10 +59,10 @@ switch (argument0)
             }
 
             // Play sound:
-            audio_sfx_play("snd_spin_dash_release", true);
+            audio_play_sfx("snd_spin_dash_release", true);
 
             // Stop sound:
-            audio_sfx_stop("snd_spin_dash_charge");
+            audio_stop_sfx("snd_spin_dash_charge");
             return player_set_state(player_state_roll);
         }
 
@@ -75,7 +75,7 @@ switch (argument0)
             player_set_animation("spin_charge");
 
             // Play sound:
-            audio_sfx_play("snd_spin_dash_charge", true, 1 + spin_dash_charge * 0.0625);
+            audio_play_sfx("snd_spin_dash_charge", true, 1 + spin_dash_charge * 0.0625);
         }
 
         // Atrophy:

@@ -9,11 +9,11 @@ if (argument_count >= 1)
         // Play sound:
         if (clock_up_state == 2)
         {
-            audio_sfx_play("snd_hyper_clock_over");
+            audio_play_sfx("snd_hyper_clock_over");
         }
         else
         {
-            audio_sfx_play("snd_clock_over");
+            audio_play_sfx("snd_clock_over");
         }
 
         game_set_speed(1);
@@ -54,8 +54,8 @@ else
             clock_up_state = 2;
 
             // Play sound:
-            audio_sfx_play("snd_clock_up_start");
-            audio_sfx_play("snd_hyper_clock_up");
+            audio_play_sfx("snd_clock_up_start");
+            audio_play_sfx("snd_hyper_clock_up");
 
             // Pause music:
             audio_bgm_pause();
@@ -68,8 +68,8 @@ else
             clock_up_state = 1;
 
             // Play sound:
-            audio_sfx_play("snd_clock_up_start");
-            audio_sfx_play("snd_clock_up");
+            audio_play_sfx("snd_clock_up_start");
+            audio_play_sfx("snd_clock_up");
 
             // Pause music:
             audio_bgm_pause();

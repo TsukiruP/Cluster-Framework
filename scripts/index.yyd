@@ -108,9 +108,9 @@ ctl_sonic_spring_flight
 game_config_init
 player_get_input
 game_config_format
-audio_sfx_play
+audio_play_sfx
 draw_collision
-audio_sfx_stop
+audio_stop_sfx
 ctl_shockwave
 game_save_get
 player_get_angle
@@ -281,8 +281,8 @@ stage_set_player
 debug_set_next
 stage_set_pause_allow
 text_get_clear
-audio_sfx_pause_all
-audio_sfx_resume_all
+audio_pause_sfx_all
+audio_resume_sfx_all
 audio_bgm_pause
 audio_stop_all
 audio_ring_pan

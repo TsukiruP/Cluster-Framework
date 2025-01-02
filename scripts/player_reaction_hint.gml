@@ -40,7 +40,7 @@ if (collision & COLL_HURT_RADIUS)
                         player_set_animation("look");
 
                         // Play sound:
-                        audio_sfx_play("snd_hint_monitor", true);
+                        audio_play_sfx("snd_hint_monitor", true);
                         break;
 
                         // Omochao:

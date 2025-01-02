@@ -127,7 +127,7 @@ else
 if (menu_y_direction != 0 && sfx_alarm == 0)
 {
     sfx_alarm = 8;
-    audio_sfx_play("snd_menu_move", true);
+    audio_play_sfx("snd_menu_move", true);
 }
 
 // Confirm:
@@ -138,7 +138,7 @@ if (input_get_check(INP_CONFIRM, CHECK_PRESSED))
     // Play sound:
     if (!is_undefined(option_confirm))
     {
-        audio_sfx_play(pick(option_confirm, "snd_menu_cannot", "snd_menu_confirm"), true);
+        audio_play_sfx(pick(option_confirm, "snd_menu_cannot", "snd_menu_confirm"), true);
     }
 }
 
@@ -151,7 +151,7 @@ if (menu_x_direction != 0)
     if (!is_undefined(option_update) && sfx_alarm == 0)
     {
         sfx_alarm = 8;
-        audio_sfx_play(pick(option_update, "snd_menu_cannot", "snd_menu_move"), true);
+        audio_play_sfx(pick(option_update, "snd_menu_cannot", "snd_menu_move"), true);
     }
 }
 
@@ -161,7 +161,7 @@ if (input_get_check(INP_CANCEL, CHECK_PRESSED))
     if (debug_set_previous())
     {
         // Play sound:
-        audio_sfx_play("snd_menu_close", true);
+        audio_play_sfx("snd_menu_close", true);
     }
 }
 /*"/*'/**//* YYD ACTION

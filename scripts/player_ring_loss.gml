@@ -38,4 +38,4 @@ while (ring_total)
 stage_set_rings(0);
 
 // Play sound:
-audio_sfx_play("snd_ring_loss");
+audio_play_sfx("snd_ring_loss");

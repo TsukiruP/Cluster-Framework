@@ -16,7 +16,7 @@ switch (argument0)
         player_set_animation("spin");
 
         // Play sound:
-        audio_sfx_play("snd_shield_bubble_bound", true);
+        audio_play_sfx("snd_shield_bubble_bound", true);
 
         // Shield:
         if (instance_exists(shield_handle))
@@ -59,7 +59,7 @@ switch (argument0)
             animation_skip = true;
 
             // Play sound:
-            audio_sfx_play("snd_shield_bubble_bound", true);
+            audio_play_sfx("snd_shield_bubble_bound", true);
 
             // Shield:
             if (instance_exists(shield_handle))
