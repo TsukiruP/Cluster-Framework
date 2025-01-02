@@ -12,6 +12,7 @@
 		+Default
 			|spr_hud
 			|spr_hud_gauge
+			|spr_hud_boss
 			|fnt_hud
 		+S4E2
 			|spr_hud_s4e2
@@ -241,7 +242,6 @@
 	+Low
 	+High
 	+Masks
-		|mask_ledge
 	+Miles
 		+Default
 			|spr_miles_stand

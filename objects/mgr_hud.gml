@@ -11,7 +11,7 @@ var i;
 // HUD variables:
 hud_hide = true;
 hud_time = 0;
-hud_duration = 15;
+hud_duration = 10;
 
 hud_x = 0;
 
@@ -34,22 +34,37 @@ switch (game_config_get("misc_hud"))
 // Air variables:
 air_hide = true;
 air_time = 0;
-air_duration = 15;
 
-air_value = 30;
 air_x = 0;
+air_value = 30;
 
 // Gauge variables:
 gauge_hide = true;
 gauge_time = 0;
 gauge_duration = 20;
 
+gauge_x = 0;
 gauge_value = 0;
 gauge_max = 0;
-gauge_x = 0;
+
+// Status variables:
+status_icon[STATUS_SHIELD] = ITEM_BASIC;
+status_icon[STATUS_INVIN] = ITEM_INVIN;
+status_icon[STATUS_SPEED] = ITEM_SPEED;
+status_icon[STATUS_PANIC] = ITEM_PANIC;
+status_icon[STATUS_SWAP] = ITEM_SWAP;
+
+status_bar_x = 0;
+status_width = sprite_get_width(spr_item_icon) + 2;
+status_max = 3 + 2 * game_config_get("gameplay_debuffs");
+
+for (i = STATUS_SHIELD; i <= STATUS_SWAP; i += 1)
+{
+    status_active[i, 0] = 0;
+    status_active[i, 1] = false;
+}
 
 /*
-
 hud_x_current = screen_get_width();
 hud_x_target = 4;
 hud_x_speed = 0;
@@ -91,59 +106,13 @@ for (i = STATUS_SHIELD; i <= STATUS_SWAP; i += 1)
     status_active[i, 0] = 0;
     status_active[i, 1] = false;
 }
-#define Step_0
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Position
-
-/*
-switch (game_config_get("misc_hud"))
-{
-    // S4E2:
-    case 2:
-        hud_index = spr_hud_s4e2;
-        hud_x_factor = 3;
-        hud_y = 14;
-        break;
-
-        // Default:
-    default:
-        hud_index = spr_hud;
-        hud_x_factor = 4;
-        hud_y = 6;
-}
-
-// HUD target:
-if (hud_hide == true)
-{
-    hud_x_target = -(sprite_get_width(hud_index) + (hud_x_factor * 2));
-    hud_x_factor *= 3;
-}
-else
-{
-    switch (game_config_get("misc_hud"))
-    {
-        // S4E2:
-        case 2:
-            hud_x_target = 13;
-            break;
-
-        // Default:
-        default:
-            hud_x_target = 4;
-            break;
-    }
-}
 #define Step_1
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
 applies_to=self
 */
-/// Progress
+/// Time
 
 // Hud:
 if (hud_hide == false)
@@ -158,7 +127,7 @@ else
 // Air:
 if (air_hide == false)
 {
-    air_time = approach(air_time, air_duration, 1);
+    air_time = approach(air_time, hud_duration, 1);
 }
 else
 {
@@ -210,7 +179,7 @@ if (game_ispaused(mnu_pause) || game_config_get("misc_hud") != 1)
     exit;
 }
 
-air_x = lerp(-sprite_get_width(hud_index), hud_x, smoothstep(0, air_duration, air_time));
+air_x = lerp(-sprite_get_width(hud_index), hud_x, smoothstep(0, hud_duration, air_time));
 
 if (instance_exists(stage_get_player(0)))
 {
@@ -341,12 +310,14 @@ action_id=603
 applies_to=self
 */
 /// Status
-/*
-// Exit if the stage is paused:
-if (game_ispaused(mnu_pause))
+
+// Exit if the stage is paused, HUD isn't default or status is disabled:
+if (game_ispaused(mnu_pause) || game_config_get("misc_hud") != 1 || game_config_get("misc_status") == 0)
 {
     exit;
 }
+
+status_bar_x = lerp(screen_get_width() + status_width + 5, screen_get_width() - status_width * status_max + 5, smoothstep(0, hud_duration, hud_time));
 
 if (instance_exists(stage_get_player(0)))
 {
@@ -601,41 +572,43 @@ action_id=603
 applies_to=self
 */
 /// Draw Status
-/*
+
 // Exit if HUD isn't default or status is disabled:
 if (game_config_get("misc_hud") != 1 || game_config_get("misc_status") == 0)
 {
     exit;
 }
 
-var i, status_config, status_count;
+var i, status_count;
 
-// Reset status count:
-status_config = game_config_get("misc_status");
+// Reset count:
 status_count = 0;
 
-for (i = status_size; i >= 0; i -= 1)
+for (i = status_max; i > 0; i -= 1)
 {
-    if (((status_config && status_active[i, 0] == true) || status_config == 2) && status_active[i, 1] == true)
+    var status_x;
+    
+    // Status x:
+    status_id = i - 1;
+    status_x = view_xview[view_current] + status_bar_x + status_width * (status_max - 1 - status_count);
+    
+    if (((game_config_get("misc_status") != 0 && status_active[status_id, 0] == true) || game_config_get("misc_status") == 2) && status_active[status_id, 1] == true)
     {
         // Shadow:
-        draw_sprite_ext(spr_item_icon, 0, view_xview[view_current] + view_wview[view_current] - hud_x_current - 8 - (sprite_get_width(spr_item_icon) + 2) * status_count, view_yview[view_current] + 18, 1, 1, 0, c_black, 1);
+        draw_sprite_ext(spr_item_icon, status_icon[status_id], status_x + 1, view_yview[view_current] + 18, 1, 1, 0, c_black, 1);
         
-        // Icons:
-        draw_sprite_ext(spr_item_icon, status_icon[i], view_xview[view_current] + view_wview[view_current] - hud_x_current - 9 - (sprite_get_width(spr_item_icon) + 2) * status_count, view_yview[view_current] + 17, 1, 1, 0, c_white, 1);
+        // Icon:
+        draw_sprite_ext(spr_item_icon, status_icon[status_id], status_x, view_yview[view_current] + 17, 1, 1, 0, c_white, 1);
         
-        // Gray out:
-        if (status_config == 2)
+        // Grayscale:
+        if (game_config_get("misc_status") == 2 && status_active[status_id, 0] == false)
         {
-            if (status_active[i, 0] == false)
-            {
-                draw_sprite_ext(spr_item_icon, status_icon[i], view_xview[view_current] + view_wview[view_current] - hud_x_current - 9 - (sprite_get_width(spr_item_icon) + 2) * status_count, view_yview[view_current] + 17, 1, 1, 0, c_gray, 0.6);
-            }
+            draw_sprite_ext(spr_item_icon, status_icon[status_id], status_x, view_yview[view_current] + 17, 1, 1, 0, c_gray, 1);
         }
     }
     
-    // Increase status count:
-    if ((status_config == 1 && status_active[i, 0] == true) || status_config == 2)
+    // Increase count:
+    if ((game_config_get("misc_status") == 1 && status_active[status_id, 0] == true) || game_config_get("misc_status") == 2)
     {
         status_count += 1;
     }

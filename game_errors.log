@@ -1,9 +1,9 @@
 ERROR in
 action number 3
-of  Step Event
-for object obj_player:
+of Draw Event
+for object mgr_hud:
 
-In script player_reaction_item_box:In script player_get_item:Error in code at line 126:   
-        ds_list_add(item_list, argument1);                       ^at position 22: Unknown variable item_list
+Error in code at line 39:   
+    if ((status_config == 1 && status_active[status_id, 0] == true) || status_config == 2)                                                ^at position 47: Unknown variable status_id
 
 
