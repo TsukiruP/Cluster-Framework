@@ -1,0 +1,28 @@
+/// audio_play_jng(index)
+// Plays a jingle.
+
+with (mgr_audio)
+{
+    // Check if index exists:
+    if (sound_exists(argument0))
+    {
+        // Check index kind:
+        if (sound_get_kind(argument0) == 3)
+        {
+            // Stop jingle:
+            audio_stop_jng();
+
+            // Play jingle:
+            if (jng_handle == -1)
+            {
+                jng_handle = sound_play_single(argument0);
+            }
+
+            // Mute if drowning:
+            if (audio_drown_isplaying())
+            {
+                audio_mute_jng();
+            }
+        }
+    }
+}

@@ -91,7 +91,7 @@ applies_to=self
 if (audio_drown_isplaying())
 {
     audio_mute_bgm();
-    audio_jng_mute();
+    audio_mute_jng();
 }
 
 // Jingle has priority over music:
@@ -113,7 +113,7 @@ applies_to=self
 if (fade_out == true)
 {
     audio_fade_bgm(true);
-    audio_jng_fade(true);
+    audio_fade_jng(true);
     audio_drown_fade(true);
 
     // Reset:
@@ -129,7 +129,7 @@ else
         // Jingle:
         if (audio_jng_isplaying() == true)
         {
-            audio_jng_fade(false);
+            audio_fade_jng(false);
         }
 
         // Music:
@@ -181,5 +181,5 @@ applies_to=self
 */
 /// Discard Audio
 
-audio_jng_stop();
-audio_drown_stop();
+audio_stop_jng();
+audio_stop_drown();

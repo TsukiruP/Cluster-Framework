@@ -34,7 +34,7 @@ if (damage_handle == id || (stage_get_rings() == 0 && status_shield == 0 && inpu
         stage_set_pause_allow(false);
 
         // Stop jingle:
-        audio_jng_stop();
+        audio_stop_jng();
     }
 }
 
@@ -90,7 +90,7 @@ else if ((input_cpu == false && shield_handle != noone) || input_cpu == true || 
     // Stop drowning music:
     if (input_cpu == false)
     {
-        audio_drown_stop();
+        audio_stop_drown();
     }
 }
 

@@ -32,7 +32,7 @@ with (transition)
         }
         else
         {
-            audio_jng_fade(true);
+            audio_fade_jng(true);
         }
     }
 }

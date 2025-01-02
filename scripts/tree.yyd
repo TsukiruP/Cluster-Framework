@@ -89,20 +89,20 @@
 				|audio_mute_bgm
 				|audio_fade_bgm
 			+JNG
-				|audio_jng_play
-				|audio_jng_stop
-				|audio_jng_pause
-				|audio_jng_resume
+				|audio_play_jng
+				|audio_stop_jng
+				|audio_pause_jng
+				|audio_resume_jng
+				|audio_mute_jng
+				|audio_fade_jng
 				|audio_jng_isplaying
-				|audio_jng_mute
-				|audio_jng_fade
 			+Drown
-				|audio_drown_play
-				|audio_drown_stop
-				|audio_drown_pause
+				|audio_play_drown
+				|audio_stop_drown
+				|audio_pause_drown
 				|audio_drown_resume
-				|audio_drown_isplaying
 				|audio_drown_fade
+				|audio_drown_isplaying
 		+Input
 			|gamepad_get_check
 			|input_get_check

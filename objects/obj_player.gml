@@ -608,7 +608,7 @@ if (state_current != player_state_death && physics_id == PHYS_WATER && !instance
         // Stop drowning music:
         if (input_cpu == false) 
         {
-            audio_drown_stop();
+            audio_stop_drown();
         }
     }
     
@@ -621,7 +621,7 @@ else
     // Stop drowning music:
     if (input_cpu == false)
     {
-        audio_drown_stop();
+        audio_stop_drown();
     }
 }
 #define Step_1
@@ -656,7 +656,7 @@ if (status_invin_alarm > 0)
         // Stop jingle:
         if (input_cpu == false)
         {
-            audio_jng_stop("jng_invin");
+            audio_stop_jng("jng_invin");
         }
     }
 }
@@ -673,7 +673,7 @@ if (status_speed_alarm > 0)
         // Stop jingle:
         if (input_cpu == false)
         {
-            audio_jng_stop("jng_speed");
+            audio_stop_jng("jng_speed");
         }
     }
 }
@@ -783,7 +783,7 @@ if (state_current != player_state_death && !instance_exists(mgr_tally))
                         case 12:
                             if (input_cpu == false)
                             {
-                                audio_drown_play();
+                                audio_play_drown();
                             }
                             
                         // Drown countdown:

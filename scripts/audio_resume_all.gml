@@ -5,6 +5,6 @@ with (mgr_audio)
 {
     audio_resume_sfx_all();
     audio_resume_bgm();
-    audio_jng_resume();
+    audio_resume_jng();
     audio_drown_resume();
 }
