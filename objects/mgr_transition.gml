@@ -583,7 +583,7 @@ applies_to=self
 pause_ignore = false;
 
 // Play music:
-audio_bgm_play(game_room_get_music());
+audio_play_bgm(game_room_get_music());
 
 // Create background:
 if (game_room_get_background() != -1)

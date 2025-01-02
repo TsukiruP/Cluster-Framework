@@ -82,12 +82,12 @@
 				|audio_pause_sfx_all
 				|audio_resume_sfx_all
 			+BGM
-				|audio_bgm_play
-				|audio_bgm_stop
-				|audio_bgm_pause
-				|audio_bgm_resume
-				|audio_bgm_mute
-				|audio_bgm_fade
+				|audio_play_bgm
+				|audio_stop_bgm
+				|audio_pause_bgm
+				|audio_resume_bgm
+				|audio_mute_bgm
+				|audio_fade_bgm
 			+JNG
 				|audio_jng_play
 				|audio_jng_stop

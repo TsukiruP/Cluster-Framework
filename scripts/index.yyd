@@ -283,7 +283,7 @@ stage_set_pause_allow
 text_get_clear
 audio_pause_sfx_all
 audio_resume_sfx_all
-audio_bgm_pause
+audio_pause_bgm
 audio_stop_all
 audio_ring_pan
 game_room_set
@@ -296,9 +296,9 @@ game_room_get_act
 game_room_get_water
 game_room_get_start
 game_room_get_run
-audio_bgm_stop
-audio_bgm_play
-audio_bgm_resume
+audio_stop_bgm
+audio_play_bgm
+audio_resume_bgm
 audio_pause_all
 audio_resume_all
 audio_jng_play
@@ -307,10 +307,10 @@ audio_drown_play
 player_reset_status
 audio_drown_stop
 audio_drown_isplaying
-audio_bgm_mute
+audio_mute_bgm
 audio_jng_mute
 audio_jng_isplaying
-audio_bgm_fade
+audio_fade_bgm
 audio_jng_fade
 audio_drown_fade
 audio_fade_out

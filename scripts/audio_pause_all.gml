@@ -4,7 +4,7 @@
 with (mgr_audio)
 {
     audio_pause_sfx_all();
-    audio_bgm_pause();
+    audio_pause_bgm();
     audio_jng_pause();
     audio_drown_pause();
 }

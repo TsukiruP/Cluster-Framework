@@ -90,7 +90,7 @@ applies_to=self
 // Drowning music takes highest priority:
 if (audio_drown_isplaying())
 {
-    audio_bgm_mute();
+    audio_mute_bgm();
     audio_jng_mute();
 }
 
@@ -99,7 +99,7 @@ else
 {
     if (audio_jng_isplaying())
     {
-        audio_bgm_mute();
+        audio_mute_bgm();
     }
 }
 /*"/*'/**//* YYD ACTION
@@ -112,7 +112,7 @@ applies_to=self
 // Fade out:
 if (fade_out == true)
 {
-    audio_bgm_fade(true);
+    audio_fade_bgm(true);
     audio_jng_fade(true);
     audio_drown_fade(true);
 
@@ -135,7 +135,7 @@ else
         // Music:
         else
         {
-            audio_bgm_fade(false);
+            audio_fade_bgm(false);
         }
     }
 }

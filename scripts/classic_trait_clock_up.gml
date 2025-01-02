@@ -20,7 +20,7 @@ if (argument_count >= 1)
         clock_up_state = 0;
 
         // Resume music:
-        audio_bgm_resume();
+        audio_resume_bgm();
     }
 }
 else
@@ -58,7 +58,7 @@ else
             audio_play_sfx("snd_hyper_clock_up");
 
             // Pause music:
-            audio_bgm_pause();
+            audio_pause_bgm();
         }
 
         // Normal:
@@ -72,7 +72,7 @@ else
             audio_play_sfx("snd_clock_up");
 
             // Pause music:
-            audio_bgm_pause();
+            audio_pause_bgm();
         }
 
         // Over:
