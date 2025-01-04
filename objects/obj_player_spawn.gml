@@ -54,5 +54,12 @@ with (mgr_input)
     //event_user(0);
 }
 
+// Auto save:
+if (!game_checkpoint_isset())
+{
+    game_set_save("stage", room);
+    game_save_auto();
+}
+
 // Destroy:
 instance_destroy();

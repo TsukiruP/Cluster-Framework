@@ -512,9 +512,6 @@ if (text_hide == true)
     exit;
 }
 
-// Viewport:
-d3d_set_viewport(0, 0, screen_get_width(), screen_get_height());
-
 // Box:
 draw_set1(game_get_interface_color(), subject_box_alpha);
 draw_rectangle(0, (screen_get_height() / 2) - 9 - ((font_height / 2) * subject_lines), screen_get_width(), (screen_get_height() / 2) + 10 + ((font_height / 2) * subject_lines), false);

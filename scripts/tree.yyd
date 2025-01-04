@@ -46,6 +46,7 @@
 				|game_reset_save
 				|game_load_save_buffer
 				|game_save_exists
+				|game_save_auto
 			+Room
 				|game_get_room_transition
 				|game_get_room_music
@@ -511,4 +512,3 @@
 			|player_brake_dust
 			|player_surface_splash
 	+Props
-|script405

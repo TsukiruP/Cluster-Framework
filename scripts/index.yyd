@@ -403,4 +403,4 @@ text_set_clear
 text_get_handle
 camera_set_lag
 hud_add_item
-script405
+game_save_auto

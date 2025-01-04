@@ -19,9 +19,6 @@ applies_to=self
 
 var i;
 
-// Image speed:
-image_speed = 0;
-
 // Randomize:
 randomize();
 
@@ -51,6 +48,15 @@ instance_create(0, 0, mgr_input);
 instance_create(0, 0, mgr_text);
 instance_create(0, 0, mgr_animation);
 transition_create(rm_debug);
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Indicator Initialization
+
+indicator_draw = false;
+indicator_time = 0;
 #define Step_1
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -58,6 +64,18 @@ action_id=603
 applies_to=self
 */
 /// Time
+
+// Indicator time:
+if (indicator_draw == true)
+{
+    indicator_time += 1;
+
+    if (indicator_time >= 60)
+    {
+        indicator_draw = false;
+        indicator_time = 0;
+    }
+}
 
 // Exit if the stage is paused:
 if (game_ispaused(mnu_pause))
@@ -102,3 +120,24 @@ applies_to=self
 /// Reset Time
 
 game_time = 0;
+#define Draw_0
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Draw Indicator
+
+// Exit if indicator isn't being drawn:
+if (indicator_draw == false)
+{
+    exit;
+}
+
+// Stars:
+draw_sprite(spr_title_card_stars, sync_rate(indicator_time, 4, sprite_get_number(spr_title_card_stars)), view_xview[view_current] + screen_get_width() - 27, view_yview[view_current] + screen_get_height() - 16);
+
+// Sonic:
+d3d_fog_trick(c_white);
+draw_sprite(spr_sonic_run_4, sync_rate(indicator_time, 4, sprite_get_number(spr_sonic_run_4)), view_xview[view_current] + screen_get_width() - 27, view_yview[view_current] + screen_get_height() - 25);
+d3d_set_fog(false, c_black, 0, 0);
