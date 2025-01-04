@@ -430,9 +430,9 @@ draw_text(view_xview[view_current] + hud_x + 29, view_yview[view_current] + hud_
 // Air:
 draw_sprite(hud_index, 2, view_xview[view_current] + air_x, view_yview[view_current] + hud_y + 52);
 draw_text(view_xview[view_current] + air_x + 29, view_yview[view_current] + hud_y + 57, string_pad(air_value, 2));
+
 /*
 // Action gauge:
-
 if (instance_exists(instance_player(0))) {
     var clock_up_percentage;
     

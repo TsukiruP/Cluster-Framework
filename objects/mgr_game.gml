@@ -135,7 +135,7 @@ if (indicator_draw == false)
 }
 
 // Stars:
-draw_sprite(spr_title_card_stars, sync_rate(indicator_time, 4, sprite_get_number(spr_title_card_stars)), view_xview[view_current] + screen_get_width() - 27, view_yview[view_current] + screen_get_height() - 16);
+draw_sprite(spr_save_stars, sync_rate(indicator_time, 4, sprite_get_number(spr_save_stars)), view_xview[view_current] + screen_get_width() - 27, view_yview[view_current] + screen_get_height() - 16);
 
 // Sonic:
 d3d_fog_trick(c_white);

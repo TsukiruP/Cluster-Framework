@@ -1,11 +1,11 @@
 +System
 	|fnt_system
 	|spr_transition_curtain
+	|spr_save_stars
 	+Title Card
 		|spr_title_card_banner
 		|spr_title_card_acts
 		|spr_title_card_load
-		|spr_title_card_stars
 		|fnt_title_card_zone
 		|fnt_title_card_act
 	+HUD
