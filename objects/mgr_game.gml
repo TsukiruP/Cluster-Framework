@@ -31,9 +31,9 @@ game_speed = 1;
 game_time = 0;
 
 // Checkpoint variables:
-checkpoint_time = -1;
 checkpoint_x = -1;
 checkpoint_y = -1;
+checkpoint_time = -1;
 
 // Data:
 game_config_init();

@@ -149,7 +149,7 @@ if (instance_exists(stage_get_player(0)))
     if (game_room_get_start() == START_RUN && transition_state >= 4 && transition_run != -1)
     {
         // Reset run:
-        if ((transition_id == TRANS_RETRY && (game_checkpoint_get_x() != -1 && game_checkpoint_get_y() != -1)) || stage_get_player(0).x >= game_room_get_run())
+        if ((transition_id == TRANS_RETRY && (game_get_checkpoint_x() != -1 && game_get_checkpoint_y() != -1)) || stage_get_player(0).x >= game_room_get_run())
         {
             transition_run = -1;
         }
@@ -217,7 +217,7 @@ switch (transition_state)
         {
             if (preview == false)
             {
-                game_checkpoint_set(true);
+                game_set_checkpoint(true);
                 room_goto(transition_room);
                 transition_state = 2;
             }
@@ -274,7 +274,7 @@ switch (transition_state)
         {
             if (preview == false)
             {
-                game_checkpoint_set(true);
+                game_set_checkpoint(true);
                 room_goto(transition_room);
                 transition_state = 2;
             }
@@ -383,7 +383,7 @@ switch (transition_state)
     case 2:
         if (transition_alarm == 0)
         {
-            game_checkpoint_set(true);
+            game_set_checkpoint(true);
             room_goto(transition_room);
             transition_state = 3;
             transition_alarm = 90;

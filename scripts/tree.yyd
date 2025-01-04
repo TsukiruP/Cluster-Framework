@@ -13,10 +13,10 @@
 				|game_get_debug
 				|game_set_debug
 			+Checkpoint
-				|game_checkpoint_get_time
-				|game_checkpoint_get_x
-				|game_checkpoint_get_y
-				|game_checkpoint_set
+				|game_get_checkpoint_x
+				|game_get_checkpoint_y
+				|game_get_checkpoint_time
+				|game_set_checkpoint
 				|game_checkpoint_isset
 			+Config
 				|game_config_init

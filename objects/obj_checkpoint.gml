@@ -20,7 +20,7 @@ reaction_index = player_reaction_checkpoint;
 // Active:
 active = false;
 
-if (game_checkpoint_get_x() == x && game_checkpoint_get_y() == y)
+if (game_get_checkpoint_x() == x && game_get_checkpoint_y() == y)
 {
     active = true;
 }

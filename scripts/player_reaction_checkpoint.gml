@@ -11,7 +11,7 @@ if (collision & COLL_HURT_RADIUS)
 {
     if (input_cpu == false)
     {
-        if (game_checkpoint_get_x() != reaction_handle.x && game_checkpoint_get_y() != reaction_handle.y && reaction_handle.active == false)
+        if (game_get_checkpoint_x() != reaction_handle.x && game_get_checkpoint_y() != reaction_handle.y && reaction_handle.active == false)
         {
             // Bonuses:
             if (game_config_get("gameplay_checkpoint") && stage_get_rings() >= 20)
@@ -66,7 +66,7 @@ if (collision & COLL_HURT_RADIUS)
             with (reaction_handle)
             {
                 active = true;
-                game_checkpoint_set();
+                game_set_checkpoint();
             }
         }
     }

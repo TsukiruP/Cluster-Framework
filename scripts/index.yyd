@@ -98,7 +98,7 @@ player_animation_air
 player_surface_splash
 debug_option_character
 classic_trait_clock_up
-game_checkpoint_set
+game_set_checkpoint
 game_checkpoint_isset
 player_state_roll
 player_routine_skill
@@ -273,9 +273,9 @@ game_get_debug
 game_set_debug
 game_set_speed
 game_get_player_count
-game_checkpoint_get_x
-game_checkpoint_get_y
-game_checkpoint_get_time
+game_get_checkpoint_x
+game_get_checkpoint_y
+game_get_checkpoint_time
 stage_get_player
 stage_set_player
 debug_set_next

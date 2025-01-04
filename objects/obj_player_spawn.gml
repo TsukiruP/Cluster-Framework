@@ -14,9 +14,9 @@ instance_create(0, 0, mgr_stage);
 // Move to checkpoint:
 if (game_checkpoint_isset())
 {
-    stage_set_time(game_checkpoint_get_time());
-    x = game_checkpoint_get_x();
-    y = game_checkpoint_get_y();
+    x = game_get_checkpoint_x();
+    y = game_get_checkpoint_y();
+    stage_set_time(game_get_checkpoint_time());
 }
 
 // Create players:
