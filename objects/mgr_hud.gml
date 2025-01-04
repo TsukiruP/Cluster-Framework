@@ -64,47 +64,27 @@ for (i = STATUS_SHIELD; i <= STATUS_SWAP; i += 1)
     status_active[i, 1] = false;
 }
 
-/*
-hud_x_current = screen_get_width();
-hud_x_target = 4;
-hud_x_speed = 0;
-hud_x_factor = 4;
-
-hud_y = 6;
-
-// Air variables:
-air_hide = false;
-air_value = 30;
-
-air_x_current = -sprite_get_width(hud_index);
-air_x_speed = 0;
-
-// Gauge variables:
-gauge_hide = false;
-
-gauge_index = spr_hud_gauge;
-gauge_x_current = -sprite_get_width(hud_index);
-gauge_x_speed = 0;
-
-// Item list variables:
+// Item variables:
 item_hide = false;
-item_list = -1;
+item_grid = -1;
+item_duration = 5;
 item_alarm = 0;
 
-// Status variables:
-status_icon[STATUS_SHIELD] = ITEM_BASIC;
-status_icon[STATUS_INVIN] = ITEM_INVIN;
-status_icon[STATUS_SPEED] = ITEM_SPEED;
-status_icon[STATUS_PANIC] = ITEM_PANIC;
-status_icon[STATUS_SWAP] = ITEM_SWAP;
-status_position = -1;
-status_speed = 0;
-status_size = 2 + 2 * game_config_get("gameplay_debuffs");
-
-for (i = STATUS_SHIELD; i <= STATUS_SWAP; i += 1)
+if (game_config_get("misc_feed"))
 {
-    status_active[i, 0] = 0;
-    status_active[i, 1] = false;
+    item_grid = ds_grid_create(3, 0);
+}
+#define Destroy_0
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Cleanup
+
+if (item_grid != -1)
+{
+    ds_grid_destroy(item_grid);
 }
 #define Step_1
 /*"/*'/**//* YYD ACTION
@@ -112,7 +92,62 @@ lib_id=1
 action_id=603
 applies_to=self
 */
+/// Alarm
+
+// Exit if the stage is paused:
+if (game_ispaused(mnu_pause))
+{
+    exit;
+}
+
+if (item_grid != -1)
+{
+    if (ds_grid_height(item_grid) > 0)
+    {
+        if (ds_grid_get(item_grid, 1, ds_grid_height(item_grid) - 1) == item_duration)
+        {
+            if (item_alarm > 0)
+            {
+                item_alarm -= 1;
+                item_hide = false;
+
+                // Hide:
+                if (item_alarm <= 30)
+                {
+                    item_hide = sync_rate(item_alarm, 2, 2);
+                }
+
+                // Clear:
+                if (item_alarm == 0)
+                {
+                    ds_grid_clear(item_grid, 0);
+                    ds_grid_resize(item_grid, ds_grid_width(item_grid), 0);
+                }
+            }
+        }
+        else
+        {
+            if (item_alarm != 90)
+            {
+                item_alarm = 90;
+            }
+        }
+    }
+}
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
 /// Time
+
+// Exit if the stage is paused:
+if (game_ispaused(mnu_pause))
+{
+    exit;
+}
+
+var i;
 
 // Hud:
 if (hud_hide == false)
@@ -133,6 +168,17 @@ else
 {
     air_time = approach(air_time, 0, 1);
 }
+
+// Gauge:
+
+// Items:
+if (item_grid != -1)
+{
+    for (i = 0; i < ds_grid_height(item_grid); i += 1)
+    {
+        ds_grid_set(item_grid, 1, i, approach(ds_grid_get(item_grid, 1, i), item_duration, 1));
+    }
+}
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -148,24 +194,6 @@ if (game_ispaused(mnu_pause))
 }
 
 hud_x = lerp(-sprite_get_width(hud_index), hud_offset, smoothstep(0, hud_duration, hud_time));
-
-/*
-if (hud_x_current != hud_x_target)
-{
-    // Snap to target:
-    if (hud_x_current == screen_get_width())
-    {
-        hud_x_current = hud_x_target;
-    }
-
-    var hud_x_distance;
-
-    // HUD distance:
-    hud_x_distance = hud_x_target - hud_x_current;
-
-    hud_x_speed = ceil(abs(hud_x_distance) / hud_x_factor);
-    hud_x_current += hud_x_speed * sign(hud_x_distance);
-}
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -205,63 +233,6 @@ if (instance_exists(stage_get_player(0)))
 else
 {
     air_value = 30;
-}
-
-/*
-if (game_config_get("misc_hud") == 1)
-{
-    var air_x_target;
-
-    // Value:
-    if (instance_exists(stage_get_player(0)))
-    {
-        with (stage_get_player(0))
-        {
-            // Hide:
-            if (state_current != player_state_death)
-            {
-                if (physics_id == PHYS_WATER && status_shield != SHIELD_BUBBLE)
-                {
-                    other.air_hide = false;
-                }
-                else
-                {
-                    other.air_hide = true;
-                }
-
-                // Air value is always updated.
-                other.air_value = air_remaining;
-            }
-        }
-    }
-    else
-    {
-        air_value = 30;
-    }
-
-    // Air target:
-    if (air_hide == false)
-    {
-        air_x_target = hud_x_target;
-    }
-    else
-    {
-        air_x_target = -sprite_get_width(hud_index) - hud_x_factor;
-    }
-
-    if (air_x_current != air_x_target)
-    {
-        var air_x_distance, air_x_factor;
-
-        // Air distance:
-        air_x_distance = air_x_target - air_x_current;
-
-        // Air factor:
-        air_x_factor = hud_x_factor * (1 + (2 * (hud_hide == false && air_hide == true)));
-
-        air_x_speed = ceil(abs(air_x_distance) / air_x_factor);
-        air_x_current += air_x_speed * sign(air_x_distance);
-    }
 }
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -402,66 +373,27 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Item List
-/*
-// Exit if the stage is paused:
-if (game_ispaused(mnu_pause))
+/// Items
+
+// Exit if the stage is paused or there's no item grid:
+if (game_ispaused(mnu_pause) || item_grid == -1)
 {
     exit;
 }
 
-// Create list:
-if (instance_exists(stage_get_player(0)))
+var i;
+
+for (i = 0; i < ds_grid_height(item_grid); i += 1)
 {
-    if (game_config_get("misc_feed") && item_list == -1)
-    {
-        item_list = ds_list_create();
-    }
-}
-
-// Update list:
-if (item_list != -1)
-{
-    if (ds_list_size(item_list) != 0)
-    {
-        if (ds_list_find_value(item_list, ds_list_size(item_list) - 1) == screen_get_width() / 2 + (ds_list_size(item_list) / 2 - 1) * 9 - (ds_list_size(item_list) / 2 - 1) * 18)
-        {
-            if (item_alarm > 0)
-            {
-                item_alarm -= 1;
-
-                // Hide:
-                if (item_alarm <= 30)
-                {
-                    item_hide = sync_rate(item_alarm, 2, 2);
-                }
-                else
-                {
-                    item_hide = false;
-                }
-
-                // Clear list:
-                if (item_alarm <= 0)
-                {
-                    ds_list_clear(item_list);
-                }
-            }
-        }
-    }
+    ds_grid_set(item_grid, 2, i, lerp(-sprite_get_width(spr_item_icon), screen_get_width() / 2 + 9 * (ds_grid_height(item_grid) - 1) - 18 * i, smoothstep(0, item_duration, ds_grid_get(item_grid, 1, i))));
 }
 #define Other_5
 /*"/*'/**//* YYD ACTION
 lib_id=1
-action_id=603
+action_id=203
 applies_to=self
+invert=0
 */
-/// Destroy Item List
-/*
-if (item_list != -1)
-{
-    ds_list_destroy(item_list);
-    item_list = -1;
-}
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -476,13 +408,13 @@ if (game_config_get("misc_hud") != 1)
     exit;
 }
 
+var time_y;
+
 // Font:
 draw_set_font(global.font_hud);
 draw_set_color(c_white);
 
 // Time:
-var time_y;
-
 time_y = view_yview[view_current] + hud_y + 5;
 
 draw_sprite(hud_index, 0, view_xview[view_current] + hud_x, view_yview[view_current] + hud_y);
@@ -598,13 +530,8 @@ for (i = status_max; i > 0; i -= 1)
         draw_sprite_ext(spr_item_icon, status_icon[status_id], status_x + 1, view_yview[view_current] + 18, 1, 1, 0, c_black, 1);
         
         // Icon:
-        draw_sprite_ext(spr_item_icon, status_icon[status_id], status_x, view_yview[view_current] + 17, 1, 1, 0, c_white, 1);
-        
-        // Grayscale:
-        if (game_config_get("misc_status") == 2 && status_active[status_id, 0] == false)
-        {
-            draw_sprite_ext(spr_item_icon, status_icon[status_id], status_x, view_yview[view_current] + 17, 1, 1, 0, c_gray, 1);
-        }
+        image_blend = pick(game_config_get("misc_status") == 2 && status_active[status_id, 0] == false, c_white, c_gray);
+        draw_sprite_ext(spr_item_icon, status_icon[status_id], status_x, view_yview[view_current] + 17, 1, 1, 0, image_blend, 1);
     }
     
     // Increase count:
@@ -613,12 +540,29 @@ for (i = status_max; i > 0; i -= 1)
         status_count += 1;
     }
 }
+
+// Reset:
+draw_reset();
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
 applies_to=self
 */
-/// Draw Item List
+/// Draw Items
+
+// Exit if list has been disabled or there's no item_grid:
+if (!game_config_get("misc_feed") || item_grid == -1)
+{
+    exit;
+}
+
+var i;
+
+for (i = 0; i < ds_grid_height(item_grid); i += 1)
+{
+    draw_sprite_ext(spr_item_icon, ds_grid_get(item_grid, 0, i), view_xview[view_current] + ds_grid_get(item_grid, 2, i), view_yview[view_current] + screen_get_height() - 33, 1, 1, 0, c_white, !item_hide);
+}
+
 /*
 // Exit if list has been disabled:
 if (!game_config_get("misc_feed"))

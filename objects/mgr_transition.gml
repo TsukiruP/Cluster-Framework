@@ -98,6 +98,12 @@ applies_to=self
 */
 /// Time
 
+// Exit if the stage is paused:
+if (game_ispaused(mnu_pause) && pause_ignore == false)
+{
+    exit;
+}
+
 // Curtain:
 if ((transition_id == TRANS_MENU && transition_state < 2) || (transition_id == TRANS_CARD && transition_state < 4) || (transition_id == TRANS_RETRY && transition_state < 5))
 {

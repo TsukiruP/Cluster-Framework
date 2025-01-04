@@ -257,7 +257,7 @@ game_gamepad_format
 game_gamepad_get
 game_gamepad_set
 game_gamepad_confirm
-animation_set
+animation_add
 animation_get
 stage_get_time
 game_get_speed
@@ -286,7 +286,7 @@ audio_resume_sfx_all
 audio_pause_bgm
 audio_stop_all
 audio_ring_pan
-game_room_set
+game_room_add
 animation_init_sonic
 game_room_get_transition
 game_room_get_music
@@ -402,3 +402,4 @@ text_set_handle
 text_set_clear
 text_get_handle
 camera_set_lag
+hud_add_item

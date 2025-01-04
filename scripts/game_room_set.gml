@@ -3,11 +3,9 @@
 
 with (mgr_game)
 {
-    var grid_y;
-
     if (!ds_grid_value_exists(room_grid, 0, 0, ds_grid_width(room_grid) - 1, ds_grid_height(room_grid) - 1, argument0))
     {
-        var room_transition, room_music, room_background, room_zone, room_act, room_water, room_start, room_run;
+        var grid_y, room_transition, room_music, room_background, room_zone, room_act, room_water, room_start, room_run;
 
         // Resize grid:
         ds_grid_resize(room_grid, ds_grid_width(room_grid), ds_grid_height(room_grid) + 1);

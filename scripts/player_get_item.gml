@@ -117,14 +117,6 @@ switch (argument1)
     case ITEM_SWAP:
         break;
 }
-/*
-// Update item list:
-if (game_config_get("misc_feed") == true)
-{
-    with (mgr_hud)
-    {
-        ds_list_add(item_list, argument1);
-        ds_list_add(item_list, -8);
-        item_alarm = 90;
-    }
-}
+
+// Add to feed:
+hud_add_item(argument1);

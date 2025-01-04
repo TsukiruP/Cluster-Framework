@@ -55,7 +55,7 @@
 				|game_room_get_water
 				|game_room_get_start
 				|game_room_get_run
-				|game_room_set
+				|game_room_add
 			+Misc.
 				|game_get_player_count
 				|game_get_speed
@@ -117,7 +117,7 @@
 			|text_set_body
 		+Animation
 			|animation_get
-			|animation_set
+			|animation_add
 			|animation_init_sonic
 		+Fade
 			|fade_create
@@ -143,6 +143,7 @@
 			|camera_set_lag
 		+HUD
 			|hud_set_hide
+			|hud_add_item
 	+Menus
 		+Debug
 			|debug_add_option

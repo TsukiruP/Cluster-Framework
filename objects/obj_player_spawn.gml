@@ -51,7 +51,7 @@ for (i = 0; i < PLAYER_COUNT; i += 1)
 // Create partner queues:
 with (mgr_input)
 {
-    event_user(0);
+    //event_user(0);
 }
 
 // Destroy:
