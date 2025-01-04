@@ -13,11 +13,11 @@ switch (argument0)
 
     // Value:
     case 1:
-        return pick(game_save_get(save_key), "None", "Insta-Shield", "Air Dash", "Drop Dash");
+        return pick(game_get_save(save_key), "None", "Insta-Shield", "Air Dash", "Drop Dash");
 
     // Update:
     case 3:
-        game_save_set(save_key, wrap(game_save_get(save_key) + menu_x_direction, SKILL_NONE, SKILL_DROP_DASH));
+        game_set_save(save_key, wrap(game_get_save(save_key) + menu_x_direction, SKILL_NONE, SKILL_DROP_DASH));
         return true;
 
     // Undefined:

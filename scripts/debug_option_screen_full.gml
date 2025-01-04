@@ -13,11 +13,11 @@ switch (argument0)
 
     // Value:
     case 1:
-        return string_bool(game_config_get(config_key));
+        return string_bool(game_get_config(config_key));
 
     // Update:
     case 3:
-        window_set_fullscreen(!game_config_get(config_key));
+        window_set_fullscreen(!game_get_config(config_key));
         return true;
 
     // Undefined:

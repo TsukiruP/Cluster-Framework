@@ -93,7 +93,7 @@ switch (argument0)
             }
 
             // Super Peel Out:
-            if (game_save_get("sonic_peel") == true && player_get_input(INP_UP, CHECK_HELD) && player_get_input(INP_JUMP, CHECK_PRESSED))
+            if (game_get_save("sonic_peel") == true && player_get_input(INP_UP, CHECK_HELD) && player_get_input(INP_JUMP, CHECK_PRESSED))
             {
                 return player_set_state(sonic_state_peel_out);
             }

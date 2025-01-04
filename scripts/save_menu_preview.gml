@@ -21,7 +21,7 @@ with (mgr_game)
             var save_temp;
 
             // Temporary save map:
-            save_temp = game_save_buffer_load(i);
+            save_temp = game_load_save_buffer(i);
 
             ds_map_set(preview_map, save_string + "_exists", true);
             ds_map_set(preview_map, save_string + "_name", ds_map_get(save_temp, "name"));

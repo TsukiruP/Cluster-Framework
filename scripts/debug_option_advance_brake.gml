@@ -13,11 +13,11 @@ switch (argument0)
 
     // Value:
     case 1:
-        return pick(game_config_get(config_key), "Classic", "Advance");
+        return pick(game_get_config(config_key), "Classic", "Advance");
 
     // Update:
     case 3:
-        game_config_set(config_key, !game_config_get(config_key));
+        game_set_config(config_key, !game_get_config(config_key));
         return true;
 
     // Undefined:

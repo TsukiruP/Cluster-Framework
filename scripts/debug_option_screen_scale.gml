@@ -13,11 +13,11 @@ switch (argument0)
 
     // Value:
     case 1:
-        return string(game_config_get(config_key));
+        return string(game_get_config(config_key));
 
     // Update:
     case 3:
-        game_config_set(config_key, wrap(game_config_get(config_key) + menu_x_direction, 1, 3));
+        game_set_config(config_key, wrap(game_get_config(config_key) + menu_x_direction, 1, 3));
         return true;
 
     // Undefined:

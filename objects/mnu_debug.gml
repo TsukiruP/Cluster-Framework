@@ -198,7 +198,7 @@ else
     // Set name:
     if (keyboard_check_pressed(vk_enter))
     {
-        game_save_set("name", rename_backup);
+        game_set_save("name", rename_backup);
         rename_allow = false;
         rename_backup = "";
     }
@@ -233,7 +233,7 @@ applies_to=self
 var i;
 
 // Box:
-draw_set1(game_get_interface_color(), game_config_get("interface_alpha"));
+draw_set1(game_get_interface_color(), game_get_config("interface_alpha"));
 draw_rectangle(view_xview[view_current] + screen_get_width() / 2 - 81, view_yview[view_current] + screen_get_height() / 2 - 52, view_xview[view_current] + screen_get_width() / 2 + 82, view_yview[view_current] + screen_get_height() / 2 + 25, false);
 
 // Text:
@@ -286,7 +286,7 @@ if (rename_allow == false)
 }
 
 // Box:
-draw_set1(game_get_interface_color(), game_config_get("interface_alpha"));
+draw_set1(game_get_interface_color(), game_get_config("interface_alpha"));
 draw_rectangle(view_xview[view_current], view_yview[view_current] + (screen_get_height() / 2) - 9, view_xview[view_current] + screen_get_width(), view_yview[view_current] + (screen_get_height() / 2) + 10, false);
 
 // Rename:

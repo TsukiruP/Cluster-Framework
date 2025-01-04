@@ -1,9 +1,8 @@
 ERROR in
 action number 1
-of  Step Event
-for object mgr_text:
+of End Step Event
+for object mgr_screen:
 
-In script input_get_check:Error in code at line 74:   
-    return input_user[input_id, argument1];              ^at position 13: Unknown variable input_user or array index out of bounds
+Illegal argument count calling script "game_get_config".Script requires 1 arguments, 2 have been supplied.
 
 

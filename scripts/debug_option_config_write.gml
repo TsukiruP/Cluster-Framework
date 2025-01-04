@@ -8,7 +8,7 @@ switch (argument0)
 
     // Confirm:
     case 2:
-        game_config_write();
+        game_write_config();
         return true;
 
     // Undefined:

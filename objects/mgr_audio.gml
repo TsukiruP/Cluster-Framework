@@ -18,7 +18,7 @@ sound_add_directory("data\audio\sfx\prop", ".wav", 0, true);
 sound_add_directory("data\audio\sfx\menu", ".wav", 0, true);
 
 // Volume:
-sound_kind_volume(0, game_config_get("audio_sfx") / 100);
+sound_kind_volume(0, game_get_config("audio_sfx") / 100);
 
 // Sound list:
 sfx_list = ds_list_create();
@@ -40,7 +40,7 @@ sound_set_loop("bgm_debug", 2304672, 9984665, unit_samples);
 sound_set_loop("bgm_basic_test_1", 1024258, 5121290, unit_samples);
 
 // Volume:
-sound_kind_volume(1, game_config_get("audio_bgm") / 100);
+sound_kind_volume(1, game_get_config("audio_bgm") / 100);
 
 // Music handle:
 bgm_handle = -1;
@@ -58,7 +58,7 @@ applies_to=self
 sound_add_directory("data\audio\jng", ".ogg", 3, true);
 
 // Volume:
-sound_kind_volume(3, game_config_get("audio_bgm") / 100);
+sound_kind_volume(3, game_get_config("audio_bgm") / 100);
 
 // Jingle handles:
 jng_handle = -1;

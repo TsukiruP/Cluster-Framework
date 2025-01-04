@@ -11,7 +11,7 @@ event_inherited();
 // Set index:
 timeline_set(ctl_reticle);
 
-if (game_config_get("misc_reticle") == 2)
+if (game_get_config("misc_reticle") == 2)
 {
     timeline_set(ctl_reticle_colors);
 }

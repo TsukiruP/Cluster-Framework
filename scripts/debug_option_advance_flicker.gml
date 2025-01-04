@@ -13,11 +13,11 @@ switch (argument0)
 
     // Value:
     case 1:
-        return string_bool(game_config_get(config_key));
+        return string_bool(game_get_config(config_key));
 
     // Update:
     case 3:
-        game_config_set(config_key, !game_config_get(config_key));
+        game_set_config(config_key, !game_get_config(config_key));
         return true;
 
     // Undefined:

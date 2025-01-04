@@ -105,7 +105,7 @@ if (game_ispaused(mgr_text) || menu_lock == true || menu_alarm > 0)
 if (input_get_check(INP_HIDE, CHECK_PRESSED))
 {
     menu_hide += 1;
-    menu_hide = wrap(menu_hide, 0, 1 + (instance_exists(mgr_transition) || game_config_get("misc_hud") != 0));
+    menu_hide = wrap(menu_hide, 0, 1 + (instance_exists(mgr_transition) || game_get_config("misc_hud") != 0));
 }
 
 // Cancel:

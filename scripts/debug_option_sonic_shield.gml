@@ -13,11 +13,11 @@ switch (argument0)
 
     // Value:
     case 1:
-        return string_bool(game_save_get(save_key));
+        return string_bool(game_get_save(save_key));
 
     // Update:
     case 3:
-        game_save_set(save_key, !game_save_get(save_key));
+        game_set_save(save_key, !game_get_save(save_key));
         return true;
 
     // Undefined:

@@ -13,7 +13,7 @@ switch (argument0)
 
     // Value:
     case 1:
-        switch (game_config_get("screen_mode"))
+        switch (game_get_config("screen_mode"))
         {
             // Misc:
             case 2:
@@ -21,7 +21,7 @@ switch (argument0)
 
             // Default:
             default:
-                return pick(game_config_get(config_key), "16:9", "4:3", "5:3");
+                return pick(game_get_config(config_key), "16:9", "4:3", "5:3");
         }
 
     // Update:
@@ -29,9 +29,9 @@ switch (argument0)
         var ratio_max;
 
         // Ratio max:
-        ratio_max = pick(game_config_get("screen_mode"), 1, 2, 0);
+        ratio_max = pick(game_get_config("screen_mode"), 1, 2, 0);
 
-        game_config_set(config_key, wrap(game_config_get(config_key) + menu_x_direction, 0, ratio_max));
+        game_set_config(config_key, wrap(game_get_config(config_key) + menu_x_direction, 0, ratio_max));
         return true;
 
     // Undefined:

@@ -14,7 +14,7 @@ if (collision & COLL_HURT_RADIUS)
         if (game_get_checkpoint_x() != reaction_handle.x && game_get_checkpoint_y() != reaction_handle.y && reaction_handle.active == false)
         {
             // Bonuses:
-            if (game_config_get("gameplay_checkpoint") && stage_get_rings() >= 20)
+            if (game_get_config("gameplay_bonuses") && stage_get_rings() >= 20)
             {
                 var item_tier, item_id;
 

@@ -4,12 +4,12 @@
 var keyboard_list;
 
 // Keyboard list:
-if (is_undefined(game_config_get("input_keyboard")))
+if (is_undefined(game_get_config("input_keyboard")))
 {
-    game_config_set("input_keyboard", ds_list_create());
+    game_set_config("input_keyboard", ds_list_create());
 }
 
-keyboard_list = game_config_get("input_keyboard");
+keyboard_list = game_get_config("input_keyboard");
 
 // Clear list:
 ds_list_clear(keyboard_list);

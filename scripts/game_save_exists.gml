@@ -13,7 +13,7 @@ with (mgr_game)
         var save_temp;
 
         // Initalize:
-        save_temp = game_save_buffer_load(argument0);
+        save_temp = game_load_save_buffer(argument0);
 
         // Check game and version:
         if (ds_map_get(save_temp, "game") == GAME_NAME && ds_map_get(save_temp, "version") == GAME_VERSION)

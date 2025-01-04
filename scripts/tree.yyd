@@ -19,42 +19,42 @@
 				|game_set_checkpoint
 				|game_checkpoint_isset
 			+Config
-				|game_config_init
-				|game_config_get
-				|game_config_set
+				|game_init_config
+				|game_get_config
+				|game_set_config
+				|game_write_config
+				|game_read_config
+				|game_reset_config
+				|game_load_config_buffer
 				|game_config_exists
-				|game_config_write
-				|game_config_read
-				|game_config_format
-				|game_config_buffer_load
 				+Keyboard
-					|game_keyboard_get
-					|game_keyboard_set
-					|game_keyboard_format
+					|game_config_get_key
+					|game_config_set_key
+					|game_config_reset_key
 				+Gamepad
-					|game_gamepad_get
-					|game_gamepad_set
-					|game_gamepad_format
-					|game_gamepad_confirm
+					|game_config_get_btn
+					|game_config_set_btn
+					|game_config_reset_btn
+					|game_config_set_confirm
 			+Save
-				|game_save_init
-				|game_save_get
-				|game_save_set
+				|game_init_save
+				|game_get_save
+				|game_set_save
+				|game_write_save
+				|game_read_save
+				|game_delete_save
+				|game_reset_save
+				|game_load_save_buffer
 				|game_save_exists
-				|game_save_write
-				|game_save_read
-				|game_save_delete
-				|game_save_format
-				|game_save_buffer_load
 			+Room
-				|game_room_get_transition
-				|game_room_get_music
-				|game_room_get_background
-				|game_room_get_zone
-				|game_room_get_act
-				|game_room_get_water
-				|game_room_get_start
-				|game_room_get_run
+				|game_get_room_transition
+				|game_get_room_music
+				|game_get_room_background
+				|game_get_room_zone
+				|game_get_room_act
+				|game_get_room_water
+				|game_get_room_start
+				|game_get_room_run
 				|game_room_add
 			+Misc.
 				|game_get_player_count
@@ -186,10 +186,10 @@
 							|debug_option_save_read
 							|debug_option_save_delete
 							|debug_option_save_rename
-							|debug_option_save_format
+							|debug_option_save_reset
 							|debug_option_config_write
 							|debug_option_config_read
-							|debug_option_config_format
+							|debug_option_config_reset
 					|debug_option_text
 					+Text
 						|debug_menu_text
@@ -197,7 +197,7 @@
 							|debug_option_subject_test
 							|debug_option_body_test
 							|debug_option_log_open
-							|debug_option_log_format
+							|debug_option_log_reset
 					|debug_option_config
 					+Config
 						|debug_menu_config
@@ -232,7 +232,7 @@
 								+Options
 									|debug_option_gameplay_shields
 									|debug_option_gameplay_debuffs
-									|debug_option_gameplay_checkpoint
+									|debug_option_gameplay_bonuses
 							|debug_option_advance
 							+Advance
 								|debug_menu_advance
@@ -511,3 +511,4 @@
 			|player_brake_dust
 			|player_surface_splash
 	+Props
+|script405

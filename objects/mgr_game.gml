@@ -36,8 +36,8 @@ checkpoint_y = -1;
 checkpoint_time = -1;
 
 // Data:
-game_config_init();
-game_save_init();
+game_init_config();
+game_init_save();
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -68,7 +68,7 @@ if (game_ispaused(mnu_pause))
 // Save time:
 if (!instance_exists(mgr_transition))
 {
-    game_save_set("time", game_save_get("time") + 1);
+    game_set_save("time", game_get_save("time") + 1);
 }
 
 // Game time:
@@ -83,11 +83,11 @@ applies_to=self
 
 var i;
 
-ds_list_destroy(game_config_get("input_keyboard"));
+ds_list_destroy(game_get_config("input_keyboard"));
 
 for (i = 0; i < PLAYER_COUNT; i += 1)
 {
-    ds_list_destroy(game_config_get("input_gamepad" + string(i)));
+    ds_list_destroy(game_get_config("input_gamepad" + string(i)));
 }
 
 ds_map_destroy(config_map);

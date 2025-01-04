@@ -86,7 +86,7 @@ if (input_get_check(INP_CONFIRM, CHECK_PRESSED))
         }
         else
         {
-            save_name = game_save_get("name");
+            save_name = game_get_save("name");
         }
 
         // Default to slot number:
@@ -95,7 +95,7 @@ if (input_get_check(INP_CONFIRM, CHECK_PRESSED))
             save_name = "Slot " + string(menu_save);
         }
 
-        script_execute(pick(menu_mode, game_save_write, game_save_read, game_save_delete), menu_save);
+        script_execute(pick(menu_mode, game_write_save, game_read_save, game_delete_save), menu_save);
         script_execute(text_set_subject, save_name + " data has been " + pick(menu_mode, "saved.", "loaded.", "deleted."));
         event_user(0);
 
@@ -195,7 +195,7 @@ for (i = 0; i < page_count; i += 1)
 
 
         // Box:
-        draw_set1(game_get_interface_color(), game_config_get("interface_alpha"));
+        draw_set1(game_get_interface_color(), game_get_config("interface_alpha"));
         draw_rectangle(save_x1 - 8, save_y1 - save_height / 2, save_x2 + 8, save_y2, false);
 
         // Font:

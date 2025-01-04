@@ -23,7 +23,7 @@ if (argument_count >= 2)
 if (input_device == DEV_KEYBOARD)
 {
     // Return:
-    return string_key(game_keyboard_get(input_id));
+    return string_key(game_config_get_key(input_id));
 }
 
 // Gamepad:
@@ -33,7 +33,7 @@ else if (input_device >= DEV_GAMEPAD0)
 
     // Gamepad offset:
     input_device -= DEV_GAMEPAD0;
-    return char_pad(game_gamepad_get(input_device, input_id), game_config_get("input_gamepad" + string(input_device) + "_style"));
+    return char_pad(game_config_get_btn(input_device, input_id), game_get_config("input_gamepad" + string(input_device) + "_style"));
 }
 
 // User:

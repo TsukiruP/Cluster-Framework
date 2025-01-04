@@ -25,9 +25,9 @@ with (mgr_audio)
         // Fade in:
         else
         {
-            if (sound_isplaying(jng_handle) && sound_get_volume(jng_handle) < game_config_get("audio_bgm") / 100)
+            if (sound_isplaying(jng_handle) && sound_get_volume(jng_handle) < game_get_config("audio_bgm") / 100)
             {
-                sound_volume(jng_handle, min(sound_get_volume(jng_handle) + 0.01, game_config_get("audio_bgm") / 100));
+                sound_volume(jng_handle, min(sound_get_volume(jng_handle) + 0.01, game_get_config("audio_bgm") / 100));
             }
         }
     }

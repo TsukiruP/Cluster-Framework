@@ -3,5 +3,5 @@
 
 with (mgr_game)
 {
-    ds_list_replace(game_config_get("input_gamepad" + string(argument0)), argument1, argument2);
+    ds_list_replace(game_get_config("input_gamepad" + string(argument0)), argument1, argument2);
 }

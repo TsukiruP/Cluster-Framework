@@ -47,8 +47,9 @@ zone_x = 0;
 zone_width = -1;
 zone_spacing = 9;
 
+/*
 // Loading variables:
-switch (game_save_get("player0"))
+switch (game_get_save("player0"))
 {
     // Sonic:
     default:
@@ -146,10 +147,10 @@ if ((game_ispaused(mnu_pause) && pause_ignore == false) || (transition_id != TRA
 if (instance_exists(stage_get_player(0)))
 {
     // Run:
-    if (game_room_get_start() == START_RUN && transition_state >= 4 && transition_run != -1)
+    if (game_get_room_start() == START_RUN && transition_state >= 4 && transition_run != -1)
     {
         // Reset run:
-        if ((transition_id == TRANS_RETRY && (game_get_checkpoint_x() != -1 && game_get_checkpoint_y() != -1)) || stage_get_player(0).x >= game_room_get_run())
+        if ((transition_id == TRANS_RETRY && (game_get_checkpoint_x() != -1 && game_get_checkpoint_y() != -1)) || stage_get_player(0).x >= game_get_room_start())
         {
             transition_run = -1;
         }
@@ -307,7 +308,7 @@ if ((game_ispaused(mnu_pause) && pause_ignore == false) || transition_id != TRAN
 }
 
 // Skip:
-if (game_room_get_start() == START_READY && transition_state >= 4 && instance_exists(stage_get_player(0)))
+if (game_get_room_start() == START_READY && transition_state >= 4 && instance_exists(stage_get_player(0)))
 {
     if (input_get_check(INP_ANY, CHECK_PRESSED) && !input_get_check(INP_START, CHECK_PRESSED))
     {
@@ -333,7 +334,7 @@ banner_scroll = banner_scroll mod sprite_get_height(spr_title_card_banner);
 if (zone_width == -1)
 {
     draw_set_font(global.font_title_card);
-    zone_width = string_width(game_room_get_zone(transition_room)) + zone_spacing;
+    zone_width = string_width(game_get_room_zone(transition_room)) + zone_spacing;
 }
 
 if (transition_state >= 4)
@@ -401,10 +402,10 @@ switch (transition_state)
     
     // 4 - Reverse:
     case 4:
-        if ((game_room_get_start() != START_RUN || transition_run != -1) && preview == false && instance_exists(stage_get_player(0)))
+        if ((game_get_room_start() != START_RUN || transition_run != -1) && preview == false && instance_exists(stage_get_player(0)))
         {
             // Ready:
-            if (game_room_get_start() == START_READY)
+            if (game_get_room_start() == START_READY)
             {
                 // Time it with the curtain:
                 if (curtain_y <= floor(stage_get_player(0).y + stage_get_player(0).y_radius - view_yview[view_current]))
@@ -420,7 +421,7 @@ switch (transition_state)
             }
 
             // Unlock player:
-            else if (game_room_get_start() != START_IDLE && game_room_get_start() != START_RUN)
+            else if (game_get_room_start() != START_IDLE && game_get_room_start() != START_RUN)
             {
                 with (obj_player)
                 {
@@ -429,7 +430,7 @@ switch (transition_state)
             }
 
             // Move to next state:
-            if (game_room_get_start() == START_IDLE || (game_room_get_start() == START_READY && stage_get_player(0).animation_previous == "ready"))
+            if (game_get_room_start() == START_IDLE || (game_get_room_start() == START_READY && stage_get_player(0).animation_previous == "ready"))
             {
                 transition_state = 5;
             }
@@ -564,7 +565,7 @@ switch (transition_state)
     case 5:
         if (curtain_time == 0)
         {
-            if (game_room_get_start() != START_RUN || (game_room_get_start() == START_RUN && transition_run == -1) || preview == true)
+            if (game_get_room_start() != START_RUN || (game_get_room_start() == START_RUN && transition_run == -1) || preview == true)
             {
                 transition_state = 6;
             }
@@ -589,18 +590,18 @@ applies_to=self
 pause_ignore = false;
 
 // Play music:
-audio_play_bgm(game_room_get_music());
+audio_play_bgm(game_get_room_music());
 
 // Create background:
-if (game_room_get_background() != -1)
+if (game_get_room_background() != -1)
 {
-    instance_create(0, 0, game_room_get_background());
+    instance_create(0, 0, game_get_room_background());
 }
 
 // Create water:
-if (game_room_get_water() != -1)
+if (game_get_room_water() != -1)
 {
-    instance_create(0, game_room_get_water(), obj_water_surface);
+    instance_create(0, game_get_room_water(), obj_water_surface);
 }
 #define Other_10
 /*"/*'/**//* YYD ACTION
@@ -653,12 +654,12 @@ draw_sprite_tiled_vertical(spr_title_card_banner, 0, view_xview[view_current] + 
 // Zone:
 draw_set_font(global.font_title_card);
 draw_set_valign(fa_bottom);
-draw_text(view_xview[view_current] + zone_x, view_yview[view_current] + 126, game_room_get_zone(transition_room));
+draw_text(view_xview[view_current] + zone_x, view_yview[view_current] + 126, game_get_room_zone(transition_room));
 
 // Act:
-if (game_room_get_act(transition_room) != 0)
+if (game_get_room_act(transition_room) != 0)
 {
-    draw_sprite(spr_title_card_acts, game_room_get_act(transition_room), view_xview[view_current] + zone_x + 5, view_yview[view_current] + 128);
+    draw_sprite(spr_title_card_acts, game_get_room_act(transition_room), view_xview[view_current] + zone_x + 5, view_yview[view_current] + 128);
 }
 
 // Loading:

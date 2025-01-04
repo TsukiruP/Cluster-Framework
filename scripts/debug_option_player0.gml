@@ -13,11 +13,11 @@ switch (argument0)
 
     // Value:
     case 1:
-        return pick(game_save_get(save_key), "Sonic", "Miles", "Knuckles", "Amy", "Classic");
+        return pick(game_get_save(save_key), "Sonic", "Miles", "Knuckles", "Amy", "Classic");
 
     // Confirm:
     case 2:
-        switch (game_save_get(save_key))
+        switch (game_get_save(save_key))
         {
             // Sonic:
             case CHAR_SONIC:
@@ -32,7 +32,7 @@ switch (argument0)
 
     // Update:
     case 3:
-        game_save_set(save_key, wrap(game_save_get(save_key) + menu_x_direction, CHAR_SONIC, CHAR_CLASSIC));
+        game_set_save(save_key, wrap(game_get_save(save_key) + menu_x_direction, CHAR_SONIC, CHAR_CLASSIC));
         return true;
 
     // Undefined:

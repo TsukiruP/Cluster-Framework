@@ -533,7 +533,7 @@ if ((status_shield != SHIELD_NONE || status_invin == INVIN_BUFF) && !instance_ex
 }
 
 // Create invincibility sparkles:
-if (game_config_get("advance_flicker") && status_invin == INVIN_BUFF)
+if (game_get_config("advance_flicker") && status_invin == INVIN_BUFF)
 {
     if (sync_rate(status_invin_alarm, 2, 4) == 0)
     {
@@ -553,7 +553,7 @@ if ((status_speed == SPEED_SLOW || status_panic == true) && !instance_exists(deb
 }
 
 // Create reticle:
-if (game_config_get("misc_reticle") > 0 && instance_exists(homing_handle) && !instance_exists(reticle_handle))
+if (game_get_config("misc_reticle") > 0 && instance_exists(homing_handle) && !instance_exists(reticle_handle))
 {
     reticle_handle = instance_create(x, y, eff_reticle);
 
