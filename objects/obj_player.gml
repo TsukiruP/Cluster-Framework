@@ -134,8 +134,8 @@ peel_out_alarm = 30;
 // Classic variables:
 clock_up_state = 0;
 clock_up_alarm = 0;
-clock_up_time = 0;
-clock_up_duration = 900;
+clock_up_energy = 600;
+clock_up_max_energy = 600;
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603

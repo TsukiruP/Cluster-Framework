@@ -404,6 +404,8 @@
 			|instance_nth_nearest
 			|instance_nearest_dir_x
 			|in_view
+			|instance_create_single
+			|script407
 +Gameplay
 	+Collision
 		|collision_box

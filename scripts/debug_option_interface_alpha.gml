@@ -17,9 +17,9 @@ switch (argument0)
 
     // Update:
     case 3:
-        if (in_range(game_get_config(config_key) + menu_x_direction / 10, 0, 1))
+        if (in_range(game_get_config(config_key) + menu_x_direction / 100, 0, 1))
         {
-            game_set_config(config_key, clamp(game_get_config(config_key) + menu_x_direction / 10, 0, 1));
+            game_set_config(config_key, clamp(game_get_config(config_key) + menu_x_direction / 100, 0, 1));
             return true;
         }
 

@@ -12,6 +12,7 @@
 		+Default
 			|spr_hud
 			|spr_hud_gauge
+			|spr_hud_energy
 			|spr_hud_boss
 			|fnt_hud
 		+S4E2
@@ -362,7 +363,6 @@
 	+Amy
 	+Sensors
 		+Layer Sensors
-			|spr_sensor_layer_b
 		+Platform Sensors
 			|spr_sensor_platform_left
 			|spr_sensor_platform_right

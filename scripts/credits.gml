@@ -29,6 +29,9 @@ Trails
 Pixelated Pope
 Arc code for Tag Actions
 
+David Strachan
+Easing and Tweening Scripts in GameMaker
+
 INSPIRATION
 Sonic XG
 Status HUD concept

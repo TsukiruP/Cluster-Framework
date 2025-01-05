@@ -147,7 +147,7 @@ spr_dash_ring_left_up
 spr_ring_sparkle
 spr_hint_box
 spr_sensor_layer
-spr_sensor_layer_b
+spr_hud_energy
 spr_sensor_platform_left
 spr_sensor_platform_right
 spr_sensor_platform_up

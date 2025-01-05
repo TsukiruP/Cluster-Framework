@@ -9,6 +9,7 @@ applies_to=self
 // Load character sounds:
 sound_add_directory("data\audio\sfx\character\common", ".wav", 0, true);
 sound_add_directory("data\audio\sfx\character\sonic", ".wav", 0, true);
+sound_add_directory("data\audio\sfx\character\classic", ".wav", 0, true);
 sound_add_directory("data\audio\sfx\character\shield", ".wav", 0, true);
 
 // Load prop sounds:

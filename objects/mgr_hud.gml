@@ -11,7 +11,7 @@ var i;
 // HUD variables:
 hud_hide = true;
 hud_time = 0;
-hud_duration = 10;
+hud_max_time = 10;
 
 hud_x = 0;
 
@@ -41,11 +41,17 @@ air_value = 30;
 // Gauge variables:
 gauge_hide = true;
 gauge_time = 0;
-gauge_duration = 20;
 
 gauge_x = 0;
-gauge_value = 0;
-gauge_max = 0;
+gauge_energy = 0;
+gauge_max_energy = 1;
+
+// Boss:
+boss_hide = true;
+boss_time = 0;
+
+boss_x = 0;
+boss_health = 0;
 
 // Status variables:
 status_icon[STATUS_SHIELD] = ITEM_BASIC;
@@ -67,7 +73,7 @@ for (i = STATUS_SHIELD; i <= STATUS_SWAP; i += 1)
 // Item variables:
 item_hide = false;
 item_grid = -1;
-item_duration = 10;
+item_max_time = 10;
 item_alarm = 0;
 
 if (game_get_config("misc_hud") == 1 && game_get_config("misc_feed"))
@@ -104,7 +110,7 @@ if (item_grid != -1)
 {
     if (ds_grid_height(item_grid) > 0)
     {
-        if (ds_grid_get(item_grid, 1, ds_grid_height(item_grid) - 1) == item_duration)
+        if (ds_grid_get(item_grid, 1, ds_grid_height(item_grid) - 1) == item_max_time)
         {
             if (item_alarm > 0)
             {
@@ -152,7 +158,7 @@ var i;
 // Hud:
 if (hud_hide == false)
 {
-    hud_time = approach(hud_time, hud_duration, 1);
+    hud_time = approach(hud_time, hud_max_time, 1);
 }
 else
 {
@@ -162,7 +168,7 @@ else
 // Air:
 if (air_hide == false)
 {
-    air_time = approach(air_time, hud_duration, 1);
+    air_time = approach(air_time, hud_max_time, 1);
 }
 else
 {
@@ -170,13 +176,31 @@ else
 }
 
 // Gauge:
+if (hud_hide == false && gauge_hide == false)
+{
+    gauge_time = approach(gauge_time, hud_max_time, 1);
+}
+else
+{
+    gauge_time = approach(gauge_time, 0, 1);
+}
+
+// Boss:
+if (hud_hide == false && boss_hide == false)
+{
+    boss_time = approach(boss_time, hud_max_time, 1);
+}
+else
+{
+    boss_time = approach(boss_time, 0, 1);
+}
 
 // Items:
 if (item_grid != -1)
 {
     for (i = 0; i < ds_grid_height(item_grid); i += 1)
     {
-        ds_grid_set(item_grid, 1, i, approach(ds_grid_get(item_grid, 1, i), item_duration, 1));
+        ds_grid_set(item_grid, 1, i, approach(ds_grid_get(item_grid, 1, i), item_max_time, 1));
     }
 }
 #define Step_2
@@ -193,7 +217,7 @@ if (game_ispaused(mnu_pause))
     exit;
 }
 
-hud_x = lerp(-sprite_get_width(hud_index), hud_offset, smoothstep(0, hud_duration, hud_time));
+hud_x = lerp(-sprite_get_width(hud_index), hud_offset, smoothstep(0, hud_max_time, hud_time));
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -207,7 +231,7 @@ if (game_ispaused(mnu_pause) || game_get_config("misc_hud") != 1)
     exit;
 }
 
-air_x = lerp(-sprite_get_width(hud_index), hud_x, smoothstep(0, hud_duration, air_time));
+air_x = lerp(-sprite_get_width(hud_index), hud_x, smoothstep(0, hud_max_time, air_time));
 
 if (instance_exists(stage_get_player(0)))
 {
@@ -240,41 +264,48 @@ action_id=603
 applies_to=self
 */
 /// Gauge
-/*
-// Exit if the stage is paused:
-if (game_ispaused(mnu_pause))
+
+// Exit if the stage is paused or HUD isn't default:
+if (game_ispaused(mnu_pause) || game_get_config("misc_hud") != 1)
 {
     exit;
 }
 
-if (game_config_get("misc_hud") == 1)
+gauge_x = lerp(-sprite_get_width(spr_hud_gauge), hud_x + 6, smoothstep(0, hud_max_time, gauge_time));
+
+if (instance_exists(stage_get_player(0)))
 {
-    var gauge_x_target, gauge_x_factor;
-
-    // Gauge target:
-    if (gauge_hide == false)
+    with (stage_get_player(0))
     {
-        gauge_x_target = hud_x_target + 6;
-    }
-    else
-    {
-        gauge_x_target = -sprite_get_width(hud_index) - hud_x_factor;
-    }
-
-    if (gauge_x_current != gauge_x_target)
-    {
-        var gauge_x_distance;
-
-        // Gauge distance:
-        gauge_x_distance = gauge_x_target - gauge_x_current;
-
-        // Gauge factor:
-        gauge_x_factor = hud_x_factor * (1 + (2 * (hud_hide == false && gauge_hide == true)));
-
-        gauge_x_speed = ceil(abs(gauge_x_distance) / hud_x_factor);
-        gauge_x_current += gauge_x_speed * sign(gauge_x_distance);
+        switch (character_id)
+        {
+            // Classic:
+            case CHAR_CLASSIC:
+                other.gauge_hide = false;
+                other.gauge_energy = clock_up_energy;
+                other.gauge_max_energy = clock_up_max_energy;
+                break;
+            
+            // Hide:
+            default:
+                other.gauge_hide = true;
+        }
     }
 }
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Boss
+
+// Exit if the stage is paused or HUD isn't default:
+if (game_ispaused(mnu_pause) || game_get_config("misc_hud") != 1)
+{
+    exit;
+}
+
+boss_x = lerp(screen_get_width() + sprite_get_width(spr_hud_boss), screen_get_width() - sprite_get_width(spr_hud_boss) - 10, smoothstep(0, hud_max_time, boss_time));
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -288,7 +319,7 @@ if (game_ispaused(mnu_pause) || game_get_config("misc_hud") != 1 || game_get_con
     exit;
 }
 
-status_bar_x = lerp(screen_get_width() + status_width + 5, screen_get_width() - status_width * status_max + 5, smoothstep(0, hud_duration, hud_time));
+status_bar_x = lerp(screen_get_width() + status_width + 5, screen_get_width() - status_width * status_max + 5, smoothstep(0, hud_max_time, hud_time));
 
 if (instance_exists(stage_get_player(0)))
 {
@@ -385,7 +416,7 @@ var i;
 
 for (i = 0; i < ds_grid_height(item_grid); i += 1)
 {
-    ds_grid_set(item_grid, 2, i, lerp(-sprite_get_width(spr_item_icon), screen_get_width() / 2 + 9 * (ds_grid_height(item_grid) - 1) - 18 * i, smoothstep(0, item_duration, ds_grid_get(item_grid, 1, i))));
+    ds_grid_set(item_grid, 2, i, lerp(-sprite_get_width(spr_item_icon), screen_get_width() / 2 + 9 * (ds_grid_height(item_grid) - 1) - 18 * i, smoothstep(0, item_max_time, ds_grid_get(item_grid, 1, i))));
 }
 #define Other_5
 /*"/*'/**//* YYD ACTION
@@ -408,7 +439,7 @@ if (game_get_config("misc_hud") != 1)
     exit;
 }
 
-var time_y;
+var time_y, gauge_y;
 
 // Font:
 draw_set_font(global.font_hud);
@@ -431,18 +462,14 @@ draw_text(view_xview[view_current] + hud_x + 29, view_yview[view_current] + hud_
 draw_sprite(hud_index, 2, view_xview[view_current] + air_x, view_yview[view_current] + hud_y + 52);
 draw_text(view_xview[view_current] + air_x + 29, view_yview[view_current] + hud_y + 57, string_pad(air_value, 2));
 
-/*
-// Action gauge:
-if (instance_exists(instance_player(0))) {
-    var clock_up_percentage;
-    
-    // Gauge:
-    clock_up_percentage = (instance_player(0).clock_up_duration - instance_player(0).clock_up_timer) / instance_player(0).clock_up_duration;
-    
-    draw_sprite(spr_hud, 3, view_xview[view_current] + gauge_x_current, view_yview[view_current] + screen_get_height() - 29);
-    draw_sprite_part(gauge_index, 0, 0, 0, sprite_get_width(gauge_index) * clock_up_percentage, sprite_get_height(gauge_index), view_xview[view_current] + gauge_x_current + 8, view_yview[view_current] + screen_get_height() - 29 + 12);
-}
-*/
+// Gauge:
+gauge_y = screen_get_height() - 27;
+
+draw_sprite(spr_hud_gauge, 0, view_xview[view_current] + gauge_x, view_yview[view_current] + gauge_y);
+draw_sprite_part(spr_hud_energy, 0, 0, 0, sprite_get_width(spr_hud_energy) * (gauge_energy / gauge_max_energy), sprite_get_height(spr_hud_energy), view_xview[view_current] + gauge_x + 8, view_yview[view_current] + gauge_y + 10);
+
+// Boss:
+draw_sprite(spr_hud_boss, 0, view_xview[view_current] + boss_x, view_yview[view_current] + gauge_y);
 
 // Reset:
 draw_reset();

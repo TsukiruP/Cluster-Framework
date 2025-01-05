@@ -56,8 +56,13 @@ with (mgr_input)
         {
             for (i = PAD_FACE1; i <= PAD_SHARE; i += 1)
             {
-                return gamepad_get_check(input_device, i, argument1);
+                if (gamepad_get_check(input_device, i, argument1))
+                {
+                    return true;
+                }
             }
+
+            return false;
         }
 
         return input_gamepad[input_id, argument1 + (input_device * 3)];

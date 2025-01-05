@@ -25,14 +25,14 @@ if (argument_count >= 1)
 }
 else
 {
-    // Clock Up time:
+    // Clock Up points:
     if (clock_up_state != 0)
     {
-        // Increase Clock Up time:
-        clock_up_time = min(clock_up_time + 1 * clock_up_state, clock_up_duration);
+        // Decrease points:
+        clock_up_energy = max(clock_up_energy - 1 * clock_up_state, 0);
 
         // Clock Over:
-        if (clock_up_time == clock_up_duration)
+        if (clock_up_energy <= 0)
         {
             classic_trait_clock_up(true);
         }
@@ -45,7 +45,7 @@ else
     }
 
     // Clock Up:
-    if (clock_up_time != clock_up_duration && clock_up_alarm == 0 && player_get_input(INP_SUPER, CHECK_PRESSED))
+    if (clock_up_alarm == 0 && clock_up_energy > 0 && player_get_input(INP_SUPER, CHECK_PRESSED))
     {
         // Hyper:
         if (clock_up_state != 2 && (clock_up_state == 0 || clock_up_state != 0) && player_get_input(INP_ALT, CHECK_HELD))

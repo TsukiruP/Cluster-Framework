@@ -1,8 +1,9 @@
 ERROR in
-action number 1
-of End Step Event
-for object mgr_screen:
+action number 2
+of Begin Step Event
+for object mgr_hud:
 
-Illegal argument count calling script "game_get_config".Script requires 1 arguments, 2 have been supplied.
+Error in code at line 42:   
+if (hude_hide == false && boss_hide == false)       ^at position 6: Unknown variable hude_hide
 
 

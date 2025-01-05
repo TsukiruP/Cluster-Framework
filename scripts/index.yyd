@@ -404,3 +404,5 @@ text_get_handle
 camera_set_lag
 hud_add_item
 game_save_auto
+instance_create_single
+script407
