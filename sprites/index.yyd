@@ -148,7 +148,7 @@ spr_ring_sparkle
 spr_hint_box
 spr_sensor_layer
 spr_hud_energy
-spr_sensor_platform_left
+spr_enemy_alert
 spr_sensor_platform_right
 spr_sensor_platform_up
 spr_sensor_platform_down

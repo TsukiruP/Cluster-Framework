@@ -140,7 +140,6 @@
 			+Player
 				|stage_get_player
 				|stage_set_player
-				|stage_get_character
 		+Camera
 			|camera_set_lag
 		+HUD
@@ -365,6 +364,8 @@
 					|ctl_explosion_large
 					|ctl_explosion_enemy
 					|ctl_explosion_water
+				+Enemies
+					|ctl_enemy_alert
 				+Splashes
 					|ctl_splash_0
 					|ctl_splash_1

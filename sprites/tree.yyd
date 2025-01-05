@@ -184,6 +184,7 @@
 			|spr_explosion_enemy
 			|spr_explosion_water
 		+Enemies
+			|spr_enemy_alert
 			|spr_enemy_vitality
 		+Splashes
 			|spr_splash_0
@@ -364,7 +365,6 @@
 	+Sensors
 		+Layer Sensors
 		+Platform Sensors
-			|spr_sensor_platform_left
 			|spr_sensor_platform_right
 			|spr_sensor_platform_up
 			|spr_sensor_platform_down
