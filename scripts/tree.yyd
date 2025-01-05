@@ -140,6 +140,7 @@
 			+Player
 				|stage_get_player
 				|stage_set_player
+				|stage_get_character
 		+Camera
 			|camera_set_lag
 		+HUD
@@ -405,7 +406,6 @@
 			|instance_nearest_dir_x
 			|in_view
 			|instance_create_single
-			|script407
 +Gameplay
 	+Collision
 		|collision_box

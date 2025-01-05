@@ -26,44 +26,25 @@ player_handle = noone;
 // Curtain variables:
 curtain_time = 0;
 curtain_max_time = 20;
-
 curtain_y = 0;
+
 curtain_scroll = 0;
 curtain_scroll_speed = 1;
 
 // Banner variables:
 banner_time = 0;
 banner_max_time = 20;
-
 banner_x = 0;
+
 banner_scroll = 0;
 banner_scroll_speed = 1;
 
 // Zone variables:
 zone_time = 0;
 zone_max_time = 30;
-
-zone_x = 0;
 zone_width = -1;
 zone_spacing = 9;
-
-/*
-// Loading variables:
-switch (game_get_save("player0"))
-{
-    // Sonic:
-    default:
-        character_index = spr_sonic_run_4;
-        character_y_offset = -7;
-}
-
-character_x_current = -sprite_get_width(character_index);
-character_x_target = screen_get_width() - 27;
-character_x_speed = 0;
-character_x_factor = 12;
-
-character_alpha = 1;
-stars_y = screen_get_height() - 16;
+zone_x = 0;
 #define Step_1
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -667,15 +648,6 @@ if (load_skip == false && transition_state == 2)
 {
     draw_sprite(spr_title_card_load, transition_alarm div 22, view_xview[view_current] + 4, view_yview[view_current] + screen_get_height() - 12);
 }
-
-/*
-// Character:
-draw_sprite_ext(spr_title_card_stars, sync_rate(transition_time, 4, sprite_get_number(spr_title_card_stars)), view_xview[view_current] + character_x, view_yview[view_current] + character_y, 1, 1, 0, c_white, character_alpha);
-
-d3d_set_fog(true, c_white, 0, 0);
-draw_sprite_ext(character_index, sync_rate(transition_time, 4, sprite_get_number(character_index)), view_xview[view_current] + character_x, view_yview[view_current] + character_y + character_offset, 1, 1, 0, c_white, character_alpha);
-d3d_set_fog(false, c_black, 0, 0);
-*/
 
 // Reset:
 draw_reset();

@@ -12,7 +12,6 @@ var i;
 hud_hide = true;
 hud_time = 0;
 hud_max_time = 10;
-
 hud_x = 0;
 
 switch (game_get_config("misc_hud"))
@@ -34,23 +33,23 @@ switch (game_get_config("misc_hud"))
 // Air variables:
 air_hide = true;
 air_time = 0;
-
 air_x = 0;
+
 air_value = 30;
 
 // Gauge variables:
 gauge_hide = true;
 gauge_time = 0;
-
 gauge_x = 0;
+
 gauge_energy = 0;
 gauge_max_energy = 1;
 
 // Boss:
 boss_hide = true;
 boss_time = 0;
-
 boss_x = 0;
+
 boss_health = 0;
 
 // Status variables:
@@ -60,9 +59,9 @@ status_icon[STATUS_SPEED] = ITEM_SPEED;
 status_icon[STATUS_PANIC] = ITEM_PANIC;
 status_icon[STATUS_SWAP] = ITEM_SWAP;
 
-status_bar_x = 0;
 status_width = sprite_get_width(spr_item_icon) + 2;
 status_max = 3 + 2 * game_get_config("gameplay_debuffs");
+status_bar_x = 0;
 
 for (i = STATUS_SHIELD; i <= STATUS_SWAP; i += 1)
 {
