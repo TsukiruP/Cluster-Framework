@@ -107,7 +107,7 @@ else
 }
 
 // Zone:
-if ((transition_id == TRANS_CARD && ((transition_state < 4 && curtain_time == curtain_max_time) || (transition_state >= 4 && curtain_time == 0))) || transition_id == TRANS_RETRY)
+if ((transition_id == TRANS_CARD && ((transition_state < 4 && curtain_time == curtain_max_time) || (transition_state >= 4))) || transition_id == TRANS_RETRY)
 {
     zone_time = approach(zone_time, zone_max_time, 1);
 }
