@@ -406,3 +406,5 @@ hud_add_item
 game_save_auto
 instance_create_single
 ctl_enemy_alert
+ctl_splash_5
+player_reaction_waterfall

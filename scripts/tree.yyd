@@ -333,7 +333,7 @@
 					|ctl_spring_vertical
 					|ctl_spring_horizontal
 					|ctl_spring_diagonal
-				+Badniks
+				+Enemies
 					|ctl_spinner
 			+Effects
 				+Player
@@ -372,6 +372,7 @@
 					|ctl_splash_2
 					|ctl_splash_3
 					|ctl_splash_4
+					|ctl_splash_5
 				+Misc.
 					|ctl_ring_sparkle
 					|ctl_blockade_debris
@@ -483,6 +484,7 @@
 			|player_reaction_hint
 			|player_reaction_spike
 			|player_reaction_blockade
+			|player_reaction_waterfall
 		+Trail
 			|player_trail_init
 			|player_trail_color

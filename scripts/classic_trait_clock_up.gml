@@ -10,10 +10,12 @@ if (argument_count >= 1)
         if (clock_up_state == 2)
         {
             audio_play_sfx("snd_hyper_clock_over");
+            audio_stop_sfx("snd_hyper_clock_up");
         }
         else
         {
             audio_play_sfx("snd_clock_over");
+            audio_stop_sfx("snd_clock_up");
         }
 
         game_set_speed(1);

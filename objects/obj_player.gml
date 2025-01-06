@@ -191,6 +191,10 @@ afterimage_alarm = 6;
 
 // Trail:
 player_trail_init();
+
+// Waterfall:
+waterfall_draw = false;
+waterfall_handle = noone;
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -582,6 +586,17 @@ if (state_current == player_state_roll || state_current == sonic_state_homing)
 else
 {
     trail_draw = false;
+}
+
+// Create waterfall:
+if (waterfall_draw == true && !instance_exists(waterfall_handle))
+{
+    waterfall_handle = instance_create(x, y, eff_waterfall);
+
+    with (waterfall_handle)
+    {
+        player_handle = other.id;
+    }
 }
 /*"/*'/**//* YYD ACTION
 lib_id=1

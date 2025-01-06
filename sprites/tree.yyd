@@ -192,6 +192,8 @@
 			|spr_splash_2
 			|spr_splash_3
 			|spr_splash_4
+			|spr_splash_5
+			|spr_splash_6
 		+Misc.
 			|spr_ring_sparkle
 			|spr_blockade_debris
@@ -232,7 +234,7 @@
 			|spr_basic_test_mask_18
 			|spr_basic_test_mask_19
 		+Gimmicks
-			|spr_basic_test_water_fall
+			|spr_basic_test_waterfall
 	+Sunset Forest
 		+Masks
 		+Gimmicks
@@ -365,8 +367,6 @@
 	+Sensors
 		+Layer Sensors
 		+Platform Sensors
-			|spr_sensor_platform_right
-			|spr_sensor_platform_up
 			|spr_sensor_platform_down
 	+Dash Panels
 	+Spikes

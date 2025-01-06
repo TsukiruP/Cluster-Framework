@@ -125,7 +125,7 @@ spr_miles_spring
 spr_miles_fly
 spr_miles_swim
 spr_miles_boost
-spr_basic_test_water_fall
+spr_basic_test_waterfall
 spr_water_surface
 spr_bubble_spawn
 spr_bubble
@@ -149,8 +149,8 @@ spr_hint_box
 spr_sensor_layer
 spr_hud_energy
 spr_enemy_alert
-spr_sensor_platform_right
-spr_sensor_platform_up
+spr_splash_5
+spr_splash_6
 spr_sensor_platform_down
 spr_item_box
 spr_item_icon

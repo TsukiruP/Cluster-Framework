@@ -46,7 +46,7 @@ par_enemy
 obj_ring
 eff_player
 obj_item_box
-obj_basic_test_water_fall_01
+obj_basic_test_waterfall
 obj_basic_test_water_fall_02
 obj_basic_test_water_fall_03
 obj_item_bonus
@@ -126,3 +126,4 @@ par_obstacle
 eff_debris
 par_target
 mgr_stage
+eff_waterfall
