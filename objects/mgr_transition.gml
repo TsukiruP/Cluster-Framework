@@ -107,7 +107,7 @@ else
 }
 
 // Zone:
-if (transition_id == TRANS_CARD && (transition_state >= 4 || curtain_time == curtain_max_time) || transition_id == TRANS_RETRY)
+if ((transition_id == TRANS_CARD && ((transition_state < 4 && curtain_time == curtain_max_time) || (transition_state >= 4 && curtain_time == 0))) || transition_id == TRANS_RETRY)
 {
     zone_time = approach(zone_time, zone_max_time, 1);
 }
@@ -427,7 +427,7 @@ switch (transition_state)
         stage_start();
         
         // Destroy:
-        if (curtain_time == 0 && banner_time == 0)
+        if (curtain_time == 0 && banner_time == 0 && zone_time == zone_max_time)
         {
             stage_set_time_allow(true);
             instance_destroy();
