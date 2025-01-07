@@ -98,7 +98,7 @@ repeat (total_steps)
     if (hit_floor != noone)
     {
         // React:
-        player_react(hit_wall, COLL_SOLID);
+        player_react(hit_floor, COLL_SOLID);
         
         if (state_changed == true)
         {
