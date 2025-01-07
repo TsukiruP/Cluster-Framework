@@ -7,8 +7,9 @@ var y_radius_temp;
 y_radius_temp = y_radius;
 
 // Animation:
-player_animation_variant();
-player_animation_speed();
+player_animation_fix();
+ctl_speed = player_get_animation_speed();
+animation_variant = player_get_animation_variant();
 
 // Load target animation:
 if (ctl_index != player_get_animation(animation_current, animation_variant))

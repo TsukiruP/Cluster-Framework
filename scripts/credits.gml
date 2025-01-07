@@ -61,6 +61,9 @@ Sonic Rush
 Sonic Rush Adventure
 Sonic Colors (DS)
 
+Paraemon
+Sonic the Hedgehog 3 - Title Screen & SEGA Logo
+
 CUSTOM SPRITES
 Tsukiru
 Sonic Generations-esque Font

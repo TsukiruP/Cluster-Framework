@@ -173,7 +173,7 @@ if (instance_exists(focus_handle))
 
                 if (focus_handle.on_ground == true)
                 {
-                    player_offset = focus_handle.y_offset * dsin(focus_handle.mask_rotation);
+                    player_offset = focus_handle.camera_offset * dsin(focus_handle.mask_rotation);
                 }
 
                 // Move left:
@@ -226,15 +226,15 @@ if (instance_exists(focus_handle))
                         }
 
                         // Move up:
-                        if (focus_y < (camera_y - focus_handle.y_offset))
+                        if (focus_y < (camera_y - focus_handle.camera_offset))
                         {
-                            camera_y -= min((camera_y - focus_handle.y_offset) - focus_y, camera_speed_cap);
+                            camera_y -= min((camera_y - focus_handle.camera_offset) - focus_y, camera_speed_cap);
                         }
 
                         // Move down:
-                        else if (focus_y > (camera_y + focus_handle.y_offset))
+                        else if (focus_y > (camera_y + focus_handle.camera_offset))
                         {
-                            camera_y += min(focus_y - (camera_y + focus_handle.y_offset), camera_speed_cap);
+                            camera_y += min(focus_y - (camera_y + focus_handle.camera_offset), camera_speed_cap);
                         }
                     }
                 }

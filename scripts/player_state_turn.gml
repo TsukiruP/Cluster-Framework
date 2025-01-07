@@ -12,7 +12,7 @@ switch (argument0)
         x_speed = 0;
 
         // Set animation:
-        if (animation_current != "turn" && animation_current != "turn_brake")
+        if (animation_current != "turn_brake")
         {
             player_set_animation("turn");
         }

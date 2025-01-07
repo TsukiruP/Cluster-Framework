@@ -1,9 +1,9 @@
 ERROR in
-action number 2
-of Begin Step Event
-for object mgr_hud:
+action number 3
+of  Step Event
+for object obj_player:
 
-Error in code at line 42:   
-if (hude_hide == false && boss_hide == false)       ^at position 6: Unknown variable hude_hide
+In script player_state_idle:In script player_movement_ground:In script player_react:Error in code at line 7:   
+reaction = object_handle.reaction_index;                            ^at position 27: Unknown variable reaction_index
 
 

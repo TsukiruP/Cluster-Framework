@@ -49,13 +49,13 @@ spr_sonic_hurt
 spr_sonic_death
 spr_transition_curtain
 spr_classic_stand
-spr_classic_jog
-spr_classic_run
+spr_classic_run_0
+spr_classic_run_1
 spr_classic_roll
 spr_classic_spin_dash
-spr_classic_skid
+spr_classic_brake
 spr_classic_death
-spr_classic_misc
+spr_classic_wait
 spr_classic_push
 spr_spin_dash
 spr_spin_charge
@@ -151,7 +151,7 @@ spr_hud_energy
 spr_enemy_alert
 spr_splash_5
 spr_splash_6
-spr_sensor_platform_down
+spr_classic_misc
 spr_item_box
 spr_item_icon
 spr_knuckles_stand
@@ -214,7 +214,7 @@ spr_miles_tails
 spr_miles_fly_cancel
 spr_miles_boost_end
 spr_hud_gauge
-spr_classic_balance
+spr_classic_cliff
 spr_sonic_push
 spr_miles_push
 spr_sonic_cliff_front

@@ -920,32 +920,23 @@ switch (animation_current)
 
     // Terrain angle:
     default:
-        // Default angle behavior:
-        if (character_id != CHAR_CLASSIC)
+        if (on_ground == true)
         {
-            if (on_ground == true)
-            {
-                image_angle = angle;
-            }
-            else
-            {
-                image_angle = approach_angle(image_angle, gravity_direction, 4);
-            }
+            image_angle = angle;
         }
-
-        // Classic/Tag angle behavior:
         else
         {
+            image_angle = approach_angle(image_angle, gravity_direction, 4);
+        }
+
+        if (character_id == CHAR_CLASSIC)
+        {
             if (on_ground == true)
             {
-                if (angle mod 45 != 0)
+                if (image_angle mod 45 != 0)
                 {
-                    image_angle = roundto(angle, 45);
+                    image_angle = roundto(image_angle, 45);
                 }
-            }
-            else
-            {
-                image_angle = approach_angle(image_angle, gravity_direction, 4);
             }
         }
 }

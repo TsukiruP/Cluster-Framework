@@ -1,9 +1,3 @@
-+Trash
-	+Animation Lists
-	+Data
-	+Pause
-	+Background
-	+Room
 +System
 	|credits
 	+Managers
@@ -120,6 +114,7 @@
 			|animation_get
 			|animation_add
 			|animation_init_sonic
+			|animation_init_classic
 		+Fade
 			|fade_create
 			|fade_reverse
@@ -325,6 +320,30 @@
 						|ctl_sonic_stomp
 						|ctl_sonic_stomp_land
 					|ctl_sonic_peel_out
+				+Classic
+					+Idle
+						|ctl_classic_stand
+						+Cliff
+							|ctl_classic_cliff_front
+							|ctl_classic_cliff_back
+						+Wait
+							|ctl_classic_wait_leader
+							|ctl_classic_wait_partner
+					+Run
+						|ctl_classic_run_0
+						|ctl_classic_run_1
+					|ctl_classic_look
+					|ctl_classic_crouch
+					|ctl_classic_spin_dash
+					|ctl_classic_roll
+					|ctl_classic_brake
+					|ctl_classic_hurt
+					+Death
+						|ctl_classic_death
+						|ctl_classic_drown
+					|ctl_classic_push
+					|ctl_classic_spring
+					|ctl_classic_breathe
 			+Props
 				+Checkpoint
 					|ctl_checkpoint_inactive
@@ -420,8 +439,7 @@
 	+Player
 		+Animation
 			|player_animation_core
-			|player_animation_variant
-			|player_animation_speed
+			|player_animation_fix
 			|player_animation_run
 			|player_animation_air
 			|player_animation_spring
@@ -491,6 +509,8 @@
 			|player_trail_draw
 		+Getters
 			|player_get_animation
+			|player_get_animation_speed
+			|player_get_animation_variant
 			|player_get_input
 			|player_get_physics
 			|player_get_solids

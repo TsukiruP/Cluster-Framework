@@ -20,7 +20,7 @@ switch (argument0)
                 if (input_lock_alarm == 0)
                 {
                     // Turn:
-                    if (game_get_config("advance_turn") && abs(x_speed) <= 4 && image_xscale == -input_x_direction)
+                    if ((game_get_config("advance_turn") && character_id != CHAR_CLASSIC) && abs(x_speed) <= 4 && image_xscale == -input_x_direction)
                     {
                         return player_set_state(player_state_turn);
                     }
@@ -116,6 +116,12 @@ switch (argument0)
         if (player_routine_jump())
         {
             return false;
+        }
+
+        // Peel out:
+        if (abs(x_speed) < 10 && peel_out == true)
+        {
+            peel_out = false;
         }
 
         // Set animation:

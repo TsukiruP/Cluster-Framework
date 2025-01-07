@@ -393,7 +393,7 @@ switch (transition_state)
                 {
                     with (obj_player)
                     {
-                        if (animation_current != "ready" && animation_previous != "ready")
+                        if (animation_previous != "ready")
                         {
                             player_set_animation("ready");
                         }

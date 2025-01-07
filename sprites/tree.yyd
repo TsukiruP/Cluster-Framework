@@ -100,15 +100,16 @@
 			|spr_sonic_peel_out
 		+Classic
 			|spr_classic_stand
-			|spr_classic_jog
-			|spr_classic_run
+			|spr_classic_cliff
+			|spr_classic_wait
+			|spr_classic_run_0
+			|spr_classic_run_1
 			|spr_classic_spin_dash
 			|spr_classic_roll
-			|spr_classic_skid
-			|spr_classic_balance
+			|spr_classic_brake
+			|spr_classic_death
 			|spr_classic_push
 			|spr_classic_misc
-			|spr_classic_death
 	+Props
 		|spr_sensor_layer
 		+Rings
@@ -367,7 +368,6 @@
 	+Sensors
 		+Layer Sensors
 		+Platform Sensors
-			|spr_sensor_platform_down
 	+Dash Panels
 	+Spikes
 		|spr_spike_down

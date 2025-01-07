@@ -4,7 +4,7 @@
 // Stand:
 animation_add(CHAR_SONIC, "stand", ctl_sonic_stand); //,     tml_sonic_idle_tag);
 
-// Balance:
+// Cliff:
 animation_add(CHAR_SONIC, "cliff_front", ctl_sonic_cliff_front);
 animation_add(CHAR_SONIC, "cliff_back", ctl_sonic_cliff_back);
 
@@ -52,6 +52,12 @@ animation_add(CHAR_SONIC, "spin", ctl_sonic_roll, ctl_sonic_spin_flight, ctl_son
 animation_add(CHAR_SONIC, "brake", ctl_sonic_brake);
 animation_add(CHAR_SONIC, "brake_fast", ctl_sonic_brake_fast);
 
+// Hurt:
+animation_add(CHAR_SONIC, "hurt", ctl_sonic_hurt);
+
+// Death:
+animation_add(CHAR_SONIC, "death", ctl_sonic_death);
+
 // Push:
 animation_add(CHAR_SONIC, "push", ctl_sonic_push);
 
@@ -62,12 +68,6 @@ animation_add(CHAR_SONIC, "spring_fall", ctl_sonic_spring_fall);
 // Breathe:
 
 // Goal:
-
-// Hurt:
-animation_add(CHAR_SONIC, "hurt", ctl_sonic_hurt);
-
-// Death:
-animation_add(CHAR_SONIC, "death", ctl_sonic_death);
 
 // Hammer:
 animation_add(CHAR_SONIC, "hammer", ctl_sonic_hammer);

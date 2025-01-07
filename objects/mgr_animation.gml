@@ -9,6 +9,7 @@ applies_to=self
 // Animation grid:
 animation_grid = ds_grid_create(0, 0);
 animation_init_sonic();
+animation_init_classic();
 #define Other_3
 /*"/*'/**//* YYD ACTION
 lib_id=1
