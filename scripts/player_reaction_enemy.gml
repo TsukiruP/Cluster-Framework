@@ -7,7 +7,7 @@ reaction_handle = argument0;
 collision = argument1;
 
 // Player advantage:
-if ((collision & COLL_HURT) || ((collision & COLL_HURT_RADIUS) && status_invin == INVIN_BUFF))
+if ((collision & COLL_INTERACT && status_invin == INVIN_BUFF) || (collision & COLL_HIT && status_invin == INVIN_BUFF))
 {
     // Basic react:
     if (reaction_handle.class == ENE_BASIC)
@@ -62,7 +62,7 @@ if ((collision & COLL_HURT) || ((collision & COLL_HURT_RADIUS) && status_invin =
 }
 
 // Enemy advantage:
-else if (((collision & COLL_HIT) || (collision & COLL_HIT_RADIUS)) && (reaction_handle.hitbox_element == 0 || (status_shield - SHIELD_BUBBLE != reaction_handle.hitbox_element)))
+else if (collision & COLL_HURT && (reaction_handle.hitbox_element == 0 || (status_shield - SHIELD_BUBBLE != reaction_handle.hitbox_element)))
 {
     player_set_damage(reaction_handle);
 }

@@ -8,7 +8,7 @@ collision = argument1;
 side = argument2;
 
 // Activate hint:
-if (collision & COLL_HURT_RADIUS)
+if (collision & COLL_INTERACT)
 {
     if (side == reaction_handle.angle)
     {

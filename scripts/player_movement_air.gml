@@ -49,8 +49,13 @@ repeat (total_steps)
         // Eject from wall:
         wall_sign = player_wall_eject(hit_wall);
 
-        // Trigger reaction:
-        // [PLACEHOLDER]
+        // React:
+        player_react(hit_wall, COLL_SOLID);
+        
+        if (state_changed == true)
+        {
+            return false;
+        }
 
         // Stop if moving towards wall:
         if (sign(x_speed) == wall_sign)
@@ -94,8 +99,13 @@ repeat (total_steps)
 
         if (hit_floor != noone)
         {
-            // Trigger reaction:
-            // [PLACEHOLDER]
+            // React:
+            player_react(hit_wall, COLL_SOLID);
+            
+            if (state_changed == true)
+            {
+                return false;
+            }
 
             // Get floor data:
             player_set_ground(hit_floor);
@@ -111,8 +121,13 @@ repeat (total_steps)
 
         if (hit_floor != noone)
         {
-            // Trigger reaction:
-            // [PLACEHOLDER]
+            // React:
+            player_react(hit_wall, COLL_SOLID);
+            
+            if (state_changed == true)
+            {
+                return false;
+            }
 
             // Rotate mask to ceiling:
             mask_rotation = angle_wrap(mask_rotation + 180);

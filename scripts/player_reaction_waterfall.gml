@@ -7,7 +7,7 @@ reaction_handle = argument0;
 collision = argument1;
 
 // Activate hint:
-if (collision & COLL_HURT_RADIUS)
+if (collision & COLL_INTERACT)
 {
     waterfall_draw = true;
 }

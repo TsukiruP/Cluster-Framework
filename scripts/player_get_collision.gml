@@ -25,16 +25,16 @@ if (inst != noone)
     ax_int = floor(x);
     ay_int = floor(y);
 
-    aleft = hitbox_left;
-    atop = hitbox_top;
-    aright = hitbox_right;
-    abottom = hitbox_bottom;
+    aleft = hurtbox_left;
+    atop = hurtbox_top;
+    aright = hurtbox_right;
+    abottom = hurtbox_bottom;
 
     adir_x = image_xscale;
     adir_y = image_yscale;
 
-    aoff_x = hitbox_offset_x * adir_x;
-    aoff_y = hitbox_offset_y * adir_y;
+    aoff_x = hurtbox_offset_x * adir_x;
+    aoff_y = hurtbox_offset_y * adir_y;
 
     arot = mask_rotation;
     asine = dsin(arot);
@@ -59,25 +59,28 @@ if (inst != noone)
     bsine = dsin(brot);
     bcsine = dcos(brot);
 
+    // Swap to object's hitbox:
     if (phase == 1)
     {
-        // Swap to player hurtbox values:
-        aleft = hurtbox_left;
-        atop = hurtbox_top;
-        aright = hurtbox_right;
-        abottom = hurtbox_bottom;
-
-        aoff_x = hurtbox_offset_x * image_xscale;
-        aoff_y = hurtbox_offset_y;
-
-        // Swap to object hitbox values:
         bleft = inst.hitbox_left;
         btop = inst.hitbox_top;
         bright = inst.hitbox_right;
         bbottom = inst.hitbox_bottom;
 
-        boff_x = inst.hitbox_offset_x * inst.image_xscale;
-        boff_y = inst.hitbox_offset_y;
+        boff_x = inst.hitbox_offset_x * bdir_x;
+        boff_y = inst.hitbox_offset_y * bdir_y;
+    }
+    
+    // Swap to player's hitbox:
+    if (phase == 2)
+    {
+        aleft = hitbox_left;
+        atop = hitbox_top;
+        aright = hitbox_right;
+        abottom = hitbox_bottom;
+
+        aoff_x = hitbox_offset_x * adir_x;
+        aoff_y = hitbox_offset_y * adir_y;
     }
 
     // Check object collision:
@@ -148,40 +151,7 @@ if (inst != noone)
             // Special collision:
             if (rectangle_in_rectangle(ax1, ay1, ax2, ay2, bx1, by1, bx2, by2))
             {
-                if (phase == 1)
-                {
-                    collision |= COLL_HIT;
-                }
-                else
-                {
-                    collision |= COLL_HURT;
-                }
-            }
-        }
-
-        // Radius collision:
-        if !(x_radius == 0 && y_radius == 0)
-        {
-            var upright;
-
-            upright = (arot mod 180 == 0);
-
-            if ((upright == true && rectangle_in_rectangle(ax_int - x_radius, ay_int - y_radius, ax_int + x_radius, ay_int + y_radius, bx1, by1, bx2, by2)) ||
-                (upright == false && rectangle_in_rectangle(ax_int - y_radius, ay_int - x_radius, ax_int + y_radius, ay_int + x_radius, bx1, by1, bx2, by2)))
-            {
-
-                // We've hit the object's hitbox:
-                if (phase == 1)
-                {
-                    collision |= COLL_HIT_RADIUS;
-                }
-
-                // We've hit the object's hurtbox:
-                else
-                {
-                    collision |= COLL_HURT_RADIUS;
-                }
-
+                collision |= pick(phase, COLL_INTERACT, COLL_HURT, COLL_HIT);
             }
         }
     }
@@ -190,7 +160,7 @@ if (inst != noone)
 // Failure OR move to next phase:
 if (phase == 0)
 {
-    return collision | player_get_collision(argument0, 1);
+    return collision | player_get_collision(argument0, 1) | player_get_collision(argument0, 2);
 }
 
 return collision;

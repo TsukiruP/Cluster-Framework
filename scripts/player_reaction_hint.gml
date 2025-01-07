@@ -7,7 +7,7 @@ reaction_handle = argument0;
 collision = argument1;
 
 // Activate hint:
-if (collision & COLL_HURT_RADIUS)
+if (collision & COLL_INTERACT)
 {
     if (mask_rotation == reaction_handle.gravity_direction && on_ground == true && input_cpu == false)
     {

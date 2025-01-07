@@ -21,7 +21,7 @@ if (argument_count >= 2)
 }
 
 // Execute reaction:
-if (object_is_ancestor(object_handle.object_index, par_obstacle))
+if (object_is_ancestor(object_handle.object_index, par_terrain))
 {
     var side;
 

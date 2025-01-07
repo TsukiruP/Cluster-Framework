@@ -7,7 +7,7 @@ reaction_handle = argument0;
 collision = argument1;
 
 // Break item box:
-if ((collision & COLL_HURT) || (collision & COLL_HURT_RADIUS))
+if ((collision & COLL_INTERACT) || (collision & COLL_HIT))
 {
     if (input_cpu == false || (input_cpu == true && input_cpu_alarm > 0))
     {

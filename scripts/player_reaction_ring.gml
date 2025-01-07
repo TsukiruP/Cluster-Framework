@@ -7,7 +7,7 @@ reaction_handle = argument0;
 collision = argument1;
 
 // Collect ring:
-if (collision & COLL_HURT_RADIUS)
+if (collision & COLL_INTERACT)
 {
     if (status_invin != INVIN_HURT || (status_invin == INVIN_HURT && status_invin_alarm > 0 && status_invin_alarm < 90))
     {

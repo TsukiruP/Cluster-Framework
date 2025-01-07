@@ -7,7 +7,7 @@ reaction_handle = argument0;
 collision = argument1;
 
 // Activate spring:
-if (collision & COLL_HURT_RADIUS)
+if (collision & COLL_INTERACT)
 {
     var is_dash_ring;
 

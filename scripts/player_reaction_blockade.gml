@@ -8,7 +8,7 @@ collision = argument1;
 side = argument2;
 
 // Activate hint:
-if (collision & COLL_HURT)
+if (collision & COLL_HIT)
 {
     if (((side == ANGLE_LEFT || side == ANGLE_RIGHT) && reaction_handle.orientation == ORIEN_VERTICAL) ||
         ((side == ANGLE_UP || side == ANGLE_DOWN) && reaction_handle.orientation == ORIEN_HORIZONTAL && sign(y_speed) == dsin(side)))
