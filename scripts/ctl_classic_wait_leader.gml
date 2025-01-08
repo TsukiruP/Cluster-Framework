@@ -14,25 +14,25 @@ if (ctl_position(0))
 }
 
 // Change frame:
-else if (ctl_position(6))
-{
-    image_index = 1;
-}
-
-// Change frame:
-else if (ctl_position(12))
-{
-    image_index = 2;
-}
-
-// Change frame:
 else if (ctl_position(18))
 {
     image_index = 1;
 }
 
+// Change frame:
+else if (ctl_position(36))
+{
+    image_index = 2;
+}
+
+// Change frame:
+else if (ctl_position(54))
+{
+    image_index = 1;
+}
+
 // Loop animation:
-else if (ctl_position(23))
+else if (ctl_position(71))
 {
     ctl_moment = 0;
 }
