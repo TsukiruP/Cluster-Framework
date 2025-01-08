@@ -11,9 +11,9 @@ switch (argument0)
         // Set animation:
         if (player_get_cliff() == 0)
         {
-            if (animation_current != "stand" && animation_current != "wait" && animation_current != "ready" && animation_current != "land" &&
-                animation_current != "look_end" && animation_current != "crouch_end" &&
-                animation_current != "look" && animation_current != "omochao" && animation_current != "omochao_end")
+            if (animation_current != "wait" && animation_current != "ready" && animation_current != "land" &&
+                animation_current != "look" && animation_current != "look_end" && animation_current != "crouch_end" &&
+                animation_current != "omochao" && animation_current != "omochao_end")
             {
                 player_set_animation("stand");
             }
