@@ -43,6 +43,16 @@ for (i = 0; i < PLAYER_COUNT; i += 1)
             else
             {
                 input_cpu = true;
+                input_cpu_up_queue = ds_queue_create();
+                input_cpu_down_queue = ds_queue_create();
+                input_cpu_jump_queue = ds_queue_create();
+
+                repeat (16)
+                {
+                    ds_queue_enqueue(input_cpu_up_queue, false);
+                    ds_queue_enqueue(input_cpu_down_queue, false);
+                    ds_queue_enqueue(input_cpu_jump_queue, false);
+                }
             }
         }
     }

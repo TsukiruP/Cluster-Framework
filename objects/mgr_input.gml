@@ -513,33 +513,3 @@ for (i = INP_UP; i <= INP_RIGHT; i += 2)
         input_user[i + 1, CHECK_HELD] = false;
     }
 }
-#define Other_10
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Create Partner Queues
-
-partner_input_up = ds_queue_create();
-partner_input_down = ds_queue_create();
-partner_input_jump = ds_queue_create();
-
-// Populate Queues:
-repeat (16)
-{
-    ds_queue_enqueue(partner_input_up, false);
-    ds_queue_enqueue(partner_input_down, false);
-    ds_queue_enqueue(partner_input_jump, false);
-}
-#define Other_11
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Clear Partner Queues
-
-ds_queue_clear(partner_input_up);
-ds_queue_clear(partner_input_down);
-ds_queue_clear(partner_input_jump);

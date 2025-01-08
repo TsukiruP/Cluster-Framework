@@ -9,7 +9,7 @@ collision = argument1;
 // Break item box:
 if ((collision & COLL_INTERACT) || (collision & COLL_HIT))
 {
-    if (input_cpu == false || (input_cpu == true && input_cpu_alarm > 0))
+    if (input_cpu == false || (input_cpu == true && input_cpu_gamepad_alarm > 0))
     {
         // Homing:
         sonic_routine_homing();

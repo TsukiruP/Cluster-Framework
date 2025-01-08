@@ -536,4 +536,5 @@
 			|player_ring_loss
 			|player_brake_dust
 			|player_surface_splash
+			|player_cpu_respawn
 	+Props

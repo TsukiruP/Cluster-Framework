@@ -1,16 +1,10 @@
 /// stage_start()
 // Sets up everything for a stage to start.
 
-// Player input lock:
-if (instance_exists(stage_get_player(0)))
+// Input lock:
+with (obj_player)
 {
-    with (stage_get_player(0))
-    {
-        if (input_lock != false)
-        {
-            input_lock = false;
-        }
-    }
+    input_lock = false;
 }
 
 // Allow time:
