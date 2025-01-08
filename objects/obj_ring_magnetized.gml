@@ -54,13 +54,3 @@ if (instance_exists(stage_get_player(0)))
         instance_destroy();
     }
 }
-#define Draw_0
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Draw Ring
-
-// Ring:
-draw_sprite_ext(sprite_index, -1, x, y, image_xscale, image_yscale, image_angle, image_blend, image_alpha);
