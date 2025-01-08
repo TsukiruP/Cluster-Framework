@@ -51,10 +51,16 @@ switch (animation_current)
 
     // Spin:
     case "spin":
-        // Spin flight & fall:
-        if (state_current == player_state_jump || (state_current == sonic_state_drop_dash && drop_dash_alarm > 0))
+        // Spin flight:
+        if (state_current == player_state_jump)
         {
             return 1;
+        }
+
+        // Drop dash:
+        if (drop_dash_alarm > 0)
+        {
+            return animation_variant;
         }
 
     // Death:
