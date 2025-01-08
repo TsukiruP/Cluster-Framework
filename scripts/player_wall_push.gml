@@ -3,10 +3,12 @@
 
 var push_handle, ox, oy;
 
+// Animate:
+player_set_animation("push");
+
 // Initialize:
 ox = dcos(angle) * argument1;
 oy = dsin(angle) * argument1;
-wall_push = true;
 
 with (argument0)
 {

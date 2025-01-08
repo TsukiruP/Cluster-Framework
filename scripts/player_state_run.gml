@@ -5,8 +5,6 @@ switch (argument0)
 {
     // Start:
     case STATE_START:
-        // Wall push:
-        wall_push = false;
         break;
 
     // Step:
@@ -130,7 +128,6 @@ switch (argument0)
 
     // Finish:
     case STATE_FINISH:
-        //wall_push = false;
         input_lock_alarm = 0;
         break;
 }

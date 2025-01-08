@@ -77,7 +77,6 @@ var i;
 solid_list = ds_list_create();
 layer = 0;
 cliff_direction = 0;
-wall_push = false;
 
 // Reset:
 player_reset_air();
@@ -366,7 +365,7 @@ if (input_lock == false)
                 input_player[INP_RIGHT, CHECK_HELD] = false;
             }
 
-            // Queues:
+            // Up/down:
             input_player[INP_UP, CHECK_HELD] = ds_queue_dequeue(input_cpu_up_queue);
             input_player[INP_DOWN, CHECK_HELD] = ds_queue_dequeue(input_cpu_down_queue);
 
@@ -418,9 +417,8 @@ if (input_lock == false)
             // Climb:
 
             // Push:
-            if (abs(leader_handle.x - x) > 64 && wall_push == true)
+            if (abs(leader_handle.x - x) > 64 && animation_current == "push")
             {
-                //wall_push = false;
                 input_player[INP_JUMP, CHECK_PRESSED] = true;
             }
 
