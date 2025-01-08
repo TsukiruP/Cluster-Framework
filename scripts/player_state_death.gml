@@ -45,9 +45,19 @@ switch (argument0)
             death_alarm -= 1;
 
             // Transition:
-            if (death_alarm == 64 && input_cpu == false && !instance_exists(death_handle))
+            if (death_alarm == 64)
             {
-                death_handle = transition_create(room, TRANS_RETRY);
+                if (input_cpu == false)
+                {
+                    if (!instance_exists(death_handle))
+                    {
+                        death_handle = transition_create(room, TRANS_RETRY);
+                    }
+                }
+                else
+                {
+                    player_cpu_respawn();
+                }
             }
         }
         break;
