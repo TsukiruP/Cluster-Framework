@@ -48,7 +48,7 @@ switch (argument0)
         // Movement:
         if (!player_movement_air())
         {
-            exit;
+            return false;
         }
 
         // Land:

@@ -30,7 +30,7 @@ switch (argument0)
         // Movement:
         if (!player_movement_air())
         {
-            exit;
+            return false;
         }
 
         // Land:
@@ -110,12 +110,12 @@ switch (argument0)
                 animation_skip = true;
 
                 // Set state:
-                player_set_state(player_state_jump, false);
+                return player_set_state(player_state_jump, false);
             }
             else
             {
                 // Set state:
-                player_set_state(state_previous, false)
+                return player_set_state(state_previous, false)
             }
         }
 

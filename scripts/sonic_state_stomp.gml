@@ -38,7 +38,7 @@ switch (argument0)
                 // Movement:
                 if (!player_movement_air())
                 {
-                    exit;
+                    return false;
                 }
 
                 // Land:
@@ -83,7 +83,7 @@ switch (argument0)
             // Movement:
             if (!player_movement_ground())
             {
-                exit;
+                return false;
             }
 
             // Fall:

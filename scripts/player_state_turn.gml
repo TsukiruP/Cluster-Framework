@@ -48,7 +48,7 @@ switch (argument0)
         // Idle:
         if (animation_finished == true)
         {
-            player_set_state(player_state_idle);
+            return player_set_state(player_state_idle);
         }
 
         // Skill:

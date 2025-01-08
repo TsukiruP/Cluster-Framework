@@ -28,7 +28,7 @@ switch (argument0)
         // Movement:
         if (!player_movement_air())
         {
-            exit;
+            return false;
         }
 
         // Land:
@@ -40,7 +40,7 @@ switch (argument0)
         // Reset:
         if (!instance_exists(homing_handle))
         {
-            player_set_state(player_state_jump, false);
+            return player_set_state(player_state_jump, false);
         }
         break;
 
