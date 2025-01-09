@@ -1,67 +1,55 @@
 /// ctl_sonic_push()
 
-// Start animation:
 if (ctl_position(0))
 {
-    // Set sprite:
     sprite_index = spr_sonic_push;
     image_index = 0;
 
-    // Set collision:
     radii_set(6, 14, 3);
     hurtbox_set(6, 13, 6, 15);
     hitbox_set();
 }
 
-// Change frame:
 else if (ctl_position(4))
 {
     image_index = 1;
 }
 
-// Change frame:
 else if (ctl_position(10))
 {
     image_index = 2;
 }
 
-// Change frame:
 else if (ctl_position(16))
 {
     image_index = 3;
 }
 
-// Change frame:
 else if (ctl_position(22))
 {
     image_index = 4;
 }
 
-// Change frame:
 else if (ctl_position(28))
 {
     image_index = 5;
 }
 
-// Change frame:
 else if (ctl_position(34))
 {
     image_index = 6;
 }
 
-// Change frame:
 else if (ctl_position(40))
 {
     image_index = 7;
 }
 
-// Change frame:
 else if (ctl_position(46))
 {
     image_index = 8;
 }
 
-// Loop animation:
 else if (ctl_position(51))
 {
     ctl_moment = 4;

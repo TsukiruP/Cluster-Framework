@@ -253,10 +253,10 @@
 			|save_menu_preview
 	+Timelines
 		|ctl_init
+		|ctl_set
 		|ctl_update
 		|ctl_skip
 		|ctl_position
-		|ctl_set
 		+Indexes
 			|ctl_template
 			+Player
