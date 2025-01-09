@@ -1,15 +1,13 @@
 /// input_get_check(input, check, [device])
-// Returns whether the input meets the check.
+/* Returns whether the input meets the check. */
 
 with (mgr_input)
 {
     var input_id, input_device;
 
-    // Initialize:
     input_id = argument0;
     input_device = DEV_USER;
 
-    // Set device:
     if (argument_count >= 3)
     {
         input_device = argument[2];
@@ -45,13 +43,10 @@ with (mgr_input)
     {
         var i, gamepad_id;
 
-        // Gamepad offset:
         input_device -= DEV_GAMEPAD0;
-
-        // Gamepad id:
         gamepad_id = gamepad_device[input_device, 0];
 
-        // Gamepad range:
+        // Any:
         if (input_id == INP_ANY)
         {
             for (i = PAD_FACE1; i <= PAD_SHARE; i += 1)

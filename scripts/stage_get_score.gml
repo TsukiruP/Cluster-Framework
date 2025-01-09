@@ -1,5 +1,5 @@
 /// stage_get_score()
-// Returns the stage score.
+/* Returns the stage score. */
 
 with (mgr_stage)
 {

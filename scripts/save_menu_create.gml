@@ -1,5 +1,5 @@
 /// save_menu_create(mode)
-// Creates a save menu with the given mode.
+/* Creates a save menu with the given mode. */
 
 if (!instance_exists(mnu_save))
 {
@@ -8,6 +8,5 @@ if (!instance_exists(mnu_save))
         menu_mode = argument0;
     }
 
-    // Play sound:
     audio_play_sfx("snd_menu_open", true);
 }

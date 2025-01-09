@@ -1,6 +1,5 @@
 /// ctl_template()
 
-// Start animation/effect:
 if (ctl_position(0))
 {
     // Set sprite:
@@ -8,7 +7,6 @@ if (ctl_position(0))
     image_index = 0;
 }
 
-// Null/Change/Finish/Loop frame/effect/animation:
 else if (ctl_position(15))
 {
     ctl_moment = 0;

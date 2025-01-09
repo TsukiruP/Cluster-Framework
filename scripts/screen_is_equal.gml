@@ -1,5 +1,5 @@
 /// screen_is_equal(width, height)
-// Returns whether the screen size matches the given dimensions.
+/* Returns whether the screen size matches the given dimensions. */
 
 with (mgr_screen)
 {

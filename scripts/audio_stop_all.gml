@@ -1,5 +1,5 @@
 /// audio_stop_all()
-// Stops all audio.
+/* Stops all audio. */
 
 with (mgr_audio)
 {

@@ -1,28 +1,23 @@
 /// game_reset_config()
-// Resets config map.
+/* Resets config map. */
 
 var i;
 
-// Interface:
 game_set_config("interface_red", 0);
 game_set_config("interface_green", 24);
 game_set_config("interface_blue", 176);
 game_set_config("interface_alpha", 0.6);
 
-// Screen:
 game_set_config("screen_mode", 0);
 game_set_config("screen_ratio", 0);
 game_set_config("screen_scale", 1);
 game_set_config("screen_full", false);
 
-// Audio:
 game_set_config("audio_sfx", 50);
 game_set_config("audio_bgm", 0);
 
-// Keyboard:
 game_config_reset_key();
 
-// Gamepad:
 for (i = 0; i < PLAYER_COUNT; i += 1)
 {
     var gamepad_string;
@@ -37,18 +32,15 @@ for (i = 0; i < PLAYER_COUNT; i += 1)
 
 game_set_config("input_gamepad_focus", true);
 
-// Gameplay:
 game_set_config("gameplay_shields", 0);
 game_set_config("gameplay_debuffs", true);
 game_set_config("gameplay_bonuses", true);
 
-// Advance:
 game_set_config("advance_turn", true);
 game_set_config("advance_brake", true);
 game_set_config("advance_hurt", true);
 game_set_config("advance_flicker", true);
 
-// Misc.:
 game_set_config("misc_hud", 1);
 game_set_config("misc_status", 1);
 game_set_config("misc_feed", true);

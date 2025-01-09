@@ -1,5 +1,5 @@
 /// audio_drown_isplaying()
-// Returns whether drowning music is playing.
+/* Returns whether drowning music is playing. */
 
 with (mgr_audio)
 {

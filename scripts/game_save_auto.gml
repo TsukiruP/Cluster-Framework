@@ -1,5 +1,6 @@
 /// game_save_auto()
-// Writes a save to the last saved slot.
+/* Writes a save to the last saved slot.
+Tells the game manager to draw the autosave indicator. */
 
 with (mgr_game)
 {

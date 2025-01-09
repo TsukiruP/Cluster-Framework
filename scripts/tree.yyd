@@ -42,6 +42,7 @@
 				|game_save_exists
 				|game_save_auto
 			+Room
+				|game_room_add
 				|game_get_room_transition
 				|game_get_room_music
 				|game_get_room_background
@@ -50,7 +51,6 @@
 				|game_get_room_water
 				|game_get_room_start
 				|game_get_room_run
-				|game_room_add
 			+Misc.
 				|game_get_player_count
 				|game_get_speed
@@ -256,7 +256,7 @@
 		|ctl_update
 		|ctl_skip
 		|ctl_position
-		|timeline_set
+		|ctl_set
 		+Indexes
 			|ctl_template
 			+Player

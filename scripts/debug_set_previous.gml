@@ -1,5 +1,5 @@
 /// debug_set_previous()
-// Pops from the history stack to read from it.
+/* Pops from the history stack to read from it. */
 
 if (!ds_stack_empty(history_stack))
 {
@@ -12,15 +12,9 @@ if (!ds_stack_empty(history_stack))
     menu_option = ds_list_find_value(history_list, 2);
     menu_scroll = ds_list_find_value(history_list, 3);
 
-    // Set list:
     debug_set_menu(menu_index);
-
-    // Destroy list:
     ds_list_destroy(history_list);
-
-    // Success:
     return true;
 }
 
-// Failure:
 return false;

@@ -1,5 +1,5 @@
 /// game_config_set_btn(id, input, button)
-// Sets a button in a gamepad list.
+/* Sets a button in a gamepad list. */
 
 with (mgr_game)
 {

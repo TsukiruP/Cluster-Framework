@@ -1,5 +1,4 @@
 /// debug_menu_home()
-// Home of the debug menu.
 
 debug_add_option(debug_option_character);
 debug_add_option(debug_option_transition);

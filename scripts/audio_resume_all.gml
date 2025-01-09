@@ -1,5 +1,5 @@
 /// audio_resume_all()
-// Resumes all currently paused audio.
+/* Resumes all currently paused audio. */
 
 with (mgr_audio)
 {

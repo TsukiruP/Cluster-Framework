@@ -1,5 +1,5 @@
 /// game_set_speed()
-// Sets game speed.
+/* Sets game speed. */
 
 with (mgr_game)
 {

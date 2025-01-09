@@ -77,5 +77,5 @@ else if (ctl_position(22))
 // Change effect:
 else if (ctl_position(23))
 {
-    timeline_set(ctl_shield_fire);
+    ctl_set(ctl_shield_fire);
 }

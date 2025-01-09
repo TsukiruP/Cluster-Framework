@@ -1,5 +1,5 @@
 /// audio_pause_drown()
-// Pauses the drowning music.
+/* Pauses the drowning music. */
 
 with (mgr_audio)
 {

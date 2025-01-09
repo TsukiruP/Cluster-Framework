@@ -1,5 +1,5 @@
 // audio_fade_bgm(out)
-// Adjusts music volume to imitate fading in or out.
+/* Adjusts music volume to imitate fading in or out. */
 
 // Fade out:
 if (argument0 == true)

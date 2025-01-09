@@ -1,5 +1,5 @@
 /// game_config_get_btn(id, input)
-// Returns a button from a gamepad list.
+/* Returns a button from a gamepad list. */
 
 with (mgr_game)
 {

@@ -1,5 +1,4 @@
 /// debug_menu_misc()
-// Misc. config.
 
 debug_add_option(debug_option_misc_hud);
 debug_add_option(debug_option_misc_status);

@@ -1,5 +1,5 @@
 /// text_set_clear()
-// Sets the text to be cleared.
+/* Clears text. */
 
 with (mgr_text)
 {

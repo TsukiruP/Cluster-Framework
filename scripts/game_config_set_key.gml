@@ -1,5 +1,5 @@
 /// game_config_set_key(input, key)
-// Sets a key in the keyboard list.
+/* Sets a key in the keyboard list. */
 
 with (mgr_game)
 {

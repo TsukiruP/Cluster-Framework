@@ -1,18 +1,16 @@
 /// game_save_exists(id)
-// Returns whether a save file exists.
+/* Returns whether a save file exists. */
 
 with (mgr_game)
 {
     var save_exists;
 
-    // Initialize:
     save_exists = false;
 
     if (file_exists(save_directory + "save" + string(argument0) + ".sav"))
     {
         var save_temp;
 
-        // Initalize:
         save_temp = game_load_save_buffer(argument0);
 
         // Check game and version:

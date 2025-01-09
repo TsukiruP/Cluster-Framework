@@ -1,5 +1,5 @@
 /// stage_set_time(val)
-// Sets the stage time.
+/* Sets the stage time. */
 
 with (mgr_stage)
 {

@@ -10,7 +10,7 @@ effect.depth = depth;
 with (effect)
 {
     // Set timeline:
-    timeline_set(argument0);
+    ctl_set(argument0);
 
     // Set depth:
     if (argument_count >= 4)

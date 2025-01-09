@@ -1,5 +1,5 @@
 /// text_set_handle(obj)
-// Sets text handle.
+/* Sets text handle. */
 
 with (mgr_text)
 {

@@ -1,5 +1,5 @@
 /// game_set_debug(debug)
-// Sets game debug.
+/* Sets game debug. */
 
 with (mgr_game)
 {

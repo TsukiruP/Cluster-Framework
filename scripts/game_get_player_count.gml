@@ -1,5 +1,5 @@
 /// game_get_player_count()
-// Returns player count.
+/* Returns player count. */
 
 with (mgr_game)
 {

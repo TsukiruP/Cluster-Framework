@@ -1,5 +1,5 @@
 /// audio_ring_pan()
-// Inverses and returns the ring pan.
+/* Inverses and returns the ring pan. */
 
 with (mgr_audio)
 {

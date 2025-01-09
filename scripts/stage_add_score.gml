@@ -1,5 +1,5 @@
 /// stage_add_score(val)
-// Adds to the stage score.
+/* Adds to the stage score. */
 
 with (mgr_stage)
 {

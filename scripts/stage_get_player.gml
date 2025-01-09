@@ -1,5 +1,5 @@
 /// stage_get_player(id)
-// Returns a stage player.
+/* Returns a stage player. */
 
 with (mgr_stage)
 {

@@ -1,5 +1,5 @@
 /// game_delete_save(id)
-// Deletes a save file.
+/* Deletes a save file. */
 
 with (mgr_game)
 {

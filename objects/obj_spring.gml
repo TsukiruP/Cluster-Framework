@@ -55,7 +55,7 @@ if (activated == true)
 // Reset frame:
 if (activated == false)
 {
-    timeline_set(ctl_index);
+    ctl_set(ctl_index);
     image_index = 0;
 }
 #define Other_4

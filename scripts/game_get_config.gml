@@ -1,5 +1,5 @@
 /// game_get_config(key)
-// Returns a value from the config map.
+/* Returns a value from the config map. */
 
 with (mgr_game)
 {

@@ -1,5 +1,5 @@
 /// game_set_save(key, value)
-// Sets a value in the save map.
+/* Sets a value in the save map. */
 
 with (mgr_game)
 {

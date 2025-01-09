@@ -1,5 +1,5 @@
 /// audio_fade_out()
-// Fades out all music.
+/* Fades out all music. */
 
 with (mgr_audio)
 {

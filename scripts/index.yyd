@@ -125,7 +125,7 @@ player_state_turn
 player_set_state
 player_set_animation
 game_read_save
-timeline_set
+ctl_set
 player_reaction_checkpoint
 ctl_init
 ctl_sonic_run_0

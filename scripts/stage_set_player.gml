@@ -1,5 +1,5 @@
 /// stage_set_player(id, obj)
-// Sets a stage player.
+/* Sets a stage player. */
 
 with (mgr_stage)
 {

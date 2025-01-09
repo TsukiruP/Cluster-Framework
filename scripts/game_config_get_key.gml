@@ -1,5 +1,5 @@
 /// game_config_get_key(input)
-// Returns a key from the keyboard list.
+/* Returns a key from the keyboard list. */
 
 with (mgr_game)
 {

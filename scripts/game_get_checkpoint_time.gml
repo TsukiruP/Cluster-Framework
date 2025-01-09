@@ -1,5 +1,5 @@
 /// game_get_checkpoint_time()
-// Returns checkpoint time.
+/* Returns checkpoint time. */
 
 with (mgr_game)
 {

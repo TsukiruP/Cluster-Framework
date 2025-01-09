@@ -1,5 +1,5 @@
 /// game_get_checkpoint_x()
-// Returns checkpoint x.
+/* Returns checkpoint x. */
 
 with (mgr_game)
 {

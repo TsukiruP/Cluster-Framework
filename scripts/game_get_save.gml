@@ -1,5 +1,5 @@
 /// game_get_save(key)
-// Returns a value from the save map.
+/* Returns a value from the save map. */
 
 with (mgr_game)
 {

@@ -1,5 +1,6 @@
 /// game_get_room_act([room])
-// Returns the zone from the room grid. Defaults to the current room.
+/* Returns the act of a room. Defaults to the current room.
+If the room has no act set, returns 0. */
 
 with (mgr_game)
 {

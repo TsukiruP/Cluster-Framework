@@ -42,14 +42,14 @@ if (active == true)
 {
     if (ctl_index != ctl_checkpoint_active)
     {
-        timeline_set(ctl_checkpoint_active);
+        ctl_set(ctl_checkpoint_active);
     }
 }
 else
 {
     if (ctl_index != ctl_checkpoint_inactive)
     {
-        timeline_set(ctl_checkpoint_inactive);
+        ctl_set(ctl_checkpoint_inactive);
     }
 }
 

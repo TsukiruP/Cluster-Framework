@@ -1,7 +1,6 @@
 /// game_init_save()
-// Initializes save data.
+/* Initializes save data. */
 
-// Initialize:
 save_directory = "data\saves\"
 save_encryption = "";
 save_id = -1;

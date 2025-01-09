@@ -1,5 +1,5 @@
 /// fade_reverse(fade)
-// Reverses the speed and target of the fade.
+/* Reverses the speed and target of the fade. */
 
 with (argument0)
 {

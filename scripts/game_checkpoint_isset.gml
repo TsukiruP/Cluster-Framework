@@ -1,5 +1,5 @@
 /// game_checkpoint_isset()
-// Returns whether checkpoint data has been set.
+/* Returns whether checkpoint data has been set. */
 
 with (mgr_game)
 {

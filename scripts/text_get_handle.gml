@@ -1,5 +1,5 @@
 /// text_get_handle()
-// Returns the text handle.
+/* Returns the text handle. */
 
 with (mgr_text)
 {

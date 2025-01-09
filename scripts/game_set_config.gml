@@ -1,5 +1,5 @@
 /// game_set_config(key, value)
-// Sets a value in the config map.
+/* Sets a value in the config map. */
 
 with (mgr_game)
 {

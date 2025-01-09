@@ -1,5 +1,5 @@
 /// audio_pause_jng()
-// Pauses the currently playing jingle.
+/* Pauses the currently playing jingle. */
 
 with (mgr_audio)
 {

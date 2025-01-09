@@ -17,5 +17,5 @@ else if (ctl_position(12))
 // Change effect:
 else if (ctl_position(17))
 {
-    timeline_set(ctl_shield_bubble);
+    ctl_set(ctl_shield_bubble);
 }

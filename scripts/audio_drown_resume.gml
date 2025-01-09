@@ -1,5 +1,5 @@
 /// audio_resume_drown()
-// Resumes the drowning music.
+/* Resumes the drowning music. */
 
 with (mgr_audio)
 {

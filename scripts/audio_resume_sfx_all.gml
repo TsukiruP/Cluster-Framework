@@ -1,5 +1,5 @@
 /// audio_resume_sfx_all()
-// Resumes all currently paused sounds.
+/* Resumes all currently paused sounds. */
 
 with (mgr_audio)
 {

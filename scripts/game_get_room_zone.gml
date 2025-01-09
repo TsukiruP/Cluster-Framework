@@ -1,5 +1,6 @@
 /// game_get_room_zone([room])
-// Returns the zone from the room grid. Defaults to the current room.
+/* Returns the zone of a room. Defaults to checking the current room.
+If the room has no zone set, returns "". */
 
 with (mgr_game)
 {

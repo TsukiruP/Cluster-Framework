@@ -1,5 +1,5 @@
 /// game_config_exists()
-// Returns whether the config file exists.
+/* Returns whether the config file exists. */
 
 with (mgr_game)
 {

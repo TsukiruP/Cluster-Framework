@@ -1,5 +1,5 @@
 /// audio_resume_jng()
-// Resumes the currently paused jingle.
+/* Resumes the currently paused jingle. */
 
 with (mgr_audio)
 {

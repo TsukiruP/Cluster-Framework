@@ -1,14 +1,13 @@
 /// gamepad_get_check(id, button, check)
-// Returns whether the button meets the check.
+/* Returns whether the button meets the check.
+If there's no gamepad at the id, returns false. */
 
 with (mgr_input)
 {
-    var gamepad_id, button_id;
+    var gamepad_id;
 
-    // Gamepad id:
     gamepad_id = gamepad_device[argument0, 0];
 
-    // Return false if the device isn't registered:
     if (gamepad_id <= -1)
     {
         return false;
@@ -43,10 +42,10 @@ with (mgr_input)
                 return gamepad_dpad[INP_RIGHT, argument2 + (argument0 * 3)];
 
             default:
-                // Button id:
+                var button_id;
+                
                 button_id = gamepad_button[argument1, gamepad_device[argument0, 1]];
 
-                // Button check:
                 switch (argument2)
                 {
                     // Pressed:

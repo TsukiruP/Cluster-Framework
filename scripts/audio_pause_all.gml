@@ -1,5 +1,5 @@
 /// audio_pause_all()
-// Pauses all currently playing audio.
+/* Pauses all currently playing audio. */
 
 with (mgr_audio)
 {

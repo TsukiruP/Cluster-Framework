@@ -1,5 +1,5 @@
 /// game_read_config()
-// Reads the config file and applies it.
+/* Reads the config file and applies it. */
 
 with (mgr_game)
 {

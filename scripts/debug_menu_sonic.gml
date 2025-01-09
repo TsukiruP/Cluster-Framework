@@ -1,5 +1,4 @@
 /// debug_menu_sonic()
-// Change Sonic's skills.
 
 debug_add_option(debug_option_sonic_jump);
 debug_add_option(debug_option_sonic_aux_ground);

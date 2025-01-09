@@ -1,5 +1,5 @@
 /// stage_get_time()
-// Returns the stage time.
+/* Returns the stage time. */
 
 with (mgr_stage)
 {

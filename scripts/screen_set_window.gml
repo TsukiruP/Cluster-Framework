@@ -1,5 +1,5 @@
 /// screen_set_window()
-// Resizes the window to screen configs.
+/* Resizes the window to screen configs. */
 
 if (!window_get_fullscreen())
 {

@@ -1,5 +1,6 @@
 /// game_get_room_run([room])
-// Returns the run from the room grid. Defaults to the current room.
+/* Returns the run of a room. Defaults to the current room.
+If the room has no run set, returns -1. */
 
 with (mgr_game)
 {

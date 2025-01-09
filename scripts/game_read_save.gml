@@ -1,5 +1,5 @@
 /// game_read_save(id)
-// Reads a save file and applies it.
+/* Reads a save file and applies it. */
 
 with (mgr_game)
 {
@@ -7,7 +7,6 @@ with (mgr_game)
     {
         var save_temp;
 
-        // Initialize:
         save_temp = game_load_save_buffer(argument0);
         save_id = argument0;
 

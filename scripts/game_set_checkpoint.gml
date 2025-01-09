@@ -1,5 +1,5 @@
 /// game_set_checkpoint([reset])
-// Sets the checkpoint values to the current game state.
+/* Sets the checkpoint values to the current game state. */
 
 with (mgr_game)
 {

@@ -1,5 +1,5 @@
 /// credits()
-// Return the list of credits to be given.
+/* Returns credits. */
 /*
 CODE
 Rubberduckycooly

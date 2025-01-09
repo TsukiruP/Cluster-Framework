@@ -1,5 +1,5 @@
 /// screen_get_height()
-// Returns the screen height.
+/* Returns screen height. */
 
 with (mgr_screen)
 {

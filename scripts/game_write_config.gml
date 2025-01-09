@@ -1,5 +1,5 @@
 /// game_write_config()
-// Writes the config map to file.
+/* Writes the config map to file. */
 
 with (mgr_game)
 {

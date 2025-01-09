@@ -32,7 +32,7 @@ if (player_handle.status_invin != INVIN_BUFF)
         case SHIELD_MAGNETIC:
             if (ctl_index != ctl_shield_magnetic)
             {
-                timeline_set(ctl_shield_magnetic);
+                ctl_set(ctl_shield_magnetic);
             }
             break;
 
@@ -40,7 +40,7 @@ if (player_handle.status_invin != INVIN_BUFF)
         case SHIELD_BUBBLE:
             if ((ctl_index != ctl_shield_bubble && ctl_index != ctl_shield_bubble_bound && ctl_index != ctl_shield_bubble_recoil) || shield_reset == true)
             {
-                timeline_set(ctl_shield_bubble);
+                ctl_set(ctl_shield_bubble);
             }
             break;
 
@@ -48,7 +48,7 @@ if (player_handle.status_invin != INVIN_BUFF)
         case SHIELD_FIRE:
             if ((ctl_index != ctl_shield_fire && ctl_index != ctl_shield_fire_dash) || shield_reset == true)
             {
-                timeline_set(ctl_shield_fire);
+                ctl_set(ctl_shield_fire);
             }
             break;
 
@@ -56,7 +56,7 @@ if (player_handle.status_invin != INVIN_BUFF)
         case SHIELD_LIGHTNING:
             if (ctl_index != ctl_shield_lightning)
             {
-                timeline_set(ctl_shield_lightning);
+                ctl_set(ctl_shield_lightning);
             }
             break;
 
@@ -64,7 +64,7 @@ if (player_handle.status_invin != INVIN_BUFF)
         default:
             if (ctl_index != ctl_shield_basic)
             {
-                timeline_set(ctl_shield_basic);
+                ctl_set(ctl_shield_basic);
             }
     }
 }
@@ -74,7 +74,7 @@ else
 {
     if (ctl_index != ctl_shield_invin)
     {
-        timeline_set(ctl_shield_invin);
+        ctl_set(ctl_shield_invin);
     }
 }
 
@@ -130,13 +130,13 @@ switch (player_handle.status_shield)
 {
     // Bubble bound:
     case SHIELD_BUBBLE:
-        timeline_set(ctl_shield_bubble_bound);
+        ctl_set(ctl_shield_bubble_bound);
         break;
 
         // Fire dash:
     case SHIELD_FIRE:
         image_xscale = player_handle.image_xscale;
-        timeline_set(ctl_shield_fire_dash);
+        ctl_set(ctl_shield_fire_dash);
         break;
 }
 #define Other_11
@@ -147,7 +147,7 @@ applies_to=self
 */
 /// Bubble Recoil
 
-timeline_set(ctl_shield_bubble_recoil);
+ctl_set(ctl_shield_bubble_recoil);
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1

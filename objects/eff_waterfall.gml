@@ -12,7 +12,7 @@ event_inherited();
 depth = -11;
 
 // Set index:
-timeline_set(ctl_splash_5);
+ctl_set(ctl_splash_5);
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1

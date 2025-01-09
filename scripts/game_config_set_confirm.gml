@@ -1,5 +1,5 @@
 /// game_config_set_confirm(id)
-// Sets the confirm and cancel buttons of a gamepad list.
+/* Sets the confirm and cancel buttons of a gamepad list. */
 
 switch (game_get_config("input_gamepad" + string(argument0) + "_confirm"))
 {

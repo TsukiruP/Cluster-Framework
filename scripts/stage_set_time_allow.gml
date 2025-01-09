@@ -1,5 +1,5 @@
 /// stage_set_time_allow(allow)
-// Sets whether time is allowed to progress.
+/* Sets whether time is allowed to progress. */
 
 with (mgr_stage)
 {

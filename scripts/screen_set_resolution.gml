@@ -1,5 +1,5 @@
 /// screen_set_resolution()
-// Sets the screen width and height based on configs.
+/* Sets the screen width and height based on configs. */
 
 switch (game_get_config("screen_mode"))
 {

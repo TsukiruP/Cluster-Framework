@@ -9,7 +9,7 @@ applies_to=self
 event_inherited();
 
 // Set index:
-timeline_set(ctl_debuff);
+ctl_set(ctl_debuff);
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
