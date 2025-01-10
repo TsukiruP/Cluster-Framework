@@ -13,8 +13,8 @@ if (dropped == true)
         super = other.super;
         dropped = true;
         lifespan = 256;
-        x_speed = other.hspeed;
-        y_speed = other.vspeed;
+        x_speed = clamp(other.hspeed, -4, 4);
+        y_speed = clamp(other.vspeed, -4, 4);
     }
 }
 #define Step_2
@@ -35,16 +35,17 @@ if (game_ispaused())
 
 if (instance_exists(stage_get_player(0)))
 {
-    var player_handle, xx, yy;
+    var player_handle, game_speed, xx, yy;
 
     // Move towards the player:
     player_handle = stage_get_player(0);
     xx = sign(player_handle.x - x);
     yy = sign(player_handle.y - y);
 
-    hspeed += (xx * (0.1875 + (0.75 * (sign(hspeed) != xx))));
-    vspeed += (yy * (0.1875 + (0.75 * (sign(vspeed) != yy))));
-    speed = clamp(speed, -64, 64) * game_get_speed();
+    game_speed = game_get_speed();
+    hspeed += (xx * (0.1875 + (0.75 * (sign(hspeed) != xx))) * game_speed);
+    vspeed += (yy * (0.1875 + (0.75 * (sign(vspeed) != yy))) * game_speed);
+    speed = min(abs(speed), 64 * game_speed) * sign(speed);
 
     // Drop a normal ring when no longer magnetized:
     if (player_handle.status_shield != SHIELD_MAGNETIC && player_handle.status_shield != SHIELD_LIGHTNING)
