@@ -49,7 +49,7 @@ transition_create
 room_set_view_all
 screen_set_window
 ctl_spinner
-sonic_skill_list
+player_skill_sonic
 sonic_state_homing
 pick_offset
 player_wall_push

@@ -473,7 +473,7 @@
 				|player_state_bound
 				+Auxiliary
 					|player_state_hammer
-			|sonic_skill_list
+			|player_skill_sonic
 			+Sonic
 				|sonic_state_skid
 				|sonic_state_drop_dash
