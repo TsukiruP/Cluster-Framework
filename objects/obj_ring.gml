@@ -59,7 +59,6 @@ applies_to=self
 */
 /// Movement
 
-// Animation:
 event_inherited();
 
 if (game_ispaused() || dropped == false)

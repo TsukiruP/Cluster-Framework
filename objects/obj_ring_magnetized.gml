@@ -29,6 +29,7 @@ event_inherited();
 
 if (game_ispaused())
 {
+    speed = 0;
     exit;
 }
 
@@ -52,3 +53,15 @@ if (instance_exists(stage_get_player(0)))
         instance_destroy();
     }
 }
+#define Draw_0
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Draw Ring
+
+// Ring:
+draw_self();
+
+event_inherited();
