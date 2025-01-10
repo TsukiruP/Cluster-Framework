@@ -11,8 +11,8 @@ event_inherited();
 hurtbox_set(8, 8, 7, 7, 0, 0);
 reaction_index = player_reaction_ring;
 
-ring_super = false;
-ring_rate = 8;
+super = false;
+rate = 8;
 dropped = false;
 #define Step_0
 /*"/*'/**//* YYD ACTION
@@ -22,15 +22,15 @@ applies_to=self
 */
 /// Super Ring
 
-if (ring_super == true)
+if (super == true)
 {
     sprite_index = spr_ring_super;
-    ring_rate = 6;
+    rate = 6;
 }
 else
 {
     sprite_index = spr_ring;
-    ring_rate = 8;
+    rate = 8;
 }
 #define Step_2
 /*"/*'/**//* YYD ACTION
@@ -45,7 +45,7 @@ if (game_ispaused(mnu_pause))
     exit;
 }
 
-image_index = sync_rate(game_get_time(), ring_rate / (1 + (dropped == true)), sprite_get_number(sprite_index));
+image_index = sync_rate(game_get_time(), rate / (1 + (dropped == true)), sprite_get_number(sprite_index));
 #define Other_4
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -54,15 +54,15 @@ applies_to=self
 */
 /// Field Initialization
 
-//field ring_super: false
+//field super: false
 
 /*preview
-    var ring_super;
+    var super;
 
-    ring_super = Field("ring_super", 0);
+    super = Field("super", 0);
     sprite_index = Sprite("spr_ring",  0);
 
-    if (ring_super == true)
+    if (super == true)
     {
         sprite_index = Sprite("spr_ring_super",  0);
     }

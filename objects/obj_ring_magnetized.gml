@@ -10,9 +10,9 @@ if (dropped == true)
 {
     with (instance_create(x, y, obj_ring))
     {
-        ring_super = other.ring_super;
-        lifespan = 256;
+        super = other.super;
         dropped = true;
+        lifespan = 256;
         x_speed = other.hspeed;
         y_speed = other.vspeed;
     }

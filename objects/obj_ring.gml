@@ -26,7 +26,7 @@ if (magnetized == true)
 {
     with (instance_create(x, y, obj_ring_magnetized))
     {
-        ring_super = other.ring_super;
+        super = other.super;
     }
 }
 #define Step_1
