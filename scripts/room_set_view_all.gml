@@ -1,5 +1,5 @@
 /// room_set_view_all(width, height)
-// Sets all the rooms to have views with the proper dimensions.
+/* Sets all the rooms to have views with the given dimensions. */
 
 var i;
 

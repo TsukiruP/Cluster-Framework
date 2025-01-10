@@ -1,29 +1,20 @@
 /// player_state_spin_dash(phase)
-// Charge and Up.
+/* Charge and Up. */
 
 switch (argument0)
 {
-    // Start:
     case STATE_START:
-        // Charge:
         spin_dash_charge = 0;
-
-        // Set animation:
         player_set_animation("spin_dash");
-
-        // Play sound:
         audio_play_sfx("snd_spin_dash_charge", true);
 
-        // Create dust:
         with (instance_create(x, y, eff_spin_dash))
         {
             player_handle = other.id;
         }
         break;
 
-    // Step:
     case STATE_STEP:
-        // Movement:
         if (!player_movement_ground())
         {
             return false;
@@ -32,49 +23,33 @@ switch (argument0)
         // Slide off:
         if (relative_angle >= 45 && relative_angle <= 315)
         {
-            // Fall:
             if (relative_angle >= 90 && relative_angle <= 270)
             {
                 return player_set_state(player_state_air);
             }
 
-            // Deploy input lock:
             input_lock_alarm = 30;
-
-            // Play sound:
             audio_play_sfx("snd_roll", true);
             return player_set_state(player_state_run);
         }
 
-        // Release:
         if (!player_get_input(INP_DOWN, CHECK_HELD))
         {
-            // Set speed:
-            x_speed = (8 + (spin_dash_charge div 2)) * image_xscale;
-
-            // Camera lag:
             if (input_cpu == false)
             {
                 camera_set_lag(16);
             }
 
-            // Play sound:
+            x_speed = (8 + (spin_dash_charge div 2)) * image_xscale;
             audio_play_sfx("snd_spin_dash_release", true);
-
-            // Stop sound:
             audio_stop_sfx("snd_spin_dash_charge");
             return player_set_state(player_state_roll);
         }
 
-        // Charge:
         if (player_get_input(INP_JUMP, CHECK_PRESSED))
         {
             spin_dash_charge = min(spin_dash_charge + 2, 8);
-
-            // Set animation:
             player_set_animation("spin_charge");
-
-            // Play sound:
             audio_play_sfx("snd_spin_dash_charge", true, 1 + spin_dash_charge * 0.0625);
         }
 
@@ -85,7 +60,6 @@ switch (argument0)
         }
         break;
 
-    // Finish:
     case STATE_FINISH:
         break;
 }

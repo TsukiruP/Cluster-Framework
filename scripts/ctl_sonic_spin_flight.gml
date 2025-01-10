@@ -2,16 +2,14 @@
 
 if (animation_skip == true)
 {
-    ctl_skip(5);
-
     sprite_index = spr_sonic_spin_flight;
+    ctl_skip(5);
 }
 
 if (ctl_position(0))
 {
     sprite_index = spr_sonic_spin_flight;
     image_index = 0;
-
     radii_set(6, 14, 3);
     hurtbox_set(6, 16, 6, 15);
     hitbox_set(6, 9, 6, 9);

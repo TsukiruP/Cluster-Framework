@@ -6,7 +6,6 @@ applies_to=self
 */
 /// Animation Initialization
 
-// Animation grid:
 animation_grid = ds_grid_create(0, 0);
 animation_init_sonic();
 animation_init_classic();

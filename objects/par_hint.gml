@@ -8,13 +8,9 @@ applies_to=self
 
 event_inherited();
 
-// Reaction:
 reaction_index = player_reaction_hint;
 
-// Player handle:
 player_handle = noone;
-
-// Hint id:
 hint_id = 0;
 #define Other_10
 /*"/*'/**//* YYD ACTION

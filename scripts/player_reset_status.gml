@@ -1,5 +1,5 @@
 /// player_reset_status()
-// Resets all status effects.
+/* Resets all status effects. */
 
 status_shield = SHIELD_NONE;
 status_invin = INVIN_NONE;

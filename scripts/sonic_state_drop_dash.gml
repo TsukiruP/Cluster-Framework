@@ -1,17 +1,14 @@
 /// sonic_state_drop_dash(phase)
-// Originally this had the same caption as brake. Unsure how that happened.
+/* Originally this had the same caption as brake. Unsure how that happened.
+Based off the SonicForGMS implementation. */
 
 switch (argument0)
 {
-    // Start:
     case STATE_START:
-        // Alarm:
         drop_dash_alarm = 20;
         break;
 
-    // Step:
     case STATE_STEP:
-        // Input:
         if (input_x_direction != 0)
         {
             image_xscale = input_x_direction;
@@ -27,26 +24,22 @@ switch (argument0)
             }
         }
 
-        // Movement:
         if (!player_movement_air())
         {
             return false;
         }
 
-        // Land:
         if (on_ground == true)
         {
             if (drop_dash_alarm == 0)
             {
                 var drop_dash_speed, drop_dash_max_speed;
 
-                // Face properly:
                 if (input_x_direction != 0 && image_xscale != input_x_direction)
                 {
                     image_xscale = input_x_direction;
                 }
 
-                // Drop Dash speed:
                 drop_dash_speed = 8;
                 drop_dash_max_speed = 12;
 
@@ -59,16 +52,10 @@ switch (argument0)
                     drop_dash_speed = min(drop_dash_speed + abs(x_speed / 2), drop_dash_max_speed);
                 }
 
-                // Set speed:
                 x_speed = drop_dash_speed * image_xscale;
-
-                // Play sound:
                 audio_play_sfx("snd_spin_dash_release", true);
-
-                // Stop sound:
                 audio_stop_sfx("snd_drop_dash");
 
-                // Create dust:
                 with (effect_create(ctl_drop_dash, x, y + y_radius))
                 {
                     image_xscale = other.image_xscale;
@@ -85,7 +72,6 @@ switch (argument0)
             }
         }
 
-        // Release:
         if (player_get_input(INP_JUMP, CHECK_HELD))
         {
             if (drop_dash_alarm > 0)
@@ -94,10 +80,7 @@ switch (argument0)
 
                 if (drop_dash_alarm == 0)
                 {
-                    // Set animation:
                     player_set_animation("spin");
-
-                    // Play sound:
                     audio_play_sfx("snd_drop_dash", true);
                 }
             }
@@ -106,28 +89,21 @@ switch (argument0)
         {
             if (drop_dash_alarm == 0)
             {
-                // Set animation:
                 animation_skip = true;
-
-                // Set state:
                 return player_set_state(player_state_jump, false);
             }
             else
             {
-                // Set state:
                 return player_set_state(state_previous, false)
             }
         }
 
-        // Skill:
+        // Bound:
         if (game_get_save("sonic_slam") == SKILL_BOUND_ATTACK && drop_dash_alarm == 0 && player_get_input(INP_DOWN, CHECK_HELD) && player_get_input(INP_AUX, CHECK_PRESSED))
         {
             if (y_speed < bound_speed)
             {
-                // Set speed:
                 y_speed = bound_speed;
-
-                // Play sound:
                 audio_play_sfx("snd_bound", true);
             }
         }
@@ -139,20 +115,17 @@ switch (argument0)
             }
         }
 
-        // Air friction:
         if (abs(x_speed) > air_friction_threshold && y_speed > -4 && y_speed < 0)
         {
             x_speed *= air_friction;
         }
 
-        // Gravity:
         if (y_allow == true)
         {
             y_speed += gravity_force;
         }
         break;
 
-    // Finish:
     case STATE_FINISH:
         break;
 }

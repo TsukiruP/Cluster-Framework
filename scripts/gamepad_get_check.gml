@@ -17,27 +17,21 @@ with (mgr_input)
     {
         switch (argument1)
         {
-            // Left trigger:
             case PAD_TRIGGERL:
                 return gamepad_trigger[TRG_LEFT, argument2 + (argument0 * 3)];
 
-            // Right trigger:
             case PAD_TRIGGERR:
                 return gamepad_trigger[TRG_RIGHT, argument2 + (argument0 * 3)];
 
-            // Down D-pad:
             case PAD_UP:
                 return gamepad_dpad[INP_UP, argument2 + (argument0 * 3)];
 
-            // Down D-pad:
             case PAD_DOWN:
                 return gamepad_dpad[INP_DOWN, argument2 + (argument0 * 3)];
 
-            // Left D-pad:
             case PAD_LEFT:
                 return gamepad_dpad[INP_LEFT, argument2 + (argument0 * 3)];
 
-            // Right D-pad:
             case PAD_RIGHT:
                 return gamepad_dpad[INP_RIGHT, argument2 + (argument0 * 3)];
 
@@ -48,17 +42,14 @@ with (mgr_input)
 
                 switch (argument2)
                 {
-                    // Pressed:
                     case CHECK_PRESSED:
                         return joystick_check_button_pressed(gamepad_id, button_id);
                         break;
 
-                    // Release:
                     case CHECK_RELEASED:
                         return joystick_check_button_released(gamepad_id, button_id);
                         break;
 
-                    // Held:
                     default:
                         return joystick_check_button(gamepad_id, button_id);
                 }

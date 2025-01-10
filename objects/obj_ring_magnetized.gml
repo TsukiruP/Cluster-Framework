@@ -25,10 +25,8 @@ applies_to=self
 */
 /// Movement
 
-// Animation:
 event_inherited();
 
-// Exit if the stage is paused or text is active:
 if (game_ispaused())
 {
     exit;

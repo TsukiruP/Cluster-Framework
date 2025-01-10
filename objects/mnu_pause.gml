@@ -8,24 +8,19 @@ applies_to=self
 
 var i;
 
-// Pause audio:
 audio_pause_all();
 audio_play_sfx("snd_menu_open", true);
 
-// Menu variables:
 menu_lock = false;
 menu_alarm = 0;
 menu_hide = 0;
 menu_index = 0;
 menu_count = 2;
-
 menu_option[0] = 0;
 menu_option[1] = 0;
 
-// Pause variables:
 pause_active = true;
 pause_mode = -1;
-
 pause_header = spr_pause_header;
 pause_menu = spr_pause_menu;
 pause_leading = 3;
@@ -42,7 +37,6 @@ pause_count[1] = 2;
 
 event_user(1);
 
-// Handles:
 fade_handle = noone;
 transition_handle = noone;
 #define Step_0
@@ -53,20 +47,17 @@ applies_to=self
 */
 /// Inputs
 
-// Exit if text is active or menu has been locked:
 if (game_ispaused(mgr_text) || menu_lock == true || menu_alarm > 0)
 {
     exit;
 }
 
-// Hide:
 if (input_get_check(INP_HIDE, CHECK_PRESSED))
 {
     menu_hide += 1;
     menu_hide = wrap(menu_hide, 0, 1 + (instance_exists(mgr_transition) || game_get_config("misc_hud") != 0));
 }
 
-// Cancel:
 if (input_get_check(INP_CANCEL, CHECK_PRESSED))
 {
     if (menu_hide != 0)
@@ -87,12 +78,10 @@ if (input_get_check(INP_CANCEL, CHECK_PRESSED))
                 event_user(0);
         }
 
-        // Play sound:
         audio_play_sfx("snd_menu_close", true);
     }
 }
 
-// Hide overlays:
 with (par_overlay)
 {
     if (visible != (other.menu_hide != 2))
@@ -101,7 +90,6 @@ with (par_overlay)
     }
 }
 
-// Exit if hidden:
 if (menu_hide != 0)
 {
     exit;
@@ -109,35 +97,28 @@ if (menu_hide != 0)
 
 var menu_up, menu_down, menu_direction;
 
-// Menu direction:
 menu_up = (input_get_check(INP_UP, CHECK_PRESSED) || input_get_time(INP_UP, 30));
 menu_down = (input_get_check(INP_DOWN, CHECK_PRESSED) || input_get_time(INP_DOWN, 30));
 menu_direction = menu_down - menu_up;
 
-// Menu option:
 menu_option[menu_index] += menu_direction;
 menu_option[menu_index] = wrap(menu_option[menu_index], 0, pause_count[menu_index] - 1);
 
-// Play sound:
 if (menu_direction != 0)
 {
     audio_play_sfx("snd_menu_move", true);
 }
 
-// Confirm:
 if (input_get_check(INP_CONFIRM, CHECK_PRESSED))
 {
     switch (menu_index)
     {
         // Pause:
         case 0:
-            // Continue:
             if (menu_option[menu_index] == 0)
             {
                 event_user(0);
             }
-
-            // Go to confirm menu:
             else
             {
                 menu_index = 1;
@@ -158,14 +139,12 @@ if (input_get_check(INP_CONFIRM, CHECK_PRESSED))
             {
                 switch (menu_option[0])
                 {
-                    // Restart:
                     case 1:
                     case 2:
                         fade_handle = fade_create(2, 0.02, depth);
                         break;
                 }
 
-                // Pause mode:
                 menu_lock = true;
                 menu_alarm = 2;
                 pause_mode = menu_option[0];
@@ -173,16 +152,12 @@ if (input_get_check(INP_CONFIRM, CHECK_PRESSED))
             break;
     }
 
-    // Play sound:
     audio_play_sfx("snd_menu_confirm", true);
 }
 
-// Start:
 if (input_get_check(INP_START, CHECK_PRESSED))
 {
     event_user(0);
-
-    // Play sound:
     audio_play_sfx("snd_menu_close", true);
 }
 /*"/*'/**//* YYD ACTION
@@ -194,7 +169,6 @@ applies_to=self
 
 var i;
 
-// Height:
 for (i = 0; i < menu_count; i += 1)
 {
     pause_height[i] = (sprite_get_height(pause_header) + pause_leading) + (sprite_get_height(pause_menu) * pause_count[i]) + (pause_leading * (pause_count[i] - 1));
@@ -207,13 +181,11 @@ applies_to=self
 */
 /// Mode
 
-// Exit if menu hasn't been locked:
 if (menu_lock == false)
 {
     exit;
 }
 
-// Delay:
 if (menu_alarm > 0)
 {
     menu_alarm -= 1;
@@ -226,15 +198,11 @@ switch (pause_mode)
         if (menu_alarm == 0)
         {
             pause_active = false;
-            
-            // Resume audio:
             audio_resume_all();
-            
-            // Destroy:
             instance_destroy();
         }
         break;
-    
+
     // Restart:
     case 1:
     case 2:
@@ -248,12 +216,12 @@ switch (pause_mode)
                     {
                         persistent = false;
                     }
-        
+
                     transition_handle = transition_create(room);
                     transition_handle.depth = depth;
                     transition_handle.pause_ignore = true;
                     transition_handle.load_skip = true;
-                    
+
                     if (pause_mode == 2)
                     {
                         fade_handle.persistent = true;
@@ -264,8 +232,7 @@ switch (pause_mode)
                         transition_handle.transition_room = rm_debug;
                         transition_handle.fade_handle = fade_handle;
                     }
-                    
-                    // Stop audio:
+
                     audio_stop_all();
                     audio_resume_all();
                 }
@@ -285,7 +252,6 @@ var i;
 
 menu_lock = true;
 menu_alarm = 2;
-
 pause_mode = 0;
 #define Other_11
 /*"/*'/**//* YYD ACTION
@@ -306,7 +272,6 @@ applies_to=self
 */
 /// Draw Menu
 
-// Exit if hidden:
 if (menu_hide != 0)
 {
     exit;
@@ -314,14 +279,12 @@ if (menu_hide != 0)
 
 var i, menu_offset, menu_height, menu_y;
 
-// Reset offset:
 menu_offset = 0;
 
 // Fade:
 draw_set1(c_black, 0.6);
 draw_rectangle(view_xview[view_current], view_yview[view_current], view_xview[view_current] + screen_get_width(), view_yview[view_current] + screen_get_height(), false);
 
-// Reset:
 draw_reset();
 
 // Header:

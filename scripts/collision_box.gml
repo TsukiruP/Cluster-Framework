@@ -1,5 +1,5 @@
 /// collision_box(ox, oy, invert, obj)
-// Returns the id of the given instance that is in collision with a rectangle of size {ox * 2, oy * 2} centered on the calling instance, or noone on failure.
+/* Returns the id of the given instance that is in collision with a rectangle of size {ox * 2, oy * 2} centered on the calling instance, or noone on failure. */
 
 var x_int, y_int;
 

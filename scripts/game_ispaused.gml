@@ -4,17 +4,12 @@ Defaults to checking both managers should neither be the argument given, or no a
 
 var pause_text, pause_stage;
 
-// Text:
 pause_text = (!ds_list_empty(mgr_text.body_list) || mgr_text.subject_string != "" || mgr_text.log_alpha != 0);
+pause_stage = false;
 
-// Stage:
 if (instance_exists(mnu_pause))
 {
     pause_stage = mnu_pause.pause_active;
-}
-else
-{
-    pause_stage = false;
 }
 
 if (argument_count >= 1)

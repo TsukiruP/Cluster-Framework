@@ -8,10 +8,8 @@ applies_to=self
 
 event_inherited();
 
-// Reaction:
 reaction_index = player_reaction_spring;
 
-// Spring variables:
 orientation = ORIEN_VERTICAL;
 flip_x = false;
 flip_y = false;
@@ -39,21 +37,18 @@ applies_to=self
 */
 /// Animation
 
-// Exit if the game is paused or the object is a dash/rainbow ring:
 if (game_ispaused(mnu_pause) || object_is_ancestor(object_index, obj_dash_ring))
 {
     exit;
 }
 
-// Execute script:
 if (activated == true)
 {
     ctl_update();
     script_execute(ctl_index);
 }
 
-// Reset frame:
-if (activated == false)
+if (image_index != 0 && activated == false)
 {
     ctl_set(ctl_index);
     image_index = 0;
@@ -82,28 +77,23 @@ applies_to=self
 
     switch (orientation)
     {
-        // Horizontal:
         case 1:
             sprite_index = Sprite("spr_spring_horizontal", 0);
             break;
 
-        // Diagonal:
         case 2:
             sprite_index = Sprite("spr_spring_diagonal", 0);
             break;
 
-        // Vertical
         default:
             sprite_index = Sprite("spr_spring_vertical",  0);
     }
 
-    // Flip x:
     if (flip_x == true)
     {
         image_xscale = -1;
     }
 
-    // Flip y:
     if (flip_y == true)
     {
         image_yscale = -1;
@@ -119,38 +109,33 @@ applies_to=self
 // Spring orientation:
 switch (orientation)
 {
-    // Horizontal:
     case ORIEN_HORIZONTAL:
         sprite_index = spr_spring_horizontal;
-        angle = ANGLE_RIGHT;
-        ctl_init(ctl_spring_horizontal);
         hurtbox_set(16, 5, 4, 5);
+        ctl_init(ctl_spring_horizontal);
+        angle = ANGLE_RIGHT;
         break;
 
-    // Diagonal:
     case ORIEN_DIAGONAL:
         sprite_index = spr_spring_diagonal;
-        angle = ANGLE_RIGHT_UP;
-        ctl_init(ctl_spring_diagonal);
         hurtbox_set(6, 2, 4, 8);
+        ctl_init(ctl_spring_diagonal);
+        angle = ANGLE_RIGHT_UP;
         break;
 
-    // Vertical:
     default:
         sprite_index = spr_spring_vertical;
-        angle = ANGLE_UP;
-        ctl_init(ctl_spring_vertical);
         hurtbox_set(5, 4, 5, 15);
+        ctl_init(ctl_spring_vertical);
+        angle = ANGLE_UP;
 }
 
-// Flip x:
 if (flip_x == true)
 {
     image_xscale = -1;
     angle = 180 - angle;
 }
 
-// Flip y:
 if (flip_y == true)
 {
     image_yscale = -1;
@@ -164,8 +149,5 @@ applies_to=self
 */
 /// Draw Spring
 
-// Spring:
 draw_self();
-
-// Collision:
 event_inherited();

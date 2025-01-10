@@ -1,5 +1,5 @@
 /// player_get_solids()
-// Generates a list of solids for the player that they are in collision with.
+/* Generates a list of solids for the player that they are in collision with. */
 
 var x_int, y_int, sine, csine, x1, y1, x2, y2;
 

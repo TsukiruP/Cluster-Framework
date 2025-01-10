@@ -8,11 +8,9 @@ applies_to=self
 
 var i;
 
-// Allow flags:
 time_allow = false;
 pause_allow = true;
 
-// Stage variables:
 stage_score = 0;
 stage_time = 0;
 stage_rings = 0;
@@ -22,7 +20,6 @@ for (i = 0; i < PLAYER_COUNT; i += 1)
     stage_player[i] = noone;
 }
 
-// HUD:
 instance_create(0, 0, mgr_hud);
 #define Step_1
 /*"/*'/**//* YYD ACTION
@@ -32,7 +29,6 @@ applies_to=self
 */
 /// Time
 
-// Exit if the stage is paused:
 if (game_ispaused() || time_allow == false)
 {
     exit;
@@ -47,7 +43,6 @@ applies_to=self
 */
 /// Pause
 
-// Exit if there's no player 1:
 if (!instance_exists(stage_get_player(0)))
 {
     exit;
@@ -66,13 +61,9 @@ applies_to=self
 
 if (instance_exists(mgr_camera))
 {
-    // Deactivate objects:
     instance_deactivate_object(par_culled);
-
-    // Activate region around view:
     instance_activate_region(view_xview[view_current] - 64, view_yview[view_current] - 64, view_wview[view_current] + 128, view_hview[view_current] + 128, true);
 
-    // Activate region around players:
     with (obj_player)
     {
         if (!in_view())

@@ -1,5 +1,5 @@
 /// ease_in_out_back(inputvalue, outputmin, outputmax, inputmax)
-// http://www.davetech.co.uk/gamemakereasingandtweeningfunctions
+/* http://www.davetech.co.uk/gamemakereasingandtweeningfunctions */
 
 var _s;
 

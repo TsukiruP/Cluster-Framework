@@ -1,5 +1,6 @@
 /// game_get_room_music([room])
-/* Returns the music of a room. Defaults to checking the current room.
+/* Returns the music of a room.
+Defaults to checking the current room.
 If the room has no music set, returns "". */
 
 with (mgr_game)

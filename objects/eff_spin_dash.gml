@@ -29,10 +29,6 @@ applies_to=self
 
 event_inherited();
 
-// Depth:
-depth = player_handle.depth;
-
-// Destroy:
 if (player_handle.state_current != player_state_spin_dash)
 {
     instance_destroy();
@@ -47,7 +43,6 @@ applies_to=self
 
 var player_rotation, sine, csine, draw_x, draw_y;
 
-// Rotation:
 player_rotation = player_handle.mask_rotation;
 sine = dsin(player_handle.mask_rotation);
 csine = dcos(player_handle.mask_rotation);

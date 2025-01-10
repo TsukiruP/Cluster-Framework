@@ -16,20 +16,16 @@ with (mgr_input)
     // Keyboard:
     if (input_device == DEV_KEYBOARD)
     {
-        // Any:
         if (input_id == INP_ANY)
         {
             switch (argument1)
             {
-                // Pressed:
                 case CHECK_PRESSED:
                     return keyboard_check_pressed(vk_anykey);
 
-                // Released:
                 case CHECK_RELEASED:
                     return keyboard_check_released(vk_anykey);
 
-                // Held:
                 default:
                     return keyboard_check(vk_anykey);
             }
@@ -46,7 +42,6 @@ with (mgr_input)
         input_device -= DEV_GAMEPAD0;
         gamepad_id = gamepad_device[input_device, 0];
 
-        // Any:
         if (input_id == INP_ANY)
         {
             for (i = PAD_FACE1; i <= PAD_SHARE; i += 1)

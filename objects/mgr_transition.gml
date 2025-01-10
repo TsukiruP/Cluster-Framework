@@ -6,12 +6,10 @@ applies_to=self
 */
 /// Transition Initialization
 
-// Flags:
 preview = false;
 pause_ignore = false;
 load_skip = false;
 
-// Transition variables:
 transition_id = TRANS_FADE;
 transition_state = 0;
 transition_alarm = 0;
@@ -19,27 +17,21 @@ transition_time = 0;
 transition_room = room;
 transition_run = -1;
 
-// Handles:
 fade_handle = noone;
 player_handle = noone;
 
-// Curtain variables:
 curtain_time = 0;
 curtain_max_time = 20;
 curtain_y = 0;
-
 curtain_scroll = 0;
 curtain_scroll_speed = 1;
 
-// Banner variables:
 banner_time = 0;
 banner_max_time = 20;
 banner_x = 0;
-
 banner_scroll = 0;
 banner_scroll_speed = 1;
 
-// Zone variables:
 zone_time = 0;
 zone_max_time = 30;
 zone_width = -1;
@@ -53,13 +45,11 @@ applies_to=self
 */
 /// Alarm
 
-// Exit if the stage is paused:
 if (game_ispaused(mnu_pause) && pause_ignore == false)
 {
     exit;
 }
 
-// Alarm:
 if (transition_alarm > 0)
 {
     transition_alarm -= 1;
@@ -80,13 +70,11 @@ applies_to=self
 */
 /// Time
 
-// Exit if the stage is paused:
 if (game_ispaused(mnu_pause) && pause_ignore == false)
 {
     exit;
 }
 
-// Curtain:
 if ((transition_id == TRANS_MENU && transition_state < 2) || (transition_id == TRANS_CARD && transition_state < 4) || (transition_id == TRANS_RETRY && transition_state < 5))
 {
     curtain_time = approach(curtain_time, curtain_max_time, 1);
@@ -96,7 +84,6 @@ else
     curtain_time = approach(curtain_time, 0, 1);
 }
 
-// Banner:
 if (transition_id == TRANS_CARD && transition_state < 4 && curtain_time == curtain_max_time)
 {
     banner_time = approach(banner_time, banner_max_time, 1);
@@ -106,7 +93,6 @@ else
     banner_time = approach(banner_time, 0, 1);
 }
 
-// Zone:
 if ((transition_id == TRANS_CARD && ((transition_state < 4 && curtain_time == curtain_max_time) || (transition_state >= 4))) || transition_id == TRANS_RETRY)
 {
     zone_time = approach(zone_time, zone_max_time, 1);
@@ -119,7 +105,6 @@ applies_to=self
 */
 /// Player Start
 
-// Exit if the stage is paused or ID isn't correct:
 if ((game_ispaused(mnu_pause) && pause_ignore == false) || (transition_id != TRANS_CARD && transition_id != TRANS_RETRY))
 {
     exit;
@@ -127,10 +112,8 @@ if ((game_ispaused(mnu_pause) && pause_ignore == false) || (transition_id != TRA
 
 if (instance_exists(stage_get_player(0)))
 {
-    // Run:
     if (game_get_room_start() == START_RUN && transition_state >= 4 && transition_run != -1)
     {
-        // Reset run:
         if ((transition_id == TRANS_RETRY && (game_get_checkpoint_x() != -1 && game_get_checkpoint_y() != -1)) || stage_get_player(0).x >= game_get_room_start())
         {
             transition_run = -1;
@@ -152,7 +135,6 @@ applies_to=self
 */
 /// Curtain
 
-// Exit if the stage is paused:
 if (game_ispaused(mnu_pause) && pause_ignore == false)
 {
     exit;
@@ -169,7 +151,6 @@ applies_to=self
 */
 /// Fade
 
-// Exit if ID isn't correct:
 if (transition_id != TRANS_FADE)
 {
     exit;
@@ -192,7 +173,7 @@ switch (transition_state)
             transition_alarm = 60;
         }
         break;
-    
+
     // 1 - Change room:
     case 1:
         if (transition_alarm == 0)
@@ -209,7 +190,7 @@ switch (transition_state)
             }
         }
         break;
-    
+
     // 2 - Reverse:
     case 2:
         fade_reverse(fade_handle);
@@ -233,7 +214,6 @@ applies_to=self
 */
 /// Menu
 
-// Exit if the stage is paused or ID isn't correct:
 if ((game_ispaused(mnu_pause) && pause_ignore == false) || transition_id != TRANS_MENU)
 {
     exit;
@@ -249,7 +229,7 @@ switch (transition_state)
             transition_alarm = 60;
         }
         break;
-    
+
     // 1 - Change room:
     case 1:
         if (transition_alarm == 0)
@@ -266,7 +246,7 @@ switch (transition_state)
             }
         }
         break;
-    
+
     // 2 - End:
     case 2:
         if (curtain_y == -15)
@@ -282,20 +262,17 @@ applies_to=self
 */
 /// Title Card
 
-// Exit if the stage is paused or ID isn't correct:
 if ((game_ispaused(mnu_pause) && pause_ignore == false) || transition_id != TRANS_CARD)
 {
     exit;
 }
 
-// Skip:
 if (game_get_room_start() == START_READY && transition_state >= 4 && instance_exists(stage_get_player(0)))
 {
     if (input_get_check(INP_ANY, CHECK_PRESSED) && !input_get_check(INP_START, CHECK_PRESSED))
     {
         transition_state = 5;
 
-        // Skip ready animation:
         if (stage_get_player(0).animation_current == "ready")
         {
             with (obj_player)
@@ -306,12 +283,10 @@ if (game_get_room_start() == START_READY && transition_state >= 4 && instance_ex
     }
 }
 
-// Banner:
 banner_x = lerp(-sprite_get_width(spr_title_card_banner), 0, smoothstep(0, banner_max_time, banner_time));
 banner_scroll += banner_scroll_speed;
 banner_scroll = banner_scroll mod sprite_get_height(spr_title_card_banner);
 
-// Zone:
 if (zone_width == -1)
 {
     draw_set_font(global.font_title_card);
@@ -338,7 +313,7 @@ switch (transition_state)
             transition_alarm = 30;
         }
         break;
-    
+
     // 1 - Wait:
     case 1:
         if (transition_alarm == 0)
@@ -347,8 +322,7 @@ switch (transition_state)
             {
                 transition_state = 2;
                 transition_alarm = 60;
-                
-                // Skip:
+
                 if (load_skip == true)
                 {
                     transition_alarm = 0;
@@ -360,7 +334,7 @@ switch (transition_state)
             }
         }
         break;
-    
+
     // 2 - Loading:
     case 2:
         if (transition_alarm == 0)
@@ -371,7 +345,7 @@ switch (transition_state)
             transition_alarm = 90;
         }
         break;
-    
+
     // 3 - Reset:
     case 3:
         if (transition_alarm == 0)
@@ -380,15 +354,13 @@ switch (transition_state)
             zone_time = 0;
         }
         break;
-    
+
     // 4 - Reverse:
     case 4:
         if ((game_get_room_start() != START_RUN || transition_run != -1) && preview == false && instance_exists(stage_get_player(0)))
         {
-            // Ready:
             if (game_get_room_start() == START_READY)
             {
-                // Time it with the curtain:
                 if (curtain_y <= floor(stage_get_player(0).y + stage_get_player(0).y_radius - view_yview[view_current]))
                 {
                     with (obj_player)
@@ -401,7 +373,6 @@ switch (transition_state)
                 }
             }
 
-            // Unlock player:
             else if (game_get_room_start() != START_IDLE && game_get_room_start() != START_RUN)
             {
                 with (obj_player)
@@ -410,7 +381,6 @@ switch (transition_state)
                 }
             }
 
-            // Move to next state:
             if (game_get_room_start() == START_IDLE || (game_get_room_start() == START_READY && stage_get_player(0).animation_previous == "ready"))
             {
                 transition_state = 5;
@@ -425,8 +395,7 @@ switch (transition_state)
     // 5 - End:
     case 5:
         stage_start();
-        
-        // Destroy:
+
         if (curtain_time == 0 && banner_time == 0 && zone_time == zone_max_time)
         {
             stage_set_time_allow(true);
@@ -441,23 +410,19 @@ applies_to=self
 */
 /// Retry
 
-// Exit if the stage is paused or ID isn't correct:
 if ((game_ispaused(mnu_pause) && pause_ignore == false) || transition_id != TRANS_RETRY)
 {
     exit;
 }
 
-// Skip:
 if (transition_state < 2 && instance_exists(stage_get_player(0)) && input_get_check(INP_ANY, CHECK_PRESSED))
 {
     transition_state = 2;
 }
 
-// Scroll:
 curtain_scroll += curtain_scroll_speed;
 curtain_scroll = curtain_scroll mod sprite_get_width(spr_transition_curtain);
 
-// Curtain:
 if (transition_state >= 3 && transition_state <= 4)
 {
     curtain_y = lerp(32, screen_get_height() / 2 + 15, smoothstep(0, curtain_max_time, curtain_time));
@@ -471,7 +436,6 @@ else
     curtain_y = lerp(-15, 32, smoothstep(0, curtain_max_time, curtain_time));
 }
 
-// Zone:
 if (zone_width == -1)
 {
     draw_set_font(global.font_title_card);
@@ -497,7 +461,7 @@ switch (transition_state)
             transition_alarm = 60;
         }
         break;
-    
+
     // 1 - Standing by:
     case 1:
         if (transition_alarm == 0)
@@ -512,14 +476,14 @@ switch (transition_state)
             }
         }
         break;
-    
+
     // 2 - Reset progress:
     case 2:
         transition_state = 3;
         curtain_time = 0;
         zone_time = 0;
         break;
-    
+
     // 3 - Close:
     case 3:
         if (curtain_time == curtain_max_time && zone_time == zone_max_time)
@@ -528,7 +492,7 @@ switch (transition_state)
             transition_alarm = 30;
         }
         break;
-    
+
     // 4 - Room change:
     case 4:
         if (transition_alarm == 0)
@@ -537,11 +501,11 @@ switch (transition_state)
             {
                 room_goto(transition_room);
             }
-            
+
             transition_state = 5;
         }
         break;
-    
+
     // 5 - Reverse:
     case 5:
         if (curtain_time == 0)
@@ -552,7 +516,7 @@ switch (transition_state)
             }
         }
         break;
-    
+
     // 6 - End:
     case 6:
         stage_start();
@@ -567,19 +531,14 @@ applies_to=self
 */
 /// Room Initialization
 
-// Pause ignore:
 pause_ignore = false;
-
-// Play music:
 audio_play_bgm(game_get_room_music());
 
-// Create background:
 if (game_get_room_background() != -1)
 {
     instance_create(0, 0, game_get_room_background());
 }
 
-// Create water:
 if (game_get_room_water() != -1)
 {
     instance_create(0, game_get_room_water(), obj_water_surface);
@@ -605,7 +564,6 @@ applies_to=self
 */
 /// Draw Menu
 
-// Exit if ID isn't correct:
 if (transition_id != TRANS_MENU)
 {
     exit;
@@ -620,7 +578,6 @@ applies_to=self
 */
 /// Draw Title Card
 
-// Exit if ID isn't correct:
 if (transition_id != TRANS_CARD)
 {
     exit;
@@ -649,7 +606,6 @@ if (load_skip == false && transition_state == 2)
     draw_sprite(spr_title_card_load, transition_alarm div 22, view_xview[view_current] + 4, view_yview[view_current] + screen_get_height() - 12);
 }
 
-// Reset:
 draw_reset();
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -658,7 +614,6 @@ applies_to=self
 */
 /// Draw Retry
 
-// Exit if ID isn't correct:
 if (transition_id != TRANS_RETRY)
 {
     exit;
@@ -673,5 +628,4 @@ draw_set_font(global.font_title_card);
 draw_set2(fa_center, fa_middle);
 draw_text(view_xview[view_current] + zone_x, view_yview[view_current] + screen_get_height() / 2, "Try Again");
 
-// Reset:
 draw_reset();

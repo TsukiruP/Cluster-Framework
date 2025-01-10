@@ -1,9 +1,10 @@
 /// player_get_collision(obj, [phase])
 /* Returns a set of bit flags detailing the player's collision with the object.
 This is done by using GM82's rectangle_in_rectangle, and rotating each according to their gravity_direction.
-This occurs in two phases, first checking against the object's hurtbox, and then the object's hitbox.
-If either the player or object's hitbox/hurtbox is empty (all 0), then these checks aren't done.
-The first phase checks the object's hurtbox against the player's hitbox and radii, and the second checks the object's hitbox against the player's hurtbox and radii. */
+There are three possible collisions: interact, hurtbox, and hitbox.
+Interact is when the player and object's hurtboxes intersect.
+Hurtbox is when the player's hurtbox intersects the object's hitbox.
+Hitbox is when the player's hitbox intersects the object's hurtbox. */
 
 var inst, phase, collision, temp;
 var ax_int, ay_int, aleft, atop, aright, abottom, aoff_x, aoff_y, adir_x, adir_y, arot, ax1, ay1, ax2, ay2;
@@ -70,7 +71,7 @@ if (inst != noone)
         boff_x = inst.hitbox_offset_x * bdir_x;
         boff_y = inst.hitbox_offset_y * bdir_y;
     }
-    
+
     // Swap to player's hitbox:
     if (phase == 2)
     {
@@ -86,7 +87,7 @@ if (inst != noone)
     // Check object collision:
     if !(bleft == 0 && btop == 0 && bright == 0 && bbottom == 0)
     {
-        // Flip object direction:
+        // Flip:
         if (bdir_x == -1)
         {
             temp = bleft;
@@ -101,7 +102,6 @@ if (inst != noone)
             bbottom = temp;
         }
 
-        // Flip top and bottom:
         if (brot div 90 >= 2)
         {
             bleft *= -1;
@@ -110,7 +110,6 @@ if (inst != noone)
             bbottom *= -1;
         }
 
-        // Rotate object:
         bx1 = bx_int - (bcsine * bleft) + (bcsine * boff_x) - (bsine * btop) + (bsine * boff_y);
         by1 = by_int - (bcsine * btop) + (bcsine * boff_y) - (bsine * bright) - (bsine * boff_x);
         bx2 = bx_int + (bcsine * bright) + (bcsine * boff_x) + (bsine * bbottom) + (bsine * boff_y);
@@ -118,7 +117,7 @@ if (inst != noone)
 
         if !(aleft == 0 && atop == 0 && aright == 0 && abottom == 0)
         {
-            // Flip player direction:
+            // Flip:
             if (adir_x == -1)
             {
                 temp = aleft;
@@ -133,7 +132,6 @@ if (inst != noone)
                 abottom = temp;
             }
 
-            // Flip top and bottom:
             if (arot div 90 >= 2)
             {
                 aleft *= -1;
@@ -142,13 +140,11 @@ if (inst != noone)
                 abottom *= -1;
             }
 
-            // Rotate player:
             ax1 = ax_int - (acsine * aleft) + (acsine * aoff_x) - (asine * atop) + (asine * aoff_y);
             ay1 = ay_int - (acsine * atop) + (acsine * aoff_y) - (asine * aright) - (asine * aoff_x);
             ax2 = ax_int + (acsine * aright) + (acsine * aoff_x) + (asine * abottom) + (asine * aoff_y);
             ay2 = ay_int + (acsine * abottom) + (acsine * aoff_y) + (asine * aleft) - (asine * aoff_x);
 
-            // Special collision:
             if (rectangle_in_rectangle(ax1, ay1, ax2, ay2, bx1, by1, bx2, by2))
             {
                 collision |= pick(phase, COLL_INTERACT, COLL_HURT, COLL_HIT);
@@ -157,7 +153,6 @@ if (inst != noone)
     }
 }
 
-// Failure OR move to next phase:
 if (phase == 0)
 {
     return collision | player_get_collision(argument0, 1) | player_get_collision(argument0, 2);

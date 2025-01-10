@@ -8,7 +8,6 @@ applies_to=self
 
 event_inherited();
 
-// Player handle:
 player_handle = noone;
 #define Step_2
 /*"/*'/**//* YYD ACTION
@@ -16,7 +15,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Attach to Player
+/// Attach
 
 if (instance_exists(player_handle))
 {
@@ -28,5 +27,4 @@ else
     instance_destroy();
 }
 
-// Animation:
 event_inherited();

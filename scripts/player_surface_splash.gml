@@ -1,5 +1,5 @@
 /// player_surface_splash()
-// Shorthand for the splash made for jumping and landing on the water's surface.
+/* Shorthand for the splash made for jumping and landing on the water's surface. */
 
 if (on_ground == true && on_surface == true)
 {

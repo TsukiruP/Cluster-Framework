@@ -1,13 +1,13 @@
 /// string_key(key)
-// Returns a string depending on the key.
+/* Returns a character or string depending on the key. */
 
-// Return individual keys:
+// Individual characters:
 if (argument0 > 48 && argument0 < 91)
 {
     return chr(argument0);
 }
 
-// Return specific keys:
+// Named keys:
 switch (argument0)
 {
     case -1:

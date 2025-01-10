@@ -8,11 +8,9 @@ applies_to=self
 
 event_inherited();
 
-// Flags:
 magnetized = false;
 lifespan = 0;
 
-// Physics variables:
 x_speed = 0;
 y_speed = 0;
 gravity_force = 0.09375;
@@ -39,7 +37,6 @@ applies_to=self
 */
 /// Lifespan
 
-// Exit if the stage is paused or text is active:
 if (game_ispaused())
 {
     exit;
@@ -47,10 +44,8 @@ if (game_ispaused())
 
 if (dropped == true)
 {
-    // Decrease lifespan alarm:
     lifespan = max(lifespan - 1 * game_get_speed(), 0);
 
-    // Destroy:
     if (lifespan <= 0)
     {
         instance_destroy();
@@ -67,13 +62,11 @@ applies_to=self
 // Animation:
 event_inherited();
 
-// Exit if the stage is paused or text is active:
 if (game_ispaused() || dropped == false)
 {
     exit;
 }
 
-// Destroy if out of view:
 if (!in_view())
 {
     instance_destroy();
@@ -147,7 +140,6 @@ applies_to=self
 */
 /// Magnetize
 
-// Exit if the stage is paused or text is active:
 if (game_ispaused())
 {
     exit;
@@ -157,10 +149,8 @@ if (instance_exists(stage_get_player(0)))
 {
     var player_handle;
 
-    // Player handle:
     player_handle = stage_get_player(0);
 
-    // Change instance:
     if (player_handle.status_shield == SHIELD_MAGNETIC || player_handle.status_shield == SHIELD_LIGHTNING)
     {
         if (distance_to_object(player_handle) < 64)
@@ -178,11 +168,9 @@ applies_to=self
 */
 /// Draw Ring
 
-// Ring:
 if (dropped == false || lifespan >= 90 || (dropped == true && lifespan < 90 && (lifespan div 4) mod 2))
 {
     draw_self();
 }
 
-// Collision:
 event_inherited();

@@ -1,5 +1,6 @@
 /// game_get_room_background([room])
-/* Returns the background of a room. Defaults to checking the current room.
+/* Returns the background of a room.
+Defaults to checking the current room.
 If the room has no background set, returns -1. */
 
 with (mgr_game)

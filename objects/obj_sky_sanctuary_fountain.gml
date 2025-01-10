@@ -18,12 +18,6 @@ applies_to=self
 if (room == rm_debug)
 {
     view_object = id;
-    /*
-    if (view_xview[view_current] != x - screen_get_width() / 2)
-    {
-        view_xview[view_current] = x - screen_get_width() / 2;
-    }
-    */
 }
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -41,5 +35,4 @@ applies_to=self
 */
 /// Draw Fountain
 
-// Fountain:
 draw_self();

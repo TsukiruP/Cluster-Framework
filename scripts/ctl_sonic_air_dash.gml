@@ -2,16 +2,14 @@
 
 if (animation_skip == true)
 {
-    ctl_skip(8);
-
     sprite_index = spr_sonic_air_dash;
+    ctl_skip(8);
 }
 
 if (ctl_position(0))
 {
     sprite_index = spr_sonic_air_dash;
     image_index = 0;
-
     radii_set(6, 14, 3);
     hurtbox_set(8, 12, 4, 19);
     hitbox_set();
@@ -35,7 +33,6 @@ else if (ctl_position(6))
 else if (ctl_position(8))
 {
     image_index = 4;
-
     radii_set(6, 14, 3);
     hurtbox_set(8, 13, 6, 17);
     hitbox_set();

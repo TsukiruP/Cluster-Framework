@@ -1,11 +1,10 @@
 /// sonic_state_bound()
-// No bracelet required!
+/* No bracelet required!
+Similar to the bubble bound but height is based off bounce count rather than holding an input. */
 
 switch (argument0)
 {
-    // Start:
     case STATE_START:
-        // Set speed:
         if (y_speed < bound_speed)
         {
             y_speed = bound_speed;
@@ -14,22 +13,15 @@ switch (argument0)
         // Set bound:
         jump_cap = false;
         jump_bound = BOUND_SONIC;
-
-        // Set animation:
         player_set_animation("spin");
-
-        // Play sound:
         audio_play_sfx("snd_bound", true);
         break;
 
-    // Step:
     case STATE_STEP:
         var bound_count_temp;
 
-        // Store bound count:
         bound_count_temp = bound_count;
 
-        // Input:
         if (input_x_direction != 0)
         {
             image_xscale = input_x_direction;
@@ -45,42 +37,31 @@ switch (argument0)
             }
         }
 
-        // Movement:
         if (!player_movement_air())
         {
             return false;
         }
 
-        // Land:
         if (on_ground == true)
         {
-            // Bound count:
             bound_count = min(bound_count_temp + 1, 2);
-
-            // Set animation:
             animation_skip = true;
-
-            // Play sound:
             audio_play_sfx("snd_bound_land", true);
             return player_set_state(player_state_jump, true);
         }
 
-        // Air friction:
         if (abs(x_speed) > air_friction_threshold && y_speed > -4 && y_speed < 0)
         {
             x_speed *= air_friction;
         }
 
-        // Gravity:
         if (y_allow == true)
         {
             y_speed += gravity_force;
         }
         break;
 
-    // Finish:
     case STATE_FINISH:
-        // Reset bound:
         if (state_current != player_state_jump)
         {
             jump_bound = BOUND_NONE;

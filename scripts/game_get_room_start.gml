@@ -1,5 +1,6 @@
 /// game_get_room_start([room])
-/* Returns the start of a room. Defaults to the current room.
+/* Returns the start of a room.
+Defaults to the current room.
 If the room has no start set, returns idle. */
 
 with (mgr_game)

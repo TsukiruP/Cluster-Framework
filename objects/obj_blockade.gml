@@ -8,13 +8,10 @@ applies_to=self
 
 event_inherited();
 
-// Mask:
 mask = false;
 
-// Reaction:
 reaction_index = player_reaction_blockade;
 
-// Blockade variables:
 orientation = ORIEN_VERTICAL;
 vitality = 3;
 #define Other_4
@@ -34,12 +31,10 @@ applies_to=self
 
     switch (orientation)
     {
-        // Horizontal:
         case 1:
             sprite_index = Sprite("spr_blockade_horizontal", 0);
             break;
 
-        // Vertical:
         default:
             sprite_index = Sprite("spr_blockade_vertical", 0);
     }
@@ -54,13 +49,11 @@ applies_to=self
 // Blockade orientation:
 switch (orientation)
 {
-    // Horizontal:
     case ORIEN_HORIZONTAL:
         sprite_index = spr_blockade_horizontal;
         hurtbox_set(24, 12, 23, 11);
         break;
 
-    // Vertical:
     default:
         sprite_index = spr_blockade_vertical;
         hurtbox_set(13, 24, 12, 23);
@@ -73,9 +66,6 @@ applies_to=self
 */
 /// Draw Blockade
 
-// Blockade:
 image_index = image_number - vitality;
 draw_self();
-
-// Collision:
 event_inherited();

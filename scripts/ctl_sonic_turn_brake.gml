@@ -4,7 +4,6 @@ if (ctl_position(0))
 {
     sprite_index = spr_sonic_turn_brake;
     image_index = 0;
-
     radii_set(6, 14, 3);
     hurtbox_set(4, 16, 8, 15);
     hitbox_set();

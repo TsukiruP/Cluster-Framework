@@ -1,12 +1,9 @@
 /// player_wall_push(obj, direction)
-// Sisyphus Adventure 3.
+/* Sisyphus Adventure 3.
+Sets the push animation and pushes the object if possible. */
 
-var push_handle, ox, oy;
+var ox, oy;
 
-// Animate:
-player_set_animation("push");
-
-// Initialize:
 ox = dcos(angle) * argument1;
 oy = dsin(angle) * argument1;
 
@@ -26,3 +23,4 @@ with (argument0)
 // Move player:
 x += ox;
 y -= oy;
+player_set_animation("push");

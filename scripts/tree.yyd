@@ -473,8 +473,8 @@
 				|player_state_bound
 				+Auxiliary
 					|player_state_hammer
+			|sonic_skill_list
 			+Sonic
-				|sonic_skill_list
 				|sonic_state_skid
 				|sonic_state_drop_dash
 				|sonic_state_homing
@@ -538,3 +538,4 @@
 			|player_surface_splash
 			|player_cpu_respawn
 	+Props
+|script431

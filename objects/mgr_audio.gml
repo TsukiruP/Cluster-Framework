@@ -6,25 +6,16 @@ applies_to=self
 */
 /// Sound Initialization
 
-// Load character sounds:
 sound_add_directory("data\audio\sfx\character\common", ".wav", 0, true);
 sound_add_directory("data\audio\sfx\character\sonic", ".wav", 0, true);
 sound_add_directory("data\audio\sfx\character\classic", ".wav", 0, true);
 sound_add_directory("data\audio\sfx\character\shield", ".wav", 0, true);
-
-// Load prop sounds:
 sound_add_directory("data\audio\sfx\prop", ".wav", 0, true);
-
-// Load menu sounds:
 sound_add_directory("data\audio\sfx\menu", ".wav", 0, true);
 
-// Volume:
 sound_kind_volume(0, game_get_config("audio_sfx") / 100);
 
-// Sound list:
 sfx_list = ds_list_create();
-
-// Ring pan:
 ring_pan = 1;
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -33,20 +24,14 @@ applies_to=self
 */
 /// Music Initialization
 
-// Load music:
 sound_add_directory("data\audio\bgm", ".ogg", 1, true);
 
-// Loop points:
 sound_set_loop("bgm_debug", 2304672, 9984665, unit_samples);
 sound_set_loop("bgm_basic_test_1", 1024258, 5121290, unit_samples);
 
-// Volume:
 sound_kind_volume(1, game_get_config("audio_bgm") / 100);
 
-// Music handle:
 bgm_handle = -1;
-
-// Fade out:
 fade_out = false;
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -55,13 +40,10 @@ applies_to=self
 */
 /// Jingle Initialization
 
-// Load jingles:
 sound_add_directory("data\audio\jng", ".ogg", 3, true);
 
-// Volume:
 sound_kind_volume(3, game_get_config("audio_bgm") / 100);
 
-// Jingle handles:
 jng_handle = -1;
 drown_handle = -1;
 #define Step_0
@@ -117,7 +99,6 @@ if (fade_out == true)
     audio_fade_jng(true);
     audio_drown_fade(true);
 
-    // Reset:
     if (bgm_handle == -1 && jng_handle == -1)
     {
         fade_out = false;
@@ -127,13 +108,10 @@ else
 {
     if (!audio_drown_isplaying())
     {
-        // Jingle:
         if (audio_jng_isplaying() == true)
         {
             audio_fade_jng(false);
         }
-
-        // Music:
         else
         {
             audio_fade_bgm(false);
@@ -150,7 +128,6 @@ applies_to=self
 
 var i, j, audio_list, audio_index;
 
-// Stop all audio:
 audio_stop_all();
 ds_list_destroy(sfx_list);
 
@@ -164,14 +141,12 @@ for (i = 0; i < 4; i += 1)
 
         if (sound_exists(audio_index))
         {
-            // Delete:
             sound_delete(audio_index);
         }
 
         ds_list_delete(audio_list, i);
     }
 
-    // Destroy:
     ds_list_destroy(audio_list);
 }
 #define Other_5

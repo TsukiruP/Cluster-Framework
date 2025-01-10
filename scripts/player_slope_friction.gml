@@ -1,5 +1,5 @@
 /// player_slope_friction(friction)
-// Applies slope friction.
+/* Applies slope friction. */
 
 // Abort if...
 if (x_speed == 0 && input_lock_alarm <= 0) exit; // Not moving

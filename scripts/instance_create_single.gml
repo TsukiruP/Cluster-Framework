@@ -1,5 +1,6 @@
 /// instance_create_single(x, y, obj)
-// Creates an instance of obj at position (x,y). The function returns the id of the new instance.
+/* Creates an instance of obj at position (x,y) if it doesn't already exist.
+Returns the id of the new instance. */
 
 if (!instance_exists(argument2))
 {

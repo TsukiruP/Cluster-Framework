@@ -6,29 +6,23 @@ applies_to=self
 */
 /// Menu Initialization
 
-// Menu variables:
 menu_alarm = 0;
 menu_index = debug_menu_home;
 menu_cursor = 0;
 menu_option = 0;
 menu_scroll = 0;
 menu_x_direction = 0;
-
 menu_list = ds_list_create();
 debug_set_menu(debug_menu_home);
 
-// Transition variables:
 transition_room = room;
 transition_preview = TRANS_FADE;
 
-// Rename variables:
 rename_allow = false;
 rename_backup = "";
 
-// History stack:
 history_stack = ds_stack_create();
 
-// Sound alarm:
 sfx_alarm = 0;
 #define Destroy_0
 /*"/*'/**//* YYD ACTION
@@ -56,19 +50,15 @@ applies_to=self
 */
 /// Inputs
 
-// Reset x direction:
 menu_x_direction = 0;
 
-// Visibility:
 if (visible != !instance_exists(mnu_save))
 {
     visible = !instance_exists(mnu_save);
 }
 
-// Exit if text is active:
 if (game_ispaused(mgr_text) || instance_exists(mgr_transition) || instance_exists(mnu_save) || rename_allow == true)
 {
-    // Alarm:
     if (menu_alarm == 0)
     {
         menu_alarm = 2;
@@ -77,7 +67,6 @@ if (game_ispaused(mgr_text) || instance_exists(mgr_transition) || instance_exist
     exit;
 }
 
-// Exit if alarm is active:
 if (menu_alarm > 0)
 {
     menu_alarm -= 1;
@@ -86,7 +75,6 @@ if (menu_alarm > 0)
 
 var menu_left, menu_right, menu_up, menu_down, menu_y_direction, menu_size, option_confirm, option_update;
 
-// Menu direction:
 menu_left = (input_get_check(INP_LEFT, CHECK_PRESSED) || input_get_time(INP_LEFT, 30));
 menu_right = (input_get_check(INP_RIGHT, CHECK_PRESSED) || input_get_time(INP_RIGHT, 30));
 menu_x_direction = menu_right - menu_left;
@@ -95,7 +83,6 @@ menu_up = (input_get_check(INP_UP, CHECK_PRESSED) || input_get_time(INP_UP, 30))
 menu_down = (input_get_check(INP_DOWN, CHECK_PRESSED) || input_get_time(INP_DOWN, 30));
 menu_y_direction = menu_down - menu_up;
 
-// Menu option:
 menu_option += menu_y_direction;
 menu_size = ds_list_size(menu_list) - 1;
 
@@ -123,31 +110,26 @@ else
     }
 }
 
-// Play sound:
 if (menu_y_direction != 0 && sfx_alarm == 0)
 {
     sfx_alarm = 8;
     audio_play_sfx("snd_menu_move", true);
 }
 
-// Confirm:
 if (input_get_check(INP_CONFIRM, CHECK_PRESSED))
 {
     option_confirm = script_execute(ds_list_find_value(menu_list, menu_option), 2);
 
-    // Play sound:
     if (!is_undefined(option_confirm))
     {
         audio_play_sfx(pick(option_confirm, "snd_menu_cannot", "snd_menu_confirm"), true);
     }
 }
 
-// Update:
 if (menu_x_direction != 0)
 {
     option_update = script_execute(ds_list_find_value(menu_list, menu_option), 3);
 
-    // Play sound:
     if (!is_undefined(option_update) && sfx_alarm == 0)
     {
         sfx_alarm = 8;
@@ -155,12 +137,10 @@ if (menu_x_direction != 0)
     }
 }
 
-// Cancel:
 if (input_get_check(INP_CANCEL, CHECK_PRESSED))
 {
     if (debug_set_previous())
     {
-        // Play sound:
         audio_play_sfx("snd_menu_close", true);
     }
 }
@@ -171,7 +151,6 @@ applies_to=self
 */
 /// Rename
 
-// Exit if not renaming:
 if (rename_allow == false)
 {
     exit;
@@ -186,16 +165,13 @@ if (!window_has_focus())
 }
 else
 {
-    // Cap length:
     if (string_length(keyboard_string) > 10)
     {
         keyboard_string = string_delete_end(keyboard_string, string_length(keyboard_string) - 10);
     }
 
-    // Backup string:
     rename_backup = keyboard_string;
 
-    // Set name:
     if (keyboard_check_pressed(vk_enter))
     {
         game_set_save("name", rename_backup);
@@ -270,7 +246,6 @@ for (i = 0; i < min(ds_list_size(menu_list), 4); i += 1)
     draw_text(option_x, option_y, option_text);
 }
 
-// Reset:
 draw_reset();
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -279,7 +254,6 @@ applies_to=self
 */
 /// Draw Rename
 
-// Exit if not renaming:
 if (rename_allow == false)
 {
     exit;
@@ -295,5 +269,4 @@ draw_set1(c_white, 1);
 draw_set2(fa_center, fa_middle);
 draw_text(screen_get_width() / 2, screen_get_height() / 2, rename_backup);
 
-// Reset:
 draw_reset();

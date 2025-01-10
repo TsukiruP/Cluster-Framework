@@ -1,8 +1,8 @@
 /// transition_create(room, [transition, preview])
+/* Creates a transition manager and returns it. */
 
 var transition;
 
-// Initialize:
 transition = instance_create(0, 0, mgr_transition);
 
 with (transition)
@@ -11,19 +11,16 @@ with (transition)
     transition_room = argument0;
     transition_run = game_get_room_run(argument0);
 
-    // Override:
     if (argument_count >= 2)
     {
         transition_id = argument[1];
     }
 
-    // Preview:
     if (argument_count >= 3)
     {
         preview = argument[2];
     }
 
-    // Fade music:
     if (preview == false)
     {
         if (game_get_room_music() != game_get_room_music(transition_room))

@@ -8,16 +8,10 @@ applies_to=self
 
 event_inherited();
 
-// Image index:
 image_index = 1;
 
-// Targetable:
 targetable = false;
-
-// Cover:
 cover = noone;
-
-// Rainbow variables:
 rainbow_ring = false;
 rainbow_score = true;
 #define Step_2
@@ -28,7 +22,6 @@ applies_to=self
 */
 /// Animation
 
-// Rainbow ring index:
 if (rainbow_ring == true)
 {
     image_index = sync_rate(game_get_time(), 4, 6) + 1;
@@ -58,7 +51,6 @@ event_inherited();
 
     switch (orientation)
     {
-        // Horizontal:
         case 1:
             if (rainbow_ring == true)
             {
@@ -70,7 +62,6 @@ event_inherited();
             }
             break;
 
-        // Diagonal:
         case 2:
             if (rainbow_ring == true)
             {
@@ -82,7 +73,6 @@ event_inherited();
             }
             break;
 
-        // Vertical
         default:
             if (rainbow_ring == true)
             {
@@ -94,13 +84,11 @@ event_inherited();
             }
     }
 
-    // Flip x:
     if (flip_x == true)
     {
         image_xscale = -1;
     }
 
-    // Flip y:
     if (flip_y == true)
     {
         image_yscale = -1;
@@ -116,7 +104,6 @@ applies_to=self
 // Spring orientation:
 switch (orientation)
 {
-    // Horizontal:
     case ORIEN_HORIZONTAL:
         if (rainbow_ring == true)
         {
@@ -127,11 +114,10 @@ switch (orientation)
             sprite_index = spr_dash_ring_horizontal;
         }
 
-        angle = ANGLE_RIGHT;
         hurtbox_set(6, 24, 7, 26);
+        angle = ANGLE_RIGHT;
         break;
 
-    // Diagonal:
     case ORIEN_DIAGONAL:
         if (rainbow_ring == true)
         {
@@ -142,11 +128,10 @@ switch (orientation)
             sprite_index = spr_dash_ring_diagonal;
         }
 
-        angle = ANGLE_RIGHT_UP;
         hurtbox_set(7, 7, 7, 7);
+        angle = ANGLE_RIGHT_UP;
         break;
 
-    // Vertical:
     default:
         if (rainbow_ring == true)
         {
@@ -157,26 +142,23 @@ switch (orientation)
             sprite_index = spr_dash_ring_vertical;
         }
 
-        angle = ANGLE_UP;
         hurtbox_set(26, 5, 26, 6);
+        angle = ANGLE_UP;
 
 }
 
-// Flip x:
 if (flip_x == true)
 {
     image_xscale = -1;
     angle = 180 - angle;
 }
 
-// Flip y:
 if (flip_y == true)
 {
     image_yscale = -1;
     angle = 360 - angle;
 }
 
-// Cover:
 cover = instance_create(x, y, par_effect);
 cover.depth = -10;
 cover.sprite_index = sprite_index;

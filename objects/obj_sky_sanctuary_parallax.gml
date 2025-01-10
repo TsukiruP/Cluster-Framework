@@ -8,7 +8,6 @@ applies_to=self
 
 var i;
 
-// Cloud x:
 for (i = 0; i < 8; i += 1)
 {
     cloud_x[i] = 0;
@@ -37,7 +36,6 @@ applies_to=self
 */
 /// Draw Background
 
-// Color:
 draw_rect(view_xview[view_current], view_yview[view_current], screen_get_width(), screen_get_height(), make_color_rgb(10, 105, 201));
 
 // Sky:

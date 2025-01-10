@@ -8,17 +8,11 @@ applies_to=self
 
 event_inherited();
 
-// Hurtbox:
 hurtbox_set(8, 8, 7, 7, 0, 0);
-
-// Reaction:
 reaction_index = player_reaction_ring;
 
-// Ring variables:
 ring_super = false;
 ring_rate = 8;
-
-// Dropped:
 dropped = false;
 #define Step_0
 /*"/*'/**//* YYD ACTION
@@ -46,7 +40,6 @@ applies_to=self
 */
 /// Animation
 
-// Exit if the stage is paused:
 if (game_ispaused(mnu_pause))
 {
     exit;
@@ -60,8 +53,6 @@ action_id=603
 applies_to=self
 */
 /// Field Initialization
-
-event_inherited();
 
 //field ring_super: false
 

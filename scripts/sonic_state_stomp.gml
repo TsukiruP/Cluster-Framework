@@ -1,64 +1,44 @@
 /// sonic_state_stomp(phase)
-//
+/* A Smashing good time. */
 
 switch (argument0)
 {
-    // Start:
     case STATE_START:
-        // Set speed:
         x_speed = 0;
         y_speed = 0;
-
-        // Set animation:
         player_set_animation("stomp");
-
-        // Play sound:
         audio_play_sfx("snd_stomp", true);
         break;
 
-    // Step:
     case STATE_STEP:
-        // Air movement:
         if (on_ground == false)
         {
             var stomp_allow;
 
-            // Stomp allow:
             stomp_allow = (image_index >= 5)
 
             if (stomp_allow == true)
             {
-                // Set speed:
                 if (image_index == 5)
                 {
                     x_speed = 10 * image_xscale;
                     y_speed = 10;
                 }
 
-                // Movement:
                 if (!player_movement_air())
                 {
                     return false;
                 }
 
-                // Land:
                 if (on_ground == true)
                 {
                     var sine, csine;
 
-                    // Set speed:
                     x_speed = 0;
-
-                    // Set animation:
                     player_set_animation("stomp_land");
-
-                    // Play sound:
                     audio_play_sfx("snd_stomp_land", true);
-
-                    // Stop sound:
                     audio_stop_sfx("snd_stomp");
 
-                    // Create shockwave:
                     sine = dsin(mask_rotation);
                     csine = dcos(mask_rotation);
 
@@ -69,7 +49,6 @@ switch (argument0)
                     }
                 }
 
-                // Gravity:
                 if (y_allow == true)
                 {
                     y_speed += gravity_force;
@@ -77,34 +56,28 @@ switch (argument0)
             }
         }
 
-        // Ground movement:
         else
         {
-            // Movement:
             if (!player_movement_ground())
             {
                 return false;
             }
 
-            // Fall:
             if (on_ground == false)
             {
                 return player_set_state(player_state_air);
             }
 
-            // Super Peel Out:
-            if (game_get_save("sonic_peel") == true && player_get_input(INP_UP, CHECK_HELD) && player_get_input(INP_JUMP, CHECK_PRESSED))
-            {
-                return player_set_state(sonic_state_peel_out);
-            }
-
-            // Spin Dash:
             if (player_get_input(INP_DOWN, CHECK_HELD) && player_get_input(INP_JUMP, CHECK_PRESSED))
             {
                 return player_set_state(player_state_spin_dash);
             }
 
-            // Idle:
+            if (game_get_save("sonic_peel") == true && player_get_input(INP_UP, CHECK_HELD) && player_get_input(INP_JUMP, CHECK_PRESSED))
+            {
+                return player_set_state(sonic_state_peel_out);
+            }
+
             if (animation_finished == true)
             {
                 return player_set_state(player_state_idle);
@@ -112,9 +85,7 @@ switch (argument0)
         }
         break;
 
-    // Finish:
     case STATE_FINISH:
-        // Stop sound:
         audio_stop_sfx("snd_stomp");
         break;
 }

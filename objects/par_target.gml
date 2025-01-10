@@ -8,5 +8,4 @@ applies_to=self
 
 event_inherited();
 
-// Targetable:
 targetable = true;

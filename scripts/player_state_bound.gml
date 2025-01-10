@@ -1,24 +1,16 @@
 /// player_state_bound()
-// Not to be confused with the Bound Attack. Which is to say they're the same thing.
+/* Not to be confused with the Bound Attack. A common mistake.
+This is the bound of the bubble shield. */
 
 switch (argument0)
 {
-    // Start:
     case STATE_START:
-        // Set speed:
         x_speed = 0;
         y_speed = 8;
-
-        // Set bound:
         jump_bound = BOUND_SHIELD;
-
-        // Set animation:
         player_set_animation("spin");
-
-        // Play sound:
         audio_play_sfx("snd_shield_bubble_bound", true);
 
-        // Shield:
         if (instance_exists(shield_handle))
         {
             with (shield_handle)
@@ -28,9 +20,7 @@ switch (argument0)
         }
         break;
 
-    // Step:
     case STATE_STEP:
-        // Input:
         if (input_x_direction != 0)
         {
             image_xscale = input_x_direction;
@@ -46,22 +36,16 @@ switch (argument0)
             }
         }
 
-        // Movement:
         if (!player_movement_air())
         {
             return false;
         }
 
-        // Land:
         if (on_ground == true)
         {
-            // Set animation:
             animation_skip = true;
-
-            // Play sound:
             audio_play_sfx("snd_shield_bubble_bound", true);
 
-            // Shield:
             if (instance_exists(shield_handle))
             {
                 with (shield_handle)
@@ -73,7 +57,6 @@ switch (argument0)
             return player_set_state(player_state_jump, true);
         }
 
-        // Air friction:
         if (abs(x_speed) > air_friction_threshold && y_speed > -4 && y_speed < 0)
         {
             x_speed *= air_friction;
@@ -86,9 +69,7 @@ switch (argument0)
         }
         break;
 
-    // Finish:
     case STATE_FINISH:
-        // Reset bound:
         if (state_current != player_state_jump)
         {
             jump_aux = false;

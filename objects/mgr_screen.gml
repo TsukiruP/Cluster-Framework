@@ -6,7 +6,6 @@ applies_to=self
 */
 /// Screen Initialization
 
-// Screen size:
 screen_set_size(480, 270);
 room_set_view_all(screen_width, screen_height);
 window_resize_buffer(screen_width, screen_height, true, false);
@@ -19,17 +18,14 @@ applies_to=self
 */
 /// Update
 
-// Resolution:
 if (screen_set_resolution())
 {
     room_set_view_better(screen_width, screen_height);
     room_set_view_all(screen_width, screen_height);
 }
 
-// Window:
 screen_set_window();
 
-// Config:
 if (game_get_config("screen_full") != window_get_fullscreen())
 {
     game_set_config("screen_full", window_get_fullscreen());

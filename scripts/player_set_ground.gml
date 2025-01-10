@@ -1,5 +1,5 @@
 /// player_set_ground(obj)
-// Assigns the given solid as the player's current ground.
+/* Assigns the given solid as the player's current ground. */
 
 var sine, csine;
 

@@ -6,26 +6,13 @@ applies_to=self
 */
 /// Culled Initialization
 
-// Depth:
 depth = 10;
-
-// Image speed:
 image_speed = 0;
-
-// Gravity direction:
 gravity_direction = 0;
 
-// Hurtbox:
 hurtbox_set();
-
-// Hitbox:
 hitbox_set();
-
-// Reaction:
 reaction_index = -1;
-
-// Collision:
-collision = true;
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -34,7 +21,6 @@ applies_to=self
 */
 /// Draw Collision
 
-// Exit if not in debug mode:
 if (!game_get_debug())
 {
     exit;

@@ -1,32 +1,24 @@
 /// player_state_hurt(phase)
-// Ouchie ouch ouch.
+/* Ouchie ouch ouch. */
 
 switch (argument0)
 {
-    // Start:
     case STATE_START:
-        // Clock over:
         if (clock_up_state != 0)
         {
             classic_trait_clock_up(true);
         }
 
-        // Reset air:
         player_reset_air();
-
-        // Set animation:
         player_set_animation("hurt");
         break;
 
-    // Step:
     case STATE_STEP:
-        // Movement:
         if (!player_movement_air())
         {
             return false;
         }
 
-        // Land:
         if (player_routine_land())
         {
             if (!game_get_config("advance_hurt") || character_id == CHAR_CLASSIC)
@@ -35,7 +27,7 @@ switch (argument0)
             }
 
             y_speed = 0;
-            return false;
+            return true;
         }
 
         // Gravity:
@@ -45,9 +37,7 @@ switch (argument0)
         }
         break;
 
-    // Finish:
     case STATE_FINISH:
-        // Set invincibility:
         status_invin_alarm = 120;
         break;
 }

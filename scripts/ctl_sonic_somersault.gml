@@ -4,7 +4,6 @@ if (ctl_position(0))
 {
     sprite_index = spr_sonic_skid;
     image_index = 0;
-
     radii_set(6, 14, 3);
     hurtbox_set(6, 5, 6, 16);
     hitbox_set();
@@ -13,7 +12,6 @@ if (ctl_position(0))
 else if (ctl_position(2))
 {
     image_index = 1;
-
     hurtbox_set(10, 5, 10, 16);
     hitbox_set(6, 19, 23, 16);
 }

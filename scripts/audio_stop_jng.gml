@@ -1,5 +1,6 @@
 /// audio_stop_jng([index])
-/* Stops a jingle. Defaults to the currently playing jingle. */
+/* Stops a jingle.
+Defaults to the currently playing jingle. */
 
 with (mgr_audio)
 {

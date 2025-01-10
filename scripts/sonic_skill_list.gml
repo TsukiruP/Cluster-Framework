@@ -1,7 +1,7 @@
 /// sonic_skill_list(id)
 // Manages all of Sonic's actions.
 
-// Slam skill:
+// Slam:
 if (game_get_save("sonic_slam") >= SKILL_BOUND_ATTACK && on_ground == false && player_get_input(INP_DOWN, CHECK_HELD) && player_get_input(INP_AUX, CHECK_PRESSED))
 {
     switch (game_get_save("sonic_slam"))
@@ -23,7 +23,7 @@ else if ((((game_get_save("sonic_homing") == HOMING_ADVENTURE || game_get_save("
     return player_set_state(sonic_state_homing);
 }
 
-// Ground skill:
+// Ground:
 else if (on_ground == true && player_get_input(INP_AUX, CHECK_PRESSED))
 {
     switch (game_get_save("sonic_aux_ground"))
@@ -39,21 +39,21 @@ else if (on_ground == true && player_get_input(INP_AUX, CHECK_PRESSED))
     }
 }
 
-// Aerial skill:
+// Aerial:
 else if (on_ground == false)
 {
     var skill_key;
 
-    // Skill ID:
+    // Skill key:
     skill_key = "";
 
-    // Check Jump skill:
+    // Check Jump:
     if (player_get_input(INP_JUMP, CHECK_PRESSED))
     {
         skill_key = "sonic_jump";
     }
 
-    // Check Aux skill:
+    // Check Auxiliary:
     else if (player_get_input(INP_AUX, CHECK_PRESSED))
     {
         skill_key = "sonic_aux_air";
@@ -72,17 +72,11 @@ else if (on_ground == false)
             // Insta-shield:
             else if (game_get_save(skill_key) == SKILL_INSTA)
             {
-                // Set state:
                 player_set_state(player_state_jump, false);
                 jump_cap = false;
-
                 status_shield_allow = false;
                 status_insta_alarm = 8;
-
-                // Set animation:
                 player_set_animation("insta");
-
-                // Play sound:
                 audio_play_sfx("snd_shield_insta", true);
 
                 // Create shield:
@@ -103,21 +97,16 @@ else if (on_ground == false)
         // Air Dash:
         else if (game_get_save(skill_key) == SKILL_AIR_DASH && air_dash_allow == true)
         {
-            // Set speed:
             x_speed += 2.25 * image_xscale;
             y_speed  = 0;
-
-            // Set animation:
+            air_dash_allow = false;
             animation_skip = (animation_current != "spin" && animation_current != "insta");
             player_set_animation("air_dash");
-            air_dash_allow = false;
-            
-            // Play sound:
             audio_play_sfx("snd_air_dash", true);
             return player_set_state(player_state_air, false);
         }
         
-        // Jump Skills:
+        // Jump:
         else if (skill_key == "sonic_jump")
         {
             // Drop Dash:
@@ -129,11 +118,10 @@ else if (on_ground == false)
     }
 }
 
-// Super Peel Out:
+// Peel Out:
 if (game_get_save("sonic_peel") == true && x_speed == 0 && player_get_input(INP_UP, CHECK_HELD) && player_get_input(INP_JUMP, CHECK_PRESSED))
 {
     return player_set_state(sonic_state_peel_out);
 }
 
-// No skill takes place:
 return false;

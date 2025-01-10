@@ -1,5 +1,5 @@
 /// player_animation_fix()
-// Changes the current animation in case of a missing animation.
+/* Sets the current animation to avoid loading an animation that doesn't exist. */
 
 switch (character_id)
 {

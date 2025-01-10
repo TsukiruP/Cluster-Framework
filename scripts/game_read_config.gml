@@ -7,9 +7,7 @@ with (mgr_game)
     {
         var config_temp;
 
-        // Initialize:
         config_temp = game_load_config_buffer();
-
         ds_map_copy(config_map, config_temp);
         ds_map_destroy(config_temp);
     }

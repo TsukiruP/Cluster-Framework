@@ -4,7 +4,6 @@ if (ctl_position(0))
 {
     sprite_index = spr_sonic_spin_fall;
     image_index = 0;
-
     radii_set(6, 9, 3, 5);
     hurtbox_set(6, 6, 6, 4);
     hitbox_set(6, 9, 6, 9);

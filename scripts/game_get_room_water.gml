@@ -1,5 +1,6 @@
 /// game_get_room_water([room])
-/* Returns the water level of a room. Defaults to the current room.
+/* Returns the water level of a room.
+Defaults to the current room.
 If the room has no water level set, returns -1. */
 
 with (mgr_game)

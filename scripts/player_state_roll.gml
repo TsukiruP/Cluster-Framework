@@ -1,23 +1,18 @@
 /// player_state_roll(phase)
-// Keep rollin', rollin', rollin', rollin'
+/* Keep rollin', rollin', rollin', rollin' */
 
 switch (argument0)
 {
-    // Start:
     case STATE_START:
-        // Set speed:
         if (x_speed == 0)
         {
             x_speed = 2 * input_x_direction;
         }
 
-        // Set animation:
         player_set_animation("spin");
         break;
 
-    // Step:
     case STATE_STEP:
-        // Input:
         if (input_x_direction != 0)
         {
             if (input_lock_alarm == 0)
@@ -40,13 +35,11 @@ switch (argument0)
             x_speed -= min(abs(x_speed), roll_friction) * sign(x_speed);
         }
 
-        // Movement:
         if (!player_movement_ground())
         {
             return false;
         }
 
-        // Fall:
         if (on_ground == false)
         {
             return player_set_state(player_state_air);
@@ -55,13 +48,11 @@ switch (argument0)
         // Slide off:
         if (abs(x_speed) < slide_threshold && relative_angle >= 45 && relative_angle <= 315)
         {
-            // Fall:
             if (relative_angle >= 90 && relative_angle <= 270)
             {
                 return player_set_state(player_state_air);
             }
 
-            // Deploy input lock:
             input_lock_alarm = 30;
         }
 
@@ -77,10 +68,9 @@ switch (argument0)
 
         player_slope_friction(roll_slope_friction);
 
-        // Jump:
         if (player_routine_jump())
         {
-            return false;
+            return true;
         }
 
         // Uncurl:
@@ -90,7 +80,6 @@ switch (argument0)
         }
         break;
 
-    // Finish:
     case STATE_FINISH:
         break;
 }

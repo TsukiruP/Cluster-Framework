@@ -1,5 +1,5 @@
 /// instance_nth_nearest(x, y, obj, n)
-// Returns the nth nearest instance.
+/* Returns the nth nearest instance. */
 
 var x_int, y_int, obj, n, list, nearest;
 

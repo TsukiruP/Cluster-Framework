@@ -1,17 +1,14 @@
 /// player_state_brake(phase)
-// Try to outrun this demon to get left in the dust.
+/* Try to outrun this demon to get left in the dust. */
 
 switch (argument0)
 {
-    // Start:
     case STATE_START:
-        // Set direction:
         if ((!game_get_config("advance_brake") || character_id == CHAR_CLASSIC) && x_speed != 0)
         {
             image_xscale = sign(x_speed);
         }
 
-        // Set animation:
         if (abs(x_speed) >= 6.00)
         {
             player_set_animation("brake_fast");
@@ -22,9 +19,7 @@ switch (argument0)
         }
         break;
 
-    // Step:
     case STATE_STEP:
-        // Input:
         if (input_x_direction != 0)
         {
             if (sign(x_speed) != input_x_direction)
@@ -37,19 +32,13 @@ switch (argument0)
                     {
                         x_speed = deceleration * input_x_direction;
 
-                        // Turn:
                         if (game_get_config("advance_turn") && character_id != CHAR_CLASSIC && image_xscale != sign(x_speed))
                         {
-                            // Set animation:
                             player_set_animation("turn_brake");
                             return player_set_state(player_state_turn);
                         }
 
-                        // Run:
-                        else
-                        {
-                            return player_set_state(player_state_run);
-                        }
+                        return player_set_state(player_state_run);
                     }
                 }
             }
@@ -62,7 +51,6 @@ switch (argument0)
         // Friction:
         else
         {
-            // Run:
             if (game_get_config("advance_brake") && character_id != CHAR_CLASSIC)
             {
                 return player_set_state(player_state_run);
@@ -73,17 +61,15 @@ switch (argument0)
             // Roll:
             if (player_routine_roll())
             {
-                return false;
+                return true;
             }
         }
 
-        // Movement:
         if (!player_movement_ground())
         {
             return false;
         }
 
-        // Fall:
         if (on_ground == false)
         {
             return player_set_state(player_state_air);
@@ -92,36 +78,30 @@ switch (argument0)
         // Slide off:
         if (abs(x_speed) < slide_threshold && relative_angle >= 45 && relative_angle <= 315)
         {
-            // Fall:
             if (relative_angle >= 90 && relative_angle <= 270)
             {
                 return player_set_state(player_state_air);
             }
 
-            // Deploy input lock:
             input_lock_alarm = 30;
             return player_set_state(player_state_run);
         }
 
-        // Slope friction:
         player_slope_friction(slope_friction);
 
-        // Idle:
         if (x_speed == 0 && input_x_direction == 0)
         {
             return player_set_state(player_state_idle);
         }
 
-        // Skill:
         if (player_routine_skill())
         {
-            return false;
+            return true;
         }
 
-        // Jump:
         if (player_routine_jump())
         {
-            return false;
+            return true;
         }
 
         // Dust:
@@ -131,7 +111,6 @@ switch (argument0)
         }
         break;
 
-    // Finish:
     case STATE_FINISH:
         break;
 }

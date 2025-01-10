@@ -1,13 +1,11 @@
 /// player_get_animation_speed()
-// Returns animation speed.
+/* Returns animation speed. */
 
 switch (character_id)
 {
-    // Classic:
     case CHAR_CLASSIC:
         switch (animation_current)
         {
-            // Run:
             case "run_0":
             case "run_1":
                 if (on_ground == true)
@@ -17,7 +15,6 @@ switch (character_id)
 
                 return clamp(ctl_speed, 1, 7);
 
-            // Spin:
             case "spin":
                 if (on_ground == true)
                 {
@@ -28,11 +25,9 @@ switch (character_id)
         }
         break;
 
-    // Default:
     default:
         switch (animation_current)
         {
-            // Run:
             case "run_0":
             case "run_1":
             case "run_2":

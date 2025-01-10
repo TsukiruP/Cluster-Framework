@@ -8,16 +8,10 @@ applies_to=self
 
 event_inherited();
 
-// Timeline:
-ctl_init(ctl_checkpoint_inactive);
-
-// Hurtbox:
 hurtbox_set(13, 22, 14, 16);
-
-// Reaction:
 reaction_index = player_reaction_checkpoint;
 
-// Active:
+ctl_init(ctl_checkpoint_inactive);
 active = false;
 
 if (game_get_checkpoint_x() == x && game_get_checkpoint_y() == y)
@@ -32,7 +26,6 @@ applies_to=self
 */
 /// Animation
 
-// Exit if the stage is paused:
 if (game_ispaused(mnu_pause))
 {
     exit;
@@ -53,8 +46,7 @@ else
     }
 }
 
-// Execute timeline:
-if (ctl_index != noone)
+if (script_exists(ctl_index))
 {
     ctl_update();
     script_execute(ctl_index);
@@ -67,8 +59,5 @@ applies_to=self
 */
 /// Draw Checkpoint
 
-// Checkpoint:
 draw_self();
-
-// Collision:
 event_inherited();

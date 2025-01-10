@@ -8,16 +8,10 @@ applies_to=self
 
 event_inherited();
 
-// Hurtbox:
 hurtbox_set(13, 16, 12, 16);
-
-// Reaction:
 reaction_index = player_reaction_item_box;
 
-// Player handle:
 player_handle = noone;
-
-// Item id:
 item_id = ITEM_BONUS;
 #define Step_0
 /*"/*'/**//* YYD ACTION
@@ -88,11 +82,6 @@ applies_to=self
 */
 /// Draw Item Box
 
-// Item icon:
 draw_sprite_ext(spr_item_icon, item_id, x, y, 1, 1, image_angle, c_white, 1);
-
-// Item box:
 draw_sprite_ext(spr_item_box, 1, x, y, 1, 1, image_angle, c_white, 1);
-
-// Collision:
 event_inherited();

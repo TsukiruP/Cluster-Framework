@@ -1,28 +1,20 @@
 /// player_routine_shield()
-// Or barriers, for the nerds.
+/* Barriers, if you care about that sort of thing. */
 
-// Disable shield:
 status_shield_allow = false;
 
-// Shield behavior:
 switch (status_shield)
 {
-    // Fire:
     case SHIELD_FIRE:
-        // Set speed:
-        x_speed = 8 * image_xscale;
-        y_speed = 0;
-
-        // Camera lag:
         if (input_cpu == false)
         {
             camera_set_lag(16);
         }
 
-        // Play sound:
+        x_speed = 8 * image_xscale;
+        y_speed = 0;
         audio_play_sfx("snd_shield_fire_dash", true);
 
-        // Shield:
         if (instance_exists(shield_handle))
         {
             with (shield_handle)
@@ -32,14 +24,10 @@ switch (status_shield)
         }
         break;
 
-    // Lightning:
     case SHIELD_LIGHTNING:
         var i;
 
-        // Set speed:
         y_speed = -5.5;
-
-        // Play sound:
         audio_play_sfx("snd_shield_lightning_jump", true);
 
         // Sparks:
@@ -55,17 +43,12 @@ switch (status_shield)
         break;
 }
 
-// Return:
 if (status_shield == SHIELD_BUBBLE)
 {
-    // Set state:
     player_set_state(player_state_bound);
-
-    // Jump aux:
     jump_aux = player_get_input(INP_AUX, CHECK_PRESSED);
     return true;
 }
 
-// Set animation:
 player_set_animation("spin");
 return player_set_state(player_state_jump, false);

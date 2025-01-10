@@ -1,5 +1,5 @@
 /// player_collision_floor(radius)
-// Returns the id of the first solid that is in collision with the lower half of the player's bounding box, or noone on failure.
+/* Returns the id of the first solid that is in collision with the lower half of the player's bounding box, or noone on failure. */
 
 var total_solids, oy, n, inst;
 

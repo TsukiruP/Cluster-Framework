@@ -1,15 +1,12 @@
 /// player_state_run(phase)
-// Gotta go fast!
+/* Gotta go fast! */
 
 switch (argument0)
 {
-    // Start:
     case STATE_START:
         break;
 
-    // Step:
     case STATE_STEP:
-        // Input:
         if (input_x_direction != 0)
         {
             // Decelerate:
@@ -17,16 +14,13 @@ switch (argument0)
             {
                 if (input_lock_alarm == 0)
                 {
-                    // Turn:
-                    if ((game_get_config("advance_turn") && character_id != CHAR_CLASSIC) && abs(x_speed) <= 4 && image_xscale == -input_x_direction)
+                    if ((game_get_config("advance_turn") && character_id != CHAR_CLASSIC) && image_xscale == -input_x_direction && abs(x_speed) <= 4)
                     {
                         return player_set_state(player_state_turn);
                     }
 
-                    // Brake:
                     if (abs(x_speed) > 4)
                     {
-                        // Play sound:
                         audio_play_sfx("snd_brake");
                         return player_set_state(player_state_brake);
                     }
@@ -43,7 +37,6 @@ switch (argument0)
             // Accelerate:
             else
             {
-                // Set direction:
                 image_xscale = input_x_direction;
 
                 if (abs(x_speed) < top_speed)
@@ -63,20 +56,17 @@ switch (argument0)
         {
             x_speed -= min(abs(x_speed), acceleration) * sign(x_speed);
 
-            // Roll:
             if (player_routine_roll())
             {
-                return false;
+                return true;
             }
         }
 
-        // Movement:
         if (!player_movement_ground())
         {
             return false;
         }
 
-        // Fall:
         if (on_ground == false)
         {
             return player_set_state(player_state_air);
@@ -85,35 +75,29 @@ switch (argument0)
         // Slide off:
         if (abs(x_speed) < slide_threshold && relative_angle >= 45 && relative_angle <= 315)
         {
-            // Fall:
             if (relative_angle >= 90 && relative_angle <= 270)
             {
                 return player_set_state(player_state_air);
             }
 
-            // Deploy input lock:
             input_lock_alarm = 30;
         }
 
-        // Slope friction:
         player_slope_friction(slope_friction);
 
-        // Idle:
         if (x_speed == 0 && input_x_direction == 0)
         {
             return player_set_state(player_state_idle);
         }
 
-        // Skill:
         if (player_routine_skill())
         {
-            return false;
+            return true;
         }
 
-        // Jump:
         if (player_routine_jump())
         {
-            return false;
+            return true;
         }
 
         // Peel out:
@@ -122,11 +106,9 @@ switch (argument0)
             peel_out = false;
         }
 
-        // Set animation:
         player_animation_run();
         break;
 
-    // Finish:
     case STATE_FINISH:
         input_lock_alarm = 0;
         break;

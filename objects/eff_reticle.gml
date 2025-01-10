@@ -8,7 +8,6 @@ applies_to=self
 
 event_inherited();
 
-// Set index:
 ctl_set(ctl_reticle);
 
 if (game_get_config("misc_reticle") == 2)
@@ -16,7 +15,6 @@ if (game_get_config("misc_reticle") == 2)
     ctl_set(ctl_reticle_colors);
 }
 
-// Homing handle:
 homing_handle = noone;
 #define Step_2
 /*"/*'/**//* YYD ACTION
@@ -28,7 +26,6 @@ applies_to=self
 
 event_inherited();
 
-// Homing handle:
 homing_handle = player_handle.homing_handle;
 
 if (!instance_exists(homing_handle))

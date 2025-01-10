@@ -1,5 +1,5 @@
 /// player_get_angle(obj, rot)
-// Calculates the angle of the given solid using its image && collision data.
+/* Calculates the angle of the given solid using its image && collision data. */
 
 var xscale, yscale, left, right, top, bottom, kind, temp_radius;
 

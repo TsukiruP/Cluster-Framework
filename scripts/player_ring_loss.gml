@@ -1,14 +1,12 @@
 /// player_ring_loss()
-// Drop a ring of rings.
+/* Drop a ring of rings. */
 
 var ring_total, ring_angle, ring_speed, ring_handle;
 
-// Ring variables:
 ring_total = min(stage_get_rings(), 32);
 ring_angle = 101.25;
 ring_speed = 4;
 
-// Scatter rings:
 while (ring_total)
 {
     ring_handle = instance_create(x, y, obj_ring);
@@ -23,10 +21,8 @@ while (ring_total)
         ring_handle.x_speed *= -1;
     }
 
-    // Decrease ring total:
     ring_total -= 1;
 
-    // Reset ring variables when at 16:
     if (ring_total == 16)
     {
         ring_speed = 2;
@@ -34,8 +30,5 @@ while (ring_total)
     }
 }
 
-// Empty stage rings:
 stage_set_rings(0);
-
-// Play sound:
 audio_play_sfx("snd_ring_loss");

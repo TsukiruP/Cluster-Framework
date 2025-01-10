@@ -6,7 +6,6 @@ applies_to=self
 */
 /// Title Initialization
 
-// Title variables:
 title_start = false;
 title_flash = 10;
 #define Step_0

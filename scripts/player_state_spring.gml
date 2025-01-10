@@ -1,25 +1,18 @@
 /// player_state_spring(phase)
-// Falling with style.
+/* Falling with style.
+Very similar to the airborne state, except this has checks for the spring alarm for inputs and has a different animation script.  */
 
 switch (argument0)
 {
-    // Start:
     case STATE_START:
-        // Reset air:
         player_reset_air();
-
-        // Reset skill:
         player_reset_skill();
-
-        // Set animation:
         player_animation_spring();
         break;
 
-    // Step:
     case STATE_STEP:
         if (spring_alarm == 0)
         {
-            // Input:
             if (input_x_direction != 0)
             {
                 image_xscale = input_x_direction;
@@ -36,47 +29,39 @@ switch (argument0)
             }
         }
 
-        // Movement:
         if (!player_movement_air())
         {
             return false;
         }
 
-        // Land:
         if (player_routine_land())
         {
-            return false;
+            return true;
         }
 
-        // Spring:
         if (spring_alarm > 0)
         {
             return false;
         }
 
-        // Skill:
         if (player_routine_skill())
         {
-            return false;
+            return true;
         }
 
-        // Air friction:
         if (abs(x_speed) > air_friction_threshold && y_speed > -4 && y_speed < 0)
         {
             x_speed *= air_friction;
         }
 
-        // Gravity:
         if (y_allow == true)
         {
             y_speed += gravity_force;
         }
 
-        // Set animation:
         player_animation_spring();
         break;
 
-    // Finish:
     case STATE_FINISH:
         break;
 }

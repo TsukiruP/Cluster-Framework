@@ -8,10 +8,7 @@ applies_to=self
 
 event_inherited();
 
-// Depth:
 depth = -11;
-
-// Set index:
 ctl_set(ctl_splash_5);
 #define Step_2
 /*"/*'/**//* YYD ACTION
@@ -23,19 +20,16 @@ applies_to=self
 
 event_inherited();
 
-// Exit if the stage is paused:
 if (game_ispaused(mnu_pause))
 {
     exit;
 }
 
-// Destroy:
 if (player_handle.waterfall_draw != true)
 {
     instance_destroy();
 }
 
-// Reset:
 player_handle.waterfall_draw = false;
 #define Draw_0
 /*"/*'/**//* YYD ACTION
@@ -43,11 +37,10 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Draw Debuff
+/// Draw Splash
 
 var player_rotation, sine, csine, draw_x, draw_y;
 
-// Rotation:
 player_rotation = player_handle.mask_rotation;
 sine = dsin(player_handle.mask_rotation);
 csine = dcos(player_handle.mask_rotation);

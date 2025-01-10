@@ -1,9 +1,8 @@
 /// hurtbox_set(left, top, right, bottom, [xoffset, yoffset])
-// Sets the calling instance's hurtbox.
+/* Sets the calling instance's hurtbox. */
 
 var left, top, right, bottom, off_x, off_y;
 
-// Initialize:
 left = 0;
 top = 0;
 right = 0;
@@ -12,7 +11,6 @@ bottom = 0;
 off_x = 0;
 off_y = 0;
 
-// Assign hurtbox:
 if (argument_count >= 4)
 {
     left = argument[0];
@@ -31,7 +29,6 @@ if (argument_count >= 4)
     }
 }
 
-// Set hurtbox:
 hurtbox_left = left;
 hurtbox_top = top;
 hurtbox_right = right;

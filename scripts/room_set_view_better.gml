@@ -1,5 +1,5 @@
 /// room_set_view_better(width, height)
-// Sets room variables directly so they take effect immediately.
+/* Sets room variables directly so they take effect immediately. */
 
 view_enabled[0] = true;
 view_visible[0] = true;

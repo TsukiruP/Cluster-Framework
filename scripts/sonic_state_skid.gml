@@ -8,33 +8,24 @@ Sliding lasts 32 frames, and then similar to above occurs: either Sonic gets up 
 
 switch (argument0)
 {
-    // Start:
     case STATE_START:
-        // Set speed:
         if (peel_out == false)
         {
             x_speed = 3 * image_xscale;
         }
 
-        // Set animation:
         player_set_animation("somersault");
-        
-        // Play sound:
         audio_play_sfx("snd_somersault", true);
         break;
 
-    // Step:
     case STATE_STEP:
-        // Air movement:
         if (on_ground == false)
         {
-            // Movement:
             if (!player_movement_air())
             {
                 return false;
             }
 
-            // Land:
             if (player_routine_land())
             {
                 return true;
@@ -47,7 +38,6 @@ switch (argument0)
             }
         }
 
-        // Ground movement:
         else
         {
             // Friction:
@@ -63,7 +53,6 @@ switch (argument0)
                 }
             }
 
-            // Movement:
             if (!player_movement_ground())
             {
                 return false;
@@ -72,25 +61,21 @@ switch (argument0)
             // Slide off:
             if (abs(x_speed) < slide_threshold && relative_angle >= 45 && relative_angle <= 315)
             {
-                // Fall:
                 if (relative_angle >= 90 && relative_angle <= 270)
                 {
                     return player_set_state(player_state_air);
                 }
             }
 
-            // Cancel:
             if (x_speed != 0 && sign(x_speed) != image_xscale)
             {
                 return player_set_state(player_state_run);
             }
 
-            // Finish animation:
             if (animation_finished == true)
             {
                 switch (animation_current)
                 {
-                    // Skid:
                     case "somersault":
                         // Set speed:
                         if (peel_out == false)
@@ -98,33 +83,25 @@ switch (argument0)
                             x_speed = 4 * image_xscale;
                         }
                         
-                        // Set animation:
                         player_set_animation("skid");
-                        
-                        // Play sound:
                         audio_play_sfx("snd_air_dash", true);
                         break;
 
-                    // Idle:
                     case "skid_end":
                         return player_set_state(player_state_idle);
                 }
             }
         }
 
-        // Fall:
         if (on_ground == false)
         {
-            // Reset air:
             if (ground_id != noone)
             {
                 player_reset_air();
             }
 
-            // Jump:
             if (animation_finished == true)
             {
-                // Set animation:
                 animation_skip = true;
                 player_set_animation("spin");
                 return player_set_state(player_state_jump, false);
@@ -144,7 +121,6 @@ switch (argument0)
             // Time out:
             if (animation_time >= 32)
             {
-                // Get up:
                 if (on_ground == true)
                 {
                     if (peel_out == false)
@@ -157,13 +133,9 @@ switch (argument0)
                     }
                 }
 
-                // Jump:
                 else
                 {
-                    // Reset air:
                     player_reset_air();
-                    
-                    // Set animation:
                     animation_skip = true;
                     player_set_animation("spin");
                     return player_set_state(player_state_jump, false);
@@ -172,7 +144,6 @@ switch (argument0)
         }
         break;
 
-    // Finish:
     case STATE_FINISH:
         break;
 }

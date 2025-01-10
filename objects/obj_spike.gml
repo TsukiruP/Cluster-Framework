@@ -8,16 +8,12 @@ applies_to=self
 
 event_inherited();
 
-// Depth:
 depth = -10;
 
-// Mask:
 mask = false;
 
-// Reaction:
 reaction_index = player_reaction_spike;
 
-// Spike variables:
 orientation = ORIEN_VERTICAL;
 flip = false;
 angle = ANGLE_UP;
@@ -42,7 +38,6 @@ applies_to=self
 
     switch (orientation)
     {
-        // Horizontal:
         case 1:
             sprite_index = Sprite("spr_spike_horizontal", 0);
 
@@ -52,7 +47,6 @@ applies_to=self
             }
             break;
 
-        // Vertical:
         default:
             sprite_index = Sprite("spr_spike_vertical", 0);
 
@@ -72,11 +66,10 @@ applies_to=self
 // Spike orientation:
 switch (orientation)
 {
-    // Horizontal:
     case ORIEN_HORIZONTAL:
         sprite_index = spr_spike_horizontal;
-        angle = ANGLE_RIGHT;
         hurtbox_set(16, 16, 8, 15);
+        angle = ANGLE_RIGHT;
 
         if (flip == true)
         {
@@ -85,11 +78,10 @@ switch (orientation)
         }
         break;
 
-    // Vertical:
     default:
         sprite_index = spr_spike_vertical;
-        angle = ANGLE_UP;
         hurtbox_set(16, 8, 15, 15);
+        angle = ANGLE_UP;
 
         if (flip == true)
         {
@@ -105,8 +97,5 @@ applies_to=self
 */
 /// Draw Spike
 
-// Spike:
 draw_self();
-
-// Collision:
 event_inherited();

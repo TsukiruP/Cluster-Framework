@@ -1,7 +1,6 @@
 /// player_trail_draw()
-// Draws the player's trial.
+/* Draws the player's trial. */
 
-// Exit if trails are disabled:
 if (trail_alpha == -1)
 {
     exit;
@@ -9,7 +8,6 @@ if (trail_alpha == -1)
 
 var i, width, color, size, px, py, nx, ny, dir, dx, dy, alpha;
 
-// Initialize:
 width = 10;
 color = player_trail_color();
 size = ds_list_size(trail_alpha);

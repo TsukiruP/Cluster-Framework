@@ -20,21 +20,15 @@ applies_to=self
 */
 /// Text Initialization
 
-// Font height:
 draw_set_font(global.font_system);
-
 font_height = string_height("Test");
 
-// Text variables:
 text_hide = false;
 text_clear = false;
 text_handle = noone;
-
 text_alpha_rate = 0.05;
 
-// Body variables:
 body_overflow = false;
-
 body_list = ds_list_create();
 body_length = 0;
 body_current = 0;
@@ -42,36 +36,27 @@ body_target = 0;
 body_x = 42;
 body_y = 70;
 body_height = 0;
-
 body_alpha = 0;
 body_box_alpha = 0;
 
-// Body scroll variables:
 body_scroll_complete = false;
-
 body_scroll_current = 0;
 body_scroll_target = 0;
 body_scroll_max = 3;
 body_scroll_rate = font_height * body_scroll_max;
 
-// Subject variables:
 subject_complete = false;
-
 subject_string = "";
 subject_height = 0;
 subject_lines = 0;
-
 subject_alpha = 0;
 subject_box_alpha = 0;
 
-// Log variables:
 log_hide = true;
-
 log_string = "";
 log_scroll = 0;
 log_spacing = 32;
 log_height = 0;
-
 log_alpha = 0;
 log_fade_alpha = 0;
 #define Step_0
@@ -82,7 +67,6 @@ applies_to=self
 */
 /// Inputs
 
-// Skip:
 if (text_clear == false && text_handle == noone && log_hide == true && (body_alpha == 1 || subject_alpha == 1) && input_get_check(INP_START, CHECK_PRESSED))
 {
     text_clear = true;
@@ -90,7 +74,6 @@ if (text_clear == false && text_handle == noone && log_hide == true && (body_alp
 
 if (text_clear == false)
 {
-    // Hide:
     if (!game_ispaused(mnu_pause) && (!ds_list_empty(body_list) || subject_string != "" || log_alpha != 0) && input_get_check(INP_HIDE, CHECK_PRESSED))
     {
         text_hide = !text_hide;
@@ -100,17 +83,12 @@ if (text_clear == false)
     {
         var scroll_min, scroll_max, scroll_up, scroll_down, scroll_direction;
 
-        // Height:
         draw_set_font(global.font_system);
-
         subject_height = string_height_ext(subject_string, font_height, screen_get_width() - (body_x * 2));
         subject_lines = (subject_height / font_height) - 1;
-
         body_height = string_height_ext(ds_list_find_value(body_list, body_current), font_height, screen_get_width() - (body_x * 2));
-
         log_height = string_height_ext(log_string, font_height, screen_get_width() - body_x);
 
-        // Overflow:
         if (((body_height / font_height) - (body_scroll_current / font_height) <= body_scroll_max) && (body_scroll_current == body_scroll_target))
         {
             body_overflow = false;
@@ -123,7 +101,6 @@ if (text_clear == false)
             }
         }
 
-        // Open log:
         if ((game_ispaused(mnu_pause) || !ds_list_empty(body_list) || subject_string != "") && log_string != "" && (log_alpha == 0 || log_alpha == 1) && input_get_check(INP_LOG, CHECK_PRESSED))
         {
             log_hide = !log_hide;
@@ -134,13 +111,10 @@ if (text_clear == false)
             }
         }
 
-        // Text box:
         if (log_hide == true)
         {
-            // Confirm:
             if (text_handle == noone && input_get_check(INP_CONFIRM, CHECK_PRESSED))
             {
-                // Subject:
                 if (subject_complete == false && subject_string != "" && subject_alpha == 1)
                 {
                     subject_complete = true;
@@ -150,30 +124,21 @@ if (text_clear == false)
                         text_clear = true;
                     }
                 }
-
-                // Body:
                 else if (body_current == body_target && body_alpha == 1)
                 {
-                    // Advance text:
                     if (body_overflow == false)
                     {
-                        // Update text target:
                         if (body_target != body_length)
                         {
                             body_target += 1;
                         }
-
-                        // Clear text:
                         else
                         {
                             text_clear = true;
                         }
                     }
-
-                    // Advance scroll:
                     else
                     {
-                        // Update scroll target:
                         if (body_scroll_complete == true)
                         {
                             body_scroll_target += body_scroll_rate;
@@ -183,18 +148,14 @@ if (text_clear == false)
                 }
             }
         }
-
-        // Log:
         else
         {
-            // Cancel:
             if (input_get_check(INP_CANCEL, CHECK_PRESSED))
             {
                 log_hide = true;
             }
         }
 
-        // Manual Scroll:
         if (log_hide == true)
         {
             scroll_min = body_scroll_current;
@@ -210,13 +171,10 @@ if (text_clear == false)
         scroll_down = ((input_get_check(INP_DOWN, CHECK_PRESSED) || input_get_time(INP_DOWN, 30)) && scroll_max);
         scroll_direction = scroll_down - scroll_up;
 
-        // Textbox scroll:
         if (log_hide == true && body_scroll_target != 0 && (body_scroll_complete == true))
         {
             body_scroll_current += scroll_direction;
         }
-
-        // Log scroll:
         else if (log_hide == false && (log_height > screen_get_height() - log_spacing))
         {
             log_scroll += scroll_direction;
@@ -224,7 +182,6 @@ if (text_clear == false)
     }
 }
 
-// Automatic Scroll:
 if (body_overflow == true)
 {
     if (body_scroll_complete == false)
@@ -260,13 +217,10 @@ applies_to=self
 
 var subject_box_alpha_rate;
 
-// Box alpha rate:
 subject_box_alpha_rate = game_get_config("interface_alpha") / 20;
 
-// Fade in subject:
 if (text_clear == false && subject_complete == false && subject_string != "")
 {
-    // Bar:
     if (subject_box_alpha < game_get_config("interface_alpha"))
     {
         subject_box_alpha += subject_box_alpha_rate;
@@ -276,10 +230,8 @@ if (text_clear == false && subject_complete == false && subject_string != "")
         subject_box_alpha = game_get_config("interface_alpha");
     }
 
-    // Subject:
     if (subject_alpha < 1)
     {
-        // Add topic to log:
         if (subject_alpha == 0)
         {
             log_string += subject_string + "#";
@@ -292,11 +244,8 @@ if (text_clear == false && subject_complete == false && subject_string != "")
         subject_alpha = 1;
     }
 }
-
-// Fade out subject:
 else
 {
-    // Bar:
     if (subject_box_alpha > 0)
     {
         subject_box_alpha -= subject_box_alpha_rate;
@@ -306,7 +255,6 @@ else
         subject_box_alpha = 0;
     }
 
-    // Subject:
     if (subject_alpha > 0)
     {
         subject_alpha -= text_alpha_rate;
@@ -325,13 +273,10 @@ applies_to=self
 
 var body_box_alpha_rate;
 
-// Box alpha rate:
 body_box_alpha_rate = game_get_config("interface_alpha") / 20;
 
-// Fade in text:
 if (text_clear == false && !ds_list_empty(body_list) && (subject_complete == true || subject_string == ""))
 {
-    // Box:
     if (body_box_alpha < game_get_config("interface_alpha"))
     {
         body_box_alpha += body_box_alpha_rate;
@@ -341,12 +286,10 @@ if (text_clear == false && !ds_list_empty(body_list) && (subject_complete == tru
         body_box_alpha = game_get_config("interface_alpha");
     }
 
-    // Text:
     if (body_current == body_target)
     {
         if (body_alpha < 1)
         {
-            // Add text to log:
             if (body_alpha == 0)
             {
                 log_string += ds_list_find_value(body_list, body_current) + "#";
@@ -360,7 +303,6 @@ if (text_clear == false && !ds_list_empty(body_list) && (subject_complete == tru
         }
     }
 
-    // Fade out text:
     else
     {
         if (body_alpha > -0.5)
@@ -382,11 +324,8 @@ if (text_clear == false && !ds_list_empty(body_list) && (subject_complete == tru
         }
     }
 }
-
-// Fade out text:
 else
 {
-    // Box:
     if (body_box_alpha > 0)
     {
         body_box_alpha -= body_box_alpha_rate;
@@ -396,7 +335,6 @@ else
         body_box_alpha = 0;
     }
 
-    // Text:
     if (body_alpha > 0)
     {
         body_alpha -= text_alpha_rate;
@@ -437,7 +375,6 @@ applies_to=self
 
 if (log_hide == false)
 {
-    // Fade:
     if (log_fade_alpha < 0.6)
     {
         log_fade_alpha += 0.03;
@@ -447,7 +384,6 @@ if (log_hide == false)
         log_fade_alpha = 0.6;
     }
 
-    // Log:
     if (log_alpha < 1)
     {
         log_alpha += text_alpha_rate;
@@ -459,7 +395,6 @@ if (log_hide == false)
 }
 else
 {
-    // Fade:
     if (log_fade_alpha > 0)
     {
         log_fade_alpha -= 0.03;
@@ -469,7 +404,6 @@ else
         log_fade_alpha = 0;
     }
 
-    // Log:
     if (log_alpha > 0)
     {
         log_alpha -= text_alpha_rate;
@@ -506,7 +440,6 @@ applies_to=self
 */
 /// Draw Subject
 
-// Don't draw if hidden:
 if (text_hide == true)
 {
     exit;
@@ -522,7 +455,6 @@ draw_set1(c_white, subject_alpha);
 draw_set2(fa_center, fa_middle);
 draw_text(screen_get_width() / 2, screen_get_height() / 2, subject_string);
 
-// Reset:
 draw_reset();
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -531,7 +463,6 @@ applies_to=self
 */
 /// Draw Text
 
-// Don't draw if hidden:
 if (text_hide == true)
 {
     exit;
@@ -564,7 +495,6 @@ if (body_overflow == true && body_alpha == 1 && body_scroll_complete == true)
     draw_sprite(fnt_system, 95, (screen_get_width() / 2) - 6, screen_get_height() - 29);
 }
 
-// Reset:
 draw_reset();
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -573,7 +503,6 @@ applies_to=self
 */
 /// Draw Log
 
-// Don't draw if hidden:
 if (text_hide == true)
 {
     exit;
@@ -592,5 +521,4 @@ draw_set1(c_white, log_alpha);
 draw_set2(fa_left, fa_top);
 draw_text_ext(body_x / 2, -log_scroll, log_string, font_height, screen_get_width() - body_x);
 
-// Reset:
 draw_reset();

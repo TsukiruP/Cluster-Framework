@@ -1,7 +1,6 @@
 /// sonic_trait_reticle()
-// Resets the homing handle and sets it when in the proper states.
+/* Resets the homing handle and sets it when in the proper states. */
 
-// Don't reset during the homing attack:
 if (state_current == sonic_state_homing)
 {
     exit;
@@ -9,11 +8,9 @@ if (state_current == sonic_state_homing)
 
 var homing_handle_temp, homing_allow;
 
-// Reset homing handle:
 homing_handle_temp = homing_handle;
 homing_handle = noone;
 
-// Set homing allow:
 switch (state_current)
 {
     case player_state_idle:
@@ -24,21 +21,18 @@ switch (state_current)
     case player_state_look:
     case player_state_crouch:
     case player_state_brake:
-    case sonic_state_spring:
         homing_allow = true;
         break;
-    
+
     default:
         homing_allow = false;
 }
 
-// Exit if homing isn't allowed or spring alarm is set:
 if (homing_allow == false || spring_alarm != 0 || input_lock == true || (input_cpu == true && input_cpu_gamepad_alarm == 0))
 {
     exit;
 }
 
-// Set homing handle:
 if (!player_get_input(INP_ALT, CHECK_HELD))
 {
     if ((game_get_save("sonic_homing") >= HOMING_ADVENTURE && on_ground == false) || game_get_save("sonic_homing") == HOMING_FRONTIERS)
@@ -69,12 +63,10 @@ if (!player_get_input(INP_ALT, CHECK_HELD))
                     }
                 }
 
-                // Set homing handle:
                 if (homing_fail == false)
                 {
                     homing_handle = homing_candidate;
                     
-                    // Play sound:
                     if (homing_handle != homing_handle_temp)
                     {
                         audio_play_sfx("snd_reticle", true);

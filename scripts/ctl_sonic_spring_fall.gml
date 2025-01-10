@@ -2,10 +2,8 @@
 
 if (animation_skip == true)
 {
-    ctl_skip(9);
-
     sprite_index = spr_sonic_spring;
-
+    ctl_skip(9);
     radii_set(6, 14, 3);
     hurtbox_set(6, 16, 6, 16);
     hitbox_set();

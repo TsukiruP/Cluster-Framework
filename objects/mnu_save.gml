@@ -6,19 +6,16 @@ applies_to=self
 */
 /// Save Initialization
 
-// Menu variables:
 menu_mode = 0;
 menu_page = 0;
 menu_option = 0;
 
-// Save variables:
 save_width = 98;
 save_height = (font_get_height() * 3) + 16;
 save_leading = 4;
 save_preview_map = save_menu_preview();
 save_max = 3;
 
-// Page count:
 page_count = ceil(game_get_save_count() / save_max);
 #define Destroy_0
 /*"/*'/**//* YYD ACTION
@@ -37,7 +34,6 @@ applies_to=self
 */
 /// Inputs
 
-// Exit if text is active:
 if (game_ispaused(mgr_text) || instance_exists(mgr_transition))
 {
     exit;
@@ -45,7 +41,6 @@ if (game_ispaused(mgr_text) || instance_exists(mgr_transition))
 
 var menu_left, menu_right, menu_x_direction, menu_up, menu_down, menu_y_direction, save_count, menu_save;
 
-// Menu direction:
 menu_left = input_get_check(INP_LEFT, CHECK_PRESSED);
 menu_right = input_get_check(INP_RIGHT, CHECK_PRESSED);
 menu_x_direction = menu_right - menu_left;
@@ -54,32 +49,26 @@ menu_up = input_get_check(INP_UP, CHECK_PRESSED);
 menu_down = input_get_check(INP_DOWN, CHECK_PRESSED);
 menu_y_direction = menu_down - menu_up;
 
-// Menu page:
 menu_page += menu_x_direction;
 menu_page = wrap(menu_page, 0, page_count - 1);
 
-// Menu option:
 save_count = min(game_get_save_count() - (save_max * menu_page), save_max);
 menu_option += menu_y_direction;
 menu_option = wrap(menu_option, 0, save_count - 1);
 
-// Menu save:
 menu_save = (menu_page * save_max) + menu_option;
 
-// Play sound:
 if (menu_x_direction != 0 || menu_y_direction != 0)
 {
     audio_play_sfx("snd_menu_move", true);
 }
 
-// Confirm:
 if (input_get_check(INP_CONFIRM, CHECK_PRESSED))
 {
     if (menu_mode == 0 || ((menu_mode == 1 || menu_mode == 2) && ds_map_get(save_preview_map, "save" + string(menu_save) + "_exists") == true))
     {
         var save_name;
 
-        // Save name:
         if (menu_mode == 1 || menu_mode == 2)
         {
             save_name = ds_map_get(save_preview_map, "save" + string(menu_save) + "_name");
@@ -89,7 +78,6 @@ if (input_get_check(INP_CONFIRM, CHECK_PRESSED))
             save_name = game_get_save("name");
         }
 
-        // Default to slot number:
         if (save_name == "")
         {
             save_name = "Slot " + string(menu_save);
@@ -98,24 +86,17 @@ if (input_get_check(INP_CONFIRM, CHECK_PRESSED))
         script_execute(pick(menu_mode, game_write_save, game_read_save, game_delete_save), menu_save);
         script_execute(text_set_subject, save_name + " data has been " + pick(menu_mode, "saved.", "loaded.", "deleted."));
         event_user(0);
-
-        // Play sound:
         audio_play_sfx("snd_menu_confirm", true);
     }
     else
     {
-        // Play sound:
         audio_play_sfx("snd_menu_cannot", true);
     }
 }
 
-// Cancel:
 if (input_get_check(INP_CANCEL, CHECK_PRESSED))
 {
-    // Play sound:
     audio_play_sfx("snd_menu_close", true);
-
-    // Destroy:
     instance_destroy();
 }
 #define Other_5
@@ -244,5 +225,4 @@ for (i = 0; i < page_count; i += 1)
     }
 }
 
-// Reset:
 draw_reset();

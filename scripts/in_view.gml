@@ -1,13 +1,11 @@
 /// in_view([obj])
 /* Returns whether the object is within the current view.
-obj: object to check. Defaults to the script caller. */
+Defaults to the script caller. */
 
 var inst;
 
-// Initialize:
 inst = id;
 
-// Set object:
 if (argument_count >= 1)
 {
     inst = argument[0];

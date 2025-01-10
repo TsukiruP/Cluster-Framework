@@ -1,14 +1,11 @@
 /// player_state_idle(phase)
-// Standing here, I realize...
+/* Standing here, I realize... */
 
 switch (argument0)
 {
-    // Start:
     case STATE_START:
-        // Wait alarm:
         wait_alarm = 360;
 
-        // Set animation:
         if (player_get_cliff() == 0)
         {
             if (animation_current != "wait" && animation_current != "ready" && animation_current != "land" &&
@@ -31,21 +28,17 @@ switch (argument0)
         }
         break;
 
-    // Step:
     case STATE_STEP:
-        // Movement:
         if (!player_movement_ground())
         {
             return false;
         }
 
-        // Hint:
         if (hint_allow == false)
         {
             return false;
         }
 
-        // Fall:
         if (on_ground == false)
         {
             return player_set_state(player_state_air);
@@ -54,35 +47,29 @@ switch (argument0)
         // Slide off:
         if (relative_angle >= 45 && relative_angle <= 315)
         {
-            // Fall:
             if (relative_angle >= 90 && relative_angle <= 270)
             {
                 return player_set_state(player_state_air);
             }
 
-            // Deploy input lock:
             input_lock_alarm = 30;
             return player_set_state(player_state_run);
         }
 
-        // Turn:
         if ((game_get_config("advance_turn") && character_id != CHAR_CLASSIC) && input_x_direction != 0 && image_xscale != input_x_direction)
         {
             return player_set_state(player_state_turn);
         }
 
-        // Run:
         if (x_speed != 0 || input_x_direction != 0)
         {
             return player_set_state(player_state_run);
         }
 
-        // Look:
         if (cliff_direction == 0)
         {
             switch (input_y_direction)
             {
-                // Look:
                 case -1:
                     if (animation_current != "look_end")
                     {
@@ -90,7 +77,6 @@ switch (argument0)
                     }
                     break;
 
-                // Crouch:
                 case 1:
                     if (animation_current != "crouch_end")
                     {
@@ -100,16 +86,14 @@ switch (argument0)
             }
         }
 
-        // Skill:
         if (player_routine_skill())
         {
-            return false;
+            return true;
         }
 
-        // Jump:
         if (player_routine_jump())
         {
-            return false;
+            return true;
         }
 
         // Wait:
@@ -127,7 +111,6 @@ switch (argument0)
         }
         break;
 
-    // Finish:
     case STATE_FINISH:
         break;
 }

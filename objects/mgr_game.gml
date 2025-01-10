@@ -6,7 +6,6 @@ applies_to=self
 */
 /// Room Initialization
 
-// Room grid:
 room_grid = ds_grid_create(9, 0);
 game_room_add(rm_debug, TRANS_FADE, "bgm_debug", obj_sky_sanctuary_parallax, "Sky Sanctuary");
 game_room_add(rm_basic_test_1, TRANS_CARD, "bgm_basic_test_1", -1, "Basic Test", 1, 864, START_READY);
@@ -19,20 +18,16 @@ applies_to=self
 
 var i;
 
-// Randomize:
 randomize();
 
-// Game variables:
 game_debug = debug_mode;
 game_speed = 1;
 game_time = 0;
 
-// Checkpoint variables:
 checkpoint_x = -1;
 checkpoint_y = -1;
 checkpoint_time = -1;
 
-// Data:
 game_init_config();
 game_init_save();
 /*"/*'/**//* YYD ACTION
@@ -65,7 +60,6 @@ applies_to=self
 */
 /// Time
 
-// Indicator time:
 if (indicator_draw == true)
 {
     indicator_time += 1;
@@ -77,19 +71,16 @@ if (indicator_draw == true)
     }
 }
 
-// Exit if the stage is paused:
 if (game_ispaused(mnu_pause))
 {
     exit;
 }
 
-// Save time:
 if (!instance_exists(mgr_transition))
 {
     game_set_save("time", game_get_save("time") + 1);
 }
 
-// Game time:
 game_time += game_speed;
 #define Other_3
 /*"/*'/**//* YYD ACTION
@@ -128,7 +119,6 @@ applies_to=self
 */
 /// Draw Indicator
 
-// Exit if indicator isn't being drawn:
 if (indicator_draw == false)
 {
     exit;

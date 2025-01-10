@@ -8,7 +8,7 @@ applies_to=self
 
 event_inherited();
 
-// Collision variables:
+// Collision:
 layer = -1; // No collision happens with the player on layer mismatch
 surface_angle = -1; // Set this to > -1 to hard-code this solid's angle, otherwise it will be calculated based on its shape
 shape = SHAPE_RECTANGLE; // SHAPE_RECTANGLE, SHAPE_SLANT, SHAPE_CONCAVE or SHAPE_CONVEX; ignored if surface angle > -1; if left as -1, this solid's angle will be calculated via sensor extension
@@ -37,7 +37,6 @@ applies_to=self
     image_blend = c_white;
     image_alpha = 1;
 
-    // Layer color:
     if (FieldDefined("layer"))
     {
         switch (layer)
@@ -52,7 +51,6 @@ applies_to=self
         }
     }
 
-    // Semisolid transparency:
     if (semisolid == true)
     {
         image_alpha = 0.5;
@@ -66,11 +64,9 @@ applies_to=self
 */
 /// Draw Terrain
 
-// Terrain:
 if ((game_get_debug() && mask == true) || mask == false)
 {
     draw_self();
 }
 
-// Collision:
 event_inherited();

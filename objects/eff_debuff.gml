@@ -8,7 +8,6 @@ applies_to=self
 
 event_inherited();
 
-// Set index:
 ctl_set(ctl_debuff);
 #define Step_2
 /*"/*'/**//* YYD ACTION
@@ -20,10 +19,6 @@ applies_to=self
 
 event_inherited();
 
-// Depth:
-depth = player_handle.depth - 1;
-
-// Destroy:
 if (player_handle.status_speed != SPEED_SLOW && player_handle.status_panic == false)
 {
     instance_destroy();
@@ -38,7 +33,6 @@ applies_to=self
 
 var player_rotation, sine, csine, draw_x, draw_y;
 
-// Rotation:
 player_rotation = player_handle.mask_rotation;
 sine = dsin(player_handle.mask_rotation);
 csine = dcos(player_handle.mask_rotation);

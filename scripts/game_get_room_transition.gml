@@ -1,5 +1,6 @@
 /// game_get_room_transition([room])
-/* Returns the transition of a room. Defaults to checking the current room.
+/* Returns the transition of a room.
+Defaults to checking the current room.
 If the room has no transition set, returns fade. */
 
 with (mgr_game)

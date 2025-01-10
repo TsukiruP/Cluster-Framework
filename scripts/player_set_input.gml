@@ -1,5 +1,6 @@
 /// player_set_input(id);
-// Sets the player's input array.
+/* Sets the player's input array.
+Defaults to setting the entire array to false. */
 
 var i, j;
 

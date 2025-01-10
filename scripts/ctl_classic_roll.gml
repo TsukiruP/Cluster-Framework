@@ -4,7 +4,6 @@ if (ctl_position(0))
 {
     sprite_index = spr_classic_roll;
     image_index = 0;
-
     radii_set(6, 9, 3, 3);
     hurtbox_set(8, 8, 8, 8);
     hitbox_set(6, 9, 6, 9);

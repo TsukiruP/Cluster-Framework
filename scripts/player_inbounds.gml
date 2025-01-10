@@ -1,13 +1,11 @@
 /// player_inbounds([id])
-// Returns whether the player is inside the camera boundaries.
+/* Returns whether the player is inside the camera boundaries. */
 
 var player_id, player_handle;
 
-// Initialize:
 player_id = 0;
 player_handle = id;
 
-// Set player:
 if (argument_count >= 1)
 {
     player_id = argument[0];

@@ -1,5 +1,5 @@
 /// player_trail_init()
-// Initializes trail.
+/* Initializes trail. */
 
 trail_draw = false;
 trail_alpha = -1;
