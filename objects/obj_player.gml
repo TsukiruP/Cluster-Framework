@@ -508,7 +508,10 @@ applies_to=self
 */
 /// Effects
 
-depth = player_id;
+if (state_current != player_state_death)
+{
+    depth = player_id;
+}
 
 if (state_current == player_state_spin_dash && !instance_exists(spin_dash_handle))
 {
