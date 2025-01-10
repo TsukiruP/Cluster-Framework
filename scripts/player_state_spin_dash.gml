@@ -7,11 +7,6 @@ switch (argument0)
         spin_dash_charge = 0;
         player_set_animation("spin_dash");
         audio_play_sfx("snd_spin_dash_charge", true);
-
-        with (instance_create(x, y, eff_spin_dash))
-        {
-            player_handle = other.id;
-        }
         break;
 
     case STATE_STEP:

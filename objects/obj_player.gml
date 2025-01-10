@@ -53,7 +53,6 @@ roll_rebounce = false;
 death_alarm = -5;
 death_handle = noone;
 
-depth_default = 0;
 score_multiplier = 0;
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -139,8 +138,8 @@ applies_to=self
 */
 /// Effect Initialization
 
-// Spin dash charge:
 spin_dash_charge = 0;
+spin_dash_handle = noone;
 shield_handle = noone;
 debuff_handle = noone;
 reticle_handle = noone;
@@ -508,6 +507,18 @@ action_id=603
 applies_to=self
 */
 /// Effects
+
+depth = player_id;
+
+if (state_current == player_state_spin_dash && !instance_exists(spin_dash_handle))
+{
+    spin_dash_handle = instance_create(x, y, eff_spin_dash);
+
+    with (spin_dash_handle)
+    {
+        player_handle = other.id;
+    }
+}
 
 if ((status_shield != SHIELD_NONE || status_invin == INVIN_BUFF) && !instance_exists(shield_handle))
 {
@@ -998,8 +1009,24 @@ applies_to=self
 */
 /// Draw Player
 
+var shield_depth;
+
 // Trail:
 player_trail_draw();
+
+// Shield:
+if (instance_exists(shield_handle))
+{
+    with (shield_handle)
+    {
+        shield_depth = (other.status_shield == SHIELD_FIRE && (image_index mod 2) != 0 && ctl_index != ctl_shield_fire_dash) || (other.status_shield == SHIELD_LIGHTNING && ctl_moment > 48);
+
+        if (shield_depth == true)
+        {
+            event_draw();
+        }
+    }
+}
 
 // Player:
 image_alpha = 1;
@@ -1014,12 +1041,33 @@ if (sprite_exists(sprite_index))
     draw_self_floored();
 }
 
+// Spin Dash:
+if (instance_exists(spin_dash_handle))
+{
+    with (spin_dash_handle)
+    {
+        event_draw();
+    }
+}
+
 // Debuff:
 if (instance_exists(debuff_handle))
 {
     with (debuff_handle)
     {
         event_draw();
+    }
+}
+
+// Shield:
+if (instance_exists(shield_handle))
+{
+    with (shield_handle)
+    {
+        if (shield_depth == false)
+        {
+            event_draw();
+        }
     }
 }
 

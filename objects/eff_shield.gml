@@ -79,6 +79,7 @@ applies_to=self
 
 event_inherited();
 
+/*
 if ((player_handle.status_shield == SHIELD_FIRE && (image_index mod 2) != 0 && ctl_index != ctl_shield_fire_dash) || (player_handle.status_shield == SHIELD_LIGHTNING && ctl_moment > 48))
 {
     depth = player_handle.depth + 2;
@@ -87,12 +88,11 @@ else
 {
     depth = player_handle.depth - 2;
 }
-
+*/
 shield_advance = (player_handle.status_shield == SHIELD_BASIC || player_handle.status_shield == SHIELD_MAGNETIC || player_handle.status_invin == INVIN_BUFF);
 
 if (!game_ispaused(mnu_pause) && ((player_handle.status_shield == SHIELD_BUBBLE && ctl_index == ctl_shield_bubble) || (game_get_config("advance_flicker") && shield_advance == true)))
 {
-    // Hide:
     shield_hide = sync_rate(ctl_moment, 2, 2);
 }
 else

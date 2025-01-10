@@ -58,8 +58,8 @@
 			|eff_player
 			|eff_spin_dash
 			|eff_debuff
-			|eff_reticle
 			|eff_shield
+			|eff_reticle
 			|eff_waterfall
 +Stages
 	+Sky Sanctuary

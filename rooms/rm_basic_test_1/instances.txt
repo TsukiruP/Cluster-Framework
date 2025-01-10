@@ -77,3 +77,5 @@ obj_basic_test_waterfall,1680,112,93401345,0,1,1,4294967295,0,0
 obj_basic_test_waterfall,1680,80,5BF31E41,0,1,1,4294967295,0,0
 obj_basic_test_waterfall,1680,48,20826950,0,1,1,4294967295,0,0
 obj_basic_test_waterfall,1680,16,B494EFDD,0,1,1,4294967295,0,0
+obj_item_box,600,792,D277695E,0,1,1,4294967295,0,1
+obj_item_box,536,792,2F107B00,0,1,1,4294967295,0,1
