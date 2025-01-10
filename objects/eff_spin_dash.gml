@@ -44,8 +44,8 @@ applies_to=self
 var player_rotation, sine, csine, draw_x, draw_y;
 
 player_rotation = player_handle.mask_rotation;
-sine = dsin(player_handle.mask_rotation);
-csine = dcos(player_handle.mask_rotation);
+sine = dsin(player_rotation);
+csine = dcos(player_rotation);
 
 draw_x = x + sine * floor(player_handle.y_radius);
 draw_y = y + csine * floor(player_handle.y_radius);

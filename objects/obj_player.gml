@@ -515,21 +515,19 @@ if (state_current != player_state_death)
 
 if (state_current == player_state_spin_dash && !instance_exists(spin_dash_handle))
 {
-    spin_dash_handle = instance_create(x, y, eff_spin_dash);
-
-    with (spin_dash_handle)
+    with (instance_create(x, y, eff_spin_dash))
     {
         player_handle = other.id;
+        player_handle.spin_dash_handle = id;
     }
 }
 
 if ((status_shield != SHIELD_NONE || status_invin == INVIN_BUFF) && !instance_exists(shield_handle))
 {
-    shield_handle = instance_create(x, y, eff_shield);
-
-    with (shield_handle)
+    with (instance_create(x, y, eff_shield))
     {
         player_handle = other.id;
+        player_handle.shield_handle = id;
     }
 }
 
@@ -543,21 +541,19 @@ if (game_get_config("advance_flicker") && status_invin == INVIN_BUFF)
 
 if ((status_speed == SPEED_SLOW || status_panic == true) && !instance_exists(debuff_handle))
 {
-    debuff_handle = instance_create(x, y, eff_debuff);
-
-    with (debuff_handle)
+    with (instance_create(x, y, eff_debuff))
     {
         player_handle = other.id;
+        player_handle.debuff_handle = id;
     }
 }
 
 if (game_get_config("misc_reticle") > 0 && instance_exists(homing_handle) && !instance_exists(reticle_handle))
 {
-    reticle_handle = instance_create(x, y, eff_reticle);
-
-    with (reticle_handle)
+    with (instance_create(x, y, eff_reticle))
     {
         player_handle = other.id;
+        player_handle.reticle_handle = id;
     }
 }
 
@@ -582,11 +578,10 @@ else
 
 if (waterfall_draw == true && !instance_exists(waterfall_handle))
 {
-    waterfall_handle = instance_create(x, y, eff_waterfall);
-
-    with (waterfall_handle)
+    with (instance_create(x, y, eff_waterfall))
     {
         player_handle = other.id;
+        player_handle.waterfall_handle = id;
     }
 }
 /*"/*'/**//* YYD ACTION
@@ -1004,16 +999,13 @@ var shield_depth;
 player_trail_draw();
 
 // Shield:
-if (instance_exists(shield_handle))
+with (shield_handle)
 {
-    with (shield_handle)
-    {
-        shield_depth = (other.status_shield == SHIELD_FIRE && (image_index mod 2) != 0 && ctl_index != ctl_shield_fire_dash) || (other.status_shield == SHIELD_LIGHTNING && ctl_moment > 48);
+    shield_depth = (other.status_shield == SHIELD_FIRE && (image_index mod 2) != 0 && ctl_index != ctl_shield_fire_dash) || (other.status_shield == SHIELD_LIGHTNING && ctl_moment > 48);
 
-        if (shield_depth == true)
-        {
-            event_draw();
-        }
+    if (shield_depth == true)
+    {
+        event_draw();
     }
 }
 
@@ -1031,32 +1023,23 @@ if (sprite_exists(sprite_index))
 }
 
 // Spin Dash:
-if (instance_exists(spin_dash_handle))
+with (spin_dash_handle)
 {
-    with (spin_dash_handle)
-    {
-        event_draw();
-    }
+    event_draw();
 }
 
 // Debuff:
-if (instance_exists(debuff_handle))
+with (debuff_handle)
 {
-    with (debuff_handle)
-    {
-        event_draw();
-    }
+    event_draw();
 }
 
 // Shield:
-if (instance_exists(shield_handle))
+with (shield_handle)
 {
-    with (shield_handle)
+    if (shield_depth == false)
     {
-        if (shield_depth == false)
-        {
-            event_draw();
-        }
+        event_draw();
     }
 }
 
