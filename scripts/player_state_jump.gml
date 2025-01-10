@@ -88,14 +88,11 @@ switch (argument0)
         {
             jump_bound = BOUND_NONE;
 
-            if (instance_exists(shield_handle))
+            with (shield_handle)
             {
-                with (shield_handle)
+                if (ctl_index == ctl_shield_bubble_bound)
                 {
-                    if (ctl_index == ctl_shield_bubble_bound)
-                    {
-                        shield_reset = true;
-                    }
+                    shield_reset = true;
                 }
             }
         }

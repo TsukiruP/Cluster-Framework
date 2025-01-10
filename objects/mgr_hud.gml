@@ -248,21 +248,18 @@ if (game_ispaused(mnu_pause) || game_get_config("misc_hud") != 1)
 
 gauge_x = lerp(-sprite_get_width(spr_hud_gauge), hud_x + 6, smoothstep(0, hud_max_time, gauge_time));
 
-if (instance_exists(stage_get_player(0)))
+with (stage_get_player(0))
 {
-    with (stage_get_player(0))
+    switch (character_id)
     {
-        switch (character_id)
-        {
-            case CHAR_CLASSIC:
-                other.gauge_hide = false;
-                other.gauge_energy = clock_up_energy;
-                other.gauge_max_energy = clock_up_max_energy;
-                break;
+        case CHAR_CLASSIC:
+            other.gauge_hide = false;
+            other.gauge_energy = clock_up_energy;
+            other.gauge_max_energy = clock_up_max_energy;
+            break;
 
-            default:
-                other.gauge_hide = true;
-        }
+        default:
+            other.gauge_hide = true;
     }
 }
 /*"/*'/**//* YYD ACTION
@@ -292,82 +289,79 @@ if (game_ispaused(mnu_pause) || game_get_config("misc_hud") != 1 || game_get_con
 
 status_bar_x = lerp(screen_get_width() + status_width + 5, screen_get_width() - status_width * status_max + 5, smoothstep(0, hud_max_time, hud_time));
 
-if (instance_exists(stage_get_player(0)))
+with (stage_get_player(0))
 {
-    with (stage_get_player(0))
+    // Shield:
+    if (status_shield != SHIELD_NONE)
     {
-        // Shield:
-        if (status_shield != SHIELD_NONE)
-        {
-            other.status_icon[STATUS_SHIELD] = status_shield + 2;
-        }
-        else
-        {
-            other.status_icon[STATUS_SHIELD] = ITEM_BASIC;
-        }
+        other.status_icon[STATUS_SHIELD] = status_shield + 2;
+    }
+    else
+    {
+        other.status_icon[STATUS_SHIELD] = ITEM_BASIC;
+    }
 
-        other.status_active[STATUS_SHIELD, 0] = (status_shield != SHIELD_NONE);
-        other.status_active[STATUS_SHIELD, 1] = true;
+    other.status_active[STATUS_SHIELD, 0] = (status_shield != SHIELD_NONE);
+    other.status_active[STATUS_SHIELD, 1] = true;
 
-        // Invincibility:
-        other.status_icon[STATUS_INVIN] = ITEM_INVIN;
-        other.status_active[STATUS_INVIN, 0] = (status_invin != INVIN_NONE);
+    // Invincibility:
+    other.status_icon[STATUS_INVIN] = ITEM_INVIN;
+    other.status_active[STATUS_INVIN, 0] = (status_invin != INVIN_NONE);
 
-        if (status_invin_alarm > 0 && status_invin_alarm <= 120)
-        {
-            other.status_active[STATUS_INVIN, 1] = sync_rate(status_invin_alarm, 2, 2);
-        }
-        else
-        {
-            other.status_active[STATUS_INVIN, 1] = true;
-        }
+    if (status_invin_alarm > 0 && status_invin_alarm <= 120)
+    {
+        other.status_active[STATUS_INVIN, 1] = sync_rate(status_invin_alarm, 2, 2);
+    }
+    else
+    {
+        other.status_active[STATUS_INVIN, 1] = true;
+    }
 
-        // Speed Up/Slow Down:
-        if (status_speed == 2)
-        {
-            other.status_icon[STATUS_SPEED] = ITEM_SLOW;
-        }
-        else
-        {
-            other.status_icon[STATUS_SPEED] = ITEM_SPEED;
-        }
+    // Speed Up/Slow Down:
+    if (status_speed == 2)
+    {
+        other.status_icon[STATUS_SPEED] = ITEM_SLOW;
+    }
+    else
+    {
+        other.status_icon[STATUS_SPEED] = ITEM_SPEED;
+    }
 
-        other.status_active[STATUS_SPEED, 0] = (status_speed != 0)
+    other.status_active[STATUS_SPEED, 0] = (status_speed != 0)
 
-        if (status_speed_alarm > 0 && status_speed_alarm <= 120)
-        {
-            other.status_active[STATUS_SPEED, 1] = sync_rate(status_speed_alarm, 2, 2);
-        }
-        else
-        {
-            other.status_active[STATUS_SPEED, 1] = true;
-        }
+    if (status_speed_alarm > 0 && status_speed_alarm <= 120)
+    {
+        other.status_active[STATUS_SPEED, 1] = sync_rate(status_speed_alarm, 2, 2);
+    }
+    else
+    {
+        other.status_active[STATUS_SPEED, 1] = true;
+    }
 
-        // Panic:
-        other.status_icon[STATUS_PANIC] = ITEM_PANIC;
-        other.status_active[STATUS_PANIC, 0] = status_panic;
+    // Panic:
+    other.status_icon[STATUS_PANIC] = ITEM_PANIC;
+    other.status_active[STATUS_PANIC, 0] = status_panic;
 
-        if (status_panic_alarm > 0 && status_panic_alarm <= 120)
-        {
-            other.status_active[STATUS_PANIC, 1] = sync_rate(status_panic_alarm, 2, 2);
-        }
-        else
-        {
-            other.status_active[STATUS_PANIC, 1] = true;
-        }
+    if (status_panic_alarm > 0 && status_panic_alarm <= 120)
+    {
+        other.status_active[STATUS_PANIC, 1] = sync_rate(status_panic_alarm, 2, 2);
+    }
+    else
+    {
+        other.status_active[STATUS_PANIC, 1] = true;
+    }
 
-        // Swap:
-        other.status_icon[STATUS_SWAP] = ITEM_SWAP;
-        other.status_active[STATUS_SWAP, 0] = status_swap;
+    // Swap:
+    other.status_icon[STATUS_SWAP] = ITEM_SWAP;
+    other.status_active[STATUS_SWAP, 0] = status_swap;
 
-        if (status_swap_alarm > 0 && status_swap_alarm <= 120)
-        {
-            other.status_active[STATUS_SWAP, 1] = sync_rate(status_swap_alarm, 2, 2);
-        }
-        else
-        {
-            other.status_active[STATUS_SWAP, 1] = true;
-        }
+    if (status_swap_alarm > 0 && status_swap_alarm <= 120)
+    {
+        other.status_active[STATUS_SWAP, 1] = sync_rate(status_swap_alarm, 2, 2);
+    }
+    else
+    {
+        other.status_active[STATUS_SWAP, 1] = true;
     }
 }
 /*"/*'/**//* YYD ACTION

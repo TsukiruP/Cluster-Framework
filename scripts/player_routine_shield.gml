@@ -15,12 +15,9 @@ switch (status_shield)
         y_speed = 0;
         audio_play_sfx("snd_shield_fire_dash", true);
 
-        if (instance_exists(shield_handle))
+        with (shield_handle)
         {
-            with (shield_handle)
-            {
-                event_user(0);
-            }
+            event_user(0);
         }
         break;
 

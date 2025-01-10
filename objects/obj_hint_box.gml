@@ -38,19 +38,16 @@ if (game_ispaused(mnu_pause))
     exit;
 }
 
-if (instance_exists(player_handle))
+with (player_handle)
 {
-    with (player_handle)
+    if (text_get_clear() == true && animation_current == "look")
     {
-        if (text_get_clear() == true && animation_current == "look")
-        {
-            player_set_animation("look_end");
-        }
+        player_set_animation("look_end");
+    }
 
-        if (mgr_text.body_box_alpha == 0 && animation_current == "stand")
-        {
-            hint_allow = true;
-        }
+    if (mgr_text.body_box_alpha == 0 && animation_current == "stand")
+    {
+        hint_allow = true;
     }
 }
 

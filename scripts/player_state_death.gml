@@ -47,14 +47,11 @@ switch (argument0)
         break;
 
     case STATE_FINISH:
-        if (instance_exists(death_handle))
+        with (death_handle)
         {
-            with (death_handle)
-            {
-                instance_destroy();
-            }
-
-            death_handle = 0;
+            instance_destroy();
         }
+        
+        death_handle = noone;
         break;
 }

@@ -11,12 +11,9 @@ switch (argument0)
         player_set_animation("spin");
         audio_play_sfx("snd_shield_bubble_bound", true);
 
-        if (instance_exists(shield_handle))
+        with (shield_handle)
         {
-            with (shield_handle)
-            {
-                event_user(0);
-            }
+            event_user(0);
         }
         break;
 
@@ -46,12 +43,9 @@ switch (argument0)
             animation_skip = true;
             audio_play_sfx("snd_shield_bubble_bound", true);
 
-            if (instance_exists(shield_handle))
+            with (shield_handle)
             {
-                with (shield_handle)
-                {
-                    event_user(1);
-                }
+                event_user(1);
             }
 
             return player_set_state(player_state_jump, true);
@@ -75,13 +69,9 @@ switch (argument0)
             jump_aux = false;
             jump_bound = BOUND_NONE;
 
-            // Reset shield:
-            if (instance_exists(shield_handle))
+            with (shield_handle)
             {
-                with (shield_handle)
-                {
-                    shield_reset = true;
-                }
+                shield_reset = true;
             }
         }
         break;
