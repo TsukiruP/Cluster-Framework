@@ -601,26 +601,12 @@ if (game_ispaused())
     exit;
 }
 
-if (state_current != player_state_death && physics_id == PHYS_WATER && !instance_exists(mgr_tally))
-{
-    if (status_shield == SHIELD_BUBBLE)
-    {
-        air_remaining = 30;
-        air_alarm = 60;
-
-        if (input_cpu == false)
-        {
-            audio_stop_drown();
-        }
-    }
-
-}
-else
+if (state_current == player_state_death || (physics_id == PHYS_WATER && status_shield == SHIELD_BUBBLE) || instance_exists(mgr_tally))
 {
     air_remaining = 30;
     air_alarm = 60;
 
-    if (input_cpu == false)
+    if (state_current != player_state_death && input_cpu == false)
     {
         audio_stop_drown();
     }

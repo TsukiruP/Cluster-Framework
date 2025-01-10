@@ -1,8 +1,8 @@
 ERROR in
-action number 3
+action number 7
 of  Step Event
 for object obj_player:
 
-In script player_state_death:Illegal argument count calling script "player_cpu_respawn".Script requires 1 arguments, 0 have been supplied.
+Illegal argument count calling script "player_state_death".Script requires 1 arguments, 0 have been supplied.
 
 
