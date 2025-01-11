@@ -12,7 +12,7 @@ switch (argument0)
         
         depth = -10000;
         x_speed = 0;
-        death_alarm = 128;
+        death_alarm = 64;
         player_reset_air();
         player_reset_status();
         player_set_animation("death");
@@ -29,7 +29,7 @@ switch (argument0)
         {
             death_alarm -= 1;
 
-            if (death_alarm == 64 && input_cpu == false)
+            if (death_alarm == 0 && input_cpu == false)
             {
                 if (!instance_exists(death_handle))
                 {
@@ -46,5 +46,6 @@ switch (argument0)
         }
         
         death_handle = noone;
+        drown = false;
         break;
 }
