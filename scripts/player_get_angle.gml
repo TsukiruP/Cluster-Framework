@@ -10,7 +10,7 @@ right = argument0.bbox_right + 1;
 top = argument0.bbox_top;
 bottom = argument0.bbox_bottom + 1;
 kind = argument0.shape;
-temp_radius = 10;
+temp_radius = 8;
 
 // Default if...
 if (kind != SHAPE_UNDEFINED)
