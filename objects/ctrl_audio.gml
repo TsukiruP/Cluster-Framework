@@ -126,29 +126,10 @@ applies_to=self
 */
 /// Cleanup
 
-var i, j, audio_list, audio_index;
+var i, j, audio_list;
 
 audio_stop_all();
 ds_list_destroy(sfx_list);
-
-for (i = 0; i < 4; i += 1)
-{
-    audio_list = sound_kind_list(i);
-
-    for (j = 0; j < ds_list_size(audio_list); j += 1)
-    {
-        audio_index = ds_list_find_value(audio_list, i);
-
-        if (sound_exists(audio_index))
-        {
-            sound_delete(audio_index);
-        }
-
-        ds_list_delete(audio_list, i);
-    }
-
-    ds_list_destroy(audio_list);
-}
 #define Other_5
 /*"/*'/**//* YYD ACTION
 lib_id=1
