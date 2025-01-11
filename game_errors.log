@@ -1,8 +1,9 @@
 ERROR in
-action number 7
+action number 3
 of  Step Event
 for object obj_player:
 
-Illegal argument count calling script "player_state_death".Script requires 1 arguments, 0 have been supplied.
+In script player_state_air:In script player_movement_air:Error in code at line 69:   
+total_steps = 1 + (abs(y_speed) div y_radius);                                       ^at position 38: Division by 0.
 
 

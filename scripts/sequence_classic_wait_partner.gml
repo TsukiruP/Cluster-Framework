@@ -8,153 +8,123 @@ if (sequence_position(0))
     hurtbox_set(6, 12, 6, 11);
     hitbox_set();
 }
-
+else if (sequence_position(6))
+{
+    image_index = 4;
+}
+else if (sequence_position(12))
+{
+    image_index = 5;
+}
 else if (sequence_position(18))
 {
     image_index = 4;
 }
-
+else if (sequence_position(24))
+{
+    image_index = 3;
+}
+else if (sequence_position(30))
+{
+    image_index = 4;
+}
 else if (sequence_position(36))
 {
     image_index = 5;
 }
-
+else if (sequence_position(42))
+{
+    image_index = 4;
+}
+else if (sequence_position(48))
+{
+    image_index = 3;
+}
 else if (sequence_position(54))
 {
     image_index = 4;
 }
-
+else if (sequence_position(60))
+{
+    image_index = 5;
+}
+else if (sequence_position(66))
+{
+    image_index = 4;
+}
 else if (sequence_position(72))
 {
-    image_index = 3;
+    image_index = 6;
 }
-
+else if (sequence_position(78))
+{
+    image_index = 7;
+}
+else if (sequence_position(84))
+{
+    image_index = 8;
+}
 else if (sequence_position(90))
 {
-    image_index = 4;
+    image_index = 7;
 }
-
+else if (sequence_position(96))
+{
+    image_index = 6;
+}
+else if (sequence_position(102))
+{
+    image_index = 7;
+}
 else if (sequence_position(108))
 {
-    image_index = 5;
+    image_index = 8;
 }
-
+else if (sequence_position(114))
+{
+    image_index = 7;
+}
+else if (sequence_position(120))
+{
+    image_index = 6;
+}
 else if (sequence_position(126))
 {
-    image_index = 4;
+    image_index = 7;
 }
-
+else if (sequence_position(132))
+{
+    image_index = 8;
+}
+else if (sequence_position(138))
+{
+    image_index = 7;
+}
 else if (sequence_position(144))
-{
-    image_index = 3;
-}
-
-else if (sequence_position(162))
-{
-    image_index = 4;
-}
-
-else if (sequence_position(180))
-{
-    image_index = 5;
-}
-
-else if (sequence_position(198))
-{
-    image_index = 4;
-}
-
-else if (sequence_position(216))
-{
-    image_index = 6;
-}
-
-else if (sequence_position(234))
-{
-    image_index = 7;
-}
-
-else if (sequence_position(252))
-{
-    image_index = 8;
-}
-
-else if (sequence_position(270))
-{
-    image_index = 7;
-}
-
-else if (sequence_position(288))
-{
-    image_index = 6;
-}
-
-else if (sequence_position(306))
-{
-    image_index = 7;
-}
-
-else if (sequence_position(324))
-{
-    image_index = 8;
-}
-
-else if (sequence_position(342))
-{
-    image_index = 7;
-}
-
-else if (sequence_position(360))
-{
-    image_index = 6;
-}
-
-else if (sequence_position(378))
-{
-    image_index = 7;
-}
-
-else if (sequence_position(396))
-{
-    image_index = 8;
-}
-
-else if (sequence_position(414))
-{
-    image_index = 7;
-}
-
-else if (sequence_position(432))
 {
     image_index = 9;
 }
-
-else if (sequence_position(438))
+else if (sequence_position(168))
 {
     image_index = 10;
 }
-
-else if (sequence_position(456))
+else if (sequence_position(192))
 {
     image_index = 11;
 }
-
-else if (sequence_position(462))
+else if (sequence_position(198))
 {
     image_index = 12;
 }
-
-else if (sequence_position(468))
+else if (sequence_position(204))
 {
     image_index = 13;
 }
-
-else if (sequence_position(492))
+else if (sequence_position(228))
 {
     image_index = 14;
 }
-
-else if (sequence_position(497))
+else if (sequence_position(233))
 {
     sequence_moment = 0;
 }

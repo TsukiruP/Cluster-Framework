@@ -8,12 +8,10 @@ if (sequence_position(0))
     hurtbox_set(6, 13, 6, 15);
     hitbox_set();
 }
-
 else if (sequence_position(2))
 {
     image_index = 0;
 }
-
 else if (sequence_position(4))
 {
     player_set_animation("stand");

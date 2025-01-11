@@ -8,23 +8,19 @@ if (sequence_position(0))
     hurtbox_set(6, 12, 6, 11);
     hitbox_set();
 }
-
+else if (sequence_position(6))
+{
+    image_index = 1;
+}
+else if (sequence_position(12))
+{
+    image_index = 2;
+}
 else if (sequence_position(18))
 {
     image_index = 1;
 }
-
-else if (sequence_position(36))
-{
-    image_index = 2;
-}
-
-else if (sequence_position(54))
-{
-    image_index = 1;
-}
-
-else if (sequence_position(71))
+else if (sequence_position(23))
 {
     sequence_moment = 0;
 }
