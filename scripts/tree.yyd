@@ -474,14 +474,15 @@
 				|player_state_bound
 				+Auxiliary
 					|player_state_hammer
-			|player_skill_sonic
-			+Sonic
-				|sonic_state_skid
-				|sonic_state_drop_dash
-				|sonic_state_homing
-				|sonic_state_bound
-				|sonic_state_stomp
-				|sonic_state_peel_out
+			+Skills
+				|player_skill_sonic
+				+Sonic
+					|sonic_state_skid
+					|sonic_state_drop_dash
+					|sonic_state_homing
+					|sonic_state_bound
+					|sonic_state_stomp
+					|sonic_state_peel_out
 		+Routines
 			|player_routine_land
 			|player_routine_jump
@@ -541,3 +542,4 @@
 			|player_surface_splash
 			|player_cpu_respawn
 	+Props
+|script434

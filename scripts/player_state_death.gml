@@ -29,18 +29,11 @@ switch (argument0)
         {
             death_alarm -= 1;
 
-            if (death_alarm == 64)
+            if (death_alarm == 64 && input_cpu == false)
             {
-                if (input_cpu == false)
+                if (!instance_exists(death_handle))
                 {
-                    if (!instance_exists(death_handle))
-                    {
-                        death_handle = transition_create(room, TRANS_RETRY);
-                    }
-                }
-                else
-                {
-                    player_cpu_respawn(0);
+                    death_handle = transition_create(room, TRANS_RETRY);
                 }
             }
         }

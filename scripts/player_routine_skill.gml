@@ -1,11 +1,14 @@
 /// player_routine_skill()
 /* Returns whether a character skill has been called. */
 
-switch (character_id)
+if (input_cpu == false || (input_cpu == true && input_cpu_gamepad_alarm > 0))
 {
-    // Sonic:
-    case CHAR_SONIC:
-        return player_skill_sonic();
+    switch (character_id)
+    {
+        // Sonic:
+        case CHAR_SONIC:
+            return player_skill_sonic();
+    }
 }
 
 return false;

@@ -432,3 +432,4 @@ player_cpu_respawn
 player_reset_input
 player_set_device
 sequence_classic_ready
+script434

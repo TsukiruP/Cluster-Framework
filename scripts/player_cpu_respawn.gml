@@ -20,6 +20,7 @@ if (instance_exists(player_handle))
         death_alarm = -5;
         status_invin = INVIN_HURT;
         status_invin_alarm = 120;
+        drown = false;
         input_cpu_respawn_alarm = 300;
     }
 }
