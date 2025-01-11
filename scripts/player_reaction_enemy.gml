@@ -39,7 +39,7 @@ if ((collision & COLL_INTERACT && status_invin == INVIN_BUFF) || (collision & CO
 
         with (reaction_handle)
         {
-            effect_create(ctl_explosion_enemy, x, y, -depth);
+            effect_create(sequence_explosion_enemy, x, y, -depth);
             instance_destroy();
         }
     }

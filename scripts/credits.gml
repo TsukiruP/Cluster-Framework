@@ -10,7 +10,7 @@ Sonic Advance 2 Decompilation
 
 VectorSatyr (SonicForGMS)
 States machine
-Animation timelines
+Animation sequences
 
 A.NB
 Harinezumi Engine

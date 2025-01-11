@@ -8,16 +8,16 @@ applies_to=self
 
 if (floor(player_handle.spin_dash_charge) > 0)
 {
-    if (ctl_index != ctl_spin_charge)
+    if (sequence_index != sequence_spin_charge)
     {
-        ctl_set(ctl_spin_charge);
+        sequence_set(sequence_spin_charge);
     }
 }
 else
 {
-    if (ctl_index != ctl_spin_dash)
+    if (sequence_index != sequence_spin_dash)
     {
-        ctl_set(ctl_spin_dash);
+        sequence_set(sequence_spin_dash);
     }
 }
 /*"/*'/**//* YYD ACTION

@@ -11,7 +11,7 @@ event_inherited();
 hurtbox_set(20, 19, 20, 4);
 hitbox_set(8, 18, 7, 4);
 
-ctl_init(ctl_spinner);
+sequence_init(sequence_spinner);
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -27,10 +27,10 @@ if (game_ispaused(mnu_pause))
 
 event_inherited();
 
-ctl_speed = game_get_speed();
+sequence_speed = game_get_speed();
 
-if (script_exists(ctl_index))
+if (script_exists(sequence_index))
 {
-    ctl_update();
-    script_execute(ctl_index);
+    sequence_update();
+    script_execute(sequence_index);
 }

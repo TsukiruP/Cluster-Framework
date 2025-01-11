@@ -19,53 +19,53 @@ applies_to=self
 */
 /// Index
 
-var ctl_target;
+var sequence_target;
 
 if (player_handle.status_invin != INVIN_BUFF)
 {
     switch (player_handle.status_shield)
     {
         case SHIELD_MAGNETIC:
-            if (ctl_index != ctl_shield_magnetic)
+            if (sequence_index != sequence_shield_magnetic)
             {
-                ctl_set(ctl_shield_magnetic);
+                sequence_set(sequence_shield_magnetic);
             }
             break;
 
         case SHIELD_BUBBLE:
-            if ((ctl_index != ctl_shield_bubble && ctl_index != ctl_shield_bubble_bound && ctl_index != ctl_shield_bubble_recoil) || shield_reset == true)
+            if ((sequence_index != sequence_shield_bubble && sequence_index != sequence_shield_bubble_bound && sequence_index != sequence_shield_bubble_recoil) || shield_reset == true)
             {
-                ctl_set(ctl_shield_bubble);
+                sequence_set(sequence_shield_bubble);
             }
             break;
 
         case SHIELD_FIRE:
-            if ((ctl_index != ctl_shield_fire && ctl_index != ctl_shield_fire_dash) || shield_reset == true)
+            if ((sequence_index != sequence_shield_fire && sequence_index != sequence_shield_fire_dash) || shield_reset == true)
             {
-                ctl_set(ctl_shield_fire);
+                sequence_set(sequence_shield_fire);
             }
             break;
 
         case SHIELD_LIGHTNING:
-            if (ctl_index != ctl_shield_lightning)
+            if (sequence_index != sequence_shield_lightning)
             {
-                ctl_set(ctl_shield_lightning);
+                sequence_set(sequence_shield_lightning);
             }
             break;
 
         default:
-            if (ctl_index != ctl_shield_basic)
+            if (sequence_index != sequence_shield_basic)
             {
-                ctl_set(ctl_shield_basic);
+                sequence_set(sequence_shield_basic);
             }
     }
 }
 
 else
 {
-    if (ctl_index != ctl_shield_invin)
+    if (sequence_index != sequence_shield_invin)
     {
-        ctl_set(ctl_shield_invin);
+        sequence_set(sequence_shield_invin);
     }
 }
 
@@ -80,7 +80,7 @@ applies_to=self
 event_inherited();
 
 /*
-if ((player_handle.status_shield == SHIELD_FIRE && (image_index mod 2) != 0 && ctl_index != ctl_shield_fire_dash) || (player_handle.status_shield == SHIELD_LIGHTNING && ctl_moment > 48))
+if ((player_handle.status_shield == SHIELD_FIRE && (image_index mod 2) != 0 && sequence_index != sequence_shield_fire_dash) || (player_handle.status_shield == SHIELD_LIGHTNING && sequence_moment > 48))
 {
     depth = player_handle.depth + 2;
 }
@@ -91,9 +91,9 @@ else
 */
 shield_advance = (player_handle.status_shield == SHIELD_BASIC || player_handle.status_shield == SHIELD_MAGNETIC || player_handle.status_invin == INVIN_BUFF);
 
-if (!game_ispaused(mnu_pause) && ((player_handle.status_shield == SHIELD_BUBBLE && ctl_index == ctl_shield_bubble) || (game_get_config("advance_flicker") && shield_advance == true)))
+if (!game_ispaused(mnu_pause) && ((player_handle.status_shield == SHIELD_BUBBLE && sequence_index == sequence_shield_bubble) || (game_get_config("advance_flicker") && shield_advance == true)))
 {
-    shield_hide = sync_rate(ctl_moment, 2, 2);
+    shield_hide = sync_rate(sequence_moment, 2, 2);
 }
 else
 {
@@ -115,12 +115,12 @@ applies_to=self
 switch (player_handle.status_shield)
 {
     case SHIELD_BUBBLE:
-        ctl_set(ctl_shield_bubble_bound);
+        sequence_set(sequence_shield_bubble_bound);
         break;
 
     case SHIELD_FIRE:
         image_xscale = player_handle.image_xscale;
-        ctl_set(ctl_shield_fire_dash);
+        sequence_set(sequence_shield_fire_dash);
         break;
 }
 #define Other_11
@@ -131,7 +131,7 @@ applies_to=self
 */
 /// Bubble Recoil
 
-ctl_set(ctl_shield_bubble_recoil);
+sequence_set(sequence_shield_bubble_recoil);
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -169,7 +169,7 @@ if (sprite_exists(sprite_index))
     // Switch to bubble shield shell:
     else if (player_handle.status_shield == SHIELD_BUBBLE && player_handle.status_invin != INVIN_BUFF)
     {
-        draw_sprite_ext(spr_shield_bubble_shell, ctl_moment_previous div 12, x, y, image_xscale, 1, player_rotation, c_white, image_alpha);
+        draw_sprite_ext(spr_shield_bubble_shell, sequence_moment_previous div 12, x, y, image_xscale, 1, player_rotation, c_white, image_alpha);
     }
 
 }

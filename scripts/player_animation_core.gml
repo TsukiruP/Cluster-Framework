@@ -6,21 +6,21 @@ var y_radius_temp;
 
 y_radius_temp = y_radius;
 
-ctl_speed = player_get_animation_speed();
+sequence_speed = player_get_animation_speed();
 animation_variant = player_get_animation_variant();
 
 // Load target animation:
-if (ctl_index != player_get_animation(animation_current, animation_variant))
+if (sequence_index != player_get_animation(animation_current, animation_variant))
 {
-    ctl_set(player_get_animation(animation_current, animation_variant), animation_moment);
+    sequence_set(player_get_animation(animation_current, animation_variant), animation_moment);
 
     animation_finished = false;
     animation_trigger = false;
     animation_time = 0;
 }
 
-ctl_update();
-script_execute(ctl_index);
+sequence_update();
+script_execute(sequence_index);
 animation_time += 1;
 
 if (animation_skip == true)

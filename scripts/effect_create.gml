@@ -1,4 +1,4 @@
-/// effect_create(timeline, x, y, [depth, xscale, yscale])
+/// effect_create(sequence, x, y, [depth, xscale, yscale])
 /* Creates an effect */
 
 var effect;
@@ -8,7 +8,7 @@ effect.depth = depth;
 
 with (effect)
 {
-    ctl_set(argument0);
+    sequence_set(argument0);
 
     if (argument_count >= 4)
     {

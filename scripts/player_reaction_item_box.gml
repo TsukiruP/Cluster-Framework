@@ -17,7 +17,7 @@ if ((collision & COLL_INTERACT) || (collision & COLL_HIT))
         with (reaction_handle)
         {
             player_handle = other.id;
-            effect_create(ctl_explosion_small, x, y, -depth);
+            effect_create(sequence_explosion_small, x, y, -depth);
             instance_destroy();
         }
     }

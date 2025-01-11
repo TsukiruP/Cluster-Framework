@@ -8,11 +8,11 @@ applies_to=self
 
 event_inherited();
 
-ctl_set(ctl_reticle);
+sequence_set(sequence_reticle);
 
 if (game_get_config("misc_reticle") == 2)
 {
-    ctl_set(ctl_reticle_colors);
+    sequence_set(sequence_reticle_colors);
 }
 
 homing_handle = noone;

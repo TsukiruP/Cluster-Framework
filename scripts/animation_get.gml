@@ -1,9 +1,9 @@
 /// animation_get(character, animation, variant)
-/* Returns a timeline from the animation grid. */
+/* Returns a sequence from the animation grid. */
 
 with (mgr_animation)
 {
-    var grid_width, grid_height, grid_x, grid_y, grid_timeline;
+    var grid_width, grid_height, grid_x, grid_y;
 
     grid_width = ds_grid_width(animation_grid) - 1;
     grid_height = ds_grid_height(animation_grid) - 1;

@@ -8,7 +8,7 @@ applies_to=self
 
 event_inherited();
 
-ctl_set(ctl_debuff);
+sequence_set(sequence_debuff);
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1

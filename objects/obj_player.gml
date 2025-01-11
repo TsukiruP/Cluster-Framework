@@ -8,7 +8,7 @@ applies_to=self
 
 image_speed = 0;
 
-ctl_init();
+sequence_init();
 
 player_id = 0;
 
@@ -599,7 +599,7 @@ if (game_get_config("advance_flicker") && status_invin == INVIN_BUFF)
 {
     if (sync_rate(status_invin_alarm, 2, 4) == 0)
     {
-        effect_create(ctl_shield_invin_spark, x + random_range(-x_radius, x_radius), y + random_range(-y_radius, y_radius));
+        effect_create(sequence_shield_invin_spark, x + random_range(-x_radius, x_radius), y + random_range(-y_radius, y_radius));
     }
 }
 
@@ -996,11 +996,11 @@ if (y > obj_water_surface.y && yprevious < obj_water_surface.y)
 
     if (y_speed >= 2.50)
     {
-        effect_create(ctl_splash_1, x, obj_water_surface.y, -10);
+        effect_create(sequence_splash_1, x, obj_water_surface.y, -10);
     }
     else
     {
-        effect_create(ctl_splash_0, x, obj_water_surface.y, -10);
+        effect_create(sequence_splash_0, x, obj_water_surface.y, -10);
     }
 
     audio_play_sfx("snd_splash", true);
@@ -1012,11 +1012,11 @@ else if (y < obj_water_surface.y && yprevious > obj_water_surface.y)
 
     if (y_speed <= -6)
     {
-        effect_create(ctl_splash_1, x, obj_water_surface.y, -10);
+        effect_create(sequence_splash_1, x, obj_water_surface.y, -10);
     }
     else
     {
-        effect_create(ctl_splash_0, x, obj_water_surface.y, -10);
+        effect_create(sequence_splash_0, x, obj_water_surface.y, -10);
     }
 
     audio_play_sfx("snd_splash", true);
@@ -1030,11 +1030,11 @@ if (on_surface == true && abs(x_speed) > 0)
     {
         if (abs(x_speed) >= 4.50)
         {
-            effect_create(ctl_splash_3, x, obj_water_surface.y, depth, image_xscale);
+            effect_create(sequence_splash_3, x, obj_water_surface.y, depth, image_xscale);
         }
         else
         {
-            effect_create(ctl_splash_2, x, obj_water_surface.y, depth, image_xscale);
+            effect_create(sequence_splash_2, x, obj_water_surface.y, depth, image_xscale);
         }
     }
 }
@@ -1065,7 +1065,7 @@ player_trail_draw();
 // Shield:
 with (shield_handle)
 {
-    shield_depth = (other.status_shield == SHIELD_FIRE && (image_index mod 2) != 0 && ctl_index != ctl_shield_fire_dash) || (other.status_shield == SHIELD_LIGHTNING && ctl_moment > 48);
+    shield_depth = (other.status_shield == SHIELD_FIRE && (image_index mod 2) != 0 && sequence_index != sequence_shield_fire_dash) || (other.status_shield == SHIELD_LIGHTNING && sequence_moment > 48);
 
     if (shield_depth == true)
     {

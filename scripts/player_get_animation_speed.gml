@@ -13,7 +13,7 @@ switch (character_id)
                     return clamp(abs(x_speed), 1, 7);
                 }
 
-                return clamp(ctl_speed, 1, 7);
+                return clamp(sequence_speed, 1, 7);
 
             case "spin":
                 if (on_ground == true)
@@ -21,7 +21,7 @@ switch (character_id)
                     return clamp(abs(x_speed), 1, 3);
                 }
 
-                return clamp(ctl_speed, 1, 3);
+                return clamp(sequence_speed, 1, 3);
         }
         break;
 

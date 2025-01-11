@@ -81,11 +81,10 @@ else if (on_ground == false)
                 // Create shield:
                 with (instance_create(x, y, eff_player))
                 {
-                    ctl_init(ctl_shield_insta);
-
                     depth = other.depth;
                     image_xscale = other.image_xscale;
                     image_angle = other.gravity_direction;
+                    sequence_init(sequence_shield_insta);
                     player_handle = other.id;
                 }
 

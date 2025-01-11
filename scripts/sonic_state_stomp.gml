@@ -42,7 +42,7 @@ switch (argument0)
                     sine = dsin(mask_rotation);
                     csine = dcos(mask_rotation);
 
-                    with (effect_create(ctl_shockwave, x + sine * y_radius, y + csine * y_radius))
+                    with (effect_create(sequence_shockwave, x + sine * y_radius, y + csine * y_radius))
                     {
                         image_angle = angle_wrap(other.mask_rotation - 90);
                         image_alpha = 0.5;

@@ -90,7 +90,7 @@ switch (argument0)
 
             with (shield_handle)
             {
-                if (ctl_index == ctl_shield_bubble_bound)
+                if (sequence_index == sequence_shield_bubble_bound)
                 {
                     shield_reset = true;
                 }

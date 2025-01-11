@@ -44,14 +44,14 @@ if (game_ispaused(mnu_pause) || object_is_ancestor(object_index, obj_dash_ring))
 
 if (activated == true)
 {
-    ctl_update();
-    script_execute(ctl_index);
+    sequence_update();
+    script_execute(sequence_index);
 }
 
 if (image_index != 0 && activated == false)
 {
-    ctl_set(ctl_index);
     image_index = 0;
+    sequence_set(sequence_index);
 }
 #define Other_4
 /*"/*'/**//* YYD ACTION
@@ -112,21 +112,21 @@ switch (orientation)
     case ORIEN_HORIZONTAL:
         sprite_index = spr_spring_horizontal;
         hurtbox_set(16, 5, 4, 5);
-        ctl_init(ctl_spring_horizontal);
+        sequence_init(sequence_spring_horizontal);
         angle = ANGLE_RIGHT;
         break;
 
     case ORIEN_DIAGONAL:
         sprite_index = spr_spring_diagonal;
         hurtbox_set(6, 2, 4, 8);
-        ctl_init(ctl_spring_diagonal);
+        sequence_init(sequence_spring_diagonal);
         angle = ANGLE_RIGHT_UP;
         break;
 
     default:
         sprite_index = spr_spring_vertical;
         hurtbox_set(5, 4, 5, 15);
-        ctl_init(ctl_spring_vertical);
+        sequence_init(sequence_spring_vertical);
         angle = ANGLE_UP;
 }
 

@@ -11,7 +11,7 @@ event_inherited();
 hurtbox_set(13, 22, 14, 16);
 reaction_index = player_reaction_checkpoint;
 
-ctl_init(ctl_checkpoint_inactive);
+sequence_init(sequence_checkpoint_inactive);
 active = false;
 
 if (game_get_checkpoint_x() == x && game_get_checkpoint_y() == y)
@@ -33,23 +33,23 @@ if (game_ispaused(mnu_pause))
 
 if (active == true)
 {
-    if (ctl_index != ctl_checkpoint_active)
+    if (sequence_index != sequence_checkpoint_active)
     {
-        ctl_set(ctl_checkpoint_active);
+        sequence_set(sequence_checkpoint_active);
     }
 }
 else
 {
-    if (ctl_index != ctl_checkpoint_inactive)
+    if (sequence_index != sequence_checkpoint_inactive)
     {
-        ctl_set(ctl_checkpoint_inactive);
+        sequence_set(sequence_checkpoint_inactive);
     }
 }
 
-if (script_exists(ctl_index))
+if (script_exists(sequence_index))
 {
-    ctl_update();
-    script_execute(ctl_index);
+    sequence_update();
+    script_execute(sequence_index);
 }
 #define Draw_0
 /*"/*'/**//* YYD ACTION

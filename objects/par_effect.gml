@@ -7,7 +7,7 @@ applies_to=self
 /// Effect Initialization
 
 image_speed = 0;
-ctl_init();
+sequence_init();
 x_speed = 0;
 y_speed = 0;
 angle = 0;
@@ -24,10 +24,10 @@ if (game_ispaused(mnu_pause))
     exit;
 }
 
-if (script_exists(ctl_index))
+if (script_exists(sequence_index))
 {
-    ctl_update();
-    script_execute(ctl_index);
+    sequence_update();
+    script_execute(sequence_index);
 }
 /*"/*'/**//* YYD ACTION
 lib_id=1

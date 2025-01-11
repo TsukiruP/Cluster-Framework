@@ -1,5 +1,5 @@
 /// animation_add(character, animation, variant0, variant1, ...)
-/* Adds timelines in the animation grid. */
+/* Adds sequences to the animation grid. */
 
 var i, grid_width, grid_y;
 

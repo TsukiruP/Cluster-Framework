@@ -23,7 +23,7 @@ if (collision & COLL_INTERACT)
 
         with (reaction_handle)
         {
-            effect_create(ctl_ring_sparkle, x, y, -depth);
+            effect_create(sequence_ring_sparkle, x, y, -depth);
             instance_destroy();
         }
     }

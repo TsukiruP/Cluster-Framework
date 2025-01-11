@@ -56,7 +56,7 @@ switch (argument0)
                 audio_play_sfx("snd_spin_dash_release", true);
                 audio_stop_sfx("snd_drop_dash");
 
-                with (effect_create(ctl_drop_dash, x, y + y_radius))
+                with (effect_create(sequence_drop_dash, x, y + y_radius))
                 {
                     image_xscale = other.image_xscale;
                 }
