@@ -210,7 +210,7 @@ applies_to=self
 input_x_direction = 0;
 input_y_direction = 0;
 
-input_lock = false;
+input_allow = false;
 input_lock_alarm = 0;
 
 input_cpu = false;
@@ -265,7 +265,7 @@ if (game_ispaused())
     exit;
 }
 
-if (input_lock == false)
+if (input_allow == true)
 {
     if (input_cpu == true)
     {

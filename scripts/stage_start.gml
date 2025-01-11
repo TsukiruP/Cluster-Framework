@@ -4,7 +4,7 @@
 // Input lock:
 with (obj_player)
 {
-    input_lock = false;
+    input_allow = true;
 }
 
 stage_set_time_allow(true);

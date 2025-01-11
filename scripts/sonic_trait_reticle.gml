@@ -28,7 +28,7 @@ switch (state_current)
         homing_allow = false;
 }
 
-if (homing_allow == false || spring_alarm != 0 || input_lock == true || (input_cpu == true && input_cpu_gamepad_alarm == 0))
+if (homing_allow == false || spring_alarm != 0 || input_allow == false || (input_cpu == true && input_cpu_gamepad_alarm == 0))
 {
     exit;
 }

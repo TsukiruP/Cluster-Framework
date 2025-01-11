@@ -458,6 +458,7 @@
 		+States
 			|player_state_template
 			+Common
+				|player_state_standby
 				|player_state_idle
 				|player_state_turn
 				|player_state_run
@@ -542,4 +543,3 @@
 			|player_surface_splash
 			|player_cpu_respawn
 	+Props
-|script434

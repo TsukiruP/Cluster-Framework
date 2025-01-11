@@ -377,7 +377,7 @@ switch (transition_state)
             {
                 with (obj_player)
                 {
-                    input_lock = false;
+                    input_allow = true;
                 }
             }
 

@@ -27,7 +27,7 @@ for (i = 0; i < PLAYER_COUNT; i += 1)
         {
             player_id = i;
             character_id = game_get_save("player" + string(i));
-            input_lock = true;
+            input_allow = false;
 
             if (i == 0)
             {
