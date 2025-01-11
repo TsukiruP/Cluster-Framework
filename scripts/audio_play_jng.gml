@@ -2,7 +2,7 @@
 /* Plays a jingle.
 If the index doesn't exist or isn't the correct kind, nothing is played. */
 
-with (mgr_audio)
+with (ctrl_audio)
 {
     if (sound_exists(argument0))
     {

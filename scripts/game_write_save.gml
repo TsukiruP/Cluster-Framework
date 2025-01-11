@@ -1,7 +1,7 @@
 /// game_write_save(id)
 /* Writes the save map to file. */
 
-with (mgr_game)
+with (ctrl_game)
 {
     var save_buffer;
 

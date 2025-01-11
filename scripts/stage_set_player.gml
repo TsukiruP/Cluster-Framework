@@ -1,7 +1,7 @@
 /// stage_set_player(id, obj)
 /* Sets a stage player. */
 
-with (mgr_stage)
+with (ctrl_stage)
 {
     stage_player[argument0] = argument1;
 }

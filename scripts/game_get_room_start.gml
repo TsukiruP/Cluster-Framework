@@ -3,7 +3,7 @@
 Defaults to the current room.
 If the room has no start set, returns idle. */
 
-with (mgr_game)
+with (ctrl_game)
 {
     var grid_height, room_handle;
 

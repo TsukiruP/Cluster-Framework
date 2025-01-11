@@ -1,7 +1,7 @@
 /// audio_drown_isplaying()
 /* Returns whether drowning music is playing. */
 
-with (mgr_audio)
+with (ctrl_audio)
 {
     if (drown_handle != -1)
     {

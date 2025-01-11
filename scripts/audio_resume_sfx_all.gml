@@ -1,7 +1,7 @@
 /// audio_resume_sfx_all()
 /* Resumes all currently paused sounds. */
 
-with (mgr_audio)
+with (ctrl_audio)
 {
     var i, sfx;
 

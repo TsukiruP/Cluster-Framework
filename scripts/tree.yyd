@@ -1,6 +1,6 @@
 +System
 	|credits
-	+Managers
+	+Controllers
 		+Game
 			|game_ispaused
 			+Debug

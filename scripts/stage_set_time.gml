@@ -1,7 +1,7 @@
 /// stage_set_time(val)
 /* Sets the stage time. */
 
-with (mgr_stage)
+with (ctrl_stage)
 {
     stage_time = argument0;
 }

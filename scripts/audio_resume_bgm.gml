@@ -1,7 +1,7 @@
 /// audio_resume_bgm()
 /* Resumes music. */
 
-with (mgr_audio)
+with (ctrl_audio)
 {
     if (bgm_handle != -1)
     {

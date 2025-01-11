@@ -1,7 +1,7 @@
 /// screen_get_width()
 /* Returns screen width. */
 
-with (mgr_screen)
+with (ctrl_screen)
 {
     return screen_width;
 }

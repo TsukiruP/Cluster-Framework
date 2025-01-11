@@ -3,7 +3,7 @@
 Defaults to the current room.
 If the room has no water level set, returns -1. */
 
-with (mgr_game)
+with (ctrl_game)
 {
     var grid_height, room_handle;
 

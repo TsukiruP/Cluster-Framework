@@ -1,7 +1,7 @@
 /// audio_pause_bgm()
 /* Pauses music. */
 
-with (mgr_audio)
+with (ctrl_audio)
 {
     if (bgm_handle != -1)
     {

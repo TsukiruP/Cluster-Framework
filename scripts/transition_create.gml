@@ -1,9 +1,9 @@
 /// transition_create(room, [transition, preview])
-/* Creates a transition manager and returns it. */
+/* Returns a transition controller. */
 
 var transition;
 
-transition = instance_create(0, 0, mgr_transition);
+transition = instance_create(0, 0, ctrl_transition);
 
 with (transition)
 {

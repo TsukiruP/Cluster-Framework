@@ -10,20 +10,20 @@
 	|par_obstacle
 	|par_effect
 +System
-	+Managers
-		|mgr_game
-		|mgr_screen
-		|mgr_audio
-		|mgr_input
-		|mgr_text
-		|mgr_animation
-		|mgr_transition
-		|mgr_fade
+	+Controllers
+		|ctrl_game
+		|ctrl_screen
+		|ctrl_audio
+		|ctrl_input
+		|ctrl_text
+		|ctrl_animation
+		|ctrl_transition
+		|ctrl_fade
 		+Stage
-			|mgr_stage
-			|mgr_camera
-			|mgr_hud
-			|mgr_tally
+			|ctrl_stage
+			|ctrl_camera
+			|ctrl_hud
+			|ctrl_tally
 	+Menus
 		|mnu_title
 		|mnu_debug

@@ -1,7 +1,7 @@
 /// audio_stop_drown()
 /* Stops drowning music. */
 
-with (mgr_audio)
+with (ctrl_audio)
 {
     if (drown_handle != -1)
     {

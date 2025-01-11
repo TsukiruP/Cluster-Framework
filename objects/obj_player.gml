@@ -660,7 +660,7 @@ if (game_ispaused())
     exit;
 }
 
-if (state_current == player_state_death || (physics_id == PHYS_WATER && status_shield == SHIELD_BUBBLE) || instance_exists(mgr_tally))
+if (state_current == player_state_death || (physics_id == PHYS_WATER && status_shield == SHIELD_BUBBLE) || instance_exists(ctrl_tally))
 {
     air_remaining = 30;
     air_alarm = 60;
@@ -786,7 +786,7 @@ if (game_ispaused())
     exit;
 }
 
-if (state_current != player_state_death && !instance_exists(mgr_tally))
+if (state_current != player_state_death && !instance_exists(ctrl_tally))
 {
     if (physics_id == PHYS_WATER)
     {

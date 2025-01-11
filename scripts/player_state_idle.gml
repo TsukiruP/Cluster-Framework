@@ -97,7 +97,7 @@ switch (argument0)
         }
 
         // Wait:
-        if (!game_ispaused(mgr_text) && on_ground == true && input_lock == false && animation_current == "stand")
+        if (!game_ispaused(ctrl_text) && on_ground == true && input_lock == false && animation_current == "stand")
         {
             if (wait_alarm > 0)
             {

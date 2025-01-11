@@ -17,9 +17,9 @@ switch (player_handle.mask_rotation)
     // Down:
     case 0:
         // Left limit:
-        if (x < mgr_camera.limit_left + x_radius)
+        if (x < ctrl_camera.limit_left + x_radius)
         {
-            x = mgr_camera.limit_left + x_radius;
+            x = ctrl_camera.limit_left + x_radius;
 
             if (x_speed < 0)
             {
@@ -28,9 +28,9 @@ switch (player_handle.mask_rotation)
         }
 
         // Right limit:
-        if (x > mgr_camera.limit_right - x_radius)
+        if (x > ctrl_camera.limit_right - x_radius)
         {
-            x = mgr_camera.limit_right - x_radius;
+            x = ctrl_camera.limit_right - x_radius;
 
             if (x_speed > 0)
             {
@@ -39,13 +39,13 @@ switch (player_handle.mask_rotation)
         }
 
         // Top limit:
-        if (y < mgr_camera.limit_top - y_radius * 2)
+        if (y < ctrl_camera.limit_top - y_radius * 2)
         {
-            y = mgr_camera.limit_top - y_radius * 2;
+            y = ctrl_camera.limit_top - y_radius * 2;
         }
 
         // Bottom limit:
-        if (y > mgr_camera.limit_bottom + y_radius)
+        if (y > ctrl_camera.limit_bottom + y_radius)
         {
             player_set_damage(self);
             return false;
@@ -55,22 +55,22 @@ switch (player_handle.mask_rotation)
     // Right:
     case 90:
         // Left limit:
-        if (x < mgr_camera.limit_left - y_radius * 2)
+        if (x < ctrl_camera.limit_left - y_radius * 2)
         {
-            x = mgr_camera.limit_left - y_radius * 2;
+            x = ctrl_camera.limit_left - y_radius * 2;
         }
 
         // Right limit:
-        if (x > mgr_camera.limit_right + y_radius)
+        if (x > ctrl_camera.limit_right + y_radius)
         {
             player_set_damage(self);
             return false;
         }
 
         // Top limit:
-        if (y < mgr_camera.limit_top + x_radius)
+        if (y < ctrl_camera.limit_top + x_radius)
         {
-            y = mgr_camera.limit_top + x_radius;
+            y = ctrl_camera.limit_top + x_radius;
 
             if (x_speed > 0)
             {
@@ -79,9 +79,9 @@ switch (player_handle.mask_rotation)
         }
 
         // Bottom limit:
-        if (y > mgr_camera.limit_bottom - x_radius)
+        if (y > ctrl_camera.limit_bottom - x_radius)
         {
-            y = mgr_camera.limit_bottom - x_radius;
+            y = ctrl_camera.limit_bottom - x_radius;
 
             if (x_speed < 0)
             {
@@ -93,9 +93,9 @@ switch (player_handle.mask_rotation)
     // Up:
     case 180:
         // Left limit:
-        if (x < mgr_camera.limit_left + x_radius)
+        if (x < ctrl_camera.limit_left + x_radius)
         {
-            x = mgr_camera.limit_left + x_radius;
+            x = ctrl_camera.limit_left + x_radius;
 
             if (x_speed > 0)
             {
@@ -104,9 +104,9 @@ switch (player_handle.mask_rotation)
         }
 
         // Right limit:
-        if (x > mgr_camera.limit_right - x_radius)
+        if (x > ctrl_camera.limit_right - x_radius)
         {
-            x = mgr_camera.limit_right - x_radius;
+            x = ctrl_camera.limit_right - x_radius;
 
             if (x_speed < 0)
             {
@@ -115,38 +115,38 @@ switch (player_handle.mask_rotation)
         }
 
         // Top limit:
-        if (y < mgr_camera.limit_top - y_radius)
+        if (y < ctrl_camera.limit_top - y_radius)
         {
             player_set_damage(self);
             return false;
         }
 
         // Bottom limit:
-        if (y > mgr_camera.limit_bottom + y_radius * 2)
+        if (y > ctrl_camera.limit_bottom + y_radius * 2)
         {
-            y = mgr_camera.limit_bottom + y_radius * 2;
+            y = ctrl_camera.limit_bottom + y_radius * 2;
         }
         break;
 
     // Left:
     case 270:
         // Left limit:
-        if (x < mgr_camera.limit_left - y_radius)
+        if (x < ctrl_camera.limit_left - y_radius)
         {
             player_set_damage(self);
             return false;
         }
 
         // Right limit:
-        if (x > mgr_camera.limit_right + y_radius * 2)
+        if (x > ctrl_camera.limit_right + y_radius * 2)
         {
-            x = mgr_camera.limit_right + y_radius * 2;
+            x = ctrl_camera.limit_right + y_radius * 2;
         }
 
         // Top limit:
-        if (y < mgr_camera.limit_top + x_radius)
+        if (y < ctrl_camera.limit_top + x_radius)
         {
-            y = mgr_camera.limit_top + x_radius;
+            y = ctrl_camera.limit_top + x_radius;
 
             if (x_speed > 0)
             {
@@ -155,9 +155,9 @@ switch (player_handle.mask_rotation)
         }
 
         // Bottom limit:
-        if (y > mgr_camera.limit_bottom - x_radius)
+        if (y > ctrl_camera.limit_bottom - x_radius)
         {
-            y = mgr_camera.limit_bottom - x_radius;
+            y = ctrl_camera.limit_bottom - x_radius;
 
             if (x_speed < 0)
             {

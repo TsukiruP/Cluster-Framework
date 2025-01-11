@@ -2,7 +2,7 @@
 /* Plays a sound.
 If the index doesn't exist or isn't the correct kind, returns noone. */
 
-with (mgr_audio)
+with (ctrl_audio)
 {
     if (sound_exists(argument0))
     {

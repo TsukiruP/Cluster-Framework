@@ -1,7 +1,7 @@
 /// game_read_save(id)
 /* Reads a save file and applies it. */
 
-with (mgr_game)
+with (ctrl_game)
 {
     if (game_save_exists(argument0))
     {

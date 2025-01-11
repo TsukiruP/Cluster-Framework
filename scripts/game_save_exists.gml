@@ -1,7 +1,7 @@
 /// game_save_exists(id)
 /* Returns whether a save file exists. */
 
-with (mgr_game)
+with (ctrl_game)
 {
     var save_exists;
 

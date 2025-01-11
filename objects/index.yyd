@@ -1,5 +1,5 @@
 par_terrain
-mgr_fade
+ctrl_fade
 obj_spring
 obj_blockade
 obj_sky_sanctuary_parallax
@@ -9,16 +9,16 @@ obj_basic_test_mask_01
 obj_player
 par_culled
 
-mgr_animation
-mgr_input
-mgr_screen
-mgr_transition
-mgr_camera
-mgr_audio
-mgr_text
-mgr_game
+ctrl_animation
+ctrl_input
+ctrl_screen
+ctrl_transition
+ctrl_camera
+ctrl_audio
+ctrl_text
+ctrl_game
 obj_player_spawn
-mgr_hud
+ctrl_hud
 mnu_pause
 obj_basic_test_mask_02
 obj_basic_test_mask_03
@@ -67,7 +67,7 @@ obj_item_swap
 eff_afterimage
 par_ring
 obj_ring_magnetized
-mgr_tally
+ctrl_tally
 obj_basic_test_mask_28
 obj_basic_test_mask_29
 obj_basic_test_mask_16
@@ -125,5 +125,5 @@ eff_debuff
 par_obstacle
 eff_debris
 par_target
-mgr_stage
+ctrl_stage
 eff_waterfall

@@ -1,7 +1,7 @@
 /// screen_set_size(width, height)
 /* Sets screen size. */
 
-with (mgr_screen)
+with (ctrl_screen)
 {
     screen_width = argument0;
     screen_height = argument1;

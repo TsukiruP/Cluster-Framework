@@ -1,7 +1,7 @@
 /// audio_fade_out()
 /* Fades out all music. */
 
-with (mgr_audio)
+with (ctrl_audio)
 {
     fade_out = true;
 }

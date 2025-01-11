@@ -1,7 +1,7 @@
 /// audio_fade_jng(out)
 /* Adjusts jingle volume to imitate fading in or out. */
 
-with (mgr_audio)
+with (ctrl_audio)
 {
     if (jng_handle != -1)
     {

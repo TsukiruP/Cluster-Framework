@@ -47,7 +47,7 @@ applies_to=self
 */
 /// Inputs
 
-if (game_ispaused(mgr_text) || menu_lock == true || menu_alarm > 0)
+if (game_ispaused(ctrl_text) || menu_lock == true || menu_alarm > 0)
 {
     exit;
 }
@@ -55,7 +55,7 @@ if (game_ispaused(mgr_text) || menu_lock == true || menu_alarm > 0)
 if (input_get_check(INP_HIDE, CHECK_PRESSED))
 {
     menu_hide += 1;
-    menu_hide = wrap(menu_hide, 0, 1 + (instance_exists(mgr_transition) || game_get_config("misc_hud") != 0));
+    menu_hide = wrap(menu_hide, 0, 1 + (instance_exists(ctrl_transition) || game_get_config("misc_hud") != 0));
 }
 
 if (input_get_check(INP_CANCEL, CHECK_PRESSED))
@@ -212,7 +212,7 @@ switch (pause_mode)
             {
                 if (!instance_exists(transition_handle))
                 {
-                    with (mgr_transition)
+                    with (ctrl_transition)
                     {
                         persistent = false;
                     }

@@ -1,7 +1,7 @@
 /// save_menu_preview()
 /* Returns a map containing data from existing save files. */
 
-with (mgr_game)
+with (ctrl_game)
 {
     var i, preview_map;
 

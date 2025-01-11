@@ -1,7 +1,7 @@
 /// game_write_config()
 /* Writes the config map to file. */
 
-with (mgr_game)
+with (ctrl_game)
 {
     var config_buffer;
 

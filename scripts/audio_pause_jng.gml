@@ -1,7 +1,7 @@
 /// audio_pause_jng()
 /* Pauses the currently playing jingle. */
 
-with (mgr_audio)
+with (ctrl_audio)
 {
     if (jng_handle != -1)
     {

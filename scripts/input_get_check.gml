@@ -1,7 +1,7 @@
 /// input_get_check(input, check, [device])
 /* Returns whether the input meets the check. */
 
-with (mgr_input)
+with (ctrl_input)
 {
     var input_id, input_device;
 

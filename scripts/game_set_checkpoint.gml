@@ -1,7 +1,7 @@
 /// game_set_checkpoint([reset])
 /* Sets the checkpoint values to the current game state. */
 
-with (mgr_game)
+with (ctrl_game)
 {
     // Reset:
     if (argument_count >= 1)

@@ -1,7 +1,7 @@
 /// audio_resume_all()
 /* Resumes all currently paused audio. */
 
-with (mgr_audio)
+with (ctrl_audio)
 {
     audio_resume_sfx_all();
     audio_resume_bgm();

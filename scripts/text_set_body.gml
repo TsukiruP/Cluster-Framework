@@ -1,7 +1,7 @@
 /// text_set_body(str1, str2, ...)
 /* Sets body text. */
 
-with (mgr_text)
+with (ctrl_text)
 {
     var i;
 

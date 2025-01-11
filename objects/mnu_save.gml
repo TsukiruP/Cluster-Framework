@@ -34,7 +34,7 @@ applies_to=self
 */
 /// Inputs
 
-if (game_ispaused(mgr_text) || instance_exists(mgr_transition))
+if (game_ispaused(ctrl_text) || instance_exists(ctrl_transition))
 {
     exit;
 }

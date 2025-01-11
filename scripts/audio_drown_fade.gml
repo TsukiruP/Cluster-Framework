@@ -1,7 +1,7 @@
 /// audio_fade_drown(out)
 /* Adjusts drown volume to imitate fading in or out. */
 
-with (mgr_audio)
+with (ctrl_audio)
 {
     if (drown_handle != -1)
     {

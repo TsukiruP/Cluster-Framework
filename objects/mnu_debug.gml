@@ -57,7 +57,7 @@ if (visible != !instance_exists(mnu_save))
     visible = !instance_exists(mnu_save);
 }
 
-if (game_ispaused(mgr_text) || instance_exists(mgr_transition) || instance_exists(mnu_save) || rename_allow == true)
+if (game_ispaused(ctrl_text) || instance_exists(ctrl_transition) || instance_exists(mnu_save) || rename_allow == true)
 {
     if (menu_alarm == 0)
     {

@@ -8,7 +8,7 @@ switch (argument0)
 
     // Confirm:
     case 2:
-        mgr_text.log_hide = false;
+        ctrl_text.log_hide = false;
         return true;
 
     // Undefined:

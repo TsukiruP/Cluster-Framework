@@ -8,7 +8,7 @@ applies_to=self
 
 var i;
 
-instance_create(0, 0, mgr_stage);
+instance_create(0, 0, ctrl_stage);
 
 if (game_checkpoint_isset())
 {
@@ -31,10 +31,9 @@ for (i = 0; i < PLAYER_COUNT; i += 1)
 
             if (i == 0)
             {
-                camera = instance_create(x, y, mgr_camera);
+                camera = instance_create(x, y, ctrl_camera);
                 camera.focus_handle = stage_get_player(i);
             }
-
             else
             {
                 input_cpu = true;

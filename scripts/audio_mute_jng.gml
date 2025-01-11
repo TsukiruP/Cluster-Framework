@@ -1,7 +1,7 @@
 /// audio_mute_jng()
 /* Sets the jingle volume to 0. */
 
-with (mgr_audio)
+with (ctrl_audio)
 {
     if (jng_handle != -1)
     {

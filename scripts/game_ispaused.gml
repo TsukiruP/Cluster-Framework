@@ -1,13 +1,13 @@
-/// game_ispaused([manager])
-/* Returns true or false based on the variables of the text manager or pause manager.
-Defaults to checking both managers should neither be the argument given, or no argument was given. */
+/// game_ispaused([controller])
+/* Returns true or false based on the variables of the text controller or pause controller.
+Defaults to checking both controllers should neither be the argument given, or no argument was given. */
 
 var pause_text, pause_stage;
 
 pause_text = false;
 pause_stage = false;
 
-with (mgr_text)
+with (ctrl_text)
 {
     pause_text = (!ds_list_empty(body_list) || subject_string != "" || log_alpha != 0);
 }
@@ -19,7 +19,7 @@ with (mnu_pause)
 
 if (argument_count >= 1)
 {
-    if (argument[0] == mgr_text)
+    if (argument[0] == ctrl_text)
     {
         return pause_text;
     }

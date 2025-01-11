@@ -1,7 +1,7 @@
 /// hud_add_item(item)
 /* Adds an item to the HUD item feed. */
 
-with (mgr_hud)
+with (ctrl_hud)
 {
     if (item_grid != -1)
     {

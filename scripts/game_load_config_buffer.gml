@@ -1,7 +1,7 @@
 /// game_load_config_buffer()
 /* Returns a ds map of the loaded config. */
 
-with (mgr_game)
+with (ctrl_game)
 {
     var config_temp, config_temp;
 

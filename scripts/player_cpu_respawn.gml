@@ -16,7 +16,7 @@ if (instance_exists(player_handle))
         image_xscale = player_handle.image_xscale;
         x_speed = player_handle.x_speed;
         y_speed = player_handle.y_speed;
-        state = player_state_jump;
+        player_set_state(player_state_air);
         death_alarm = -5;
         status_invin = INVIN_HURT;
         status_invin_alarm = 120;

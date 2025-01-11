@@ -1,7 +1,7 @@
 /// game_load_save_buffer(id)
 /* Returns a ds map of the loaded save. */
 
-with (mgr_game)
+with (ctrl_game)
 {
     var save_buffer, save_temp;
 

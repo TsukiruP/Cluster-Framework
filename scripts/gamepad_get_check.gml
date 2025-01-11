@@ -2,7 +2,7 @@
 /* Returns whether the button meets the check.
 If there's no gamepad at the id, returns false. */
 
-with (mgr_input)
+with (ctrl_input)
 {
     var gamepad_id;
 

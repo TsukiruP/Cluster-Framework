@@ -8,7 +8,7 @@ switch (argument0)
 
     // Confirm:
     case 2:
-        mgr_text.log_string = "";
+        ctrl_text.log_string = "";
         return true;
 
     // Undefined:

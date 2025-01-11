@@ -1,7 +1,7 @@
 /// fade_create([target, speed, depth, color])
 /* Returns a newly created fade object. */
 
-fade = instance_create(0, 0, mgr_fade);
+fade = instance_create(0, 0, ctrl_fade);
 fade.depth = depth;
 
 with (fade)

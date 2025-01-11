@@ -1,7 +1,7 @@
 /// audio_pause_sfx_all()
 /* Pauses all currently playing sounds. */
 
-with (mgr_audio)
+with (ctrl_audio)
 {
     var i, sfx;
 

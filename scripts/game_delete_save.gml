@@ -1,7 +1,7 @@
 /// game_delete_save(id)
 /* Deletes a save file. */
 
-with (mgr_game)
+with (ctrl_game)
 {
     if (game_save_exists(argument0))
     {

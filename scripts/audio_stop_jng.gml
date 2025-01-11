@@ -2,7 +2,7 @@
 /* Stops a jingle.
 Defaults to the currently playing jingle. */
 
-with (mgr_audio)
+with (ctrl_audio)
 {
     if (argument_count >= 1)
     {

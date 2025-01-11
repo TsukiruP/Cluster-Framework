@@ -1,7 +1,7 @@
 /// game_read_config()
 /* Reads the config file and applies it. */
 
-with (mgr_game)
+with (ctrl_game)
 {
     if (game_config_exists())
     {

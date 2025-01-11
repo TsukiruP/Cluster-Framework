@@ -43,7 +43,7 @@ if (instance_exists(player_handle))
                 player_set_animation("omochao_end");
             }
 
-            if (mgr_text.body_box_alpha == 0 && animation_current == "stand")
+            if (ctrl_text.body_box_alpha == 0 && animation_current == "stand")
             {
                 hint_allow = true;
             }

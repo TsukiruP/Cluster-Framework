@@ -1,7 +1,7 @@
 /// game_room_add(room, [transition, music, background, zone, act, water, start, run])
 /* Adds room data in the room grid. */
 
-with (mgr_game)
+with (ctrl_game)
 {
     if (!ds_grid_value_exists(room_grid, 0, 0, ds_grid_width(room_grid) - 1, ds_grid_height(room_grid) - 1, argument0))
     {

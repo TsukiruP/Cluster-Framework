@@ -1,8 +1,8 @@
 /// game_save_auto()
 /* Writes a save to the last saved slot.
-Tells the game manager to draw the autosave indicator. */
+Tells the game controller to draw the autosave indicator. */
 
-with (mgr_game)
+with (ctrl_game)
 {
     if (save_id != -1)
     {

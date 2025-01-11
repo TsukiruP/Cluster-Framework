@@ -1,0 +1,544 @@
+#define Create_0
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// HUD Initialization
+
+var i;
+
+hud_hide = true;
+hud_time = 0;
+hud_max_time = 10;
+hud_x = 0;
+
+switch (game_get_config("misc_hud"))
+{
+    // S4E2:
+    case 2:
+        hud_index = spr_hud_s4e2;
+        hud_offset = 13;
+        hud_y = 14;
+        break;
+
+        // Default:
+    default:
+        hud_index = spr_hud;
+        hud_offset = 4;
+        hud_y = 6;
+}
+
+air_hide = true;
+air_time = 0;
+air_x = 0;
+air_value = 30;
+
+gauge_hide = true;
+gauge_time = 0;
+gauge_x = 0;
+gauge_energy = 0;
+gauge_max_energy = 1;
+
+boss_hide = true;
+boss_time = 0;
+boss_x = 0;
+boss_health = 0;
+
+status_icon[STATUS_SHIELD] = ITEM_BASIC;
+status_icon[STATUS_INVIN] = ITEM_INVIN;
+status_icon[STATUS_SPEED] = ITEM_SPEED;
+status_icon[STATUS_PANIC] = ITEM_PANIC;
+status_icon[STATUS_SWAP] = ITEM_SWAP;
+status_width = sprite_get_width(spr_item_icon) + 2;
+status_max = 3 + 2 * game_get_config("gameplay_debuffs");
+status_bar_x = 0;
+
+for (i = STATUS_SHIELD; i <= STATUS_SWAP; i += 1)
+{
+    status_active[i, 0] = 0;
+    status_active[i, 1] = false;
+}
+
+item_hide = false;
+item_grid = -1;
+item_max_time = 10;
+item_alarm = 0;
+
+if (game_get_config("misc_hud") == 1 && game_get_config("misc_feed"))
+{
+    item_grid = ds_grid_create(3, 0);
+}
+#define Destroy_0
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Cleanup
+
+if (item_grid != -1)
+{
+    ds_grid_destroy(item_grid);
+}
+#define Step_1
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Alarm
+
+if (game_ispaused(mnu_pause))
+{
+    exit;
+}
+
+if (item_grid != -1)
+{
+    if (ds_grid_height(item_grid) > 0)
+    {
+        if (ds_grid_get(item_grid, 1, ds_grid_height(item_grid) - 1) == item_max_time)
+        {
+            if (item_alarm > 0)
+            {
+                item_alarm -= 1;
+                item_hide = false;
+
+                if (item_alarm <= 30)
+                {
+                    item_hide = sync_rate(item_alarm, 2, 2);
+                }
+
+                if (item_alarm == 0)
+                {
+                    ds_grid_clear(item_grid, 0);
+                    ds_grid_resize(item_grid, ds_grid_width(item_grid), 0);
+                }
+            }
+        }
+        else
+        {
+            if (item_alarm != 90)
+            {
+                item_alarm = 90;
+            }
+        }
+    }
+}
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Time
+
+if (game_ispaused(mnu_pause))
+{
+    exit;
+}
+
+var i;
+
+if (hud_hide == false)
+{
+    hud_time = approach(hud_time, hud_max_time, 1);
+}
+else
+{
+    hud_time = approach(hud_time, 0, 1);
+}
+
+if (air_hide == false)
+{
+    air_time = approach(air_time, hud_max_time, 1);
+}
+else
+{
+    air_time = approach(air_time, 0, 1);
+}
+
+if (hud_hide == false && gauge_hide == false)
+{
+    gauge_time = approach(gauge_time, hud_max_time, 1);
+}
+else
+{
+    gauge_time = approach(gauge_time, 0, 1);
+}
+
+if (hud_hide == false && boss_hide == false)
+{
+    boss_time = approach(boss_time, hud_max_time, 1);
+}
+else
+{
+    boss_time = approach(boss_time, 0, 1);
+}
+
+if (item_grid != -1)
+{
+    for (i = 0; i < ds_grid_height(item_grid); i += 1)
+    {
+        ds_grid_set(item_grid, 1, i, approach(ds_grid_get(item_grid, 1, i), item_max_time, 1));
+    }
+}
+#define Step_2
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// HUD
+
+if (game_ispaused(mnu_pause))
+{
+    exit;
+}
+
+hud_x = lerp(-sprite_get_width(hud_index), hud_offset, smoothstep(0, hud_max_time, hud_time));
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Air
+
+if (game_ispaused(mnu_pause) || game_get_config("misc_hud") != 1)
+{
+    exit;
+}
+
+air_x = lerp(-sprite_get_width(hud_index), hud_x, smoothstep(0, hud_max_time, air_time));
+
+if (instance_exists(stage_get_player(0)))
+{
+    with (stage_get_player(0))
+    {
+        if (state_current != player_state_death)
+        {
+            if (physics_id == PHYS_WATER && status_shield != SHIELD_BUBBLE)
+            {
+                other.air_hide = false;
+            }
+            else
+            {
+                other.air_hide = true;
+            }
+
+            other.air_value = air_remaining;
+        }
+    }
+}
+else
+{
+    air_value = 30;
+}
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Gauge
+
+if (game_ispaused(mnu_pause) || game_get_config("misc_hud") != 1)
+{
+    exit;
+}
+
+gauge_x = lerp(-sprite_get_width(spr_hud_gauge), hud_x + 6, smoothstep(0, hud_max_time, gauge_time));
+
+with (stage_get_player(0))
+{
+    switch (character_id)
+    {
+        case CHAR_CLASSIC:
+            other.gauge_hide = false;
+            other.gauge_energy = clock_up_energy;
+            other.gauge_max_energy = clock_up_max_energy;
+            break;
+
+        default:
+            other.gauge_hide = true;
+    }
+}
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Boss
+
+if (game_ispaused(mnu_pause) || game_get_config("misc_hud") != 1)
+{
+    exit;
+}
+
+boss_x = lerp(screen_get_width() + sprite_get_width(spr_hud_boss), screen_get_width() - sprite_get_width(spr_hud_boss) - 10, smoothstep(0, hud_max_time, boss_time));
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Status
+
+if (game_ispaused(mnu_pause) || game_get_config("misc_hud") != 1 || game_get_config("misc_status") == 0)
+{
+    exit;
+}
+
+status_bar_x = lerp(screen_get_width() + status_width + 5, screen_get_width() - status_width * status_max + 5, smoothstep(0, hud_max_time, hud_time));
+
+with (stage_get_player(0))
+{
+    // Shield:
+    if (status_shield != SHIELD_NONE)
+    {
+        other.status_icon[STATUS_SHIELD] = status_shield + 2;
+    }
+    else
+    {
+        other.status_icon[STATUS_SHIELD] = ITEM_BASIC;
+    }
+
+    other.status_active[STATUS_SHIELD, 0] = (status_shield != SHIELD_NONE);
+    other.status_active[STATUS_SHIELD, 1] = true;
+
+    // Invincibility:
+    other.status_icon[STATUS_INVIN] = ITEM_INVIN;
+    other.status_active[STATUS_INVIN, 0] = (status_invin != INVIN_NONE);
+
+    if (status_invin_alarm > 0 && status_invin_alarm <= 120)
+    {
+        other.status_active[STATUS_INVIN, 1] = sync_rate(status_invin_alarm, 2, 2);
+    }
+    else
+    {
+        other.status_active[STATUS_INVIN, 1] = true;
+    }
+
+    // Speed Up/Slow Down:
+    if (status_speed == 2)
+    {
+        other.status_icon[STATUS_SPEED] = ITEM_SLOW;
+    }
+    else
+    {
+        other.status_icon[STATUS_SPEED] = ITEM_SPEED;
+    }
+
+    other.status_active[STATUS_SPEED, 0] = (status_speed != 0)
+
+    if (status_speed_alarm > 0 && status_speed_alarm <= 120)
+    {
+        other.status_active[STATUS_SPEED, 1] = sync_rate(status_speed_alarm, 2, 2);
+    }
+    else
+    {
+        other.status_active[STATUS_SPEED, 1] = true;
+    }
+
+    // Panic:
+    other.status_icon[STATUS_PANIC] = ITEM_PANIC;
+    other.status_active[STATUS_PANIC, 0] = status_panic;
+
+    if (status_panic_alarm > 0 && status_panic_alarm <= 120)
+    {
+        other.status_active[STATUS_PANIC, 1] = sync_rate(status_panic_alarm, 2, 2);
+    }
+    else
+    {
+        other.status_active[STATUS_PANIC, 1] = true;
+    }
+
+    // Swap:
+    other.status_icon[STATUS_SWAP] = ITEM_SWAP;
+    other.status_active[STATUS_SWAP, 0] = status_swap;
+
+    if (status_swap_alarm > 0 && status_swap_alarm <= 120)
+    {
+        other.status_active[STATUS_SWAP, 1] = sync_rate(status_swap_alarm, 2, 2);
+    }
+    else
+    {
+        other.status_active[STATUS_SWAP, 1] = true;
+    }
+}
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Items
+
+if (game_ispaused(mnu_pause) || item_grid == -1)
+{
+    exit;
+}
+
+var i;
+
+for (i = 0; i < ds_grid_height(item_grid); i += 1)
+{
+    ds_grid_set(item_grid, 2, i, lerp(-sprite_get_width(spr_item_icon), screen_get_width() / 2 + 9 * (ds_grid_height(item_grid) - 1) - 18 * i, smoothstep(0, item_max_time, ds_grid_get(item_grid, 1, i))));
+}
+#define Other_5
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=203
+applies_to=self
+invert=0
+*/
+#define Draw_0
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Draw Default HUD
+
+if (game_get_config("misc_hud") != 1)
+{
+    exit;
+}
+
+var time_y, gauge_y;
+
+// Font:
+draw_set_font(global.font_hud);
+draw_set_color(c_white);
+
+// Time:
+time_y = view_yview[view_current] + hud_y + 5;
+
+draw_sprite(hud_index, 0, view_xview[view_current] + hud_x, view_yview[view_current] + hud_y);
+draw_text(view_xview[view_current] + hud_x + 29, time_y, string_pad(stage_get_time() div 3600, 2));
+draw_text(view_xview[view_current] + hud_x + 54, time_y, string_pad((stage_get_time() div 60) mod 60, 2));
+draw_text(view_xview[view_current] + hud_x + 79, time_y, string_pad(floor(stage_get_time() * 1.667) mod 100, 2));
+
+// Rings
+draw_sprite(hud_index, 1, view_xview[view_current] + hud_x, view_yview[view_current] + hud_y + 26);
+draw_text(view_xview[view_current] + hud_x + 29, view_yview[view_current] + hud_y + 31, string_pad(stage_get_rings(), 3));
+
+// Air:
+draw_sprite(hud_index, 2, view_xview[view_current] + air_x, view_yview[view_current] + hud_y + 52);
+draw_text(view_xview[view_current] + air_x + 29, view_yview[view_current] + hud_y + 57, string_pad(air_value, 2));
+
+// Gauge:
+gauge_y = screen_get_height() - 27;
+
+draw_sprite(spr_hud_gauge, 0, view_xview[view_current] + gauge_x, view_yview[view_current] + gauge_y);
+draw_sprite_part(spr_hud_energy, 0, 0, 0, sprite_get_width(spr_hud_energy) * (gauge_energy / gauge_max_energy), sprite_get_height(spr_hud_energy), view_xview[view_current] + gauge_x + 8, view_yview[view_current] + gauge_y + 10);
+
+// Boss:
+draw_sprite(spr_hud_boss, 0, view_xview[view_current] + boss_x, view_yview[view_current] + gauge_y);
+
+draw_reset();
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Draw S4E2 HUD
+
+if (game_get_config("misc_hud") != 2)
+{
+    exit;
+}
+
+// Color:
+draw_set_color(c_white);
+
+// HUD:
+draw_sprite(spr_hud_s4e2, 0, view_xview[view_current] + hud_x, view_yview[view_current] + hud_y);
+
+// Score:
+draw_set_font(global.font_score_s4e2);
+draw_text(view_xview[view_current] + hud_x + 37, view_yview[view_current] + hud_y + 3, string_pad(stage_get_score(), 9));
+
+// Time:
+var time_x, time_y;
+
+time_x = view_xview[view_current] + hud_x + 58;
+time_y = view_yview[view_current] + hud_y + 18;
+
+draw_set_font(global.font_time_s4e2);
+draw_text(time_x, time_y, stage_get_time() div 3600);
+draw_text(time_x + 10, time_y, ":");
+draw_text(time_x + 16, time_y, string_pad((stage_get_time() div 60) mod 60, 2));
+draw_text(time_x + 35, time_y, ";");
+draw_text(time_x + 44, time_y, string_pad(floor(stage_get_time() * 1.667) mod 100, 2));
+
+// Rings:
+draw_set_font(global.font_hud_s4e2);
+
+if ((sync_rate(game_get_time(), 8, 2) && stage_get_rings() == 0) || stage_get_rings() > 0)
+{
+    // Flash red:
+    if (stage_get_rings() == 0)
+    {
+        draw_set_color(c_red);
+    }
+
+    draw_text(view_xview[view_current] + hud_x - 5, view_yview[view_current] + hud_y + 11, string_pad(stage_get_rings(), 3));
+}
+
+draw_reset();
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Draw Status
+
+if (game_get_config("misc_hud") != 1 || game_get_config("misc_status") == 0)
+{
+    exit;
+}
+
+var i, status_count;
+
+status_count = 0;
+
+for (i = status_max; i > 0; i -= 1)
+{
+    var status_x;
+
+    status_id = i - 1;
+    status_x = view_xview[view_current] + status_bar_x + status_width * (status_max - 1 - status_count);
+
+    if (((game_get_config("misc_status") != 0 && status_active[status_id, 0] == true) || game_get_config("misc_status") == 2) && status_active[status_id, 1] == true)
+    {
+        // Shadow:
+        draw_sprite_ext(spr_item_icon, status_icon[status_id], status_x + 1, view_yview[view_current] + 18, 1, 1, 0, c_black, 1);
+
+        // Icon:
+        image_blend = pick(game_get_config("misc_status") == 2 && status_active[status_id, 0] == false, c_white, c_gray);
+        draw_sprite_ext(spr_item_icon, status_icon[status_id], status_x, view_yview[view_current] + 17, 1, 1, 0, image_blend, 1);
+    }
+
+    if ((game_get_config("misc_status") == 1 && status_active[status_id, 0] == true) || game_get_config("misc_status") == 2)
+    {
+        status_count += 1;
+    }
+}
+
+draw_reset();
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Draw Items
+
+if (!game_get_config("misc_feed") || item_grid == -1)
+{
+    exit;
+}
+
+var i;
+
+for (i = 0; i < ds_grid_height(item_grid); i += 1)
+{
+    draw_sprite_ext(spr_item_icon, ds_grid_get(item_grid, 0, i), view_xview[view_current] + ds_grid_get(item_grid, 2, i), view_yview[view_current] + screen_get_height() - 33, 1, 1, 0, c_white, !item_hide);
+}

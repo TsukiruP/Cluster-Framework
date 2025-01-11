@@ -1,7 +1,7 @@
 /// animation_get(character, animation, variant)
 /* Returns a sequence from the animation grid. */
 
-with (mgr_animation)
+with (ctrl_animation)
 {
     var grid_width, grid_height, grid_x, grid_y;
 
