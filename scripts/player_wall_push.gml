@@ -4,6 +4,10 @@ Sets the push animation and pushes the object if possible. */
 
 var ox, oy;
 
+// Animate:
+player_set_animation("push");
+
+// Get movement vectors:
 ox = dcos(angle) * argument1;
 oy = dsin(angle) * argument1;
 
@@ -23,4 +27,3 @@ with (argument0)
 // Move player:
 x += ox;
 y -= oy;
-player_set_animation("push");
