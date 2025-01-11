@@ -1,10 +1,10 @@
 /// sequence_init([sequence])
 /* Initializes sequence variables. */
 
-sequence_speed = 1;
-sequence_set(noone);
+var sequence;
 
-if (argument_count >= 1)
-{
-    sequence_set(argument[0]);
-}
+sequence = noone;
+if (argument_count > 0) sequence = argument[0];
+
+sequence_set(sequence);
+sequence_speed = 1;
