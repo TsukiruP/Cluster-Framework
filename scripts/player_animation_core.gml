@@ -6,7 +6,6 @@ var y_radius_temp;
 
 y_radius_temp = y_radius;
 
-player_animation_fix();
 ctl_speed = player_get_animation_speed();
 animation_variant = player_get_animation_variant();
 

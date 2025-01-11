@@ -429,4 +429,5 @@ ctl_classic_breathe
 ctl_classic_wait_leader
 ctl_classic_wait_partner
 player_cpu_respawn
-script431
+player_reset_input
+player_set_device

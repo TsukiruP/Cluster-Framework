@@ -38,15 +38,21 @@ for (i = 0; i < PLAYER_COUNT; i += 1)
             else
             {
                 input_cpu = true;
+                input_cpu_left_queue = ds_queue_create();
+                input_cpu_right_queue = ds_queue_create();
                 input_cpu_up_queue = ds_queue_create();
                 input_cpu_down_queue = ds_queue_create();
-                input_cpu_jump_queue = ds_queue_create();
+                input_cpu_jump_held_queue = ds_queue_create();
+                input_cpu_jump_pressed_queue = ds_queue_create();
 
                 repeat (16)
                 {
+                    ds_queue_enqueue(input_cpu_left_queue, false);
+                    ds_queue_enqueue(input_cpu_right_queue, false);
                     ds_queue_enqueue(input_cpu_up_queue, false);
                     ds_queue_enqueue(input_cpu_down_queue, false);
-                    ds_queue_enqueue(input_cpu_jump_queue, false);
+                    ds_queue_enqueue(input_cpu_jump_held_queue, false);
+                    ds_queue_enqueue(input_cpu_jump_pressed_queue, false);
                 }
             }
         }

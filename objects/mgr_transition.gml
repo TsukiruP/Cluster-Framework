@@ -123,7 +123,7 @@ if (instance_exists(stage_get_player(0)))
             with (obj_player)
             {
                 x_speed = top_speed;
-                input_player[INP_RIGHT, CHECK_HELD] = true;
+                player_set_input(INP_RIGHT, CHECK_HELD, true);
             }
         }
     }

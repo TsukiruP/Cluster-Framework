@@ -18,8 +18,6 @@ if (instance_exists(player_handle))
         y_speed = player_handle.y_speed;
         state = player_state_jump;
         death_alarm = -5;
-        air_remaining = 30;
-        air_alarm = 60;
         status_invin = INVIN_HURT;
         status_invin_alarm = 120;
         input_cpu_respawn_alarm = 300;
