@@ -443,3 +443,4 @@ input_queue_dequeue
 input_queue_enqueue
 input_queue_clear
 sequence_swap
+sequence_classic_insta

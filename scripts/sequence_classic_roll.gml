@@ -18,7 +18,7 @@ else if (sequence_position(8))
 }
 else if (sequence_position(12))
 {
-    image_index = 2;
+    image_index = 4;
 }
 else if (sequence_position(16))
 {

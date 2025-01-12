@@ -351,6 +351,7 @@
 					|sequence_classic_push
 					|sequence_classic_spring
 					|sequence_classic_breathe
+					|sequence_classic_insta
 			+Props
 				+Checkpoint
 					|sequence_checkpoint_inactive

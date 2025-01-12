@@ -18,7 +18,7 @@ switch (character_id)
         }
         
         // Spin:
-        if (animation_current == "insta" || (state_current == player_state_jump && animation_current == "spin_dash"))
+        if (state_current == player_state_jump && animation_current == "spin_dash")
         {
             player_set_animation("spin");
         }

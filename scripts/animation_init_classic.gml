@@ -17,3 +17,4 @@ animation_add(CHAR_CLASSIC, "death", sequence_classic_death, sequence_classic_dr
 animation_add(CHAR_CLASSIC, "push", sequence_classic_push);
 animation_add(CHAR_CLASSIC, "spring", sequence_classic_spring);
 animation_add(CHAR_CLASSIC, "breathe", sequence_classic_breathe);
+animation_add(CHAR_CLASSIC, "insta", sequence_classic_insta);
