@@ -314,20 +314,36 @@ if (input_allow == true)
                         break;
                     }
 
-                    // Controls:
-                    player_set_input(INP_LEFT, CHECK_HELD, input_queue_dequeue(QUEUE_LEFT));
-                    player_set_input(INP_RIGHT, CHECK_HELD, input_queue_dequeue(QUEUE_RIGHT));
-                    player_set_input(INP_UP, CHECK_HELD, input_queue_dequeue(QUEUE_UP));
-                    player_set_input(INP_DOWN, CHECK_HELD, input_queue_dequeue(QUEUE_DOWN));
+                    // Queues:
+                    switch (input_queue_dequeue(QUEUE_X_DIR))
+                    {
+                        case -1:
+                            player_set_input(INP_LEFT, CHECK_HELD, true);
+                            break;
+
+                        case 1:
+                            player_set_input(INP_RIGHT, CHECK_HELD, true);
+                            break;
+                    }
+
+                    switch (input_queue_dequeue(QUEUE_Y_DIR))
+                    {
+                        case -1:
+                            player_set_input(INP_UP, CHECK_HELD, true);
+                            break;
+
+                        case 1:
+                            player_set_input(INP_DOWN, CHECK_HELD, true);
+                            break;
+                    }
+
                     player_set_input(INP_JUMP, CHECK_HELD, input_queue_dequeue(QUEUE_JUMP_HELD));
                     player_set_input(INP_JUMP, CHECK_PRESSED, input_queue_dequeue(QUEUE_JUMP_PRESSED));
 
                     with (leader_handle)
                     {
-                        input_queue_enqueue(QUEUE_LEFT, player_get_input(INP_LEFT, CHECK_HELD));
-                        input_queue_enqueue(QUEUE_RIGHT, player_get_input(INP_RIGHT, CHECK_HELD));
-                        input_queue_enqueue(QUEUE_UP, player_get_input(INP_UP, CHECK_HELD));
-                        input_queue_enqueue(QUEUE_DOWN, player_get_input(INP_DOWN, CHECK_HELD));
+                        input_queue_enqueue(QUEUE_X_DIR, input_x_direction);
+                        input_queue_enqueue(QUEUE_Y_DIR, input_y_direction);
                         input_queue_enqueue(QUEUE_JUMP_HELD, player_get_input(INP_JUMP, CHECK_HELD));
                         input_queue_enqueue(QUEUE_JUMP_PRESSED, player_get_input(INP_JUMP, CHECK_PRESSED));
                     }
