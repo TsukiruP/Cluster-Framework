@@ -1,7 +1,7 @@
 /// player_trait_swap()
 /*  */
 
-if (state_current == player_state_hurt || state_current == player_state_death || !instance_exists(stage_get_player(1)))
+if (!game_get_save("swap") || state_current == player_state_hurt || state_current == player_state_death || !instance_exists(stage_get_player(1)))
 {
     exit;
 }
