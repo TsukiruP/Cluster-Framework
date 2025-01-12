@@ -3,5 +3,14 @@
 
 with (ctrl_stage)
 {
-    return stage_player[argument0];
+    var player_handle;
+
+    player_handle = ds_list_find_value(player_list, argument0);
+
+    if (player_handle != 0)
+    {
+        return player_handle;
+    }
+
+    return noone;
 }

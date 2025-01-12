@@ -94,6 +94,8 @@ applies_to=self
 
 character_id = CHAR_SONIC;
 
+swap_alarm = 0;
+
 air_dash_allow = true;
 drop_dash_alarm = 20;
 homing_handle = noone;
@@ -117,7 +119,6 @@ applies_to=self
 
 status_shield = SHIELD_NONE;
 status_shield_allow = true;
-status_shield_animate = false;
 
 status_invin = 0;
 status_invin_alarm = 0;
@@ -218,40 +219,8 @@ input_cpu_state = 0;
 input_cpu_state_time = 0;
 input_cpu_gamepad_alarm = 0;
 input_cpu_respawn_alarm = 300;
-input_cpu_left_queue = -1;
-input_cpu_right_queue = -1;
-input_cpu_up_queue = -1;
-input_cpu_down_queue = -1;
-input_cpu_jump_held_queue = -1;
-input_cpu_jump_pressed_queue = -1;
 
 player_reset_input();
-#define Destroy_0
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Cleanup
-
-ds_list_destroy(solid_list);
-ds_list_destroy(x_list);
-ds_list_destroy(y_list);
-
-if (trail_alpha != -1)
-{
-    ds_list_destroy(trail_alpha);
-}
-
-if (input_cpu_up_queue != -1)
-{
-    ds_queue_destroy(input_cpu_left_queue);
-    ds_queue_destroy(input_cpu_right_queue);
-    ds_queue_destroy(input_cpu_up_queue);
-    ds_queue_destroy(input_cpu_down_queue);
-    ds_queue_destroy(input_cpu_jump_held_queue);
-    ds_queue_destroy(input_cpu_jump_pressed_queue);
-}
 #define Step_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -287,7 +256,7 @@ if (input_allow == true)
         leader_handle = stage_get_player(0);
         player_reset_input();
 
-        if (instance_exists(leader_handle))
+        if (leader_handle != 0 && instance_exists(leader_handle))
         {
             input_cpu_state_time += 1;
 
@@ -337,21 +306,21 @@ if (input_allow == true)
                     }
 
                     // Controls:
-                    player_set_input(INP_LEFT, CHECK_HELD, ds_queue_dequeue(input_cpu_left_queue));
-                    player_set_input(INP_RIGHT, CHECK_HELD, ds_queue_dequeue(input_cpu_right_queue));
-                    player_set_input(INP_UP, CHECK_HELD, ds_queue_dequeue(input_cpu_up_queue));
-                    player_set_input(INP_DOWN, CHECK_HELD, ds_queue_dequeue(input_cpu_down_queue));
-                    player_set_input(INP_JUMP, CHECK_HELD, ds_queue_dequeue(input_cpu_jump_held_queue));
-                    player_set_input(INP_JUMP, CHECK_PRESSED, ds_queue_dequeue(input_cpu_jump_pressed_queue));
+                    player_set_input(INP_LEFT, CHECK_HELD, input_queue_dequeue(QUEUE_LEFT));
+                    player_set_input(INP_RIGHT, CHECK_HELD, input_queue_dequeue(QUEUE_RIGHT));
+                    player_set_input(INP_UP, CHECK_HELD, input_queue_dequeue(QUEUE_UP));
+                    player_set_input(INP_DOWN, CHECK_HELD, input_queue_dequeue(QUEUE_DOWN));
+                    player_set_input(INP_JUMP, CHECK_HELD, input_queue_dequeue(QUEUE_JUMP_HELD));
+                    player_set_input(INP_JUMP, CHECK_PRESSED, input_queue_dequeue(QUEUE_JUMP_PRESSED));
 
                     with (leader_handle)
                     {
-                        ds_queue_enqueue(other.input_cpu_left_queue, player_get_input(INP_LEFT, CHECK_HELD));
-                        ds_queue_enqueue(other.input_cpu_right_queue, player_get_input(INP_RIGHT, CHECK_HELD));
-                        ds_queue_enqueue(other.input_cpu_up_queue, player_get_input(INP_UP, CHECK_HELD));
-                        ds_queue_enqueue(other.input_cpu_down_queue, player_get_input(INP_DOWN, CHECK_HELD));
-                        ds_queue_enqueue(other.input_cpu_jump_held_queue, player_get_input(INP_JUMP, CHECK_HELD));
-                        ds_queue_enqueue(other.input_cpu_jump_pressed_queue, player_get_input(INP_JUMP, CHECK_PRESSED));
+                        input_queue_enqueue(QUEUE_LEFT, player_get_input(INP_LEFT, CHECK_HELD));
+                        input_queue_enqueue(QUEUE_RIGHT, player_get_input(INP_RIGHT, CHECK_HELD));
+                        input_queue_enqueue(QUEUE_UP, player_get_input(INP_UP, CHECK_HELD));
+                        input_queue_enqueue(QUEUE_DOWN, player_get_input(INP_DOWN, CHECK_HELD));
+                        input_queue_enqueue(QUEUE_JUMP_HELD, player_get_input(INP_JUMP, CHECK_HELD));
+                        input_queue_enqueue(QUEUE_JUMP_PRESSED, player_get_input(INP_JUMP, CHECK_PRESSED));
                     }
 
                     // Move left:
@@ -440,7 +409,7 @@ if (input_allow == true)
 
                     if (input_cpu_respawn_alarm == 0)
                     {
-                        player_cpu_respawn(0);
+                        player_cpu_respawn();
                     }
                 }
             }
@@ -514,6 +483,7 @@ if (game_ispaused())
 }
 
 player_trait_debug();
+player_trait_swap();
 
 switch (character_id)
 {
@@ -676,11 +646,25 @@ lib_id=1
 action_id=603
 applies_to=self
 */
+/// ID
+
+player_id = stage_find_player();
+input_cpu = (player_id > 0);
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
 /// Alarms
 
 if (game_ispaused(mnu_pause))
 {
     exit;
+}
+
+if (swap_alarm > 0)
+{
+    swap_alarm -= 1;
 }
 
 if (status_insta_alarm > 0)
@@ -1045,10 +1029,19 @@ else
 #define Other_5
 /*"/*'/**//* YYD ACTION
 lib_id=1
-action_id=203
+action_id=603
 applies_to=self
-invert=0
 */
+/// Cleanup
+
+ds_list_destroy(solid_list);
+ds_list_destroy(x_list);
+ds_list_destroy(y_list);
+
+if (trail_alpha != -1)
+{
+    ds_list_destroy(trail_alpha);
+}
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1

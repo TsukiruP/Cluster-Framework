@@ -39,6 +39,8 @@ if (on_ground == true)
     y += (y_radius_temp - y_radius) * dcos(mask_rotation);
 }
 
+player_animation_fix();
+
 // SSE bandaid:
 if (x_radius < 8)
 {

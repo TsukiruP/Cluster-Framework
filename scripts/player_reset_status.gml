@@ -2,7 +2,16 @@
 /* Resets all status effects. */
 
 status_shield = SHIELD_NONE;
+status_shield_allow = true;
+
 status_invin = INVIN_NONE;
+status_invin_alarm = 0;
+
 status_speed = SPEED_NONE;
+status_speed_alarm = 0;
+
 status_panic = false;
+status_panic_alarm = 0;
+
 status_swap = false;
+status_swap_alarm = 0;

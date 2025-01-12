@@ -1,5 +1,5 @@
 /// player_inbounds([id])
-/* Returns whether the player is inside the camera boundaries. */
+/* Returns whether the player is inside the camera boundaries. This is usually the room boundaries. */
 
 var player_id, player_handle;
 

@@ -277,7 +277,7 @@ game_get_checkpoint_x
 game_get_checkpoint_y
 game_get_checkpoint_time
 stage_get_player
-stage_set_player
+stage_add_player
 debug_set_next
 stage_set_pause_allow
 text_get_clear
@@ -435,3 +435,11 @@ sequence_classic_standby
 player_state_standby
 player_skill_classic
 player_routine_insta
+stage_find_player
+player_trait_swap
+stage_delete_player
+camera_set_focus
+input_queue_dequeue
+input_queue_enqueue
+input_queue_clear
+sequence_swap

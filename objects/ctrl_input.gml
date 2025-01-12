@@ -21,6 +21,8 @@ for (i = INP_UP; i <= INP_RIGHT; i += 1)
 {
     input_time[i] = 0;
 }
+
+queue_list = -1;
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -428,4 +430,47 @@ for (i = INP_UP; i <= INP_RIGHT; i += 2)
         input_user[i, CHECK_HELD] = false;
         input_user[i + 1, CHECK_HELD] = false;
     }
+}
+#define Other_5
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Cleanup
+
+var i;
+
+if (queue_list == -1)
+{
+    exit;
+}
+
+for (i = 0; i < ds_list_size(queue_list); i += 1)
+{
+    ds_queue_destroy(ds_list_find_value(queue_list, i));
+}
+
+ds_list_destroy(queue_list);
+queue_list = -1;
+#define Other_10
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Queue Initialization
+
+var i;
+
+if (queue_list == -1)
+{
+    queue_list = ds_list_create();
+
+    for (i = 0; i <= QUEUE_JUMP_PRESSED; i += 1)
+    {
+        ds_list_add(queue_list, ds_queue_create());
+    }
+
+    input_queue_clear();
 }

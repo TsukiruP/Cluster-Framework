@@ -22,17 +22,8 @@ switch (animation_current)
         {
             if (instance_number(obj_player) > 1)
             {
-                if (player_id == 0)
-                {
-                    return 0;
-                }
-
-                else
-                {
-                    return 1;
-                }
+                return pick(player_id > 0, 0, 1);
             }
-
             else
             {
                 return choose(0, 1);
@@ -62,5 +53,4 @@ switch (animation_current)
 
 }
 
-// Default:
 return 0;

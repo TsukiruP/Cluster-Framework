@@ -158,9 +158,9 @@
 			|spr_spin_dash
 			|spr_spin_charge
 			|spr_brake
-			|spr_debuff
-			|spr_arrow_player
+			|spr_swap
 			|spr_tag_call
+			|spr_debuff
 			+Sonic
 				|spr_drop_dash
 				|spr_reticle

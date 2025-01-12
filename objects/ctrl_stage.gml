@@ -15,10 +15,7 @@ stage_score = 0;
 stage_time = 0;
 stage_rings = 0;
 
-for (i = 0; i < PLAYER_COUNT; i += 1)
-{
-    stage_player[i] = noone;
-}
+player_list = ds_list_create();
 
 instance_create(0, 0, ctrl_hud);
 #define Step_1
@@ -72,3 +69,12 @@ if (instance_exists(ctrl_camera))
         }
     }
 }
+#define Other_5
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Cleanup
+
+ds_list_destroy(player_list);

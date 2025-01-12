@@ -102,6 +102,9 @@
 			|gamepad_get_check
 			|input_get_check
 			|input_get_time
+			|input_queue_dequeue
+			|input_queue_enqueue
+			|input_queue_clear
 		+Text
 			|font_get_height
 			|text_get_clear
@@ -134,9 +137,12 @@
 				|stage_set_rings
 			+Player
 				|stage_get_player
-				|stage_set_player
+				|stage_add_player
+				|stage_find_player
+				|stage_delete_player
 		+Camera
 			|camera_set_lag
+			|camera_set_focus
 		+HUD
 			|hud_set_hide
 			|hud_add_item
@@ -361,6 +367,7 @@
 					|sequence_spin_charge
 					|sequence_brake
 					|sequence_debuff
+					|sequence_swap
 					+Sonic
 						|sequence_drop_dash
 						|sequence_reticle
@@ -495,6 +502,7 @@
 			|sonic_routine_homing
 		+Traits
 			|player_trait_debug
+			|player_trait_swap
 			|sonic_trait_reticle
 			|classic_trait_clock_up
 		+Reactions

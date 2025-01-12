@@ -142,7 +142,7 @@ spr_ring
 spr_goal_ring
 spr_checkpoint
 spr_spinner
-spr_arrow_player
+spr_swap
 spr_dash_ring_left_up
 spr_ring_sparkle
 spr_hint_box

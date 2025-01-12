@@ -4,7 +4,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Debuff Initialization
+/// Splash Initialization
 
 event_inherited();
 
@@ -39,16 +39,7 @@ applies_to=self
 */
 /// Draw Splash
 
-var player_rotation, sine, csine, draw_x, draw_y;
-
-player_rotation = player_handle.mask_rotation;
-sine = dsin(player_handle.mask_rotation);
-csine = dcos(player_handle.mask_rotation);
-
-draw_x = x - sine * 16;
-draw_y = y - csine * 16;
-
 if (sprite_exists(sprite_index))
 {
-    draw_sprite_ext(sprite_index, image_index, draw_x, draw_y, 1, 1, player_rotation, c_white, 1);
+    draw_sprite_ext(sprite_index, image_index, x, y - 16, 1, 1, 0, c_white, 1);
 }

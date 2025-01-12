@@ -1,9 +1,9 @@
-/// player_cpu_respawn(player)
+/// player_cpu_respawn()
 /* Respawns the CPU. */
 
 var player_handle;
 
-player_handle = stage_get_player(argument0);
+player_handle = stage_get_player(0);
 
 if (instance_exists(player_handle))
 {

@@ -15,5 +15,3 @@ if (animation_current != argument0 || argument_count >= 2)
 
     player_animation_core();
 }
-
-player_animation_fix();

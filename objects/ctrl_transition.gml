@@ -357,34 +357,31 @@ switch (transition_state)
     case 4:
         var transition_next;
 
-        transition_next = (preview == true || game_get_room_start() == START_IDLE || !instance_exists(stage_get_player(0)));
+        transition_next = (preview == true || game_get_room_start() == START_IDLE || !instance_exists(obj_player));
 
-        if (instance_exists(stage_get_player(0)))
+        switch (game_get_room_start())
         {
-            with (stage_get_player(0))
-            {
-                switch (game_get_room_start())
+            case START_STANDBY:
+                with (obj_player)
                 {
-                    case START_STANDBY:
-                        if (other.curtain_y <= floor(y - y_radius) - view_yview[view_current] && animation_previous != "standby")
-                        {
-                            player_set_animation("standby");
-                        }
+                    if (other.curtain_y <= floor(y - y_radius) - view_yview[view_current] && animation_previous != "standby")
+                    {
+                        player_set_animation("standby");
+                    }
 
-                        if (animation_previous == "standby")
-                        {
-                            transition_next = true;
-                        }
-                        break;
-
-                    case START_RUN:
-                        if (other.transition_run == -1)
-                        {
-                            transition_next = true;
-                        }
-                        break;
+                    if (player_id == 0 && animation_previous == "standby")
+                    {
+                        transition_next = true;
+                    }
                 }
-            }
+                break;
+
+            case START_RUN:
+                if (transition_run == -1)
+                {
+                    transition_next = true;
+                }
+                break;
         }
 
         if (transition_next == true)
