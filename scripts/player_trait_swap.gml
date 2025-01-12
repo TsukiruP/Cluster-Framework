@@ -10,19 +10,17 @@ var partner_handle;
 
 partner_handle = stage_get_player(1);
 
-with (partner_handle)
+if (partner_handle.input_cpu_gamepad_alarm > 0)
 {
-    if (state_current == player_state_hurt || state_current == player_state_death)
-    {
-        exit;
-    }
+    exit;
 }
 
 if (player_get_input(INP_SWAP, CHECK_PRESSED))
 {
     if (in_view(partner_handle))
     {
-        if (swap_alarm == 0 && status_speed != SPEED_SLOW && status_panic == false && status_swap == false)
+        if (swap_alarm == 0 && status_speed != SPEED_SLOW && status_panic == false && status_swap == false &&
+            partner_handle.state_current != player_state_hurt && partner_handle.state_current != player_state_death)
         {
             with (partner_handle)
             {
@@ -57,7 +55,10 @@ if (player_get_input(INP_SWAP, CHECK_PRESSED))
     {
         with (partner_handle)
         {
-            player_cpu_respawn();
+            if (state_current != player_state_hurt && state_current != player_state_death)
+            {
+                player_cpu_respawn();
+            }
         }
     }
 }

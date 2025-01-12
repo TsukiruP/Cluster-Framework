@@ -10,7 +10,7 @@ if (instance_exists(player_handle))
     if (player_handle.state_current != player_state_death)
     {
         x = floor(player_handle.x);
-        y = floor(player_handle.y);
+        y = floor(player_handle.y + player_handle.y_radius);
         xprevious = floor(player_handle.x);
         yprevious = floor(player_handle.y);
         image_xscale = player_handle.image_xscale;

@@ -50,7 +50,7 @@ roll_friction_up = 0.078125;
 roll_friction_down = 0.3125;
 roll_rebounce = false;
 
-death_alarm = -5;
+death_alarm = 0;
 death_handle = noone;
 
 score_multiplier = 0;
@@ -217,8 +217,8 @@ input_lock_alarm = 0;
 input_cpu = false;
 input_cpu_state = 0;
 input_cpu_state_time = 0;
+input_cpu_respawn_time = 0;
 input_cpu_gamepad_alarm = 0;
-input_cpu_respawn_alarm = 300;
 
 player_reset_input();
 #define Step_0
@@ -242,13 +242,22 @@ if (input_allow == true)
         {
             input_cpu_gamepad_alarm = 600;
         }
+
+        if (!in_view() && player_get_input(INP_SWAP, CHECK_PRESSED))
+        {
+            player_cpu_respawn();
+        }
+
+        if (input_cpu_gamepad_alarm > 0)
+        {
+            input_cpu_gamepad_alarm -= 1;
+        }
     }
 
     if (input_cpu == false || (input_cpu == true && input_cpu_gamepad_alarm > 0))
     {
-        player_set_device(player_id);
+        player_set_device();
     }
-
     else
     {
         var leader_handle;
@@ -403,21 +412,19 @@ if (input_allow == true)
             // Respawn:
             if (!in_view())
             {
-                if (input_cpu_respawn_alarm > 0)
-                {
-                    input_cpu_respawn_alarm -= 1;
+                input_cpu_respawn_time += 1;
 
-                    if (input_cpu_respawn_alarm == 0)
-                    {
-                        player_cpu_respawn();
-                    }
+                if (input_cpu_respawn_time >= 300)
+                {
+                    input_cpu_respawn_time = 0;
+                    player_cpu_respawn();
                 }
             }
             else
             {
-                if (input_cpu_respawn_alarm != 300)
+                if (input_cpu_respawn_time != 0)
                 {
-                    input_cpu_respawn_alarm = 300;
+                    input_cpu_respawn_time = 0;
                 }
             }
         }
