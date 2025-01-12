@@ -544,6 +544,12 @@ if (game_get_room_water() != -1)
 {
     instance_create(0, game_get_room_water(), obj_water_surface);
 }
+
+if (transition_id != TRANS_RETRY && instance_exists(stage_get_player(0)))
+{
+    game_set_save("stage", room);
+    game_save_auto();
+}
 #define Other_10
 /*"/*'/**//* YYD ACTION
 lib_id=1

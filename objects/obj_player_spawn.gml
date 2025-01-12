@@ -58,10 +58,4 @@ for (i = 0; i < PLAYER_COUNT; i += 1)
     }
 }
 
-if (!game_checkpoint_isset())
-{
-    game_set_save("stage", room);
-    game_save_auto();
-}
-
 instance_destroy();
