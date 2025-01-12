@@ -1,7 +1,7 @@
 /// player_trait_swap()
 /*  */
 
-if (state_current == player_state_hurt || state_current == player_state_death || status_swap == true || !instance_exists(stage_get_player(1)))
+if (state_current == player_state_hurt || state_current == player_state_death || !instance_exists(stage_get_player(1)))
 {
     exit;
 }
@@ -22,7 +22,7 @@ if (player_get_input(INP_SWAP, CHECK_PRESSED))
 {
     if (in_view(partner_handle))
     {
-        if (swap_alarm == 0)
+        if (swap_alarm == 0 && status_speed != SPEED_SLOW && status_panic == false && status_swap == false)
         {
             with (partner_handle)
             {
