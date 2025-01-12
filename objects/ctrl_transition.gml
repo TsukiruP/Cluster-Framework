@@ -103,28 +103,26 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Player Start
+/// Run
 
-if ((game_ispaused(mnu_pause) && pause_ignore == false) || (transition_id != TRANS_CARD && transition_id != TRANS_RETRY))
+if ((game_ispaused(mnu_pause) && pause_ignore == false) || (transition_id != TRANS_CARD && transition_id != TRANS_RETRY) || !instance_exists(stage_get_player(0)))
 {
     exit;
 }
 
-if (instance_exists(stage_get_player(0)))
+if (((transition_id == TRANS_CARD && transition_state >= 4) || (transition_id == TRANS_RETRY && transition_state >= 5)) && game_get_room_start() == START_RUN && transition_run != -1)
 {
-    if (game_get_room_start() == START_RUN && transition_state >= 4 && transition_run != -1)
+    if ((transition_id == TRANS_RETRY && game_checkpoint_isset()) || stage_get_player(0).x >= game_get_room_run())
     {
-        if ((transition_id == TRANS_RETRY && (game_get_checkpoint_x() != -1 && game_get_checkpoint_y() != -1)) || stage_get_player(0).x >= game_get_room_start())
+        transition_run = -1;
+    }
+    else
+    {
+        with (obj_player)
         {
-            transition_run = -1;
-        }
-        else
-        {
-            with (obj_player)
-            {
-                x_speed = top_speed;
-                player_set_input(INP_RIGHT, CHECK_HELD, true);
-            }
+            x_speed = top_speed;
+            player_set_state(player_state_run);
+            player_set_input(INP_RIGHT, CHECK_HELD, true);
         }
     }
 }
@@ -267,17 +265,17 @@ if ((game_ispaused(mnu_pause) && pause_ignore == false) || transition_id != TRAN
     exit;
 }
 
-if (game_get_room_start() == START_READY && transition_state >= 4 && instance_exists(stage_get_player(0)))
+if (game_get_room_start() == START_STANDBY && transition_state >= 4 && instance_exists(stage_get_player(0)))
 {
     if (input_get_check(INP_ANY, CHECK_PRESSED) && !input_get_check(INP_START, CHECK_PRESSED))
     {
         transition_state = 5;
 
-        if (stage_get_player(0).animation_current == "ready")
+        if (stage_get_player(0).animation_current == "standby")
         {
             with (obj_player)
             {
-                player_set_animation("stand");
+                player_set_state(player_state_idle);
             }
         }
     }
@@ -357,36 +355,39 @@ switch (transition_state)
 
     // 4 - Reverse:
     case 4:
-        if ((game_get_room_start() != START_RUN || transition_run != -1) && preview == false && instance_exists(stage_get_player(0)))
+        var transition_next;
+
+        transition_next = (preview == true || game_get_room_start() == START_IDLE || !instance_exists(stage_get_player(0)));
+
+        if (instance_exists(stage_get_player(0)))
         {
-            if (game_get_room_start() == START_READY)
+            with (stage_get_player(0))
             {
-                if (curtain_y <= floor(stage_get_player(0).y + stage_get_player(0).y_radius - view_yview[view_current]))
+                switch (game_get_room_start())
                 {
-                    with (obj_player)
-                    {
-                        if (animation_previous != "ready")
+                    case START_STANDBY:
+                        if (other.curtain_y <= floor(y - y_radius) - view_yview[view_current] && animation_previous != "standby")
                         {
-                            player_set_animation("ready");
+                            player_set_animation("standby");
                         }
-                    }
-                }
-            }
 
-            else if (game_get_room_start() != START_IDLE && game_get_room_start() != START_RUN)
-            {
-                with (obj_player)
-                {
-                    input_allow = true;
-                }
-            }
+                        if (animation_previous == "standby")
+                        {
+                            transition_next = true;
+                        }
+                        break;
 
-            if (game_get_room_start() == START_IDLE || (game_get_room_start() == START_READY && stage_get_player(0).animation_previous == "ready"))
-            {
-                transition_state = 5;
+                    case START_RUN:
+                        if (other.transition_run == -1)
+                        {
+                            transition_next = true;
+                        }
+                        break;
+                }
             }
         }
-        else
+
+        if (transition_next == true)
         {
             transition_state = 5;
         }

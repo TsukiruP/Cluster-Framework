@@ -30,7 +30,7 @@ gravity_force = 0.21875;
 gravity_force_temp = 0.21875;
 gravity_direction = 0;
 
-state_current = player_state_idle;
+state_current = player_state_standby;
 state_previous = state_current;
 state_changed = false;
 
@@ -881,7 +881,7 @@ switch (animation_current)
     case "cliff_front":
     case "cliff_back":
     case "wait":
-    case "ready":
+    case "standby":
     case "land":
     case "omochao":
     case "turn":

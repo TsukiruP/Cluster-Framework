@@ -42,7 +42,7 @@
 					|spr_sonic_wait_leader
 					|spr_sonic_wait_partner
 				+Misc.
-					|spr_sonic_ready
+					|spr_sonic_standby
 					|spr_sonic_land
 					|spr_sonic_omochao
 			+Turn

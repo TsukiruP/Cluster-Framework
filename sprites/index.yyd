@@ -44,7 +44,7 @@ spr_sonic_brake_tag
 spr_sonic_land
 spr_sonic_breathe
 spr_sonic_spring
-spr_sonic_ready
+spr_sonic_standby
 spr_sonic_hurt
 spr_sonic_death
 spr_transition_curtain

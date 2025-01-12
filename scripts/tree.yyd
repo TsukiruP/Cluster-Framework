@@ -273,7 +273,7 @@
 							|sequence_sonic_omochao
 							|sequence_sonic_omochao_end
 						+Misc.
-							|sequence_sonic_ready
+							|sequence_sonic_standby
 							|sequence_sonic_land
 					+Turn
 						|sequence_sonic_turn
@@ -323,7 +323,7 @@
 				+Classic
 					+Idle
 						|sequence_classic_stand
-						|sequence_classic_ready
+						|sequence_classic_standby
 						+Cliff
 							|sequence_classic_cliff_front
 							|sequence_classic_cliff_back

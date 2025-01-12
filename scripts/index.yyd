@@ -4,7 +4,7 @@ sequence_sonic_death
 draw_backdrop_tiled_area
 stage_start
 sequence_ring_sparkle
-sequence_sonic_ready
+sequence_sonic_standby
 sequence_checkpoint_inactive
 player_set_input
 sequence_shield_fire_dash
@@ -431,5 +431,5 @@ sequence_classic_wait_partner
 player_cpu_respawn
 player_reset_input
 player_set_device
-sequence_classic_ready
+sequence_classic_standby
 player_state_standby

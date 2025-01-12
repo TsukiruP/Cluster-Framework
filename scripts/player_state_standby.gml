@@ -7,6 +7,7 @@ switch (argument0)
         break;
 
     case STATE_STEP:
+        return player_set_state(player_state_idle);
         break;
 
     case STATE_FINISH:

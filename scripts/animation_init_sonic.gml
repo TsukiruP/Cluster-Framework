@@ -4,7 +4,7 @@ animation_add(CHAR_SONIC, "stand", sequence_sonic_stand); //,     tml_sonic_idle
 animation_add(CHAR_SONIC, "cliff_front", sequence_sonic_cliff_front);
 animation_add(CHAR_SONIC, "cliff_back", sequence_sonic_cliff_back);
 animation_add(CHAR_SONIC, "wait", sequence_sonic_wait_leader, sequence_sonic_wait_partner);
-animation_add(CHAR_SONIC, "ready", sequence_sonic_ready);
+animation_add(CHAR_SONIC, "standby", sequence_sonic_standby);
 animation_add(CHAR_SONIC, "land", sequence_sonic_land);
 animation_add(CHAR_SONIC, "omochao", sequence_sonic_omochao);
 animation_add(CHAR_SONIC, "omochao_end", sequence_sonic_omochao_end);
