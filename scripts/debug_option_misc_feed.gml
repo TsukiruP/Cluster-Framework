@@ -13,7 +13,7 @@ switch (argument0)
 
     // Value:
     case 1:
-        return string_bool(game_get_config(config_key));
+        return string_bool(game_get_config(config_key), true);
 
     // Update:
     case 3:
