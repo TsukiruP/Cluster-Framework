@@ -15,7 +15,7 @@ with (ctrl_text)
 
 with (ctrl_transition)
 {
-    pause_transition = ((transition_id == TRANS_CARD && (transition_state > 1 && transition_state < 4)) || (transition_id == TRANS_RETRY && transition_state == 3));
+    pause_transition = ((transition_id == TRANS_CARD && (transition_state > 1 && transition_state < 4)) || (transition_id == TRANS_RETRY && transition_state == 4));
 }
 
 with (mnu_pause)
