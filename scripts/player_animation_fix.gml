@@ -12,11 +12,17 @@ switch (character_id)
         }
 
         // Spin Dash:
-        if (animation_current == "spin_charge")
+        if (animation_current == "spin_charge" || (state_current == sonic_state_drop_dash && drop_dash_alarm == 0 && animation_current == "spin"))
         {
             player_set_animation("spin_dash", 0);
         }
-
+        
+        // Spin:
+        if (animation_current == "insta")
+        {
+            player_set_animation("spin");
+        }
+        
         // Brake:
         if (animation_current == "brake_fast")
         {

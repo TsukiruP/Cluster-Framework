@@ -484,10 +484,12 @@
 					|sonic_state_bound
 					|sonic_state_stomp
 					|sonic_state_peel_out
+				|player_skill_classic
 		+Routines
 			|player_routine_land
 			|player_routine_jump
 			|player_routine_roll
+			|player_routine_insta
 			|player_routine_shield
 			|player_routine_skill
 			|sonic_routine_homing

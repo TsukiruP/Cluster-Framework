@@ -433,3 +433,5 @@ player_reset_input
 player_set_device
 sequence_classic_standby
 player_state_standby
+player_skill_classic
+player_routine_insta

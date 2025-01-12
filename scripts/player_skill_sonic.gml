@@ -71,23 +71,7 @@ else if (on_ground == false)
             // Insta-shield:
             else if (game_get_save(skill_key) == SKILL_INSTA)
             {
-                player_set_state(player_state_jump, false);
-                jump_cap = false;
-                status_shield_allow = false;
-                status_insta_alarm = 8;
-                player_set_animation("insta");
-                audio_play_sfx("snd_shield_insta", true);
-
-                // Create shield:
-                with (instance_create(x, y, eff_player))
-                {
-                    depth = other.depth;
-                    image_xscale = other.image_xscale;
-                    image_angle = other.gravity_direction;
-                    sequence_init(sequence_shield_insta);
-                    player_handle = other.id;
-                }
-
+                player_routine_insta();
                 return true;
             }
         }

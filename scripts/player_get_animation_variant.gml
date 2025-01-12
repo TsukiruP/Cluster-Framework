@@ -49,7 +49,7 @@ switch (animation_current)
             return 1;
         }
 
-        if (drop_dash_alarm > 0)
+        if (state_current == sonic_state_drop_dash && drop_dash_alarm > 0)
         {
             return animation_variant;
         }
