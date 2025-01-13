@@ -20,20 +20,20 @@ transition_run = -1;
 fade_handle = noone;
 player_handle = noone;
 
-curtain_time = 0;
 curtain_max_time = 20;
+curtain_time = 0;
 curtain_y = 0;
 curtain_scroll = 0;
 curtain_scroll_speed = 1;
 
-banner_time = 0;
 banner_max_time = 20;
+banner_time = 0;
 banner_x = 0;
 banner_scroll = 0;
 banner_scroll_speed = 1;
 
-zone_time = 0;
 zone_max_time = 30;
+zone_time = 0;
 zone_width = -1;
 zone_spacing = 9;
 zone_x = 0;

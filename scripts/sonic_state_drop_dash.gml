@@ -33,15 +33,15 @@ switch (argument0)
         {
             if (drop_dash_alarm == 0)
             {
-                var drop_dash_speed, drop_dash_max_speed;
+                var drop_dash_max_speed, drop_dash_speed;
 
                 if (input_x_direction != 0 && image_xscale != input_x_direction)
                 {
                     image_xscale = input_x_direction;
                 }
 
-                drop_dash_speed = 8;
                 drop_dash_max_speed = 12;
+                drop_dash_speed = 8;
 
                 if (x_speed == 0 || sign(x_speed) == input_x_direction)
                 {

@@ -9,8 +9,8 @@ applies_to=self
 var i;
 
 hud_hide = true;
-hud_time = 0;
 hud_max_time = 10;
+hud_time = 0;
 hud_x = 0;
 
 switch (game_get_config("misc_hud"))
@@ -37,8 +37,8 @@ air_value = 30;
 gauge_hide = true;
 gauge_time = 0;
 gauge_x = 0;
-gauge_energy = 0;
 gauge_max_energy = 1;
+gauge_energy = 0;
 
 boss_hide = true;
 boss_time = 0;
