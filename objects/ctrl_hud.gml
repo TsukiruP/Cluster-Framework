@@ -340,7 +340,7 @@ with (stage_get_player(0))
 
     // Panic:
     other.status_icon[STATUS_PANIC] = ITEM_PANIC;
-    other.status_active[STATUS_PANIC, 0] = status_panic;
+    other.status_active[STATUS_PANIC, 0] = (status_panic_alarm > 0);
 
     if (status_panic_alarm > 0 && status_panic_alarm <= 120)
     {
@@ -353,7 +353,7 @@ with (stage_get_player(0))
 
     // Swap:
     other.status_icon[STATUS_SWAP] = ITEM_SWAP;
-    other.status_active[STATUS_SWAP, 0] = status_swap;
+    other.status_active[STATUS_SWAP, 0] = (status_swap_alarm > 0);
 
     if (status_swap_alarm > 0 && status_swap_alarm <= 120)
     {

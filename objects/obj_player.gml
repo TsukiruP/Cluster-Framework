@@ -127,10 +127,7 @@ status_insta_alarm = 0;
 status_speed = 0;
 status_speed_alarm = 0;
 
-status_panic = false;
 status_panic_alarm = 0;
-
-status_swap = false;
 status_swap_alarm = 0;
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -236,212 +233,208 @@ if (game_ispaused())
 
 if (input_allow == true)
 {
-    if (input_cpu == true)
-    {
-        if (input_get_check(INP_ANY, CHECK_HELD, DEV_GAMEPAD0 + player_id))
-        {
-            input_cpu_gamepad_alarm = 600;
-        }
-
-        if (!in_view() && player_get_input(INP_SWAP, CHECK_PRESSED))
-        {
-            player_cpu_respawn();
-        }
-
-        if (input_cpu_gamepad_alarm > 0)
-        {
-            input_cpu_gamepad_alarm -= 1;
-        }
-    }
-
-    if (input_cpu == false || (input_cpu == true && input_cpu_gamepad_alarm > 0))
+    if (input_cpu == false)
     {
         player_set_device();
     }
     else
     {
-        var leader_handle;
-
-        leader_handle = stage_get_player(0);
-        player_reset_input();
-
-        if (leader_handle != 0 && instance_exists(leader_handle))
+        if (input_cpu_gamepad_alarm > 0)
         {
-            input_cpu_state_time += 1;
+            input_cpu_gamepad_alarm -= 1;
+            player_set_device();
+        }
 
-            switch (input_cpu_state)
+        if (input_cpu_gamepad_alarm == 0)
+        {
+            var leader_handle;
+
+            leader_handle = stage_get_player(0);
+            player_reset_input();
+
+            if (leader_handle != 0 && instance_exists(leader_handle))
             {
-                // Crouch:
-                case 1:
-                    player_reset_input();
+                input_cpu_state_time += 1;
 
-                    if (x_speed == 0 && on_ground == true && input_lock_alarm == 0)
-                    {
-                        input_cpu_state = 2;
-                        input_cpu_state_time = 1;
+                switch (input_cpu_state)
+                {
+                    // Crouch:
+                    case 1:
+                        player_reset_input();
 
-                        if (state_current != player_state_spin_dash)
+                        if (x_speed == 0 && on_ground == true && input_lock_alarm == 0)
                         {
-                            image_xscale = esign(leader_handle.x - x, leader_handle.image_xscale);
-                            player_set_input(INP_DOWN, CHECK_HELD, true);
+                            input_cpu_state = 2;
+                            input_cpu_state_time = 1;
+
+                            if (state_current != player_state_spin_dash)
+                            {
+                                image_xscale = esign(leader_handle.x - x, leader_handle.image_xscale);
+                                player_set_input(INP_DOWN, CHECK_HELD, true);
+                            }
                         }
-                    }
-                    break;
-
-                // Spin Dash:
-                case 2:
-                    if (input_cpu_state_time >= 64)
-                    {
-                        input_cpu_state = 0;
-                        input_cpu_state_time = 0;
-                        player_set_input(INP_DOWN, CHECK_HELD, false);
-                        player_set_input(INP_JUMP, CHECK_PRESSED, false);
-                    }
-                    else
-                    {
-                        player_set_input(INP_DOWN, CHECK_HELD, true);
-                        player_set_input(INP_DOWN, CHECK_PRESSED, input_cpu_state_time mod 64 == 0);
-                        input_cpu_state_time += 1;
-                    }
-                    break;
-
-                default:
-                    // Spin Dash:
-                    if (x_speed == 0 && input_lock_alarm != 0)
-                    {
-                        input_cpu_state = 1;
-                        input_cpu_state_time = 0;
                         break;
-                    }
 
-                    // Queues:
-                    switch (input_queue_dequeue(QUEUE_X_DIR))
-                    {
-                        case -1:
-                            player_set_input(INP_LEFT, CHECK_HELD, true);
-                            break;
-
-                        case 1:
-                            player_set_input(INP_RIGHT, CHECK_HELD, true);
-                            break;
-                    }
-
-                    switch (input_queue_dequeue(QUEUE_Y_DIR))
-                    {
-                        case -1:
-                            player_set_input(INP_UP, CHECK_HELD, true);
-                            break;
-
-                        case 1:
-                            player_set_input(INP_DOWN, CHECK_HELD, true);
-                            break;
-                    }
-
-                    player_set_input(INP_JUMP, CHECK_HELD, input_queue_dequeue(QUEUE_JUMP_HELD));
-                    player_set_input(INP_JUMP, CHECK_PRESSED, input_queue_dequeue(QUEUE_JUMP_PRESSED));
-
-                    with (leader_handle)
-                    {
-                        input_queue_enqueue(QUEUE_X_DIR, input_x_direction);
-                        input_queue_enqueue(QUEUE_Y_DIR, input_y_direction);
-                        input_queue_enqueue(QUEUE_JUMP_HELD, player_get_input(INP_JUMP, CHECK_HELD));
-                        input_queue_enqueue(QUEUE_JUMP_PRESSED, player_get_input(INP_JUMP, CHECK_PRESSED));
-                    }
-
-                    // Move left:
-                    if (x > leader_handle.x + 16 + 32 * (abs(leader_handle.x_speed) < 4))
-                    {
-                        player_set_input(INP_LEFT, CHECK_HELD, true);
-                        player_set_input(INP_RIGHT, CHECK_HELD, false);
-
-                        if (image_xscale == 1 && x_speed != 0 && animation_current != "push")
+                    // Spin Dash:
+                    case 2:
+                        if (input_cpu_state_time >= 64)
                         {
-                            x += 1;
-                        }
-                    }
-
-                    // Move right:
-                    if (x < leader_handle.x - 16 - 32 * (abs(leader_handle.x_speed) < 4))
-                    {
-                        player_set_input(INP_LEFT, CHECK_HELD, false);
-                        player_set_input(INP_RIGHT, CHECK_HELD, true);
-
-                        if (image_xscale == -1 && x_speed != 0 && animation_current != "push")
-                        {
-                            x -= 1;
-                        }
-                    }
-
-                    // Jump:
-                    var jump_auto;
-
-                    jump_auto = 0;
-
-                    if (animation_current == "push")
-                    {
-                        input_cpu_state_time += 1;
-
-                        if (image_xscale == leader_handle.image_xscale && leader_handle.animation_current != "push")
-                        {
+                            input_cpu_state = 0;
                             input_cpu_state_time = 0;
-                        }
-
-                        jump_auto = pick(input_cpu_state_time < 30, 0, 1);
-                    }
-                    else
-                    {
-                        if (y - leader_handle.y < 32)
-                        {
-                            jump_auto = 2;
-                            input_cpu_state_time = 0;
+                            player_set_input(INP_DOWN, CHECK_HELD, false);
+                            player_set_input(INP_JUMP, CHECK_PRESSED, false);
                         }
                         else
                         {
+                            player_set_input(INP_DOWN, CHECK_HELD, true);
+                            player_set_input(INP_DOWN, CHECK_PRESSED, input_cpu_state_time mod 64 == 0);
                             input_cpu_state_time += 1;
-                            jump_auto = pick(input_cpu_state_time < 64, 0, 1);
                         }
-                    }
+                        break;
 
-                    switch (jump_auto)
-                    {
-                        case 0:
-                            if (on_ground == true)
-                            {
-                                if (!player_get_input(INP_JUMP, CHECK_HELD))
-                                {
-                                    player_set_input(INP_JUMP, CHECK_PRESSED, true);
-                                }
-
-                                player_set_input(INP_JUMP, CHECK_HELD, true);
-                            }
-
-                            jump_cap = false;
+                    default:
+                        // Spin Dash:
+                        if (x_speed == 0 && input_lock_alarm != 0)
+                        {
+                            input_cpu_state = 1;
                             input_cpu_state_time = 0;
                             break;
+                        }
 
-                        case 1:
-                            player_set_input(INP_JUMP, CHECK_HELD, true);
-                            break;
-                    }
-            }
+                        // Queues:
+                        switch (input_queue_dequeue(QUEUE_X_DIR))
+                        {
+                            case -1:
+                                player_set_input(INP_LEFT, CHECK_HELD, true);
+                                break;
 
-            // Respawn:
-            if (!in_view())
-            {
-                input_cpu_respawn_time += 1;
+                            case 1:
+                                player_set_input(INP_RIGHT, CHECK_HELD, true);
+                                break;
+                        }
 
-                if (input_cpu_respawn_time >= 300)
-                {
-                    input_cpu_respawn_time = 0;
-                    player_cpu_respawn();
+                        switch (input_queue_dequeue(QUEUE_Y_DIR))
+                        {
+                            case -1:
+                                player_set_input(INP_UP, CHECK_HELD, true);
+                                break;
+
+                            case 1:
+                                player_set_input(INP_DOWN, CHECK_HELD, true);
+                                break;
+                        }
+
+                        player_set_input(INP_JUMP, CHECK_HELD, input_queue_dequeue(QUEUE_JUMP_HELD));
+                        player_set_input(INP_JUMP, CHECK_PRESSED, input_queue_dequeue(QUEUE_JUMP_PRESSED));
+
+                        with (leader_handle)
+                        {
+                            input_queue_enqueue(QUEUE_X_DIR, input_x_direction);
+                            input_queue_enqueue(QUEUE_Y_DIR, input_y_direction);
+                            input_queue_enqueue(QUEUE_JUMP_HELD, player_get_input(INP_JUMP, CHECK_HELD));
+                            input_queue_enqueue(QUEUE_JUMP_PRESSED, player_get_input(INP_JUMP, CHECK_PRESSED));
+                        }
+
+                        // Move left:
+                        if (x > leader_handle.x + 16 + 32 * (abs(leader_handle.x_speed) < 4))
+                        {
+                            player_set_input(INP_LEFT, CHECK_HELD, true);
+                            player_set_input(INP_RIGHT, CHECK_HELD, false);
+
+                            if (image_xscale == 1 && x_speed != 0 && animation_current != "push")
+                            {
+                                x += 1;
+                            }
+                        }
+
+                        // Move right:
+                        if (x < leader_handle.x - 16 - 32 * (abs(leader_handle.x_speed) < 4))
+                        {
+                            player_set_input(INP_LEFT, CHECK_HELD, false);
+                            player_set_input(INP_RIGHT, CHECK_HELD, true);
+
+                            if (image_xscale == -1 && x_speed != 0 && animation_current != "push")
+                            {
+                                x -= 1;
+                            }
+                        }
+
+                        // Jump:
+                        var jump_auto;
+
+                        jump_auto = 0;
+
+                        if (animation_current == "push")
+                        {
+                            input_cpu_state_time += 1;
+
+                            if (image_xscale == leader_handle.image_xscale && leader_handle.animation_current == "push")
+                            {
+                                input_cpu_state_time = 0;
+                            }
+
+                            jump_auto = pick(input_cpu_state_time < 30, 0, 1);
+                        }
+                        else
+                        {
+                            if (y - leader_handle.y < 32)
+                            {
+                                jump_auto = 2;
+                                input_cpu_state_time = 0;
+                            }
+                            else
+                            {
+                                input_cpu_state_time += 1;
+                                jump_auto = pick(input_cpu_state_time < 64, 0, 1);
+                            }
+                        }
+
+                        switch (jump_auto)
+                        {
+                            case 0:
+                                if (on_ground == true)
+                                {
+                                    if (!player_get_input(INP_JUMP, CHECK_HELD))
+                                    {
+                                        player_set_input(INP_JUMP, CHECK_PRESSED, true);
+                                    }
+
+                                    player_set_input(INP_JUMP, CHECK_HELD, true);
+                                }
+
+                                jump_cap = false;
+                                input_cpu_state_time = 0;
+                                break;
+
+                            case 1:
+                                player_set_input(INP_JUMP, CHECK_HELD, true);
+                                break;
+                        }
                 }
             }
-            else
+
+            if (input_get_check(INP_ANY, CHECK_HELD, DEV_GAMEPAD0 + player_id))
             {
-                if (input_cpu_respawn_time != 0)
-                {
-                    input_cpu_respawn_time = 0;
-                }
+                input_cpu_gamepad_alarm = 600;
+            }
+        }
+
+        // Respawn:
+        if (!in_view())
+        {
+            input_cpu_respawn_time += 1;
+
+            if (input_cpu_respawn_time >= 300)
+            {
+                input_cpu_respawn_time = 0;
+                player_cpu_respawn();
+            }
+        }
+        else
+        {
+            if (input_cpu_respawn_time != 0)
+            {
+                input_cpu_respawn_time = 0;
             }
         }
     }
@@ -455,7 +448,7 @@ if (on_ground == true && input_lock_alarm > 0)
     input_lock_alarm -= 1;
 }
 
-if (status_panic == true && input_lock_alarm == 0)
+if (status_panic_alarm > 0 && input_lock_alarm == 0)
 {
     input_x_direction *= -1;
 }
@@ -535,15 +528,13 @@ if (status_invin >= INVIN_BUFF)
         status_speed_alarm = 0;
     }
 
-    if (status_panic == true)
+    if (status_panic_alarm > 0)
     {
-        status_panic = false;
         status_panic_alarm = 0;
     }
 
-    if (status_swap == true)
+    if (status_swap_alarm > 0)
     {
-        status_swap = false;
         status_swap_alarm = 0;
     }
 }
@@ -596,7 +587,7 @@ if (game_get_config("advance_flicker") && status_invin == INVIN_BUFF)
     }
 }
 
-if ((status_speed == SPEED_SLOW || status_panic == true) && !instance_exists(debuff_handle))
+if ((status_speed == SPEED_SLOW || status_panic_alarm > 0) && !instance_exists(debuff_handle))
 {
     with (instance_create(x, y, eff_debuff))
     {
@@ -728,11 +719,6 @@ if (status_speed_alarm > 0)
 if (status_panic_alarm > 0)
 {
     status_panic_alarm -= 1;
-
-    if (status_panic_alarm == 0)
-    {
-        status_panic = false;
-    }
 }
 
 if (spring_alarm > 0)

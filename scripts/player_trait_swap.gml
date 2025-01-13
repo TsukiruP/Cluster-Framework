@@ -19,7 +19,7 @@ if (player_get_input(INP_SWAP, CHECK_PRESSED))
 {
     if (in_view(partner_handle))
     {
-        if (swap_alarm == 0 && status_speed != SPEED_SLOW && status_panic == false && status_swap == false &&
+        if (swap_alarm == 0 && status_speed != SPEED_SLOW && status_panic_alarm == 0 && status_swap_alarm == 0 &&
             partner_handle.state_current != player_state_hurt && partner_handle.state_current != player_state_death)
         {
             with (partner_handle)

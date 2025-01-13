@@ -78,7 +78,6 @@ switch (argument1)
     case ITEM_PANIC:
         if (status_invin < INVIN_BUFF)
         {
-            status_panic = true;
             status_panic_alarm = 1200;
         }
         break;

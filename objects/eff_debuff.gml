@@ -19,7 +19,7 @@ applies_to=self
 
 event_inherited();
 
-if (player_handle.status_speed != SPEED_SLOW && player_handle.status_panic == false)
+if (player_handle.status_speed != SPEED_SLOW && player_handle.status_panic_alarm <= 0)
 {
     instance_destroy();
 }
