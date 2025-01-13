@@ -1,3 +1,3 @@
 //gm82 fields begin
-max_vitality=2
+item_id= 1
 //gm82 fields end
