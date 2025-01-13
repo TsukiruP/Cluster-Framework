@@ -13,7 +13,8 @@ mask = false;
 reaction_index = player_reaction_blockade;
 
 orientation = ORIEN_VERTICAL;
-vitality = 3;
+max_vitality = 3;
+vitality = max_vitality;
 #define Other_4
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -23,11 +24,13 @@ applies_to=self
 /// Field Initialization
 
 //field orientation: enum(0, 1)
+//field max_vitality: number(1, 3)
 
 /*preview
-    var orientation;
+    var orientation, max_vitality;
 
     orientation = Field("orientation", 0);
+    max_vitality = Field("max_vitality", 0);
 
     switch (orientation)
     {
@@ -58,6 +61,8 @@ switch (orientation)
         sprite_index = spr_blockade_vertical;
         hurtbox_set(13, 24, 12, 23);
 }
+
+vitality = max_vitality;
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -66,6 +71,6 @@ applies_to=self
 */
 /// Draw Blockade
 
-image_index = image_number - vitality;
+image_index = image_number - (vitality / max_vitality) * image_number;
 draw_self();
 event_inherited();

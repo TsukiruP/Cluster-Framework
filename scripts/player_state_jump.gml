@@ -68,7 +68,7 @@ switch (argument0)
             y_speed += gravity_force;
         }
 
-        if (y_speed >= 0)
+        if (y_speed >= 0 && character_id != CHAR_CLASSIC)
         {
             switch (jump_uncurl)
             {
