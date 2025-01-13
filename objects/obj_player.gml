@@ -243,6 +243,11 @@ if (input_allow == true)
         {
             input_cpu_gamepad_alarm -= 1;
             player_set_device();
+
+            if (input_cpu_gamepad_alarm == 0)
+            {
+                player_reset_status();
+            }
         }
 
         if (input_cpu_gamepad_alarm == 0)
@@ -262,8 +267,9 @@ if (input_allow == true)
                     case 1:
                         player_reset_input();
 
-                        if (x_speed == 0 && on_ground == true && input_lock_alarm == 0)
+                        if (abs(x_speed) < 0.25 && on_ground == true && input_lock_alarm == 0)
                         {
+                            x_speed = 0;
                             input_cpu_state = 2;
                             input_cpu_state_time = 1;
 
@@ -277,7 +283,7 @@ if (input_allow == true)
 
                     // Spin Dash:
                     case 2:
-                        if (input_cpu_state_time >= 64)
+                        if (input_cpu_state_time >= 128)
                         {
                             input_cpu_state = 0;
                             input_cpu_state_time = 0;
@@ -287,14 +293,14 @@ if (input_allow == true)
                         else
                         {
                             player_set_input(INP_DOWN, CHECK_HELD, true);
-                            player_set_input(INP_DOWN, CHECK_PRESSED, input_cpu_state_time mod 64 == 0);
+                            player_set_input(INP_JUMP, CHECK_PRESSED, input_cpu_state_time mod 32 == 0);
                             input_cpu_state_time += 1;
                         }
                         break;
 
                     default:
                         // Spin Dash:
-                        if (x_speed == 0 && input_lock_alarm != 0)
+                        if (abs(x_speed) < 0.5 && input_lock_alarm != 0)
                         {
                             input_cpu_state = 1;
                             input_cpu_state_time = 0;
