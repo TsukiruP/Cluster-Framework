@@ -892,8 +892,6 @@ switch (animation_current)
     case "spin_dash":
     case "spin_charge":
     case "spin":
-    case "brake":
-    case "brake_fast":
     case "hurt":
     case "death":
     case "push":
@@ -907,6 +905,12 @@ switch (animation_current)
         image_angle = gravity_direction;
         break;
 
+    case "brake":
+    case "brake_fast":
+    case "skid":
+        image_angle = mask_rotation;
+        break;
+
     case "spring_flight":
     case "spring_fall":
         if (character_id != CHAR_CLASSIC && spring_angle != ANGLE_DOWN && spring_alarm > 0)
@@ -917,10 +921,6 @@ switch (animation_current)
         {
             image_angle = approach_angle(image_angle, gravity_direction, 4);
         }
-        break;
-
-    case "skid":
-        image_angle = mask_rotation;
         break;
 
     default:
