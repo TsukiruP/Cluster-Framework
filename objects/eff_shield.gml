@@ -79,21 +79,11 @@ applies_to=self
 
 event_inherited();
 
-/*
-if ((player_handle.status_shield == SHIELD_FIRE && (image_index mod 2) != 0 && sequence_index != sequence_shield_fire_dash) || (player_handle.status_shield == SHIELD_LIGHTNING && sequence_moment > 48))
-{
-    depth = player_handle.depth + 2;
-}
-else
-{
-    depth = player_handle.depth - 2;
-}
-*/
 shield_advance = (player_handle.status_shield == SHIELD_BASIC || player_handle.status_shield == SHIELD_MAGNETIC || player_handle.status_invin == INVIN_BUFF);
 
 if (!game_ispaused(mnu_pause) && ((player_handle.status_shield == SHIELD_BUBBLE && sequence_index == sequence_shield_bubble) || (game_get_config("advance_flicker") && shield_advance == true)))
 {
-    shield_hide = sync_rate(sequence_moment, 2, 2);
+    shield_hide = time_sync(sequence_moment, 2, 2);
 }
 else
 {

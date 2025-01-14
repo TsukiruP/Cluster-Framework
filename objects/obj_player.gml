@@ -587,7 +587,7 @@ if ((status_shield != SHIELD_NONE || status_invin == INVIN_BUFF) && !instance_ex
 
 if (game_get_config("advance_flicker") && status_invin == INVIN_BUFF)
 {
-    if (sync_rate(status_invin_alarm, 2, 4) == 0)
+    if (time_sync(status_invin_alarm, 2, 4) == 0)
     {
         effect_create(sequence_shield_invin_spark, x + random_range(-x_radius, x_radius), y + random_range(-y_radius, y_radius));
     }
@@ -1086,7 +1086,7 @@ image_alpha = 1;
 
 if (status_invin == INVIN_HURT && status_invin_alarm > 0)
 {
-    image_alpha = sync_rate(status_invin_alarm, 2, 2);
+    image_alpha = time_sync(status_invin_alarm, 2, 2);
 }
 
 if (sprite_exists(sprite_index))

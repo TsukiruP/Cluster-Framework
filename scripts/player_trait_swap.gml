@@ -1,5 +1,5 @@
 /// player_trait_swap()
-/*  */
+/* Reorders the player list. Based off Mania and Triple Trouble 16-bit. */
 
 if (!game_get_save("swap") || state_current == player_state_hurt || state_current == player_state_death || !instance_exists(stage_get_player(1)))
 {

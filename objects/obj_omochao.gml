@@ -63,7 +63,7 @@ if (player_handle == noone && sprite_index != spr_omochao_idle)
 
 if (sprite_index == spr_omochao_idle)
 {
-    image_index = sync_rate(game_get_time(), 3, sprite_get_number(sprite_index));
+    image_index = time_sync(game_get_time(), 3, sprite_get_number(sprite_index));
     image_xscale = 1;
     draw_x = x;
     draw_y = y;

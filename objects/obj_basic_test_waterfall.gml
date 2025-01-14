@@ -20,7 +20,7 @@ applies_to=self
 */
 /// Animation
 
-image_index = sync_rate(game_get_time(), 6, sprite_get_number(sprite_index));
+image_index = time_sync(game_get_time(), 6, sprite_get_number(sprite_index));
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -33,7 +33,7 @@ draw_self();
 
 if (game_get_room_water() == y + 16)
 {
-    draw_sprite(spr_splash_6, sync_rate(game_get_time(), 2, sprite_get_number(spr_splash_6)), x, y + 16);
+    draw_sprite(spr_splash_6, time_sync(game_get_time(), 2, sprite_get_number(spr_splash_6)), x, y + 16);
 }
 
 event_inherited();

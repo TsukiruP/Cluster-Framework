@@ -26,7 +26,7 @@ applies_to=self
 */
 /// Animation
 
-image_index = sync_rate(game_get_time(), 2, sprite_get_number(sprite_index));
+image_index = time_sync(game_get_time(), 2, sprite_get_number(sprite_index));
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1

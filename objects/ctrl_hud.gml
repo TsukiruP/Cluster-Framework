@@ -107,7 +107,7 @@ if (item_grid != -1)
 
                 if (item_alarm <= 30)
                 {
-                    item_hide = sync_rate(item_alarm, 2, 2);
+                    item_hide = time_sync(item_alarm, 2, 2);
                 }
 
                 if (item_alarm == 0)
@@ -310,7 +310,7 @@ with (stage_get_player(0))
 
     if (status_invin_alarm > 0 && status_invin_alarm <= 120)
     {
-        other.status_active[STATUS_INVIN, 1] = sync_rate(status_invin_alarm, 2, 2);
+        other.status_active[STATUS_INVIN, 1] = time_sync(status_invin_alarm, 2, 2);
     }
     else
     {
@@ -331,7 +331,7 @@ with (stage_get_player(0))
 
     if (status_speed_alarm > 0 && status_speed_alarm <= 120)
     {
-        other.status_active[STATUS_SPEED, 1] = sync_rate(status_speed_alarm, 2, 2);
+        other.status_active[STATUS_SPEED, 1] = time_sync(status_speed_alarm, 2, 2);
     }
     else
     {
@@ -344,7 +344,7 @@ with (stage_get_player(0))
 
     if (status_panic_alarm > 0 && status_panic_alarm <= 120)
     {
-        other.status_active[STATUS_PANIC, 1] = sync_rate(status_panic_alarm, 2, 2);
+        other.status_active[STATUS_PANIC, 1] = time_sync(status_panic_alarm, 2, 2);
     }
     else
     {
@@ -357,7 +357,7 @@ with (stage_get_player(0))
 
     if (status_swap_alarm > 0 && status_swap_alarm <= 120)
     {
-        other.status_active[STATUS_SWAP, 1] = sync_rate(status_swap_alarm, 2, 2);
+        other.status_active[STATUS_SWAP, 1] = time_sync(status_swap_alarm, 2, 2);
     }
     else
     {
@@ -472,7 +472,7 @@ draw_text(time_x + 44, time_y, string_pad(floor(stage_get_time() * 1.667) mod 10
 // Rings:
 draw_set_font(global.font_hud_s4e2);
 
-if ((sync_rate(game_get_time(), 8, 2) && stage_get_rings() == 0) || stage_get_rings() > 0)
+if ((time_sync(game_get_time(), 8, 2) && stage_get_rings() == 0) || stage_get_rings() > 0)
 {
     // Flash red:
     if (stage_get_rings() == 0)

@@ -24,7 +24,7 @@ applies_to=self
 
 if (rainbow_ring == true)
 {
-    image_index = sync_rate(game_get_time(), 4, 6) + 1;
+    image_index = time_sync(game_get_time(), 4, 6) + 1;
     cover.image_index = image_index + 6;
 }
 #define Other_4

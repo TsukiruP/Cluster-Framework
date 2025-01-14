@@ -409,7 +409,7 @@
 		+Math
 			|wrap
 			|angle_wrap
-			|sync_rate
+			|time_sync
 		+Draw
 			|draw_collision
 			+Sprites
