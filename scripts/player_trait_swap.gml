@@ -40,6 +40,7 @@ if (player_get_input(INP_SWAP, CHECK_PRESSED))
 
             player_reset_status();
             player_reset_input();
+            classic_trait_clock_up(true);
             input_queue_clear();
             stage_add_player(stage_get_player(0));
             stage_delete_player(0);
