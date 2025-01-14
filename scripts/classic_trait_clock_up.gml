@@ -33,7 +33,7 @@ else
         }
     }
 
-    if (state_current == player_state_hurt || state_current == player_state_death)
+    if (state_current == player_state_hurt || state_current == player_state_death || input_cpu == true)
     {
         exit;
     }

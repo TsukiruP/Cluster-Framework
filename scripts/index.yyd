@@ -445,3 +445,4 @@ input_queue_clear
 sequence_swap
 sequence_classic_insta
 debug_option_swap
+player_add_rings

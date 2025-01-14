@@ -4,15 +4,15 @@
 switch (argument1)
 {
     case ITEM_BONUS:
-        stage_add_rings(5)
+        player_add_rings(5)
         break;
 
     case ITEM_SUPER_BONUS:
-        stage_add_rings(10)
+        player_add_rings(10)
         break;
 
     case ITEM_RANDOM_BONUS:
-        stage_add_rings(choose(1, 5, 10, 30, 50));
+        player_add_rings(choose(1, 5, 10, 30, 50));
         break;
 
     case ITEM_BASIC:

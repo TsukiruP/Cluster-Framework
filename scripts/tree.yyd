@@ -554,4 +554,5 @@
 			|player_brake_dust
 			|player_surface_splash
 			|player_cpu_respawn
+			|player_add_rings
 	+Props

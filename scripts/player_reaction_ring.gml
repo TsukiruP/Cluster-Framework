@@ -12,12 +12,12 @@ if (collision & COLL_INTERACT)
     {
         if (reaction_handle.super == true)
         {
-            stage_add_rings(10);
+            player_add_rings(10);
             audio_play_sfx("snd_ring_super", true);
         }
         else
         {
-            stage_add_rings(1);
+            player_add_rings(1);
             audio_play_sfx("snd_ring", true, 1, audio_ring_pan());
         }
 
