@@ -55,13 +55,10 @@ if (transition_alarm > 0)
     transition_alarm -= 1;
 }
 
-if (preview == true && transition_alarm == 0)
+if (text_get_handle() != id && preview == true && transition_state == 1 && transition_alarm == 0)
 {
-    if (transition_state == 1)
-    {
-        text_set_handle(id);
-        text_set_subject("Press " + string_input(INP_CONFIRM) + " to end the preview.");
-    }
+    text_set_handle(id);
+    text_set_subject(string_input(INP_CONFIRM) + ": End Preview");
 }
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -555,10 +552,17 @@ applies_to=self
 */
 /// Preview
 
-if (!text_get_clear() && text_get_handle() == id && input_get_check(INP_CONFIRM, CHECK_PRESSED))
+if (!text_get_clear())
 {
-    text_set_clear();
+    if (text_get_handle() == id && input_get_check(INP_CONFIRM, CHECK_PRESSED))
+    {
+        text_set_clear();
+    }
+}
+else
+{
     transition_state = pick(transition_id, 2, 2, 3, 2);
+    transition_alarm = 0;
 }
 #define Draw_0
 /*"/*'/**//* YYD ACTION

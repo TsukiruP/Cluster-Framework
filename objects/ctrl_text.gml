@@ -67,7 +67,7 @@ applies_to=self
 */
 /// Inputs
 
-if (text_clear == false && text_handle == noone && log_hide == true && (body_alpha == 1 || subject_alpha == 1) && input_get_check(INP_START, CHECK_PRESSED))
+if (text_clear == false && text_handle != par_overlay && log_hide == true && (body_alpha == 1 || subject_alpha == 1) && input_get_check(INP_START, CHECK_PRESSED))
 {
     text_clear = true;
 }
@@ -113,7 +113,7 @@ if (text_clear == false)
 
         if (log_hide == true)
         {
-            if (text_handle == noone && input_get_check(INP_CONFIRM, CHECK_PRESSED))
+            if (text_handle != par_overlay && input_get_check(INP_CONFIRM, CHECK_PRESSED))
             {
                 if (subject_complete == false && subject_string != "" && subject_alpha == 1)
                 {
