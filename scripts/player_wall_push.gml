@@ -2,6 +2,11 @@
 /* Sisyphus Adventure 3.
 Sets the push animation and pushes the object if possible. */
 
+if (state_current != player_state_run)
+{
+    exit;
+}
+
 var ox, oy;
 
 // Animate:
