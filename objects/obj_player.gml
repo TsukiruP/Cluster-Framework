@@ -668,8 +668,11 @@ applies_to=self
 */
 /// ID
 
-player_id = stage_find_player();
-input_cpu = (player_id > 0);
+if (stage_get_player(player_id) != id)
+{
+    player_id = stage_find_player();
+    input_cpu = (player_id > 0);
+}
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
