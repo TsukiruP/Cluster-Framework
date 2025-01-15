@@ -10,6 +10,15 @@ event_inherited();
 
 depth = -11;
 sequence_set(sequence_splash_5);
+#define Step_1
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Reset
+
+player_handle.waterfall_draw = false;
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -29,8 +38,6 @@ if (player_handle.waterfall_draw != true)
 {
     instance_destroy();
 }
-
-player_handle.waterfall_draw = false;
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
