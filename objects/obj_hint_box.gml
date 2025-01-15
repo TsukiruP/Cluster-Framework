@@ -11,20 +11,6 @@ event_inherited();
 hurtbox_set(21, 17, 19, 16, 0, 31);
 
 draw_y = 0;
-#define Step_1
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Reset
-
-if (game_ispaused())
-{
-    exit;
-}
-
-player_handle = noone;
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -38,16 +24,16 @@ if (game_ispaused(mnu_pause))
     exit;
 }
 
-with (player_handle)
-{
-    if (text_get_clear() == true && animation_current == "look")
-    {
-        player_set_animation("look_end");
-    }
+event_inherited();
 
-    if (ctrl_text.body_box_alpha == 0 && animation_current == "stand")
+if (text_get_clear())
+{
+    with (player_handle)
     {
-        hint_allow = true;
+        if (animation_previous != "look_end")
+        {
+            player_set_animation("look_end");
+        }
     }
 }
 

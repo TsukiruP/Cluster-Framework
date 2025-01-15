@@ -445,6 +445,9 @@ if (text_hide == true)
     exit;
 }
 
+// Viewport:
+d3d_set_viewport(0, 0, screen_get_width(), screen_get_height());
+
 // Box:
 draw_set1(game_get_interface_color(), subject_box_alpha);
 draw_rectangle(0, (screen_get_height() / 2) - 9 - ((font_height / 2) * subject_lines), screen_get_width(), (screen_get_height() / 2) + 10 + ((font_height / 2) * subject_lines), false);
@@ -470,6 +473,9 @@ if (text_hide == true)
 
 var text_box_bottom, texbox_height;
 
+// Viewport:
+d3d_set_viewport(0, 0, screen_get_width(), screen_get_height());
+
 // Box:
 text_box_bottom = screen_get_height() - 19;
 text_box_height = 59;
@@ -487,11 +493,10 @@ draw_set2(fa_left, fa_top);
 draw_text_ext(body_x, -body_scroll_current, ds_list_find_value(body_list, body_current), font_height, screen_get_width() - (body_x * 2));
 
 // Arrow:
-draw_set_alpha(1);
-d3d_set_viewport(0, 0, screen_get_width(), screen_get_height());
-
 if (body_overflow == true && body_alpha == 1 && body_scroll_complete == true)
 {
+    d3d_set_viewport(0, 0, screen_get_width(), screen_get_height());
+    draw_set_alpha(1);
     draw_sprite(fnt_system, 95, (screen_get_width() / 2) - 6, screen_get_height() - 29);
 }
 
@@ -503,10 +508,8 @@ applies_to=self
 */
 /// Draw Log
 
-if (text_hide == true)
-{
-    exit;
-}
+// Viewport:
+d3d_set_viewport(0, 0, screen_get_width(), screen_get_height());
 
 // Fade:
 draw_set1(c_black, log_fade_alpha);

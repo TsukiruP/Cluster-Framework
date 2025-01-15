@@ -32,10 +32,14 @@ if (collision & COLL_INTERACT)
 
                 with (reaction_handle)
                 {
-                    player_handle = other.id;
                     event_user(0);
                 }
             }
+        }
+
+        with (reaction_handle)
+        {
+            player_handle = other.id;
         }
     }
 }

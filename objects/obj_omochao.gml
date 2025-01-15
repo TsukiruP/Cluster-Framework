@@ -25,40 +25,42 @@ if (game_ispaused(mnu_pause))
     exit;
 }
 
-if (instance_exists(player_handle))
+var omochao_index;
+
+omochao_index = spr_omochao_idle;
+
+with (player_handle)
 {
-    if (player_handle.hint_allow == false)
+    if (animation_previous == "omochao_end")
     {
-        switch (player_handle.character_id)
-        {
-            case CHAR_SONIC:
-                sprite_index = spr_omochao_sonic;
-                break;
-        }
-
-        with (player_handle)
-        {
-            if (text_get_clear() && animation_current == "omochao")
-            {
-                player_set_animation("omochao_end");
-            }
-
-            if (ctrl_text.body_box_alpha == 0 && animation_current == "stand")
-            {
-                hint_allow = true;
-            }
-        }
+        hint_allow = true;
     }
 
-    if (player_handle.hint_allow == true)
+    if (hint_allow == false)
     {
-        sprite_index = spr_omochao_idle;
+        switch (character_id)
+        {
+            case CHAR_SONIC:
+                omochao_index = spr_omochao_sonic;
+                break;
+        }
     }
 }
 
-if (player_handle == noone && sprite_index != spr_omochao_idle)
+if (sprite_index != omochao_index)
 {
-    sprite_index = spr_omochao_idle;
+    sprite_index = omochao_index;
+}
+
+if (text_get_clear())
+{
+    with (player_handle)
+    {
+        if (animation_previous != "omochao_end")
+        {
+            player_set_animation("omochao_end");
+        }
+    }
 }
 
 if (sprite_index == spr_omochao_idle)
@@ -68,7 +70,6 @@ if (sprite_index == spr_omochao_idle)
     draw_x = x;
     draw_y = y;
 }
-
 else
 {
     // Image index:

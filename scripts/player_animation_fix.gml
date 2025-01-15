@@ -6,7 +6,7 @@ switch (character_id)
     // Classic:
     case CHAR_CLASSIC:
         // Stand:
-        if (animation_current == "land" || animation_current == "look_end" || animation_current == "crouch_end")
+        if (animation_current == "land" || animation_current == "omochao" || animation_current == "omochao_end" || animation_current == "look_end" || animation_current == "crouch_end")
         {
             player_set_animation("stand");
         }
