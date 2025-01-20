@@ -7,11 +7,7 @@ with (ctrl_input)
     var gamepad_id;
 
     gamepad_id = gamepad_device[argument0, 0];
-
-    if (gamepad_id <= -1)
-    {
-        return false;
-    }
+    if (gamepad_id <= -1) return false;
 
     if (joystick_exists(gamepad_id))
     {
@@ -44,11 +40,9 @@ with (ctrl_input)
                 {
                     case CHECK_PRESSED:
                         return joystick_check_button_pressed(gamepad_id, button_id);
-                        break;
 
                     case CHECK_RELEASED:
                         return joystick_check_button_released(gamepad_id, button_id);
-                        break;
 
                     default:
                         return joystick_check_button(gamepad_id, button_id);

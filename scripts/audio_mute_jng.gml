@@ -3,8 +3,5 @@
 
 with (ctrl_audio)
 {
-    if (jng_handle != -1)
-    {
-        sound_volume(jng_handle, 0);
-    }
+    if (jng_handle != -1) sound_volume(jng_handle, 0);
 }

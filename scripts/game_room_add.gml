@@ -9,7 +9,6 @@ with (ctrl_game)
 
         ds_grid_resize(room_grid, ds_grid_width(room_grid), ds_grid_height(room_grid) + 1);
         grid_y = ds_grid_height(room_grid) - 1;
-
         room_transition = TRANS_FADE;
         room_music = "";
         room_background = -1;
@@ -19,47 +18,16 @@ with (ctrl_game)
         room_start = START_IDLE;
         room_run = -1;
 
-        if (argument_count >= 2)
+        if (argument_count > 1) room_transition = argument[1];
+        if (argument_count > 2) room_music = argument[2];
+        if (argument_count > 3) room_background = argument[3];
+        if (argument_count > 4) room_zone = argument[4];
+        if (argument_count > 5) room_act = argument[5];
+        if (argument_count > 6) room_water = argument[6];
+        if (argument_count > 7) room_start = argument[7];
+        if (argument_count > 8)
         {
-            room_transition = argument[1];
-        }
-
-        if (argument_count >= 3)
-        {
-            room_music = argument[2];
-        }
-
-        if (argument_count >= 4)
-        {
-            room_background = argument[3];
-        }
-
-        if (argument_count >= 5)
-        {
-            room_zone = argument[4];
-        }
-
-        if (argument_count >= 6)
-        {
-            room_act = argument[5];
-        }
-
-        if (argument_count >= 7)
-        {
-            room_water = argument[6];
-        }
-
-        if (argument_count >=8)
-        {
-            room_start = argument[7];
-        }
-
-        if (argument_count >= 9)
-        {
-            if (room_start == START_RUN)
-            {
-                room_run = argument[8];
-            }
+            if (room_start == START_RUN) room_run = argument[8];
         }
 
         ds_grid_set(room_grid, 0, grid_y, argument0);

@@ -9,31 +9,17 @@ obj = argument2;
 dir = argument3;
 dist = argument4;
 n = 1;
-
-if (argument_count >= 6)
-{
-    n = argument[5];
-}
+if (argument_count > 5) n = argument[5];
 
 repeat (instance_number(obj))
 {
     inst = instance_nth_nearest(x_int, y_int, obj, n);
 
-    // Abort:
-    if (distance_to_object(inst) > dist || !instance_exists(inst))
-    {
-        break;
-    }
+    if (distance_to_object(inst) > dist || !instance_exists(inst)) break;
 
     inst_dir = dcos(round(direction_to_object(inst) / ANGLE_LEFT) * ANGLE_LEFT);
-
-    if (inst_dir == dir)
-    {
-        return inst;
-    }
-
+    if (inst_dir == dir) return inst;
     n += 1;
 }
 
-// Failure:
 return noone;

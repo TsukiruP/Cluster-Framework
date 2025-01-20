@@ -18,7 +18,6 @@ with (ctrl_game)
             var save_temp;
 
             save_temp = game_load_save_buffer(i);
-
             ds_map_set(preview_map, save_string + "_exists", true);
             ds_map_set(preview_map, save_string + "_name", ds_map_get(save_temp, "name"));
             ds_map_set(preview_map, save_string + "_stage", ds_map_get(save_temp, "stage"));
@@ -26,11 +25,7 @@ with (ctrl_game)
             ds_map_set(preview_map, save_string + "_player", ds_map_get(save_temp, "player0"));
             ds_map_destroy(save_temp);
         }
-
-        else
-        {
-            ds_map_set(preview_map, save_string + "_exists", false);
-        }
+        else ds_map_set(preview_map, save_string + "_exists", false);
     }
 
     return preview_map;

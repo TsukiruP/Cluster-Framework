@@ -6,25 +6,10 @@ fade.depth = depth;
 
 with (fade)
 {
-    if (argument_count >= 1)
-    {
-        fade_target = argument[0];
-    }
-
-    if (argument_count >= 2)
-    {
-        fade_speed = argument[1];
-    }
-
-    if (argument_count >= 3)
-    {
-        depth = argument[2];
-    }
-
-    if (argument_count >= 4)
-    {
-        fade_color = argument[3];
-    }
+    if (argument_count > 0) fade_target = argument[0];
+    if (argument_count > 1) fade_speed = argument[1];
+    if (argument_count > 2) depth = argument[2];
+    if (argument_count > 3) fade_color = argument[3];
 }
 
 return fade;

@@ -8,10 +8,6 @@ with (ctrl_audio)
     for (i = 0; i < ds_list_size(sfx_list); i += 1)
     {
         sfx = ds_list_find_value(sfx_list, i);
-
-        if (sound_isplaying(sfx))
-        {
-            sound_pause(sfx);
-        }
+        if (sound_isplaying(sfx)) sound_pause(sfx);
     }
 }

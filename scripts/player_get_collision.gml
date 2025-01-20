@@ -6,19 +6,14 @@ Interact is when the player and object's hurtboxes intersect.
 Hurtbox is when the player's hurtbox intersects the object's hitbox.
 Hitbox is when the player's hitbox intersects the object's hurtbox. */
 
-var inst, phase, collision, temp;
+var inst, collision, phase, temp;
 var ax_int, ay_int, aleft, atop, aright, abottom, aoff_x, aoff_y, adir_x, adir_y, arot, ax1, ay1, ax2, ay2;
 var bx_int, by_int, bleft, btop, bright, bbottom, boff_x, boff_y, bdir_x, bdir_y, brot, bx1, by1, bx2, by2;
 
 inst = argument0;
-phase = 0;
 collision = 0;
-
-// Hitbox flag:
-if (argument_count >= 2)
-{
-    phase = argument[1];
-}
+phase = 0;
+if (argument_count > 1) phase = argument[1];
 
 if (inst != noone)
 {

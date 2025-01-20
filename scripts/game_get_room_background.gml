@@ -9,11 +9,7 @@ with (ctrl_game)
 
     grid_height = ds_grid_height(room_grid) - 1;
     room_handle = room;
-
-    if (argument_count >= 1)
-    {
-        room_handle = argument[0];
-    }
+    if (argument_count > 0) room_handle = argument[0];
 
     if (ds_grid_value_exists(room_grid, 0, 0, 0, grid_height, room_handle))
     {

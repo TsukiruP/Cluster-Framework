@@ -7,13 +7,8 @@ with (ctrl_input)
 
     input_id = argument0;
     input_device = DEV_USER;
+    if (argument_count > 2) input_device = argument[2];
 
-    if (argument_count >= 3)
-    {
-        input_device = argument[2];
-    }
-
-    // Keyboard:
     if (input_device == DEV_KEYBOARD)
     {
         if (input_id == INP_ANY)
@@ -33,8 +28,6 @@ with (ctrl_input)
 
         return input_keyboard[input_id, argument1];
     }
-
-    // Gamepad:
     else if (input_device >= DEV_GAMEPAD0)
     {
         var i, gamepad_id;
@@ -46,10 +39,7 @@ with (ctrl_input)
         {
             for (i = PAD_FACE1; i <= PAD_SHARE; i += 1)
             {
-                if (gamepad_get_check(input_device, i, argument1))
-                {
-                    return true;
-                }
+                if (gamepad_get_check(input_device, i, argument1)) return true;
             }
 
             return false;
@@ -57,15 +47,9 @@ with (ctrl_input)
 
         return input_gamepad[input_id, argument1 + (input_device * 3)];
     }
-
-    // User:
     else
     {
-        if (input_id == INP_ANY)
-        {
-            return (input_get_check(input_id, argument1, DEV_KEYBOARD) || input_get_check(input_id, argument1, DEV_GAMEPAD0));
-        }
-
+        if (input_id == INP_ANY) return (input_get_check(input_id, argument1, DEV_KEYBOARD) || input_get_check(input_id, argument1, DEV_GAMEPAD0));
         return input_user[input_id, argument1];
     }
 }

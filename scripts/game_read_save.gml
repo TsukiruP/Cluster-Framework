@@ -13,11 +13,7 @@ with (ctrl_game)
 
         for (i = 0; i < ds_map_size(save_map); i += 1)
         {
-            if (ds_map_exists(save_temp, save_key))
-            {
-                ds_map_replace(save_map, save_key, ds_map_find_value(save_temp, save_key));
-            }
-
+            if (ds_map_exists(save_temp, save_key)) ds_map_replace(save_map, save_key, ds_map_find_value(save_temp, save_key));
             save_key = ds_map_find_next(save_map, save_key);
         }
 

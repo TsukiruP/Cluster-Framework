@@ -3,10 +3,6 @@
 
 with (ctrl_audio)
 {
-    if (drown_handle != -1)
-    {
-        return sound_isplaying(drown_handle);
-    }
-
+    if (drown_handle != -1) return sound_isplaying(drown_handle);
     return false;
 }

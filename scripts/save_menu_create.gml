@@ -3,10 +3,6 @@
 
 if (!instance_exists(mnu_save))
 {
-    with (instance_create(0, 0, mnu_save))
-    {
-        menu_mode = argument0;
-    }
-
+    with (instance_create(0, 0, mnu_save)) menu_mode = argument0;
     audio_play_sfx("snd_menu_open", true);
 }

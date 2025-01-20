@@ -11,22 +11,15 @@ bottom = 0;
 off_x = 0;
 off_y = 0;
 
-if (argument_count >= 4)
+if (argument_count > 3)
 {
     left = argument[0];
     top = argument[1];
     right = argument[2];
     bottom = argument[3];
 
-    if (argument_count >= 5)
-    {
-        off_x = argument[4];
-    }
-
-    if (argument_count >= 6)
-    {
-        off_y = argument[5];
-    }
+    if (argument_count > 4) off_x = argument[4];
+    if (argument_count > 5) off_y = argument[5];
 }
 
 hurtbox_left = left;

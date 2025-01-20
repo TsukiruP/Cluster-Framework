@@ -12,13 +12,7 @@ with (ctrl_game)
         var save_temp;
 
         save_temp = game_load_save_buffer(argument0);
-
-        // Check game and version:
-        if (ds_map_get(save_temp, "game") == GAME_NAME && ds_map_get(save_temp, "version") == GAME_VERSION)
-        {
-            save_exists = true;
-        }
-
+        if (ds_map_get(save_temp, "game") == GAME_NAME && ds_map_get(save_temp, "version") == GAME_VERSION) save_exists = true;
         ds_map_destroy(save_temp);
     }
 

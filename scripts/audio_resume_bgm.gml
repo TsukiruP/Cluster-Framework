@@ -3,8 +3,5 @@
 
 with (ctrl_audio)
 {
-    if (bgm_handle != -1)
-    {
-        sound_resume(bgm_handle);
-    }
+    if (bgm_handle != -1) sound_resume(bgm_handle);
 }

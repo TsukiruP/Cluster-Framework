@@ -3,10 +3,7 @@
 
 with (ctrl_input)
 {
-    if (queue_list == -1)
-    {
-        exit;
-    }
+    if (queue_list == -1) exit;
 
     var i;
 

@@ -6,17 +6,12 @@ var x_int, y_int, obj, n, list, nearest;
 x_int = argument0;
 y_int = argument1;
 obj = argument2;
-n = argument3;
-
-n = min(max(1, n), instance_number(obj));
+n = min(max(1, argument3), instance_number(obj));
 list = ds_priority_create();
 nearest = noone;
 
 // Evaluate all objects:
-with (obj)
-{
-    ds_priority_add(list, id, distance_to_point(x_int, y_int));
-}
+with (obj) ds_priority_add(list, id, distance_to_point(x_int, y_int));
 
 // Clear priority list:
 repeat(n)

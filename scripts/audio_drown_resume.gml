@@ -3,8 +3,5 @@
 
 with (ctrl_audio)
 {
-    if (drown_handle != -1)
-    {
-        sound_resume(drown_handle);
-    }
+    if (drown_handle != -1) sound_resume(drown_handle);
 }

@@ -5,11 +5,7 @@ Defaults to the script caller. */
 var inst;
 
 inst = id;
-
-if (argument_count >= 1)
-{
-    inst = argument[0];
-}
+if (argument_count > 0) inst = argument[0];
 
 with (inst)
 {

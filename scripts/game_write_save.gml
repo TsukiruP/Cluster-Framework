@@ -7,12 +7,7 @@ with (ctrl_game)
 
     save_buffer = buffer_create();
     buffer_write_hex(save_buffer, ds_map_write(save_map));
-
-    if (save_encryption != "")
-    {
-        buffer_rc4(save_buffer, save_encryption);
-    }
-
+    if (save_encryption != "") buffer_rc4(save_buffer, save_encryption);
     buffer_save(save_buffer, save_directory + "save" + string(argument0) + ".sav");
     buffer_destroy(save_buffer);
 }

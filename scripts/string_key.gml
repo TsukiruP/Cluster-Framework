@@ -2,12 +2,9 @@
 /* Returns a character or string depending on the key. */
 
 // Individual characters:
-if (argument0 > 48 && argument0 < 91)
-{
-    return chr(argument0);
-}
+if (argument0 > 48 && argument0 < 91) return chr(argument0);
 
-// Named keys:
+// Key names:
 switch (argument0)
 {
     case -1:

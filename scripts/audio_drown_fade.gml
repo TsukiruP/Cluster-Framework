@@ -5,7 +5,6 @@ with (ctrl_audio)
 {
     if (drown_handle != -1)
     {
-        // Fade out:
         if (argument0 == true)
         {
             if (sound_isplaying(drown_handle))
@@ -13,11 +12,7 @@ with (ctrl_audio)
                 if (sound_get_volume(drown_handle) > 0)
                 {
                     sound_volume(drown_handle, max(sound_get_volume(drown_handle) - 0.01, 0));
-
-                    if (sound_get_volume(drown_handle) == 0)
-                    {
-                        audio_stop_drown();
-                    }
+                    if (sound_get_volume(drown_handle) == 0) audio_stop_drown();
                 }
             }
         }

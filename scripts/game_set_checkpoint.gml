@@ -4,7 +4,7 @@
 with (ctrl_game)
 {
     // Reset:
-    if (argument_count >= 1)
+    if (argument_count > 0)
     {
         if (argument[0] == true)
         {
@@ -16,7 +16,6 @@ with (ctrl_game)
         exit;
     }
 
-    // Set checkpoint:
     checkpoint_x = floor(other.x);
     checkpoint_y = floor(other.y);
     checkpoint_time = floor(stage_get_time());
