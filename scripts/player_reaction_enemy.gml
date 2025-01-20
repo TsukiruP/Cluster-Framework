@@ -44,7 +44,6 @@ if ((collision & COLL_INTERACT && status_invin == INVIN_BUFF) || (collision & CO
         }
     }
 }
-
 else if (collision & COLL_HURT && (reaction_handle.hitbox_element == 0 || (status_shield - SHIELD_BUBBLE != reaction_handle.hitbox_element)))
 {
     player_set_damage(reaction_handle);

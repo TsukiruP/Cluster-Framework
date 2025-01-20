@@ -30,16 +30,10 @@ if (collision & COLL_INTERACT)
                         break;
                 }
 
-                with (reaction_handle)
-                {
-                    event_user(0);
-                }
+                with (reaction_handle) event_user(0);
             }
         }
 
-        with (reaction_handle)
-        {
-            player_handle = other.id;
-        }
+        with (reaction_handle) player_handle = other.id;
     }
 }

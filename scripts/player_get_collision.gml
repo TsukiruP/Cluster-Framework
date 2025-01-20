@@ -140,17 +140,10 @@ if (inst != noone)
             ax2 = ax_int + (acsine * aright) + (acsine * aoff_x) + (asine * abottom) + (asine * aoff_y);
             ay2 = ay_int + (acsine * abottom) + (acsine * aoff_y) + (asine * aleft) - (asine * aoff_x);
 
-            if (rectangle_in_rectangle(ax1, ay1, ax2, ay2, bx1, by1, bx2, by2))
-            {
-                collision |= pick(phase, COLL_INTERACT, COLL_HURT, COLL_HIT);
-            }
+            if (rectangle_in_rectangle(ax1, ay1, ax2, ay2, bx1, by1, bx2, by2)) collision |= pick(phase, COLL_INTERACT, COLL_HURT, COLL_HIT);
         }
     }
 }
 
-if (phase == 0)
-{
-    return collision | player_get_collision(argument0, 1) | player_get_collision(argument0, 2);
-}
-
+if (phase == 0) return collision | player_get_collision(argument0, 1) | player_get_collision(argument0, 2);
 return collision;

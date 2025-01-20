@@ -6,11 +6,7 @@ acceleration = 0.046875;
 deceleration = 0.5
 
 gravity_force = gravity_force_temp;
-
-if (state_current == player_state_hurt)
-{
-    gravity_force = 0.1875;
-}
+if (state_current == player_state_hurt) gravity_force = 0.1875;
 
 jump_force = 6.5 + ((character_id == CHAR_KNUCKLES) * 0.5);
 jump_release = -4;
@@ -29,11 +25,7 @@ if (physics_id == PHYS_WATER)
     roll_friction *= 0.5;
     
     gravity_force = 0.0625;
-    
-    if (state_current == player_state_hurt)
-    {
-        gravity_force = 0.09375;
-    }
+    if (state_current == player_state_hurt) gravity_force = 0.09375;
     
     jump_force -= 3;
     jump_release *= 0.5;
@@ -47,9 +39,5 @@ else
         
         roll_friction *= 2;
     }
-    
-    else if (status_speed == SPEED_SLOW)
-    {
-        top_speed *= 0.75;
-    }
+    else if (status_speed == SPEED_SLOW) top_speed *= 0.75;
 }

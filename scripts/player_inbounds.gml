@@ -14,22 +14,14 @@ switch (player_handle.mask_rotation)
         if (x < ctrl_camera.limit_left + x_radius)
         {
             x = ctrl_camera.limit_left + x_radius;
-
-            if (x_speed < 0)
-            {
-                x_speed = 0;
-            }
+            if (x_speed < 0) x_speed = 0;
         }
 
         // Right limit:
         if (x > ctrl_camera.limit_right - x_radius)
         {
             x = ctrl_camera.limit_right - x_radius;
-
-            if (x_speed > 0)
-            {
-                x_speed = 0;
-            }
+            if (x_speed > 0) x_speed = 0;
         }
 
         // Top limit:
@@ -65,22 +57,14 @@ switch (player_handle.mask_rotation)
         if (y < ctrl_camera.limit_top + x_radius)
         {
             y = ctrl_camera.limit_top + x_radius;
-
-            if (x_speed > 0)
-            {
-                x_speed = 0;
-            }
+            if (x_speed > 0) x_speed = 0;
         }
 
         // Bottom limit:
         if (y > ctrl_camera.limit_bottom - x_radius)
         {
             y = ctrl_camera.limit_bottom - x_radius;
-
-            if (x_speed < 0)
-            {
-                x_speed = 0;
-            }
+            if (x_speed < 0) x_speed = 0;
         }
         break;
 
@@ -90,22 +74,14 @@ switch (player_handle.mask_rotation)
         if (x < ctrl_camera.limit_left + x_radius)
         {
             x = ctrl_camera.limit_left + x_radius;
-
-            if (x_speed > 0)
-            {
-                x_speed = 0;
-            }
+            if (x_speed > 0) x_speed = 0;
         }
 
         // Right limit:
         if (x > ctrl_camera.limit_right - x_radius)
         {
             x = ctrl_camera.limit_right - x_radius;
-
-            if (x_speed < 0)
-            {
-                x_speed = 0;
-            }
+            if (x_speed < 0) x_speed = 0;
         }
 
         // Top limit:
@@ -141,22 +117,14 @@ switch (player_handle.mask_rotation)
         if (y < ctrl_camera.limit_top + x_radius)
         {
             y = ctrl_camera.limit_top + x_radius;
-
-            if (x_speed > 0)
-            {
-                x_speed = 0;
-            }
+            if (x_speed > 0) x_speed = 0;
         }
 
         // Bottom limit:
         if (y > ctrl_camera.limit_bottom - x_radius)
         {
             y = ctrl_camera.limit_bottom - x_radius;
-
-            if (x_speed < 0)
-            {
-                x_speed = 0;
-            }
+            if (x_speed < 0) x_speed = 0;
         }
         break;
 }

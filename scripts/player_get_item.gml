@@ -67,19 +67,12 @@ switch (argument1)
         {
             status_speed = SPEED_SLOW;
             status_speed_alarm = 1200;
-
-            if (!input_cpu)
-            {
-                audio_stop_jng("jng_speed");
-            }
+            if (!input_cpu) audio_stop_jng("jng_speed");
         }
         break;
 
     case ITEM_PANIC:
-        if (status_invin < INVIN_BUFF)
-        {
-            status_panic_alarm = 1200;
-        }
+        if (status_invin < INVIN_BUFF) status_panic_alarm = 1200;
         break;
 
     case ITEM_SWAP:

@@ -28,10 +28,7 @@ switch (state_current)
         homing_allow = false;
 }
 
-if (!homing_allow || spring_alarm != 0 || !input_allow || (input_cpu && input_cpu_gamepad_alarm == 0))
-{
-    exit;
-}
+if (!homing_allow || spring_alarm != 0 || !input_allow || (input_cpu && input_cpu_gamepad_alarm == 0)) exit;
 
 if (!player_get_input(INP_ALT, CHECK_HELD))
 {
@@ -45,11 +42,7 @@ if (!player_get_input(INP_ALT, CHECK_HELD))
 
             if (instance_exists(homing_candidate))
             {
-                // Continue if the candidate isn't targetable:
-                if (!homing_candidate.targetable)
-                {
-                    continue;
-                }
+                if (!homing_candidate.targetable) continue;
 
                 // Fail when interacting with solids:
                 homing_fail = false;
@@ -57,20 +50,13 @@ if (!player_get_input(INP_ALT, CHECK_HELD))
 
                 if (instance_exists(homing_solid))
                 {
-                    if ((y < homing_candidate.y && homing_solid.semisolid) || homing_solid.layer == -1 || layer == homing_solid.layer)
-                    {
-                        homing_fail = true;
-                    }
+                    homing_fail = ((y < homing_candidate.y && homing_solid.semisolid) || homing_solid.layer == -1 || layer == homing_solid.layer);
                 }
 
                 if (!homing_fail)
                 {
                     homing_handle = homing_candidate;
-                    
-                    if (homing_handle != homing_handle_temp)
-                    {
-                        audio_play_sfx("snd_reticle", true);
-                    }
+                    if (homing_handle != homing_handle_temp) audio_play_sfx("snd_reticle", true);
                     break;
                 }
             }

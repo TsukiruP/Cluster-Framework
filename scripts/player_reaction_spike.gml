@@ -9,8 +9,5 @@ side = argument2;
 
 if (collision & COLL_INTERACT)
 {
-    if (side == reaction_handle.angle)
-    {
-        player_set_damage(reaction_handle);
-    }
+    if (side == reaction_handle.angle) player_set_damage(reaction_handle);
 }

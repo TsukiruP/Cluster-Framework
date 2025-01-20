@@ -14,13 +14,11 @@ if (collision & COLL_INTERACT)
         {
             if (game_get_config("gameplay_bonuses") && stage_get_rings() >= 20)
             {
-                var item_tier, item_id;
-
-                item_tier = stage_get_rings() div 20;
+                var item_id;
 
                 item_id = -1;
 
-                switch (item_tier)
+                switch (stage_get_rings() div 20)
                 {
                     case 1:
                         item_id = ITEM_BONUS;
@@ -39,10 +37,7 @@ if (collision & COLL_INTERACT)
                         break;
 
                     default:
-                        if (status_shield == SHIELD_NONE)
-                        {
-                            item_id = choose(ITEM_BASIC, ITEM_MAGNETIC);
-                        }
+                        if (status_shield == SHIELD_NONE) item_id = choose(ITEM_BASIC, ITEM_MAGNETIC);
                 }
 
                 player_get_item(reaction_handle, item_id);

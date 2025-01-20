@@ -28,28 +28,17 @@ if (collision & COLL_INTERACT)
             player_set_state(player_state_spring, true);
             y = reaction_handle.y;
         }
-        else
-        {
-            input_lock_alarm = 16;
-        }
+        else input_lock_alarm = 16;
 
         x = reaction_handle.x;
-
-        if (dcos(spring_angle) != 0)
-        {
-            image_xscale = sign(dcos(spring_angle));
-        }
+        if (dcos(spring_angle) != 0) image_xscale = sign(dcos(spring_angle));
 
         if (is_dash_ring)
         {
             if (reaction_handle.rainbow_score)
             {
                 stage_add_score(1000);
-
-                with (reaction_handle)
-                {
-                    rainbow_score = false;
-                }
+                with (reaction_handle) rainbow_score = false;
             }
         }
 
@@ -67,9 +56,6 @@ if (collision & COLL_INTERACT)
             }
         }
 
-        with (reaction_handle)
-        {
-            activated = true;
-        }
+        with (reaction_handle) activated = true;
     }
 }

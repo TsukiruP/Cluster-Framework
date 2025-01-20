@@ -20,14 +20,8 @@ switch (animation_current)
     case "wait":
         if (animation_changed)
         {
-            if (instance_number(obj_player) > 1)
-            {
-                return pick(player_id > 0, 0, 1);
-            }
-            else
-            {
-                return choose(0, 1);
-            }
+            if (instance_number(obj_player) > 1) return pick(player_id > 0, 0, 1);
+            else return choose(0, 1);
         }
         else
         {
@@ -35,21 +29,11 @@ switch (animation_current)
         }
 
     case "spin":
-        if (state_current == player_state_jump)
-        {
-            return 1;
-        }
-
-        if (state_current == sonic_state_drop_dash && drop_dash_alarm > 0)
-        {
-            return animation_variant;
-        }
+        if (state_current == player_state_jump) return 1;
+        if (state_current == sonic_state_drop_dash && drop_dash_alarm > 0) return animation_variant;
 
     case "death":
-        if (character_id == CHAR_CLASSIC && drown)
-        {
-            return 1;
-        }
+        if (character_id == CHAR_CLASSIC && drown) return 1;
 
 }
 

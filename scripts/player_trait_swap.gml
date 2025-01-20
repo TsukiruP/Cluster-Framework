@@ -10,10 +10,7 @@ var partner_handle;
 
 partner_handle = stage_get_player(1);
 
-if (partner_handle.input_cpu_gamepad_alarm > 0)
-{
-    exit;
-}
+if (partner_handle.input_cpu_gamepad_alarm > 0) exit;
 
 if (player_get_input(INP_SWAP, CHECK_PRESSED))
 {
@@ -47,19 +44,13 @@ if (player_get_input(INP_SWAP, CHECK_PRESSED))
             camera_set_focus(stage_get_player(0));
             audio_play_sfx("snd_swap", true);
         }
-        else
-        {
-            audio_play_sfx("snd_swap_fail", true);
-        }
+        else audio_play_sfx("snd_swap_fail", true);
     }
     else
     {
         with (partner_handle)
         {
-            if (state_current != player_state_hurt && state_current != player_state_death)
-            {
-                player_cpu_respawn();
-            }
+            if (state_current != player_state_hurt && state_current != player_state_death) player_cpu_respawn();
         }
     }
 }
