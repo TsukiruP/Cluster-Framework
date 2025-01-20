@@ -3,7 +3,7 @@
 
 if (argument_count > 1)
 {
-    if (argument[1] == true) return pick(argument0, "Off", "On");
+    if (argument[1]) return pick(argument0, "Off", "On");
 }
 
 return pick(argument0, "False", "True");

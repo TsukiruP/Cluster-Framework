@@ -12,14 +12,14 @@ if (argument_count > 1)
     state_start = argument[1];
 }
 
-if (state_current != argument0 || state_reset == true)
+if (state_current != argument0 || state_reset)
 {
     state_previous = state_current;
     state_current = argument0;
     state_changed = true;
     
     if (script_exists(state_previous)) script_execute(state_previous, STATE_FINISH);
-    if (state_start == true)
+    if (state_start)
     {
         if (script_exists(state_current)) script_execute(state_current, STATE_START);
     }

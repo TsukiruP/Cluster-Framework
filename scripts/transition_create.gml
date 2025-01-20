@@ -13,7 +13,7 @@ with (transition)
     if (argument_count > 1) transition_id = argument[1];
     if (argument_count > 2) preview = argument[2];
 
-    if (preview == false)
+    if (!preview)
     {
         if (game_get_room_music() != game_get_room_music(transition_room)) audio_fade_out();
         else audio_fade_jng(true);

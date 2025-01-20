@@ -231,9 +231,9 @@ if (game_ispaused())
     exit;
 }
 
-if (input_allow == true)
+if (input_allow)
 {
-    if (input_cpu == false)
+    if (!input_cpu)
     {
         player_set_device();
     }
@@ -267,7 +267,7 @@ if (input_allow == true)
                     case 1:
                         player_reset_input();
 
-                        if (abs(x_speed) < 0.25 && on_ground == true && input_lock_alarm == 0)
+                        if (abs(x_speed) < 0.25 && on_ground && input_lock_alarm == 0)
                         {
                             x_speed = 0;
                             input_cpu_state = 2;
@@ -398,7 +398,7 @@ if (input_allow == true)
                         switch (jump_auto)
                         {
                             case 0:
-                                if (on_ground == true)
+                                if (on_ground)
                                 {
                                     if (!player_get_input(INP_JUMP, CHECK_HELD))
                                     {
@@ -449,7 +449,7 @@ if (input_allow == true)
 input_x_direction = player_get_input(INP_RIGHT, CHECK_HELD) - player_get_input(INP_LEFT, CHECK_HELD);
 input_y_direction = player_get_input(INP_DOWN, CHECK_HELD) - player_get_input(INP_UP, CHECK_HELD);
 
-if (on_ground == true && input_lock_alarm > 0)
+if (on_ground && input_lock_alarm > 0)
 {
     input_lock_alarm -= 1;
 }
@@ -486,11 +486,7 @@ if (game_ispaused())
 if (script_exists(state_current))
 {
     script_execute(state_current, STATE_STEP);
-
-    if (state_changed == true)
-    {
-        state_changed = false;
-    }
+    if (state_changed) state_changed = false;
 }
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -630,7 +626,7 @@ else
     trail_draw = false;
 }
 
-if (waterfall_draw == true && !instance_exists(waterfall_handle))
+if (waterfall_draw && !instance_exists(waterfall_handle))
 {
     with (instance_create(x, y, eff_waterfall))
     {
@@ -655,7 +651,7 @@ if (state_current == player_state_death || (physics_id == PHYS_WATER && status_s
     air_remaining = 30;
     air_alarm = 60;
 
-    if (state_current != player_state_death && input_cpu == false)
+    if (state_current != player_state_death && !input_cpu)
     {
         audio_stop_drown();
     }
@@ -680,20 +676,10 @@ applies_to=self
 */
 /// Alarms
 
-if (game_ispaused(mnu_pause))
-{
-    exit;
-}
+if (game_ispaused(mnu_pause)) exit;
 
-if (swap_alarm > 0)
-{
-    swap_alarm -= 1;
-}
-
-if (status_insta_alarm > 0)
-{
-    status_insta_alarm -= 1;
-}
+if (swap_alarm > 0) swap_alarm -= 1;
+if (status_insta_alarm > 0) status_insta_alarm -= 1;
 
 if (status_invin_alarm > 0)
 {
@@ -702,11 +688,7 @@ if (status_invin_alarm > 0)
     if (status_invin_alarm == 0)
     {
         status_invin = INVIN_NONE;
-
-        if (input_cpu == false)
-        {
-            audio_stop_jng("jng_invin");
-        }
+        if (!input_cpu) audio_stop_jng("jng_invin");
     }
 }
 
@@ -717,33 +699,19 @@ if (status_speed_alarm > 0)
     if (status_speed_alarm == 0)
     {
         status_speed = SPEED_NONE;
-
-        if (input_cpu == false)
-        {
-            audio_stop_jng("jng_speed");
-        }
+        if (!input_cpu) audio_stop_jng("jng_speed");
     }
 }
 
-if (status_panic_alarm > 0)
-{
-    status_panic_alarm -= 1;
-}
+if (status_panic_alarm > 0) status_panic_alarm -= 1;
 
 if (spring_alarm > 0)
 {
     spring_alarm -= 1;
-
-    if (spring_alarm <= 0)
-    {
-        player_reset_spring();
-    }
+    if (spring_alarm <= 0) player_reset_spring();
 }
 
-if (clock_up_alarm > 0)
-{
-    clock_up_alarm -= 1;
-}
+if (clock_up_alarm > 0) clock_up_alarm -= 1;
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -805,14 +773,14 @@ if (state_current != player_state_death && !instance_exists(ctrl_tally))
                         case 25:
                         case 20:
                         case 15:
-                            if (input_cpu == false)
+                            if (!input_cpu)
                             {
                                 audio_play_sfx("snd_drown_alert");
                             }
                             break;
 
                         case 12:
-                            if (input_cpu == false)
+                            if (!input_cpu)
                             {
                                 audio_play_drown();
                             }
@@ -861,7 +829,7 @@ ds_list_add(y_list, floor(y));
 if (trail_alpha != -1)
 {
     ds_list_delete(trail_alpha, 0);
-    ds_list_add(trail_alpha, (trail_draw == true));
+    ds_list_add(trail_alpha, (trail_draw));
 }
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -927,7 +895,7 @@ switch (animation_current)
         break;
 
     default:
-        if (on_ground == true)
+        if (on_ground)
         {
             image_angle = angle;
         }
@@ -938,7 +906,7 @@ switch (animation_current)
 
         if (character_id == CHAR_CLASSIC)
         {
-            if (on_ground == true)
+            if (on_ground)
             {
                 if (image_angle mod 45 != 0)
                 {
@@ -954,7 +922,7 @@ applies_to=self
 */
 /// Afterimage
 
-if (afterimage_draw == true)
+if (afterimage_draw)
 {
     if (afterimage_alarm > 0)
     {
@@ -1024,7 +992,7 @@ else if (y < obj_water_surface.y && yprevious > obj_water_surface.y)
     audio_play_sfx("snd_splash", true);
 }
 
-if (on_surface == true && abs(x_speed) > 0)
+if (on_surface && abs(x_speed) > 0)
 {
     surface_time += 1;
 
@@ -1040,10 +1008,7 @@ if (on_surface == true && abs(x_speed) > 0)
         }
     }
 }
-else
-{
-    surface_time = 0;
-}
+else surface_time = 0;
 #define Other_5
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -1070,52 +1035,21 @@ applies_to=self
 
 var shield_depth;
 
-// Trail:
 player_trail_draw();
 
-// Shield:
 with (shield_handle)
 {
     shield_depth = (other.status_shield == SHIELD_FIRE && (image_index mod 2) != 0 && sequence_index != sequence_shield_fire_dash) || (other.status_shield == SHIELD_LIGHTNING && sequence_moment > 48);
-
-    if (shield_depth == true)
-    {
-        event_draw();
-    }
+    if (shield_depth) event_draw();
 }
 
-// Player:
-image_alpha = 1;
-
-if (status_invin == INVIN_HURT && status_invin_alarm > 0)
-{
-    image_alpha = time_sync(status_invin_alarm, 2, 2);
-}
-
-if (sprite_exists(sprite_index))
-{
-    draw_self_floored();
-}
-
-// Spin Dash:
-with (spin_dash_handle)
-{
-    event_draw();
-}
-
-// Debuff:
-with (debuff_handle)
-{
-    event_draw();
-}
-
-// Shield:
+image_alpha = pick(status_invin == INVIN_HURT && status_invin_alarm > 0, 1, time_sync(status_invin_alarm, 2, 2));
+if (sprite_exists(sprite_index)) draw_self_floored();
+with (spin_dash_handle) event_draw();
+with (debuff_handle) event_draw();
 with (shield_handle)
 {
-    if (shield_depth == false)
-    {
-        event_draw();
-    }
+    if (!shield_depth) event_draw();
 }
 
 draw_reset();

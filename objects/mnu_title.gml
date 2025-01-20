@@ -16,23 +16,16 @@ applies_to=self
 */
 /// Inputs
 
-if (title_start == false)
+if (!title_start)
 {
-    if (input_get_check(INP_START, CHECK_PRESSED))
-    {
-        title_start = true;
-    }
+    if (input_get_check(INP_START, CHECK_PRESSED)) title_start = true;
 }
 else
 {
     if (game_get_time() mod 5 == 0)
     {
         title_flash -= 1;
-
-        if (title_flash == 0)
-        {
-            instance_destroy();
-        }
+        if (title_flash == 0) instance_destroy();
     }
 }
 #define Draw_0
@@ -53,11 +46,10 @@ start_hide = time_sync(game_get_time(), 30, 2);
 draw_sprite(spr_realizing_hopper, 0, title_x, title_y);
 
 // Start:
-if (title_start == true)
+if (title_start)
 {
     start_hide = time_sync(game_get_time(), 5, 2);
 }
-
 
 if (!start_hide)
 {

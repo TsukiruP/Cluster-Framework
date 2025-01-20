@@ -9,7 +9,7 @@ Sliding lasts 32 frames, and then similar to above occurs: either Sonic gets up 
 switch (argument0)
 {
     case STATE_START:
-        if (peel_out == false)
+        if (!peel_out)
         {
             x_speed = 3 * image_xscale;
         }
@@ -19,7 +19,7 @@ switch (argument0)
         break;
 
     case STATE_STEP:
-        if (on_ground == false)
+        if (!on_ground)
         {
             if (!player_movement_air())
             {
@@ -32,7 +32,7 @@ switch (argument0)
             }
 
             // Gravity:
-            if (y_allow == true)
+            if (y_allow)
             {
                 y_speed += gravity_force;
             }
@@ -41,7 +41,7 @@ switch (argument0)
         else
         {
             // Friction:
-            if (peel_out == false)
+            if (!peel_out)
             {
                 if (animation_current == "skid")
                 {
@@ -72,13 +72,13 @@ switch (argument0)
                 return player_set_state(player_state_run);
             }
 
-            if (animation_finished == true)
+            if (animation_finished)
             {
                 switch (animation_current)
                 {
                     case "somersault":
                         // Set speed:
-                        if (peel_out == false)
+                        if (!peel_out)
                         {
                             x_speed = 4 * image_xscale;
                         }
@@ -93,14 +93,14 @@ switch (argument0)
             }
         }
 
-        if (on_ground == false)
+        if (!on_ground)
         {
             if (ground_id != noone)
             {
                 player_reset_air();
             }
 
-            if (animation_finished == true)
+            if (animation_finished)
             {
                 animation_skip = true;
                 player_set_animation("spin");
@@ -112,7 +112,7 @@ switch (argument0)
         if (animation_current == "skid")
         {
             // Dust:
-            if (on_ground == true)
+            if (on_ground)
             {
                 // Dust:
                 player_brake_dust();
@@ -121,9 +121,9 @@ switch (argument0)
             // Time out:
             if (animation_time >= 32)
             {
-                if (on_ground == true)
+                if (on_ground)
                 {
-                    if (peel_out == false)
+                    if (!peel_out)
                     {
                         player_set_animation("skid_end");
                     }

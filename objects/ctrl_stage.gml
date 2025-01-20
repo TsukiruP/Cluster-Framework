@@ -26,10 +26,7 @@ applies_to=self
 */
 /// Time
 
-if (game_ispaused() || time_allow == false)
-{
-    exit;
-}
+if (game_ispaused() || !time_allow) exit;
 
 stage_time += game_get_speed();
 #define Step_2
@@ -45,7 +42,7 @@ if (!instance_exists(stage_get_player(0)))
     exit;
 }
 
-if (!game_ispaused(ctrl_text) && pause_allow == true && !instance_exists(mnu_pause) && input_get_check(INP_START, CHECK_PRESSED))
+if (!game_ispaused(ctrl_text) && pause_allow && !instance_exists(mnu_pause) && input_get_check(INP_START, CHECK_PRESSED))
 {
     instance_create(0, 0, mnu_pause);
 }

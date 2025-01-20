@@ -19,7 +19,7 @@ oy = dsin(angle) * argument1;
 with (argument0)
 {
     // Abort:
-    if ((can_push == false || y - yprevious != 0) || place_meeting(x + ox, y - oy, par_terrain))
+    if ((!can_push || y - yprevious != 0) || place_meeting(x + ox, y - oy, par_terrain))
     {
         exit;
     }

@@ -5,7 +5,7 @@ var bgm_volume;
 
 bgm_volume = game_get_config("audio_bgm") / 100;
 
-if (argument0 == true)
+if (argument0)
 {
     if (sound_kind_get_volume(1) > 0)
     {

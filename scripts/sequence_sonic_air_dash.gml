@@ -1,6 +1,6 @@
 /// sequence_sonic_air_dash()
 
-if (animation_skip == true)
+if (animation_skip)
 {
     sprite_index = spr_sonic_air_dash;
     sequence_skip(8);

@@ -11,7 +11,7 @@ with (ctrl_audio)
     {
         if (sound_isplaying(jng_handle))
         {
-            if (argument0 == true)
+            if (argument0)
             {
                 if (sound_get_volume(jng_handle) > 0)
                 {

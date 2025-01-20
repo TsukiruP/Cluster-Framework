@@ -47,7 +47,7 @@ applies_to=self
 */
 /// Inputs
 
-if (game_ispaused(ctrl_text) || menu_lock == true || menu_alarm > 0)
+if (game_ispaused(ctrl_text) || menu_lock || menu_alarm > 0)
 {
     exit;
 }
@@ -181,10 +181,7 @@ applies_to=self
 */
 /// Mode
 
-if (menu_lock == false)
-{
-    exit;
-}
+if (!menu_lock) exit;
 
 if (menu_alarm > 0)
 {

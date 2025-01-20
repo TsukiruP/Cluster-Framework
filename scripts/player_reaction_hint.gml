@@ -8,11 +8,11 @@ collision = argument1;
 
 if (collision & COLL_INTERACT)
 {
-    if (mask_rotation == reaction_handle.gravity_direction && on_ground == true && input_cpu == false)
+    if (mask_rotation == reaction_handle.gravity_direction && on_ground && !input_cpu)
     {
         if (floor(x_speed) == 0 && player_get_input(INP_UP, CHECK_PRESSED))
         {
-            if (hint_allow == true)
+            if (hint_allow)
             {
                 player_set_state(player_state_idle);
                 x_speed = 0;

@@ -30,14 +30,10 @@ switch (argument0)
 
         if (!player_get_input(INP_DOWN, CHECK_HELD))
         {
-            if (input_cpu == false)
-            {
-                camera_set_lag(16);
-            }
-
             x_speed = (8 + (spin_dash_charge div 2)) * image_xscale;
             audio_play_sfx("snd_spin_dash_release", true);
             audio_stop_sfx("snd_spin_dash_charge");
+            if (!input_cpu) camera_set_lag(16);
             return player_set_state(player_state_roll);
         }
 

@@ -73,7 +73,7 @@ repeat (total_steps)
         // React:
         player_react(hit_wall, COLL_SOLID);
         
-        if (state_changed == true)
+        if (state_changed)
         {
             return false;
         }
@@ -100,7 +100,7 @@ repeat (total_steps)
         // React:
         player_react(hit_floor, COLL_SOLID);
         
-        if (state_changed == true)
+        if (state_changed)
         {
             return false;
         }

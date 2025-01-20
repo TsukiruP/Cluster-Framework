@@ -22,7 +22,7 @@ applies_to=self
 */
 /// Animation
 
-if (rainbow_ring == true)
+if (rainbow_ring)
 {
     image_index = time_sync(game_get_time(), 4, 6) + 1;
     cover.image_index = image_index + 6;
@@ -52,7 +52,7 @@ event_inherited();
     switch (orientation)
     {
         case 1:
-            if (rainbow_ring == true)
+            if (rainbow_ring)
             {
                 sprite_index = Sprite("spr_rainbow_ring_horizontal",  0);
             }
@@ -63,7 +63,7 @@ event_inherited();
             break;
 
         case 2:
-            if (rainbow_ring == true)
+            if (rainbow_ring)
             {
                 sprite_index = Sprite("spr_rainbow_ring_diagonal",  0);
             }
@@ -74,7 +74,7 @@ event_inherited();
             break;
 
         default:
-            if (rainbow_ring == true)
+            if (rainbow_ring)
             {
                 sprite_index = Sprite("spr_rainbow_ring_vertical",  0);
             }
@@ -84,15 +84,8 @@ event_inherited();
             }
     }
 
-    if (flip_x == true)
-    {
-        image_xscale = -1;
-    }
-
-    if (flip_y == true)
-    {
-        image_yscale = -1;
-    }
+    if (flip_x) image_xscale = -1;
+    if (flip_y) image_yscale = -1;
 */
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -101,11 +94,10 @@ applies_to=self
 */
 /// Dash Ring Initialization
 
-// Spring orientation:
 switch (orientation)
 {
     case ORIEN_HORIZONTAL:
-        if (rainbow_ring == true)
+        if (rainbow_ring)
         {
             sprite_index = spr_rainbow_ring_horizontal;
         }
@@ -119,7 +111,7 @@ switch (orientation)
         break;
 
     case ORIEN_DIAGONAL:
-        if (rainbow_ring == true)
+        if (rainbow_ring)
         {
             sprite_index = spr_rainbow_ring_diagonal;
         }
@@ -133,7 +125,7 @@ switch (orientation)
         break;
 
     default:
-        if (rainbow_ring == true)
+        if (rainbow_ring)
         {
             sprite_index = spr_rainbow_ring_vertical;
         }
@@ -147,13 +139,13 @@ switch (orientation)
 
 }
 
-if (flip_x == true)
+if (flip_x)
 {
     image_xscale = -1;
     angle = 180 - angle;
 }
 
-if (flip_y == true)
+if (flip_y)
 {
     image_yscale = -1;
     angle = 360 - angle;
@@ -165,7 +157,7 @@ cover.sprite_index = sprite_index;
 cover.image_xscale = image_xscale;
 cover.image_yscale = image_yscale;
 
-if (rainbow_ring == false)
+if (!rainbow_ring)
 {
     cover.image_index = 2;
 }

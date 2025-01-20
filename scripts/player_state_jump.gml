@@ -41,13 +41,13 @@ switch (argument0)
             return true;
         }
 
-        if (jump_cap == true)
+        if (jump_cap)
         {
             var input_held;
 
             input_held = pick(jump_aux, player_get_input(INP_JUMP, CHECK_HELD), player_get_input(INP_AUX, CHECK_HELD));
 
-            if (y_speed < jump_release && input_held == false)
+            if (y_speed < jump_release && !input_held)
             {
                 y_speed = jump_release;
             }
@@ -63,7 +63,7 @@ switch (argument0)
             x_speed *= air_friction;
         }
 
-        if (y_allow == true)
+        if (y_allow)
         {
             y_speed += gravity_force;
         }

@@ -22,12 +22,9 @@ applies_to=self
 */
 /// Create Magnetized Ring
 
-if (magnetized == true)
+if (magnetized)
 {
-    with (instance_create(x, y, obj_ring_magnetized))
-    {
-        super = other.super;
-    }
+    with (instance_create(x, y, obj_ring_magnetized)) super = other.super;
 }
 #define Step_1
 /*"/*'/**//* YYD ACTION
@@ -42,14 +39,10 @@ if (game_ispaused())
     exit;
 }
 
-if (dropped == true)
+if (dropped)
 {
     lifespan = max(lifespan - 1 * game_get_speed(), 0);
-
-    if (lifespan <= 0)
-    {
-        instance_destroy();
-    }
+    if (lifespan <= 0) instance_destroy();
 }
 #define Step_2
 /*"/*'/**//* YYD ACTION
@@ -61,15 +54,9 @@ applies_to=self
 
 event_inherited();
 
-if (game_ispaused() || dropped == false)
-{
-    exit;
-}
+if (game_ispaused() || !dropped) exit;
 
-if (!in_view())
-{
-    instance_destroy();
-}
+if (!in_view()) instance_destroy();
 
 var sine, csine;
 
@@ -167,7 +154,7 @@ applies_to=self
 */
 /// Draw Ring
 
-if (dropped == false || lifespan >= 90 || (dropped == true && lifespan < 90 && (lifespan div 4) mod 2))
+if (!dropped || lifespan >= 90 || (dropped && lifespan < 30 && time_sync(lifespan, 2, 2)))
 {
     draw_self();
 }

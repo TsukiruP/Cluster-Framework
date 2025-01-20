@@ -21,7 +21,7 @@ switch (character_id)
         break;
 
     default:
-        if (peel_out == true)
+        if (peel_out)
         {
             player_set_animation("run_5");
         }

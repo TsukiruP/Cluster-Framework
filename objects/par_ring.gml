@@ -22,7 +22,7 @@ applies_to=self
 */
 /// Super Ring
 
-if (super == true)
+if (super)
 {
     sprite_index = spr_ring_super;
     rate = 6;
@@ -45,7 +45,7 @@ if (game_ispaused(mnu_pause))
     exit;
 }
 
-image_index = time_sync(game_get_time(), rate / (1 + (dropped == true)), sprite_get_number(sprite_index));
+image_index = time_sync(game_get_time(), rate / (1 + (dropped)), sprite_get_number(sprite_index));
 #define Other_4
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -61,9 +61,5 @@ applies_to=self
 
     super = Field("super", 0);
     sprite_index = Sprite("spr_ring",  0);
-
-    if (super == true)
-    {
-        sprite_index = Sprite("spr_ring_super",  0);
-    }
+    if (super) sprite_index = Sprite("spr_ring_super",  0);
 */

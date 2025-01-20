@@ -42,7 +42,7 @@ switch (argument0)
             return false;
         }
 
-        if (on_ground == true)
+        if (on_ground)
         {
             bound_count = min(bound_count_temp + 1, 2);
             animation_skip = true;
@@ -55,7 +55,7 @@ switch (argument0)
             x_speed *= air_friction;
         }
 
-        if (y_allow == true)
+        if (y_allow)
         {
             y_speed += gravity_force;
         }

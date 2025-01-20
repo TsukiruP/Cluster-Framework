@@ -106,7 +106,7 @@ if (instance_exists(stage_get_player(0)))
             }
         }
 
-        if ((focus_handle.state_current == sonic_state_peel_out && focus_handle.peel_out_alarm <= 14) || focus_handle.peel_out == true)
+        if ((focus_handle.state_current == sonic_state_peel_out && focus_handle.peel_out_alarm <= 14) || focus_handle.peel_out)
         {
             if (camera_x_shift != 64 * focus_handle.image_xscale)
             {
@@ -151,7 +151,7 @@ if (instance_exists(focus_handle))
 
                 player_offset = 0;
 
-                if (focus_handle.on_ground == true)
+                if (focus_handle.on_ground)
                 {
                     player_offset = focus_handle.camera_offset * dsin(focus_handle.mask_rotation);
                 }
@@ -171,7 +171,7 @@ if (instance_exists(focus_handle))
 
                     focus_y = focus_handle.y;
 
-                    if (focus_handle.on_ground == false)
+                    if (!focus_handle.on_ground)
                     {
                         if (focus_y < border_top)
                         {
@@ -183,7 +183,7 @@ if (instance_exists(focus_handle))
                             camera_y += min(focus_y - border_bottom, 24);
                         }
                     }
-                    else if (focus_handle.on_ground == true)
+                    else if (focus_handle.on_ground)
                     {
                         var camera_speed_cap;
 
@@ -235,21 +235,3 @@ x = clamp(x, limit_left + view_xhalf, limit_right - view_yhalf);
 y = clamp(y, limit_top + view_yhalf, limit_bottom - view_yhalf);
 x = floor(camera_x + camera_x_shift);
 y = floor(camera_y + camera_y_shift) + 16;
-#define Draw_0
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Draw Camera
-/*
-// Exit if not in debug mode:
-if (global.game_debug == false) {
-    exit;
-}
-
-// Borders:
-draw_rectangle(floor(camera_x) - 8, floor(camera_y) - 32, floor(camera_x) + 8, floor(camera_y) + 32, true);
-
-// Center:
-draw_line(floor(camera_x) - 8, floor(camera_y), floor(camera_x) + 8, floor(camera_y));

@@ -223,15 +223,15 @@ for (i = 0; i < PLAYER_COUNT; i += 1)
     {
         if (joystick_has_pov(gamepad_id))
         {
-            gamepad_dpad[INP_UP, CHECK_PRESSED + (i * 3)] = (joystick_pov_y(gamepad_id) == -1 && gamepad_dpad[INP_UP, CHECK_HELD + (i * 3)] == false);
-            gamepad_dpad[INP_DOWN, CHECK_PRESSED + (i * 3)] = (joystick_pov_y(gamepad_id) == 1 && gamepad_dpad[INP_DOWN, CHECK_HELD + (i * 3)] == false);
-            gamepad_dpad[INP_LEFT, CHECK_PRESSED + (i * 3)] = (joystick_pov_x(gamepad_id) == -1 && gamepad_dpad[INP_LEFT, CHECK_HELD + (i * 3)] == false);
-            gamepad_dpad[INP_RIGHT, CHECK_PRESSED + (i * 3)] = (joystick_pov_x(gamepad_id) == 1 && gamepad_dpad[INP_RIGHT, CHECK_HELD + (i * 3)] == false);
+            gamepad_dpad[INP_UP, CHECK_PRESSED + (i * 3)] = (joystick_pov_y(gamepad_id) == -1 && !gamepad_dpad[INP_UP, CHECK_HELD + (i * 3)]);
+            gamepad_dpad[INP_DOWN, CHECK_PRESSED + (i * 3)] = (joystick_pov_y(gamepad_id) == 1 && !gamepad_dpad[INP_DOWN, CHECK_HELD + (i * 3)]);
+            gamepad_dpad[INP_LEFT, CHECK_PRESSED + (i * 3)] = (joystick_pov_x(gamepad_id) == -1 && !gamepad_dpad[INP_LEFT, CHECK_HELD + (i * 3)]);
+            gamepad_dpad[INP_RIGHT, CHECK_PRESSED + (i * 3)] = (joystick_pov_x(gamepad_id) == 1 && !gamepad_dpad[INP_RIGHT, CHECK_HELD + (i * 3)]);
 
-            gamepad_dpad[INP_UP, CHECK_RELEASED + (i * 3)] = (joystick_pov_y(gamepad_id) != -1 && gamepad_dpad[INP_UP, CHECK_HELD + (i * 3)] == true);
-            gamepad_dpad[INP_DOWN, CHECK_RELEASED + (i * 3)] = (joystick_pov_y(gamepad_id) != 1 && gamepad_dpad[INP_DOWN, CHECK_HELD + (i * 3)] == true);
-            gamepad_dpad[INP_LEFT, CHECK_RELEASED + (i * 3)] = (joystick_pov_x(gamepad_id) != -1 && gamepad_dpad[INP_LEFT, CHECK_HELD + (i * 3)] == true);
-            gamepad_dpad[INP_RIGHT, CHECK_RELEASED + (i * 3)] = (joystick_pov_x(gamepad_id) != 1 && gamepad_dpad[INP_RIGHT, CHECK_HELD + (i * 3)] == true);
+            gamepad_dpad[INP_UP, CHECK_RELEASED + (i * 3)] = (joystick_pov_y(gamepad_id) != -1 && gamepad_dpad[INP_UP, CHECK_HELD + (i * 3)]);
+            gamepad_dpad[INP_DOWN, CHECK_RELEASED + (i * 3)] = (joystick_pov_y(gamepad_id) != 1 && gamepad_dpad[INP_DOWN, CHECK_HELD + (i * 3)]);
+            gamepad_dpad[INP_LEFT, CHECK_RELEASED + (i * 3)] = (joystick_pov_x(gamepad_id) != -1 && gamepad_dpad[INP_LEFT, CHECK_HELD + (i * 3)]);
+            gamepad_dpad[INP_RIGHT, CHECK_RELEASED + (i * 3)] = (joystick_pov_x(gamepad_id) != 1 && gamepad_dpad[INP_RIGHT, CHECK_HELD + (i * 3)]);
 
             gamepad_dpad[INP_UP, CHECK_HELD + (i * 3)] = (joystick_pov_y(gamepad_id) == -1);
             gamepad_dpad[INP_DOWN, CHECK_HELD + (i * 3)] = (joystick_pov_y(gamepad_id) == 1);
@@ -278,15 +278,15 @@ for (i = 0; i < PLAYER_COUNT; i += 1)
     {
         joystick_set_deadzone(game_get_config("input_gamepad" + string(i) + "_deadzone"));
 
-        gamepad_analog[INP_UP, CHECK_PRESSED + (i * 3)] = (sign(joystick_axis(gamepad_id, 1)) == -1 && gamepad_analog[INP_UP, CHECK_HELD + (i * 3)] == false);
-        gamepad_analog[INP_DOWN, CHECK_PRESSED + (i * 3)] = (sign(joystick_axis(gamepad_id, 1)) == 1 && gamepad_analog[INP_DOWN, CHECK_HELD + (i * 3)] == false);
-        gamepad_analog[INP_LEFT, CHECK_PRESSED + (i * 3)] = (sign(joystick_axis(gamepad_id, 0)) == -1 && gamepad_analog[INP_LEFT, CHECK_HELD + (i * 3)] == false);
-        gamepad_analog[INP_RIGHT, CHECK_PRESSED + (i * 3)] = (sign(joystick_axis(gamepad_id, 0)) == 1 && gamepad_analog[INP_RIGHT, CHECK_HELD + (i * 3)] == false);
+        gamepad_analog[INP_UP, CHECK_PRESSED + (i * 3)] = (sign(joystick_axis(gamepad_id, 1)) == -1 && !gamepad_analog[INP_UP, CHECK_HELD + (i * 3)]);
+        gamepad_analog[INP_DOWN, CHECK_PRESSED + (i * 3)] = (sign(joystick_axis(gamepad_id, 1)) == 1 && !gamepad_analog[INP_DOWN, CHECK_HELD + (i * 3)]);
+        gamepad_analog[INP_LEFT, CHECK_PRESSED + (i * 3)] = (sign(joystick_axis(gamepad_id, 0)) == -1 && !gamepad_analog[INP_LEFT, CHECK_HELD + (i * 3)]);
+        gamepad_analog[INP_RIGHT, CHECK_PRESSED + (i * 3)] = (sign(joystick_axis(gamepad_id, 0)) == 1 && !gamepad_analog[INP_RIGHT, CHECK_HELD + (i * 3)]);
 
-        gamepad_analog[INP_UP, CHECK_RELEASED + (i * 3)] = (sign(joystick_axis(gamepad_id, 1)) != -1 && gamepad_analog[INP_UP, CHECK_HELD + (i * 3)] == true);
-        gamepad_analog[INP_DOWN, CHECK_RELEASED + (i * 3)] = (sign(joystick_axis(gamepad_id, 1)) != 1 && gamepad_analog[INP_DOWN, CHECK_HELD + (i * 3)] == true);
-        gamepad_analog[INP_LEFT, CHECK_RELEASED + (i * 3)] = (sign(joystick_axis(gamepad_id, 0)) != -1 && gamepad_analog[INP_LEFT, CHECK_HELD + (i * 3)] == true);
-        gamepad_analog[INP_RIGHT, CHECK_RELEASED + (i * 3)] = (sign(joystick_axis(gamepad_id, 0)) != 1 && gamepad_analog[INP_RIGHT, CHECK_HELD + (i * 3)] == true);
+        gamepad_analog[INP_UP, CHECK_RELEASED + (i * 3)] = (sign(joystick_axis(gamepad_id, 1)) != -1 && gamepad_analog[INP_UP, CHECK_HELD + (i * 3)]);
+        gamepad_analog[INP_DOWN, CHECK_RELEASED + (i * 3)] = (sign(joystick_axis(gamepad_id, 1)) != 1 && gamepad_analog[INP_DOWN, CHECK_HELD + (i * 3)]);
+        gamepad_analog[INP_LEFT, CHECK_RELEASED + (i * 3)] = (sign(joystick_axis(gamepad_id, 0)) != -1 && gamepad_analog[INP_LEFT, CHECK_HELD + (i * 3)]);
+        gamepad_analog[INP_RIGHT, CHECK_RELEASED + (i * 3)] = (sign(joystick_axis(gamepad_id, 0)) != 1 && gamepad_analog[INP_RIGHT, CHECK_HELD + (i * 3)]);
 
         gamepad_analog[INP_UP, CHECK_HELD + (i * 3)] = (sign(joystick_axis(gamepad_id, 1)) == -1);
         gamepad_analog[INP_DOWN, CHECK_HELD + (i * 3)] = (sign(joystick_axis(gamepad_id, 1)) == 1);
@@ -328,8 +328,8 @@ for (i = 0; i < PLAYER_COUNT; i += 1)
             trigger_id = gamepad_button[PAD_TRIGGERL + j, gamepad_device[i, 1]];
             trigger_axis = joystick_axis(gamepad_id, trigger_id);
 
-            gamepad_trigger[j, CHECK_PRESSED + (i * 3)] = (trigger_axis > 0 && gamepad_trigger[j, CHECK_HELD + (i * 3)] == false);
-            gamepad_trigger[j, CHECK_RELEASED + (i * 3)] = (trigger_axis <= 0 && gamepad_trigger[j, CHECK_HELD + (i * 3)] == true);
+            gamepad_trigger[j, CHECK_PRESSED + (i * 3)] = (trigger_axis > 0 && !gamepad_trigger[j, CHECK_HELD + (i * 3)]);
+            gamepad_trigger[j, CHECK_RELEASED + (i * 3)] = (trigger_axis <= 0 && gamepad_trigger[j, CHECK_HELD + (i * 3)]);
             gamepad_trigger[j, CHECK_HELD + (i * 3)] = trigger_axis > 0;
         }
     }
@@ -402,16 +402,10 @@ var i;
 
 for (i = INP_UP; i <= INP_RIGHT; i += 1)
 {
-    if (input_user[i, CHECK_HELD] == true)
-    {
-        input_time[i] += 1;
-    }
+    if (input_user[i, CHECK_HELD]) input_time[i] += 1;
     else
     {
-        if (input_time[i] != 0)
-        {
-            input_time[i] = 0;
-        }
+        if (input_time[i] != 0) input_time[i] = 0;
     }
 }
 /*"/*'/**//* YYD ACTION
@@ -425,7 +419,7 @@ var i;
 
 for (i = INP_UP; i <= INP_RIGHT; i += 2)
 {
-    if (input_user[i, CHECK_HELD] == true && input_user[i + 1, CHECK_HELD] == true)
+    if (input_user[i, CHECK_HELD] && input_user[i + 1, CHECK_HELD])
     {
         input_user[i, CHECK_HELD] = false;
         input_user[i + 1, CHECK_HELD] = false;

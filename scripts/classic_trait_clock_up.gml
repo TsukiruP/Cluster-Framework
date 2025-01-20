@@ -3,7 +3,7 @@
 
 if (argument_count > 0)
 {
-    if (argument[0] == true && clock_up_state != 0)
+    if (argument[0] && clock_up_state != 0)
     {
         if (clock_up_state == 2)
         {
@@ -33,7 +33,7 @@ else
         }
     }
 
-    if (state_current == player_state_hurt || state_current == player_state_death || input_cpu == true)
+    if (state_current == player_state_hurt || state_current == player_state_death || input_cpu)
     {
         exit;
     }

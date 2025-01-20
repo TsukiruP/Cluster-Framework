@@ -6,7 +6,7 @@ applies_to=self
 */
 /// Create Ring
 
-if (dropped == true)
+if (dropped)
 {
     with (instance_create(x, y, obj_ring))
     {

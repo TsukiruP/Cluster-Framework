@@ -133,48 +133,21 @@ applies_to=self
 */
 /// Time
 
-if (game_ispaused(mnu_pause))
-{
-    exit;
-}
+if (game_ispaused(mnu_pause)) exit;
 
 var i;
 
-if (hud_hide == false)
-{
-    hud_time = approach(hud_time, hud_max_time, 1);
-}
-else
-{
-    hud_time = approach(hud_time, 0, 1);
-}
+if (!hud_hide) hud_time = approach(hud_time, hud_max_time, 1);
+else hud_time = approach(hud_time, 0, 1);
 
-if (air_hide == false)
-{
-    air_time = approach(air_time, hud_max_time, 1);
-}
-else
-{
-    air_time = approach(air_time, 0, 1);
-}
+if (!air_hide) air_time = approach(air_time, hud_max_time, 1);
+else air_time = approach(air_time, 0, 1);
 
-if (hud_hide == false && gauge_hide == false)
-{
-    gauge_time = approach(gauge_time, hud_max_time, 1);
-}
-else
-{
-    gauge_time = approach(gauge_time, 0, 1);
-}
+if (!hud_hide && !gauge_hide) gauge_time = approach(gauge_time, hud_max_time, 1);
+else gauge_time = approach(gauge_time, 0, 1);
 
-if (hud_hide == false && boss_hide == false)
-{
-    boss_time = approach(boss_time, hud_max_time, 1);
-}
-else
-{
-    boss_time = approach(boss_time, 0, 1);
-}
+if (!hud_hide && !boss_hide) boss_time = approach(boss_time, hud_max_time, 1);
+else boss_time = approach(boss_time, 0, 1);
 
 if (item_grid != -1)
 {
@@ -491,10 +464,7 @@ applies_to=self
 */
 /// Draw Status
 
-if (game_get_config("misc_hud") != 1 || game_get_config("misc_status") == 0)
-{
-    exit;
-}
+if (game_get_config("misc_hud") != 1 || game_get_config("misc_status") == 0) exit;
 
 var i, status_count;
 
@@ -507,17 +477,17 @@ for (i = status_max; i > 0; i -= 1)
     status_id = i - 1;
     status_x = view_xview[view_current] + status_bar_x + status_width * (status_max - 1 - status_count);
 
-    if (((game_get_config("misc_status") != 0 && status_active[status_id, 0] == true) || game_get_config("misc_status") == 2) && status_active[status_id, 1] == true)
+    if (((game_get_config("misc_status") != 0 && status_active[status_id, 0]) || game_get_config("misc_status") == 2) && status_active[status_id, 1])
     {
         // Shadow:
         draw_sprite_ext(spr_item_icon, status_icon[status_id], status_x + 1, view_yview[view_current] + 18, 1, 1, 0, c_black, 1);
 
         // Icon:
-        image_blend = pick(game_get_config("misc_status") == 2 && status_active[status_id, 0] == false, c_white, c_gray);
+        image_blend = pick(game_get_config("misc_status") == 2 && !status_active[status_id, 0], c_white, c_gray);
         draw_sprite_ext(spr_item_icon, status_icon[status_id], status_x, view_yview[view_current] + 17, 1, 1, 0, image_blend, 1);
     }
 
-    if ((game_get_config("misc_status") == 1 && status_active[status_id, 0] == true) || game_get_config("misc_status") == 2)
+    if ((game_get_config("misc_status") == 1 && status_active[status_id, 0]) || game_get_config("misc_status") == 2)
     {
         status_count += 1;
     }

@@ -23,7 +23,7 @@ if (collision & COLL_INTERACT)
         x_speed = spring_force * dcos(spring_angle);
         y_speed = spring_force * -dsin(spring_angle);
 
-        if (!(on_ground == true && (spring_angle == ANGLE_LEFT || spring_angle == ANGLE_RIGHT)) || is_dash_ring == true)
+        if (!(on_ground && (spring_angle == ANGLE_LEFT || spring_angle == ANGLE_RIGHT)) || is_dash_ring)
         {
             player_set_state(player_state_spring, true);
             y = reaction_handle.y;
@@ -40,9 +40,9 @@ if (collision & COLL_INTERACT)
             image_xscale = sign(dcos(spring_angle));
         }
 
-        if (is_dash_ring == true)
+        if (is_dash_ring)
         {
-            if (reaction_handle.rainbow_score == true)
+            if (reaction_handle.rainbow_score)
             {
                 stage_add_score(1000);
 

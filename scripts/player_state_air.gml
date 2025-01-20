@@ -49,7 +49,7 @@ switch (argument0)
             x_speed *= air_friction;
         }
 
-        if (y_allow == true)
+        if (y_allow)
         {
             y_speed += gravity_force;
         }

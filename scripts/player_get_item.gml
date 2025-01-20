@@ -68,7 +68,7 @@ switch (argument1)
             status_speed = SPEED_SLOW;
             status_speed_alarm = 1200;
 
-            if (input_cpu == false)
+            if (!input_cpu)
             {
                 audio_stop_jng("jng_speed");
             }

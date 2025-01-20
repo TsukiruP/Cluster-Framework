@@ -33,14 +33,14 @@ if (player_handle.status_invin != INVIN_BUFF)
             break;
 
         case SHIELD_BUBBLE:
-            if ((sequence_index != sequence_shield_bubble && sequence_index != sequence_shield_bubble_bound && sequence_index != sequence_shield_bubble_recoil) || shield_reset == true)
+            if ((sequence_index != sequence_shield_bubble && sequence_index != sequence_shield_bubble_bound && sequence_index != sequence_shield_bubble_recoil) || shield_reset)
             {
                 sequence_set(sequence_shield_bubble);
             }
             break;
 
         case SHIELD_FIRE:
-            if ((sequence_index != sequence_shield_fire && sequence_index != sequence_shield_fire_dash) || shield_reset == true)
+            if ((sequence_index != sequence_shield_fire && sequence_index != sequence_shield_fire_dash) || shield_reset)
             {
                 sequence_set(sequence_shield_fire);
             }
@@ -81,7 +81,7 @@ event_inherited();
 
 shield_advance = (player_handle.status_shield == SHIELD_BASIC || player_handle.status_shield == SHIELD_MAGNETIC || player_handle.status_invin == INVIN_BUFF);
 
-if (!game_ispaused(mnu_pause) && ((player_handle.status_shield == SHIELD_BUBBLE && sequence_index == sequence_shield_bubble) || (game_get_config("advance_flicker") && shield_advance == true)))
+if (!game_ispaused(mnu_pause) && ((player_handle.status_shield == SHIELD_BUBBLE && sequence_index == sequence_shield_bubble) || (game_get_config("advance_flicker") && shield_advance)))
 {
     shield_hide = time_sync(sequence_moment, 2, 2);
 }
@@ -139,7 +139,7 @@ if (sprite_index != spr_shield_fire_dash)
     image_xscale = 1;
 }
 
-if ((game_get_config("advance_flicker") && shield_advance == true) || shield_advance == false)
+if ((game_get_config("advance_flicker") && shield_advance) || !shield_advance)
 {
     image_alpha = 1;
 }
@@ -151,7 +151,7 @@ else
 if (sprite_exists(sprite_index))
 {
     // Shield:
-    if (shield_hide == false)
+    if (!shield_hide)
     {
         draw_sprite_ext(sprite_index, image_index, x, y, image_xscale, 1, player_rotation, c_white, image_alpha);
     }

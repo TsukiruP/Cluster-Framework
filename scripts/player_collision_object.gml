@@ -40,7 +40,7 @@ if (total_objects > 0)
 
         player_react(inst);
 
-        if (state_changed == true)
+        if (state_changed)
         {
             result = true;
             break;

@@ -70,7 +70,7 @@ switch (argument0)
             return false;
         }
 
-        if (on_ground == false)
+        if (!on_ground)
         {
             return player_set_state(player_state_air);
         }

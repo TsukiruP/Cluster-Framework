@@ -51,7 +51,7 @@ applies_to=self
         }
     }
 
-    if (semisolid == true)
+    if (semisolid)
     {
         image_alpha = 0.5;
     }
@@ -64,7 +64,7 @@ applies_to=self
 */
 /// Draw Terrain
 
-if ((game_get_debug() && mask == true) || mask == false)
+if ((game_get_debug() && mask) || !mask)
 {
     draw_self();
 }

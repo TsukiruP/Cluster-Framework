@@ -38,7 +38,7 @@ switch (argument0)
             return false;
         }
 
-        if (on_ground == true)
+        if (on_ground)
         {
             animation_skip = true;
             audio_play_sfx("snd_shield_bubble_bound", true);
@@ -57,7 +57,7 @@ switch (argument0)
         }
 
         // Gravity:
-        if (y_allow == true)
+        if (y_allow)
         {
             y_speed += gravity_force;
         }

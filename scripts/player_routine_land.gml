@@ -1,7 +1,7 @@
 /// player_routine_land()
 /* Shorthand so that the player can use their landing animation. */
 
-if (on_ground == true)
+if (on_ground)
 {
     if (x_speed == 0)
     {

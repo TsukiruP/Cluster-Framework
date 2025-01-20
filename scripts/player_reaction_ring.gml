@@ -10,7 +10,7 @@ if (collision & COLL_INTERACT)
 {
     if (status_invin != INVIN_HURT || (status_invin == INVIN_HURT && status_invin_alarm > 0 && status_invin_alarm < 90))
     {
-        if (reaction_handle.super == true)
+        if (reaction_handle.super)
         {
             player_add_rings(10);
             audio_play_sfx("snd_ring_super", true);

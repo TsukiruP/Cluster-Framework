@@ -31,7 +31,7 @@ if (game_ispaused(mnu_pause))
     exit;
 }
 
-if (active == true)
+if (active)
 {
     if (sequence_index != sequence_checkpoint_active)
     {

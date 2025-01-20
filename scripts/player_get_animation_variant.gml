@@ -18,7 +18,7 @@ switch (animation_current)
         break;
 
     case "wait":
-        if (animation_changed == true)
+        if (animation_changed)
         {
             if (instance_number(obj_player) > 1)
             {
@@ -46,7 +46,7 @@ switch (animation_current)
         }
 
     case "death":
-        if (character_id == CHAR_CLASSIC && drown == true)
+        if (character_id == CHAR_CLASSIC && drown)
         {
             return 1;
         }

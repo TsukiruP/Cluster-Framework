@@ -8,9 +8,9 @@ collision = argument1;
 
 if (collision & COLL_INTERACT)
 {
-    if (input_cpu == false)
+    if (!input_cpu)
     {
-        if (game_get_checkpoint_x() != reaction_handle.x && game_get_checkpoint_y() != reaction_handle.y && reaction_handle.active == false)
+        if (game_get_checkpoint_x() != reaction_handle.x && game_get_checkpoint_y() != reaction_handle.y && !reaction_handle.active)
         {
             if (game_get_config("gameplay_bonuses") && stage_get_rings() >= 20)
             {

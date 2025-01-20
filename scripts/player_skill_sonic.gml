@@ -1,7 +1,7 @@
 /// player_skill_sonic()
 
 // Slam:
-if (game_get_save("sonic_slam") >= SKILL_BOUND_ATTACK && on_ground == false && player_get_input(INP_DOWN, CHECK_HELD) && player_get_input(INP_AUX, CHECK_PRESSED))
+if (game_get_save("sonic_slam") >= SKILL_BOUND_ATTACK && !on_ground && player_get_input(INP_DOWN, CHECK_HELD) && player_get_input(INP_AUX, CHECK_PRESSED))
 {
     switch (game_get_save("sonic_slam"))
     {
@@ -23,7 +23,7 @@ else if ((((game_get_save("sonic_homing") == HOMING_ADVENTURE || game_get_save("
 }
 
 // Ground:
-else if (on_ground == true && player_get_input(INP_AUX, CHECK_PRESSED))
+else if (on_ground && player_get_input(INP_AUX, CHECK_PRESSED))
 {
     switch (game_get_save("sonic_aux_ground"))
     {
@@ -39,7 +39,7 @@ else if (on_ground == true && player_get_input(INP_AUX, CHECK_PRESSED))
 }
 
 // Aerial:
-else if (on_ground == false)
+else if (!on_ground)
 {
     var skill_key;
 
@@ -60,10 +60,10 @@ else if (on_ground == false)
 
     if (skill_key != "")
     {
-        if (game_get_save(skill_key) <= SKILL_INSTA && status_shield_allow == true)
+        if (game_get_save(skill_key) <= SKILL_INSTA && status_shield_allow)
         {
             // Elemental shields:
-            if (game_get_save("sonic_shield") == true && status_shield >= SHIELD_BUBBLE)
+            if (game_get_save("sonic_shield") && status_shield >= SHIELD_BUBBLE)
             {
                 return player_routine_shield();
             }
@@ -77,7 +77,7 @@ else if (on_ground == false)
         }
 
         // Air Dash:
-        else if (game_get_save(skill_key) == SKILL_AIR_DASH && air_dash_allow == true)
+        else if (game_get_save(skill_key) == SKILL_AIR_DASH && air_dash_allow)
         {
             x_speed += 2.25 * image_xscale;
             y_speed  = 0;
@@ -101,7 +101,7 @@ else if (on_ground == false)
 }
 
 // Peel Out:
-if (game_get_save("sonic_peel") == true && x_speed == 0 && player_get_input(INP_UP, CHECK_HELD) && player_get_input(INP_JUMP, CHECK_PRESSED))
+if (game_get_save("sonic_peel") && x_speed == 0 && player_get_input(INP_UP, CHECK_HELD) && player_get_input(INP_JUMP, CHECK_PRESSED))
 {
     return player_set_state(sonic_state_peel_out);
 }

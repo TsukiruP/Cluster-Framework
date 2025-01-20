@@ -11,13 +11,13 @@ switch (argument0)
         break;
 
     case STATE_STEP:
-        if (on_ground == false)
+        if (!on_ground)
         {
             var stomp_allow;
 
             stomp_allow = (image_index >= 5)
 
-            if (stomp_allow == true)
+            if (stomp_allow)
             {
                 if (image_index == 5)
                 {
@@ -30,7 +30,7 @@ switch (argument0)
                     return false;
                 }
 
-                if (on_ground == true)
+                if (on_ground)
                 {
                     var sine, csine;
 
@@ -49,7 +49,7 @@ switch (argument0)
                     }
                 }
 
-                if (y_allow == true)
+                if (y_allow)
                 {
                     y_speed += gravity_force;
                 }
@@ -63,7 +63,7 @@ switch (argument0)
                 return false;
             }
 
-            if (on_ground == false)
+            if (!on_ground)
             {
                 return player_set_state(player_state_air);
             }
@@ -73,12 +73,12 @@ switch (argument0)
                 return player_set_state(player_state_spin_dash);
             }
 
-            if (game_get_save("sonic_peel") == true && player_get_input(INP_UP, CHECK_HELD) && player_get_input(INP_JUMP, CHECK_PRESSED))
+            if (game_get_save("sonic_peel") && player_get_input(INP_UP, CHECK_HELD) && player_get_input(INP_JUMP, CHECK_PRESSED))
             {
                 return player_set_state(sonic_state_peel_out);
             }
 
-            if (animation_finished == true)
+            if (animation_finished)
             {
                 return player_set_state(player_state_idle);
             }

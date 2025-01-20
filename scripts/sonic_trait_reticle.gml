@@ -28,14 +28,14 @@ switch (state_current)
         homing_allow = false;
 }
 
-if (homing_allow == false || spring_alarm != 0 || input_allow == false || (input_cpu == true && input_cpu_gamepad_alarm == 0))
+if (!homing_allow || spring_alarm != 0 || !input_allow || (input_cpu && input_cpu_gamepad_alarm == 0))
 {
     exit;
 }
 
 if (!player_get_input(INP_ALT, CHECK_HELD))
 {
-    if ((game_get_save("sonic_homing") >= HOMING_ADVENTURE && on_ground == false) || game_get_save("sonic_homing") == HOMING_FRONTIERS)
+    if ((game_get_save("sonic_homing") >= HOMING_ADVENTURE && !on_ground) || game_get_save("sonic_homing") == HOMING_FRONTIERS)
     {
         var i, homing_candidate, homing_fail, homing_solid;
 
@@ -46,7 +46,7 @@ if (!player_get_input(INP_ALT, CHECK_HELD))
             if (instance_exists(homing_candidate))
             {
                 // Continue if the candidate isn't targetable:
-                if (homing_candidate.targetable == false)
+                if (!homing_candidate.targetable)
                 {
                     continue;
                 }
@@ -63,7 +63,7 @@ if (!player_get_input(INP_ALT, CHECK_HELD))
                     }
                 }
 
-                if (homing_fail == false)
+                if (!homing_fail)
                 {
                     homing_handle = homing_candidate;
                     

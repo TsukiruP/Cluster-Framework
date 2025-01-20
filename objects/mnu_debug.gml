@@ -57,7 +57,7 @@ if (visible != !instance_exists(mnu_save))
     visible = !instance_exists(mnu_save);
 }
 
-if (game_ispaused(ctrl_text) || instance_exists(ctrl_transition) || instance_exists(mnu_save) || rename_allow == true)
+if (game_ispaused(ctrl_text) || instance_exists(ctrl_transition) || instance_exists(mnu_save) || rename_allow)
 {
     if (menu_alarm == 0)
     {
@@ -151,10 +151,7 @@ applies_to=self
 */
 /// Rename
 
-if (rename_allow == false)
-{
-    exit;
-}
+if (!rename_allow) exit;
 
 if (!window_has_focus())
 {
@@ -254,10 +251,7 @@ applies_to=self
 */
 /// Draw Rename
 
-if (rename_allow == false)
-{
-    exit;
-}
+if (!rename_allow) exit;
 
 // Box:
 draw_set1(game_get_interface_color(), game_get_config("interface_alpha"));

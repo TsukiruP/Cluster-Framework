@@ -42,13 +42,13 @@ if (game_ispaused(mnu_pause) || object_is_ancestor(object_index, obj_dash_ring))
     exit;
 }
 
-if (activated == true)
+if (activated)
 {
     sequence_update();
     script_execute(sequence_index);
 }
 
-if (image_index != 0 && activated == false)
+if (image_index != 0 && !activated)
 {
     image_index = 0;
     sequence_set(sequence_index);
@@ -89,15 +89,8 @@ applies_to=self
             sprite_index = Sprite("spr_spring_vertical",  0);
     }
 
-    if (flip_x == true)
-    {
-        image_xscale = -1;
-    }
-
-    if (flip_y == true)
-    {
-        image_yscale = -1;
-    }
+    if (flip_x) image_xscale = -1;
+    if (flip_y) image_yscale = -1;
 */
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -106,7 +99,6 @@ applies_to=self
 */
 /// Spring Initialization
 
-// Spring orientation:
 switch (orientation)
 {
     case ORIEN_HORIZONTAL:
@@ -130,13 +122,13 @@ switch (orientation)
         angle = ANGLE_UP;
 }
 
-if (flip_x == true)
+if (flip_x)
 {
     image_xscale = -1;
     angle = 180 - angle;
 }
 
-if (flip_y == true)
+if (flip_y)
 {
     image_yscale = -1;
     angle = 360 - angle;

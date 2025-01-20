@@ -6,19 +6,11 @@ status_shield_allow = false;
 switch (status_shield)
 {
     case SHIELD_FIRE:
-        if (input_cpu == false)
-        {
-            camera_set_lag(16);
-        }
-
         x_speed = 8 * image_xscale;
         y_speed = 0;
         audio_play_sfx("snd_shield_fire_dash", true);
-
-        with (shield_handle)
-        {
-            event_user(0);
-        }
+        if (!input_cpu) camera_set_lag(16);
+        with (shield_handle) event_user(0);
         break;
 
     case SHIELD_LIGHTNING:

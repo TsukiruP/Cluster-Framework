@@ -1,7 +1,7 @@
 /// player_trait_debug()
 /* 01, 09, 09, 02, 01, 01, 02, 04 */
 
-if (input_cpu == true)
+if (input_cpu)
 {
     exit;
 }

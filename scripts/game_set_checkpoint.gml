@@ -6,7 +6,7 @@ with (ctrl_game)
     // Reset:
     if (argument_count > 0)
     {
-        if (argument[0] == true)
+        if (argument[0])
         {
             checkpoint_x = -1;
             checkpoint_y = -1;

@@ -8,7 +8,7 @@ collision = argument1;
 
 if ((collision & COLL_INTERACT) || (collision & COLL_HIT))
 {
-    if (input_cpu == false || (input_cpu == true && input_cpu_gamepad_alarm > 0))
+    if (!input_cpu || (input_cpu && input_cpu_gamepad_alarm > 0))
     {
         sonic_routine_homing();
         player_get_item(reaction_handle, reaction_handle.item_id);

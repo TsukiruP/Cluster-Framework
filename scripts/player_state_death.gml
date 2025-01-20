@@ -29,7 +29,7 @@ switch (argument0)
         {
             death_alarm -= 1;
 
-            if (death_alarm == 0 && input_cpu == false)
+            if (death_alarm == 0 && !input_cpu)
             {
                 if (!instance_exists(death_handle))
                 {

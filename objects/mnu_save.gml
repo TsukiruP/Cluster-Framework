@@ -65,7 +65,7 @@ if (menu_x_direction != 0 || menu_y_direction != 0)
 
 if (input_get_check(INP_CONFIRM, CHECK_PRESSED))
 {
-    if (menu_mode == 0 || ((menu_mode == 1 || menu_mode == 2) && ds_map_get(save_preview_map, "save" + string(menu_save) + "_exists") == true))
+    if (menu_mode == 0 || ((menu_mode == 1 || menu_mode == 2) && ds_map_get(save_preview_map, "save" + string(menu_save) + "_exists")))
     {
         var save_name;
 
@@ -188,7 +188,7 @@ for (i = 0; i < page_count; i += 1)
         }
 
         // Text:
-        if (ds_map_get(save_preview_map, save_string + "_exists") == true)
+        if (ds_map_get(save_preview_map, save_string + "_exists"))
         {
             var save_name, save_stage, save_time;
 

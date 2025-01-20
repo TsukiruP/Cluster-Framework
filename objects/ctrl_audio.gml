@@ -93,7 +93,7 @@ applies_to=self
 /// Music Fade
 
 // Fade out:
-if (fade_out == true)
+if (fade_out)
 {
     audio_fade_bgm(true);
     audio_fade_jng(true);
@@ -108,7 +108,7 @@ else
 {
     if (!audio_drown_isplaying())
     {
-        if (audio_jng_isplaying() == true)
+        if (audio_jng_isplaying())
         {
             audio_fade_jng(false);
         }

@@ -34,12 +34,12 @@ switch (argument0)
             return false;
         }
 
-        if (hint_allow == false)
+        if (!hint_allow)
         {
             return false;
         }
 
-        if (on_ground == false)
+        if (!on_ground)
         {
             return player_set_state(player_state_air);
         }
@@ -97,16 +97,12 @@ switch (argument0)
         }
 
         // Wait:
-        if (!game_ispaused(ctrl_text) && on_ground == true && input_allow == true && animation_current == "stand")
+        if (!game_ispaused(ctrl_text) && on_ground && input_allow && animation_current == "stand")
         {
             if (wait_alarm > 0)
             {
                 wait_alarm -= 1;
-
-                if (wait_alarm == 0)
-                {
-                    player_set_animation("wait");
-                }
+                if (wait_alarm == 0) player_set_animation("wait");
             }
         }
         break;

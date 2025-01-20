@@ -13,7 +13,7 @@ switch (argument0)
             return false;
         }
 
-        if (on_ground == false)
+        if (!on_ground)
         {
             return player_set_state(player_state_air);
         }
@@ -32,7 +32,7 @@ switch (argument0)
 
         player_slope_friction(slope_friction);
 
-        if (animation_trigger == true && !player_get_input(INP_UP, CHECK_HELD))
+        if (animation_trigger && !player_get_input(INP_UP, CHECK_HELD))
         {
             player_set_animation("look_end");
             return player_set_state(player_state_idle);

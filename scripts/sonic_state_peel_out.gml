@@ -31,18 +31,11 @@ switch (argument0)
         {
             if (peel_out_alarm == 0)
             {
-                // Set speed:
-                x_speed = 12 * image_xscale;
-                
-                if (input_cpu == false)
-                {
-                    camera_set_lag(16);
-                }
-                
                 x_speed = 12 * image_xscale;
                 peel_out = true;
                 audio_play_sfx("snd_peel_out_release", true);
                 audio_stop_sfx("snd_peel_out_charge")
+                if (!input_cpu) camera_set_lag(16);
             }
             
             return player_set_state(player_state_run);

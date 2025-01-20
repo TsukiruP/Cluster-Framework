@@ -60,7 +60,7 @@ applies_to=self
 */
 /// Time
 
-if (indicator_draw == true)
+if (indicator_draw)
 {
     indicator_time += 1;
 
@@ -119,10 +119,7 @@ applies_to=self
 */
 /// Draw Indicator
 
-if (indicator_draw == false)
-{
-    exit;
-}
+if (!indicator_draw) exit;
 
 // Stars:
 draw_sprite(spr_save_stars, time_sync(indicator_time, 4, sprite_get_number(spr_save_stars)), view_xview[view_current] + screen_get_width() - 27, view_yview[view_current] + screen_get_height() - 16);

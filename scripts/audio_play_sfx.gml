@@ -18,7 +18,7 @@ with (ctrl_audio)
             if (argument_count > 2) pitch = argument[2];
             if (argument_count > 3) pan = argument[3];
 
-            if (single == true) inst = sound_play_single_ex(argument0, 1, pitch, pan);
+            if (single) inst = sound_play_single_ex(argument0, 1, pitch, pan);
             else inst = sound_play_ex(argument0, 1, pitch, pan);
 
             ds_list_add(sfx_list, inst);

@@ -5,7 +5,7 @@ with (ctrl_audio)
 {
     if (drown_handle != -1)
     {
-        if (argument0 == true)
+        if (argument0)
         {
             if (sound_isplaying(drown_handle))
             {

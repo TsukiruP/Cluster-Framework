@@ -1,6 +1,6 @@
 /// player_skill_classic()
 
-if (on_ground == false)
+if (!on_ground)
 {
     // Drop Dash:
     if (player_get_input(INP_JUMP, CHECK_PRESSED))
@@ -9,7 +9,7 @@ if (on_ground == false)
     }
 
     // Shields:
-    if (status_shield_allow == true && player_get_input(INP_AUX, CHECK_PRESSED))
+    if (status_shield_allow && player_get_input(INP_AUX, CHECK_PRESSED))
     {
         if (status_shield >= SHIELD_BUBBLE)
         {

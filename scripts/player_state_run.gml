@@ -67,7 +67,7 @@ switch (argument0)
             return false;
         }
 
-        if (on_ground == false)
+        if (!on_ground)
         {
             return player_set_state(player_state_air);
         }
@@ -101,7 +101,7 @@ switch (argument0)
         }
 
         // Peel out:
-        if (abs(x_speed) < 10 && peel_out == true)
+        if (abs(x_speed) < 10 && peel_out)
         {
             peel_out = false;
         }

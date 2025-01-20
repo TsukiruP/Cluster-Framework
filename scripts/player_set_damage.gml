@@ -12,17 +12,17 @@ damage_handle = argument0.id;
 hurt_direction = esign(x - damage_handle.x, 1);
 
 // Death:
-if (damage_handle == id || (stage_get_rings() == 0 && status_shield == 0 && input_cpu == false))
+if (damage_handle == id || (stage_get_rings() == 0 && status_shield == 0 && !input_cpu))
 {
     // Set speed:
-    if (drown == false)
+    if (!drown)
     {
         y_speed = -7;
     }
 
     player_set_state(player_state_death);
 
-    if (input_cpu == false)
+    if (!input_cpu)
     {
         stage_set_pause_allow(false);
         audio_stop_jng();
@@ -37,20 +37,16 @@ else
     status_invin = INVIN_HURT;
     player_set_state(player_state_hurt);
 
-    if (input_cpu == false && status_shield != 0)
+    if (!input_cpu)
     {
-        status_shield = 0;
-    }
-
-    else if (input_cpu == false)
-    {
-        player_ring_loss();
+        if (status_shield != 0) status_shield = 0;
+        else player_ring_loss();
     }
 }
 
 if (damage_handle == id)
 {
-    if (drown == true)
+    if (drown)
     {
         audio_play_sfx("snd_drown");
     }
@@ -59,7 +55,7 @@ if (damage_handle == id)
         audio_play_sfx("snd_hurt");
     }
 }
-else if ((input_cpu == false && shield_handle != noone) || input_cpu == true || state_current == player_state_death)
+else if ((!input_cpu && shield_handle != noone) || input_cpu || state_current == player_state_death)
 {
     if (damage_handle.object_index == obj_spike)
     {
@@ -70,7 +66,7 @@ else if ((input_cpu == false && shield_handle != noone) || input_cpu == true || 
         audio_play_sfx("snd_hurt");
     }
 
-    if (input_cpu == false)
+    if (!input_cpu)
     {
         audio_stop_drown();
     }

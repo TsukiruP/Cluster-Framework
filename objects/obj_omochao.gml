@@ -20,10 +20,7 @@ applies_to=self
 */
 /// Animation
 
-if (game_ispaused(mnu_pause))
-{
-    exit;
-}
+if (game_ispaused(mnu_pause)) exit;
 
 var omochao_index;
 
@@ -31,12 +28,9 @@ omochao_index = spr_omochao_idle;
 
 with (player_handle)
 {
-    if (animation_previous == "omochao_end")
-    {
-        hint_allow = true;
-    }
+    if (animation_previous == "omochao_end") hint_allow = true;
 
-    if (hint_allow == false)
+    if (!hint_allow)
     {
         switch (character_id)
         {
@@ -47,19 +41,13 @@ with (player_handle)
     }
 }
 
-if (sprite_index != omochao_index)
-{
-    sprite_index = omochao_index;
-}
+if (sprite_index != omochao_index) sprite_index = omochao_index;
 
 if (text_get_clear())
 {
     with (player_handle)
     {
-        if (animation_previous != "omochao_end")
-        {
-            player_set_animation("omochao_end");
-        }
+        if (animation_previous != "omochao_end") player_set_animation("omochao_end");
     }
 }
 

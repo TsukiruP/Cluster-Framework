@@ -40,20 +40,12 @@ applies_to=self
     {
         case 1:
             sprite_index = Sprite("spr_spike_horizontal", 0);
-
-            if (flip == true)
-            {
-                image_xscale = -1;
-            }
+            if (flip) image_xscale = -1;
             break;
 
         default:
             sprite_index = Sprite("spr_spike_vertical", 0);
-
-            if (flip == true)
-            {
-                image_yscale = -1;
-            }
+            if (flip) image_yscale = -1;
     }
 */
 /*"/*'/**//* YYD ACTION
@@ -63,7 +55,6 @@ applies_to=self
 */
 /// Spike Initialization
 
-// Spike orientation:
 switch (orientation)
 {
     case ORIEN_HORIZONTAL:
@@ -71,7 +62,7 @@ switch (orientation)
         hurtbox_set(16, 16, 8, 15);
         angle = ANGLE_RIGHT;
 
-        if (flip == true)
+        if (flip)
         {
             image_xscale = -1;
             angle = ANGLE_LEFT;
@@ -83,7 +74,7 @@ switch (orientation)
         hurtbox_set(16, 8, 15, 15);
         angle = ANGLE_UP;
 
-        if (flip == true)
+        if (flip)
         {
             image_yscale = -1;
             angle = ANGLE_DOWN;

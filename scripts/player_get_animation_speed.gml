@@ -8,7 +8,7 @@ switch (character_id)
         {
             case "run_0":
             case "run_1":
-                if (on_ground == true)
+                if (on_ground)
                 {
                     return clamp(abs(x_speed), 1, 7);
                 }
@@ -16,7 +16,7 @@ switch (character_id)
                 return clamp(sequence_speed, 1, 7);
 
             case "spin":
-                if (on_ground == true)
+                if (on_ground)
                 {
                     return clamp(abs(x_speed), 1, 3);
                 }
