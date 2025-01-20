@@ -49,7 +49,11 @@ with (ctrl_input)
     }
     else
     {
-        if (input_id == INP_ANY) return (input_get_check(input_id, argument1, DEV_KEYBOARD) || input_get_check(input_id, argument1, DEV_GAMEPAD0));
+        if (input_id == INP_ANY)
+        {
+            return (input_get_check(input_id, argument1, DEV_KEYBOARD) || input_get_check(input_id, argument1, DEV_GAMEPAD0));
+        }
+
         return input_user[input_id, argument1];
     }
 }

@@ -8,7 +8,10 @@ pause_text = false;
 with (ctrl_text) pause_text = (!ds_list_empty(body_list) || subject_string != "" || log_alpha != 0);
 
 pause_transition = false;
-with (ctrl_transition) pause_transition = ((transition_id == TRANS_CARD && (transition_state > 1 && transition_state < 4)) || (transition_id == TRANS_RETRY && transition_state == 4));
+with (ctrl_transition)
+{
+    pause_transition = ((transition_id == TRANS_CARD && (transition_state > 1 && transition_state < 4)) || (transition_id == TRANS_RETRY && transition_state == 4));
+}
 
 pause_stage = false;
 with (mnu_pause) pause_stage = pause_active;

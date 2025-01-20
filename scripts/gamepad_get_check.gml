@@ -7,7 +7,7 @@ with (ctrl_input)
     var gamepad_id;
 
     gamepad_id = gamepad_device[argument0, 0];
-    if (gamepad_id <= -1) return false;
+    if (gamepad_id < 0) return false;
 
     if (joystick_exists(gamepad_id))
     {
