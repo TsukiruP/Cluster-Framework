@@ -13,11 +13,5 @@ else if (sequence_position(1))
     image_index = 1;
     animation_trigger = true;
 }
-else if (sequence_position(2))
-{
-    image_index = 2;
-}
-else if (sequence_position(3))
-{
-    image_index = 3;
-}
+else if (sequence_position(2)) image_index = 2;
+else if (sequence_position(3)) image_index = 3;

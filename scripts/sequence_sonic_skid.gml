@@ -8,15 +8,6 @@ if (sequence_position(0))
     hurtbox_set(14, 1, 14, 17);
     hitbox_set(3, 7, 21, 18);
 }
-else if (sequence_position(2))
-{
-    image_index = 12;
-}
-else if (sequence_position(4))
-{
-    image_index = 13;
-}
-else if (sequence_position(5))
-{
-    sequence_moment = 0;
-}
+else if (sequence_position(2)) image_index = 12;
+else if (sequence_position(4)) image_index = 13;
+else if (sequence_position(5)) sequence_moment = 0;
