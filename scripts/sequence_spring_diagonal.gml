@@ -28,6 +28,5 @@ else if (sequence_position(12))
 else if (sequence_position(14))
 {
     hurtbox_set(6, 2, 4, 8);
-
     activated = false;
 }
