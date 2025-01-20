@@ -13,11 +13,7 @@ switch (argument0)
     case STATE_STEP:
         if (!on_ground)
         {
-            var stomp_allow;
-
-            stomp_allow = (image_index >= 5)
-
-            if (stomp_allow)
+            if (image_index >= 5)
             {
                 if (image_index == 5)
                 {
@@ -25,10 +21,7 @@ switch (argument0)
                     y_speed = 10;
                 }
 
-                if (!player_movement_air())
-                {
-                    return false;
-                }
+                if (!player_movement_air()) return false;
 
                 if (on_ground)
                 {
@@ -49,39 +42,17 @@ switch (argument0)
                     }
                 }
 
-                if (y_allow)
-                {
-                    y_speed += gravity_force;
-                }
+                if (y_allow) y_speed += gravity_force;
             }
         }
-
         else
         {
-            if (!player_movement_ground())
-            {
-                return false;
-            }
+            if (!player_movement_ground()) return false;
+            if (!on_ground) return player_set_state(player_state_air);
 
-            if (!on_ground)
-            {
-                return player_set_state(player_state_air);
-            }
-
-            if (player_get_input(INP_DOWN, CHECK_HELD) && player_get_input(INP_JUMP, CHECK_PRESSED))
-            {
-                return player_set_state(player_state_spin_dash);
-            }
-
-            if (game_get_save("sonic_peel") && player_get_input(INP_UP, CHECK_HELD) && player_get_input(INP_JUMP, CHECK_PRESSED))
-            {
-                return player_set_state(sonic_state_peel_out);
-            }
-
-            if (animation_finished)
-            {
-                return player_set_state(player_state_idle);
-            }
+            if (animation_finished) return player_set_state(player_state_idle);
+            if (player_get_input(INP_DOWN, CHECK_HELD) && player_get_input(INP_JUMP, CHECK_PRESSED)) return player_set_state(player_state_spin_dash);
+            if (game_get_save("sonic_peel") && player_get_input(INP_UP, CHECK_HELD) && player_get_input(INP_JUMP, CHECK_PRESSED)) return player_set_state(sonic_state_peel_out);
         }
         break;
 

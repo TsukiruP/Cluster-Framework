@@ -22,7 +22,6 @@ script_execute(sequence_index);
 animation_time += 1;
 
 if (animation_skip) animation_skip = false;
-
 if (animation_changed) animation_changed = false;
 
 if (on_ground)
@@ -32,9 +31,4 @@ if (on_ground)
 }
 
 player_animation_fix();
-
-// SSE bandaid:
-if (x_radius < 8)
-{
-    x_radius = 8;
-}
+if (x_radius < 8) x_radius = 8;

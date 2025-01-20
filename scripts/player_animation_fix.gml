@@ -18,15 +18,9 @@ switch (character_id)
         }
         
         // Spin:
-        if (state_current == player_state_jump && animation_current == "spin_dash")
-        {
-            player_set_animation("spin");
-        }
+        if (state_current == player_state_jump && animation_current == "spin_dash") player_set_animation("spin");
         
         // Brake:
-        if (animation_current == "brake_fast")
-        {
-            player_set_animation("brake");
-        }
+        if (animation_current == "brake_fast") player_set_animation("brake");
         break;
 }

@@ -18,17 +18,8 @@ repeat (total_steps)
     x += dcos(angle) * step;
     y -= dsin(angle) * step;
 
-    // Keep in bounds:
-    if (!player_inbounds())
-    {
-        return false;
-    }
-
-    // Object collision:
-    if (player_collision_object())
-    {
-        return false;
-    }
+    if (!player_inbounds()) return false;
+    if (player_collision_object()) return false;
 
     // Get colliding solids:
     player_get_solids();
@@ -41,7 +32,6 @@ repeat (total_steps)
         // Get crushed:
         if (hit_wall.can_crush && collision_point(x, y, hit_wall, true, false) != noone)
         {
-            // Death:
             player_set_damage(self);
             return false;
         }
@@ -51,17 +41,10 @@ repeat (total_steps)
 
         // React:
         player_react(hit_wall, COLL_SOLID);
-        
-        if (state_changed)
-        {
-            return false;
-        }
+        if (state_changed) return false;
 
         // Stop if moving towards wall:
-        if (sign(x_speed) == wall_sign)
-        {
-            x_speed = 0;
-        }
+        if (sign(x_speed) == wall_sign) x_speed = 0;
     }
 }
 
@@ -77,16 +60,8 @@ repeat (total_steps)
     y += dcos(angle) * step;
 
     // Keep in bounds:
-    if (!player_inbounds())
-    {
-        return false;
-    }
-
-    // Object collision:
-    if (player_collision_object())
-    {
-        return false;
-    }
+    if (!player_inbounds()) return false;
+    if (player_collision_object()) return false;
 
     // Get colliding solids:
     player_get_solids();
@@ -101,11 +76,7 @@ repeat (total_steps)
         {
             // React:
             player_react(hit_floor, COLL_SOLID);
-            
-            if (state_changed)
-            {
-                return false;
-            }
+            if (state_changed) return false;
 
             // Get floor data:
             player_set_ground(hit_floor);
@@ -123,11 +94,7 @@ repeat (total_steps)
         {
             // React:
             player_react(hit_floor, COLL_SOLID);
-            
-            if (state_changed)
-            {
-                return false;
-            }
+            if (state_changed) return false;
 
             // Rotate mask to ceiling:
             mask_rotation = angle_wrap(mask_rotation + 180);
@@ -169,11 +136,7 @@ repeat (total_steps)
         {
             // Scale speed to incline:
             x_speed = -y_speed * sign(dsin(relative_angle));
-
-            if (relative_angle < 45 || relative_angle > 315)
-            {
-                x_speed *= 0.5;
-            }
+            if (relative_angle < 45 || relative_angle > 315) x_speed *= 0.5;
         }
 
         // Stop falling:
@@ -185,12 +148,7 @@ repeat (total_steps)
 
     // Handle wall collision:
     hit_wall = player_collision_wall(0);
-
-    if (hit_wall != noone)
-    {
-        player_wall_eject(hit_wall);
-    }
+    if (hit_wall != noone) player_wall_eject(hit_wall);
 }
 
-// Success
 return true;

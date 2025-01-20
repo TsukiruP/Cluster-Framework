@@ -482,8 +482,7 @@
 				|player_state_death
 				|player_state_spring
 				|player_state_bound
-				+Auxiliary
-					|player_state_hammer
+				|player_state_hammer
 			+Skills
 				|player_skill_sonic
 				+Sonic

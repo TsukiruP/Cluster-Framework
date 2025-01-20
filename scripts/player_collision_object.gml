@@ -9,20 +9,10 @@ collision_list = ds_list_create();
 
 with (par_culled)
 {
-    if (!object_is_child_of(par_prop) && !object_is_child_of(par_obstacle))
-    {
-        continue;
-    }
+    if (!object_is_child_of(par_prop) && !object_is_child_of(par_obstacle)) continue;
 
-    with (player)
-    {
-        kind = player_get_collision(other);
-    }
-
-    if (kind == 0)
-    {
-        continue;
-    }
+    with (player) kind = player_get_collision(other);
+    if (kind == 0) continue;
 
     ds_list_add(collision_list, id);
 }

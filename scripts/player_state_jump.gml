@@ -23,50 +23,23 @@ switch (argument0)
             if (abs(x_speed) < top_speed || sign(x_speed) != input_x_direction)
             {
                 x_speed += (acceleration * 2) * input_x_direction;
-
-                if (abs(x_speed) > top_speed && sign(x_speed) == input_x_direction)
-                {
-                    x_speed = top_speed * input_x_direction;
-                }
+                if (abs(x_speed) > top_speed && sign(x_speed) == input_x_direction) x_speed = top_speed * input_x_direction;
             }
         }
 
-        if (!player_movement_air())
-        {
-            return false;
-        }
-
-        if (player_routine_land())
-        {
-            return true;
-        }
+        if (!player_movement_air()) return false;
+        if (player_routine_land() || player_routine_skill()) return true;
 
         if (jump_cap)
         {
             var input_held;
 
             input_held = pick(jump_aux, player_get_input(INP_JUMP, CHECK_HELD), player_get_input(INP_AUX, CHECK_HELD));
-
-            if (y_speed < jump_release && !input_held)
-            {
-                y_speed = jump_release;
-            }
+            if (y_speed < jump_release && !input_held) y_speed = jump_release;
         }
 
-        if (player_routine_skill())
-        {
-            return true;
-        }
-
-        if (abs(x_speed) > air_friction_threshold && y_speed > -4 && y_speed < 0)
-        {
-            x_speed *= air_friction;
-        }
-
-        if (y_allow)
-        {
-            y_speed += gravity_force;
-        }
+        if (abs(x_speed) > air_friction_threshold && y_speed > -4 && y_speed < 0) x_speed *= air_friction;
+        if (y_allow) y_speed += gravity_force;
 
         if (y_speed >= 0 && character_id != CHAR_CLASSIC)
         {
@@ -90,10 +63,7 @@ switch (argument0)
 
             with (shield_handle)
             {
-                if (sequence_index == sequence_shield_bubble_bound)
-                {
-                    shield_reset = true;
-                }
+                if (sequence_index == sequence_shield_bubble_bound) shield_reset = true;
             }
         }
         break;

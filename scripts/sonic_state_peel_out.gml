@@ -10,19 +10,11 @@ switch (argument0)
         break;
 
     case STATE_STEP:
-        if (!player_movement_ground())
-        {
-            return false;
-        }
+        if (!player_movement_ground()) return false;
         
-        // Slide off:
         if (relative_angle >= 45 && relative_angle <= 315)
         {
-            if (relative_angle >= 90 && relative_angle <= 270)
-            {
-                return player_set_state(player_state_air);
-            }
-            
+            if (relative_angle >= 90 && relative_angle <= 270) return player_set_state(player_state_air);
             input_lock_alarm = 30;
             return player_set_state(player_state_run);
         }
@@ -41,10 +33,7 @@ switch (argument0)
             return player_set_state(player_state_run);
         }
         
-        if (peel_out_alarm > 0)
-        {
-            peel_out_alarm -= 1;
-        }
+        if (peel_out_alarm > 0) peel_out_alarm -= 1;
         break;
 
     case STATE_FINISH:

@@ -15,20 +15,9 @@ switch (argument0)
         break;
 
     case STATE_STEP:
-        if (!player_movement_air())
-        {
-            return false;
-        }
-
-        if (player_routine_land())
-        {
-            return true;
-        }
-
-        if (!instance_exists(homing_handle))
-        {
-            return player_set_state(player_state_jump, false);
-        }
+        if (!player_movement_air()) return false;
+        if (player_routine_land()) return true;
+        if (!instance_exists(homing_handle)) return player_set_state(player_state_jump, false);
         break;
 
     case STATE_FINISH:

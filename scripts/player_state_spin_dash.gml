@@ -10,19 +10,11 @@ switch (argument0)
         break;
 
     case STATE_STEP:
-        if (!player_movement_ground())
-        {
-            return false;
-        }
+        if (!player_movement_ground()) return false;
 
-        // Slide off:
         if (relative_angle >= 45 && relative_angle <= 315)
         {
-            if (relative_angle >= 90 && relative_angle <= 270)
-            {
-                return player_set_state(player_state_air);
-            }
-
+            if (relative_angle >= 90 && relative_angle <= 270) return player_set_state(player_state_air);
             input_lock_alarm = 30;
             audio_play_sfx("snd_roll", true);
             return player_set_state(player_state_run);
@@ -44,11 +36,7 @@ switch (argument0)
             audio_play_sfx("snd_spin_dash_charge", true, 1 + spin_dash_charge * 0.0625);
         }
 
-        // Atrophy:
-        if (spin_dash_charge > 0)
-        {
-            spin_dash_charge *= 0.96875;
-        }
+        if (spin_dash_charge > 0) spin_dash_charge *= 0.96875;
         break;
 
     case STATE_FINISH:

@@ -9,25 +9,10 @@ switch (argument0)
         break;
 
     case STATE_STEP:
-        if (!player_movement_ground())
-        {
-            return false;
-        }
-
-        if (!on_ground)
-        {
-            return player_set_state(player_state_air);
-        }
-
-        if (animation_finished)
-        {
-            return player_set_state(player_state_idle);
-        }
-
-        if (player_routine_jump())
-        {
-            return true;
-        }
+        if (!player_movement_ground()) return false;
+        if (!on_ground) return player_set_state(player_state_air);
+        if (animation_finished) return player_set_state(player_state_idle);
+        if (player_routine_jump()) return true;
         break;
 
     // Finish:

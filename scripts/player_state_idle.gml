@@ -17,41 +17,18 @@ switch (argument0)
         }
         else
         {
-            if (image_xscale == cliff_direction)
-            {
-                player_set_animation("cliff_front");
-            }
-            else
-            {
-                player_set_animation("cliff_back");
-            }
+            if (image_xscale == cliff_direction) player_set_animation("cliff_front");
+            else player_set_animation("cliff_back");
         }
         break;
 
     case STATE_STEP:
-        if (!player_movement_ground())
-        {
-            return false;
-        }
+        if (!player_movement_ground() || !hint_allow) return false;
+        if (!on_ground) return player_set_state(player_state_air);
 
-        if (!hint_allow)
-        {
-            return false;
-        }
-
-        if (!on_ground)
-        {
-            return player_set_state(player_state_air);
-        }
-
-        // Slide off:
         if (relative_angle >= 45 && relative_angle <= 315)
         {
-            if (relative_angle >= 90 && relative_angle <= 270)
-            {
-                return player_set_state(player_state_air);
-            }
-
+            if (relative_angle >= 90 && relative_angle <= 270) return player_set_state(player_state_air);
             input_lock_alarm = 30;
             return player_set_state(player_state_run);
         }
@@ -61,42 +38,24 @@ switch (argument0)
             return player_set_state(player_state_turn);
         }
 
-        if (x_speed != 0 || input_x_direction != 0)
-        {
-            return player_set_state(player_state_run);
-        }
+        if (x_speed != 0 || input_x_direction != 0) return player_set_state(player_state_run);
 
         if (cliff_direction == 0)
         {
             switch (input_y_direction)
             {
                 case -1:
-                    if (animation_current != "look_end")
-                    {
-                        return player_set_state(player_state_look);
-                    }
+                    if (animation_current != "look_end") return player_set_state(player_state_look);
                     break;
 
                 case 1:
-                    if (animation_current != "crouch_end")
-                    {
-                        return player_set_state(player_state_crouch);
-                    }
+                    if (animation_current != "crouch_end") return player_set_state(player_state_crouch);
                     break;
             }
         }
 
-        if (player_routine_skill())
-        {
-            return true;
-        }
+        if (player_routine_jump() || player_routine_skill()) return true;
 
-        if (player_routine_jump())
-        {
-            return true;
-        }
-
-        // Wait:
         if (!game_ispaused(ctrl_text) && on_ground && input_allow && animation_current == "stand")
         {
             if (wait_alarm > 0)

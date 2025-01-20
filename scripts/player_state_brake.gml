@@ -4,19 +4,9 @@
 switch (argument0)
 {
     case STATE_START:
-        if ((!game_get_config("advance_brake") || character_id == CHAR_CLASSIC) && x_speed != 0)
-        {
-            image_xscale = sign(x_speed);
-        }
-
-        if (abs(x_speed) >= 6.00)
-        {
-            player_set_animation("brake_fast");
-        }
-        else
-        {
-            player_set_animation("brake");
-        }
+        if ((!game_get_config("advance_brake") || character_id == CHAR_CLASSIC) && x_speed != 0) image_xscale = sign(x_speed);
+        if (abs(x_speed) >= 6.00) player_set_animation("brake_fast");
+        else player_set_animation("brake");
         break;
 
     case STATE_STEP:
@@ -42,73 +32,31 @@ switch (argument0)
                     }
                 }
             }
-            else
-            {
-                return player_set_state(player_state_run);
-            }
+            else return player_set_state(player_state_run);
         }
-
-        // Friction:
         else
         {
-            if (game_get_config("advance_brake") && character_id != CHAR_CLASSIC)
-            {
-                return player_set_state(player_state_run);
-            }
-
+            if (game_get_config("advance_brake") && character_id != CHAR_CLASSIC) return player_set_state(player_state_run);
             x_speed -= min(abs(x_speed), acceleration) * sign(x_speed);
-
-            // Roll:
-            if (player_routine_roll())
-            {
-                return true;
-            }
+            if (player_routine_roll()) return true;
         }
 
-        if (!player_movement_ground())
-        {
-            return false;
-        }
+        if (!player_movement_ground()) return false;
+        if (!on_ground) return player_set_state(player_state_air);
 
-        if (!on_ground)
-        {
-            return player_set_state(player_state_air);
-        }
-
-        // Slide off:
         if (abs(x_speed) < slide_threshold && relative_angle >= 45 && relative_angle <= 315)
         {
-            if (relative_angle >= 90 && relative_angle <= 270)
-            {
-                return player_set_state(player_state_air);
-            }
-
+            if (relative_angle >= 90 && relative_angle <= 270) return player_set_state(player_state_air);
             input_lock_alarm = 30;
             return player_set_state(player_state_run);
         }
 
         player_slope_friction(slope_friction);
 
-        if (x_speed == 0 && input_x_direction == 0)
-        {
-            return player_set_state(player_state_idle);
-        }
+        if (x_speed == 0 && input_x_direction == 0) return player_set_state(player_state_idle);
+        if (player_routine_jump() || player_routine_skill()) return true;
 
-        if (player_routine_skill())
-        {
-            return true;
-        }
-
-        if (player_routine_jump())
-        {
-            return true;
-        }
-
-        // Dust:
-        if (x_speed != 0)
-        {
-            player_brake_dust();
-        }
+        if (x_speed != 0) player_brake_dust();
         break;
 
     case STATE_FINISH:

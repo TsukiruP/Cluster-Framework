@@ -20,10 +20,7 @@ if (instance_exists(ground_id))
 }
 
 // Fall off:
-else
-{
-    on_ground = false;
-}
+else on_ground = false;
 
 // Reset wall data:
 wall_sign = 0;
@@ -39,17 +36,8 @@ repeat (total_steps)
     x += dcos(angle) * step;
     y -= dsin(angle) * step;
 
-    // Keep in bounds:
-    if (!player_inbounds())
-    {
-        return false;
-    }
-
-    // Object collision:
-    if (player_collision_object())
-    {
-        return false;
-    }
+    if (!player_inbounds()) return false;
+    if (player_collision_object()) return false;
 
     // Get colliding solids:
     player_get_solids();
@@ -62,7 +50,6 @@ repeat (total_steps)
         // Get crushed:
         if (hit_wall.can_crush && collision_point(x, y, hit_wall, true, false) != noone)
         {
-            // Death:
             player_set_damage(self);
             return false;
         }
@@ -72,11 +59,7 @@ repeat (total_steps)
 
         // React:
         player_react(hit_wall, COLL_SOLID);
-        
-        if (state_changed)
-        {
-            return false;
-        }
+        if (state_changed) return false;
 
         // Stop if moving towards wall:
         if (sign(x_speed) == wall_sign)
@@ -85,7 +68,7 @@ repeat (total_steps)
             x_speed = 0;
 
             // Push:
-            if (image_xscale == wall_sign and input_x_direction == wall_sign)
+            if (image_xscale == wall_sign && input_x_direction == wall_sign)
             {
                 player_wall_push(hit_wall, wall_sign);
             }
@@ -99,25 +82,17 @@ repeat (total_steps)
     {
         // React:
         player_react(hit_floor, COLL_SOLID);
-        
-        if (state_changed)
-        {
-            return false;
-        }
+        if (state_changed) return false;
 
         // Get floor data:
         player_set_ground(hit_floor);
     }
 
     // Fall off:
-    else
-    {
-        on_ground = false;
-    }
+    else on_ground = false;
 
     // Handle mask rotation:
     player_rotate_mask();
 }
 
-// Success
 return true;
