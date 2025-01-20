@@ -62,7 +62,5 @@ applies_to=self
 */
 /// Draw Ring
 
-// Ring:
 draw_self();
-
 event_inherited();

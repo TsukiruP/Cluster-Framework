@@ -7,13 +7,9 @@ applies_to=self
 /// Spike Initialization
 
 event_inherited();
-
 depth = -10;
-
 mask = false;
-
 reaction_index = player_reaction_spike;
-
 orientation = ORIEN_VERTICAL;
 flip = false;
 angle = ANGLE_UP;

@@ -7,7 +7,6 @@ applies_to=self
 /// Shield Initialization
 
 event_inherited();
-
 shield_reset = false;
 shield_hide = false;
 shield_advance = false;
@@ -26,10 +25,7 @@ if (player_handle.status_invin != INVIN_BUFF)
     switch (player_handle.status_shield)
     {
         case SHIELD_MAGNETIC:
-            if (sequence_index != sequence_shield_magnetic)
-            {
-                sequence_set(sequence_shield_magnetic);
-            }
+            if (sequence_index != sequence_shield_magnetic) sequence_set(sequence_shield_magnetic);
             break;
 
         case SHIELD_BUBBLE:
@@ -40,33 +36,20 @@ if (player_handle.status_invin != INVIN_BUFF)
             break;
 
         case SHIELD_FIRE:
-            if ((sequence_index != sequence_shield_fire && sequence_index != sequence_shield_fire_dash) || shield_reset)
-            {
-                sequence_set(sequence_shield_fire);
-            }
+            if ((sequence_index != sequence_shield_fire && sequence_index != sequence_shield_fire_dash) || shield_reset) sequence_set(sequence_shield_fire);
             break;
 
         case SHIELD_LIGHTNING:
-            if (sequence_index != sequence_shield_lightning)
-            {
-                sequence_set(sequence_shield_lightning);
-            }
+            if (sequence_index != sequence_shield_lightning) sequence_set(sequence_shield_lightning);
             break;
 
         default:
-            if (sequence_index != sequence_shield_basic)
-            {
-                sequence_set(sequence_shield_basic);
-            }
+            if (sequence_index != sequence_shield_basic) sequence_set(sequence_shield_basic);
     }
 }
-
 else
 {
-    if (sequence_index != sequence_shield_invin)
-    {
-        sequence_set(sequence_shield_invin);
-    }
+    if (sequence_index != sequence_shield_invin) sequence_set(sequence_shield_invin);
 }
 
 shield_reset = false;
@@ -85,15 +68,9 @@ if (!game_ispaused(mnu_pause) && ((player_handle.status_shield == SHIELD_BUBBLE 
 {
     shield_hide = time_sync(sequence_moment, 2, 2);
 }
-else
-{
-    shield_hide = false;
-}
+else shield_hide = false;
 
-if (player_handle.status_shield == SHIELD_NONE && player_handle.status_invin != INVIN_BUFF)
-{
-    instance_destroy();
-}
+if (player_handle.status_shield == SHIELD_NONE && player_handle.status_invin != INVIN_BUFF) instance_destroy();
 #define Other_10
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -134,29 +111,14 @@ var player_rotation, sine, csine, draw_x, draw_y;
 
 player_rotation = player_handle.gravity_direction;
 
-if (sprite_index != spr_shield_fire_dash)
-{
-    image_xscale = 1;
-}
+if (sprite_index != spr_shield_fire_dash) image_xscale = 1;
 
-if ((game_get_config("advance_flicker") && shield_advance) || !shield_advance)
-{
-    image_alpha = 1;
-}
-else
-{
-    image_alpha = 0.6;
-}
+if ((game_get_config("advance_flicker") && shield_advance) || !shield_advance) image_alpha = 1;
+else image_alpha = 0.6;
 
 if (sprite_exists(sprite_index))
 {
-    // Shield:
-    if (!shield_hide)
-    {
-        draw_sprite_ext(sprite_index, image_index, x, y, image_xscale, 1, player_rotation, c_white, image_alpha);
-    }
-
-    // Switch to bubble shield shell:
+    if (!shield_hide) draw_sprite_ext(sprite_index, image_index, x, y, image_xscale, 1, player_rotation, c_white, image_alpha);
     else if (player_handle.status_shield == SHIELD_BUBBLE && player_handle.status_invin != INVIN_BUFF)
     {
         draw_sprite_ext(spr_shield_bubble_shell, sequence_moment_previous div 12, x, y, image_xscale, 1, player_rotation, c_white, image_alpha);

@@ -7,7 +7,6 @@ applies_to=self
 /// Debuff Initialization
 
 event_inherited();
-
 sequence_set(sequence_debuff);
 #define Step_2
 /*"/*'/**//* YYD ACTION
@@ -19,10 +18,7 @@ applies_to=self
 
 event_inherited();
 
-if (player_handle.status_speed != SPEED_SLOW && player_handle.status_panic_alarm <= 0)
-{
-    instance_destroy();
-}
+if (player_handle.status_speed != SPEED_SLOW && player_handle.status_panic_alarm <= 0) instance_destroy();
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1

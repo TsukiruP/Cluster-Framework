@@ -9,7 +9,6 @@ applies_to=self
 depth = 10;
 image_speed = 0;
 gravity_direction = 0;
-
 hurtbox_set();
 hitbox_set();
 reaction_index = -1;
@@ -21,13 +20,7 @@ applies_to=self
 */
 /// Draw Collision
 
-if (!game_get_debug())
-{
-    exit;
-}
+if (!game_get_debug()) exit;
 
-// Hurtbox:
 draw_collision(hurtbox_left, hurtbox_top, hurtbox_right, hurtbox_bottom, hurtbox_offset_x, hurtbox_offset_y, image_xscale, gravity_direction, c_maroon);
-
-// Hitbox:
 draw_collision(hitbox_left, hitbox_top, hitbox_right, hitbox_bottom, hitbox_offset_x, hitbox_offset_y, image_xscale, gravity_direction, c_green);

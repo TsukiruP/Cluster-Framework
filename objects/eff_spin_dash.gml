@@ -8,17 +8,11 @@ applies_to=self
 
 if (floor(player_handle.spin_dash_charge) > 0)
 {
-    if (sequence_index != sequence_spin_charge)
-    {
-        sequence_set(sequence_spin_charge);
-    }
+    if (sequence_index != sequence_spin_charge) sequence_set(sequence_spin_charge);
 }
 else
 {
-    if (sequence_index != sequence_spin_dash)
-    {
-        sequence_set(sequence_spin_dash);
-    }
+    if (sequence_index != sequence_spin_dash) sequence_set(sequence_spin_dash);
 }
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -29,10 +23,7 @@ applies_to=self
 
 event_inherited();
 
-if (player_handle.state_current != player_state_spin_dash)
-{
-    instance_destroy();
-}
+if (player_handle.state_current != player_state_spin_dash) instance_destroy();
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -50,7 +41,4 @@ csine = dcos(player_rotation);
 draw_x = x + sine * floor(player_handle.y_radius);
 draw_y = y + csine * floor(player_handle.y_radius);
 
-if (sprite_exists(sprite_index))
-{
-    draw_sprite_ext(sprite_index, image_index, draw_x, draw_y, player_handle.image_xscale, 1, player_rotation, c_white, 1);
-}
+if (sprite_exists(sprite_index)) draw_sprite_ext(sprite_index, image_index, draw_x, draw_y, player_handle.image_xscale, 1, player_rotation, c_white, 1);

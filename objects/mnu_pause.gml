@@ -47,10 +47,7 @@ applies_to=self
 */
 /// Inputs
 
-if (game_ispaused(ctrl_text) || menu_lock || menu_alarm > 0)
-{
-    exit;
-}
+if (game_ispaused(ctrl_text) || menu_lock || menu_alarm > 0) exit;
 
 if (input_get_check(INP_HIDE, CHECK_PRESSED))
 {
@@ -60,10 +57,7 @@ if (input_get_check(INP_HIDE, CHECK_PRESSED))
 
 if (input_get_check(INP_CANCEL, CHECK_PRESSED))
 {
-    if (menu_hide != 0)
-    {
-        menu_hide = 0;
-    }
+    if (menu_hide != 0) menu_hide = 0;
     else
     {
         switch (menu_index)
@@ -84,30 +78,20 @@ if (input_get_check(INP_CANCEL, CHECK_PRESSED))
 
 with (par_overlay)
 {
-    if (visible != (other.menu_hide != 2))
-    {
-        visible = (other.menu_hide != 2);
-    }
+    if (visible != (other.menu_hide != 2)) visible = (other.menu_hide != 2);
 }
 
-if (menu_hide != 0)
-{
-    exit;
-}
+if (menu_hide != 0) exit;
 
 var menu_up, menu_down, menu_direction;
 
 menu_up = (input_get_check(INP_UP, CHECK_PRESSED) || input_get_time(INP_UP, 30));
 menu_down = (input_get_check(INP_DOWN, CHECK_PRESSED) || input_get_time(INP_DOWN, 30));
 menu_direction = menu_down - menu_up;
+if (menu_direction != 0) audio_play_sfx("snd_menu_move", true);
 
 menu_option[menu_index] += menu_direction;
 menu_option[menu_index] = wrap(menu_option[menu_index], 0, pause_count[menu_index] - 1);
-
-if (menu_direction != 0)
-{
-    audio_play_sfx("snd_menu_move", true);
-}
 
 if (input_get_check(INP_CONFIRM, CHECK_PRESSED))
 {
@@ -115,10 +99,7 @@ if (input_get_check(INP_CONFIRM, CHECK_PRESSED))
     {
         // Pause:
         case 0:
-            if (menu_option[menu_index] == 0)
-            {
-                event_user(0);
-            }
+            if (menu_option[menu_index] == 0) event_user(0);
             else
             {
                 menu_index = 1;
@@ -129,10 +110,7 @@ if (input_get_check(INP_CONFIRM, CHECK_PRESSED))
         // Confirm:
         case 1:
             // No:
-            if (menu_option[menu_index] == 1)
-            {
-                event_user(1);
-            }
+            if (menu_option[menu_index] == 1) event_user(1);
 
             // Yes:
             else
@@ -183,10 +161,7 @@ applies_to=self
 
 if (!menu_lock) exit;
 
-if (menu_alarm > 0)
-{
-    menu_alarm -= 1;
-}
+if (menu_alarm > 0) menu_alarm -= 1;
 
 switch (pause_mode)
 {
@@ -209,11 +184,7 @@ switch (pause_mode)
             {
                 if (!instance_exists(transition_handle))
                 {
-                    with (ctrl_transition)
-                    {
-                        persistent = false;
-                    }
-
+                    with (ctrl_transition) persistent = false;
                     transition_handle = transition_create(room);
                     transition_handle.depth = depth;
                     transition_handle.pause_ignore = true;
@@ -245,8 +216,6 @@ applies_to=self
 */
 /// Continue
 
-var i;
-
 menu_lock = true;
 menu_alarm = 2;
 pause_mode = 0;
@@ -258,8 +227,6 @@ applies_to=self
 */
 /// Reset
 
-var i;
-
 menu_index = 0;
 #define Draw_0
 /*"/*'/**//* YYD ACTION
@@ -269,10 +236,7 @@ applies_to=self
 */
 /// Draw Menu
 
-if (menu_hide != 0)
-{
-    exit;
-}
+if (menu_hide != 0) exit;
 
 var i, menu_offset, menu_height, menu_y;
 

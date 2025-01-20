@@ -73,7 +73,6 @@ slide_threshold = 2.5;
 air_friction_threshold = 0.125;
 
 radii_set(6, 14, 3, 0);
-wall_radius = x_radius + wall_offset;
 hurtbox_set();
 hitbox_set();
 
@@ -233,21 +232,14 @@ if (game_ispaused())
 
 if (input_allow)
 {
-    if (!input_cpu)
-    {
-        player_set_device();
-    }
+    if (!input_cpu) player_set_device();
     else
     {
         if (input_cpu_gamepad_alarm > 0)
         {
             input_cpu_gamepad_alarm -= 1;
-            player_set_device();
-
-            if (input_cpu_gamepad_alarm == 0)
-            {
-                player_reset_status();
-            }
+            if (input_cpu_gamepad_alarm == 0) player_reset_status();
+            else player_set_device();
         }
 
         if (input_cpu_gamepad_alarm == 0)
@@ -346,11 +338,7 @@ if (input_allow)
                         {
                             player_set_input(INP_LEFT, CHECK_HELD, true);
                             player_set_input(INP_RIGHT, CHECK_HELD, false);
-
-                            if (image_xscale == 1 && x_speed != 0 && animation_current != "push")
-                            {
-                                x += 1;
-                            }
+                            if (image_xscale == 1 && x_speed != 0 && animation_current != "push") x += 1;
                         }
 
                         // Move right:
@@ -358,11 +346,7 @@ if (input_allow)
                         {
                             player_set_input(INP_LEFT, CHECK_HELD, false);
                             player_set_input(INP_RIGHT, CHECK_HELD, true);
-
-                            if (image_xscale == -1 && x_speed != 0 && animation_current != "push")
-                            {
-                                x -= 1;
-                            }
+                            if (image_xscale == -1 && x_speed != 0 && animation_current != "push") x -= 1;
                         }
 
                         // Jump:
@@ -374,11 +358,7 @@ if (input_allow)
                         {
                             input_cpu_state_time += 1;
 
-                            if (image_xscale == leader_handle.image_xscale && leader_handle.animation_current == "push")
-                            {
-                                input_cpu_state_time = 0;
-                            }
-
+                            if (image_xscale == leader_handle.image_xscale && leader_handle.animation_current == "push") input_cpu_state_time = 0;
                             jump_auto = pick(input_cpu_state_time < 30, 0, 1);
                         }
                         else
@@ -419,10 +399,7 @@ if (input_allow)
                 }
             }
 
-            if (input_get_check(INP_ANY, CHECK_HELD, DEV_GAMEPAD0 + player_id))
-            {
-                input_cpu_gamepad_alarm = 600;
-            }
+            if (input_get_check(INP_ANY, CHECK_HELD, DEV_GAMEPAD0 + player_id)) input_cpu_gamepad_alarm = 600;
         }
 
         // Respawn:
@@ -438,10 +415,7 @@ if (input_allow)
         }
         else
         {
-            if (input_cpu_respawn_time != 0)
-            {
-                input_cpu_respawn_time = 0;
-            }
+            if (input_cpu_respawn_time != 0) input_cpu_respawn_time = 0;
         }
     }
 }
@@ -449,15 +423,8 @@ if (input_allow)
 input_x_direction = player_get_input(INP_RIGHT, CHECK_HELD) - player_get_input(INP_LEFT, CHECK_HELD);
 input_y_direction = player_get_input(INP_DOWN, CHECK_HELD) - player_get_input(INP_UP, CHECK_HELD);
 
-if (on_ground && input_lock_alarm > 0)
-{
-    input_lock_alarm -= 1;
-}
-
-if (status_panic_alarm > 0 && input_lock_alarm == 0)
-{
-    input_x_direction *= -1;
-}
+if (on_ground && input_lock_alarm > 0) input_lock_alarm -= 1;
+if (status_panic_alarm > 0 && input_lock_alarm == 0) input_x_direction *= -1;
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -465,10 +432,7 @@ applies_to=self
 */
 /// Animation
 
-if (game_ispaused(mnu_pause))
-{
-    exit;
-}
+if (game_ispaused(mnu_pause)) exit;
 
 player_animation_core();
 /*"/*'/**//* YYD ACTION
@@ -478,10 +442,7 @@ applies_to=self
 */
 /// State
 
-if (game_ispaused())
-{
-    exit;
-}
+if (game_ispaused()) exit;
 
 if (script_exists(state_current))
 {
@@ -495,10 +456,7 @@ applies_to=self
 */
 /// Traits
 
-if (game_ispaused())
-{
-    exit;
-}
+if (game_ispaused()) exit;
 
 player_trait_debug();
 player_trait_swap();
@@ -530,25 +488,15 @@ if (status_invin >= INVIN_BUFF)
         status_speed_alarm = 0;
     }
 
-    if (status_panic_alarm > 0)
-    {
-        status_panic_alarm = 0;
-    }
-
-    if (status_swap_alarm > 0)
-    {
-        status_swap_alarm = 0;
-    }
+    if (status_panic_alarm > 0) status_panic_alarm = 0;
+    if (status_swap_alarm > 0) status_swap_alarm = 0;
 }
 
 if (status_speed == SPEED_SLOW)
 {
     if (spring_force == 0)
     {
-        if (abs(x_speed) > top_speed)
-        {
-            x_speed = top_speed * sign(x_speed);
-        }
+        if (abs(x_speed) > top_speed) x_speed = top_speed * sign(x_speed);
     }
 }
 /*"/*'/**//* YYD ACTION
@@ -558,10 +506,7 @@ applies_to=self
 */
 /// Effects
 
-if (state_current != player_state_death)
-{
-    depth = player_id;
-}
+if (state_current != player_state_death) depth = player_id;
 
 if (state_current == player_state_spin_dash && !instance_exists(spin_dash_handle))
 {
@@ -583,10 +528,7 @@ if ((status_shield != SHIELD_NONE || status_invin == INVIN_BUFF) && !instance_ex
 
 if (game_get_config("advance_flicker") && status_invin == INVIN_BUFF)
 {
-    if (time_sync(status_invin_alarm, 2, 4) == 0)
-    {
-        effect_create(sequence_shield_invin_spark, x + random_range(-x_radius, x_radius), y + random_range(-y_radius, y_radius));
-    }
+    if (time_sync(status_invin_alarm, 2, 4) == 0) effect_create(sequence_shield_invin_spark, x + random_range(-x_radius, x_radius), y + random_range(-y_radius, y_radius));
 }
 
 if ((status_speed == SPEED_SLOW || status_panic_alarm > 0) && !instance_exists(debuff_handle))
@@ -607,24 +549,15 @@ if (game_get_config("misc_reticle") > 0 && instance_exists(homing_handle) && !in
     }
 }
 
-if (status_speed == SPEED_UP)
-{
-    afterimage_draw = true;
-}
+if (status_speed == SPEED_UP) afterimage_draw = true;
 else
 {
     afterimage_draw = false;
     afterimage_alarm = 6;
 }
 
-if (state_current == player_state_roll || state_current == sonic_state_homing)
-{
-    trail_draw = true;
-}
-else
-{
-    trail_draw = false;
-}
+if (state_current == player_state_roll || state_current == sonic_state_homing) trail_draw = true;
+else trail_draw = false;
 
 if (waterfall_draw && !instance_exists(waterfall_handle))
 {
@@ -641,20 +574,13 @@ applies_to=self
 */
 /// Air
 
-if (game_ispaused())
-{
-    exit;
-}
+if (game_ispaused()) exit;
 
 if (state_current == player_state_death || (physics_id == PHYS_WATER && status_shield == SHIELD_BUBBLE) || instance_exists(ctrl_tally))
 {
     air_remaining = 30;
     air_alarm = 60;
-
-    if (state_current != player_state_death && !input_cpu)
-    {
-        audio_stop_drown();
-    }
+    if (state_current != player_state_death && !input_cpu) audio_stop_drown();
 }
 #define Step_1
 /*"/*'/**//* YYD ACTION
@@ -723,10 +649,7 @@ if (instance_exists(obj_water_surface))
 {
     if (y < obj_water_surface.y)
     {
-        if (physics_id != PHYS_DEFAULT)
-        {
-            physics_id = PHYS_DEFAULT;
-        }
+        if (physics_id != PHYS_DEFAULT) physics_id = PHYS_DEFAULT;
     }
 
     if (y > obj_water_surface.y)
@@ -734,11 +657,7 @@ if (instance_exists(obj_water_surface))
         if (physics_id != PHYS_WATER)
         {
             physics_id = PHYS_WATER;
-
-            if (status_shield == SHIELD_FIRE || status_shield == SHIELD_LIGHTNING)
-            {
-                status_shield = SHIELD_NONE;
-            }
+            if (status_shield == SHIELD_FIRE || status_shield == SHIELD_LIGHTNING) status_shield = SHIELD_NONE;
         }
     }
 }
@@ -773,17 +692,11 @@ if (state_current != player_state_death && !instance_exists(ctrl_tally))
                         case 25:
                         case 20:
                         case 15:
-                            if (!input_cpu)
-                            {
-                                audio_play_sfx("snd_drown_alert");
-                            }
+                            if (!input_cpu) audio_play_sfx("snd_drown_alert");
                             break;
 
                         case 12:
-                            if (!input_cpu)
-                            {
-                                audio_play_drown();
-                            }
+                            if (!input_cpu) audio_play_drown();
 
                         case 10:
                         case 8:
@@ -793,7 +706,6 @@ if (state_current != player_state_death && !instance_exists(ctrl_tally))
                             drown_index += 1;
                             break;
 
-                        // Drown:
                         case 0:
                             x_speed = 0;
                             drown = true;
@@ -816,10 +728,7 @@ applies_to=self
 */
 /// Lists
 
-if (game_ispaused(mnu_pause))
-{
-    exit;
-}
+if (game_ispaused(mnu_pause)) exit;
 
 ds_list_delete(x_list, 0);
 ds_list_delete(y_list, 0);
@@ -838,10 +747,7 @@ applies_to=self
 */
 /// Image Angle
 
-if (game_ispaused())
-{
-    exit;
-}
+if (game_ispaused()) exit;
 
 var angle_mod;
 
@@ -884,34 +790,19 @@ switch (animation_current)
 
     case "spring_flight":
     case "spring_fall":
-        if (character_id != CHAR_CLASSIC && spring_angle != ANGLE_DOWN && spring_alarm > 0)
-        {
-            image_angle = spring_angle - 90;
-        }
-        else
-        {
-            image_angle = approach_angle(image_angle, gravity_direction, 4);
-        }
+        if (character_id != CHAR_CLASSIC && spring_angle != ANGLE_DOWN && spring_alarm > 0) image_angle = spring_angle - 90;
+        else image_angle = approach_angle(image_angle, gravity_direction, 4);
         break;
 
     default:
-        if (on_ground)
-        {
-            image_angle = angle;
-        }
-        else
-        {
-            image_angle = approach_angle(image_angle, gravity_direction, 4);
-        }
+        if (on_ground) image_angle = angle;
+        else image_angle = approach_angle(image_angle, gravity_direction, 4);
 
         if (character_id == CHAR_CLASSIC)
         {
             if (on_ground)
             {
-                if (image_angle mod 45 != 0)
-                {
-                    image_angle = roundto(image_angle, 45);
-                }
+                if (image_angle mod 45 != 0) image_angle = roundto(image_angle, 45);
             }
         }
 }
@@ -954,42 +845,22 @@ applies_to=self
 */
 /// Splash
 
-if (!instance_exists(obj_water_surface))
-{
-    exit;
-}
+if (!instance_exists(obj_water_surface)) exit;
 
 if (y > obj_water_surface.y && yprevious < obj_water_surface.y)
 {
     x_speed *= 0.50;
     y_speed *= 0.25;
-
-    if (y_speed >= 2.50)
-    {
-        effect_create(sequence_splash_1, x, obj_water_surface.y, -10);
-    }
-    else
-    {
-        effect_create(sequence_splash_0, x, obj_water_surface.y, -10);
-    }
-
     audio_play_sfx("snd_splash", true);
+    if (y_speed >= 2.50) effect_create(sequence_splash_1, x, obj_water_surface.y, -10);
+    else effect_create(sequence_splash_0, x, obj_water_surface.y, -10);
 }
-
 else if (y < obj_water_surface.y && yprevious > obj_water_surface.y)
 {
     y_speed = max(y_speed * 2, -16);
-
-    if (y_speed <= -6)
-    {
-        effect_create(sequence_splash_1, x, obj_water_surface.y, -10);
-    }
-    else
-    {
-        effect_create(sequence_splash_0, x, obj_water_surface.y, -10);
-    }
-
     audio_play_sfx("snd_splash", true);
+    if (y_speed <= -6) effect_create(sequence_splash_1, x, obj_water_surface.y, -10);
+    else effect_create(sequence_splash_0, x, obj_water_surface.y, -10);
 }
 
 if (on_surface && abs(x_speed) > 0)
@@ -998,14 +869,8 @@ if (on_surface && abs(x_speed) > 0)
 
     if (surface_time mod 9 == 0)
     {
-        if (abs(x_speed) >= 4.50)
-        {
-            effect_create(sequence_splash_3, x, obj_water_surface.y, depth, image_xscale);
-        }
-        else
-        {
-            effect_create(sequence_splash_2, x, obj_water_surface.y, depth, image_xscale);
-        }
+        if (abs(x_speed) >= 4.50) effect_create(sequence_splash_3, x, obj_water_surface.y, depth, image_xscale);
+        else effect_create(sequence_splash_2, x, obj_water_surface.y, depth, image_xscale);
     }
 }
 else surface_time = 0;
@@ -1020,11 +885,7 @@ applies_to=self
 ds_list_destroy(solid_list);
 ds_list_destroy(x_list);
 ds_list_destroy(y_list);
-
-if (trail_alpha != -1)
-{
-    ds_list_destroy(trail_alpha);
-}
+if (trail_alpha != -1) ds_list_destroy(trail_alpha);
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -1060,10 +921,7 @@ applies_to=self
 */
 /// Draw Collision
 
-if (!game_get_debug())
-{
-    exit;
-}
+if (!game_get_debug()) exit;
 
 var x_int, y_int, sine, csine;
 
@@ -1071,14 +929,8 @@ x_int = floor(x);
 y_int = floor(y);
 
 // Bounding box:
-if (mask_rotation mod 180 != 0)
-{
-    draw_rectangle_color(x_int - y_radius, y_int - x_radius, x_int + y_radius, y_int + x_radius, c_orange, c_orange, c_orange, c_orange, true);
-}
-else
-{
-    draw_rectangle_color(x_int - x_radius, y_int - y_radius, x_int + x_radius, y_int + y_radius, c_orange, c_orange, c_orange, c_orange, true);
-}
+if (mask_rotation mod 180 != 0) draw_rectangle_color(x_int - y_radius, y_int - x_radius, x_int + y_radius, y_int + x_radius, c_orange, c_orange, c_orange, c_orange, true);
+else draw_rectangle_color(x_int - x_radius, y_int - y_radius, x_int + x_radius, y_int + y_radius, c_orange, c_orange, c_orange, c_orange, true);
 
 // Wall radius:
 sine = dsin(mask_rotation);
@@ -1086,10 +938,7 @@ csine = dcos(mask_rotation);
 
 draw_line_color(x_int - csine * wall_radius, y_int + sine * wall_radius, x_int + csine * wall_radius, y_int - sine * wall_radius, c_white, c_white);
 
-// Hurtbox:
 draw_collision(hurtbox_left, hurtbox_top, hurtbox_right, hurtbox_bottom, hurtbox_offset_x, hurtbox_offset_y, image_xscale, mask_rotation, c_maroon);
-
-// Hitbox:
 draw_collision(hitbox_left, hitbox_top, hitbox_right, hitbox_bottom, hitbox_offset_x, hitbox_offset_y, image_xscale, mask_rotation, c_green);
 
 draw_reset();

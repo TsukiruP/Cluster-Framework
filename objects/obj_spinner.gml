@@ -7,10 +7,8 @@ applies_to=self
 /// Spinner Initialization
 
 event_inherited();
-
 hurtbox_set(20, 19, 20, 4);
 hitbox_set(8, 18, 7, 4);
-
 sequence_init(sequence_spinner);
 #define Step_2
 /*"/*'/**//* YYD ACTION

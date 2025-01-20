@@ -70,20 +70,14 @@ applies_to=self
 */
 /// Music Priority
 
-// Drowning music takes highest priority:
 if (audio_drown_isplaying())
 {
     audio_mute_bgm();
     audio_mute_jng();
 }
-
-// Jingle has priority over music:
 else
 {
-    if (audio_jng_isplaying())
-    {
-        audio_mute_bgm();
-    }
+    if (audio_jng_isplaying()) audio_mute_bgm();
 }
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -98,24 +92,14 @@ if (fade_out)
     audio_fade_bgm(true);
     audio_fade_jng(true);
     audio_drown_fade(true);
-
-    if (bgm_handle == -1 && jng_handle == -1)
-    {
-        fade_out = false;
-    }
+    if (bgm_handle == -1 && jng_handle == -1) fade_out = false;
 }
 else
 {
     if (!audio_drown_isplaying())
     {
-        if (audio_jng_isplaying())
-        {
-            audio_fade_jng(false);
-        }
-        else
-        {
-            audio_fade_bgm(false);
-        }
+        if (audio_jng_isplaying()) audio_fade_jng(false);
+        else audio_fade_bgm(false);
     }
 }
 #define Other_3

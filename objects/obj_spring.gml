@@ -7,9 +7,7 @@ applies_to=self
 /// Spring Initialization
 
 event_inherited();
-
 reaction_index = player_reaction_spring;
-
 orientation = ORIEN_VERTICAL;
 flip_x = false;
 flip_y = false;
@@ -37,10 +35,7 @@ applies_to=self
 */
 /// Animation
 
-if (game_ispaused(mnu_pause) || object_is_ancestor(object_index, obj_dash_ring))
-{
-    exit;
-}
+if (game_ispaused(mnu_pause) || object_is_ancestor(object_index, obj_dash_ring)) exit;
 
 if (activated)
 {

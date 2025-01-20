@@ -7,9 +7,7 @@ applies_to=self
 /// Dash Ring Initialization
 
 event_inherited();
-
 image_index = 1;
-
 targetable = false;
 cover = noone;
 rainbow_ring = false;
@@ -97,43 +95,22 @@ applies_to=self
 switch (orientation)
 {
     case ORIEN_HORIZONTAL:
-        if (rainbow_ring)
-        {
-            sprite_index = spr_rainbow_ring_horizontal;
-        }
-        else
-        {
-            sprite_index = spr_dash_ring_horizontal;
-        }
-
+        if (rainbow_ring) sprite_index = spr_rainbow_ring_horizontal;
+        else sprite_index = spr_dash_ring_horizontal;
         hurtbox_set(6, 24, 7, 26);
         angle = ANGLE_RIGHT;
         break;
 
     case ORIEN_DIAGONAL:
-        if (rainbow_ring)
-        {
-            sprite_index = spr_rainbow_ring_diagonal;
-        }
-        else
-        {
-            sprite_index = spr_dash_ring_diagonal;
-        }
-
+        if (rainbow_ring) sprite_index = spr_rainbow_ring_diagonal;
+        else sprite_index = spr_dash_ring_diagonal;
         hurtbox_set(7, 7, 7, 7);
         angle = ANGLE_RIGHT_UP;
         break;
 
     default:
-        if (rainbow_ring)
-        {
-            sprite_index = spr_rainbow_ring_vertical;
-        }
-        else
-        {
-            sprite_index = spr_dash_ring_vertical;
-        }
-
+        if (rainbow_ring) sprite_index = spr_rainbow_ring_vertical;
+        else sprite_index = spr_dash_ring_vertical;
         hurtbox_set(26, 5, 26, 6);
         angle = ANGLE_UP;
 
@@ -156,8 +133,4 @@ cover.depth = -10;
 cover.sprite_index = sprite_index;
 cover.image_xscale = image_xscale;
 cover.image_yscale = image_yscale;
-
-if (!rainbow_ring)
-{
-    cover.image_index = 2;
-}
+if (!rainbow_ring) cover.image_index = 2;

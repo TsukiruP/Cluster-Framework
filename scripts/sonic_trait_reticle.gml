@@ -1,10 +1,7 @@
 /// sonic_trait_reticle()
 /* Resets the homing handle and sets it when in the proper states. */
 
-if (state_current == sonic_state_homing)
-{
-    exit;
-}
+if (state_current == sonic_state_homing) exit;
 
 var homing_handle_temp, homing_allow;
 

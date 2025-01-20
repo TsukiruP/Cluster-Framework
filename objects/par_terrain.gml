@@ -51,10 +51,7 @@ applies_to=self
         }
     }
 
-    if (semisolid)
-    {
-        image_alpha = 0.5;
-    }
+    if (semisolid) image_alpha = 0.5;
 */
 #define Draw_0
 /*"/*'/**//* YYD ACTION
@@ -64,9 +61,5 @@ applies_to=self
 */
 /// Draw Terrain
 
-if ((game_get_debug() && mask) || !mask)
-{
-    draw_self();
-}
-
+if ((game_get_debug() && mask) || !mask) draw_self();
 event_inherited();

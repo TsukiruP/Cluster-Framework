@@ -101,11 +101,7 @@ if (!text_clear)
         if ((game_ispaused(mnu_pause) || !ds_list_empty(body_list) || subject_string != "") && log_string != "" && (log_alpha == 0 || log_alpha == 1) && input_get_check(INP_LOG, CHECK_PRESSED))
         {
             log_hide = !log_hide;
-
-            if (!log_hide && log_height > screen_get_height() - log_spacing)
-            {
-                log_scroll = log_height - (screen_get_height() - log_spacing);
-            }
+            if (!log_hide && log_height > screen_get_height() - log_spacing) log_scroll = log_height - (screen_get_height() - log_spacing);
         }
 
         if (log_hide)
@@ -193,48 +189,19 @@ subject_box_alpha_rate = game_get_config("interface_alpha") / 20;
 
 if (!text_clear && !subject_complete && subject_string != "")
 {
-    if (subject_box_alpha < game_get_config("interface_alpha"))
-    {
-        subject_box_alpha += subject_box_alpha_rate;
-    }
-    else
-    {
-        subject_box_alpha = game_get_config("interface_alpha");
-    }
+    if (subject_box_alpha < game_get_config("interface_alpha")) subject_box_alpha += subject_box_alpha_rate;
 
     if (subject_alpha < 1)
     {
-        if (subject_alpha == 0)
-        {
-            log_string += subject_string + "#";
-        }
-
+        if (subject_alpha == 0) log_string += subject_string + "#";
         subject_alpha += text_alpha_rate;
-    }
-    else
-    {
-        subject_alpha = 1;
     }
 }
 else
 {
-    if (subject_box_alpha > 0)
-    {
-        subject_box_alpha -= subject_box_alpha_rate;
-    }
-    else
-    {
-        subject_box_alpha = 0;
-    }
+    if (subject_box_alpha > 0) subject_box_alpha -= subject_box_alpha_rate;
 
-    if (subject_alpha > 0)
-    {
-        subject_alpha -= text_alpha_rate;
-    }
-    else
-    {
-        subject_alpha = 0;
-    }
+    if (subject_alpha > 0) subject_alpha -= text_alpha_rate;
 }
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -249,29 +216,14 @@ body_box_alpha_rate = game_get_config("interface_alpha") / 20;
 
 if (!text_clear && !ds_list_empty(body_list) && (subject_complete || subject_string == ""))
 {
-    if (body_box_alpha < game_get_config("interface_alpha"))
-    {
-        body_box_alpha += body_box_alpha_rate;
-    }
-    else
-    {
-        body_box_alpha = game_get_config("interface_alpha");
-    }
+    if (body_box_alpha < game_get_config("interface_alpha")) body_box_alpha += body_box_alpha_rate;
 
     if (body_current == body_target)
     {
         if (body_alpha < 1)
         {
-            if (body_alpha == 0)
-            {
-                log_string += ds_list_find_value(body_list, body_current) + "#";
-            }
-
+            if (body_alpha == 0) log_string += ds_list_find_value(body_list, body_current) + "#";
             body_alpha += text_alpha_rate;
-        }
-        else
-        {
-            body_alpha = 1;
         }
     }
 
@@ -298,23 +250,9 @@ if (!text_clear && !ds_list_empty(body_list) && (subject_complete || subject_str
 }
 else
 {
-    if (body_box_alpha > 0)
-    {
-        body_box_alpha -= body_box_alpha_rate;
-    }
-    else
-    {
-        body_box_alpha = 0;
-    }
+    if (body_box_alpha > 0) body_box_alpha -= body_box_alpha_rate;
 
-    if (body_alpha > 0)
-    {
-        body_alpha -= text_alpha_rate;
-    }
-    else
-    {
-        body_alpha = 0;
-    }
+    if (body_alpha > 0) body_alpha -= text_alpha_rate;
 }
 
 if (text_clear && (!ds_list_empty(body_list) || subject_string != "") && body_alpha == 0 && subject_alpha == 0)
@@ -347,43 +285,15 @@ applies_to=self
 
 if (!log_hide)
 {
-    if (log_fade_alpha < 0.6)
-    {
-        log_fade_alpha += 0.03;
-    }
-    else
-    {
-        log_fade_alpha = 0.6;
-    }
+    if (log_fade_alpha < 0.6) log_fade_alpha += 0.03;
 
-    if (log_alpha < 1)
-    {
-        log_alpha += text_alpha_rate;
-    }
-    else
-    {
-        log_alpha = 1;
-    }
+    if (log_alpha < 1) log_alpha += text_alpha_rate;
 }
 else
 {
-    if (log_fade_alpha > 0)
-    {
-        log_fade_alpha -= 0.03;
-    }
-    else
-    {
-        log_fade_alpha = 0;
-    }
+    if (log_fade_alpha > 0) log_fade_alpha -= 0.03;
 
-    if (log_alpha > 0)
-    {
-        log_alpha -= text_alpha_rate;
-    }
-    else
-    {
-        log_alpha = 0;
-    }
+    if (log_alpha > 0) log_alpha -= text_alpha_rate;
 }
 #define Other_3
 /*"/*'/**//* YYD ACTION
@@ -412,10 +322,7 @@ applies_to=self
 */
 /// Draw Subject
 
-if (text_hide)
-{
-    exit;
-}
+if (text_hide) exit;
 
 // Viewport:
 d3d_set_viewport(0, 0, screen_get_width(), screen_get_height());
@@ -438,10 +345,7 @@ applies_to=self
 */
 /// Draw Text
 
-if (text_hide)
-{
-    exit;
-}
+if (text_hide) exit;
 
 var text_box_bottom, texbox_height;
 

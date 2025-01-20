@@ -1,10 +1,7 @@
 /// player_set_damage(obj)
 /* Sets whether the player gets hurt or dies. Setting obj to the player is instant death. */
 
-if (state_current == player_state_death || ((state_current == player_state_hurt || status_insta_alarm > 0 || status_invin != INVIN_NONE) && argument0 != self))
-{
-    exit;
-}
+if (state_current == player_state_death || ((state_current == player_state_hurt || status_insta_alarm > 0 || status_invin != INVIN_NONE) && argument0 != self)) exit;
 
 var damage_handle, hurt_direction;
 

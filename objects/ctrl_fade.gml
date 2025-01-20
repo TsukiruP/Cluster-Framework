@@ -21,11 +21,7 @@ applies_to=self
 if (fade_alpha != fade_target)
 {
     fade_alpha += fade_speed;
-
-    if (fade_alpha <= 0 && sign(fade_speed) == -1)
-    {
-        instance_destroy();
-    }
+    if (fade_alpha <= 0 && sign(fade_speed) == -1) instance_destroy();
 }
 #define Draw_0
 /*"/*'/**//* YYD ACTION

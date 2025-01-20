@@ -138,10 +138,7 @@ if (joystick_found())
 {
     for (i = 0; i < PLAYER_COUNT; i += 1)
     {
-        if (gamepad_device[i, 0] > joystick_count() - 1)
-        {
-            gamepad_device[i, 0] = -1;
-        }
+        if (gamepad_device[i, 0] > joystick_count() - 1) gamepad_device[i, 0] = -1;
 
         if (gamepad_device[i, 0] == -1)
         {
@@ -156,10 +153,7 @@ if (joystick_found())
                     for (k = 0; k < PLAYER_COUNT; k += 1)
                     {
 
-                        if (gamepad_device[k, 0] == j)
-                        {
-                            gamepad_available = false;
-                        }
+                        if (gamepad_device[k, 0] == j) gamepad_available = false;
                     }
 
                     if (gamepad_available = true)
@@ -186,10 +180,7 @@ for (i = 0; i < PLAYER_COUNT; i += 1)
 {
     if (gamepad_device[i, 0] > -1)
     {
-        if (joystick_has_pov(i))
-        {
-            gamepad_device[i, 1] = 0;
-        }
+        if (joystick_has_pov(i)) gamepad_device[i, 1] = 0;
         else
         {
             switch (joystick_name(i))
@@ -362,14 +353,8 @@ for (i = 0; i < PLAYER_COUNT; i += 1)
         {
             for (k = CHECK_PRESSED; k <= CHECK_HELD; k += 1)
             {
-                if (j <= INP_RIGHT)
-                {
-                    input_gamepad[j, k + (i * 3)] = (gamepad_get_check(gamepad_id, game_config_get_btn(i, j), k) || gamepad_analog[j, k + (i * 3)]);
-                }
-                else
-                {
-                    input_gamepad[j, k + (i * 3)] = gamepad_get_check(gamepad_id, game_config_get_btn(i, j), k);
-                }
+                if (j <= INP_RIGHT) input_gamepad[j, k + (i * 3)] = (gamepad_get_check(gamepad_id, game_config_get_btn(i, j), k) || gamepad_analog[j, k + (i * 3)]);
+                else input_gamepad[j, k + (i * 3)] = gamepad_get_check(gamepad_id, game_config_get_btn(i, j), k);
             }
         }
     }
@@ -433,12 +418,9 @@ applies_to=self
 */
 /// Cleanup
 
-var i;
+if (queue_list == -1) exit;
 
-if (queue_list == -1)
-{
-    exit;
-}
+var i;
 
 for (i = 0; i < ds_list_size(queue_list); i += 1)
 {

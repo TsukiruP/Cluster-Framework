@@ -7,7 +7,6 @@ applies_to=self
 /// Splash Initialization
 
 event_inherited();
-
 depth = -11;
 sequence_set(sequence_splash_5);
 #define Step_1
@@ -17,6 +16,8 @@ action_id=603
 applies_to=self
 */
 /// Reset
+
+if (game_ispaused(mnu_pause)) exit;
 
 player_handle.waterfall_draw = false;
 #define Step_2
@@ -29,15 +30,7 @@ applies_to=self
 
 event_inherited();
 
-if (game_ispaused(mnu_pause))
-{
-    exit;
-}
-
-if (player_handle.waterfall_draw != true)
-{
-    instance_destroy();
-}
+if (player_handle.waterfall_draw != true) instance_destroy();
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1

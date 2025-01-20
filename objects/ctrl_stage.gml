@@ -37,15 +37,9 @@ applies_to=self
 */
 /// Pause
 
-if (!instance_exists(stage_get_player(0)))
-{
-    exit;
-}
+if (!instance_exists(stage_get_player(0))) exit;
 
-if (!game_ispaused(ctrl_text) && pause_allow && !instance_exists(mnu_pause) && input_get_check(INP_START, CHECK_PRESSED))
-{
-    instance_create(0, 0, mnu_pause);
-}
+if (!game_ispaused(ctrl_text) && pause_allow && !instance_exists(mnu_pause) && input_get_check(INP_START, CHECK_PRESSED)) instance_create(0, 0, mnu_pause);
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -60,10 +54,7 @@ if (instance_exists(ctrl_camera))
 
     with (obj_player)
     {
-        if (!in_view())
-        {
-            instance_activate_region(x - 64, y - 64, 128, 128, true);
-        }
+        if (!in_view()) instance_activate_region(x - 64, y - 64, 128, 128, true);
     }
 }
 #define Other_5

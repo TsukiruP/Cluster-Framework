@@ -19,10 +19,7 @@ applies_to=self
 */
 /// Animation
 
-if (game_ispaused(mnu_pause))
-{
-    exit;
-}
+if (game_ispaused(mnu_pause)) exit;
 
 if (script_exists(sequence_index))
 {
@@ -36,10 +33,7 @@ applies_to=self
 */
 /// Movement
 
-if (game_ispaused(mnu_pause))
-{
-    exit;
-}
+if (game_ispaused(mnu_pause)) exit;
 
 x += x_speed * dcos(angle);
 y += y_speed * -dsin(angle);

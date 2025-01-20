@@ -46,11 +46,7 @@ start_hide = time_sync(game_get_time(), 30, 2);
 draw_sprite(spr_realizing_hopper, 0, title_x, title_y);
 
 // Start:
-if (title_start)
-{
-    start_hide = time_sync(game_get_time(), 5, 2);
-}
-
+if (title_start) start_hide = time_sync(game_get_time(), 5, 2);
 if (!start_hide)
 {
     draw_sprite(spr_title_start, 0, title_x, title_y + sprite_get_height(spr_realizing_hopper) / 2 + sprite_get_height(spr_title_start) * 3);

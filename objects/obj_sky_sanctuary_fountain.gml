@@ -15,10 +15,7 @@ applies_to=self
 */
 /// View Object
 
-if (room == rm_debug)
-{
-    view_object = id;
-}
+if (room == rm_debug && view_object != id) view_object = id;
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603

@@ -10,7 +10,6 @@ event_inherited();
 
 hurtbox_set(8, 8, 7, 7, 8, 8);
 reaction_index = player_reaction_sensor_layer;
-
 layer = 0;
 #define Other_4
 /*"/*'/**//* YYD ACTION
@@ -37,13 +36,8 @@ applies_to=self
 */
 /// Draw Sensor
 
-if (!game_get_debug())
-{
-    exit;
-}
+if (!game_get_debug()) exit;
 
-// Sensor:
 image_index = layer;
 draw_self();
-
 event_inherited();

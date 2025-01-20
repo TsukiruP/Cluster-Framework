@@ -61,14 +61,10 @@ for (i = STATUS_SHIELD; i <= STATUS_SWAP; i += 1)
 }
 
 item_hide = false;
-item_grid = -1;
 item_max_time = 10;
 item_alarm = 0;
-
-if (game_get_config("misc_hud") == 1 && game_get_config("misc_feed"))
-{
-    item_grid = ds_grid_create(3, 0);
-}
+item_grid = -1;
+if (game_get_config("misc_hud") == 1 && game_get_config("misc_feed")) item_grid = ds_grid_create(3, 0);
 #define Destroy_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -77,10 +73,7 @@ applies_to=self
 */
 /// Cleanup
 
-if (item_grid != -1)
-{
-    ds_grid_destroy(item_grid);
-}
+if (item_grid != -1) ds_grid_destroy(item_grid);
 #define Step_1
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -89,10 +82,7 @@ applies_to=self
 */
 /// Alarm
 
-if (game_ispaused(mnu_pause))
-{
-    exit;
-}
+if (game_ispaused(mnu_pause)) exit;
 
 if (item_grid != -1)
 {
@@ -105,10 +95,7 @@ if (item_grid != -1)
                 item_alarm -= 1;
                 item_hide = false;
 
-                if (item_alarm <= 30)
-                {
-                    item_hide = time_sync(item_alarm, 2, 2);
-                }
+                if (item_alarm <= 30) item_hide = time_sync(item_alarm, 2, 2);
 
                 if (item_alarm == 0)
                 {
@@ -119,10 +106,7 @@ if (item_grid != -1)
         }
         else
         {
-            if (item_alarm != 90)
-            {
-                item_alarm = 90;
-            }
+            if (item_alarm != 90) item_alarm = 90;
         }
     }
 }
@@ -164,10 +148,7 @@ applies_to=self
 */
 /// HUD
 
-if (game_ispaused(mnu_pause))
-{
-    exit;
-}
+if (game_ispaused(mnu_pause)) exit;
 
 hud_x = lerp(-sprite_get_width(hud_index), hud_offset, smoothstep(0, hud_max_time, hud_time));
 /*"/*'/**//* YYD ACTION
@@ -177,10 +158,7 @@ applies_to=self
 */
 /// Air
 
-if (game_ispaused(mnu_pause) || game_get_config("misc_hud") != 1)
-{
-    exit;
-}
+if (game_ispaused(mnu_pause) || game_get_config("misc_hud") != 1) exit;
 
 air_x = lerp(-sprite_get_width(hud_index), hud_x, smoothstep(0, hud_max_time, air_time));
 
@@ -190,23 +168,13 @@ if (instance_exists(stage_get_player(0)))
     {
         if (state_current != player_state_death)
         {
-            if (physics_id == PHYS_WATER && status_shield != SHIELD_BUBBLE)
-            {
-                other.air_hide = false;
-            }
-            else
-            {
-                other.air_hide = true;
-            }
-
+            if (physics_id == PHYS_WATER && status_shield != SHIELD_BUBBLE) other.air_hide = false;
+            else other.air_hide = true;
             other.air_value = air_remaining;
         }
     }
 }
-else
-{
-    air_value = 30;
-}
+else air_value = 30;
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -214,10 +182,7 @@ applies_to=self
 */
 /// Gauge
 
-if (game_ispaused(mnu_pause) || game_get_config("misc_hud") != 1)
-{
-    exit;
-}
+if (game_ispaused(mnu_pause) || game_get_config("misc_hud") != 1) exit;
 
 gauge_x = lerp(-sprite_get_width(spr_hud_gauge), hud_x + 6, smoothstep(0, hud_max_time, gauge_time));
 
@@ -242,10 +207,7 @@ applies_to=self
 */
 /// Boss
 
-if (game_ispaused(mnu_pause) || game_get_config("misc_hud") != 1)
-{
-    exit;
-}
+if (game_ispaused(mnu_pause) || game_get_config("misc_hud") != 1) exit;
 
 boss_x = lerp(screen_get_width() + sprite_get_width(spr_hud_boss), screen_get_width() - sprite_get_width(spr_hud_boss) - 10, smoothstep(0, hud_max_time, boss_time));
 /*"/*'/**//* YYD ACTION
@@ -255,87 +217,43 @@ applies_to=self
 */
 /// Status
 
-if (game_ispaused(mnu_pause) || game_get_config("misc_hud") != 1 || game_get_config("misc_status") == 0)
-{
-    exit;
-}
+if (game_ispaused(mnu_pause) || game_get_config("misc_hud") != 1 || game_get_config("misc_status") == 0) exit;
 
 status_bar_x = lerp(screen_get_width() + status_width + 5, screen_get_width() - status_width * status_max + 5, smoothstep(0, hud_max_time, hud_time));
 
 with (stage_get_player(0))
 {
     // Shield:
-    if (status_shield != SHIELD_NONE)
-    {
-        other.status_icon[STATUS_SHIELD] = status_shield + 2;
-    }
-    else
-    {
-        other.status_icon[STATUS_SHIELD] = ITEM_BASIC;
-    }
-
+    if (status_shield != SHIELD_NONE) other.status_icon[STATUS_SHIELD] = status_shield + 2;
+    else other.status_icon[STATUS_SHIELD] = ITEM_BASIC;
     other.status_active[STATUS_SHIELD, 0] = (status_shield != SHIELD_NONE);
     other.status_active[STATUS_SHIELD, 1] = true;
 
     // Invincibility:
     other.status_icon[STATUS_INVIN] = ITEM_INVIN;
     other.status_active[STATUS_INVIN, 0] = (status_invin != INVIN_NONE);
-
-    if (status_invin_alarm > 0 && status_invin_alarm <= 120)
-    {
-        other.status_active[STATUS_INVIN, 1] = time_sync(status_invin_alarm, 2, 2);
-    }
-    else
-    {
-        other.status_active[STATUS_INVIN, 1] = true;
-    }
+    if (status_invin_alarm > 0 && status_invin_alarm <= 120) other.status_active[STATUS_INVIN, 1] = time_sync(status_invin_alarm, 2, 2);
+    else other.status_active[STATUS_INVIN, 1] = true;
 
     // Speed Up/Slow Down:
-    if (status_speed == 2)
-    {
-        other.status_icon[STATUS_SPEED] = ITEM_SLOW;
-    }
-    else
-    {
-        other.status_icon[STATUS_SPEED] = ITEM_SPEED;
-    }
-
+    if (status_speed == SPEED_SLOW) other.status_icon[STATUS_SPEED] = ITEM_SLOW;
+    else other.status_icon[STATUS_SPEED] = ITEM_SPEED;
     other.status_active[STATUS_SPEED, 0] = (status_speed != 0)
-
-    if (status_speed_alarm > 0 && status_speed_alarm <= 120)
-    {
-        other.status_active[STATUS_SPEED, 1] = time_sync(status_speed_alarm, 2, 2);
-    }
-    else
-    {
-        other.status_active[STATUS_SPEED, 1] = true;
-    }
+    if (status_speed_alarm > 0 && status_speed_alarm <= 120) other.status_active[STATUS_SPEED, 1] = time_sync(status_speed_alarm, 2, 2);
+    else other.status_active[STATUS_SPEED, 1] = true;
 
     // Panic:
     other.status_icon[STATUS_PANIC] = ITEM_PANIC;
     other.status_active[STATUS_PANIC, 0] = (status_panic_alarm > 0);
-
-    if (status_panic_alarm > 0 && status_panic_alarm <= 120)
-    {
-        other.status_active[STATUS_PANIC, 1] = time_sync(status_panic_alarm, 2, 2);
-    }
-    else
-    {
-        other.status_active[STATUS_PANIC, 1] = true;
-    }
+    if (status_panic_alarm > 0 && status_panic_alarm <= 120) other.status_active[STATUS_PANIC, 1] = time_sync(status_panic_alarm, 2, 2);
+    else other.status_active[STATUS_PANIC, 1] = true;
 
     // Swap:
     other.status_icon[STATUS_SWAP] = ITEM_SWAP;
     other.status_active[STATUS_SWAP, 0] = (status_swap_alarm > 0);
 
-    if (status_swap_alarm > 0 && status_swap_alarm <= 120)
-    {
-        other.status_active[STATUS_SWAP, 1] = time_sync(status_swap_alarm, 2, 2);
-    }
-    else
-    {
-        other.status_active[STATUS_SWAP, 1] = true;
-    }
+    if (status_swap_alarm > 0 && status_swap_alarm <= 120) other.status_active[STATUS_SWAP, 1] = time_sync(status_swap_alarm, 2, 2);
+    else other.status_active[STATUS_SWAP, 1] = true;
 }
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -344,10 +262,7 @@ applies_to=self
 */
 /// Items
 
-if (game_ispaused(mnu_pause) || item_grid == -1)
-{
-    exit;
-}
+if (game_ispaused(mnu_pause) || item_grid == -1) exit;
 
 var i;
 
@@ -370,10 +285,7 @@ applies_to=self
 */
 /// Draw Default HUD
 
-if (game_get_config("misc_hud") != 1)
-{
-    exit;
-}
+if (game_get_config("misc_hud") != 1) exit;
 
 var time_y, gauge_y;
 
@@ -414,10 +326,7 @@ applies_to=self
 */
 /// Draw S4E2 HUD
 
-if (game_get_config("misc_hud") != 2)
-{
-    exit;
-}
+if (game_get_config("misc_hud") != 2) exit;
 
 // Color:
 draw_set_color(c_white);
@@ -447,12 +356,7 @@ draw_set_font(global.font_hud_s4e2);
 
 if ((time_sync(game_get_time(), 8, 2) && stage_get_rings() == 0) || stage_get_rings() > 0)
 {
-    // Flash red:
-    if (stage_get_rings() == 0)
-    {
-        draw_set_color(c_red);
-    }
-
+    if (stage_get_rings() == 0) draw_set_color(c_red);
     draw_text(view_xview[view_current] + hud_x - 5, view_yview[view_current] + hud_y + 11, string_pad(stage_get_rings(), 3));
 }
 
@@ -501,10 +405,7 @@ applies_to=self
 */
 /// Draw Items
 
-if (!game_get_config("misc_feed") || item_grid == -1)
-{
-    exit;
-}
+if (!game_get_config("misc_feed") || item_grid == -1) exit;
 
 var i;
 

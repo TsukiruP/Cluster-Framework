@@ -1,10 +1,7 @@
 /// player_trail_draw()
 /* Draws the player's trial. */
 
-if (trail_alpha == -1)
-{
-    exit;
-}
+if (trail_alpha == -1) exit;
 
 var i, width, color, size, px, py, nx, ny, dir, dx, dy, alpha;
 

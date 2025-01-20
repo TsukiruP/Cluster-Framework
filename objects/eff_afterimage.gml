@@ -15,17 +15,10 @@ applies_to=self
 */
 /// Fade Out
 
-if (game_ispaused(mnu_pause))
-{
-    exit;
-}
+if (game_ispaused(mnu_pause)) exit;
 
 if (image_alpha > 0)
 {
     image_alpha -= 0.1;
-
-    if (image_alpha == 0)
-    {
-        instance_destroy();
-    }
+    if (image_alpha == 0) instance_destroy();
 }

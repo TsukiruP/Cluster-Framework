@@ -39,10 +39,7 @@ for (i = 0; i < PLAYER_COUNT; i += 1)
 
 if (instance_number(obj_player) > 1)
 {
-    with (ctrl_input)
-    {
-        event_user(0);
-    }
+    with (ctrl_input) event_user(0);
 }
 
 instance_destroy();

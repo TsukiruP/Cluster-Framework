@@ -7,9 +7,7 @@ applies_to=self
 /// Hint Box Initialization
 
 event_inherited();
-
 hurtbox_set(21, 17, 19, 16, 0, 31);
-
 draw_y = 0;
 #define Step_2
 /*"/*'/**//* YYD ACTION
@@ -19,10 +17,7 @@ applies_to=self
 */
 /// Animation
 
-if (game_ispaused(mnu_pause))
-{
-    exit;
-}
+if (game_ispaused(mnu_pause)) exit;
 
 event_inherited();
 
@@ -30,10 +25,7 @@ if (text_get_clear())
 {
     with (player_handle)
     {
-        if (animation_previous != "look_end")
-        {
-            player_set_animation("look_end");
-        }
+        if (animation_previous != "look_end") player_set_animation("look_end");
     }
 }
 

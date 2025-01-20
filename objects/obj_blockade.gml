@@ -7,11 +7,8 @@ applies_to=self
 /// Blockade Initialization
 
 event_inherited();
-
 mask = false;
-
 reaction_index = player_reaction_blockade;
-
 orientation = ORIEN_VERTICAL;
 max_vitality = 3;
 vitality = max_vitality;

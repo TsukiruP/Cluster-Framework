@@ -52,18 +52,11 @@ applies_to=self
 
 menu_x_direction = 0;
 
-if (visible != !instance_exists(mnu_save))
-{
-    visible = !instance_exists(mnu_save);
-}
+if (visible != !instance_exists(mnu_save)) visible = !instance_exists(mnu_save);
 
 if (game_ispaused(ctrl_text) || instance_exists(ctrl_transition) || instance_exists(mnu_save) || rename_allow)
 {
-    if (menu_alarm == 0)
-    {
-        menu_alarm = 2;
-    }
-
+    if (menu_alarm == 0) menu_alarm = 2;
     exit;
 }
 
@@ -83,6 +76,12 @@ menu_up = (input_get_check(INP_UP, CHECK_PRESSED) || input_get_time(INP_UP, 30))
 menu_down = (input_get_check(INP_DOWN, CHECK_PRESSED) || input_get_time(INP_DOWN, 30));
 menu_y_direction = menu_down - menu_up;
 
+if (menu_y_direction != 0 && sfx_alarm == 0)
+{
+    sfx_alarm = 8;
+    audio_play_sfx("snd_menu_move", true);
+}
+
 menu_option += menu_y_direction;
 menu_size = ds_list_size(menu_list) - 1;
 
@@ -100,30 +99,15 @@ else if (menu_option > menu_size)
 }
 else
 {
-    if ((menu_cursor == 0 && sign(menu_y_direction) == -1) || (menu_cursor == 3 && sign(menu_y_direction) == 1))
-    {
-        menu_scroll += menu_y_direction;
-    }
-    else
-    {
-        menu_cursor += menu_y_direction;
-    }
-}
-
-if (menu_y_direction != 0 && sfx_alarm == 0)
-{
-    sfx_alarm = 8;
-    audio_play_sfx("snd_menu_move", true);
+    if ((menu_cursor == 0 && sign(menu_y_direction) == -1) || (menu_cursor == 3 && sign(menu_y_direction) == 1)) menu_scroll += menu_y_direction;
+    else menu_cursor += menu_y_direction;
 }
 
 if (input_get_check(INP_CONFIRM, CHECK_PRESSED))
 {
     option_confirm = script_execute(ds_list_find_value(menu_list, menu_option), 2);
 
-    if (!is_undefined(option_confirm))
-    {
-        audio_play_sfx(pick(option_confirm, "snd_menu_cannot", "snd_menu_confirm"), true);
-    }
+    if (!is_undefined(option_confirm)) audio_play_sfx(pick(option_confirm, "snd_menu_cannot", "snd_menu_confirm"), true);
 }
 
 if (menu_x_direction != 0)
@@ -139,10 +123,7 @@ if (menu_x_direction != 0)
 
 if (input_get_check(INP_CANCEL, CHECK_PRESSED))
 {
-    if (debug_set_previous())
-    {
-        audio_play_sfx("snd_menu_close", true);
-    }
+    if (debug_set_previous()) audio_play_sfx("snd_menu_close", true);
 }
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -155,17 +136,11 @@ if (!rename_allow) exit;
 
 if (!window_has_focus())
 {
-    if (keyboard_string == "" && keyboard_string != rename_backup)
-    {
-        keyboard_string = rename_backup;
-    }
+    if (keyboard_string == "" && keyboard_string != rename_backup) keyboard_string = rename_backup;
 }
 else
 {
-    if (string_length(keyboard_string) > 10)
-    {
-        keyboard_string = string_delete_end(keyboard_string, string_length(keyboard_string) - 10);
-    }
+    if (string_length(keyboard_string) > 10) keyboard_string = string_delete_end(keyboard_string, string_length(keyboard_string) - 10);
 
     rename_backup = keyboard_string;
 
@@ -184,10 +159,7 @@ applies_to=self
 */
 /// Alarm
 
-if (sfx_alarm > 0)
-{
-    sfx_alarm -= 1;
-}
+if (sfx_alarm > 0) sfx_alarm -= 1;
 #define Other_5
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -222,13 +194,7 @@ for (i = 0; i < min(ds_list_size(menu_list), 4); i += 1)
 
     // Font:
     draw_set_font(global.font_system);
-    draw_set1(c_gray, 1);
-
-    if (menu_option == option_id)
-    {
-        draw_set_color(c_white);
-    }
-
+    draw_set1(pick(menu_option == option_id, c_gray, c_white), 1);
     draw_set_halign(fa_center);
 
     if (!is_undefined(option_value))

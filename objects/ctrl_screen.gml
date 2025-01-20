@@ -26,10 +26,7 @@ if (screen_set_resolution())
 
 screen_set_window();
 
-if (game_get_config("screen_full") != window_get_fullscreen())
-{
-    game_set_config("screen_full", window_get_fullscreen());
-}
+if (game_get_config("screen_full") != window_get_fullscreen()) game_set_config("screen_full", window_get_fullscreen());
 #define Other_4
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -38,7 +35,4 @@ applies_to=self
 */
 /// Caption
 
-if (room_caption != GAME_NAME)
-{
-    room_caption = GAME_NAME;
-}
+if (room_caption != GAME_NAME) room_caption = GAME_NAME;

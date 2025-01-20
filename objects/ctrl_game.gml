@@ -71,16 +71,9 @@ if (indicator_draw)
     }
 }
 
-if (game_ispaused(mnu_pause))
-{
-    exit;
-}
+if (game_ispaused(mnu_pause)) exit;
 
-if (!instance_exists(ctrl_transition))
-{
-    game_set_save("time", game_get_save("time") + 1);
-}
-
+if (!instance_exists(ctrl_transition)) game_set_save("time", game_get_save("time") + 1);
 game_time += game_speed;
 #define Other_3
 /*"/*'/**//* YYD ACTION

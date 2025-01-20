@@ -7,10 +7,8 @@ applies_to=self
 /// Ring Initialization
 
 event_inherited();
-
 magnetized = false;
 lifespan = 0;
-
 x_speed = 0;
 y_speed = 0;
 gravity_force = 0.09375;
@@ -34,10 +32,7 @@ applies_to=self
 */
 /// Lifespan
 
-if (game_ispaused())
-{
-    exit;
-}
+if (game_ispaused()) exit;
 
 if (dropped)
 {
@@ -126,10 +121,7 @@ applies_to=self
 */
 /// Magnetize
 
-if (game_ispaused())
-{
-    exit;
-}
+if (game_ispaused()) exit;
 
 if (instance_exists(stage_get_player(0)))
 {
@@ -154,9 +146,5 @@ applies_to=self
 */
 /// Draw Ring
 
-if (!dropped || lifespan >= 90 || (dropped && lifespan < 30 && time_sync(lifespan, 2, 2)))
-{
-    draw_self();
-}
-
+if (!dropped || lifespan >= 90 || (dropped && lifespan < 30 && time_sync(lifespan, 2, 2))) draw_self();
 event_inherited();

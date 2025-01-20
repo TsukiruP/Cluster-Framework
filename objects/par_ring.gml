@@ -10,7 +10,6 @@ event_inherited();
 
 hurtbox_set(8, 8, 7, 7, 0, 0);
 reaction_index = player_reaction_ring;
-
 super = false;
 rate = 8;
 dropped = false;
@@ -40,10 +39,7 @@ applies_to=self
 */
 /// Animation
 
-if (game_ispaused(mnu_pause))
-{
-    exit;
-}
+if (game_ispaused(mnu_pause)) exit;
 
 image_index = time_sync(game_get_time(), rate / (1 + (dropped)), sprite_get_number(sprite_index));
 #define Other_4

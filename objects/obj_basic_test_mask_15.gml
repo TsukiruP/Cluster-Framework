@@ -7,5 +7,4 @@ applies_to=self
 /// Terrain Initialization
 
 event_inherited();
-
 shape = SHAPE_CONCAVE;
