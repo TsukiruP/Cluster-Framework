@@ -90,7 +90,7 @@ else
     banner_time = approach(banner_time, 0, 1);
 }
 
-if ((transition_id == TRANS_CARD && ((transition_state < 4 && curtain_time == curtain_max_time) || (transition_state >= 4))) || transition_id == TRANS_RETRY)
+if ((transition_id == TRANS_CARD && ((transition_state < 4 && curtain_time == curtain_max_time) || (transition_state > 3))) || transition_id == TRANS_RETRY)
 {
     zone_time = approach(zone_time, zone_max_time, 1);
 }
@@ -107,7 +107,7 @@ if ((game_ispaused(mnu_pause) && pause_ignore == false) || (transition_id != TRA
     exit;
 }
 
-if (((transition_id == TRANS_CARD && transition_state >= 4) || (transition_id == TRANS_RETRY && transition_state >= 5)) && game_get_room_start() == START_RUN && transition_run != -1)
+if (((transition_id == TRANS_CARD && transition_state > 3) || (transition_id == TRANS_RETRY && transition_state > 4)) && game_get_room_start() == START_RUN && transition_run != -1)
 {
     if ((transition_id == TRANS_RETRY && game_checkpoint_isset()) || stage_get_player(0).x >= game_get_room_run())
     {
@@ -262,7 +262,7 @@ if ((game_ispaused(mnu_pause) && pause_ignore == false) || transition_id != TRAN
     exit;
 }
 
-if (game_get_room_start() == START_STANDBY && transition_state >= 4 && instance_exists(stage_get_player(0)))
+if (game_get_room_start() == START_STANDBY && transition_state > 3 && instance_exists(stage_get_player(0)))
 {
     if (input_get_check(INP_ANY, CHECK_PRESSED) && !input_get_check(INP_START, CHECK_PRESSED))
     {
@@ -288,7 +288,7 @@ if (zone_width == -1)
     zone_width = string_width(game_get_room_zone(transition_room)) + zone_spacing;
 }
 
-if (transition_state >= 4)
+if (transition_state > 3)
 {
     zone_x = ease_in_out_back(zone_time, 40, screen_get_width() + zone_spacing, zone_max_time);
 }
@@ -418,11 +418,11 @@ if (transition_state < 2 && instance_exists(stage_get_player(0)) && input_get_ch
 curtain_scroll += curtain_scroll_speed;
 curtain_scroll = curtain_scroll mod sprite_get_width(spr_transition_curtain);
 
-if (transition_state >= 3 && transition_state <= 4)
+if (transition_state > 2 && transition_state < 5)
 {
     curtain_y = lerp(32, screen_get_height() / 2 + 15, smoothstep(0, curtain_max_time, curtain_time));
 }
-else if (transition_state >= 5)
+else if (transition_state > 4)
 {
     curtain_y = lerp(-15, screen_get_height() / 2 + 15, smoothstep(0, curtain_max_time, curtain_time));
 }
