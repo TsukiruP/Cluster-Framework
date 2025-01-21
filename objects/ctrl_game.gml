@@ -85,7 +85,7 @@ applies_to=self
 
 var i;
 
-ds_list_destroy(game_get_config("input_keyboard"));
+ds_list_destroy(keyboard_list);
 
 for (i = 0; i < PLAYER_COUNT; i += 1)
 {
