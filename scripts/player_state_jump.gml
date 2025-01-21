@@ -28,7 +28,8 @@ switch (argument0)
         }
 
         if (!player_movement_air()) return false;
-        if (player_routine_land() || player_routine_skill()) return true;
+        if (player_routine_land()) return true;
+        if (player_routine_skill()) return true;
 
         if (jump_cap)
         {

@@ -35,13 +35,13 @@ else
 
 if (damage_handle == id)
 {
-    if (drown) audio_play_sfx("snd_drown");
-    else audio_play_sfx("snd_hurt");
+    if (drown) audio_play_sfx("snd_drown", true);
+    else audio_play_sfx("snd_hurt", true);
 }
 else if ((!input_cpu && shield_handle != noone) || input_cpu || state_current == player_state_death)
 {
-    if (damage_handle.object_index == obj_spike) audio_play_sfx("snd_spike");
-    else audio_play_sfx("snd_hurt");
+    if (damage_handle.object_index == obj_spike) audio_play_sfx("snd_spike", true);
+    else audio_play_sfx("snd_hurt", true);
     if (!input_cpu) audio_stop_drown();
 }
 
