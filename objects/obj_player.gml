@@ -375,26 +375,29 @@ if (input_allow)
                             }
                         }
 
-                        switch (jump_auto)
+                        if (leader_handle.state_current != player_state_death)
                         {
-                            case 0:
-                                if (on_ground)
-                                {
-                                    if (!player_get_input(INP_JUMP, CHECK_HELD))
+                            switch (jump_auto)
+                            {
+                                case 0:
+                                    if (on_ground)
                                     {
-                                        player_set_input(INP_JUMP, CHECK_PRESSED, true);
+                                        if (!player_get_input(INP_JUMP, CHECK_HELD))
+                                        {
+                                            player_set_input(INP_JUMP, CHECK_PRESSED, true);
+                                        }
+
+                                        player_set_input(INP_JUMP, CHECK_HELD, true);
                                     }
 
+                                    jump_cap = false;
+                                    input_cpu_state_time = 0;
+                                    break;
+
+                                case 1:
                                     player_set_input(INP_JUMP, CHECK_HELD, true);
-                                }
-
-                                jump_cap = false;
-                                input_cpu_state_time = 0;
-                                break;
-
-                            case 1:
-                                player_set_input(INP_JUMP, CHECK_HELD, true);
-                                break;
+                                    break;
+                            }
                         }
                 }
             }
