@@ -3,5 +3,5 @@
 
 with (ctrl_game)
 {
-    ds_list_replace(game_get_config("input_keyboard"), argument0, argument1);
+    ds_list_replace(keyboard_list, argument0, argument1);
 }

@@ -17,6 +17,7 @@ game_set_config("audio_sfx", 50);
 game_set_config("audio_bgm", 0);
 
 game_config_reset_key();
+game_config_write_key();
 
 for (i = 0; i < PLAYER_COUNT; i += 1)
 {

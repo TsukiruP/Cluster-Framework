@@ -3,5 +3,5 @@
 
 with (ctrl_game)
 {
-    return ds_list_find_value(game_get_config("input_keyboard"), argument0);
+    return ds_list_find_value(keyboard_list, argument0);
 }

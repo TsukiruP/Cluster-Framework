@@ -24,6 +24,8 @@
 				+Keyboard
 					|game_config_get_key
 					|game_config_set_key
+					|game_config_write_key
+					|game_config_read_key
 					|game_config_reset_key
 				+Gamepad
 					|game_config_get_btn
@@ -555,4 +557,3 @@
 			|player_cpu_respawn
 			|player_add_rings
 	+Props
-|script448
