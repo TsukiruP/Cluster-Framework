@@ -21,5 +21,8 @@ with (ctrl_game)
         }
 
         ds_map_destroy(config_temp);
+
+        game_config_read_key();
+        game_config_read_gamepad();
     }
 }

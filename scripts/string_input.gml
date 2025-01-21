@@ -12,7 +12,7 @@ if (input_device == DEV_KEYBOARD) return string_key(game_config_get_key(input_id
 else if (input_device >= DEV_GAMEPAD0)
 {
     input_device -= DEV_GAMEPAD0;
-    return char_pad(game_config_get_btn(input_device, input_id), game_get_config("input_gamepad" + string(input_device) + "_style"));
+    return char_pad(game_config_get_btn(input_device, input_id), game_config_get_gamepad(input_device, "input_style"));
 }
 else
 {

@@ -3,5 +3,5 @@
 
 with (ctrl_game)
 {
-    ds_list_replace(game_get_config("input_gamepad" + string(argument0)), argument1, argument2);
+    ds_list_replace(ds_map_get(ds_list_find_value(gamepad_list, argument0), "input_list"), argument1, argument2);
 }

@@ -448,3 +448,8 @@ debug_option_swap
 player_add_rings
 game_config_write_key
 game_config_read_key
+game_config_init_gamepad
+game_config_get_gamepad
+game_config_set_gamepad
+game_config_write_gamepad
+game_config_read_gamepad

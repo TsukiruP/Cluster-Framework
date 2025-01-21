@@ -52,7 +52,7 @@ if (transition_alarm > 0) transition_alarm -= 1;
 if (text_get_handle() != id && preview && transition_state == 1 && transition_alarm == 0)
 {
     text_set_handle(id);
-    text_set_subject(string_input(INP_CONFIRM) + ": End Preview");
+    text_set_subject(string_input(INP_CONFIRM) + " - End Preview");
 }
 /*"/*'/**//* YYD ACTION
 lib_id=1

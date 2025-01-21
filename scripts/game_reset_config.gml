@@ -21,15 +21,14 @@ game_config_write_key();
 
 for (i = 0; i < PLAYER_COUNT; i += 1)
 {
-    var gamepad_string;
-
-    gamepad_string = "input_gamepad" + string(i);
     game_config_reset_btn(i);
-    game_set_config(gamepad_string + "_deadzone", 0.1);
-    game_set_config(gamepad_string + "_confirm", 0);
-    game_set_config(gamepad_string + "_style", 0);
+    game_config_set_gamepad(i, "input_deadzone", 0.1);
+    game_config_set_gamepad(i, "input_confirm", 0);
+    game_config_set_gamepad(i, "input_style", 0);
     game_config_set_confirm(i);
 }
+
+game_config_write_gamepad();
 
 game_set_config("input_gamepad_focus", true);
 

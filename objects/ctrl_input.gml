@@ -261,13 +261,14 @@ var i, j, k;
 
 for (i = 0; i < PLAYER_COUNT; i += 1)
 {
-    var gamepad_id;
+    var gamepad_id, gamepad_deadzone;
 
     gamepad_id = gamepad_device[i, 0];
+    gamepad_deadzone = game_config_get_gamepad(i, "input_deadzone");
 
-    if (gamepad_id > -1 && game_get_config("input_gamepad" + string(i) + "_deadzone") != 0)
+    if (gamepad_id > -1 && gamepad_deadzone != 0)
     {
-        joystick_set_deadzone(game_get_config("input_gamepad" + string(i) + "_deadzone"));
+        joystick_set_deadzone(gamepad_deadzone);
 
         gamepad_analog[INP_UP, CHECK_PRESSED + (i * 3)] = (sign(joystick_axis(gamepad_id, 1)) == -1 && !gamepad_analog[INP_UP, CHECK_HELD + (i * 3)]);
         gamepad_analog[INP_DOWN, CHECK_PRESSED + (i * 3)] = (sign(joystick_axis(gamepad_id, 1)) == 1 && !gamepad_analog[INP_DOWN, CHECK_HELD + (i * 3)]);

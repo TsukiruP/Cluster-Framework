@@ -85,16 +85,18 @@ applies_to=self
 
 var i;
 
+ds_grid_destroy(room_grid);
+ds_map_destroy(config_map);
 ds_list_destroy(keyboard_list);
 
-for (i = 0; i < PLAYER_COUNT; i += 1)
+for (i = 0; i < ds_list_size(gamepad_list); i += 1)
 {
-    ds_list_destroy(game_get_config("input_gamepad" + string(i)));
+    ds_list_destroy(ds_map_get(ds_list_find_value(gamepad_list, i), "input_list"));
+    ds_map_destroy(ds_list_find_value(gamepad_list, i));
 }
 
-ds_map_destroy(config_map);
+ds_list_destroy(gamepad_list);
 ds_map_destroy(save_map);
-ds_grid_destroy(room_grid);
 #define Other_5
 /*"/*'/**//* YYD ACTION
 lib_id=1

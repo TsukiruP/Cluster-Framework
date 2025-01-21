@@ -28,8 +28,13 @@
 					|game_config_read_key
 					|game_config_reset_key
 				+Gamepad
+					|game_config_init_gamepad
 					|game_config_get_btn
 					|game_config_set_btn
+					|game_config_get_gamepad
+					|game_config_set_gamepad
+					|game_config_write_gamepad
+					|game_config_read_gamepad
 					|game_config_reset_btn
 					|game_config_set_confirm
 			+Save
@@ -557,3 +562,4 @@
 			|player_cpu_respawn
 			|player_add_rings
 	+Props
++Trash
