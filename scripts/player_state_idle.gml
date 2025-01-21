@@ -54,8 +54,8 @@ switch (argument0)
             }
         }
 
-        if (player_routine_jump()) return true;
         if (player_routine_skill()) return true;
+        if (player_routine_jump()) return true;
 
         if (!game_ispaused(ctrl_text) && on_ground && input_allow && animation_current == "stand")
         {

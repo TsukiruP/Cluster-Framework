@@ -26,8 +26,8 @@ switch (argument0)
             return player_set_state(player_state_idle);
         }
 
-        if (player_routine_jump()) return true;
         if (player_routine_skill()) return true;
+        if (player_routine_jump()) return true;
         break;
 
     case STATE_FINISH:
