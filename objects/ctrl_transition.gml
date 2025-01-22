@@ -322,10 +322,7 @@ applies_to=self
 */
 /// Retry
 
-if ((game_ispaused(mnu_pause) && !pause_ignore) || transition_id != TRANS_RETRY)
-{
-    exit;
-}
+if ((game_ispaused(mnu_pause) && !pause_ignore) || transition_id != TRANS_RETRY) exit;
 
 if (transition_state < 2 && instance_exists(stage_get_player(0)) && input_get_check(INP_ANY, CHECK_PRESSED)) transition_state = 2;
 
