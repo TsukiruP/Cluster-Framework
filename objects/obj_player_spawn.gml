@@ -19,13 +19,13 @@ if (game_checkpoint_isset())
 
 for (i = 0; i < PLAYER_COUNT; i += 1)
 {
-    if (game_get_save("player" + string(i)) != -1)
+    if (game_save_get_character(i) != -1)
     {
         stage_add_player(instance_create(x - (30 * i), y, obj_player));
 
         with (stage_get_player(i))
         {
-            character_id = game_get_save("player" + string(i));
+            character_id = game_save_get_character(i);
             input_allow = false;
 
             if (i == 0)

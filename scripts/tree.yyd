@@ -48,6 +48,12 @@
 				|game_load_save_buffer
 				|game_save_exists
 				|game_save_auto
+				+Character
+					|game_save_get_character
+					|game_save_set_character
+					|game_save_write_character
+					|game_save_read_character
+					|game_save_reset_character
 			+Room
 				|game_room_add
 				|game_get_room_transition

@@ -64,10 +64,12 @@ if (input_get_check(INP_CONFIRM, CHECK_PRESSED))
         var save_name;
 
         if (menu_mode == 1 || menu_mode == 2) save_name = ds_map_get(save_preview_map, "save" + string(menu_save) + "_name");
-        else save_name = pick(game_get_save("name") == "", game_get_save("name"), "Slot " + string(menu_save));
+        else save_name = game_get_save("name");
+
+        if (save_name == "") save_name = "Slot " + string(menu_save);
 
         script_execute(pick(menu_mode, game_write_save, game_read_save, game_delete_save), menu_save);
-        script_execute(text_set_subject, save_name + " data has been " + pick(menu_mode, "saved.", "loaded.", "deleted."));
+        script_execute(text_set_subject, pick(menu_mode, "Saved", "Loaded", "Deleted") + " " + save_name + " data.");
         event_user(0);
         audio_play_sfx("snd_menu_confirm", true);
     }
@@ -161,19 +163,19 @@ for (i = 0; i < page_count; i += 1)
         // Text:
         if (ds_map_get(save_preview_map, save_string + "_exists"))
         {
-            var save_name, save_stage, save_time;
+            var save_character, save_name, save_stage, save_time;
 
             // Save data:
+            save_character = ds_map_get(save_preview_map, save_string + "_character");
             save_name = ds_map_get(save_preview_map, save_string + "_name");
             save_stage = ds_map_get(save_preview_map, save_string + "_stage");
             save_time = ds_map_get(save_preview_map, save_string + "_time");
-            save_player = ds_map_get(save_preview_map, save_string + "_player");
 
             // Default to slot number:
             if (save_name == "") save_name = "Slot " + string(save_id);
 
-            // Player:
-            draw_sprite_ext(spr_save_player, save_player, save_x1 - 8, save_y1 - save_height / 2, 1, 1, 0, c_white, 0.6);
+            // Character:
+            draw_sprite_ext(spr_save_character, save_character, save_x1 - 8, save_y1 - save_height / 2, 1, 1, 0, c_white, 0.6);
 
             // Name and stage:
             draw_set2(fa_left, fa_center);

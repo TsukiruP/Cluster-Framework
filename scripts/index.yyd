@@ -453,3 +453,8 @@ game_config_get_gamepad
 game_config_set_gamepad
 game_config_write_gamepad
 game_config_read_gamepad
+game_save_reset_character
+game_save_write_character
+game_save_get_character
+game_save_set_character
+game_save_read_character

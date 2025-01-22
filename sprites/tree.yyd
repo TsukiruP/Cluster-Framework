@@ -21,7 +21,7 @@
 			|fnt_score_s4e2
 			|fnt_time_s4e2
 	+Menu
-		|spr_save_player
+		|spr_save_character
 		+Title
 			|spr_realizing_hopper
 			|spr_title_start

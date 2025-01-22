@@ -9,13 +9,9 @@ game_set_save("name", "");
 game_set_save("stage", rm_basic_test_1);
 game_set_save("time", 0);
 
-// Player data:
-for (i = 0; i < PLAYER_COUNT; i += 1)
-{
-    game_set_save("player" + string(i), -1);
-}
+game_save_reset_character();
+game_save_write_character();
 
-game_set_save("player0", CHAR_SONIC);
 game_set_save("swap", true);
 
 game_set_save("sonic_jump", SKILL_NONE);

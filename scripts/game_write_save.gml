@@ -6,6 +6,9 @@ with (ctrl_game)
     var save_buffer;
 
     save_buffer = buffer_create();
+
+    game_save_write_character();
+
     buffer_write_hex(save_buffer, ds_map_write(save_map));
     if (save_encryption != "") buffer_rc4(save_buffer, save_encryption);
     buffer_save(save_buffer, save_directory + "save" + string(argument0) + ".sav");
