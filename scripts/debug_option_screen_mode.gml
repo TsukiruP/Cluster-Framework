@@ -2,7 +2,6 @@
 
 var config_key;
 
-// Config key:
 config_key = "screen_mode";
 
 switch (argument0)

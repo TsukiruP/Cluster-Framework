@@ -2,7 +2,6 @@
 
 var config_key;
 
-// Config key:
 config_key = "advance_brake";
 
 switch (argument0)

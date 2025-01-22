@@ -2,7 +2,6 @@
 
 var save_key;
 
-// Save key:
 save_key = "sonic_slam";
 
 switch (argument0)
