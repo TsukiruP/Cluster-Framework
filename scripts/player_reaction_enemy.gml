@@ -14,7 +14,6 @@ if ((collision & COLL_INTERACT && status_invin == INVIN_BUFF) || (collision & CO
         {
             y_speed -= 1;
         }
-
         else if (y < reaction_handle.y && sign(y_speed) == 1)
         {
             y_speed *= -1;
