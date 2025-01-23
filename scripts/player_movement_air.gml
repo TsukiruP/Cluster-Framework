@@ -41,7 +41,7 @@ repeat (total_steps)
 
         // React:
         player_react(hit_wall, COLL_SOLID);
-        if (state_changed) return false;
+        if (state_changed || !instance_exists(hit_wall)) return false;
 
         // Stop if moving towards wall:
         if (sign(x_speed) == wall_sign) x_speed = 0;
@@ -76,7 +76,7 @@ repeat (total_steps)
         {
             // React:
             player_react(hit_floor, COLL_SOLID);
-            if (state_changed) return false;
+            if (state_changed || !instance_exists(hit_floor)) return false;
 
             // Get floor data:
             player_set_ground(hit_floor);
@@ -94,7 +94,7 @@ repeat (total_steps)
         {
             // React:
             player_react(hit_floor, COLL_SOLID);
-            if (state_changed) return false;
+            if (state_changed || !instance_exists(hit_floor)) return false;
 
             // Rotate mask to ceiling:
             mask_rotation = angle_wrap(mask_rotation + 180);
