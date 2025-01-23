@@ -7,15 +7,8 @@ applies_to=self
 /// Decoration Initialization
 
 event_inherited();
-#define Step_2
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// View Object
-
 if (room == rm_debug && view_object != id) view_object = id;
+#define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
