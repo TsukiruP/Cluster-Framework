@@ -8,6 +8,7 @@ switch (argument0)
 
     // Confirm:
     case 2:
+        transition_room = room_first;
         debug_set_next(debug_menu_transition);
         return true;
 

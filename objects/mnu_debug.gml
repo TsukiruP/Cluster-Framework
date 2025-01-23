@@ -15,7 +15,7 @@ menu_x_direction = 0;
 menu_list = ds_list_create();
 debug_set_menu(debug_menu_home);
 
-transition_room = room;
+transition_room = room_first;
 transition_preview = TRANS_FADE;
 
 rename_allow = false;

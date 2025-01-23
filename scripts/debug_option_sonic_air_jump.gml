@@ -8,7 +8,7 @@ switch (argument0)
 {
     // Text:
     case 0:
-        return "Jump Skill:";
+        return "Air Skill (Jump):";
 
     // Value:
     case 1:

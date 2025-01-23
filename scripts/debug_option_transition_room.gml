@@ -22,26 +22,14 @@ switch (argument0)
         {
             // Left:
             case -1:
-                if (transition_room != room_first)
-                {
-                    transition_room = room_previous(transition_room);
-                }
-                else
-                {
-                    transition_room = room_last;
-                }
+                if (transition_room != room_first) transition_room = room_previous(transition_room);
+                else transition_room = room_last;
                 break;
             
             // Right:
             case 1:
-                if (transition_room != room_last)
-                {
-                    transition_room = room_next(transition_room);
-                }
-                else
-                {
-                    transition_room = room_first;
-                }
+                if (transition_room != room_last) transition_room = room_next(transition_room);
+                else transition_room = room_first;
                 break;
         }
         return true;
