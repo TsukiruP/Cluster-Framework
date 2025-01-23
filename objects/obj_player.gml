@@ -225,10 +225,7 @@ applies_to=self
 */
 ///  Inputs
 
-if (game_ispaused())
-{
-    exit;
-}
+if (game_ispaused()) exit;
 
 if (input_allow)
 {
@@ -673,10 +670,7 @@ applies_to=self
 */
 /// Air
 
-if (game_ispaused())
-{
-    exit;
-}
+if (game_ispaused()) exit;
 
 if (state_current != player_state_death && !instance_exists(ctrl_tally))
 {
@@ -815,6 +809,8 @@ action_id=603
 applies_to=self
 */
 /// Afterimage
+
+if (game_ispaused(mnu_pause)) exit;
 
 if (afterimage_draw)
 {

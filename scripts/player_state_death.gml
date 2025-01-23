@@ -24,9 +24,9 @@ switch (argument0)
         {
             death_alarm -= 1;
 
-            if (death_alarm == 0 && !input_cpu)
+            if (death_alarm == 0 && !input_cpu && !instance_exists(death_handle))
             {
-                if (!instance_exists(death_handle)) death_handle = transition_create(room, TRANS_RETRY);
+                death_handle = transition_create(room, TRANS_RETRY);
             }
         }
         break;
