@@ -3,7 +3,7 @@
 
 with (ctrl_audio)
 {
-    if (bgm_handle != -1)
+    if (audio_bgm_isplaying())
     {
         sound_stop(bgm_handle);
         sound_discard(bgm_handle);

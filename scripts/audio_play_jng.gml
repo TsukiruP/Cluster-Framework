@@ -9,7 +9,7 @@ with (ctrl_audio)
         if (sound_get_kind(argument0) == 3)
         {
             audio_stop_jng();
-            if (jng_handle == -1) jng_handle = sound_play_single(argument0);
+            jng_handle = sound_play_single(argument0);
             if (audio_drown_isplaying()) audio_mute_jng();
         }
     }

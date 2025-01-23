@@ -10,7 +10,7 @@ with (ctrl_audio)
     }
     else
     {
-        if (jng_handle != -1)
+        if (audio_jng_isplaying())
         {
             sound_stop(jng_handle);
             sound_discard(jng_handle);

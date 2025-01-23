@@ -103,6 +103,7 @@
 				|audio_resume_bgm
 				|audio_mute_bgm
 				|audio_fade_bgm
+				|audio_bgm_isplaying
 			+JNG
 				|audio_play_jng
 				|audio_stop_jng

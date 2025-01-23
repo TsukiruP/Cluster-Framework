@@ -7,7 +7,7 @@ bgm_volume = game_get_config("audio_bgm") / 100;
 
 with (ctrl_audio)
 {
-    if (jng_handle != -1)
+    if (audio_jng_isplaying())
     {
         if (sound_isplaying(jng_handle))
         {

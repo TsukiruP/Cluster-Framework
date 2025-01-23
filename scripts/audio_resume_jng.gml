@@ -3,5 +3,5 @@
 
 with (ctrl_audio)
 {
-    if (jng_handle != -1) sound_resume(jng_handle);
+    if (audio_jng_isplaying()) sound_resume(jng_handle);
 }

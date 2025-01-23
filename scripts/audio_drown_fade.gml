@@ -3,7 +3,7 @@
 
 with (ctrl_audio)
 {
-    if (drown_handle != -1)
+    if (audio_drown_isplaying())
     {
         if (argument0)
         {

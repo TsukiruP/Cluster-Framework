@@ -7,10 +7,5 @@ with (ctrl_audio)
     {
         if (sound_exists(argument[0])) return sound_isplaying(argument[0]);
     }
-    else
-    {
-        if (jng_handle != -1) return sound_isplaying(jng_handle);
-    }
-
-    return false;
+    else return jng_handle != -1;
 }

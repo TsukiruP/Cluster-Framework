@@ -92,7 +92,7 @@ if (fade_out)
     audio_fade_bgm(true);
     audio_fade_jng(true);
     audio_drown_fade(true);
-    if (bgm_handle == -1 && jng_handle == -1) fade_out = false;
+    if (bgm_handle == -1 && !audio_jng_isplaying()) fade_out = false;
 }
 else
 {

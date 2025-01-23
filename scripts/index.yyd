@@ -464,3 +464,4 @@ game_save_get_skill
 game_save_set_skill
 game_save_write_skill
 game_save_read_skill
+audio_bgm_isplaying
