@@ -14,22 +14,14 @@ with (ctrl_input)
         switch (argument1)
         {
             case PAD_TRIGGERL:
-                return gamepad_trigger[TRG_LEFT, argument2 + (argument0 * 3)];
-
             case PAD_TRIGGERR:
-                return gamepad_trigger[TRG_RIGHT, argument2 + (argument0 * 3)];
+                return gamepad_trigger[argument1 - PAD_TRIGGERL, argument2 + (argument0 * 3)];
 
             case PAD_UP:
-                return gamepad_dpad[INP_UP, argument2 + (argument0 * 3)];
-
             case PAD_DOWN:
-                return gamepad_dpad[INP_DOWN, argument2 + (argument0 * 3)];
-
             case PAD_LEFT:
-                return gamepad_dpad[INP_LEFT, argument2 + (argument0 * 3)];
-
             case PAD_RIGHT:
-                return gamepad_dpad[INP_RIGHT, argument2 + (argument0 * 3)];
+                return gamepad_dpad[argument1 - PAD_UP, argument2 + (argument0 * 3)];
 
             default:
                 var button_id;
