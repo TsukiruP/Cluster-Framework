@@ -15,14 +15,12 @@ hud_x = 0;
 
 switch (game_get_config("misc_hud"))
 {
-    // S4E2:
     case 2:
         hud_index = spr_hud_s4e2;
         hud_offset = 13;
         hud_y = 14;
         break;
 
-        // Default:
     default:
         hud_index = spr_hud;
         hud_offset = 4;
@@ -376,25 +374,23 @@ status_count = 0;
 
 for (i = status_max; i > 0; i -= 1)
 {
-    var status_x;
+    var status_config, status_id, status_x;
 
+    status_config = game_get_config("misc_status");
     status_id = i - 1;
     status_x = view_xview[view_current] + status_bar_x + status_width * (status_max - 1 - status_count);
 
-    if (((game_get_config("misc_status") != 0 && status_active[status_id, 0]) || game_get_config("misc_status") == 2) && status_active[status_id, 1])
+    if (((status_config != 0 && status_active[status_id, 0]) || status_config == 2) && status_active[status_id, 1])
     {
         // Shadow:
         draw_sprite_ext(spr_item_icon, status_icon[status_id], status_x + 1, view_yview[view_current] + 18, 1, 1, 0, c_black, 1);
 
         // Icon:
-        image_blend = pick(game_get_config("misc_status") == 2 && !status_active[status_id, 0], c_white, c_gray);
+        image_blend = pick(status_config == 2 && !status_active[status_id, 0], c_white, c_gray);
         draw_sprite_ext(spr_item_icon, status_icon[status_id], status_x, view_yview[view_current] + 17, 1, 1, 0, image_blend, 1);
     }
 
-    if ((game_get_config("misc_status") == 1 && status_active[status_id, 0]) || game_get_config("misc_status") == 2)
-    {
-        status_count += 1;
-    }
+    if ((status_config == 1 && status_active[status_id, 0]) || status_config == 2) status_count += 1;
 }
 
 draw_reset();

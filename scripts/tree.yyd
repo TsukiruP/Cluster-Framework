@@ -54,6 +54,13 @@
 					|game_save_write_character
 					|game_save_read_character
 					|game_save_reset_character
+				+Skill
+					|game_save_get_skill
+					|game_save_set_skill
+					|game_save_write_skill
+					|game_save_read_skill
+					|game_save_reset_skill
+					|game_save_get_skill_map
 			+Room
 				|game_room_add
 				|game_get_room_transition
@@ -178,9 +185,9 @@
 						+Sonic
 							|debug_menu_sonic
 							+Options
-								|debug_option_sonic_jump
-								|debug_option_sonic_aux_ground
-								|debug_option_sonic_aux_air
+								|debug_option_sonic_ground
+								|debug_option_sonic_air_jump
+								|debug_option_sonic_air_aux
 								|debug_option_sonic_slam
 								|debug_option_sonic_peel
 								|debug_option_sonic_homing

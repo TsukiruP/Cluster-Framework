@@ -42,10 +42,7 @@ switch (argument0)
                 with (effect_create(sequence_drop_dash, x, y + y_radius)) image_xscale = other.image_xscale;
                 return player_set_state(player_state_roll);
             }
-            else
-            {
-                if (player_routine_land()) return true;
-            }
+            else if (player_routine_land()) return true;
         }
 
         if (player_get_input(INP_JUMP, CHECK_HELD))
@@ -71,8 +68,7 @@ switch (argument0)
             else return player_set_state(state_previous, false)
         }
 
-        // Bound:
-        if (game_get_save("sonic_slam") == SKILL_BOUND_ATTACK && drop_dash_alarm == 0 && player_get_input(INP_DOWN, CHECK_HELD) && player_get_input(INP_AUX, CHECK_PRESSED))
+        if (game_save_get_skill(character_id, "slam") == SKILL_BOUND_ATTACK && drop_dash_alarm == 0 && player_get_input(INP_DOWN, CHECK_HELD) && player_get_input(INP_AUX, CHECK_PRESSED))
         {
             if (y_speed < bound_speed)
             {
@@ -80,10 +76,7 @@ switch (argument0)
                 audio_play_sfx("snd_bound", true);
             }
         }
-        else
-        {
-            if (player_routine_skill()) return true;
-        }
+        else if (player_routine_skill()) return true;
 
         if (abs(x_speed) > air_friction_threshold && y_speed > -4 && y_speed < 0) x_speed *= air_friction;
         if (y_allow) y_speed += gravity_force;

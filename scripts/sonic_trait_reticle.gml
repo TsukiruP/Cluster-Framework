@@ -27,9 +27,13 @@ switch (state_current)
 
 if (!homing_allow || spring_alarm != 0 || !input_allow || (input_cpu && input_cpu_gamepad_alarm == 0)) exit;
 
+var skill_homing;
+
+skill_homing = game_save_get_skill(character_id, "homing");
+
 if (!player_get_input(INP_ALT, CHECK_HELD))
 {
-    if ((game_get_save("sonic_homing") >= HOMING_ADVENTURE && !on_ground) || game_get_save("sonic_homing") == HOMING_FRONTIERS)
+    if ((skill_homing >= HOMING_ADVENTURE && !on_ground) || skill_homing == HOMING_FRONTIERS)
     {
         var i, homing_candidate, homing_fail, homing_solid;
 

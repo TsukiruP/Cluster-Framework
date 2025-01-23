@@ -10,5 +10,5 @@ with (ctrl_game)
         ds_list_add(character_list, -1);
     }
 
-    game_save_set_character(0, CHAR_CLASSIC);
+    game_save_set_character(0, CHAR_SONIC);
 }

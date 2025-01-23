@@ -14,10 +14,5 @@ game_save_write_character();
 
 game_set_save("swap", true);
 
-game_set_save("sonic_jump", SKILL_NONE);
-game_set_save("sonic_aux_ground", SKILL_NONE);
-game_set_save("sonic_aux_air", SKILL_NONE);
-game_set_save("sonic_slam", SKILL_NONE);
-game_set_save("sonic_peel", false);
-game_set_save("sonic_homing", HOMING_NONE);
-game_set_save("sonic_shield", false);
+game_save_reset_skill(CHAR_SONIC);
+game_save_write_skill(CHAR_SONIC);

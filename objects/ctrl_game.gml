@@ -98,6 +98,7 @@ for (i = 0; i < ds_list_size(gamepad_list); i += 1)
 ds_list_destroy(gamepad_list);
 ds_map_destroy(save_map);
 ds_list_destroy(character_list);
+ds_map_destroy(sonic_map);
 #define Other_5
 /*"/*'/**//* YYD ACTION
 lib_id=1

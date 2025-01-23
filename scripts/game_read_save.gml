@@ -24,5 +24,6 @@ with (ctrl_game)
         ds_map_destroy(save_temp);
 
         game_save_read_character();
+        game_save_read_skill(CHAR_SONIC);
     }
 }

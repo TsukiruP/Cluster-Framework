@@ -347,8 +347,9 @@ for (i = 0; i < PLAYER_COUNT; i += 1)
     var gamepad_id;
 
     gamepad_id = gamepad_device[i, 0];
+    gamepad_focus = game_get_config("input_gamepad_focus");
 
-    if (gamepad_id > -1 && (game_get_config("input_gamepad_focus") || (!game_get_config("input_gamepad_focus") && window_has_focus())))
+    if (gamepad_id > -1 && (gamepad_focus || (!gamepad_focus && window_has_focus())))
     {
         for (j = INP_UP; j <= INP_HIDE; j += 1)
         {

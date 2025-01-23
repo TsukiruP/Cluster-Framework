@@ -1,8 +1,8 @@
 /// debug_option_sonic_homing(return)
 
-var save_key;
+var skill_key;
 
-save_key = "sonic_homing";
+skill_key = "homing";
 
 switch (argument0)
 {
@@ -12,11 +12,11 @@ switch (argument0)
 
     // Value:
     case 1:
-        return pick(game_get_save(save_key), "None", "Adventure", "Unleashed", "Frontiers", "Generations");
+        return pick(game_save_get_skill(CHAR_SONIC, skill_key), "None", "Adventure", "Unleashed", "Frontiers", "Generations");
 
     // Update:
     case 3:
-        game_set_save(save_key, wrap(game_get_save(save_key) + menu_x_direction, HOMING_NONE, HOMING_GENERATIONS));
+        game_save_set_skill(CHAR_SONIC, skill_key, wrap(game_save_get_skill(CHAR_SONIC, skill_key) + menu_x_direction, HOMING_NONE, HOMING_GENERATIONS));
         return true;
 
     // Undefined:

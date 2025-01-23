@@ -19,7 +19,7 @@ with (ctrl_game)
 
             save_temp = game_load_save_buffer(i);
             character_list = ds_list_create();
-            ds_list_read(character_list, ds_map_get(save_temp, "character"));
+            ds_list_read(character_list, ds_map_get(save_temp, "character_id"));
 
             ds_map_set(preview_map, save_string + "_exists", true);
             ds_map_set(preview_map, save_string + "_character", ds_list_find_value(character_list, 0));
