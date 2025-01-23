@@ -6,7 +6,7 @@ var reaction_handle, collision;
 reaction_handle = argument0;
 collision = argument1;
 
-if ((collision & COLL_INTERACT && status_invin == INVIN_BUFF) || (collision & COLL_HIT && status_invin == INVIN_BUFF))
+if ((collision & COLL_INTERACT && status_invin == INVIN_BUFF) || (collision & COLL_HIT))
 {
     if (reaction_handle.class == ENE_BASIC)
     {
@@ -44,7 +44,7 @@ if ((collision & COLL_INTERACT && status_invin == INVIN_BUFF) || (collision & CO
         }
     }
 }
-else if (collision & COLL_HURT && (reaction_handle.hitbox_element == 0 || (status_shield - SHIELD_BUBBLE != reaction_handle.hitbox_element)))
+else if (collision & COLL_HURT && (reaction_handle.hitbox_element == ELEM_NONE || (status_shield - SHIELD_BUBBLE != reaction_handle.hitbox_element)))
 {
     player_set_damage(reaction_handle);
 }
