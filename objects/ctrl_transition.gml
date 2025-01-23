@@ -13,27 +13,26 @@ load_skip = false;
 transition_id = TRANS_FADE;
 transition_state = 0;
 transition_alarm = 0;
-transition_time = 0;
 transition_room = room;
 transition_run = -1;
 
 fade_handle = noone;
 player_handle = noone;
 
-curtain_max_time = 20;
-curtain_time = 0;
+curtain_max_frame = 20;
+curtain_frame = 0;
 curtain_y = 0;
 curtain_scroll = 0;
 curtain_scroll_speed = 1;
 
-banner_max_time = 20;
-banner_time = 0;
+banner_max_frame = 20;
+banner_frame = 0;
 banner_x = 0;
 banner_scroll = 0;
 banner_scroll_speed = 1;
 
-zone_max_time = 30;
-zone_time = 0;
+zone_max_frame = 30;
+zone_frame = 0;
 zone_width = -1;
 zone_spacing = 9;
 zone_x = 0;
@@ -59,17 +58,17 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Time
+/// Frames
 
 if (game_ispaused(mnu_pause) && !pause_ignore) exit;
 
-if ((transition_id == TRANS_MENU && transition_state < 2) || (transition_id == TRANS_CARD && transition_state < 4) || (transition_id == TRANS_RETRY && transition_state < 5)) curtain_time = approach(curtain_time, curtain_max_time, 1);
-else curtain_time = approach(curtain_time, 0, 1);
+if ((transition_id == TRANS_MENU && transition_state < 2) || (transition_id == TRANS_CARD && transition_state < 4) || (transition_id == TRANS_RETRY && transition_state < 5)) curtain_frame = approach(curtain_frame, curtain_max_frame, 1);
+else curtain_frame = approach(curtain_frame, 0, 1);
 
-if (transition_id == TRANS_CARD && transition_state < 4 && curtain_time == curtain_max_time) banner_time = approach(banner_time, banner_max_time, 1);
-else banner_time = approach(banner_time, 0, 1);
+if (transition_id == TRANS_CARD && transition_state < 4 && curtain_frame == curtain_max_frame) banner_frame = approach(banner_frame, banner_max_frame, 1);
+else banner_frame = approach(banner_frame, 0, 1);
 
-if ((transition_id == TRANS_CARD && ((transition_state < 4 && curtain_time == curtain_max_time) || (transition_state > 3))) || transition_id == TRANS_RETRY) zone_time = approach(zone_time, zone_max_time, 1);
+if ((transition_id == TRANS_CARD && ((transition_state < 4 && curtain_frame == curtain_max_frame) || (transition_state > 3))) || transition_id == TRANS_RETRY) zone_frame = approach(zone_frame, zone_max_frame, 1);
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -102,7 +101,7 @@ applies_to=self
 
 if (game_ispaused(mnu_pause) && !pause_ignore) exit;
 
-if (transition_id != TRANS_RETRY) curtain_y = lerp(-15, screen_get_height() + 15, smoothstep(0, curtain_max_time, curtain_time));
+if (transition_id != TRANS_RETRY) curtain_y = lerp(-15, screen_get_height() + 15, smoothstep(0, curtain_max_frame, curtain_frame));
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -217,7 +216,7 @@ if (game_get_room_start() == START_STANDBY && transition_state > 3 && instance_e
     }
 }
 
-banner_x = lerp(-sprite_get_width(spr_title_card_banner), 0, smoothstep(0, banner_max_time, banner_time));
+banner_x = lerp(-sprite_get_width(spr_title_card_banner), 0, smoothstep(0, banner_max_frame, banner_frame));
 banner_scroll += banner_scroll_speed;
 banner_scroll = banner_scroll mod sprite_get_height(spr_title_card_banner);
 
@@ -227,14 +226,14 @@ if (zone_width == -1)
     zone_width = string_width(game_get_room_zone(transition_room)) + zone_spacing;
 }
 
-if (transition_state > 3) zone_x = ease_in_out_back(zone_time, 40, screen_get_width() + zone_spacing, zone_max_time);
-else zone_x = ease_in_out_back(zone_time, -zone_width, 40 + zone_width, zone_max_time);
+if (transition_state > 3) zone_x = ease_in_out_back(zone_frame, 40, screen_get_width() + zone_spacing, zone_max_frame);
+else zone_x = ease_in_out_back(zone_frame, -zone_width, 40 + zone_width, zone_max_frame);
 
 switch (transition_state)
 {
     // 0 - Start:
     case 0:
-        if (banner_time == banner_max_time && zone_time == zone_max_time)
+        if (banner_frame == banner_max_frame && zone_frame == zone_max_frame)
         {
             stage_set_time_allow(false);
             transition_state = 1;
@@ -276,7 +275,7 @@ switch (transition_state)
         if (transition_alarm == 0)
         {
             transition_state = 4;
-            zone_time = 0;
+            zone_frame = 0;
         }
         break;
 
@@ -308,7 +307,7 @@ switch (transition_state)
     case 5:
         stage_start();
 
-        if (curtain_time == 0 && banner_time == 0 && zone_time == zone_max_time)
+        if (curtain_frame == 0 && banner_frame == 0 && zone_frame == zone_max_frame)
         {
             stage_set_time_allow(true);
             instance_destroy();
@@ -329,9 +328,9 @@ if (transition_state < 2 && instance_exists(stage_get_player(0)) && input_get_ch
 curtain_scroll += curtain_scroll_speed;
 curtain_scroll = curtain_scroll mod sprite_get_width(spr_transition_curtain);
 
-if (transition_state > 2 && transition_state < 5) curtain_y = lerp(32, screen_get_height() / 2 + 15, smoothstep(0, curtain_max_time, curtain_time));
-else if (transition_state > 4) curtain_y = lerp(-15, screen_get_height() / 2 + 15, smoothstep(0, curtain_max_time, curtain_time));
-else curtain_y = lerp(-15, 32, smoothstep(0, curtain_max_time, curtain_time));
+if (transition_state > 2 && transition_state < 5) curtain_y = lerp(32, screen_get_height() / 2 + 15, smoothstep(0, curtain_max_frame, curtain_frame));
+else if (transition_state > 4) curtain_y = lerp(-15, screen_get_height() / 2 + 15, smoothstep(0, curtain_max_frame, curtain_frame));
+else curtain_y = lerp(-15, 32, smoothstep(0, curtain_max_frame, curtain_frame));
 
 if (zone_width == -1)
 {
@@ -339,14 +338,14 @@ if (zone_width == -1)
     zone_width = floor((string_width("Try Again") + zone_spacing) / 2);
 }
 
-if (transition_state > 2) zone_x = screen_get_width() - ease_in_out_back(zone_time, screen_get_width() / 2, screen_get_width() + zone_width, zone_max_time);
-else zone_x = screen_get_width() - ease_in_out_back(zone_time, -zone_width, screen_get_width() / 2 + zone_width, zone_max_time);
+if (transition_state > 2) zone_x = screen_get_width() - ease_in_out_back(zone_frame, screen_get_width() / 2, screen_get_width() + zone_width, zone_max_frame);
+else zone_x = screen_get_width() - ease_in_out_back(zone_frame, -zone_width, screen_get_width() / 2 + zone_width, zone_max_frame);
 
 switch (transition_state)
 {
     // 0 - Start:
     case 0:
-        if (curtain_time == curtain_max_time)
+        if (curtain_frame == curtain_max_frame)
         {
             transition_state = 1;
             transition_alarm = 60;
@@ -365,13 +364,13 @@ switch (transition_state)
     // 2 - Reset progress:
     case 2:
         transition_state = 3;
-        curtain_time = 0;
-        zone_time = 0;
+        curtain_frame = 0;
+        zone_frame = 0;
         break;
 
     // 3 - Close:
     case 3:
-        if (curtain_time == curtain_max_time && zone_time == zone_max_time)
+        if (curtain_frame == curtain_max_frame && zone_frame == zone_max_frame)
         {
             transition_state = 4;
             transition_alarm = 30;
@@ -389,7 +388,7 @@ switch (transition_state)
 
     // 5 - Reverse:
     case 5:
-        if (curtain_time == 0)
+        if (curtain_frame == 0)
         {
             if (game_get_room_start() != START_RUN || (game_get_room_start() == START_RUN && transition_run == -1) || preview) transition_state = 6;
         }

@@ -9,8 +9,8 @@ applies_to=self
 var i;
 
 hud_hide = true;
-hud_max_time = 10;
-hud_time = 0;
+hud_max_frame = 10;
+hud_frame = 0;
 hud_x = 0;
 
 switch (game_get_config("misc_hud"))
@@ -28,18 +28,18 @@ switch (game_get_config("misc_hud"))
 }
 
 air_hide = true;
-air_time = 0;
+air_frame = 0;
 air_x = 0;
 air_value = 30;
 
 gauge_hide = true;
-gauge_time = 0;
+gauge_frame = 0;
 gauge_x = 0;
 gauge_max_energy = 1;
 gauge_energy = 0;
 
 boss_hide = true;
-boss_time = 0;
+boss_frame = 0;
 boss_x = 0;
 boss_health = 0;
 
@@ -59,7 +59,7 @@ for (i = STATUS_SHIELD; i <= STATUS_SWAP; i += 1)
 }
 
 item_hide = false;
-item_max_time = 10;
+item_max_frame = 10;
 item_alarm = 0;
 item_grid = -1;
 if (game_get_config("misc_hud") == 1 && game_get_config("misc_feed")) item_grid = ds_grid_create(3, 0);
@@ -86,7 +86,7 @@ if (item_grid != -1)
 {
     if (ds_grid_height(item_grid) > 0)
     {
-        if (ds_grid_get(item_grid, 1, ds_grid_height(item_grid) - 1) == item_max_time)
+        if (ds_grid_get(item_grid, 1, ds_grid_height(item_grid) - 1) == item_max_frame)
         {
             if (item_alarm > 0)
             {
@@ -113,29 +113,29 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Time
+/// Frames
 
 if (game_ispaused(mnu_pause)) exit;
 
 var i;
 
-if (!hud_hide) hud_time = approach(hud_time, hud_max_time, 1);
-else hud_time = approach(hud_time, 0, 1);
+if (!hud_hide) hud_frame = approach(hud_frame, hud_max_frame, 1);
+else hud_frame = approach(hud_frame, 0, 1);
 
-if (!air_hide) air_time = approach(air_time, hud_max_time, 1);
-else air_time = approach(air_time, 0, 1);
+if (!air_hide) air_frame = approach(air_frame, hud_max_frame, 1);
+else air_frame = approach(air_frame, 0, 1);
 
-if (!hud_hide && !gauge_hide) gauge_time = approach(gauge_time, hud_max_time, 1);
-else gauge_time = approach(gauge_time, 0, 1);
+if (!hud_hide && !gauge_hide) gauge_frame = approach(gauge_frame, hud_max_frame, 1);
+else gauge_frame = approach(gauge_frame, 0, 1);
 
-if (!hud_hide && !boss_hide) boss_time = approach(boss_time, hud_max_time, 1);
-else boss_time = approach(boss_time, 0, 1);
+if (!hud_hide && !boss_hide) boss_frame = approach(boss_frame, hud_max_frame, 1);
+else boss_frame = approach(boss_frame, 0, 1);
 
 if (item_grid != -1)
 {
     for (i = 0; i < ds_grid_height(item_grid); i += 1)
     {
-        ds_grid_set(item_grid, 1, i, approach(ds_grid_get(item_grid, 1, i), item_max_time, 1));
+        ds_grid_set(item_grid, 1, i, approach(ds_grid_get(item_grid, 1, i), item_max_frame, 1));
     }
 }
 #define Step_2
@@ -148,7 +148,7 @@ applies_to=self
 
 if (game_ispaused(mnu_pause)) exit;
 
-hud_x = lerp(-sprite_get_width(hud_index), hud_offset, smoothstep(0, hud_max_time, hud_time));
+hud_x = lerp(-sprite_get_width(hud_index), hud_offset, smoothstep(0, hud_max_frame, hud_frame));
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -158,7 +158,7 @@ applies_to=self
 
 if (game_ispaused(mnu_pause) || game_get_config("misc_hud") != 1) exit;
 
-air_x = lerp(-sprite_get_width(hud_index), hud_x, smoothstep(0, hud_max_time, air_time));
+air_x = lerp(-sprite_get_width(hud_index), hud_x, smoothstep(0, hud_max_frame, air_frame));
 
 if (instance_exists(stage_get_player(0)))
 {
@@ -182,7 +182,7 @@ applies_to=self
 
 if (game_ispaused(mnu_pause) || game_get_config("misc_hud") != 1) exit;
 
-gauge_x = lerp(-sprite_get_width(spr_hud_gauge), hud_x + 6, smoothstep(0, hud_max_time, gauge_time));
+gauge_x = lerp(-sprite_get_width(spr_hud_gauge), hud_x + 6, smoothstep(0, hud_max_frame, gauge_frame));
 
 with (stage_get_player(0))
 {
@@ -207,7 +207,7 @@ applies_to=self
 
 if (game_ispaused(mnu_pause) || game_get_config("misc_hud") != 1) exit;
 
-boss_x = lerp(screen_get_width() + sprite_get_width(spr_hud_boss), screen_get_width() - sprite_get_width(spr_hud_boss) - 10, smoothstep(0, hud_max_time, boss_time));
+boss_x = lerp(screen_get_width() + sprite_get_width(spr_hud_boss), screen_get_width() - sprite_get_width(spr_hud_boss) - 10, smoothstep(0, hud_max_frame, boss_frame));
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -217,7 +217,7 @@ applies_to=self
 
 if (game_ispaused(mnu_pause) || game_get_config("misc_hud") != 1 || game_get_config("misc_status") == 0) exit;
 
-status_bar_x = lerp(screen_get_width() + status_width + 5, screen_get_width() - status_width * status_max + 5, smoothstep(0, hud_max_time, hud_time));
+status_bar_x = lerp(screen_get_width() + status_width + 5, screen_get_width() - status_width * status_max + 5, smoothstep(0, hud_max_frame, hud_frame));
 
 with (stage_get_player(0))
 {
@@ -266,7 +266,7 @@ var i;
 
 for (i = 0; i < ds_grid_height(item_grid); i += 1)
 {
-    ds_grid_set(item_grid, 2, i, lerp(-sprite_get_width(spr_item_icon), screen_get_width() / 2 + 9 * (ds_grid_height(item_grid) - 1) - 18 * i, smoothstep(0, item_max_time, ds_grid_get(item_grid, 1, i))));
+    ds_grid_set(item_grid, 2, i, lerp(-sprite_get_width(spr_item_icon), screen_get_width() / 2 + 9 * (ds_grid_height(item_grid) - 1) - 18 * i, smoothstep(0, item_max_frame, ds_grid_get(item_grid, 1, i))));
 }
 #define Other_5
 /*"/*'/**//* YYD ACTION
