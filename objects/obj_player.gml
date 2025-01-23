@@ -242,7 +242,7 @@ if (input_allow)
 
         if (input_cpu_gamepad_alarm == 0)
         {
-            var leader_handle;
+            var i, leader_handle;
 
             leader_handle = stage_get_player(0);
             player_reset_input();
@@ -400,7 +400,10 @@ if (input_allow)
                 }
             }
 
-            if (input_get_check(INP_ANY, CHECK_HELD, DEV_GAMEPAD0 + player_id)) input_cpu_gamepad_alarm = 600;
+            for (i = 0; i <= INP_AUX; i += 1)
+            {
+                if (input_get_check(i, CHECK_HELD, DEV_GAMEPAD0 + player_id)) input_cpu_gamepad_alarm = 600;
+            }
         }
 
         // Respawn:
