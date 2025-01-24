@@ -116,11 +116,11 @@
 			|spr_ring
 			|spr_ring_super
 		|spr_checkpoint
+		|spr_dash_panel
 		+Springs
 			|spr_spring_vertical
 			|spr_spring_horizontal
 			|spr_spring_diagonal
-		|spr_dash_panel
 		+Dash Rings
 			|spr_dash_ring_vertical
 			|spr_dash_ring_horizontal
@@ -146,6 +146,7 @@
 		+Goals
 			|spr_goal_ring
 	+Obstacles
+		|spr_dash_ramp
 		+Spikes
 			|spr_spike_vertical
 			|spr_spike_horizontal
@@ -365,12 +366,7 @@
 				|spr_knuckles_leap
 				|spr_knuckles_fly_carry
 	+Amy
-	+Sensors
-		+Layer Sensors
-		+Platform Sensors
-	+Dash Panels
 	+Spikes
-		|spr_spike_down
 		|spr_spike_left
 		|spr_spike_right
 	|spr_spring_down

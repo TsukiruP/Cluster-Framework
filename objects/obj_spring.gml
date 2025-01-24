@@ -23,10 +23,7 @@ applies_to=self
 */
 /// Alarm
 
-if (sfx_alarm > 0)
-{
-    sfx_alarm -= 1;
-}
+if (sfx_alarm > 0) sfx_alarm -= 1;
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -62,30 +59,31 @@ applies_to=self
 //field force: number
 
 /*preview
-    var orientation, flip_x, flip_y;
+var orientation, flip_x, flip_y;
 
-    image_xscale = 1;
-    image_yscale = 1;
-    orientation = Field("orientation", 0);
-    flip_x = Field("flip_x", 0);
-    flip_y = Field("flip_y", 0);
+orientation = Field("orientation", 0);
+flip_x = Field("flip_x", 0);
+flip_y = Field("flip_y", 0);
 
-    switch (orientation)
-    {
-        case 1:
-            sprite_index = Sprite("spr_spring_horizontal", 0);
-            break;
+image_xscale = 1;
+image_yscale = 1;
 
-        case 2:
-            sprite_index = Sprite("spr_spring_diagonal", 0);
-            break;
+switch (orientation)
+{
+    case 1:
+        sprite_index = Sprite("spr_spring_horizontal", 0);
+        break;
 
-        default:
-            sprite_index = Sprite("spr_spring_vertical",  0);
-    }
+    case 2:
+        sprite_index = Sprite("spr_spring_diagonal", 0);
+        break;
 
-    if (flip_x) image_xscale = -1;
-    if (flip_y) image_yscale = -1;
+    default:
+        sprite_index = Sprite("spr_spring_vertical",  0);
+}
+
+if (flip_x) image_xscale = -1;
+if (flip_y) image_yscale = -1;
 */
 /*"/*'/**//* YYD ACTION
 lib_id=1

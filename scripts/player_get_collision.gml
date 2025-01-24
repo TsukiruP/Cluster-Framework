@@ -17,6 +17,8 @@ if (argument_count > 1) phase = argument[1];
 
 if (inst != noone)
 {
+    if (!inst.collision) return 0;
+    
     // Initialize player:
     ax_int = floor(x);
     ay_int = floor(y);

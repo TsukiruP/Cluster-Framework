@@ -20,12 +20,10 @@ y2 = y_int - (sine * wall_radius * 2) + (csine * y_radius * 2);
 // Evaluate all solids:
 with (par_terrain)
 {
-    // Continue:
-    if ((layer > -1 && layer != other.layer) || collision_rectangle(x1, y1, x2, y2, id, true, false) == noone)
+    if (!collision || (layer > -1 && layer != other.layer) || collision_rectangle(x1, y1, x2, y2, id, true, false) == noone)
     {
         continue;
     }
 
-    // Add solid to list:
     ds_list_add(other.solid_list, id);
 }

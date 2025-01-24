@@ -192,7 +192,7 @@ spr_knuckles_climb_dash
 spr_spike_left
 spr_spike_right
 spr_spike_vertical
-spr_spike_down
+spr_dash_ramp
 spr_reticle
 spr_sonic_leap
 spr_sonic_fly_carry

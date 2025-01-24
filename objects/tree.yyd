@@ -39,6 +39,7 @@
 			|obj_ring
 			|obj_ring_magnetized
 		|obj_checkpoint
+		|obj_dash_panel
 		|obj_spring
 		|obj_dash_ring
 		|obj_item_box

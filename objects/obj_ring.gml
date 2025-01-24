@@ -12,6 +12,7 @@ lifespan = 0;
 x_speed = 0;
 y_speed = 0;
 gravity_force = 0.09375;
+layer = -1;
 #define Destroy_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -53,6 +54,45 @@ if (game_ispaused() || !dropped) exit;
 
 if (!in_view()) instance_destroy();
 
+var sine, csine, ox, oy;
+
+sine = dsin(gravity_direction);
+csine = dcos(gravity_direction);
+ox = csine * x_speed;
+oy = sine * x_speed;
+x += ox;
+y -= oy;
+
+if (place_meeting(x + ox, y - oy, par_terrain) && !place_meeting(xprevious, yprevious, par_terrain))
+{
+    while (place_meeting(x, y, par_terrain))
+    {
+        x -= sign(ox);
+        y += sign(oy);
+    }
+
+    x_speed *= -1;
+}
+
+ox = sine * y_speed;
+oy = csine * y_speed;
+x += ox;
+y += oy;
+
+y_speed += gravity_force * game_get_speed();
+
+if (place_meeting(x + ox, y + oy, par_terrain) && !place_meeting(xprevious, yprevious, par_terrain))
+{
+    while (place_meeting(x, y, par_terrain))
+    {
+        x -= sign(ox);
+        y -= sign(oy);
+    }
+
+    y_speed *= -1;
+}
+
+/*
 var sine, csine;
 
 sine = dsin(gravity_direction);
@@ -146,5 +186,6 @@ applies_to=self
 */
 /// Draw Ring
 
-if (!dropped || lifespan >= 90 || (dropped && lifespan < 30 && time_sync(lifespan, 2, 2))) draw_self();
+image_alpha = pick((dropped && lifespan < 30), 1, time_sync(lifespan, 2, 2));
+draw_self();
 event_inherited();

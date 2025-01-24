@@ -24,20 +24,20 @@ applies_to=self
 //field max_vitality: number(1, 3)
 
 /*preview
-    var orientation, max_vitality;
+var orientation, max_vitality;
 
-    orientation = Field("orientation", 0);
-    max_vitality = Field("max_vitality", 0);
+orientation = Field("orientation", 0);
+max_vitality = Field("max_vitality", 0);
 
-    switch (orientation)
-    {
-        case 1:
-            sprite_index = Sprite("spr_blockade_horizontal", 0);
-            break;
+switch (orientation)
+{
+    case 1:
+        sprite_index = Sprite("spr_blockade_horizontal", 0);
+        break;
 
-        default:
-            sprite_index = Sprite("spr_blockade_vertical", 0);
-    }
+    default:
+        sprite_index = Sprite("spr_blockade_vertical", 0);
+}
 */
 /*"/*'/**//* YYD ACTION
 lib_id=1

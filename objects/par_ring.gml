@@ -53,9 +53,10 @@ applies_to=self
 //field super: false
 
 /*preview
-    var super;
+var super;
 
-    super = Field("super", 0);
-    sprite_index = Sprite("spr_ring",  0);
-    if (super) sprite_index = Sprite("spr_ring_super",  0);
+super = Field("super", 0);
+
+sprite_index = Sprite("spr_ring",  0);
+if (super) sprite_index = Sprite("spr_ring_super",  0);
 */

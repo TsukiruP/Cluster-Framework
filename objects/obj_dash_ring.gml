@@ -38,52 +38,35 @@ event_inherited();
 //field rainbow_ring: false
 
 /*preview
-    var orientation, flip_x, flip_y;
+var orientation, flip_x, flip_y, rainbow_ring;
 
-    image_xscale = 1;
-    image_yscale = 1;
-    orientation = Field("orientation", 0);
-    flip_x = Field("flip_x", 0);
-    flip_y = Field("flip_y", 0);
-    rainbow_ring = Field("rainbow_ring", 0);
+orientation = Field("orientation", 0);
+flip_x = Field("flip_x", 0);
+flip_y = Field("flip_y", 0);
+rainbow_ring = Field("rainbow_ring", 0);
 
-    switch (orientation)
-    {
-        case 1:
-            if (rainbow_ring)
-            {
-                sprite_index = Sprite("spr_rainbow_ring_horizontal",  0);
-            }
-            else
-            {
-                sprite_index = Sprite("spr_dash_ring_horizontal",  0);
-            }
-            break;
+image_xscale = 1;
+image_yscale = 1;
 
-        case 2:
-            if (rainbow_ring)
-            {
-                sprite_index = Sprite("spr_rainbow_ring_diagonal",  0);
-            }
-            else
-            {
-                sprite_index = Sprite("spr_dash_ring_diagonal",  0);
-            }
-            break;
+switch (orientation)
+{
+    case 1:
+        if (rainbow_ring) sprite_index = Sprite("spr_rainbow_ring_horizontal",  0);
+        else sprite_index = Sprite("spr_dash_ring_horizontal",  0);
+        break;
 
-        default:
-            if (rainbow_ring)
-            {
-                sprite_index = Sprite("spr_rainbow_ring_vertical",  0);
-            }
-            else
-            {
-                sprite_index = Sprite("spr_dash_ring_vertical",  0);
-            }
-    }
+    case 2:
+        if (rainbow_ring) sprite_index = Sprite("spr_rainbow_ring_diagonal",  0);
+        else sprite_index = Sprite("spr_dash_ring_diagonal",  0);
+        break;
 
-    if (flip_x) image_xscale = -1;
-    if (flip_y) image_yscale = -1;
+    default:
+        if (rainbow_ring) sprite_index = Sprite("spr_rainbow_ring_vertical",  0);
+        else sprite_index = Sprite("spr_dash_ring_vertical",  0);
+}
+
+if (flip_x) image_xscale = -1;
+if (flip_y) image_yscale = -1;
 */
 /*"/*'/**//* YYD ACTION
 lib_id=1

@@ -94,6 +94,7 @@ applies_to=self
 character_id = CHAR_SONIC;
 
 swap_alarm = 0;
+player_reset_status();
 
 air_dash_allow = true;
 drop_dash_alarm = 20;
@@ -110,25 +111,6 @@ clock_up_state = 0;
 clock_up_alarm = 0;
 clock_up_max_energy = 600;
 clock_up_energy = clock_up_max_energy;
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Status Initialization
-
-status_shield = SHIELD_NONE;
-status_shield_allow = true;
-
-status_invin = 0;
-status_invin_alarm = 0;
-status_insta_alarm = 0;
-
-status_speed = 0;
-status_speed_alarm = 0;
-
-status_panic_alarm = 0;
-status_swap_alarm = 0;
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -156,15 +138,12 @@ applies_to=self
 */
 /// Handle Initialization
 
-// Spring variables:
+booster_current = noone;
+
 spring_current = noone;
 spring_force = 0;
 spring_angle = 0;
 spring_alarm = 0;
-
-// Gimmick lock variables:
-gimmick_lock = false;
-gimmick_lock_alarm = 0;
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -907,7 +886,7 @@ with (shield_handle)
     if (shield_depth) event_draw();
 }
 
-image_alpha = pick(status_invin == INVIN_HURT && status_invin_alarm > 0, 1, time_sync(status_invin_alarm, 2, 2));
+image_alpha = pick((status_invin == INVIN_HURT && status_invin_alarm > 0), 1, time_sync(status_invin_alarm, 2, 2));
 if (sprite_exists(sprite_index)) draw_self_floored();
 with (spin_dash_handle) event_draw();
 with (debuff_handle) event_draw();

@@ -14,9 +14,9 @@ if (collision & COLL_INTERACT)
         {
             if (hint_allow)
             {
-                player_set_state(player_state_idle);
                 x_speed = 0;
                 hint_allow = false;
+                player_set_state(player_state_idle);
 
                 switch (reaction_handle.object_index)
                 {

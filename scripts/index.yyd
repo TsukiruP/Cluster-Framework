@@ -465,3 +465,5 @@ game_save_set_skill
 game_save_write_skill
 game_save_read_skill
 audio_bgm_isplaying
+sequence_dash_panel
+player_reaction_dash_panel

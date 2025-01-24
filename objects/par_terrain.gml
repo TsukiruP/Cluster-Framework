@@ -30,28 +30,29 @@ applies_to=self
 //field semisolid: false
 
 /*preview
-    var layer, semisolid;
+var layer, semisolid;
 
-    layer = Field("layer", 0);
-    semisolid = Field("semisolid", 0);
-    image_blend = c_white;
-    image_alpha = 1;
+layer = Field("layer", 0);
+semisolid = Field("semisolid", 0);
 
-    if (FieldDefined("layer"))
+image_blend = c_white;
+image_alpha = 1;
+
+if (FieldDefined("layer"))
+{
+    switch (layer)
     {
-        switch (layer)
-        {
-            case 0:
-                image_blend = c_blue;
-                break;
+        case 0:
+            image_blend = c_blue;
+            break;
 
-            case 1:
-                image_blend = c_red;
-                break;
-        }
+        case 1:
+            image_blend = c_red;
+            break;
     }
+}
 
-    if (semisolid) image_alpha = 0.5;
+if (semisolid) image_alpha = 0.5;
 */
 #define Draw_0
 /*"/*'/**//* YYD ACTION

@@ -32,8 +32,8 @@ if ((collision & COLL_INTERACT && status_invin == INVIN_BUFF) || (collision & CO
 
     if (reaction_handle.class == ENE_BASIC || (reaction_handle.class == ENE_SUPER && (reaction_handle.vitality == 0 || status_invin == INVIN_BUFF)))
     {
-        stage_add_score(100 + (400 * reaction_handle.class));
         sonic_routine_homing();
+        stage_add_score(100 + (400 * reaction_handle.class));
         audio_play_sfx("snd_destroy", true);
 
         with (reaction_handle)

@@ -22,11 +22,11 @@ applies_to=self
 //field layer: enum(0, 1)
 
 /*preview
-    var layer;
+var layer;
 
-    layer = Field("layer", 0);
+layer = Field("layer", 0);
 
-    draw_sprite(Sprite("spr_sensor_layer", layer), 0, x, y);
+draw_sprite(Sprite("spr_sensor_layer", layer), 0, x, y);
 */
 #define Draw_0
 /*"/*'/**//* YYD ACTION

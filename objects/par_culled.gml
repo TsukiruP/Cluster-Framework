@@ -11,6 +11,7 @@ image_speed = 0;
 gravity_direction = 0;
 hurtbox_set();
 hitbox_set();
+collision = true;
 reaction_index = -1;
 #define Draw_0
 /*"/*'/**//* YYD ACTION

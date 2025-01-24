@@ -25,24 +25,25 @@ applies_to=self
 //field flip: false
 
 /*preview
-    var orientation, flip;
+var orientation, flip;
 
-    image_xscale = 1;
-    image_yscale = 1;
-    orientation = Field("orientation", 0);
-    flip = Field("flip", 0);
+orientation = Field("orientation", 0);
+flip = Field("flip", 0);
 
-    switch (orientation)
-    {
-        case 1:
-            sprite_index = Sprite("spr_spike_horizontal", 0);
-            if (flip) image_xscale = -1;
-            break;
+image_xscale = 1;
+image_yscale = 1;
 
-        default:
-            sprite_index = Sprite("spr_spike_vertical", 0);
-            if (flip) image_yscale = -1;
-    }
+switch (orientation)
+{
+    case 1:
+        sprite_index = Sprite("spr_spike_horizontal", 0);
+        if (flip) image_xscale = -1;
+        break;
+
+    default:
+        sprite_index = Sprite("spr_spike_vertical", 0);
+        if (flip) image_yscale = -1;
+}
 */
 /*"/*'/**//* YYD ACTION
 lib_id=1

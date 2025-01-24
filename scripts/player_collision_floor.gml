@@ -15,8 +15,7 @@ for (oy = 0; oy < argument0; oy += 1)
         inst = ds_list_find_value(solid_list, n);
 
         // Continue:
-        if (collision_box_vertical(x_radius, oy, mask_rotation, inst) == noone ||
-            (inst.semisolid && collision_ray(x_radius, 0, mask_rotation, inst) != noone))
+        if (collision_box_vertical(x_radius, oy, mask_rotation, inst) == noone || (inst.semisolid && collision_ray(x_radius, 0, mask_rotation, inst) != noone))
         {
             continue;
         }

@@ -64,14 +64,8 @@ repeat (total_steps)
         // Stop if moving towards wall:
         if (sign(x_speed) == wall_sign)
         {
-            // Reset speed:
             x_speed = 0;
-
-            // Push:
-            if (image_xscale == wall_sign && input_x_direction == wall_sign)
-            {
-                player_wall_push(hit_wall, wall_sign);
-            }
+            if (image_xscale == wall_sign && input_x_direction == wall_sign) player_wall_push(hit_wall, wall_sign);
         }
     }
 
