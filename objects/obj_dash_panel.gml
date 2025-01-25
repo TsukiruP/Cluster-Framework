@@ -8,7 +8,7 @@ applies_to=self
 
 event_inherited();
 depth = -10;
-hurtbox_set(30, 4, 30, 8);
+hurtbox_set(28, 0, 28, 7);
 reaction_index = player_reaction_dash_panel;
 sequence_init(sequence_dash_panel);
 flip = false;

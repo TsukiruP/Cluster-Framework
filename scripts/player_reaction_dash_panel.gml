@@ -18,8 +18,8 @@ if (collision & COLL_INTERACT)
 
         image_xscale = reaction_handle.image_xscale;
         x_speed = reaction_handle.force * image_xscale;
-        booster_current = reaction_handle;
         input_lock_alarm = 16;
+        booster_current = reaction_handle;
 
         with (reaction_handle)
         {
