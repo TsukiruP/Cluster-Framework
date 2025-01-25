@@ -58,8 +58,7 @@ repeat (total_steps)
         wall_sign = player_wall_eject(hit_wall);
 
         // React:
-        player_react(hit_wall, COLL_SOLID);
-        if (state_changed || !instance_exists(hit_wall)) return false;
+        if (player_react(hit_wall, COLL_WALL)) return false;
 
         // Stop if moving towards wall:
         if (sign(x_speed) == wall_sign)
@@ -75,17 +74,12 @@ repeat (total_steps)
     if (hit_floor != noone)
     {
         // React:
-        player_react(hit_floor, COLL_SOLID);
-        if (state_changed || !instance_exists(hit_floor)) return false;
-
-        // Get floor data:
+        if (player_react(hit_floor, COLL_FLOOR)) return false;
+        
         player_set_ground(hit_floor);
     }
-
-    // Fall off:
     else on_ground = false;
-
-    // Handle mask rotation:
+    
     player_rotate_mask();
 }
 
