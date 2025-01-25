@@ -84,6 +84,7 @@
 				|spr_sonic_spring
 				|spr_sonic_spring_tag
 			|spr_sonic_breathe
+			|spr_sonic_ramp
 			+Goal
 				|spr_sonic_goal
 				|spr_sonic_goal_gold
@@ -367,7 +368,6 @@
 				|spr_knuckles_fly_carry
 	+Amy
 	+Spikes
-		|spr_spike_left
 		|spr_spike_right
 	|spr_spring_down
 	|spr_spring_left
