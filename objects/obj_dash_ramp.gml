@@ -13,7 +13,6 @@ mask = false;
 ramp = false;
 hurtbox_set(32, 16, 32, 16);
 hitbox_set(6, 16, 4, 0, 25);
-sequence_init(sequence_dash_ramp);
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -24,13 +23,7 @@ applies_to=self
 
 if (game_ispaused(mnu_pause)) exit;
 
-sequence_speed = game_get_speed();
-
-if (script_exists(sequence_index))
-{
-    sequence_update();
-    script_execute(sequence_index);
-}
+image_index = time_sync(game_get_time(), 3, sprite_get_number(sprite_index));
 #define Other_4
 /*"/*'/**//* YYD ACTION
 lib_id=1

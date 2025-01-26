@@ -13,7 +13,6 @@ flip = false;
 force = 8;
 sfx_alarm = 0;
 hurtbox_set(28, 0, 28, 7);
-sequence_init(sequence_dash_panel);
 #define Step_1
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -33,13 +32,7 @@ applies_to=self
 
 if (game_ispaused(mnu_pause)) exit;
 
-sequence_speed = game_get_speed();
-
-if (script_exists(sequence_index))
-{
-    sequence_update();
-    script_execute(sequence_index);
-}
+image_index = time_sync(game_get_time(), 1, sprite_get_number(sprite_index));
 #define Other_4
 /*"/*'/**//* YYD ACTION
 lib_id=1
