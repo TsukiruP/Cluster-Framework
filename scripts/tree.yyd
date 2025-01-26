@@ -440,10 +440,6 @@
 			|draw_collision
 			|draw_sprite_tiled_extra
 			|draw_background_tiled_view
-			|draw_sprite_tiled_horizontal
-			|draw_sprite_tiled_vertical
-			|draw_sprite_tiled_horizontal_yscale
-			|draw_backdrop_tiled_area
 		+Text
 			|string_bool
 			|string_key
@@ -589,3 +585,7 @@
 			|player_add_rings
 	+Props
 +Trash
+	|draw_sprite_tiled_horizontal
+	|draw_sprite_tiled_vertical
+	|draw_sprite_tiled_horizontal_yscale
+	|draw_backdrop_tiled_area

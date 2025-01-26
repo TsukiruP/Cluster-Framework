@@ -468,7 +468,7 @@ if (transition_id != TRANS_CARD) exit;
 draw_sprite(spr_transition_curtain, 0, view_xview[view_current], view_yview[view_current] + curtain_y);
 
 // Banner:
-draw_sprite_tiled_vertical(spr_title_card_banner, 0, view_xview[view_current] + banner_x, view_yview[view_current] + banner_scroll);
+draw_sprite_tiled_extra(spr_title_card_banner, 0, view_xview[view_current] + banner_x, view_yview[view_current] + banner_scroll, 1, 1, 0, c_white, 1, 1, 0);
 
 // Zone:
 draw_set_font(global.font_title_card);
@@ -498,8 +498,8 @@ applies_to=self
 if (transition_id != TRANS_RETRY) exit;
 
 // Curtain:
-draw_sprite_tiled_horizontal(spr_transition_curtain, 1, view_xview[view_current] + curtain_scroll, view_yview[view_current] + curtain_y);
-draw_sprite_tiled_horizontal_yscale(spr_transition_curtain, 1, view_xview[view_current] - 16 - curtain_scroll - 1, view_yview[view_current] + screen_get_height() - curtain_y, -1);
+draw_sprite_tiled_extra(spr_transition_curtain, 1, view_xview[view_current] + curtain_scroll, view_yview[view_current] + curtain_y - sprite_get_height(spr_transition_curtain), 1, 1, 0, c_white, 1, 0, 1);
+draw_sprite_tiled_extra(spr_transition_curtain, 1, view_xview[view_current] - 16 - curtain_scroll - 1, view_yview[view_current] + screen_get_height() - curtain_y + sprite_get_height(spr_transition_curtain), 1, -1, 0, c_white, 1, 0, 1);
 
 // Zone:
 draw_set_font(global.font_title_card);
