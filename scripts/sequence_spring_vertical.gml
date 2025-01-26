@@ -27,6 +27,6 @@ else if (sequence_position(12))
 }
 else if (sequence_position(14))
 {
-    hurtbox_set(5, 4, 5, 15);
     activated = false;
+    hurtbox_set(5, 4, 5, 15);
 }

@@ -8,8 +8,8 @@ applies_to=self
 
 event_inherited();
 depth = -10;
-hurtbox_set(16, 16, 16, 16);
 reaction_index = player_reaction_waterfall;
+hurtbox_set(16, 16, 16, 16);
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1

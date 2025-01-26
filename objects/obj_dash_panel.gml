@@ -8,12 +8,12 @@ applies_to=self
 
 event_inherited();
 depth = -10;
-hurtbox_set(28, 0, 28, 7);
 reaction_index = player_reaction_dash_panel;
-sequence_init(sequence_dash_panel);
 flip = false;
 force = 8;
 sfx_alarm = 0;
+hurtbox_set(28, 0, 28, 7);
+sequence_init(sequence_dash_panel);
 #define Step_1
 /*"/*'/**//* YYD ACTION
 lib_id=1

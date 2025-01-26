@@ -7,9 +7,9 @@ applies_to=self
 /// Omochao Initialization
 
 event_inherited();
-hurtbox_set(11, 11, 10, 10, 2, 5);
 draw_x = x;
 draw_y = y;
+hurtbox_set(11, 11, 10, 10, 2, 5);
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1

@@ -7,5 +7,4 @@ applies_to=self
 /// Target Initialization
 
 event_inherited();
-
 targetable = true;

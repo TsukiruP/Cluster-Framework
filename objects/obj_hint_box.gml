@@ -7,8 +7,8 @@ applies_to=self
 /// Hint Box Initialization
 
 event_inherited();
-hurtbox_set(21, 17, 19, 16, 0, 31);
 draw_y = 0;
+hurtbox_set(21, 17, 19, 16, 0, 31);
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1

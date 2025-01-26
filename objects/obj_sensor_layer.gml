@@ -7,10 +7,9 @@ applies_to=self
 /// Sensor Initialization
 
 event_inherited();
-
-hurtbox_set(8, 8, 7, 7, 8, 8);
 reaction_index = player_reaction_sensor_layer;
 layer = 0;
+hurtbox_set(8, 8, 7, 7, 8, 8);
 #define Other_4
 /*"/*'/**//* YYD ACTION
 lib_id=1

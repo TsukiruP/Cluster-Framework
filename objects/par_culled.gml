@@ -9,10 +9,10 @@ applies_to=self
 depth = 10;
 image_speed = 0;
 gravity_direction = 0;
-hurtbox_set();
-hitbox_set();
 collision = true;
 reaction_index = -1;
+hurtbox_set();
+hitbox_set();
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1

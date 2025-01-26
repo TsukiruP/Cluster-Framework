@@ -7,10 +7,10 @@ applies_to=self
 /// Checkpoint Initialization
 
 event_inherited();
-hurtbox_set(13, 22, 14, 16);
 reaction_index = player_reaction_checkpoint;
-sequence_init(sequence_checkpoint_inactive);
 active = (game_get_checkpoint_x() == x && game_get_checkpoint_y() == y);
+hurtbox_set(13, 22, 14, 16);
+sequence_init();
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1

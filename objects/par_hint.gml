@@ -7,7 +7,6 @@ applies_to=self
 /// Help Initialization
 
 event_inherited();
-
 reaction_index = player_reaction_hint;
 player_handle = noone;
 hint_id = 0;
