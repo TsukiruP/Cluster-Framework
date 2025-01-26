@@ -1,5 +1,5 @@
 /// draw_sprite_tiled_vertical(sprite, subimg, x, y)
-// Repeatedly draw the given sprite vertically.
+/* Draws a sprite at a given position, and tiles vertically across the entire view. */
 
 var sprite_step, sprite_start, sprite_end, sprite_current;
 

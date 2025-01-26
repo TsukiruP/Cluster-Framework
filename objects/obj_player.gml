@@ -13,7 +13,6 @@ sequence_init();
 player_id = 0;
 
 physics_id = PHYS_DEFAULT;
-
 top_speed = 6;
 max_speed = 16;
 
@@ -152,11 +151,8 @@ applies_to=self
 /// Water Initialization
 
 surface_time = 0;
-
-underwater = false;
 air_remaining = 30;
 air_alarm = 60;
-
 drown_index = 0;
 drown = false;
 /*"/*'/**//* YYD ACTION
@@ -432,6 +428,8 @@ if (script_exists(state_current))
     script_execute(state_current, STATE_STEP);
     if (state_changed) state_changed = false;
 }
+
+player_set_underwater();
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -542,6 +540,21 @@ else
 if (state_current == player_state_roll || state_current == sonic_state_homing) trail_draw = true;
 else trail_draw = false;
 
+var surface_handle;
+
+surface_handle = collision_point(x, floor(y) + y_radius + 1, obj_water_mask, false, false);
+
+if (on_ground && abs(x_speed) > 0 && surface_handle != noone)
+{
+    surface_time += 1;
+
+    if (surface_time mod 9 == 0)
+    {
+        effect_create(pick(abs(x_speed) >= 4.50, sequence_splash_2, sequence_splash_3), x, surface_handle.y, depth, image_xscale);
+    }
+}
+else surface_time = 0;
+
 if (waterfall_draw && !instance_exists(waterfall_handle))
 {
     with (instance_create(x, y, eff_waterfall))
@@ -626,76 +639,48 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Physics
-
-if (instance_exists(obj_water_surface))
-{
-    if (y < obj_water_surface.y)
-    {
-        if (physics_id != PHYS_DEFAULT) physics_id = PHYS_DEFAULT;
-    }
-
-    if (y > obj_water_surface.y)
-    {
-        if (physics_id != PHYS_WATER)
-        {
-            physics_id = PHYS_WATER;
-            if (status_shield == SHIELD_FIRE || status_shield == SHIELD_LIGHTNING) status_shield = SHIELD_NONE;
-        }
-    }
-}
-
-player_get_physics();
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
 /// Air
 
 if (game_ispaused()) exit;
 
 if (state_current != player_state_death && !instance_exists(ctrl_tally))
 {
-    if (physics_id == PHYS_WATER)
+    if (physics_id == PHYS_WATER && status_shield != SHIELD_BUBBLE)
     {
-        if (status_shield != SHIELD_BUBBLE)
+        if (air_alarm > 0)
         {
-            if (air_alarm > 0)
+            air_alarm -= 1;
+
+            if (air_alarm == 0)
             {
-                air_alarm -= 1;
-
-                if (air_alarm == 0)
+                switch (air_remaining)
                 {
-                    switch (air_remaining)
-                    {
-                        case 25:
-                        case 20:
-                        case 15:
-                            if (!input_cpu) audio_play_sfx("snd_drown_alert");
-                            break;
+                    case 25:
+                    case 20:
+                    case 15:
+                        if (!input_cpu) audio_play_sfx("snd_drown_alert");
+                        break;
 
-                        case 12:
-                            if (!input_cpu) audio_play_drown();
+                    case 12:
+                        if (!input_cpu) audio_play_drown();
 
-                        case 10:
-                        case 8:
-                        case 6:
-                        case 4:
-                        case 2:
-                            drown_index += 1;
-                            break;
+                    case 10:
+                    case 8:
+                    case 6:
+                    case 4:
+                    case 2:
+                        drown_index += 1;
+                        break;
 
-                        case 0:
-                            x_speed = 0;
-                            drown = true;
-                            player_set_damage(self);
-                            break;
-                    }
-
-                    air_remaining -= 1;
-                    air_alarm = 60;
+                    case 0:
+                        x_speed = 0;
+                        drown = true;
+                        player_set_damage(self);
+                        break;
                 }
+
+                air_remaining -= 1;
+                air_alarm = 60;
             }
         }
     }
@@ -822,42 +807,6 @@ if (afterimage_draw)
         }
     }
 }
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Splash
-
-if (!instance_exists(obj_water_surface)) exit;
-
-if (y > obj_water_surface.y && yprevious < obj_water_surface.y)
-{
-    x_speed *= 0.50;
-    y_speed *= 0.25;
-    audio_play_sfx("snd_splash", true);
-    if (y_speed >= 2.50) effect_create(sequence_splash_1, x, obj_water_surface.y, -10);
-    else effect_create(sequence_splash_0, x, obj_water_surface.y, -10);
-}
-else if (y < obj_water_surface.y && yprevious > obj_water_surface.y)
-{
-    y_speed = max(y_speed * 2, -16);
-    audio_play_sfx("snd_splash", true);
-    if (y_speed <= -6) effect_create(sequence_splash_1, x, obj_water_surface.y, -10);
-    else effect_create(sequence_splash_0, x, obj_water_surface.y, -10);
-}
-
-if (on_surface && abs(x_speed) > 0)
-{
-    surface_time += 1;
-
-    if (surface_time mod 9 == 0)
-    {
-        if (abs(x_speed) >= 4.50) effect_create(sequence_splash_3, x, obj_water_surface.y, depth, image_xscale);
-        else effect_create(sequence_splash_2, x, obj_water_surface.y, depth, image_xscale);
-    }
-}
-else surface_time = 0;
 #define Other_5
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -922,6 +871,7 @@ csine = dcos(mask_rotation);
 
 draw_line_color(x_int - csine * wall_radius, y_int + sine * wall_radius, x_int + csine * wall_radius, y_int - sine * wall_radius, c_white, c_white);
 
+// Collision:
 draw_collision(hurtbox_left, hurtbox_top, hurtbox_right, hurtbox_bottom, hurtbox_offset_x, hurtbox_offset_y, image_xscale, mask_rotation, c_maroon);
 draw_collision(hitbox_left, hitbox_top, hitbox_right, hitbox_bottom, hitbox_offset_x, hitbox_offset_y, image_xscale, mask_rotation, c_green);
 

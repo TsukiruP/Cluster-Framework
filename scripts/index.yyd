@@ -23,7 +23,7 @@ player_state_run
 player_state_brake
 angle_wrap
 string_input
-player_get_physics
+player_set_physics
 player_reaction_item_box
 player_state_air
 sequence_update
@@ -473,3 +473,5 @@ sequence_sonic_ramp_flight
 sequence_sonic_ramp_fall
 player_state_ramp
 player_animation_ramp
+player_set_underwater
+draw_sprite_tiled_extra

@@ -411,7 +411,16 @@ applies_to=self
 pause_ignore = false;
 audio_play_bgm(game_get_room_music());
 if (game_get_room_background() != -1) instance_create(0, 0, game_get_room_background());
-if (game_get_room_water() != -1) instance_create(0, game_get_room_water(), obj_water_surface);
+
+if (game_get_room_water() != -1)
+{
+    with (instance_create(0, game_get_room_water(), obj_water_mask))
+    {
+        image_xscale = room_width div sprite_width;
+        image_yscale = (room_height - y) div sprite_height;
+    }
+}
+
 if (transition_id != TRANS_RETRY && instance_exists(stage_get_player(0)))
 {
     game_set_save("stage", room);
@@ -496,5 +505,4 @@ draw_sprite_tiled_horizontal_yscale(spr_transition_curtain, 1, view_xview[view_c
 draw_set_font(global.font_title_card);
 draw_set2(fa_center, fa_middle);
 draw_text(view_xview[view_current] + zone_x, view_yview[view_current] + screen_get_height() / 2, "Try Again");
-
 draw_reset();

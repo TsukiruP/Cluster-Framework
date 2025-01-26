@@ -47,7 +47,7 @@
 		+Enemies
 			|obj_spinner
 		+Water
-			|obj_water_surface
+			|obj_water_mask
 		+Hints
 			|obj_hint_box
 			|obj_omochao

@@ -37,7 +37,7 @@ obj_basic_test_mask_15
 
 
 obj_checkpoint
-obj_water_surface
+obj_water_mask
 
 
 obj_basic_test_parallax

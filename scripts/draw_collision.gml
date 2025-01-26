@@ -42,6 +42,7 @@ if (dir_y == -1)
 
 if !(left == 0 && top == 0 && right == 0 && bottom == 0)
 {
+
     x1 = x_int - (csine * left) + (csine * off_x) - (sine * top) + (sine * off_y);
     y1 = y_int - (csine * top) + (csine * off_y) - (sine * right) - (sine * off_x);
     x2 = x_int + (csine * right) + (csine * off_x) + (sine * bottom) + (sine * off_y);

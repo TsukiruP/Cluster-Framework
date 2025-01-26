@@ -1,5 +1,5 @@
 /// draw_sprite_tiled_horizontal(sprite, subimg, x, y)
-// Repeatedly draw the given sprite horizontally. Shortened just for the yscale.
+/* Draws a sprite at a given position, and tiles horizontally across the entire view. */
 
 var sprite_step, sprite_start, sprite_end, sprite_current;
 

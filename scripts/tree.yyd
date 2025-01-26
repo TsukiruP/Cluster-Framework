@@ -438,11 +438,11 @@
 			|time_sync
 		+Draw
 			|draw_collision
-			+Sprites
-				|draw_sprite_tiled_horizontal
-				|draw_sprite_tiled_horizontal_yscale
-				|draw_sprite_tiled_vertical
+			|draw_sprite_tiled_extra
 			|draw_background_tiled_view
+			|draw_sprite_tiled_horizontal
+			|draw_sprite_tiled_vertical
+			|draw_sprite_tiled_horizontal_yscale
 			|draw_backdrop_tiled_area
 		+Text
 			|string_bool
@@ -558,7 +558,6 @@
 			|player_get_animation_speed
 			|player_get_animation_variant
 			|player_get_input
-			|player_get_physics
 			|player_get_solids
 			|player_get_angle
 			|player_get_collision
@@ -566,6 +565,8 @@
 			|player_get_cliff
 		+Setters
 			|player_set_state
+			|player_set_physics
+			|player_set_underwater
 			|player_set_animation
 			|player_set_device
 			|player_set_input

@@ -136,6 +136,7 @@
 		+Enemies
 			|spr_spinner
 		+Water
+			|spr_water_mask
 			|spr_water_surface
 			|spr_bubble_spawn
 			|spr_bubble
@@ -369,7 +370,6 @@
 	+Amy
 	+Spikes
 		|spr_spike_right
-	|spr_spring_down
 	|spr_spring_left
 	|spr_spring_left_up
 	|spr_spring_left_down

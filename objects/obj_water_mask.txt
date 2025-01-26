@@ -1,7 +1,7 @@
-sprite=spr_water_tile
+sprite=spr_water_mask
 visible=1
 solid=0
 persistent=0
-depth=-12000
+depth=0
 parent=
 mask=
