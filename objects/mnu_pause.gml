@@ -245,7 +245,6 @@ menu_offset = 0;
 // Fade:
 draw_set1(c_black, 0.6);
 draw_rectangle(view_xview[view_current], view_yview[view_current], view_xview[view_current] + screen_get_width(), view_yview[view_current] + screen_get_height(), false);
-
 draw_reset();
 
 // Header:

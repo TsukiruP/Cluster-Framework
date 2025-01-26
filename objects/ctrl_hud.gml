@@ -315,7 +315,6 @@ draw_sprite_part(spr_hud_energy, 0, 0, 0, sprite_get_width(spr_hud_energy) * (ga
 
 // Boss:
 draw_sprite(spr_hud_boss, 0, view_xview[view_current] + boss_x, view_yview[view_current] + gauge_y);
-
 draw_reset();
 /*"/*'/**//* YYD ACTION
 lib_id=1

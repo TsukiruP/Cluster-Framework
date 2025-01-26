@@ -228,5 +228,4 @@ draw_set_font(global.font_system);
 draw_set1(c_white, 1);
 draw_set2(fa_center, fa_middle);
 draw_text(screen_get_width() / 2, screen_get_height() / 2, rename_backup);
-
 draw_reset();
