@@ -80,11 +80,11 @@
 			|spr_sonic_hurt
 			|spr_sonic_death
 			|spr_sonic_push
+			|spr_sonic_ramp
 			+Spring
 				|spr_sonic_spring
 				|spr_sonic_spring_tag
 			|spr_sonic_breathe
-			|spr_sonic_ramp
 			+Goal
 				|spr_sonic_goal
 				|spr_sonic_goal_gold

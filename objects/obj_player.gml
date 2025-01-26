@@ -752,6 +752,8 @@ switch (animation_current)
     case "hurt":
     case "death":
     case "push":
+    case "ramp_flight":
+    case "ramp_fall":
     case "breathe":
     case "goal":
     case "hammer":

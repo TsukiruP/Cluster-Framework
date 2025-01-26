@@ -28,6 +28,8 @@ animation_add(CHAR_SONIC, "brake_fast", sequence_sonic_brake_fast);
 animation_add(CHAR_SONIC, "hurt", sequence_sonic_hurt);
 animation_add(CHAR_SONIC, "death", sequence_sonic_death);
 animation_add(CHAR_SONIC, "push", sequence_sonic_push);
+animation_add(CHAR_SONIC, "ramp_flight", sequence_sonic_ramp_flight);
+animation_add(CHAR_SONIC, "ramp_fall", sequence_sonic_ramp_fall);
 animation_add(CHAR_SONIC, "spring_flight", sequence_sonic_spring_flight);
 animation_add(CHAR_SONIC, "spring_fall", sequence_sonic_spring_fall);
 animation_add(CHAR_SONIC, "breathe", sequence_sonic_stand);

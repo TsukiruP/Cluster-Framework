@@ -47,18 +47,7 @@ applies_to=self
 */
 /// Field Initialization
 
-//field item_id: enum(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13)
-
-/*preview
-var item_id, item_icon, item_box;
-
-item_id = Field("item_id", 0);
-item_icon = Sprite("spr_item_icon", item_id);
-item_box = Sprite("spr_item_box", 1);
-
-draw_sprite(item_icon, 0, x, y);
-draw_sprite(item_box, 0, x, y);
-*/
+//field item_id: constant
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1

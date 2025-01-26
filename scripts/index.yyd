@@ -467,3 +467,9 @@ game_save_read_skill
 audio_bgm_isplaying
 sequence_dash_panel
 player_reaction_dash_panel
+sequence_dash_ramp
+player_reaction_dash_ramp
+sequence_sonic_ramp_flight
+sequence_sonic_ramp_fall
+player_state_ramp
+player_animation_ramp

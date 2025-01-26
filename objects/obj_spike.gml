@@ -8,8 +8,8 @@ applies_to=self
 
 event_inherited();
 depth = -10;
-mask = false;
 reaction_index = player_reaction_spike;
+mask = false;
 orientation = ORIEN_VERTICAL;
 flip = false;
 angle = ANGLE_UP;

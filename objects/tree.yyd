@@ -40,6 +40,7 @@
 			|obj_ring_magnetized
 		|obj_checkpoint
 		|obj_dash_panel
+		|obj_dash_ramp
 		|obj_spring
 		|obj_dash_ring
 		|obj_item_box
@@ -95,7 +96,6 @@
 	+Rainbow Rings
 		|par_rainbow_ring
 		|obj_rainbow_ring_overlay
-		|obj_rainbow_ring_left
 		|obj_rainbow_ring_right
 		|obj_rainbow_ring_up
 		|obj_rainbow_ring_down

@@ -330,6 +330,9 @@
 						|sequence_sonic_brake
 						|sequence_sonic_brake_fast
 					|sequence_sonic_push
+					+Ramp
+						|sequence_sonic_ramp_flight
+						|sequence_sonic_ramp_fall
 					+Spring
 						|sequence_sonic_spring_flight
 						|sequence_sonic_spring_fall
@@ -385,6 +388,7 @@
 				+Enemies
 					|sequence_spinner
 				|sequence_dash_panel
+				|sequence_dash_ramp
 			+Effects
 				+Player
 					|sequence_spin_dash
@@ -474,6 +478,7 @@
 			|player_animation_fix
 			|player_animation_run
 			|player_animation_air
+			|player_animation_ramp
 			|player_animation_spring
 		+Collision
 			|player_collision_object
@@ -502,6 +507,7 @@
 				|player_state_brake
 				|player_state_hurt
 				|player_state_death
+				|player_state_ramp
 				|player_state_spring
 				|player_state_bound
 				|player_state_hammer
@@ -529,17 +535,20 @@
 			|sonic_trait_reticle
 			|classic_trait_clock_up
 		+Reactions
-			|player_reaction_sensor_layer
-			|player_reaction_ring
-			|player_reaction_checkpoint
-			|player_reaction_dash_panel
-			|player_reaction_spring
-			|player_reaction_item_box
-			|player_reaction_enemy
-			|player_reaction_hint
-			|player_reaction_spike
-			|player_reaction_blockade
-			|player_reaction_waterfall
+			+Props
+				|player_reaction_sensor_layer
+				|player_reaction_ring
+				|player_reaction_checkpoint
+				|player_reaction_dash_panel
+				|player_reaction_dash_ramp
+				|player_reaction_spring
+				|player_reaction_item_box
+				|player_reaction_enemy
+				|player_reaction_hint
+				|player_reaction_waterfall
+			+Obstacles
+				|player_reaction_spike
+				|player_reaction_blockade
 		+Trail
 			|player_trail_init
 			|player_trail_color
