@@ -328,15 +328,13 @@ if (text_hide) exit;
 d3d_set_viewport(0, 0, screen_get_width(), screen_get_height());
 
 // Box:
-draw_set1(game_get_interface_color(), subject_box_alpha);
-draw_rectangle(0, (screen_get_height() / 2) - 9 - ((font_height / 2) * subject_lines), screen_get_width(), (screen_get_height() / 2) + 10 + ((font_height / 2) * subject_lines), false);
+draw_rect(0, (screen_get_height() / 2) - ((font_height / 2) * (subject_lines + 1)) - 2, screen_get_width(), ((font_height) * (subject_lines + 1)) + 6, game_get_interface_color(), subject_box_alpha);
 
 // Subject:
 draw_set_font(global.font_system);
 draw_set1(c_white, subject_alpha);
 draw_set2(fa_center, fa_middle);
 draw_text(screen_get_width() / 2, screen_get_height() / 2, subject_string);
-
 draw_reset();
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -353,11 +351,10 @@ var text_box_bottom, texbox_height;
 d3d_set_viewport(0, 0, screen_get_width(), screen_get_height());
 
 // Box:
-text_box_bottom = screen_get_height() - 19;
-text_box_height = 59;
+text_box_bottom = screen_get_height() - 18;
+text_box_height = 60;
 
-draw_set1(game_get_interface_color(), body_box_alpha);
-draw_rectangle(0, text_box_bottom - text_box_height, screen_get_width(), text_box_bottom, false);
+draw_rect(0, text_box_bottom - text_box_height, screen_get_width(), text_box_height, game_get_interface_color(), body_box_alpha);
 
 // Viewport:
 d3d_set_viewport(0, screen_get_height() - body_y, screen_get_width(), font_height * body_scroll_max);
@@ -399,5 +396,4 @@ draw_set_font(global.font_system);
 draw_set1(c_white, log_alpha);
 draw_set2(fa_left, fa_top);
 draw_text_ext(body_x / 2, -log_scroll, log_string, font_height, screen_get_width() - body_x);
-
 draw_reset();

@@ -178,8 +178,7 @@ applies_to=self
 var i;
 
 // Box:
-draw_set1(game_get_interface_color(), game_get_config("interface_alpha"));
-draw_rectangle(view_xview[view_current] + screen_get_width() / 2 - 81, view_yview[view_current] + screen_get_height() / 2 - 52, view_xview[view_current] + screen_get_width() / 2 + 82, view_yview[view_current] + screen_get_height() / 2 + 25, false);
+draw_rect(view_xview[view_current] + screen_get_width() / 2 - 81, view_yview[view_current] + screen_get_height() / 2 - 52, 164, 78, game_get_interface_color(), game_get_config("interface_alpha"))
 
 // Text:
 for (i = 0; i < min(ds_list_size(menu_list), 4); i += 1)
@@ -220,8 +219,7 @@ applies_to=self
 if (!rename_allow) exit;
 
 // Box:
-draw_set1(game_get_interface_color(), game_get_config("interface_alpha"));
-draw_rectangle(view_xview[view_current], view_yview[view_current] + (screen_get_height() / 2) - 9, view_xview[view_current] + screen_get_width(), view_yview[view_current] + (screen_get_height() / 2) + 10, false);
+draw_rect(0, (screen_get_height() / 2) - ((font_height / 2) * (subject_lines + 1)) - 2, screen_get_width(), ((font_height) * (subject_lines + 1)) + 6, game_get_interface_color(), subject_box_alpha);
 
 // Rename:
 draw_set_font(global.font_system);
