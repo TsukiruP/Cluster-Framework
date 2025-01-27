@@ -540,20 +540,23 @@ else
 if (state_current == player_state_roll || state_current == sonic_state_homing) trail_draw = true;
 else trail_draw = false;
 
-var surface_handle;
-
-surface_handle = collision_point(x, floor(y) + y_radius + 1, obj_water_mask, false, false);
-
-if (on_ground && abs(x_speed) > 0 && surface_handle != noone)
+if (physics_id != PHYS_WATER)
 {
-    surface_time += 1;
+    var surface_handle;
 
-    if (surface_time mod 9 == 0)
+    surface_handle = collision_point(x, floor(y) + y_radius + 1, obj_water_mask, false, false);
+
+    if (on_ground && abs(x_speed) > 0 && surface_handle != noone)
     {
-        effect_create(pick(abs(x_speed) >= 4.50, sequence_splash_2, sequence_splash_3), x, surface_handle.y, depth, image_xscale);
+        surface_time += 1;
+
+        if (surface_time mod 9 == 0)
+        {
+            effect_create(pick(abs(x_speed) >= 4.50, sequence_splash_2, sequence_splash_3), x, surface_handle.y, depth, image_xscale);
+        }
     }
+    else surface_time = 0;
 }
-else surface_time = 0;
 
 if (waterfall_draw && !instance_exists(waterfall_handle))
 {
