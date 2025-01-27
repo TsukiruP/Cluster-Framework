@@ -58,4 +58,3 @@ applies_to=self
 
 draw_sprite_ext(spr_item_icon, item_id, x, y, 1, 1, image_angle, c_white, 1);
 draw_sprite_ext(spr_item_box, 1, x, y, 1, 1, image_angle, c_white, 1);
-event_inherited();

@@ -77,13 +77,3 @@ switch (orientation)
             angle = ANGLE_DOWN;
         }
 }
-#define Draw_0
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Draw Spike
-
-draw_self();
-event_inherited();

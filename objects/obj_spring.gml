@@ -126,13 +126,3 @@ if (flip_y)
     image_yscale = -1;
     angle = 360 - angle;
 }
-#define Draw_0
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Draw Spring
-
-draw_self();
-event_inherited();

@@ -39,4 +39,3 @@ applies_to=self
 /// Draw Hint Box
 
 draw_sprite_ext(sprite_index, instance_exists(player_handle) + 1, x, draw_y, image_xscale, 1, 0, c_white, 1);
-event_inherited();

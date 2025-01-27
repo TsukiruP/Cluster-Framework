@@ -187,5 +187,4 @@ applies_to=self
 /// Draw Ring
 
 image_alpha = pick((dropped && lifespan < 30), 1, time_sync(lifespan, 2, 2));
-draw_self();
-event_inherited();
+draw_self_floored();

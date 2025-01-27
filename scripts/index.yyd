@@ -475,3 +475,4 @@ player_state_ramp
 player_animation_ramp
 player_set_underwater
 draw_sprite_tiled_extra
+player_reaction_bubble

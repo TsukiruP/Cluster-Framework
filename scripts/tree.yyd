@@ -329,6 +329,8 @@
 					+Brake
 						|sequence_sonic_brake
 						|sequence_sonic_brake_fast
+					|sequence_sonic_hurt
+					|sequence_sonic_death
 					|sequence_sonic_push
 					+Ramp
 						|sequence_sonic_ramp_flight
@@ -336,10 +338,8 @@
 					+Spring
 						|sequence_sonic_spring_flight
 						|sequence_sonic_spring_fall
-					+Goal
-					|sequence_sonic_hurt
-					|sequence_sonic_death
 					|sequence_sonic_breathe
+					+Goal
 					|sequence_sonic_hammer
 					+Skid
 						|sequence_sonic_somersault
@@ -541,6 +541,7 @@
 				|player_reaction_item_box
 				|player_reaction_enemy
 				|player_reaction_hint
+				|player_reaction_bubble
 				|player_reaction_waterfall
 			+Obstacles
 				|player_reaction_spike

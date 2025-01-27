@@ -63,4 +63,3 @@ applies_to=self
 /// Draw Terrain
 
 if ((game_get_debug() && mask) || !mask) draw_self();
-event_inherited();

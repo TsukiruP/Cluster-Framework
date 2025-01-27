@@ -1,7 +1,7 @@
 /// draw_collision(left, top, right, bottom, xoffset, yoffset, angle, color)
 /* Draws a rectangular outline that flips and rotates accordingly. */
 
-var x_int, y_int, left, top, right, bottom, off_x, off_y, dir, rot, x1, y1, x2, y2;
+var x_int, y_int, left, top, right, bottom, dir_x, dir_y, off_x, off_y, rot, sine, csine, x1, y1, x2, y2;
 
 x_int = floor(x);
 y_int = floor(y);

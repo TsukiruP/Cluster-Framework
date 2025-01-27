@@ -62,5 +62,4 @@ applies_to=self
 */
 /// Draw Ring
 
-draw_self();
-event_inherited();
+draw_self_floored();

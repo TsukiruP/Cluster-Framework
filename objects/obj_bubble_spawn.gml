@@ -13,6 +13,7 @@ cycle_frequency = 0;
 cycle_count = 0;
 cycle_alarm = irandom_range(128, 255);
 
+bubble_large = false;
 bubble_count = 0;
 bubble_max_count = 0;
 bubble_alarm = 0;
@@ -56,6 +57,16 @@ lib_id=1
 action_id=603
 applies_to=self
 */
+/// Animation
+
+if (game_ispaused(mnu_pause)) exit;
+
+image_index = time_sync(game_get_time(), 6, sprite_get_number(sprite_index));
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
 /// Spawn Bubble
 
 if (game_ispaused(mnu_pause)) exit;
@@ -67,8 +78,10 @@ if (cycle_state == 0)
         cycle_alarm -= 1;
         if (cycle_alarm == 0)
         {
-            cycle_state = 1;
             cycle_id = irandom_range(0, 3);
+            cycle_state = 1;
+            cycle_count = 0;
+            bubble_large = false;
             bubble_count = 0;
             bubble_max_count = irandom_range(1, 6);
             bubble_alarm = 0;
@@ -82,11 +95,26 @@ if (cycle_state == 1)
 
     if (bubble_alarm == 0)
     {
-        with (instance_create(x + irandom_range(-8, 8), y, obj_bubble))
+        var bubble_size, bubble_reset;
+
+        bubble_size = 2;
+        bubble_reset = bubble_large;
+
+        if (cycle_frequency > 0 && cycle_count > 0 && !bubble_reset)
         {
-            size = other.cycle_set[other.cycle_id, other.bubble_count];
+            bubble_reset = (cycle_count mod cycle_frequency != 0);
         }
 
+        if (bubble_reset) bubble_size = cycle_set[cycle_id, bubble_count];
+        else bubble_large = true;
+
+        with (instance_create(x + irandom_range(-8, 8), y, obj_bubble))
+        {
+            size = bubble_size;
+            if (bubble_size == 2) hurtbox_set(12, 12, 12, 12);
+        }
+
+        cycle_count += 1;
         bubble_count += 1;
         bubble_alarm = irandom_range(0, 31);
     }
@@ -97,13 +125,3 @@ if (cycle_state == 1)
         cycle_alarm = irandom_range(128, 255);
     }
 }
-#define Draw_0
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Draw Bubble Spawn
-
-draw_self();
-event_inherited();

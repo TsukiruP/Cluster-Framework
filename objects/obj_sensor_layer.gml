@@ -39,4 +39,3 @@ if (!game_get_debug()) exit;
 
 image_index = layer;
 draw_self();
-event_inherited();

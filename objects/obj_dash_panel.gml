@@ -54,13 +54,3 @@ image_angle = gravity_direction;
 image_xscale = 1;
 if (flip) image_xscale = -1;
 */
-#define Draw_0
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Draw Dash Panel
-
-draw_self();
-event_inherited();

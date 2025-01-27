@@ -35,13 +35,3 @@ if (script_exists(sequence_index))
     sequence_update();
     script_execute(sequence_index);
 }
-#define Draw_0
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Draw Checkpoint
-
-draw_self();
-event_inherited();

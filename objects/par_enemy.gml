@@ -31,6 +31,4 @@ applies_to=self
 */
 /// Draw Enemy
 
-draw_self_floored();
 if (class == ENE_SUPER && vitality > 0 && vitality < 3 && invin_alarm > 0) draw_sprite(spr_enemy_vitality, vitality - 1, floor(x), floor(y) - 40);
-event_inherited();
