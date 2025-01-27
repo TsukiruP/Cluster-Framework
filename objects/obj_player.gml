@@ -12,7 +12,6 @@ sequence_init();
 
 player_id = 0;
 
-physics_id = PHYS_DEFAULT;
 top_speed = 6;
 max_speed = 16;
 
@@ -151,6 +150,7 @@ applies_to=self
 /// Water Initialization
 
 surface_time = 0;
+underwater = false;
 air_remaining = 30;
 air_alarm = 60;
 drown_index = 0;
@@ -428,8 +428,6 @@ if (script_exists(state_current))
     script_execute(state_current, STATE_STEP);
     if (state_changed) state_changed = false;
 }
-
-player_set_underwater();
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -540,7 +538,7 @@ else
 if (state_current == player_state_roll || state_current == sonic_state_homing) trail_draw = true;
 else trail_draw = false;
 
-if (physics_id != PHYS_WATER)
+if (!underwater)
 {
     var surface_handle;
 
@@ -575,7 +573,7 @@ applies_to=self
 
 if (game_ispaused()) exit;
 
-if (state_current == player_state_death || (physics_id == PHYS_WATER && status_shield == SHIELD_BUBBLE) || instance_exists(ctrl_tally))
+if (state_current == player_state_death || (status_shield == SHIELD_BUBBLE && underwater) || instance_exists(ctrl_tally))
 {
     air_remaining = 30;
     air_alarm = 60;
@@ -646,45 +644,42 @@ applies_to=self
 
 if (game_ispaused()) exit;
 
-if (state_current != player_state_death && !instance_exists(ctrl_tally))
+if (state_current != player_state_death && status_shield != SHIELD_BUBBLE && underwater && !instance_exists(ctrl_tally))
 {
-    if (physics_id == PHYS_WATER && status_shield != SHIELD_BUBBLE)
+    if (air_alarm > 0)
     {
-        if (air_alarm > 0)
+        air_alarm -= 1;
+
+        if (air_alarm == 0)
         {
-            air_alarm -= 1;
-
-            if (air_alarm == 0)
+            switch (air_remaining)
             {
-                switch (air_remaining)
-                {
-                    case 25:
-                    case 20:
-                    case 15:
-                        if (!input_cpu) audio_play_sfx("snd_drown_alert");
-                        break;
+                case 25:
+                case 20:
+                case 15:
+                    if (!input_cpu) audio_play_sfx("snd_drown_alert");
+                    break;
 
-                    case 12:
-                        if (!input_cpu) audio_play_drown();
+                case 12:
+                    if (!input_cpu) audio_play_drown();
 
-                    case 10:
-                    case 8:
-                    case 6:
-                    case 4:
-                    case 2:
-                        drown_index += 1;
-                        break;
+                case 10:
+                case 8:
+                case 6:
+                case 4:
+                case 2:
+                    drown_index += 1;
+                    break;
 
-                    case 0:
-                        x_speed = 0;
-                        drown = true;
-                        player_set_damage(self);
-                        break;
-                }
-
-                air_remaining -= 1;
-                air_alarm = 60;
+                case 0:
+                    x_speed = 0;
+                    drown = true;
+                    player_set_damage(self);
+                    break;
             }
+
+            air_remaining -= 1;
+            air_alarm = 60;
         }
     }
 }

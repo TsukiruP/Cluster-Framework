@@ -45,7 +45,7 @@ else if ((!input_cpu && shield_handle != noone) || input_cpu || state_current ==
     if (!input_cpu) audio_stop_drown();
 }
 
-if (physics_id == PHYS_WATER)
+if (underwater)
 {
     x_speed /= 2;
     y_speed /= 2;

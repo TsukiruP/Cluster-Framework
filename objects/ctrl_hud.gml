@@ -166,7 +166,7 @@ if (instance_exists(stage_get_player(0)))
     {
         if (state_current != player_state_death)
         {
-            if (physics_id == PHYS_WATER && status_shield != SHIELD_BUBBLE) other.air_hide = false;
+            if (status_shield != SHIELD_BUBBLE && underwater) other.air_hide = false;
             else other.air_hide = true;
             other.air_value = air_remaining;
         }

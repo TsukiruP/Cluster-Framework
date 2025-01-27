@@ -1,7 +1,7 @@
 /// player_surface_splash()
 /* Shorthand for the splash made for jumping and landing on the water's surface. */
 
-if (physics_id == PHYS_WATER) exit;
+if (underwater) exit;
 
 var surface_handle;
 

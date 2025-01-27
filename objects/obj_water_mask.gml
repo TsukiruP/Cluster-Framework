@@ -6,7 +6,9 @@ applies_to=self
 */
 /// Water Initialization
 
+event_inherited();
 depth = -12000;
+reaction_index = player_reaction_water;
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -16,6 +18,7 @@ applies_to=self
 /// Animation
 
 image_index = time_sync(game_get_time(), 6, sprite_get_number(spr_water_surface));
+hurtbox_set(0, 0, sprite_width, sprite_height);
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1

@@ -16,7 +16,7 @@ roll_friction = 0.0234375;
 roll_deceleration_up = 0.078125;
 roll_deceleration_down = 0.3125;
 
-if (physics_id == PHYS_WATER)
+if (underwater)
 {
     top_speed *= 0.5;
     acceleration *= 0.5;

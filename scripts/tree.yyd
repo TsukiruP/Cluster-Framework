@@ -540,6 +540,7 @@
 				|player_reaction_item_box
 				|player_reaction_enemy
 				|player_reaction_hint
+				|player_reaction_water
 				|player_reaction_bubble
 				|player_reaction_waterfall
 			+Obstacles
@@ -562,7 +563,6 @@
 		+Setters
 			|player_set_state
 			|player_set_physics
-			|player_set_underwater
 			|player_set_animation
 			|player_set_device
 			|player_set_input
