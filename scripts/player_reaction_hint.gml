@@ -1,12 +1,12 @@
-/// player_reaction_hint(obj, collision)
+/// player_reaction_hint(obj, interaction)
 /* Press the jump button to jump! */
 
-var reaction_handle, collision;
+var reaction_handle, interaction;
 
 reaction_handle = argument0;
-collision = argument1;
+interaction = argument1;
 
-if (collision & COLL_INTERACT)
+if (interaction & INTERACT_MUTUAL)
 {
     if (mask_rotation == reaction_handle.gravity_direction && on_ground && !input_cpu)
     {

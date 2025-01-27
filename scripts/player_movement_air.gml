@@ -19,10 +19,10 @@ repeat (total_steps)
     y -= dsin(angle) * step;
 
     if (!player_inbounds()) return false;
-    if (player_collision_object()) return false;
 
-    // Get colliding solids:
-    player_get_solids();
+    // Get colliding stage objects:
+    player_get_stage_objects();
+    if (player_collision_interaction()) return false;
 
     // Handle wall collision:
     hit_wall = player_collision_wall(0);
@@ -40,7 +40,7 @@ repeat (total_steps)
         wall_sign = player_wall_eject(hit_wall);
 
         // React:
-        if (player_react(hit_wall, COLL_WALL)) return false;
+        if (player_react(hit_wall, INTERACT_WALL)) return false;
 
         // Stop if moving towards wall:
         if (sign(x_speed) == wall_sign) x_speed = 0;
@@ -60,10 +60,10 @@ repeat (total_steps)
 
     // Keep in bounds:
     if (!player_inbounds()) return false;
-    if (player_collision_object()) return false;
 
-    // Get colliding solids:
-    player_get_solids();
+    // Get colliding stage objects:
+    player_get_stage_objects();
+    if (player_collision_interaction()) return false;
 
     // Handle floor/ceiling collisions:
     if (y_speed >= 0)
@@ -74,7 +74,7 @@ repeat (total_steps)
         if (hit_floor != noone)
         {
             // React:
-            if (player_react(hit_floor, COLL_FLOOR)) return false;
+            if (player_react(hit_floor, INTERACT_FLOOR)) return false;
 
             // Get floor data:
             player_set_ground(hit_floor);
@@ -91,7 +91,7 @@ repeat (total_steps)
         if (hit_floor != noone)
         {
             // React:
-            if (player_react(hit_floor, COLL_CEIL)) return false;
+            if (player_react(hit_floor, INTERACT_CEIL)) return false;
 
             // Rotate mask to ceiling:
             mask_rotation = angle_wrap(mask_rotation + 180);

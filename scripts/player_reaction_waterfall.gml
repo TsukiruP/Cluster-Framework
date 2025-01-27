@@ -1,9 +1,9 @@
-/// player_reaction_waterfall(obj, collision)
+/// player_reaction_waterfall(obj, interaction)
 /* Really stupid commitment to game accuracy. */
 
-var reaction_handle, collision;
+var reaction_handle, interaction;
 
 reaction_handle = argument0;
-collision = argument1;
+interaction = argument1;
 
-if (collision & COLL_INTERACT) waterfall_draw = true;
+if (interaction & INTERACT_MUTUAL) waterfall_draw = true;

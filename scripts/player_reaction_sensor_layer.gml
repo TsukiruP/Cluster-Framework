@@ -1,12 +1,12 @@
-/// player_reaction_sensor_layer(obj, collision)
+/// player_reaction_sensor_layer(obj, interaction)
 /* Like an onion. */
 
-var reaction_handle, collision;
+var reaction_handle, interaction;
 
 reaction_handle = argument0;
-collision = argument1;
+interaction = argument1;
 
-if (collision & COLL_INTERACT) // && point_in_rectangle(x, y, reaction_handle.bbox_left, reaction_handle.bbox_top, reaction_handle.bbox_right, reaction_handle.bbox_bottom))
+if (interaction & INTERACT_MUTUAL) // && point_in_rectangle(x, y, reaction_handle.bbox_left, reaction_handle.bbox_top, reaction_handle.bbox_right, reaction_handle.bbox_bottom))
 {
     layer = reaction_handle.layer;
 }

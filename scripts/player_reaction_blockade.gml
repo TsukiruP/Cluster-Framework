@@ -1,13 +1,13 @@
-/// player_reaction_blockade(obj, collision, side)
+/// player_reaction_blockade(obj, interaction, side)
 /* Break it with your face. */
 
-var reaction_handle, collision;
+var reaction_handle, interaction;
 
 reaction_handle = argument0;
-collision = argument1;
+interaction = argument1;
 side = argument2;
 
-if (collision & COLL_HIT)
+if (interaction & INTERACT_HIT)
 {
     if (((side == ANGLE_LEFT || side == ANGLE_RIGHT) && reaction_handle.orientation == ORIEN_VERTICAL) ||
         ((side == ANGLE_UP || side == ANGLE_DOWN) && reaction_handle.orientation == ORIEN_HORIZONTAL && sign(y_speed) == dsin(side)))
