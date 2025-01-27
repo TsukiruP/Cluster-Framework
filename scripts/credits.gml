@@ -32,6 +32,9 @@ Arc code for Tag Actions
 David Strachan
 Easing and Tweening Scripts in GameMaker
 
+Mimpy
+Sine Waves
+
 INSPIRATION
 Sonic XG
 Status HUD concept

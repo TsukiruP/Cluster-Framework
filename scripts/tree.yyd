@@ -387,8 +387,6 @@
 					|sequence_spring_diagonal
 				+Enemies
 					|sequence_spinner
-				|sequence_dash_panel
-				|sequence_dash_ramp
 			+Effects
 				+Player
 					|sequence_spin_dash
@@ -436,6 +434,8 @@
 			|wrap
 			|angle_wrap
 			|time_sync
+			|sine_wave
+			|sine_wave_range
 		+Draw
 			|draw_collision
 			|draw_sprite_tiled_extra
@@ -451,7 +451,6 @@
 		+Ease
 			|ease_in_out_back
 		+Misc.
-			|hover
 			|pick_offset
 			|transition_create
 			|effect_create
@@ -590,3 +589,4 @@
 	|draw_sprite_tiled_vertical
 	|draw_sprite_tiled_horizontal_yscale
 	|draw_backdrop_tiled_area
+	|sequence_dash_panel

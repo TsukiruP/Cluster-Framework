@@ -29,7 +29,7 @@ if (text_get_clear())
     }
 }
 
-draw_y = hover(y, floor(game_get_time()) * 0.03, 2);
+draw_y = sine_wave(game_get_time(), 128, 2, y);
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
