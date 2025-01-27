@@ -9,9 +9,9 @@ applies_to=self
 event_inherited();
 reaction_index = player_reaction_spring;
 orientation = ORIEN_VERTICAL;
+force = 8;
 flip_x = false;
 flip_y = false;
-force = 8;
 angle = 0;
 activated = false;
 sfx_alarm = 0;
@@ -54,9 +54,9 @@ applies_to=self
 /// Field Initialization
 
 //field orientation: enum(0, 1, 2)
+//field force: number
 //field flip_x: false
 //field flip_y: false
-//field force: number
 
 /*preview
 var orientation, flip_x, flip_y;
