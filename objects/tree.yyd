@@ -48,6 +48,8 @@
 			|obj_spinner
 		+Water
 			|obj_water_mask
+			|obj_bubble_spawn
+			|obj_bubble
 		+Hints
 			|obj_hint_box
 			|obj_omochao
@@ -96,8 +98,6 @@
 	+Rainbow Rings
 		|par_rainbow_ring
 		|obj_rainbow_ring_overlay
-		|obj_rainbow_ring_right
-		|obj_rainbow_ring_up
 		|obj_rainbow_ring_down
 		|obj_rainbow_ring_left_up
 		|obj_rainbow_ring_left_down

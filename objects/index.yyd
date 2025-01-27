@@ -112,8 +112,8 @@ obj_dash_ring_right_up
 obj_dash_ring_right_down
 obj_dash_ramp
 obj_rainbow_ring_overlay
-obj_rainbow_ring_right
-obj_rainbow_ring_up
+obj_bubble_spawn
+obj_bubble
 obj_rainbow_ring_down
 obj_rainbow_ring_left_up
 obj_rainbow_ring_left_down

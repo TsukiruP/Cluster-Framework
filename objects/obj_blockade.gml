@@ -70,4 +70,3 @@ applies_to=self
 
 image_index = image_number - (vitality / max_vitality) * image_number;
 draw_self();
-event_inherited();
