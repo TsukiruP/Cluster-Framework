@@ -6,22 +6,19 @@ var reaction_handle, collision;
 reaction_handle = argument0;
 collision = argument1;
 
-if (collision & COLL_FLOOR)
+if (collision & COLL_FLOOR && collision & COLL_INTERACT)
 {
-    if (collision & COLL_INTERACT)
+    if (on_ground)
     {
-        if (on_ground)
-        {
-            image_xscale = reaction_handle.image_xscale;
-            x_speed = max_speed * image_xscale;
-            input_lock_alarm = 16;
+        image_xscale = reaction_handle.image_xscale;
+        x_speed = max_speed * image_xscale;
+        input_lock_alarm = 16;
 
-            if (collision & COLL_HURT)
-            {
-                y_speed = -6;
-                player_set_state(player_state_ramp, true);
-                audio_play_sfx("snd_booster");
-            }
+        if (collision & COLL_HURT)
+        {
+            y_speed = -6;
+            player_set_state(player_state_ramp, true);
+            audio_play_sfx("snd_booster");
         }
     }
 }
