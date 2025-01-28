@@ -36,7 +36,7 @@ if (interaction & INTERACT_HIT)
                 {
                     var debris_handle;
 
-                    debris_handle = effect_create(sequence_blockade_debris, x, y);
+                    debris_handle = effect_create(x, y, sequence_blockade_debris);
                     debris_handle.x_speed = 4;
                     debris_handle.y_speed = 4;
                     debris_handle.angle = ANGLE_DOWN + irandom_range(-45, 45);

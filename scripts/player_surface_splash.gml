@@ -9,5 +9,5 @@ surface_handle = collision_point(x, floor(y) + y_radius + 1, obj_water_mask, fal
 
 if (on_ground && surface_handle != noone)
 {
-    effect_create(sequence_splash_3, x, surface_handle.y, depth, image_xscale);
+    effect_create(x, surface_handle.y, sequence_splash_3, depth, image_xscale);
 }

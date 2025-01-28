@@ -24,7 +24,7 @@ switch (status_shield)
         {
             var spark_handle;
 
-            spark_handle = effect_create(sequence_shield_lightning_spark, x, y);
+            spark_handle = effect_create(x, y, sequence_shield_lightning_spark);
             spark_handle.x_speed = 2;
             spark_handle.y_speed = 2;
             spark_handle.angle = pick(i, ANGLE_LEFT_UP, ANGLE_RIGHT_UP, ANGLE_LEFT_DOWN, ANGLE_RIGHT_DOWN);

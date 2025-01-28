@@ -29,7 +29,7 @@ if (interaction & INTERACT_MUTUAL)
         if (!water_previous)
         {
             audio_play_sfx("snd_splash", true);
-            effect_create(pick(y_speed >= 2.50, sequence_splash_0, sequence_splash_1), x, reaction_handle.y, depth);
+            effect_create(x, reaction_handle.y, pick(y_speed >= 2.50, sequence_splash_0, sequence_splash_1), depth);
         }
     }
     else if (y < room_height && underwater && !water_current)
@@ -43,7 +43,7 @@ if (interaction & INTERACT_MUTUAL)
         if (water_previous)
         {
             audio_play_sfx("snd_splash", true);
-            effect_create(pick(y_speed <= -6, sequence_splash_0, sequence_splash_1), x, reaction_handle.y, depth);
+            effect_create(x, reaction_handle.y, pick(y_speed <= -6, sequence_splash_0, sequence_splash_1), depth);
         }
     }
 }

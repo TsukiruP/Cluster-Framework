@@ -59,7 +59,7 @@ switch (argument1)
 
     case ITEM_MINE:
         player_set_damage(argument0);
-        effect_create(sequence_explosion_large, argument0.x, argument0.y, depth);
+        effect_create(argument0.x, argument0.y, sequence_explosion_large, depth);
         break;
 
     case ITEM_SLOW:

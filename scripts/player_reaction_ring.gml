@@ -23,7 +23,7 @@ if (interaction & INTERACT_MUTUAL)
 
         with (reaction_handle)
         {
-            effect_create(sequence_ring_sparkle, x, y, -depth);
+            effect_create(x, y, sequence_ring_sparkle, -depth);
             instance_destroy();
         }
     }

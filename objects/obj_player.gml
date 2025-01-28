@@ -551,7 +551,7 @@ if (!underwater)
 
         if (surface_time mod 9 == 0)
         {
-            effect_create(pick(abs(x_speed) >= 4.50, sequence_splash_2, sequence_splash_3), x, surface_handle.y, depth, image_xscale);
+            effect_create(x, surface_handle.y, pick(abs(x_speed) >= 4.50, sequence_splash_2, sequence_splash_3), depth, image_xscale);
         }
     }
     else surface_time = 0;

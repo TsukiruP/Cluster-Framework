@@ -17,7 +17,7 @@ if ((interaction & INTERACT_MUTUAL) || (interaction & INTERACT_HIT))
         with (reaction_handle)
         {
             player_handle = other.id;
-            effect_create(sequence_explosion_small, x, y, -depth);
+            effect_create(x, y, sequence_explosion_small, -depth);
             instance_destroy();
         }
     }

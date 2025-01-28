@@ -38,7 +38,7 @@ if ((interaction & INTERACT_MUTUAL && status_invin == INVIN_BUFF) || (interactio
 
         with (reaction_handle)
         {
-            effect_create(sequence_explosion_enemy, x, y, -depth);
+            effect_create(x, y, sequence_explosion_enemy, -depth);
             instance_destroy();
         }
     }
