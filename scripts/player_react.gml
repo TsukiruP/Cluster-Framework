@@ -14,7 +14,7 @@ if (script_exists(reaction))
     y_speed_temp = y_speed;
 
     interaction = player_get_interaction(reaction_handle);
-    if (argument_count > 1) collision |= argument[1];
+    if (argument_count > 1) interaction |= argument[1];
 
     if (object_is_ancestor(reaction_handle.object_index, par_obstacle))
     {

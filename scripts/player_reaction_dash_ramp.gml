@@ -6,7 +6,7 @@ var reaction_handle, interaction;
 reaction_handle = argument0;
 interaction = argument1;
 
-if (interaction & INTERACT_MUTUAL && interaction & INTERACT_FLOOR)
+if (interaction & INTERACT_FLOOR)
 {
     if (on_ground)
     {
@@ -14,7 +14,7 @@ if (interaction & INTERACT_MUTUAL && interaction & INTERACT_FLOOR)
         x_speed = max_speed * image_xscale;
         input_lock_alarm = 16;
 
-        if (interaction & INTERACT_HURT)
+        if (interaction & INTERACT_HIT)
         {
             y_speed = -6;
             player_set_state(player_state_ramp, true);

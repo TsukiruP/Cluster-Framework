@@ -11,8 +11,7 @@ reaction_index = player_reaction_dash_ramp;
 shape = SHAPE_SLANT;
 mask = false;
 ramp = false;
-hurtbox_set(32, 16, 32, 16);
-hitbox_set(6, 16, 4, 0, 25);
+hurtbox_set(6, 16, 4, 0, 25);
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1

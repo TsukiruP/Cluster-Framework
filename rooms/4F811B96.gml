@@ -1,3 +1,4 @@
 //gm82 fields begin
-item_id= 1
+orientation= 2
+rainbow_ring=true
 //gm82 fields end
