@@ -1,12 +1,12 @@
-/// player_reaction_dash_ramp(obj, interaction)
+/// player_reaction_dash_ramp(obj, collision)
 /* Really stupid commitment to game accuracy. */
 
-var reaction_handle, interaction;
+var reaction_handle, collision;
 
 reaction_handle = argument0;
-interaction = argument1;
+collision = argument1;
 
-if (interaction & INTERACT_MUTUAL && interaction & INTERACT_FLOOR)
+if (collision & COLL_FLOOR && collision & COLL_INTERACT)
 {
     if (on_ground)
     {
@@ -14,7 +14,7 @@ if (interaction & INTERACT_MUTUAL && interaction & INTERACT_FLOOR)
         x_speed = max_speed * image_xscale;
         input_lock_alarm = 16;
 
-        if (interaction & INTERACT_HURT)
+        if (collision & COLL_HURT)
         {
             y_speed = -6;
             player_set_state(player_state_ramp, true);

@@ -1,13 +1,15 @@
 /// player_collision_ceiling(radius)
 /* Returns the id of the first solid that is in collision with the upper half of the player's bounding box, or noone on failure. */
 
-var oy, n, inst;
+var total_solids, oy, n, inst;
+
+total_solids = ds_list_size(solid_list);
 
 // Scan rectangle within radius:
 for (oy = 0; oy < argument0; oy += 1)
 {
     // Evaluate all solids:
-    for (n = ds_list_size(solid_list); n > -1; n -= 1)
+    for (n = 0; n < total_solids; n += 1)
     {
         // Get the current solid:
         inst = ds_list_find_value(solid_list, n);

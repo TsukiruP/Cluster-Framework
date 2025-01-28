@@ -183,7 +183,7 @@ player_movement_ground
 player_reset_air
 collision_box
 player_react
-player_get_stage_objects
+player_get_solids
 player_collision_wall
 collision_ray
 player_wall_eject
@@ -201,7 +201,7 @@ player_get_cliff
 radii_set
 hurtbox_set
 hitbox_set
-player_get_interaction
+player_get_collision
 sequence_sonic_hammer
 sequence_sonic_skid
 sequence_sonic_somersault
@@ -235,7 +235,7 @@ sequence_blockade_debris
 sequence_sonic_air_dash
 player_reset_spring
 sequence_reticle
-player_collision_interaction
+player_collision_object
 sonic_trait_reticle
 sequence_sonic_stomp
 sequence_sonic_stomp_land

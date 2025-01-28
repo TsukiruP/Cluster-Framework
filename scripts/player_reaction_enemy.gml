@@ -1,12 +1,12 @@
-/// player_reaction_enemy(obj, interaction)
+/// player_reaction_enemy(obj, collision)
 /* Everybody wanna be my enemy.... */
 
-var reaction_handle, interaction;
+var reaction_handle, collision;
 
 reaction_handle = argument0;
-interaction = argument1;
+collision = argument1;
 
-if ((interaction & INTERACT_MUTUAL && status_invin == INVIN_BUFF) || (interaction & INTERACT_HIT))
+if ((collision & COLL_INTERACT && status_invin == INVIN_BUFF) || (collision & COLL_HIT))
 {
     if (reaction_handle.class == ENE_BASIC)
     {
@@ -43,7 +43,7 @@ if ((interaction & INTERACT_MUTUAL && status_invin == INVIN_BUFF) || (interactio
         }
     }
 }
-else if (interaction & INTERACT_HURT && (reaction_handle.hitbox_element == ELEM_NONE || (status_shield - SHIELD_BUBBLE != reaction_handle.hitbox_element)))
+else if (collision & COLL_HURT && (reaction_handle.hitbox_element == ELEM_NONE || (status_shield - SHIELD_BUBBLE != reaction_handle.hitbox_element)))
 {
     player_set_damage(reaction_handle);
 }

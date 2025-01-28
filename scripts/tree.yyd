@@ -476,7 +476,7 @@
 			|player_animation_ramp
 			|player_animation_spring
 		+Collision
-			|player_collision_interaction
+			|player_collision_object
 			|player_collision_wall
 			|player_collision_floor
 			|player_collision_ceiling
@@ -555,9 +555,9 @@
 			|player_get_animation_speed
 			|player_get_animation_variant
 			|player_get_input
-			|player_get_interaction
-			|player_get_stage_objects
+			|player_get_solids
 			|player_get_angle
+			|player_get_collision
 			|player_get_item
 			|player_get_cliff
 		+Setters

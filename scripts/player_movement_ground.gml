@@ -37,10 +37,10 @@ repeat (total_steps)
     y -= dsin(angle) * step;
 
     if (!player_inbounds()) return false;
+    if (player_collision_object()) return false;
 
-    // Get colliding stage objects:
-    player_get_stage_objects();
-    if (player_collision_interaction()) return false;
+    // Get colliding solids:
+    player_get_solids();
 
     // Wall collision:
     hit_wall = player_collision_wall(0);
@@ -58,7 +58,7 @@ repeat (total_steps)
         wall_sign = player_wall_eject(hit_wall);
 
         // React:
-        if (player_react(hit_wall, INTERACT_WALL)) return false;
+        if (player_react(hit_wall, COLL_WALL)) return false;
 
         // Stop if moving towards wall:
         if (sign(x_speed) == wall_sign)
@@ -74,7 +74,7 @@ repeat (total_steps)
     if (hit_floor != noone)
     {
         // React:
-        if (player_react(hit_floor, INTERACT_FLOOR)) return false;
+        if (player_react(hit_floor, COLL_FLOOR)) return false;
         
         player_set_ground(hit_floor);
     }

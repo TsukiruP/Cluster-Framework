@@ -1,12 +1,12 @@
-/// player_reaction_item_box(obj, interaction)
+/// player_reaction_item_box(obj, collision)
 /* Get equipped with.... ring?! */
 
-var reaction_handle, interaction;
+var reaction_handle, collision;
 
 reaction_handle = argument0;
-interaction = argument1;
+collision = argument1;
 
-if ((interaction & INTERACT_MUTUAL) || (interaction & INTERACT_HIT))
+if ((collision & COLL_INTERACT) || (collision & COLL_HIT))
 {
     if (!input_cpu || (input_cpu && input_cpu_gamepad_alarm > 0))
     {
