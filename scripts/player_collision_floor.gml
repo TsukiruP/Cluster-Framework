@@ -7,7 +7,7 @@ var oy, n, inst;
 for (oy = 0; oy < argument0; oy += 1)
 {
     // Evaluate all solids:
-    for (n = ds_list_size(solid_list); n > -1; n -= 1)
+    for (n = ds_list_size(solid_list) - 1; n > -1; n -= 1)
     {
         // Get the current solid:
         inst = ds_list_find_value(solid_list, n);

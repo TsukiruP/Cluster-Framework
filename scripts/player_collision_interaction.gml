@@ -3,7 +3,7 @@
 
 var n, inst;
 
-for (n = ds_list_size(interaction_list); n > -1; n -= 1)
+for (n = ds_list_size(interaction_list) - 1; n > -1; n -= 1)
 {
     inst = ds_list_find_value(interaction_list, n);
     if (player_react(inst)) return true;

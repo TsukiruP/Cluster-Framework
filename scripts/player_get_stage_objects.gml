@@ -23,8 +23,11 @@ y2 = y_int - (sine * wall_radius * 2) + (csine * y_radius * 2);
 // Evaluate all stage objects:
 with (par_culled)
 {
-    with (player) interaction = player_get_interaction(other);
-    if (interaction != 0) ds_list_add(other.interaction_list, id);
+    if (script_exists(reaction_index))
+    {
+        with (player) interaction = player_get_interaction(other);
+        if (interaction != 0) ds_list_add(other.interaction_list, id);
+    }
 
     if (object_is_ancestor(object_index, par_terrain))
     {
