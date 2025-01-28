@@ -3,7 +3,7 @@
 
 var player, x_int, y_int, sine, csine, x1, y1, x2, y2, interaction;
 
-// Reset solid list:
+// Reset lists:
 ds_list_clear(interaction_list);
 ds_list_clear(solid_list);
 
