@@ -1,5 +1,5 @@
-/// player_get_solids()
-/* Generates a list of solids for the player that they are in collision with. */
+/// player_get_stage_objects()
+/* Refreshes the lists of interactable and solid objects. */
 
 var player, x_int, y_int, sine, csine, x1, y1, x2, y2, interaction;
 
@@ -20,11 +20,10 @@ y1 = y_int + (sine * wall_radius * 2) - (csine * y_radius * 2);
 x2 = x_int + (csine * wall_radius * 2) + (sine * y_radius * 2);
 y2 = y_int - (sine * wall_radius * 2) + (csine * y_radius * 2);
 
-// Evaluate all solids:
+// Evaluate all stage objects:
 with (par_culled)
 {
-    with (player) interaction = player_get_collision(other);
-
+    with (player) interaction = player_get_interaction(other);
     if (interaction != 0) ds_list_add(other.interaction_list, id);
 
     if (object_is_ancestor(object_index, par_terrain))

@@ -1,12 +1,12 @@
-/// player_reaction_checkpoint(obj, collision)
+/// player_reaction_checkpoint(obj, interaction)
 /* Never made up a "joke" for this. */
 
-var reaction_handle, collision;
+var reaction_handle, interaction;
 
 reaction_handle = argument0;
-collision = argument1;
+interaction = argument1;
 
-if (collision & COLL_INTERACT)
+if (interaction & INTERACT_MUTUAL)
 {
     if (!input_cpu)
     {

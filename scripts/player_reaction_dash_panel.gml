@@ -1,12 +1,12 @@
-/// player_reaction_dash_panel(obj, collision)
+/// player_reaction_dash_panel(obj, interaction)
 /* Like an onion. */
 
-var reaction_handle, collision;
+var reaction_handle, interaction;
 
 reaction_handle = argument0;
-collision = argument1;
+interaction = argument1;
 
-if (collision & COLL_INTERACT)
+if (interaction & INTERACT_MUTUAL)
 {
     if (booster_current != reaction_handle || input_lock_alarm == 0)
     {

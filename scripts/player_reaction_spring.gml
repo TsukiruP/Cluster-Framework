@@ -1,12 +1,12 @@
-/// player_reaction_spring(obj, collision)
+/// player_reaction_spring(obj, interaction)
 /* Bounce Pad! Wait, no... */
 
-var reaction_handle, collision;
+var reaction_handle, interaction;
 
 reaction_handle = argument0;
-collision = argument1;
+interaction = argument1;
 
-if (collision & COLL_INTERACT)
+if (interaction & INTERACT_MUTUAL)
 {
     if (spring_current != reaction_handle || spring_alarm == 0)
     {

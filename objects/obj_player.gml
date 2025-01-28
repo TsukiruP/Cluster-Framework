@@ -61,6 +61,7 @@ applies_to=self
 
 var i;
 
+interaction_list = ds_list_create();
 solid_list = ds_list_create();
 layer = 0;
 cliff_direction = 0;
@@ -813,6 +814,7 @@ applies_to=self
 */
 /// Cleanup
 
+ds_list_destroy(interaction_list);
 ds_list_destroy(solid_list);
 ds_list_destroy(x_list);
 ds_list_destroy(y_list);
