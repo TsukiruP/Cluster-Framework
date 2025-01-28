@@ -110,7 +110,7 @@ obj_dash_ring_left_up
 obj_dash_ring_left_down
 obj_dash_ring_right_up
 obj_dash_ring_right_down
-obj_dash_ramp
+obj_jump_panel
 obj_rainbow_ring_overlay
 obj_bubble_spawn
 obj_bubble
@@ -122,7 +122,7 @@ obj_rainbow_ring_right_down
 obj_spinner
 obj_sky_sanctuary_fountain
 eff_debuff
-par_obstacle
+par_rail
 eff_debris
 par_target
 ctrl_stage

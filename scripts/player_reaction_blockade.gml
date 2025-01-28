@@ -1,7 +1,7 @@
 /// player_reaction_blockade(obj, interaction, side)
 /* Break it with your face. */
 
-var reaction_handle, interaction;
+var reaction_handle, interaction, side;
 
 reaction_handle = argument0;
 interaction = argument1;
@@ -12,7 +12,7 @@ if (interaction & INTERACT_HIT)
     if (((side == ANGLE_LEFT || side == ANGLE_RIGHT) && reaction_handle.orientation == ORIEN_VERTICAL) ||
         ((side == ANGLE_UP || side == ANGLE_DOWN) && reaction_handle.orientation == ORIEN_HORIZONTAL && sign(y_speed) == dsin(side)))
     {
-        if (y_speed < 0 && side == ANGLE_DOWN) mask_rotation = angle_wrap(mask_rotation + 180);
+        if (y_speed < 0 && side == ANGLE_UP) mask_rotation = angle_wrap(mask_rotation + 180);
         if (side == ANGLE_UP || side == ANGLE_DOWN) player_set_ground(reaction_handle);
 
         player_wall_eject(reaction_handle);

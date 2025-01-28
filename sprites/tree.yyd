@@ -148,7 +148,7 @@
 		+Goals
 			|spr_goal_ring
 	+Obstacles
-		|spr_dash_ramp
+		|spr_jump_panel
 		+Spikes
 			|spr_spike_vertical
 			|spr_spike_horizontal

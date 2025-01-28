@@ -9,7 +9,7 @@ applies_to=self
 event_inherited();
 depth = -10;
 reaction_index = player_reaction_spike;
-mask = false;
+is_mask = false;
 orientation = ORIEN_VERTICAL;
 flip = false;
 angle = ANGLE_UP;
@@ -56,24 +56,24 @@ switch (orientation)
 {
     case ORIEN_HORIZONTAL:
         sprite_index = spr_spike_horizontal;
-        angle = ANGLE_RIGHT;
+        angle = ANGLE_LEFT;
         hurtbox_set(16, 16, 8, 15);
 
         if (flip)
         {
             image_xscale = -1;
-            angle = ANGLE_LEFT;
+            angle = ANGLE_RIGHT;
         }
         break;
 
     default:
         sprite_index = spr_spike_vertical;
-        angle = ANGLE_UP;
+        angle = ANGLE_DOWN;
         hurtbox_set(16, 8, 15, 15);
 
         if (flip)
         {
             image_yscale = -1;
-            angle = ANGLE_DOWN;
+            angle = ANGLE_UP;
         }
 }

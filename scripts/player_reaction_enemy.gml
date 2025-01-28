@@ -6,7 +6,7 @@ var reaction_handle, interaction;
 reaction_handle = argument0;
 interaction = argument1;
 
-if ((interaction & INTERACT_MUTUAL && status_invin == INVIN_BUFF) || (interaction & INTERACT_HIT))
+if ((interaction & INTERACT_MUTUAL && status_invin == INVIN_BUFF) || interaction & INTERACT_HIT)
 {
     if (reaction_handle.class == ENE_BASIC)
     {

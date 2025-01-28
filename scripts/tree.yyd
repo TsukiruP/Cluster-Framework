@@ -530,22 +530,20 @@
 			|sonic_trait_reticle
 			|classic_trait_clock_up
 		+Reactions
-			+Props
-				|player_reaction_sensor_layer
-				|player_reaction_ring
-				|player_reaction_checkpoint
-				|player_reaction_dash_panel
-				|player_reaction_dash_ramp
-				|player_reaction_spring
-				|player_reaction_item_box
-				|player_reaction_enemy
-				|player_reaction_hint
-				|player_reaction_water
-				|player_reaction_bubble
-				|player_reaction_waterfall
-			+Obstacles
-				|player_reaction_spike
-				|player_reaction_blockade
+			|player_reaction_sensor_layer
+			|player_reaction_ring
+			|player_reaction_checkpoint
+			|player_reaction_dash_panel
+			|player_reaction_jump_panel
+			|player_reaction_spring
+			|player_reaction_item_box
+			|player_reaction_enemy
+			|player_reaction_hint
+			|player_reaction_water
+			|player_reaction_bubble
+			|player_reaction_waterfall
+			|player_reaction_spike
+			|player_reaction_blockade
 		+Trail
 			|player_trail_init
 			|player_trail_color

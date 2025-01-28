@@ -9,8 +9,8 @@ applies_to=self
 event_inherited();
 depth = -10;
 reaction_index = player_reaction_dash_panel;
-flip = false;
 force = 8;
+flip = false;
 sfx_alarm = 0;
 hurtbox_set(28, 0, 28, 7);
 #define Step_1
@@ -42,8 +42,8 @@ applies_to=self
 /// Field Initialization
 
 //field gravity_direction: enum(0, 90, 180, 270)
-//field flip: false
 //field force: number
+//field flip: false
 
 /*preview
 var flip;

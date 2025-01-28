@@ -11,5 +11,6 @@ image_speed = 0;
 gravity_direction = 0;
 collision = true;
 reaction_index = -1;
+reaction_mask = false;
 hurtbox_set();
 hitbox_set();

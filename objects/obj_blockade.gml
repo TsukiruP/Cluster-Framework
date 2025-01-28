@@ -8,7 +8,7 @@ applies_to=self
 
 event_inherited();
 reaction_index = player_reaction_blockade;
-mask = false;
+is_mask = false;
 orientation = ORIEN_VERTICAL;
 max_vitality = 3;
 vitality = max_vitality;

@@ -8,9 +8,9 @@ applies_to=self
 
 event_inherited();
 reaction_index = player_reaction_dash_ramp;
+reaction_mask = true;
 shape = SHAPE_SLANT;
-mask = false;
-ramp = false;
+is_mask = false;
 hurtbox_set(6, 16, 4, 0, 25);
 #define Step_2
 /*"/*'/**//* YYD ACTION

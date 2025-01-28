@@ -16,14 +16,17 @@ if (script_exists(reaction))
     interaction = player_get_interaction(reaction_handle);
     if (argument_count > 1) interaction |= argument[1];
 
-    if (object_is_ancestor(reaction_handle.object_index, par_obstacle))
+    if (object_is_ancestor(reaction_handle.object_index, par_terrain))
     {
         var side;
 
-        side = angle_wrap(round(point_direction(reaction_handle.x, reaction_handle.y, x, y) / ANGLE_UP) * ANGLE_UP);
+        side = angle_wrap(round(point_direction(x, y, reaction_handle.x, reaction_handle.y) / ANGLE_UP) * ANGLE_UP);
         if (argument_count > 2) side = argument[2];
 
-        script_execute(reaction, reaction_handle, interaction, side);
+        if (!reaction_handle.reaction_mask || (reaction_handle.reaction_mask && interaction & INTERACT_SOLID))
+        {
+            script_execute(reaction, reaction_handle, interaction, side);
+        }
     }
     else script_execute(reaction, reaction_handle, interaction);
 

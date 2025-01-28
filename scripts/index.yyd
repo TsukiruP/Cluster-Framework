@@ -468,7 +468,7 @@ audio_bgm_isplaying
 sequence_dash_panel
 player_reaction_dash_panel
 sine_wave_range
-player_reaction_dash_ramp
+player_reaction_jump_panel
 sequence_sonic_ramp_flight
 sequence_sonic_ramp_fall
 player_state_ramp
