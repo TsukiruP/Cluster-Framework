@@ -26,7 +26,7 @@ applies_to=self
 */
 /// Field Initialization
 
-//field layer: enum(-1, 0, 1)
+//field layer: enum(0, 1)
 //field semisolid: false
 
 /*preview
