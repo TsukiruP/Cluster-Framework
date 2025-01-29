@@ -57,6 +57,5 @@ switch (argument0)
         break;
 
     case STATE_FINISH:
-        audio_stop_sfx("snd_stomp");
         break;
 }
