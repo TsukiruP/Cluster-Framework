@@ -1,3 +1,3 @@
 //gm82 fields begin
-super=true
+item_id= ITEM_BUBBLE
 //gm82 fields end
