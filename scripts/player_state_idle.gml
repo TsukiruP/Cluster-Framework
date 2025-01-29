@@ -26,9 +26,9 @@ switch (argument0)
         if (!player_movement_ground() || !hint_allow) return false;
         if (!on_ground) return player_set_state(player_state_air);
 
-        if (relative_angle >= 45 && relative_angle <= 315)
+        if (relative_angle >= 90 && relative_angle <= 270) return player_set_state(player_state_air);
+        else if (relative_angle >= 45 && relative_angle <= 315)
         {
-            if (relative_angle >= 90 && relative_angle <= 270) return player_set_state(player_state_air);
             input_lock_alarm = 30;
             return player_set_state(player_state_run);
         }

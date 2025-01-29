@@ -12,9 +12,9 @@ switch (argument0)
     case STATE_STEP:
         if (!player_movement_ground()) return false;
         
-        if (relative_angle >= 45 && relative_angle <= 315)
+        if (relative_angle >= 90 && relative_angle <= 270) return player_set_state(player_state_air);
+        else if (relative_angle >= 45 && relative_angle <= 315)
         {
-            if (relative_angle >= 90 && relative_angle <= 270) return player_set_state(player_state_air);
             input_lock_alarm = 30;
             return player_set_state(player_state_run);
         }

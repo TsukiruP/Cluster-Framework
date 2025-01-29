@@ -34,10 +34,7 @@ switch (argument0)
 
             if (!player_movement_ground()) return false;
 
-            if (abs(x_speed) < slide_threshold && relative_angle >= 45 && relative_angle <= 315)
-            {
-                if (relative_angle >= 90 && relative_angle <= 270) return player_set_state(player_state_air);
-            }
+            if (abs(x_speed) < slide_threshold && relative_angle >= 90 && relative_angle <= 270) return player_set_state(player_state_air);
 
             if (x_speed != 0 && sign(x_speed) != image_xscale) return player_set_state(player_state_run);
 
