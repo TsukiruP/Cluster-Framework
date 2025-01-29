@@ -190,7 +190,7 @@ spr_knuckles_swim
 spr_knuckles_climb
 spr_knuckles_climb_dash
 spr_sonic_ramp
-spr_spike_right
+spr_sonic_rail
 spr_spike_vertical
 spr_jump_panel
 spr_reticle
@@ -266,10 +266,10 @@ spr_basic_test_mask_27
 spr_basic_test_mask_28
 spr_basic_test_mask_29
 spr_save_stars
-spr_spring_left
+spr_rail_01
 spr_water_mask
-spr_spring_left_up
-spr_spring_left_down
+spr_rail_02
+spr_rail_03
 spr_spring_right_down
 spr_dash_ring_left
 spr_dash_ring_vertical

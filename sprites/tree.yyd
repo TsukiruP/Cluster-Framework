@@ -84,6 +84,7 @@
 			+Spring
 				|spr_sonic_spring
 				|spr_sonic_spring_tag
+			|spr_sonic_rail
 			|spr_sonic_breathe
 			+Goal
 				|spr_sonic_goal
@@ -118,6 +119,7 @@
 			|spr_ring_super
 		|spr_checkpoint
 		|spr_dash_panel
+		|spr_jump_panel
 		+Springs
 			|spr_spring_vertical
 			|spr_spring_horizontal
@@ -135,26 +137,28 @@
 			|spr_item_icon
 		+Enemies
 			|spr_spinner
-		+Water
-			|spr_water_mask
-			|spr_water_surface
-			|spr_bubble_spawn
-			|spr_bubble
-		+Hints
-			|spr_hint_box
-			+Omochao
-				|spr_omochao_idle
-				|spr_omochao_sonic
-		+Goals
-			|spr_goal_ring
-	+Obstacles
-		|spr_jump_panel
 		+Spikes
 			|spr_spike_vertical
 			|spr_spike_horizontal
 		+Blockades
 			|spr_blockade_vertical
 			|spr_blockade_horizontal
+		+Rails
+			|spr_rail_01
+			|spr_rail_02
+			|spr_rail_03
+		+Hints
+			|spr_hint_box
+			+Omochao
+				|spr_omochao_idle
+				|spr_omochao_sonic
+		+Water
+			|spr_water_mask
+			|spr_water_surface
+			|spr_bubble_spawn
+			|spr_bubble
+		+Goals
+			|spr_goal_ring
 	+Effects
 		+Player
 			|spr_trail
@@ -369,10 +373,6 @@
 				|spr_knuckles_fly_carry
 	+Amy
 	+Spikes
-		|spr_spike_right
-	|spr_spring_left
-	|spr_spring_left_up
-	|spr_spring_left_down
 	|spr_spring_right_down
 	|spr_dash_ring_down
 	|spr_dash_ring_left

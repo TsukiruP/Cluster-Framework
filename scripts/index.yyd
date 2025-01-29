@@ -465,7 +465,7 @@ game_save_set_skill
 game_save_write_skill
 game_save_read_skill
 audio_bgm_isplaying
-sequence_dash_panel
+sequence_sonic_rail
 player_reaction_dash_panel
 sine_wave_range
 player_reaction_jump_panel
@@ -476,3 +476,4 @@ player_animation_ramp
 player_reaction_water
 draw_sprite_tiled_extra
 player_reaction_bubble
+player_reaction_rail

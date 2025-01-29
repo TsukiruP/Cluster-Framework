@@ -32,6 +32,7 @@ animation_add(CHAR_SONIC, "ramp_flight", sequence_sonic_ramp_flight);
 animation_add(CHAR_SONIC, "ramp_fall", sequence_sonic_ramp_fall);
 animation_add(CHAR_SONIC, "spring_flight", sequence_sonic_spring_flight);
 animation_add(CHAR_SONIC, "spring_fall", sequence_sonic_spring_fall);
+animation_add(CHAR_SONIC, "rail", sequence_sonic_rail);
 animation_add(CHAR_SONIC, "breathe", sequence_sonic_breathe);
 animation_add(CHAR_SONIC, "goal", sequence_sonic_stand);
 animation_add(CHAR_SONIC, "hammer", sequence_sonic_hammer);

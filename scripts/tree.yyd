@@ -338,6 +338,7 @@
 					+Spring
 						|sequence_sonic_spring_flight
 						|sequence_sonic_spring_fall
+					|sequence_sonic_rail
 					|sequence_sonic_breathe
 					+Goal
 					|sequence_sonic_hammer
@@ -538,12 +539,13 @@
 			|player_reaction_spring
 			|player_reaction_item_box
 			|player_reaction_enemy
+			|player_reaction_spike
+			|player_reaction_blockade
+			|player_reaction_rail
 			|player_reaction_hint
 			|player_reaction_water
 			|player_reaction_bubble
 			|player_reaction_waterfall
-			|player_reaction_spike
-			|player_reaction_blockade
 		+Trail
 			|player_trail_init
 			|player_trail_color
@@ -587,4 +589,3 @@
 	|draw_sprite_tiled_vertical
 	|draw_sprite_tiled_horizontal_yscale
 	|draw_backdrop_tiled_area
-	|sequence_dash_panel

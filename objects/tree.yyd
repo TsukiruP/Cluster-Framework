@@ -46,16 +46,17 @@
 		|obj_item_box
 		+Enemies
 			|obj_spinner
+		|obj_spike
+		|obj_blockade
+		+Rails
+		+Hints
+			|obj_hint_box
+			|obj_omochao
 		+Water
 			|obj_water_mask
 			|obj_bubble_spawn
 			|obj_bubble
-		+Hints
-			|obj_hint_box
-			|obj_omochao
-		|obj_spike
-		|obj_blockade
-	+Rails
+		+Goals
 	+Effects
 		+Player
 			|eff_afterimage
