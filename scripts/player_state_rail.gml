@@ -8,7 +8,8 @@ switch (argument0)
         break;
 
     case STATE_STEP:
-        image_xscale = sign(x_speed);
+        image_xscale = esign(x_speed, image_xscale);
+        if (x_speed == 0) x_speed = image_xscale;
 
         if (!player_movement_ground()) return false;
         if (!on_ground) return player_set_state(player_state_air);
