@@ -395,6 +395,7 @@
 					|sequence_brake
 					|sequence_debuff
 					|sequence_swap
+					|sequence_rail_spark
 					+Sonic
 						|sequence_drop_dash
 						|sequence_reticle

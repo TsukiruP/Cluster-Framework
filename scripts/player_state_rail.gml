@@ -22,6 +22,19 @@ switch (argument0)
         if (angle_wrap(relative_angle + 135) <= 270) x_speed -= dsin(relative_angle * 5) / 32;
 
         if (player_routine_jump()) return true;
+
+        if (animation_time mod 8 == 0)
+        {
+            var sine, csine;
+
+            sine = dsin(mask_rotation);
+            csine = dcos(mask_rotation);
+
+            with (effect_create(x - (csine * x_radius * image_xscale) + (sine * y_radius), y + (sine * x_radius * image_xscale) + (csine * y_radius), sequence_rail_spark, depth, image_xscale))
+            {
+                image_angle = other.mask_rotation;
+            }
+        }
         break;
 
     case STATE_FINISH:

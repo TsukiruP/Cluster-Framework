@@ -478,3 +478,4 @@ draw_sprite_tiled_extra
 player_reaction_bubble
 player_reaction_rail
 player_state_rail
+sequence_rail_spark
