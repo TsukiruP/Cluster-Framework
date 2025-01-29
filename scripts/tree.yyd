@@ -505,6 +505,7 @@
 				|player_state_death
 				|player_state_ramp
 				|player_state_spring
+				|player_state_rail
 				|player_state_bound
 				|player_state_hammer
 			+Skills

@@ -168,6 +168,7 @@
 			|spr_swap
 			|spr_tag_call
 			|spr_debuff
+			|spr_spring_right_down
 			+Sonic
 				|spr_drop_dash
 				|spr_reticle
@@ -373,7 +374,6 @@
 				|spr_knuckles_fly_carry
 	+Amy
 	+Spikes
-	|spr_spring_right_down
 	|spr_dash_ring_down
 	|spr_dash_ring_left
 	|spr_dash_ring_left_up

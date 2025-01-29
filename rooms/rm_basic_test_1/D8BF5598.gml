@@ -1,3 +1,3 @@
 //gm82 fields begin
-semisolid=true
+image_index= 1
 //gm82 fields end

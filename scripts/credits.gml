@@ -8,6 +8,9 @@ Sonic Mania Decompilation
 SAT-R
 Sonic Advance 2 Decompilation
 
+CBTBSD
+Sonic Advance Revamped
+
 VectorSatyr (SonicForGMS)
 States machine
 Animation sequences

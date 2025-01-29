@@ -9,5 +9,5 @@ side = argument2;
 
 if (interaction & INTERACT_SOLID && side == ANGLE_DOWN)
 {
-    
+    player_set_state(player_state_rail);
 }

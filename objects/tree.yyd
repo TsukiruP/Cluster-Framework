@@ -49,6 +49,9 @@
 		|obj_spike
 		|obj_blockade
 		+Rails
+			|obj_rail_01
+			|obj_rail_02
+			|obj_rail_03
 		+Hints
 			|obj_hint_box
 			|obj_omochao
@@ -107,10 +110,7 @@
 	+Springs
 		|obj_spring_up
 		|obj_spring_down
-		|obj_spring_left
 		|obj_spring_right
-		|obj_spring_left_up
-		|obj_spring_left_down
 		|obj_spring_right_up
 		|obj_spring_right_down
 	+Dash Panels
