@@ -47,7 +47,7 @@ applies_to=self
 */
 /// Field Initialization
 
-//field item_id: constant
+//field item_id: enum(ITEM_BONUS, ITEM_SUPER_BONUS, ITEM_RANDOM_BONUS, ITEM_BASIC, ITEM_MAGNETIC, ITEM_BUBBLE, ITEM_FIRE, ITEM_LIGHTNING, ITEM_INVIN, ITEM_SPEED, ITEM_MINE, ITEM_SLOW, ITEM_PANIC, ITEM_SWAP)
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
