@@ -13,6 +13,7 @@ if ((interaction & INTERACT_SOLID) && side == ANGLE_DOWN)
     image_xscale = reaction_handle.image_xscale;
     x_speed = reaction_handle.force * image_xscale;
     input_lock_alarm = 16;
+    if (ground_id != reaction_handle) player_set_ground(reaction_handle);
 
     if (interaction & INTERACT_MUTUAL)
     {
