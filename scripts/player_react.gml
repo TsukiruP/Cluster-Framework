@@ -23,7 +23,7 @@ if (script_exists(reaction))
         side = angle_wrap(round(point_direction(x, y, reaction_handle.x, reaction_handle.y) / ANGLE_UP) * ANGLE_UP);
         if (argument_count > 2) side = argument[2];
 
-        if (!reaction_handle.reaction_mask || (reaction_handle.reaction_mask && interaction & INTERACT_SOLID))
+        if (!reaction_handle.reaction_mask || (reaction_handle.reaction_mask && (interaction & INTERACT_SOLID)))
         {
             script_execute(reaction, reaction_handle, interaction, side);
         }

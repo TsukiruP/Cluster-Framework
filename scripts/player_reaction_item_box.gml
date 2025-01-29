@@ -6,7 +6,7 @@ var reaction_handle, interaction;
 reaction_handle = argument0;
 interaction = argument1;
 
-if (interaction & INTERACT_MUTUAL || interaction & INTERACT_HIT)
+if ((interaction & INTERACT_MUTUAL) || (interaction & INTERACT_HIT))
 {
     if (!input_cpu || (input_cpu && input_cpu_gamepad_alarm > 0))
     {

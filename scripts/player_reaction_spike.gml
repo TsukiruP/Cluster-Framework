@@ -7,4 +7,4 @@ reaction_handle = argument0;
 interaction = argument1;
 side = argument2;
 
-if (interaction & INTERACT_MUTUAL && side == reaction_handle.angle) player_set_damage(reaction_handle);
+if ((interaction & INTERACT_MUTUAL) && side == reaction_handle.angle) player_set_damage(reaction_handle);

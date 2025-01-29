@@ -8,7 +8,7 @@ interaction = argument1;
 side = argument2;
 
 
-if (interaction & INTERACT_SOLID && side == ANGLE_DOWN)
+if ((interaction & INTERACT_SOLID) && side == ANGLE_DOWN)
 {
     image_xscale = reaction_handle.image_xscale;
     x_speed = reaction_handle.force * image_xscale;
