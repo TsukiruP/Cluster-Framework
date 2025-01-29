@@ -33,8 +33,8 @@ player_rotation = player_handle.mask_rotation;
 sine = dsin(player_handle.mask_rotation);
 csine = dcos(player_handle.mask_rotation);
 
-draw_x = x - sine * 16;
-draw_y = y - csine * 16;
+draw_x = x - (sine * 16);
+draw_y = y - (csine * 16);
 
 if (sprite_exists(sprite_index))
 {

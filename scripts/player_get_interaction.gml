@@ -108,9 +108,9 @@ if (inst != noone)
         }
 
         bx1 = bx_int - (bcsine * bleft) + (bcsine * boff_x) - (bsine * btop) + (bsine * boff_y);
-        by1 = by_int - (bcsine * btop) + (bcsine * boff_y) - (bsine * bright) - (bsine * boff_x);
+        by1 = by_int + (bsine * bright) + (bsine * boff_x) - (bcsine * btop) + (bcsine * boff_y);
         bx2 = bx_int + (bcsine * bright) + (bcsine * boff_x) + (bsine * bbottom) + (bsine * boff_y);
-        by2 = by_int + (bcsine * bbottom) + (bcsine * boff_y) + (bsine * bleft) - (bsine * boff_x);
+        by2 = by_int - (bsine * bleft) - (bsine * boff_x) + (bcsine * bbottom) + (bcsine * boff_y);
 
         if !(aleft == 0 && atop == 0 && aright == 0 && abottom == 0)
         {
@@ -138,9 +138,9 @@ if (inst != noone)
             }
 
             ax1 = ax_int - (acsine * aleft) + (acsine * aoff_x) - (asine * atop) + (asine * aoff_y);
-            ay1 = ay_int - (acsine * atop) + (acsine * aoff_y) - (asine * aright) - (asine * aoff_x);
+            ay1 = ay_int + (asine * aright) + (asine * aoff_x) - (acsine * atop) + (acsine * aoff_y);
             ax2 = ax_int + (acsine * aright) + (acsine * aoff_x) + (asine * abottom) + (asine * aoff_y);
-            ay2 = ay_int + (acsine * abottom) + (acsine * aoff_y) + (asine * aleft) - (asine * aoff_x);
+            ay2 = ay_int - (asine * aleft) - (asine * aoff_x) + (acsine * abottom) + (acsine * aoff_y);
 
             if (rectangle_in_rectangle(ax1, ay1, ax2, ay2, bx1, by1, bx2, by2)) interaction |= pick(phase, INTERACT_MUTUAL, INTERACT_HURT, INTERACT_HIT);
         }

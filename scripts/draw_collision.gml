@@ -44,9 +44,9 @@ if !(left == 0 && top == 0 && right == 0 && bottom == 0)
 {
 
     x1 = x_int - (csine * left) + (csine * off_x) - (sine * top) + (sine * off_y);
-    y1 = y_int - (csine * top) + (csine * off_y) - (sine * right) - (sine * off_x);
+    y1 = y_int + (sine * right) + (sine * off_x) - (csine * top) + (csine * off_y);
     x2 = x_int + (csine * right) + (csine * off_x) + (sine * bottom) + (sine * off_y);
-    y2 = y_int + (csine * bottom) + (csine * off_y) + (sine * left) - (sine * off_x);
+    y2 = y_int - (sine * left) - (sine * off_x) + (csine * bottom) + (csine * off_y);
 
     draw_rectangle_color(x1, y1, x2, y2, argument8, argument8, argument8, argument8, true);
 }

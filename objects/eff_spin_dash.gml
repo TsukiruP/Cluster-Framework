@@ -38,7 +38,7 @@ player_rotation = player_handle.mask_rotation;
 sine = dsin(player_rotation);
 csine = dcos(player_rotation);
 
-draw_x = x + sine * floor(player_handle.y_radius);
-draw_y = y + csine * floor(player_handle.y_radius);
+draw_x = x + (sine * floor(player_handle.y_radius));
+draw_y = y + (csine * floor(player_handle.y_radius));
 
 if (sprite_exists(sprite_index)) draw_sprite_ext(sprite_index, image_index, draw_x, draw_y, player_handle.image_xscale, 1, player_rotation, c_white, 1);

@@ -7,5 +7,6 @@ if (animation_time mod 4 == 0)
 
     sine = dsin(mask_rotation);
     csine = dcos(mask_rotation);
-    effect_create(x + sine * y_radius, y + csine * y_radius, sequence_brake);
+
+    effect_create(x + (sine * y_radius), y + (csine * y_radius), sequence_brake);
 }
