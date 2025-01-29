@@ -99,14 +99,6 @@ if (inst != noone)
             bbottom = temp;
         }
 
-        if (brot div 90 >= 2)
-        {
-            bleft *= -1;
-            btop *= -1;
-            bright *= -1;
-            bbottom *= -1;
-        }
-
         bx1 = bx_int - (bcsine * bleft) + (bcsine * boff_x) - (bsine * btop) + (bsine * boff_y);
         by1 = by_int + (bsine * bright) + (bsine * boff_x) - (bcsine * btop) + (bcsine * boff_y);
         bx2 = bx_int + (bcsine * bright) + (bcsine * boff_x) + (bsine * bbottom) + (bsine * boff_y);
@@ -129,18 +121,10 @@ if (inst != noone)
                 abottom = temp;
             }
 
-            if (arot div 90 >= 2)
-            {
-                aleft *= -1;
-                atop *= -1;
-                aright *= -1;
-                abottom *= -1;
-            }
-
             ax1 = ax_int - (acsine * aleft) + (acsine * aoff_x) - (asine * atop) + (asine * aoff_y);
-            ay1 = ay_int + (asine * aright) + (asine * aoff_x) - (acsine * atop) + (acsine * aoff_y);
+            ay1 = ay_int - (asine * aright) + (asine * aoff_x) - (acsine * atop) + (acsine * aoff_y);
             ax2 = ax_int + (acsine * aright) + (acsine * aoff_x) + (asine * abottom) + (asine * aoff_y);
-            ay2 = ay_int - (asine * aleft) - (asine * aoff_x) + (acsine * abottom) + (acsine * aoff_y);
+            ay2 = ay_int + (asine * aleft) - (asine * aoff_x) + (acsine * abottom) + (acsine * aoff_y);
 
             if (rectangle_in_rectangle(ax1, ay1, ax2, ay2, bx1, by1, bx2, by2)) interaction |= pick(phase, INTERACT_MUTUAL, INTERACT_HURT, INTERACT_HIT);
         }
