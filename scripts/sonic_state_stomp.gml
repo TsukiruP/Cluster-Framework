@@ -52,7 +52,7 @@ switch (argument0)
 
             if (animation_finished) return player_set_state(player_state_idle);
             if (player_get_input(INP_DOWN, CHECK_HELD) && player_get_input(INP_JUMP, CHECK_PRESSED)) return player_set_state(player_state_spin_dash);
-            if (game_save_get_skill(character_id, "peel") && player_get_input(INP_UP, CHECK_HELD) && player_get_input(INP_JUMP, CHECK_PRESSED)) return player_set_state(sonic_state_peel_out);
+            if (sonic_skill_peel_out()) return player_set_state(sonic_state_peel_out);
         }
         break;
 

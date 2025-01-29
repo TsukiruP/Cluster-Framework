@@ -479,3 +479,8 @@ player_reaction_bubble
 player_reaction_rail
 player_state_rail
 sequence_rail_spark
+sonic_skill_slam
+sonic_skill_homing
+sonic_skill_ground
+sonic_skill_air
+sonic_skill_peel_out
