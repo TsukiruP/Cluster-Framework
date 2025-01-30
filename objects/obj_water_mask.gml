@@ -7,8 +7,9 @@ applies_to=self
 /// Water Initialization
 
 event_inherited();
-depth = -12000;
+depth = -11000;
 reaction_index = player_reaction_water;
+surface = true;
 hurtbox_set(0, 0, sprite_width, sprite_height);
 #define Step_2
 /*"/*'/**//* YYD ACTION
@@ -19,6 +20,34 @@ applies_to=self
 /// Animation
 
 image_index = time_sync(game_get_time(), 6, sprite_get_number(spr_water_surface));
+#define Other_4
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Field Initialization
+
+//field surface: true
+
+/*preview
+var layer;
+
+surface = Field("surface", 0);
+
+depth = 1000;
+image_alpha = 0.5;
+
+if (surface)
+{
+    var i;
+
+    for (i = 0; i < image_xscale; i += 1)
+    {
+        draw_sprite(Sprite("spr_water_surface", 0), 0, x + 8 * i, y);
+    }
+}
+*/
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -38,4 +67,4 @@ draw_rect(x, y, water_width, water_height, make_color_rgb(57, 132, 222));
 draw_reset();
 
 // Surface:
-draw_sprite_tiled_extra(spr_water_surface, image_index, x, y, 1, 1, 0, c_white, 1, sprite_width / 8, 1);
+if (surface) draw_sprite_tiled_extra(spr_water_surface, image_index, x, y, 1, 1, 0, c_white, 1, sprite_width / 8, 1);
