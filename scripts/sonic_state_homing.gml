@@ -21,7 +21,7 @@ switch (argument0)
         {
             var homing_angle;
 
-            homing_angle = direction_to_object(homing_handle);
+            homing_angle = angle_wrap(direction_to_object(homing_handle) - gravity_direction);
             x_speed = lengthdir_x(homing_speed, homing_angle);
             y_speed = lengthdir_y(homing_speed, homing_angle);
             homing_alarm -= 1;

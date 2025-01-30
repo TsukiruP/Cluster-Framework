@@ -27,23 +27,32 @@ switch (state_current)
 
 if (!homing_allow || spring_alarm != 0 || !input_allow || (input_cpu && input_cpu_gamepad_alarm == 0)) exit;
 
-var skill_homing;
+var skill_id;
 
-skill_homing = game_save_get_skill(character_id, "homing");
+skill_id = game_save_get_skill(character_id, "homing");
 
 if (!player_get_input(INP_ALT, CHECK_HELD))
 {
-    if ((skill_homing >= HOMING_ADVENTURE && !on_ground) || skill_homing == HOMING_FRONTIERS)
+    if ((skill_id >= HOMING_ADVENTURE && !on_ground) || skill_id == HOMING_FRONTIERS)
     {
-        var i, homing_candidate, homing_fail, homing_solid;
+        var i;
 
         for (i = 0; i <= 2; i += 1)
         {
+            var homing_candidate;
+
             homing_candidate = instance_nearest_dir_x(x, y, par_target, image_xscale, homing_range, i + 1);
 
             if (instance_exists(homing_candidate))
             {
-                if (!homing_candidate.targetable) continue;
+                if (!homing_candidate.targetable || distance_to_object(homing_candidate) > homing_range) continue;
+
+                var homing_angle1, homing_angle2, homing_fail, homing_solid;
+
+                homing_angle1 = gravity_direction;
+                homing_angle2 = direction_to_object(homing_candidate);
+                if (image_xscale == -1) homing_angle1 = angle_wrap(homing_angle1 + 180);
+                if (abs(angle_difference(homing_angle1, homing_angle2)) > 45) continue;
 
                 // Fail when interacting with solids:
                 homing_fail = false;
