@@ -458,6 +458,7 @@
 			|effect_create
 			|instance_nth_nearest
 			|instance_nearest_dir_x
+			|instance_nearest_dir_y
 			|in_view
 			|instance_create_single
 +Gameplay

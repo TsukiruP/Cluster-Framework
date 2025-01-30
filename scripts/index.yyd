@@ -485,3 +485,4 @@ sonic_skill_ground
 sonic_skill_air
 sonic_skill_peel_out
 script486
+instance_nearest_dir_y

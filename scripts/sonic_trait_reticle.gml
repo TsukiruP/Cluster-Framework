@@ -41,7 +41,8 @@ if (!player_get_input(INP_ALT, CHECK_HELD))
         {
             var homing_candidate;
 
-            homing_candidate = instance_nearest_dir_x(x, y, par_target, image_xscale, homing_range, i + 1);
+            if (gravity_direction mod 180 == 0) homing_candidate = instance_nearest_dir_x(x, y, par_target, dcos(gravity_direction) * image_xscale, homing_range, i + 1);
+            else homing_candidate = instance_nearest_dir_y(x, y, par_target, dsin(gravity_direction) * image_xscale, homing_range, i + 1);
 
             if (instance_exists(homing_candidate))
             {
