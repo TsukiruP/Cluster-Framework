@@ -532,7 +532,6 @@
 			|player_routine_skill
 			|sonic_routine_homing
 		+Traits
-			|player_trait_debug
 			|player_trait_swap
 			|sonic_trait_reticle
 			|classic_trait_clock_up
@@ -598,5 +597,6 @@
 	|draw_backdrop_tiled_area
 	|player_skill_sonic
 	|player_skill_classic
+|player_trait_debug
 |script486
 |script488

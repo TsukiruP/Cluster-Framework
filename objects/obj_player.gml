@@ -438,7 +438,6 @@ applies_to=self
 
 if (game_ispaused()) exit;
 
-player_trait_debug();
 player_trait_swap();
 
 switch (character_id)
@@ -845,37 +844,5 @@ with (shield_handle)
 {
     if (!shield_depth) event_draw();
 }
-
-draw_reset();
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Draw Collision
-
-if (!game_get_debug()) exit;
-
-var x_int, y_int, sine, csine;
-
-x_int = floor(x);
-y_int = floor(y);
-
-// Bounding box:
-if (mask_rotation mod 180 != 0) draw_rectangle_color(x_int - y_radius, y_int - x_radius, x_int + y_radius, y_int + x_radius, c_orange, c_orange, c_orange, c_orange, true);
-else draw_rectangle_color(x_int - x_radius, y_int - y_radius, x_int + x_radius, y_int + y_radius, c_orange, c_orange, c_orange, c_orange, true);
-
-// Wall radius:
-sine = dsin(mask_rotation);
-csine = dcos(mask_rotation);
-
-draw_line_color(x_int - (csine * wall_radius), y_int + (sine * wall_radius), x_int + (csine * wall_radius), y_int - (sine * wall_radius), c_white, c_white);
-
-// Collision:
-draw_hitbox(hurtbox_left, hurtbox_top, hurtbox_right, hurtbox_bottom, hurtbox_offset_x, hurtbox_offset_y, image_xscale, mask_rotation, c_maroon);
-draw_hitbox(hitbox_left, hitbox_top, hitbox_right, hitbox_bottom, hitbox_offset_x, hitbox_offset_y, image_xscale, mask_rotation, c_green);
-
-draw_line(x, y, x + lengthdir_x(homing_range, gravity_direction + 45), y + lengthdir_y(homing_range, gravity_direction + 45));
-draw_line(x, y, x + lengthdir_x(homing_range, gravity_direction - 45), y + lengthdir_y(homing_range, gravity_direction - 45));
 
 draw_reset();
