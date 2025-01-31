@@ -16,10 +16,12 @@ if (instance_exists(player_handle))
         image_xscale = player_handle.image_xscale;
         x_speed = player_handle.x_speed;
         y_speed = player_handle.y_speed;
-        player_set_state(player_state_air);
-        player_set_animation("spin");
         layer = player_handle.layer;
         status_invin = INVIN_HURT;
         status_invin_alarm = 120;
+        underwater = player_handle.underwater;
+        player_set_state(player_state_air);
+        player_set_animation("spin");
+        player_set_physics();
     }
 }
