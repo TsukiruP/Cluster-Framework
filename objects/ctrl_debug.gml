@@ -63,3 +63,22 @@ with (obj_player)
 
     draw_reset();
 }
+#define KeyPress_116
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Write Save
+
+if (game_get_save_id() != -1) game_write_save(game_get_save_id());
+#define KeyPress_117
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Read Save
+
+if (game_get_save_id() == -1) game_set_save_id(0);
+game_read_save(game_get_save_id());
