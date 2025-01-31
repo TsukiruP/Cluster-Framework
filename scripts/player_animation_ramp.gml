@@ -4,6 +4,7 @@
 switch (character_id)
 {
     case CHAR_CLASSIC:
+        player_animation_spring();
         break;
 
     default:

@@ -15,7 +15,7 @@ sequence_template
 sequence_sonic_land
 player_state_hammer
 sequence_sonic_push
-player_trait_debug
+sequence_classic_rail
 player_routine_land
 string_key
 char_pad

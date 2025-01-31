@@ -378,6 +378,7 @@
 						|sequence_classic_drown
 					|sequence_classic_push
 					|sequence_classic_spring
+					|sequence_classic_rail
 					|sequence_classic_breathe
 					|sequence_classic_insta
 			+Props
@@ -599,4 +600,3 @@
 	|draw_backdrop_tiled_area
 	|player_skill_sonic
 	|player_skill_classic
-|player_trait_debug
