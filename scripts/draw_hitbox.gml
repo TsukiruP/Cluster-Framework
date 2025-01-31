@@ -17,7 +17,7 @@ dir_y = image_yscale;
 off_x = argument4 * dir_x;
 off_y = argument5 * dir_y;
 
-rot = round(argument7 / 90) * 90;
+rot = round(argument6 / 90) * 90;
 sine = dsin(rot);
 csine = dcos(rot);
 
@@ -48,5 +48,5 @@ if !(left == 0 && top == 0 && right == 0 && bottom == 0)
     x2 = x_int + (csine * right) + (csine * off_x) + (sine * bottom) + (sine * off_y);
     y2 = y_int + (sine * left) - (sine * off_x) + (csine * bottom) + (csine * off_y);
 
-    draw_rectangle_color(x1, y1, x2, y2, argument8, argument8, argument8, argument8, true);
+    draw_rectangle_color(x1, y1, x2, y2, argument7, argument7, argument7, argument7, true);
 }
