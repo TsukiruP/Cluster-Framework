@@ -78,6 +78,8 @@
 				|game_get_time
 				|game_get_interface_color
 				|game_get_save_count
+				|game_get_save_id
+				|game_set_save_id
 		+Screen
 			|screen_is_equal
 			|screen_get_width
@@ -598,5 +600,3 @@
 	|player_skill_sonic
 	|player_skill_classic
 |player_trait_debug
-|script486
-|script488

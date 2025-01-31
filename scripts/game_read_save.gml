@@ -7,9 +7,9 @@ with (ctrl_game)
     {
         var i, save_temp, save_key;
 
-        save_id = argument0;
         save_temp = game_load_save_buffer(argument0);
         save_key = ds_map_find_first(save_map);
+        game_set_save_id(argument0);
 
         for (i = 0; i < ds_map_size(save_map); i += 1)
         {
