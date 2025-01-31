@@ -4,15 +4,15 @@ if (sequence_position(0))
 {
     sprite_index = spr_sonic_skid;
     image_index = 0;
-    radii_set(6, 14, 3);
-    hurtbox_set(6, 5, 6, 16);
-    hitbox_set();
+    player_set_radii(6, 14, 3);
+    hitbox_set_hurtbox(6, 5, 6, 16);
+    hitbox_set_attackbox();
 }
 else if (sequence_position(2))
 {
     image_index = 1;
-    hurtbox_set(10, 5, 10, 16);
-    hitbox_set(6, 19, 23, 16);
+    hitbox_set_hurtbox(10, 5, 10, 16);
+    hitbox_set_attackbox(6, 19, 23, 16);
 }
 else if (sequence_position(4)) image_index = 2;
 else if (sequence_position(6)) image_index = 3;

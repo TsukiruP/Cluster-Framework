@@ -51,12 +51,12 @@ switch (orientation)
 {
     case ORIEN_HORIZONTAL:
         sprite_index = spr_blockade_horizontal;
-        hurtbox_set(24, 12, 23, 11);
+        hitbox_set_hurtbox(24, 12, 23, 11);
         break;
 
     default:
         sprite_index = spr_blockade_vertical;
-        hurtbox_set(13, 24, 12, 23);
+        hitbox_set_hurtbox(13, 24, 12, 23);
 }
 
 vitality = max_vitality;

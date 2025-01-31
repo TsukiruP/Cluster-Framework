@@ -1,10 +1,10 @@
 /// player_get_stage_objects()
 /* Refreshes the lists of interactable and solid objects. */
 
-var player, x_int, y_int, sine, csine, x1, y1, x2, y2, interaction;
+var player, x_int, y_int, sine, csine, x1, y1, x2, y2, hitbox;
 
 // Reset lists:
-ds_list_clear(interaction_list);
+ds_list_clear(reaction_list);
 ds_list_clear(solid_list);
 
 // Initialize bounding rectangle:
@@ -25,8 +25,8 @@ with (par_culled)
 {
     if (script_exists(reaction_index) && !reaction_mask)
     {
-        with (player) interaction = player_get_interaction(other);
-        if (interaction != 0) ds_list_add(other.interaction_list, id);
+        with (player) hitbox = player_get_hitbox(other);
+        if (hitbox != 0) ds_list_add(other.reaction_list, id);
     }
 
     if (object_is_ancestor(object_index, par_terrain))

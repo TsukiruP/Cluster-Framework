@@ -12,5 +12,5 @@ gravity_direction = 0;
 collision = true;
 reaction_index = -1;
 reaction_mask = false;
-hurtbox_set();
-hitbox_set();
+hitbox_set_hurtbox();
+hitbox_set_attackbox();

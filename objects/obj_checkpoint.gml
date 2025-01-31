@@ -9,7 +9,7 @@ applies_to=self
 event_inherited();
 reaction_index = player_reaction_checkpoint;
 active = (game_get_checkpoint_x() == x && game_get_checkpoint_y() == y);
-hurtbox_set(13, 22, 14, 16);
+hitbox_set_hurtbox(13, 22, 14, 16);
 sequence_init();
 #define Step_2
 /*"/*'/**//* YYD ACTION

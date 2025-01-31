@@ -109,7 +109,7 @@ game_init_config
 player_get_input
 game_reset_config
 audio_play_sfx
-draw_collision
+draw_hitbox
 audio_stop_sfx
 sequence_shockwave
 game_get_save
@@ -198,10 +198,10 @@ player_collision_ceiling
 instance_nearest_dir_x
 player_inbounds
 player_get_cliff
-radii_set
-hurtbox_set
-hitbox_set
-player_get_interaction
+player_set_radii
+hitbox_set_hurtbox
+hitbox_set_attackbox
+player_get_hitbox
 sequence_sonic_hammer
 sequence_sonic_skid
 sequence_sonic_somersault
@@ -214,7 +214,7 @@ player_state_bound
 sequence_shield_bubble_bound
 sequence_shield_bubble_recoil
 instance_nth_nearest
-player_reaction_sensor_layer
+player_reaction_layer_sensor
 player_reaction_ring
 player_state_jump
 player_routine_shield
@@ -235,7 +235,7 @@ sequence_blockade_debris
 sequence_sonic_air_dash
 player_reset_spring
 sequence_reticle
-player_collision_interaction
+player_collision_reaction
 sonic_trait_reticle
 sequence_sonic_stomp
 sequence_sonic_stomp_land
@@ -486,3 +486,4 @@ sonic_skill_air
 sonic_skill_peel_out
 script486
 instance_nearest_dir_y
+script488

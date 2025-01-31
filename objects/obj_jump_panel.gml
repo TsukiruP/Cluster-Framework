@@ -12,7 +12,7 @@ reaction_mask = true;
 shape = SHAPE_SLANT;
 is_mask = false;
 force = 12;
-hurtbox_set(6, 16, 4, 0, 25);
+hitbox_set_hurtbox(6, 16, 4, 0, 25);
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1

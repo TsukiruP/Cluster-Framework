@@ -10,7 +10,7 @@ event_inherited();
 depth = -10;
 reaction_index = player_reaction_waterfall;
 splash = false;
-hurtbox_set(16, 16, 16, 16);
+hitbox_set_hurtbox(16, 16, 16, 16);
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1

@@ -37,6 +37,7 @@ applies_to=self
 */
 /// Controller Initialization
 
+instance_create_single(0, 0, ctrl_debug);
 instance_create_single(0, 0, ctrl_screen);
 instance_create_single(0, 0, ctrl_audio);
 instance_create_single(0, 0, ctrl_input);
@@ -120,8 +121,8 @@ if (!game_get_debug()) exit;
 
 with (par_culled)
 {
-    draw_collision(hurtbox_left, hurtbox_top, hurtbox_right, hurtbox_bottom, hurtbox_offset_x, hurtbox_offset_y, image_xscale, gravity_direction, c_maroon);
-    draw_collision(hitbox_left, hitbox_top, hitbox_right, hitbox_bottom, hitbox_offset_x, hitbox_offset_y, image_xscale, gravity_direction, c_green);
+    draw_hitbox(hurtbox_left, hurtbox_top, hurtbox_right, hurtbox_bottom, hurtbox_offset_x, hurtbox_offset_y, image_xscale, gravity_direction, c_maroon);
+    draw_hitbox(hitbox_left, hitbox_top, hitbox_right, hitbox_bottom, hitbox_offset_x, hitbox_offset_y, image_xscale, gravity_direction, c_green);
 }
 /*"/*'/**//* YYD ACTION
 lib_id=1

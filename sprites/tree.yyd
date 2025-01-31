@@ -113,7 +113,7 @@
 			|spr_classic_push
 			|spr_classic_misc
 	+Props
-		|spr_sensor_layer
+		|spr_layer_sensor
 		+Rings
 			|spr_ring
 			|spr_ring_super

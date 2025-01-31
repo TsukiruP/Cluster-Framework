@@ -8,7 +8,7 @@ applies_to=self
 
 event_inherited();
 draw_y = 0;
-hurtbox_set(21, 17, 19, 16, 0, 31);
+hitbox_set_hurtbox(21, 17, 19, 16, 0, 31);
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1

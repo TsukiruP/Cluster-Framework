@@ -61,7 +61,7 @@ applies_to=self
 
 var i;
 
-interaction_list = ds_list_create();
+reaction_list = ds_list_create();
 solid_list = ds_list_create();
 layer = 0;
 cliff_direction = 0;
@@ -71,9 +71,9 @@ ceiling_land_threshold = -4;
 slide_threshold = 2.5;
 air_friction_threshold = 0.125;
 
-radii_set(6, 14, 3, 0);
-hurtbox_set();
-hitbox_set();
+player_set_radii(6, 14, 3, 0);
+hitbox_set_hurtbox();
+hitbox_set_attackbox();
 
 x_list = ds_list_create();
 y_list = ds_list_create();
@@ -814,7 +814,7 @@ applies_to=self
 */
 /// Cleanup
 
-ds_list_destroy(interaction_list);
+ds_list_destroy(reaction_list);
 ds_list_destroy(solid_list);
 ds_list_destroy(x_list);
 ds_list_destroy(y_list);
@@ -872,7 +872,10 @@ csine = dcos(mask_rotation);
 draw_line_color(x_int - (csine * wall_radius), y_int + (sine * wall_radius), x_int + (csine * wall_radius), y_int - (sine * wall_radius), c_white, c_white);
 
 // Collision:
-draw_collision(hurtbox_left, hurtbox_top, hurtbox_right, hurtbox_bottom, hurtbox_offset_x, hurtbox_offset_y, image_xscale, mask_rotation, c_maroon);
-draw_collision(hitbox_left, hitbox_top, hitbox_right, hitbox_bottom, hitbox_offset_x, hitbox_offset_y, image_xscale, mask_rotation, c_green);
+draw_hitbox(hurtbox_left, hurtbox_top, hurtbox_right, hurtbox_bottom, hurtbox_offset_x, hurtbox_offset_y, image_xscale, mask_rotation, c_maroon);
+draw_hitbox(hitbox_left, hitbox_top, hitbox_right, hitbox_bottom, hitbox_offset_x, hitbox_offset_y, image_xscale, mask_rotation, c_green);
+
+draw_line(x, y, x + lengthdir_x(homing_range, gravity_direction + 45), y + lengthdir_y(homing_range, gravity_direction + 45));
+draw_line(x, y, x + lengthdir_x(homing_range, gravity_direction - 45), y + lengthdir_y(homing_range, gravity_direction - 45));
 
 draw_reset();

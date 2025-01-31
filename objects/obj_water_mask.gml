@@ -10,7 +10,7 @@ event_inherited();
 depth = -11000;
 reaction_index = player_reaction_water;
 surface = true;
-hurtbox_set(0, 0, sprite_width, sprite_height);
+hitbox_set_hurtbox(0, 0, sprite_width, sprite_height);
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1

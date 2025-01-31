@@ -126,7 +126,7 @@ if (inst != noone)
             ax2 = ax_int + (acsine * aright) + (acsine * aoff_x) + (asine * abottom) + (asine * aoff_y);
             ay2 = ay_int + (asine * aleft) - (asine * aoff_x) + (acsine * abottom) + (acsine * aoff_y);
 
-            if (rectangle_in_rectangle(ax1, ay1, ax2, ay2, bx1, by1, bx2, by2)) interaction |= pick(phase, INTERACT_MUTUAL, INTERACT_HURT, INTERACT_HIT);
+            if (rectangle_in_rectangle(ax1, ay1, ax2, ay2, bx1, by1, bx2, by2)) interaction |= pick(phase, HIT_COLLISION, HIT_HURT, HIT_ATTACK);
         }
     }
 }

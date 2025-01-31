@@ -12,7 +12,7 @@ reaction_index = player_reaction_dash_panel;
 force = 8;
 flip = false;
 sfx_alarm = 0;
-hurtbox_set(28, 0, 28, 7);
+hitbox_set_hurtbox(28, 0, 28, 7);
 #define Step_1
 /*"/*'/**//* YYD ACTION
 lib_id=1

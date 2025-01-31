@@ -4,9 +4,9 @@ if (sequence_position(0))
 {
     sprite_index = spr_sonic_cliff_back;
     image_index = 0;
-    radii_set(6, 14, 3);
-    hurtbox_set(6, 13, 6, 15);
-    hitbox_set();
+    player_set_radii(6, 14, 3);
+    hitbox_set_hurtbox(6, 13, 6, 15);
+    hitbox_set_attackbox();
 }
 else if (sequence_position(3)) image_index = 1;
 else if (sequence_position(7)) image_index = 2;

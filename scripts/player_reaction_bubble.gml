@@ -1,12 +1,12 @@
-/// player_reaction_bubble(obj, interaction)
+/// player_reaction_bubble(obj, hitbox)
 /* Glub, glub. */
 
-var reaction_handle, interaction;
+var reaction_handle, hitbox;
 
 reaction_handle = argument0;
-interaction = argument1;
+hitbox = argument1;
 
-if (interaction & INTERACT_MUTUAL)
+if (hitbox & HIT_COLLISION)
 {
     if (!on_ground && reaction_handle.size == 2)
     {

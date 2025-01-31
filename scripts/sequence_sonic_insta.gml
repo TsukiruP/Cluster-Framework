@@ -4,9 +4,9 @@ if (sequence_position(0))
 {
     sprite_index = spr_sonic_insta;
     image_index = 0;
-    radii_set(6, 9, 3, 5);
-    hurtbox_set(8, 8, 8, 8);
-    hitbox_set(14, 14, 14, 14);
+    player_set_radii(6, 9, 3, 5);
+    hitbox_set_hurtbox(8, 8, 8, 8);
+    hitbox_set_attackbox(14, 14, 14, 14);
 }
 else if (sequence_position(1)) image_index = 1;
 else if (sequence_position(2)) image_index = 2;

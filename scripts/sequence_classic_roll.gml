@@ -4,9 +4,9 @@ if (sequence_position(0))
 {
     sprite_index = spr_classic_roll;
     image_index = 0;
-    radii_set(6, 9, 3, 3);
-    hurtbox_set(8, 8, 8, 8);
-    hitbox_set(6, 9, 6, 9);
+    player_set_radii(6, 9, 3, 3);
+    hitbox_set_hurtbox(8, 8, 8, 8);
+    hitbox_set_attackbox(6, 9, 6, 9);
 }
 else if (sequence_position(4)) image_index = 4;
 else if (sequence_position(8)) image_index = 1;

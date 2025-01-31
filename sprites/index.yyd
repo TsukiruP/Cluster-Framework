@@ -146,7 +146,7 @@ spr_swap
 spr_dash_ring_left_up
 spr_ring_sparkle
 spr_hint_box
-spr_sensor_layer
+spr_layer_sensor
 spr_hud_energy
 spr_enemy_alert
 spr_splash_5

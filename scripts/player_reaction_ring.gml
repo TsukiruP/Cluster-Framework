@@ -1,12 +1,12 @@
-/// player_reaction_ring(obj, interaction)
+/// player_reaction_ring(obj, hitbox)
 /* Nom nom nom. */
 
-var reaction_handle, interaction;
+var reaction_handle, hitbox;
 
 reaction_handle = argument0;
-interaction = argument1;
+hitbox = argument1;
 
-if (interaction & INTERACT_MUTUAL)
+if (hitbox & HIT_COLLISION)
 {
     if (status_invin != INVIN_HURT || (status_invin == INVIN_HURT && status_invin_alarm > 0 && status_invin_alarm < 90))
     {

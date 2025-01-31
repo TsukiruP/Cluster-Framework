@@ -91,69 +91,6 @@ if (place_meeting(x + ox, y + oy, par_terrain) && !place_meeting(xprevious, ypre
 
     y_speed *= -1;
 }
-
-/*
-var sine, csine;
-
-sine = dsin(gravity_direction);
-csine = dcos(gravity_direction);
-
-// Add gravity:
-y_speed += gravity_force * game_get_speed();
-
-// Apply x speed:
-if (x_speed != 0)
-{
-    x += dcos(gravity_direction) * (x_speed * game_get_speed());
-    y -= dsin(gravity_direction) * (x_speed * game_get_speed());
-}
-
-// Apply y speed:
-if (y_speed != 0)
-{
-    x += dsin(gravity_direction) * (y_speed * game_get_speed());
-    y += dcos(gravity_direction) * (y_speed * game_get_speed());
-}
-
-// Left eject:
-while (collision_ray_vertical(-hurtbox_left, 0, gravity_direction, par_terrain))
-{
-    x += csine * hurtbox_left;
-    y -= sine * hurtbox_left;
-}
-
-// Right eject:
-while (collision_ray_vertical(hurtbox_right, 0, gravity_direction, par_terrain))
-{
-    x -= csine * hurtbox_right;
-    y += sine * hurtbox_right;
-}
-
-// Inverse x speed:
-if (collision_ray_vertical(-(hurtbox_left + 1), 0, gravity_direction, par_terrain) || collision_ray_vertical(hurtbox_right + 1, 0, gravity_direction, par_terrain))
-{
-    x_speed *= -1;
-}
-
-// Rise up:
-while (collision_box_vertical(hurtbox_left, hurtbox_bottom, gravity_direction, par_terrain))
-{
-    x -= sine;
-    y -= csine;
-}
-
-// Sink down:
-while (collision_box_vertical(hurtbox_left, hurtbox_top + 1, angle_wrap(gravity_direction + 180), par_terrain))
-{
-    x += sine;
-    y += csine;
-}
-
-// Inverse y speed:
-if (collision_box_vertical(hurtbox_left, hurtbox_bottom + 1, gravity_direction, par_terrain) || collision_box_vertical(hurtbox_left, hurtbox_top + 2, angle_wrap(gravity_direction + 180), par_terrain))
-{
-    y_speed *= -1;
-}
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603

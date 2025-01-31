@@ -9,7 +9,7 @@ applies_to=self
 event_inherited();
 draw_x = x;
 draw_y = y;
-hurtbox_set(11, 11, 10, 10, 2, 5);
+hitbox_set_hurtbox(11, 11, 10, 10, 2, 5);
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1

@@ -11,7 +11,7 @@ reaction_index = player_reaction_ring;
 super = false;
 rate = 8;
 dropped = false;
-hurtbox_set(8, 8, 7, 7, 0, 0);
+hitbox_set_hurtbox(8, 8, 7, 7, 0, 0);
 #define Step_0
 /*"/*'/**//* YYD ACTION
 lib_id=1

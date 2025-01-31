@@ -82,14 +82,14 @@ switch (orientation)
         else sprite_index = spr_dash_ring_horizontal;
 
         angle = ANGLE_RIGHT;
-        hurtbox_set(6, 24, 7, 26);
+        hitbox_set_hurtbox(6, 24, 7, 26);
         break;
 
     case ORIEN_DIAGONAL:
         if (rainbow_ring) sprite_index = spr_rainbow_ring_diagonal;
         else sprite_index = spr_dash_ring_diagonal
         angle = ANGLE_RIGHT_UP;
-        hurtbox_set(7, 7, 7, 7);
+        hitbox_set_hurtbox(7, 7, 7, 7);
         break;
 
     default:
@@ -97,7 +97,7 @@ switch (orientation)
         else sprite_index = spr_dash_ring_vertical;
 
         angle = ANGLE_UP;
-        hurtbox_set(26, 5, 26, 6);
+        hitbox_set_hurtbox(26, 5, 26, 6);
 
 }
 

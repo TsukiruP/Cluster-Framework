@@ -96,21 +96,21 @@ switch (orientation)
 {
     case ORIEN_HORIZONTAL:
         sprite_index = spr_spring_horizontal;
-        hurtbox_set(16, 5, 4, 5);
+        hitbox_set_hurtbox(16, 5, 4, 5);
         sequence_init(sequence_spring_horizontal);
         angle = ANGLE_RIGHT;
         break;
 
     case ORIEN_DIAGONAL:
         sprite_index = spr_spring_diagonal;
-        hurtbox_set(6, 2, 4, 8);
+        hitbox_set_hurtbox(6, 2, 4, 8);
         sequence_init(sequence_spring_diagonal);
         angle = ANGLE_RIGHT_UP;
         break;
 
     default:
         sprite_index = spr_spring_vertical;
-        hurtbox_set(5, 4, 5, 15);
+        hitbox_set_hurtbox(5, 4, 5, 15);
         sequence_init(sequence_spring_vertical);
         angle = ANGLE_UP;
 }

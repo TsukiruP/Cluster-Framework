@@ -92,7 +92,7 @@ eff_shield
 par_hint
 mnu_title
 mnu_debug
-obj_sensor_layer
+obj_layer_sensor
 obj_hint_box
 obj_spring_up
 obj_spring_right_up
@@ -114,7 +114,7 @@ obj_jump_panel
 obj_rainbow_ring_overlay
 obj_bubble_spawn
 obj_bubble
-obj_rainbow_ring_down
+ctrl_debug
 obj_rainbow_ring_left_up
 obj_rainbow_ring_left_down
 obj_rainbow_ring_right_up

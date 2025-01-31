@@ -439,7 +439,7 @@
 			|sine_wave
 			|sine_wave_range
 		+Draw
-			|draw_collision
+			|draw_hitbox
 			|draw_sprite_tiled_extra
 			|draw_background_tiled_view
 		+Text
@@ -467,9 +467,8 @@
 		|collision_box_vertical
 		|collision_ray
 		|collision_ray_vertical
-		|radii_set
-		|hurtbox_set
-		|hitbox_set
+		|hitbox_set_hurtbox
+		|hitbox_set_attackbox
 	+Player
 		+Animation
 			|player_animation_core
@@ -479,7 +478,7 @@
 			|player_animation_ramp
 			|player_animation_spring
 		+Collision
-			|player_collision_interaction
+			|player_collision_reaction
 			|player_collision_wall
 			|player_collision_floor
 			|player_collision_ceiling
@@ -538,7 +537,7 @@
 			|sonic_trait_reticle
 			|classic_trait_clock_up
 		+Reactions
-			|player_reaction_sensor_layer
+			|player_reaction_layer_sensor
 			|player_reaction_ring
 			|player_reaction_checkpoint
 			|player_reaction_dash_panel
@@ -562,7 +561,7 @@
 			|player_get_animation_speed
 			|player_get_animation_variant
 			|player_get_input
-			|player_get_interaction
+			|player_get_hitbox
 			|player_get_stage_objects
 			|player_get_angle
 			|player_get_item
@@ -570,6 +569,7 @@
 		+Setters
 			|player_set_state
 			|player_set_physics
+			|player_set_radii
 			|player_set_animation
 			|player_set_device
 			|player_set_input
@@ -599,3 +599,4 @@
 	|player_skill_sonic
 	|player_skill_classic
 |script486
+|script488

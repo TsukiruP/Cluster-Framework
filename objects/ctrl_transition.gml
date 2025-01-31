@@ -418,7 +418,7 @@ if (game_get_room_water() != -1)
     {
         image_xscale = room_width div sprite_width;
         image_yscale = (room_height - y) div sprite_height;
-        hurtbox_set(0, 0, sprite_width, sprite_height);
+        hitbox_set_hurtbox(0, 0, sprite_width, sprite_height);
     }
 }
 

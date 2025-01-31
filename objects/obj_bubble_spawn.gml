@@ -111,7 +111,7 @@ if (cycle_state == 1)
         with (instance_create(x + irandom_range(-8, 8), y, obj_bubble))
         {
             size = bubble_size;
-            if (bubble_size == 2) hurtbox_set(12, 12, 12, 12);
+            if (bubble_size == 2) hitbox_set_hurtbox(12, 12, 12, 12);
         }
 
         cycle_count += 1;

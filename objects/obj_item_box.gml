@@ -10,7 +10,7 @@ event_inherited();
 reaction_index = player_reaction_item_box;
 player_handle = noone;
 item_id = ITEM_BONUS;
-hurtbox_set(13, 16, 12, 16);
+hitbox_set_hurtbox(13, 16, 12, 16);
 #define Step_0
 /*"/*'/**//* YYD ACTION
 lib_id=1

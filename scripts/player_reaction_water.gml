@@ -1,12 +1,12 @@
-/// player_reaction_water(obj, interaction)
+/// player_reaction_water(obj, hitbox)
 /* Sets whether the player is underwater. */
 
-var reaction_handle, interaction;
+var reaction_handle, hitbox;
 
 reaction_handle = argument0;
-interaction = argument1;
+hitbox = argument1;
 
-if (interaction & INTERACT_MUTUAL)
+if (hitbox & HIT_COLLISION)
 {
     var x1, y1, x2, y2, water_current, water_previous;
 
