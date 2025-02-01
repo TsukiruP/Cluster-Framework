@@ -1,3 +1,12 @@
+#define Create_0
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Debug Initialization
+
+info_id = 0;
 #define Step_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -7,6 +16,39 @@ applies_to=self
 /// Inputs
 
 if (input_get_check(INP_ALT, CHECK_HELD) && input_get_check(INP_SELECT, CHECK_PRESSED)) game_set_debug(!game_get_debug());
+
+if (!game_get_debug()) exit;
+
+with (obj_player)
+{
+    switch (keyboard_lastkey)
+    {
+        case vk_numpad2:
+            gravity_direction = 0;
+            break;
+
+        case vk_numpad4:
+            gravity_direction = 270;
+            break;
+
+        case vk_numpad6:
+            gravity_direction = 90;
+            break;
+
+        case vk_numpad8:
+            gravity_direction = 180;
+            break;
+    }
+}
+
+var info_char;
+
+info_char = string_digits(keyboard_lastchar);
+if (string_length(info_char))
+{
+    if (keyboard_lastkey == vk_numpad2 || keyboard_lastkey == vk_numpad4 || keyboard_lastkey == vk_numpad6 || keyboard_lastkey == vk_numpad8) exit;
+    info_id = real(info_char) - 1;
+}
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -61,6 +103,69 @@ with (obj_player)
         if (instance_exists(homing_handle)) draw_line(x_int, y_int, floor(homing_handle.x), floor(homing_handle.y));
     }
 
+    draw_reset();
+}
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Draw Info
+
+if (!game_get_debug()) exit;
+
+with (stage_get_player(0))
+{
+    if (state_current  == player_state_death) exit;
+
+    var info_string, info_x, info_y;
+
+    info_string = "";
+    info_x = view_xview[view_current] + 10;
+    info_y = view_yview[view_current] + screen_get_height() / 2;
+
+    switch (other.info_id)
+    {
+        case 1:
+            info_string = "Character: " + pick(character_id, "Sonic", "Miles", "Knuckles", "Amy", "Classic") + "#";
+
+            switch (character_id)
+            {
+                case CHAR_SONIC:
+                    info_string +=
+                    "Air Dash Allow: " + string_bool(air_dash_allow) + "#" +
+                    "Homing Alarm: " + string(homing_alarm) + "#" +
+                    "Bound Count: " + string(bound_count) + "#" +
+                    "Peel Out: " + string_bool(peel_out);
+                    break;
+
+                case CHAR_CLASSIC:
+                    info_string +=
+                    "Clock Up State: " + string(clock_up_state) + "#" +
+                    "Clock Up Alarm: " + string(clock_up_alarm);
+                    break;
+            }
+            break;
+
+        default:
+            info_string =
+            "X: " + string(floor(x)) + "#" +
+            "Y: " + string(floor(y)) + "#" +
+            "X Prev: " + string(floor(xprevious)) + "#" +
+            "Y Prev: " + string(floor(yprevious)) + "##" +
+            "X Speed: " + string(x_speed) + "#" +
+            "Y Speed: " + string(y_speed) + "##" +
+            "State: " + script_name(state_current) + "#" +
+            "State Prev: " + script_name(state_previous);
+    }
+
+    // Box:
+    draw_rect(info_x - 5, info_y - string_height(info_string) / 2 - 5, ceil((string_width(info_string) + 5) / 70) * 70 + 5, string_height(info_string) + 10, game_get_interface_color(), game_get_config("interface_alpha"));
+
+    // Info:
+    draw_set_font(global.font_system);
+    draw_set2(fa_left, fa_center);
+    draw_text(info_x, info_y, info_string);
     draw_reset();
 }
 #define KeyPress_116

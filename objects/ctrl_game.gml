@@ -126,3 +126,19 @@ draw_sprite(spr_save_stars, time_sync(indicator_time, 4, sprite_get_number(spr_s
 d3d_fog_trick(c_white);
 draw_sprite(spr_sonic_run_4, time_sync(indicator_time, 4, sprite_get_number(spr_sonic_run_4)), view_xview[view_current] + screen_get_width() - 27, view_yview[view_current] + screen_get_height() - 25);
 d3d_set_fog(false, c_black, 0, 0);
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Draw Debug
+
+if (!game_get_debug()) exit;
+
+var game_string;
+
+game_string = GAME_NAME + " " + string_format(GAME_VERSION, 1, 2);
+
+draw_set_font(global.font_system);
+draw_set2(fa_right, fa_bottom);
+draw_text(view_xview[view_current] + screen_get_width() - font_get_height(global.font_system) / 2, view_yview[view_current] + screen_get_height(), game_string + "#" + date_datetime_string(date_current_datetime()));
