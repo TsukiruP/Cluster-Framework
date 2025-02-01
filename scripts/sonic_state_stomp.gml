@@ -50,7 +50,7 @@ switch (argument0)
             if (!player_movement_ground()) return false;
             if (!on_ground) return player_set_state(player_state_air);
 
-            if (animation_finished) return player_set_state(player_state_idle);
+            if (animation_trigger) return player_set_state(player_state_idle);
             if (player_get_input(INP_DOWN, CHECK_HELD) && player_get_input(INP_JUMP, CHECK_PRESSED)) return player_set_state(player_state_spin_dash);
             if (sonic_skill_peel_out()) return player_set_state(sonic_state_peel_out);
         }

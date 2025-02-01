@@ -38,7 +38,7 @@ switch (argument0)
 
             if (x_speed != 0 && sign(x_speed) != image_xscale) return player_set_state(player_state_run);
 
-            if (animation_finished)
+            if (animation_trigger)
             {
                 switch (animation_current)
                 {
@@ -58,7 +58,7 @@ switch (argument0)
         {
             if (ground_id != noone) player_reset_air();
 
-            if (animation_finished)
+            if (animation_trigger)
             {
                 animation_skip = true;
                 player_set_animation("spin");

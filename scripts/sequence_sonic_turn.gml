@@ -9,4 +9,4 @@ if (sequence_position(0))
     hitbox_set_attackbox();
 }
 else if (sequence_position(1)) image_index = 1;
-else if (sequence_position(2)) animation_finished = true;
+else if (sequence_position(2)) animation_trigger = true;

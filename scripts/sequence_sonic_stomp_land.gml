@@ -11,4 +11,4 @@ if (sequence_position(0))
 else if (sequence_position(5)) image_index = 9;
 else if (sequence_position(9)) image_index = 10;
 else if (sequence_position(13)) image_index = 11;
-else if (sequence_position(16)) animation_finished = true;
+else if (sequence_position(16)) animation_trigger = true;

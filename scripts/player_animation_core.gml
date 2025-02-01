@@ -12,7 +12,6 @@ animation_variant = player_get_animation_variant();
 if (sequence_index != player_get_animation(animation_current, animation_variant))
 {
     sequence_set(player_get_animation(animation_current, animation_variant), animation_moment);
-    animation_finished = false;
     animation_trigger = false;
     animation_time = 0;
 }

@@ -23,4 +23,4 @@ else if (sequence_position(10)) image_index = 7;
 else if (sequence_position(11)) image_index = 8;
 else if (sequence_position(12)) image_index = 9;
 else if (sequence_position(13)) image_index = 10;
-else if (sequence_position(14)) animation_finished = true;
+else if (sequence_position(14)) animation_trigger = true;

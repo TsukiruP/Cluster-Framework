@@ -47,4 +47,4 @@ else if (sequence_position(20))
     hitbox_set_attackbox();
 }
 else if (sequence_position(23)) image_index = 13;
-else if (sequence_position(26)) animation_finished = true;
+else if (sequence_position(26)) animation_trigger = true;

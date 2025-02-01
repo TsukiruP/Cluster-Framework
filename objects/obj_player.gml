@@ -159,7 +159,6 @@ animation_changed = false;
 animation_variant = 0;
 animation_moment = 0;
 
-animation_finished = false;
 animation_trigger = false;
 animation_skip = false;
 animation_time = 0;
