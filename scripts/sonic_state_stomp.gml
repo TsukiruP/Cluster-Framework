@@ -42,7 +42,7 @@ switch (argument0)
                     }
                 }
 
-                if (y_allow) y_speed += gravity_force;
+                y_speed += gravity_force;
             }
         }
         else

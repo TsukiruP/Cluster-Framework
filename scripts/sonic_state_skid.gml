@@ -20,7 +20,7 @@ switch (argument0)
             if (!player_movement_air()) return false;
             if (player_routine_land()) return true;
             
-            if (y_allow) y_speed += gravity_force;
+            y_speed += gravity_force;
         }
 
         else

@@ -19,7 +19,7 @@ switch (argument0)
             return true;
         }
 
-        if (y_allow) y_speed += gravity_force;
+        y_speed += gravity_force;
         break;
 
     case STATE_FINISH:

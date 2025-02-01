@@ -79,7 +79,7 @@ switch (argument0)
         else if (player_routine_skill()) return true;
 
         if (abs(x_speed) > air_friction_threshold && y_speed > -4 && y_speed < 0) x_speed *= air_friction;
-        if (y_allow) y_speed += gravity_force;
+        y_speed += gravity_force;
         break;
 
     case STATE_FINISH:
