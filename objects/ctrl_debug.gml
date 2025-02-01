@@ -116,10 +116,9 @@ if (!game_get_debug()) exit;
 
 with (stage_get_player(0))
 {
-    if (state_current  == player_state_death) exit;
-
     var info_string, info_x, info_y;
 
+    draw_set_font(global.font_system);
     info_string = "";
     info_x = view_xview[view_current] + 10;
     info_y = view_yview[view_current] + screen_get_height() / 2;
@@ -127,6 +126,19 @@ with (stage_get_player(0))
     switch (other.info_id)
     {
         case 1:
+            info_string =
+            "Input X: " + string(input_x_direction) + "#" +
+            "Input Y: " + string(input_y_direction) + "##" +
+            "Input Allow: " + string_bool(input_allow) + "#" +
+            "Input Lock: " + string(input_lock_alarm);
+            break;
+
+        case 2:
+            info_string =
+            "Animation: " + string(input_x_direction);
+            break;
+
+        case 3:
             info_string = "Character: " + pick(character_id, "Sonic", "Miles", "Knuckles", "Amy", "Classic") + "#";
 
             switch (character_id)
@@ -149,6 +161,7 @@ with (stage_get_player(0))
 
         default:
             info_string =
+            "Gravity: " + string(gravity_direction) + "#" +
             "X: " + string(floor(x)) + "#" +
             "Y: " + string(floor(y)) + "#" +
             "X Prev: " + string(floor(xprevious)) + "#" +
@@ -156,14 +169,16 @@ with (stage_get_player(0))
             "X Speed: " + string(x_speed) + "#" +
             "Y Speed: " + string(y_speed) + "##" +
             "State: " + script_name(state_current) + "#" +
-            "State Prev: " + script_name(state_previous);
+            "State Prev: " + script_name(state_previous) + "##" +
+            "Angle: " + string(angle) + "#" +
+            "Relative Angle: " + string(relative_angle) + "#" +
+            "Mask Rotation: " + string(mask_rotation);
     }
 
     // Box:
     draw_rect(info_x - 5, info_y - string_height(info_string) / 2 - 5, ceil((string_width(info_string) + 5) / 70) * 70 + 5, string_height(info_string) + 10, game_get_interface_color(), game_get_config("interface_alpha"));
 
     // Info:
-    draw_set_font(global.font_system);
     draw_set2(fa_left, fa_center);
     draw_text(info_x, info_y, info_string);
     draw_reset();
