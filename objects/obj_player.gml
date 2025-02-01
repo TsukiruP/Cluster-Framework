@@ -7,26 +7,22 @@ applies_to=self
 /// Player Initialization
 
 image_speed = 0;
-
-sequence_init();
+gravity_direction = 0;
 
 player_id = 0;
 
 top_speed = 6;
 max_speed = 16;
 
-x_allow = true;
 x_speed = 0;
 acceleration = 0.046875;
 deceleration = 0.5;
 slope_friction = 0.125;
 air_friction = 0.96875;
 
-y_allow = true;
 y_speed = 0;
 gravity_force = 0.21875;
 gravity_force_temp = 0.21875;
-gravity_direction = 0;
 
 state_current = player_state_standby;
 state_previous = state_current;
@@ -174,6 +170,7 @@ animation_finished = false;
 animation_trigger = false;
 animation_skip = false;
 animation_time = 0;
+sequence_init();
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
