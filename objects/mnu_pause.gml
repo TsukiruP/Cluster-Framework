@@ -52,7 +52,7 @@ if (game_ispaused(ctrl_text) || menu_lock || menu_alarm > 0) exit;
 if (input_get_check(INP_HIDE, CHECK_PRESSED))
 {
     menu_hide += 1;
-    menu_hide = wrap(menu_hide, 0, 1 + (game_get_config("misc_hud") != 0 || instance_exists(ctrl_transition)));
+    menu_hide = wrap(menu_hide, 0, 1 + instance_exists(par_overlay));
 }
 
 if (input_get_check(INP_CANCEL, CHECK_PRESSED))
