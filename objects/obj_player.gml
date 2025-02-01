@@ -755,7 +755,7 @@ switch (animation_current)
 
     case "spring_flight":
     case "spring_fall":
-        if (character_id != CHAR_CLASSIC && spring_angle != ANGLE_DOWN && spring_alarm > 0) image_angle = spring_angle - 90;
+        if (character_id != CHAR_CLASSIC && spring_angle != ANGLE_DOWN && spring_alarm > 0) image_angle = angle_wrap(spring_angle + gravity_direction - 90);
         else image_angle = approach_angle(image_angle, gravity_direction, 4);
         break;
 

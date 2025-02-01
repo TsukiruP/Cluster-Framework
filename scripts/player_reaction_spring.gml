@@ -17,7 +17,7 @@ if (hitbox & HIT_COLLISION)
         player_reset_spring();
         spring_current = reaction_handle;
         spring_force = spring_current.force;
-        spring_angle = spring_current.angle;
+        spring_angle = angle_wrap(spring_current.angle - gravity_direction);
         spring_alarm = spring_force + 15;
 
         x_speed = spring_force * dcos(spring_angle);
