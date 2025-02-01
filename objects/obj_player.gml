@@ -84,33 +84,6 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Character Initialization
-
-character_id = CHAR_SONIC;
-
-swap_alarm = 0;
-player_reset_status();
-
-air_dash_allow = true;
-drop_dash_alarm = 20;
-homing_handle = noone;
-homing_range = 128;
-homing_speed = 12;
-homing_alarm = 0;
-bound_speed = 10;
-bound_count = 0;
-peel_out = false;
-peel_out_alarm = 30;
-
-clock_up_state = 0;
-clock_up_alarm = 0;
-clock_up_max_energy = 600;
-clock_up_energy = clock_up_max_energy;
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
 /// Effect Initialization
 
 spin_dash_charge = 0;
@@ -157,6 +130,26 @@ lib_id=1
 action_id=603
 applies_to=self
 */
+/// Input Initialization
+
+input_x_direction = 0;
+input_y_direction = 0;
+
+input_allow = false;
+input_lock_alarm = 0;
+
+input_cpu = false;
+input_cpu_state = 0;
+input_cpu_state_time = 0;
+input_cpu_respawn_time = 0;
+input_cpu_gamepad_alarm = 0;
+
+player_reset_input();
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
 /// Animation Initialization
 
 animation_current = "stand";
@@ -176,21 +169,28 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Input Initialization
+/// Character Initialization
 
-input_x_direction = 0;
-input_y_direction = 0;
+character_id = CHAR_SONIC;
 
-input_allow = false;
-input_lock_alarm = 0;
+swap_alarm = 0;
+player_reset_status();
 
-input_cpu = false;
-input_cpu_state = 0;
-input_cpu_state_time = 0;
-input_cpu_respawn_time = 0;
-input_cpu_gamepad_alarm = 0;
+air_dash_allow = true;
+drop_dash_alarm = 20;
+homing_handle = noone;
+homing_range = 128;
+homing_speed = 12;
+homing_alarm = 0;
+bound_speed = 10;
+bound_count = 0;
+peel_out = false;
+peel_out_alarm = 30;
 
-player_reset_input();
+clock_up_state = 0;
+clock_up_alarm = 0;
+clock_up_max_energy = 600;
+clock_up_energy = clock_up_max_energy;
 #define Step_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
