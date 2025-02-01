@@ -20,9 +20,6 @@ applies_to=self
 */
 /// Text Initialization
 
-draw_set_font(global.font_system);
-font_height = string_height("Test");
-
 text_hide = false;
 text_clear = false;
 text_handle = noone;
@@ -43,7 +40,7 @@ body_scroll_complete = false;
 body_scroll_current = 0;
 body_scroll_target = 0;
 body_scroll_max = 3;
-body_scroll_rate = font_height * body_scroll_max;
+body_scroll_rate = font_get_height(global.font_system) * body_scroll_max;
 
 subject_complete = false;
 subject_string = "";
@@ -81,9 +78,9 @@ if (!text_clear)
 
     if (!text_hide)
     {
-        var scroll_min, scroll_max, scroll_up, scroll_down, scroll_direction;
+        var font_height, scroll_min, scroll_max, scroll_up, scroll_down, scroll_direction;
 
-        draw_set_font(global.font_system);
+        font_height = font_get_height(global.font_system);
         subject_height = string_height_ext(subject_string, font_height, screen_get_width() - (body_x * 2));
         subject_lines = (subject_height / font_height) - 1;
         body_height = string_height_ext(ds_list_find_value(body_list, body_current), font_height, screen_get_width() - (body_x * 2));
@@ -324,6 +321,10 @@ applies_to=self
 
 if (text_hide) exit;
 
+var font_height;
+
+font_height = font_get_height(global.font_system);
+
 // Viewport:
 d3d_set_viewport(0, 0, screen_get_width(), screen_get_height());
 
@@ -345,7 +346,9 @@ applies_to=self
 
 if (text_hide) exit;
 
-var text_box_bottom, texbox_height;
+var font_height, text_box_bottom, text_box_height;
+
+font_height = font_get_height(global.font_system);
 
 // Viewport:
 d3d_set_viewport(0, 0, screen_get_width(), screen_get_height());
@@ -380,6 +383,10 @@ action_id=603
 applies_to=self
 */
 /// Draw Log
+
+var font_height;
+
+font_height = font_get_height(global.font_system);
 
 // Viewport:
 d3d_set_viewport(0, 0, screen_get_width(), screen_get_height());

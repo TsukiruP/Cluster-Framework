@@ -175,7 +175,9 @@ applies_to=self
 */
 /// Draw Menu
 
-var i;
+var i, font_height;
+
+font_height = font_get_height(global.font_system);
 
 // Box:
 draw_rect(view_xview[view_current] + screen_get_width() / 2 - 81, view_yview[view_current] + screen_get_height() / 2 - 52, 164, 78, game_get_interface_color(), game_get_config("interface_alpha"))
@@ -189,7 +191,7 @@ for (i = 0; i < min(ds_list_size(menu_list), 4); i += 1)
     option_text = script_execute(ds_list_find_value(menu_list, option_id), 0);
     option_value = script_execute(ds_list_find_value(menu_list, option_id), 1);
     option_x = view_xview[view_current] + screen_get_width() / 2;
-    option_y = view_yview[view_current] + screen_get_height() / 2 - 41 + font_get_height() * i;
+    option_y = view_yview[view_current] + screen_get_height() / 2 - 41 + font_height * i;
 
     // Font:
     draw_set_font(global.font_system);
@@ -217,6 +219,10 @@ applies_to=self
 /// Draw Rename
 
 if (!rename_allow) exit;
+
+var font_height;
+
+font_height = font_get_height(global.font_system);
 
 // Box:
 draw_rect(0, (screen_get_height() / 2) - ((font_height / 2) * (subject_lines + 1)) - 2, screen_get_width(), ((font_height) * (subject_lines + 1)) + 6, game_get_interface_color(), subject_box_alpha);

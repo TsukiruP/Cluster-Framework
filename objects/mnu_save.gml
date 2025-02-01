@@ -11,7 +11,7 @@ menu_page = 0;
 menu_option = 0;
 
 save_width = 98;
-save_height = (font_get_height() * 3) + 16;
+save_height = (font_get_height(global.font_system) * 3) + 16;
 save_leading = 4;
 save_preview_map = save_menu_preview();
 save_max = 3;
