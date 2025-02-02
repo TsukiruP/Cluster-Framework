@@ -126,27 +126,6 @@ with (stage_get_player(0))
     switch (other.info_id)
     {
         case 1:
-            info_string =
-            "Input X: " + string(input_x_direction) + "#" +
-            "Input Y: " + string(input_y_direction) + "##" +
-            "Input Allow: " + string_bool(input_allow) + "#" +
-            "Input Lock: " + string(input_lock_alarm);
-            break;
-
-        case 2:
-            info_string =
-            "Animation: " + animation_current + "#" +
-            "Animation Prev: " + animation_previous + "##" +
-            "Animation Variant: " + string(animation_variant) + "#" +
-            "Animation Moment: " + string(animation_moment) + "#" +
-            "Animation Skip: " + string_bool(animation_skip) + "#" +
-            "Animation Trigger: " + string_bool(animation_trigger) + "#" +
-            "Animation Time: " + string(animation_time) + "#" +
-            "Sequence: " + script_name(sequence_index) + "#" +
-            "Sequence Speed: " + string(sequence_speed);
-            break;
-
-        case 3:
             info_string = "Character: " + pick(character_id, "Sonic", "Miles", "Knuckles", "Amy", "Classic") + "#";
 
             switch (character_id)
@@ -167,9 +146,21 @@ with (stage_get_player(0))
             }
             break;
 
+        case 2:
+            info_string =
+            "Animation: " + animation_current + "#" +
+            "Animation Prev: " + animation_previous + "##" +
+            "Animation Variant: " + string(animation_variant) + "#" +
+            "Animation Moment: " + string(animation_moment) + "#" +
+            "Animation Skip: " + string_bool(animation_skip) + "#" +
+            "Animation Trigger: " + string_bool(animation_trigger) + "#" +
+            "Animation Time: " + string(animation_time) + "#" +
+            "Sequence: " + script_name(sequence_index) + "#" +
+            "Sequence Speed: " + string(sequence_speed);
+            break;
+
         default:
             info_string =
-            "Gravity: " + string(gravity_direction) + "#" +
             "X: " + string(floor(x)) + "#" +
             "Y: " + string(floor(y)) + "#" +
             "X Prev: " + string(floor(xprevious)) + "#" +
@@ -178,9 +169,12 @@ with (stage_get_player(0))
             "Y Speed: " + string(y_speed) + "##" +
             "State: " + script_name(state_current) + "#" +
             "State Prev: " + script_name(state_previous) + "##" +
+            "Gravity: " + string(gravity_direction) + "#" +
             "Angle: " + string(angle) + "#" +
             "Relative Angle: " + string(relative_angle) + "#" +
-            "Mask Rotation: " + string(mask_rotation);
+            "Mask Rotation: " + string(mask_rotation) + "##" +
+            "Input Allow: " + string_bool(input_allow) + "#" +
+            "Input Lock: " + string(input_lock_alarm);
     }
 
     // Box:
