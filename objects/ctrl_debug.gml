@@ -135,7 +135,15 @@ with (stage_get_player(0))
 
         case 2:
             info_string =
-            "Animation: " + string(input_x_direction);
+            "Animation: " + animation_current + "#" +
+            "Animation Prev: " + animation_previous + "##" +
+            "Animation Variant: " + string(animation_variant) + "#" +
+            "Animation Moment: " + string(animation_moment) + "#" +
+            "Animation Skip: " + string_bool(animation_skip) + "#" +
+            "Animation Trigger: " + string_bool(animation_trigger) + "#" +
+            "Animation Time: " + string(animation_time) + "#" +
+            "Sequence: " + script_name(sequence_index) + "#" +
+            "Sequence Speed: " + string(sequence_speed);
             break;
 
         case 3:
