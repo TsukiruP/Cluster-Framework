@@ -324,8 +324,8 @@
 					+Spin Dash
 						|sequence_sonic_spin_dash
 						|sequence_sonic_spin_charge
+					|sequence_sonic_roll
 					+Spin
-						|sequence_sonic_roll
 						|sequence_sonic_spin_flight
 						|sequence_sonic_spin_fall
 					+Brake
@@ -478,6 +478,7 @@
 			|player_animation_fix
 			|player_animation_run
 			|player_animation_air
+			|player_animation_jump
 			|player_animation_ramp
 			|player_animation_spring
 		+Collision

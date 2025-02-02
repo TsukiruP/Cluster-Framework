@@ -12,7 +12,7 @@ switch (argument0)
         x_speed = (dcos(relative_angle) * g_speed) - (leap_force * dsin(relative_angle));
         y_speed = -(dsin(relative_angle) * g_speed) - (leap_force * dcos(relative_angle));
         player_reset_air();
-        player_set_animation("spin");
+        player_animation_jump();
         break;
 
     case STATE_STEP:
@@ -49,6 +49,10 @@ switch (argument0)
                 case UNCURL_BLOCKADE:
                     animation_skip = (animation_current != "spring_fall");
                     player_set_animation("spring_fall");
+                    break;
+
+                default:
+                    player_animation_jump();
             }
         }
         break;
@@ -56,7 +60,7 @@ switch (argument0)
     case STATE_FINISH:
         jump_cap = true;
         jump_aux = false;
-        jump_uncurl = UNCURL_DEFAULT;
+        jump_uncurl = UNCURL_JUMP;
 
         if (state_current != player_state_bound)
         {

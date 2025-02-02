@@ -4,7 +4,7 @@
 switch (argument0)
 {
     case STATE_START:
-        player_set_animation("spin");
+        player_set_animation("roll");
         if (x_speed == 0) x_speed = 2 * input_x_direction;
         break;
 

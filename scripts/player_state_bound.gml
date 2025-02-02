@@ -8,7 +8,7 @@ switch (argument0)
         x_speed = 0;
         y_speed = 8;
         jump_bound = BOUND_SHIELD;
-        player_set_animation("spin");
+        player_set_animation("roll");
         audio_play_sfx("snd_shield_bubble_bound", true);
         with (shield_handle) event_user(0);
         break;

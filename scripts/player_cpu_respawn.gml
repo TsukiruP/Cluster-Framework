@@ -22,7 +22,7 @@ if (instance_exists(player_handle))
         status_invin_alarm = 120;
         underwater = player_handle.underwater;
         player_set_state(player_state_air);
-        player_set_animation("spin");
+        player_set_animation("roll");
         player_set_physics();
     }
 }

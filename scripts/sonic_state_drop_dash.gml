@@ -53,7 +53,7 @@ switch (argument0)
 
                 if (drop_dash_alarm == 0)
                 {
-                    player_set_animation("spin");
+                    player_set_animation("roll");
                     audio_play_sfx("snd_drop_dash", true);
                 }
             }

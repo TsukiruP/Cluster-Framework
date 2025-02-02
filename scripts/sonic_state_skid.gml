@@ -61,7 +61,7 @@ switch (argument0)
             if (animation_trigger)
             {
                 animation_skip = true;
-                player_set_animation("spin");
+                player_set_animation("spin_flight");
                 return player_set_state(player_state_jump, false);
             }
         }
@@ -82,7 +82,7 @@ switch (argument0)
                 {
                     player_reset_air();
                     animation_skip = true;
-                    player_set_animation("spin");
+                    player_set_animation("spin_flight");
                     return player_set_state(player_state_jump, false);
                 }
             }

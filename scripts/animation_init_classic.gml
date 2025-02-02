@@ -10,7 +10,7 @@ animation_add(CHAR_CLASSIC, "run_1", sequence_classic_run_1);
 animation_add(CHAR_CLASSIC, "look", sequence_classic_look);
 animation_add(CHAR_CLASSIC, "crouch", sequence_classic_crouch);
 animation_add(CHAR_CLASSIC, "spin_dash", sequence_classic_spin_dash);
-animation_add(CHAR_CLASSIC, "spin", sequence_classic_roll);
+animation_add(CHAR_CLASSIC, "roll", sequence_classic_roll);
 animation_add(CHAR_CLASSIC, "brake", sequence_classic_brake);
 animation_add(CHAR_CLASSIC, "hurt", sequence_classic_hurt);
 animation_add(CHAR_CLASSIC, "death", sequence_classic_death, sequence_classic_drown);

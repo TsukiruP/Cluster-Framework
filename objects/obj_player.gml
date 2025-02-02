@@ -35,7 +35,7 @@ jump_cap = true;
 jump_aux = false;
 jump_force = 6.5;
 jump_release = -4;
-jump_uncurl = UNCURL_DEFAULT;
+jump_uncurl = UNCURL_JUMP;
 jump_bound = BOUND_NONE;
 
 roll_deceleration = 0.125;
@@ -727,7 +727,9 @@ switch (animation_current)
     case "crouch_end":
     case "spin_dash":
     case "spin_charge":
-    case "spin":
+    case "roll":
+    case "spin_flight":
+    case "spin_fall":
     case "hurt":
     case "death":
     case "push":

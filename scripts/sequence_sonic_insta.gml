@@ -23,4 +23,4 @@ else if (sequence_position(8))
 else if (sequence_position(10)) image_index = 1;
 else if (sequence_position(12)) image_index = 2;
 else if (sequence_position(14)) image_index = 3;
-else if (sequence_position(16)) player_set_animation("spin", 4);
+else if (sequence_position(16)) player_set_animation("roll", 4);

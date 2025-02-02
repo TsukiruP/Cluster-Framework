@@ -71,7 +71,7 @@ else if (!on_ground)
             x_speed += 2.25 * image_xscale;
             y_speed  = 0;
             air_dash_allow = false;
-            animation_skip = (animation_current != "spin" && animation_current != "insta");
+            animation_skip = (animation_current != "roll" && animation_current != "spin_flight" && animation_current != "insta");
             player_set_animation("air_dash");
             audio_play_sfx("snd_air_dash", true);
             return player_set_state(player_state_air, false);

@@ -39,5 +39,5 @@ if (status_shield == SHIELD_BUBBLE)
     return true;
 }
 
-player_set_animation("spin");
+player_set_animation("spin_flight");
 return player_set_state(player_state_jump, false);

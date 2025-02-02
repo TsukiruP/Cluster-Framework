@@ -487,3 +487,4 @@ sonic_skill_peel_out
 game_get_save_id
 instance_nearest_dir_y
 game_set_save_id
+player_animation_jump

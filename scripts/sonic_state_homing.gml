@@ -8,7 +8,7 @@ switch (argument0)
         y_speed = 0;
         homing_alarm = 180;
         player_reset_air();
-        player_set_animation("spin");
+        player_set_animation("roll");
         audio_play_sfx("snd_air_dash", true);
         break;
 

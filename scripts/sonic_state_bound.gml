@@ -7,7 +7,7 @@ switch (argument0)
     case STATE_START:
         jump_cap = false;
         jump_bound = BOUND_SONIC;
-        player_set_animation("spin");
+        player_set_animation("roll");
         audio_play_sfx("snd_bound", true);
         if (y_speed < bound_speed) y_speed = bound_speed;
         break;
