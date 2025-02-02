@@ -42,19 +42,7 @@ switch (argument0)
         if (abs(x_speed) > air_friction_threshold && y_speed > -4 && y_speed < 0) x_speed *= air_friction;
         y_speed += gravity_force;
 
-        if (y_speed >= 0 && character_id != CHAR_CLASSIC)
-        {
-            switch (jump_uncurl)
-            {
-                case UNCURL_BLOCKADE:
-                    animation_skip = (animation_current != "spring_fall");
-                    player_set_animation("spring_fall");
-                    break;
-
-                default:
-                    player_animation_jump();
-            }
-        }
+        player_animation_jump();
         break;
 
     case STATE_FINISH:
