@@ -4,7 +4,7 @@
 switch (character_id)
 {
     case CHAR_CLASSIC:
-        player_animation_air();
+        player_set_animation("roll");
         break;
 
     default:
