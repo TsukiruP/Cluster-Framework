@@ -27,13 +27,13 @@ switch (argument0)
                 {
                     var sine, csine;
 
+                    sine = dsin(mask_rotation);
+                    csine = dcos(mask_rotation);
+
                     x_speed = 0;
                     player_set_animation("stomp_land");
                     audio_play_sfx("snd_stomp_land", true);
                     audio_stop_sfx("snd_stomp");
-
-                    sine = dsin(mask_rotation);
-                    csine = dcos(mask_rotation);
 
                     with (effect_create(x + (sine * y_radius), y + (csine * y_radius), sequence_shockwave))
                     {
@@ -57,5 +57,6 @@ switch (argument0)
         break;
 
     case STATE_FINISH:
+        audio_stop_sfx("snd_stomp");
         break;
 }
