@@ -8,6 +8,5 @@ switch (character_id)
         break;
 
     default:
-        if (y_speed < 0) player_set_animation("ramp_flight");
-        else player_set_animation("ramp_fall");
+        player_set_animation(pick(y_speed < 0, "ramp_fall", "ramp_flight"))
 }

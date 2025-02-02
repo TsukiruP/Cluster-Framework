@@ -13,12 +13,13 @@ switch (character_id)
             switch (jump_uncurl)
             {
                 case UNCURL_BLOCKADE:
-                    return player_set_animation("spring_fall");
+                    player_set_animation("spring_fall");
+                    break
 
                 default:
-                    if (jump_bound == BOUND_NONE && collision_box_vertical(x_radius, y_radius + 32, mask_rotation, par_terrain)) return player_set_animation("spin_fall");
+                    if (jump_bound == BOUND_NONE && collision_box_vertical(x_radius, y_radius + 32, mask_rotation, par_terrain)) player_set_animation("spin_fall");
             }
         }
 
-        if (animation_current != "spin_fall") player_set_animation("spin_flight");
+        if (jump_uncurl != UNCURL_BLOCKADE && animation_current != "spin_fall") player_set_animation("spin_flight");
 }

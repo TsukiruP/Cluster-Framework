@@ -7,8 +7,7 @@ if (animation_current == "push" && image_xscale == input_x_direction) exit;
 switch (character_id)
 {
     case CHAR_CLASSIC:
-        if (abs(x_speed) >= 6.00) player_set_animation("run_1");
-        else player_set_animation("run_0");
+        player_set_animation(pick(abs(x_speed) >= 6.00, "run_0", "run_1"));
         break;
 
     default:

@@ -4,11 +4,9 @@
 switch (character_id)
 {
     case CHAR_CLASSIC:
-        if (spring_angle != ANGLE_DOWN && spring_alarm > 0) player_set_animation("spring");
-        else player_set_animation("run_0");
+        player_set_animation(pick(spring_angle != ANGLE_DOWN && spring_alarm > 0, "run_0", "spring"));
         break;
 
     default:
-        if (spring_angle != ANGLE_DOWN && spring_alarm > 0) player_set_animation("spring_flight");
-        else player_set_animation("spring_fall");
+        player_set_animation(pick(spring_angle != ANGLE_DOWN && spring_alarm > 0, "spring_fall", "spring_flight"));
 }
