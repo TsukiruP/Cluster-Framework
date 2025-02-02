@@ -1,9 +1,9 @@
 /// draw_sprite_tiled_extra(sprite,image,x,y,xscale,yscale,angle,color,alpha,hrepeats,vrepeats)
 /* draw_background_tiled_extra but for sprites. */
 
-var __bg,__dx,__dy,__xs,__ys,__angle,__color,__alpha,__hrep,__vrep;
+var __spr,__dx,__dy,__xs,__ys,__angle,__color,__alpha,__hrep,__vrep;
 
-__bg=argument0
+__spr=argument0
 __im=argument1
 __dx=argument2 __dy=argument3
 __xs=argument4 __ys=argument5
@@ -13,9 +13,9 @@ __hrep=argument9 __vrep=argument10
 
 var __tex,__w,__h,__u,__v,__angadd,__length;
 
-__tex=sprite_get_texture(__bg, __im)
-__w=sprite_get_width(__bg)*__xs
-__h=sprite_get_height(__bg)*__ys
+__tex=sprite_get_texture(__spr, __im)
+__w=sprite_get_width(__spr)*__xs
+__h=sprite_get_height(__spr)*__ys
 
 //       ????????
 if (__w==0 || __h==0) exit
