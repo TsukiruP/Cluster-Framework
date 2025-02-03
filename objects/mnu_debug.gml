@@ -225,7 +225,7 @@ var font_height;
 font_height = font_get_height(global.font_system);
 
 // Box:
-draw_rect(0, (screen_get_height() / 2) - ((font_height / 2) * (subject_lines + 1)) - 2, screen_get_width(), ((font_height) * (subject_lines + 1)) + 6, game_get_interface_color(), subject_box_alpha);
+draw_rect(0, (screen_get_height() / 2) - (font_height / 2) - 2, screen_get_width(), font_height + 6, game_get_interface_color(), game_get_config("interface_alpha"));
 
 // Rename:
 draw_set_font(global.font_system);
