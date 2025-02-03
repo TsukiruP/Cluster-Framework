@@ -503,7 +503,7 @@ if ((status_shield != SHIELD_NONE || status_invin == INVIN_BUFF) && !instance_ex
 
 if (game_get_config("advance_flicker") && status_invin == INVIN_BUFF)
 {
-    if (time_sync(status_invin_alarm, 2, 4) == 0) effect_create(sequence_shield_invin_spark, x + random_range(-x_radius, x_radius), y + random_range(-y_radius, y_radius));
+    if (time_sync(status_invin_alarm, 2, 4) == 0) effect_create(x + random_range(-x_radius, x_radius), y + random_range(-y_radius, y_radius), sequence_shield_invin_spark);
 }
 
 if ((status_speed == SPEED_SLOW || status_panic_alarm > 0) && !instance_exists(debuff_handle))
