@@ -16,7 +16,6 @@ if ((hitbox & HIT_COLLISION) || (hitbox & HIT_ATTACK))
 
         with (reaction_handle)
         {
-            player_handle = other.id;
             effect_create(x, y, sequence_explosion_small, -depth);
             instance_destroy();
         }

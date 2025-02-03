@@ -8,7 +8,6 @@ applies_to=self
 
 event_inherited();
 reaction_index = player_reaction_item_box;
-player_handle = noone;
 item_id = ITEM_BONUS;
 hitbox_set_hurtbox(13, 16, 12, 16);
 #define Step_0
