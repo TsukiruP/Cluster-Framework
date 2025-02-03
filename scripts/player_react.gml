@@ -16,7 +16,7 @@ if (script_exists(reaction))
     hitbox = player_get_hitbox(reaction_id);
     if (argument_count > 1) hitbox |= argument[1];
 
-    if (object_is_ancestor(reaction_id.object_index, par_terrain))
+    if (object_is_ancestor(reaction_id.object_index, par_solid))
     {
         var side;
 

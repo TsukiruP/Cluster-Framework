@@ -8,12 +8,13 @@ applies_to=self
 
 event_inherited();
 reaction_index = player_reaction_switch;
+variant = 0;
 active = false;
 duration = 0;
 target_time = 0;
 on_index = sequence_switch_vertical_on;
 off_index = sequence_switch_vertical_off;
-hitbox_set_hurtbox(9, 6, 9, 7, 0, 8);
+hitbox_set_hurtbox(9, 6, 9, 7, 0, 0);
 sequence_init(sequence_switch_vertical_on);
 #define Step_1
 /*"/*'/**//* YYD ACTION

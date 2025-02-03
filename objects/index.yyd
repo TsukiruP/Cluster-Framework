@@ -1,10 +1,10 @@
-par_terrain
+par_solid
 ctrl_fade
 obj_spring
 obj_blockade
 obj_sky_sanctuary_parallax
 obj_dash_ring
-obj_dash_ring_left
+obj_switch_platform
 obj_basic_test_mask_01
 obj_player
 par_culled

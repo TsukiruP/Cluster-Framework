@@ -1,4 +1,4 @@
-sprite=spr_switch_platform
+sprite=spr_switch_vertical
 visible=1
 solid=0
 persistent=0

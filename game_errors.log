@@ -1,9 +1,9 @@
 ERROR in
 action number 1
 of Begin Step Event
-for object obj_switch:
+for object obj_switch_platform:
 
-Error in code at line 3:   
-if (game_get_time() >= target_time && active && sequeuence_index != off_index) sequence_set(off_index);                                                   ^at position 50: Unknown variable sequeuence_index
+Error in code at line 11:   
+    image_alpha = pick(switch_time < 30, 1, 1, time_sync(lifespan, 2, 2));                                                            ^at position 59: Unknown variable lifespan
 
 

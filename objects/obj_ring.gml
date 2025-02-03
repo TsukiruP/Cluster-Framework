@@ -63,9 +63,9 @@ oy = sine * x_speed;
 x += ox;
 y -= oy;
 
-if (place_meeting(x + ox, y - oy, par_terrain) && !place_meeting(xprevious, yprevious, par_terrain))
+if (place_meeting(x + ox, y - oy, par_solid) && !place_meeting(xprevious, yprevious, par_solid))
 {
-    while (place_meeting(x, y, par_terrain))
+    while (place_meeting(x, y, par_solid))
     {
         x -= sign(ox);
         y += sign(oy);
@@ -81,9 +81,9 @@ y += oy;
 
 y_speed += gravity_force * game_get_speed();
 
-if (place_meeting(x + ox, y + oy, par_terrain) && !place_meeting(xprevious, yprevious, par_terrain))
+if (place_meeting(x + ox, y + oy, par_solid) && !place_meeting(xprevious, yprevious, par_solid))
 {
-    while (place_meeting(x, y, par_terrain))
+    while (place_meeting(x, y, par_solid))
     {
         x -= sign(ox);
         y -= sign(oy);

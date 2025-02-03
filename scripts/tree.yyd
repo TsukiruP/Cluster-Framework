@@ -392,9 +392,11 @@
 				+Enemies
 					|sequence_spinner
 				+Switch
+					|sequence_switch_platform
 					+Vertical
 						|sequence_switch_vertical_on
 						|sequence_switch_vertical_off
+					+Springs
 			+Effects
 				+Player
 					|sequence_spin_dash

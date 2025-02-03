@@ -17,7 +17,7 @@ switch (character_index)
                     break
 
                 default:
-                    if (jump_bound == BOUND_NONE && collision_box_vertical(x_radius, y_radius + 32, mask_rotation, par_terrain)) player_set_animation("spin_fall");
+                    if (jump_bound == BOUND_NONE && collision_box_vertical(x_radius, y_radius + 32, mask_rotation, par_solid)) player_set_animation("spin_fall");
             }
         }
 

@@ -270,7 +270,8 @@
 			+Omochao
 				|spr_omochao_idle
 				|spr_omochao_sonic
-		+Switches
+		+Switch
+			|spr_switch_vertical
 			|spr_switch_platform
 		+Water
 			|spr_water_mask
@@ -376,7 +377,6 @@
 	+High
 	+Masks
 	+Spikes
-	|spr_dash_ring_left
 	|spr_dash_ring_left_up
 	|spr_dash_ring_left_down
 	|spr_dash_ring_right_down

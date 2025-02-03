@@ -29,7 +29,7 @@ with (par_culled)
         if (hitbox != 0) ds_list_add(other.reaction_list, id);
     }
 
-    if (object_is_ancestor(object_index, par_terrain))
+    if (object_is_ancestor(object_index, par_solid))
     {
         if (!collision || (layer > -1 && layer != other.layer) || collision_rectangle(x1, y1, x2, y2, id, true, false) == noone) continue;
         ds_list_add(other.solid_list, id);

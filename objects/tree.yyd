@@ -6,7 +6,7 @@
 	|par_ring
 	|par_enemy
 	|par_hint
-	|par_terrain
+	|par_solid
 	|par_rail
 	|par_effect
 +System
@@ -56,7 +56,9 @@
 		+Hints
 			|obj_hint_box
 			|obj_omochao
-		|obj_switch
+		+Switch
+			|obj_switch
+			|obj_switch_platform
 		+Water
 			|obj_water_mask
 			|obj_bubble_spawn
@@ -117,7 +119,6 @@
 	+Dash Rings
 		|obj_dash_ring_up
 		|obj_dash_ring_down
-		|obj_dash_ring_left
 		|obj_dash_ring_right
 		|obj_dash_ring_left_up
 		|obj_dash_ring_left_down
