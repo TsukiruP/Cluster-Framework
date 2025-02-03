@@ -13,7 +13,7 @@ force = 8;
 flip_x = false;
 flip_y = false;
 angle = 0;
-activated = false;
+active = false;
 sfx_alarm = 0;
 #define Step_1
 /*"/*'/**//* YYD ACTION
@@ -34,13 +34,13 @@ applies_to=self
 
 if (game_ispaused(mnu_pause) || object_is_ancestor(object_index, obj_dash_ring)) exit;
 
-if (activated)
+if (active)
 {
     sequence_update();
     script_execute(sequence_index);
 }
 
-if (image_index != 0 && !activated)
+if (image_index != 0 && !active)
 {
     image_index = 0;
     sequence_set(sequence_index);

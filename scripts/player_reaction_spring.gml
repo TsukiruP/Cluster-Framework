@@ -35,7 +35,7 @@ if (hitbox & HIT_COLLISION)
 
         with (reaction_handle)
         {
-            activated = true;
+            active = true;
 
             if (is_dash_ring)
             {
