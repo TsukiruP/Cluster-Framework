@@ -1,7 +1,13 @@
 /// player_surface_splash()
-// Shorthand for the splash made for jumping and landing on the water's surface.
+/* Shorthand for the splash made for jumping and landing on the water's surface. */
 
-if (on_ground == true && on_surface == true)
+if (underwater) exit;
+
+var surface_handle;
+
+surface_handle = collision_point(x, floor(y) + y_radius + 1, obj_water_mask, false, false);
+
+if (on_ground && surface_handle != noone)
 {
-    effect_create(ctl_splash_3, x, obj_water_surface.y, depth, image_xscale);
+    effect_create(x, surface_handle.y, sequence_splash_3, depth, image_xscale);
 }

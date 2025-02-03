@@ -1,24 +1,19 @@
-/// player_reaction_enemy(obj, collision)
-// Everybody wanna be my enemy....
+/// player_reaction_enemy(obj, hitbox)
+/* Everybody wanna be my enemy.... */
 
-var reaction_handle, collision;
+var reaction_handle, hitbox;
 
 reaction_handle = argument0;
-collision = argument1;
+hitbox = argument1;
 
-// Player advantage:
-if ((collision & COLL_HURT) || ((collision & COLL_HURT_RADIUS) && status_invin == INVIN_BUFF))
+if (((hitbox & HIT_COLLISION) && status_invin == INVIN_BUFF) || (hitbox & HIT_ATTACK))
 {
-    // Basic react:
     if (reaction_handle.class == ENE_BASIC)
     {
-        // Subtract:
         if (y > reaction_handle.y || sign(y_speed) == -1)
         {
             y_speed -= 1;
         }
-
-        // Rebound:
         else if (y < reaction_handle.y && sign(y_speed) == 1)
         {
             y_speed *= -1;
@@ -26,40 +21,29 @@ if ((collision & COLL_HURT) || ((collision & COLL_HURT_RADIUS) && status_invin =
         }
     }
 
-    // Super react:
     if (reaction_handle.class == ENE_SUPER && reaction_handle.invin_alarm == 0)
     {
-        // Set speed:
         x_speed *= -0.5;
         y_speed *= -0.5;
 
-        // Decrease health:
         reaction_handle.vitality -= 1;
         reaction_handle.invin_alarm = 32;
     }
 
-    // Score:
     if (reaction_handle.class == ENE_BASIC || (reaction_handle.class == ENE_SUPER && (reaction_handle.vitality == 0 || status_invin == INVIN_BUFF)))
     {
-        global.game_score += 100 + (400 * reaction_handle.class);
-
-        // Homing:
         sonic_routine_homing();
+        stage_add_score(100 + (400 * reaction_handle.class));
+        audio_play_sfx("snd_destroy", true);
 
-        // Destroy:
         with (reaction_handle)
         {
-            effect_create(ctl_explosion_enemy, x, y, -depth);
+            effect_create(x, y, sequence_explosion_enemy, -depth);
             instance_destroy();
         }
-
-        // Play sound:
-        sound_play_single("snd_destroy");
     }
 }
-
-// Enemy advantage:
-else if (((collision & COLL_HIT) || (collision & COLL_HIT_RADIUS)) && (reaction_handle.hitbox_element == 0 || (status_shield - SHIELD_BUBBLE != reaction_handle.hitbox_element)))
+else if ((hitbox & HIT_HURT) && (reaction_handle.hitbox_element == ELEM_NONE || (status_shield - SHIELD_BUBBLE != reaction_handle.hitbox_element)))
 {
     player_set_damage(reaction_handle);
 }

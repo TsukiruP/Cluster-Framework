@@ -1,19 +1,13 @@
 /// sonic_trait_reticle()
-//
+/* Resets the homing handle and sets it when in the proper states. */
 
-// Don't reset during the homing attack:
-if (state_current == sonic_state_homing)
-{
-    exit;
-}
+if (state_current == sonic_state_homing) exit;
 
 var homing_handle_temp, homing_allow;
 
-// Reset homing handle:
 homing_handle_temp = homing_handle;
 homing_handle = noone;
 
-// Set homing allow:
 switch (state_current)
 {
     case player_state_idle:
@@ -26,35 +20,40 @@ switch (state_current)
     case player_state_brake:
         homing_allow = true;
         break;
-    
+
     default:
         homing_allow = false;
 }
 
-// Exit if homing isn't allowed or spring alarm is set:
-if (homing_allow == false || spring_alarm != 0)
-{
-    exit;
-}
+if (!homing_allow || spring_alarm != 0 || !input_allow || (input_cpu && input_cpu_gamepad_alarm == 0)) exit;
 
-// Set homing handle:
-if (input_player[INP_ALT, CHECK_HELD] == false)
+var skill_id;
+
+skill_id = game_save_get_skill(character_id, "homing");
+
+if (!player_get_input(INP_ALT, CHECK_HELD))
 {
-    if ((global.skill_sonic[SONIC_HOMING_STYLE] >= HOMING_ADVENTURE && on_ground == false) || global.skill_sonic[SONIC_HOMING_STYLE] == HOMING_FRONTIERS)
+    if ((skill_id >= HOMING_ADVENTURE && !on_ground) || skill_id == HOMING_FRONTIERS)
     {
-        var homing_candidate, homing_fail, homing_solid;
+        var i;
 
         for (i = 0; i <= 2; i += 1)
         {
-            homing_candidate = instance_nearest_dir_x(x, y, par_target, image_xscale, homing_range, i + 1);
+            var homing_candidate;
+
+            if (mask_rotation mod 180 == 0) homing_candidate = instance_nearest_dir_x(x, y, par_target, dcos(mask_rotation) * image_xscale, homing_range, i + 1);
+            else homing_candidate = instance_nearest_dir_y(x, y, par_target, dsin(mask_rotation) * image_xscale, homing_range, i + 1);
 
             if (instance_exists(homing_candidate))
             {
-                // Continue if the candidate isn't targetable:
-                if (homing_candidate.targetable == false)
-                {
-                    continue;
-                }
+                if (!homing_candidate.targetable || distance_to_object(homing_candidate) > homing_range) continue;
+
+                var homing_angle1, homing_angle2, homing_fail, homing_solid;
+
+                homing_angle1 = mask_rotation;
+                homing_angle2 = direction_to_object(homing_candidate);
+                if (image_xscale == -1) homing_angle1 = angle_wrap(homing_angle1 + 180);
+                if (abs(angle_difference(homing_angle1, homing_angle2)) > 45) continue;
 
                 // Fail when interacting with solids:
                 homing_fail = false;
@@ -62,16 +61,13 @@ if (input_player[INP_ALT, CHECK_HELD] == false)
 
                 if (instance_exists(homing_solid))
                 {
-                    if ((y < homing_candidate.y && homing_solid.semisolid) || homing_solid.collision_layer == -1 || collision_layer == homing_solid.collision_layer)
-                    {
-                        homing_fail = true;
-                    }
+                    homing_fail = ((y < homing_candidate.y && homing_solid.semisolid) || homing_solid.layer == -1 || layer == homing_solid.layer);
                 }
 
-                // Set homing handle:
-                if (homing_fail == false)
+                if (!homing_fail)
                 {
                     homing_handle = homing_candidate;
+                    if (homing_handle != homing_handle_temp) audio_play_sfx("snd_reticle", true);
                     break;
                 }
             }

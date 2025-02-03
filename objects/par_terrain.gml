@@ -8,15 +8,16 @@ applies_to=self
 
 event_inherited();
 
-// Collision variables:
-collision_layer = -1; // No collision happens with the player on layer mismatch
+// Collision:
+layer = -1; // No collision happens with the player on layer mismatch
 surface_angle = -1; // Set this to > -1 to hard-code this solid's angle, otherwise it will be calculated based on its shape
-shape = -1; // SHAPE_RECTANGLE, SHAPE_SLANT, SHAPE_CONCAVE or SHAPE_CONVEX; ignored if surface angle > -1; if left as -1, this solid's angle will be calculated via sensor extension
-mask =  true;
+shape = SHAPE_RECTANGLE; // SHAPE_RECTANGLE, SHAPE_SLANT, SHAPE_CONCAVE or SHAPE_CONVEX; ignored if surface angle > -1; if left as -1, this solid's angle will be calculated via sensor extension
+is_mask = true;
 
 // Flags:
 semisolid = false; // Only the bottom half of the player's mask will collide, and only if their top half isn't also colliding
 can_crush = false; // If the player is embedded inside this solid, they will die
+can_push = false; // The player can push this solid if they're moving against it
 #define Other_4
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -25,8 +26,34 @@ applies_to=self
 */
 /// Field Initialization
 
-//field collision_layer: enum(0, 1)
-//field semisolid: bool
+//field layer: enum(0, 1)
+//field semisolid: false
+
+/*preview
+var layer, semisolid;
+
+layer = Field("layer", 0);
+semisolid = Field("semisolid", 0);
+
+image_blend = c_white;
+image_alpha = 1;
+
+if (FieldDefined("layer"))
+{
+    switch (layer)
+    {
+        case 0:
+            image_blend = c_blue;
+            break;
+
+        case 1:
+            image_blend = c_red;
+            break;
+    }
+}
+
+if (semisolid) image_alpha = 0.5;
+*/
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -35,11 +62,4 @@ applies_to=self
 */
 /// Draw Terrain
 
-// Terrain:
-if ((mask == true && global.game_debug == true) || mask == false)
-{
-    draw_self();
-}
-
-// Collision:
-event_inherited();
+if ((game_get_debug() && is_mask) || !is_mask) draw_self();

@@ -7,15 +7,9 @@ applies_to=self
 /// Spinner Initialization
 
 event_inherited();
-
-// Timeline:
-ctl_initialize(ctl_spinner);
-
-// Hurtbox:
-set_hurtbox(20, 19, 20, 4);
-
-// Hitbox:
-set_hitbox(8, 18, 7, 4);
+hitbox_set_hurtbox(20, 19, 20, 4);
+hitbox_set_attackbox(8, 18, 7, 4);
+sequence_init(sequence_spinner);
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -24,20 +18,14 @@ applies_to=self
 */
 /// Animation
 
-// Exit if the stage is paused:
-if (game_ispaused(ctrl_pause))
-{
-    exit;
-}
+if (game_ispaused(mnu_pause)) exit;
 
 event_inherited();
 
-// Timeline speed:
-ctl_speed = global.game_speed;
+sequence_speed = game_get_speed();
 
-// Execute timeline:
-if (ctl_index != noone)
+if (script_exists(sequence_index))
 {
-    ctl_update();
-    script_execute(ctl_index);
+    sequence_update();
+    script_execute(sequence_index);
 }

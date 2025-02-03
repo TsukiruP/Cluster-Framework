@@ -7,25 +7,10 @@ applies_to=self
 /// Checkpoint Initialization
 
 event_inherited();
-
-// Timeline:
-ctl_initialize(ctl_checkpoint_inactive);
-
-// Hurtbox:
-set_hurtbox(13, 22, 14, 16);
-
-// Reaction:
 reaction_index = player_reaction_checkpoint;
-
-// Active:
-active = false;
-
-// Activate:
-if (global.checkpoint_x == x && global.checkpoint_y == y)
-{
-    global.game_time = global.checkpoint_time;
-    active = true;
-}
+active = (game_get_checkpoint_x() == x && game_get_checkpoint_y() == y);
+hitbox_set_hurtbox(13, 22, 14, 16);
+sequence_init();
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -34,43 +19,19 @@ applies_to=self
 */
 /// Animation
 
-// Exit if the stage is paused:
-if (game_ispaused(ctrl_pause))
-{
-    exit;
-}
+if (game_ispaused(mnu_pause)) exit;
 
-if (active == true)
+if (active)
 {
-    if (ctl_index != ctl_checkpoint_active)
-    {
-        timeline_set(ctl_checkpoint_active);
-    }
+    if (sequence_index != sequence_checkpoint_active) sequence_set(sequence_checkpoint_active);
 }
 else
 {
-    if (ctl_index != ctl_checkpoint_inactive)
-    {
-        timeline_set(ctl_checkpoint_inactive);
-    }
+    if (sequence_index != sequence_checkpoint_inactive) sequence_set(sequence_checkpoint_inactive);
 }
 
-// Execute timeline:
-if (ctl_index != noone)
+if (script_exists(sequence_index))
 {
-    ctl_update();
-    script_execute(ctl_index);
+    sequence_update();
+    script_execute(sequence_index);
 }
-#define Draw_0
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Draw Checkpoint
-
-// Checkpoint:
-draw_self();
-
-// Collision:
-event_inherited();

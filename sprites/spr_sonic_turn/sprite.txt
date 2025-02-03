@@ -7,5 +7,5 @@ per_frame_colliders=0
 bbox_type=0
 bbox_left=21
 bbox_top=18
-bbox_right=41
+bbox_right=42
 bbox_bottom=51

@@ -7,25 +7,44 @@ applies_to=self
 /// Help Initialization
 
 event_inherited();
-
-// Reaction:
 reaction_index = player_reaction_hint;
-
-// Player handle:
 player_handle = noone;
-
-// Hint id:
 hint_id = 0;
+#define Step_1
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Reset
+
+if (game_ispaused()) exit;
+
+if (player_handle != noone) player_handle = noone;
+#define Step_2
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Hint
+
+with (player_handle)
+{
+    if (text_get_handle() != other) hint_allow = true;
+}
 #define Other_10
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
 applies_to=self
 */
-/// Message
+/// Text
+
+text_set_handle(id);
 
 switch (hint_id)
 {
     default:
-        text_set_message("This message is a test!");
+        text_set_body("This message is a test!");
 }

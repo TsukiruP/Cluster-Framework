@@ -6,7 +6,7 @@ applies_to=self
 */
 /// Font Initialization
 
-global.font_system = font_add_sprite(fnt_system, ord(" "), true, 0);
+global.font_system = font_add_sprite(fnt_system, ord(" "), true, 1);
 global.font_title_card = font_add_sprite(fnt_title_card_zone, ord(" "), true, -4);
 global.font_hud = font_add_sprite(fnt_hud, ord("0"), false, 1);
 
@@ -20,69 +20,42 @@ applies_to=self
 */
 /// Text Initialization
 
-// Text variables:
 text_hide = false;
-text_overflow = false;
 text_clear = false;
+text_handle = noone;
+text_alpha_rate = 0.05;
 
-text_message = "";
-text_length = 0;
-text_current = 0;
-text_target = 0;
-text_x = 42;
-text_y = 70;
+body_overflow = false;
+body_list = ds_list_create();
+body_length = 0;
+body_current = 0;
+body_target = 0;
+body_x = 42;
+body_y = 70;
+body_height = 0;
+body_alpha = 0;
+body_box_alpha = 0;
 
-text_scroll[0] = 0; // Scroll current
-text_scroll[1] = 0; // Scroll target
-text_scroll[2] = 42; // Scroll rate
-text_scroll[3] = 3; // Scroll max
-text_scroll[4] = false; // Scroll complete
+body_scroll_complete = false;
+body_scroll_current = 0;
+body_scroll_target = 0;
+body_scroll_max = 3;
+body_scroll_rate = font_get_height(global.font_system) * body_scroll_max;
 
-text_alpha[0] = 0; // Box alpha
-text_alpha[1] = 0.03; // Box rate
-text_alpha[2] = 0; // Text alpha
-text_alpha[3] = 0.05; // Text rate
+subject_complete = false;
+subject_string = "";
+subject_height = 0;
+subject_lines = 0;
+subject_alpha = 0;
+subject_box_alpha = 0;
 
-// Topic variables:
-topic_complete = false;
-
-topic_message = "";
-topic_alpha[0] = 0; // Bar alpha;
-topic_alpha[1] = 0; // Text alpha;
-
-// Log variables:
 log_hide = true;
-log_message = "";
+log_string = "";
 log_scroll = 0;
-
-log_alpha[0] = 0; // Background alpha
-log_alpha[1] = 0; // Text alpha
-
-// Height variables:
-draw_set_font(global.font_system);
-
-font_height = string_height("Test");
-topic_height = 0;
-topic_lines = 0;
-text_height = 0;
+log_spacing = 32;
 log_height = 0;
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Debug Initialization
-
-debug_section = 0;
-
-debug_title = "";
-debug_stats = "";
-debug_message = "";
-
-debug_x1 = view_xview[view_current] + 4;
-debug_y1 = view_yview[view_current] + 4;
-debug_x2 = debug_x1;
-debug_y2 = debug_y1;
+log_alpha = 0;
+log_fade_alpha = 0;
 #define Step_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -91,517 +64,214 @@ applies_to=self
 */
 /// Inputs
 
-// Skip:
-if (text_clear == false && log_hide == true && (text_alpha[2] == 1 || topic_alpha[1] == 1) && input_get_check(INP_START, CHECK_PRESSED))
+if (!text_clear && text_handle != par_overlay && log_hide && (body_alpha == 1 || subject_alpha == 1) && input_get_check(INP_START, CHECK_PRESSED))
 {
     text_clear = true;
 }
 
-if (text_clear == false)
+if (!text_clear)
 {
-    // Hide:
-    if (!game_ispaused(ctrl_pause) && (text_message != "" || topic_message != "" || log_alpha[1] != 0) && input_get_check(INP_SELECT, CHECK_PRESSED)) text_hide = !text_hide;
-
-    if (text_hide == false)
+    if (!game_ispaused(mnu_pause) && (!ds_list_empty(body_list) || subject_string != "" || log_alpha != 0) && input_get_check(INP_HIDE, CHECK_PRESSED))
     {
-        var scroll_min, scroll_max, scroll_up, scroll_down, scroll_direction;
+        text_hide = !text_hide;
+    }
 
-        // Height:
-        draw_set_font(global.font_system);
+    if (!text_hide)
+    {
+        var font_height, scroll_min, scroll_max, scroll_up, scroll_down, scroll_direction;
 
-        topic_height = string_height_ext(topic_message, font_height, global.display_width - (text_x * 2));
-        topic_lines = (topic_height / font_height) - 1;
-        text_height = string_height_ext(text_message[text_current], font_height, global.display_width - (text_x * 2));
-        log_height = string_height_ext(log_message, font_height, global.display_width - text_x);
+        font_height = font_get_height(global.font_system);
+        subject_height = string_height_ext(subject_string, font_height, screen_get_width() - (body_x * 2));
+        subject_lines = (subject_height / font_height) - 1;
+        body_height = string_height_ext(ds_list_find_value(body_list, body_current), font_height, screen_get_width() - (body_x * 2));
+        log_height = string_height_ext(log_string, font_height, screen_get_width() - body_x);
 
-        // Overflow:
-        if (((text_height / font_height) - (text_scroll[0] / font_height) <= text_scroll[3]) && (text_scroll[0] == text_scroll[1]))
+        if (((body_height / font_height) - (body_scroll_current / font_height) <= body_scroll_max) && (body_scroll_current == body_scroll_target))
         {
-            text_overflow = false;
+            body_overflow = false;
         }
         else
         {
-            if (text_scroll[4] == false) text_overflow = true;
+            if (!body_scroll_complete) body_overflow = true;
         }
 
-        // Open log:
-        if ((game_ispaused(ctrl_pause) || text_message != "" || topic_message != "") && log_message != "" && (log_alpha[1] == 0 || log_alpha[1] == 1) && input_get_check(INP_HELP, CHECK_PRESSED))
+        if ((game_ispaused(mnu_pause) || !ds_list_empty(body_list) || subject_string != "") && log_string != "" && (log_alpha == 0 || log_alpha == 1) && input_get_check(INP_LOG, CHECK_PRESSED))
         {
             log_hide = !log_hide;
-
-            if (log_hide == false && log_height > global.display_height - 32)
-            {
-                log_scroll = log_height - (global.display_height - 32);
-            }
+            if (!log_hide && log_height > screen_get_height() - log_spacing) log_scroll = log_height - (screen_get_height() - log_spacing);
         }
 
-        // Text box:
-        if (log_hide == true)
+        if (log_hide)
         {
-            // Accept:
-            if (input_get_check(INP_ACCEPT, CHECK_PRESSED))
+            if (text_handle != par_overlay && input_get_check(INP_CONFIRM, CHECK_PRESSED))
             {
-                // Topic:
-                if (topic_complete == false && topic_message != "" && topic_alpha[1] == 1)
+                if (!subject_complete && subject_string != "" && subject_alpha == 1)
                 {
-                    topic_complete = true;
+                    subject_complete = true;
+                    if (ds_list_empty(body_list)) text_clear = true;
                 }
-
-                // Text:
-                else if (text_current == text_target && text_alpha[2] == 1)
+                else if (body_current == body_target && body_alpha == 1)
                 {
-                    // Advance text:
-                    if (text_overflow == false)
+                    if (!body_overflow)
                     {
-                        // Update text target:
-                        if (text_target != text_length)
-                        {
-                            text_target += 1;
-                        }
-
-                        // Clear text:
-                        else
-                        {
-                            text_clear = true;
-                        }
+                        if (body_target != body_length) body_target += 1;
+                        else text_clear = true;
                     }
-
-                    // Advance scroll:
                     else
                     {
-                        // Update scroll target:
-                        if (text_scroll[4] == true)
+                        if (body_scroll_complete)
                         {
-                            text_scroll[1] += text_scroll[2];
-                            text_scroll[4] = false;
+                            body_scroll_target += body_scroll_rate;
+                            body_scroll_complete = false;
                         }
                     }
                 }
             }
         }
-
-        // Log:
         else
         {
-            // Cancel:
-            if (input_get_check(INP_CANCEL, CHECK_PRESSED))
-            {
-                log_hide = true;
-            }
+            if (input_get_check(INP_CANCEL, CHECK_PRESSED)) log_hide = true;
         }
 
-        // Manual Scroll:
-        if (log_hide == true)
+        if (log_hide)
         {
-            scroll_min = text_scroll[0];
-            scroll_max = (text_scroll[0] < text_scroll[1]);
+            scroll_min = body_scroll_current;
+            scroll_max = (body_scroll_current < body_scroll_target);
         }
         else
         {
             scroll_min = log_scroll;
-            scroll_max = ((log_height - log_scroll) > (global.display_height - 32));
+            scroll_max = ((log_height - log_scroll) > (screen_get_height() - log_spacing));
         }
 
-        scroll_up = ((input_get_check(INP_UP, CHECK_PRESSED) || input_get_timer(INP_UP, 30)) && scroll_min > 0);
-        scroll_down = ((input_get_check(INP_DOWN, CHECK_PRESSED) || input_get_timer(INP_DOWN, 30)) && scroll_max);
+        scroll_up = ((input_get_check(INP_UP, CHECK_PRESSED) || input_get_time(INP_UP, 30)) && scroll_min > 0);
+        scroll_down = ((input_get_check(INP_DOWN, CHECK_PRESSED) || input_get_time(INP_DOWN, 30)) && scroll_max);
         scroll_direction = scroll_down - scroll_up;
 
-        // Textbox scroll:
-        if (log_hide == true && text_scroll[1] != 0 && (text_scroll[4] == true))
-        {
-            text_scroll[0] += scroll_direction;
-        }
-
-        // Log scroll:
-        else if (log_hide == false && (log_height > global.display_height - 32))
-        {
-            log_scroll += scroll_direction;
-        }
+        if (body_scroll_complete && body_scroll_target != 0 && log_hide) body_scroll_current += scroll_direction;
+        else if (!log_hide && (log_height > screen_get_height() - log_spacing)) log_scroll += scroll_direction;
     }
 }
 
-// Automatic Scroll:
-if (text_overflow == true)
+if (body_overflow)
 {
-    if (text_scroll[4] == false)
+    if (!body_scroll_complete)
     {
-        if (text_scroll[0] < text_scroll[1])
-        {
-            text_scroll[0] += 1;
-        }
+        if (body_scroll_current < body_scroll_target) body_scroll_current += 1;
         else
         {
-            text_scroll[0] = text_scroll[1];
-            text_scroll[4] = true;
+            body_scroll_current = body_scroll_target;
+            body_scroll_complete = true;
         }
     }
 }
 else
 {
-    if (text_scroll[0] == text_scroll[1] && text_scroll[1] != 0)
+    if (body_scroll_current == body_scroll_target && body_scroll_target != 0)
     {
-        if (text_scroll[4] != true) text_scroll[4] = true;
+        if (!body_scroll_complete) body_scroll_complete = true;
     }
 }
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Debug
-
-// Exit if not in debug mode:
-if (global.game_debug == false)
-{
-    exit;
-}
-/*
-var menu_left, menu_right, menu_direction, player_handle;
-
-// Menu:
-menu_left      = keyboard_check_pressed(vk_numpad4);
-menu_right     = keyboard_check_pressed(vk_numpad6);
-menu_direction = menu_right - menu_left;
-
-if (menu_direction != 0) {
-    debug_section += menu_direction;
-}
-
-debug_section = wrap(debug_section, 0, 5);
-
-// Player handle:
-player_handle = player_get_instance(0);
-
-// Sections
-switch (debug_section) {
-    // Player:
-    case 1:
-        // Title:
-        debug_title = "- Player -";
-        /*
-        if (instance_exists(player_handle)) {
-            var player_x, player_y, player_action_current, player_action_previous, player_g_speed, player_x_speed, player_y_speed, player_ground, player_mode, player_layer, player_angle;
-
-            // Player variables:
-            player_x              = floor(player_handle.x);
-            player_y              = floor(player_handle.y);
-
-            player_action_current  = (script_get_name(player_handle.action_current));
-            player_action_previous = (script_get_name(player_handle.action_previous));
-
-            player_g_speed         = player_handle.g_speed;
-            player_x_speed         = player_handle.x_speed;
-            player_y_speed         = player_handle.y_speed;
-
-            player_ground          = player_handle.ground;
-            player_layer           = player_handle.layer;
-            player_angle           = player_handle.ground_angle;
-
-            // Stats:
-            debug_stats = "X: " + string(player_x) + "#" +
-                        "Y: " + string(player_y) + "#" + "#" +
-                        "Action: " + player_action_current + "#" +
-                        "Prev: " + player_action_previous + "#" + "#" +
-                        "Ground Speed: " + string(player_g_speed) + "#" +
-                        "X Speed: " + string(player_x_speed) + "#" +
-                        "Y Speed: " + string(player_y_speed);
-        }
-
-        break;
-
-    // Character:
-    case 2:
-        // Title:
-        debug_title = "- Character -";
-
-        if (instance_exists(player_handle)) {
-            // Stats:
-            switch (player_handle.character_id) {
-                default:
-                    debug_stats = "Clock Up State: " + string(player_handle.clock_up_state) + "#" +
-                                    "Clock Up Alarm: " + string(player_handle.clock_up_alarm) + "#" +
-                                    "Clock Up Timer: " + string(player_handle.clock_up_timer);
-            }
-        }
-        break;
-
-    // Status:
-    case 3:
-        // Title:
-        debug_title = "- Status -";
-
-        if (instance_exists(player_handle)) {
-            var player_shield, player_usable, player_state, player_invin, player_invin_alarm, player_speed, player_speed_alarm, player_panic, player_panic_alarm, player_swap, player_swap_alarm;
-
-            // Player variables:
-            player_shield      = val_get_str(player_handle.status_shield, SHIELD_NONE, "None", "Basic", "Magnetic", "Fire", "Lightning", "Bubble");
-            player_usable      = val_get_bool(player_handle.status_shield_allow);
-            player_state       = player_handle.status_shield_state;
-
-            player_invin       = val_get_str(player_handle.status_invin, INVIN_NONE, "None", "Hurt", "Buff");
-            player_invin_alarm = player_handle.status_invin_alarm;
-
-            player_speed       = val_get_str(player_handle.status_speed, SPEED_NONE, "None", "Speed", "Slow");
-            player_speed_alarm = player_handle.status_speed_alarm;
-
-            player_panic       = val_get_bool(player_handle.status_panic);
-            player_panic_alarm = player_handle.status_panic_alarm;
-
-            player_swap        = val_get_bool(player_handle.status_swap);
-            player_swap_alarm  = player_handle.status_swap_alarm;
-
-            // Stats:
-            debug_stats = "Shield: " + string(player_shield) + "#" +
-                            "Usable: " + string(player_usable) + "#" +
-                            "State: " + string(player_state) + "#" + "#" +
-                            "Invin: " + string(player_invin) + "#" +
-                            "Invin Alarm: " + string(player_invin_alarm);
-        }
-        break;
-
-    // Water:
-    case 4:
-        // Title:
-        debug_title = "- Water -";
-
-        if (instance_exists(player_handle)) {
-            var player_surface, player_splash, player_underwater, player_air, player_alarm, player_countdown;
-
-            // Player variables:
-            player_surface    = val_get_bool(player_handle.water_surface);
-            player_splash     = player_handle.splash_alarm;
-
-            player_underwater = val_get_bool(player_handle.underwater);
-            player_air        = player_handle.air_remaining;
-            player_alarm      = player_handle.air_alarm;
-
-            player_countdown  = player_handle.drown_countdown;
-
-            // Stats:
-            debug_stats = "Surface: " + string(player_surface) + "#" +
-                            "Splash Alarm: " + string(player_splash) + "#" + "#" +
-
-                            "Underwater: " + string(player_underwater) + "#" +
-                            "Air: " + string(player_air) + "#" +
-                            "Air Alarm: " + string(player_alarm) + "#" + "#" +
-
-                            "Countdown: " + string(player_countdown);
-        }
-        break;
-
-    // Animation:
-    case 5:
-        // Title:
-        debug_title = "- Animation -";
-
-        if (instance_exists(player_handle)) {
-            var player_current, player_target, player_previous, player_variant, player_finished, player_reverse, player_alarm;
-
-            // Player variables:
-            player_current  = player_handle.animation_current;
-            player_target   = player_handle.animation_target;
-            player_previous = player_handle.animation_previous;
-            player_variant  = player_handle.animation_variant;
-
-            player_finished = player_handle.animation_finished;
-            player_reverse  = player_handle.animation_reverse;
-            player_alarm    = player_handle.animation_alarm;
-
-            // Stats:
-            debug_stats = "Current: " + string(player_current) + "#" +
-                            "Target: " + string(player_target) + "#" +
-                            "Previous: " + string(player_previous) + "#" +
-                            "Variant: " + string(player_variant) + "#" + "#" +
-
-                            "Finished: " + string(player_finished) + "#" +
-                            "Reversed: " + string(player_reverse) + "#" +
-                            "Alarm: " + string(player_alarm);
-        }
-        break;
-
-    // Game:
-    default:
-        // Title:
-        debug_title = "- Game -";
-
-        // Stats:
-        debug_stats = "Game Speed: " + string_format(global.game_speed, 1, 2) + "#" +
-                        "Game Time: " + string(global.game_time) + "#" +
-                        "Object Time: " + string(global.object_time) + "#" +
-                        "Rings: " + string(global.game_rings) + "#" +
-                        "Score: " + string(global.game_score) + "#" + "#" +
-
-                        "Room: " + string(room) + "#" +
-                        "Room Name: " + room_name(room) + "#" + "#" +
-
-                        "Checkpoint X: " + string(global.checkpoint_x) + "#" +
-                        "Checkpoint Y: " + string(global.checkpoint_y) + "#" +
-                        "Checkpoint Time: " + string(global.checkpoint_time);
-}
-
-debug_message = debug_title + "#" + debug_stats;
-debug_x2      = debug_x1 + string_width(debug_message) + 8;
-debug_y2      = debug_y1 + string_height(debug_message) + 8;
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
 applies_to=self
 */
-/// Topic Alpha
+/// Subject Alpha
 
-// Fade in topic:
-if (text_clear == false && topic_complete == false && topic_message != "")
+var subject_box_alpha_rate;
+
+subject_box_alpha_rate = game_get_config("interface_alpha") / 20;
+
+if (!text_clear && !subject_complete && subject_string != "")
 {
-    // Bar:
-    if (topic_alpha[0] < 0.6)
-    {
-        topic_alpha[0] += text_alpha[1];
-    }
-    else
-    {
-        topic_alpha[0] = 0.6;
-    }
+    if (subject_box_alpha < game_get_config("interface_alpha")) subject_box_alpha += subject_box_alpha_rate;
 
-    // Topic:
-    if (topic_alpha[1] < 1)
+    if (subject_alpha < 1)
     {
-        // Add topic to log:
-        if (topic_alpha[1] == 0) log_message += topic_message + "#";
-
-        topic_alpha[1] += text_alpha[3];
-    }
-    else
-    {
-        topic_alpha[1] = 1;
+        if (subject_alpha == 0) log_string += subject_string + "#";
+        subject_alpha += text_alpha_rate;
     }
 }
-
-// Fade out topic:
 else
 {
-    // Bar:
-    if (topic_alpha[0] > 0)
-    {
-        topic_alpha[0] -= text_alpha[1];
-    }
-    else
-    {
-        topic_alpha[0] = 0;
-    }
+    if (subject_box_alpha > 0) subject_box_alpha -= subject_box_alpha_rate;
 
-    // Topic:
-    if (topic_alpha[1] > 0)
-    {
-        topic_alpha[1] -= text_alpha[3];
-    }
-    else
-    {
-        topic_alpha[1] = 0;
-    }
+    if (subject_alpha > 0) subject_alpha -= text_alpha_rate;
 }
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
 applies_to=self
 */
-/// Text Alpha
+/// Body Alpha
 
-// Fade in text:
-if (text_clear == false && text_message != "" && (topic_complete == true || topic_message == ""))
+var body_box_alpha_rate;
+
+body_box_alpha_rate = game_get_config("interface_alpha") / 20;
+
+if (!text_clear && !ds_list_empty(body_list) && (subject_complete || subject_string == ""))
 {
-    // Box:
-    if (text_alpha[0] < 0.6)
-    {
-        text_alpha[0] += text_alpha[1];
-    }
-    else
-    {
-        text_alpha[0] = 0.6;
-    }
+    if (body_box_alpha < game_get_config("interface_alpha")) body_box_alpha += body_box_alpha_rate;
 
-    // Text:
-    if (text_current == text_target)
+    if (body_current == body_target)
     {
-        if (text_alpha[2] < 1)
+        if (body_alpha < 1)
         {
-            // Add text to log:
-            if (text_alpha[2] == 0) log_message += text_message[text_current] + "#";
-
-            text_alpha[2] += text_alpha[3];
-        }
-        else
-        {
-            text_alpha[2] = 1;
+            if (body_alpha == 0) log_string += ds_list_find_value(body_list, body_current) + "#";
+            body_alpha += text_alpha_rate;
         }
     }
 
-    // Fade out text:
     else
     {
-        if (text_alpha[2] > -0.5)
+        if (body_alpha > -0.5)
         {
-            text_alpha[2] -= text_alpha[3];
+            body_alpha -= text_alpha_rate;
 
-            if (text_alpha[2] == -0.5)
+            if (body_alpha == -0.5)
             {
-                text_current = text_target;
+                body_current = body_target;
 
-                text_scroll[0] = 0;
-                text_scroll[1] = 0;
-                text_scroll[4] = false;
+                body_scroll_current = 0;
+                body_scroll_target = 0;
+                body_scroll_complete = false;
 
-                text_alpha[2] = 0;
+                body_alpha = 0;
 
-                text_overflow = false;
+                body_overflow = false;
             }
         }
     }
 }
-
-// Fade out text:
 else
 {
-    // Box:
-    if (text_alpha[0] > 0)
-    {
-        text_alpha[0] -= text_alpha[1];
-    }
-    else
-    {
-        text_alpha[0] = 0;
-    }
+    if (body_box_alpha > 0) body_box_alpha -= body_box_alpha_rate;
 
-    // Text:
-    if (text_alpha[2] > 0)
-    {
-        text_alpha[2] -= text_alpha[3];
-    }
-    else
-    {
-        text_alpha[2] = 0;
-    }
+    if (body_alpha > 0) body_alpha -= text_alpha_rate;
 }
 
-if (text_clear == true && (text_message != "" || topic_message != "") && text_alpha[2] == 0 && topic_alpha[0] == 0)
+if (text_clear && (!ds_list_empty(body_list) || subject_string != "") && body_alpha == 0 && subject_alpha == 0)
 {
     text_hide = false;
     text_clear = false;
+    text_handle = noone;
 
-    text_message = "";
-    text_length = 0;
-    text_current = 0;
-    text_target = 0;
+    ds_list_clear(body_list);
+    body_length = 0;
+    body_current = 0;
+    body_target = 0;
 
-    text_scroll[0] = 0;
-    text_scroll[1] = 0;
-    text_scroll[4] = false;
+    body_scroll_current = 0;
+    body_scroll_target = 0;
+    body_scroll_complete = false;
 
-    topic_complete = false;
-    topic_message = "";
+    subject_complete = false;
+    subject_string = "";
 
     log_hide = true;
-    log_message += "#";
+    log_string += "#";
 }
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -610,49 +280,17 @@ applies_to=self
 */
 /// Log Alpha
 
-if (log_hide == false)
+if (!log_hide)
 {
-    // Background:
-    if (log_alpha[0] < 0.6)
-    {
-        log_alpha[0] += text_alpha[1];
-    }
-    else
-    {
-        log_alpha[0] = 0.6;
-    }
+    if (log_fade_alpha < 0.6) log_fade_alpha += 0.03;
 
-    // Log:
-    if (log_alpha[1] < 1)
-    {
-        log_alpha[1] += text_alpha[3];
-    }
-    else
-    {
-        log_alpha[1] = 1;
-    }
+    if (log_alpha < 1) log_alpha += text_alpha_rate;
 }
 else
 {
-    // Background:
-    if (log_alpha[0] > 0)
-    {
-        log_alpha[0] -= text_alpha[1];
-    }
-    else
-    {
-        log_alpha[0] = 0;
-    }
+    if (log_fade_alpha > 0) log_fade_alpha -= 0.03;
 
-    // Log:
-    if (log_alpha[1] > 0)
-    {
-        log_alpha[1] -= text_alpha[3];
-    }
-    else
-    {
-        log_alpha[1] = 0;
-    }
+    if (log_alpha > 0) log_alpha -= text_alpha_rate;
 }
 #define Other_3
 /*"/*'/**//* YYD ACTION
@@ -660,43 +298,45 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Release fonts
+/// Release Fonts
 
 font_delete(global.font_system);
 font_delete(global.font_title_card);
 font_delete(global.font_hud);
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Release Body List
+
+ds_list_destroy(body_list);
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
 applies_to=self
 */
-/// Draw Topic
+/// Draw Subject
 
-// Don't draw if hidden:
-if (text_hide == true)
-{
-    exit;
-}
+if (text_hide) exit;
+
+var font_height;
+
+font_height = font_get_height(global.font_system);
 
 // Viewport:
-d3d_set_viewport(0, 0, global.display_width, global.display_height);
+d3d_set_viewport(0, 0, screen_get_width(), screen_get_height());
 
 // Box:
-draw_set1(make_color_rgb(global.textbox_red, global.textbox_green, global.textbox_blue), topic_alpha[0]);
-draw_rectangle(0, (global.display_height / 2) - 9 - ((font_height / 2) * topic_lines), global.display_width, (global.display_height / 2) + 10 + ((font_height / 2) * topic_lines), false);
+draw_rect(0, (screen_get_height() / 2) - ((font_height / 2) * (subject_lines + 1)) - 2, screen_get_width(), ((font_height) * (subject_lines + 1)) + 6, game_get_interface_color(), subject_box_alpha);
 
-// Topic:
+// Subject:
 draw_set_font(global.font_system);
-draw_set1(c_white, topic_alpha[1]);
-
-// Topic:
+draw_set1(c_white, subject_alpha);
 draw_set2(fa_center, fa_middle);
-draw_text(global.display_width / 2, global.display_height / 2, topic_message);
-
-// Reset:
+draw_text(screen_get_width() / 2, screen_get_height() / 2, subject_string);
 draw_reset();
-d3d_set_viewport(0, 0, global.display_width, global.display_height);
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -704,39 +344,39 @@ applies_to=self
 */
 /// Draw Text
 
-// Don't draw if hidden:
-if (text_hide == true)
-{
-    exit;
-}
+if (text_hide) exit;
 
-// Box:
-draw_set1(make_color_rgb(global.textbox_red, global.textbox_green, global.textbox_blue), text_alpha[0]);
-draw_rectangle(0, global.display_height - 19 - 59, global.display_width, global.display_height - 19, false);
+var font_height, text_box_bottom, text_box_height;
+
+font_height = font_get_height(global.font_system);
 
 // Viewport:
-d3d_set_viewport(0, global.display_height - text_y, global.display_width, font_height * 3);
+d3d_set_viewport(0, 0, screen_get_width(), screen_get_height());
 
-// Font:
+// Box:
+text_box_bottom = screen_get_height() - 18;
+text_box_height = 60;
+
+draw_rect(0, text_box_bottom - text_box_height, screen_get_width(), text_box_height, game_get_interface_color(), body_box_alpha);
+
+// Viewport:
+d3d_set_viewport(0, screen_get_height() - body_y, screen_get_width(), font_height * body_scroll_max);
+
+// Body:
 draw_set_font(global.font_system);
-draw_set1(c_white, text_alpha[2]);
-
-// Text:
+draw_set1(c_white, body_alpha);
 draw_set2(fa_left, fa_top);
-draw_text_ext(text_x, -text_scroll[0], text_message[text_current], font_height, global.display_width - (text_x * 2));
+draw_text_ext(body_x, -body_scroll_current, ds_list_find_value(body_list, body_current), font_height, screen_get_width() - (body_x * 2));
 
 // Arrow:
-draw_set_alpha(1);
-d3d_set_viewport(0, 0, global.display_width, global.display_height);
-
-if (text_overflow == true && text_scroll[4] == true && text_alpha[2] == 1)
+if (body_overflow && body_alpha == 1 && body_scroll_complete)
 {
-    draw_sprite(fnt_system, 95, (global.display_width / 2) - 6, global.display_height - 29);
+    d3d_set_viewport(0, 0, screen_get_width(), screen_get_height());
+    draw_set_alpha(1);
+    draw_sprite(fnt_system, 95, (screen_get_width() / 2) - 6, screen_get_height() - 29);
 }
 
-// Reset:
 draw_reset();
-d3d_set_viewport(0, 0, global.display_width, global.display_height);
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -744,64 +384,23 @@ applies_to=self
 */
 /// Draw Log
 
-// Don't draw if hidden:
-if (text_hide == true)
-{
-    exit;
-}
+var font_height;
 
-// Background:
-draw_set1(c_black, log_alpha[0]);
-draw_rectangle(0, 0, global.display_width, global.display_height, false);
+font_height = font_get_height(global.font_system);
 
 // Viewport:
-d3d_set_viewport(0, 16, global.display_width, global.display_height - 32);
+d3d_set_viewport(0, 0, screen_get_width(), screen_get_height());
 
-// Font:
-draw_set_font(global.font_system);
-draw_set1(c_white, log_alpha[1]);
+// Fade:
+draw_set1(c_black, log_fade_alpha);
+draw_rectangle(0, 0, screen_get_width(), screen_get_height(), false);
+
+// Viewport:
+d3d_set_viewport(0, 16, screen_get_width(), screen_get_height() - log_spacing);
 
 // Log:
-draw_set2(fa_left, fa_top);
-draw_text_ext(text_x / 2, -log_scroll, log_message, font_height, global.display_width - text_x);
-
-// Reset:
-draw_reset();
-d3d_set_viewport(0, 0, global.display_width, global.display_height);
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Draw Debug
-/*
-// Exit if not in debug mode:
-if (global.game_debug == false) {
-    exit;
-}
-
-// Box:
-draw_set_color(make_color_rgb(global.textbox_red, global.textbox_green, global.textbox_blue));
-draw_set_alpha(0.6);
-
-draw_rectangle(debug_x1, debug_y1, debug_x2, debug_y2, false);
-
-// Font:
 draw_set_font(global.font_system);
-draw_set_color(c_white);
-draw_set_alpha(1);
-
-// Title:
-draw_set_halign(fa_center);
-draw_set_valign(fa_top);
-
-draw_text_ext((debug_x1 + debug_x2) div 2, debug_y1 + 4, debug_title, font_height, debug_x2 - debug_x1);
-
-// Stats:
-draw_set_halign(fa_left);
-draw_set_valign(fa_top);
-
-draw_text_ext(debug_x1 + 4, debug_y1 + 4 + string_height(debug_title), debug_stats, font_height, debug_x2 - debug_x1);
-
-// Reset:
+draw_set1(c_white, log_alpha);
+draw_set2(fa_left, fa_top);
+draw_text_ext(body_x / 2, -log_scroll, log_string, font_height, screen_get_width() - body_x);
 draw_reset();

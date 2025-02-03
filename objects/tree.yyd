@@ -7,115 +7,110 @@
 	|par_enemy
 	|par_hint
 	|par_terrain
-	|par_obstacle
+	|par_rail
 	|par_effect
 +System
-	|ctrl_initialization
 	+Controllers
 		|ctrl_game
-		|ctrl_display
+		|ctrl_debug
+		|ctrl_screen
 		|ctrl_audio
 		|ctrl_input
 		|ctrl_text
+		|ctrl_animation
 		|ctrl_transition
 		|ctrl_fade
-		+Stage Controllers
+		+Stage
+			|ctrl_stage
 			|ctrl_camera
 			|ctrl_hud
-			|ctrl_pause
 			|ctrl_tally
+	+Menus
+		|mnu_title
+		|mnu_debug
+		|mnu_save
+		|mnu_pause
 +Gameplay
 	+Player
 		|obj_player_spawn
 		|obj_player
 	+Props
-		|obj_sensor_layer
+		|obj_layer_sensor
 		+Ring
 			|obj_ring
 			|obj_ring_magnetized
 		|obj_checkpoint
+		|obj_dash_panel
+		|obj_jump_panel
 		|obj_spring
 		|obj_dash_ring
 		|obj_item_box
 		+Enemies
 			|obj_spinner
-		+Water
-			|obj_water_surface
+		|obj_spike
+		|obj_blockade
+		+Rails
+			|obj_rail_01
+			|obj_rail_02
+			|obj_rail_03
 		+Hints
 			|obj_hint_box
 			|obj_omochao
-	+Obstacles
-		|obj_spike
-		|obj_blockade
+		|obj_switch
+		+Water
+			|obj_water_mask
+			|obj_bubble_spawn
+			|obj_bubble
+		+Goals
 	+Effects
 		+Player
 			|eff_afterimage
 			|eff_player
 			|eff_spin_dash
 			|eff_debuff
-			|eff_reticle
 			|eff_shield
-+Zones
+			|eff_swap
+			|eff_reticle
+			|eff_waterfall
++Stages
+	+Sky Sanctuary
+		|obj_sky_sanctuary_parallax
+		|obj_sky_sanctuary_fountain
 	+Basic Test
 		|obj_basic_test_parallax
-		+Collision
-			|obj_basic_test_collision_01
-			|obj_basic_test_collision_02
-			|obj_basic_test_collision_03
-			|obj_basic_test_collision_04
-			|obj_basic_test_collision_05
-			|obj_basic_test_collision_06
-			|obj_basic_test_collision_07
-			|obj_basic_test_collision_08
-			|obj_basic_test_collision_09
-			|obj_basic_test_collision_10
-			|obj_basic_test_collision_11
-			|obj_basic_test_collision_12
-			|obj_basic_test_collision_13
-			|obj_basic_test_collision_14
-			|obj_basic_test_collision_15
-			|obj_basic_test_collision_16
-			|obj_basic_test_collision_17
-			|obj_basic_test_collision_18
-			|obj_basic_test_collision_19
-			|obj_basic_test_collision_20
-			|obj_basic_test_collision_21
-			|obj_basic_test_collision_22
-			|obj_basic_test_collision_23
-			|obj_basic_test_collision_24
-			|obj_basic_test_collision_25
-			|obj_basic_test_collision_26
-			|obj_basic_test_collision_27
-			|obj_basic_test_collision_28
-			|obj_basic_test_collision_29
+		+Masks
+			|obj_basic_test_mask_01
+			|obj_basic_test_mask_02
+			|obj_basic_test_mask_03
+			|obj_basic_test_mask_04
+			|obj_basic_test_mask_05
+			|obj_basic_test_mask_06
+			|obj_basic_test_mask_07
+			|obj_basic_test_mask_08
+			|obj_basic_test_mask_09
+			|obj_basic_test_mask_10
+			|obj_basic_test_mask_11
+			|obj_basic_test_mask_12
+			|obj_basic_test_mask_13
+			|obj_basic_test_mask_14
+			|obj_basic_test_mask_15
+			|obj_basic_test_mask_16
+			|obj_basic_test_mask_17
+			|obj_basic_test_mask_18
+			|obj_basic_test_mask_19
 		+Gimmicks
-			|obj_basic_test_water_fall_01
-			|obj_basic_test_water_fall_02
-			|obj_basic_test_water_fall_03
+			|obj_basic_test_waterfall
 +Trash
-	|ctrl_culling
-	|par_moving_platform
-	|object122
 	+Rainbow Rings
 		|par_rainbow_ring
 		|obj_rainbow_ring_overlay
-		|obj_rainbow_ring_left
-		|obj_rainbow_ring_right
-		|obj_rainbow_ring_up
-		|obj_rainbow_ring_down
-		|obj_rainbow_ring_left_up
 		|obj_rainbow_ring_left_down
 		|obj_rainbow_ring_right_up
 		|obj_rainbow_ring_right_down
-	|obj_sensor_layer_a
-	|obj_sensor_layer_b
 	+Springs
 		|obj_spring_up
 		|obj_spring_down
-		|obj_spring_left
 		|obj_spring_right
-		|obj_spring_left_up
-		|obj_spring_left_down
 		|obj_spring_right_up
 		|obj_spring_right_down
 	+Dash Panels
@@ -148,3 +143,15 @@
 			|obj_item_panic
 			|obj_item_swap
 	|eff_debris
+	|obj_basic_test_mask_20
+	|obj_basic_test_mask_21
+	|obj_basic_test_mask_22
+	|obj_basic_test_mask_23
+	|obj_basic_test_mask_24
+	|obj_basic_test_mask_25
+	|obj_basic_test_mask_26
+	|obj_basic_test_mask_27
+	|obj_basic_test_mask_28
+	|obj_basic_test_mask_29
+	|obj_basic_test_water_fall_02
+	|obj_basic_test_water_fall_03

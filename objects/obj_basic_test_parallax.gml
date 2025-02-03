@@ -6,6 +6,20 @@ applies_to=self
 */
 /// Parallax Initialization
 
+parallax_reference = room_height;
+parallax_ratio = 4/5;
+sea_rate = 128;
+sky_rate = 256;
+sky_scroll = 0;
+sky_scroll_speed = -0.25;
+
+/*
+parallax_ratio = 4/5;
+parallax_y = room_height;
+parallax_max_scale = 3;
+sea_factor = 0.875;
+
+
 // Parallax variables:
 parallax_ratio     =  0.8;
 parallax_reference = -1;
@@ -27,7 +41,7 @@ action_id=603
 applies_to=self
 */
 /// Parallax Reference
-
+/*
 if (instance_exists(obj_water_surface)) parallax_reference = obj_water_surface.y;
 else parallax_reference = room_height;
 /*"/*'/**//* YYD ACTION
@@ -36,8 +50,27 @@ action_id=603
 applies_to=self
 */
 /// Parallax Speed
-
+/*
 sky_scroll += sky_scroll_speed * global.object_ratio;
+#define Step_2
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Reference
+
+if (game_get_room_water() != -1 && parallax_reference != game_get_room_water()) parallax_reference = game_get_room_water();
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Sky
+
+if (game_ispaused(mnu_pause)) exit;
+
+sky_scroll = -time_sync(game_get_time(), 16, background_get_width(bg_basic_test_sky));
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -46,6 +79,37 @@ applies_to=self
 */
 /// Draw Parallax
 
+// Sea:
+var i, sea_height, sea_x, sea_y;
+
+sea_height = background_get_height(bg_basic_test_sea);
+sea_x = view_xview[view_current] div sea_rate;
+sea_y = view_yview[view_current] * parallax_ratio + (parallax_reference - ((parallax_reference - screen_get_height() / 2) * parallax_ratio));;
+sea_scale = clamp((parallax_reference - sea_y) / sea_height, -1, 1);
+
+// Sky:
+var sky_height, sky_x, sky_y;
+
+sky_height = background_get_height(bg_basic_test_sky);
+sky_x = view_xview[view_current] div sky_rate;
+sky_y = sea_y - sky_height;
+
+draw_background_tiled_extra(bg_basic_test_under, sky_x, sea_y, 1,  1, 0, c_white, 1, 0, 1);
+draw_background_tiled_extra(bg_basic_test_sky, sky_x + sky_scroll, sky_y, 1, 1, 0, c_white, 1, 0, 1);
+draw_background_tiled_extra(bg_basic_test_sea, sea_x, sea_y, 1, sea_scale, 0, c_white, 1, 0, 1);
+
+/*
+for (i = 0; i < sea_height / 4; i += 1)
+{
+    var sea_scroll;
+
+    sea_scroll = -time_sync(game_get_time(), 8 * (i + 1), background_get_width(bg_basic_test_sea));
+    draw_background_part_ext(bg_basic_test_sea, 0, i * 4, background_get_width(bg_basic_test_sea), 4, sea_x - sea_scroll, sea_y + sea_scale * 4 * i, 1, sea_scale, c_white, 1);
+}
+
+//draw_background_tiled_extra(bg_basic_test_sea, sea_x, sea_y, 1, sea_scale, 0, c_white, 1, 0, 1);
+
+/*
 var sky_height, sky_y;
 var sea_height, sea_x, sea_y, sea_scale;
 var under_height;

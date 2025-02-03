@@ -1,18 +1,28 @@
 /// player_wall_push(obj, direction)
-// Sisyphus Adventure 3.
+/* Sisyphus Adventure 3.
+Sets the push animation and pushes the object if possible. */
 
-var push_handle, ox, oy;
+if (state_current != player_state_run) exit;
 
-// Push handle:
-push_handle = argument0.id;
+var ox, oy;
+
+// Animate:
+player_set_animation("push");
+
+// Get movement vectors:
 ox = dcos(angle) * argument1;
 oy = dsin(angle) * argument1;
 
-// Abort:
-
-// Push:
-//player_set_animation("push");
-
 with (argument0)
 {
+    // Abort:
+    if ((!can_push || y - yprevious != 0) || place_meeting(x + ox, y - oy, par_terrain)) exit;
+
+    // Move object:
+    x += ox;
+    y -= oy;
 }
+
+// Move player:
+x += ox;
+y -= oy;

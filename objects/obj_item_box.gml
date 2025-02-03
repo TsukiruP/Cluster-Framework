@@ -7,76 +7,36 @@ applies_to=self
 /// Item Box Initialization
 
 event_inherited();
-
-// Image speed:
-image_speed = 0;
-
-// Hurtbox:
-set_hurtbox(13, 16, 12, 16);
-
-// Reaction:
 reaction_index = player_reaction_item_box;
-
-// Player handle:
-player_handle = noone;
-
-// Item id:
 item_id = ITEM_BONUS;
-#define Destroy_0
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Give Item
-
-if (instance_exists(player_handle))
-{
-    with (player_handle)
-    {
-        player_get_item(other.item_id);
-    }
-}
+hitbox_set_hurtbox(13, 16, 12, 16);
 #define Step_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
 applies_to=self
 */
-/// Replace Items
+/// Replace
 
 // Shields:
-switch (global.gameplay_shields)
+switch (game_get_config("gameplay_shields"))
 {
     // Adventure/Advance:
     case 1:
-        if (item_id == ITEM_FIRE || item_id == ITEM_BUBBLE)
-        {
-            item_id = ITEM_BASIC;
-        }
-
-        if (item_id == ITEM_LIGHTNING)
-        {
-            item_id = ITEM_MAGNETIC;
-        }
+        if (item_id == ITEM_FIRE || item_id == ITEM_BUBBLE) item_id = ITEM_BASIC;
+        if (item_id == ITEM_LIGHTNING) item_id = ITEM_MAGNETIC;
         break;
 
     // Oops, all basic!:
     case 2:
-        if (item_id >= ITEM_MAGNETIC && item_id <= ITEM_LIGHTNING)
-        {
-            item_id = ITEM_BASIC;
-        }
+        if (item_id >= ITEM_MAGNETIC && item_id <= ITEM_LIGHTNING) item_id = ITEM_BASIC;
         break;
 }
 
 // Debuffs:
-if (global.gameplay_debuffs == false)
+if (!game_get_config("gameplay_debuffs"))
 {
-    if (item_id == ITEM_SLOW || item_id == ITEM_PANIC || item_id == ITEM_SWAP)
-    {
-        item_id = ITEM_MINE;
-    }
+    if (item_id == ITEM_SLOW || item_id == ITEM_PANIC || item_id == ITEM_SWAP) item_id = ITEM_MINE;
 }
 #define Other_4
 /*"/*'/**//* YYD ACTION
@@ -86,20 +46,7 @@ applies_to=self
 */
 /// Field Initialization
 
-event_inherited();
-
-//field item_id: enum(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13)
-
-/*preview
-    var item_id, item_icon, item_box;
-
-    item_id = Field("item_id", 0);
-    item_icon = Sprite("spr_item_icon", item_id);
-    item_box = Sprite("spr_item_box", 1);
-
-    draw_sprite(item_icon, 0, x, y);
-    draw_sprite(item_box, 0, x, y);
-*/
+//field item_id: enum(ITEM_BONUS, ITEM_SUPER_BONUS, ITEM_RANDOM_BONUS, ITEM_BASIC, ITEM_MAGNETIC, ITEM_BUBBLE, ITEM_FIRE, ITEM_LIGHTNING, ITEM_INVIN, ITEM_SPEED, ITEM_MINE, ITEM_SLOW, ITEM_PANIC, ITEM_SWAP)
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -108,11 +55,5 @@ applies_to=self
 */
 /// Draw Item Box
 
-// Item icon:
 draw_sprite_ext(spr_item_icon, item_id, x, y, 1, 1, image_angle, c_white, 1);
-
-// Item box:
 draw_sprite_ext(spr_item_box, 1, x, y, 1, 1, image_angle, c_white, 1);
-
-// Collision:
-event_inherited();

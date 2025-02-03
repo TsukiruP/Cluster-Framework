@@ -1,5 +1,6 @@
 /// player_rotate_mask()
-// Rotates the player's mask along uneven ground; returns whether this was successful or not.
+/* Rotates the player's mask along uneven ground.
+Returns whether this was successful or not. */
 
 var difference;
 

@@ -1,7 +1,6 @@
 /// player_reset_air()
-// Sets the player into an aerial state.
+/* Sets the player into an aerial state. */
 
-// Splash:
 if (y_speed < 0)
 {
     player_surface_splash();
@@ -13,4 +12,3 @@ mask_rotation = angle;
 
 ground_id = noone;
 on_ground = false;
-on_surface = false;

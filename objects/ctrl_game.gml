@@ -1,106 +1,144 @@
+#define Create_0
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Room Initialization
+
+room_grid = ds_grid_create(9, 0);
+game_room_add(rm_debug, TRANS_FADE, "bgm_debug", obj_sky_sanctuary_parallax, "Sky Sanctuary");
+game_room_add(rm_basic_test_1, TRANS_CARD, "bgm_basic_test_1", obj_basic_test_parallax, "Basic Test", 1, 576, START_STANDBY);
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Game Initialization
+
+var i;
+
+randomize();
+
+game_debug = debug_mode;
+game_speed = 1;
+game_time = 0;
+
+checkpoint_x = -1;
+checkpoint_y = -1;
+checkpoint_time = -1;
+
+game_init_config();
+game_init_save();
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Controller Initialization
+
+instance_create_single(0, 0, ctrl_debug);
+instance_create_single(0, 0, ctrl_screen);
+instance_create_single(0, 0, ctrl_audio);
+instance_create_single(0, 0, ctrl_input);
+instance_create_single(0, 0, ctrl_text);
+instance_create_single(0, 0, ctrl_animation);
+transition_create(rm_debug);
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Indicator Initialization
+
+indicator_draw = false;
+indicator_time = 0;
 #define Step_1
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
 applies_to=self
 */
-/// Global Timers
+/// Time
 
-// Exit if the stage is paused:
-if (game_ispaused(ctrl_pause))
+if (indicator_draw)
 {
-    exit;
+    indicator_time += 1;
+
+    if (indicator_time >= 60)
+    {
+        indicator_draw = false;
+        indicator_time = 0;
+    }
 }
 
-// Stage timer:
-if (global.time_allow == true && !game_ispaused(ctrl_text))
-{
-    global.game_time += global.game_speed;
-}
+if (game_ispaused(mnu_pause)) exit;
 
-// Object timer:
-global.object_time += global.game_speed;
-
-// Floor timers:
-if (global.game_speed == 1)
-{
-    global.game_time = floor(global.game_time);
-    global.object_time = floor(global.object_time);
-}
-#define Step_2
+if (!instance_exists(ctrl_transition)) game_set_save("time", game_get_save("time") + 1);
+game_time += game_speed;
+#define Other_3
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
 applies_to=self
 */
-/// Pause
+/// Cleanup
 
-// Exit if there's no player 1:
-if (!instance_exists(player_get_instance(0)))
+var i;
+
+ds_grid_destroy(room_grid);
+ds_map_destroy(config_map);
+ds_list_destroy(keyboard_list);
+
+for (i = 0; i < ds_list_size(gamepad_list); i += 1)
 {
-    exit;
+    ds_list_destroy(ds_map_get(ds_list_find_value(gamepad_list, i), "input_list"));
+    ds_map_destroy(ds_list_find_value(gamepad_list, i));
 }
 
-if (!game_ispaused(ctrl_text) && global.pause_allow == true && !instance_exists(ctrl_pause) && input_get_check(INP_START, CHECK_PRESSED))
-{
-    var pause_fade;
-    
-    pause_fade = fade_create(0.6, 0.06, depth);
-    
-    with (instance_create(0, 0, ctrl_pause))
-    {
-        fade_handle = pause_fade;
-    }
-}
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Cull Instances
-
-if (instance_exists(ctrl_camera))
-{
-    // Deactivate objects:
-    instance_deactivate_object(par_culled);
-
-    // Activate region around view:
-    instance_activate_region(view_xview[view_current] - 64, view_yview[view_current] - 64, view_wview[view_current] + 128, view_hview[view_current] + 128, true);
-
-    // Activate region around players:
-    with (obj_player)
-    {
-        if (!in_view())
-        {
-            instance_activate_region(x - 64, y - 64, 128, 128, true);
-        }
-    }
-}
+ds_list_destroy(gamepad_list);
+ds_map_destroy(save_map);
+ds_list_destroy(character_list);
+ds_map_destroy(sonic_map);
 #define Other_5
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
 applies_to=self
 */
-/// Reset Game
+/// Reset Time
 
-global.game_speed = 1;
-global.game_time = 0;
-global.object_time = 0;
-global.game_rings = 0;
-global.game_score = 0;
-
-global.pause_allow = true;
+game_time = 0;
+#define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
 applies_to=self
 */
-/// Reset Animations
+/// Draw Indicator
 
-if (global.animation_grid != -1)
-{
-    global.animation_initialized = false;
-    ds_grid_destroy(global.animation_grid);
-    global.animation_grid = -1;
-}
+if (!indicator_draw) exit;
+
+// Stars:
+draw_sprite(spr_save_stars, time_sync(indicator_time, 4, sprite_get_number(spr_save_stars)), view_xview[view_current] + screen_get_width() - 27, view_yview[view_current] + screen_get_height() - 16);
+
+// Sonic:
+d3d_fog_trick(c_white);
+draw_sprite(spr_sonic_run_4, time_sync(indicator_time, 4, sprite_get_number(spr_sonic_run_4)), view_xview[view_current] + screen_get_width() - 27, view_yview[view_current] + screen_get_height() - 25);
+d3d_set_fog(false, c_black, 0, 0);
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Draw Debug
+
+if (!game_get_debug()) exit;
+
+var game_string;
+
+game_string = GAME_NAME + " " + string_format(GAME_VERSION, 1, 2);
+
+draw_set_font(global.font_system);
+draw_set2(fa_right, fa_bottom);
+draw_text(view_xview[view_current] + screen_get_width() - font_get_height(global.font_system) / 2, view_yview[view_current] + screen_get_height(), game_string + "#" + date_datetime_string(date_current_datetime()));
