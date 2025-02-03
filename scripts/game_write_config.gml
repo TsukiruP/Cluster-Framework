@@ -9,6 +9,7 @@ with (ctrl_game)
 
     game_config_write_key();
     game_config_write_gamepad();
+    if (!directory_exists(config_directory)) directory_create(config_directory);
 
     buffer_write_hex(config_buffer, ds_map_write(config_map));
     buffer_save(config_buffer, config_directory + "config.cfg");
