@@ -18,8 +18,6 @@ applies_to=self
 */
 /// Index
 
-var sequence_target;
-
 if (player_id.status_invin != INVIN_BUFF)
 {
     switch (player_id.status_shield)
