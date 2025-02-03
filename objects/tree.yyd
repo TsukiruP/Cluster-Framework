@@ -56,6 +56,7 @@
 		+Hints
 			|obj_hint_box
 			|obj_omochao
+		|obj_switch
 		+Water
 			|obj_water_mask
 			|obj_bubble_spawn
@@ -103,7 +104,6 @@
 	+Rainbow Rings
 		|par_rainbow_ring
 		|obj_rainbow_ring_overlay
-		|obj_rainbow_ring_left_up
 		|obj_rainbow_ring_left_down
 		|obj_rainbow_ring_right_up
 		|obj_rainbow_ring_right_down

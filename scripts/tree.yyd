@@ -391,6 +391,8 @@
 					|sequence_spring_diagonal
 				+Enemies
 					|sequence_spinner
+				+Switch
+					|sequence_switch_vertical_on
 			+Effects
 				+Player
 					|sequence_spin_dash
@@ -600,5 +602,4 @@
 	|draw_sprite_tiled_vertical
 	|draw_sprite_tiled_horizontal_yscale
 	|draw_backdrop_tiled_area
-	|player_skill_sonic
 	|player_skill_classic

@@ -49,7 +49,7 @@ transition_create
 room_set_view_all
 screen_set_window
 sequence_spinner
-player_skill_sonic
+sequence_switch_vertical_on
 sonic_state_homing
 pick_offset
 player_wall_push
