@@ -8,7 +8,7 @@ hitbox = argument1;
 side = argument2;
 
 
-if ((hitbox & HIT_SOLID) && side == ANGLE_DOWN)
+if ((hitbox & HIT_SOLID) && side == ANGLE_UP)
 {
     image_xscale = reaction_handle.image_xscale;
     x_speed = reaction_handle.force * image_xscale;

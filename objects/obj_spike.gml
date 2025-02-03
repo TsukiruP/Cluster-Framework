@@ -56,24 +56,24 @@ switch (orientation)
 {
     case ORIEN_HORIZONTAL:
         sprite_index = spr_spike_horizontal;
-        angle = ANGLE_LEFT;
+        angle = ANGLE_RIGHT;
         hitbox_set_hurtbox(16, 16, 8, 15);
 
         if (flip)
         {
             image_xscale = -1;
-            angle = ANGLE_RIGHT;
+            angle = ANGLE_LEFT;
         }
         break;
 
     default:
         sprite_index = spr_spike_vertical;
-        angle = ANGLE_DOWN;
+        angle = ANGLE_UP;
         hitbox_set_hurtbox(16, 8, 15, 15);
 
         if (flip)
         {
             image_yscale = -1;
-            angle = ANGLE_UP;
+            angle = ANGLE_DOWN;
         }
 }

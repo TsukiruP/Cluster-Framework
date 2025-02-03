@@ -20,7 +20,7 @@ if (script_exists(reaction))
     {
         var side;
 
-        side = angle_wrap(round(point_direction(x, y, reaction_handle.x, reaction_handle.y) / ANGLE_UP) * ANGLE_UP);
+        side = angle_wrap(round(point_direction(reaction_handle.x, reaction_handle.y, x, y) / ANGLE_UP) * ANGLE_UP);
         if (argument_count > 2) side = argument[2];
 
         if (!reaction_handle.reaction_mask || (reaction_handle.reaction_mask && (hitbox & HIT_SOLID)))
