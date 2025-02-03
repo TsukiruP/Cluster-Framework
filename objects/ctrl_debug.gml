@@ -21,34 +21,20 @@ if (!game_get_debug()) exit;
 
 with (obj_player)
 {
-    switch (keyboard_lastkey)
-    {
-        case vk_numpad2:
-            gravity_direction = 0;
-            break;
-
-        case vk_numpad4:
-            gravity_direction = 270;
-            break;
-
-        case vk_numpad6:
-            gravity_direction = 90;
-            break;
-
-        case vk_numpad8:
-            gravity_direction = 180;
-            break;
-    }
+    if (keyboard_check_pressed(vk_numpad2)) gravity_direction = 0;
+    if (keyboard_check_pressed(vk_numpad4)) gravity_direction = 270;
+    if (keyboard_check_pressed(vk_numpad6)) gravity_direction = 90;
+    if (keyboard_check_pressed(vk_numpad8)) gravity_direction = 180;
 }
 
-var info_char;
+var menu_left, menu_right, menu_direction;
 
-info_char = string_digits(keyboard_lastchar);
-if (string_length(info_char))
-{
-    if (keyboard_lastkey == vk_numpad2 || keyboard_lastkey == vk_numpad4 || keyboard_lastkey == vk_numpad6 || keyboard_lastkey == vk_numpad8) exit;
-    info_id = real(info_char) - 1;
-}
+menu_left = keyboard_check_pressed(vk_pageup);
+menu_right = keyboard_check_pressed(vk_pagedown);
+menu_direction = menu_right - menu_left;
+
+info_id += menu_direction;
+info_id = wrap(info_id, 0, 2);
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
