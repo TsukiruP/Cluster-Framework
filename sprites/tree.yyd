@@ -100,6 +100,124 @@
 			|spr_sonic_air_dash
 			|spr_sonic_stomp
 			|spr_sonic_peel_out
+		+Miles
+			+Default
+				|spr_miles_stand
+				|spr_miles_turn
+				|spr_miles_walk
+				|spr_miles_walk_fast
+				|spr_miles_jog
+				|spr_miles_jog_fast
+				|spr_miles_run
+				+Wait
+					|spr_miles_wait_leader
+					|spr_miles_wait_partner
+				+Tag
+					|spr_miles_stand_tag
+					|spr_miles_turn_tag
+					|spr_miles_walk_tag
+					|spr_miles_walk_fast_tag
+					|spr_miles_jog_tag
+				+Misc.
+					|spr_miles_ready
+					|spr_miles_land
+					|spr_miles_omochao
+			+Jump
+				|spr_miles_spin_flight
+				|spr_miles_spin_fall
+			+Look
+				|spr_miles_look
+				|spr_miles_look_tag
+			+Crouch
+				|spr_miles_crouch
+				|spr_miles_crouch_tag
+			|spr_miles_spin_dash
+			|spr_miles_roll
+			+Skid
+				|spr_miles_skid
+				|spr_miles_skid_fast
+				|spr_miles_skid_turn
+				|spr_miles_skid_tag
+			+Balance
+				|spr_miles_balance_back
+				|spr_miles_balance_front
+			|spr_miles_push
+			+Spring
+				|spr_miles_spring
+				|spr_miles_spring_tag
+			|spr_miles_breathe
+			+Goal
+				|spr_miles_goal
+				|spr_miles_goal_gold
+			|spr_miles_hurt
+			|spr_miles_death
+			+Tag Actions
+				|spr_miles_frog
+				|spr_miles_throw
+				|spr_miles_glide_carry
+			|spr_miles_tail_swipe
+			+Fly
+				|spr_miles_fly
+				|spr_miles_fly_turn
+				|spr_miles_fly_cancel
+				|spr_miles_swim
+				|spr_miles_swim_turn
+			+Boost
+				|spr_miles_boost
+				|spr_miles_boost_end
+			|spr_miles_tornado
+			|spr_miles_tails
+		+Knuckles
+			+Default
+				|spr_knuckles_stand
+				+Wait
+					|spr_knuckles_wait_short
+					|spr_knuckles_wait_long
+				|spr_knuckles_walk
+				|spr_knuckles_walk_fast
+				|spr_knuckles_jog
+				|spr_knuckles_jog_fast
+				|spr_knuckles_run
+				+Tag
+					|spr_knuckles_tag_stand
+					|spr_knuckles_tag_walk
+					|spr_knuckles_tag_walk_fast
+					|spr_knuckles_tag_jog
+			+Jump
+				|spr_knuckles_spin_flight
+				|spr_knuckles_spin_fall
+				|spr_knuckles_tag_jump
+			+Look
+				|spr_knuckles_look
+				|spr_knuckles_tag_look
+			+Crouch
+				|spr_knuckles_crouch
+				|spr_knuckles_tag_crouch
+			+Spin Dash
+				|spr_knuckles_spin_dash
+				|spr_knuckles_super_spin
+			|spr_knuckles_roll
+			+Skid
+				|spr_knuckles_skid
+				|spr_knuckles_tag_skid
+			|spr_knuckles_land
+			|spr_knuckles_hurt
+			|spr_knuckles_death
+			+Glide
+				|spr_knuckles_glide
+				|spr_knuckles_swim
+			+Climb
+				|spr_knuckles_climb
+				|spr_knuckles_climb_dash
+			|spr_knuckles_slide
+			+Misc.
+				|spr_knuckles_ready
+				|spr_knuckles_spring
+				|spr_knuckles_breathe
+				+Tag Actions
+					|spr_knuckles_leap
+					|spr_knuckles_fly_carry
+		+Amy
 		+Classic
 			|spr_classic_stand
 			|spr_classic_cliff
@@ -152,6 +270,8 @@
 			+Omochao
 				|spr_omochao_idle
 				|spr_omochao_sonic
+		+Switches
+			|spr_switch_platform
 		+Water
 			|spr_water_mask
 			|spr_water_surface
@@ -255,126 +375,7 @@
 	+Low
 	+High
 	+Masks
-	+Miles
-		+Default
-			|spr_miles_stand
-			|spr_miles_turn
-			|spr_miles_walk
-			|spr_miles_walk_fast
-			|spr_miles_jog
-			|spr_miles_jog_fast
-			|spr_miles_run
-			+Wait
-				|spr_miles_wait_leader
-				|spr_miles_wait_partner
-			+Tag
-				|spr_miles_stand_tag
-				|spr_miles_turn_tag
-				|spr_miles_walk_tag
-				|spr_miles_walk_fast_tag
-				|spr_miles_jog_tag
-			+Misc.
-				|spr_miles_ready
-				|spr_miles_land
-				|spr_miles_omochao
-		+Jump
-			|spr_miles_spin_flight
-			|spr_miles_spin_fall
-		+Look
-			|spr_miles_look
-			|spr_miles_look_tag
-		+Crouch
-			|spr_miles_crouch
-			|spr_miles_crouch_tag
-		|spr_miles_spin_dash
-		|spr_miles_roll
-		+Skid
-			|spr_miles_skid
-			|spr_miles_skid_fast
-			|spr_miles_skid_turn
-			|spr_miles_skid_tag
-		+Balance
-			|spr_miles_balance_back
-			|spr_miles_balance_front
-		|spr_miles_push
-		+Spring
-			|spr_miles_spring
-			|spr_miles_spring_tag
-		|spr_miles_breathe
-		+Goal
-			|spr_miles_goal
-			|spr_miles_goal_gold
-		|spr_miles_hurt
-		|spr_miles_death
-		+Tag Actions
-			|spr_miles_frog
-			|spr_miles_throw
-			|spr_miles_glide_carry
-		|spr_miles_tail_swipe
-		+Fly
-			|spr_miles_fly
-			|spr_miles_fly_turn
-			|spr_miles_fly_cancel
-			|spr_miles_swim
-			|spr_miles_swim_turn
-		+Boost
-			|spr_miles_boost
-			|spr_miles_boost_end
-		|spr_miles_tornado
-		|spr_miles_tails
-	+Knuckles
-		+Default
-			|spr_knuckles_stand
-			+Wait
-				|spr_knuckles_wait_short
-				|spr_knuckles_wait_long
-			|spr_knuckles_walk
-			|spr_knuckles_walk_fast
-			|spr_knuckles_jog
-			|spr_knuckles_jog_fast
-			|spr_knuckles_run
-			+Tag
-				|spr_knuckles_tag_stand
-				|spr_knuckles_tag_walk
-				|spr_knuckles_tag_walk_fast
-				|spr_knuckles_tag_jog
-		+Jump
-			|spr_knuckles_spin_flight
-			|spr_knuckles_spin_fall
-			|spr_knuckles_tag_jump
-		+Look
-			|spr_knuckles_look
-			|spr_knuckles_tag_look
-		+Crouch
-			|spr_knuckles_crouch
-			|spr_knuckles_tag_crouch
-		+Spin Dash
-			|spr_knuckles_spin_dash
-			|spr_knuckles_super_spin
-		|spr_knuckles_roll
-		+Skid
-			|spr_knuckles_skid
-			|spr_knuckles_tag_skid
-		|spr_knuckles_land
-		|spr_knuckles_hurt
-		|spr_knuckles_death
-		+Glide
-			|spr_knuckles_glide
-			|spr_knuckles_swim
-		+Climb
-			|spr_knuckles_climb
-			|spr_knuckles_climb_dash
-		|spr_knuckles_slide
-		+Misc.
-			|spr_knuckles_ready
-			|spr_knuckles_spring
-			|spr_knuckles_breathe
-			+Tag Actions
-				|spr_knuckles_leap
-				|spr_knuckles_fly_carry
-	+Amy
 	+Spikes
-	|spr_dash_ring_down
 	|spr_dash_ring_left
 	|spr_dash_ring_left_up
 	|spr_dash_ring_left_down
