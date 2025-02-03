@@ -16,45 +16,31 @@ switch (argument1)
         break;
 
     case ITEM_BASIC:
-        status_shield = SHIELD_BASIC;
-        status_shield_allow = true;
-        audio_play_sfx("snd_shield_basic");
+        player_set_status(STATUS_SHIELD, SHIELD_BASIC);
         break;
 
     case ITEM_MAGNETIC:
-        status_shield = SHIELD_MAGNETIC;
-        status_shield_allow = true;
-        audio_play_sfx("snd_shield_basic");
+        player_set_status(STATUS_SHIELD, SHIELD_MAGNETIC);
         break;
 
     case ITEM_BUBBLE:
-        status_shield = SHIELD_BUBBLE;
-        status_shield_allow = true;
-        audio_play_sfx("snd_shield_bubble");
+        player_set_status(STATUS_SHIELD, SHIELD_BUBBLE);
         break;
 
     case ITEM_FIRE:
-        status_shield = SHIELD_FIRE;
-        status_shield_allow = true;
-        audio_play_sfx("snd_shield_fire");
+        player_set_status(STATUS_SHIELD, SHIELD_FIRE);
         break;
 
     case ITEM_LIGHTNING:
-        status_shield = SHIELD_LIGHTNING;
-        status_shield_allow = true;
-        audio_play_sfx("snd_shield_lightning");
+        player_set_status(STATUS_SHIELD, SHIELD_LIGHTNING);
         break;
 
     case ITEM_INVIN:
-        status_invin = 2;
-        status_invin_alarm = 1380;
-        audio_play_jng("jng_invin");
+        player_set_status(STATUS_INVIN, INVIN_BUFF);
         break;
 
     case ITEM_SPEED:
-        status_speed = SPEED_UP;
-        status_speed_alarm = 900;
-        audio_play_jng("jng_speed");
+        player_set_status(STATUS_SPEED, SPEED_UP);
         break;
 
     case ITEM_MINE:
@@ -63,16 +49,11 @@ switch (argument1)
         break;
 
     case ITEM_SLOW:
-        if (status_invin < INVIN_BUFF)
-        {
-            status_speed = SPEED_SLOW;
-            status_speed_alarm = 1200;
-            if (!input_cpu) audio_stop_jng("jng_speed");
-        }
+        if (status_invin < INVIN_BUFF) player_set_status(STATUS_SPEED, SPEED_SLOW);
         break;
 
     case ITEM_PANIC:
-        if (status_invin < INVIN_BUFF) status_panic_alarm = 1200;
+        if (status_invin < INVIN_BUFF) player_set_status(STATUS_PANIC, 1200);
         break;
 
     case ITEM_SWAP:

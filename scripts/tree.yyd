@@ -560,23 +560,24 @@
 			|player_trail_color
 			|player_trail_draw
 		+Getters
-			|player_get_input
-			|player_get_animation
-			|player_get_animation_speed
-			|player_get_animation_variant
 			|player_get_hitbox
 			|player_get_stage_objects
 			|player_get_angle
 			|player_get_cliff
+			|player_get_input
+			|player_get_animation
+			|player_get_animation_speed
+			|player_get_animation_variant
 			|player_get_item
 		+Setters
 			|player_set_state
-			|player_set_physics
 			|player_set_radii
+			|player_set_physics
+			|player_set_ground
+			|player_set_status
 			|player_set_device
 			|player_set_input
 			|player_set_animation
-			|player_set_ground
 			|player_set_damage
 			|player_reset_input
 			|player_reset_air

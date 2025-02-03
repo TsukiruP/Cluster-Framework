@@ -472,3 +472,4 @@ game_get_save_id
 instance_nearest_dir_y
 game_set_save_id
 player_animation_jump
+player_set_status

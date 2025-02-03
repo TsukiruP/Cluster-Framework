@@ -551,6 +551,10 @@ if (!underwater)
     }
     else surface_time = 0;
 }
+else
+{
+    if (status_shield == SHIELD_FIRE || status_shield == SHIELD_LIGHTNING) status_shield = 0;
+}
 
 if (waterfall_draw && !instance_exists(waterfall_handle))
 {

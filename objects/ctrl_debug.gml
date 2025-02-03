@@ -34,22 +34,14 @@ with (obj_player)
     if (keyboard_check_pressed(vk_numpad4)) gravity_direction = 270;
     if (keyboard_check_pressed(vk_numpad6)) gravity_direction = 90;
     if (keyboard_check_pressed(vk_numpad8)) gravity_direction = 180;
-    if (keyboard_check_pressed(ord('1'))) status_shield = SHIELD_NONE;
-    if (keyboard_check_pressed(ord('2'))) status_shield = SHIELD_BASIC;
-    if (keyboard_check_pressed(ord('3'))) status_shield = SHIELD_MAGNETIC;
-    if (keyboard_check_pressed(ord('4'))) status_shield = SHIELD_BUBBLE;
-    if (keyboard_check_pressed(ord('5'))) status_shield = SHIELD_FIRE;
-    if (keyboard_check_pressed(ord('6'))) status_shield = SHIELD_LIGHTNING;
-    if (keyboard_check_pressed(ord('7')))
-    {
-        status_invin = INVIN_BUFF;
-        status_invin_alarm = 1380;
-    }
-    if (keyboard_check_pressed(ord('8')))
-    {
-        status_speed = SPEED_UP;
-        status_speed_alarm = 900;
-    }
+    if (keyboard_check_pressed(ord('1'))) player_set_status(STATUS_SHIELD, SHIELD_NONE);
+    if (keyboard_check_pressed(ord('2'))) player_set_status(STATUS_SHIELD, SHIELD_BASIC);
+    if (keyboard_check_pressed(ord('3'))) player_set_status(STATUS_SHIELD, SHIELD_MAGNETIC);
+    if (keyboard_check_pressed(ord('4'))) player_set_status(STATUS_SHIELD, SHIELD_BUBBLE);
+    if (keyboard_check_pressed(ord('5'))) player_set_status(STATUS_SHIELD, SHIELD_FIRE);
+    if (keyboard_check_pressed(ord('6'))) player_set_status(STATUS_SHIELD, SHIELD_LIGHTNING);
+    if (keyboard_check_pressed(ord('7'))) player_set_status(STATUS_INVIN, INVIN_BUFF);
+    if (keyboard_check_pressed(ord('8'))) player_set_status(STATUS_SPEED, SPEED_UP);
 }
 #define Draw_0
 /*"/*'/**//* YYD ACTION
