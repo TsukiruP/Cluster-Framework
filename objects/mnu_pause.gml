@@ -195,7 +195,7 @@ switch (pause_mode)
                         fade_handle.persistent = true;
                         fade_handle.fade_alpha = 1;
                         fade_handle.fade_target = 1;
-                        transition_handle.transition_id = TRANS_FADE;
+                        transition_handle.transition_index = TRANS_FADE;
                         transition_handle.transition_state = 1;
                         transition_handle.transition_room = rm_debug;
                         transition_handle.fade_handle = fade_handle;

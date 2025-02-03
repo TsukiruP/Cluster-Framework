@@ -186,7 +186,7 @@ gauge_x = lerp(-sprite_get_width(spr_hud_gauge), hud_x + 6, smoothstep(0, hud_ma
 
 with (stage_get_player(0))
 {
-    switch (character_id)
+    switch (character_index)
     {
         case CHAR_CLASSIC:
             other.gauge_hide = false;
@@ -373,23 +373,23 @@ status_count = 0;
 
 for (i = status_max; i > 0; i -= 1)
 {
-    var status_config, status_id, status_x;
+    var status_config, status_index, status_x;
 
     status_config = game_get_config("misc_status");
-    status_id = i - 1;
+    status_index = i - 1;
     status_x = view_xview[view_current] + status_bar_x + status_width * (status_max - 1 - status_count);
 
-    if (((status_config != 0 && status_active[status_id, 0]) || status_config == 2) && status_active[status_id, 1])
+    if (((status_config != 0 && status_active[status_index, 0]) || status_config == 2) && status_active[status_index, 1])
     {
         // Shadow:
-        draw_sprite_ext(spr_item_icon, status_icon[status_id], status_x + 1, view_yview[view_current] + 18, 1, 1, 0, c_black, 1);
+        draw_sprite_ext(spr_item_icon, status_icon[status_index], status_x + 1, view_yview[view_current] + 18, 1, 1, 0, c_black, 1);
 
         // Icon:
-        image_blend = pick(status_config == 2 && !status_active[status_id, 0], c_white, c_gray);
-        draw_sprite_ext(spr_item_icon, status_icon[status_id], status_x, view_yview[view_current] + 17, 1, 1, 0, image_blend, 1);
+        image_blend = pick(status_config == 2 && !status_active[status_index, 0], c_white, c_gray);
+        draw_sprite_ext(spr_item_icon, status_icon[status_index], status_x, view_yview[view_current] + 17, 1, 1, 0, image_blend, 1);
     }
 
-    if ((status_config == 1 && status_active[status_id, 0]) || status_config == 2) status_count += 1;
+    if ((status_config == 1 && status_active[status_index, 0]) || status_config == 2) status_count += 1;
 }
 
 draw_reset();

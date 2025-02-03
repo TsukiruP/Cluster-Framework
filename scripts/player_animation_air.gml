@@ -1,7 +1,7 @@
 /// player_animation_air()
 /* Sets the air animation. */
 
-switch (character_id)
+switch (character_index)
 {
     case CHAR_CLASSIC:
         break;

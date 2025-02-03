@@ -4,9 +4,9 @@ Tells the game controller to draw the autosave indicator. */
 
 with (ctrl_game)
 {
-    if (game_get_save_id() != -1)
+    if (game_get_save_index() != -1)
     {
-        game_write_save(game_get_save_id());
+        game_write_save(game_get_save_index());
         indicator_draw = true;
     }
 }

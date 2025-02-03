@@ -1,4 +1,4 @@
-/// game_save_write_skill(id)
+/// game_save_write_skill(index)
 /* Writes a skill map to the save map/ */
 
 with (ctrl_game)

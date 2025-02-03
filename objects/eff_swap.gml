@@ -27,4 +27,4 @@ applies_to=self
 */
 /// Draw Swap
 
-if (sprite_exists(sprite_index)) draw_sprite_ext(sprite_index, image_index + (8 * player_handle.character_id), x, y - 16, 1, 1, 0, c_white, 1);
+if (sprite_exists(sprite_index)) draw_sprite_ext(sprite_index, image_index + (8 * player_handle.character_index), x, y - 16, 1, 1, 0, c_white, 1);

@@ -1,4 +1,4 @@
-/// game_read_save(id)
+/// game_read_save(index)
 /* Reads a save file and applies it. */
 
 with (ctrl_game)
@@ -9,7 +9,7 @@ with (ctrl_game)
 
         save_temp = game_load_save_buffer(argument0);
         save_key = ds_map_find_first(save_map);
-        game_set_save_id(argument0);
+        game_set_save_index(argument0);
 
         for (i = 0; i < ds_map_size(save_map); i += 1)
         {

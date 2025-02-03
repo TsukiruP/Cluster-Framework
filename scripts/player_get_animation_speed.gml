@@ -1,7 +1,7 @@
 /// player_get_animation_speed()
 /* Returns animation speed. */
 
-switch (character_id)
+switch (character_index)
 {
     case CHAR_CLASSIC:
         switch (animation_current)

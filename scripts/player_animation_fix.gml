@@ -1,7 +1,7 @@
 /// player_animation_fix()
 /* Sets the current animation to avoid loading an animation that doesn't exist. */
 
-switch (character_id)
+switch (character_index)
 {
     // Classic:
     case CHAR_CLASSIC:
@@ -16,7 +16,7 @@ switch (character_id)
         {
             player_set_animation("spin_dash", 0);
         }
-        
+
         // Brake:
         if (animation_current == "brake_fast") player_set_animation("brake");
         break;

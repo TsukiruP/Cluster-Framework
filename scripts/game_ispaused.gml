@@ -10,7 +10,7 @@ with (ctrl_text) pause_text = (!ds_list_empty(body_list) || subject_string != ""
 pause_transition = false;
 with (ctrl_transition)
 {
-    pause_transition = ((transition_id == TRANS_CARD && (transition_state > 1 && transition_state < 4)) || (transition_id == TRANS_RETRY && transition_state == 4));
+    pause_transition = ((transition_index == TRANS_CARD && (transition_state > 1 && transition_state < 4)) || (transition_index == TRANS_RETRY && transition_state == 4));
 }
 
 pause_stage = false;

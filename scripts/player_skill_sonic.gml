@@ -2,9 +2,9 @@
 
 var skill_slam, skill_homing, skill_peel;
 
-skill_slam = game_save_get_skill(character_id, "slam");
-skill_homing = game_save_get_skill(character_id, "homing");
-skill_peel = game_save_get_skill(character_id, "peel");
+skill_slam = game_save_get_skill(character_index, "slam");
+skill_homing = game_save_get_skill(character_index, "homing");
+skill_peel = game_save_get_skill(character_index, "peel");
 
 if (skill_slam >= SKILL_BOUND_ATTACK && !on_ground && player_get_input(INP_DOWN, CHECK_HELD) && player_get_input(INP_AUX, CHECK_PRESSED))
 {
@@ -26,7 +26,7 @@ else if (on_ground && player_get_input(INP_AUX, CHECK_PRESSED))
 {
     var skill_ground;
 
-    skill_ground = game_save_get_skill(character_id, "ground");
+    skill_ground = game_save_get_skill(character_index, "ground");
 
     switch (skill_ground)
     {
@@ -51,13 +51,13 @@ else if (!on_ground)
     {
         var skill_air;
 
-        skill_air = game_save_get_skill(character_id, skill_key);
+        skill_air = game_save_get_skill(character_index, skill_key);
 
         if (skill_air <= SKILL_INSTA && status_shield_allow)
         {
             var skill_shield;
 
-            skill_shield = game_save_get_skill(character_id, "shield");
+            skill_shield = game_save_get_skill(character_index, "shield");
 
             if (skill_shield && status_shield >= SHIELD_BUBBLE) return player_routine_shield();
             else if (skill_air == SKILL_INSTA)

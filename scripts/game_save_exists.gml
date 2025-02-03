@@ -1,4 +1,4 @@
-/// game_save_exists(id)
+/// game_save_exists(index)
 /* Returns whether a save file exists. */
 
 with (ctrl_game)

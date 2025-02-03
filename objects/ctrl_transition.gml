@@ -10,7 +10,7 @@ preview = false;
 pause_ignore = false;
 load_skip = false;
 
-transition_id = TRANS_FADE;
+transition_index = TRANS_FADE;
 transition_state = 0;
 transition_alarm = 0;
 transition_room = room;
@@ -62,13 +62,13 @@ applies_to=self
 
 if (game_ispaused(mnu_pause) && !pause_ignore) exit;
 
-if ((transition_id == TRANS_MENU && transition_state < 2) || (transition_id == TRANS_CARD && transition_state < 4) || (transition_id == TRANS_RETRY && transition_state < 5)) curtain_frame = approach(curtain_frame, curtain_max_frame, 1);
+if ((transition_index == TRANS_MENU && transition_state < 2) || (transition_index == TRANS_CARD && transition_state < 4) || (transition_index == TRANS_RETRY && transition_state < 5)) curtain_frame = approach(curtain_frame, curtain_max_frame, 1);
 else curtain_frame = approach(curtain_frame, 0, 1);
 
-if (transition_id == TRANS_CARD && transition_state < 4 && curtain_frame == curtain_max_frame) banner_frame = approach(banner_frame, banner_max_frame, 1);
+if (transition_index == TRANS_CARD && transition_state < 4 && curtain_frame == curtain_max_frame) banner_frame = approach(banner_frame, banner_max_frame, 1);
 else banner_frame = approach(banner_frame, 0, 1);
 
-if ((transition_id == TRANS_CARD && ((transition_state < 4 && curtain_frame == curtain_max_frame) || (transition_state > 3))) || transition_id == TRANS_RETRY) zone_frame = approach(zone_frame, zone_max_frame, 1);
+if ((transition_index == TRANS_CARD && ((transition_state < 4 && curtain_frame == curtain_max_frame) || (transition_state > 3))) || transition_index == TRANS_RETRY) zone_frame = approach(zone_frame, zone_max_frame, 1);
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -77,11 +77,11 @@ applies_to=self
 */
 /// Run
 
-if ((game_ispaused(mnu_pause) && !pause_ignore) || (transition_id != TRANS_CARD && transition_id != TRANS_RETRY) || !instance_exists(stage_get_player(0))) exit;
+if ((game_ispaused(mnu_pause) && !pause_ignore) || (transition_index != TRANS_CARD && transition_index != TRANS_RETRY) || !instance_exists(stage_get_player(0))) exit;
 
-if (((transition_id == TRANS_CARD && transition_state > 3) || (transition_id == TRANS_RETRY && transition_state > 4)) && game_get_room_start() == START_RUN && transition_run != -1)
+if (((transition_index == TRANS_CARD && transition_state > 3) || (transition_index == TRANS_RETRY && transition_state > 4)) && game_get_room_start() == START_RUN && transition_run != -1)
 {
-    if ((transition_id == TRANS_RETRY && game_checkpoint_isset()) || stage_get_player(0).x >= game_get_room_run()) transition_run = -1;
+    if ((transition_index == TRANS_RETRY && game_checkpoint_isset()) || stage_get_player(0).x >= game_get_room_run()) transition_run = -1;
     else
     {
         with (obj_player)
@@ -101,7 +101,7 @@ applies_to=self
 
 if (game_ispaused(mnu_pause) && !pause_ignore) exit;
 
-if (transition_id != TRANS_RETRY) curtain_y = lerp(-15, screen_get_height() + 15, smoothstep(0, curtain_max_frame, curtain_frame));
+if (transition_index != TRANS_RETRY) curtain_y = lerp(-15, screen_get_height() + 15, smoothstep(0, curtain_max_frame, curtain_frame));
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -109,7 +109,7 @@ applies_to=self
 */
 /// Fade
 
-if (transition_id != TRANS_FADE) exit;
+if (transition_index != TRANS_FADE) exit;
 
 switch (transition_state)
 {
@@ -162,7 +162,7 @@ applies_to=self
 */
 /// Menu
 
-if ((game_ispaused(mnu_pause) && !pause_ignore) || transition_id != TRANS_MENU) exit;
+if ((game_ispaused(mnu_pause) && !pause_ignore) || transition_index != TRANS_MENU) exit;
 
 switch (transition_state)
 {
@@ -201,7 +201,7 @@ applies_to=self
 */
 /// Title Card
 
-if ((game_ispaused(mnu_pause) && !pause_ignore) || transition_id != TRANS_CARD) exit;
+if ((game_ispaused(mnu_pause) && !pause_ignore) || transition_index != TRANS_CARD) exit;
 
 if (game_get_room_start() == START_STANDBY && transition_state > 3 && instance_exists(stage_get_player(0)))
 {
@@ -291,7 +291,7 @@ switch (transition_state)
                 with (obj_player)
                 {
                     if (other.curtain_y <= floor(y - y_radius) - view_yview[view_current] && animation_previous != "standby") player_set_animation("standby");
-                    if (player_id == 0 && animation_previous == "standby") transition_next = true;
+                    if (player_index == 0 && animation_previous == "standby") transition_next = true;
                 }
                 break;
 
@@ -321,7 +321,7 @@ applies_to=self
 */
 /// Retry
 
-if ((game_ispaused(mnu_pause) && !pause_ignore) || transition_id != TRANS_RETRY) exit;
+if ((game_ispaused(mnu_pause) && !pause_ignore) || transition_index != TRANS_RETRY) exit;
 
 if (transition_state < 2 && instance_exists(stage_get_player(0)) && input_get_check(INP_ANY, CHECK_PRESSED)) transition_state = 2;
 
@@ -422,7 +422,7 @@ if (game_get_room_water() != -1)
     }
 }
 
-if (transition_id != TRANS_RETRY && instance_exists(stage_get_player(0)))
+if (transition_index != TRANS_RETRY && instance_exists(stage_get_player(0)))
 {
     game_set_save("stage", room);
     game_save_auto();
@@ -441,7 +441,7 @@ if (!text_get_clear())
 }
 else
 {
-    transition_state = pick(transition_id, 2, 2, 3, 2);
+    transition_state = pick(transition_index, 2, 2, 3, 2);
     transition_alarm = 0;
 }
 #define Draw_0
@@ -452,7 +452,7 @@ applies_to=self
 */
 /// Draw Menu
 
-if (transition_id != TRANS_MENU) exit;
+if (transition_index != TRANS_MENU) exit;
 
 // Curtain:
 draw_sprite(spr_transition_curtain, 0, view_xview[view_current], view_yview[view_current] + curtain_y);
@@ -463,7 +463,7 @@ applies_to=self
 */
 /// Draw Title Card
 
-if (transition_id != TRANS_CARD) exit;
+if (transition_index != TRANS_CARD) exit;
 
 // Curtain:
 draw_sprite(spr_transition_curtain, 0, view_xview[view_current], view_yview[view_current] + curtain_y);
@@ -496,7 +496,7 @@ applies_to=self
 */
 /// Draw Retry
 
-if (transition_id != TRANS_RETRY) exit;
+if (transition_index != TRANS_RETRY) exit;
 
 // Curtain:
 draw_sprite_tiled_extra(spr_transition_curtain, 1, view_xview[view_current] + curtain_scroll, view_yview[view_current] + curtain_y - sprite_get_height(spr_transition_curtain), 1, 1, 0, c_white, 1, 0, 1);

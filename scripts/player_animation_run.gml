@@ -4,7 +4,7 @@
 // Abort if in the pushing animation:
 if (animation_current == "push" && image_xscale == input_x_direction) exit;
 
-switch (character_id)
+switch (character_index)
 {
     case CHAR_CLASSIC:
         player_set_animation(pick(abs(x_speed) >= 6.00, "run_0", "run_1"));

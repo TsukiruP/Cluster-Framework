@@ -1,4 +1,4 @@
-/// game_save_read_skill(id)
+/// game_save_read_skill(index)
 /* Copies a skill map. */
 
 with (ctrl_game)

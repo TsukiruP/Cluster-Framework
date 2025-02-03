@@ -1,4 +1,4 @@
-/// game_save_reset_skill(id)
+/// game_save_reset_skill(index)
 /* Resets a skill map. */
 
 with (ctrl_game)

@@ -6,7 +6,7 @@ applies_to=self
 */
 /// Debug Initialization
 
-info_id = 0;
+info_index = 0;
 #define Step_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -25,8 +25,8 @@ menu_left = keyboard_check_pressed(vk_pageup);
 menu_right = keyboard_check_pressed(vk_pagedown);
 menu_direction = menu_right - menu_left;
 
-info_id += menu_direction;
-info_id = wrap(info_id, 0, 2);
+info_index += menu_direction;
+info_index = wrap(info_index, 0, 2);
 
 with (obj_player)
 {
@@ -90,7 +90,7 @@ with (obj_player)
     draw_hitbox(attackbox_left, attackbox_top, attackbox_right, attackbox_bottom, attackbox_offset_x, attackbox_offset_y, mask_rotation, c_green);
 
     // Homing range:
-    if (game_save_get_skill(character_id, "homing") && character_id == CHAR_SONIC)
+    if (game_save_get_skill(character_index, "homing") && character_index == CHAR_SONIC)
     {
         draw_line(x_int, y_int, x_int + lengthdir_x(homing_range * image_xscale, mask_rotation + 45), y_int + lengthdir_y(homing_range * image_xscale, mask_rotation + 45));
         draw_line(x_int, y_int, x_int + lengthdir_x(homing_range * image_xscale, mask_rotation - 45), y_int + lengthdir_y(homing_range * image_xscale, mask_rotation - 45));
@@ -117,12 +117,12 @@ with (stage_get_player(0))
     info_x = view_xview[view_current] + 10;
     info_y = view_yview[view_current] + screen_get_height() / 2;
 
-    switch (other.info_id)
+    switch (other.info_index)
     {
         case 1:
-            info_string = "Character: " + pick(character_id, "Sonic", "Miles", "Knuckles", "Amy", "Classic") + "#";
+            info_string = "Character: " + pick(character_index, "Sonic", "Miles", "Knuckles", "Amy", "Classic") + "#";
 
-            switch (character_id)
+            switch (character_index)
             {
                 case CHAR_SONIC:
                     info_string +=
@@ -187,7 +187,7 @@ applies_to=self
 */
 /// Write Save
 
-if (game_get_save_id() != -1) game_write_save(game_get_save_id());
+if (game_get_save_index() != -1) game_write_save(game_get_save_index());
 #define KeyPress_117
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -196,5 +196,5 @@ applies_to=self
 */
 /// Read Save
 
-if (game_get_save_id() == -1) game_set_save_id(0);
-game_read_save(game_get_save_id());
+if (game_get_save_index() == -1) game_set_save_index(0);
+game_read_save(game_get_save_index());

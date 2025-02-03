@@ -1,9 +1,9 @@
-/// player_set_device(id);
+/// player_set_device(index);
 /* Sets the player's input array. */
 
 var i, j, player_device;
 
-player_device = pick(player_id > 0, DEV_USER, DEV_GAMEPAD0 + player_id);
+player_device = pick(player_index > 0, DEV_USER, DEV_GAMEPAD0 + player_index);
 
 for (i = INP_UP; i <= INP_ALT; i += 1)
 {

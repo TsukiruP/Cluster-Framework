@@ -1,4 +1,4 @@
-/// stage_get_player(id)
+/// stage_get_player(index)
 /* Returns a stage player. */
 
 with (ctrl_stage)

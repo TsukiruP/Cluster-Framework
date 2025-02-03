@@ -78,8 +78,8 @@
 				|game_get_time
 				|game_get_interface_color
 				|game_get_save_count
-				|game_get_save_id
-				|game_set_save_id
+				|game_get_save_index
+				|game_set_save_index
 		+Screen
 			|screen_is_equal
 			|screen_get_width

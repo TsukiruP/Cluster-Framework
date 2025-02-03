@@ -8,7 +8,7 @@ status_insta_alarm = 8;
 player_set_animation("insta");
 audio_play_sfx("snd_shield_insta", true);
 
-if (character_id == CHAR_SONIC || character_id == CHAR_CLASSIC)
+if (character_index == CHAR_SONIC || character_index == CHAR_CLASSIC)
 {
     with (instance_create(x, y, eff_player))
     {

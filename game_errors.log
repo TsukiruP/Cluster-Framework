@@ -1,0 +1,9 @@
+ERROR in
+action number 1
+of Begin Step Event
+for object obj_switch:
+
+Error in code at line 3:   
+if (game_get_time() >= target_time && active && sequeuence_index != off_index) sequence_set(off_index);                                                   ^at position 50: Unknown variable sequeuence_index
+
+

@@ -1,8 +1,8 @@
 /// debug_option_player1(return)
 
-var character_id;
+var character_index;
 
-character_id = 1;
+character_index = 1;
 
 switch (argument0)
 {
@@ -12,11 +12,11 @@ switch (argument0)
 
     // Value:
     case 1:
-        return pick_offset(game_save_get_character(character_id), -1, "None", "Sonic", "Miles", "Knuckles", "Amy", "Classic");
+        return pick_offset(game_save_get_character(character_index), -1, "None", "Sonic", "Miles", "Knuckles", "Amy", "Classic");
 
     // Confirm:
     case 2:
-        switch (game_save_get_character(character_id))
+        switch (game_save_get_character(character_index))
         {
             // Sonic:
             case CHAR_SONIC:
@@ -31,7 +31,7 @@ switch (argument0)
 
     // Update:
     case 3:
-        game_save_set_character(character_id, wrap(game_save_get_character(character_id) + menu_x_direction, -1, CHAR_CLASSIC));
+        game_save_set_character(character_index, wrap(game_save_get_character(character_index) + menu_x_direction, -1, CHAR_CLASSIC));
         return true;
 
     // Undefined:

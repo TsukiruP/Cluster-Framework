@@ -3,7 +3,7 @@
 
 if (!input_cpu || (input_cpu && input_cpu_gamepad_alarm > 0))
 {
-    switch (character_id)
+    switch (character_index)
     {
         case CHAR_SONIC:
             if (sonic_skill_slam()) return true;

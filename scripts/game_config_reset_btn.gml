@@ -1,4 +1,4 @@
-/// game_config_reset_btn(id)
+/// game_config_reset_btn(index)
 /* Resets gamepad list. */
 
 with (ctrl_game)

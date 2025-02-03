@@ -7,7 +7,7 @@ applies_to=self
 /// Bubble Spawn Initialization
 
 event_inherited();
-cycle_id = 0;
+cycle_index = 0;
 cycle_state = 0;
 cycle_frequency = 0;
 cycle_count = 0;
@@ -78,7 +78,7 @@ if (cycle_state == 0)
         cycle_alarm -= 1;
         if (cycle_alarm == 0)
         {
-            cycle_id = irandom_range(0, 3);
+            cycle_index = irandom_range(0, 3);
             cycle_state = 1;
             cycle_count = 0;
             bubble_large = false;
@@ -105,7 +105,7 @@ if (cycle_state == 1)
             bubble_reset = (cycle_count mod cycle_frequency != 0);
         }
 
-        if (bubble_reset) bubble_size = cycle_set[cycle_id, bubble_count];
+        if (bubble_reset) bubble_size = cycle_set[cycle_index, bubble_count];
         else bubble_large = true;
 
         with (instance_create(x + irandom_range(-8, 8), y, obj_bubble))

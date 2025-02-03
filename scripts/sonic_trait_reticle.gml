@@ -27,13 +27,13 @@ switch (state_current)
 
 if (!homing_allow || spring_alarm != 0 || !input_allow || (input_cpu && input_cpu_gamepad_alarm == 0)) exit;
 
-var skill_id;
+var skill_index;
 
-skill_id = game_save_get_skill(character_id, "homing");
+skill_index = game_save_get_skill(character_index, "homing");
 
 if (!player_get_input(INP_ALT, CHECK_HELD))
 {
-    if ((skill_id >= HOMING_ADVENTURE && !on_ground) || skill_id == HOMING_FRONTIERS)
+    if ((skill_index >= HOMING_ADVENTURE && !on_ground) || skill_index == HOMING_FRONTIERS)
     {
         var i;
 

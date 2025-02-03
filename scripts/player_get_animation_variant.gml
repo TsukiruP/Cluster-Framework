@@ -20,13 +20,13 @@ switch (animation_current)
     case "wait":
         if (animation_changed)
         {
-            if (instance_number(obj_player) > 1) return pick(player_id > 0, 0, 1);
+            if (instance_number(obj_player) > 1) return pick(player_index > 0, 0, 1);
             else return choose(0, 1);
         }
         else return animation_variant;
 
     case "death":
-        if (character_id == CHAR_CLASSIC && drown) return 1;
+        if (character_index == CHAR_CLASSIC && drown) return 1;
 
 }
 

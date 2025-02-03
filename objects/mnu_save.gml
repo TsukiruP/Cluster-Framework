@@ -122,11 +122,11 @@ for (i = 0; i < page_count; i += 1)
     // Saves:
     for (j = 0; j < save_count; j += 1)
     {
-        var save_id, save_string, save_indent, save_offset, save_x1, save_y1, save_x2, save_y2, page_offset;
+        var save_index, save_string, save_indent, save_offset, save_x1, save_y1, save_x2, save_y2, page_offset;
 
         // Save string:
-        save_id = (save_max * i) + j;
-        save_string = "save" + string(save_id);
+        save_index = (save_max * i) + j;
+        save_string = "save" + string(save_index);
 
         // Indent:
         save_indent = 0;
@@ -172,7 +172,7 @@ for (i = 0; i < page_count; i += 1)
             save_time = ds_map_get(save_preview_map, save_string + "_time");
 
             // Default to slot number:
-            if (save_name == "") save_name = "Slot " + string(save_id);
+            if (save_name == "") save_name = "Slot " + string(save_index);
 
             // Character:
             draw_sprite_ext(spr_save_character, save_character, save_x1 - 8, save_y1 - save_height / 2, 1, 1, 0, c_white, 0.6);

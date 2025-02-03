@@ -1,4 +1,4 @@
-/// game_save_get_skill(id, skill)
+/// game_save_get_skill(index, skill)
 /* Returns a skill from a skill map. */
 
 with (ctrl_game)

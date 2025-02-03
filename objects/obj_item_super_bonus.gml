@@ -9,4 +9,4 @@ applies_to=self
 event_inherited();
 
 // Item id:
-item_id = ITEM_SUPER_BONUS;
+item_index = ITEM_SUPER_BONUS;

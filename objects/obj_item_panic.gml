@@ -9,4 +9,4 @@ applies_to=self
 event_inherited();
 
 // Item id:
-item_id = ITEM_PANIC;
+item_index = ITEM_PANIC;

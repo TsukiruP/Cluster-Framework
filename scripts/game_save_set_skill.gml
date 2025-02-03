@@ -1,4 +1,4 @@
-/// game_save_set_skill(id, skill, value)
+/// game_save_set_skill(index, skill, value)
 /* Sets a skill in a skill map. */
 
 with (ctrl_game)

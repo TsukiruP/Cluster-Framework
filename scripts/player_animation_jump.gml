@@ -1,7 +1,7 @@
 /// player_animation_jump()
 /* Sets the jump animation. */
 
-switch (character_id)
+switch (character_index)
 {
     case CHAR_CLASSIC:
         player_set_animation("roll");

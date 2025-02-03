@@ -1,7 +1,7 @@
 /// player_animation_spring()
 /* Sets the spring animation. */
 
-switch (character_id)
+switch (character_index)
 {
     case CHAR_CLASSIC:
         player_set_animation(pick(spring_angle != ANGLE_DOWN && spring_alarm > 0, "run_0", "spring"));

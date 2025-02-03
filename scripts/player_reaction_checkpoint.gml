@@ -14,33 +14,33 @@ if (hitbox & HIT_COLLISION)
         {
             if (game_get_config("gameplay_bonuses") && stage_get_rings() >= 20)
             {
-                var item_id;
+                var item_index;
 
-                item_id = -1;
+                item_index = -1;
 
                 switch (stage_get_rings() div 20)
                 {
                     case 1:
-                        item_id = ITEM_BONUS;
+                        item_index = ITEM_BONUS;
                         break;
 
                     case 2:
-                        item_id = ITEM_SUPER_BONUS;
+                        item_index = ITEM_SUPER_BONUS;
                         break;
 
                     case 3:
-                        item_id = ITEM_RANDOM_BONUS;
+                        item_index = ITEM_RANDOM_BONUS;
                         break;
 
                     case 4:
-                        item_id = ITEM_SPEED;
+                        item_index = ITEM_SPEED;
                         break;
 
                     default:
-                        if (status_shield == SHIELD_NONE) item_id = choose(ITEM_BASIC, ITEM_MAGNETIC);
+                        if (status_shield == SHIELD_NONE) item_index = choose(ITEM_BASIC, ITEM_MAGNETIC);
                 }
 
-                player_get_item(reaction_handle, item_id);
+                player_get_item(reaction_handle, item_index);
             }
 
             audio_play_sfx("snd_checkpoint", true);

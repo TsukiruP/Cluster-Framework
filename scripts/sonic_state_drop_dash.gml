@@ -68,7 +68,7 @@ switch (argument0)
             else return player_set_state(state_previous, false)
         }
 
-        if (game_save_get_skill(character_id, "slam") == SKILL_BOUND_ATTACK && drop_dash_alarm == 0 && player_get_input(INP_DOWN, CHECK_HELD) && player_get_input(INP_AUX, CHECK_PRESSED))
+        if (game_save_get_skill(character_index, "slam") == SKILL_BOUND_ATTACK && drop_dash_alarm == 0 && player_get_input(INP_DOWN, CHECK_HELD) && player_get_input(INP_AUX, CHECK_PRESSED))
         {
             if (y_speed < bound_speed)
             {

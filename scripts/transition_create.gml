@@ -7,10 +7,10 @@ transition = instance_create(0, 0, ctrl_transition);
 
 with (transition)
 {
-    transition_id = game_get_room_transition(argument0);
+    transition_index = game_get_room_transition(argument0);
     transition_room = argument0;
     transition_run = game_get_room_run(argument0);
-    if (argument_count > 1) transition_id = argument[1];
+    if (argument_count > 1) transition_index = argument[1];
     if (argument_count > 2) preview = argument[2];
 
     if (!preview)

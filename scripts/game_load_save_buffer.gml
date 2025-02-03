@@ -1,4 +1,4 @@
-/// game_load_save_buffer(id)
+/// game_load_save_buffer(index)
 /* Returns a ds map of the loaded save. */
 
 with (ctrl_game)

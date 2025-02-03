@@ -1,4 +1,4 @@
-/// game_write_save(id)
+/// game_write_save(index)
 /* Writes the save map to file. */
 
 with (ctrl_game)

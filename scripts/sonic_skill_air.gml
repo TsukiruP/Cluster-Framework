@@ -11,24 +11,24 @@ if (!on_ground)
 
     if (skill_key != "")
     {
-        var skill_id;
+        var skill_index;
 
-        skill_id = game_save_get_skill(character_id, skill_key);
+        skill_index = game_save_get_skill(character_index, skill_key);
 
-        if (skill_id <= SKILL_INSTA && status_shield_allow)
+        if (skill_index <= SKILL_INSTA && status_shield_allow)
         {
             var skill_shield;
 
-            skill_shield = game_save_get_skill(character_id, "shield");
+            skill_shield = game_save_get_skill(character_index, "shield");
 
             if (skill_shield && status_shield >= SHIELD_BUBBLE) return player_routine_shield();
-            else if (skill_id == SKILL_INSTA)
+            else if (skill_index == SKILL_INSTA)
             {
                 player_routine_insta();
                 return true;
             }
         }
-        else if (skill_id == SKILL_AIR_DASH && air_dash_allow)
+        else if (skill_index == SKILL_AIR_DASH && air_dash_allow)
         {
             x_speed += 2.25 * image_xscale;
             y_speed  = 0;
@@ -40,7 +40,7 @@ if (!on_ground)
         }
         else if (skill_key == "air_jump")
         {
-            if (skill_id == SKILL_DROP_DASH) return player_set_state(sonic_state_drop_dash);
+            if (skill_index == SKILL_DROP_DASH) return player_set_state(sonic_state_drop_dash);
         }
     }
 }

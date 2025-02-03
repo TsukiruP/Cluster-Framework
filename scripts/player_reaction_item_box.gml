@@ -11,7 +11,7 @@ if ((hitbox & HIT_COLLISION) || (hitbox & HIT_ATTACK))
     if (!input_cpu || (input_cpu && input_cpu_gamepad_alarm > 0))
     {
         sonic_routine_homing();
-        player_get_item(reaction_handle, reaction_handle.item_id);
+        player_get_item(reaction_handle, reaction_handle.item_index);
         audio_play_sfx("snd_destroy", true);
 
         with (reaction_handle)

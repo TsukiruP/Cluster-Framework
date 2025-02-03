@@ -3,15 +3,15 @@
 
 with (ctrl_input)
 {
-    var input_id, input_device;
+    var input_index, input_device;
 
-    input_id = argument0;
+    input_index = argument0;
     input_device = DEV_USER;
     if (argument_count > 2) input_device = argument[2];
 
     if (input_device == DEV_KEYBOARD)
     {
-        if (input_id == INP_ANY)
+        if (input_index == INP_ANY)
         {
             switch (argument1)
             {
@@ -26,16 +26,16 @@ with (ctrl_input)
             }
         }
 
-        return input_keyboard[input_id, argument1];
+        return input_keyboard[input_index, argument1];
     }
     else if (input_device >= DEV_GAMEPAD0)
     {
-        var i, gamepad_id;
+        var i, gamepad_index;
 
         input_device -= DEV_GAMEPAD0;
-        gamepad_id = gamepad_device[input_device, 0];
+        gamepad_index = gamepad_device[input_device, 0];
 
-        if (input_id == INP_ANY)
+        if (input_index == INP_ANY)
         {
             for (i = PAD_FACE1; i <= PAD_SHARE; i += 1)
             {
@@ -45,15 +45,15 @@ with (ctrl_input)
             return false;
         }
 
-        return input_gamepad[input_id, argument1 + (input_device * 3)];
+        return input_gamepad[input_index, argument1 + (input_device * 3)];
     }
     else
     {
-        if (input_id == INP_ANY)
+        if (input_index == INP_ANY)
         {
-            return (input_get_check(input_id, argument1, DEV_KEYBOARD) || input_get_check(input_id, argument1, DEV_GAMEPAD0));
+            return (input_get_check(input_index, argument1, DEV_KEYBOARD) || input_get_check(input_index, argument1, DEV_GAMEPAD0));
         }
 
-        return input_user[input_id, argument1];
+        return input_user[input_index, argument1];
     }
 }

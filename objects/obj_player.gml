@@ -9,7 +9,7 @@ applies_to=self
 image_speed = 0;
 gravity_direction = 0;
 
-player_id = 0;
+player_index = 0;
 
 top_speed = 6;
 max_speed = 16;
@@ -86,7 +86,7 @@ applies_to=self
 */
 /// Character Initialization
 
-character_id = CHAR_SONIC;
+character_index = CHAR_SONIC;
 
 swap_alarm = 0;
 player_reset_status();
@@ -374,7 +374,7 @@ if (input_allow)
 
             for (i = 0; i <= INP_AUX; i += 1)
             {
-                if (input_get_check(i, CHECK_HELD, DEV_GAMEPAD0 + player_id)) input_cpu_gamepad_alarm = 600;
+                if (input_get_check(i, CHECK_HELD, DEV_GAMEPAD0 + player_index)) input_cpu_gamepad_alarm = 600;
             }
         }
 
@@ -436,7 +436,7 @@ if (game_ispaused()) exit;
 
 player_trait_swap();
 
-switch (character_id)
+switch (character_index)
 {
     // Sonic:
     case CHAR_SONIC:
@@ -481,7 +481,7 @@ applies_to=self
 */
 /// Effects
 
-if (state_current != player_state_death) depth = player_id;
+if (state_current != player_state_death) depth = player_index;
 
 if (state_current == player_state_spin_dash && !instance_exists(spin_dash_handle))
 {
@@ -587,10 +587,10 @@ applies_to=self
 */
 /// ID
 
-if (stage_get_player(player_id) != id)
+if (stage_get_player(player_index) != id)
 {
-    player_id = stage_find_player();
-    input_cpu = (player_id > 0);
+    player_index = stage_find_player();
+    input_cpu = (player_index > 0);
 }
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -757,7 +757,7 @@ switch (animation_current)
 
     case "spring_flight":
     case "spring_fall":
-        if (character_id != CHAR_CLASSIC && spring_angle != ANGLE_DOWN && spring_alarm > 0) image_angle = angle_wrap(spring_angle + gravity_direction - 90);
+        if (character_index != CHAR_CLASSIC && spring_angle != ANGLE_DOWN && spring_alarm > 0) image_angle = angle_wrap(spring_angle + gravity_direction - 90);
         else image_angle = approach_angle(image_angle, gravity_direction, 4);
         break;
 
@@ -765,7 +765,7 @@ switch (animation_current)
         if (on_ground) image_angle = angle;
         else image_angle = approach_angle(image_angle, gravity_direction, 4);
 
-        if (character_id == CHAR_CLASSIC)
+        if (character_index == CHAR_CLASSIC)
         {
             if (on_ground)
             {

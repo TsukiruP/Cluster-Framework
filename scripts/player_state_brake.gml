@@ -4,7 +4,7 @@
 switch (argument0)
 {
     case STATE_START:
-        if ((!game_get_config("advance_brake") || character_id == CHAR_CLASSIC) && x_speed != 0) image_xscale = sign(x_speed);
+        if ((!game_get_config("advance_brake") || character_index == CHAR_CLASSIC) && x_speed != 0) image_xscale = sign(x_speed);
         if (abs(x_speed) >= 6.00) player_set_animation("brake_fast");
         else player_set_animation("brake");
         break;
@@ -22,7 +22,7 @@ switch (argument0)
                     {
                         x_speed = deceleration * input_x_direction;
 
-                        if (game_get_config("advance_turn") && character_id != CHAR_CLASSIC && image_xscale != sign(x_speed))
+                        if (game_get_config("advance_turn") && character_index != CHAR_CLASSIC && image_xscale != sign(x_speed))
                         {
                             player_set_animation("turn_brake");
                             return player_set_state(player_state_turn);
@@ -36,7 +36,7 @@ switch (argument0)
         }
         else
         {
-            if (game_get_config("advance_brake") && character_id != CHAR_CLASSIC) return player_set_state(player_state_run);
+            if (game_get_config("advance_brake") && character_index != CHAR_CLASSIC) return player_set_state(player_state_run);
             x_speed -= min(abs(x_speed), acceleration) * sign(x_speed);
             if (player_routine_roll()) return true;
         }

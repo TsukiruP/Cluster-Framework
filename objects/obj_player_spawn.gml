@@ -25,7 +25,7 @@ for (i = 0; i < PLAYER_COUNT; i += 1)
 
         with (stage_get_player(i))
         {
-            character_id = game_save_get_character(i);
+            character_index = game_save_get_character(i);
             input_allow = false;
 
             if (i == 0)

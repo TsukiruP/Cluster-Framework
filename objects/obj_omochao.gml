@@ -30,7 +30,7 @@ with (player_handle)
 
     if (!hint_allow)
     {
-        switch (character_id)
+        switch (character_index)
         {
             case CHAR_SONIC:
                 omochao_index = spr_omochao_sonic;

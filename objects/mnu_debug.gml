@@ -185,17 +185,17 @@ draw_rect(view_xview[view_current] + screen_get_width() / 2 - 81, view_yview[vie
 // Text:
 for (i = 0; i < min(ds_list_size(menu_list), 4); i += 1)
 {
-    var option_id, option_text, option_value, option_x, option_y;
+    var option_index, option_text, option_value, option_x, option_y;
 
-    option_id = i + menu_scroll;
-    option_text = script_execute(ds_list_find_value(menu_list, option_id), 0);
-    option_value = script_execute(ds_list_find_value(menu_list, option_id), 1);
+    option_index = i + menu_scroll;
+    option_text = script_execute(ds_list_find_value(menu_list, option_index), 0);
+    option_value = script_execute(ds_list_find_value(menu_list, option_index), 1);
     option_x = view_xview[view_current] + screen_get_width() / 2;
     option_y = view_yview[view_current] + screen_get_height() / 2 - 41 + font_height * i;
 
     // Font:
     draw_set_font(global.font_system);
-    draw_set1(pick(menu_option == option_id, c_gray, c_white), 1);
+    draw_set1(pick(menu_option == option_index, c_gray, c_white), 1);
     draw_set_halign(fa_center);
 
     if (!is_undefined(option_value))

@@ -3,10 +3,10 @@
 
 if (on_ground && x_speed == 0 && player_get_input(INP_UP, CHECK_HELD) && player_get_input(INP_JUMP, CHECK_PRESSED))
 {
-    var skill_id;
+    var skill_index;
 
-    skill_id = game_save_get_skill(character_id, "peel");
-    if (skill_id) return player_set_state(sonic_state_peel_out);
+    skill_index = game_save_get_skill(character_index, "peel");
+    if (skill_index) return player_set_state(sonic_state_peel_out);
 }
 
 return false;

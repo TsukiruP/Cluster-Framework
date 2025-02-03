@@ -1,4 +1,4 @@
-/// game_delete_save(id)
+/// game_delete_save(index)
 /* Deletes a save file. */
 
 with (ctrl_game)

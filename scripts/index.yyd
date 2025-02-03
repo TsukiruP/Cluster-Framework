@@ -468,9 +468,9 @@ sonic_skill_homing
 sonic_skill_ground
 sonic_skill_air
 sonic_skill_peel_out
-game_get_save_id
+game_get_save_index
 instance_nearest_dir_y
-game_set_save_id
+game_set_save_index
 player_animation_jump
 player_set_status
 sequence_switch_vertical_off
