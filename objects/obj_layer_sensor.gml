@@ -1,0 +1,41 @@
+#define Create_0
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Sensor Initialization
+
+event_inherited();
+reaction_index = player_reaction_layer_sensor;
+layer = 0;
+hitbox_set_hurtbox(8, 8, 7, 7, 8, 8);
+#define Other_4
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Field Initialization
+
+//field layer: enum(0, 1)
+
+/*preview
+var layer;
+
+layer = Field("layer", 0);
+
+draw_sprite(Sprite("spr_layer_sensor", layer), 0, x, y);
+*/
+#define Draw_0
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Draw Sensor
+
+if (!game_get_debug()) exit;
+
+image_index = layer;
+draw_self();

@@ -1,8 +1,10 @@
 /// player_routine_jump()
-// A jump to the sky turns to a rider kick.
+/* Shorthand for checking if the player can jump. */
 
-// Set flag:
-jump_state = true;
+if (player_collision_ceiling(y_radius + 5) == noone && player_get_input(INP_JUMP, CHECK_PRESSED))
+{
+    audio_play_sfx("snd_jump", true);
+    return player_set_state(player_state_jump);
+}
 
-// Play sound:
-sound_play_single("snd_jump");
+return false;

@@ -1,7 +1,0 @@
-sprite=spr_sensor_layer_a
-visible=0
-solid=0
-persistent=0
-depth=0
-parent=par_prop
-mask=

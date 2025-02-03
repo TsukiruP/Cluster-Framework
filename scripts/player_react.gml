@@ -1,41 +1,41 @@
-/// player_react(obj, [collision, side])
-// Executes the reaction script of the given instance.
+/// player_react(obj, [hitbox, side])
+/* Executes the reaction script of the given instance. */
 
-var object_handle, reaction, collision;
+var reaction_handle, reaction, hitbox;
 
-object_handle = argument0;
-reaction = object_handle.reaction_index;
+reaction_handle = argument0;
+reaction = reaction_handle.reaction_index;
 
-// Abort:
-if (!script_exists(reaction))
+if (script_exists(reaction))
 {
-    return false;
-}
+    var x_speed_temp, y_speed_temp;
 
-// Collision:
-collision = player_get_collision(object_handle);
+    x_speed_temp = x_speed;
+    y_speed_temp = y_speed;
 
-if (argument_count >= 2)
-{
-    collision = argument[1];
-}
+    hitbox = player_get_hitbox(reaction_handle);
+    if (argument_count > 1) hitbox |= argument[1];
 
-// Execute reaction:
-if (object_is_ancestor(object_handle.object_index, par_obstacle))
-{
-    var side;
-
-    // Side:
-    side = angle_wrap(round(point_direction(object_handle.x, object_handle.y, x, y) / ANGLE_UP) * ANGLE_UP);
-
-    if (argument_count >= 3)
+    if (object_is_ancestor(reaction_handle.object_index, par_terrain))
     {
-        side = argument[2];
+        var side;
+
+        side = angle_wrap(round(point_direction(reaction_handle.x, reaction_handle.y, x, y) / ANGLE_UP) * ANGLE_UP);
+        if (argument_count > 2) side = argument[2];
+
+        if (!reaction_handle.reaction_mask || (reaction_handle.reaction_mask && (hitbox & HIT_SOLID)))
+        {
+            script_execute(reaction, reaction_handle, hitbox, side);
+        }
+    }
+    else script_execute(reaction, reaction_handle, hitbox);
+
+    if (ds_list_find_index(solid_list, reaction_handle) != -1)
+    {
+        if (x_speed_temp != x_speed || y_speed_temp != y_speed || !instance_exists(reaction_handle)) return true;
     }
 
-    return script_execute(reaction, object_handle, collision, side);
+    if (state_changed == true) return true;
 }
-else
-{
-    return script_execute(reaction, object_handle, collision);
-}
+
+return false;

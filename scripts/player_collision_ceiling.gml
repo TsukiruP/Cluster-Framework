@@ -1,15 +1,13 @@
 /// player_collision_ceiling(radius)
-// Returns whether any solids are in collision with the upper half of the player's bounding box.
+/* Returns the id of the first solid that is in collision with the upper half of the player's bounding box, or noone on failure. */
 
-var total_solids, oy, n, inst;
-
-total_solids = ds_list_size(solid_list);
+var oy, n, inst;
 
 // Scan rectangle within radius:
 for (oy = 0; oy < argument0; oy += 1)
 {
     // Evaluate all solids:
-    for (n = 0; n < total_solids; n += 1)
+    for (n = ds_list_size(solid_list) - 1; n > -1; n -= 1)
     {
         // Get the current solid:
         inst = ds_list_find_value(solid_list, n);
@@ -20,10 +18,10 @@ for (oy = 0; oy < argument0; oy += 1)
             continue;
         }
 
-        // Confirm:
+        // Confirm matching solid:
         return inst;
     }
 }
 
-// If there was no collision:
+// If no solids were found:
 return noone;

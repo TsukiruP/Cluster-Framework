@@ -1,21 +1,21 @@
 /// player_routine_insta()
-// It's not even really a shield...
+/* Shorthand for performing */
 
-// Set status:
+player_set_state(player_state_jump, false);
+jump_cap = false;
 status_shield_allow = false;
-status_insta_alarm  = 8;
+status_insta_alarm = 8;
+player_set_animation("insta");
+audio_play_sfx("snd_shield_insta", true);
 
-// Create shield:
-if (character_id == CHAR_SONIC) {
-    with (instance_create(x, y, eff_player)) {
-        ctl_initialize(ctl_shield_insta);
-    
-        depth         = other.depth;
-        image_xscale  = other.image_xscale;
-        image_angle   = gravity_angle(other);
+if (character_id == CHAR_SONIC || character_id == CHAR_CLASSIC)
+{
+    with (instance_create(x, y, eff_player))
+    {
+        depth = other.depth;
+        image_xscale = other.image_xscale;
+        image_angle = other.gravity_direction;
+        sequence_init(sequence_shield_insta);
         player_handle = other.id;
     }
 }
-
-// Play sound:
-sound_play("snd_shield_insta");

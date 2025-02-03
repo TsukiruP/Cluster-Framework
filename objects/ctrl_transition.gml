@@ -6,235 +6,89 @@ applies_to=self
 */
 /// Transition Initialization
 
-// Image speed:
-image_speed = 0;
-
-// Flags:
-debug = false;
+preview = false;
 pause_ignore = false;
+load_skip = false;
 
-// Transition variables:
 transition_id = TRANS_FADE;
 transition_state = 0;
 transition_alarm = 0;
-transition_timer = 0;
 transition_room = room;
+transition_run = -1;
 
-// Fade handle:
 fade_handle = noone;
-
-// Player handle:
 player_handle = noone;
 
-// Background variables:
-background_y_current = -15;
-background_y_target = global.display_height + 15;
-background_y_speed = 0;
-background_y_factor = 5;
+curtain_max_frame = 20;
+curtain_frame = 0;
+curtain_y = 0;
+curtain_scroll = 0;
+curtain_scroll_speed = 1;
 
-background_x_scroll = 0;
-background_x_scroll_speed = 1;
+banner_max_frame = 20;
+banner_frame = 0;
+banner_x = 0;
+banner_scroll = 0;
+banner_scroll_speed = 1;
 
-// Banner variables:
-banner_x_current = -sprite_get_width(spr_title_card_banner) - 12;
-banner_x_target = 0;
-banner_x_speed = 0;
-banner_x_factor = 6;
-
-banner_y_scroll = 0;
-banner_y_scroll_speed = 1;
-
-// Zone variables:
-zone_x_current = 0;
-zone_x_target = 40;
-zone_x_speed = 0;
-zone_x_factor = 9;
-
-// Loading variables:
-switch (player_get_character(0))
-{
-    // Sonic:
-    default:
-        character_index = spr_sonic_run_4;
-        character_y_offset = -7;
-}
-
-character_x_current = -sprite_get_width(character_index);
-character_x_target = global.display_width - 27;
-character_x_speed = 0;
-character_x_factor = 12;
-
-character_alpha = 1;
-stars_y = global.display_height - 16;
-
-// Retry variables:
-draw_set_font(global.font_title_card);
-
-retry_text = "Try Again";
-retry_width = string_width(retry_text);
-retry_x_current = global.display_width + retry_width + zone_x_factor;
-retry_x_target = (global.display_width / 2) - 3;
-retry_x_speed = 0;
+zone_max_frame = 30;
+zone_frame = 0;
+zone_width = -1;
+zone_spacing = 9;
+zone_x = 0;
 #define Step_1
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
 applies_to=self
 */
-/// Alarm & Timer
+/// Alarm
 
-// Exit if the stage is paused:
-if (game_ispaused(ctrl_pause) && pause_ignore == false)
+if (game_ispaused(mnu_pause) && !pause_ignore) exit;
+
+if (transition_alarm > 0) transition_alarm -= 1;
+
+if (text_get_handle() != id && preview && transition_state == 1 && transition_alarm == 0)
 {
-    exit;
+    text_set_handle(id);
+    text_set_subject(string_input(INP_CONFIRM) + " - End Preview");
 }
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Frames
 
-// Alarm:
-if (transition_alarm > 0)
-{
-    transition_alarm -= 1;
+if (game_ispaused(mnu_pause) && !pause_ignore) exit;
 
-    if (transition_alarm <= 0)
-    {
-        if ((transition_id != TRANS_CARD && transition_state == 1) || (transition_id == TRANS_CARD && transition_state == 2))
-        {
-            // Open debug topic:
-            if (debug == true)
-            {
-                topic_set_message("Debug");
-            }
+if ((transition_id == TRANS_MENU && transition_state < 2) || (transition_id == TRANS_CARD && transition_state < 4) || (transition_id == TRANS_RETRY && transition_state < 5)) curtain_frame = approach(curtain_frame, curtain_max_frame, 1);
+else curtain_frame = approach(curtain_frame, 0, 1);
 
-            // Close debug topic:
-            if (debug == false || (debug == true && input_get_check(INP_ACCEPT, CHECK_PRESSED)))
-            {
-                if (debug == true)
-                {
-                    with (ctrl_text)
-                    {
-                        text_clear = true;
-                    }
-                }
+if (transition_id == TRANS_CARD && transition_state < 4 && curtain_frame == curtain_max_frame) banner_frame = approach(banner_frame, banner_max_frame, 1);
+else banner_frame = approach(banner_frame, 0, 1);
 
-                // Retry has its own room_goto call:
-                if (transition_id != TRANS_RETRY)
-                {
-                    checkpoint_set(true);
-                    room_goto(transition_room);
-                }
-
-                transition_state += 1;
-
-                // Title card calls a delay:
-                if (transition_id == TRANS_CARD)
-                {
-                    transition_alarm = 90;
-                }
-            }
-        }
-    }
-}
-
-// Timer:
-if (transition_id == TRANS_CARD)
-{
-    transition_timer += 1;
-}
-else
-{
-    transition_timer = 0;
-}
-
-// Alpha:
-if (transition_id == TRANS_CARD)
-{
-    if (transition_state >= 3 && character_alpha > 0)
-    {
-        character_alpha -= 0.05;
-    }
-}
+if ((transition_id == TRANS_CARD && ((transition_state < 4 && curtain_frame == curtain_max_frame) || (transition_state > 3))) || transition_id == TRANS_RETRY) zone_frame = approach(zone_frame, zone_max_frame, 1);
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
 applies_to=self
 */
-/// Background
+/// Run
 
-// Exit if the stage is paused:
-if (game_ispaused(ctrl_pause) && pause_ignore == false)
+if ((game_ispaused(mnu_pause) && !pause_ignore) || (transition_id != TRANS_CARD && transition_id != TRANS_RETRY) || !instance_exists(stage_get_player(0))) exit;
+
+if (((transition_id == TRANS_CARD && transition_state > 3) || (transition_id == TRANS_RETRY && transition_state > 4)) && game_get_room_start() == START_RUN && transition_run != -1)
 {
-    exit;
-}
-
-// Background target - bottom of screen:
-if ((transition_id == TRANS_MENU && transition_state < 2) || (transition_id == TRANS_CARD && transition_state < 4))
-{
-    background_y_target = global.display_height + 15;
-}
-
-// Background target - retry letterbox:
-else if (transition_id == TRANS_RETRY && (transition_state < 2 || transition_state == 4))
-{
-    background_y_target = 32;
-}
-
-// Background target - middle of screen:
-else if (transition_id == TRANS_RETRY && (transition_state == 2 || transition_state == 3))
-{
-    background_y_target = global.display_height / 2 + 15;
-}
-
-// Background target - top of screen:
-else
-{
-    background_y_target = -15;
-}
-
-// Background position:
-if (background_y_current != background_y_target)
-{
-    var background_y_factor, background_x_distance;
-
-    // Background factor:
-    if (transition_id == TRANS_RETRY)
-    {
-        background_y_factor = 15;
-    }
+    if ((transition_id == TRANS_RETRY && game_checkpoint_isset()) || stage_get_player(0).x >= game_get_room_run()) transition_run = -1;
     else
     {
-        background_y_factor = 5;
-    }
-
-    // Background distance:
-    background_x_distance = background_y_target - background_y_current;
-
-    background_y_speed = ceil(abs(background_x_distance) / background_y_factor);
-    background_y_current += background_y_speed * sign(background_x_distance);
-
-    if (background_y_current == background_y_target)
-    {
-        background_y_speed = 0;
-
-        // Transition behavior:
-        switch (transition_id)
+        with (obj_player)
         {
-            // Menu:
-            case TRANS_MENU:
-                // Move to change rooms:
-                if (transition_state == 0)
-                {
-                    transition_state = 1;
-                    transition_alarm = 60;
-                }
-                break;
-
-            // Title card:
-            case TRANS_CARD:
-                if (transition_state == 0)
-                {
-                    transition_state = 1;
-                }
-                break;
+            x_speed = top_speed;
+            player_set_state(player_state_run);
+            player_set_input(INP_RIGHT, CHECK_HELD, true);
         }
     }
 }
@@ -243,49 +97,11 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Player Start
+/// Curtain
 
-// Exit if the stage is paused:
-if ((game_ispaused(ctrl_pause) && pause_ignore == false) || (transition_id != TRANS_CARD && transition_id != TRANS_RETRY))
-{
-    exit;
-}
+if (game_ispaused(mnu_pause) && !pause_ignore) exit;
 
-if (instance_exists(player_get_instance(0)))
-{
-    // Hide HUD:
-    if ((room_start == START_RUN || (room_start == START_READY && transition_id == TRANS_CARD)) && transition_state == 3)
-    {
-        if (instance_exists(ctrl_hud))
-        {
-            with (ctrl_hud)
-            {
-                hud_hide = true;
-                hud_x_current = hud_x_target;
-            }
-        }
-    }
-
-    // Run start:
-    if (room_start == START_RUN && room_run_target != -1 && transition_state >= 4)
-    {
-        // Reset target:
-        if ((transition_id == TRANS_RETRY && (global.checkpoint_x != -1 && global.checkpoint_y != -1)) || player_get_instance(0).x >= room_run_target)
-        {
-            room_run_target = -1;
-        }
-
-        // Run:
-        else
-        {
-            with (obj_player)
-            {
-                x_speed = top_speed;
-                input_player[INP_RIGHT, CHECK_HELD] = true;
-            }
-        }
-    }
-}
+if (transition_id != TRANS_RETRY) curtain_y = lerp(-15, screen_get_height() + 15, smoothstep(0, curtain_max_frame, curtain_frame));
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -293,44 +109,90 @@ applies_to=self
 */
 /// Fade
 
-if (transition_id == TRANS_FADE)
+if (transition_id != TRANS_FADE) exit;
+
+switch (transition_state)
 {
-    switch (transition_state)
-    {
-        // 0 - Start fade:
-        case 0:
-            if (!instance_exists(fade_handle))
+    // 0 - Start:
+    case 0:
+        if (!instance_exists(fade_handle))
+        {
+            fade_handle = fade_create();
+            fade_handle.persistent = true;
+        }
+
+        if (fade_handle.fade_alpha >= 1)
+        {
+            stage_set_time_allow(false);
+            transition_state = 1;
+            transition_alarm = 60;
+        }
+        break;
+
+    // 1 - Change room:
+    case 1:
+        if (transition_alarm == 0)
+        {
+            if (!preview)
             {
-                fade_handle = fade_create();
-                fade_handle.persistent = true;
+                game_set_checkpoint(true);
+                room_goto(transition_room);
+                transition_state = 2;
             }
+            else event_user(0);
+        }
+        break;
 
-            if (fade_handle.fade_alpha >= 1)
+    // 2 - Reverse:
+    case 2:
+        fade_reverse(fade_handle);
+        transition_state = 3;
+        break;
+
+    // 3 - End:
+    case 3:
+        stage_start();
+        if (!instance_exists(fade_handle)) instance_destroy();
+        break;
+}
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Menu
+
+if ((game_ispaused(mnu_pause) && !pause_ignore) || transition_id != TRANS_MENU) exit;
+
+switch (transition_state)
+{
+    // 0 - Start:
+    case 0:
+        if (curtain_y == screen_get_height() + 15)
+        {
+            transition_state = 1;
+            transition_alarm = 60;
+        }
+        break;
+
+    // 1 - Change room:
+    case 1:
+        if (transition_alarm == 0)
+        {
+            if (!preview)
             {
-                global.time_allow = false;
-
-                transition_state = 1;
-                transition_alarm = 60;
+                game_set_checkpoint(true);
+                room_goto(transition_room);
+                transition_state = 2;
             }
-            break;
+            else event_user(0);
+        }
+        break;
 
-        // 2 - Reverse fade:
-        case 2:
-            fade_reverse(fade_handle);
-            transition_state = 3;
-            break;
-
-        // 3 - End fade:
-        case 3:
-            // Start stage:
-            stage_start();
-
-            if (!instance_exists(fade_handle))
-            {
-                instance_destroy();
-            }
-            break;
-    }
+    // 2 - End:
+    case 2:
+        if (curtain_y == -15) instance_destroy();
+        break;
 }
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -339,178 +201,118 @@ applies_to=self
 */
 /// Title Card
 
-// Exit if the stage is paused:
-if (game_ispaused(ctrl_pause) && pause_ignore == false)
+if ((game_ispaused(mnu_pause) && !pause_ignore) || transition_id != TRANS_CARD) exit;
+
+if (game_get_room_start() == START_STANDBY && transition_state > 3 && instance_exists(stage_get_player(0)))
 {
-    exit;
+    if (input_get_check(INP_ANY, CHECK_PRESSED) && !input_get_check(INP_START, CHECK_PRESSED))
+    {
+        transition_state = 5;
+
+        if (stage_get_player(0).animation_current == "standby")
+        {
+            with (obj_player) player_set_state(player_state_idle);
+        }
+    }
 }
 
-if (transition_id == TRANS_CARD)
+banner_x = lerp(-sprite_get_width(spr_title_card_banner), 0, smoothstep(0, banner_max_frame, banner_frame));
+banner_scroll += banner_scroll_speed;
+banner_scroll = banner_scroll mod sprite_get_height(spr_title_card_banner);
+
+if (zone_width == -1)
 {
-    // Banner scroll:
-    banner_y_scroll += banner_y_scroll_speed;
-    banner_y_scroll = banner_y_scroll mod(sprite_get_height(spr_title_card_banner));
+    draw_set_font(global.font_title_card);
+    zone_width = string_width(game_get_room_zone(transition_room)) + zone_spacing;
+}
 
-    // Skip:
-    if (room_start == START_READY && transition_state >= 4 && transition_state != 6 && instance_exists(player_get_instance(0)))
-    {
-        if (input_get_check(INP_ANY, CHECK_PRESSED) && !input_get_check(INP_START, CHECK_PRESSED))
+if (transition_state > 3) zone_x = ease_in_out_back(zone_frame, 40, screen_get_width() + zone_spacing, zone_max_frame);
+else zone_x = ease_in_out_back(zone_frame, -zone_width, 40 + zone_width, zone_max_frame);
+
+switch (transition_state)
+{
+    // 0 - Start:
+    case 0:
+        if (banner_frame == banner_max_frame && zone_frame == zone_max_frame)
         {
-            transition_state = 5;
+            stage_set_time_allow(false);
+            transition_state = 1;
+            transition_alarm = 30;
+        }
+        break;
 
-            // Skip ready animation:
-            if (player_get_instance(0).animation_current == "ready")
+    // 1 - Wait:
+    case 1:
+        if (transition_alarm == 0)
+        {
+            if (!preview)
             {
+                transition_state = 2;
+                transition_alarm = 60;
+
+                if (load_skip)
+                {
+                    transition_alarm = 0;
+                }
+            }
+            else event_user(0);
+        }
+        break;
+
+    // 2 - Loading:
+    case 2:
+        if (transition_alarm == 0)
+        {
+            game_set_checkpoint(true);
+            room_goto(transition_room);
+            transition_state = 3;
+            transition_alarm = 90;
+        }
+        break;
+
+    // 3 - Reset:
+    case 3:
+        if (transition_alarm == 0)
+        {
+            transition_state = 4;
+            zone_frame = 0;
+        }
+        break;
+
+    // 4 - Reverse:
+    case 4:
+        var transition_next;
+
+        transition_next = (preview || game_get_room_start() == START_IDLE || !instance_exists(obj_player));
+
+        switch (game_get_room_start())
+        {
+            case START_STANDBY:
                 with (obj_player)
                 {
-                    player_set_animation("stand");
+                    if (other.curtain_y <= floor(y - y_radius) - view_yview[view_current] && animation_previous != "standby") player_set_animation("standby");
+                    if (player_id == 0 && animation_previous == "standby") transition_next = true;
                 }
-            }
+                break;
+
+            case START_RUN:
+                if (transition_run == -1) transition_next = true;
+                break;
         }
-    }
 
-    // Banner & zone target:
-    if (transition_state >= 4)
-    {
-        banner_x_target = -sprite_get_width(spr_title_card_banner) - 12;
-        zone_x_target = global.display_width + zone_x_factor;
-    }
-    else
-    {
-        banner_x_target = 0;
-        zone_x_target = 40;
-    }
+        if (transition_next) transition_state = 5;
+        break;
 
-    // Banner position:
-    if (transition_state > 0 && banner_x_current != banner_x_target)
-    {
-        var banner_x_distance;
+    // 5 - End:
+    case 5:
+        stage_start();
 
-        // Banner distance:
-        banner_x_distance = banner_x_target - banner_x_current;
-
-        banner_x_speed = ceil(abs(banner_x_distance) / banner_x_factor);
-        banner_x_current += banner_x_speed * (sign(banner_x_distance));
-    }
-
-    // Zone position:
-    if (transition_state > 0 && zone_x_current != zone_x_target)
-    {
-        zone_x_speed = ceil((zone_x_target - zone_x_current) / zone_x_factor);
-        zone_x_current += zone_x_speed;
-
-        if (zone_x_current >= zone_x_target && sign(zone_x_current) == sign(zone_x_target))
+        if (curtain_frame == 0 && banner_frame == 0 && zone_frame == zone_max_frame)
         {
-            zone_x_speed = 0;
-            zone_x_current = zone_x_target;
+            stage_set_time_allow(true);
+            instance_destroy();
         }
-    }
-
-    // Character position:
-    if (character_x_current != character_x_target)
-    {
-        character_x_speed = ceil((character_x_target - character_x_current) / character_x_factor);
-        character_x_current += character_x_speed;
-
-        if (character_x_current >= character_x_target)
-        {
-            character_x_speed = 0;
-            character_x_current = character_x_target;
-
-            transition_alarm = 45;
-        }
-    }
-
-    switch (transition_state)
-    {
-        // 0 - Initialize zone:
-        case 0:
-            // Font:
-            draw_set_font(global.font_title_card);
-
-            if (zone_x_current != (-string_width(room_zone) - zone_x_factor))
-            {
-                zone_x_current = -string_width(room_zone) - zone_x_factor;
-            }
-            break;
-
-        // 1 - Room change:
-        case 1:
-            // Move to room change:
-            if (transition_alarm == 0 && banner_x_current == banner_x_target && zone_x_current == zone_x_target && character_x_current == character_x_target)
-            {
-                global.time_allow = false;
-
-                transition_state = 2;
-                transition_alarm = 120;
-            }
-            break;
-
-        // 3 - Standing by:
-        case 3:
-            if (transition_alarm <= 0)
-            {
-                transition_state = 4;
-            }
-            break;
-
-        // 4 - Opener start:
-        case 4:
-            if (debug == false && (room_start != START_RUN || room_run_target != -1) && instance_exists(player_get_instance(0)))
-            {
-                // Ready:
-                if (room_start == START_READY)
-                {
-                    // Time it with the background:
-                    if (background_y_current <= floor(player_get_instance(0).y + player_get_instance(0).y_radius - view_yview[view_current]))
-                    {
-                        with (obj_player)
-                        {
-                            if (animation_current != "ready" && animation_previous != "ready")
-                            {
-                                player_set_animation("ready");
-                            }
-                        }
-                    }
-                }
-
-                // Free player:
-                else if (room_start != START_IDLE && room_start != START_RUN)
-                {
-                    with (obj_player)
-                    {
-                        input_lock = false;
-                    }
-                }
-
-                // Move to next state:
-                if (room_start == START_IDLE || (room_start == START_READY && player_get_instance(0).animation_previous == "ready"))
-                {
-                    transition_state = 5;
-                }
-            }
-
-            // Skip opener end, since there's no player:
-            else
-            {
-                transition_state = 5;
-            }
-            break;
-            
-        // 5 - Title card end:
-        case 5:
-            // Start stage:
-            stage_start();
-            
-            // Destroy:
-            if (banner_x_current == banner_x_target && zone_x_current == zone_x_target)
-            {
-                global.time_allow = true;
-                
-                instance_destroy();
-            }
-            break;
-    }
+        break;
 }
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -519,91 +321,84 @@ applies_to=self
 */
 /// Retry
 
-// Exit if the stage is paused:
-if (game_ispaused(ctrl_pause) && pause_ignore == false)
+if ((game_ispaused(mnu_pause) && !pause_ignore) || transition_id != TRANS_RETRY) exit;
+
+if (transition_state < 2 && instance_exists(stage_get_player(0)) && input_get_check(INP_ANY, CHECK_PRESSED)) transition_state = 2;
+
+curtain_scroll += curtain_scroll_speed;
+curtain_scroll = curtain_scroll mod sprite_get_width(spr_transition_curtain);
+
+if (transition_state > 2 && transition_state < 5) curtain_y = lerp(32, screen_get_height() / 2 + 15, smoothstep(0, curtain_max_frame, curtain_frame));
+else if (transition_state > 4) curtain_y = lerp(-15, screen_get_height() / 2 + 15, smoothstep(0, curtain_max_frame, curtain_frame));
+else curtain_y = lerp(-15, 32, smoothstep(0, curtain_max_frame, curtain_frame));
+
+if (zone_width == -1)
 {
-    exit;
+    draw_set_font(global.font_title_card);
+    zone_width = floor((string_width("Try Again") + zone_spacing) / 2);
 }
 
-if (transition_id == TRANS_RETRY)
+if (transition_state > 2) zone_x = screen_get_width() - ease_in_out_back(zone_frame, screen_get_width() / 2, screen_get_width() + zone_width, zone_max_frame);
+else zone_x = screen_get_width() - ease_in_out_back(zone_frame, -zone_width, screen_get_width() / 2 + zone_width, zone_max_frame);
+
+switch (transition_state)
 {
-    // Background scroll:
-    background_x_scroll += background_x_scroll_speed;
-    background_x_scroll = background_x_scroll mod sprite_get_width(spr_transition_background);
-
-    // Skip:
-    if (transition_state < 2 && instance_exists(player_get_instance(0)) && input_get_check(INP_ANY, CHECK_PRESSED))
-    {
-        transition_state = 2;
-    }
-
-    // Retry target:
-    if (transition_state >= 2)
-    {
-        retry_x_target = -retry_width - zone_x_factor;
-    }
-    else
-    {
-        retry_x_target = (global.display_width / 2) - 3;
-    }
-
-    // Retry position:
-    if (retry_x_current != retry_x_target)
-    {
-        retry_x_speed = ceil(abs(retry_x_current - retry_x_target) / zone_x_factor);
-        retry_x_current -= retry_x_speed;
-
-        if (retry_x_current <= retry_x_target && sign(retry_x_current) == sign(retry_x_target))
+    // 0 - Start:
+    case 0:
+        if (curtain_frame == curtain_max_frame)
         {
-            retry_x_speed = 0;
-            retry_x_current = retry_x_target;
+            transition_state = 1;
+            transition_alarm = 60;
         }
-    }
+        break;
 
-    // Check text & background:
-    if (background_y_current == background_y_target && retry_x_current == retry_x_target)
-    {
-        if (transition_state == 0 || transition_state == 2)
+    // 1 - Standing by:
+    case 1:
+        if (transition_alarm == 0)
         {
-            transition_state += 1;
-            transition_alarm = 30 + (30 * (transition_state == 0));
+            if (!preview) transition_state = 2;
+            else event_user(0);
         }
-    }
+        break;
 
-    switch (transition_state)
-    {
-        // 3 - Room change:
-        case 3:
-            if (transition_alarm <= 0)
-            {
-                if (debug == false)
-                {
-                    room_goto(transition_room);
-                }
+    // 2 - Reset progress:
+    case 2:
+        transition_state = 3;
+        curtain_frame = 0;
+        zone_frame = 0;
+        break;
 
-                transition_state = 4;
-            }
-            break;
+    // 3 - Close:
+    case 3:
+        if (curtain_frame == curtain_max_frame && zone_frame == zone_max_frame)
+        {
+            transition_state = 4;
+            transition_alarm = 30;
+        }
+        break;
 
-        // 4 - Opener end:
-        case 4:
-            if (debug == true || room_start != START_RUN || (room_start == START_RUN && room_run_target == -1))
-            {
-                transition_state = 5;
-            }
-            break;
+    // 4 - Room change:
+    case 4:
+        if (transition_alarm == 0)
+        {
+            if (!preview) room_goto(transition_room);
+            transition_state = 5;
+        }
+        break;
 
-        // 5 - Retry end:
-        case 5:
-            // Start stage:
-            stage_start();
+    // 5 - Reverse:
+    case 5:
+        if (curtain_frame == 0)
+        {
+            if (game_get_room_start() != START_RUN || (game_get_room_start() == START_RUN && transition_run == -1) || preview) transition_state = 6;
+        }
+        break;
 
-            if (background_y_current == background_y_target)
-            {
-                instance_destroy();
-            }
-            break;
-    }
+    // 6 - End:
+    case 6:
+        stage_start();
+        instance_destroy();
+        break;
 }
 #define Other_4
 /*"/*'/**//* YYD ACTION
@@ -611,58 +406,26 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Pause Ignore
+/// Room Initialization
 
 pause_ignore = false;
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Play Music
+audio_play_bgm(game_get_room_music());
+if (game_get_room_background() != -1) instance_create(0, 0, game_get_room_background());
 
-// Reset music volume:
-if (sound_kind_get_volume(3) != global.audio_bgm / 100)
+if (game_get_room_water() != -1)
 {
-    sound_kind_volume(3, global.audio_bgm / 100);
-}
-
-// Set music:
-if (room_music != "")
-{
-    if (!sound_isplaying(room_music))
+    with (instance_create(0, game_get_room_water(), obj_water_mask))
     {
-        with (ctrl_audio)
-        {
-            // Discard music:
-            if (music_instance != -1)
-            {
-                sound_discard(music_instance);
-                music_instance = -1;
-            }
-
-            // Create music instance:
-            if (music_instance == -1) music_instance = sound_loop_single(other.room_music);
-        }
+        image_xscale = room_width div sprite_width;
+        image_yscale = (room_height - y) div sprite_height;
+        hitbox_set_hurtbox(0, 0, sprite_width, sprite_height);
     }
 }
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Create Objects
 
-// Create background:
-if (room_background != -1)
+if (transition_id != TRANS_RETRY && instance_exists(stage_get_player(0)))
 {
-    instance_create(0, 0, room_background);
-}
-
-// Create water:
-if (room_water_level != -1)
-{
-    instance_create(0, room_water_level, obj_water_surface);
+    game_set_save("stage", room);
+    game_save_auto();
 }
 #define Other_10
 /*"/*'/**//* YYD ACTION
@@ -670,104 +433,77 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Open Debug Topic
-#define Other_11
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Close Debug Header
-#define Other_12
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Enable Pause
+/// Preview
 
-persistent = false;
-pause_ignore = false;
-global.pause_allow = true;
+if (!text_get_clear())
+{
+    if (text_get_handle() == id && input_get_check(INP_CONFIRM, CHECK_PRESSED)) text_set_clear();
+}
+else
+{
+    transition_state = pick(transition_id, 2, 2, 3, 2);
+    transition_alarm = 0;
+}
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
 applies_to=self
 */
-/// Draw Menu Transition
+/// Draw Menu
 
-if (transition_id == TRANS_MENU)
-{
-    draw_sprite(spr_transition_background, 0, view_xview[view_current], view_yview[view_current] + background_y_current);
-}
+if (transition_id != TRANS_MENU) exit;
+
+// Curtain:
+draw_sprite(spr_transition_curtain, 0, view_xview[view_current], view_yview[view_current] + curtain_y);
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
 applies_to=self
 */
-/// Draw Title Card Transition
+/// Draw Title Card
 
-if (transition_id == TRANS_CARD)
+if (transition_id != TRANS_CARD) exit;
+
+// Curtain:
+draw_sprite(spr_transition_curtain, 0, view_xview[view_current], view_yview[view_current] + curtain_y);
+
+// Banner:
+draw_sprite_tiled_extra(spr_title_card_banner, 0, view_xview[view_current] + banner_x, view_yview[view_current] + banner_scroll, 1, 1, 0, c_white, 1, 1, 0);
+
+// Zone:
+draw_set_font(global.font_title_card);
+draw_set_valign(fa_bottom);
+draw_text(view_xview[view_current] + zone_x, view_yview[view_current] + 126, game_get_room_zone(transition_room));
+
+// Act:
+if (game_get_room_act(transition_room) != 0)
 {
-    var transition_character;
-
-    // Font:
-    draw_set_font(global.font_title_card);
-
-    // Background:
-    draw_sprite(spr_transition_background, 0, view_xview[view_current], view_yview[view_current] + background_y_current);
-
-    // Bar:
-    draw_sprite_tiled_vertical(spr_title_card_banner, 0, view_xview[view_current] + banner_x_current, view_yview[view_current] + banner_y_scroll);
-
-    // Zone:
-    draw_set_valign(fa_bottom);
-    draw_text(view_xview[view_current] + zone_x_current, view_yview[view_current] + 126, room_zone);
-
-    // Act:
-    if (room_act != 0)
-    {
-        draw_sprite(spr_title_card_acts, room_act, view_xview[view_current] + zone_x_current + 5, view_yview[view_current] + 128);
-    }
-
-    // Loading:
-    if (transition_state == 2)
-    {
-        draw_sprite(spr_title_card_load, 0, view_xview[view_current] + 4, view_yview[view_current] + global.display_height - 12);
-    }
-
-    // Stars:
-    draw_sprite_ext(spr_title_card_stars, sync_rate(transition_timer, 4, sprite_get_number(spr_title_card_stars)), view_xview[view_current] + character_x_current, view_yview[view_current] + stars_y, 1, 1, 0, c_white, character_alpha);
-
-    // Character:
-    d3d_set_fog(true, c_white, 0, 0);
-    draw_sprite_ext(character_index, sync_rate(transition_timer, 4, sprite_get_number(character_index)), view_xview[view_current] + character_x_current, view_yview[view_current] + stars_y + character_y_offset, 1, 1, 0, c_white, character_alpha);
-    d3d_set_fog(false, c_black, 0, 0);
-
-    // Reset:
-    draw_reset();
+    draw_sprite(spr_title_card_acts, game_get_room_act(transition_room), view_xview[view_current] + zone_x + 5, view_yview[view_current] + 128);
 }
+
+// Loading:
+if (!load_skip && transition_state == 2)
+{
+    draw_sprite(spr_title_card_load, transition_alarm div 22, view_xview[view_current] + 4, view_yview[view_current] + screen_get_height() - 12);
+}
+
+draw_reset();
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
 applies_to=self
 */
-/// Draw Retry Transition
+/// Draw Retry
 
-if (transition_id == TRANS_RETRY)
-{
-    // Font:
-    draw_set_font(global.font_title_card);
-    draw_set2(fa_center, fa_middle);
+if (transition_id != TRANS_RETRY) exit;
 
-    // Background:
-    draw_sprite_tiled_horizontal(spr_transition_background, 1, view_xview[view_current] + background_x_scroll, view_yview[view_current] + background_y_current);
-    draw_sprite_tiled_horizontal_yscale(spr_transition_background, 1, view_xview[view_current] - 16 - background_x_scroll - 1, view_yview[view_current] + global.display_height - background_y_current, -1);
+// Curtain:
+draw_sprite_tiled_extra(spr_transition_curtain, 1, view_xview[view_current] + curtain_scroll, view_yview[view_current] + curtain_y - sprite_get_height(spr_transition_curtain), 1, 1, 0, c_white, 1, 0, 1);
+draw_sprite_tiled_extra(spr_transition_curtain, 1, view_xview[view_current] - 16 - curtain_scroll - 1, view_yview[view_current] + screen_get_height() - curtain_y + sprite_get_height(spr_transition_curtain), 1, -1, 0, c_white, 1, 0, 1);
 
-    // Try again:
-    draw_text(view_xview[view_current] + retry_x_current, view_yview[view_current] + global.display_height / 2, retry_text);
-
-    // Reset:
-    draw_reset();
-}
+// Zone:
+draw_set_font(global.font_title_card);
+draw_set2(fa_center, fa_middle);
+draw_text(view_xview[view_current] + zone_x, view_yview[view_current] + screen_get_height() / 2, "Try Again");
+draw_reset();

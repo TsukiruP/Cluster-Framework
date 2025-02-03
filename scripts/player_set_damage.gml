@@ -1,98 +1,51 @@
 /// player_set_damage(obj)
-// Sets whether the player gets hurt or dies. Setting obj to the player is instant death.
+/* Sets whether the player gets hurt or dies. Setting obj to the player is instant death. */
 
-// Exit if already hurt, dying, or invincible:
-if (state_current == player_state_death || ((state_current == player_state_hurt || status_insta_alarm > 0 || status_invin != INVIN_NONE) && argument0 != self))
-{
-    exit;
-}
+if (state_current == player_state_death || ((state_current == player_state_hurt || status_insta_alarm > 0 || status_invin != INVIN_NONE) && argument0 != self)) exit;
 
 var damage_handle, hurt_direction;
 
-// Damage handle:
 damage_handle = argument0.id;
-
-// Hurt direction:
 hurt_direction = esign(x - damage_handle.x, 1);
 
-// Death:
-if (damage_handle == id || (input_cpu == false && global.game_rings == 0 && status_shield == 0))
+if (damage_handle == id || (stage_get_rings() == 0 && status_shield == 0 && !input_cpu))
 {
-    // Set speed:
-    if (drown == false)
-    {
-        y_speed = -7;
-    }
-
-    // Set state:
+    if (!drown) y_speed = -7;
     player_set_state(player_state_death);
 
-    // Player 1 specific:
-    if (input_cpu == false)
+    if (!input_cpu)
     {
-        // Disable pause:
-        global.pause_allow = false;
-
-        // Stop jingles:
-        with (ctrl_audio)
-        {
-            event_user(2);
-        }
+        stage_set_pause_allow(false);
+        audio_stop_jng();
     }
 }
-
-// Hurt:
 else
 {
-    // Set speed:
     x_speed = 2 * hurt_direction;
     y_speed = -4;
-
-    // Set invincibility:
     status_invin = INVIN_HURT;
-
-    // Set state:
     player_set_state(player_state_hurt);
 
-    // Reset shield:
-    if (input_cpu == false && status_shield != 0)
+    if (!input_cpu)
     {
-        status_shield = 0;
-    }
-
-    // Ring loss:
-    else if (input_cpu == false)
-    {
-        player_ring_loss();
+        if (status_shield != 0) status_shield = 0;
+        else player_ring_loss();
     }
 }
 
-// Play sound:
 if (damage_handle == id)
 {
-    if (drown == true)
-    {
-        sound_play("snd_drown");
-    }
-    else
-    {
-        sound_play("snd_hurt");
-    }
+    if (drown) audio_play_sfx("snd_drown", true);
+    else audio_play_sfx("snd_hurt", true);
 }
-else if ((input_cpu == false && shield_handle != noone) || input_cpu == true || state_current == player_state_death)
+else if ((!input_cpu && shield_handle != noone) || input_cpu || state_current == player_state_death)
 {
-    if (damage_handle.object_index == obj_spike)
-    {
-        sound_play("snd_spike");
-    }
-    else
-    {
-        sound_play("snd_hurt");
-    }
+    if (damage_handle.object_index == obj_spike) audio_play_sfx("snd_spike", true);
+    else audio_play_sfx("snd_hurt", true);
+    if (!input_cpu) audio_stop_drown();
 }
 
-// Underwater physics:
-if (physics_id == PHYS_WATER)
+if (underwater)
 {
     x_speed /= 2;
     y_speed /= 2;

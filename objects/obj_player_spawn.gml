@@ -6,57 +6,40 @@ applies_to=self
 */
 /// Spawn Player
 
-// Move to checkpoint:
-if (checkpoint_isset())
+var i;
+
+instance_create(0, 0, ctrl_stage);
+
+if (game_checkpoint_isset())
 {
-    x = global.checkpoint_x;
-    y = global.checkpoint_y;
+    x = game_get_checkpoint_x();
+    y = game_get_checkpoint_y();
+    stage_set_time(game_get_checkpoint_time());
 }
 
-// Create players:
-for (i = 0; i < global.player_count; i += 1)
+for (i = 0; i < PLAYER_COUNT; i += 1)
 {
-    var player_handle, player_character;
-
-    player_character = global.player_data[i, 0];
-
-    if (player_character >= CHAR_SONIC)
+    if (game_save_get_character(i) != -1)
     {
-        global.player_data[i, 1] = instance_create(x - (30 * i), y, obj_player);
+        stage_add_player(instance_create(x - (30 * i), y, obj_player));
 
-        player_handle = player_get_instance(0);
-        player_handle.player_slot = i;
-        player_handle.character_id = player_character;
-        player_handle.input_lock = true;
-
-        // Create HUD:
-        if (i == 0)
+        with (stage_get_player(i))
         {
-            // Create camera:
-            camera = instance_create(x, y, ctrl_camera);
-            camera.focus_handle = player_handle;
+            character_id = game_save_get_character(i);
+            input_allow = false;
 
-            // Create HUD:
-            instance_create(0, 0, ctrl_hud);
-        }
-        else if (i > 0)
-        {
-            player_handle.input_cpu = true;
+            if (i == 0)
+            {
+                camera = instance_create(x, y, ctrl_camera);
+                camera.focus_handle = stage_get_player(i);
+            }
         }
     }
 }
 
-// Create partner queues:
-with (ctrl_input)
+if (instance_number(obj_player) > 1)
 {
-    event_user(0);
+    with (ctrl_input) event_user(0);
 }
 
-// Compile animations:
-if (global.animation_grid == -1)
-{
-    player_compile_animations();
-}
-
-// Destroy:
 instance_destroy();

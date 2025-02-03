@@ -1,18 +1,10 @@
 /// player_inbounds([id])
-// Returns whether the player is inside the camera boundaries.
+/* Returns whether the player is inside the camera boundaries. This is usually the room boundaries. */
 
-var player_id, player_handle;
+var player_handle;
 
-// Initialize:
-player_id = 0;
-player_handle = self;
-
-// Set player:
-if (argument_count >= 1)
-{
-    player_id = argument[0];
-    player_handle = player_get_instance(player_id);
-}
+player_handle = id;
+if (argument_count > 0) player_handle = stage_get_player(argument[0]);
 
 switch (player_handle.mask_rotation)
 {
@@ -22,22 +14,14 @@ switch (player_handle.mask_rotation)
         if (x < ctrl_camera.limit_left + x_radius)
         {
             x = ctrl_camera.limit_left + x_radius;
-
-            if (x_speed < 0)
-            {
-                x_speed = 0;
-            }
+            if (x_speed < 0) x_speed = 0;
         }
 
         // Right limit:
         if (x > ctrl_camera.limit_right - x_radius)
         {
             x = ctrl_camera.limit_right - x_radius;
-
-            if (x_speed > 0)
-            {
-                x_speed = 0;
-            }
+            if (x_speed > 0) x_speed = 0;
         }
 
         // Top limit:
@@ -73,22 +57,14 @@ switch (player_handle.mask_rotation)
         if (y < ctrl_camera.limit_top + x_radius)
         {
             y = ctrl_camera.limit_top + x_radius;
-
-            if (x_speed > 0)
-            {
-                x_speed = 0;
-            }
+            if (x_speed > 0) x_speed = 0;
         }
 
         // Bottom limit:
         if (y > ctrl_camera.limit_bottom - x_radius)
         {
             y = ctrl_camera.limit_bottom - x_radius;
-
-            if (x_speed < 0)
-            {
-                x_speed = 0;
-            }
+            if (x_speed < 0) x_speed = 0;
         }
         break;
 
@@ -98,22 +74,14 @@ switch (player_handle.mask_rotation)
         if (x < ctrl_camera.limit_left + x_radius)
         {
             x = ctrl_camera.limit_left + x_radius;
-
-            if (x_speed > 0)
-            {
-                x_speed = 0;
-            }
+            if (x_speed > 0) x_speed = 0;
         }
 
         // Right limit:
         if (x > ctrl_camera.limit_right - x_radius)
         {
             x = ctrl_camera.limit_right - x_radius;
-
-            if (x_speed < 0)
-            {
-                x_speed = 0;
-            }
+            if (x_speed < 0) x_speed = 0;
         }
 
         // Top limit:
@@ -149,22 +117,14 @@ switch (player_handle.mask_rotation)
         if (y < ctrl_camera.limit_top + x_radius)
         {
             y = ctrl_camera.limit_top + x_radius;
-
-            if (x_speed > 0)
-            {
-                x_speed = 0;
-            }
+            if (x_speed > 0) x_speed = 0;
         }
 
         // Bottom limit:
         if (y > ctrl_camera.limit_bottom - x_radius)
         {
             y = ctrl_camera.limit_bottom - x_radius;
-
-            if (x_speed < 0)
-            {
-                x_speed = 0;
-            }
+            if (x_speed < 0) x_speed = 0;
         }
         break;
 }

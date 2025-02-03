@@ -1,5 +1,5 @@
 /// player_wall_eject(obj)
-// Ejects the player from the given solid by calculating the distance between them needed to escape collision.
+/* Ejects the player from the given solid by calculating the distance between them needed to escape collision. */
 
 var sine, csine, ox;
 

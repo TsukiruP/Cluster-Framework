@@ -1,57 +1,33 @@
 /// player_animation_core()
-// Core of the animation system.
+/* Executes the player's animation.
+Snaps the player to the ground should there be a change in y radius. */
 
 var y_radius_temp;
 
-// Store previous radius:
 y_radius_temp = y_radius;
 
-// Animation:
-player_animation_variant();
-player_animation_speed();
+sequence_speed = player_get_animation_speed();
+animation_variant = player_get_animation_variant();
 
-// Load target animation:
-if (ctl_index != player_get_animation(animation_current, animation_variant))
+if (sequence_index != player_get_animation(animation_current, animation_variant))
 {
-    // Set animation:
-    timeline_set(player_get_animation(animation_current, animation_variant), animation_moment);
-
-    // Reset finished:
-    animation_finished = false;
-
-    // Reset trigger:
+    sequence_set(player_get_animation(animation_current, animation_variant), animation_moment);
     animation_trigger = false;
-
-    // Reset timer:
-    animation_timer = 0;
+    animation_time = 0;
 }
 
-// Execute custom timeline:
-ctl_update();
-script_execute(ctl_index);
-animation_timer += 1;
+sequence_update();
+script_execute(sequence_index);
+animation_time += 1;
 
-// Reset skip:
-if (animation_skip == true)
-{
-    animation_skip = false;
-}
+if (animation_skip) animation_skip = false;
+if (animation_changed) animation_changed = false;
 
-// Reset changed:
-if (animation_changed == true)
-{
-    animation_changed = false;
-}
-
-// SSE bandaid:
-if (x_radius < 8)
-{
-    x_radius = 8;
-}
-
-// Position fix:
-if (on_ground == true)
+if (on_ground)
 {
     x += (y_radius_temp - y_radius) * dsin(mask_rotation);
     y += (y_radius_temp - y_radius) * dcos(mask_rotation);
 }
+
+player_animation_fix();
+if (x_radius < 8) x_radius = 8;

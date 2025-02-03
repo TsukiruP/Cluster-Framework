@@ -1,186 +1,492 @@
 +System
 	|credits
-	+Game
-		|game_ispaused
-		|stage_start
-	+Display
-		|window_resize
-		|in_view
-	+Input
-		|gamepad_get_check
-		|input_get_check
-		|input_get_timer
-	+Text
-		|string_bool
-		|string_key
-		|char_pad
-		|string_input
-		|text_set_message
-		|topic_set_message
-	+Room
-		|room_set_data
-		|room_get_data
-		|room_view_set_all
-	+Fade
-		|fade_create
-		|fade_reverse
-	+Timelines
-		|ctl_initialize
-		|ctl_update
-		|ctl_skip
-		|ctl_position
-		|timeline_set
-		|ctl_template
+	+Controllers
+		+Game
+			|game_ispaused
+			+Debug
+				|game_get_debug
+				|game_set_debug
+			+Checkpoint
+				|game_get_checkpoint_x
+				|game_get_checkpoint_y
+				|game_get_checkpoint_time
+				|game_set_checkpoint
+				|game_checkpoint_isset
+			+Config
+				|game_init_config
+				|game_get_config
+				|game_set_config
+				|game_write_config
+				|game_read_config
+				|game_reset_config
+				|game_load_config_buffer
+				|game_config_exists
+				+Keyboard
+					|game_config_get_key
+					|game_config_set_key
+					|game_config_write_key
+					|game_config_read_key
+					|game_config_reset_key
+				+Gamepad
+					|game_config_init_gamepad
+					|game_config_get_btn
+					|game_config_set_btn
+					|game_config_get_gamepad
+					|game_config_set_gamepad
+					|game_config_write_gamepad
+					|game_config_read_gamepad
+					|game_config_reset_btn
+					|game_config_set_confirm
+			+Save
+				|game_init_save
+				|game_get_save
+				|game_set_save
+				|game_write_save
+				|game_read_save
+				|game_delete_save
+				|game_reset_save
+				|game_load_save_buffer
+				|game_save_exists
+				|game_save_auto
+				+Character
+					|game_save_get_character
+					|game_save_set_character
+					|game_save_write_character
+					|game_save_read_character
+					|game_save_reset_character
+				+Skill
+					|game_save_get_skill
+					|game_save_set_skill
+					|game_save_write_skill
+					|game_save_read_skill
+					|game_save_reset_skill
+					|game_save_get_skill_map
+			+Room
+				|game_room_add
+				|game_get_room_transition
+				|game_get_room_music
+				|game_get_room_background
+				|game_get_room_zone
+				|game_get_room_act
+				|game_get_room_water
+				|game_get_room_start
+				|game_get_room_run
+			+Misc.
+				|game_get_player_count
+				|game_get_speed
+				|game_set_speed
+				|game_get_time
+				|game_get_interface_color
+				|game_get_save_count
+				|game_get_save_id
+				|game_set_save_id
+		+Screen
+			|screen_is_equal
+			|screen_get_width
+			|screen_get_height
+			|screen_set_size
+			|screen_set_resolution
+			|screen_set_window
+		+Audio
+			|audio_ring_pan
+			|audio_stop_all
+			|audio_pause_all
+			|audio_resume_all
+			|audio_fade_out
+			+SFX
+				|audio_play_sfx
+				|audio_stop_sfx
+				|audio_pause_sfx_all
+				|audio_resume_sfx_all
+			+BGM
+				|audio_play_bgm
+				|audio_stop_bgm
+				|audio_pause_bgm
+				|audio_resume_bgm
+				|audio_mute_bgm
+				|audio_fade_bgm
+				|audio_bgm_isplaying
+			+JNG
+				|audio_play_jng
+				|audio_stop_jng
+				|audio_pause_jng
+				|audio_resume_jng
+				|audio_mute_jng
+				|audio_fade_jng
+				|audio_jng_isplaying
+			+Drown
+				|audio_play_drown
+				|audio_stop_drown
+				|audio_pause_drown
+				|audio_drown_resume
+				|audio_drown_fade
+				|audio_drown_isplaying
+		+Input
+			|gamepad_get_check
+			|input_get_check
+			|input_get_time
+			|input_queue_dequeue
+			|input_queue_enqueue
+			|input_queue_clear
+		+Text
+			|font_get_height
+			|text_get_clear
+			|text_set_clear
+			|text_get_handle
+			|text_set_handle
+			|text_set_subject
+			|text_set_body
+		+Animation
+			|animation_get
+			|animation_add
+			|animation_init_sonic
+			|animation_init_classic
+		+Fade
+			|fade_create
+			|fade_reverse
+		+Stage
+			|stage_start
+			|stage_set_pause_allow
+			+Score
+				|stage_add_score
+				|stage_get_score
+			+Time
+				|stage_get_time
+				|stage_set_time
+				|stage_set_time_allow
+			+Rings
+				|stage_add_rings
+				|stage_get_rings
+				|stage_set_rings
+			+Player
+				|stage_get_player
+				|stage_add_player
+				|stage_find_player
+				|stage_delete_player
+		+Camera
+			|camera_set_lag
+			|camera_set_focus
+		+HUD
+			|hud_set_hide
+			|hud_add_item
+	+Menus
+		+Debug
+			|debug_add_option
+			|debug_set_menu
+			|debug_set_next
+			|debug_set_previous
+			+Indexes
+				|debug_menu_home
+				+Options
+					|debug_option_character
+					+Character
+						|debug_menu_character
+						+Options
+							|debug_option_player0
+							|debug_option_player1
+							|debug_option_swap
+						+Sonic
+							|debug_menu_sonic
+							+Options
+								|debug_option_sonic_ground
+								|debug_option_sonic_air_jump
+								|debug_option_sonic_air_aux
+								|debug_option_sonic_slam
+								|debug_option_sonic_peel
+								|debug_option_sonic_homing
+								|debug_option_sonic_shield
+						+Miles
+						+Knuckles
+						+Amy
+					|debug_option_transition
+					+Transition
+						|debug_menu_transition
+						+Options
+							|debug_option_transition_room
+							|debug_option_transition_preview
+					|debug_option_data
+					+Data
+						|debug_menu_data
+						+Options
+							|debug_option_save_write
+							|debug_option_save_read
+							|debug_option_save_delete
+							|debug_option_save_rename
+							|debug_option_save_reset
+							|debug_option_config_write
+							|debug_option_config_read
+							|debug_option_config_reset
+					|debug_option_text
+					+Text
+						|debug_menu_text
+						+Options
+							|debug_option_subject_test
+							|debug_option_body_test
+							|debug_option_log_open
+							|debug_option_log_reset
+					|debug_option_config
+					+Config
+						|debug_menu_config
+						+Options
+							|debug_option_interface
+							+Interface
+								|debug_menu_interface
+								+Options
+									|debug_option_interface_red
+									|debug_option_interface_green
+									|debug_option_interface_blue
+									|debug_option_interface_alpha
+							|debug_option_screen
+							+Screen
+								|debug_menu_screen
+								+Options
+									|debug_option_screen_mode
+									|debug_option_screen_ratio
+									|debug_option_screen_scale
+									|debug_option_screen_full
+							|debug_option_audio
+							+Audio
+								|debug_menu_audio
+								+Options
+									|debug_option_audio_sfx
+									|debug_option_audio_bgm
+							|debug_option_keyboard
+							|debug_option_gamepad
+							|debug_option_gameplay
+							+Gameplay
+								|debug_menu_gameplay
+								+Options
+									|debug_option_gameplay_shields
+									|debug_option_gameplay_debuffs
+									|debug_option_gameplay_bonuses
+							|debug_option_advance
+							+Advance
+								|debug_menu_advance
+								+Options
+									|debug_option_advance_turn
+									|debug_option_advance_brake
+									|debug_option_advance_hurt
+									|debug_option_advance_flicker
+							|debug_option_misc
+							+Misc.
+								|debug_menu_misc
+								+Options
+									|debug_option_misc_hud
+									|debug_option_misc_status
+									|debug_option_misc_feed
+									|debug_option_misc_trails
+									|debug_option_misc_reticle
+									|debug_option_misc_tally
+					|debug_option_credits
+		+Save
+			|save_menu_create
+			|save_menu_preview
+	+Sequences
+		|sequence_init
+		|sequence_set
+		|sequence_update
+		|sequence_skip
+		|sequence_position
 		+Indexes
+			|sequence_template
 			+Player
 				+Sonic
 					+Idle
-						|ctl_sonic_stand
+						|sequence_sonic_stand
 						+Cliff
-							|ctl_sonic_cliff_front
-							|ctl_sonic_cliff_back
+							|sequence_sonic_cliff_front
+							|sequence_sonic_cliff_back
 						+Wait
-							|ctl_sonic_wait_leader
-							|ctl_sonic_wait_partner
+							|sequence_sonic_wait_leader
+							|sequence_sonic_wait_partner
 						+Omochao
-							|ctl_sonic_omochao
-							|ctl_sonic_omochao_end
+							|sequence_sonic_omochao
+							|sequence_sonic_omochao_end
 						+Misc.
-							|ctl_sonic_ready
-							|ctl_sonic_land
+							|sequence_sonic_standby
+							|sequence_sonic_land
 					+Turn
-						|ctl_sonic_turn
-						|ctl_sonic_turn_brake
+						|sequence_sonic_turn
+						|sequence_sonic_turn_brake
 					+Run
-						|ctl_sonic_run_0
-						|ctl_sonic_run_1
-						|ctl_sonic_run_2
-						|ctl_sonic_run_3
-						|ctl_sonic_run_4
+						|sequence_sonic_run_0
+						|sequence_sonic_run_1
+						|sequence_sonic_run_2
+						|sequence_sonic_run_3
+						|sequence_sonic_run_4
+						|sequence_sonic_run_5
 					+Look
-						|ctl_sonic_look
-						|ctl_sonic_look_end
+						|sequence_sonic_look
+						|sequence_sonic_look_end
 					+Crouch
-						|ctl_sonic_crouch
-						|ctl_sonic_crouch_end
+						|sequence_sonic_crouch
+						|sequence_sonic_crouch_end
 					+Spin Dash
-						|ctl_sonic_spin_dash
-						|ctl_sonic_spin_charge
+						|sequence_sonic_spin_dash
+						|sequence_sonic_spin_charge
+					|sequence_sonic_roll
 					+Spin
-						|ctl_sonic_roll
-						|ctl_sonic_spin_flight
-						|ctl_sonic_spin_fall
+						|sequence_sonic_spin_flight
+						|sequence_sonic_spin_fall
 					+Brake
-						|ctl_sonic_brake
-						|ctl_sonic_brake_fast
-					|ctl_sonic_push
+						|sequence_sonic_brake
+						|sequence_sonic_brake_fast
+					|sequence_sonic_hurt
+					|sequence_sonic_death
+					|sequence_sonic_push
+					+Ramp
+						|sequence_sonic_ramp_flight
+						|sequence_sonic_ramp_fall
 					+Spring
-						|ctl_sonic_spring_flight
-						|ctl_sonic_spring_fall
+						|sequence_sonic_spring_flight
+						|sequence_sonic_spring_fall
+					|sequence_sonic_rail
+					|sequence_sonic_breathe
 					+Goal
-					|ctl_sonic_hurt
-					|ctl_sonic_death
-					|ctl_sonic_breathe
-					|ctl_sonic_hammer
+					|sequence_sonic_hammer
 					+Skid
-						|ctl_sonic_somersault
-						|ctl_sonic_skid
-						|ctl_sonic_skid_end
-					|ctl_sonic_insta
-					|ctl_sonic_air_dash
+						|sequence_sonic_somersault
+						|sequence_sonic_skid
+						|sequence_sonic_skid_end
+					|sequence_sonic_insta
+					|sequence_sonic_air_dash
+					+Stomp
+						|sequence_sonic_stomp
+						|sequence_sonic_stomp_land
+					|sequence_sonic_peel_out
+				+Classic
+					+Idle
+						|sequence_classic_stand
+						|sequence_classic_standby
+						+Cliff
+							|sequence_classic_cliff_front
+							|sequence_classic_cliff_back
+						+Wait
+							|sequence_classic_wait_leader
+							|sequence_classic_wait_partner
+					+Run
+						|sequence_classic_run_0
+						|sequence_classic_run_1
+					|sequence_classic_look
+					|sequence_classic_crouch
+					|sequence_classic_spin_dash
+					|sequence_classic_roll
+					|sequence_classic_brake
+					|sequence_classic_hurt
+					+Death
+						|sequence_classic_death
+						|sequence_classic_drown
+					|sequence_classic_push
+					|sequence_classic_spring
+					|sequence_classic_rail
+					|sequence_classic_breathe
+					|sequence_classic_insta
 			+Props
 				+Checkpoint
-					|ctl_checkpoint_inactive
-					|ctl_checkpoint_active
+					|sequence_checkpoint_inactive
+					|sequence_checkpoint_active
 				+Spring
-					|ctl_spring_vertical
-					|ctl_spring_horizontal
-					|ctl_spring_diagonal
-				+Badniks
-					|ctl_spinner
+					|sequence_spring_vertical
+					|sequence_spring_horizontal
+					|sequence_spring_diagonal
+				+Enemies
+					|sequence_spinner
+				+Switch
+					+Vertical
+						|sequence_switch_vertical_on
+						|sequence_switch_vertical_off
 			+Effects
 				+Player
-					|ctl_spin_dash
-					|ctl_spin_charge
-					|ctl_brake
-					|ctl_debuff
-					|ctl_reticle
-					|ctl_reticle_colors
+					|sequence_spin_dash
+					|sequence_spin_charge
+					|sequence_brake
+					|sequence_debuff
+					|sequence_swap
+					|sequence_rail_spark
+					+Sonic
+						|sequence_drop_dash
+						|sequence_reticle
+						|sequence_reticle_colors
+						|sequence_shockwave
 				+Shields
-					|ctl_shield_insta
-					|ctl_shield_basic
-					|ctl_shield_magnetic
-					|ctl_shield_fire
-					|ctl_shield_fire_dash
-					|ctl_shield_lightning
-					|ctl_shield_lightning_spark
-					|ctl_shield_bubble
-					|ctl_shield_bubble_bound
-					|ctl_shield_bubble_recoil
-					|ctl_shield_invin
+					|sequence_shield_insta
+					|sequence_shield_basic
+					|sequence_shield_magnetic
+					|sequence_shield_fire
+					|sequence_shield_fire_dash
+					|sequence_shield_lightning
+					|sequence_shield_lightning_spark
+					|sequence_shield_bubble
+					|sequence_shield_bubble_bound
+					|sequence_shield_bubble_recoil
+					|sequence_shield_invin
+					|sequence_shield_invin_spark
 				+Explosions
-					|ctl_explosion_small
-					|ctl_explosion_large
-					|ctl_explosion_enemy
-					|ctl_explosion_water
+					|sequence_explosion_small
+					|sequence_explosion_large
+					|sequence_explosion_enemy
+					|sequence_explosion_water
+				+Enemies
+					|sequence_enemy_alert
 				+Splashes
-					|ctl_splash_0
-					|ctl_splash_1
-					|ctl_splash_2
-					|ctl_splash_3
-					|ctl_splash_4
+					|sequence_splash_0
+					|sequence_splash_1
+					|sequence_splash_2
+					|sequence_splash_3
+					|sequence_splash_4
+					|sequence_splash_5
 				+Misc.
-					|ctl_ring_sparkle
-					|ctl_blockade_debris
-	+Math
-		|wrap
-		|angle_wrap
-		|sync_rate
-	+Draw
-		|draw_collision
-		|parallax_add_node
-		|draw_backdrop_tiled_area
-		+Sprites
-			|draw_sprite_tiled_horizontal
-			|draw_sprite_tiled_horizontal_yscale
-			|draw_sprite_tiled_vertical
-		+Background
-			|draw_background_tiled_horizontal_part
-			|draw_background_tiled_horizontal_part_yscale
-			|draw_background_tiled_vertical_part
-	+Misc.
-		|hover
-		|pick_offset
-		|transition_create
-		|effect_create
-		|set_hurtbox
-		|set_hitbox
-		|instance_nth_nearest
-		|instance_nearest_dir_x
+					|sequence_ring_sparkle
+					|sequence_blockade_debris
+	+Utilities
+		+Math
+			|wrap
+			|angle_wrap
+			|time_sync
+			|sine_wave
+			|sine_wave_range
+		+Draw
+			|draw_hitbox
+			|draw_sprite_tiled_extra
+			|draw_background_tiled_view
+		+Text
+			|string_bool
+			|string_key
+			|char_pad
+			|string_input
+		+Room
+			|room_set_view_better
+			|room_set_view_all
+		+Ease
+			|ease_in_out_back
+		+Misc.
+			|pick_offset
+			|transition_create
+			|effect_create
+			|instance_nth_nearest
+			|instance_nearest_dir_x
+			|instance_nearest_dir_y
+			|in_view
+			|instance_create_single
 +Gameplay
 	+Collision
 		|collision_box
 		|collision_box_vertical
 		|collision_ray
 		|collision_ray_vertical
+		|hitbox_set_hurtbox
+		|hitbox_set_attackbox
 	+Player
-		+Data
-			|player_get_character
-			|player_get_instance
 		+Animation
 			|player_animation_core
-			|player_animation_variant
-			|player_animation_speed
+			|player_animation_fix
 			|player_animation_run
 			|player_animation_air
-			|player_add_animation
-			|player_get_animation
-			|player_set_animation
-			+Animation Lists
-				|sonic_animation_list
-			|player_compile_animations
+			|player_animation_jump
+			|player_animation_ramp
+			|player_animation_spring
 		+Collision
-			|player_collision_object
+			|player_collision_reaction
 			|player_collision_wall
 			|player_collision_floor
 			|player_collision_ceiling
@@ -191,63 +497,98 @@
 			|player_movement_ground
 			|player_movement_air
 		+States
-			|player_set_state
 			|player_state_template
-			+Indexes
-				+Common
-					|player_state_idle
-					|player_state_turn
-					|player_state_run
-					|player_state_air
-					|player_state_jump
-					|player_state_look
-					|player_state_crouch
-					|player_state_spin_dash
-					|player_state_roll
-					|player_state_brake
-					|player_state_hurt
-					|player_state_death
-					|player_state_bound
-					+Auxiliary
-						|player_state_hammer
-				+Sonic
-					|sonic_skill_list
-					|sonic_state_skid
-					|sonic_state_homing
+			+Common
+				|player_state_standby
+				|player_state_idle
+				|player_state_turn
+				|player_state_run
+				|player_state_air
+				|player_state_jump
+				|player_state_look
+				|player_state_crouch
+				|player_state_spin_dash
+				|player_state_roll
+				|player_state_brake
+				|player_state_hurt
+				|player_state_death
+				|player_state_ramp
+				|player_state_spring
+				|player_state_rail
+				|player_state_bound
+				|player_state_hammer
+			+Sonic
+				|sonic_state_skid
+				|sonic_state_drop_dash
+				|sonic_state_homing
+				|sonic_state_bound
+				|sonic_state_stomp
+				|sonic_state_peel_out
+		+Skills
+			+Sonic
+				|sonic_skill_slam
+				|sonic_skill_homing
+				|sonic_skill_ground
+				|sonic_skill_air
+				|sonic_skill_peel_out
 		+Routines
 			|player_routine_land
+			|player_routine_jump
+			|player_routine_roll
+			|player_routine_insta
 			|player_routine_shield
 			|player_routine_skill
 			|sonic_routine_homing
 		+Traits
-			|player_trait_debug
+			|player_trait_swap
 			|sonic_trait_reticle
 			|classic_trait_clock_up
 		+Reactions
-			|player_reaction_sensor_layer
+			|player_reaction_layer_sensor
 			|player_reaction_ring
 			|player_reaction_checkpoint
+			|player_reaction_dash_panel
+			|player_reaction_jump_panel
 			|player_reaction_spring
 			|player_reaction_item_box
 			|player_reaction_enemy
-			|player_reaction_hint
 			|player_reaction_spike
 			|player_reaction_blockade
+			|player_reaction_rail
+			|player_reaction_hint
+			|player_reaction_switch
+			|player_reaction_water
+			|player_reaction_bubble
+			|player_reaction_waterfall
+		+Trail
+			|player_trail_init
+			|player_trail_color
+			|player_trail_draw
 		+Getters
-			|player_get_physics
-			|player_get_solids
+			|player_get_hitbox
+			|player_get_stage_objects
 			|player_get_angle
-			|player_get_collision
+			|player_get_cliff
+			|player_get_input
+			|player_get_animation
+			|player_get_animation_speed
+			|player_get_animation_variant
 			|player_get_item
 		+Setters
+			|player_set_state
 			|player_set_radii
-			|player_set_input
+			|player_set_physics
 			|player_set_ground
-			|player_set_cliff
+			|player_set_status
+			|player_set_device
+			|player_set_input
+			|player_set_animation
 			|player_set_damage
+			|player_reset_input
 			|player_reset_air
 			|player_reset_spring
 			|player_reset_skill
+			|player_reset_status
 		+Misc.
 			|player_react
 			|player_inbounds
@@ -256,50 +597,11 @@
 			|player_ring_loss
 			|player_brake_dust
 			|player_surface_splash
-			+Trail
-				|start_trail
-				|update_trail
-				|draw_trail
+			|player_cpu_respawn
+			|player_add_rings
 	+Props
-		+Checkpoint
-			|checkpoint_set
-			|checkpoint_isset
 +Trash
-	+Sonic Dash
-		+Main
-		+Left
-		+Right
-		+Top
-		+Bottom
-	+Actions (OLD)
-		+Sonic
-		+Miles
-		+Knuckles
-		+Amy
-		+Classic
-	+Collision
-		+Utilities
-			|player_terrain_point
-			|player_terrain_line
-			|player_obstacle_rectangle
-		|player_collision_semisolids
-		|player_collision_terrain
-		|player_collision_obstacle
-		|player_collision_prop_OLD
-		|player_collision_mode
-		|player_collision_wall_OLD
-		|player_collision_steps
-	+Angle
-	+GMS2
-		|collision_line_list
-		|collision_rectangle_list
-		|collision_point_list
-	+Handle
-		|player_handle_layer
-		|player_handle_ring
-		|player_handle_checkpoint
-		|player_handle_spring
-		|player_handle_item_box
-		|player_handle_badnik
-		|player_handle_hint
-|gravity_angle
+	|draw_sprite_tiled_horizontal
+	|draw_sprite_tiled_vertical
+	|draw_sprite_tiled_horizontal_yscale
+	|draw_backdrop_tiled_area

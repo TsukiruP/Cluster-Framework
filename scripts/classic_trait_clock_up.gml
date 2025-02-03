@@ -1,79 +1,59 @@
 /// classic_trait_clock_up([over])
-// He who was born a God and governs over all.
+/* He who was born a God and governs over all. */
 
-// Clock Over:
-if (argument_count >= 1)
+if (argument_count > 0)
 {
-    if (argument[0] == true && clock_up_state != 0)
+    if (argument[0] && clock_up_state != 0)
     {
-        // Play sound:
-        // Since this is dependent on the Clock Up state, we play the sound first.
         if (clock_up_state == 2)
         {
-            sound_play("snd_hyper_clock_over");
+            audio_play_sfx("snd_hyper_clock_over");
+            audio_stop_sfx("snd_hyper_clock_up");
         }
         else
         {
-            sound_play("snd_clock_over");
+            audio_play_sfx("snd_clock_over");
+            audio_stop_sfx("snd_clock_up");
         }
 
-        global.game_speed = 1;
+        game_set_speed(1);
         clock_up_state = 0;
+        audio_resume_bgm();
     }
 }
 else
 {
-    // Clock Up timer:
     if (clock_up_state != 0)
     {
-        // Increase Clock Up timer:
-        clock_up_timer = min(clock_up_timer + 1 * clock_up_state, clock_up_duration);
-
-        // Clock Over:
-        if (clock_up_timer == clock_up_duration)
-        {
-            classic_trait_clock_up(true);
-        }
+        clock_up_energy = max(clock_up_energy - 1 * clock_up_state, 0);
+        if (clock_up_energy <= 0) classic_trait_clock_up(true);
     }
 
-    // Exit if hurt or dying:
-    if (state_current == player_state_hurt || state_current == player_state_death)
-    {
-        exit;
-    }
+    if (state_current == player_state_hurt || state_current == player_state_death || input_cpu) exit;
 
-    // Clock Up:
-    if (clock_up_timer != clock_up_duration && clock_up_alarm == 0 && input_player[INP_SUPER, CHECK_PRESSED] == true)
+    if (clock_up_alarm == 0 && clock_up_energy > 0 && player_get_input(INP_SUPER, CHECK_PRESSED))
     {
-        // Hyper:
-        if (clock_up_state != 2 && (clock_up_state == 0 || clock_up_state != 0) && input_player[INP_ALT, CHECK_HELD] == true)
+        if (clock_up_state != 2 && (clock_up_state == 0 || clock_up_state != 0) && player_get_input(INP_ALT, CHECK_HELD))
         {
-            global.game_speed = 0;
+            game_set_speed(0);
             clock_up_state = 2;
-
-            // Play sound:
-            sound_play("snd_clock_up_start");
-            sound_play("snd_hyper_clock_up");
+            audio_play_sfx("snd_clock_up_start");
+            audio_play_sfx("snd_hyper_clock_up");
+            audio_pause_bgm();
         }
-
-        // Normal:
-        else if (clock_up_state != 1 && (clock_up_state == 0 || (clock_up_state == 2 && input_player[INP_ALT, CHECK_HELD] == true)))
+        else if (clock_up_state != 1 && (clock_up_state == 0 || (clock_up_state == 2 && player_get_input(INP_ALT, CHECK_HELD))))
         {
-            global.game_speed = 0.25;
+            game_set_speed(0.25);
             clock_up_state = 1;
-
-            // Play sound:
-            sound_play("snd_clock_up_start");
-            sound_play("snd_clock_up");
+            audio_play_sfx("snd_clock_up_start");
+            audio_play_sfx("snd_clock_up");
+            audio_pause_bgm();
         }
-
-        // Over:
-        else if (clock_up_state != 0)
+        else
         {
             classic_trait_clock_up(true);
         }
 
-        // Set Clock Up alarm:
         clock_up_alarm = 60;
     }
 }

@@ -1,5 +1,5 @@
 /// collision_ray_vertical(ox, oy, rot, obj)
-// Returns whether the given instance is in collision with a line of height {oy * 2} and length {ox} from the calling instance's center point.
+/* Returns the id of the given instance that is in collision with a line of height {oy * 2} and length {ox} from the calling instance's center point, or noone on failure. */
 
 var x_int, y_int, sine, csine, x1, y1, x2, y2;
 

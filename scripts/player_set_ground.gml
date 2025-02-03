@@ -1,12 +1,11 @@
 /// player_set_ground(obj)
-// Assigns the given solid as the player's current ground.
+/* Assigns the given solid as the player's current ground. */
 
 var sine, csine;
 
 // Confirm assignment
 ground_id = argument0;
 on_ground = true;
-on_surface = false;
 player_reset_skill();
 
 // Calculate and set new ground angle
@@ -41,14 +40,5 @@ repeat (y_radius * 2)
     else
     {
         break;
-    }
-}
-
-// Water surface:
-if (instance_exists(obj_water_surface))
-{
-    if (mask_rotation == 0 && floor(y) + y_radius + 1 == obj_water_surface.y)
-    {
-        on_surface = true;
     }
 }

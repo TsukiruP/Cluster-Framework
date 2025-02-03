@@ -1,30 +1,30 @@
-/// player_reaction_ring(obj, collision)
-// Nom nom nom.
+/// player_reaction_ring(obj, hitbox)
+/* Nom nom nom. */
 
-var reaction_handle, collision;
+var reaction_handle, hitbox;
 
 reaction_handle = argument0;
-collision = argument1;
+hitbox = argument1;
 
-// Collect ring:
-if (collision & COLL_HURT_RADIUS)
+if (hitbox & HIT_COLLISION)
 {
     if (status_invin != INVIN_HURT || (status_invin == INVIN_HURT && status_invin_alarm > 0 && status_invin_alarm < 90))
     {
-        // Collect:
-        global.game_rings += 1;
+        if (reaction_handle.super)
+        {
+            player_add_rings(10);
+            audio_play_sfx("snd_ring_super", true);
+        }
+        else
+        {
+            player_add_rings(1);
+            audio_play_sfx("snd_ring", true, 1, audio_ring_pan());
+        }
 
         with (reaction_handle)
         {
-            // Sparkle:
-            effect_create(ctl_ring_sparkle, x, y, -depth);
-
-            // Destroy:
+            effect_create(x, y, sequence_ring_sparkle, -depth);
             instance_destroy();
         }
-
-        // Play sound:
-        sound_play_single("snd_ring");
-        ctrl_audio.ring_pan *= -1;
     }
 }

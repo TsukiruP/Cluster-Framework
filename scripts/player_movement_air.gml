@@ -1,5 +1,6 @@
 /// player_movement_air()
-// Performs a movement step for the player in the air.
+/* Performs a movement step for the player in the air.
+Returns whether the player's current state should be aborted or not. */
 
 var total_steps, step, hit_object, hit_wall, hit_floor;
 
@@ -17,40 +18,32 @@ repeat (total_steps)
     x += dcos(angle) * step;
     y -= dsin(angle) * step;
 
-    // Keep in bounds:
-    if (!player_inbounds())
-    {
-        return false;
-    }
+    if (!player_inbounds()) return false;
 
-    // Object collision:
-    if (player_collision_object())
-    {
-        return false;
-    }
-
-    // Get colliding solids:
-    player_get_solids();
+    // Get colliding stage objects:
+    player_get_stage_objects();
+    if (player_collision_reaction()) return false;
 
     // Handle wall collision:
     hit_wall = player_collision_wall(0);
 
     if (hit_wall != noone)
     {
-        // Get crushed if applicable:
-        // [PLACEHOLDER]
+        // Get crushed:
+        if (hit_wall.can_crush && collision_point(x, y, hit_wall, true, false) != noone)
+        {
+            player_set_damage(self);
+            return false;
+        }
 
         // Eject from wall:
         wall_sign = player_wall_eject(hit_wall);
 
-        // Trigger reaction:
-        // [PLACEHOLDER]
+        // React:
+        if (player_react(hit_wall, HIT_SOLID, pick(wall_sign == -1, ANGLE_LEFT, ANGLE_RIGHT))) return false;
 
         // Stop if moving towards wall:
-        if (sign(x_speed) == wall_sign)
-        {
-            x_speed = 0;
-        }
+        if (sign(x_speed) == wall_sign) x_speed = 0;
     }
 }
 
@@ -66,19 +59,11 @@ repeat (total_steps)
     y += dcos(angle) * step;
 
     // Keep in bounds:
-    if (!player_inbounds())
-    {
-        return false;
-    }
+    if (!player_inbounds()) return false;
 
-    // Object collision:
-    if (player_collision_object())
-    {
-        return false;
-    }
-
-    // Get colliding solids:
-    player_get_solids();
+    // Get colliding stage objects:
+    player_get_stage_objects();
+    if (player_collision_reaction()) return false;
 
     // Handle floor/ceiling collisions:
     if (y_speed >= 0)
@@ -88,8 +73,8 @@ repeat (total_steps)
 
         if (hit_floor != noone)
         {
-            // Trigger reaction:
-            // [PLACEHOLDER]
+            // React:
+            if (player_react(hit_floor, HIT_SOLID, ANGLE_UP)) return false;
 
             // Get floor data:
             player_set_ground(hit_floor);
@@ -105,8 +90,8 @@ repeat (total_steps)
 
         if (hit_floor != noone)
         {
-            // Trigger reaction:
-            // [PLACEHOLDER]
+            // React:
+            if (player_react(hit_floor, HIT_SOLID, ANGLE_DOWN)) return false;
 
             // Rotate mask to ceiling:
             mask_rotation = angle_wrap(mask_rotation + 180);
@@ -148,11 +133,7 @@ repeat (total_steps)
         {
             // Scale speed to incline:
             x_speed = -y_speed * sign(dsin(relative_angle));
-
-            if (relative_angle < 45 || relative_angle > 315)
-            {
-                x_speed *= 0.5;
-            }
+            if (relative_angle < 45 || relative_angle > 315) x_speed *= 0.5;
         }
 
         // Stop falling:
@@ -164,12 +145,7 @@ repeat (total_steps)
 
     // Handle wall collision:
     hit_wall = player_collision_wall(0);
-
-    if (hit_wall != noone)
-    {
-        player_wall_eject(hit_wall);
-    }
+    if (hit_wall != noone) player_wall_eject(hit_wall);
 }
 
-// Success
 return true;

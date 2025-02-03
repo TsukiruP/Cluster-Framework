@@ -1,32 +1,20 @@
 /// player_animation_run()
-// Shorthand for run animation behavior.
+/* Sets the run animation depending on the x speed. */
 
-// Walk:
-if (abs(x_speed) < 1.50)
-{
-    if (animation_current != "run_0") player_set_animation("run_0");
-}
+// Abort if in the pushing animation:
+if (animation_current == "push" && image_xscale == input_x_direction) exit;
 
-// Walk fast:
-else if (abs(x_speed) < 3.00)
+switch (character_id)
 {
-    if (animation_current != "run_1") player_set_animation("run_1");
-}
+    case CHAR_CLASSIC:
+        player_set_animation(pick(abs(x_speed) >= 6.00, "run_0", "run_1"));
+        break;
 
-// Jog:
-else if (abs(x_speed) < 4.50)
-{
-    if (animation_current != "run_2") player_set_animation("run_2");
-}
-
-// Jog fast:
-else if (abs(x_speed) < 6.00)
-{
-    if (animation_current != "run_3") player_set_animation("run_3");
-}
-
-// Run:
-else
-{
-    if (animation_current != "run_4") player_set_animation("run_4");
+    default:
+        if (peel_out) player_set_animation("run_5");
+        else if (abs(x_speed) >= 6.00) player_set_animation("run_4");
+        else if (abs(x_speed) >= 4.50) player_set_animation("run_3");
+        else if (abs(x_speed) >= 3.00) player_set_animation("run_2");
+        else if (abs(x_speed) >= 1.50) player_set_animation("run_1");
+        else player_set_animation("run_0");
 }

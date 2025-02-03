@@ -1,21 +1,10 @@
-/// player_slope_friction(friction, threshold)
-// Applies slope friction
+/// player_slope_friction(friction)
+/* Applies slope friction. */
 
-if (on_ground == true)
-{
-    var sine;
+// Abort if...
+if (x_speed == 0 && input_lock_alarm <= 0) exit; // Not moving
+if (relative_angle > 135 && relative_angle < 225) exit; // Attached to a ceiling
+if (relative_angle < 22.5 || relative_angle > 337.5) exit; // Surface is too shallow
 
-    sine = dsin(relative_angle);
-
-    if ((sign(sine) != sign(x_speed) || (relative_angle >= 22.5 && relative_angle <= 337.5)))
-    {
-        var slope_friction;
-
-        slope_friction = sine * argument0;
-
-        if (abs(slope_friction) > argument1)
-        {
-            x_speed -= slope_friction;
-        }
-    }
-}
+// Apply
+x_speed -= dsin(relative_angle) * argument0;

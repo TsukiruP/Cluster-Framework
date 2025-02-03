@@ -1,5 +1,6 @@
 /// player_movement_ground()
-// Performs a movement step for the player on the ground.
+/* Performs a movement step for the player on the ground.
+Returns whether the player's current state should be aborted or not. */
 
 var ox, oy, total_steps, step, prop_handle, hit_prop, obstacle_handle, hit_obstacle, hit_wall, hit_floor;
 
@@ -19,12 +20,9 @@ if (instance_exists(ground_id))
 }
 
 // Fall off:
-else
-{
-    on_ground = false;
-}
+else on_ground = false;
 
-// Reset wall direction:
+// Reset wall data:
 wall_sign = 0;
 
 // Initialize movement loop:
@@ -38,40 +36,35 @@ repeat (total_steps)
     x += dcos(angle) * step;
     y -= dsin(angle) * step;
 
-    // Keep in bounds:
-    if (!player_inbounds())
-    {
-        return false;
-    }
+    if (!player_inbounds()) return false;
 
-    // Object collision:
-    if (player_collision_object())
-    {
-        return false;
-    }
-
-    // Get colliding solids:
-    player_get_solids();
+    // Get colliding stage objects:
+    player_get_stage_objects();
+    if (player_collision_reaction()) return false;
 
     // Wall collision:
     hit_wall = player_collision_wall(0);
 
     if (hit_wall != noone)
     {
-        // Get crushed if applicable:
-        // [PLACEHOLDER]
+        // Get crushed:
+        if (hit_wall.can_crush && collision_point(x, y, hit_wall, true, false) != noone)
+        {
+            player_set_damage(self);
+            return false;
+        }
 
         // Eject from wall:
         wall_sign = player_wall_eject(hit_wall);
 
         // React:
-        // [PLACEHOLDER]
+        if (player_react(hit_wall, HIT_SOLID, pick(wall_sign == -1, ANGLE_LEFT, ANGLE_RIGHT))) return false;
 
         // Stop if moving towards wall:
         if (sign(x_speed) == wall_sign)
         {
             x_speed = 0;
-            //player_wall_push(hit_wall);
+            if (image_xscale == wall_sign && input_x_direction == wall_sign) player_wall_push(hit_wall, wall_sign);
         }
     }
 
@@ -81,21 +74,13 @@ repeat (total_steps)
     if (hit_floor != noone)
     {
         // React:
-        // [PLACEHOLDER]
-
-        // Get floor data:
+        if (player_react(hit_floor, HIT_SOLID, ANGLE_UP)) return false;
+        
         player_set_ground(hit_floor);
     }
-
-    // Fall off:
-    else
-    {
-        on_ground = false;
-    }
-
-    // Handle mask rotation:
+    else on_ground = false;
+    
     player_rotate_mask();
 }
 
-// Success
 return true;

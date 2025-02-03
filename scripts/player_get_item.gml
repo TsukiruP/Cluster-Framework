@@ -1,124 +1,63 @@
-/// player_get_item(id)
-// Performs a certain event based on the given item id.
+/// player_get_item(obj, item)
+/* Performs an event based on the given item. */
 
-switch (argument0)
+switch (argument1)
 {
-    // Ring bonus:
     case ITEM_BONUS:
-        global.game_rings += 5;
+        player_add_rings(5)
         break;
 
-    // Super ring bonus:
     case ITEM_SUPER_BONUS:
-        global.game_rings += 10;
+        player_add_rings(10)
         break;
 
-    // Random ring bonus:
     case ITEM_RANDOM_BONUS:
-        global.game_rings += choose(1, 5, 10, 30, 50);
+        player_add_rings(choose(1, 5, 10, 30, 50));
         break;
 
-    // Basic shield:
     case ITEM_BASIC:
-        status_shield = SHIELD_BASIC;
-        status_shield_allow = true;
-
-        // Play sound:
-        sound_play("snd_shield_basic");
+        player_set_status(STATUS_SHIELD, SHIELD_BASIC);
         break;
 
-    // Magnetic shield:
     case ITEM_MAGNETIC:
-        status_shield = SHIELD_MAGNETIC;
-        status_shield_allow = true;
-
-        // Play sound:
-        sound_play("snd_shield_basic");
+        player_set_status(STATUS_SHIELD, SHIELD_MAGNETIC);
         break;
 
-    // Bubble shield:
     case ITEM_BUBBLE:
-        status_shield = SHIELD_BUBBLE;
-        status_shield_allow = true;
-
-        // Play sound:
-        sound_play("snd_shield_bubble");
+        player_set_status(STATUS_SHIELD, SHIELD_BUBBLE);
         break;
 
-    // Fire shield:
     case ITEM_FIRE:
-        status_shield = SHIELD_FIRE;
-        status_shield_allow = true;
-
-        // Play sound:
-        sound_play("snd_shield_fire");
+        player_set_status(STATUS_SHIELD, SHIELD_FIRE);
         break;
 
-    // Lightning shield:
     case ITEM_LIGHTNING:
-        status_shield = SHIELD_LIGHTNING;
-        status_shield_allow = true;
-
-        // Play sound:
-        sound_play("snd_shield_lightning");
+        player_set_status(STATUS_SHIELD, SHIELD_LIGHTNING);
         break;
 
-    // Invincibility:
     case ITEM_INVIN:
-        status_invin = 2;
-        status_invin_alarm = 1380;
-
-        // Play jingle:
-        with (ctrl_audio) event_user(0);
+        player_set_status(STATUS_INVIN, INVIN_BUFF);
         break;
 
-    // Speed up:
     case ITEM_SPEED:
-        status_speed = SPEED_UP;
-        status_speed_alarm = 900;
-
-        // Play jingle:
-        with (ctrl_audio) event_user(1);
+        player_set_status(STATUS_SPEED, SPEED_UP);
         break;
 
-    // Mine:
     case ITEM_MINE:
-        player_set_damage(other);
-
-        // Create explosion:
-        effect_create(ctl_explosion_large, other.x, other.y, depth);
+        player_set_damage(argument0);
+        effect_create(argument0.x, argument0.y, sequence_explosion_large, depth);
         break;
 
-    // Slow:
     case ITEM_SLOW:
-        if (status_invin < INVIN_BUFF)
-        {
-            status_speed = SPEED_SLOW;
-            status_speed_alarm = 1200;
-        }
+        if (status_invin < INVIN_BUFF) player_set_status(STATUS_SPEED, SPEED_SLOW);
         break;
 
-    // Panic:
     case ITEM_PANIC:
-        if (status_invin < INVIN_BUFF)
-        {
-            status_panic = true;
-            status_panic_alarm = 1200;
-        }
+        if (status_invin < INVIN_BUFF) player_set_status(STATUS_PANIC, 1200);
         break;
 
-    // Swap:
     case ITEM_SWAP:
         break;
 }
 
-// Update item feed:
-if (global.misc_feed == true)
-{
-    with (ctrl_hud)
-    {
-        ds_list_add(item_feed, argument0);
-        ds_list_add(item_feed, -8);
-        item_alarm = 90;
-    }
-}
+hud_add_item(argument1);

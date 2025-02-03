@@ -1,0 +1,16 @@
+/// sequence_switch_vertical_on()
+
+if (sequence_position(3))
+{
+    image_index = 1;
+    hitbox_set_hurtbox(9, 1, 9, 7, 0, 8);
+}
+else if (sequence_position(6))
+{
+    image_index = 2;
+    hitbox_set_hurtbox(10, 2, 10, 2, 0, 13);
+}
+else if (sequence_position(9)) hitbox_set_hurtbox(9, 2, 9, 2, 0, 13);
+else if (sequence_position(12)) image_index = 3;
+else if (sequence_position(18)) image_index = 2;
+else if (sequence_position(23)) sequence_moment = 12;
