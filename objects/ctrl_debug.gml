@@ -19,14 +19,6 @@ if (input_get_check(INP_ALT, CHECK_HELD) && input_get_check(INP_SELECT, CHECK_PR
 
 if (!game_get_debug()) exit;
 
-with (obj_player)
-{
-    if (keyboard_check_pressed(vk_numpad2)) gravity_direction = 0;
-    if (keyboard_check_pressed(vk_numpad4)) gravity_direction = 270;
-    if (keyboard_check_pressed(vk_numpad6)) gravity_direction = 90;
-    if (keyboard_check_pressed(vk_numpad8)) gravity_direction = 180;
-}
-
 var menu_left, menu_right, menu_direction;
 
 menu_left = keyboard_check_pressed(vk_pageup);
@@ -35,6 +27,30 @@ menu_direction = menu_right - menu_left;
 
 info_id += menu_direction;
 info_id = wrap(info_id, 0, 2);
+
+with (obj_player)
+{
+    if (keyboard_check_pressed(vk_numpad2)) gravity_direction = 0;
+    if (keyboard_check_pressed(vk_numpad4)) gravity_direction = 270;
+    if (keyboard_check_pressed(vk_numpad6)) gravity_direction = 90;
+    if (keyboard_check_pressed(vk_numpad8)) gravity_direction = 180;
+    if (keyboard_check_pressed(ord('1'))) status_shield = SHIELD_NONE;
+    if (keyboard_check_pressed(ord('2'))) status_shield = SHIELD_BASIC;
+    if (keyboard_check_pressed(ord('3'))) status_shield = SHIELD_MAGNETIC;
+    if (keyboard_check_pressed(ord('4'))) status_shield = SHIELD_BUBBLE;
+    if (keyboard_check_pressed(ord('5'))) status_shield = SHIELD_FIRE;
+    if (keyboard_check_pressed(ord('6'))) status_shield = SHIELD_LIGHTNING;
+    if (keyboard_check_pressed(ord('7')))
+    {
+        status_invin = INVIN_BUFF;
+        status_invin_alarm = 1380;
+    }
+    if (keyboard_check_pressed(ord('8')))
+    {
+        status_speed = SPEED_UP;
+        status_speed_alarm = 900;
+    }
+}
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
