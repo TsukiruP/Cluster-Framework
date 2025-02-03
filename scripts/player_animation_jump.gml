@@ -17,7 +17,14 @@ switch (character_index)
                     break
 
                 default:
-                    if (jump_bound == BOUND_NONE && collision_box_vertical(x_radius, y_radius + 32, mask_rotation, par_solid)) player_set_animation("spin_fall");
+                    var solid_id;
+
+                    solid_id = collision_box_vertical(x_radius, y_radius + 32, mask_rotation, par_solid);
+
+                    if (solid_id)
+                    {
+                        if (jump_bound == BOUND_NONE && solid_id.collision && !(solid_id.layer > -1 && layer != solid_id.layer)) player_set_animation("spin_fall");
+                    }
             }
         }
 
