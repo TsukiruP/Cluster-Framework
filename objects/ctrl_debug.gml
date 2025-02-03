@@ -94,7 +94,7 @@ with (obj_player)
     {
         draw_line(x_int, y_int, x_int + lengthdir_x(homing_range * image_xscale, mask_rotation + 45), y_int + lengthdir_y(homing_range * image_xscale, mask_rotation + 45));
         draw_line(x_int, y_int, x_int + lengthdir_x(homing_range * image_xscale, mask_rotation - 45), y_int + lengthdir_y(homing_range * image_xscale, mask_rotation - 45));
-        if (instance_exists(homing_handle)) draw_line(x_int, y_int, floor(homing_handle.x), floor(homing_handle.y));
+        if (instance_exists(homing_id)) draw_line(x_int, y_int, floor(homing_id.x), floor(homing_id.y));
     }
 
     draw_reset();

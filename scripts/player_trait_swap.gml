@@ -3,20 +3,20 @@
 
 if (!game_get_save("swap") || state_current == player_state_hurt || state_current == player_state_death || !instance_exists(stage_get_player(1))) exit;
 
-var partner_handle;
+var partner_id;
 
-partner_handle = stage_get_player(1);
+partner_id = stage_get_player(1);
 
-if (partner_handle.input_cpu_gamepad_alarm > 0) exit;
+if (partner_id.input_cpu_gamepad_alarm > 0) exit;
 
 if (player_get_input(INP_SWAP, CHECK_PRESSED))
 {
-    if (in_view(partner_handle))
+    if (in_view(partner_id))
     {
         if (swap_alarm == 0 && status_speed != SPEED_SLOW && status_panic_alarm == 0 && status_swap_alarm == 0 &&
-            partner_handle.state_current != player_state_hurt && partner_handle.state_current != player_state_death)
+            partner_id.state_current != player_state_hurt && partner_id.state_current != player_state_death)
         {
-            with (partner_handle)
+            with (partner_id)
             {
                 swap_alarm = 60;
                 status_shield = other.status_shield;
@@ -28,7 +28,7 @@ if (player_get_input(INP_SWAP, CHECK_PRESSED))
 
                 with (instance_create(x, y, eff_swap))
                 {
-                    player_handle = other.id;
+                    player_id = other.id;
                 }
             }
 
@@ -45,7 +45,7 @@ if (player_get_input(INP_SWAP, CHECK_PRESSED))
     }
     else
     {
-        with (partner_handle)
+        with (partner_id)
         {
             if (state_current != player_state_hurt && state_current != player_state_death) player_cpu_respawn();
         }

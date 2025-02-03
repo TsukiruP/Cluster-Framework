@@ -54,7 +54,7 @@ switch (argument0)
         {
             jump_bound = BOUND_NONE;
 
-            with (shield_handle)
+            with (shield_id)
             {
                 if (sequence_index == sequence_shield_bubble_bound) shield_reset = true;
             }

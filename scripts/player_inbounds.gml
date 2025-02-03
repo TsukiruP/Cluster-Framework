@@ -1,12 +1,12 @@
 /// player_inbounds([id])
 /* Returns whether the player is inside the camera boundaries. This is usually the room boundaries. */
 
-var player_handle;
+var player_id;
 
-player_handle = id;
-if (argument_count > 0) player_handle = stage_get_player(argument[0]);
+player_id = id;
+if (argument_count > 0) player_id = stage_get_player(argument[0]);
 
-switch (player_handle.mask_rotation)
+switch (player_id.mask_rotation)
 {
     // Down:
     case 0:

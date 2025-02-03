@@ -20,9 +20,9 @@ applies_to=self
 
 var sequence_target;
 
-if (player_handle.status_invin != INVIN_BUFF)
+if (player_id.status_invin != INVIN_BUFF)
 {
-    switch (player_handle.status_shield)
+    switch (player_id.status_shield)
     {
         case SHIELD_MAGNETIC:
             if (sequence_index != sequence_shield_magnetic) sequence_set(sequence_shield_magnetic);
@@ -62,15 +62,15 @@ applies_to=self
 
 event_inherited();
 
-shield_advance = (player_handle.status_shield == SHIELD_BASIC || player_handle.status_shield == SHIELD_MAGNETIC || player_handle.status_invin == INVIN_BUFF);
+shield_advance = (player_id.status_shield == SHIELD_BASIC || player_id.status_shield == SHIELD_MAGNETIC || player_id.status_invin == INVIN_BUFF);
 
-if (!game_ispaused(mnu_pause) && ((player_handle.status_shield == SHIELD_BUBBLE && sequence_index == sequence_shield_bubble) || (game_get_config("advance_flicker") && shield_advance)))
+if (!game_ispaused(mnu_pause) && ((player_id.status_shield == SHIELD_BUBBLE && sequence_index == sequence_shield_bubble) || (game_get_config("advance_flicker") && shield_advance)))
 {
     shield_hide = time_sync(sequence_moment, 2, 2);
 }
 else shield_hide = false;
 
-if (player_handle.status_shield == SHIELD_NONE && player_handle.status_invin != INVIN_BUFF) instance_destroy();
+if (player_id.status_shield == SHIELD_NONE && player_id.status_invin != INVIN_BUFF) instance_destroy();
 #define Other_10
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -79,14 +79,14 @@ applies_to=self
 */
 /// Set Index
 
-switch (player_handle.status_shield)
+switch (player_id.status_shield)
 {
     case SHIELD_BUBBLE:
         sequence_set(sequence_shield_bubble_bound);
         break;
 
     case SHIELD_FIRE:
-        image_xscale = player_handle.image_xscale;
+        image_xscale = player_id.image_xscale;
         sequence_set(sequence_shield_fire_dash);
         break;
 }
@@ -109,7 +109,7 @@ applies_to=self
 
 var player_rotation, sine, csine, draw_x, draw_y;
 
-player_rotation = player_handle.gravity_direction;
+player_rotation = player_id.gravity_direction;
 
 if (sprite_index != spr_shield_fire_dash) image_xscale = 1;
 
@@ -119,7 +119,7 @@ else image_alpha = 0.6;
 if (sprite_exists(sprite_index))
 {
     if (!shield_hide) draw_sprite_ext(sprite_index, image_index, x, y, image_xscale, 1, player_rotation, c_white, image_alpha);
-    else if (player_handle.status_shield == SHIELD_BUBBLE && player_handle.status_invin != INVIN_BUFF)
+    else if (player_id.status_shield == SHIELD_BUBBLE && player_id.status_invin != INVIN_BUFF)
     {
         draw_sprite_ext(spr_shield_bubble_shell, sequence_moment_previous div 12, x, y, image_xscale, 1, player_rotation, c_white, image_alpha);
     }

@@ -3,9 +3,9 @@
 
 with (ctrl_stage)
 {
-    var player_handle;
+    var player_id;
 
-    player_handle = ds_list_find_value(player_list, argument0);
-    if (player_handle != 0) return player_handle;
+    player_id = ds_list_find_value(player_list, argument0);
+    if (player_id != 0) return player_id;
     return noone;
 }

@@ -3,5 +3,5 @@
 
 with (ctrl_audio)
 {
-    return bgm_handle != -1;
+    return bgm_id != -1;
 }

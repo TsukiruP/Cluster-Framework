@@ -2,7 +2,7 @@
 /* Performs a movement step for the player on the ground.
 Returns whether the player's current state should be aborted or not. */
 
-var ox, oy, total_steps, step, prop_handle, hit_prop, obstacle_handle, hit_obstacle, hit_wall, hit_floor;
+var ox, oy, total_steps, step, prop_id, hit_prop, obstacle_id, hit_obstacle, hit_wall, hit_floor;
 
 // Snap to moving platforms:
 if (instance_exists(ground_id))
@@ -75,11 +75,11 @@ repeat (total_steps)
     {
         // React:
         if (player_react(hit_floor, HIT_SOLID, ANGLE_UP)) return false;
-        
+
         player_set_ground(hit_floor);
     }
     else on_ground = false;
-    
+
     player_rotate_mask();
 }
 

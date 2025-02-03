@@ -11,7 +11,7 @@ with (ctrl_audio)
             if (!sound_isplaying(argument0))
             {
                 audio_stop_bgm();
-                bgm_handle = sound_loop_ex(argument0, 1, 1, 0);
+                bgm_id = sound_loop_ex(argument0, 1, 1, 0);
             }
         }
     }

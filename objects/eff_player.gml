@@ -7,7 +7,7 @@ applies_to=self
 /// Player Effect Initialization
 
 event_inherited();
-player_handle = noone;
+player_id = noone;
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -18,9 +18,9 @@ applies_to=self
 
 event_inherited();
 
-if (instance_exists(player_handle))
+if (instance_exists(player_id))
 {
-    x = floor(player_handle.x);
-    y = floor(player_handle.y);
+    x = floor(player_id.x);
+    y = floor(player_id.y);
 }
 else instance_destroy();

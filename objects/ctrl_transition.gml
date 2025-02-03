@@ -16,8 +16,8 @@ transition_alarm = 0;
 transition_room = room;
 transition_run = -1;
 
-fade_handle = noone;
-player_handle = noone;
+fade_id = noone;
+player_id = noone;
 
 curtain_max_frame = 20;
 curtain_frame = 0;
@@ -48,9 +48,9 @@ if (game_ispaused(mnu_pause) && !pause_ignore) exit;
 
 if (transition_alarm > 0) transition_alarm -= 1;
 
-if (text_get_handle() != id && preview && transition_state == 1 && transition_alarm == 0)
+if (text_get_id() != id && preview && transition_state == 1 && transition_alarm == 0)
 {
-    text_set_handle(id);
+    text_set_id(id);
     text_set_subject(string_input(INP_CONFIRM) + " - End Preview");
 }
 /*"/*'/**//* YYD ACTION
@@ -115,13 +115,13 @@ switch (transition_state)
 {
     // 0 - Start:
     case 0:
-        if (!instance_exists(fade_handle))
+        if (!instance_exists(fade_id))
         {
-            fade_handle = fade_create();
-            fade_handle.persistent = true;
+            fade_id = fade_create();
+            fade_id.persistent = true;
         }
 
-        if (fade_handle.fade_alpha >= 1)
+        if (fade_id.fade_alpha >= 1)
         {
             stage_set_time_allow(false);
             transition_state = 1;
@@ -145,14 +145,14 @@ switch (transition_state)
 
     // 2 - Reverse:
     case 2:
-        fade_reverse(fade_handle);
+        fade_reverse(fade_id);
         transition_state = 3;
         break;
 
     // 3 - End:
     case 3:
         stage_start();
-        if (!instance_exists(fade_handle)) instance_destroy();
+        if (!instance_exists(fade_id)) instance_destroy();
         break;
 }
 /*"/*'/**//* YYD ACTION
@@ -437,7 +437,7 @@ applies_to=self
 
 if (!text_get_clear())
 {
-    if (text_get_handle() == id && input_get_check(INP_CONFIRM, CHECK_PRESSED)) text_set_clear();
+    if (text_get_id() == id && input_get_check(INP_CONFIRM, CHECK_PRESSED)) text_set_clear();
 }
 else
 {

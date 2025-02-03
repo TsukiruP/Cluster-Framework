@@ -23,7 +23,7 @@ event_inherited();
 
 if (text_get_clear())
 {
-    with (player_handle)
+    with (player_id)
     {
         if (animation_previous != "look_end") player_set_animation("look_end");
     }
@@ -38,4 +38,4 @@ applies_to=self
 */
 /// Draw Hint Box
 
-draw_sprite_ext(sprite_index, instance_exists(player_handle) + 1, x, draw_y, image_xscale, 1, 0, c_white, 1);
+draw_sprite_ext(sprite_index, instance_exists(player_id) + 1, x, draw_y, image_xscale, 1, 0, c_white, 1);

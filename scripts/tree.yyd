@@ -132,8 +132,8 @@
 			|font_get_height
 			|text_get_clear
 			|text_set_clear
-			|text_get_handle
-			|text_set_handle
+			|text_get_id
+			|text_set_id
 			|text_set_subject
 			|text_set_body
 		+Animation

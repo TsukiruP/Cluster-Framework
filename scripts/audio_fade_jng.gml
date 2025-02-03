@@ -9,19 +9,19 @@ with (ctrl_audio)
 {
     if (audio_jng_isplaying())
     {
-        if (sound_isplaying(jng_handle))
+        if (sound_isplaying(jng_id))
         {
             if (argument0)
             {
-                if (sound_get_volume(jng_handle) > 0)
+                if (sound_get_volume(jng_id) > 0)
                 {
-                    sound_volume(jng_handle, max(sound_get_volume(jng_handle) - 0.01, 0));
-                    if (sound_get_volume(jng_handle) == 0) audio_stop_jng();
+                    sound_volume(jng_id, max(sound_get_volume(jng_id) - 0.01, 0));
+                    if (sound_get_volume(jng_id) == 0) audio_stop_jng();
                 }
             }
             else
             {
-                if (sound_get_volume(jng_handle) < bgm_volume) sound_volume(jng_handle, min(sound_get_volume(jng_handle) + 0.01, bgm_volume));
+                if (sound_get_volume(jng_id) < bgm_volume) sound_volume(jng_id, min(sound_get_volume(jng_id) + 0.01, bgm_volume));
             }
         }
     }

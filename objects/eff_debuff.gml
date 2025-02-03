@@ -18,7 +18,7 @@ applies_to=self
 
 event_inherited();
 
-if (player_handle.status_speed != SPEED_SLOW && player_handle.status_panic_alarm <= 0) instance_destroy();
+if (player_id.status_speed != SPEED_SLOW && player_id.status_panic_alarm <= 0) instance_destroy();
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -29,9 +29,9 @@ applies_to=self
 
 var player_rotation, sine, csine, draw_x, draw_y;
 
-player_rotation = player_handle.mask_rotation;
-sine = dsin(player_handle.mask_rotation);
-csine = dcos(player_handle.mask_rotation);
+player_rotation = player_id.mask_rotation;
+sine = dsin(player_id.mask_rotation);
+csine = dcos(player_id.mask_rotation);
 
 draw_x = x - (sine * 16);
 draw_y = y - (csine * 16);

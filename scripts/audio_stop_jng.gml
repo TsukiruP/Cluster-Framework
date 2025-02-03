@@ -12,9 +12,9 @@ with (ctrl_audio)
     {
         if (audio_jng_isplaying())
         {
-            sound_stop(jng_handle);
-            sound_discard(jng_handle);
-            jng_handle = -1;
+            sound_stop(jng_id);
+            sound_discard(jng_id);
+            jng_id = -1;
         }
     }
 }

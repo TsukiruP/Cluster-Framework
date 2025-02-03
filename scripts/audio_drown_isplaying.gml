@@ -3,5 +3,5 @@
 
 with (ctrl_audio)
 {
-    return drown_handle != -1;
+    return drown_id != -1;
 }

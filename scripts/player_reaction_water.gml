@@ -1,19 +1,19 @@
 /// player_reaction_water(obj, hitbox)
 /* Sets whether the player is underwater. */
 
-var reaction_handle, hitbox;
+var reaction_id, hitbox;
 
-reaction_handle = argument0;
+reaction_id = argument0;
 hitbox = argument1;
 
 if (hitbox & HIT_COLLISION)
 {
     var x1, y1, x2, y2, water_current, water_previous;
 
-    x1 = reaction_handle.x;
-    y1 = reaction_handle.y;
-    x2 = x1 + reaction_handle.sprite_width;
-    y2 = y1 + reaction_handle.sprite_height;
+    x1 = reaction_id.x;
+    y1 = reaction_id.y;
+    x2 = x1 + reaction_id.sprite_width;
+    y2 = y1 + reaction_id.sprite_height;
     water_current = point_in_rectangle(x, y, x1, y1, x2, y2);
     water_previous = point_in_rectangle(xprevious, yprevious, x1, y1, x2, y2);
 
@@ -29,7 +29,7 @@ if (hitbox & HIT_COLLISION)
         if (!water_previous)
         {
             audio_play_sfx("snd_splash", true);
-            effect_create(x, reaction_handle.y, pick(y_speed >= 2.50, sequence_splash_0, sequence_splash_1), depth);
+            effect_create(x, reaction_id.y, pick(y_speed >= 2.50, sequence_splash_0, sequence_splash_1), depth);
         }
     }
     else if (y < room_height && underwater && !water_current)
@@ -43,7 +43,7 @@ if (hitbox & HIT_COLLISION)
         if (water_previous)
         {
             audio_play_sfx("snd_splash", true);
-            effect_create(x, reaction_handle.y, pick(y_speed <= -6, sequence_splash_0, sequence_splash_1), depth);
+            effect_create(x, reaction_id.y, pick(y_speed <= -6, sequence_splash_0, sequence_splash_1), depth);
         }
     }
 }

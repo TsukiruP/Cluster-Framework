@@ -3,5 +3,5 @@
 
 with (ctrl_audio)
 {
-    if (audio_jng_isplaying()) sound_pause(jng_handle);
+    if (audio_jng_isplaying()) sound_pause(jng_id);
 }

@@ -14,7 +14,7 @@ rainbow_score = true;
 // Overlay:
 with (instance_create(x, y, obj_rainbow_ring_overlay)) {
     sprite_index   = other.sprite_index;
-    rainbow_handle = other.id;
+    rainbow_id = other.id;
 }
 #define Step_2
 /*"/*'/**//* YYD ACTION

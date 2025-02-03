@@ -3,5 +3,5 @@
 
 with (ctrl_audio)
 {
-    if (audio_drown_isplaying()) sound_resume(drown_handle);
+    if (audio_drown_isplaying()) sound_resume(drown_id);
 }

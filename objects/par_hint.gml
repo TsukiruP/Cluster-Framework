@@ -8,7 +8,7 @@ applies_to=self
 
 event_inherited();
 reaction_index = player_reaction_hint;
-player_handle = noone;
+player_id = noone;
 hint_id = 0;
 #define Step_1
 /*"/*'/**//* YYD ACTION
@@ -20,7 +20,7 @@ applies_to=self
 
 if (game_ispaused()) exit;
 
-if (player_handle != noone) player_handle = noone;
+if (player_id != noone) player_id = noone;
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -29,9 +29,9 @@ applies_to=self
 */
 /// Hint
 
-with (player_handle)
+with (player_id)
 {
-    if (text_get_handle() != other) hint_allow = true;
+    if (text_get_id() != other) hint_allow = true;
 }
 #define Other_10
 /*"/*'/**//* YYD ACTION
@@ -41,7 +41,7 @@ applies_to=self
 */
 /// Text
 
-text_set_handle(id);
+text_set_id(id);
 
 switch (hint_id)
 {
