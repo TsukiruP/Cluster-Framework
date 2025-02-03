@@ -417,7 +417,7 @@ player_reset_input
 player_set_device
 sequence_classic_standby
 player_state_standby
-player_skill_classic
+player_reaction_switch
 player_routine_insta
 stage_find_player
 player_trait_swap
@@ -473,3 +473,4 @@ instance_nearest_dir_y
 game_set_save_id
 player_animation_jump
 player_set_status
+sequence_switch_vertical_off

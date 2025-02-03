@@ -392,7 +392,9 @@
 				+Enemies
 					|sequence_spinner
 				+Switch
-					|sequence_switch_vertical_on
+					+Vertical
+						|sequence_switch_vertical_on
+						|sequence_switch_vertical_off
 			+Effects
 				+Player
 					|sequence_spin_dash
@@ -554,6 +556,7 @@
 			|player_reaction_blockade
 			|player_reaction_rail
 			|player_reaction_hint
+			|player_reaction_switch
 			|player_reaction_water
 			|player_reaction_bubble
 			|player_reaction_waterfall
@@ -602,4 +605,3 @@
 	|draw_sprite_tiled_vertical
 	|draw_sprite_tiled_horizontal_yscale
 	|draw_backdrop_tiled_area
-	|player_skill_classic

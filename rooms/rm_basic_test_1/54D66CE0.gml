@@ -1,3 +1,3 @@
 //gm82 fields begin
-item_id= ITEM_INVIN
+duration=180
 //gm82 fields end
