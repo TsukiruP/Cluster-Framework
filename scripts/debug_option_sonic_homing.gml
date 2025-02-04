@@ -12,7 +12,7 @@ switch (argument0)
 
     // Value:
     case 1:
-        return pick(game_save_get_skill(CHAR_SONIC, skill_key), "None", "1999", "2007", "2022", "2024");
+        return pick(game_save_get_skill(CHAR_SONIC, skill_key), "None", "1999", "2008", "2022", "2024");
 
     // Update:
     case 3:
