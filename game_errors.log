@@ -1,9 +1,9 @@
 ERROR in
-action number 1
-of Begin Step Event
+action number 2
+of End Step Event
 for object obj_switch_platform:
 
-Error in code at line 11:   
-    image_alpha = pick(switch_time < 30, 1, 1, time_sync(lifespan, 2, 2));                                                            ^at position 59: Unknown variable lifespan
+In script sine_wave_range:In script sine_wave:Error in code at line 4:   
+return sin(argument0 * 2 * pi / argument1) * argument2 + argument3;                                   ^at position 34: Division by 0.
 
 

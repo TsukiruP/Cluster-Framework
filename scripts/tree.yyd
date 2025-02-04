@@ -446,6 +446,7 @@
 			|angle_wrap
 			|time_sync
 			|sine_wave
+			|cosine_wave
 			|sine_wave_range
 		+Draw
 			|draw_hitbox
