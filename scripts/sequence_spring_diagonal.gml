@@ -27,6 +27,8 @@ else if (sequence_position(12))
 }
 else if (sequence_position(14))
 {
+    image_index = 0;
     active = false;
     hitbox_set_hurtbox(6, 2, 4, 8);
+    sequence_set(sequence_spring_diagonal);
 }

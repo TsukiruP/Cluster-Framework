@@ -40,12 +40,6 @@ if (active)
         script_execute(sequence_index);
     }
 }
-
-if (image_index != 0 && !active)
-{
-    image_index = 0;
-    sequence_set(sequence_index);
-}
 #define Other_4
 /*"/*'/**//* YYD ACTION
 lib_id=1
