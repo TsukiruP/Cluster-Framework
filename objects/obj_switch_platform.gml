@@ -12,13 +12,13 @@ switch_id = noone;
 switch_active = false;
 switch_time = 0;
 sequence_init(sequence_switch_platform);
-#define Step_1
+#define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
 applies_to=self
 */
-/// Active
+/// Animation
 
 if (game_ispaused(mnu_pause)) exit;
 
@@ -44,15 +44,6 @@ else
     sequence_set(sequence_switch_platform);
     if (collision != false) collision = false;
 }
-#define Step_2
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Animation
-
-if (game_ispaused(mnu_pause)) exit;
 
 if (switch_active)
 {
