@@ -116,7 +116,7 @@ obj_bubble_spawn
 obj_bubble
 ctrl_debug
 obj_switch
-obj_rainbow_ring_left_down
+obj_switch_spring
 obj_rainbow_ring_right_up
 obj_rainbow_ring_right_down
 obj_spinner

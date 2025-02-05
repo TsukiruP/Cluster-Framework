@@ -400,6 +400,8 @@
 						|sequence_switch_horizontal_on
 						|sequence_switch_horizontal_off
 					+Springs
+						+Vertical
+							|sequence_switch_spring_vertical_unlock
 			+Effects
 				+Player
 					|sequence_spin_dash

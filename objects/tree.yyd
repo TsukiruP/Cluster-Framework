@@ -60,6 +60,7 @@
 		+Switch
 			|obj_switch
 			|obj_switch_platform
+			|obj_switch_spring
 		+Water
 			|obj_water_mask
 			|obj_bubble_spawn
@@ -107,7 +108,6 @@
 	+Rainbow Rings
 		|par_rainbow_ring
 		|obj_rainbow_ring_overlay
-		|obj_rainbow_ring_left_down
 		|obj_rainbow_ring_right_up
 		|obj_rainbow_ring_right_down
 	+Springs
