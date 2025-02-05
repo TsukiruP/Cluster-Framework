@@ -26,7 +26,7 @@ applies_to=self
 */
 /// Time
 
-if (game_get_time() >= target_time && active && duration != -1 && sequence_index != off_index) sequence_set(off_index);
+if (game_get_time() >= target_time && active && sequence_index != off_index) sequence_set(off_index);
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
