@@ -479,3 +479,5 @@ cosine_wave
 sequence_switch_horizontal_on
 sequence_switch_horizontal_off
 sequence_switch_spring_vertical_unlock
+sequence_switch_spring_vertical
+sequence_switch_spring_vertical_lock

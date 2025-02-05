@@ -46,7 +46,7 @@ if (!player_get_input(INP_ALT, CHECK_HELD))
 
             if (instance_exists(homing_candidate))
             {
-                if (!homing_candidate.targetable || distance_to_object(homing_candidate) > homing_range) continue;
+                if (!homing_candidate.collision || !homing_candidate.targetable || distance_to_object(homing_candidate) > homing_range) continue;
 
                 var homing_angle1, homing_angle2, homing_fail, homing_solid;
 
@@ -61,7 +61,7 @@ if (!player_get_input(INP_ALT, CHECK_HELD))
 
                 if (instance_exists(homing_solid))
                 {
-                    homing_fail = ((y < homing_candidate.y && homing_solid.semisolid) || homing_solid.layer == -1 || layer == homing_solid.layer);
+                    homing_fail = (homing_solid.collision && ((y < homing_candidate.y && homing_solid.semisolid) || homing_solid.layer == -1 || layer == homing_solid.layer));
                 }
 
                 if (!homing_fail)

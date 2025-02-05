@@ -1,6 +1,10 @@
 /// sequence_switch_horizontal_on()
 
-if (sequence_position(0)) collision = false;
+if (sequence_position(0))
+{
+    image_index = 0;
+    collision = false;
+}
 else if (sequence_position(3))
 {
     image_index = 1;
