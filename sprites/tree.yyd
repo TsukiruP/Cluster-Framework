@@ -274,7 +274,10 @@
 				|spr_omochao_sonic
 		+Switch
 			|spr_switch_vertical
+			|spr_switch_horizontal
 			|spr_switch_platform
+			+Springs
+				|spr_switch_spring_vertical
 		+Water
 			|spr_water_mask
 			|spr_water_surface
@@ -379,8 +382,6 @@
 	+High
 	+Masks
 	+Spikes
-	|spr_dash_ring_left_up
-	|spr_dash_ring_left_down
 	|spr_dash_ring_right_down
 	|spr_rainbow_ring_left
 	|spr_rainbow_ring_right_down

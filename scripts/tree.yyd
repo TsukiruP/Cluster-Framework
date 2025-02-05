@@ -396,6 +396,9 @@
 					+Vertical
 						|sequence_switch_vertical_on
 						|sequence_switch_vertical_off
+					+Horizontal
+						|sequence_switch_horizontal_on
+						|sequence_switch_horizontal_off
 					+Springs
 			+Effects
 				+Player

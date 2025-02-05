@@ -476,3 +476,5 @@ player_set_status
 sequence_switch_vertical_off
 sequence_switch_platform
 cosine_wave
+sequence_switch_horizontal_on
+sequence_switch_horizontal_off

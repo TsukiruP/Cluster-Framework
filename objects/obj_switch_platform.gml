@@ -80,6 +80,14 @@ applies_to=self
 event_inherited();
 
 //field switch_id: instance
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Switch Initialization
+
+with (switch_id) image_offset = 0;
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1

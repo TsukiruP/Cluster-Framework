@@ -76,7 +76,7 @@ spr_player_spawn
 spr_sonic_insta
 spr_spring_diagonal
 spr_spring_horizontal
-spr_dash_ring_left_down
+spr_switch_spring_vertical
 spr_rainbow_ring_left_down
 spr_dash_ring_horizontal
 spr_dash_ring_diagonal
@@ -143,7 +143,7 @@ spr_goal_ring
 spr_checkpoint
 spr_spinner
 spr_swap
-spr_dash_ring_left_up
+spr_switch_horizontal
 spr_ring_sparkle
 spr_hint_box
 spr_layer_sensor

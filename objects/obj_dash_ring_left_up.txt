@@ -1,4 +1,4 @@
-sprite=spr_dash_ring_left_up
+sprite=spr_switch_horizontal
 visible=1
 solid=0
 persistent=0

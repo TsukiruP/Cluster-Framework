@@ -10,6 +10,7 @@ event_inherited();
 depth = -10;
 reaction_index = player_reaction_dash_panel;
 variant = 0;
+angle = ANGLE_RIGHT;
 force = 8;
 sfx_alarm = 0;
 #define Step_1

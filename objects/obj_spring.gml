@@ -9,9 +9,9 @@ applies_to=self
 event_inherited();
 reaction_index = player_reaction_spring;
 variant = 0;
-force = 8;
 angle = 0;
 active = false;
+force = 8;
 sfx_alarm = 0;
 #define Step_1
 /*"/*'/**//* YYD ACTION
@@ -34,8 +34,11 @@ if (game_ispaused(mnu_pause) || object_is_ancestor(object_index, obj_dash_ring))
 
 if (active)
 {
-    sequence_update();
-    script_execute(sequence_index);
+    if (script_exists(sequence_index))
+    {
+        sequence_update();
+        script_execute(sequence_index);
+    }
 }
 
 if (image_index != 0 && !active)

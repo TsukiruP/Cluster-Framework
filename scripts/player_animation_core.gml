@@ -16,8 +16,12 @@ if (sequence_index != player_get_animation(animation_current, animation_variant)
     animation_time = 0;
 }
 
-sequence_update();
-script_execute(sequence_index);
+if (script_exists(sequence_index))
+{
+    sequence_update();
+    script_execute(sequence_index);
+}
+
 animation_time += 1;
 
 if (animation_skip) animation_skip = false;
