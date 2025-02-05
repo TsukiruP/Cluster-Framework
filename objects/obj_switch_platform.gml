@@ -11,7 +11,7 @@ collision = false;
 switch_id = noone;
 switch_active = false;
 switch_time = 0;
-sequence_init();
+sequence_init(sequence_switch_platform);
 #define Step_1
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -35,19 +35,13 @@ time_difference = switch_time - game_get_time();
 if (switch_active && time_difference)
 {
     image_alpha = pick(time_difference < 30, 1, time_sync(time_difference, 2, 2));
-
-    if (sequence_index != sequence_switch_platform)
-    {
-        life_time = 0;
-        sequence_set(sequence_switch_platform);
-    }
-
     if (collision) event_inherited();
 }
 else
 {
+    life_time = 0;
+    sequence_set(sequence_switch_platform);
     if (collision != false) collision = false;
-    if (script_exists(sequence_index)) sequence_set(noone);
 }
 #define Step_2
 /*"/*'/**//* YYD ACTION
@@ -59,10 +53,13 @@ applies_to=self
 
 if (game_ispaused(mnu_pause)) exit;
 
-if (script_exists(sequence_index))
+if (switch_active)
 {
-    sequence_update();
-    script_execute(sequence_index);
+    if (script_exists(sequence_index))
+    {
+        sequence_update();
+        script_execute(sequence_index);
+    }
 }
 else
 {

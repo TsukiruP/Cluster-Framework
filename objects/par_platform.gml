@@ -31,7 +31,7 @@ y_amplitude = (ystart - target[1]) / 2;
 
 x = cosine_wave(life_time, life_period, x_amplitude, xstart - x_amplitude);
 y = cosine_wave(life_time, life_period, y_amplitude, ystart - y_amplitude);
-life__time += 1;
+life_time += 1;
 #define Other_4
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -42,4 +42,4 @@ applies_to=self
 
 //field move: false
     //field target: xy
-    //field life__period: number
+    //field life_period: number
