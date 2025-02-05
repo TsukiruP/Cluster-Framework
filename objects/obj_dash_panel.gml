@@ -9,10 +9,9 @@ applies_to=self
 event_inherited();
 depth = -10;
 reaction_index = player_reaction_dash_panel;
+variant = 0;
 force = 8;
-flip = false;
 sfx_alarm = 0;
-hitbox_set_hurtbox(28, 0, 28, 7);
 #define Step_1
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -41,16 +40,29 @@ applies_to=self
 */
 /// Field Initialization
 
-//field gravity_direction: enum(0, 90, 180, 270)
+//field variant: enum(0, 1)
 //field force: number
-//field flip: false
 
 /*preview
-var flip;
-
-flip = Field("flip", 0);
-
-image_angle = gravity_direction;
-image_xscale = 1;
-if (flip) image_xscale = -1;
+sprite_index = Sprite(pick(Field("variant", 0), "spr_dash_panel_horizontal", "spr_dash_panel_vertical"), 0);
 */
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Dash Panel Initialization
+
+switch (variant)
+{
+    case 1:
+        sprite_index = spr_dash_panel_vertical;
+        angle = pick(sign(image_xscale) == -1, ANGLE_UP, ANGLE_DOWN);
+        hitbox_set_hurtbox(0, 29, 7, 27);
+        break;
+
+    default:
+        sprite_index = spr_dash_panel_horizontal;
+        angle = pick(sign(image_yscale) == -1, ANGLE_RIGHT, ANGLE_LEFT);
+        hitbox_set_hurtbox(28, 0, 28, 7);
+}

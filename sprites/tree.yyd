@@ -236,7 +236,9 @@
 			|spr_ring
 			|spr_ring_super
 		|spr_checkpoint
-		|spr_dash_panel
+		+Dash Panel
+			|spr_dash_panel_horizontal
+			|spr_dash_panel_vertical
 		|spr_jump_panel
 		+Springs
 			|spr_spring_vertical

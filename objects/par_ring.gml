@@ -52,10 +52,5 @@ applies_to=self
 //field super: false
 
 /*preview
-var super;
-
-super = Field("super", 0);
-
-sprite_index = Sprite("spr_ring",  0);
-if (super) sprite_index = Sprite("spr_ring_super",  0);
+sprite_index = Sprite(pick(Field("super", 0), "spr_ring", "spr_ring_super"), 0);
 */

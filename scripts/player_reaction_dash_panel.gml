@@ -10,13 +10,14 @@ if (hitbox & HIT_COLLISION)
 {
     if (booster_current != reaction_id || input_lock_alarm == 0)
     {
-        if (gravity_direction != reaction_id.gravity_direction)
+        if (gravity_direction != reaction_id.angle)
         {
-            mask_rotation = reaction_id.gravity_direction;
+            mask_rotation = reaction_id.angle;
             player_set_state(player_state_run);
         }
 
-        image_xscale = reaction_id.image_xscale;
+        //image_xscale = reaction_id.image_xscale;
+        image_xscale = pick(reaction_id.variant, reaction_id.image_xscale, reaction_id.image_yscale);
         x_speed = reaction_id.force * image_xscale;
         input_lock_alarm = 16;
         booster_current = reaction_id;

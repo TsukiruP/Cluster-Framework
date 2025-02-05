@@ -10,8 +10,7 @@ event_inherited();
 depth = -10;
 reaction_index = player_reaction_spike;
 is_mask = false;
-orientation = ORIEN_VERTICAL;
-flip = false;
+variant = 0;
 angle = ANGLE_UP;
 #define Other_4
 /*"/*'/**//* YYD ACTION
@@ -21,29 +20,10 @@ applies_to=self
 */
 /// Field Initialization
 
-//field orientation: enum(0, 1)
-//field flip: false
+//field variant: enum(0, 1)
 
 /*preview
-var orientation, flip;
-
-orientation = Field("orientation", 0);
-flip = Field("flip", 0);
-
-image_xscale = 1;
-image_yscale = 1;
-
-switch (orientation)
-{
-    case 1:
-        sprite_index = Sprite("spr_spike_horizontal", 0);
-        if (flip) image_xscale = -1;
-        break;
-
-    default:
-        sprite_index = Sprite("spr_spike_vertical", 0);
-        if (flip) image_yscale = -1;
-}
+sprite_index = Sprite(pick(Field("variant", 0), "spr_spike_vertical", "spr_spike_horizontal"), 0);
 */
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -52,28 +32,16 @@ applies_to=self
 */
 /// Spike Initialization
 
-switch (orientation)
+switch (variant)
 {
-    case ORIEN_HORIZONTAL:
+    case 1:
         sprite_index = spr_spike_horizontal;
-        angle = ANGLE_RIGHT;
+        angle = pick(sign(image_xscale) == -1, ANGLE_RIGHT, ANGLE_LEFT);
         hitbox_set_hurtbox(16, 16, 8, 15);
-
-        if (flip)
-        {
-            image_xscale = -1;
-            angle = ANGLE_LEFT;
-        }
         break;
 
     default:
         sprite_index = spr_spike_vertical;
-        angle = ANGLE_UP;
+        angle = pick(sign(image_yscale) == -1, ANGLE_UP, ANGLE_DOWN);
         hitbox_set_hurtbox(16, 8, 15, 15);
-
-        if (flip)
-        {
-            image_yscale = -1;
-            angle = ANGLE_DOWN;
-        }
 }

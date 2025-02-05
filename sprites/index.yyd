@@ -87,7 +87,7 @@ spr_rainbow_ring_left
 spr_rainbow_ring_left_up
 spr_hud_s4e2
 spr_pause_header
-spr_dash_panel
+spr_dash_panel_horizontal
 spr_basic_test_water_fall_02
 fnt_hud_s4e2
 spr_sonic_hammer
@@ -290,3 +290,4 @@ spr_blockade_debris
 spr_sky_sanctuary_fountain
 spr_title_start
 spr_shield_invin_spark
+spr_dash_panel_vertical

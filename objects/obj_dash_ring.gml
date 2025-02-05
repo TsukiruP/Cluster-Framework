@@ -38,35 +38,8 @@ event_inherited();
 //field rainbow_ring: false
 
 /*preview
-var orientation, flip_x, flip_y, rainbow_ring;
-
-orientation = Field("orientation", 0);
-flip_x = Field("flip_x", 0);
-flip_y = Field("flip_y", 0);
-rainbow_ring = Field("rainbow_ring", 0);
-
-image_xscale = 1;
-image_yscale = 1;
-
-switch (orientation)
-{
-    case 1:
-        if (rainbow_ring) sprite_index = Sprite("spr_rainbow_ring_horizontal",  0);
-        else sprite_index = Sprite("spr_dash_ring_horizontal",  0);
-        break;
-
-    case 2:
-        if (rainbow_ring) sprite_index = Sprite("spr_rainbow_ring_diagonal",  0);
-        else sprite_index = Sprite("spr_dash_ring_diagonal",  0);
-        break;
-
-    default:
-        if (rainbow_ring) sprite_index = Sprite("spr_rainbow_ring_vertical",  0);
-        else sprite_index = Sprite("spr_dash_ring_vertical",  0);
-}
-
-if (flip_x) image_xscale = -1;
-if (flip_y) image_yscale = -1;
+if (Field("rainbow_ring", 0)) sprite_index = Sprite(pick(Field("variant", 0), "spr_rainbow_ring_vertical", "spr_rainbow_ring_horizontal", "spr_rainbow_ring_diagonal"), 0);
+else sprite_index = Sprite(pick(Field("variant", 0), "spr_dash_ring_vertical", "spr_dash_ring_horizontal", "spr_dash_ring_diagonal"), 0);
 */
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -75,9 +48,9 @@ applies_to=self
 */
 /// Dash Ring Initialization
 
-switch (orientation)
+switch (variant)
 {
-    case ORIEN_HORIZONTAL:
+    case 2:
         if (rainbow_ring) sprite_index = spr_rainbow_ring_horizontal;
         else sprite_index = spr_dash_ring_horizontal;
 
@@ -85,9 +58,10 @@ switch (orientation)
         hitbox_set_hurtbox(6, 24, 7, 26);
         break;
 
-    case ORIEN_DIAGONAL:
+    case 1:
         if (rainbow_ring) sprite_index = spr_rainbow_ring_diagonal;
-        else sprite_index = spr_dash_ring_diagonal
+        else sprite_index = spr_dash_ring_diagonal;
+
         angle = ANGLE_RIGHT_UP;
         hitbox_set_hurtbox(7, 7, 7, 7);
         break;
@@ -101,17 +75,8 @@ switch (orientation)
 
 }
 
-if (flip_x)
-{
-    image_xscale = -1;
-    angle = 180 - angle;
-}
-
-if (flip_y)
-{
-    image_yscale = -1;
-    angle = 360 - angle;
-}
+if (sign(image_xscale) == -1) angle = 180 - angle;
+if (sign(image_yscale) == -1) angle = 360 - angle;
 
 cover = instance_create(x, y, par_effect);
 cover.depth = -10;

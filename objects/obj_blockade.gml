@@ -9,7 +9,7 @@ applies_to=self
 event_inherited();
 reaction_index = player_reaction_blockade;
 is_mask = false;
-orientation = ORIEN_VERTICAL;
+variant = 0;
 max_vitality = 3;
 vitality = max_vitality;
 #define Other_4
@@ -20,24 +20,11 @@ applies_to=self
 */
 /// Field Initialization
 
-//field orientation: enum(0, 1)
+//field variant: enum(0, 1)
 //field max_vitality: number(1, 3)
 
 /*preview
-var orientation, max_vitality;
-
-orientation = Field("orientation", 0);
-max_vitality = Field("max_vitality", 0);
-
-switch (orientation)
-{
-    case 1:
-        sprite_index = Sprite("spr_blockade_horizontal", 0);
-        break;
-
-    default:
-        sprite_index = Sprite("spr_blockade_vertical", 0);
-}
+sprite_index = Sprite(pick(Field("variant", 0), "spr_blockade_vertical", "spr_blockade_horizontal"), 0);
 */
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -46,10 +33,9 @@ applies_to=self
 */
 /// Blockade Initialization
 
-// Blockade orientation:
-switch (orientation)
+switch (variant)
 {
-    case ORIEN_HORIZONTAL:
+    case 1:
         sprite_index = spr_blockade_horizontal;
         hitbox_set_hurtbox(24, 12, 23, 11);
         break;

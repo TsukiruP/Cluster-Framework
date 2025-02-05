@@ -9,8 +9,8 @@ side = argument2;
 
 if (hitbox & HIT_ATTACK)
 {
-    if (((side == ANGLE_LEFT || side == ANGLE_RIGHT) && reaction_id.orientation == ORIEN_VERTICAL) ||
-        ((side == ANGLE_UP || side == ANGLE_DOWN) && reaction_id.orientation == ORIEN_HORIZONTAL && sign(y_speed) == dsin(side)))
+    if (((side == ANGLE_LEFT || side == ANGLE_RIGHT) && reaction_id.variant == 0) ||
+        ((side == ANGLE_UP || side == ANGLE_DOWN) && reaction_id.variant == 1 && sign(y_speed) == dsin(side)))
     {
         if (y_speed < 0 && side == ANGLE_DOWN) mask_rotation = angle_wrap(mask_rotation + 180);
         if (side == ANGLE_UP || side == ANGLE_DOWN) player_set_ground(reaction_id);

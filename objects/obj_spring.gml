@@ -8,10 +8,8 @@ applies_to=self
 
 event_inherited();
 reaction_index = player_reaction_spring;
-orientation = ORIEN_VERTICAL;
+variant = 0;
 force = 8;
-flip_x = false;
-flip_y = false;
 angle = 0;
 active = false;
 sfx_alarm = 0;
@@ -53,37 +51,11 @@ applies_to=self
 */
 /// Field Initialization
 
-//field orientation: enum(0, 1, 2)
+//field variant: enum(0, 1, 2)
 //field force: number
-//field flip_x: false
-//field flip_y: false
 
 /*preview
-var orientation, flip_x, flip_y;
-
-orientation = Field("orientation", 0);
-flip_x = Field("flip_x", 0);
-flip_y = Field("flip_y", 0);
-
-image_xscale = 1;
-image_yscale = 1;
-
-switch (orientation)
-{
-    case 1:
-        sprite_index = Sprite("spr_spring_horizontal", 0);
-        break;
-
-    case 2:
-        sprite_index = Sprite("spr_spring_diagonal", 0);
-        break;
-
-    default:
-        sprite_index = Sprite("spr_spring_vertical",  0);
-}
-
-if (flip_x) image_xscale = -1;
-if (flip_y) image_yscale = -1;
+sprite_index = Sprite(pick(Field("variant", 0), "spr_spring_vertical", "spr_spring_horizontal", "spr_spring_diagonal"), 0);
 */
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -92,37 +64,28 @@ applies_to=self
 */
 /// Spring Initialization
 
-switch (orientation)
+switch (variant)
 {
-    case ORIEN_HORIZONTAL:
+    case 1:
         sprite_index = spr_spring_horizontal;
+        angle = ANGLE_RIGHT;
         hitbox_set_hurtbox(16, 5, 4, 5);
         sequence_init(sequence_spring_horizontal);
-        angle = ANGLE_RIGHT;
         break;
 
-    case ORIEN_DIAGONAL:
+    case 2:
         sprite_index = spr_spring_diagonal;
+        angle = ANGLE_RIGHT_UP;
         hitbox_set_hurtbox(6, 2, 4, 8);
         sequence_init(sequence_spring_diagonal);
-        angle = ANGLE_RIGHT_UP;
         break;
 
     default:
         sprite_index = spr_spring_vertical;
+        angle = ANGLE_UP;
         hitbox_set_hurtbox(5, 4, 5, 15);
         sequence_init(sequence_spring_vertical);
-        angle = ANGLE_UP;
 }
 
-if (flip_x)
-{
-    image_xscale = -1;
-    angle = 180 - angle;
-}
-
-if (flip_y)
-{
-    image_yscale = -1;
-    angle = 360 - angle;
-}
+if (sign(image_xscale) == -1) angle = 180 - angle;
+if (sign(image_yscale) == -1) angle = 360 - angle;

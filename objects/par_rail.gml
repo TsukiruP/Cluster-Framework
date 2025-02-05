@@ -22,23 +22,5 @@ applies_to=self
 //field layer: enum(0, 1)
 
 /*preview
-var layer, semisolid;
-
-layer = Field("layer", 0);
-
-image_blend = c_white;
-
-if (FieldDefined("layer"))
-{
-    switch (layer)
-    {
-        case 0:
-            image_blend = c_blue;
-            break;
-
-        case 1:
-            image_blend = c_red;
-            break;
-    }
-}
+image_blend = pick(FieldDefined("layer"), c_white, pick(Field("layer", 0), c_blue, c_red));
 */

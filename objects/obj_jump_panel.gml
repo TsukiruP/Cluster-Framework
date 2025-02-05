@@ -32,13 +32,4 @@ applies_to=self
 */
 /// Field Initialization
 
-//field flip: false
-
-/*preview
-var flip;
-
-flip = Field("flip", 0);
-
-image_xscale = 1;
-if (flip) image_xscale = -1;
-*/
+//field force: number

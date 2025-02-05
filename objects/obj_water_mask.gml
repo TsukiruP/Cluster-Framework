@@ -31,14 +31,10 @@ applies_to=self
 //field surface: true
 
 /*preview
-var layer;
-
-surface = Field("surface", 0);
-
 depth = 1000;
 image_alpha = 0.5;
 
-if (surface)
+if (Field("surface", 0))
 {
     var i;
 
