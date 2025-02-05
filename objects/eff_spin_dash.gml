@@ -4,7 +4,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Index
+/// Animation
 
 if (floor(player_id.spin_dash_charge) > 0)
 {
@@ -14,16 +14,9 @@ else
 {
     if (sequence_index != sequence_spin_dash) sequence_set(sequence_spin_dash);
 }
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Animation
-
-event_inherited();
 
 if (player_id.state_current != player_state_spin_dash) instance_destroy();
+event_inherited();
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1

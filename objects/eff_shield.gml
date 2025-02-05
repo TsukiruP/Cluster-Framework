@@ -16,7 +16,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Index
+/// Animation
 
 if (player_id.status_invin != INVIN_BUFF)
 {
@@ -50,14 +50,8 @@ else
     if (sequence_index != sequence_shield_invin) sequence_set(sequence_shield_invin);
 }
 
-shield_reset = false;
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Animation
-
+if (shield_reset != false) shield_reset = false;
+if (player_id.status_shield == SHIELD_NONE && player_id.status_invin != INVIN_BUFF) instance_destroy();
 event_inherited();
 
 shield_advance = (player_id.status_shield == SHIELD_BASIC || player_id.status_shield == SHIELD_MAGNETIC || player_id.status_invin == INVIN_BUFF);
@@ -67,8 +61,6 @@ if (!game_ispaused(mnu_pause) && ((player_id.status_shield == SHIELD_BUBBLE && s
     shield_hide = time_sync(sequence_moment, 2, 2);
 }
 else shield_hide = false;
-
-if (player_id.status_shield == SHIELD_NONE && player_id.status_invin != INVIN_BUFF) instance_destroy();
 #define Other_10
 /*"/*'/**//* YYD ACTION
 lib_id=1
