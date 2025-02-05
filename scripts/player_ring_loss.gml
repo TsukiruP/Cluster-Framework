@@ -10,7 +10,7 @@ ring_speed = 4;
 while (ring_total)
 {
     ring_id = instance_create(x, y, obj_ring);
-    ring_id.lifespan = 256;
+    ring_id.life_alarm = 256;
     ring_id.x_speed = ring_speed * dcos(round(ring_angle));
     ring_id.y_speed = ring_speed * -dsin(round(ring_angle));
     ring_id.dropped = true;

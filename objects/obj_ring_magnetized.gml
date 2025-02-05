@@ -12,7 +12,7 @@ if (dropped)
     {
         super = other.super;
         dropped = true;
-        lifespan = 256;
+        life_alarm = 256;
         x_speed = clamp(other.hspeed, -4, 4);
         y_speed = clamp(other.vspeed, -4, 4);
     }

@@ -11,8 +11,8 @@ semisolid = true;
 move = false;
 target[0] = xstart;
 target[1] = ystart;
+life_period = 1;
 life_time = 0;
-life_max_time = 1;
 life_speed = 0;
 #define Step_1
 /*"/*'/**//* YYD ACTION
@@ -29,9 +29,9 @@ var x_amplitude, y_amplitude;
 x_amplitude = (xstart - target[0]) / 2;
 y_amplitude = (ystart - target[1]) / 2;
 
-x = cosine_wave(life_time, life_max_time, x_amplitude, xstart - x_amplitude);
-y = cosine_wave(life_time, life_max_time, y_amplitude, ystart - y_amplitude);
-life_time += 1;
+x = cosine_wave(life_time, life_period, x_amplitude, xstart - x_amplitude);
+y = cosine_wave(life_time, life_period, y_amplitude, ystart - y_amplitude);
+life__time += 1;
 #define Other_4
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -42,4 +42,4 @@ applies_to=self
 
 //field move: false
     //field target: xy
-    //field life_max_time: number
+    //field life__period: number

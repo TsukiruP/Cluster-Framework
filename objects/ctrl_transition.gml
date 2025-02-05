@@ -16,9 +16,6 @@ transition_alarm = 0;
 transition_room = room;
 transition_run = -1;
 
-fade_id = noone;
-player_id = noone;
-
 curtain_max_frame = 20;
 curtain_frame = 0;
 curtain_y = 0;
@@ -36,6 +33,9 @@ zone_frame = 0;
 zone_width = -1;
 zone_spacing = 9;
 zone_x = 0;
+
+fade_id = noone;
+player_id = noone;
 #define Step_1
 /*"/*'/**//* YYD ACTION
 lib_id=1

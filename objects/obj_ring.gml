@@ -8,7 +8,7 @@ applies_to=self
 
 event_inherited();
 magnetized = false;
-lifespan = 0;
+life_alarm = 0;
 x_speed = 0;
 y_speed = 0;
 gravity_force = 0.09375;
@@ -31,14 +31,14 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Lifespan
+/// life_alarm
 
 if (game_ispaused()) exit;
 
 if (dropped)
 {
-    lifespan = max(lifespan - 1 * game_get_speed(), 0);
-    if (lifespan <= 0) instance_destroy();
+    life_alarm = max(life_alarm - 1 * game_get_speed(), 0);
+    if (life_alarm <= 0) instance_destroy();
 }
 #define Step_2
 /*"/*'/**//* YYD ACTION
@@ -123,5 +123,5 @@ applies_to=self
 */
 /// Draw Ring
 
-image_alpha = pick((dropped && lifespan < 30), 1, time_sync(lifespan, 2, 2));
+image_alpha = pick((dropped && life_alarm < 30), 1, time_sync(life_alarm, 2, 2));
 draw_self_floored();
