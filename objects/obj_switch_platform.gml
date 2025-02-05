@@ -8,7 +8,6 @@ applies_to=self
 
 event_inherited();
 collision = false;
-active = false;
 switch_id = noone;
 switch_active = false;
 switch_time = 0;
@@ -32,9 +31,9 @@ with (switch_id)
 var time_difference;
 
 time_difference = switch_time - game_get_time();
-active = (switch_active && time_difference);
+switch_active = (switch_active && time_difference);
 
-if (active)
+if (switch_active)
 {
     image_alpha = pick(time_difference < 30, 1, time_sync(time_difference, 2, 2));
     if (collision) event_inherited();
@@ -55,7 +54,7 @@ applies_to=self
 
 if (game_ispaused(mnu_pause)) exit;
 
-if (active)
+if (switch_active)
 {
     if (script_exists(sequence_index))
     {
@@ -95,4 +94,4 @@ applies_to=self
 */
 /// Draw Platform
 
-if (active) draw_self_floored();
+if (switch_active) draw_self_floored();
