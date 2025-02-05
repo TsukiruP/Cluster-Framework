@@ -4,7 +4,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Terrain Initialization
+/// Solid Initialization
 
 event_inherited();
 shape = SHAPE_CONCAVE;

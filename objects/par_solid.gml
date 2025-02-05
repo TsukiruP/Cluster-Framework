@@ -39,6 +39,6 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Draw Terrain
+/// Draw Solid
 
 if ((game_get_debug() && is_mask) || !is_mask) draw_self();
