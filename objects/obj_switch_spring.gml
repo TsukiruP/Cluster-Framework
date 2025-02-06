@@ -13,6 +13,10 @@ active = false;
 switch_id = noone;
 switch_active = false;
 switch_time = 0;
+sequence_array[0, false] = sequence_switch_spring_vertical_lock;
+sequence_array[0, true] = sequence_switch_spring_vertical_unlock;
+sequence_array[1, false] = sequence_switch_spring_horizontal_lock;
+sequence_array[1, true] = sequence_switch_spring_horizontal_unlock;
 sequence_init();
 #define Step_2
 /*"/*'/**//* YYD ACTION
@@ -30,21 +34,23 @@ with (switch_id)
     other.switch_time = target_time;
 }
 
-var time_difference;
+var time_difference, spring_index;
 
 time_difference = switch_time - game_get_time();
 switch_active = (switch_active && time_difference);
+spring_index = sequence_array[variant, switch_active];
 
 if (switch_active)
 {
-    if (sequence_index == sequence_switch_spring_vertical_lock) sequence_set(sequence_switch_spring_vertical_unlock);
+    if (sequence_index == sequence_array[variant, false])
+    {
+        active = false;
+        sequence_set(spring_index);
+    }
 }
-else
-{
-    if (sequence_index != sequence_switch_spring_vertical_lock) sequence_set(sequence_switch_spring_vertical_lock);
-}
+else if (sequence_index != spring_index) sequence_set(spring_index);
 
-if (sequence_index != sequence_switch_spring_vertical || (active && sequence_index == sequence_switch_spring_vertical))
+if (sequence_index == spring_index || (active && sequence_index != spring_index))
 {
     if (script_exists(sequence_index))
     {
@@ -63,6 +69,10 @@ applies_to=self
 event_inherited();
 
 //field switch_id: instance
+
+/*preview
+sprite_index = Sprite(pick(Field("variant", 0), "spr_switch_spring_vertical", "spr_switch_spring_horizontal", "spr_spring_diagonal"), 0);
+*/
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -73,23 +83,20 @@ applies_to=self
 switch (variant)
 {
     case 1:
-        sprite_index = spr_spring_horizontal;
+        sprite_index = spr_switch_spring_horizontal;
         angle = ANGLE_RIGHT;
-        hitbox_set_hurtbox(16, 5, 4, 5);
-        sequence_init(sequence_spring_horizontal);
+        sequence_init(sequence_switch_spring_horizontal);
         break;
 
     case 2:
         sprite_index = spr_spring_diagonal;
         angle = ANGLE_RIGHT_UP;
-        hitbox_set_hurtbox(6, 2, 4, 8);
         sequence_init(sequence_spring_diagonal);
         break;
 
     default:
         sprite_index = spr_switch_spring_vertical;
         angle = ANGLE_UP;
-        hitbox_set_hurtbox(7, 0, 7, 12, 0, 3);
         sequence_init(sequence_switch_spring_vertical);
 }
 
