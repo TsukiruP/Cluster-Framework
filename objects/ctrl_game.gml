@@ -76,6 +76,7 @@ if (game_ispaused(mnu_pause)) exit;
 
 if (!instance_exists(ctrl_transition)) game_set_save("time", game_get_save("time") + 1);
 game_time += game_speed;
+game_time = roundto(game_time, pick(game_speed > 0, 1, game_speed));
 #define Other_3
 /*"/*'/**//* YYD ACTION
 lib_id=1
