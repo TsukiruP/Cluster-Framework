@@ -279,6 +279,7 @@
 			+Springs
 				|spr_switch_spring_vertical
 				|spr_switch_spring_horizontal
+				|spr_switch_spring_diagonal
 		+Water
 			|spr_water_mask
 			|spr_water_surface
@@ -377,13 +378,6 @@
 			|spr_basic_test_water_fall_02
 			|spr_basic_test_water_fall_03
 +Trash
-	+Solids
-	+Platforms
-	+Low
-	+High
-	+Masks
-	+Spikes
-	|spr_rainbow_ring_left
 	|spr_rainbow_ring_right_down
 	|spr_rainbow_ring_left_down
 	|spr_rainbow_ring_left_up

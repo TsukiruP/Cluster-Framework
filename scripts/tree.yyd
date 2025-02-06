@@ -408,6 +408,10 @@
 							|sequence_switch_spring_horizontal
 							|sequence_switch_spring_horizontal_unlock
 							|sequence_switch_spring_horizontal_lock
+						+Diagonal
+							|sequence_switch_spring_diagonal
+							|sequence_switch_spring_diagonal_unlock
+							|sequence_switch_spring_diagonal_lock
 			+Effects
 				+Player
 					|sequence_spin_dash

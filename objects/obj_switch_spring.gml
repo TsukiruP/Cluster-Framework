@@ -17,6 +17,8 @@ sequence_array[0, false] = sequence_switch_spring_vertical_lock;
 sequence_array[0, true] = sequence_switch_spring_vertical_unlock;
 sequence_array[1, false] = sequence_switch_spring_horizontal_lock;
 sequence_array[1, true] = sequence_switch_spring_horizontal_unlock;
+sequence_array[2, false] = sequence_switch_spring_diagonal_lock;
+sequence_array[2, true] = sequence_switch_spring_diagonal_unlock;
 sequence_init();
 #define Step_2
 /*"/*'/**//* YYD ACTION
@@ -71,7 +73,7 @@ event_inherited();
 //field switch_id: instance
 
 /*preview
-sprite_index = Sprite(pick(Field("variant", 0), "spr_switch_spring_vertical", "spr_switch_spring_horizontal", "spr_spring_diagonal"), 0);
+sprite_index = Sprite(pick(Field("variant", 0), "spr_switch_spring_vertical", "spr_switch_spring_horizontal", "spr_switch_spring_diagonal"), 0);
 */
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -89,9 +91,9 @@ switch (variant)
         break;
 
     case 2:
-        sprite_index = spr_spring_diagonal;
+        sprite_index = spr_switch_spring_diagonal;
         angle = ANGLE_RIGHT_UP;
-        sequence_init(sequence_spring_diagonal);
+        sequence_init(sequence_switch_spring_diagonal);
         break;
 
     default:
