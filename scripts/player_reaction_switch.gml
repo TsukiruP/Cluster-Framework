@@ -11,13 +11,6 @@ if ((hitbox & HIT_ATTACK) || ((hitbox & HIT_SOLID) && side == reaction_id.angle)
 {
     if (!input_cpu)
     {
-        if (!reaction_id.active)
-        {
-            with (reaction_id)
-            {
-                active = true;
-                target_time = game_get_time() + duration;
-            }
-        }
+        with (reaction_id) target_time = game_get_time() + duration;
     }
 }

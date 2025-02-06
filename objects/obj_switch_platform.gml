@@ -24,7 +24,7 @@ if (game_ispaused(mnu_pause)) exit;
 
 with (switch_id)
 {
-    other.switch_active = active;
+    other.switch_active = !collision;
     other.switch_time = target_time;
 }
 

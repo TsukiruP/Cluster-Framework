@@ -12,7 +12,7 @@ else if (sequence_position(6))
 }
 else if (sequence_position(12))
 {
+    image_index = 0;
     collision = true;
-    active = false;
     hitbox_set_hurtbox(7, 9, 6, 9);
 }
