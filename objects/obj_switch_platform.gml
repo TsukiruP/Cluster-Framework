@@ -35,6 +35,12 @@ switch_active = (switch_active && time_difference);
 
 if (switch_active)
 {
+    if (script_exists(sequence_index))
+    {
+        sequence_update();
+        script_execute(sequence_index);
+    }
+
     image_alpha = pick(time_difference < 30, 1, time_sync(time_difference, 2, 2));
     if (collision) event_inherited();
 }
@@ -42,21 +48,9 @@ else
 {
     life_time = 0;
     sequence_set(sequence_switch_platform);
-    if (collision != false) collision = false;
-}
-
-if (switch_active)
-{
-    if (script_exists(sequence_index))
-    {
-        sequence_update();
-        script_execute(sequence_index);
-    }
-}
-else
-{
     if (x != xstart) x = xstart;
     if (y != ystart) y = ystart;
+    if (collision != false) collision = false;
 }
 #define Other_4
 /*"/*'/**//* YYD ACTION
