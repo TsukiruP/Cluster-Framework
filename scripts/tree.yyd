@@ -465,7 +465,7 @@
 			|sine_wave_range
 		+Draw
 			|draw_hitbox
-			|draw_sprite_tiled_extra
+			|draw_sprite_tiled_extra_OLD
 			|draw_background_tiled_view
 		+Text
 			|string_bool

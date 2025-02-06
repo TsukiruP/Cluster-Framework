@@ -458,7 +458,7 @@ sequence_sonic_ramp_fall
 player_state_ramp
 player_animation_ramp
 player_reaction_water
-draw_sprite_tiled_extra
+draw_sprite_tiled_extra_OLD
 player_reaction_bubble
 player_reaction_rail
 player_state_rail
