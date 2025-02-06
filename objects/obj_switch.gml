@@ -30,9 +30,12 @@ applies_to=self
 
 if (game_ispaused(mnu_pause)) exit;
 
-var switch_index;
+var active, switch_index;
 
-switch_index = sequence_array[variant, game_get_time() < target_time];
+active = game_get_time() < target_time;
+switch_index = sequence_array[variant, active];
+if (active && game_get_speed() && (target_time - game_get_time()) mod 30 == 0) audio_play_sfx("snd_switch_ping");
+
 if (sequence_index != switch_index)
 {
     sequence_set(switch_index);
