@@ -30,5 +30,5 @@ else if (sequence_position(14))
     image_index = 0;
     active = false;
     hitbox_set_hurtbox(16, 5, 4, 5);
-    sequence_set(sequence_spring_horizontal);
+    sequence_set(sequence_index);
 }
