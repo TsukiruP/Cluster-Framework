@@ -5,6 +5,7 @@ switch (argument0)
 {
     case STATE_START:
         player_set_animation("rail");
+        audio_play_sfx("snd_rail");
         break;
 
     case STATE_STEP:

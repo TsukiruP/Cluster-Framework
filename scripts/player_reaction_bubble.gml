@@ -16,7 +16,7 @@ if (hitbox & HIT_COLLISION)
         y_speed = 0;
         air_remaining = 30;
         air_alarm = 60;
-        audio_play_sfx("snd_breathe");
+        audio_play_sfx("snd_bubble");
         if (!input_cpu) audio_stop_drown();
 
         with (reaction_id)

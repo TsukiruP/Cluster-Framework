@@ -27,7 +27,7 @@ if (hitbox & HIT_COLLISION)
             if (sfx_alarm == 0)
             {
                 sfx_alarm = 8;
-                audio_play_sfx("snd_booster", true);
+                audio_play_sfx("snd_dash_panel", true);
             }
         }
     }
