@@ -33,7 +33,11 @@ if (game_ispaused(mnu_pause)) exit;
 var switch_index;
 
 switch_index = sequence_array[variant, game_get_time() < target_time];
-if (sequence_index != switch_index) sequence_set(switch_index);
+if (sequence_index != switch_index)
+{
+    sequence_set(switch_index);
+    audio_play_sfx(pick(game_get_time() < target_time, "snd_switch_off", "snd_switch_on"));
+}
 
 if (script_exists(sequence_index))
 {
@@ -69,12 +73,12 @@ switch (variant)
         sprite_index = spr_switch_horizontal;
         angle = pick(sign(image_xscale) == -1, ANGLE_RIGHT, ANGLE_LEFT);
         hitbox_set_hurtbox(7, 9, 6, 9);
-        sequence_init(sequence_switch_horizontal_on);
+        sequence_init(sequence_switch_horizontal_off);
         break;
 
     default:
         sprite_index = spr_switch_vertical;
         angle = pick(sign(image_yscale) == -1, ANGLE_UP, ANGLE_DOWN);
         hitbox_set_hurtbox(9, 6, 9, 7);
-        sequence_init(sequence_switch_vertical_on);
+        sequence_init(sequence_switch_vertical_off);
 }
