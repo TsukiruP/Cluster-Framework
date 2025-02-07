@@ -23,13 +23,3 @@ applies_to=self
 if (game_ispaused(mnu_pause)) exit;
 
 if (invin_alarm > 0) invin_alarm -= 1;
-#define Draw_0
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Draw Enemy
-
-if (class == ENE_SUPER && vitality > 0 && vitality < 3 && invin_alarm > 0) draw_sprite(spr_enemy_vitality, vitality - 1, floor(x), floor(y) - 40);
-draw_self_floored();

@@ -8,6 +8,8 @@ applies_to=self
 
 event_inherited();
 variant = 0;
+x_offset = 0;
+y_offset = 0;
 hitbox_set_hurtbox(20, 19, 20, 4);
 hitbox_set_attackbox(8, 18, 7, 4);
 #define Step_2
@@ -58,3 +60,12 @@ switch (variant)
     default:
         sequence_init(sequence_spinner);
 }
+#define Draw_0
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Draw Spinner
+
+draw_sprite_ext(sprite_index, image_index, floor(x) + x_offset * sign(image_xscale), floor(y) + y_offset * sign(image_yscale), image_xscale, image_yscale, gravity_direction, c_white, 1);
