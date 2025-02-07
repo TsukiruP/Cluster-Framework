@@ -391,6 +391,7 @@
 					|sequence_spring_diagonal
 				+Enemies
 					|sequence_spinner
+					|sequence_spanner
 				+Switch
 					|sequence_switch_platform
 					+Vertical
