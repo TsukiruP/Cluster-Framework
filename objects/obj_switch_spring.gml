@@ -104,3 +104,4 @@ switch (variant)
 
 if (sign(image_xscale) == -1) angle = 180 - angle;
 if (sign(image_yscale) == -1) angle = 360 - angle;
+with (switch_id) image_offset = 5;
