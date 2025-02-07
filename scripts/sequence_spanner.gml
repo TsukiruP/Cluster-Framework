@@ -111,7 +111,12 @@ else if (sequence_position(75)) image_index = 2;
 else if (sequence_position(81)) image_index = 3;
 else if (sequence_position(87)) image_index = 4;
 else if (sequence_position(93)) image_index = 5;
-else if (sequence_position(99)) image_index = 10;
+else if (sequence_position(99))
+{
+    image_index = 10;
+    hitbox_set_hurtbox(9, 15, 7, 8);
+    hitbox_set_attackbox(30, 30, 30, 22);
+}
 else if (sequence_position(101)) image_index = 11;
 else if (sequence_position(103)) image_index = 12;
 else if (sequence_position(105)) image_index = 13;
@@ -152,6 +157,8 @@ else if (sequence_position(171))
     image_index = 0;
     x_offset = 0;
     y_offset = 0;
+    hitbox_set_hurtbox(20, 19, 20, 4);
+    hitbox_set_attackbox(8, 18, 7, 4);
 }
 else if (sequence_position(173)) image_index = 16;
 else if (sequence_position(174)) image_index = 1;
