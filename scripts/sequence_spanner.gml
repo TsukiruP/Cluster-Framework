@@ -114,6 +114,7 @@ else if (sequence_position(93)) image_index = 5;
 else if (sequence_position(99))
 {
     image_index = 10;
+    attackbox_element = ELEM_LIGHTNING;
     hitbox_set_hurtbox(9, 15, 7, 8);
     hitbox_set_attackbox(30, 30, 30, 22);
 }
@@ -155,6 +156,7 @@ else if (sequence_position(169)) image_index = 15;
 else if (sequence_position(171))
 {
     image_index = 0;
+    attackbox_element = ELEM_NONE;
     x_offset = 0;
     y_offset = 0;
     hitbox_set_hurtbox(20, 19, 20, 4);

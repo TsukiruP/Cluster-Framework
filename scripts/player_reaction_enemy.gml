@@ -43,7 +43,7 @@ if (((hitbox & HIT_COLLISION) && status_invin == INVIN_BUFF) || (hitbox & HIT_AT
         }
     }
 }
-else if ((hitbox & HIT_HURT) && (reaction_id.hitbox_element == ELEM_NONE || (status_shield - SHIELD_BUBBLE != reaction_id.hitbox_element)))
+else if ((hitbox & HIT_HURT) && (reaction_id.attackbox_element == ELEM_NONE || (reaction_id.attackbox_element > ELEM_NONE && status_shield != reaction_id.attackbox_element + SHIELD_BUBBLE)))
 {
     player_set_damage(reaction_id);
 }
