@@ -87,9 +87,4 @@ else if (sequence_position(84))
     y_offset = 1;
 }
 else if (sequence_position(87)) image_index = 5;
-else if (sequence_position(90))
-{
-    image_index = 0;
-    y_offset = 0;
-}
-else if (sequence_position(92)) sequence_moment = 0;
+else if (sequence_position(91)) sequence_moment = 0;
