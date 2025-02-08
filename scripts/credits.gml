@@ -142,4 +142,11 @@ PACTool
 RPatry
 Velocitas
 
+TEXT
+Sonic Time Twisted
+Epilepsy warning
+
+Starlight 9 Engine
+Copyright disclaimer
+
 FMODex is a product of Firelight Technologies.
