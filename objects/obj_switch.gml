@@ -14,6 +14,7 @@ angle = ANGLE_UP;
 active = false;
 duration = 0;
 target_time = 0;
+life_time = 0;
 image_offset = 0;
 sequence_array[0, false] = sequence_switch_vertical_off;
 sequence_array[0, true] = sequence_switch_vertical_on;
@@ -34,10 +35,16 @@ var active, switch_index;
 
 active = game_get_time() < target_time;
 switch_index = sequence_array[variant, active];
-if (active && game_get_speed() && (target_time - game_get_time()) mod 30 == 0) audio_play_sfx("snd_switch_ping");
+
+if (active)
+{
+    life_time += 1;
+    if (life_time mod 30 == 0) audio_play_sfx("snd_switch_ping");
+}
 
 if (sequence_index != switch_index)
 {
+    life_time = 0;
     sequence_set(switch_index);
     audio_play_sfx(pick(game_get_time() < target_time, "snd_switch_off", "snd_switch_on"));
 }
