@@ -234,7 +234,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Draw Menu
+/// Draw Pause
 
 if (menu_hide != 0) exit;
 
