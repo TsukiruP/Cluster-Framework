@@ -105,7 +105,7 @@ obj_spring_right_down
 eff_reticle
 obj_dash_ring_right
 obj_dash_ring_up
-obj_dash_ring_down
+mnu_boot
 obj_dash_ring_left_up
 obj_dash_ring_left_down
 obj_dash_ring_right_up

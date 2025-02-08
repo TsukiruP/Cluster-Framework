@@ -43,7 +43,8 @@ instance_create_single(0, 0, ctrl_audio);
 instance_create_single(0, 0, ctrl_input);
 instance_create_single(0, 0, ctrl_text);
 instance_create_single(0, 0, ctrl_animation);
-transition_create(rm_debug);
+instance_create(0, 0, mnu_boot);
+//transition_create(rm_debug);
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603

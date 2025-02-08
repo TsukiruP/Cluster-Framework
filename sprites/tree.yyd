@@ -21,6 +21,7 @@
 			|fnt_score_s4e2
 			|fnt_time_s4e2
 	+Menu
+		|spr_boot
 		|spr_save_character
 		+Title
 			|spr_realizing_hopper
@@ -379,6 +380,5 @@
 			|spr_basic_test_water_fall_02
 			|spr_basic_test_water_fall_03
 +Trash
-	|spr_rainbow_ring_left_down
 	|spr_rainbow_ring_left_up
 	|spr_rainbow_ring_down

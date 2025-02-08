@@ -141,3 +141,5 @@ PACTool
 
 RPatry
 Velocitas
+
+FMODex is a product of Firelight Technologies.

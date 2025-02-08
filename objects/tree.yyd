@@ -27,6 +27,7 @@
 			|ctrl_hud
 			|ctrl_tally
 	+Menus
+		|mnu_boot
 		|mnu_title
 		|mnu_debug
 		|mnu_save
@@ -119,7 +120,6 @@
 	+Dash Panels
 	+Dash Rings
 		|obj_dash_ring_up
-		|obj_dash_ring_down
 		|obj_dash_ring_right
 		|obj_dash_ring_left_up
 		|obj_dash_ring_left_down
