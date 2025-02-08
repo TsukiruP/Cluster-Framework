@@ -6,6 +6,7 @@ applies_to=self
 */
 /// Debug Initialization
 
+info_hide = true;
 info_index = 0;
 #define Step_0
 /*"/*'/**//* YYD ACTION
@@ -19,14 +20,31 @@ if (input_get_check(INP_ALT, CHECK_HELD) && input_get_check(INP_SELECT, CHECK_PR
 
 if (!game_get_debug()) exit;
 
-var menu_left, menu_right, menu_direction;
+if (keyboard_check_pressed(vk_f1)) info_hide = !info_hide;
+if (keyboard_check_pressed(vk_f2)) room_speed = pick(room_speed == 60, 60, 30);
 
-menu_left = keyboard_check_pressed(vk_pageup);
-menu_right = keyboard_check_pressed(vk_pagedown);
-menu_direction = menu_right - menu_left;
+if (keyboard_check_pressed(vk_f5))
+{
+    if (game_get_save_index() != -1) game_write_save(game_get_save_index());
+}
 
-info_index += menu_direction;
-info_index = wrap(info_index, 0, 2);
+if (keyboard_check_pressed(vk_f6))
+{
+    if (game_get_save_index() == -1) game_set_save_index(0);
+    game_read_save(game_get_save_index());
+}
+
+if (!info_hide)
+{
+    var menu_left, menu_right, menu_direction;
+
+    menu_left = keyboard_check_pressed(vk_pageup);
+    menu_right = keyboard_check_pressed(vk_pagedown);
+    menu_direction = menu_right - menu_left;
+
+    info_index += menu_direction;
+    info_index = wrap(info_index, 0, 2);
+}
 
 with (obj_player)
 {
@@ -106,7 +124,7 @@ applies_to=self
 */
 /// Draw Info
 
-if (!game_get_debug()) exit;
+if (!game_get_debug() || info_hide) exit;
 
 with (stage_get_player(0))
 {
@@ -179,22 +197,3 @@ with (stage_get_player(0))
     draw_text(info_x, info_y, info_string);
     draw_reset();
 }
-#define KeyPress_116
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Write Save
-
-if (game_get_save_index() != -1) game_write_save(game_get_save_index());
-#define KeyPress_117
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Read Save
-
-if (game_get_save_index() == -1) game_set_save_index(0);
-game_read_save(game_get_save_index());
