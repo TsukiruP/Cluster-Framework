@@ -179,4 +179,4 @@ view_yhalf = screen_get_height() / 2;
 x = clamp(x, limit_left + view_xhalf, limit_right - view_yhalf);
 y = clamp(y, limit_top + view_yhalf, limit_bottom - view_yhalf);
 x = floor(camera_x + camera_x_shift);
-y = floor(camera_y + camera_y_shift) + 16;
+y = floor(camera_y + camera_y_shift);
