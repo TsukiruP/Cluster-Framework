@@ -16,7 +16,7 @@ with (ctrl_game)
     ds_list_add(keyboard_list, ord("D")); // Tag
     ds_list_add(keyboard_list, vk_shift); // Alt
     ds_list_add(keyboard_list, vk_enter); // Start
-    ds_list_add(keyboard_list, 220); // Select
+    ds_list_add(keyboard_list, vk_space); // Select
     ds_list_add(keyboard_list, ord("A")); // Confirm
     ds_list_add(keyboard_list, ord("S")); // Cancel
     ds_list_add(keyboard_list, vk_backspace); // Log
