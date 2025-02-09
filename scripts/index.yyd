@@ -488,3 +488,11 @@ sequence_switch_spring_diagonal
 sequence_switch_spring_diagonal_unlock
 sequence_switch_spring_diagonal_lock
 sequence_spanner
+sequence_buzzer_move
+sequence_buzzer_move_turn
+sequence_buzzer_shoot
+sequence_buzzer_aim
+sequence_buzzer_aim_turn
+bullet_create
+sequence_buzzer_bullet
+player_reaction_bullet

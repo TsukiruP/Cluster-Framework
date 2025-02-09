@@ -117,8 +117,8 @@ obj_bubble
 ctrl_debug
 obj_switch
 obj_switch_spring
-obj_rainbow_ring_right_up
-obj_rainbow_ring_right_down
+par_bullet
+obj_buzzer
 obj_spinner
 obj_sky_sanctuary_fountain
 eff_debuff

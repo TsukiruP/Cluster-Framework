@@ -326,6 +326,7 @@
 		+Enemies
 			|spr_enemy_alert
 			|spr_enemy_vitality
+			|spr_buzzer_bullet
 		+Splashes
 			|spr_splash_0
 			|spr_splash_1
@@ -381,4 +382,3 @@
 			|spr_basic_test_water_fall_02
 			|spr_basic_test_water_fall_03
 +Trash
-	|spr_rainbow_ring_down

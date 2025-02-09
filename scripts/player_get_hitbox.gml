@@ -52,8 +52,8 @@ if (inst != noone)
     bsine = dsin(brot);
     bcsine = dcos(brot);
 
-    // Swap to object's hitbox:
-    if (phase == 1)
+    // Swap to object's attackbox:
+    if (phase == 1 || phase == 3)
     {
         bleft = inst.attackbox_left;
         btop = inst.attackbox_top;
@@ -64,8 +64,8 @@ if (inst != noone)
         boff_y = inst.attackbox_offset_y * bdir_y;
     }
 
-    // Swap to player's hitbox:
-    if (phase == 2)
+    // Swap to player's attackbox:
+    if (phase == 2 || phase == 3)
     {
         aleft = attackbox_left;
         atop = attackbox_top;
@@ -121,10 +121,10 @@ if (inst != noone)
             ax2 = ax_int + (acsine * aright) + (acsine * aoff_x) + (asine * abottom) + (asine * aoff_y);
             ay2 = ay_int + (asine * aleft) - (asine * aoff_x) + (acsine * abottom) + (acsine * aoff_y);
 
-            if (rectangle_in_rectangle(ax1, ay1, ax2, ay2, bx1, by1, bx2, by2)) hitbox |= pick(phase, HIT_COLLISION, HIT_HURT, HIT_ATTACK);
+            if (rectangle_in_rectangle(ax1, ay1, ax2, ay2, bx1, by1, bx2, by2)) hitbox |= pick(phase, HIT_COLLISION, HIT_HURT, HIT_ATTACK, HIT_CLASH);
         }
     }
 }
 
-if (phase == 0) return hitbox | player_get_hitbox(argument0, 1) | player_get_hitbox(argument0, 2);
+if (phase == 0) return (hitbox | player_get_hitbox(argument0, 1) | player_get_hitbox(argument0, 2) | player_get_hitbox(argument0, 3));
 return hitbox;

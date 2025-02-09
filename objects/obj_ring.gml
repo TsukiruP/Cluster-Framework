@@ -31,7 +31,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// life_alarm
+/// Alarm
 
 if (game_ispaused()) exit;
 
@@ -51,17 +51,17 @@ applies_to=self
 event_inherited();
 
 if (game_ispaused() || !dropped) exit;
-
 if (!in_view()) instance_destroy();
 
-var sine, csine, ox, oy;
+var game_speed, sine, csine, ox, oy;
 
+game_speed = game_get_speed();
 sine = dsin(gravity_direction);
 csine = dcos(gravity_direction);
 ox = csine * x_speed;
 oy = sine * x_speed;
-x += ox;
-y -= oy;
+x += ox * game_speed;
+y -= oy * game_speed;
 
 if (place_meeting(x + ox, y - oy, par_solid) && !place_meeting(xprevious, yprevious, par_solid))
 {
@@ -76,10 +76,10 @@ if (place_meeting(x + ox, y - oy, par_solid) && !place_meeting(xprevious, yprevi
 
 ox = sine * y_speed;
 oy = csine * y_speed;
-x += ox;
-y += oy;
+x += ox * game_speed;
+y += oy * game_speed;
 
-y_speed += gravity_force * game_get_speed();
+y_speed += gravity_force * game_speed;
 
 if (place_meeting(x + ox, y + oy, par_solid) && !place_meeting(xprevious, yprevious, par_solid))
 {

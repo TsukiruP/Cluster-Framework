@@ -7,8 +7,8 @@ applies_to=self
 /// Enemy Initialization
 
 event_inherited();
-attackbox_element = ELEM_NONE;
 reaction_index = player_reaction_enemy;
+attackbox_element = ELEM_NONE;
 class = ENE_BASIC;
 vitality = 3;
 invin_alarm = 0;

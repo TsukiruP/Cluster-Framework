@@ -5,6 +5,7 @@
 	|par_target
 	|par_ring
 	|par_enemy
+	|par_bullet
 	|par_hint
 	|par_solid
 	|par_platform
@@ -49,6 +50,7 @@
 		|obj_item_box
 		+Enemies
 			|obj_spinner
+			|obj_buzzer
 		|obj_spike
 		|obj_blockade
 		+Rails
@@ -109,8 +111,6 @@
 	+Rainbow Rings
 		|par_rainbow_ring
 		|obj_rainbow_ring_overlay
-		|obj_rainbow_ring_right_up
-		|obj_rainbow_ring_right_down
 	+Springs
 		|obj_spring_up
 		|obj_spring_down

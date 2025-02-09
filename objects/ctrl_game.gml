@@ -110,6 +110,7 @@ applies_to=self
 */
 /// Reset Time
 
+game_speed = 1;
 game_time = 0;
 #define Draw_0
 /*"/*'/**//* YYD ACTION

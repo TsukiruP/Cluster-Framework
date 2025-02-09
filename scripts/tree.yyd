@@ -392,6 +392,12 @@
 				+Enemies
 					|sequence_spinner
 					|sequence_spanner
+					+Buzzer
+						|sequence_buzzer_aim
+						|sequence_buzzer_aim_turn
+						|sequence_buzzer_move
+						|sequence_buzzer_move_turn
+						|sequence_buzzer_shoot
 				+Switch
 					|sequence_switch_platform
 					+Vertical
@@ -446,6 +452,7 @@
 					|sequence_explosion_water
 				+Enemies
 					|sequence_enemy_alert
+					|sequence_buzzer_bullet
 				+Splashes
 					|sequence_splash_0
 					|sequence_splash_1
@@ -481,12 +488,13 @@
 		+Misc.
 			|pick_offset
 			|transition_create
+			|bullet_create
 			|effect_create
+			|instance_create_single
 			|instance_nth_nearest
 			|instance_nearest_dir_x
 			|instance_nearest_dir_y
 			|in_view
-			|instance_create_single
 +Gameplay
 	+Collision
 		|collision_box
@@ -571,6 +579,7 @@
 			|player_reaction_spring
 			|player_reaction_item_box
 			|player_reaction_enemy
+			|player_reaction_bullet
 			|player_reaction_spike
 			|player_reaction_blockade
 			|player_reaction_rail

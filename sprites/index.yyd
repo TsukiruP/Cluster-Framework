@@ -277,7 +277,7 @@ spr_switch_vertical
 spr_switch_spring_horizontal
 spr_rainbow_ring_horizontal
 spr_rainbow_ring_vertical
-spr_rainbow_ring_down
+spr_buzzer_bullet
 spr_rainbow_ring_diagonal
 spr_spanner
 fnt_score_s4e2
