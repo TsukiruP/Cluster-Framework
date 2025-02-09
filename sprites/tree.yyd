@@ -259,6 +259,7 @@
 		+Enemies
 			|spr_spinner
 			|spr_spanner
+			|spr_buzzer
 		+Spikes
 			|spr_spike_vertical
 			|spr_spike_horizontal
@@ -380,5 +381,4 @@
 			|spr_basic_test_water_fall_02
 			|spr_basic_test_water_fall_03
 +Trash
-	|spr_rainbow_ring_left_up
 	|spr_rainbow_ring_down
