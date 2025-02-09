@@ -260,6 +260,7 @@
 			|spr_spinner
 			|spr_spanner
 			|spr_buzzer
+			|spr_chopper
 		+Spikes
 			|spr_spike_vertical
 			|spr_spike_horizontal
@@ -381,4 +382,3 @@
 		+Gimmicks
 			|spr_basic_test_water_fall_02
 			|spr_basic_test_water_fall_03
-+Trash
