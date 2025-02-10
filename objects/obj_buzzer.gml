@@ -123,11 +123,11 @@ applies_to=self
     //field border_right: number
 
 /*preview
-sprite_index = Sprite("spr_buzzer", pick(Field("move", 0), 4, 0));
+sprite_index = Sprite("spr_buzzer", pick(Field("move", 0), 0, 3));
 if (Field("move", 0))
 {
     draw_set_color(c_red);
-    draw_rectangle(floor(x) - Field("border_left", 0), floor(y), floor(x) + Field("border_right", 0), floor(y) + 96 * image_yscale, true);
+    draw_rectangle(floor(x) - Field("border_left", 0), floor(y) - 2, floor(x) + Field("border_right", 0), floor(y) + 8, true);
 }
 */
 /*"/*'/**//* YYD ACTION
@@ -151,6 +151,6 @@ draw_self_floored();
 if (game_get_debug() && move)
 {
     draw_set_color(c_red);
-    draw_rectangle(floor(xstart) - border_left, floor(ystart), floor(xstart) + border_right, floor(ystart) + 96 * image_yscale, true);
+    draw_rectangle(floor(xstart) - border_left, floor(ystart) - 2, floor(xstart) + border_right, floor(ystart) + 8, true);
     draw_reset();
 }
