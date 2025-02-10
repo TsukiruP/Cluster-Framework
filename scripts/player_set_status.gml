@@ -4,6 +4,8 @@
 switch (argument0)
 {
     case STATUS_SHIELD:
+        if (status_shield == argument1) exit;
+        
         if (argument1 > SHIELD_NONE)
         {
             status_shield = argument1;
