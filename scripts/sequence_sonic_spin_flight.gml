@@ -12,15 +12,15 @@ if (sequence_position(0))
     image_index = 0;
     player_set_radii(6, 14, 3);
     hitbox_set_hurtbox(6, 16, 6, 15);
-    hitbox_set_attackbox(6, 9, 6, 9);
+    hitbox_set_attackbox(6, 16, 6, 15);
 }
 else if (sequence_position(3)) image_index = 1;
 else if (sequence_position(5))
 {
     image_index = 2;
     player_set_radii(6, 9, 3, 5);
-    hitbox_set_hurtbox(7, 8, 7, 8);
-    hitbox_set_attackbox(6, 9, 6, 9);
+    hitbox_set_hurtbox(8, 8, 8, 8);
+    hitbox_set_attackbox(8, 8, 8, 8);
 }
 else if (sequence_position(7)) image_index = 3;
 else if (sequence_position(9)) image_index = 4;
