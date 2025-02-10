@@ -12,8 +12,12 @@ if (!reaction_id.reflect)
     {
         with (reaction_id)
         {
-            x_speed *= -2;
-            y_speed *= -2;
+            var bullet_angle;
+
+            bullet_angle = point_direction(x, y, other.x, other.y);
+
+            x_speed = -10 * dcos(bullet_angle);
+            y_speed = -10 * -dsin(bullet_angle);
             reflect = true;
         }
     }
