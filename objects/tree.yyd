@@ -51,6 +51,7 @@
 		+Enemies
 			|obj_spinner
 			|obj_buzzer
+			|obj_chopper
 		|obj_spike
 		|obj_blockade
 		+Rails

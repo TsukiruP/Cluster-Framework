@@ -496,3 +496,5 @@ sequence_buzzer_aim_turn
 bullet_create
 sequence_buzzer_bullet
 player_reaction_bullet
+sequence_chopper_move
+sequence_chopper_move_turn

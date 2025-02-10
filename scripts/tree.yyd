@@ -398,6 +398,9 @@
 						|sequence_buzzer_move
 						|sequence_buzzer_move_turn
 						|sequence_buzzer_shoot
+					+Chopper
+						|sequence_chopper_move
+						|sequence_chopper_move_turn
 				+Switch
 					|sequence_switch_platform
 					+Vertical
