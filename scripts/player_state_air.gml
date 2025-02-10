@@ -7,6 +7,7 @@ switch (argument0)
         var g_speed;
 
         g_speed = x_speed;
+
         x_speed = dcos(relative_angle) * g_speed;
         y_speed = -(dsin(relative_angle) * g_speed);
         player_reset_air();

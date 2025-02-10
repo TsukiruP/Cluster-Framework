@@ -1,8 +1,7 @@
 /// player_routine_insta()
 /* Shorthand for performing */
 
-player_set_state(player_state_jump, false);
-jump_cap = false;
+player_set_state(player_state_air, false);
 status_shield_allow = false;
 status_insta_alarm = 8;
 player_set_animation("insta");

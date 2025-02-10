@@ -9,6 +9,7 @@ switch (argument0)
 
         leap_force = pick(jump_bound, jump_force, 7.5, 6 + bound_count);
         g_speed = x_speed;
+
         x_speed = (dcos(relative_angle) * g_speed) - (leap_force * dsin(relative_angle));
         y_speed = -(dsin(relative_angle) * g_speed) - (leap_force * dcos(relative_angle));
         player_reset_air();
