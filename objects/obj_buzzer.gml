@@ -37,11 +37,7 @@ if (sequence_index == sequence_buzzer_aim)
         var x_sign;
 
         x_sign = sign(x - player_id.x);
-        if (sign(image_xscale) != -x_sign)
-        {
-            shoot = false;
-            sequence_set(sequence_buzzer_aim_turn);
-        }
+        if (sign(image_xscale) != -x_sign) sequence_set(sequence_buzzer_aim_turn);
 
         if (shoot)
         {
