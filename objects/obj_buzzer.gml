@@ -8,10 +8,10 @@ applies_to=self
 
 event_inherited();
 move = false;
-shoot = false;
-buzzer_time = 0;
 border_left = 0;
 border_right = 0;
+shoot = false;
+buzzer_time = 0;
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -69,11 +69,12 @@ else if (sequence_index == sequence_buzzer_shoot)
 
         if (buzzer_time == 14)
         {
-            var bullet_x, bullet_y, bullet_angle;
+            var player_id, bullet_x, bullet_y, bullet_angle;
 
+            player_id = stage_get_player(0);
             bullet_x = x + 3 * image_xscale;
             bullet_y = y + 12 * image_yscale;
-            bullet_angle = point_direction(bullet_x, bullet_y, stage_get_player(0).x, stage_get_player(0).y);
+            bullet_angle = point_direction(bullet_x, bullet_y, player_id.x, player_id.y);
 
             bullet_create(bullet_x, bullet_y, sequence_buzzer_bullet, 1.6862745 * dcos(bullet_angle), 1.6862745 * -dsin(bullet_angle));
         }

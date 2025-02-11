@@ -9,6 +9,8 @@ applies_to=self
 event_inherited();
 border_left = 0;
 border_right = 0;
+hitbox_set_hurtbox(17, 8, 15, 14);
+hitbox_set_attackbox(9, 6, 15, 12);
 sequence_init(sequence_chopper_move);
 #define Step_2
 /*"/*'/**//* YYD ACTION
@@ -48,7 +50,7 @@ applies_to=self
 
 /*preview
 draw_set_color(c_red);
-draw_rectangle(floor(x) - Field("border_left", 0), floor(y), floor(x) + Field("border_right", 0), floor(y) + 96 * image_yscale, true);
+draw_rectangle(floor(x) - Field("border_left", 0), floor(y) - 8, floor(x) + Field("border_right", 0), floor(y) + 15, true);
 */
 #define Draw_0
 /*"/*'/**//* YYD ACTION
@@ -56,12 +58,12 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Draw Buzzer
+/// Draw Chopper
 
 draw_self_floored();
 if (game_get_debug())
 {
     draw_set_color(c_red);
-    draw_rectangle(floor(xstart) - border_left, floor(ystart), floor(xstart) + border_right, floor(ystart) + 96 * image_yscale, true);
+    draw_rectangle(floor(xstart) - border_left, floor(ystart) - 8, floor(xstart) + border_right, floor(ystart) + 15, true);
     draw_reset();
 }
