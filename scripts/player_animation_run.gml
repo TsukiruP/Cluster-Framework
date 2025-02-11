@@ -2,7 +2,7 @@
 /* Sets the run animation depending on the x speed. */
 
 // Abort if in the pushing animation:
-if (animation_current == "push" && image_xscale == input_x_direction) exit;
+if (animation_current == "push" && sign(image_xscale) == input_x_direction) exit;
 
 switch (character_index)
 {

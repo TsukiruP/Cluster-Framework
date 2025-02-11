@@ -52,7 +52,7 @@ if (!player_get_input(INP_ALT, CHECK_HELD))
 
                 homing_angle1 = mask_rotation;
                 homing_angle2 = direction_to_object(homing_candidate);
-                if (image_xscale == -1) homing_angle1 = angle_wrap(homing_angle1 + 180);
+                if (sign(image_xscale) == -1) homing_angle1 = angle_wrap(homing_angle1 + 180);
                 if (abs(angle_difference(homing_angle1, homing_angle2)) > 45) continue;
 
                 // Fail when interacting with solids:

@@ -17,7 +17,7 @@ switch (argument0)
         }
         else
         {
-            if (image_xscale == cliff_direction) player_set_animation("cliff_front");
+            if (sign(image_xscale) == cliff_direction) player_set_animation("cliff_front");
             else player_set_animation("cliff_back");
         }
         break;
@@ -33,7 +33,7 @@ switch (argument0)
             return player_set_state(player_state_run);
         }
 
-        if ((game_get_config("advance_turn") && character_index != CHAR_CLASSIC) && input_x_direction != 0 && image_xscale != input_x_direction)
+        if ((game_get_config("advance_turn") && character_index != CHAR_CLASSIC) && input_x_direction != 0 && sign(image_xscale) != input_x_direction)
         {
             return player_set_state(player_state_turn);
         }

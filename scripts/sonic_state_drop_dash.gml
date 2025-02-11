@@ -28,7 +28,7 @@ switch (argument0)
             {
                 var drop_dash_max_speed, drop_dash_speed;
 
-                if (input_x_direction != 0 && image_xscale != input_x_direction) image_xscale = input_x_direction;
+                if (input_x_direction != 0 && sign(image_xscale) != input_x_direction) image_xscale = input_x_direction;
 
                 drop_dash_max_speed = 12;
                 drop_dash_speed = 8;

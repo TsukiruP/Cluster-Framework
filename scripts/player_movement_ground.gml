@@ -64,7 +64,7 @@ repeat (total_steps)
         if (sign(x_speed) == wall_sign)
         {
             x_speed = 0;
-            if (image_xscale == wall_sign && input_x_direction == wall_sign) player_wall_push(hit_wall, wall_sign);
+            if (sign(image_xscale) == wall_sign && input_x_direction == wall_sign) player_wall_push(hit_wall, wall_sign);
         }
     }
 

@@ -237,7 +237,7 @@ if (input_allow)
 
                             if (state_current != player_state_spin_dash)
                             {
-                                image_xscale = esign(leader_id.x - x, leader_id.image_xscale);
+                                image_xscale = esign(leader_id.x - x, sign(leader_id.image_xscale));
                                 player_set_input(INP_DOWN, CHECK_HELD, true);
                             }
                         }
@@ -308,7 +308,7 @@ if (input_allow)
                         {
                             player_set_input(INP_LEFT, CHECK_HELD, true);
                             player_set_input(INP_RIGHT, CHECK_HELD, false);
-                            if (image_xscale == 1 && x_speed != 0 && animation_current != "push") x += 1;
+                            if (sign(image_xscale) == 1 && x_speed != 0 && animation_current != "push") x += 1;
                         }
 
                         // Move right:
@@ -316,7 +316,7 @@ if (input_allow)
                         {
                             player_set_input(INP_LEFT, CHECK_HELD, false);
                             player_set_input(INP_RIGHT, CHECK_HELD, true);
-                            if (image_xscale == -1 && x_speed != 0 && animation_current != "push") x -= 1;
+                            if (sign(image_xscale) == -1 && x_speed != 0 && animation_current != "push") x -= 1;
                         }
 
                         // Jump:
@@ -328,7 +328,7 @@ if (input_allow)
                         {
                             input_cpu_state_time += 1;
 
-                            if (image_xscale == leader_id.image_xscale && leader_id.animation_current == "push") input_cpu_state_time = 0;
+                            if (sign(image_xscale) == sign(leader_id.image_xscale) && leader_id.animation_current == "push") input_cpu_state_time = 0;
                             jump_auto = pick(input_cpu_state_time < 30, 0, 1);
                         }
                         else

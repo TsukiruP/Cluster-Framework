@@ -22,7 +22,7 @@ switch (argument0)
                     {
                         x_speed = deceleration * input_x_direction;
 
-                        if (game_get_config("advance_turn") && character_index != CHAR_CLASSIC && image_xscale != sign(x_speed))
+                        if (game_get_config("advance_turn") && character_index != CHAR_CLASSIC && sign(image_xscale) != sign(x_speed))
                         {
                             player_set_animation("turn_brake");
                             return player_set_state(player_state_turn);

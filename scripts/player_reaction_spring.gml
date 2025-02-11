@@ -20,8 +20,8 @@ if (hitbox & HIT_COLLISION)
         spring_angle = angle_wrap(spring_current.angle - gravity_direction);
         spring_alarm = spring_force + 15;
 
-        x_speed = spring_force * dcos(spring_angle);
-        y_speed = spring_force * -dsin(spring_angle);
+        x_speed = dcos(spring_angle) * spring_force;
+        y_speed = -dsin(spring_angle) * spring_force;
 
         if (!(on_ground && (spring_angle == ANGLE_LEFT || spring_angle == ANGLE_RIGHT)) || is_dash_ring)
         {

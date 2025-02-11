@@ -29,8 +29,8 @@ if (animation_changed) animation_changed = false;
 
 if (on_ground)
 {
-    x += (y_radius_temp - y_radius) * dsin(mask_rotation);
-    y += (y_radius_temp - y_radius) * dcos(mask_rotation);
+    x += dsin(mask_rotation) * (y_radius_temp - y_radius);
+    y += dcos(mask_rotation) * (y_radius_temp - y_radius);
 }
 
 player_animation_fix();

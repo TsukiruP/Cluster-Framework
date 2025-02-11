@@ -15,8 +15,8 @@ switch (argument0)
         break;
 
     case STATE_STEP:
-        x += y_speed * dsin(gravity_direction);
-        y += y_speed * dcos(gravity_direction);
+        x += dsin(gravity_direction) * y_speed;
+        y += dcos(gravity_direction) * y_speed;
 
         y_speed += gravity_force;
 
