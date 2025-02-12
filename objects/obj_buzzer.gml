@@ -12,6 +12,7 @@ border_left = 0;
 border_right = 0;
 shoot = false;
 buzzer_time = 0;
+player_id = noone;
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -28,9 +29,7 @@ sequence_speed = game_get_speed();
 
 if (sequence_index == sequence_buzzer_aim)
 {
-    var player_id;
-
-    player_id = stage_get_player(0);
+    player_id = instance_nearest(x, y, obj_player);
 
     if (instance_exists(player_id))
     {
@@ -62,30 +61,29 @@ else if (sequence_index == sequence_buzzer_move)
 }
 else if (sequence_index == sequence_buzzer_shoot)
 {
-    if (buzzer_time < 14)
+    if (instance_exists(player_id))
     {
-        buzzer_time += sequence_speed;
-        buzzer_time = roundto(buzzer_time, pick(sequence_speed > 0, 1, sequence_speed));
-
-        if (buzzer_time == 14)
+        if (buzzer_time < 14)
         {
-            var player_id, bullet_x, bullet_y, bullet_angle;
+            buzzer_time += sequence_speed;
+            buzzer_time = roundto(buzzer_time, pick(sequence_speed > 0, 1, sequence_speed));
 
-            player_id = stage_get_player(0);
-            bullet_x = x + 3 * image_xscale;
-            bullet_y = y + 12 * image_yscale;
-            bullet_angle = point_direction(bullet_x, bullet_y, player_id.x, player_id.y);
+            if (buzzer_time == 14)
+            {
+                var bullet_x, bullet_y, bullet_angle;
 
-            bullet_create(bullet_x, bullet_y, sequence_buzzer_bullet, 1.6862745 * dcos(bullet_angle), 1.6862745 * -dsin(bullet_angle));
+                bullet_x = x + 3 * image_xscale;
+                bullet_y = y + 12 * image_yscale;
+                bullet_angle = point_direction(bullet_x, bullet_y, player_id.x, player_id.y);
+                bullet_create(bullet_x, bullet_y, sequence_buzzer_bullet, 1.6862745 * dcos(bullet_angle), 1.6862745 * -dsin(bullet_angle));
+            }
         }
     }
 }
 
 if (!shoot && (sequence_index == sequence_buzzer_aim || sequence_index == sequence_buzzer_move))
 {
-    var player_id;
-
-    player_id = stage_get_player(0);
+    player_id = instance_nearest(x, y, obj_player);
 
     if (instance_exists(player_id))
     {
