@@ -498,3 +498,7 @@ sequence_buzzer_bullet
 player_reaction_bullet
 sequence_chopper_move
 sequence_chopper_move_turn
+sequence_jawz_move
+sequence_jawz_move_turn
+sequence_jawz_charge
+sequence_jawz_chase

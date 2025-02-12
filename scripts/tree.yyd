@@ -401,6 +401,11 @@
 					+Chopper
 						|sequence_chopper_move
 						|sequence_chopper_move_turn
+					+Jawz
+						|sequence_jawz_move
+						|sequence_jawz_move_turn
+						|sequence_jawz_charge
+						|sequence_jawz_chase
 				+Switch
 					|sequence_switch_platform
 					+Vertical

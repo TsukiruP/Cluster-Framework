@@ -261,6 +261,7 @@
 			|spr_spanner
 			|spr_buzzer
 			|spr_chopper
+			|spr_jawz
 		+Spikes
 			|spr_spike_vertical
 			|spr_spike_horizontal

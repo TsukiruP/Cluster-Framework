@@ -52,6 +52,7 @@
 			|obj_spinner
 			|obj_buzzer
 			|obj_chopper
+			|obj_jawz
 		|obj_spike
 		|obj_blockade
 		+Rails
