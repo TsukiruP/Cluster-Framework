@@ -11,7 +11,7 @@ border_left = 0;
 border_right = 0;
 chase_range = 128;
 chase_speed = 6;
-chase_time = 0;
+chase_alarm = 480;
 player_id = noone;
 hitbox_set_hurtbox(24, 10, 30, 14);
 hitbox_set_attackbox(22, 4, 28, 8);
@@ -63,10 +63,10 @@ else if (sequence_index == sequence_jawz_chase)
     x += chase_speed * image_xscale * dcos(image_angle);
     y += chase_speed * dsin(image_angle);
 
-    chase_time += sequence_speed;
-    chase_time = roundto(chase_time, pick(sequence_speed > 0, 1, sequence_speed));
+    chase_alarm -= sequence_speed;
+    chase_alarm = floorto(chase_alarm, pick(sequence_speed > 0, 1, sequence_speed));
 
-    if (chase_time >= 480 || collision_point(x, y, par_solid, false, false))
+    if (chase_alarm == 0 || collision_point(x, y, par_solid, false, false))
     {
         effect_create(x, y, sequence_explosion_enemy, -depth);
         instance_destroy();
