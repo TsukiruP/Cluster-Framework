@@ -35,18 +35,23 @@ if (sequence_index == sequence_jawz_move)
     x += sequence_speed * image_xscale;
     if (x < xstart - border_left || x > xstart + border_right) sequence_set(sequence_jawz_move_turn);
 
-    player_id = instance_nearest(x, y, obj_player);
-
-    if (instance_exists(player_id))
+    /*
+    else
     {
-        if (!player_id.underwater) exit;
+        player_id = instance_nearest(x, y, obj_player);
 
-        var chase_angle;
+        if (instance_exists(player_id))
+        {
+            if (!player_id.underwater) exit;
 
-        chase_angle = image_angle;
-        if (sign(image_xscale) == -1) chase_angle = angle_wrap(chase_angle + 180);
-        if (distance_to_object(player_id) < chase_range && abs(angle_difference(chase_angle, direction_to_object(player_id))) < 45) sequence_set(sequence_jawz_charge);
+            var chase_angle;
+
+            chase_angle = image_angle;
+            if (sign(image_xscale) == -1) chase_angle = angle_wrap(chase_angle + 180);
+            if (distance_to_object(player_id) < chase_range && abs(angle_difference(chase_angle, direction_to_object(player_id))) < 45) sequence_set(sequence_jawz_charge);
+        }
     }
+    */
 }
 else if (sequence_index == sequence_jawz_chase)
 {
