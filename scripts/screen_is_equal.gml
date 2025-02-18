@@ -1,4 +1,10 @@
 /// screen_is_equal(width, height)
-/* Returns whether the screen size matches the given dimensions. */
+/// @desc Returns whether the current screen size matches the dimensions.
+/// @param {int} width
+/// @param {int} height
+/// @returns {bool}
 
-with (ctrl_screen) return (screen_width == argument0 && screen_height == argument1);
+var _width; _width = argument0;
+var _height; _height = argument1;
+
+with (ctrl_screen) return (screen_width == _width && screen_height == _height);

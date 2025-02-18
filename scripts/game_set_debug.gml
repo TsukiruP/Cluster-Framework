@@ -1,4 +1,8 @@
 /// game_set_debug(debug)
-/* Sets game debug. */
+/// @desc Indicates whether debug mode is enabled.
+/// @param {bool} debug
+/// @returns {void}
 
-with (ctrl_game) game_debug = argument0;
+var _debug; _debug = argument0;
+
+with (ctrl_game) game_debug = _debug;

@@ -1,5 +1,6 @@
 /// game_reset_config()
-/* Resets config map. */
+/// @desc Resets the config map.
+/// @returns {void}
 
 var i;
 

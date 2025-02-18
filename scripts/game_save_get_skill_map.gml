@@ -1,4 +1,8 @@
-/// game_save_get_skill_map(index)
-/* Returns a skill map. */
+/// game_save_get_skill_map(character)
+/// @desc Returns a skill map.
+/// @param {int} character
+/// @returns {ds_map}
 
-with (ctrl_game) return pick(argument0, sonic_map);
+var _character; _character = argument0;
+
+with (ctrl_game) return pick(_character, sonic_map);

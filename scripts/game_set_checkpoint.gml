@@ -1,18 +1,17 @@
 /// game_set_checkpoint([reset])
-/* Sets the checkpoint values to the current game state. */
+/// @desc Sets checkpoint values.
+/// @param {bool} [reset]
+/// @returns {void}
+
+var _reset; if (argument_count > 0) _reset = argument[0]; else _reset = false;
 
 with (ctrl_game)
 {
-    // Reset:
-    if (argument_count > 0)
+    if (_reset)
     {
-        if (argument[0])
-        {
-            checkpoint_x = -1;
-            checkpoint_y = -1;
-            checkpoint_time = -1;
-        }
-
+        checkpoint_x = -1;
+        checkpoint_y = -1;
+        checkpoint_time = -1;
         exit;
     }
 

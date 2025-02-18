@@ -1,4 +1,8 @@
-/// audio_stop_sfx(index)
-/* Stops a sound or instance. */
+/// audio_stop_sfx(sound)
+/// @desc Stops a sound. Accepts sound instances.
+/// @param {string} sound
+/// @returns {void}
 
-if (sound_exists(argument0)) sound_stop(argument0);
+var _sound; _sound = argument0;
+
+if (sound_exists(_sound)) sound_stop(_sound);

@@ -1,4 +1,5 @@
 /// audio_fade_out()
-/* Fades out all music. */
+/// @desc Indicates whether to fade out all audio.
+/// @returns {void}
 
 with (ctrl_audio) fade_out = true;

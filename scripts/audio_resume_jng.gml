@@ -1,5 +1,6 @@
 /// audio_resume_jng()
-/* Resumes the currently paused jingle. */
+/// @desc Resumes a jingle.
+/// @returns {void}
 
 with (ctrl_audio)
 {

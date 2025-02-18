@@ -1,12 +1,15 @@
-/// audio_stop_jng([index])
-/* Stops a jingle.
-Defaults to the currently playing jingle. */
+/// audio_stop_jng([jingle])
+/// @desc Stops a jingle.
+/// @param {string} [jingle]
+/// @returns {void}
+
+var _jingle; if (argument_count > 0) _jingle = argument[0]; else _jingle = undefined;
 
 with (ctrl_audio)
 {
-    if (argument_count > 0)
+    if (!is_undefined(_jingle))
     {
-        if (audio_jng_isplaying(argument[0])) audio_stop_jng();
+        if (audio_jng_isplaying(_jingle)) audio_stop_jng();
     }
     else
     {

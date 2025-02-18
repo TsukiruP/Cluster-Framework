@@ -1,5 +1,6 @@
 /// stage_start()
-/* Sets up everything for a stage to start. */
+/// @desc Starts stage.
+/// @returns {void}
 
 with (obj_player) input_allow = true;
 stage_set_time_allow(true);

@@ -1,5 +1,6 @@
 /// audio_mute_jng()
-/* Sets the jingle volume to 0. */
+/// @desc Mute a jingle.
+/// @returns {void}
 
 with (ctrl_audio)
 {

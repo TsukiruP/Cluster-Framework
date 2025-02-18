@@ -1,5 +1,6 @@
 /// game_init_save()
-/* Initializes save data. */
+/// @desc Initializes save data.
+/// @returns {void}
 
 save_directory = "data\saves\"
 save_encryption = "";

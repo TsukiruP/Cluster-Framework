@@ -1,9 +1,11 @@
-/// audio_fade_jng(out)
-/* Adjusts jingle volume to imitate fading in or out. */
+/// audio_fade_jng([out])
+/// @desc Indicates whether to fade out a jingle.
+/// @param {bool} [out]
+/// @returns {void}
 
-var bgm_volume;
+var _out; if (argument_count > 0) _out = argument[0]; else _out = false;
 
-bgm_volume = game_get_config("audio_bgm") / 100;
+var bgm_volume; bgm_volume = game_get_config("audio_bgm") / 100;
 
 with (ctrl_audio)
 {
@@ -11,7 +13,7 @@ with (ctrl_audio)
     {
         if (sound_isplaying(jng_id))
         {
-            if (argument0)
+            if (_out)
             {
                 if (sound_get_volume(jng_id) > 0)
                 {
@@ -19,10 +21,7 @@ with (ctrl_audio)
                     if (sound_get_volume(jng_id) == 0) audio_stop_jng();
                 }
             }
-            else
-            {
-                if (sound_get_volume(jng_id) < bgm_volume) sound_volume(jng_id, min(sound_get_volume(jng_id) + 0.01, bgm_volume));
-            }
+            else if (sound_get_volume(jng_id) < bgm_volume) sound_volume(jng_id, min(sound_get_volume(jng_id) + 0.01, bgm_volume));
         }
     }
 }

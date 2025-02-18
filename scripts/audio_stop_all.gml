@@ -1,4 +1,5 @@
 /// audio_stop_all()
-/* Stops all audio. */
+/// @desc Stops all audio.
+/// @returns {void}
 
 sound_stop_all();

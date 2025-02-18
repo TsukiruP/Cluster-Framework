@@ -1,10 +1,10 @@
 /// game_config_reset_key()
-/* Resets keyboard list. */
+/// @desc Resets the keyboard list.
+/// @returns {void}
 
 with (ctrl_game)
 {
     ds_list_clear(keyboard_list);
-
     ds_list_add(keyboard_list, vk_up);
     ds_list_add(keyboard_list, vk_down);
     ds_list_add(keyboard_list, vk_left);

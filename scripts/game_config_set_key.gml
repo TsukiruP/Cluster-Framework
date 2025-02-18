@@ -1,4 +1,10 @@
 /// game_config_set_key(input, key)
-/* Sets a key in the keyboard list. */
+/// @desc Sets the key of an input.
+/// @param {int} input
+/// @param {int} key
+/// @returns {void}
 
-with (ctrl_game) ds_list_replace(keyboard_list, argument0, argument1);
+var _input; _input = argument0;
+var _key; _key = argument1;
+
+with (ctrl_game) ds_list_replace(keyboard_list, _input, _key);

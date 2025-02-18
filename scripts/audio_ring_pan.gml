@@ -1,5 +1,6 @@
 /// audio_ring_pan()
-/* Inverses and returns the ring pan. */
+/// @desc Returns the ring pan after inverting it.
+/// @returns {int}
 
 with (ctrl_audio)
 {

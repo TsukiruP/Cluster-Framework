@@ -1,4 +1,12 @@
-/// game_config_set_btn(index, input, button)
-/* Sets a button in a gamepad list. */
+/// game_config_set_btn(device, input, button)
+/// @desc Sets the button of an input.
+/// @param {int} device
+/// @param {int} input
+/// @param {int} button
+/// @returns {void}
 
-with (ctrl_game) ds_list_replace(ds_map_get(ds_list_find_value(gamepad_list, argument0), "input_list"), argument1, argument2);
+var _device; _device = argument0;
+var _input; _input = argument1;
+var _button; _button = argument2;
+
+with (ctrl_game) ds_list_replace(ds_map_get(ds_list_find_value(gamepad_list, _device), "input_list"), _input, _button);

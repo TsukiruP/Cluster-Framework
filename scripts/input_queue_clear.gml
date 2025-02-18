@@ -1,5 +1,6 @@
 /// input_queue_clear()
-/* Clears all input queues. */
+/// @desc Clears input queues.
+/// @returns {void}
 
 with (ctrl_input)
 {

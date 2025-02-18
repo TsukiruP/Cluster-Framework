@@ -1,11 +1,15 @@
-/// audio_fade_drown(out)
-/* Adjusts drown volume to imitate fading in or out. */
+/// audio_fade_drown([out])
+/// @desc Indicates whether to fade out drowning music.
+/// @param {bool} [out]
+/// @returns {void}
+
+var _out; if (argument_count > 0) _out = argument[0]; else _out = false;
 
 with (ctrl_audio)
 {
     if (audio_drown_isplaying())
     {
-        if (argument0)
+        if (_out)
         {
             if (sound_isplaying(drown_id))
             {

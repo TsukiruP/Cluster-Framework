@@ -1,5 +1,6 @@
 /// audio_resume_all()
-/* Resumes all currently paused audio. */
+/// @desc Resumes all audio.
+/// @returns {void}
 
 with (ctrl_audio)
 {

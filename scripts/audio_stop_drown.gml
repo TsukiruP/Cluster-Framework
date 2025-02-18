@@ -1,5 +1,6 @@
 /// audio_stop_drown()
-/* Stops drowning music. */
+/// @desc Stops drowning music.
+/// @returns {void}
 
 with (ctrl_audio)
 {

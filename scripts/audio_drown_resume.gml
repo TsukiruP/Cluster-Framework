@@ -1,5 +1,6 @@
 /// audio_resume_drown()
-/* Resumes the drowning music. */
+/// @desc Resumes drowning music.
+/// @returns {void}
 
 with (ctrl_audio)
 {

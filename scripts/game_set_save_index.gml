@@ -1,4 +1,8 @@
 /// game_set_save_index(index)
-/* Returns the save id. */
+/// @desc Sets the save index.
+/// @param {int} index
+/// @returns {void}
 
-with (ctrl_game) save_index = argument0;
+var _index; _index = argument0;
+
+with (ctrl_game) save_index = _index;

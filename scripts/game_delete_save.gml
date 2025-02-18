@@ -1,7 +1,11 @@
-/// game_delete_save(index)
-/* Deletes a save file. */
+/// game_delete_save(save)
+/// @desc Deletes a save file.
+/// @param {int} save
+/// @returns {void}
+
+var _save; _save = argument0;
 
 with (ctrl_game)
 {
-    if (game_save_exists(argument0)) file_delete(save_directory + "save" + string(argument0) + ".sav");
+    if (game_save_exists(_save)) file_delete(save_directory + "save" + string(_save) + ".sav");
 }

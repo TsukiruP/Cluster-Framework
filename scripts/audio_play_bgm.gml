@@ -1,17 +1,20 @@
-/// audio_play_bgm(index)
-/* Plays music.
-If the index doesn't exist or isn't the correct kind, nothing occurs. */
+/// audio_play_bgm(music)
+/// @desc Plays music.
+/// @param {string} music
+/// @returns {void}
+
+var _music; _music = argument0;
 
 with (ctrl_audio)
 {
-    if (sound_exists(argument0))
+    if (sound_exists(_music))
     {
-        if (sound_get_kind(argument0) == 1)
+        if (sound_get_kind(_music) == 1)
         {
-            if (!sound_isplaying(argument0))
+            if (!sound_isplaying(_music))
             {
                 audio_stop_bgm();
-                bgm_id = sound_loop_ex(argument0, 1, 1, 0);
+                bgm_id = sound_loop_ex(_music, 1, 1, 0);
             }
         }
     }

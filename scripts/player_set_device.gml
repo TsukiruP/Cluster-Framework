@@ -1,4 +1,4 @@
-/// player_set_device(index);
+/// player_set_device();
 /* Sets the player's input array. */
 
 var i, j, player_device;

@@ -1,5 +1,6 @@
 /// audio_pause_all()
-/* Pauses all currently playing audio. */
+/// @desc Pauses all audio.
+/// @returns {void}
 
 with (ctrl_audio)
 {

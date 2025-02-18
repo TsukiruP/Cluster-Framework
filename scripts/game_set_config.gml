@@ -1,4 +1,10 @@
 /// game_set_config(key, value)
-/* Sets a value in the config map. */
+/// @desc Sets the value of a config key.
+/// @param {string} key
+/// @param {any} value
+/// @returns {void}
 
-with (ctrl_game) ds_map_set(config_map, argument0, argument1);
+var _key; _key = argument0;
+var _val; _val = argument1;
+
+with (ctrl_game) ds_map_set(config_map, _key, _val);

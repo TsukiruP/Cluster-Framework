@@ -1,25 +1,22 @@
-/// game_ispaused([controller])
-/* Returns true or false based on the variables of the text controller or pause controller.
-Defaults to checking both controllers should neither be the argument given, or no argument was given. */
+/// game_ispaused(controller)
+/// @desc Returns whether the game is considered paused.
+/// @param {object} [controller] Specific pause source.
+/// @returns {bool}
 
-var pause_text, pause_transition, pause_stage;
+var _controller; if (argument_count > 0) _controller = argument[0]; else _controller = undefined;
 
-pause_text = false;
+var pause_text; pause_text = false;
+var pause_transition; pause_transition = false;
+var pause_stage; pause_stage = false;
+
 with (ctrl_text) pause_text = (!ds_list_empty(body_list) || subject_string != "" || log_alpha != 0);
-
-pause_transition = false;
-with (ctrl_transition)
-{
-    pause_transition = ((transition_index == TRANS_CARD && (transition_state > 1 && transition_state < 4)) || (transition_index == TRANS_RETRY && transition_state == 4));
-}
-
-pause_stage = false;
+with (ctrl_transition) pause_transition = ((transition_index == TRANS_CARD && (transition_state > 1 && transition_state < 4)) || (transition_index == TRANS_RETRY && transition_state == 4));
 with (mnu_pause) pause_stage = pause_active;
 
-if (argument_count > 0)
+if (!is_undefined(_controller))
 {
-    if (argument[0] == ctrl_text) return pause_text;
-    else if (argument[0] == mnu_pause) return pause_stage;
+    if (_controller == ctrl_text) return pause_text;
+    else if (_controller == mnu_pause) return pause_stage;
 }
 
 return (pause_text || pause_transition || pause_stage);

@@ -1,7 +1,11 @@
 /// fade_reverse(fade)
-/* Reverses the speed and target of the fade. */
+/// @desc Inverts the speed and target of the fade.
+/// @param {object} fade
+/// @returns {void}
 
-with (argument0)
+var _fade; _fade = argument0;
+
+with (_fade)
 {
     fade_speed *= -1;
     fade_target *= -1;

@@ -1,19 +1,21 @@
 /// input_get_check(input, check, [device])
-/* Returns whether the input meets the check. */
+/// @desc Returns whether the input satisfies the check.
+/// @param {int} input
+/// @param {int} check
+/// @param {int} [device]
+/// @returns {bool}
+
+var _input; _input = argument[0];
+var _check; _check = argument[1];
+var _device; if (argument_count > 2) _device = argument[2]; else _device = DEV_USER;
 
 with (ctrl_input)
 {
-    var input_index, input_device;
-
-    input_index = argument0;
-    input_device = DEV_USER;
-    if (argument_count > 2) input_device = argument[2];
-
-    if (input_device == DEV_KEYBOARD)
+    if (_device == DEV_KEYBOARD)
     {
-        if (input_index == INP_ANY)
+        if (_input == INP_ANY)
         {
-            switch (argument1)
+            switch (_check)
             {
                 case CHECK_PRESSED:
                     return keyboard_check_pressed(vk_anykey);
@@ -26,34 +28,34 @@ with (ctrl_input)
             }
         }
 
-        return input_keyboard[input_index, argument1];
+        return input_keyboard[_input, _check];
     }
-    else if (input_device >= DEV_GAMEPAD0)
+    else if (_device >= DEV_GAMEPAD0)
     {
-        var i, gamepad_index;
+        _device -= DEV_GAMEPAD0;
 
-        input_device -= DEV_GAMEPAD0;
-        gamepad_index = gamepad_device[input_device, 0];
+        var i;
+        var gamepad_index; gamepad_index = gamepad_device[_device, 0];
 
-        if (input_index == INP_ANY)
+        if (_input == INP_ANY)
         {
             for (i = PAD_FACE1; i <= PAD_SHARE; i += 1)
             {
-                if (gamepad_get_check(input_device, i, argument1)) return true;
+                if (gamepad_get_check(_device, i, _check)) return true;
             }
 
             return false;
         }
 
-        return input_gamepad[input_index, argument1 + (input_device * 3)];
+        return input_gamepad[_input, _check + (_device * 3)];
     }
     else
     {
-        if (input_index == INP_ANY)
+        if (_input == INP_ANY)
         {
-            return (input_get_check(input_index, argument1, DEV_KEYBOARD) || input_get_check(input_index, argument1, DEV_GAMEPAD0));
+            return (input_get_check(_input, _check, DEV_KEYBOARD) || input_get_check(_input, _check, DEV_GAMEPAD0));
         }
 
-        return input_user[input_index, argument1];
+        return input_user[_input, _check];
     }
 }

@@ -1,5 +1,6 @@
 /// game_reset_save()
-/* Resets save map. */
+/// @desc Resets the save map.
+/// @returns {void}
 
 var i;
 

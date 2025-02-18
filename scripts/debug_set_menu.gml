@@ -1,6 +1,10 @@
-/// debug_set_menu(index)
-/* Clears and then executes the new list. */
+/// debug_set_menu(menu)
+/// @desc Sets the menu list.
+/// @param {script} menu
+/// @returns {void}
 
-menu_index = argument0;
+var _menu; _menu = argument0;
+
+menu_index = _menu;
 ds_list_clear(menu_list);
 script_execute(menu_index);

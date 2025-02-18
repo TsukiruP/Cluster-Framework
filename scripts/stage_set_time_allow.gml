@@ -1,4 +1,8 @@
 /// stage_set_time_allow(allow)
-/* Sets whether time is allowed to progress. */
+/// @desc Sets whether stage time is allowed to progress.
+/// @param {bool} allow
+/// @returns {void}
 
-with (ctrl_stage) time_allow = argument0;
+var _allow; _allow = argument0;
+
+with (ctrl_stage) time_allow = _allow;

@@ -1,5 +1,6 @@
 /// audio_stop_bgm()
-/* Stops music. */
+/// @desc Stops music.
+/// @returns {void}
 
 with (ctrl_audio)
 {

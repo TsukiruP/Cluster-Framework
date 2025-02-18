@@ -1,4 +1,8 @@
 /// hud_set_hide(hide)
-/* Sets whether HUD should be hidden. */
+/// @desc Indicates whether the HUD should be hidden.
+/// @param {bool} hide
+/// @returns {void}
 
-with (ctrl_hud) hud_hide = argument0;
+var _hide; _hide = argument0;
+
+with (ctrl_hud) hud_hide = _hide;

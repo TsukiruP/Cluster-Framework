@@ -1,11 +1,13 @@
-// audio_fade_bgm(out)
-/* Adjusts music volume to imitate fading in or out. */
+// audio_fade_bgm([out])
+/// @desc Indicates whether to fade out music.
+/// @param {bool} [out]
+/// @returns {void}
 
-var bgm_volume;
+var _out; if (argument_count > 0) _out = argument[0]; else _out = false;
 
-bgm_volume = game_get_config("audio_bgm") / 100;
+var bgm_volume; bgm_volume = game_get_config("audio_bgm") / 100;
 
-if (argument0)
+if (_out)
 {
     if (sound_kind_get_volume(1) > 0)
     {
@@ -18,7 +20,4 @@ if (argument0)
         }
     }
 }
-else
-{
-    if (sound_kind_get_volume(1) < bgm_volume) sound_kind_volume(1, min(sound_kind_get_volume(1) + 0.01, bgm_volume));
-}
+else if (sound_kind_get_volume(1) < bgm_volume) sound_kind_volume(1, min(sound_kind_get_volume(1) + 0.01, bgm_volume));

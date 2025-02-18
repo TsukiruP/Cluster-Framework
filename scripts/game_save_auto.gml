@@ -1,6 +1,6 @@
 /// game_save_auto()
-/* Writes a save to the last saved slot.
-Tells the game controller to draw the autosave indicator. */
+/// @desc Writes a save to the last loaded slot.
+/// @returns {void}
 
 with (ctrl_game)
 {

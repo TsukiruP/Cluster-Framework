@@ -1,5 +1,9 @@
 /// font_get_height(font)
-/* Returns the height of a font. */
+/// @desc Returns the height of the font.
+/// @param {font} font
+/// @returns {int}
 
-draw_set_font(argument0);
+var _font; _font = argument0;
+
+draw_set_font(_font);
 return string_height("Test");

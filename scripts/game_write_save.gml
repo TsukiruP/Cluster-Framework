@@ -1,18 +1,19 @@
-/// game_write_save(index)
-/* Writes the save map to file. */
+/// game_write_save(save)
+/// @desc Writes a save map to a file.
+/// @param {int} save
+/// @returns {void}
+
+var _save; _save = argument0;
 
 with (ctrl_game)
 {
-    var save_buffer;
-
-    save_buffer = buffer_create();
+    var save_buffer; save_buffer = buffer_create();
 
     game_save_write_character();
     game_save_write_skill(CHAR_SONIC);
     if (!directory_exists(save_directory)) directory_create(save_directory);
-
     buffer_write_hex(save_buffer, ds_map_write(save_map));
     if (save_encryption != "") buffer_rc4(save_buffer, save_encryption);
-    buffer_save(save_buffer, save_directory + "save" + string(argument0) + ".sav");
+    buffer_save(save_buffer, save_directory + "save" + string(_save) + ".sav");
     buffer_destroy(save_buffer);
 }

@@ -1,4 +1,8 @@
 /// game_get_save(key)
-/* Returns a value from the save map. */
+/// @desc Returns the value corresponding to the save key.
+/// @param {string} key
+/// @returns {any}
 
-with (ctrl_game) return ds_map_get(save_map, argument0);
+var _key; _key = argument0;
+
+with (ctrl_game) return ds_map_get(save_map, _key);

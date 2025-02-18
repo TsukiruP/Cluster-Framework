@@ -1,4 +1,5 @@
 /// text_get_clear()
-/* Returns text clear. */
+/// @desc Returns whether text is set to clear.
+/// @returns {bool}
 
 with (ctrl_text) return text_clear;

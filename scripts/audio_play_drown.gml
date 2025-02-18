@@ -1,5 +1,6 @@
 /// audio_play_drown()
-/* Plays drowning music. */
+/// @desc Plays drowning music.
+/// @returns {void}
 
 with (ctrl_audio)
 {

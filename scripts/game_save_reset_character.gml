@@ -1,5 +1,6 @@
 /// game_save_reset_character()
-/* Resets the character data. */
+/// @desc Resets the character list.
+/// @returns {void}
 
 with (ctrl_game)
 {

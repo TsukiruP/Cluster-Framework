@@ -1,5 +1,6 @@
 /// audio_resume_bgm()
-/* Resumes music. */
+/// @desc Resumes music.
+/// @returns {void}
 
 with (ctrl_audio)
 {

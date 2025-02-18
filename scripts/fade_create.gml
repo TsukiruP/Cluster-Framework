@@ -1,15 +1,20 @@
 /// fade_create([target, speed, depth, color])
-/* Returns a newly created fade object. */
+/// @desc Returns the id of a new fade instance.
+/// @param {number} target
+/// @param {number} speed
+/// @param {int} depth
+/// @param {color} color
+/// @returns {object}
 
-fade = instance_create(0, 0, ctrl_fade);
-fade.depth = depth;
+var _target; if (argument_count > 0) _target = argument[0]; else _target = 1;
+var _speed; if (argument_count > 1) _speed = argument[1]; else _speed = 0.02;
+var _depth; if (argument_count > 2) _depth = argument[2]; else _depth = depth;
+var _color; if (argument_count > 3) _color = argument[3]; else _color = c_black;
 
-with (fade)
-{
-    if (argument_count > 0) fade_target = argument[0];
-    if (argument_count > 1) fade_speed = argument[1];
-    if (argument_count > 2) depth = argument[2];
-    if (argument_count > 3) fade_color = argument[3];
-}
+var fade_id; fade_id = instance_create(0, 0, ctrl_fade);
 
-return fade;
+fade_id.fade_target = _target;
+fade_id.fade_speed = _speed;
+fade_id.depth = _depth;
+fade_id.fade_color = _color;
+return fade_id;

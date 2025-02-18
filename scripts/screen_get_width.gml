@@ -1,4 +1,5 @@
 /// screen_get_width()
-/* Returns screen width. */
+/// @desc Returns screen width.
+/// @returns {int}
 
 with (ctrl_screen) return screen_width;

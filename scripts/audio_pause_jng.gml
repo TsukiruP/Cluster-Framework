@@ -1,5 +1,6 @@
 /// audio_pause_jng()
-/* Pauses the currently playing jingle. */
+/// @desc Pauses a jingle.
+/// @returns {void}
 
 with (ctrl_audio)
 {

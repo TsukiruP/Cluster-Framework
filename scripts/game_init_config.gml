@@ -1,5 +1,6 @@
 /// game_init_config()
-/* Initializes config. */
+/// @desc Initializes game config.
+/// @returns {void}
 
 config_directory = "data\saves\"
 config_map = ds_map_create();

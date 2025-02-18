@@ -1,8 +1,6 @@
 /// debug_option_player0(return)
 
-var character_index;
-
-character_index = 0;
+var character_index; character_index = 0;
 
 switch (argument0)
 {

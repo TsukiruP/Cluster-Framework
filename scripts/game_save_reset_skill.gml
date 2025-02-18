@@ -1,22 +1,25 @@
-/// game_save_reset_skill(index)
-/* Resets a skill map. */
+/// game_save_reset_skill(character)
+/// @desc Resets a skill map.
+/// @param {int} character
+/// @returns {void}
+
+var _character; _character = argument0;
 
 with (ctrl_game)
 {
-    var skill_map;
+    var skill_map; skill_map = game_save_get_skill_map(_character);
 
-    skill_map = game_save_get_skill_map(argument0);
     ds_map_clear(skill_map);
 
-    switch (argument0)
+    switch (_character)
     {
         case CHAR_SONIC:
-            ds_map_add(skill_map, "ground", SKILL_NONE);
-            ds_map_add(skill_map, "air_jump", SKILL_NONE);
-            ds_map_add(skill_map, "air_aux", SKILL_NONE);
-            ds_map_add(skill_map, "slam", SKILL_NONE);
-            ds_map_add(skill_map, "peel", false);
-            ds_map_add(skill_map, "homing", HOMING_NONE);
-            ds_map_add(skill_map, "shield", false);
+            ds_map_set(skill_map, "ground", SKILL_NONE);
+            ds_map_set(skill_map, "air_jump", SKILL_NONE);
+            ds_map_set(skill_map, "air_aux", SKILL_NONE);
+            ds_map_set(skill_map, "slam", SKILL_NONE);
+            ds_map_set(skill_map, "peel", false);
+            ds_map_set(skill_map, "homing", HOMING_NONE);
+            ds_map_set(skill_map, "shield", false);
     }
 }

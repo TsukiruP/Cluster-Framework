@@ -1,4 +1,5 @@
 /// text_set_clear()
-/* Clears text. */
+/// @desc Indicates whether to clear text.
+/// @returns {void}
 
 with (ctrl_text) text_clear = true;

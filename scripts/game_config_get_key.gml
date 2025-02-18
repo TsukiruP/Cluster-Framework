@@ -1,4 +1,8 @@
 /// game_config_get_key(input)
-/* Returns a key from the keyboard list. */
+/// @desc Returns the key corresponding to the input.
+/// @param {int} input
+/// @returns {int}
 
-with (ctrl_game) return ds_list_find_value(keyboard_list, argument0);
+var _input; _input = argument0;
+
+with (ctrl_game) return ds_list_find_value(keyboard_list, _input);

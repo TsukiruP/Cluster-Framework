@@ -1,4 +1,5 @@
 /// stage_get_time()
-/* Returns the stage time. */
+/// @desc Returns the stage time.
+/// @returns {number}
 
 with (ctrl_stage) return stage_time;

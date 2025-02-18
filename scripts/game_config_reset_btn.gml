@@ -1,14 +1,15 @@
-/// game_config_reset_btn(index)
-/* Resets gamepad list. */
+/// game_config_reset_btn(device)
+/// @desc Resets a gamepad list.
+/// @param {int} device
+/// @returns {void}
+
+var _device; _device = argument0;
 
 with (ctrl_game)
 {
-    var input_list;
-
-    input_list = ds_map_get(ds_list_find_value(gamepad_list, argument0), "input_list");
+    var input_list; input_list = ds_map_get(ds_list_find_value(gamepad_list, _device), "input_list");
 
     ds_list_clear(input_list);
-
     ds_list_add(input_list, PAD_UP);
     ds_list_add(input_list, PAD_DOWN);
     ds_list_add(input_list, PAD_LEFT);

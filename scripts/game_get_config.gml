@@ -1,4 +1,8 @@
 /// game_get_config(key)
-/* Returns a value from the config map. */
+/// @desc Returns the value corresponding to the config key.
+/// @param {string} key
+/// @returns {any}
 
-with (ctrl_game) return ds_map_get(config_map, argument0);
+var _key; _key = argument0;
+
+with (ctrl_game) return ds_map_get(config_map, _key);

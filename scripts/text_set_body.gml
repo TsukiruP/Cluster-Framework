@@ -1,5 +1,9 @@
-/// text_set_body(str1, str2, ...)
-/* Sets body text. */
+/// text_set_body(body, ...)
+/// @desc Sets body text.
+/// @param {string} ...body
+/// @returns {void}
+
+var body; body = argument[0];
 
 with (ctrl_text)
 {

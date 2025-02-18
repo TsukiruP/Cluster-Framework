@@ -1,7 +1,5 @@
 /// audio_bgm_isplaying()
-/* Returns whether music is playing. */
+/// @desc Returns whether music is currently playing.
+/// @returns {bool}
 
-with (ctrl_audio)
-{
-    return bgm_id != -1;
-}
+with (ctrl_audio) return bgm_id != -1;
