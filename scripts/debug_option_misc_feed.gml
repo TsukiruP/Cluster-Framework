@@ -1,10 +1,12 @@
 /// debug_option_misc_feed(return)
+/// @param {any} return
+/// @returns {any}
 
-var config_key;
+var _return; _return = argument0;
 
-config_key = "misc_feed";
+var config_key; config_key = "misc_feed";
 
-switch (argument0)
+switch (_return)
 {
     // Text:
     case 0:

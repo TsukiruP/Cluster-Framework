@@ -1,11 +1,9 @@
-/// in_view([obj])
-/* Returns whether the object is within the current view.
-Defaults to the script caller. */
+/// in_view([instance])
+/// @desc Returns whether the object is within the current view.
+/// @param {object} [instance]
+/// @returns {bool}
 
-var inst;
-
-inst = id;
-if (argument_count > 0) inst = argument[0];
+var inst; inst = id;
 
 with (inst)
 {

@@ -1,10 +1,12 @@
 /// debug_option_misc_status(return)
+/// @param {any} return
+/// @returns {any}
 
-var config_key;
+var _return; _return = argument0;
 
-config_key = "misc_status";
+var config_key; config_key = "misc_status";
 
-switch (argument0)
+switch (_return)
 {
     // Text:
     case 0:

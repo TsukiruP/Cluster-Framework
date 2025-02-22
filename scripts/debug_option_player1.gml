@@ -1,10 +1,12 @@
 /// debug_option_player1(return)
+/// @param {any} return
+/// @returns {any}
 
-var character_index;
+var _return; _return = argument0;
 
-character_index = 1;
+var character_index; character_index = 1;
 
-switch (argument0)
+switch (_return)
 {
     // Text:
     case 0:
@@ -18,12 +20,10 @@ switch (argument0)
     case 2:
         switch (game_save_get_character(character_index))
         {
-            // Sonic:
             case CHAR_SONIC:
                 debug_set_next(debug_menu_sonic);
                 return true;
 
-            // Default:
             default:
                 return false;
         }

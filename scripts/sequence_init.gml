@@ -1,10 +1,9 @@
 /// sequence_init([sequence])
-/* Initializes sequence variables. */
+/// @desc Initializes sequence system.
+/// @param {script} [sequence]
+/// @returns {void}
 
-var sequence;
+var _sequence; if (argument_count > 0) _sequence = argument[0]; else _sequence = noone;
 
-sequence = noone;
-if (argument_count > 0) sequence = argument[0];
-
-sequence_set(sequence);
+sequence_set(_sequence);
 sequence_speed = 1;

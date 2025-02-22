@@ -13,8 +13,12 @@ var _color; if (argument_count > 3) _color = argument[3]; else _color = c_black;
 
 var fade_id; fade_id = instance_create(0, 0, ctrl_fade);
 
-fade_id.fade_target = _target;
-fade_id.fade_speed = _speed;
-fade_id.depth = _depth;
-fade_id.fade_color = _color;
+with (fade_id)
+{
+    fade_target = _target;
+    fade_speed = _speed;
+    depth = _depth;
+    fade_color = _color;
+}
+
 return fade_id;

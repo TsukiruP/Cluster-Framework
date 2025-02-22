@@ -1,11 +1,15 @@
 /// string_key(key)
-/* Returns a character or string depending on the key. */
+/// @desc Returns a string representing the key.
+/// @param {int} key
+/// @returns {string}
+
+var _key; _key = argument0;
 
 // Individual characters:
-if (argument0 > 48 && argument0 < 91) return chr(argument0);
+if (_key > 48 && _key < 91) return chr(_key);
 
 // Key names:
-switch (argument0)
+switch (_key)
 {
     case -1:
         return "No Key";

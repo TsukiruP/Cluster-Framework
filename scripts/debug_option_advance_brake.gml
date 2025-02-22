@@ -1,10 +1,12 @@
 /// debug_option_advance_brake(return)
+/// @param {any} return
+/// @returns {any}
 
-var config_key;
+var _return; _return = argument0;
 
-config_key = "advance_brake";
+var config_key; config_key = "advance_brake";
 
-switch (argument0)
+switch (_return)
 {
     // Text:
     case 0:

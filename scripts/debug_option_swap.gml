@@ -1,10 +1,12 @@
 /// debug_option_swap(return)
+/// @param {any} return
+/// @returns {any}
 
-var save_key;
+var _return; _return = argument0;
 
-save_key = "swap";
+var save_key; save_key = "swap";
 
-switch (argument0)
+switch (_return)
 {
     // Text:
     case 0:

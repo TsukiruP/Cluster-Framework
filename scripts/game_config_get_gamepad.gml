@@ -1,7 +1,7 @@
 /// game_config_get_gamepad(device, key)
 /// @desc Returns the value corresponding to the gamepad key.
 /// @param {int} device
-/// @param {int} key
+/// @param {string} key
 /// @returns {int}
 
 var _device; _device = argument0;

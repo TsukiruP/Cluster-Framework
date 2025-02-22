@@ -1,4 +1,4 @@
-/// text_set_body(body, ...)
+/// text_set_body(...body)
 /// @desc Sets body text.
 /// @param {string} ...body
 /// @returns {void}

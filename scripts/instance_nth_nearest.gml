@@ -1,20 +1,24 @@
-/// instance_nth_nearest(x, y, obj, n)
-/* Returns the nth nearest instance. */
+/// instance_nth_nearest(x, y, object, n)
+/// @desc Returns the id of the nth nearest instance.
+/// @param {number} x
+/// @param {number} y
+/// @param {object} object
+/// @param {int} n
+/// @returns {object}
 
-var x_int, y_int, obj, n, list, nearest;
+var _x; _x = argument0;
+var _y; _y = argument1;
+var _object; _object = argument2;
+var _n; _n = argument3;
 
-x_int = argument0;
-y_int = argument1;
-obj = argument2;
-n = min(max(1, argument3), instance_number(obj));
-list = ds_priority_create();
-nearest = noone;
+_n = min(max(1, _n), instance_number(_object));
 
-// Evaluate all objects:
-with (obj) ds_priority_add(list, id, distance_to_point(x_int, y_int));
+var list; list = ds_priority_create();
+var nearest; nearest = noone;
 
-// Clear priority list:
-repeat(n)
+with (_object) ds_priority_add(list, id, distance_to_point(_x, _y));
+
+repeat (_n)
 {
     nearest = ds_priority_delete_min(list);
 }

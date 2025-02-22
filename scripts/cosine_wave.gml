@@ -1,4 +1,14 @@
 /// cosine_wave(time, period, amplitude, midpoint)
-/* https://gm48.net/resource/33/sine-waves-make-your-game-prettier */
+/// @desc sine_wave but for cosine.
+/// @param {number} time
+/// @param {int} period
+/// @param {int} amplitude
+/// @param {int} midpoint
+/// @returns {number}
 
-return cos(argument0 * 2 * pi / argument1) * argument2 + argument3;
+var _time; _time = argument0;
+var _period; _period = argument1;
+var _amplitude; _amplitude = argument2;
+var _midpoint; _midpoint = argument3;
+
+return cos(_time * 2 * pi / _period) * _amplitude + _midpoint;

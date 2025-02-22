@@ -18,7 +18,7 @@ sequence_sonic_push
 sequence_classic_rail
 player_routine_land
 string_key
-char_pad
+string_button
 player_state_run
 player_state_brake
 angle_wrap

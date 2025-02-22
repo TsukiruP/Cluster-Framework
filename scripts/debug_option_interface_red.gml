@@ -1,10 +1,12 @@
 /// debug_option_interface_red(return)
+/// @param {any} return
+/// @returns {any}
 
-var config_key;
+var _return; _return = argument0;
 
-config_key = "interface_red";
+var config_key; config_key = "interface_red";
 
-switch (argument0)
+switch (_return)
 {
     // Text:
     case 0:

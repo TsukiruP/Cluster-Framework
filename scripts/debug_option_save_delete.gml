@@ -1,6 +1,10 @@
 /// debug_option_save_delete(return)
+/// @param {any} return
+/// @returns {any}
 
-switch (argument0)
+var _return; _return = argument0;
+
+switch (_return)
 {
     // Text:
     case 0:

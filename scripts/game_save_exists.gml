@@ -1,7 +1,7 @@
 /// game_save_exists(save)
 /// @desc Returns whether a save file exists.
 /// @param {int} save
-/// @returns {void}
+/// @returns {bool}
 
 var _save; _save = argument0;
 

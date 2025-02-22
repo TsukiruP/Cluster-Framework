@@ -1,10 +1,12 @@
 /// debug_option_audio_sfx(return)
+/// @param {any} return
+/// @returns {any}
 
-var config_key;
+var _return; _return = argument0;
 
-config_key = "audio_sfx";
+var config_key; config_key = "audio_sfx";
 
-switch (argument0)
+switch (_return)
 {
     // Text:
     case 0:

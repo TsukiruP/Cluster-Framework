@@ -1,10 +1,12 @@
 /// debug_option_screen_scale(return)
+/// @param {any} return
+/// @returns {any}
 
-var config_key;
+var _return; _return = argument0;
 
-config_key = "screen_scale";
+var config_key; config_key = "screen_scale";
 
-switch (argument0)
+switch (_return)
 {
     // Text:
     case 0:

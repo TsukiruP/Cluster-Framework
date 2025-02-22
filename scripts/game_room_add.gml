@@ -3,7 +3,7 @@
 /// @param {room} room
 /// @param {int} transition
 /// @param {string} music
-/// @param {object} background
+/// @param {number | object} background
 /// @param {string} zone
 /// @param {int} act
 /// @param {number} water

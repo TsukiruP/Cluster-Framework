@@ -1,17 +1,22 @@
 /// transition_create(room, [transition, preview])
-/* Returns a transition controller. */
+/// @desc Returns the id of a new transition instance.
+/// @param {room} room
+/// @param {int} [transition]
+/// @param {bool} [preview]
+/// @returns {object}
 
-var transition;
+var _room; _room = argument[0];
+var _transition; if (argument_count > 1) _transition = argument[1]; else _transition = game_get_room_transition(_room);
+var _preview; if (argument_count > 2) _preview = argument[2]; else _preview = false;
 
-transition = instance_create(0, 0, ctrl_transition);
+var transition_id; transition_id = instance_create(0, 0, ctrl_transition);
 
-with (transition)
+with (transition_id)
 {
-    transition_index = game_get_room_transition(argument0);
-    transition_room = argument0;
-    transition_run = game_get_room_run(argument0);
-    if (argument_count > 1) transition_index = argument[1];
-    if (argument_count > 2) preview = argument[2];
+    preview = _preview;
+    transition_index = _transition;
+    transition_room = _room;
+    transition_run = game_get_room_run(_room);
 
     if (!preview)
     {
@@ -20,4 +25,4 @@ with (transition)
     }
 }
 
-return transition;
+return transition_id;

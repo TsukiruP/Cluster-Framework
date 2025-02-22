@@ -1,17 +1,28 @@
 /// effect_create(x, y, sequence, [depth, xscale, yscale])
-/* Creates an effect */
+/// @desc Returns the id of a new effect instance.
+/// @param {number} x
+/// @param {number} y
+/// @param {script} sequence
+/// @param {int} [depth]
+/// @param {number} [xscale]
+/// @param {number} [yscale]
+/// @returns {object}
 
-var effect;
+var _x; _x = argument[0];
+var _y; _y = argument[1];
+var _sequence; _sequence = argument[2];
+var _depth; if (argument_count > 3) _depth = argument[3]; else _depth = depth;
+var _xscale; if (argument_count > 4) _xscale = argument[4]; else _xscale = 1;
+var _yscale; if (argument_count > 5) _yscale = argument[5]; else _yscale = 1;
 
-effect = instance_create(floor(argument0), floor(argument1), par_effect);
-effect.depth = depth;
+var effect_id; effect_id = instance_create(floor(_x), floor(_y), par_effect);
 
-with (effect)
+with (effect_id)
 {
-    sequence_set(argument2);
-    if (argument_count > 3) depth = argument[3];
-    if (argument_count > 4) image_xscale = argument[4];
-    if (argument_count > 5) image_yscale = argument[5];
+    depth = _depth;
+    image_xscale = _xscale;
+    image_yscale = _yscale;
+    sequence_set(_sequence);
 }
 
-return effect;
+return effect_id;

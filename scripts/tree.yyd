@@ -486,7 +486,7 @@
 		+Text
 			|string_bool
 			|string_key
-			|char_pad
+			|string_button
 			|string_input
 		+Room
 			|room_set_view_better

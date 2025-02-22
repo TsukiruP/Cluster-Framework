@@ -1,4 +1,8 @@
-/// sequence_position(step)
-/* Returns whether or not the sequence is past the given step. */
+/// sequence_position(moment)
+/// @desc Returns whether the sequence is past the moment.
+/// @param {int} moment
+/// @returns {bool}
 
-return (sequence_moment_previous <= argument0 && sequence_moment > argument0);
+var _moment; _moment = argument0;
+
+return (sequence_moment_previous <= _moment && sequence_moment > _moment);

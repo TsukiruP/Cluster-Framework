@@ -11,6 +11,5 @@ with (ctrl_screen)
 {
     screen_width = _width;
     screen_height = _height;
-
     return true;
 }

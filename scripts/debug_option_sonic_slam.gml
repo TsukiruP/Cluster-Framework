@@ -1,10 +1,12 @@
 /// debug_option_sonic_slam(return)
+/// @param {any} return
+/// @returns {any}
 
-var skill_key;
+var _return; _return = argument0;
 
-skill_key = "slam";
+var skill_key; skill_key = "slam";
 
-switch (argument0)
+switch (_return)
 {
     // Text:
     case 0:

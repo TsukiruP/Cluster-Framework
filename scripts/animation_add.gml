@@ -1,4 +1,4 @@
-/// animation_add(character, animation, sequence, ...)
+/// animation_add(character, animation, ...sequences)
 /// @desc Adds an animation to the animation grid.
 /// @param {int} character
 /// @param {string} animation

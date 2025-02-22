@@ -1,7 +1,7 @@
 /// game_config_set_gamepad(device, key, value)
 /// @desc Sets the value of a gamepad key.
 /// @param {int} device
-/// @param {int} key
+/// @param {string} key
 /// @param value
 /// @returns {void}
 

@@ -1,9 +1,17 @@
 /// sine_wave_range(time, period, minimum, maximum)
-/* https://gm48.net/resource/33/sine-waves-make-your-game-prettier */
+/// @desc https://gm48.net/resource/33/sine-waves-make-your-game-prettier
+/// @param {number} time
+/// @param {int} period
+/// @param {int} minimum
+/// @param {int} maximum
+/// @returns {number}
 
-var midpoint, amplitude;
+var _time; _time = argument0;
+var _period; _period = argument1;
+var _minimum; _minimum = argument2;
+var _maximum; _maximum = argument3;
 
-midpoint = mean(argument2, argument3);
-amplitude = argument3 - midpoint;
+var midpoint; midpoint = mean(_minimum, _maximum);
+var amplitude; amplitude = _maximum - midpoint;
 
-return sine_wave(argument0, argument1, amplitude, midpoint);
+return sine_wave(_time, _period, amplitude, midpoint);
