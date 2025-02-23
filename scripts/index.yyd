@@ -238,8 +238,8 @@ screen_get_height
 screen_set_resolution
 game_config_set_key
 game_config_reset_btn
-game_config_get_btn
-game_config_set_btn
+game_config_get_button
+game_config_set_button
 game_config_set_confirm
 animation_add
 animation_get

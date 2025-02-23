@@ -355,8 +355,8 @@ for (i = 0; i < PLAYER_COUNT; i += 1)
         {
             for (k = CHECK_PRESSED; k <= CHECK_HELD; k += 1)
             {
-                if (j <= INP_RIGHT) input_gamepad[j, k + (i * 3)] = (gamepad_get_check(gamepad_index, game_config_get_btn(i, j), k) || gamepad_analog[j, k + (i * 3)]);
-                else input_gamepad[j, k + (i * 3)] = gamepad_get_check(gamepad_index, game_config_get_btn(i, j), k);
+                if (j <= INP_RIGHT) input_gamepad[j, k + (i * 3)] = (gamepad_get_check(gamepad_index, game_config_get_button(i, j), k) || gamepad_analog[j, k + (i * 3)]);
+                else input_gamepad[j, k + (i * 3)] = gamepad_get_check(gamepad_index, game_config_get_button(i, j), k);
             }
         }
     }

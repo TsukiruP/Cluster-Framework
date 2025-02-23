@@ -13,7 +13,7 @@ if (_device == DEV_KEYBOARD) return string_key(game_config_get_key(_input));
 else if (_device >= DEV_GAMEPAD0)
 {
     _device -= DEV_GAMEPAD0;
-    return string_button(game_config_get_btn(_device, _input), game_config_get_gamepad(_device, "input_style"));
+    return string_button(game_config_get_button(_device, _input), game_config_get_gamepad(_device, "input_style"));
 }
 else
 {

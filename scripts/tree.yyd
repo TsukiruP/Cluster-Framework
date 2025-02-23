@@ -29,8 +29,8 @@
 					|game_config_reset_key
 				+Gamepad
 					|game_config_init_gamepad
-					|game_config_get_btn
-					|game_config_set_btn
+					|game_config_get_button
+					|game_config_set_button
 					|game_config_get_gamepad
 					|game_config_set_gamepad
 					|game_config_write_gamepad
