@@ -9,14 +9,14 @@ var _hitbox; _hitbox = argument1;
 
 if (_hitbox & HIT_COLLISION)
 {
-    if (spring_current != _inst || spring_alarm == 0)
+    if (spring_inst != _inst || spring_alarm == 0)
     {
         var is_dash_ring; is_dash_ring = (_inst.object_index == obj_dash_ring);
 
         player_reset_spring();
-        spring_current = _inst;
-        spring_force = spring_current.force;
-        spring_angle = angle_wrap(spring_current.angle - gravity_direction);
+        spring_inst = _inst;
+        spring_force = spring_inst.force;
+        spring_angle = angle_wrap(spring_inst.angle - gravity_direction);
         spring_alarm = spring_force + 15;
 
         x_speed = dcos(spring_angle) * spring_force;

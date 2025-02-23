@@ -1,5 +1,5 @@
 /// player_reaction_dash_panel(inst, hitbox)
-/// @desc 
+/// @desc
 /// @param {object} inst
 /// @param {int} hitbox
 /// @returns {void}
@@ -9,7 +9,7 @@ var _hitbox; _hitbox = argument1;
 
 if (_hitbox & HIT_COLLISION)
 {
-    if (booster_current != _inst || input_lock_alarm == 0)
+    if (dash_panel_inst != _inst || input_lock_alarm == 0)
     {
         if (gravity_direction != _inst.angle)
         {
@@ -21,7 +21,7 @@ if (_hitbox & HIT_COLLISION)
         image_xscale = pick(_inst.variant, _inst.image_xscale, _inst.image_yscale);
         x_speed = _inst.force * image_xscale;
         input_lock_alarm = 16;
-        booster_current = _inst;
+        dash_panel_inst = _inst;
 
         with (_inst)
         {

@@ -133,9 +133,8 @@ applies_to=self
 */
 /// Handle Initialization
 
-booster_current = noone;
-
-spring_current = noone;
+dash_panel_inst = noone;
+spring_inst = noone;
 spring_force = 0;
 spring_angle = 0;
 spring_alarm = 0;
