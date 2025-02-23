@@ -1,5 +1,6 @@
 /// player_routine_insta()
-/* Shorthand for performing */
+/// @desc Performs the insta-shield.
+/// @returns {void}
 
 player_set_state(player_state_air, false);
 status_shield_allow = false;

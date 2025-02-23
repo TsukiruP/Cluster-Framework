@@ -1,16 +1,18 @@
-/// player_reaction_switch(obj, hitbox, side)
-/* Wow wow wow (Fourze!) Wow wow wow (Ikou ze!) */
+/// player_reaction_switch(inst, hitbox, side)
+/// @desc Wow wow wow (Fourze!) Wow wow wow (Ikou ze!)
+/// @param {object} inst
+/// @param {int} hitbox
+/// @param {number} side
+/// @returns {void}
 
-var reaction_inst, hitbox;
+var _inst; _inst = argument0;
+var _hitbox; _hitbox = argument1;
+var _side; _side = argument2;
 
-reaction_inst = argument0;
-hitbox = argument1;
-side = argument2;
-
-if ((hitbox & HIT_ATTACK) || ((hitbox & HIT_SOLID) && side == reaction_inst.angle))
+if ((_hitbox & HIT_ATTACK) || ((_hitbox & HIT_SOLID) && _side == _inst.angle))
 {
     if (!input_cpu)
     {
-        with (reaction_inst) target_time = game_get_time() + duration;
+        with (_inst) target_time = game_get_time() + duration;
     }
 }

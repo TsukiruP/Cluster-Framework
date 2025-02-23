@@ -1,7 +1,11 @@
 /// player_state_rail(phase)
-/* COMING TO YOUR HOME */
+/// @desc COMING TO YOUR HOME
+/// @param {int} phase
+/// @returns {bool}
 
-switch (argument0)
+var _phase; _phase = argument0;
+
+switch (_phase)
 {
     case STATE_START:
         player_set_animation("rail");
@@ -27,10 +31,8 @@ switch (argument0)
 
         if (animation_time mod 8 == 0)
         {
-            var sine, csine;
-
-            sine = dsin(mask_rotation);
-            csine = dcos(mask_rotation);
+            var sine; sine = dsin(mask_rotation);
+            var csine; csine = dcos(mask_rotation);
 
             with (effect_create(x - (csine * x_radius * image_xscale) + (sine * y_radius), y + (sine * x_radius * image_xscale) + (csine * y_radius), sequence_rail_spark, depth, image_xscale))
             {

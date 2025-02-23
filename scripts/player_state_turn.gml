@@ -1,8 +1,11 @@
 /// player_state_turn(phase)
-/* Turn around, every now and then I get a little bit lonely...
-Flips the player's x scale and ends when the animation is finished. */
+/// @desc Flips the player's x scale and ends when the animation is finished.
+/// @param {int} phase
+/// @returns {bool}
 
-switch (argument0)
+var _phase; _phase = argument0;
+
+switch (_phase)
 {
     case STATE_START:
         image_xscale *= -1;

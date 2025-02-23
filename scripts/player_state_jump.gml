@@ -1,14 +1,15 @@
 /// player_state_jump(phase)
-/* A jump to the sky turns to a rider kick.
-Similar to air but includes a variable jump and different animation. */
+/// @desc A jump to the sky turns to a rider kick. Variant of air with a variable jump and different animation.
+/// @param {int} phase
+/// @returns {bool}
 
-switch (argument0)
+var _phase; _phase = argument0;
+
+switch (_phase)
 {
     case STATE_START:
-        var leap_force, g_speed;
-
-        leap_force = pick(jump_bound, jump_force, 7.5, 6 + bound_count);
-        g_speed = x_speed;
+        var leap_force; leap_force = pick(jump_bound, jump_force, 7.5, 6 + bound_count);
+        var g_speed; g_speed = x_speed;
 
         x_speed = (dcos(relative_angle) * g_speed) - (leap_force * dsin(relative_angle));
         y_speed = -(dsin(relative_angle) * g_speed) - (leap_force * dcos(relative_angle));
@@ -34,9 +35,8 @@ switch (argument0)
 
         if (jump_cap)
         {
-            var input_held;
-
-            input_held = pick(jump_aux, player_get_input(INP_JUMP, CHECK_HELD), player_get_input(INP_AUX, CHECK_HELD));
+            var input_held; input_held = pick(jump_aux, player_get_input(INP_JUMP, CHECK_HELD), player_get_input(INP_AUX, CHECK_HELD));
+            
             if (y_speed < jump_release && !input_held) y_speed = jump_release;
         }
 

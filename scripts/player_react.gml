@@ -1,7 +1,7 @@
 /// player_react(inst, [hitbox], [side])
 /// @desc Returns whether the player's current state should be aborted or not after performing a reaction.
 /// @param {object} inst
-/// @param [hitbox]
+/// @param {int} [hitbox]
 /// @param {number} [side]
 /// @returns {bool}
 

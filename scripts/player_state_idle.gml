@@ -1,7 +1,11 @@
 /// player_state_idle(phase)
-/* Standing here, I realize... */
+/// @desc Standing here, I realize...
+/// @param {int} phase
+/// @returns {bool}
 
-switch (argument0)
+var _phase; _phase = argument0;
+
+switch (_phase)
 {
     case STATE_START:
         wait_alarm = 360;

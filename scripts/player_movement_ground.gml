@@ -1,15 +1,13 @@
 /// player_movement_ground()
-/* Performs a movement step for the player on the ground.
-Returns whether the player's current state should be aborted or not. */
-
-var ox, oy, total_steps, step, prop_inst, hit_prop, obstacle_inst, hit_obstacle, hit_wall, hit_floor;
+/// @desc Performs a movement step for the player on the ground.
+/// @returns {bool} Returns whether the player's current state should be aborted or not.
 
 // Snap to moving platforms:
 if (instance_exists(ground_inst))
 {
     // Initialize vectors:
-    ox = ground_inst.x - ground_inst.xprevious;
-    oy = ground_inst.y - ground_inst.yprevious;
+    var ox; ox = ground_inst.x - ground_inst.xprevious;
+    var oy; oy = ground_inst.y - ground_inst.yprevious;
 
     if (ground_inst.hspeed != 0) ox = ground_inst.hspeed;
     if (ground_inst.vspeed != 0) oy = ground_inst.vspeed;
@@ -26,8 +24,8 @@ else on_ground = false;
 wall_sign = 0;
 
 // Initialize movement loop:
-total_steps = 1 + (abs(x_speed) div x_radius);
-step = x_speed / total_steps;
+var total_steps; total_steps = 1 + (abs(x_speed) div x_radius);
+var step; step = x_speed / total_steps;
 
 // Process movement loop:
 repeat (total_steps)
@@ -43,7 +41,7 @@ repeat (total_steps)
     if (player_collision_reaction()) return false;
 
     // Wall collision:
-    hit_wall = player_collision_wall(0);
+    var hit_wall; hit_wall = player_collision_wall(0);
 
     if (hit_wall != noone)
     {
@@ -69,7 +67,7 @@ repeat (total_steps)
     }
 
     // Floor collision
-    hit_floor = player_collision_floor(y_radius * 2);
+    var hit_floor; hit_floor = player_collision_floor(y_radius * 2);
 
     if (hit_floor != noone)
     {

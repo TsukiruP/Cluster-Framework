@@ -1,21 +1,20 @@
-/// player_reaction_spring(obj, hitbox)
-/* Bounce Pad! Wait, no... */
+/// player_reaction_spring(inst, hitbox)
+/// @desc
+/// @param {object} inst
+/// @param {int} hitbox
+/// @returns {void}
 
-var reaction_inst, hitbox;
+var _inst; _inst = argument0;
+var _hitbox; _hitbox = argument1;
 
-reaction_inst = argument0;
-hitbox = argument1;
-
-if (hitbox & HIT_COLLISION)
+if (_hitbox & HIT_COLLISION)
 {
-    if (spring_current != reaction_inst || spring_alarm == 0)
+    if (spring_current != _inst || spring_alarm == 0)
     {
-        var is_dash_ring;
-
-        is_dash_ring = (reaction_inst.object_index == obj_dash_ring);
+        var is_dash_ring; is_dash_ring = (_inst.object_index == obj_dash_ring);
 
         player_reset_spring();
-        spring_current = reaction_inst;
+        spring_current = _inst;
         spring_force = spring_current.force;
         spring_angle = angle_wrap(spring_current.angle - gravity_direction);
         spring_alarm = spring_force + 15;
@@ -25,15 +24,15 @@ if (hitbox & HIT_COLLISION)
 
         if (!(on_ground && (spring_angle == ANGLE_LEFT || spring_angle == ANGLE_RIGHT)) || is_dash_ring)
         {
-            y = reaction_inst.y;
+            y = _inst.y;
             player_set_state(player_state_spring, true);
         }
         else input_lock_alarm = 16;
 
-        x = reaction_inst.x;
+        x = _inst.x;
         if (dcos(spring_angle) != 0) image_xscale = sign(dcos(spring_angle));
 
-        with (reaction_inst)
+        with (_inst)
         {
             active = true;
 

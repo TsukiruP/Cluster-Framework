@@ -1,7 +1,11 @@
 /// player_state_spin_dash(phase)
-/* Charge and Up. */
+/// @desc Charge and Up.
+/// @param {int} phase
+/// @returns {bool}
 
-switch (argument0)
+var _phase; _phase = argument0;
+
+switch (_phase)
 {
     case STATE_START:
         spin_dash_charge = 0;

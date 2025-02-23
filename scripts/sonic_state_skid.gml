@@ -1,12 +1,11 @@
 /// sonic_state_skid(phase)
-/* Sliiiide to the left, sliiiide to the right. Criss cross!
-Based on the move from Advancee 2.
-The few states that apply both the ground and air movement.
-First the Sonic's speed is set to 3 and their animation is set to somersault.
-When the somersault ends, it either continues into the slide or enters the jump state.
-Sliding lasts 32 frames, and then similar to above occurs: either Sonic gets up or enters the jump state. */
+/// @desc Sliiiide to the left, sliiiide to the right. Criss cross!
+/// @param {int} phase
+/// @returns {bool}
 
-switch (argument0)
+var _phase; _phase = argument0;
+
+switch (_phase)
 {
     case STATE_START:
         player_set_animation("somersault");
@@ -22,7 +21,6 @@ switch (argument0)
 
             y_speed += gravity_force;
         }
-
         else
         {
             // Friction:

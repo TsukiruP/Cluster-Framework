@@ -1,8 +1,11 @@
 /// sonic_state_drop_dash(phase)
-/* Originally this had the same caption as brake. Unsure how that happened.
-Based off the SonicForGMS implementation. */
+/// @desc Based off the SonicForGMS implementation.
+/// @param {int} phase
+/// @returns {bool}
 
-switch (argument0)
+var _phase; _phase = argument0;
+
+switch (_phase)
 {
     case STATE_START:
         drop_dash_alarm = 20;
@@ -26,12 +29,10 @@ switch (argument0)
         {
             if (drop_dash_alarm == 0)
             {
-                var drop_dash_max_speed, drop_dash_speed;
+                var drop_dash_max_speed; drop_dash_max_speed = 12;
+                var drop_dash_speed; drop_dash_speed = 8;
 
                 if (input_x_direction != 0 && sign(image_xscale) != input_x_direction) image_xscale = input_x_direction;
-
-                drop_dash_max_speed = 12;
-                drop_dash_speed = 8;
 
                 if (x_speed == 0 || sign(x_speed) == input_x_direction) drop_dash_speed = min(drop_dash_speed + abs(x_speed / 4), drop_dash_max_speed);
                 else if (relative_angle != 0) drop_dash_speed = min(drop_dash_speed + abs(x_speed / 2), drop_dash_max_speed);

@@ -1,14 +1,15 @@
-/// player_reaction_bubble(obj, hitbox)
-/* Glub, glub. */
+/// player_reaction_bubble(inst, hitbox)
+/// @desc Glub, glub.
+/// @param {object} inst
+/// @param {int} hitbox
+/// @returns {void}
 
-var reaction_inst, hitbox;
+var _inst; _inst = argument0;
+var _hitbox; _hitbox = argument1;
 
-reaction_inst = argument0;
-hitbox = argument1;
-
-if (hitbox & HIT_COLLISION)
+if (_hitbox & HIT_COLLISION)
 {
-    if (!on_ground && reaction_inst.size == 2)
+    if (!on_ground && _inst.size == 2)
     {
         player_set_animation("breathe");
         player_set_state(player_state_air);
@@ -19,7 +20,7 @@ if (hitbox & HIT_COLLISION)
         audio_play_sfx("snd_bubble");
         if (!input_cpu) audio_stop_drown();
 
-        with (reaction_inst)
+        with (_inst)
         {
             instance_destroy();
         }

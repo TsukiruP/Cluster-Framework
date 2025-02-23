@@ -1,7 +1,11 @@
 /// player_state_brake(phase)
-/* Try to outrun this demon to get left in the dust. */
+/// @desc Try to outrun this demon to get left in the dust.
+/// @param {int} phase
+/// @returns {bool}
 
-switch (argument0)
+var _phase; _phase = argument0;
+
+switch (_phase)
 {
     case STATE_START:
         if ((!game_get_config("advance_brake") || character_index == CHAR_CLASSIC) && x_speed != 0) image_xscale = sign(x_speed);

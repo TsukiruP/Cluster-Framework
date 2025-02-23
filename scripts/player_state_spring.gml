@@ -1,8 +1,11 @@
 /// player_state_spring(phase)
-/* Falling with style.
-Very similar to the airborne state, except this has checks for the spring alarm for inputs and has a different animation script.  */
+/// @desc Variant of air with a spring alarm and different animation.
+/// @param {int} phase
+/// @returns {bool}
 
-switch (argument0)
+var _phase; _phase = argument0;
+
+switch (_phase)
 {
     case STATE_START:
         player_reset_air();

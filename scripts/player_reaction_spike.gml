@@ -1,10 +1,12 @@
-/// player_reaction_spike(obj, hitbox, side)
-/* Not the wisp. */
+/// player_reaction_spike(inst, hitbox, side)
+/// @desc 
+/// @param {object} inst
+/// @param {int} hitbox
+/// @param {number} side
+/// @returns {void}
 
-var reaction_inst, hitbox, side;
+var _inst; _inst = argument0;
+var _hitbox; _hitbox = argument1;
+var _side; _side = argument2;
 
-reaction_inst = argument0;
-hitbox = argument1;
-side = argument2;
-
-if ((hitbox & HIT_COLLISION) && side == reaction_inst.angle) player_set_damage(reaction_inst);
+if ((_hitbox & HIT_COLLISION) && _side == _inst.angle) player_set_damage(_inst);

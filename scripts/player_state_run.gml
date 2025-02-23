@@ -1,7 +1,11 @@
 /// player_state_run(phase)
-/* Gotta go fast! */
+/// @desc Gotta go fast!
+/// @param {int} phase
+/// @returns {bool}
 
-switch (argument0)
+var _phase; _phase = argument0;
+
+switch (_phase)
 {
     case STATE_START:
         break;

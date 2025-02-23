@@ -1,7 +1,11 @@
 /// player_state_hurt(phase)
-/* Ouchie ouch ouch. */
+/// @desc Ouchie ouch ouch.
+/// @param {int} phase
+/// @returns {bool}
 
-switch (argument0)
+var _phase; _phase = argument0;
+
+switch (_phase)
 {
     case STATE_START:
         player_reset_air();

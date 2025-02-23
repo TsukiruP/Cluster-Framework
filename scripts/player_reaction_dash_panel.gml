@@ -1,28 +1,29 @@
-/// player_reaction_dash_panel(obj, hitbox)
-/* Like an onion. */
+/// player_reaction_dash_panel(inst, hitbox)
+/// @desc 
+/// @param {object} inst
+/// @param {int} hitbox
+/// @returns {void}
 
-var reaction_inst, hitbox;
+var _inst; _inst = argument0;
+var _hitbox; _hitbox = argument1;
 
-reaction_inst = argument0;
-hitbox = argument1;
-
-if (hitbox & HIT_COLLISION)
+if (_hitbox & HIT_COLLISION)
 {
-    if (booster_current != reaction_inst || input_lock_alarm == 0)
+    if (booster_current != _inst || input_lock_alarm == 0)
     {
-        if (gravity_direction != reaction_inst.angle)
+        if (gravity_direction != _inst.angle)
         {
-            mask_rotation = reaction_inst.angle;
+            mask_rotation = _inst.angle;
             player_set_state(player_state_run);
         }
 
-        //image_xscale = reaction_inst.image_xscale;
-        image_xscale = pick(reaction_inst.variant, reaction_inst.image_xscale, reaction_inst.image_yscale);
-        x_speed = reaction_inst.force * image_xscale;
+        //image_xscale = _inst.image_xscale;
+        image_xscale = pick(_inst.variant, _inst.image_xscale, _inst.image_yscale);
+        x_speed = _inst.force * image_xscale;
         input_lock_alarm = 16;
-        booster_current = reaction_inst;
+        booster_current = _inst;
 
-        with (reaction_inst)
+        with (_inst)
         {
             if (sfx_alarm == 0)
             {

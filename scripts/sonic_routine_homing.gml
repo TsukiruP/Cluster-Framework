@@ -1,5 +1,6 @@
 /// sonic_routine_homing()
-/* The bounce up that occurs from landing a homing attack. */
+/// @desc Performs a jump after landing a homing attack.
+/// @returns {void}
 
 if (state_current == sonic_state_homing)
 {

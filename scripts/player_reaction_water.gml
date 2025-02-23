@@ -1,21 +1,21 @@
-/// player_reaction_water(obj, hitbox)
-/* Sets whether the player is underwater. */
+/// player_reaction_water(inst, hitbox)
+/// @desc
+/// @param {object} inst
+/// @param {int} hitbox
+/// @returns {void}
 
-var reaction_inst, hitbox;
+var _inst; _inst = argument0;
+var _hitbox; _hitbox = argument1;
 
-reaction_inst = argument0;
-hitbox = argument1;
-
-if (hitbox & HIT_COLLISION)
+if (_hitbox & HIT_COLLISION)
 {
-    var x1, y1, x2, y2, water_current, water_previous;
-
-    x1 = reaction_inst.x;
-    y1 = reaction_inst.y;
-    x2 = x1 + reaction_inst.sprite_width;
-    y2 = y1 + reaction_inst.sprite_height;
-    water_current = point_in_rectangle(x, y, x1, y1, x2, y2);
-    water_previous = point_in_rectangle(xprevious, yprevious, x1, y1, x2, y2);
+    var x1; x1 = _inst.x;
+    var y1; y1 = _inst.y;
+    var x2; x2 = x1 + _inst.sprite_width;
+    var y2; y2 = y1 + _inst.sprite_height;
+    
+    var water_current; water_current = point_in_rectangle(x, y, x1, y1, x2, y2);
+    var water_previous; water_previous = point_in_rectangle(xprevious, yprevious, x1, y1, x2, y2);
 
     if (!underwater && water_current)
     {
@@ -29,7 +29,7 @@ if (hitbox & HIT_COLLISION)
         if (!water_previous)
         {
             audio_play_sfx("snd_splash", true);
-            effect_create(x, reaction_inst.y, pick(y_speed >= 2.50, sequence_splash_0, sequence_splash_1), depth);
+            effect_create(x, _inst.y, pick(y_speed >= 2.50, sequence_splash_0, sequence_splash_1), depth);
         }
     }
     else if (y < room_height && underwater && !water_current)
@@ -43,7 +43,7 @@ if (hitbox & HIT_COLLISION)
         if (water_previous)
         {
             audio_play_sfx("snd_splash", true);
-            effect_create(x, reaction_inst.y, pick(y_speed <= -6, sequence_splash_0, sequence_splash_1), depth);
+            effect_create(x, _inst.y, pick(y_speed <= -6, sequence_splash_0, sequence_splash_1), depth);
         }
     }
 }

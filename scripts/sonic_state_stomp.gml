@@ -1,7 +1,11 @@
 /// sonic_state_stomp(phase)
-/* A Smashing good time. */
+/// @desc A Smashing good time.
+/// @param {int} phase
+/// @returns {bool}
 
-switch (argument0)
+var _phase; _phase = argument0;
+
+switch (_phase)
 {
     case STATE_START:
         x_speed = 0;
@@ -25,10 +29,8 @@ switch (argument0)
 
                 if (on_ground)
                 {
-                    var sine, csine;
-
-                    sine = dsin(mask_rotation);
-                    csine = dcos(mask_rotation);
+                    var sine; sine = dsin(mask_rotation);
+                    var csine; csine = dcos(mask_rotation);
 
                     x_speed = 0;
                     player_set_animation("stomp_land");

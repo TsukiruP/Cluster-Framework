@@ -1,5 +1,6 @@
 /// player_routine_land()
-/* Shorthand so that the player can use their landing animation. */
+/// @desc Performs an idle or run when landing.
+/// @returns {bool}
 
 if (on_ground)
 {

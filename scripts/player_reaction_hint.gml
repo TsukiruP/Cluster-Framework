@@ -1,14 +1,15 @@
-/// player_reaction_hint(obj, hitbox)
-/* Press the jump button to jump! */
+/// player_reaction_hint(inst, hitbox)
+/// @desc Press the jump button to jump!
+/// @param {object} inst
+/// @param {int} hitbox
+/// @param {void}
 
-var reaction_inst, hitbox;
+var _inst; _inst = argument0;
+var _hitbox; _hitbox = argument1;
 
-reaction_inst = argument0;
-hitbox = argument1;
-
-if (hitbox & HIT_COLLISION)
+if (_hitbox & HIT_COLLISION)
 {
-    if (mask_rotation == reaction_inst.gravity_direction && on_ground && !input_cpu)
+    if (mask_rotation == _inst.gravity_direction && on_ground && !input_cpu)
     {
         if (floor(x_speed) == 0 && player_get_input(INP_UP, CHECK_PRESSED))
         {
@@ -18,7 +19,7 @@ if (hitbox & HIT_COLLISION)
                 hint_allow = false;
                 player_set_state(player_state_idle);
 
-                switch (reaction_inst.object_index)
+                switch (_inst.object_index)
                 {
                     case obj_hint_box:
                         player_set_animation("look");
@@ -30,10 +31,10 @@ if (hitbox & HIT_COLLISION)
                         break;
                 }
 
-                with (reaction_inst) event_user(0);
+                with (_inst) event_user(0);
             }
         }
 
-        with (reaction_inst) player_inst = other.id;
+        with (_inst) player_inst = other.id;
     }
 }

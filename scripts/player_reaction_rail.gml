@@ -1,14 +1,16 @@
-/// player_reaction_rail(obj, hitbox, side)
-/* Playing SA2 is habit forming, don't turn off! */
+/// player_reaction_rail(inst, hitbox, side)
+/// @desc Playing SA2 is habit forming, don't turn off!
+/// @param {object} inst
+/// @param {int} hitbox
+/// @param {number} side
+/// @returns {void}
 
-var reaction_inst, hitbox, side;
+var _inst; _inst = argument0;
+var _hitbox; _hitbox = argument1;
+var _side; _side = argument2;
 
-reaction_inst = argument0;
-hitbox = argument1;
-side = argument2;
-
-if ((hitbox & HIT_SOLID) && side == ANGLE_UP)
+if ((_hitbox & HIT_SOLID) && _side == ANGLE_UP)
 {
     player_set_state(player_state_rail);
-    if (reaction_inst != ground_inst) player_set_ground(reaction_inst);
+    if (_inst != ground_inst) player_set_ground(_inst);
 }

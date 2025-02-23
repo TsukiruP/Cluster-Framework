@@ -1,12 +1,13 @@
-/// player_reaction_layer_sensor(obj, hitbox)
-/* Like an onion. */
+/// player_reaction_layer_sensor(inst, hitbox)
+/// @desc Like an onion.
+/// @params {object} inst
+/// @params {int} hitbox
+/// @returns {void}
 
-var reaction_inst, hitbox;
+var _inst; _inst = argument0;
+var _hitbox; _hitbox = argument1;
 
-reaction_inst = argument0;
-hitbox = argument1;
-
-if (hitbox & HIT_COLLISION) // && point_in_rectangle(x, y, reaction_inst.bbox_left, reaction_inst.bbox_top, reaction_inst.bbox_right, reaction_inst.bbox_bottom))
+if (_hitbox & HIT_COLLISION) // && point_in_rectangle(x, y, _inst.bbox_left, _inst.bbox_top, _inst.bbox_right, _inst.bbox_bottom))
 {
-    layer = reaction_inst.layer;
+    layer = _inst.layer;
 }

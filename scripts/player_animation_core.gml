@@ -1,5 +1,5 @@
 /// player_animation_core()
-/// @desc Player animation system.
+/// @desc Performs an animation step for the player.
 /// @returns {void}
 
 var y_radius_temp; y_radius_temp = y_radius;

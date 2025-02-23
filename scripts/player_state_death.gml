@@ -1,8 +1,11 @@
 /// player_state_death(phase)
-/* One is always aware that it lies in wait. Though life is merely a journey to the grave, it must not be undertaken without hope.
-Sets the player's depth to be really high (but still below the water). */
+/// @desc One is always aware that it lies in wait. Though life is merely a journey to the grave, it must not be undertaken without hope.
+/// @param {int} phase
+/// @returns {bool}
 
-switch (argument0)
+var _phase; _phase = argument0;
+
+switch (_phase)
 {
     case STATE_START:
         depth = -10000;

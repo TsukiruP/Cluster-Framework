@@ -1,8 +1,11 @@
 /// player_state_ramp(phase)
-/* Falling with style.
-Very similar to the airborne state, except you can't do anything from this.  */
+/// @desc Variant of air with a different animation.
+/// @param {int} phase
+/// @returns {bool}
 
-switch (argument0)
+var _phase; _phase = argument0;
+
+switch (_phase)
 {
     case STATE_START:
         player_reset_air();

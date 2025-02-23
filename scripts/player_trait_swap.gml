@@ -1,11 +1,10 @@
 /// player_trait_swap()
-/* Reorders the player list. Based off Mania and Triple Trouble 16-bit. */
+/// @desc Reorders the player list. Based off Mania and Trible Trouble 16-bit.
+/// @returns {void}
 
 if (!game_get_save("swap") || state_current == player_state_hurt || state_current == player_state_death || !instance_exists(stage_get_player(1))) exit;
 
-var partner_inst;
-
-partner_inst = stage_get_player(1);
+var partner_inst; partner_inst = stage_get_player(1);
 
 if (partner_inst.input_cpu_gamepad_alarm > 0) exit;
 

@@ -1,7 +1,11 @@
 /// player_state_standby(phase)
-/* 555-913-2003 */
+/// @desc 555-913-2003
+/// @param {int} phase
+/// @returns {bool}
 
-switch (argument0)
+var _phase; _phase = argument0;
+
+switch (_phase)
 {
     case STATE_START:
         break;

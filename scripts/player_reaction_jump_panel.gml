@@ -1,21 +1,22 @@
-/// player_reaction_jump_panel(obj, hitbox, side)
-/* Really stupid commitment to game accuracy. */
+/// player_reaction_jump_panel(inst, hitbox, side)
+/// @desc
+/// @param {object} inst
+/// @param {int} hitbox
+/// @param {number} side
+/// @returns {void}
 
-var reaction_inst, hitbox, side;
+var _inst; _inst = argument0;
+var _hitbox; _hitbox = argument1;
+var _side; _side = argument2;
 
-reaction_inst = argument0;
-hitbox = argument1;
-side = argument2;
-
-
-if ((hitbox & HIT_SOLID) && side == ANGLE_UP)
+if ((_hitbox & HIT_SOLID) && _side == ANGLE_UP)
 {
-    image_xscale = reaction_inst.image_xscale;
-    x_speed = reaction_inst.force * image_xscale;
+    image_xscale = _inst.image_xscale;
+    x_speed = _inst.force * image_xscale;
     input_lock_alarm = 16;
-    if (ground_inst != reaction_inst) player_set_ground(reaction_inst);
+    if (ground_inst != _inst) player_set_ground(_inst);
 
-    if (hitbox & HIT_COLLISION)
+    if (_hitbox & HIT_COLLISION)
     {
         y_speed = -6;
         player_set_state(player_state_ramp, true);

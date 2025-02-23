@@ -1,8 +1,11 @@
 /// player_state_bound()
-/* Not to be confused with the Bound Attack. A common mistake.
-This is the bound of the bubble shield. */
+/// @desc Bubble shield's Bound.
+/// @param {int} phase
+/// @returns {bool}
 
-switch (argument0)
+var _phase; _phase = argument0;
+
+switch (_phase)
 {
     case STATE_START:
         x_speed = 0;

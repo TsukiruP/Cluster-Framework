@@ -1,22 +1,21 @@
-/// player_reaction_checkpoint(obj, hitbox)
-/* Never made up a "joke" for this. */
+/// player_reaction_checkpoint(inst, hitbox)
+/// @desc
+/// @param {object} inst
+/// @param {int} hitbox
+/// @returns {void}
 
-var reaction_inst, hitbox;
+var _inst; _inst = argument0;
+var _hitbox; _hitbox = argument1;
 
-reaction_inst = argument0;
-hitbox = argument1;
-
-if (hitbox & HIT_COLLISION)
+if (_hitbox & HIT_COLLISION)
 {
     if (!input_cpu)
     {
-        if (game_get_checkpoint_x() != reaction_inst.x && game_get_checkpoint_y() != reaction_inst.y && !reaction_inst.active)
+        if (game_get_checkpoint_x() != _inst.x && game_get_checkpoint_y() != _inst.y && !_inst.active)
         {
             if (game_get_config("gameplay_bonuses") && stage_get_rings() >= 20)
             {
-                var item_index;
-
-                item_index = -1;
+                var item_index; item_index = -1;
 
                 switch (stage_get_rings() div 20)
                 {
@@ -40,12 +39,12 @@ if (hitbox & HIT_COLLISION)
                         if (status_shield == SHIELD_NONE) item_index = choose(ITEM_BASIC, ITEM_MAGNETIC);
                 }
 
-                player_get_item(reaction_inst, item_index);
+                player_get_item(_inst, item_index);
             }
 
             audio_play_sfx("snd_checkpoint", true);
 
-            with (reaction_inst)
+            with (_inst)
             {
                 active = true;
                 game_set_checkpoint();

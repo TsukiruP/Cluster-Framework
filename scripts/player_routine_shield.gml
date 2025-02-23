@@ -1,5 +1,6 @@
 /// player_routine_shield()
-/* Barriers, if you care about that sort of thing. */
+/// @desc Performs shield actions.
+/// @returns {bool}
 
 status_shield_allow = false;
 
@@ -14,18 +15,15 @@ switch (status_shield)
         break;
 
     case SHIELD_LIGHTNING:
-        var i;
-
         y_speed = -5.5;
         audio_play_sfx("snd_shield_lightning_jump", true);
 
         // Sparks:
-        for (i = 0; i < 4; i += 1)
+        for ({var i; i = 0}; i < 4; i += 1)
         {
-            var spark_inst, spark_angle;
-
-            spark_inst = effect_create(x, y, sequence_shield_lightning_spark);
-            spark_angle = pick(i, ANGLE_LEFT_UP, ANGLE_RIGHT_UP, ANGLE_LEFT_DOWN, ANGLE_RIGHT_DOWN);
+            var spark_inst; spark_inst = effect_create(x, y, sequence_shield_lightning_spark);
+            var spark_angle; spark_angle = pick(i, ANGLE_LEFT_UP, ANGLE_RIGHT_UP, ANGLE_LEFT_DOWN, ANGLE_RIGHT_DOWN);
+            
             spark_inst.x_speed = 2 * dcos(spark_angle);
             spark_inst.y_speed = 2 * -dsin(spark_angle);
         }

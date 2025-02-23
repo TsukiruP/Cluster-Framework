@@ -1,5 +1,6 @@
 /// classic_trait_clock_up([over])
-/* He who was born a God and governs over all. */
+/// @desc He who was born a God and governs over all.
+/// @returns {void}
 
 if (argument_count > 0)
 {

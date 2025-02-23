@@ -1,5 +1,6 @@
 /// player_routine_skill()
-/* Returns whether a character skill has been called. */
+/// @desc Performs a character skill.
+/// @returns {bool}
 
 if (!input_cpu || (input_cpu && input_cpu_gamepad_alarm > 0))
 {
