@@ -1,9 +1,9 @@
-/// fade_create([target, speed, depth, color])
+/// fade_create([target], [speed], [depth], [color])
 /// @desc Returns the id of a new fade instance.
-/// @param {number} target
-/// @param {number} speed
-/// @param {int} depth
-/// @param {color} color
+/// @param {number} [target]
+/// @param {number} [speed]
+/// @param {int} [depth]
+/// @param {color} [color]
 /// @returns {object}
 
 var _target; if (argument_count > 0) _target = argument[0]; else _target = 1;

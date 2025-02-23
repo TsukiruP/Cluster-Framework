@@ -1,4 +1,4 @@
-/// game_ispaused(controller)
+/// game_ispaused([controller])
 /// @desc Returns whether the game is considered paused.
 /// @param {object} [controller] Specific pause source.
 /// @returns {bool}

@@ -1,4 +1,4 @@
-/// effect_create(x, y, sequence, [depth, xscale, yscale])
+/// effect_create(x, y, sequence, [depth], [xscale], [yscale])
 /// @desc Returns the id of a new effect instance.
 /// @param {number} x
 /// @param {number} y

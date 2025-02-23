@@ -1,7 +1,7 @@
 /// draw_background_tiled_view(background, xoffset, yoffset, xscale, yscale, hrepeats, vrepeats)
 /// @desc Draws a background tiled that sitcks to the current view.
-/// @param {int} xoffset
-/// @param {int} yoffset
+/// @param {number} xoffset
+/// @param {number} yoffset
 /// @param {number} xscale
 /// @param {number} yscale
 /// @param {number} hrepeats

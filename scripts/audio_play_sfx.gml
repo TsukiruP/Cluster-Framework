@@ -1,4 +1,4 @@
-/// audio_play_sfx(sound, [single, pitch, pan])
+/// audio_play_sfx(sound, [single], [pitch], [pan])
 /// @desc Plays a sound.
 /// @param {string} sound
 /// @param {bool} [single]

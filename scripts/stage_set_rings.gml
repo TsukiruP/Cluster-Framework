@@ -1,8 +1,8 @@
-/// stage_set_rings(value)
+/// stage_set_rings(val)
 /// @desc Sets the stage rings.
-/// @param {int} value
+/// @param {int} val
 /// @returns {void}
 
-var _value; _value = argument0;
+var _val; _val = argument0;
 
-with (ctrl_stage) stage_rings = _value;
+with (ctrl_stage) stage_rings = _val;

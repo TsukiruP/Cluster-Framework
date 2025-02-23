@@ -1,9 +1,9 @@
 /// cosine_wave(time, period, amplitude, midpoint)
 /// @desc sine_wave but for cosine.
 /// @param {number} time
-/// @param {int} period
-/// @param {int} amplitude
-/// @param {int} midpoint
+/// @param {number} period
+/// @param {number} amplitude
+/// @param {number} midpoint
 /// @returns {number}
 
 var _time; _time = argument0;

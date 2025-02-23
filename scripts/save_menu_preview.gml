@@ -4,10 +4,9 @@
 
 with (ctrl_game)
 {
-    var i;
     var preview_map; preview_map = ds_map_create();
 
-    for (i = 0; i < save_count; i += 1)
+    for ({var i; i = 0}; i < save_count; i += 1)
     {
         var save_string; save_string = "save" + string(i);
 

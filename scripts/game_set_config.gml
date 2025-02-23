@@ -1,7 +1,7 @@
-/// game_set_config(key, value)
+/// game_set_config(key, val)
 /// @desc Sets the value of a config key.
 /// @param {string} key
-/// @param {any} value
+/// @param {any} val
 /// @returns {void}
 
 var _key; _key = argument0;

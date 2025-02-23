@@ -1,8 +1,8 @@
-/// stage_set_time(value)
+/// stage_set_time(val)
 /// @desc Sets the stage time.
-/// @param {int} value
+/// @param {int} val
 /// @returns {void}
 
-var _value; _value = argument0;
+var _val; _val = argument0;
 
-with (ctrl_stage) stage_time = _value;
+with (ctrl_stage) stage_time = _val;

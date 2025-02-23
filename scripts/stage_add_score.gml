@@ -1,8 +1,8 @@
-/// stage_add_score(value)
+/// stage_add_score(val)
 /// @desc Adds the value to the stage score.
-/// @param {int} value
+/// @param {int} val
 /// @returns {void}
 
-var _value; _value = argument0;
+var _val; _val = argument0;
 
-with (ctrl_stage) stage_score += _value;
+with (ctrl_stage) stage_score += _val;

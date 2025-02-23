@@ -1,8 +1,8 @@
-/// camera_set_focus(instance)
+/// camera_set_focus(inst)
 /// @desc Sets the camera focus.
-/// @param {object} instance
+/// @param {object} inst
 /// @returns {void}
 
-var _instance; _instance = argument0;
+var _inst; _inst = argument0;
 
-with (ctrl_camera) focus_id = _instance;
+with (ctrl_camera) focus_id = _inst;

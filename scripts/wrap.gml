@@ -1,14 +1,14 @@
-/// wrap(value, minimum, maximum)
-/// @desc Returns the value inside the window defined by minimum and maximum - maximum inclusive.
-/// @param {int} value
-/// @param {int} minimum
-/// @param {int} maximum
-/// @returns {int}
+/// wrap(val, min, max)
+/// @desc Returns the value inside the window defined by min and max - max inclusive.
+/// @param {number} val
+/// @param {number} min
+/// @param {number} max
+/// @returns {number}
 
-var _value; _value = argument0;
-var _minimum; _minimum = argument1;
-var _maximum; _maximum = argument2;
+var _val; _val = argument0;
+var _min; _min = argument1;
+var _max; _max = argument2;
 
-if (_value < _minimum) return _maximum;
-else if (_value > _maximum) return _minimum;
-else return _value;
+if (_val < _min) return _max;
+else if (_val > _max) return _min;
+else return _val;

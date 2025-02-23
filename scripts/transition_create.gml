@@ -1,4 +1,4 @@
-/// transition_create(room, [transition, preview])
+/// transition_create(room, [transition], [preview])
 /// @desc Returns the id of a new transition instance.
 /// @param {room} room
 /// @param {int} [transition]

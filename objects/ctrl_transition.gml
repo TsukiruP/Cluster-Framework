@@ -410,7 +410,7 @@ applies_to=self
 
 pause_ignore = false;
 audio_play_bgm(game_get_room_music());
-if (game_get_room_background() != -1) instance_create(0, 0, game_get_room_background());
+if (object_exists(game_get_room_background())) instance_create_single(0, 0, game_get_room_background());
 
 if (game_get_room_water() != -1)
 {

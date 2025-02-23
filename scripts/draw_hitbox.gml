@@ -1,4 +1,4 @@
-/// draw_hitbox(left, top, right, bottom, xoffset, yoffset, angle, color)
+/// draw_hitbox(left, top, right, bottom, xoffset, yoffset, rot, color)
 /// @desc Draws a rectangular outline that flips and rotates accordingly.
 /// @param {int} left
 /// @param {int} top
@@ -6,7 +6,7 @@
 /// @param {int} bottom
 /// @param {int} xoffset
 /// @param {int} yoffset
-/// @param {number} angle
+/// @param {number} rot
 /// @param {color} color
 
 var _left; _left = argument0;
@@ -15,19 +15,17 @@ var _right; _right = argument2;
 var _bottom; _bottom = argument3;
 var _xoffset; _xoffset = argument4;
 var _yoffset; _yoffset = argument5;
-var _angle; _angle = argument6;
+var _rot; _rot = argument6;
 var _color; _color = argument7;
-
-var x_int; x_int = floor(x);
-var y_int; y_int = floor(y);
 
 _xoffset *= image_xscale;
 _yoffset *= image_yscale;
+_rot = round(_rot / 90) * 90;
 
-_angle = round(_angle / 90) * 90;
-
-var sine; sine = dsin(_angle);
-var csine; csine = dcos(_angle);
+var x_int; x_int = floor(x);
+var y_int; y_int = floor(y);
+var sine; sine = dsin(_rot);
+var csine; csine = dcos(_rot);
 
 if (sign(image_xscale) == -1)
 {

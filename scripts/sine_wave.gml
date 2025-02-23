@@ -1,9 +1,9 @@
 /// sine_wave(time, period, amplitude, midpoint)
 /// @desc https://gm48.net/resource/33/sine-waves-make-your-game-prettier
 /// @param {number} time
-/// @param {int} period
-/// @param {int} amplitude
-/// @param {int} midpoint
+/// @param {number} period
+/// @param {number} amplitude
+/// @param {number} midpoint
 /// @returns {number}
 
 var _time; _time = argument0;

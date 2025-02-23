@@ -3,15 +3,13 @@
 /// @param {string} ...body
 /// @returns {void}
 
-var body; body = argument[0];
+var body; body = argument0;
 
 with (ctrl_text)
 {
-    var i;
-
     ds_list_clear(body_list);
 
-    for (i = 0; i < argument_count; i += 1)
+    for ({var i; i = 0}; i < argument_count; i += 1)
     {
         ds_list_add(body_list, argument[i]);
     }
