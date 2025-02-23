@@ -8,16 +8,16 @@ var ring_speed; ring_speed = 4;
 
 while (ring_count)
 {
-    ring_id = instance_create(x, y, obj_ring);
-    ring_id.life_alarm = 256;
-    ring_id.x_speed = ring_speed * dcos(round(ring_angle));
-    ring_id.y_speed = ring_speed * -dsin(round(ring_angle));
-    ring_id.dropped = true;
+    ring_inst = instance_create(x, y, obj_ring);
+    ring_inst.life_alarm = 256;
+    ring_inst.x_speed = ring_speed * dcos(round(ring_angle));
+    ring_inst.y_speed = ring_speed * -dsin(round(ring_angle));
+    ring_inst.dropped = true;
 
     if (ring_count mod 2 != 0)
     {
         ring_angle += 22.5;
-        ring_id.x_speed *= -1;
+        ring_inst.x_speed *= -1;
     }
 
     ring_count -= 1;

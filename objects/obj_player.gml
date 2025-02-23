@@ -45,7 +45,7 @@ roll_friction_down = 0.3125;
 roll_rebounce = false;
 
 death_alarm = 0;
-death_id = noone;
+death_inst = noone;
 
 score_multiplier = 0;
 /*"/*'/**//* YYD ACTION
@@ -93,7 +93,7 @@ player_reset_status();
 
 air_dash_allow = true;
 drop_dash_alarm = 20;
-homing_id = noone;
+homing_inst = noone;
 homing_range = 128;
 homing_speed = 12;
 homing_alarm = 0;
@@ -114,10 +114,10 @@ applies_to=self
 /// Effect Initialization
 
 spin_dash_charge = 0;
-spin_dash_id = noone;
-shield_id = noone;
-debuff_id = noone;
-reticle_id = noone;
+spin_dash_inst = noone;
+shield_inst = noone;
+debuff_inst = noone;
+reticle_inst = noone;
 
 afterimage_draw = false;
 afterimage_alarm = 6;
@@ -125,7 +125,7 @@ afterimage_alarm = 6;
 player_trail_init();
 
 waterfall_draw = false;
-waterfall_id = noone;
+waterfall_inst = noone;
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -214,12 +214,12 @@ if (input_allow)
 
         if (input_cpu_gamepad_alarm == 0)
         {
-            var i, leader_id;
+            var i, leader_inst;
 
-            leader_id = stage_get_player(0);
+            leader_inst = stage_get_player(0);
             player_reset_input();
 
-            if (leader_id != 0 && instance_exists(leader_id))
+            if (leader_inst != 0 && instance_exists(leader_inst))
             {
                 input_cpu_state_time += 1;
 
@@ -237,7 +237,7 @@ if (input_allow)
 
                             if (state_current != player_state_spin_dash)
                             {
-                                image_xscale = esign(leader_id.x - x, sign(leader_id.image_xscale));
+                                image_xscale = esign(leader_inst.x - x, sign(leader_inst.image_xscale));
                                 player_set_input(INP_DOWN, CHECK_HELD, true);
                             }
                         }
@@ -295,7 +295,7 @@ if (input_allow)
                         player_set_input(INP_JUMP, CHECK_HELD, input_queue_dequeue(QUEUE_JUMP_HELD));
                         player_set_input(INP_JUMP, CHECK_PRESSED, input_queue_dequeue(QUEUE_JUMP_PRESSED));
 
-                        with (leader_id)
+                        with (leader_inst)
                         {
                             input_queue_enqueue(QUEUE_X_DIR, input_x_direction);
                             input_queue_enqueue(QUEUE_Y_DIR, input_y_direction);
@@ -304,7 +304,7 @@ if (input_allow)
                         }
 
                         // Move left:
-                        if (x > leader_id.x + 16 + 32 * (abs(leader_id.x_speed) < 4))
+                        if (x > leader_inst.x + 16 + 32 * (abs(leader_inst.x_speed) < 4))
                         {
                             player_set_input(INP_LEFT, CHECK_HELD, true);
                             player_set_input(INP_RIGHT, CHECK_HELD, false);
@@ -312,7 +312,7 @@ if (input_allow)
                         }
 
                         // Move right:
-                        if (x < leader_id.x - 16 - 32 * (abs(leader_id.x_speed) < 4))
+                        if (x < leader_inst.x - 16 - 32 * (abs(leader_inst.x_speed) < 4))
                         {
                             player_set_input(INP_LEFT, CHECK_HELD, false);
                             player_set_input(INP_RIGHT, CHECK_HELD, true);
@@ -328,12 +328,12 @@ if (input_allow)
                         {
                             input_cpu_state_time += 1;
 
-                            if (sign(image_xscale) == sign(leader_id.image_xscale) && leader_id.animation_current == "push") input_cpu_state_time = 0;
+                            if (sign(image_xscale) == sign(leader_inst.image_xscale) && leader_inst.animation_current == "push") input_cpu_state_time = 0;
                             jump_auto = pick(input_cpu_state_time < 30, 0, 1);
                         }
                         else
                         {
-                            if (y - leader_id.y < 32)
+                            if (y - leader_inst.y < 32)
                             {
                                 jump_auto = 2;
                                 input_cpu_state_time = 0;
@@ -345,7 +345,7 @@ if (input_allow)
                             }
                         }
 
-                        if (leader_id.state_current != player_state_death)
+                        if (leader_inst.state_current != player_state_death)
                         {
                             switch (jump_auto)
                             {
@@ -483,21 +483,21 @@ applies_to=self
 
 if (state_current != player_state_death) depth = player_index;
 
-if (state_current == player_state_spin_dash && !instance_exists(spin_dash_id))
+if (state_current == player_state_spin_dash && !instance_exists(spin_dash_inst))
 {
     with (instance_create(x, y, eff_spin_dash))
     {
-        player_id = other.id;
-        player_id.spin_dash_id = id;
+        player_inst = other.id;
+        player_inst.spin_dash_inst = id;
     }
 }
 
-if ((status_shield != SHIELD_NONE || status_invin == INVIN_BUFF) && !instance_exists(shield_id))
+if ((status_shield != SHIELD_NONE || status_invin == INVIN_BUFF) && !instance_exists(shield_inst))
 {
     with (instance_create(x, y, eff_shield))
     {
-        player_id = other.id;
-        player_id.shield_id = id;
+        player_inst = other.id;
+        player_inst.shield_inst = id;
     }
 }
 
@@ -506,21 +506,21 @@ if (game_get_config("advance_flicker") && status_invin == INVIN_BUFF)
     if (time_sync(status_invin_alarm, 2, 4) == 0) effect_create(x + random_range(-x_radius, x_radius), y + random_range(-y_radius, y_radius), sequence_shield_invin_spark);
 }
 
-if ((status_speed == SPEED_SLOW || status_panic_alarm > 0) && !instance_exists(debuff_id))
+if ((status_speed == SPEED_SLOW || status_panic_alarm > 0) && !instance_exists(debuff_inst))
 {
     with (instance_create(x, y, eff_debuff))
     {
-        player_id = other.id;
-        player_id.debuff_id = id;
+        player_inst = other.id;
+        player_inst.debuff_inst = id;
     }
 }
 
-if (game_get_config("misc_reticle") > 0 && instance_exists(homing_id) && !instance_exists(reticle_id))
+if (game_get_config("misc_reticle") > 0 && instance_exists(homing_inst) && !instance_exists(reticle_inst))
 {
     with (instance_create(x, y, eff_reticle))
     {
-        player_id = other.id;
-        player_id.reticle_id = id;
+        player_inst = other.id;
+        player_inst.reticle_inst = id;
     }
 }
 
@@ -536,17 +536,17 @@ else trail_draw = false;
 
 if (!underwater)
 {
-    var surface_id;
+    var surface_inst;
 
-    surface_id = collision_point(x, floor(y) + y_radius + 1, obj_water_mask, false, false);
+    surface_inst = collision_point(x, floor(y) + y_radius + 1, obj_water_mask, false, false);
 
-    if (on_ground && abs(x_speed) > 0 && surface_id != noone)
+    if (on_ground && abs(x_speed) > 0 && surface_inst != noone)
     {
         surface_time += 1;
 
         if (surface_time mod 9 == 0)
         {
-            effect_create(x, surface_id.y, pick(abs(x_speed) >= 4.50, sequence_splash_2, sequence_splash_3), depth, image_xscale);
+            effect_create(x, surface_inst.y, pick(abs(x_speed) >= 4.50, sequence_splash_2, sequence_splash_3), depth, image_xscale);
         }
     }
     else surface_time = 0;
@@ -556,12 +556,12 @@ else
     if (status_shield == SHIELD_FIRE || status_shield == SHIELD_LIGHTNING) status_shield = 0;
 }
 
-if (waterfall_draw && !instance_exists(waterfall_id))
+if (waterfall_draw && !instance_exists(waterfall_inst))
 {
     with (instance_create(x, y, eff_waterfall))
     {
-        player_id = other.id;
-        player_id.waterfall_id = id;
+        player_inst = other.id;
+        player_inst.waterfall_inst = id;
     }
 }
 /*"/*'/**//* YYD ACTION
@@ -832,7 +832,7 @@ var shield_depth;
 
 player_trail_draw();
 
-with (shield_id)
+with (shield_inst)
 {
     shield_depth = (other.status_shield == SHIELD_FIRE && (image_index mod 2) != 0 && sequence_index != sequence_shield_fire_dash) || (other.status_shield == SHIELD_LIGHTNING && sequence_moment > 48);
     if (shield_depth) event_draw();
@@ -840,9 +840,9 @@ with (shield_id)
 
 image_alpha = pick((status_invin == INVIN_HURT && status_invin_alarm > 0), 1, time_sync(status_invin_alarm, 2, 2));
 if (sprite_exists(sprite_index)) draw_self_floored();
-with (spin_dash_id) event_draw();
-with (debuff_id) event_draw();
-with (shield_id)
+with (spin_dash_inst) event_draw();
+with (debuff_inst) event_draw();
+with (shield_inst)
 {
     if (!shield_depth) event_draw();
 }

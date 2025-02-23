@@ -2,4 +2,4 @@
 /// @desc Returns whether music is currently playing.
 /// @returns {bool}
 
-with (ctrl_audio) return bgm_id != -1;
+with (ctrl_audio) return bgm_inst != -1;

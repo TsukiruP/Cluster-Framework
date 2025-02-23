@@ -5,5 +5,5 @@
 with (ctrl_audio)
 {
     audio_stop_drown();
-    drown_id = sound_play_single("jng_drown");
+    drown_inst = sound_play_single("jng_drown");
 }

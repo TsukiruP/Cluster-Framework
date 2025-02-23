@@ -2,24 +2,24 @@
 /// @desc CPU respawns at player 0.
 /// @returns {void}
 
-var player_id; player_id = stage_get_player(0);
+var player_inst; player_inst = stage_get_player(0);
 
-if (instance_exists(player_id))
+if (instance_exists(player_inst))
 {
-    if (player_id.state_current != player_state_death)
+    if (player_inst.state_current != player_state_death)
     {
-        x = floor(player_id.x);
-        y = floor(player_id.y);
-        xprevious = floor(player_id.x);
-        yprevious = floor(player_id.y);
-        image_xscale = player_id.image_xscale;
-        gravity_direction = player_id.gravity_direction;
-        x_speed = player_id.x_speed;
-        y_speed = player_id.y_speed;
-        layer = player_id.layer;
+        x = floor(player_inst.x);
+        y = floor(player_inst.y);
+        xprevious = floor(player_inst.x);
+        yprevious = floor(player_inst.y);
+        image_xscale = player_inst.image_xscale;
+        gravity_direction = player_inst.gravity_direction;
+        x_speed = player_inst.x_speed;
+        y_speed = player_inst.y_speed;
+        layer = player_inst.layer;
         status_invin = INVIN_HURT;
         status_invin_alarm = 120;
-        underwater = player_id.underwater;
+        underwater = player_inst.underwater;
         player_set_state(player_state_air);
         player_set_animation("roll");
         player_set_physics();

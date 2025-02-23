@@ -11,9 +11,9 @@ var _speed; if (argument_count > 1) _speed = argument[1]; else _speed = 0.02;
 var _depth; if (argument_count > 2) _depth = argument[2]; else _depth = depth;
 var _color; if (argument_count > 3) _color = argument[3]; else _color = c_black;
 
-var fade_id; fade_id = instance_create(0, 0, ctrl_fade);
+var fade_inst; fade_inst = instance_create(0, 0, ctrl_fade);
 
-with (fade_id)
+with (fade_inst)
 {
     fade_target = _target;
     fade_speed = _speed;
@@ -21,4 +21,4 @@ with (fade_id)
     fade_color = _color;
 }
 
-return fade_id;
+return fade_inst;

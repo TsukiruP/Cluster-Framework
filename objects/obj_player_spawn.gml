@@ -31,7 +31,7 @@ for (i = 0; i < PLAYER_COUNT; i += 1)
             if (i == 0)
             {
                 camera = instance_create(x, y, ctrl_camera);
-                camera.focus_id = stage_get_player(i);
+                camera.focus_inst = stage_get_player(i);
             }
         }
     }

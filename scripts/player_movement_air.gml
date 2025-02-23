@@ -120,7 +120,7 @@ repeat (total_steps)
     }
 
     // Landing:
-    if (ground_id != noone)
+    if (ground_inst != noone)
     {
         // Update mask rotation:
         if (relative_angle > 45 and relative_angle < 315 and !player_rotate_mask())

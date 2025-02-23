@@ -3,10 +3,10 @@
 
 if (state_current == sonic_state_homing) exit;
 
-var homing_id_temp, homing_allow;
+var homing_inst_temp, homing_allow;
 
-homing_id_temp = homing_id;
-homing_id = noone;
+homing_inst_temp = homing_inst;
+homing_inst = noone;
 
 switch (state_current)
 {
@@ -66,8 +66,8 @@ if (!player_get_input(INP_ALT, CHECK_HELD))
 
                 if (!homing_fail)
                 {
-                    homing_id = homing_candidate;
-                    if (homing_id != homing_id_temp) audio_play_sfx("snd_reticle", true);
+                    homing_inst = homing_candidate;
+                    if (homing_inst != homing_inst_temp) audio_play_sfx("snd_reticle", true);
                     break;
                 }
             }

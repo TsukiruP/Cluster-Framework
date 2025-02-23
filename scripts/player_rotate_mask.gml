@@ -7,12 +7,12 @@ var difference; difference = angle_difference(mask_rotation, angle);
 
 // Abort if...
 if (abs(difference) <= 45 or abs(difference) >= 90) return false; // Offset is too steep or shallow
-if (collision_box(y_radius * 2, x_radius, (mask_rotation mod 180 != 0), ground_id) == noone) return false; // Rotating would make the player fall
+if (collision_box(y_radius * 2, x_radius, (mask_rotation mod 180 != 0), ground_inst) == noone) return false; // Rotating would make the player fall
 var new_rotation, new_angle, new_difference;
 
 // Calculate...
 var new_rotation; new_rotation = angle_wrap(mask_rotation + 90 * sign(difference)); // New mask rotation
-var new_angle; new_angle = player_get_angle(ground_id, new_rotation); // Ground angle from new mask rotation
+var new_angle; new_angle = player_get_angle(ground_inst, new_rotation); // Ground angle from new mask rotation
 var new_difference; new_difference = angle_difference(mask_rotation, new_angle); // Rotational offset from new mask rotation
 
 // Abort if...

@@ -4,5 +4,5 @@
 
 with (ctrl_audio)
 {
-    if (audio_bgm_isplaying()) sound_resume(bgm_id);
+    if (audio_bgm_isplaying()) sound_resume(bgm_inst);
 }

@@ -15,9 +15,9 @@ var _xspeed; _xspeed = argument[3];
 var _yspeed; _yspeed = argument[4];
 var _gravity; if (argument_count > 5) _gravity = argument[5]; else _gravity = 0;
 
-var bullet_id; bullet_id = instance_create(_x, _y, par_bullet);
+var bullet_inst; bullet_inst = instance_create(_x, _y, par_bullet);
 
-with (bullet_id)
+with (bullet_inst)
 {
     depth = other.depth;
     x_speed = _xspeed;
@@ -26,4 +26,4 @@ with (bullet_id)
     sequence_set(_sequence);
 }
 
-return bullet_id;
+return bullet_inst;

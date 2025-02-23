@@ -22,7 +22,7 @@ applies_to=self
 
 text_hide = false;
 text_clear = false;
-text_id = noone;
+text_inst = noone;
 text_alpha_rate = 0.05;
 
 body_overflow = false;
@@ -64,7 +64,7 @@ applies_to=self
 */
 /// Inputs
 
-if (!text_clear && text_id != par_overlay && log_hide && (body_alpha == 1 || subject_alpha == 1) && input_get_check(INP_START, CHECK_PRESSED))
+if (!text_clear && text_inst != par_overlay && log_hide && (body_alpha == 1 || subject_alpha == 1) && input_get_check(INP_START, CHECK_PRESSED))
 {
     text_clear = true;
 }
@@ -103,7 +103,7 @@ if (!text_clear)
 
         if (log_hide)
         {
-            if (text_id != par_overlay && input_get_check(INP_CONFIRM, CHECK_PRESSED))
+            if (text_inst != par_overlay && input_get_check(INP_CONFIRM, CHECK_PRESSED))
             {
                 if (!subject_complete && subject_string != "" && subject_alpha == 1)
                 {
@@ -256,7 +256,7 @@ if (text_clear && (!ds_list_empty(body_list) || subject_string != "") && body_al
 {
     text_hide = false;
     text_clear = false;
-    text_id = noone;
+    text_inst = noone;
 
     ds_list_clear(body_list);
     body_length = 0;

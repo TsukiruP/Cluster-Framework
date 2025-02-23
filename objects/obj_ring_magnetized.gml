@@ -35,12 +35,12 @@ if (game_ispaused())
 
 if (instance_exists(stage_get_player(0)))
 {
-    var player_id, game_speed, xx, yy;
+    var player_inst, game_speed, xx, yy;
 
     // Move towards the player:
-    player_id = stage_get_player(0);
-    xx = sign(player_id.x - x);
-    yy = sign(player_id.y - y);
+    player_inst = stage_get_player(0);
+    xx = sign(player_inst.x - x);
+    yy = sign(player_inst.y - y);
 
     game_speed = game_get_speed();
     hspeed += (xx * (0.1875 + (0.75 * (sign(hspeed) != xx))) * game_speed);
@@ -48,7 +48,7 @@ if (instance_exists(stage_get_player(0)))
     speed = min(abs(speed), 64 * game_speed) * sign(speed);
 
     // Drop a normal ring when no longer magnetized:
-    if (player_id.status_shield != SHIELD_MAGNETIC && player_id.status_shield != SHIELD_LIGHTNING)
+    if (player_inst.status_shield != SHIELD_MAGNETIC && player_inst.status_shield != SHIELD_LIGHTNING)
     {
         dropped = true;
         instance_destroy();

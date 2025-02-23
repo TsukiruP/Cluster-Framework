@@ -18,7 +18,7 @@ if (skill_slam >= SKILL_BOUND_ATTACK && !on_ground && player_get_input(INP_DOWN,
     }
 }
 else if ((((skill_homing == HOMING_ADVENTURE || skill_homing == HOMING_GENERATIONS) && player_get_input(INP_JUMP, CHECK_PRESSED)) ||
-    (skill_homing >= HOMING_UNLEASHED && player_get_input(INP_AUX, CHECK_PRESSED))) && instance_exists(homing_id))
+    (skill_homing >= HOMING_UNLEASHED && player_get_input(INP_AUX, CHECK_PRESSED))) && instance_exists(homing_inst))
 {
     return player_set_state(sonic_state_homing);
 }

@@ -12,7 +12,7 @@ border_left = 0;
 border_right = 0;
 shoot = false;
 buzzer_time = 0;
-player_id = noone;
+player_inst = noone;
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -29,13 +29,13 @@ sequence_speed = game_get_speed();
 
 if (sequence_index == sequence_buzzer_aim)
 {
-    player_id = instance_nearest(x, y, obj_player);
+    player_inst = instance_nearest(x, y, obj_player);
 
-    if (instance_exists(player_id))
+    if (instance_exists(player_inst))
     {
         var x_sign;
 
-        x_sign = sign(x - player_id.x);
+        x_sign = sign(x - player_inst.x);
         if (sign(image_xscale) != -x_sign) sequence_set(sequence_buzzer_aim_turn);
 
         if (shoot)
@@ -61,7 +61,7 @@ else if (sequence_index == sequence_buzzer_move)
 }
 else if (sequence_index == sequence_buzzer_shoot)
 {
-    if (instance_exists(player_id))
+    if (instance_exists(player_inst))
     {
         if (buzzer_time < 14)
         {
@@ -74,7 +74,7 @@ else if (sequence_index == sequence_buzzer_shoot)
 
                 bullet_x = x + 3 * image_xscale;
                 bullet_y = y + 12 * image_yscale;
-                bullet_angle = point_direction(bullet_x, bullet_y, player_id.x, player_id.y);
+                bullet_angle = point_direction(bullet_x, bullet_y, player_inst.x, player_inst.y);
                 bullet_create(bullet_x, bullet_y, sequence_buzzer_bullet, 1.6862745 * dcos(bullet_angle), 1.6862745 * -dsin(bullet_angle));
             }
         }
@@ -83,16 +83,16 @@ else if (sequence_index == sequence_buzzer_shoot)
 
 if (!shoot && (sequence_index == sequence_buzzer_aim || sequence_index == sequence_buzzer_move))
 {
-    player_id = instance_nearest(x, y, obj_player);
+    player_inst = instance_nearest(x, y, obj_player);
 
-    if (instance_exists(player_id))
+    if (instance_exists(player_inst))
     {
-        if (y <= player_id.y && y + 96 >= player_id.y)
+        if (y <= player_inst.y && y + 96 >= player_inst.y)
         {
             var x_distance, y_distance;
 
-            x_distance = x - player_id.x;
-            y_distance = player_id.y - y;
+            x_distance = x - player_inst.x;
+            y_distance = player_inst.y - y;
 
             if (sign(image_xscale) == -sign(x_distance) && abs(x_distance) < abs(y_distance) && abs(x_distance * 1.7) >= y_distance && abs(x_distance * 0.58823529) <= y_distance)
             {

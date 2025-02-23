@@ -9,9 +9,9 @@ var _room; _room = argument[0];
 var _transition; if (argument_count > 1) _transition = argument[1]; else _transition = game_get_room_transition(_room);
 var _preview; if (argument_count > 2) _preview = argument[2]; else _preview = false;
 
-var transition_id; transition_id = instance_create(0, 0, ctrl_transition);
+var transition_inst; transition_inst = instance_create(0, 0, ctrl_transition);
 
-with (transition_id)
+with (transition_inst)
 {
     preview = _preview;
     transition_index = _transition;
@@ -25,4 +25,4 @@ with (transition_id)
     }
 }
 
-return transition_id;
+return transition_inst;

@@ -24,7 +24,7 @@ var omochao_index;
 
 omochao_index = spr_omochao_idle;
 
-with (player_id)
+with (player_inst)
 {
     if (animation_previous == "omochao_end") hint_allow = true;
 
@@ -43,7 +43,7 @@ if (sprite_index != omochao_index) sprite_index = omochao_index;
 
 if (text_get_clear())
 {
-    with (player_id)
+    with (player_inst)
     {
         if (animation_previous != "omochao_end") player_set_animation("omochao_end");
     }
@@ -59,10 +59,10 @@ if (sprite_index == spr_omochao_idle)
 else
 {
     // Image index:
-    image_index = player_id.image_index;
-    image_xscale = player_id.image_xscale;
-    draw_x = floor(player_id.x);
-    draw_y = floor(player_id.y);
+    image_index = player_inst.image_index;
+    image_xscale = player_inst.image_xscale;
+    draw_x = floor(player_inst.x);
+    draw_y = floor(player_inst.y);
 }
 #define Draw_0
 /*"/*'/**//* YYD ACTION

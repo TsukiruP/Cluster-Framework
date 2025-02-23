@@ -15,9 +15,9 @@ switch (argument0)
         if (!player_movement_ground()) return false;
         if (!on_ground) return player_set_state(player_state_air);
 
-        if (instance_exists(ground_id))
+        if (instance_exists(ground_inst))
         {
-            if (!object_is_ancestor(ground_id.object_index, par_rail)) return player_set_state(player_state_run);
+            if (!object_is_ancestor(ground_inst.object_index, par_rail)) return player_set_state(player_state_run);
         }
 
         if (relative_angle >= 45 && relative_angle <= 315) input_lock_alarm = 30;

@@ -1,19 +1,19 @@
 /// player_reaction_jump_panel(obj, hitbox, side)
 /* Really stupid commitment to game accuracy. */
 
-var reaction_id, hitbox, side;
+var reaction_inst, hitbox, side;
 
-reaction_id = argument0;
+reaction_inst = argument0;
 hitbox = argument1;
 side = argument2;
 
 
 if ((hitbox & HIT_SOLID) && side == ANGLE_UP)
 {
-    image_xscale = reaction_id.image_xscale;
-    x_speed = reaction_id.force * image_xscale;
+    image_xscale = reaction_inst.image_xscale;
+    x_speed = reaction_inst.force * image_xscale;
     input_lock_alarm = 16;
-    if (ground_id != reaction_id) player_set_ground(reaction_id);
+    if (ground_inst != reaction_inst) player_set_ground(reaction_inst);
 
     if (hitbox & HIT_COLLISION)
     {

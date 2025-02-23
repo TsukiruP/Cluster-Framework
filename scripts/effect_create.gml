@@ -15,9 +15,9 @@ var _depth; if (argument_count > 3) _depth = argument[3]; else _depth = depth;
 var _xscale; if (argument_count > 4) _xscale = argument[4]; else _xscale = 1;
 var _yscale; if (argument_count > 5) _yscale = argument[5]; else _yscale = 1;
 
-var effect_id; effect_id = instance_create(floor(_x), floor(_y), par_effect);
+var effect_inst; effect_inst = instance_create(floor(_x), floor(_y), par_effect);
 
-with (effect_id)
+with (effect_inst)
 {
     depth = _depth;
     image_xscale = _xscale;
@@ -25,4 +25,4 @@ with (effect_id)
     sequence_set(_sequence);
 }
 
-return effect_id;
+return effect_inst;

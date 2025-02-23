@@ -5,4 +5,4 @@
 
 var _inst; _inst = argument0;
 
-with (ctrl_camera) focus_id = _inst;
+with (ctrl_camera) focus_inst = _inst;

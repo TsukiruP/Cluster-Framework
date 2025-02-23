@@ -1,5 +1,5 @@
-/// text_get_id()
+/// text_get_inst()
 /// @desc Returns the instance that causes special text behavior.
 /// @returns {object}
 
-with (ctrl_text) return text_id;
+with (ctrl_text) return text_inst;

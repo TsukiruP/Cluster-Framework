@@ -19,7 +19,7 @@ applies_to=self
 
 if (game_ispaused(mnu_pause)) exit;
 
-player_id.waterfall_draw = false;
+player_inst.waterfall_draw = false;
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -30,7 +30,7 @@ applies_to=self
 
 event_inherited();
 
-if (player_id.waterfall_draw != true) instance_destroy();
+if (player_inst.waterfall_draw != true) instance_destroy();
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1

@@ -37,8 +37,8 @@ pause_count[1] = 2;
 
 event_user(1);
 
-fade_id = noone;
-transition_id = noone;
+fade_inst = noone;
+transition_inst = noone;
 #define Step_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -119,7 +119,7 @@ if (input_get_check(INP_CONFIRM, CHECK_PRESSED))
                 {
                     case 1:
                     case 2:
-                        fade_id = fade_create(2, 0.02, depth);
+                        fade_inst = fade_create(2, 0.02, depth);
                         break;
                 }
 
@@ -178,27 +178,27 @@ switch (pause_mode)
     // Restart:
     case 1:
     case 2:
-        if (instance_exists(fade_id))
+        if (instance_exists(fade_inst))
         {
-            if (fade_id.fade_alpha == 2)
+            if (fade_inst.fade_alpha == 2)
             {
-                if (!instance_exists(transition_id))
+                if (!instance_exists(transition_inst))
                 {
                     with (ctrl_transition) persistent = false;
-                    transition_id = transition_create(room);
-                    transition_id.depth = depth;
-                    transition_id.pause_ignore = true;
-                    transition_id.load_skip = true;
+                    transition_inst = transition_create(room);
+                    transition_inst.depth = depth;
+                    transition_inst.pause_ignore = true;
+                    transition_inst.load_skip = true;
 
                     if (pause_mode == 2)
                     {
-                        fade_id.persistent = true;
-                        fade_id.fade_alpha = 1;
-                        fade_id.fade_target = 1;
-                        transition_id.transition_index = TRANS_FADE;
-                        transition_id.transition_state = 1;
-                        transition_id.transition_room = rm_debug;
-                        transition_id.fade_id = fade_id;
+                        fade_inst.persistent = true;
+                        fade_inst.fade_alpha = 1;
+                        fade_inst.fade_target = 1;
+                        transition_inst.transition_index = TRANS_FADE;
+                        transition_inst.transition_state = 1;
+                        transition_inst.transition_room = rm_debug;
+                        transition_inst.fade_inst = fade_inst;
                     }
 
                     audio_stop_all();

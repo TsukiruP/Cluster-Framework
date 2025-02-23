@@ -8,8 +8,8 @@ applies_to=self
 
 event_inherited();
 reaction_index = player_reaction_hint;
-player_id = noone;
-hint_id = 0;
+player_inst = noone;
+hint_index = 0;
 #define Step_1
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -20,7 +20,7 @@ applies_to=self
 
 if (game_ispaused()) exit;
 
-if (player_id != noone) player_id = noone;
+if (player_inst != noone) player_inst = noone;
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -29,9 +29,9 @@ applies_to=self
 */
 /// Hint
 
-with (player_id)
+with (player_inst)
 {
-    if (text_get_id() != other) hint_allow = true;
+    if (text_get_inst() != other) hint_allow = true;
 }
 #define Other_10
 /*"/*'/**//* YYD ACTION
@@ -41,9 +41,9 @@ applies_to=self
 */
 /// Text
 
-text_set_id(id);
+text_set_inst(id);
 
-switch (hint_id)
+switch (hint_index)
 {
     default:
         text_set_body("This message is a test!");

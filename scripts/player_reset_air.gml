@@ -10,5 +10,5 @@ angle = gravity_direction;
 relative_angle = 0;
 mask_rotation = angle;
 
-ground_id = noone;
+ground_inst = noone;
 on_ground = false;

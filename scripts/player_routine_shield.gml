@@ -10,7 +10,7 @@ switch (status_shield)
         y_speed = 0;
         audio_play_sfx("snd_shield_fire_dash", true);
         if (!input_cpu) camera_set_lag(16);
-        with (shield_id) event_user(0);
+        with (shield_inst) event_user(0);
         break;
 
     case SHIELD_LIGHTNING:
@@ -22,12 +22,12 @@ switch (status_shield)
         // Sparks:
         for (i = 0; i < 4; i += 1)
         {
-            var spark_id, spark_angle;
+            var spark_inst, spark_angle;
 
-            spark_id = effect_create(x, y, sequence_shield_lightning_spark);
+            spark_inst = effect_create(x, y, sequence_shield_lightning_spark);
             spark_angle = pick(i, ANGLE_LEFT_UP, ANGLE_RIGHT_UP, ANGLE_LEFT_DOWN, ANGLE_RIGHT_DOWN);
-            spark_id.x_speed = 2 * dcos(spark_angle);
-            spark_id.y_speed = 2 * -dsin(spark_angle);
+            spark_inst.x_speed = 2 * dcos(spark_angle);
+            spark_inst.y_speed = 2 * -dsin(spark_angle);
         }
         break;
 }

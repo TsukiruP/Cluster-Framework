@@ -24,16 +24,16 @@ switch (argument0)
         {
             death_alarm -= 1;
 
-            if (death_alarm == 0 && !input_cpu && !instance_exists(death_id))
+            if (death_alarm == 0 && !input_cpu && !instance_exists(death_inst))
             {
-                death_id = transition_create(room, TRANS_RETRY);
+                death_inst = transition_create(room, TRANS_RETRY);
             }
         }
         break;
 
     case STATE_FINISH:
-        with (death_id) instance_destroy();
-        death_id = noone;
+        with (death_inst) instance_destroy();
+        death_inst = noone;
         drown = false;
         break;
 }

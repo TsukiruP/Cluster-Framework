@@ -102,13 +102,13 @@ if (game_ispaused()) exit;
 
 if (instance_exists(stage_get_player(0)))
 {
-    var player_id;
+    var player_inst;
 
-    player_id = stage_get_player(0);
+    player_inst = stage_get_player(0);
 
-    if (player_id.status_shield == SHIELD_MAGNETIC || player_id.status_shield == SHIELD_LIGHTNING)
+    if (player_inst.status_shield == SHIELD_MAGNETIC || player_inst.status_shield == SHIELD_LIGHTNING)
     {
-        if (distance_to_object(player_id) < 64)
+        if (distance_to_object(player_inst) < 64)
         {
             magnetized = true;
             instance_destroy();

@@ -19,7 +19,7 @@ switch (argument0)
         {
             if (!player_movement_air()) return false;
             if (player_routine_land()) return true;
-            
+
             y_speed += gravity_force;
         }
 
@@ -56,7 +56,7 @@ switch (argument0)
 
         if (!on_ground)
         {
-            if (ground_id != noone) player_reset_air();
+            if (ground_inst != noone) player_reset_air();
 
             if (animation_trigger)
             {

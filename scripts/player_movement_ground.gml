@@ -2,17 +2,17 @@
 /* Performs a movement step for the player on the ground.
 Returns whether the player's current state should be aborted or not. */
 
-var ox, oy, total_steps, step, prop_id, hit_prop, obstacle_id, hit_obstacle, hit_wall, hit_floor;
+var ox, oy, total_steps, step, prop_inst, hit_prop, obstacle_inst, hit_obstacle, hit_wall, hit_floor;
 
 // Snap to moving platforms:
-if (instance_exists(ground_id))
+if (instance_exists(ground_inst))
 {
     // Initialize vectors:
-    ox = ground_id.x - ground_id.xprevious;
-    oy = ground_id.y - ground_id.yprevious;
+    ox = ground_inst.x - ground_inst.xprevious;
+    oy = ground_inst.y - ground_inst.yprevious;
 
-    if (ground_id.hspeed != 0) ox = ground_id.hspeed;
-    if (ground_id.vspeed != 0) oy = ground_id.vspeed;
+    if (ground_inst.hspeed != 0) ox = ground_inst.hspeed;
+    if (ground_inst.vspeed != 0) oy = ground_inst.vspeed;
 
     // Move:
     if (ox != 0) x += ox;

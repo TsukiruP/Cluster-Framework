@@ -12,7 +12,7 @@ border_right = 0;
 chase_range = 128;
 chase_speed = 6;
 chase_alarm = 480;
-player_id = noone;
+player_inst = noone;
 hitbox_set_hurtbox(24, 10, 30, 14);
 hitbox_set_attackbox(22, 4, 28, 8);
 sequence_init(sequence_jawz_move);
@@ -38,28 +38,28 @@ if (sequence_index == sequence_jawz_move)
     /*
     else
     {
-        player_id = instance_nearest(x, y, obj_player);
+        player_inst = instance_nearest(x, y, obj_player);
 
-        if (instance_exists(player_id))
+        if (instance_exists(player_inst))
         {
-            if (!player_id.underwater) exit;
+            if (!player_inst.underwater) exit;
 
             var chase_angle;
 
             chase_angle = image_angle;
             if (sign(image_xscale) == -1) chase_angle = angle_wrap(chase_angle + 180);
-            if (distance_to_object(player_id) < chase_range && abs(angle_difference(chase_angle, direction_to_object(player_id))) < 45) sequence_set(sequence_jawz_charge);
+            if (distance_to_object(player_inst) < chase_range && abs(angle_difference(chase_angle, direction_to_object(player_inst))) < 45) sequence_set(sequence_jawz_charge);
         }
     }
     */
 }
 else if (sequence_index == sequence_jawz_chase)
 {
-    if (instance_exists(player_id))
+    if (instance_exists(player_inst))
     {
         var chase_angle;
 
-        chase_angle = direction_to_object(player_id);
+        chase_angle = direction_to_object(player_inst);
         if (sign(image_xscale) == -1) chase_angle = angle_wrap(chase_angle - 180);
 
         image_angle = approach_angle(image_angle, chase_angle, chase_speed - 2);

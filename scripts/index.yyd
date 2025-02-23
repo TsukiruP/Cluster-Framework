@@ -382,9 +382,9 @@ debug_option_misc_reticle
 debug_option_misc_tally
 ease_in_out_back
 hud_set_hide
-text_set_id
+text_set_inst
 text_set_clear
-text_get_id
+text_get_inst
 camera_set_lag
 hud_add_item
 game_save_auto

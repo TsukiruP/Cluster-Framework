@@ -15,9 +15,9 @@ with (ctrl_audio)
     {
         if (audio_jng_isplaying())
         {
-            sound_stop(jng_id);
-            sound_discard(jng_id);
-            jng_id = -1;
+            sound_stop(jng_inst);
+            sound_discard(jng_inst);
+            jng_inst = -1;
         }
     }
 }

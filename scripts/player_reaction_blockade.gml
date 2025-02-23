@@ -1,21 +1,21 @@
 /// player_reaction_blockade(obj, hitbox, side)
 /* Break it with your face. */
 
-var reaction_id, hitbox, side;
+var reaction_inst, hitbox, side;
 
-reaction_id = argument0;
+reaction_inst = argument0;
 hitbox = argument1;
 side = argument2;
 
 if (hitbox & HIT_ATTACK)
 {
-    if (((side == ANGLE_LEFT || side == ANGLE_RIGHT) && reaction_id.variant == 0) ||
-        ((side == ANGLE_UP || side == ANGLE_DOWN) && reaction_id.variant == 1 && sign(y_speed) == dsin(side)))
+    if (((side == ANGLE_LEFT || side == ANGLE_RIGHT) && reaction_inst.variant == 0) ||
+        ((side == ANGLE_UP || side == ANGLE_DOWN) && reaction_inst.variant == 1 && sign(y_speed) == dsin(side)))
     {
         if (y_speed < 0 && side == ANGLE_DOWN) mask_rotation = angle_wrap(mask_rotation + 180);
-        if (side == ANGLE_UP || side == ANGLE_DOWN) player_set_ground(reaction_id);
+        if (side == ANGLE_UP || side == ANGLE_DOWN) player_set_ground(reaction_inst);
 
-        player_wall_eject(reaction_id);
+        player_wall_eject(reaction_inst);
         player_reset_air();
         player_set_state(player_state_jump, false);
         player_set_animation("spin_flight", 0);
@@ -24,21 +24,21 @@ if (hitbox & HIT_ATTACK)
         x_speed = -2 * esign(x_speed, -dcos(side));
         y_speed = -2 * esign(y_speed, 1);
 
-        reaction_id.vitality -= 1;
+        reaction_inst.vitality -= 1;
 
-        if (reaction_id.vitality == 0)
+        if (reaction_inst.vitality == 0)
         {
-            with (reaction_id)
+            with (reaction_inst)
             {
                 var i;
 
                 for (i = 0; i < 6; i += 1)
                 {
-                    var debris_id;
+                    var debris_inst;
 
-                    debris_id = effect_create(x, y, sequence_blockade_debris);
-                    debris_id.x_speed = 4 * dcos(ANGLE_DOWN + irandom_range(-45, 45));
-                    debris_id.y_speed = 4 * -dsin(ANGLE_DOWN + irandom_range(-45, 45));
+                    debris_inst = effect_create(x, y, sequence_blockade_debris);
+                    debris_inst.x_speed = 4 * dcos(ANGLE_DOWN + irandom_range(-45, 45));
+                    debris_inst.y_speed = 4 * -dsin(ANGLE_DOWN + irandom_range(-45, 45));
                 }
 
                 instance_destroy();

@@ -8,7 +8,7 @@ applies_to=self
 
 event_inherited();
 sequence_set(pick(game_get_config("misc_reticle") == 2, sequence_reticle, sequence_reticle_colors));
-homing_id = noone;
+homing_inst = noone;
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -19,8 +19,8 @@ applies_to=self
 
 event_inherited();
 
-homing_id = player_id.homing_id;
-if (!instance_exists(homing_id)) instance_destroy();
+homing_inst = player_inst.homing_inst;
+if (!instance_exists(homing_inst)) instance_destroy();
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -31,7 +31,7 @@ applies_to=self
 
 var draw_x, draw_y;
 
-draw_x = floor(homing_id.x);
-draw_y = floor(homing_id.y);
+draw_x = floor(homing_inst.x);
+draw_y = floor(homing_inst.y);
 
 if (sprite_exists(sprite_index)) draw_sprite(sprite_index, image_index, draw_x, draw_y);

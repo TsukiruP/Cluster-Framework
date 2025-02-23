@@ -6,8 +6,8 @@ with (ctrl_audio)
 {
     if (audio_drown_isplaying())
     {
-        sound_stop(drown_id);
-        sound_discard(drown_id);
-        drown_id = -1;
+        sound_stop(drown_inst);
+        sound_discard(drown_inst);
+        drown_inst = -1;
     }
 }

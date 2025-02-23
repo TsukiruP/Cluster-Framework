@@ -5,9 +5,9 @@
 
 var _index; if (argument_count > 0) _index = argument[0]; else _index = player_index;
 
-var player_id; player_id = stage_get_player(_index);
+var player_inst; player_inst = stage_get_player(_index);
 
-switch (player_id.mask_rotation)
+switch (player_inst.mask_rotation)
 {
     // Down:
     case 0:

@@ -31,7 +31,7 @@ sound_set_loop("bgm_basic_test_1", 1024258, 5121290, unit_samples);
 
 sound_kind_volume(1, game_get_config("audio_bgm") / 100);
 
-bgm_id = -1;
+bgm_inst = -1;
 fade_out = false;
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -44,8 +44,8 @@ sound_add_directory("data\audio\jng", ".ogg", 3, true);
 
 sound_kind_volume(3, game_get_config("audio_bgm") / 100);
 
-jng_id = -1;
-drown_id = -1;
+jng_inst = -1;
+drown_inst = -1;
 #define Step_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -92,7 +92,7 @@ if (fade_out)
     audio_fade_bgm(true);
     audio_fade_jng(true);
     audio_drown_fade(true);
-    if (bgm_id == -1 && !audio_jng_isplaying()) fade_out = false;
+    if (bgm_inst == -1 && !audio_jng_isplaying()) fade_out = false;
 }
 else
 {
