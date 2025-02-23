@@ -1,10 +1,11 @@
-/// player_inbounds([id])
-/* Returns whether the player is inside the camera boundaries. This is usually the room boundaries. */
+/// player_inbounds([index])
+/// @desc Returns whether the player instance is inside the camera boundaries. This is usually the room boundaries.
+/// @param {int} [index]
+/// @returns {bool}
 
-var player_id;
+var _index; if (argument_count > 0) _index = argument[0]; else _index = player_index;
 
-player_id = id;
-if (argument_count > 0) player_id = stage_get_player(argument[0]);
+var player_id; player_id = stage_get_player(_index);
 
 switch (player_id.mask_rotation)
 {
@@ -129,5 +130,4 @@ switch (player_id.mask_rotation)
         break;
 }
 
-// Success:
 return true;

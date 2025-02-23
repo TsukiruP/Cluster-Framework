@@ -1,5 +1,6 @@
 /// player_animation_jump()
-/* Sets the jump animation. */
+/// @desc Sets the animation for jumping.
+/// @returns {void}
 
 switch (character_index)
 {
@@ -17,9 +18,7 @@ switch (character_index)
                     break
 
                 default:
-                    var solid_id;
-
-                    solid_id = collision_box_vertical(x_radius, y_radius + 32, mask_rotation, par_solid);
+                    var solid_id; solid_id = collision_box_vertical(x_radius, y_radius + 32, mask_rotation, par_solid);
 
                     if (solid_id)
                     {

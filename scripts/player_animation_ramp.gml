@@ -1,5 +1,6 @@
 /// player_animation_ramp()
-/* Sets the ramp animation. */
+/// @desc Sets the animation for being launched by a ramp.
+/// @returns {void}
 
 switch (character_index)
 {

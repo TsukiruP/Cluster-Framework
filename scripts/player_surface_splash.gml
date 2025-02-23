@@ -1,13 +1,9 @@
 /// player_surface_splash()
-/* Shorthand for the splash made for jumping and landing on the water's surface. */
+/// @desc Creates a splash effect for jumping and landing on a water surface.
+/// @returns {void}
 
 if (underwater) exit;
 
-var surface_id;
+var surface_id; surface_id = collision_point(x, floor(y) + y_radius + 1, obj_water_mask, false, false);
 
-surface_id = collision_point(x, floor(y) + y_radius + 1, obj_water_mask, false, false);
-
-if (on_ground && surface_id != noone)
-{
-    effect_create(x, surface_id.y, sequence_splash_3, depth, image_xscale);
-}
+if (on_ground && surface_id != noone) effect_create(x, surface_id.y, sequence_splash_3, depth, image_xscale);

@@ -1,5 +1,5 @@
 /// collision_ray(ox, oy, rot, obj)
-/// @desc Returns the id of the given instance that is in collision with a line of length {ox * 2} and height {oy} from the calling instance's center point, or noone on failure.
+/// @desc Returns the id of the given object that is in collision with a line of length {ox * 2} and height {oy} from the calling instance's center point, or noone on failure.
 /// @param {number} ox
 /// @param {number} oy
 /// @param {number} rot

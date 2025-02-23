@@ -1,9 +1,8 @@
 /// player_cpu_respawn()
-/* Respawns the CPU. */
+/// @desc CPU respawns at player 0.
+/// @returns {void}
 
-var player_id;
-
-player_id = stage_get_player(0);
+var player_id; player_id = stage_get_player(0);
 
 if (instance_exists(player_id))
 {

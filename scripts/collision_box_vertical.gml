@@ -1,5 +1,5 @@
 /// collision_box_vertical(ox, oy, rot, obj)
-/// @desc Returns the id of the given instance that is in collision with a rectangle of size {ox * 2, oy} centered on the calling instance, or noone on failure. This rectangle rotates with its top edge centered against the calling instance's center point.
+/// @desc Returns the id of the given object that is in collision with a rectangle of size {ox * 2, oy} centered on the calling instance, or noone on failure. This rectangle rotates with its top edge centered against the calling instance's center point.
 /// @param {number} ox
 /// @param {number} oy
 /// @param {number} rot

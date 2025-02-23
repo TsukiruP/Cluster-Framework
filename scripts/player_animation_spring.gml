@@ -1,5 +1,6 @@
 /// player_animation_spring()
-/* Sets the spring animation. */
+/// @desc Sets the animation for being launched by a spring.
+/// @returns {void}
 
 switch (character_index)
 {

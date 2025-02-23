@@ -1,10 +1,8 @@
 /// player_animation_core()
-/* Executes the player's animation.
-Snaps the player to the ground should there be a change in y radius. */
+/// @desc Player animation system.
+/// @returns {void}
 
-var y_radius_temp;
-
-y_radius_temp = y_radius;
+var y_radius_temp; y_radius_temp = y_radius;
 
 sequence_speed = player_get_animation_speed();
 animation_variant = player_get_animation_variant();

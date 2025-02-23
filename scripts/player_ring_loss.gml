@@ -1,13 +1,12 @@
 /// player_ring_loss()
-/* Drop a ring of rings. */
+/// @desc Drop a ring of rings.
+/// @returns {void}
 
-var ring_total, ring_angle, ring_speed, ring_id;
+var ring_count; ring_count = min(stage_get_rings(), 32);
+var ring_angle; ring_angle = 101.25;
+var ring_speed; ring_speed = 4;
 
-ring_total = min(stage_get_rings(), 32);
-ring_angle = 101.25;
-ring_speed = 4;
-
-while (ring_total)
+while (ring_count)
 {
     ring_id = instance_create(x, y, obj_ring);
     ring_id.life_alarm = 256;
@@ -15,15 +14,15 @@ while (ring_total)
     ring_id.y_speed = ring_speed * -dsin(round(ring_angle));
     ring_id.dropped = true;
 
-    if (ring_total mod 2 != 0)
+    if (ring_count mod 2 != 0)
     {
         ring_angle += 22.5;
         ring_id.x_speed *= -1;
     }
 
-    ring_total -= 1;
+    ring_count -= 1;
 
-    if (ring_total == 16)
+    if (ring_count == 16)
     {
         ring_speed = 2;
         ring_angle = 101.25;

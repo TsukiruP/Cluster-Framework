@@ -1,41 +1,38 @@
-/// player_react(obj, [hitbox, side])
-/* Executes the reaction script of the given instance. */
+/// player_react(inst, [hitbox], [side])
+/// @desc Executes the reaction index of the given instance.
+/// @param {object} inst
+/// @param [hitbox]
+/// @param {number} [side]
+/// @returns {bool}
 
-var reaction_id, reaction, hitbox;
+var _inst; _inst = argument[0];
+var _hitbox; if (argument_count > 1) _hitbox = argument[1]; else _hitbox = 0;
+var _side; if (argument_count > 2) _side = argument[2]; else _side = angle_wrap(round(point_direction(_inst.x, _inst.y, x, y) / ANGLE_UP) * ANGLE_UP);;
 
-reaction_id = argument0;
-reaction = reaction_id.reaction_index;
+_hitbox |= player_get_hitbox(_inst);
 
-if (script_exists(reaction))
+var reaction_index; reaction_index = _inst.reaction_index;
+
+if (script_exists(reaction_index))
 {
-    var x_speed_temp, y_speed_temp;
+    var x_speed_temp; x_speed_temp = x_speed;
+    var y_speed_temp; y_speed_temp = y_speed;
 
-    x_speed_temp = x_speed;
-    y_speed_temp = y_speed;
-
-    hitbox = player_get_hitbox(reaction_id);
-    if (argument_count > 1) hitbox |= argument[1];
-
-    if (object_is_ancestor(reaction_id.object_index, par_solid))
+    if (object_is_ancestor(_inst.object_index, par_solid))
     {
-        var side;
-
-        side = angle_wrap(round(point_direction(reaction_id.x, reaction_id.y, x, y) / ANGLE_UP) * ANGLE_UP);
-        if (argument_count > 2) side = argument[2];
-
-        if (!reaction_id.reaction_mask || (reaction_id.reaction_mask && (hitbox & HIT_SOLID)))
+        if (!_inst.reaction_mask || (_inst.reaction_mask && (_hitbox & HIT_SOLID)))
         {
-            script_execute(reaction, reaction_id, hitbox, side);
+            script_execute(reaction_index, _inst, _hitbox, _side);
         }
     }
-    else script_execute(reaction, reaction_id, hitbox);
+    else script_execute(reaction_index, _inst, _hitbox);
 
-    if (ds_list_find_index(solid_list, reaction_id) != -1)
+    if (ds_list_find_index(solid_list, _inst) != -1)
     {
-        if (x_speed_temp != x_speed || y_speed_temp != y_speed || !instance_exists(reaction_id)) return true;
+        if (x_speed_temp != x_speed || y_speed_temp != y_speed || !_inst.collision || !instance_exists(_inst)) return true;
     }
 
-    if (state_changed == true) return true;
+    return state_changed;
 }
 
 return false;

@@ -1,5 +1,5 @@
 /// collision_box(ox, oy, invert, obj)
-/// @desc Returns the id of the given instance that is in collision with a rectangle of size {ox * 2, oy * 2} centered on the calling instance, or noone on failure.
+/// @desc Returns the id of the given object that is in collision with a rectangle of size {ox * 2, oy * 2} centered on the calling instance, or noone on failure.
 /// @param {number} ox
 /// @param {number} oy
 /// @param {bool} invert

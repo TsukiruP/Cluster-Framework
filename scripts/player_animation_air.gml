@@ -1,5 +1,6 @@
 /// player_animation_air()
-/* Sets the air animation. */
+/// @desc Sets the animation for being airborne.
+/// @returns {void}
 
 switch (character_index)
 {

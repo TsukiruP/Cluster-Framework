@@ -1,5 +1,6 @@
 /// player_animation_fix()
-/* Sets the current animation to avoid loading an animation that doesn't exist. */
+/// @desc Workaround for missing animations.
+/// @returns {void}
 
 switch (character_index)
 {
