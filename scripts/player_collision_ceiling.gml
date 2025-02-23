@@ -5,8 +5,6 @@
 
 var _radius; _radius = argument0;
 
-var inst;
-
 // Scan rectangle within radius:
 for ({var oy; oy = 0}; oy < _radius; oy += 1)
 {
@@ -14,7 +12,7 @@ for ({var oy; oy = 0}; oy < _radius; oy += 1)
     for ({var n; n = ds_list_size(solid_list) - 1}; n > -1; n -= 1)
     {
         // Get the current solid:
-        inst = ds_list_find_value(solid_list, n);
+        var inst; inst = ds_list_find_value(solid_list, n);
 
         // Continue if not colliding with/passing through the current solid:
         if (collision_box_vertical(x_radius, -oy, mask_rotation, inst) == noone || inst.semisolid) continue;

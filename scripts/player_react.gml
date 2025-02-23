@@ -1,5 +1,5 @@
 /// player_react(inst, [hitbox], [side])
-/// @desc Executes the reaction index of the given instance.
+/// @desc Returns whether the player's current state should be aborted or not after performing a reaction.
 /// @param {object} inst
 /// @param [hitbox]
 /// @param {number} [side]

@@ -8,7 +8,8 @@ var ring_speed; ring_speed = 4;
 
 while (ring_count)
 {
-    ring_inst = instance_create(x, y, obj_ring);
+    var ring_inst; ring_inst = instance_create(x, y, obj_ring);
+    
     ring_inst.life_alarm = 256;
     ring_inst.x_speed = ring_speed * dcos(round(ring_angle));
     ring_inst.y_speed = ring_speed * -dsin(round(ring_angle));
