@@ -19,8 +19,8 @@ repeat (instance_number(_obj))
 {
     var inst; inst = instance_nth_nearest(_x, _y, _obj, _n);
 
-    if (distance_to_obj(inst) > _dist || !instance_exists(inst)) break;
-    inst_dir = dcos(round(direction_to_obj(inst) / ANGLE_LEFT) * ANGLE_LEFT);
+    if (distance_to_object(inst) > _dist || !instance_exists(inst)) break;
+    inst_dir = dcos(round(direction_to_object(inst) / ANGLE_LEFT) * ANGLE_LEFT);
     if (inst_dir == _dir) return inst;
     _n += 1;
 }
