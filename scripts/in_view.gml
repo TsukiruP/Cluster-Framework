@@ -5,7 +5,4 @@
 
 var _inst; if (argument_count > 0) _inst = argument[0]; else _inst = id;
 
-with (_inst)
-{
-    return ((bbox_right > view_xview[view_current]) && (bbox_left < view_xview[view_current] + view_wview[view_current]) && (bbox_bottom > view_yview[view_current]) && (bbox_top < view_yview[view_current] + view_hview[view_current]));
-}
+with (_inst) return point_in_rectangle(x, y, view_xview[view_current], view_yview[view_current], view_xview[view_current] + screen_get_width(), view_yview[view_current] + screen_get_height());

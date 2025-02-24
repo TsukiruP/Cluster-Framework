@@ -1,20 +1,95 @@
-/// player_get_angle(inst, rot)
+/// player_get_angle(obj, rot)
 /// @desc  Calculates the angle of the given solid using its image && collision data.
-/// @param {object} inst
+/// @param {object} obj
 /// @param {number} rot
 /// @returns {number}
 
-var _inst; _inst = argument0;
+var _obj; _obj = argument0;
 var _rot; _rot = argument1;
 
-var xscale; xscale = sign(_inst.image_xscale);
-var yscale; yscale = sign(_inst.image_yscale);
-var left; left = _inst.bbox_left;
-var right; right = _inst.bbox_right + 1;
-var top; top = _inst.bbox_top;
-var bottom; bottom = _inst.bbox_bottom + 1;
-var kind; kind = _inst.shape;
-var temp_radius; temp_radius = 8;
+var x1, y1, x2, y2;
+
+with (_obj)
+{
+    var kind; kind = shape;
+    var normal; normal = surface_angle;
+    var xscale; xscale = sign(image_xscale);
+    var yscale; yscale = sign(image_yscale);
+    var left_side; left_side = bbox_left;
+    var right_side; right_side = bbox_right + 1;
+    var top_side; top_side = bbox_top;
+    var bottom_side; bottom_side = bbox_bottom + 1;
+}
+
+/// Undefined shape:
+if (kind == SHAPE_UNDEFINED)
+{
+    var x_int; x_int = floor(x);
+    var y_int; y_int = floor(y);
+    var sine; sine = dsin(_rot);
+    var csine; csine = dcos(_rot);
+    
+    x1 = x_int - (csine * x_radius) + (sine * y_radius);
+    y1 = y_int + (sine * x_radius) + (csine * y_radius);
+    x2 = x_int + (csine * x_radius) + (sine * y_radius);
+    y2 = y_int - (sine * x_radius) + (csine * y_radius);
+    
+    var height; height = (y_radius * 2) + 1;
+    var left; left = false;
+    var right; right = false;
+    
+    /* AUTHOR NOTE: the height used to push the sensors down is dependent on that used to record instances local to the player in the "player_get_stage_objects" function.
+    Currently, the maximum height sits at triple the player's vertical radius, plus 1 (same as SonicForGMS.) The sensors initially set at the player's feet and then get pushed down
+    a number of times equal to double the player's vertical radius, plus 1.
+    If you want to change the height at which the sensors are pushed, you must make sure it matches that in the "player_get_stage_objects" function. */
+
+    // Push sensors downward until they have found the solid
+    repeat (height)
+    {
+        if (!left)
+        {
+            if (collision_point(x1, y1, _obj, true, false) == noone)
+            {
+                x1 += sine;
+                y1 += csine;
+            }
+            else left = true;
+        }
+        
+        if (!right)
+        {
+            if (collision_point(x2, y2, _obj, true, false) == noone)
+            {
+                x2 += sine;
+                y2 += csine;
+            }
+            else right = true;
+        }
+        
+        if (left && right) return (point_direction(x1, y1, x2, y2) div 1);
+    }
+}
+else if (!(kind == SHAPE_RECTANGLE && normal == -1))
+{
+    if ((_rot == 0 && yscale == -1) || (_rot == 90 && xscale == -1) ||
+        (_rot == 180 && yscale == 1) || (_rot == 270 && xscale == 1)) return _rot;
+    
+    if (_rot mod 180 != 0)
+    {
+        if (yscale == -1 && y - x_radius < top_side) return _rot;
+        if (yscale == 1 && y + x_radius > bottom_side) return _rot;
+    }
+}
+
+/*
+var xscale = sign(_inst.image_xscale);
+var yscale = sign(_inst.image_yscale);
+var left = _inst.bbox_left;
+var right = _inst.bbox_right + 1;
+var top = _inst.bbox_top;
+var bottom = _inst.bbox_bottom + 1;
+var kind = _inst.shape;
+var temp_radius = 8;
 
 // Default if...
 if (kind != SHAPE_UNDEFINED)
@@ -101,7 +176,7 @@ switch (kind)
         y2 = y + (temp_radius * yscale * (_rot mod 180 != 0));
 
         // Calculate curve angle:
-        var dir; dir = point_direction(x1, y1, x2, y2);
+        var dir = point_direction(x1, y1, x2, y2);
 
         if (kind == SHAPE_CONVEX) dir = point_direction(x2, y2, x1, y1);
         return angle_wrap(round(dir) + 90);
@@ -111,20 +186,20 @@ switch (kind)
     // Undefined solid shape:
     case SHAPE_UNDEFINED:
     {
-        var max_dist; max_dist = y_radius * 4;
+        var max_dist = y_radius * 4;
 
         // Ignore if not within the solid's bounds
         if (collision_ray_vertical(-temp_radius, max_dist, _rot, _inst) != noone and
             collision_ray_vertical(temp_radius, max_dist, _rot, _inst) != noone)
         {
-            var dir; dir = floor(angle / 10) * 10;
-            var dist1; dist1 = -1;
-            var dist2; dist2 = -1;
+            var dir = floor(angle / 10) * 10;
+            var dist1 = -1;
+            var dist2 = -1;
             
             if (y_speed < 0) dir = _rot;
             
             // Scan below feet
-            for ({var oy; oy = y_radius}; oy < max_dist; oy += 1)
+            for (var oy = y_radius; oy < max_dist; oy += 1)
             {
                 // Check if the sensors are touching the solid
                 if (dist1 < 0 and collision_ray_vertical(-temp_radius, oy, dir, _inst) != noone)
@@ -139,15 +214,15 @@ switch (kind)
                 // Calculate angle between sensors, if they have touched the solid
                 if (dist1 > -1 and dist2 > -1)
                 {
-                    var x_int; x_int = floor(x);
-                    var y_int; y_int = floor(y);
-                    var sine; sine = dsin(dir);
-                    var csine; csine = dcos(dir);
+                    var x_int = floor(x);
+                    var y_int = floor(y);
+                    var sine = dsin(dir);
+                    var csine = dcos(dir);
                     
-                    var x1; x1 = x_int - (csine * temp_radius) + (sine * dist1);
-                    var y1; y1 = y_int + (sine * temp_radius) + (csine * dist1);
-                    var x2; x2 = x_int + (csine * temp_radius) + (sine * dist2);
-                    var y2; y2 = y_int - (sine * temp_radius) + (csine * dist2);
+                    var x1 = x_int - (csine * temp_radius) + (sine * dist1);
+                    var y1 = y_int + (sine * temp_radius) + (csine * dist1);
+                    var x2 = x_int + (csine * temp_radius) + (sine * dist2);
+                    var y2 = y_int - (sine * temp_radius) + (csine * dist2);
                     
                     return angle_wrap(round(point_direction(x1, y1, x2, y2)));
                 }
@@ -212,7 +287,7 @@ switch (kind)
             {
                 return angle_wrap(round(point_direction(x1, y1, x2, y2)));
             }
-        }*/
+        }
         break;
     }
 }

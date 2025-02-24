@@ -1,13 +1,13 @@
-/// collision_ray(ox, oy, rot, obj)
-/// @desc Returns the id of the given object that is in collision with a line of length {ox * 2} and height {oy} from the calling instance's center point, or noone on failure.
-/// @param {number} ox
-/// @param {number} oy
+/// collision_ray(xrad, yoff, rot, obj)
+/// @desc Checks if the given instance intersects a line from the calling instance's center point.
+/// @param {number} xrad
+/// @param {number} yoff
 /// @param {number} rot
 /// @param {object} obj
 /// @returns {object}
 
-var _ox; _ox = argument0;
-var _oy; _oy = argument1;
+var _xrad; _xrad = argument0;
+var _yoff; _yoff = argument1;
 var _rot; _rot = argument2;
 var _obj; _obj = argument3;
 
@@ -16,9 +16,9 @@ var y_int; y_int = floor(y);
 var sine; sine = dsin(_rot);
 var csine; csine = dcos(_rot);
 
-var x1; x1 = x_int - (csine * _ox) + (sine * _oy);
-var y1; y1 = y_int + (sine * _ox) + (csine * _oy);
-var x2; x2 = x_int + (csine * _ox) + (sine * _oy);
-var y2; y2 = y_int - (sine * _ox) + (csine * _oy);
+var x1; x1 = x_int - (csine * _xrad) + (sine * _yoff);
+var y1; y1 = y_int + (sine * _xrad) + (csine * _yoff);
+var x2; x2 = x_int + (csine * _xrad) + (sine * _yoff);
+var y2; y2 = y_int - (sine * _xrad) + (csine * _yoff);
 
-return collision_line(x1, y1, x2, y2, _obj, true, true);
+return collision_line(x1, y1, x2, y2, _obj, true, false);
