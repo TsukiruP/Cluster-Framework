@@ -1,5 +1,6 @@
 /// player_reset_spring()
-/* Resets the player's spring variables. */
+/// @desc Resets the player's spring variables.
+/// @returns {void}
 
 homing_inst = noone;
 spring_inst = noone;

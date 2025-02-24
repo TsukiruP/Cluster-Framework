@@ -1,5 +1,10 @@
 /// player_get_animation(animation, variant)
-/* Returns a sequence based on the given animation and variant.
-Defaults to a character's first animation if it is not able to be found. */
+/// @desc Returns a sequence from the animation grid.
+/// @param {string} animation
+/// @param {int} variant
+/// @returns {script}
 
-return animation_get(character_index, argument0, argument1);
+var _animation; _animation = argument0;
+var _variant; _variant = argument1;
+
+return animation_get(character_index, _animation, _variant);

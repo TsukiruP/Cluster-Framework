@@ -1,6 +1,6 @@
 /// sonic_skill_ground()
 /// @desc Performs Sonic's ground skill.
-/// @returns Returns whether a ground skill has been called.
+/// @returns {bool} Returns whether a ground skill has been called.
 
 if (on_ground && player_get_input(INP_AUX, CHECK_PRESSED))
 {

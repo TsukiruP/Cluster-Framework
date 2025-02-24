@@ -50,10 +50,7 @@ else
             audio_play_sfx("snd_clock_up");
             audio_pause_bgm();
         }
-        else
-        {
-            classic_trait_clock_up(true);
-        }
+        else classic_trait_clock_up(true);
 
         clock_up_alarm = 60;
     }

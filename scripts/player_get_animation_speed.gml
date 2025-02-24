@@ -1,5 +1,6 @@
 /// player_get_animation_speed()
-/* Returns animation speed. */
+/// @desc Sets the animation speed.
+/// @returns {void}
 
 switch (character_index)
 {

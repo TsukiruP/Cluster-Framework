@@ -1,6 +1,6 @@
 /// player_rotate_mask()
-/// @desc Rotates the player's mask along uneven ground. Returns whether this was successful or not.
-/// @returns {bool}
+/// @desc Rotates the player's mask along uneven ground.
+/// @returns {bool} Returns whether rotation was successful or not.
 
 // Calculate rotational offset between angle and mask rotation:
 var difference; difference = angle_difference(mask_rotation, angle);
@@ -8,7 +8,6 @@ var difference; difference = angle_difference(mask_rotation, angle);
 // Abort if...
 if (abs(difference) <= 45 or abs(difference) >= 90) return false; // Offset is too steep or shallow
 if (collision_box(y_radius * 2, x_radius, (mask_rotation mod 180 != 0), ground_inst) == noone) return false; // Rotating would make the player fall
-var new_rotation, new_angle, new_difference;
 
 // Calculate...
 var new_rotation; new_rotation = angle_wrap(mask_rotation + 90 * sign(difference)); // New mask rotation

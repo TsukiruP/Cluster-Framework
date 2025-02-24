@@ -1,6 +1,6 @@
 /// sonic_skill_slam()
 /// @desc Performs Sonic's slam skill.
-/// @returns Returns whether a slam skill has been called.
+/// @returns {bool} Returns whether a slam skill has been called.
 
 if (!on_ground && player_get_input(INP_DOWN, CHECK_HELD) && player_get_input(INP_AUX, CHECK_PRESSED))
 {

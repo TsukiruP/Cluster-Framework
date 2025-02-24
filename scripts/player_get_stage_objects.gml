@@ -1,24 +1,22 @@
 /// player_get_stage_objects()
-/* Refreshes the lists of interactable and solid objects. */
+/// @desc Refreshes the list of interactable and solid objects.
+/// @returns {void}
 
-var player, x_int, y_int, sine, csine, x1, y1, x2, y2, hitbox;
+var hitbox; hitbox = 0;
+var player; player = id;
+var x_int; x_int = floor(x);
+var y_int; y_int = floor(y);
+var sine; sine = dsin(mask_rotation);
+var csine; csine = dcos(mask_rotation);
+
+var x1; x1 = x_int - (csine * wall_radius * 2) - (sine * y_radius * 2);
+var y1; y1 = y_int + (sine * wall_radius * 2) - (csine * y_radius * 2);
+var x2; x2 = x_int + (csine * wall_radius * 2) + (sine * y_radius * 2);
+var y2; y2 = y_int - (sine * wall_radius * 2) + (csine * y_radius * 2);
 
 // Reset lists:
 ds_list_clear(reaction_list);
 ds_list_clear(solid_list);
-
-// Initialize bounding rectangle:
-player = id;
-
-x_int = floor(x);
-y_int = floor(y);
-sine = dsin(mask_rotation);
-csine = dcos(mask_rotation);
-
-x1 = x_int - (csine * wall_radius * 2) - (sine * y_radius * 2);
-y1 = y_int + (sine * wall_radius * 2) - (csine * y_radius * 2);
-x2 = x_int + (csine * wall_radius * 2) + (sine * y_radius * 2);
-y2 = y_int - (sine * wall_radius * 2) + (csine * y_radius * 2);
 
 // Evaluate all stage objects:
 with (par_culled)

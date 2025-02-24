@@ -1,5 +1,6 @@
 /// player_set_physics()
-/* Sets the player's physics values depending on the current physics state. */
+/// @desc Sets the player's physics.
+/// @returns {void}
 
 top_speed = 6;
 acceleration = 0.046875;

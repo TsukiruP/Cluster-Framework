@@ -59,15 +59,12 @@ switch (_phase)
                 }
             }
         }
-        else
+        else if (drop_dash_alarm == 0)
         {
-            if (drop_dash_alarm == 0)
-            {
-                animation_skip = true;
-                return player_set_state(player_state_jump, false);
-            }
-            else return player_set_state(state_previous, false)
+            animation_skip = true;
+            return player_set_state(player_state_jump, false);
         }
+        else return player_set_state(state_previous, false);
 
         if (game_save_get_skill(character_index, "slam") == SKILL_BOUND_ATTACK && drop_dash_alarm == 0 && player_get_input(INP_DOWN, CHECK_HELD) && player_get_input(INP_AUX, CHECK_PRESSED))
         {

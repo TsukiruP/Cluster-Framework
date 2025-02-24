@@ -1,6 +1,6 @@
 /// input_queue_enqueue(queue, val)
 /// @desc Queues a value into the input queue.
-/// @param {queue} queue
+/// @param {int} queue
 /// @param {any} val
 /// @returns {void}
 

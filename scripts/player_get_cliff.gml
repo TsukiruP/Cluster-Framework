@@ -1,22 +1,21 @@
 /// player_get_cliff()
-/* I'm hanging on to the other side... */
-
-var total_solids, left, right, center, n, inst;
+/// @desc Sets the cliff direction.
+/// @returns {int}
 
 // Reset direction:
 cliff_direction = 0;
 
-total_solids = ds_list_size(solid_list);
+var total_solids; total_solids = ds_list_size(solid_list);
 
-left = noone;
-right = noone;
-center = noone;
+var left; left = noone;
+var right; right = noone;
+var center; center = noone;
 
 // Evaluate all solids:
-for (n = 0; n < total_solids; n += 1)
+for ({var n; n = 0}; n < total_solids; n += 1)
 {
     // Get the current solid:
-    inst = ds_list_find_value(solid_list, n);
+    var inst; inst = ds_list_find_value(solid_list, n);
 
     // Check sensors
     if (collision_ray_vertical(-x_radius, y_radius * 2, mask_rotation, inst) != noone)

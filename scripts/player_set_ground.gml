@@ -1,10 +1,12 @@
-/// player_set_ground(obj)
-/* Assigns the given solid as the player's current ground. */
+/// player_set_ground(inst)
+/// @desc Sets the player's ground instance.
+/// @param {object} inst
+/// @returns {void}
 
-var sine, csine;
+var _inst; _inst = argument0;
 
 // Confirm assignment
-ground_inst = argument0;
+ground_inst = _inst;
 on_ground = true;
 player_reset_skill();
 
@@ -12,8 +14,8 @@ player_reset_skill();
 angle = player_get_angle(ground_inst, mask_rotation);
 relative_angle = angle_wrap(angle - gravity_direction);
 
-sine = dsin(mask_rotation);
-csine = dcos(mask_rotation);
+var sine; sine = dsin(mask_rotation);
+var csine; csine = dcos(mask_rotation);
 
 // Rise up while inside
 repeat (y_radius * 2)

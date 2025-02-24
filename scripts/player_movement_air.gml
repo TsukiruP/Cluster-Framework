@@ -103,12 +103,10 @@ repeat (total_steps)
             if (y_speed > ceiling_land_threshold || (relative_angle > 135 && relative_angle < 225))
             {
                 // Slide against ceiling:
-                var sine, csine, g_speed;
-
-                sine = dsin(relative_angle);
-                csine = dcos(relative_angle);
-
-                g_speed = (csine * x_speed) - (sine * y_speed);
+                var sine; sine = dsin(relative_angle);
+                var csine; csine = dcos(relative_angle);
+                var g_speed; g_speed = (csine * x_speed) - (sine * y_speed);
+                
                 x_speed = csine * g_speed;
                 y_speed = -(sine * g_speed);
 

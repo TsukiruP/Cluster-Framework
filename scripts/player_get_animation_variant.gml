@@ -1,5 +1,6 @@
 /// player_get_animation_variant()
-/* Updates animation variant. */
+/// @desc Sets animation variant.
+/// @returns {void}
 
 switch (animation_current)
 {

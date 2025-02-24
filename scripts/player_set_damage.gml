@@ -1,12 +1,14 @@
-/// player_set_damage(obj)
-/* Sets whether the player gets hurt or dies. Setting obj to the player is instant death. */
+/// player_set_damage(inst)
+/// @desc Sets the player state to being hurt or dying. Setting the inst to the player is instant death.
+/// @param {object} inst
+/// @returns {void}
+
+var _inst; _inst = argument0;
 
 if (state_current == player_state_death || ((state_current == player_state_hurt || status_insta_alarm || status_invin != INVIN_NONE) && argument0 != self)) exit;
 
-var damage_inst, hurt_direction;
-
-damage_inst = argument0.id;
-hurt_direction = esign(x - damage_inst.x, 1);
+var damage_inst; damage_inst = _inst.id;
+var hurt_direction; hurt_direction = esign(x - damage_inst.x, 1);
 
 if (damage_inst == id || (stage_get_rings() == 0 && status_shield == 0 && !input_cpu))
 {
