@@ -80,7 +80,7 @@ if (!text_clear)
     {
         var font_height; font_height = font_get_height(global.font_system);
         var scroll_min, scroll_max, scroll_up, scroll_down, scroll_direction;
-        
+
         subject_height = string_height_ext(subject_string, font_height, screen_get_width() - (body_x * 2));
         subject_lines = (subject_height / font_height) - 1;
         body_height = string_height_ext(ds_list_find_value(body_list, body_current), font_height, screen_get_width() - (body_x * 2));

@@ -34,7 +34,7 @@ if (sequence_index == sequence_buzzer_aim)
     if (instance_exists(player_inst))
     {
         var x_sign; x_sign = sign(x - player_inst.x);
-        
+
         if (sign(image_xscale) != -x_sign) sequence_set(sequence_buzzer_aim_turn);
 
         if (shoot)
@@ -72,7 +72,7 @@ else if (sequence_index == sequence_buzzer_shoot)
                 var bullet_x; bullet_x = x + 3 * image_xscale;
                 var bullet_y; bullet_y = y + 12 * image_yscale;
                 var bullet_angle; bullet_angle = point_direction(bullet_x, bullet_y, player_inst.x, player_inst.y);
-                
+
                 bullet_create(bullet_x, bullet_y, sequence_buzzer_bullet, 1.6862745 * dcos(bullet_angle), 1.6862745 * -dsin(bullet_angle));
             }
         }

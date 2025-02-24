@@ -30,7 +30,7 @@ var csine; csine = dcos(_rot);
 if (sign(image_xscale) == -1)
 {
     var temp; temp = _left;
-    
+
     _left = _right;
     _right = temp;
 }
@@ -38,7 +38,7 @@ if (sign(image_xscale) == -1)
 if (sign(image_yscale) == -1)
 {
     var temp; temp = _top;
-    
+
     _top = _bottom;
     _bottom = temp;
 }

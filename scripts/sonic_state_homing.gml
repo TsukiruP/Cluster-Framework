@@ -24,7 +24,7 @@ switch (_phase)
         else
         {
             var homing_angle; homing_angle = angle_wrap(direction_to_object(homing_inst) - gravity_direction);
-            
+
             x_speed = lengthdir_x(homing_speed, homing_angle);
             y_speed = lengthdir_y(homing_speed, homing_angle);
             homing_alarm -= 1;

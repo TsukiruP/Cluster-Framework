@@ -19,7 +19,7 @@ switch (_phase)
             x_speed += (acceleration * 2) * image_xscale;
             if (abs(x_speed) > top_speed && sign(x_speed) == image_xscale) x_speed = top_speed * image_xscale;
         }
-        
+
         if (!player_movement_air()) return false;
         if (player_routine_land()) return true;
 

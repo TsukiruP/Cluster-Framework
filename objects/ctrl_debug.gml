@@ -127,7 +127,7 @@ with (stage_get_player(0))
     var info_string; info_string = "";
     var info_x; info_x = view_xview[view_current] + 10;
     var info_y; info_y = view_yview[view_current] + screen_get_height() / 2;
-    
+
     draw_set_font(global.font_system);
 
     switch (other.info_index)

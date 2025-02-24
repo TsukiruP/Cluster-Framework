@@ -102,7 +102,7 @@ switch (kind)
 
         // Calculate curve angle:
         var dir; dir = point_direction(x1, y1, x2, y2);
-        
+
         if (kind == SHAPE_CONVEX) dir = point_direction(x2, y2, x1, y1);
         return angle_wrap(round(dir) + 90);
         break;

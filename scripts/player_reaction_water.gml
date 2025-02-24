@@ -13,7 +13,7 @@ if (_hitbox & HIT_COLLISION)
     var y1; y1 = _inst.y;
     var x2; x2 = x1 + _inst.sprite_width;
     var y2; y2 = y1 + _inst.sprite_height;
-    
+
     var water_current; water_current = point_in_rectangle(x, y, x1, y1, x2, y2);
     var water_previous; water_previous = point_in_rectangle(xprevious, yprevious, x1, y1, x2, y2);
 

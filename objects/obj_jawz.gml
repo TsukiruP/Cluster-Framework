@@ -37,13 +37,13 @@ if (sequence_index == sequence_jawz_move)
     else
     {
         player_inst = instance_nearest(x, y, obj_player);
-        
+
         if (instance_exists(player_inst))
         {
             if (player_inst.underwater)
             {
                 var chase_angle; chase_angle = image_angle;
-                
+
                 if (sign(image_xscale) == -1) chase_angle = angle_wrap(chase_angle + 180);
                 if (distance_to_object(player_inst) < chase_range && abs(angle_difference(chase_angle, direction_to_object(player_inst))) < 45) sequence_set(sequence_jawz_charge);
             }
@@ -55,7 +55,7 @@ else if (sequence_index == sequence_jawz_chase)
     if (instance_exists(player_inst))
     {
         var chase_angle; chase_angle = direction_to_object(player_inst);
-        
+
         if (sign(image_xscale) == -1) chase_angle = angle_wrap(chase_angle - 180);
         image_angle = approach_angle(image_angle, chase_angle, chase_speed - 2);
     }

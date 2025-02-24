@@ -14,7 +14,7 @@ with (ctrl_game)
         {
             var save_temp; save_temp = game_load_save_buffer(i);
             var character_list; character_list = ds_list_create();
-            
+
             ds_list_read(character_list, ds_map_get(save_temp, "character_index"));
             ds_map_set(preview_map, save_string + "_exists", true);
             ds_map_set(preview_map, save_string + "_character", ds_list_find_value(character_list, 0));

@@ -1,5 +1,5 @@
 /// player_reaction_spike(inst, hitbox, side)
-/// @desc 
+/// @desc
 /// @param {object} inst
 /// @param {int} hitbox
 /// @param {number} side

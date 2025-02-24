@@ -83,6 +83,7 @@ if (input_get_check(INP_CANCEL, CHECK_PRESSED))
 lib_id=1
 action_id=203
 applies_to=self
+invert=0
 */
 #define Other_10
 /*"/*'/**//* YYD ACTION
@@ -127,7 +128,7 @@ for ({var i; i = 0}; i < page_count; i += 1)
 
         // Page offset:
         var page_offset; page_offset = save_x2 - ((screen_get_width() - save_x2) / 2);
-        
+
         save_x1 -= page_offset * menu_page;
         save_x2 -= page_offset * menu_page;
         save_x1 += page_offset * i;

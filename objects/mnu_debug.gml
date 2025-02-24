@@ -162,6 +162,7 @@ if (sfx_alarm > 0) sfx_alarm -= 1;
 lib_id=1
 action_id=203
 applies_to=self
+invert=0
 */
 #define Draw_0
 /*"/*'/**//* YYD ACTION

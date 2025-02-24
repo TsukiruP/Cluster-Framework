@@ -36,7 +36,7 @@ switch (_phase)
         if (jump_cap)
         {
             var input_held; input_held = pick(jump_aux, player_get_input(INP_JUMP, CHECK_HELD), player_get_input(INP_AUX, CHECK_HELD));
-            
+
             if (y_speed < jump_release && !input_held) y_speed = jump_release;
         }
 

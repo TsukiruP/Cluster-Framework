@@ -35,7 +35,7 @@ if (_hitbox & HIT_ATTACK)
                 for ({var i; i = 0}; i < 6; i += 1)
                 {
                     var debris_inst; debris_inst = effect_create(x, y, sequence_blockade_debris);
-                    
+
                     debris_inst.x_speed = 4 * dcos(ANGLE_DOWN + irandom_range(-45, 45));
                     debris_inst.y_speed = 4 * -dsin(ANGLE_DOWN + irandom_range(-45, 45));
                 }

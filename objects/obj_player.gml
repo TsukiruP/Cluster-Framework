@@ -212,7 +212,7 @@ if (input_allow)
         if (input_cpu_gamepad_alarm == 0)
         {
             var leader_inst; leader_inst = stage_get_player(0);
-            
+
             player_reset_input();
 
             if (leader_inst != 0 && instance_exists(leader_inst))
