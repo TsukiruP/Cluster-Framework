@@ -38,7 +38,7 @@ if (_hitbox & HIT_COLLISION)
 
             if (is_dash_ring)
             {
-                if (rainbow_score)
+                if (rainbow_score && !other.input_cpu)
                 {
                     rainbow_score = false;
                     stage_add_score(1000);
