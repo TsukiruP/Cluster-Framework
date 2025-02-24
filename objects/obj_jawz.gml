@@ -40,7 +40,7 @@ if (sequence_index == sequence_jawz_move)
         
         if (instance_exists(player_inst))
         {
-            if (!player_inst.underwater)
+            if (player_inst.underwater)
             {
                 var chase_angle; chase_angle = image_angle;
                 
