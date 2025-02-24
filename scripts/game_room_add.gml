@@ -1,14 +1,14 @@
 /// game_room_add(room, [transition], [music], [background], [zone], [act], [water], [start], [run])
 /// @desc Adds a room to the room grid.
 /// @param {room} room
-/// @param {int} transition
-/// @param {string} music
-/// @param {object} background
-/// @param {string} zone
-/// @param {int} act
-/// @param {number} water
-/// @param {int} start
-/// @param {number} run
+/// @param {int} [transition]
+/// @param {string} [music]
+/// @param {object} [background]
+/// @param {string} [zone]
+/// @param {int} [act]
+/// @param {number} [water]
+/// @param {int} [start]
+/// @param {number} [run]
 /// @returns {void}
 
 var _room; _room = argument[0];

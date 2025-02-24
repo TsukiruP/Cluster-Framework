@@ -16,8 +16,6 @@ applies_to=self
 */
 /// Game Initialization
 
-var i;
-
 randomize();
 
 game_debug = debug_mode;
@@ -86,13 +84,11 @@ applies_to=self
 */
 /// Cleanup
 
-var i;
-
 ds_grid_destroy(room_grid);
 ds_map_destroy(config_map);
 ds_list_destroy(keyboard_list);
 
-for (i = 0; i < ds_list_size(gamepad_list); i += 1)
+for ({var i; i = 0}; i < ds_list_size(gamepad_list); i += 1)
 {
     ds_list_destroy(ds_map_get(ds_list_find_value(gamepad_list, i), "input_list"));
     ds_map_destroy(ds_list_find_value(gamepad_list, i));
@@ -138,9 +134,7 @@ applies_to=self
 
 if (!game_get_debug()) exit;
 
-var game_string;
-
-game_string = GAME_NAME + " " + string_format(GAME_VERSION, 1, 2);
+var game_string; game_string = GAME_NAME + " " + string_format(GAME_VERSION, 1, 2);
 
 draw_set_font(global.font_system);
 draw_set2(fa_right, fa_bottom);

@@ -2,6 +2,8 @@
 /// @desc Sets animation variant.
 /// @returns {void}
 
+var _variant; _variant = 0;
+
 switch (animation_current)
 {
     case "stand":
@@ -21,14 +23,14 @@ switch (animation_current)
     case "wait":
         if (animation_changed)
         {
-            if (instance_number(obj_player) > 1) return pick(player_index > 0, 0, 1);
-            else return choose(0, 1);
+            if (instance_number(obj_player) > 1) _variant = pick(player_index > 0, 0, 1);
+            else _variant = choose(0, 1);
         }
         else return animation_variant;
 
     case "death":
-        if (character_index == CHAR_CLASSIC && drown) return 1;
+        if (character_index == CHAR_CLASSIC && drown) _variant = 1;
 
 }
 
-return 0;
+animation_variant = _variant;

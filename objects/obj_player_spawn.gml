@@ -6,8 +6,6 @@ applies_to=self
 */
 /// Spawn Player
 
-var i;
-
 instance_create(0, 0, ctrl_stage);
 
 if (game_checkpoint_isset())
@@ -17,7 +15,7 @@ if (game_checkpoint_isset())
     stage_set_time(game_get_checkpoint_time());
 }
 
-for (i = 0; i < PLAYER_COUNT; i += 1)
+for ({var i; i = 0}; i < PLAYER_COUNT; i += 1)
 {
     if (game_save_get_character(i) != -1)
     {

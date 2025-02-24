@@ -45,10 +45,7 @@ if (player_inst.status_invin != INVIN_BUFF)
             if (sequence_index != sequence_shield_basic) sequence_set(sequence_shield_basic);
     }
 }
-else
-{
-    if (sequence_index != sequence_shield_invin) sequence_set(sequence_shield_invin);
-}
+else if (sequence_index != sequence_shield_invin) sequence_set(sequence_shield_invin);
 
 if (shield_reset != false) shield_reset = false;
 if (player_inst.status_shield == SHIELD_NONE && player_inst.status_invin != INVIN_BUFF) instance_destroy();
@@ -97,9 +94,7 @@ applies_to=self
 */
 /// Draw Shield
 
-var player_rotation, sine, csine, draw_x, draw_y;
-
-player_rotation = player_inst.gravity_direction;
+var player_rotation; player_rotation = player_inst.gravity_direction;
 
 if (sprite_index != spr_shield_fire_dash) image_xscale = 1;
 

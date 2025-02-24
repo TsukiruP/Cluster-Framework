@@ -20,9 +20,7 @@ applies_to=self
 
 if (game_ispaused(mnu_pause)) exit;
 
-var omochao_index;
-
-omochao_index = spr_omochao_idle;
+var omochao_sprite; omochao_sprite = spr_omochao_idle;
 
 with (player_inst)
 {
@@ -33,13 +31,13 @@ with (player_inst)
         switch (character_index)
         {
             case CHAR_SONIC:
-                omochao_index = spr_omochao_sonic;
+                omochao_sprite = spr_omochao_sonic;
                 break;
         }
     }
 }
 
-if (sprite_index != omochao_index) sprite_index = omochao_index;
+if (sprite_index != omochao_sprite) sprite_index = omochao_sprite;
 
 if (text_get_clear())
 {

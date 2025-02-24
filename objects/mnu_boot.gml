@@ -28,9 +28,7 @@ applies_to=self
 */
 /// Alpha
 
-var boot_max_state;
-
-boot_max_state = 5;
+var boot_max_state; boot_max_state = 5;
 
 if (input_get_check(INP_CONFIRM, CHECK_PRESSED))
 {
@@ -90,11 +88,9 @@ applies_to=self
 */
 /// Draw Boot
 
-var boot_string, boot_x, boot_y;
-
-boot_string = "";
-boot_x = view_xview[view_current] + screen_get_width() / 2;
-boot_y = view_yview[view_current] + screen_get_height() / 2;
+var boot_string; boot_string = "";
+var boot_x; boot_x = view_xview[view_current] + screen_get_width() / 2;
+var boot_y; boot_y = view_yview[view_current] + screen_get_height() / 2;
 
 // Fade:
 draw_set1(c_black, boot_fade);

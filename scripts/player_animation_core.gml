@@ -4,8 +4,8 @@
 
 var y_radius_temp; y_radius_temp = y_radius;
 
-sequence_speed = player_get_animation_speed();
-animation_variant = player_get_animation_variant();
+player_get_animation_speed();
+player_get_animation_variant();
 
 if (sequence_index != player_get_animation(animation_current, animation_variant))
 {

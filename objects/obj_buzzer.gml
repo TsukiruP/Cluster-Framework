@@ -33,9 +33,8 @@ if (sequence_index == sequence_buzzer_aim)
 
     if (instance_exists(player_inst))
     {
-        var x_sign;
-
-        x_sign = sign(x - player_inst.x);
+        var x_sign; x_sign = sign(x - player_inst.x);
+        
         if (sign(image_xscale) != -x_sign) sequence_set(sequence_buzzer_aim_turn);
 
         if (shoot)
@@ -70,11 +69,10 @@ else if (sequence_index == sequence_buzzer_shoot)
 
             if (buzzer_time == 14)
             {
-                var bullet_x, bullet_y, bullet_angle;
-
-                bullet_x = x + 3 * image_xscale;
-                bullet_y = y + 12 * image_yscale;
-                bullet_angle = point_direction(bullet_x, bullet_y, player_inst.x, player_inst.y);
+                var bullet_x; bullet_x = x + 3 * image_xscale;
+                var bullet_y; bullet_y = y + 12 * image_yscale;
+                var bullet_angle; bullet_angle = point_direction(bullet_x, bullet_y, player_inst.x, player_inst.y);
+                
                 bullet_create(bullet_x, bullet_y, sequence_buzzer_bullet, 1.6862745 * dcos(bullet_angle), 1.6862745 * -dsin(bullet_angle));
             }
         }
@@ -89,10 +87,8 @@ if (!shoot && (sequence_index == sequence_buzzer_aim || sequence_index == sequen
     {
         if (y <= player_inst.y && y + 96 >= player_inst.y)
         {
-            var x_distance, y_distance;
-
-            x_distance = x - player_inst.x;
-            y_distance = player_inst.y - y;
+            var x_distance; x_distance = x - player_inst.x;
+            var y_distance; y_distance = player_inst.y - y;
 
             if (sign(image_xscale) == -sign(x_distance) && abs(x_distance) < abs(y_distance) && abs(x_distance * 1.7) >= y_distance && abs(x_distance * 0.58823529) <= y_distance)
             {

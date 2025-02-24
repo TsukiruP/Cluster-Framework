@@ -47,18 +47,13 @@ applies_to=self
 */
 /// Shift
 
-if (game_ispaused(mnu_pause))
-{
-    exit;
-}
+if (game_ispaused(mnu_pause)) exit;
 
 if (instance_exists(stage_get_player(0)))
 {
     if (focus_inst == stage_get_player(0))
     {
-        var look_direction;
-
-        look_direction = (focus_inst.state_current == player_state_crouch) - (focus_inst.state_current == player_state_look);
+        var look_direction; look_direction = (focus_inst.state_current == player_state_crouch) - (focus_inst.state_current == player_state_look);
 
         if (look_direction != 0)
         {
@@ -88,10 +83,7 @@ if (instance_exists(stage_get_player(0)))
         {
             if (camera_x_shift != 64 * focus_inst.image_xscale) camera_x_shift += 2 * focus_inst.image_xscale;
         }
-        else
-        {
-            if (camera_x_shift != 0) camera_x_shift = max(abs(camera_x_shift) - 2, 0) * sign(camera_x_shift);
-        }
+        else if (camera_x_shift != 0) camera_x_shift = max(abs(camera_x_shift) - 2, 0) * sign(camera_x_shift);
     }
 }
 /*"/*'/**//* YYD ACTION
@@ -119,9 +111,8 @@ if (instance_exists(focus_inst))
         {
             if (camera_lag_alarm == 0)
             {
-                var player_offset;
-
-                player_offset = 0;
+                var player_offset; player_offset = 0;
+                
                 if (focus_inst.on_ground) player_offset = focus_inst.camera_offset * dsin(focus_inst.mask_rotation);
 
                 if (focus_inst.x < (border_left - player_offset)) camera_x -= min((border_left - player_offset) - focus_inst.x, 24);
@@ -129,9 +120,7 @@ if (instance_exists(focus_inst))
 
                 if (focus_inst.state_current != player_state_death)
                 {
-                    var focus_y;
-
-                    focus_y = focus_inst.y;
+                    var focus_y; focus_y = focus_inst.y;
 
                     if (!focus_inst.on_ground)
                     {
@@ -140,9 +129,8 @@ if (instance_exists(focus_inst))
                     }
                     else if (focus_inst.on_ground)
                     {
-                        var camera_speed_cap;
-
-                        camera_speed_cap = 6;
+                        var camera_speed_cap; camera_speed_cap = 6;
+                        
                         if (focus_inst.x_speed >= 8) camera_speed_cap = 24;
 
                         if (focus_y < (camera_y - focus_inst.camera_offset)) camera_y -= min((camera_y - focus_inst.camera_offset) - focus_y, camera_speed_cap);
@@ -156,26 +144,23 @@ if (instance_exists(focus_inst))
     {
         if (focus_inst.x != camera_x)
         {
-            var camera_distance_x;
-
-            camera_distance_x = focus_inst.x - camera_x;
+            var camera_distance_x; camera_distance_x = focus_inst.x - camera_x;
+            
             camera_x += min(abs(camera_distance_x), 6) * sign(camera_distance_x);
         }
 
         if (focus_inst.y != camera_y)
         {
-            var camera_distance_y;
-
-            camera_distance_y = focus_inst.y - camera_y;
+            var camera_distance_y; camera_distance_y = focus_inst.y - camera_y;
+            
             camera_y += min(abs(camera_distance_y), 6) * sign(camera_distance_y);
         }
     }
 }
 
-var view_xhalf, view_yhalf;
+var view_xhalf; view_xhalf = screen_get_width() / 2;
+var view_yhalf; view_yhalf = screen_get_height() / 2;
 
-view_xhalf = screen_get_width() / 2;
-view_yhalf = screen_get_height() / 2;
 x = clamp(x, limit_left + view_xhalf, limit_right - view_yhalf);
 y = clamp(y, limit_top + view_yhalf, limit_bottom - view_yhalf);
 x = floor(camera_x + camera_x_shift);

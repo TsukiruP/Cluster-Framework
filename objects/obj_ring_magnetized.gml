@@ -35,14 +35,11 @@ if (game_ispaused())
 
 if (instance_exists(stage_get_player(0)))
 {
-    var player_inst, game_speed, xx, yy;
+    var game_speed; game_speed = game_get_speed();
+    var player_inst; player_inst = stage_get_player(0);
+    var xx; xx = sign(player_inst.x - x);
+    var yy; yy = sign(player_inst.y - y);
 
-    // Move towards the player:
-    player_inst = stage_get_player(0);
-    xx = sign(player_inst.x - x);
-    yy = sign(player_inst.y - y);
-
-    game_speed = game_get_speed();
     hspeed += (xx * (0.1875 + (0.75 * (sign(hspeed) != xx))) * game_speed);
     vspeed += (yy * (0.1875 + (0.75 * (sign(vspeed) != yy))) * game_speed);
     speed = min(abs(speed), 64 * game_speed) * sign(speed);

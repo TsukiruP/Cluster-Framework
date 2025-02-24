@@ -36,11 +36,9 @@ if (keyboard_check_pressed(vk_f6))
 
 if (!info_hide)
 {
-    var menu_left, menu_right, menu_direction;
-
-    menu_left = keyboard_check_pressed(vk_pageup);
-    menu_right = keyboard_check_pressed(vk_pagedown);
-    menu_direction = menu_right - menu_left;
+    var menu_left; menu_left = keyboard_check_pressed(vk_pageup);
+    var menu_right; menu_right = keyboard_check_pressed(vk_pagedown);
+    var menu_direction; menu_direction = menu_right - menu_left;
 
     info_index += menu_direction;
     info_index = wrap(info_index, 0, 2);
@@ -88,18 +86,16 @@ if (!game_get_debug()) exit;
 
 with (obj_player)
 {
-    var x_int, y_int, sine, csine;
-
-    x_int = floor(x);
-    y_int = floor(y);
+    var x_int; x_int = floor(x);
+    var y_int; y_int = floor(y);
 
     // Bounding box:
     if (mask_rotation mod 180 != 0) draw_rectangle_color(x_int - y_radius, y_int - x_radius, x_int + y_radius, y_int + x_radius, c_orange, c_orange, c_orange, c_orange, true);
     else draw_rectangle_color(x_int - x_radius, y_int - y_radius, x_int + x_radius, y_int + y_radius, c_orange, c_orange, c_orange, c_orange, true);
 
     // Wall radius:
-    sine = dsin(mask_rotation);
-    csine = dcos(mask_rotation);
+    var sine; sine = dsin(mask_rotation);
+    var csine; csine = dcos(mask_rotation);
 
     draw_line_color(x_int - (csine * wall_radius), y_int + (sine * wall_radius), x_int + (csine * wall_radius), y_int - (sine * wall_radius), c_white, c_white);
 
@@ -128,12 +124,11 @@ if (!game_get_debug() || info_hide) exit;
 
 with (stage_get_player(0))
 {
-    var info_string, info_x, info_y;
-
+    var info_string; info_string = "";
+    var info_x; info_x = view_xview[view_current] + 10;
+    var info_y; info_y = view_yview[view_current] + screen_get_height() / 2;
+    
     draw_set_font(global.font_system);
-    info_string = "";
-    info_x = view_xview[view_current] + 10;
-    info_y = view_yview[view_current] + screen_get_height() / 2;
 
     switch (other.info_index)
     {

@@ -6,8 +6,6 @@ applies_to=self
 */
 /// Stage Initialization
 
-var i;
-
 time_allow = false;
 pause_allow = true;
 

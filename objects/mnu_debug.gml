@@ -32,11 +32,9 @@ applies_to=self
 */
 /// Cleanup
 
-var i;
-
 ds_list_destroy(menu_list);
 
-for (i = 0; i < ds_stack_size(history_stack); i += 1)
+for ({var i; i = 0}; i < ds_stack_size(history_stack); i += 1)
 {
     ds_list_destroy(ds_stack_pop(history_stack));
 }
@@ -66,15 +64,9 @@ if (menu_alarm > 0)
     exit;
 }
 
-var menu_left, menu_right, menu_up, menu_down, menu_y_direction, menu_size, option_confirm, option_update;
-
-menu_left = (input_get_check(INP_LEFT, CHECK_PRESSED) || input_get_time(INP_LEFT, 30));
-menu_right = (input_get_check(INP_RIGHT, CHECK_PRESSED) || input_get_time(INP_RIGHT, 30));
-menu_x_direction = menu_right - menu_left;
-
-menu_up = (input_get_check(INP_UP, CHECK_PRESSED) || input_get_time(INP_UP, 30));
-menu_down = (input_get_check(INP_DOWN, CHECK_PRESSED) || input_get_time(INP_DOWN, 30));
-menu_y_direction = menu_down - menu_up;
+var menu_up; menu_up = (input_get_check(INP_UP, CHECK_PRESSED) || input_get_time(INP_UP, 30));
+var menu_down; menu_down = (input_get_check(INP_DOWN, CHECK_PRESSED) || input_get_time(INP_DOWN, 30));
+var menu_y_direction; menu_y_direction = menu_down - menu_up;
 
 if (menu_y_direction != 0 && sfx_alarm == 0)
 {
@@ -83,7 +75,7 @@ if (menu_y_direction != 0 && sfx_alarm == 0)
 }
 
 menu_option += menu_y_direction;
-menu_size = ds_list_size(menu_list) - 1;
+var menu_size; menu_size = ds_list_size(menu_list) - 1;
 
 if (menu_option < 0)
 {
@@ -105,14 +97,19 @@ else
 
 if (input_get_check(INP_CONFIRM, CHECK_PRESSED))
 {
-    option_confirm = script_execute(ds_list_find_value(menu_list, menu_option), 2);
+    var option_confirm; option_confirm = script_execute(ds_list_find_value(menu_list, menu_option), 2);
 
     if (!is_undefined(option_confirm)) audio_play_sfx(pick(option_confirm, "snd_menu_cannot", "snd_menu_confirm"), true);
 }
 
+var menu_left; menu_left = (input_get_check(INP_LEFT, CHECK_PRESSED) || input_get_time(INP_LEFT, 30));
+var menu_right; menu_right = (input_get_check(INP_RIGHT, CHECK_PRESSED) || input_get_time(INP_RIGHT, 30));
+
+menu_x_direction = menu_right - menu_left;
+
 if (menu_x_direction != 0)
 {
-    option_update = script_execute(ds_list_find_value(menu_list, menu_option), 3);
+    var option_update; option_update = script_execute(ds_list_find_value(menu_list, menu_option), 3);
 
     if (!is_undefined(option_update) && sfx_alarm == 0)
     {
@@ -165,7 +162,6 @@ if (sfx_alarm > 0) sfx_alarm -= 1;
 lib_id=1
 action_id=203
 applies_to=self
-invert=0
 */
 #define Draw_0
 /*"/*'/**//* YYD ACTION
@@ -175,23 +171,19 @@ applies_to=self
 */
 /// Draw Menu
 
-var i, font_height;
-
-font_height = font_get_height(global.font_system);
+var font_height; font_height = font_get_height(global.font_system);
 
 // Box:
 draw_rect(view_xview[view_current] + screen_get_width() / 2 - 81, view_yview[view_current] + screen_get_height() / 2 - 52, 164, 78, game_get_interface_color(), game_get_config("interface_alpha"))
 
 // Text:
-for (i = 0; i < min(ds_list_size(menu_list), 4); i += 1)
+for ({var i; i = 0}; i < min(ds_list_size(menu_list), 4); i += 1)
 {
-    var option_index, option_text, option_value, option_x, option_y;
-
-    option_index = i + menu_scroll;
-    option_text = script_execute(ds_list_find_value(menu_list, option_index), 0);
-    option_value = script_execute(ds_list_find_value(menu_list, option_index), 1);
-    option_x = view_xview[view_current] + screen_get_width() / 2;
-    option_y = view_yview[view_current] + screen_get_height() / 2 - 41 + font_height * i;
+    var option_index; option_index = i + menu_scroll;
+    var option_text; option_text = script_execute(ds_list_find_value(menu_list, option_index), 0);
+    var option_value; option_value = script_execute(ds_list_find_value(menu_list, option_index), 1);
+    var option_x; option_x = view_xview[view_current] + screen_get_width() / 2;
+    var option_y; option_y = view_yview[view_current] + screen_get_height() / 2 - 41 + font_height * i;
 
     // Font:
     draw_set_font(global.font_system);
@@ -220,9 +212,7 @@ applies_to=self
 
 if (!rename_allow) exit;
 
-var font_height;
-
-font_height = font_get_height(global.font_system);
+var font_height; font_height = font_get_height(global.font_system);
 
 // Box:
 draw_rect(0, (screen_get_height() / 2) - (font_height / 2) - 2, screen_get_width(), font_height + 6, game_get_interface_color(), game_get_config("interface_alpha"));

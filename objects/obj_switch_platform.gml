@@ -28,9 +28,8 @@ with (switch_inst)
     other.switch_time = target_time;
 }
 
-var time_difference;
+var time_difference; time_difference = switch_time - game_get_time();
 
-time_difference = switch_time - game_get_time();
 switch_active = (switch_active && time_difference);
 
 if (switch_active)

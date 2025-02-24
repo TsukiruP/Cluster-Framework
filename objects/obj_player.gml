@@ -55,8 +55,6 @@ applies_to=self
 */
 /// Collision Initialization
 
-var i;
-
 reaction_list = ds_list_create();
 solid_list = ds_list_create();
 layer = 0;
@@ -74,7 +72,7 @@ hitbox_set_attackbox();
 x_list = ds_list_create();
 y_list = ds_list_create();
 
-for (i = 0; i < 16; i += 1)
+for ({var i; i = 0}; i < 16; i += 1)
 {
     ds_list_add(x_list, x);
     ds_list_add(y_list, y);
@@ -213,9 +211,8 @@ if (input_allow)
 
         if (input_cpu_gamepad_alarm == 0)
         {
-            var i, leader_inst;
-
-            leader_inst = stage_get_player(0);
+            var leader_inst; leader_inst = stage_get_player(0);
+            
             player_reset_input();
 
             if (leader_inst != 0 && instance_exists(leader_inst))
@@ -319,9 +316,7 @@ if (input_allow)
                         }
 
                         // Jump:
-                        var jump_auto;
-
-                        jump_auto = 0;
+                        var jump_auto; jump_auto = 0;
 
                         if (animation_current == "push")
                         {
@@ -371,7 +366,7 @@ if (input_allow)
                 }
             }
 
-            for (i = 0; i <= INP_AUX; i += 1)
+            for ({var i; i = 0}; i <= INP_AUX; i += 1)
             {
                 if (input_get_check(i, CHECK_HELD, DEV_GAMEPAD0 + player_index)) input_cpu_gamepad_alarm = 600;
             }
@@ -388,10 +383,7 @@ if (input_allow)
                 player_cpu_respawn();
             }
         }
-        else
-        {
-            if (input_cpu_respawn_time != 0) input_cpu_respawn_time = 0;
-        }
+        else if (input_cpu_respawn_time != 0) input_cpu_respawn_time = 0;
     }
 }
 
@@ -535,9 +527,7 @@ else trail_draw = false;
 
 if (!underwater)
 {
-    var surface_inst;
-
-    surface_inst = collision_point(x, floor(y) + y_radius + 1, obj_water_mask, false, false);
+    var surface_inst; surface_inst = collision_point(x, floor(y) + y_radius + 1, obj_water_mask, false, false);
 
     if (on_ground && abs(x_speed) > 0 && surface_inst != noone)
     {
@@ -550,10 +540,7 @@ if (!underwater)
     }
     else surface_time = 0;
 }
-else
-{
-    if (status_shield == SHIELD_FIRE || status_shield == SHIELD_LIGHTNING) status_shield = 0;
-}
+else if (status_shield == SHIELD_FIRE || status_shield == SHIELD_LIGHTNING) status_shield = 0;
 
 if (waterfall_draw && !instance_exists(waterfall_inst))
 {
@@ -711,8 +698,6 @@ applies_to=self
 
 if (game_ispaused()) exit;
 
-var angle_mod;
-
 switch (animation_current)
 {
     case "stand":
@@ -827,13 +812,11 @@ applies_to=self
 */
 /// Draw Player
 
-var shield_depth;
-
 player_trail_draw();
 
 with (shield_inst)
 {
-    shield_depth = (other.status_shield == SHIELD_FIRE && (image_index mod 2) != 0 && sequence_index != sequence_shield_fire_dash) || (other.status_shield == SHIELD_LIGHTNING && sequence_moment > 48);
+    var shield_depth; shield_depth = (other.status_shield == SHIELD_FIRE && (image_index mod 2) != 0 && sequence_index != sequence_shield_fire_dash) || (other.status_shield == SHIELD_LIGHTNING && sequence_moment > 48);
     if (shield_depth) event_draw();
 }
 

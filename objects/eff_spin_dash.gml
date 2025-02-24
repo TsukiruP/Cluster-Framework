@@ -10,10 +10,7 @@ if (floor(player_inst.spin_dash_charge) > 0)
 {
     if (sequence_index != sequence_spin_charge) sequence_set(sequence_spin_charge);
 }
-else
-{
-    if (sequence_index != sequence_spin_dash) sequence_set(sequence_spin_dash);
-}
+else if (sequence_index != sequence_spin_dash) sequence_set(sequence_spin_dash);
 
 if (player_inst.state_current != player_state_spin_dash) instance_destroy();
 event_inherited();
@@ -25,13 +22,11 @@ applies_to=self
 */
 /// Draw Dust
 
-var player_rotation, sine, csine, draw_x, draw_y;
+var player_rotation; player_rotation = player_inst.mask_rotation;
+var sine; sine = dsin(player_rotation);
+var csine; csine = dcos(player_rotation);
 
-player_rotation = player_inst.mask_rotation;
-sine = dsin(player_rotation);
-csine = dcos(player_rotation);
-
-draw_x = x + (sine * floor(player_inst.y_radius));
-draw_y = y + (csine * floor(player_inst.y_radius));
+var draw_x; draw_x = x + (sine * floor(player_inst.y_radius));
+var draw_y; draw_y = y + (csine * floor(player_inst.y_radius));
 
 if (sprite_exists(sprite_index)) draw_sprite_ext(sprite_index, image_index, draw_x, draw_y, player_inst.image_xscale, 1, player_rotation, c_white, 1);

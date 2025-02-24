@@ -31,10 +31,8 @@ applies_to=self
 
 if (game_ispaused(mnu_pause)) exit;
 
-var active, switch_index;
-
-active = game_get_time() < target_time;
-switch_index = sequence_array[variant, active];
+var active; active = game_get_time() < target_time;
+var switch_sequence; switch_sequence = sequence_array[variant, active];
 
 if (active)
 {
@@ -42,10 +40,10 @@ if (active)
     if (life_time mod 30 == 0) audio_play_sfx("snd_switch_ping");
 }
 
-if (sequence_index != switch_index)
+if (sequence_index != switch_sequence)
 {
     life_time = 0;
-    sequence_set(switch_index);
+    sequence_set(switch_sequence);
     audio_play_sfx(pick(game_get_time() < target_time, "snd_switch_off", "snd_switch_on"));
 }
 

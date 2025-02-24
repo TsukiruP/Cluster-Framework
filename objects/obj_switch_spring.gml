@@ -36,23 +36,23 @@ with (switch_inst)
     other.switch_time = target_time;
 }
 
-var time_difference, spring_index;
+var time_difference; time_difference = switch_time - game_get_time();
 
-time_difference = switch_time - game_get_time();
 switch_active = (switch_active && time_difference);
-spring_index = sequence_array[variant, switch_active];
+
+var spring_sequence; spring_sequence = sequence_array[variant, switch_active];
 
 if (switch_active)
 {
     if (sequence_index == sequence_array[variant, false])
     {
         active = false;
-        sequence_set(spring_index);
+        sequence_set(spring_sequence);
     }
 }
-else if (sequence_index != spring_index) sequence_set(spring_index);
+else if (sequence_index != spring_sequence) sequence_set(spring_sequence);
 
-if (sequence_index == spring_index || (active && sequence_index != spring_index))
+if (sequence_index == spring_sequence || (active && sequence_index != spring_sequence))
 {
     if (script_exists(sequence_index))
     {

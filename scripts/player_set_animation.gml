@@ -1,7 +1,7 @@
 /// player_set_animation(animation, [moment])
 /// @desc Sets the player's animation.
 /// @param {string} animation
-/// @param {int} moment
+/// @param {int} [moment]
 /// @returns {void}
 
 var _animation; _animation = argument[0];

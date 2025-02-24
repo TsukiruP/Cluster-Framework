@@ -29,9 +29,7 @@ applies_to=self
 */
 /// Draw Reticle
 
-var draw_x, draw_y;
-
-draw_x = floor(homing_inst.x);
-draw_y = floor(homing_inst.y);
+var draw_x; draw_x = floor(homing_inst.x);
+var draw_y; draw_y = floor(homing_inst.y);
 
 if (sprite_exists(sprite_index)) draw_sprite(sprite_index, image_index, draw_x, draw_y);

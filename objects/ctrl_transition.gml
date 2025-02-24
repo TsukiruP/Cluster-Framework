@@ -281,9 +281,7 @@ switch (transition_state)
 
     // 4 - Reverse:
     case 4:
-        var transition_next;
-
-        transition_next = (preview || game_get_room_start() == START_IDLE || !instance_exists(obj_player));
+        var transition_next; transition_next = (preview || game_get_room_start() == START_IDLE || !instance_exists(obj_player));
 
         switch (game_get_room_start())
         {

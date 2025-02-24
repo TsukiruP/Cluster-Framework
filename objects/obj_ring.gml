@@ -53,13 +53,12 @@ event_inherited();
 if (game_ispaused() || !dropped) exit;
 if (!in_view()) instance_destroy();
 
-var game_speed, sine, csine, ox, oy;
+var game_speed; game_speed = game_get_speed();
+var sine; sine = dsin(gravity_direction);
+var csine; csine = dcos(gravity_direction);
+var ox; ox = csine * x_speed;
+var oy; oy = sine * x_speed;
 
-game_speed = game_get_speed();
-sine = dsin(gravity_direction);
-csine = dcos(gravity_direction);
-ox = csine * x_speed;
-oy = sine * x_speed;
 x += ox * game_speed;
 y -= oy * game_speed;
 
@@ -102,9 +101,7 @@ if (game_ispaused()) exit;
 
 if (instance_exists(stage_get_player(0)))
 {
-    var player_inst;
-
-    player_inst = stage_get_player(0);
+    var player_inst; player_inst = stage_get_player(0);
 
     if (player_inst.status_shield == SHIELD_MAGNETIC || player_inst.status_shield == SHIELD_LIGHTNING)
     {

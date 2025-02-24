@@ -24,9 +24,8 @@ applies_to=self
 
 if (game_ispaused()) exit;
 
-var game_speed;
+var game_speed; game_speed = game_get_speed();
 
-game_speed = game_get_speed();
 x += x_speed * game_speed;
 y += y_speed * game_speed;
 y_speed += gravity_force * game_speed;

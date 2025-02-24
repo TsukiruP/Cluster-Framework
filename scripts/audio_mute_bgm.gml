@@ -1,6 +1,5 @@
-/// audio_mute_bgm(mute)
+/// audio_mute_bgm()
 /// @desc Sets music volume to 0.
-/// @param {bool} mute
 /// @returns {void}
 
 sound_kind_volume(1, 0);

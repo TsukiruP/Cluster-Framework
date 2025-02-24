@@ -27,14 +27,12 @@ applies_to=self
 */
 /// Draw Debuff
 
-var player_rotation, sine, csine, draw_x, draw_y;
+var player_rotation; player_rotation = player_inst.mask_rotation;
+var sine; sine = dsin(player_inst.mask_rotation);
+var csine; csine = dcos(player_inst.mask_rotation);
 
-player_rotation = player_inst.mask_rotation;
-sine = dsin(player_inst.mask_rotation);
-csine = dcos(player_inst.mask_rotation);
-
-draw_x = x - (sine * 16);
-draw_y = y - (csine * 16);
+var draw_x; draw_x = x - (sine * 16);
+var draw_y; draw_y = y - (csine * 16);
 
 if (sprite_exists(sprite_index))
 {
