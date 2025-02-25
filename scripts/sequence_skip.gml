@@ -1,5 +1,9 @@
-/// sequence_skip(step)
-/* Skips to a moment in the sequence so that step will execute immediately. */
+/// sequence_skip(moment)
+/// @desc Skips to a moment in the sequence so that it executes immediately.
+/// @param {int} moment
+/// @returns {void}
 
-sequence_moment = argument0 + 1;
-sequence_moment_previous = argument0;
+var _moment; _moment = argument0;
+
+sequence_moment = _moment + 1;
+sequence_moment_previous = _moment;

@@ -1,5 +1,12 @@
 /// instance_create_single(x, y, obj)
-/* Creates an instance of obj at position (x,y) if it doesn't already exist.
-Returns the id of the new instance. */
+/// @desc Returns the id of a new object instance if it doesn't already exist.
+/// @param {number} x
+/// @param {number} y
+/// @param {object} obj
+/// @returns {object}
 
-if (!instance_exists(argument2)) return instance_create(argument0, argument1, argument2);
+var _x; _x = argument0;
+var _y; _y = argument1;
+var _obj; _obj = argument2;
+
+if (!instance_exists(_obj)) return instance_create(_x, _y, _obj);

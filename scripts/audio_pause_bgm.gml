@@ -4,5 +4,5 @@
 
 with (ctrl_audio)
 {
-    if (audio_bgm_isplaying()) sound_pause(bgm_id);
+    if (audio_bgm_isplaying()) sound_pause(bgm_inst);
 }

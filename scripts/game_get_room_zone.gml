@@ -10,6 +10,6 @@ with (ctrl_game)
     var grid_height; grid_height = ds_grid_height(room_grid) - 1;
     var grid_y; grid_y = ds_grid_value_y(room_grid, 0, 0, 0, grid_height, _room);
 
-    if (grid_y != -1) return ds_grid_get(room_grid, 4, grid_y);
-    else return "";
+    if (grid_y == -1) return "";
+    else return ds_grid_get(room_grid, 4, grid_y);
 }

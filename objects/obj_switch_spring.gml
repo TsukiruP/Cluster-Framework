@@ -10,7 +10,7 @@ event_inherited();
 image_index = 5;
 collision = false;
 active = false;
-switch_id = noone;
+switch_inst = noone;
 switch_active = false;
 switch_time = 0;
 sequence_array[0, false] = sequence_switch_spring_vertical_lock;
@@ -30,29 +30,29 @@ applies_to=self
 
 if (game_ispaused(mnu_pause)) exit;
 
-with (switch_id)
+with (switch_inst)
 {
     other.switch_active = !collision;
     other.switch_time = target_time;
 }
 
-var time_difference, spring_index;
+var time_difference; time_difference = switch_time - game_get_time();
 
-time_difference = switch_time - game_get_time();
 switch_active = (switch_active && time_difference);
-spring_index = sequence_array[variant, switch_active];
+
+var spring_sequence; spring_sequence = sequence_array[variant, switch_active];
 
 if (switch_active)
 {
     if (sequence_index == sequence_array[variant, false])
     {
         active = false;
-        sequence_set(spring_index);
+        sequence_set(spring_sequence);
     }
 }
-else if (sequence_index != spring_index) sequence_set(spring_index);
+else if (sequence_index != spring_sequence) sequence_set(spring_sequence);
 
-if (sequence_index == spring_index || (active && sequence_index != spring_index))
+if (sequence_index == spring_sequence || (active && sequence_index != spring_sequence))
 {
     if (script_exists(sequence_index))
     {
@@ -70,7 +70,7 @@ applies_to=self
 
 event_inherited();
 
-//field switch_id: instance
+//field switch_inst: instance
 
 /*preview
 sprite_index = Sprite(pick(Field("variant", 0), "spr_switch_spring_vertical", "spr_switch_spring_horizontal", "spr_switch_spring_diagonal"), 0);
@@ -104,4 +104,4 @@ switch (variant)
 
 if (sign(image_xscale) == -1) angle = 180 - angle;
 if (sign(image_yscale) == -1) angle = 360 - angle;
-with (switch_id) image_offset = 5;
+with (switch_inst) image_offset = 5;

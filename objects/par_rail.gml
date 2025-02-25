@@ -8,7 +8,7 @@ applies_to=self
 
 event_inherited();
 reaction_index = player_reaction_rail;
-reaction_mask = true;
+reaction_solid = true;
 is_mask = false;
 semisolid = true;
 #define Other_4

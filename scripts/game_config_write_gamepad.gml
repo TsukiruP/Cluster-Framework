@@ -4,10 +4,9 @@
 
 with (ctrl_game)
 {
-    var i;
     var gamepad_list; gamepad_list = ds_list_create();
 
-    for (i = 0; i < PLAYER_COUNT; i += 1)
+    for ({var i; i = 0}; i < PLAYER_COUNT; i += 1)
     {
         var gamepad_map; gamepad_map = ds_map_create();
 

@@ -4,5 +4,5 @@
 
 with (ctrl_audio)
 {
-    if (audio_drown_isplaying()) sound_pause(drown_id);
+    if (audio_drown_isplaying()) sound_pause(drown_inst);
 }

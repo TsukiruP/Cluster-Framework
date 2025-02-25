@@ -1,12 +1,17 @@
 /// player_state_idle(phase)
-/* Standing here, I realize... */
+/// @desc Standing here, I realize...
+/// @param {int} phase
+/// @returns {bool}
 
-switch (argument0)
+var _phase; _phase = argument0;
+
+switch (_phase)
 {
     case STATE_START:
         wait_alarm = 360;
+        player_get_cliff();
 
-        if (player_get_cliff() == 0)
+        if (cliff_direction == 0)
         {
             if (animation_current != "wait" && animation_current != "standby" && animation_current != "land" &&
                 animation_current != "look" && animation_current != "look_end" && animation_current != "crouch_end" &&

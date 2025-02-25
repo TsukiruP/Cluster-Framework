@@ -12,7 +12,7 @@ border_right = 0;
 chase_range = 128;
 chase_speed = 6;
 chase_alarm = 480;
-player_id = noone;
+player_inst = noone;
 hitbox_set_hurtbox(24, 10, 30, 14);
 hitbox_set_attackbox(22, 4, 28, 8);
 sequence_init(sequence_jawz_move);
@@ -34,48 +34,44 @@ if (sequence_index == sequence_jawz_move)
 {
     x += sequence_speed * image_xscale;
     if (x < xstart - border_left || x > xstart + border_right) sequence_set(sequence_jawz_move_turn);
-
-    /*
     else
     {
-        player_id = instance_nearest(x, y, obj_player);
+        player_inst = instance_nearest(x, y, obj_player);
 
-        if (instance_exists(player_id))
+        if (instance_exists(player_inst))
         {
-            if (!player_id.underwater) exit;
-
-            var chase_angle;
-
-            chase_angle = image_angle;
-            if (sign(image_xscale) == -1) chase_angle = angle_wrap(chase_angle + 180);
-            if (distance_to_object(player_id) < chase_range && abs(angle_difference(chase_angle, direction_to_object(player_id))) < 45) sequence_set(sequence_jawz_charge);
+            if (player_inst.underwater)
+            {
+                var chase_solid; chase_solid = collision_line(x, y, player_inst.x, player_inst.y, player_inst, true, false);
+                
+                if (!instance_exists(chase_solid))
+                {
+                    var chase_angle; chase_angle = image_angle;
+                    
+                    if (sign(image_xscale) == -1) chase_angle = angle_wrap(chase_angle + 180);
+                    if (distance_to_object(player_inst) < chase_range && abs(angle_difference(chase_angle, direction_to_object(player_inst))) < 45) sequence_set(sequence_jawz_charge);
+                }
+            }
         }
     }
-    */
 }
 else if (sequence_index == sequence_jawz_chase)
 {
-    if (instance_exists(player_id))
+    if (instance_exists(player_inst))
     {
-        var chase_angle;
+        var chase_angle; chase_angle = direction_to_object(player_inst);
 
-        chase_angle = direction_to_object(player_id);
         if (sign(image_xscale) == -1) chase_angle = angle_wrap(chase_angle - 180);
-
         image_angle = approach_angle(image_angle, chase_angle, chase_speed - 2);
     }
 
-    x += chase_speed * image_xscale * dcos(image_angle);
-    y += chase_speed * dsin(image_angle);
+    x += dcos(image_angle) * chase_speed * image_xscale;
+    y += dsin(image_angle) * chase_speed;
 
     chase_alarm -= sequence_speed;
     chase_alarm = floorto(chase_alarm, pick(sequence_speed > 0, 1, sequence_speed));
 
-    if (chase_alarm == 0 || collision_point(x, y, par_solid, false, false))
-    {
-        effect_create(x, y, sequence_explosion_enemy, -depth);
-        instance_destroy();
-    }
+    if (chase_alarm == 0 || place_meeting(x, y, par_solid) || !place_meeting(x, y, obj_water_mask)) enemy_destroy();
 }
 
 if (script_exists(sequence_index))
@@ -107,12 +103,11 @@ applies_to=self
 /// Draw Jawz
 
 draw_self_floored();
+
 if (game_get_debug() && sequence_index != sequence_jawz_chase)
 {
-    var x_int, y_int;
-
-    x_int = floor(x);
-    y_int = floor(y);
+    var x_int; x_int = floor(x);
+    var y_int; y_int = floor(y);
 
     draw_line(x_int, y_int, x_int + lengthdir_x(chase_range * image_xscale, image_angle + 45), y_int + lengthdir_y(chase_range * image_xscale, image_angle + 45));
     draw_line(x_int, y_int, x_int + lengthdir_x(chase_range * image_xscale, image_angle - 45), y_int + lengthdir_y(chase_range * image_xscale, image_angle - 45));

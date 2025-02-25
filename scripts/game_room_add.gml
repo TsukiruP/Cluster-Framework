@@ -1,20 +1,20 @@
-/// game_room_add(room, [transition, music, background, zone, act, water, start, run])
+/// game_room_add(room, [transition], [music], [background], [zone], [act], [water], [start], [run])
 /// @desc Adds a room to the room grid.
 /// @param {room} room
-/// @param {int} transition
-/// @param {string} music
-/// @param {object} background
-/// @param {string} zone
-/// @param {int} act
-/// @param {number} water
-/// @param {int} start
-/// @param {number} run
+/// @param {int} [transition]
+/// @param {string} [music]
+/// @param {object} [background]
+/// @param {string} [zone]
+/// @param {int} [act]
+/// @param {number} [water]
+/// @param {int} [start]
+/// @param {number} [run]
 /// @returns {void}
 
 var _room; _room = argument[0];
 var _transition; if (argument_count > 1) _transition = argument[1]; else _transition = TRANS_FADE;
 var _music; if (argument_count > 2) _music = argument[2]; else _music = "";
-var _background; if (argument_count > 3) _background = argument[3]; else _background = -1;
+var _background; if (argument_count > 3) _background = argument[3]; else _background = noone;
 var _zone; if (argument_count > 4) _zone = argument[4]; else _zone = "";
 var _act; if (argument_count > 5) _act = argument[5]; else _act = 0;
 var _water; if (argument_count > 6) _water = argument[6]; else _water = -1;

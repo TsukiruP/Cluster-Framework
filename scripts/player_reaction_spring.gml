@@ -1,23 +1,22 @@
 /// player_reaction_spring(obj, hitbox)
-/* Bounce Pad! Wait, no... */
+/// @desc
+/// @param {object} obj
+/// @param {int} hitbox
+/// @returns {void}
 
-var reaction_id, hitbox;
+var _obj; _obj = argument0;
+var _hitbox; _hitbox = argument1;
 
-reaction_id = argument0;
-hitbox = argument1;
-
-if (hitbox & HIT_COLLISION)
+if (_hitbox & HIT_INTERACT)
 {
-    if (spring_current != reaction_id || spring_alarm == 0)
+    if (spring_inst != _obj || spring_alarm == 0)
     {
-        var is_dash_ring;
-
-        is_dash_ring = (reaction_id.object_index == obj_dash_ring);
+        var is_dash_ring; is_dash_ring = (_obj.object_index == obj_dash_ring);
 
         player_reset_spring();
-        spring_current = reaction_id;
-        spring_force = spring_current.force;
-        spring_angle = angle_wrap(spring_current.angle - gravity_direction);
+        spring_inst = _obj;
+        spring_force = spring_inst.force;
+        spring_angle = angle_wrap(spring_inst.angle - gravity_direction);
         spring_alarm = spring_force + 15;
 
         x_speed = dcos(spring_angle) * spring_force;
@@ -25,26 +24,26 @@ if (hitbox & HIT_COLLISION)
 
         if (!(on_ground && (spring_angle == ANGLE_LEFT || spring_angle == ANGLE_RIGHT)) || is_dash_ring)
         {
-            y = reaction_id.y;
+            y = _obj.y;
             player_set_state(player_state_spring, true);
         }
         else input_lock_alarm = 16;
 
-        x = reaction_id.x;
+        x = _obj.x;
         if (dcos(spring_angle) != 0) image_xscale = sign(dcos(spring_angle));
 
-        with (reaction_id)
+        if (!input_cpu && is_dash_ring)
+        {
+            if (_obj.rainbow_score)
+            {
+                _obj.rainbow_score = false;
+                stage_add_score(1000);
+            }
+        }
+
+        with (_obj)
         {
             active = true;
-
-            if (is_dash_ring)
-            {
-                if (rainbow_score)
-                {
-                    rainbow_score = false;
-                    stage_add_score(1000);
-                }
-            }
 
             if (sfx_alarm == 0)
             {

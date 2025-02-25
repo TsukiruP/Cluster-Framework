@@ -12,7 +12,7 @@ with (ctrl_audio)
         if (sound_get_kind(_jingle) == 3)
         {
             audio_stop_jng();
-            jng_id = sound_play_single(_jingle);
+            jng_inst = sound_play_single(_jingle);
             if (audio_drown_isplaying()) audio_mute_jng();
         }
     }

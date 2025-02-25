@@ -1,12 +1,12 @@
 /// sonic_trait_reticle()
-/* Resets the homing handle and sets it when in the proper states. */
+/// @desc Resets the homing instance and sets it in specific states.
+/// @returns {void}
 
 if (state_current == sonic_state_homing) exit;
 
-var homing_id_temp, homing_allow;
+var homing_inst_temp; homing_inst_temp = homing_inst;
 
-homing_id_temp = homing_id;
-homing_id = noone;
+homing_inst = noone;
 
 switch (state_current)
 {
@@ -27,37 +27,32 @@ switch (state_current)
 
 if (!homing_allow || spring_alarm != 0 || !input_allow || (input_cpu && input_cpu_gamepad_alarm == 0)) exit;
 
-var skill_index;
-
-skill_index = game_save_get_skill(character_index, "homing");
+var skill_index; skill_index = game_save_get_skill(character_index, "homing");
 
 if (!player_get_input(INP_ALT, CHECK_HELD))
 {
     if ((skill_index >= HOMING_ADVENTURE && !on_ground) || skill_index == HOMING_FRONTIERS)
     {
-        var i;
-
-        for (i = 0; i <= 2; i += 1)
+        for ({var i; i = 0}; i <= 2; i += 1)
         {
-            var homing_candidate;
+            var homing_candidate; homing_candidate = noone;
 
-            if (mask_rotation mod 180 == 0) homing_candidate = instance_nearest_dir_x(x, y, par_target, dcos(mask_rotation) * image_xscale, homing_range, i + 1);
-            else homing_candidate = instance_nearest_dir_y(x, y, par_target, dsin(mask_rotation) * image_xscale, homing_range, i + 1);
+            if (mask_direction mod 180 == 0) homing_candidate = instance_nearest_dir_x(x, y, par_target, dcos(mask_direction) * image_xscale, homing_range, i + 1);
+            else homing_candidate = instance_nearest_dir_y(x, y, par_target, dsin(mask_direction) * image_xscale, homing_range, i + 1);
 
             if (instance_exists(homing_candidate))
             {
                 if (!homing_candidate.collision || !homing_candidate.targetable || distance_to_object(homing_candidate) > homing_range) continue;
 
-                var homing_angle1, homing_angle2, homing_fail, homing_solid;
+                var homing_angle1; homing_angle1 = mask_direction;
+                var homing_angle2; homing_angle2 = direction_to_object(homing_candidate);
 
-                homing_angle1 = mask_rotation;
-                homing_angle2 = direction_to_object(homing_candidate);
                 if (sign(image_xscale) == -1) homing_angle1 = angle_wrap(homing_angle1 + 180);
                 if (abs(angle_difference(homing_angle1, homing_angle2)) > 45) continue;
 
                 // Fail when interacting with solids:
-                homing_fail = false;
-                homing_solid = collision_line(x, y, homing_candidate.x, homing_candidate.y, par_solid, true, true);
+                var homing_fail; homing_fail = false;
+                var homing_solid; homing_solid = collision_line(x, y, homing_candidate.x, homing_candidate.y, par_solid, true, false);
 
                 if (instance_exists(homing_solid))
                 {
@@ -66,8 +61,8 @@ if (!player_get_input(INP_ALT, CHECK_HELD))
 
                 if (!homing_fail)
                 {
-                    homing_id = homing_candidate;
-                    if (homing_id != homing_id_temp) audio_play_sfx("snd_reticle", true);
+                    homing_inst = homing_candidate;
+                    if (homing_inst != homing_inst_temp) audio_play_sfx("snd_reticle", true);
                     break;
                 }
             }

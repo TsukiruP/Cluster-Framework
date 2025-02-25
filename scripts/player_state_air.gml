@@ -1,12 +1,14 @@
 /// player_state_air(phase)
-/* Falling with style. */
+/// @desc Falling with style.
+/// @param {int} phase
+/// @returns {bool}
 
-switch (argument0)
+var _phase; _phase = argument0;
+
+switch (_phase)
 {
     case STATE_START:
-        var g_speed;
-
-        g_speed = x_speed;
+        var g_speed; g_speed = x_speed;
 
         x_speed = dcos(relative_angle) * g_speed;
         y_speed = -(dsin(relative_angle) * g_speed);

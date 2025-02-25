@@ -4,5 +4,5 @@
 
 with (ctrl_audio)
 {
-    if (audio_jng_isplaying()) sound_resume(jng_id);
+    if (audio_jng_isplaying()) sound_resume(jng_inst);
 }

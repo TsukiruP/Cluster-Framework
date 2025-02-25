@@ -1,28 +1,22 @@
 /// player_rotate_mask()
-/* Rotates the player's mask along uneven ground.
-Returns whether this was successful or not. */
+/// @desc Rotates the player's mask along uneven ground.
+/// @returns {void}
 
-var difference;
+var difference; difference = angle_difference(mask_direction, angle);
 
-// Calculate rotational offset between angle and mask rotation:
-difference = angle_difference(mask_rotation, angle);
+// Abort:
+if (abs(difference) <= 45 || abs(difference) >= 90) exit; // Difference is too steep or shallow.
+if (collision_box(y_radius + 1, x_radius, (mask_direction mod 180 != 0), ground_inst) == noone) exit; // Rotating would make the player fall.
 
-// Abort if...
-if (abs(difference) <= 45 or abs(difference) >= 90) return false; // Offset is too steep or shallow
-if (collision_box(y_radius * 2, x_radius, (mask_rotation mod 180 != 0), ground_id) == noone) return false; // Rotating would make the player fall
-var new_rotation, new_angle, new_difference;
+var new_direction; new_direction = angle_wrap(mask_direction + 90 * sign(difference)); // New mask direction.
+var new_angle; new_angle = player_get_angle(ground_inst, new_direction); // Ground angle from new mask direction.
+var new_difference; new_difference = angle_difference(mask_direction, new_angle); // Difference between new angle and mask direction.
 
-// Calculate...
-new_rotation = angle_wrap(mask_rotation + 90 * sign(difference)); // New mask rotation
-new_angle = player_get_angle(ground_id, new_rotation); // Ground angle from new mask rotation
-new_difference = angle_difference(mask_rotation, new_angle); // Rotational offset from new mask rotation
-
-// Abort if...
-if (sign(difference) != sign(new_difference)) return false; // Rotating the wrong way
-if (abs(new_difference) <= 45 or abs(new_difference) >= 90) return false; // New offset is too steep or shallow
+// Abort:
+if (sign(difference) != sign(new_difference)) exit; // Rotating the wrong way.
+if (abs(new_difference) <= 45 || abs(new_difference) >= 90) exit; // New difference is too steep or shallow.
 
 // Confirm rotation:
 angle = new_angle;
 relative_angle = angle_wrap(angle - gravity_direction);
-mask_rotation = new_rotation;
-return true;
+mask_direction = new_direction;

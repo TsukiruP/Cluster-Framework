@@ -1,10 +1,12 @@
 /// debug_option_gameplay_debuffs(return)
+/// @param {any} return
+/// @returns {any}
 
-var config_key;
+var _return; _return = argument0;
 
-config_key = "gameplay_debuffs";
+var config_key; config_key = "gameplay_debuffs";
 
-switch (argument0)
+switch (_return)
 {
     // Text:
     case 0:

@@ -11,5 +11,5 @@ with (ctrl_audio)
     {
         if (sound_exists(argument[0])) return sound_isplaying(_jingle);
     }
-    else return jng_id != -1;
+    else return jng_inst != -1;
 }

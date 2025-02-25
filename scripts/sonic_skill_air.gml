@@ -1,25 +1,21 @@
 /// sonic_skill_air()
-/* Returns whether an air skill has been called. */
+/// @desc Performs Sonic's air skills.
+/// @returns {bool} Returns whether an air skill has been called.
 
 if (!on_ground)
 {
-    var skill_key;
+    var skill_key; skill_key = "";
 
     if (player_get_input(INP_JUMP, CHECK_PRESSED)) skill_key = "air_jump";
     else if (player_get_input(INP_AUX, CHECK_PRESSED)) skill_key = "air_aux";
-    else skill_key = "";
 
     if (skill_key != "")
     {
-        var skill_index;
-
-        skill_index = game_save_get_skill(character_index, skill_key);
+        var skill_index; skill_index = game_save_get_skill(character_index, skill_key);
 
         if (skill_index <= SKILL_INSTA && status_shield_allow)
         {
-            var skill_shield;
-
-            skill_shield = game_save_get_skill(character_index, "shield");
+            var skill_shield; skill_shield = game_save_get_skill(character_index, "shield");
 
             if (skill_shield && status_shield >= SHIELD_BUBBLE) return player_routine_shield();
             else if (skill_index == SKILL_INSTA)

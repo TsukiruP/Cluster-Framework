@@ -1,8 +1,11 @@
 /// player_state_bound()
-/* Not to be confused with the Bound Attack. A common mistake.
-This is the bound of the bubble shield. */
+/// @desc Bubble shield's Bound.
+/// @param {int} phase
+/// @returns {bool}
 
-switch (argument0)
+var _phase; _phase = argument0;
+
+switch (_phase)
 {
     case STATE_START:
         x_speed = 0;
@@ -10,7 +13,7 @@ switch (argument0)
         jump_bound = BOUND_SHIELD;
         player_set_animation("roll");
         audio_play_sfx("snd_shield_bubble_bound", true);
-        with (shield_id) event_user(0);
+        with (shield_inst) event_user(0);
         break;
 
     case STATE_STEP:
@@ -31,7 +34,7 @@ switch (argument0)
         {
             animation_skip = true;
             audio_play_sfx("snd_shield_bubble_bound", true);
-            with (shield_id) event_user(1);
+            with (shield_inst) event_user(1);
             return player_set_state(player_state_jump, true);
         }
 
@@ -44,7 +47,7 @@ switch (argument0)
         {
             jump_aux = false;
             jump_bound = BOUND_NONE;
-            with (shield_id) shield_reset = true;
+            with (shield_inst) shield_reset = true;
         }
         break;
 }

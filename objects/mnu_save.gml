@@ -36,36 +36,33 @@ applies_to=self
 
 if (game_ispaused(ctrl_text) || instance_exists(ctrl_transition)) exit;
 
-var menu_left, menu_right, menu_x_direction, menu_up, menu_down, menu_y_direction, save_count, menu_save;
+var menu_left; menu_left = input_get_check(INP_LEFT, CHECK_PRESSED);
+var menu_right; menu_right = input_get_check(INP_RIGHT, CHECK_PRESSED);
+var menu_x_direction; menu_x_direction = menu_right - menu_left;
 
-menu_left = input_get_check(INP_LEFT, CHECK_PRESSED);
-menu_right = input_get_check(INP_RIGHT, CHECK_PRESSED);
-menu_x_direction = menu_right - menu_left;
-
-menu_up = input_get_check(INP_UP, CHECK_PRESSED);
-menu_down = input_get_check(INP_DOWN, CHECK_PRESSED);
-menu_y_direction = menu_down - menu_up;
+var menu_up; menu_up = input_get_check(INP_UP, CHECK_PRESSED);
+var menu_down; menu_down = input_get_check(INP_DOWN, CHECK_PRESSED);
+var menu_y_direction; menu_y_direction = menu_down - menu_up;
 
 if (menu_x_direction != 0 || menu_y_direction != 0) audio_play_sfx("snd_menu_move", true);
 
 menu_page += menu_x_direction;
 menu_page = wrap(menu_page, 0, page_count - 1);
 
-save_count = min(game_get_save_count() - (save_max * menu_page), save_max);
+var save_count; save_count = min(game_get_save_count() - (save_max * menu_page), save_max);
+
 menu_option += menu_y_direction;
 menu_option = wrap(menu_option, 0, save_count - 1);
 
-menu_save = (menu_page * save_max) + menu_option;
+var menu_save; menu_save = (menu_page * save_max) + menu_option;
 
 if (input_get_check(INP_CONFIRM, CHECK_PRESSED))
 {
     if (menu_mode == 0 || ((menu_mode == 1 || menu_mode == 2) && ds_map_get(save_preview_map, "save" + string(menu_save) + "_exists")))
     {
-        var save_name;
+        var save_name; save_name = game_get_save("name");;
 
         if (menu_mode == 1 || menu_mode == 2) save_name = ds_map_get(save_preview_map, "save" + string(menu_save) + "_name");
-        else save_name = game_get_save("name");
-
         if (save_name == "") save_name = "Slot " + string(menu_save);
 
         script_execute(pick(menu_mode, game_write_save, game_read_save, game_delete_save), menu_save);
@@ -109,38 +106,29 @@ applies_to=self
 var i, j;
 
 // Pages:
-for (i = 0; i < page_count; i += 1)
+for ({var i; i = 0}; i < page_count; i += 1)
 {
-    var save_count, page_top;
-
-    // Save count:
-    save_count = min(game_get_save_count() - (save_max * i), save_max);
-
-    // Top:
-    page_top = (screen_get_height() / 2) - ((save_height + save_leading) * (save_count - 1)) / 2;
+    var save_count; save_count = min(game_get_save_count() - (save_max * i), save_max);
+    var page_top; page_top = (screen_get_height() / 2) - ((save_height + save_leading) * (save_count - 1)) / 2;
 
     // Saves:
-    for (j = 0; j < save_count; j += 1)
+    for ({var j; j = 0}; j < save_count; j += 1)
     {
-        var save_index, save_string, save_indent, save_offset, save_x1, save_y1, save_x2, save_y2, page_offset;
-
         // Save string:
-        save_index = (save_max * i) + j;
-        save_string = "save" + string(save_index);
-
-        // Indent:
-        save_indent = 0;
-        if (menu_page == i && menu_option == j) save_indent = 8;
+        var save_index; save_index = (save_max * i) + j;
+        var save_string; save_string = "save" + string(save_index);
+        var save_indent; save_indent = pick((menu_page == i && menu_option == j), 0, 8);
+        var save_offset; save_offset = (save_height + save_leading) * j;
 
         // Position:
-        save_offset = (save_height + save_leading) * j;
-        save_x1 = (screen_get_width() / 2) - save_width - save_indent;
-        save_y1 = page_top + save_offset;
-        save_x2 = (screen_get_width() / 2) + save_width - save_indent;
-        save_y2 = save_y1 + save_height / 2;
+        var save_x1; save_x1 = (screen_get_width() / 2) - save_width - save_indent;
+        var save_y1; save_y1 = page_top + save_offset;
+        var save_x2; save_x2 = (screen_get_width() / 2) + save_width - save_indent;
+        var save_y2; save_y2 = save_y1 + save_height / 2;
 
         // Page offset:
-        page_offset = save_x2 - ((screen_get_width() - save_x2) / 2);
+        var page_offset; page_offset = save_x2 - ((screen_get_width() - save_x2) / 2);
+
         save_x1 -= page_offset * menu_page;
         save_x2 -= page_offset * menu_page;
         save_x1 += page_offset * i;
@@ -163,13 +151,11 @@ for (i = 0; i < page_count; i += 1)
         // Text:
         if (ds_map_get(save_preview_map, save_string + "_exists"))
         {
-            var save_character, save_name, save_stage, save_time;
-
             // Save data:
-            save_character = ds_map_get(save_preview_map, save_string + "_character");
-            save_name = ds_map_get(save_preview_map, save_string + "_name");
-            save_stage = ds_map_get(save_preview_map, save_string + "_stage");
-            save_time = ds_map_get(save_preview_map, save_string + "_time");
+            var save_character; save_character = ds_map_get(save_preview_map, save_string + "_character");
+            var save_name; save_name = ds_map_get(save_preview_map, save_string + "_name");
+            var save_stage; save_stage = ds_map_get(save_preview_map, save_string + "_stage");
+            var save_time; save_time = ds_map_get(save_preview_map, save_string + "_time");
 
             // Default to slot number:
             if (save_name == "") save_name = "Slot " + string(save_index);

@@ -1,7 +1,7 @@
 /// input_queue_dequeue(queue)
 /// @desc Returns a value from the head of the input queue.
-/// @param {ds_queue} queue
-/// @returns {void}
+/// @param {int} queue
+/// @returns {any}
 
 var _queue; _queue = argument0;
 

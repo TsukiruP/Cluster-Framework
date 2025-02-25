@@ -13,7 +13,7 @@ limit_right = room_width;
 limit_top = 0;
 limit_bottom = room_height;
 
-focus_id = stage_get_player(0);
+focus_inst = stage_get_player(0);
 
 camera_x = x;
 camera_y = y;
@@ -47,18 +47,13 @@ applies_to=self
 */
 /// Shift
 
-if (game_ispaused(mnu_pause))
-{
-    exit;
-}
+if (game_ispaused(mnu_pause)) exit;
 
 if (instance_exists(stage_get_player(0)))
 {
-    if (focus_id == stage_get_player(0))
+    if (focus_inst == stage_get_player(0))
     {
-        var look_direction;
-
-        look_direction = (focus_id.state_current == player_state_crouch) - (focus_id.state_current == player_state_look);
+        var look_direction; look_direction = (focus_inst.state_current == player_state_crouch) - (focus_inst.state_current == player_state_look);
 
         if (look_direction != 0)
         {
@@ -84,14 +79,11 @@ if (instance_exists(stage_get_player(0)))
             if (camera_look_alarm != 120) camera_look_alarm = 120;
         }
 
-        if ((focus_id.state_current == sonic_state_peel_out && focus_id.peel_out_alarm <= 14) || focus_id.peel_out)
+        if ((focus_inst.state_current == sonic_state_peel_out && focus_inst.peel_out_alarm <= 14) || focus_inst.peel_out)
         {
-            if (camera_x_shift != 64 * focus_id.image_xscale) camera_x_shift += 2 * focus_id.image_xscale;
+            if (camera_x_shift != 64 * focus_inst.image_xscale) camera_x_shift += 2 * focus_inst.image_xscale;
         }
-        else
-        {
-            if (camera_x_shift != 0) camera_x_shift = max(abs(camera_x_shift) - 2, 0) * sign(camera_x_shift);
-        }
+        else if (camera_x_shift != 0) camera_x_shift = max(abs(camera_x_shift) - 2, 0) * sign(camera_x_shift);
     }
 }
 /*"/*'/**//* YYD ACTION
@@ -111,42 +103,38 @@ if (game_ispaused(mnu_pause))
     exit;
 }
 
-if (instance_exists(focus_id))
+if (instance_exists(focus_inst))
 {
-    if (focus_id == stage_get_player(0))
+    if (focus_inst == stage_get_player(0))
     {
         if (camera_position_distance == 0)
         {
             if (camera_lag_alarm == 0)
             {
-                var player_offset;
+                var player_offset; player_offset = 0;
 
-                player_offset = 0;
-                if (focus_id.on_ground) player_offset = focus_id.camera_offset * dsin(focus_id.mask_rotation);
+                if (focus_inst.on_ground) player_offset = dsin(focus_inst.mask_direction) * focus_inst.camera_offset;
 
-                if (focus_id.x < (border_left - player_offset)) camera_x -= min((border_left - player_offset) - focus_id.x, 24);
-                else if (focus_id.x > (border_right + player_offset)) camera_x += min(focus_id.x - (border_right + player_offset), 24);
+                if (focus_inst.x < (border_left - player_offset)) camera_x -= min((border_left - player_offset) - focus_inst.x, 24);
+                else if (focus_inst.x > (border_right + player_offset)) camera_x += min(focus_inst.x - (border_right + player_offset), 24);
 
-                if (focus_id.state_current != player_state_death)
+                if (focus_inst.state_current != player_state_death)
                 {
-                    var focus_y;
+                    var focus_y; focus_y = focus_inst.y;
 
-                    focus_y = focus_id.y;
-
-                    if (!focus_id.on_ground)
+                    if (!focus_inst.on_ground)
                     {
                         if (focus_y < border_top) camera_y -= min(border_top - focus_y, 24);
                         else if (focus_y > border_bottom) camera_y += min(focus_y - border_bottom, 24);
                     }
-                    else if (focus_id.on_ground)
+                    else if (focus_inst.on_ground)
                     {
-                        var camera_speed_cap;
+                        var camera_speed_cap; camera_speed_cap = 6;
 
-                        camera_speed_cap = 6;
-                        if (focus_id.x_speed >= 8) camera_speed_cap = 24;
+                        if (focus_inst.x_speed >= 8) camera_speed_cap = 24;
 
-                        if (focus_y < (camera_y - focus_id.camera_offset)) camera_y -= min((camera_y - focus_id.camera_offset) - focus_y, camera_speed_cap);
-                        else if (focus_y > (camera_y + focus_id.camera_offset)) camera_y += min(focus_y - (camera_y + focus_id.camera_offset), camera_speed_cap);
+                        if (focus_y < (camera_y - focus_inst.camera_offset)) camera_y -= min((camera_y - focus_inst.camera_offset) - focus_y, camera_speed_cap);
+                        else if (focus_y > (camera_y + focus_inst.camera_offset)) camera_y += min(focus_y - (camera_y + focus_inst.camera_offset), camera_speed_cap);
                     }
                 }
             }
@@ -154,28 +142,25 @@ if (instance_exists(focus_id))
     }
     else
     {
-        if (focus_id.x != camera_x)
+        if (focus_inst.x != camera_x)
         {
-            var camera_distance_x;
+            var camera_distance_x; camera_distance_x = focus_inst.x - camera_x;
 
-            camera_distance_x = focus_id.x - camera_x;
             camera_x += min(abs(camera_distance_x), 6) * sign(camera_distance_x);
         }
 
-        if (focus_id.y != camera_y)
+        if (focus_inst.y != camera_y)
         {
-            var camera_distance_y;
+            var camera_distance_y; camera_distance_y = focus_inst.y - camera_y;
 
-            camera_distance_y = focus_id.y - camera_y;
             camera_y += min(abs(camera_distance_y), 6) * sign(camera_distance_y);
         }
     }
 }
 
-var view_xhalf, view_yhalf;
+var view_xhalf; view_xhalf = screen_get_width() / 2;
+var view_yhalf; view_yhalf = screen_get_height() / 2;
 
-view_xhalf = screen_get_width() / 2;
-view_yhalf = screen_get_height() / 2;
 x = clamp(x, limit_left + view_xhalf, limit_right - view_yhalf);
 y = clamp(y, limit_top + view_yhalf, limit_bottom - view_yhalf);
 x = floor(camera_x + camera_x_shift);

@@ -1,10 +1,12 @@
 /// debug_option_sonic_air_aux(return)
+/// @param {any} return
+/// @returns {any}
 
-var skill_key;
+var _return; _return = argument0;
 
-skill_key = "air_aux";
+var skill_key; skill_key = "air_aux";
 
-switch (argument0)
+switch (_return)
 {
     // Text:
     case 0:

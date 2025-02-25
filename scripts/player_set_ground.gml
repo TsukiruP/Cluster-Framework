@@ -1,44 +1,51 @@
 /// player_set_ground(obj)
-/* Assigns the given solid as the player's current ground. */
+/// @desc Sets the player's ground instance.
+/// @param {object} obj
+/// @returns {void}
 
-var sine, csine;
+var _obj; _obj = argument0;
 
-// Confirm assignment
-ground_id = argument0;
+var new_angle; new_angle = player_get_angle(_obj, mask_direction);
+
+// Abort if solid is too steep:
+if (on_ground && abs(angle_difference(angle, new_angle)) > 45)
+{
+    on_ground = false;
+    exit;
+}
+
+// Set new ground angle:
+angle = new_angle;
+relative_angle = angle_wrap(angle - gravity_direction);
+
+// Confirm ground:
+ground_inst = _obj;
 on_ground = true;
 player_reset_skill();
 
-// Calculate and set new ground angle
-angle = player_get_angle(ground_id, mask_rotation);
-relative_angle = angle_wrap(angle - gravity_direction);
+// Align to ground:
+var rotation; rotation = round(angle / 90) * 90;
+var sine; sine = dsin(rotation);
+var csine; csine = dcos(rotation);
 
-sine = dsin(mask_rotation);
-csine = dcos(mask_rotation);
-
-// Rise up while inside
-repeat (y_radius * 2)
+// Rise up while inside:
+repeat (y_radius)
 {
-    if (collision_box_vertical(x_radius, y_radius, mask_rotation, ground_id) != noone)
+    if (collision_box_vertical(x_radius, y_radius, rotation, ground_inst) != noone)
     {
         x -= sine;
         y -= csine;
     }
-    else
-    {
-        break;
-    }
+    else break;
 }
 
-// Snap down while outside
-repeat (y_radius * 2)
+// Snap down while outside:
+repeat (y_radius + 1)
 {
-    if (collision_box_vertical(x_radius, y_radius + 1, mask_rotation, ground_id) == noone)
+    if (collision_box_vertical(x_radius, y_radius + 1, rotation, ground_inst) == noone)
     {
         x += sine;
         y += csine;
     }
-    else
-    {
-        break;
-    }
+    else break;
 }

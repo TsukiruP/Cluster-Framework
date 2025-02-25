@@ -1,7 +1,11 @@
 /// player_state_roll(phase)
-/* Keep rollin', rollin', rollin', rollin' */
+/// @desc Keep rollin', rollin', rollin', rollin'
+/// @param {int} phase
+/// @returns {bool}
 
-switch (argument0)
+var _phase; _phase = argument0;
+
+switch (_phase)
 {
     case STATE_START:
         player_set_animation("roll");
@@ -32,14 +36,13 @@ switch (argument0)
             else if (relative_angle >= 45 && relative_angle <= 315) input_lock_alarm = 30;
         }
 
-        var roll_slope_friction;
+        var roll_slope_friction; roll_slope_friction = roll_friction_down;
 
-        roll_slope_friction = roll_friction_down;
         if (sign(dsin(relative_angle)) == sign(x_speed)) roll_slope_friction = roll_friction_up;
         player_slope_friction(roll_slope_friction);
 
         if (player_routine_jump()) return true;
-        if (abs(x_speed) < 0.5 && mask_rotation == gravity_direction) return player_set_state(player_state_run);
+        if (abs(x_speed) < 0.5 && mask_direction == gravity_direction) return player_set_state(player_state_run);
         break;
 
     case STATE_FINISH:

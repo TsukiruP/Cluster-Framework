@@ -1,8 +1,8 @@
-/// camera_set_lag(value)
+/// camera_set_lag(val)
 /// @desc Sets the camera's lag.
-/// @param {int} value
+/// @param {int} val
 /// @returns {void}
 
-var _value; _value = argument0;
+var _val; _val = argument0;
 
-with (ctrl_camera) camera_lag_alarm = _value;
+with (ctrl_camera) camera_lag_alarm = _val;

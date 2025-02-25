@@ -1,19 +1,27 @@
 /// ease_in_out_back(inputvalue, outputmin, outputmax, inputmax)
-/* http://www.davetech.co.uk/gamemakereasingandtweeningfunctions */
+/// @desc http://www.davetech.co.uk/gamemakereasingandtweeningfunctions
+/// @param inputvalue
+/// @param outputmin
+/// @param outputmax
+/// @param inputmax
+/// @returns {number}
 
-var _s;
+var _inputvalue; _inputvalue = argument0;
+var _outputmin; _outputmin = argument1;
+var _outputmax; _outputmax = argument2;
+var _inputmax; _inputmax = argument3;
 
-_s = 1.70158;
+var _s; _s = 1.70158;
 
-argument0 = argument0/argument3*2
+_inputvalue = _inputvalue / _inputmax * 2
 
-if (argument0 < 1)
+if (_inputvalue < 1)
 {
     _s *= 1.525;
-    return argument2 * 0.5 * (argument0 * argument0 * ((_s + 1) * argument0 - _s)) + argument1;
+    return _outputmax * 0.5 * (_inputvalue * _inputvalue * ((_s + 1) * _inputvalue - _s)) + _outputmin;
 }
 
-argument0 -= 2;
+_inputvalue -= 2;
 _s *= 1.525
 
-return argument2 * 0.5 * (argument0 * argument0 * ((_s + 1) * argument0 + _s) + 2) + argument1;
+return _outputmax * 0.5 * (_inputvalue * _inputvalue * ((_s + 1) * _inputvalue + _s) + 2) + _outputmin;

@@ -6,7 +6,7 @@ with (ctrl_game)
 {
     ds_list_clear(character_list);
 
-    for (i = 0; i < PLAYER_COUNT; i += 1)
+    for ({var i; i = 0}; i < PLAYER_COUNT; i += 1)
     {
         ds_list_add(character_list, -1);
     }

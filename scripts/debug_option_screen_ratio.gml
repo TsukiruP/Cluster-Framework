@@ -1,10 +1,12 @@
 /// debug_option_screen_ratio(return)
+/// @param {any} return
+/// @returns {any}
 
-var config_key;
+var _return; _return = argument0;
 
-config_key = "screen_ratio";
+var config_key; config_key = "screen_ratio";
 
-switch (argument0)
+switch (_return)
 {
     // Text:
     case 0:
@@ -25,10 +27,7 @@ switch (argument0)
 
     // Update:
     case 3:
-        var ratio_max;
-
-        // Ratio max:
-        ratio_max = pick(game_get_config("screen_mode"), 1, 2, 0);
+        var ratio_max; ratio_max = pick(game_get_config("screen_mode"), 1, 2, 0);
 
         game_set_config(config_key, wrap(game_get_config(config_key) + menu_x_direction, 0, ratio_max));
         return true;

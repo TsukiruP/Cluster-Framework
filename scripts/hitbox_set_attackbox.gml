@@ -1,31 +1,24 @@
-/// hitbox_set_attackbox(left, top, right, bottom, [xoffset, yoffset])
-/* Sets the calling instance's hitbox. */
+/// hitbox_set_attackbox([left], [top], [right], [bottom], [xoffset], [yoffset])
+/// @desc Sets the calling instance's attackbox.
+/// @param {int} [left]
+/// @param {int} [top]
+/// @param {int} [right]
+/// @param {int} [bottom]
+/// @param {int} [xoffset]
+/// @param {int} [yoffset]
+/// @returns {void}
 
-var left, top, right, bottom, off_x, off_y;
+var _left; if (argument_count > 0) _left = argument[0]; else _left = 0;
+var _top; if (argument_count > 1) _top = argument[1]; else _top = 0;
+var _right; if (argument_count > 2) _right = argument[2]; else _right = 0;
+var _bottom; if (argument_count > 3) _bottom = argument[3]; else _bottom = 0;
+var _xoffset; if (argument_count > 4) _xoffset = argument[4]; else _xoffset = 0;
+var _yoffset; if (argument_count > 5) _yoffset = argument[5]; else _yoffset = 0;
 
-left = 0;
-top = 0;
-right = 0;
-bottom = 0;
+attackbox_left = _left;
+attackbox_top = _top;
+attackbox_right = _right;
+attackbox_bottom = _bottom;
 
-off_x = 0;
-off_y = 0;
-
-if (argument_count > 3)
-{
-    left = argument[0];
-    top = argument[1];
-    right = argument[2];
-    bottom = argument[3];
-
-    if (argument_count > 4) off_x = argument[4];
-    if (argument_count > 5) off_y = argument[5];
-}
-
-attackbox_left = left;
-attackbox_top = top;
-attackbox_right = right;
-attackbox_bottom = bottom;
-
-attackbox_offset_x = off_x;
-attackbox_offset_y = off_y;
+attackbox_offset_x = _xoffset;
+attackbox_offset_y = _yoffset;

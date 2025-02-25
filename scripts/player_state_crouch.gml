@@ -1,7 +1,11 @@
 /// player_state_crouch(phase)
-/* Eyes on the ground. */
+/// @desc Eyes on the ground.
+/// @param {int} phase
+/// @returns {bool}
 
-switch (argument0)
+var _phase; _phase = argument0;
+
+switch (_phase)
 {
     case STATE_START:
         player_set_animation("crouch");

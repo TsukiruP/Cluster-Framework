@@ -1,5 +1,9 @@
 /// player_add_rings(val)
-/* Adds value to stage rings and refill energy. */
+/// @desc Adds value to stage rings and refills energy.
+/// @param {int} val
+/// @returns {void}
 
-stage_add_rings(argument0);
-with (obj_player) clock_up_energy = min(clock_up_energy + argument0, clock_up_max_energy);
+var _val; _val = argument0;
+
+stage_add_rings(_val);
+with (obj_player) clock_up_energy = min(clock_up_energy + _val, clock_up_max_energy);

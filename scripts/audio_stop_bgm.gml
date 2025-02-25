@@ -6,8 +6,8 @@ with (ctrl_audio)
 {
     if (audio_bgm_isplaying())
     {
-        sound_stop(bgm_id);
-        sound_discard(bgm_id);
-        bgm_id = -1;
+        sound_stop(bgm_inst);
+        sound_discard(bgm_inst);
+        bgm_inst = -1;
     }
 }

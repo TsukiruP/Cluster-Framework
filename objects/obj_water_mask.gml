@@ -9,8 +9,8 @@ applies_to=self
 event_inherited();
 depth = -11000;
 reaction_index = player_reaction_water;
+reaction_mask = true;
 surface = true;
-hitbox_set_hurtbox(0, 0, sprite_width, sprite_height);
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -36,9 +36,7 @@ image_alpha = 0.5;
 
 if (Field("surface", 0))
 {
-    var i;
-
-    for (i = 0; i < image_xscale; i += 1)
+    for ({var i; i = 0}; i < image_xscale; i += 1)
     {
         draw_sprite(Sprite("spr_water_surface", 0), 0, x + 8 * i, y);
     }
@@ -52,10 +50,8 @@ applies_to=self
 */
 /// Draw Water
 
-var water_width, water_height;
-
-water_width = min(sprite_width, view_xview[view_current] + view_wview[view_current]);
-water_height = min(sprite_height, view_yview[view_current] + view_hview[view_current]);
+var water_width; water_width = min(sprite_width, view_xview[view_current] + view_wview[view_current]);
+var water_height; water_height = min(sprite_height, view_yview[view_current] + view_hview[view_current]);
 
 // Filter:
 draw_set_blend_mode_ext(bm_dest_color, bm_src_alpha_sat);

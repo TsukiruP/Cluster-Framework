@@ -36,11 +36,9 @@ if (keyboard_check_pressed(vk_f6))
 
 if (!info_hide)
 {
-    var menu_left, menu_right, menu_direction;
-
-    menu_left = keyboard_check_pressed(vk_pageup);
-    menu_right = keyboard_check_pressed(vk_pagedown);
-    menu_direction = menu_right - menu_left;
+    var menu_left; menu_left = keyboard_check_pressed(vk_pageup);
+    var menu_right; menu_right = keyboard_check_pressed(vk_pagedown);
+    var menu_direction; menu_direction = menu_right - menu_left;
 
     info_index += menu_direction;
     info_index = wrap(info_index, 0, 2);
@@ -88,31 +86,29 @@ if (!game_get_debug()) exit;
 
 with (obj_player)
 {
-    var x_int, y_int, sine, csine;
-
-    x_int = floor(x);
-    y_int = floor(y);
+    var x_int; x_int = floor(x);
+    var y_int; y_int = floor(y);
 
     // Bounding box:
-    if (mask_rotation mod 180 != 0) draw_rectangle_color(x_int - y_radius, y_int - x_radius, x_int + y_radius, y_int + x_radius, c_orange, c_orange, c_orange, c_orange, true);
+    if (mask_direction mod 180 != 0) draw_rectangle_color(x_int - y_radius, y_int - x_radius, x_int + y_radius, y_int + x_radius, c_orange, c_orange, c_orange, c_orange, true);
     else draw_rectangle_color(x_int - x_radius, y_int - y_radius, x_int + x_radius, y_int + y_radius, c_orange, c_orange, c_orange, c_orange, true);
 
     // Wall radius:
-    sine = dsin(mask_rotation);
-    csine = dcos(mask_rotation);
+    var sine; sine = dsin(mask_direction);
+    var csine; csine = dcos(mask_direction);
 
     draw_line_color(x_int - (csine * wall_radius), y_int + (sine * wall_radius), x_int + (csine * wall_radius), y_int - (sine * wall_radius), c_white, c_white);
 
     // Hitboxes:
-    draw_hitbox(hurtbox_left, hurtbox_top, hurtbox_right, hurtbox_bottom, hurtbox_offset_x, hurtbox_offset_y, mask_rotation, c_maroon);
-    draw_hitbox(attackbox_left, attackbox_top, attackbox_right, attackbox_bottom, attackbox_offset_x, attackbox_offset_y, mask_rotation, c_green);
+    draw_hitbox(hurtbox_left, hurtbox_top, hurtbox_right, hurtbox_bottom, hurtbox_offset_x, hurtbox_offset_y, mask_direction, c_maroon);
+    draw_hitbox(attackbox_left, attackbox_top, attackbox_right, attackbox_bottom, attackbox_offset_x, attackbox_offset_y, mask_direction, c_green);
 
     // Homing range:
     if (game_save_get_skill(character_index, "homing") && character_index == CHAR_SONIC)
     {
-        draw_line(x_int, y_int, x_int + lengthdir_x(homing_range * image_xscale, mask_rotation + 45), y_int + lengthdir_y(homing_range * image_xscale, mask_rotation + 45));
-        draw_line(x_int, y_int, x_int + lengthdir_x(homing_range * image_xscale, mask_rotation - 45), y_int + lengthdir_y(homing_range * image_xscale, mask_rotation - 45));
-        if (instance_exists(homing_id)) draw_line(x_int, y_int, floor(homing_id.x), floor(homing_id.y));
+        draw_line(x_int, y_int, x_int + lengthdir_x(homing_range * image_xscale, mask_direction + 45), y_int + lengthdir_y(homing_range * image_xscale, mask_direction + 45));
+        draw_line(x_int, y_int, x_int + lengthdir_x(homing_range * image_xscale, mask_direction - 45), y_int + lengthdir_y(homing_range * image_xscale, mask_direction - 45));
+        if (instance_exists(homing_inst)) draw_line(x_int, y_int, floor(homing_inst.x), floor(homing_inst.y));
     }
 
     draw_reset();
@@ -128,12 +124,11 @@ if (!game_get_debug() || info_hide) exit;
 
 with (stage_get_player(0))
 {
-    var info_string, info_x, info_y;
+    var info_string; info_string = "";
+    var info_x; info_x = view_xview[view_current] + 10;
+    var info_y; info_y = view_yview[view_current] + screen_get_height() / 2;
 
     draw_set_font(global.font_system);
-    info_string = "";
-    info_x = view_xview[view_current] + 10;
-    info_y = view_yview[view_current] + screen_get_height() / 2;
 
     switch (other.info_index)
     {
@@ -184,7 +179,7 @@ with (stage_get_player(0))
             "Gravity: " + string(gravity_direction) + "#" +
             "Angle: " + string(angle) + "#" +
             "Relative Angle: " + string(relative_angle) + "#" +
-            "Mask Rotation: " + string(mask_rotation) + "##" +
+            "Mask Rotation: " + string(mask_direction) + "##" +
             "Input Allow: " + string_bool(input_allow) + "#" +
             "Input Lock: " + string(input_lock_alarm);
     }

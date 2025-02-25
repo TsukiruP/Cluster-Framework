@@ -1,6 +1,6 @@
 /// debug_set_previous()
 /// @desc Sets the menu list to the popped head of the history stack.
-/// @returns {void}
+/// @returns {bool}
 
 if (!ds_stack_empty(history_stack))
 {

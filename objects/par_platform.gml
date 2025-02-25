@@ -24,10 +24,8 @@ applies_to=self
 
 if (game_ispaused(mnu_pause)) exit;
 
-var x_amplitude, y_amplitude;
-
-x_amplitude = (xstart - target[0]) / 2;
-y_amplitude = (ystart - target[1]) / 2;
+var x_amplitude; x_amplitude = (xstart - target[0]) / 2;
+var y_amplitude; y_amplitude = (ystart - target[1]) / 2;
 
 x = cosine_wave(life_time, life_period, x_amplitude, xstart - x_amplitude);
 y = cosine_wave(life_time, life_period, y_amplitude, ystart - y_amplitude);

@@ -6,8 +6,6 @@ applies_to=self
 */
 /// Stage Initialization
 
-var i;
-
 time_allow = false;
 pause_allow = true;
 
@@ -54,7 +52,7 @@ if (instance_exists(ctrl_camera))
 
     with (obj_player)
     {
-        if (!in_view()) instance_activate_region(x - 64, y - 64, 128, 128, true);
+        if (!in_view(self)) instance_activate_region(x - 64, y - 64, 128, 128, true);
     }
 }
 #define Other_5

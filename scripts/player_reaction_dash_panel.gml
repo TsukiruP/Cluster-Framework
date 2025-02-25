@@ -1,28 +1,28 @@
 /// player_reaction_dash_panel(obj, hitbox)
-/* Like an onion. */
+/// @desc
+/// @param {object} obj
+/// @param {int} hitbox
+/// @returns {void}
 
-var reaction_id, hitbox;
+var _obj; _obj = argument0;
+var _hitbox; _hitbox = argument1;
 
-reaction_id = argument0;
-hitbox = argument1;
-
-if (hitbox & HIT_COLLISION)
+if (_hitbox & HIT_INTERACT)
 {
-    if (booster_current != reaction_id || input_lock_alarm == 0)
+    if (dash_panel_inst != _obj || input_lock_alarm == 0)
     {
-        if (gravity_direction != reaction_id.angle)
+        if (gravity_direction != _obj.angle)
         {
-            mask_rotation = reaction_id.angle;
+            mask_direction = _obj.angle;
             player_set_state(player_state_run);
         }
 
-        //image_xscale = reaction_id.image_xscale;
-        image_xscale = pick(reaction_id.variant, reaction_id.image_xscale, reaction_id.image_yscale);
-        x_speed = reaction_id.force * image_xscale;
+        image_xscale = pick(_obj.variant, _obj.image_xscale, _obj.image_yscale);
+        x_speed = _obj.force * image_xscale;
         input_lock_alarm = 16;
-        booster_current = reaction_id;
+        dash_panel_inst = _obj;
 
-        with (reaction_id)
+        with (_obj)
         {
             if (sfx_alarm == 0)
             {

@@ -4,12 +4,10 @@
 
 with (ctrl_audio)
 {
-    var i;
-
-    for (i = 0; i < ds_list_size(sfx_list); i += 1)
+    for ({var i; i = 0}; i < ds_list_size(sfx_list); i += 1)
     {
-        var sfx; sfx = ds_list_find_value(sfx_list, i);
+        var sfx_inst; sfx_inst = ds_list_find_value(sfx_list, i);
 
-        sound_resume(sfx);
+        sound_resume(sfx_inst);
     }
 }

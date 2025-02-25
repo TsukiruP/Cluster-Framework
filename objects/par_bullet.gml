@@ -24,9 +24,8 @@ applies_to=self
 
 if (game_ispaused()) exit;
 
-var game_speed;
+var game_speed; game_speed = game_get_speed();
 
-game_speed = game_get_speed();
 x += x_speed * game_speed;
 y += y_speed * game_speed;
 y_speed += gravity_force * game_speed;
@@ -37,4 +36,4 @@ if (script_exists(sequence_index))
     script_execute(sequence_index);
 }
 
-if (!in_view()) instance_destroy();
+if (!in_view(self)) instance_destroy();

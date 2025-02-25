@@ -6,8 +6,6 @@ applies_to=self
 */
 /// Spawn Player
 
-var i;
-
 instance_create(0, 0, ctrl_stage);
 
 if (game_checkpoint_isset())
@@ -17,7 +15,7 @@ if (game_checkpoint_isset())
     stage_set_time(game_get_checkpoint_time());
 }
 
-for (i = 0; i < PLAYER_COUNT; i += 1)
+for ({var i; i = 0}; i < PLAYER_COUNT; i += 1)
 {
     if (game_save_get_character(i) != -1)
     {
@@ -31,7 +29,7 @@ for (i = 0; i < PLAYER_COUNT; i += 1)
             if (i == 0)
             {
                 camera = instance_create(x, y, ctrl_camera);
-                camera.focus_id = stage_get_player(i);
+                camera.focus_inst = stage_get_player(i);
             }
         }
     }

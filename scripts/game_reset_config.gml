@@ -2,8 +2,6 @@
 /// @desc Resets the config map.
 /// @returns {void}
 
-var i;
-
 game_set_config("interface_red", 0);
 game_set_config("interface_green", 24);
 game_set_config("interface_blue", 176);
@@ -20,7 +18,7 @@ game_set_config("audio_bgm", 0);
 game_config_reset_key();
 game_config_write_key();
 
-for (i = 0; i < PLAYER_COUNT; i += 1)
+for ({var i; i = 0}; i < PLAYER_COUNT; i += 1)
 {
     game_config_reset_btn(i);
     game_config_set_gamepad(i, "input_deadzone", 0.1);

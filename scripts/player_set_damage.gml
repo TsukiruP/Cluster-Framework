@@ -1,14 +1,16 @@
 /// player_set_damage(obj)
-/* Sets whether the player gets hurt or dies. Setting obj to the player is instant death. */
+/// @desc Sets the player state to being hurt or dying. Setting the inst to the player is instant death.
+/// @param {object} obj
+/// @returns {void}
+
+var _obj; _obj = argument0;
 
 if (state_current == player_state_death || ((state_current == player_state_hurt || status_insta_alarm || status_invin != INVIN_NONE) && argument0 != self)) exit;
 
-var damage_id, hurt_direction;
+var damage_inst; damage_inst = _obj.id;
+var hurt_direction; hurt_direction = esign(x - damage_inst.x, 1);
 
-damage_id = argument0.id;
-hurt_direction = esign(x - damage_id.x, 1);
-
-if (damage_id == id || (stage_get_rings() == 0 && status_shield == 0 && !input_cpu))
+if (damage_inst == id || (stage_get_rings() == 0 && status_shield == 0 && !input_cpu))
 {
     if (!drown) y_speed = -7;
     player_set_state(player_state_death);
@@ -33,14 +35,14 @@ else
     }
 }
 
-if (damage_id == id)
+if (damage_inst == id)
 {
     if (drown) audio_play_sfx("snd_drown", true);
     else audio_play_sfx("snd_hurt", true);
 }
-else if ((!input_cpu && shield_id != noone) || input_cpu || state_current == player_state_death)
+else if ((!input_cpu && shield_inst != noone) || input_cpu || state_current == player_state_death)
 {
-    if (damage_id.object_index == obj_spike) audio_play_sfx("snd_spike", true);
+    if (damage_inst.object_index == obj_spike) audio_play_sfx("snd_spike", true);
     else audio_play_sfx("snd_hurt", true);
     if (!input_cpu) audio_stop_drown();
 }

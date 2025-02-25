@@ -8,7 +8,7 @@ applies_to=self
 
 event_inherited();
 collision = false;
-switch_id = noone;
+switch_inst = noone;
 switch_active = false;
 switch_time = 0;
 sequence_init(sequence_switch_platform);
@@ -22,15 +22,14 @@ applies_to=self
 
 if (game_ispaused(mnu_pause)) exit;
 
-with (switch_id)
+with (switch_inst)
 {
     other.switch_active = !collision;
     other.switch_time = target_time;
 }
 
-var time_difference;
+var time_difference; time_difference = switch_time - game_get_time();
 
-time_difference = switch_time - game_get_time();
 switch_active = (switch_active && time_difference);
 
 if (switch_active)
@@ -62,7 +61,7 @@ applies_to=self
 
 event_inherited();
 
-//field switch_id: instance
+//field switch_inst: instance
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -70,7 +69,7 @@ applies_to=self
 */
 /// Switch Initialization
 
-with (switch_id) image_offset = 0;
+with (switch_inst) image_offset = 0;
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1

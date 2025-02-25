@@ -4,12 +4,11 @@
 
 with (ctrl_game)
 {
-    var i;
     var gamepad_list; gamepad_list = ds_list_create();
 
     ds_list_read(gamepad_list, game_get_config("input_gamepad"));
 
-    for (i = 0; i < min(ds_list_size(gamepad_list), PLAYER_COUNT); i += 1)
+    for ({var i; i = 0}; i < min(ds_list_size(gamepad_list), PLAYER_COUNT); i += 1)
     {
         var gamepad_map; gamepad_map = ds_map_create();
         var input_list; input_list = ds_list_create();

@@ -1,11 +1,17 @@
 /// room_set_view_better(width, height)
-/* Sets room variables directly so they take effect immediately. */
+/// @desc Sets the view size of the room.
+/// @param {int} width
+/// @param {int} height
+/// @returns {void}
+
+var _width; _width = argument0;
+var _height; _height = argument1;
 
 view_enabled[0] = true;
 view_visible[0] = true;
-view_wview[0] = argument0;
-view_hview[0] = argument1;
-view_wport[0] = argument0;
-view_hport[0] = argument1;
-view_hborder[0] = argument0 / 2;
-view_vborder[0] = argument1 / 2;
+view_wview[0] = _width;
+view_hview[0] = _height;
+view_wport[0] = _width;
+view_hport[0] = _height;
+view_hborder[0] = _width / 2;
+view_vborder[0] = _height / 2;

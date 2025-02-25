@@ -18,9 +18,9 @@ applies_to=self
 */
 /// Animation
 
-if (player_id.status_invin != INVIN_BUFF)
+if (player_inst.status_invin != INVIN_BUFF)
 {
-    switch (player_id.status_shield)
+    switch (player_inst.status_shield)
     {
         case SHIELD_MAGNETIC:
             if (sequence_index != sequence_shield_magnetic) sequence_set(sequence_shield_magnetic);
@@ -45,18 +45,15 @@ if (player_id.status_invin != INVIN_BUFF)
             if (sequence_index != sequence_shield_basic) sequence_set(sequence_shield_basic);
     }
 }
-else
-{
-    if (sequence_index != sequence_shield_invin) sequence_set(sequence_shield_invin);
-}
+else if (sequence_index != sequence_shield_invin) sequence_set(sequence_shield_invin);
 
 if (shield_reset != false) shield_reset = false;
-if (player_id.status_shield == SHIELD_NONE && player_id.status_invin != INVIN_BUFF) instance_destroy();
+if (player_inst.status_shield == SHIELD_NONE && player_inst.status_invin != INVIN_BUFF) instance_destroy();
 event_inherited();
 
-shield_advance = (player_id.status_shield == SHIELD_BASIC || player_id.status_shield == SHIELD_MAGNETIC || player_id.status_invin == INVIN_BUFF);
+shield_advance = (player_inst.status_shield == SHIELD_BASIC || player_inst.status_shield == SHIELD_MAGNETIC || player_inst.status_invin == INVIN_BUFF);
 
-if (!game_ispaused(mnu_pause) && ((player_id.status_shield == SHIELD_BUBBLE && sequence_index == sequence_shield_bubble) || (game_get_config("advance_flicker") && shield_advance)))
+if (!game_ispaused(mnu_pause) && ((player_inst.status_shield == SHIELD_BUBBLE && sequence_index == sequence_shield_bubble) || (game_get_config("advance_flicker") && shield_advance)))
 {
     shield_hide = time_sync(sequence_moment, 2, 2);
 }
@@ -69,14 +66,14 @@ applies_to=self
 */
 /// Set Index
 
-switch (player_id.status_shield)
+switch (player_inst.status_shield)
 {
     case SHIELD_BUBBLE:
         sequence_set(sequence_shield_bubble_bound);
         break;
 
     case SHIELD_FIRE:
-        image_xscale = player_id.image_xscale;
+        image_xscale = player_inst.image_xscale;
         sequence_set(sequence_shield_fire_dash);
         break;
 }
@@ -97,9 +94,7 @@ applies_to=self
 */
 /// Draw Shield
 
-var player_rotation, sine, csine, draw_x, draw_y;
-
-player_rotation = player_id.gravity_direction;
+var player_rotation; player_rotation = player_inst.gravity_direction;
 
 if (sprite_index != spr_shield_fire_dash) image_xscale = 1;
 
@@ -109,7 +104,7 @@ else image_alpha = 0.6;
 if (sprite_exists(sprite_index))
 {
     if (!shield_hide) draw_sprite_ext(sprite_index, image_index, x, y, image_xscale, 1, player_rotation, c_white, image_alpha);
-    else if (player_id.status_shield == SHIELD_BUBBLE && player_id.status_invin != INVIN_BUFF)
+    else if (player_inst.status_shield == SHIELD_BUBBLE && player_inst.status_invin != INVIN_BUFF)
     {
         draw_sprite_ext(spr_shield_bubble_shell, sequence_moment_previous div 12, x, y, image_xscale, 1, player_rotation, c_white, image_alpha);
     }

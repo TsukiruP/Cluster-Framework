@@ -5,8 +5,8 @@
 
 with (ctrl_stage)
 {
-    var player_id; player_id = ds_list_find_value(player_list, argument0);
+    var player_inst; player_inst = ds_list_find_value(player_list, argument0);
 
-    if (player_id != 0) return player_id;
-    return noone;
+    if (player_inst != 0) return player_inst;
+    else return noone;
 }

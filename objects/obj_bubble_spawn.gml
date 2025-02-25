@@ -95,10 +95,8 @@ if (cycle_state == 1)
 
     if (bubble_alarm == 0)
     {
-        var bubble_size, bubble_reset;
-
-        bubble_size = 2;
-        bubble_reset = bubble_large;
+        var bubble_size; bubble_size = 2;
+        var bubble_reset; bubble_reset = bubble_large;
 
         if (cycle_frequency > 0 && cycle_count > 0 && !bubble_reset)
         {

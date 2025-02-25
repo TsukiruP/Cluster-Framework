@@ -80,19 +80,15 @@ applies_to=self
 /// Draw Parallax
 
 // Sea:
-var i, sea_height, sea_x, sea_y;
-
-sea_height = background_get_height(bg_basic_test_sea);
-sea_x = view_xview[view_current] div sea_rate;
-sea_y = view_yview[view_current] * parallax_ratio + (parallax_reference - ((parallax_reference - screen_get_height() / 2) * parallax_ratio));;
-sea_scale = clamp((parallax_reference - sea_y) / sea_height, -1, 1);
+var sea_height; sea_height = background_get_height(bg_basic_test_sea);
+var sea_x; sea_x = view_xview[view_current] div sea_rate;
+var sea_y; sea_y = view_yview[view_current] * parallax_ratio + (parallax_reference - ((parallax_reference - screen_get_height() / 2) * parallax_ratio));;
+var sea_scale; sea_scale = clamp((parallax_reference - sea_y) / sea_height, -1, 1);
 
 // Sky:
-var sky_height, sky_x, sky_y;
-
-sky_height = background_get_height(bg_basic_test_sky);
-sky_x = view_xview[view_current] div sky_rate;
-sky_y = sea_y - sky_height;
+var sky_height; sky_height = background_get_height(bg_basic_test_sky);
+var sky_x; sky_x = view_xview[view_current] div sky_rate;
+var sky_y; sky_y = sea_y - sky_height;
 
 draw_background_tiled_extra(bg_basic_test_under, sky_x, sea_y, 1,  1, 0, c_white, 1, 0, 1);
 draw_background_tiled_extra(bg_basic_test_sky, sky_x + sky_scroll, sky_y, 1, 1, 0, c_white, 1, 0, 1);

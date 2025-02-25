@@ -1,52 +1,55 @@
-/// draw_hitbox(left, top, right, bottom, xoffset, yoffset, angle, color)
-/* Draws a rectangular outline that flips and rotates accordingly. */
+/// draw_hitbox(left, top, right, bottom, xoffset, yoffset, rot, color)
+/// @desc Draws a rectangular outline that flips and rotates accordingly.
+/// @param {int} left
+/// @param {int} top
+/// @param {int} right
+/// @param {int} bottom
+/// @param {int} xoffset
+/// @param {int} yoffset
+/// @param {number} rot
+/// @param {color} color
 
-var x_int, y_int, left, top, right, bottom, dir_x, dir_y, off_x, off_y, rot, sine, csine, x1, y1, x2, y2;
+var _left; _left = argument0;
+var _top; _top = argument1;
+var _right; _right = argument2;
+var _bottom; _bottom = argument3;
+var _xoffset; _xoffset = argument4;
+var _yoffset; _yoffset = argument5;
+var _rot; _rot = argument6;
+var _color; _color = argument7;
 
-x_int = floor(x);
-y_int = floor(y);
+_xoffset *= image_xscale;
+_yoffset *= image_yscale;
+_rot = round(_rot / 90) * 90;
 
-left = argument0;
-top = argument1;
-right = argument2;
-bottom = argument3;
+var x_int; x_int = floor(x);
+var y_int; y_int = floor(y);
+var sine; sine = dsin(_rot);
+var csine; csine = dcos(_rot);
 
-dir_x = image_xscale;
-dir_y = image_yscale;
-
-off_x = argument4 * dir_x;
-off_y = argument5 * dir_y;
-
-rot = round(argument6 / 90) * 90;
-sine = dsin(rot);
-csine = dcos(rot);
-
-// Flip:
-if (dir_x == -1)
+if (sign(image_xscale) == -1)
 {
-    var temp;
+    var temp; temp = _left;
 
-    temp = left;
-    left = right;
-    right = temp;
+    _left = _right;
+    _right = temp;
 }
 
-if (dir_y == -1)
+if (sign(image_yscale) == -1)
 {
-    var temp;
+    var temp; temp = _top;
 
-    temp = top;
-    top = bottom;
-    bottom = temp;
+    _top = _bottom;
+    _bottom = temp;
 }
 
-if !(left == 0 && top == 0 && right == 0 && bottom == 0)
+if !(_left == 0 && _top == 0 && _right == 0 && _bottom == 0)
 {
 
-    x1 = x_int - (csine * left) + (csine * off_x) - (sine * top) + (sine * off_y);
-    y1 = y_int - (sine * right) + (sine * off_x) - (csine * top) + (csine * off_y);
-    x2 = x_int + (csine * right) + (csine * off_x) + (sine * bottom) + (sine * off_y);
-    y2 = y_int + (sine * left) - (sine * off_x) + (csine * bottom) + (csine * off_y);
+    var x1; x1 = x_int - (csine * _left) + (csine * _xoffset) - (sine * _top) + (sine * _yoffset);
+    var y1; y1 = y_int - (sine * _right) + (sine * _xoffset) - (csine * _top) + (csine * _yoffset);
+    var x2; x2 = x_int + (csine * _right) + (csine * _xoffset) + (sine * _bottom) + (sine * _yoffset);
+    var y2; y2 = y_int + (sine * _left) - (sine * _xoffset) + (csine * _bottom) + (csine * _yoffset);
 
-    draw_rectangle_color(x1, y1, x2, y2, argument7, argument7, argument7, argument7, true);
+    draw_rectangle_color(x1, y1, x2, y2, _color, _color, _color, _color, true);
 }

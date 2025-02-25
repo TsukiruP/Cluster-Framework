@@ -1,5 +1,5 @@
 /// screen_set_window()
-/// @desc Sets the window based on screen configs.
+/// @desc Sets the window size based on screen configs.
 /// @returns {void}
 
 if (!window_get_fullscreen())

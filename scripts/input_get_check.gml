@@ -34,12 +34,11 @@ with (ctrl_input)
     {
         _device -= DEV_GAMEPAD0;
 
-        var i;
         var gamepad_index; gamepad_index = gamepad_device[_device, 0];
 
         if (_input == INP_ANY)
         {
-            for (i = PAD_FACE1; i <= PAD_SHARE; i += 1)
+            for ({var i; i = PAD_FACE1}; i <= PAD_SHARE; i += 1)
             {
                 if (gamepad_get_check(_device, i, _check)) return true;
             }

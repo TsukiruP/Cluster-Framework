@@ -1,5 +1,6 @@
 /// player_routine_roll()
-/* Shorthand for checking if the player can roll. */
+/// @desc Performs a roll.
+/// @returns {bool}
 
 if (abs(x_speed) > 0.5)
 {

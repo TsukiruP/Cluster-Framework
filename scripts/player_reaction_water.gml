@@ -1,21 +1,21 @@
 /// player_reaction_water(obj, hitbox)
-/* Sets whether the player is underwater. */
+/// @desc
+/// @param {object} obj
+/// @param {int} hitbox
+/// @returns {void}
 
-var reaction_id, hitbox;
+var _obj; _obj = argument0;
+var _hitbox; _hitbox = argument1;
 
-reaction_id = argument0;
-hitbox = argument1;
-
-if (hitbox & HIT_COLLISION)
+if (_hitbox & HIT_MASK)
 {
-    var x1, y1, x2, y2, water_current, water_previous;
+    var x1; x1 = _obj.x;
+    var y1; y1 = _obj.y;
+    var x2; x2 = x1 + _obj.sprite_width;
+    var y2; y2 = y1 + _obj.sprite_height;
 
-    x1 = reaction_id.x;
-    y1 = reaction_id.y;
-    x2 = x1 + reaction_id.sprite_width;
-    y2 = y1 + reaction_id.sprite_height;
-    water_current = point_in_rectangle(x, y, x1, y1, x2, y2);
-    water_previous = point_in_rectangle(xprevious, yprevious, x1, y1, x2, y2);
+    var water_current; water_current = point_in_rectangle(x, y, x1, y1, x2, y2);
+    var water_previous; water_previous = point_in_rectangle(xprevious, yprevious, x1, y1, x2, y2);
 
     if (!underwater && water_current)
     {
@@ -25,11 +25,12 @@ if (hitbox & HIT_COLLISION)
         air_remaining = 30;
         air_alarm = 60;
         player_set_physics();
+        if (status_shield == SHIELD_FIRE || status_shield == SHIELD_LIGHTNING) status_shield = 0;
 
         if (!water_previous)
         {
             audio_play_sfx("snd_splash", true);
-            effect_create(x, reaction_id.y, pick(y_speed >= 2.50, sequence_splash_0, sequence_splash_1), depth);
+            effect_create(x, _obj.y, pick(y_speed >= 2.50, sequence_splash_0, sequence_splash_1), depth);
         }
     }
     else if (y < room_height && underwater && !water_current)
@@ -43,7 +44,7 @@ if (hitbox & HIT_COLLISION)
         if (water_previous)
         {
             audio_play_sfx("snd_splash", true);
-            effect_create(x, reaction_id.y, pick(y_speed <= -6, sequence_splash_0, sequence_splash_1), depth);
+            effect_create(x, _obj.y, pick(y_speed <= -6, sequence_splash_0, sequence_splash_1), depth);
         }
     }
 }

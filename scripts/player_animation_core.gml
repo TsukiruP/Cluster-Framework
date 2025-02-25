@@ -1,13 +1,11 @@
 /// player_animation_core()
-/* Executes the player's animation.
-Snaps the player to the ground should there be a change in y radius. */
+/// @desc Performs an animation step for the player.
+/// @returns {void}
 
-var y_radius_temp;
+var y_radius_temp; y_radius_temp = y_radius;
 
-y_radius_temp = y_radius;
-
-sequence_speed = player_get_animation_speed();
-animation_variant = player_get_animation_variant();
+player_get_animation_speed();
+player_get_animation_variant();
 
 if (sequence_index != player_get_animation(animation_current, animation_variant))
 {
@@ -29,9 +27,9 @@ if (animation_changed) animation_changed = false;
 
 if (on_ground)
 {
-    x += dsin(mask_rotation) * (y_radius_temp - y_radius);
-    y += dcos(mask_rotation) * (y_radius_temp - y_radius);
+    x += dsin(mask_direction) * (y_radius_temp - y_radius);
+    y += dcos(mask_direction) * (y_radius_temp - y_radius);
 }
 
 player_animation_fix();
-if (x_radius < 8) x_radius = 8;
+//if (x_radius < 8) x_radius = 8;

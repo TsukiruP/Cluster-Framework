@@ -1,21 +1,22 @@
 /// string_input(input, [device])
-/* Returns a string depending on the input and device.
-Defaults to user device. */
+/// @desc Returns a string depending on the input and device.
+/// @param {int} input
+/// @param {int} [device]
+/// @returns {string}
 
-var input_index, input_device;
+var _input; _input = argument[0];
+var _device; if (argument_count > 1) _device = argument[1]; else _device = 0;
 
-input_index = pick(argument0 == INP_ANY, argument0, irandom_range(INP_UP, INP_HIDE));
-input_device = DEV_USER;
-if (argument_count > 1) input_device = argument[1];
+_input = pick(_input == INP_ANY, _input, irandom_range(INP_UP, INP_HIDE));
 
-if (input_device == DEV_KEYBOARD) return string_key(game_config_get_key(input_index));
-else if (input_device >= DEV_GAMEPAD0)
+if (_device == DEV_KEYBOARD) return string_key(game_config_get_key(_input));
+else if (_device >= DEV_GAMEPAD0)
 {
-    input_device -= DEV_GAMEPAD0;
-    return char_pad(game_config_get_btn(input_device, input_index), game_config_get_gamepad(input_device, "input_style"));
+    _device -= DEV_GAMEPAD0;
+    return string_button(game_config_get_button(_device, _input), game_config_get_gamepad(_device, "input_style"));
 }
 else
 {
-    if (ctrl_input.gamepad_device[0, 0] > -1) return string_input(input_index, DEV_GAMEPAD0);
-    return string_input(input_index, DEV_KEYBOARD);
+    if (ctrl_input.gamepad_device[0, 0] > -1) return string_input(_input, DEV_GAMEPAD0);
+    return string_input(_input, DEV_KEYBOARD);
 }

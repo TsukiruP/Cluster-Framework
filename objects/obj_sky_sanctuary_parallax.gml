@@ -6,9 +6,7 @@ applies_to=self
 */
 /// Background Initialization
 
-var i;
-
-for (i = 0; i < 8; i += 1)
+for ({var i; i = 0}; i < 8; i += 1)
 {
     cloud_x[i] = 0;
 }

@@ -1,8 +1,11 @@
 /// sonic_state_bound()
-/* No bracelet required!
-Similar to the bubble bound but height is based off bounce count rather than holding an input. */
+/// @desc Sonic's Bound Jump.
+/// @param {int} phase
+/// @returns {bool}
 
-switch (argument0)
+var _phase; _phase = argument0;
+
+switch (_phase)
 {
     case STATE_START:
         jump_cap = false;
@@ -13,9 +16,7 @@ switch (argument0)
         break;
 
     case STATE_STEP:
-        var bound_count_temp;
-
-        bound_count_temp = bound_count;
+        var bound_count_temp; bound_count_temp = bound_count;
 
         if (input_x_direction != 0)
         {

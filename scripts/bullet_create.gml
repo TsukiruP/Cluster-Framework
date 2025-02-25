@@ -1,16 +1,29 @@
 /// bullet_create(x, y, sequence, xspeed, yspeed, [gravity])
-/* Returns a bullet instance. */
+/// @desc Returns the id of a new bullet instance.
+/// @param {number} x
+/// @param {number} y
+/// @param {script} sequence
+/// @param {number} xspeed
+/// @param {number} yspeed
+/// @param {number} [gravity]
+/// @returns {object}
 
-var bullet;
+var _x; _x = argument[0];
+var _y; _y = argument[1];
+var _sequence; _sequence = argument[2];
+var _xspeed; _xspeed = argument[3];
+var _yspeed; _yspeed = argument[4];
+var _gravity; if (argument_count > 5) _gravity = argument[5]; else _gravity = 0;
 
-bullet = instance_create(argument0, argument1, par_bullet);
+var bullet_inst; bullet_inst = instance_create(_x, _y, par_bullet);
 
-with (bullet)
+with (bullet_inst)
 {
-    sequence_set(argument2);
-    x_speed = argument3;
-    y_speed = argument4;
-    if (argument_count > 5) gravity_force = argument[5];
+    depth = other.depth;
+    x_speed = _xspeed;
+    y_speed = _yspeed;
+    gravity_force = _gravity;
+    sequence_set(_sequence);
 }
 
-return bullet;
+return bullet_inst;

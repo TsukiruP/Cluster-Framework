@@ -11,12 +11,12 @@ with (ctrl_audio)
     {
         if (_out)
         {
-            if (sound_isplaying(drown_id))
+            if (sound_isplaying(drown_inst))
             {
-                if (sound_get_volume(drown_id) > 0)
+                if (sound_get_volume(drown_inst) > 0)
                 {
-                    sound_volume(drown_id, max(sound_get_volume(drown_id) - 0.01, 0));
-                    if (sound_get_volume(drown_id) == 0) audio_stop_drown();
+                    sound_volume(drown_inst, max(sound_get_volume(drown_inst) - 0.01, 0));
+                    if (sound_get_volume(drown_inst) == 0) audio_stop_drown();
                 }
             }
         }

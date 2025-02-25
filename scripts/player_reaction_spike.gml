@@ -1,10 +1,12 @@
 /// player_reaction_spike(obj, hitbox, side)
-/* Not the wisp. */
+/// @desc
+/// @param {object} obj
+/// @param {int} hitbox
+/// @param {number} side
+/// @returns {void}
 
-var reaction_id, hitbox, side;
+var _obj; _obj = argument0;
+var _hitbox; _hitbox = argument1;
+var _side; _side = argument2;
 
-reaction_id = argument0;
-hitbox = argument1;
-side = argument2;
-
-if ((hitbox & HIT_COLLISION) && side == reaction_id.angle) player_set_damage(reaction_id);
+if ((_hitbox & HIT_INTERACT) && _side == _obj.angle) player_set_damage(_obj);

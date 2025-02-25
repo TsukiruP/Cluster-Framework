@@ -1,6 +1,10 @@
 /// debug_option_transition_preview(return)
+/// @param {any} return
+/// @returns {any}
 
-switch (argument0)
+var _return; _return = argument0;
+
+switch (_return)
 {
     // Text:
     case 0:
@@ -12,7 +16,7 @@ switch (argument0)
 
     // Confirm:
     case 2:
-        transition_create(transition_room, transition_preview, true)
+        transition_create(transition_room, transition_preview, true);
         return true;
 
     // Update:

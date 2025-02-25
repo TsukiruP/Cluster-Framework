@@ -1,7 +1,13 @@
 /// player_get_item(obj, item)
-/* Performs an event based on the given item. */
+/// @desc Performs an event based on the item.
+/// @param {object} obj
+/// @param {int} item
+/// @returns {void}
 
-switch (argument1)
+var _obj; _obj = argument0;
+var _item; _item = argument1;
+
+switch (_item)
 {
     case ITEM_BONUS:
         player_add_rings(5)
@@ -44,8 +50,8 @@ switch (argument1)
         break;
 
     case ITEM_MINE:
-        player_set_damage(argument0);
-        effect_create(argument0.x, argument0.y, sequence_explosion_large, depth);
+        player_set_damage(_obj);
+        effect_create(_obj.x, _obj.y, sequence_explosion_large, depth);
         break;
 
     case ITEM_SLOW:
@@ -60,4 +66,4 @@ switch (argument1)
         break;
 }
 
-hud_add_item(argument1);
+hud_add_item(_item);

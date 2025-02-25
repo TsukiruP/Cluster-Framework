@@ -2,8 +2,6 @@
 /// @desc Resets the save map.
 /// @returns {void}
 
-var i;
-
 game_set_save("game", GAME_NAME);
 game_set_save("version", GAME_VERSION);
 game_set_save("name", "");

@@ -1,9 +1,11 @@
 /// string_bool(val, [toggle])
-/* Returns a string depending on the value. */
+/// @desc Returns "true" or "false" depending on the value.
+/// @param {bool} val
+/// @param {bool} [toggle] Return "on" or "off" instead.
+/// @returns {string}
 
-if (argument_count > 1)
-{
-    if (argument[1]) return pick(argument0, "Off", "On");
-}
+var _val; _val = argument[0];
+var _toggle; if (argument_count > 1) _toggle = argument[1]; else _toggle = false;
 
-return pick(argument0, "False", "True");
+if (_toggle) return pick(_val, "Off", "On");
+else return pick(_val, "False", "True");

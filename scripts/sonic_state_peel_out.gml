@@ -1,7 +1,11 @@
 /// sonic_state_peel_out(phase)
-/* I'm (peeling) outta here! */
+/// @desc I'm (peeling) outta here!
+/// @param {int} phase
+/// @returns {bool}
 
-switch (argument0)
+var _phase; _phase = argument0;
+
+switch (_phase)
 {
     case STATE_START:
         peel_out_alarm = 30;

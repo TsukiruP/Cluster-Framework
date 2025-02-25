@@ -1,7 +1,7 @@
 /// game_save_get_character(player)
 /// @desc Returns the character of the player.
 /// @param {int} player
-/// @returns {void}
+/// @returns {int}
 
 var _player; _player = argument0;
 

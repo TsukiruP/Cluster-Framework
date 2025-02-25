@@ -1,5 +1,6 @@
 /// player_routine_insta()
-/* Shorthand for performing */
+/// @desc Performs the insta-shield.
+/// @returns {void}
 
 player_set_state(player_state_air, false);
 status_shield_allow = false;
@@ -15,6 +16,6 @@ if (character_index == CHAR_SONIC || character_index == CHAR_CLASSIC)
         image_xscale = other.image_xscale;
         image_angle = other.gravity_direction;
         sequence_init(sequence_shield_insta);
-        player_id = other.id;
+        player_inst = other.id;
     }
 }

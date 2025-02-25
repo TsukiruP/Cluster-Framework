@@ -1,7 +1,11 @@
 /// player_state_rail(phase)
-/* COMING TO YOUR HOME */
+/// @desc COMING TO YOUR HOME
+/// @param {int} phase
+/// @returns {bool}
 
-switch (argument0)
+var _phase; _phase = argument0;
+
+switch (_phase)
 {
     case STATE_START:
         player_set_animation("rail");
@@ -15,9 +19,9 @@ switch (argument0)
         if (!player_movement_ground()) return false;
         if (!on_ground) return player_set_state(player_state_air);
 
-        if (instance_exists(ground_id))
+        if (instance_exists(ground_inst))
         {
-            if (!object_is_ancestor(ground_id.object_index, par_rail)) return player_set_state(player_state_run);
+            if (!object_is_ancestor(ground_inst.object_index, par_rail)) return player_set_state(player_state_run);
         }
 
         if (relative_angle >= 45 && relative_angle <= 315) input_lock_alarm = 30;
@@ -27,14 +31,12 @@ switch (argument0)
 
         if (animation_time mod 8 == 0)
         {
-            var sine, csine;
-
-            sine = dsin(mask_rotation);
-            csine = dcos(mask_rotation);
+            var sine; sine = dsin(mask_direction);
+            var csine; csine = dcos(mask_direction);
 
             with (effect_create(x - (csine * x_radius * image_xscale) + (sine * y_radius), y + (sine * x_radius * image_xscale) + (csine * y_radius), sequence_rail_spark, depth, image_xscale))
             {
-                image_angle = other.mask_rotation;
+                image_angle = other.mask_direction;
             }
         }
         break;

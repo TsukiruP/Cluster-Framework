@@ -1,222 +1,154 @@
 /// player_get_angle(obj, rot)
-/* Calculates the angle of the given solid using its image && collision data. */
+/// @desc  Calculates the angle of the given solid using its image && collision data.
+/// @param {object} obj
+/// @param {number} rot
+/// @returns {number}
 
-var xscale, yscale, left, right, top, bottom, kind, temp_radius;
+var _obj; _obj = argument0;
+var _rot; _rot = argument1;
 
-xscale = sign(argument0.image_xscale);
-yscale = sign(argument0.image_yscale);
-left = argument0.bbox_left;
-right = argument0.bbox_right + 1;
-top = argument0.bbox_top;
-bottom = argument0.bbox_bottom + 1;
-kind = argument0.shape;
-temp_radius = 8;
+var x1, y1, x2, y2;
 
-// Default if...
-if (kind != SHAPE_UNDEFINED)
+with (_obj)
 {
-    // Colliding on the wrong side of the solid:
-    if ((argument1 == 0 and yscale == -1) or (argument1 == 90 and xscale == -1) or
-        (argument1 == 180 and yscale == 1) or (argument1 == 270 and xscale == 1)) return argument1;
+    var kind; kind = shape;
+    var normal; normal = surface_angle;
+    var xscale; xscale = sign(image_xscale);
+    var yscale; yscale = sign(image_yscale);
+    var left_side; left_side = bbox_left;
+    var right_side; right_side = bbox_right + 1;
+    var top_side; top_side = bbox_top;
+    var bottom_side; bottom_side = bbox_bottom + 1;
+}
 
-    // Out of the solid's bounds:
-    if (argument1 mod 180 != 0)
+/// Custom shape:
+if (kind == SHP_CUSTOM)
+{
+    var x_int; x_int = floor(x);
+    var y_int; y_int = floor(y);
+    var sine; sine = dsin(_rot);
+    var csine; csine = dcos(_rot);
+
+    x1 = x_int - (csine * x_radius) + (sine * y_radius);
+    y1 = y_int + (sine * x_radius) + (csine * y_radius);
+    x2 = x_int + (csine * x_radius) + (sine * y_radius);
+    y2 = y_int - (sine * x_radius) + (csine * y_radius);
+
+    var height; height = (y_radius * 2) + 1;
+    var left; left = false;
+    var right; right = false;
+
+    /* AUTHOR NOTE: the height used to push the sensors down is dependent on that used to record instances local to the player in the "player_get_stage_objects" function.
+    Currently, the maximum height sits at triple the player's vertical radius, plus 1 (same as SonicForGMS.) The sensors initially set at the player's feet and then get pushed down
+    a number of times equal to double the player's vertical radius, plus 1.
+    If you want to change the height at which the sensors are pushed, you must make sure it matches that in the "player_get_stage_objects" function. */
+
+    // Push sensors downward until they have found the solid:
+    repeat (height)
     {
-        if (yscale == -1 and y - temp_radius < top) return argument1;
-        if (yscale == 1 and y + temp_radius > bottom) return argument1;
-        if (kind == SHAPE_CONCAVE)
+        // Evaluate all solids:
+        for ({var n; n = ds_list_size(solid_list) - 1}; n > -1; n -= 1)
         {
-            if (xscale == 1 and x + y_radius < left) return argument1;
-            if (xscale == -1 and x - y_radius > right) return argument1;
+            // Get the current solid:
+            var inst; inst = ds_list_find_value(solid_list, n);
+            
+            // Check if each sensor has found the solid:
+            if (!left && collision_point(x1, y1, inst, true, false) != noone) left = true;
+            if (!right && collision_point(x2, y2, inst, true, false) != noone) right = true;
+        }
+        
+        // Calculate the direction from left to right, if applicable:
+        if (left && right) return (point_direction(x1, y1, x2, y2) div 1);
+        
+        // Otherwise, push the sensors down:
+        if (!left)
+        {
+            x1 += sine;
+            y1 += csine;
+        }
+        
+        if (!right)
+        {
+            x2 += sine;
+            y2 += csine;
+        }
+    }
+}
+else if (!(kind == SHP_RECTANGLE && normal == -1)) // Ignore for flat rectangles (NOTE: if you want to hard-code the normal, the shape assigned MUST be a rectangle because of this.)
+{
+    // Default when on a flat side of the solid:
+    if ((_rot == 0 && yscale == -1) || (_rot == 90 && xscale == -1) ||
+        (_rot == 180 && yscale == 1) || (_rot == 270 && xscale == 1)) return _rot;
+    
+    // Default if out of the solid's bounds:
+    if (_rot mod 180 != 0)
+    {
+        if (yscale == -1 && y - x_radius < top_side) return _rot;
+        if (yscale == 1 && y + x_radius > bottom_side) return _rot;
+
+        if (kind == SHP_QUARTER_PIPE)
+        {
+            if (yscale == 1 && y + y_radius < top_side) return _rot;
+            if (yscale == -1 && y - y_radius > bottom_side) return _rot;
         }
     }
     else
     {
-        if (xscale == -1 and x - temp_radius < left) return argument1;
-        if (xscale == 1 and x + temp_radius > right) return argument1;
-        if (kind == SHAPE_CONCAVE)
+        if (xscale == -1 && x - x_radius < left_side) return _rot;
+        if (xscale == 1 && x + x_radius > right_side) return _rot;
+
+        if (kind == SHP_QUARTER_PIPE)
         {
-            if (yscale == 1 and y + y_radius < top) return argument1;
-            if (yscale == -1 and y - y_radius > bottom) return argument1;
+            if (yscale == 1 && y + y_radius < top_side) return _rot;
+            if (yscale == -1 && y - y_radius > bottom_side) return _rot;
         }
     }
-}
 
-// If the solid's angle is hard-coded, return it:
-if (argument0.surface_angle > -1)
-{
-    return angle_wrap(argument0.surface_angle);
-}
+    // Return solid's angle if it's hard coded:
+    if (normal != -1) return normal;
 
-// Determine calculation method:
-var x1, y1, x2, y2;
-
-switch (kind)
-{
-    case SHAPE_SLANT:
+    // Calculate based off shape:
+    if (kind == SHP_RIGHT_TRIANGLE)
     {
-        // Set offsets:
-        x1 = left;
-        y1 = bottom;
-        x2 = right;
-        y2 = top;
+        x1 = left_side;
+        y1 = bottom_side;
+        x2 = right_side;
+        y2 = top_side;
 
         if (yscale == -1)
         {
-            x1 = right;
-            x2 = left;
+            x1 = right_side;
+            x2 = left_side;
         }
+
         if (xscale == -1)
         {
-            y1 = top;
-            y2 = bottom;
+            y1 = top_side;
+            y2 = bottom_side;
         }
 
-        // Calculate hypotenuse angle:
-        return angle_wrap(round(point_direction(x1, y1, x2, y2)));
-        break;
+        // Return hypotenuse:
+        return (point_direction(x1, y1, x2, y2) div 1);
     }
-    case SHAPE_CONCAVE:
-    case SHAPE_CONVEX:
+    else
     {
-        // Set corner offset:
-        x1 = right;
-        y1 = bottom;
+        // Get ellipse/pipe center:
+        if (kind == SHP_QUARTER_ELLIPSE ^^ xscale == 1) x1 = left_side;
+        else x1 = right_side;
 
-        if (kind == SHAPE_CONVEX xor xscale == 1)
-        {
-            x1 = left;
-        }
-        if (kind == SHAPE_CONVEX xor yscale == 1)
-        {
-            y1 = top;
-        }
+        if (kind == SHP_QUARTER_ELLIPSE ^^ yscale == 1) y1 = top_side;
+        else y1 = bottom_side;
 
-        // Set mask offset:
-        x2 = x + (temp_radius * xscale * (argument1 mod 180 == 0));
-        y2 = y + (temp_radius * yscale * (argument1 mod 180 != 0));
-
-        // Calculate curve angle:
-        var dir;
-        dir = point_direction(x1, y1, x2, y2);
-        if (kind == SHAPE_CONVEX)
-        {
-            dir = point_direction(x2, y2, x1, y1);
-        }
-        return angle_wrap(round(dir) + 90);
-        break;
-    }
-
-    // Undefined solid shape:
-    case SHAPE_UNDEFINED:
-    {
-        var max_dist;
-        max_dist = y_radius * 4;
-
-        // Ignore if not within the solid's bounds
-        if (collision_ray_vertical(-temp_radius, max_dist, argument1, argument0) != noone and
-            collision_ray_vertical(temp_radius, max_dist, argument1, argument0) != noone)
-        {
-            var dir, dist1, dist2, oy;
-            dir = floor(angle / 10) * 10;
-            if (y_speed < 0) dir = argument1;
-            dist1 = -1;
-            dist2 = -1;
-            
-            // Scan below feet
-            for (oy = y_radius; oy < max_dist; oy += 1)
-            {
-                // Check if the sensors are touching the solid
-                if (dist1 < 0 and collision_ray_vertical(-temp_radius, oy, dir, argument0) != noone)
-                {
-                    dist1 = oy;
-                }
-                if (dist2 < 0 and collision_ray_vertical(temp_radius, oy, dir, argument0) != noone)
-                {
-                    dist2 = oy;
-                }
-                
-                // Calculate angle between sensors, if they have touched the solid
-                if (dist1 > -1 and dist2 > -1)
-                {
-                    var x_int, y_int, sine, csine, x1, y1, x2, y2;
-                    x_int = floor(x);
-                    y_int = floor(y);
-                    sine = dsin(dir);
-                    csine = dcos(dir);
-                    
-                    x1 = x_int - (csine * temp_radius) + (sine * dist1);
-                    y1 = y_int + (sine * temp_radius) + (csine * dist1);
-                    x2 = x_int + (csine * temp_radius) + (sine * dist2);
-                    y2 = y_int - (sine * temp_radius) + (csine * dist2);
-                    
-                    return angle_wrap(round(point_direction(x1, y1, x2, y2)));
-                }
-            }
-        }
-        /*var dir, x_int, y_int, sine, csine, x1, y1, x2, y2, left, right, total_solids, n, inst;
-
-        // Initialize sensors:
-        dir = floor(angle / 10) * 10;
-        if (y_speed < 0) dir = argument1;
-
-        x_int = floor(x);
-        y_int = floor(y);
-        sine = dsin(dir);
-        csine = dcos(dir);
-
-        x1 = x_int - (csine * temp_radius) + (sine * y_radius);
-        y1 = y_int + (sine * temp_radius) + (csine * y_radius);
-        x2 = x_int + (csine * temp_radius) + (sine * y_radius);
-        y2 = y_int - (sine * temp_radius) + (csine * y_radius);
-
-        left = noone;
-        right = noone;
-        total_solids = ds_list_size(solid_list);*/
-
-        /* Scan below feet.
-        If you have lots of steep surfaces, you'll want to increase the number of times the sensors are pushed down.
-        36 seems to be good enough (at least that's what Harmony did iirc.) */
-        /*repeat (y_radius * 2)
-        {
-            // Extend sensors downwards if they're not touching the ground:
-            if (left == noone)
-            {
-                x1 += sine;
-                y1 += csine;
-            }
-            if (right == noone)
-            {
-                x2 += sine;
-                y2 += csine;
-            }
-
-            // Evaluate all solids:
-            for (n = 0; n < total_solids; n += 1)
-            {
-                // Get the current solid:
-                inst = ds_list_find_value(solid_list, n);
-
-                // Get sensor heights:
-                if (left == noone and collision_point(x1, y1, inst, true, false) != noone)
-                {
-                    left = inst;
-                }
-                if (right == noone and collision_point(x2, y2, inst, true, false) != noone)
-                {
-                    right = inst;
-                }
-            }
-
-            // Calculate angle from sensors:
-            if (left != noone and right != noone)
-            {
-                return angle_wrap(round(point_direction(x1, y1, x2, y2)));
-            }
-        }*/
-        break;
+        // Player's position clamped to the ellipse:
+        x2 = clamp(x, left_side, right_side);
+        y2 = clamp(y, top_side, bottom_side);
+        
+        // Direction from the player to the ellipse/pipe center:
+        var dir; dir = point_direction(x1, y1, x2, y2);
+        
+        if (kind == SHP_QUARTER_ELLIPSE) dir = point_direction(x2, y2, x1, y1);
+        return (((dir div 1) + 90) mod 360);
     }
 }
 
-// Default:
-return argument1;
+return _rot;

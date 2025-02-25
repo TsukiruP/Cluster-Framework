@@ -22,7 +22,7 @@ applies_to=self
 
 text_hide = false;
 text_clear = false;
-text_id = noone;
+text_inst = noone;
 text_alpha_rate = 0.05;
 
 body_overflow = false;
@@ -64,7 +64,7 @@ applies_to=self
 */
 /// Inputs
 
-if (!text_clear && text_id != par_overlay && log_hide && (body_alpha == 1 || subject_alpha == 1) && input_get_check(INP_START, CHECK_PRESSED))
+if (!text_clear && text_inst != par_overlay && log_hide && (body_alpha == 1 || subject_alpha == 1) && input_get_check(INP_START, CHECK_PRESSED))
 {
     text_clear = true;
 }
@@ -78,9 +78,9 @@ if (!text_clear)
 
     if (!text_hide)
     {
-        var font_height, scroll_min, scroll_max, scroll_up, scroll_down, scroll_direction;
+        var font_height; font_height = font_get_height(global.font_system);
+        var scroll_min, scroll_max, scroll_up, scroll_down, scroll_direction;
 
-        font_height = font_get_height(global.font_system);
         subject_height = string_height_ext(subject_string, font_height, screen_get_width() - (body_x * 2));
         subject_lines = (subject_height / font_height) - 1;
         body_height = string_height_ext(ds_list_find_value(body_list, body_current), font_height, screen_get_width() - (body_x * 2));
@@ -90,10 +90,7 @@ if (!text_clear)
         {
             body_overflow = false;
         }
-        else
-        {
-            if (!body_scroll_complete) body_overflow = true;
-        }
+        else if (!body_scroll_complete) body_overflow = true;
 
         if ((game_ispaused(mnu_pause) || !ds_list_empty(body_list) || subject_string != "") && log_string != "" && (log_alpha == 0 || log_alpha == 1) && input_get_check(INP_LOG, CHECK_PRESSED))
         {
@@ -103,7 +100,7 @@ if (!text_clear)
 
         if (log_hide)
         {
-            if (text_id != par_overlay && input_get_check(INP_CONFIRM, CHECK_PRESSED))
+            if (text_inst != par_overlay && input_get_check(INP_CONFIRM, CHECK_PRESSED))
             {
                 if (!subject_complete && subject_string != "" && subject_alpha == 1)
                 {
@@ -117,21 +114,15 @@ if (!text_clear)
                         if (body_target != body_length) body_target += 1;
                         else text_clear = true;
                     }
-                    else
+                    else if (body_scroll_complete)
                     {
-                        if (body_scroll_complete)
-                        {
-                            body_scroll_target += body_scroll_rate;
-                            body_scroll_complete = false;
-                        }
+                        body_scroll_target += body_scroll_rate;
+                        body_scroll_complete = false;
                     }
                 }
             }
         }
-        else
-        {
-            if (input_get_check(INP_CANCEL, CHECK_PRESSED)) log_hide = true;
-        }
+        else if (input_get_check(INP_CANCEL, CHECK_PRESSED)) log_hide = true;
 
         if (log_hide)
         {
@@ -165,12 +156,9 @@ if (body_overflow)
         }
     }
 }
-else
+else if (body_scroll_current == body_scroll_target && body_scroll_target != 0)
 {
-    if (body_scroll_current == body_scroll_target && body_scroll_target != 0)
-    {
-        if (!body_scroll_complete) body_scroll_complete = true;
-    }
+    if (!body_scroll_complete) body_scroll_complete = true;
 }
 #define Step_2
 /*"/*'/**//* YYD ACTION
@@ -180,9 +168,7 @@ applies_to=self
 */
 /// Subject Alpha
 
-var subject_box_alpha_rate;
-
-subject_box_alpha_rate = game_get_config("interface_alpha") / 20;
+var subject_box_alpha_rate; subject_box_alpha_rate = game_get_config("interface_alpha") / 20;
 
 if (!text_clear && !subject_complete && subject_string != "")
 {
@@ -207,9 +193,7 @@ applies_to=self
 */
 /// Body Alpha
 
-var body_box_alpha_rate;
-
-body_box_alpha_rate = game_get_config("interface_alpha") / 20;
+var body_box_alpha_rate; body_box_alpha_rate = game_get_config("interface_alpha") / 20;
 
 if (!text_clear && !ds_list_empty(body_list) && (subject_complete || subject_string == ""))
 {
@@ -219,29 +203,25 @@ if (!text_clear && !ds_list_empty(body_list) && (subject_complete || subject_str
     {
         if (body_alpha < 1)
         {
-            if (body_alpha == 0) log_string += ds_list_find_value(body_list, body_current) + "#";
+            if (body_alpha == 0) log_string += ds_list_find_value(body_list, body_current)+ "#";
             body_alpha += text_alpha_rate;
         }
     }
-
-    else
+    else if (body_alpha > -0.5)
     {
-        if (body_alpha > -0.5)
+        body_alpha -= text_alpha_rate;
+
+        if (body_alpha == -0.5)
         {
-            body_alpha -= text_alpha_rate;
+            body_current = body_target;
 
-            if (body_alpha == -0.5)
-            {
-                body_current = body_target;
+            body_scroll_current = 0;
+            body_scroll_target = 0;
+            body_scroll_complete = false;
 
-                body_scroll_current = 0;
-                body_scroll_target = 0;
-                body_scroll_complete = false;
+            body_alpha = 0;
 
-                body_alpha = 0;
-
-                body_overflow = false;
-            }
+            body_overflow = false;
         }
     }
 }
@@ -256,7 +236,7 @@ if (text_clear && (!ds_list_empty(body_list) || subject_string != "") && body_al
 {
     text_hide = false;
     text_clear = false;
-    text_id = noone;
+    text_inst = noone;
 
     ds_list_clear(body_list);
     body_length = 0;
@@ -283,13 +263,11 @@ applies_to=self
 if (!log_hide)
 {
     if (log_fade_alpha < 0.6) log_fade_alpha += 0.03;
-
     if (log_alpha < 1) log_alpha += text_alpha_rate;
 }
 else
 {
     if (log_fade_alpha > 0) log_fade_alpha -= 0.03;
-
     if (log_alpha > 0) log_alpha -= text_alpha_rate;
 }
 #define Other_3
@@ -321,9 +299,7 @@ applies_to=self
 
 if (text_hide) exit;
 
-var font_height;
-
-font_height = font_get_height(global.font_system);
+var font_height; font_height = font_get_height(global.font_system);
 
 // Viewport:
 d3d_set_viewport(0, 0, screen_get_width(), screen_get_height());
@@ -346,9 +322,8 @@ applies_to=self
 
 if (text_hide) exit;
 
-var font_height, text_box_bottom, text_box_height;
-
-font_height = font_get_height(global.font_system);
+var font_height; font_height = font_get_height(global.font_system);
+var text_box_bottom, text_box_height;
 
 // Viewport:
 d3d_set_viewport(0, 0, screen_get_width(), screen_get_height());
@@ -384,9 +359,7 @@ applies_to=self
 */
 /// Draw Log
 
-var font_height;
-
-font_height = font_get_height(global.font_system);
+var font_height; font_height = font_get_height(global.font_system);
 
 // Viewport:
 d3d_set_viewport(0, 0, screen_get_width(), screen_get_height());

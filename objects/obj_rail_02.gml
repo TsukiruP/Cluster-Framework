@@ -7,4 +7,4 @@ applies_to=self
 /// Rail Initialization
 
 event_inherited();
-shape = SHAPE_UNDEFINED;
+shape = SHP_RIGHT_TRIANGLE;

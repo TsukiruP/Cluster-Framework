@@ -1,5 +1,6 @@
 /// player_animation_run()
-/* Sets the run animation depending on the x speed. */
+/// @desc Sets the animation for running.
+/// @returns {void}
 
 // Abort if in the pushing animation:
 if (animation_current == "push" && sign(image_xscale) == input_x_direction) exit;

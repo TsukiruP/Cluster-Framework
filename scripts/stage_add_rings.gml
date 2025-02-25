@@ -1,8 +1,8 @@
-/// stage_add_rings(value)
+/// stage_add_rings(val)
 /// @desc Adds the value to the stage rings.
-/// @param {int} value
+/// @param {int} val
 /// @returns {void}
 
-var _value; _value = argument0;
+var _val; _val = argument0;
 
-with (ctrl_stage) stage_rings += _value;
+with (ctrl_stage) stage_rings += _val;

@@ -46,19 +46,11 @@ switch (size)
     default:
         image_index = 0;
 }
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Movement
-
-if (game_ispaused(mnu_pause)) exit;
 
 x = sine_wave_range(life_time, 128, xstart - 8, xstart + 8);
 y -= 0.5 * game_get_speed();
 
-if (collision_point(x, y, obj_water_mask, false, false) == noone) instance_destroy();
+if (place_meeting(x, y, par_solid) || !place_meeting(x, y, obj_water_mask)) instance_destroy();
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
