@@ -46,28 +46,32 @@ if (kind == SHP_CUSTOM)
     // Push sensors downward until they have found the solid:
     repeat (height)
     {
+        // Evaluate all solids:
+        for ({var n; n = ds_list_size(solid_list) - 1}; n > -1; n -= 1)
+        {
+            // Get the current solid:
+            var inst; inst = ds_list_find_value(solid_list, n);
+            
+            // Check if each sensor has found the solid:
+            if (!left && collision_point(x1, y1, inst, true, false) != noone) left = true;
+            if (!right && collision_point(x2, y2, inst, true, false) != noone) right = true;
+        }
+        
+        // Calculate the direction from left to right, if applicable:
+        if (left && right) return (point_direction(x1, y1, x2, y2) div 1);
+        
+        // Otherwise, push the sensors down:
         if (!left)
         {
-            if (collision_point(x1, y1, _obj, true, false) == noone)
-            {
-                x1 += sine;
-                y1 += csine;
-            }
-            else left = true;
+            x1 += _sin;
+            y1 += _cos;
         }
         
         if (!right)
         {
-            if (collision_point(x2, y2, _obj, true, false) == noone)
-            {
-                x2 += sine;
-                y2 += csine;
-            }
-            else right = true;
+            x2 += _sin;
+            y2 += _cos;
         }
-        
-        // Return direction from left to right:
-        if (left && right) return (point_direction(x1, y1, x2, y2) div 1);
     }
 }
 else if (!(kind == SHP_RECTANGLE && normal == -1)) // Ignore for flat rectangles (NOTE: if you want to hard-code the normal, the shape assigned MUST be a rectangle because of this.)
