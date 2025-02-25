@@ -9,7 +9,7 @@ switch (character_index)
         break;
 
     default:
-        if (y_speed > 0)
+        if (animation_current == "spin_flight" && y_speed > 0)
         {
             switch (jump_uncurl)
             {
@@ -26,6 +26,5 @@ switch (character_index)
                     }
             }
         }
-
-        if (jump_uncurl != UNCURL_BLOCKADE && animation_current != "spin_fall") player_set_animation("spin_flight");
+        else if (animation_previous != "spin_flight") player_set_animation("spin_flight");
 }
