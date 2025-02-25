@@ -15,8 +15,8 @@ if (!_obj.reflect)
         {
             var bullet_angle; bullet_angle = point_direction(x, y, other.x, other.y);
 
-            x_speed = -10 * dcos(bullet_angle);
-            y_speed = -10 * -dsin(bullet_angle);
+            x_speed = dcos(bullet_angle) * -10;
+            y_speed = -dsin(bullet_angle) * -10;
             reflect = true;
         }
     }

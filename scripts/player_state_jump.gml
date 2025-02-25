@@ -11,8 +11,8 @@ switch (_phase)
         var leap_force; leap_force = pick(jump_bound, jump_force, 7.5, 6 + bound_count);
         var g_speed; g_speed = x_speed;
 
-        x_speed = (dcos(relative_angle) * g_speed) - (leap_force * dsin(relative_angle));
-        y_speed = -(dsin(relative_angle) * g_speed) - (leap_force * dcos(relative_angle));
+        x_speed = (dcos(relative_angle) * g_speed) - (dsin(relative_angle) * leap_force);
+        y_speed = -(dsin(relative_angle) * g_speed) - (dcos(relative_angle) * leap_force);
         player_reset_air();
         player_animation_jump();
         break;

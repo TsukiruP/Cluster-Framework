@@ -36,8 +36,8 @@ if (_hitbox & HIT_ATTACK)
                 {
                     var debris_inst; debris_inst = effect_create(x, y, sequence_blockade_debris);
 
-                    debris_inst.x_speed = 4 * dcos(ANGLE_DOWN + irandom_range(-45, 45));
-                    debris_inst.y_speed = 4 * -dsin(ANGLE_DOWN + irandom_range(-45, 45));
+                    debris_inst.x_speed = dcos(ANGLE_DOWN + irandom_range(-45, 45)) * 4;
+                    debris_inst.y_speed = -dsin(ANGLE_DOWN + irandom_range(-45, 45)) * 4;
                 }
 
                 instance_destroy();

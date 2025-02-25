@@ -12,6 +12,7 @@ border_left = 0;
 border_right = 0;
 shoot = false;
 buzzer_time = 0;
+bullet_speed = 1.6862745;
 player_inst = noone;
 #define Step_2
 /*"/*'/**//* YYD ACTION
@@ -73,7 +74,7 @@ else if (sequence_index == sequence_buzzer_shoot)
                 var bullet_y; bullet_y = y + 12 * image_yscale;
                 var bullet_angle; bullet_angle = point_direction(bullet_x, bullet_y, player_inst.x, player_inst.y);
 
-                bullet_create(bullet_x, bullet_y, sequence_buzzer_bullet, 1.6862745 * dcos(bullet_angle), 1.6862745 * -dsin(bullet_angle));
+                bullet_create(bullet_x, bullet_y, sequence_buzzer_bullet, dcos(bullet_angle) * bullet_speed, -dsin(bullet_angle) * bullet_speed);
             }
         }
     }
