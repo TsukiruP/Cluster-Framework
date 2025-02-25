@@ -35,11 +35,10 @@ if (((_hitbox & HIT_COLLISION) && status_invin == INVIN_BUFF) || (_hitbox & HIT_
     {
         sonic_routine_homing();
         stage_add_score(100 + (400 * _obj.class));
-        audio_play_sfx("snd_destroy", true);
 
         with (_obj)
         {
-            effect_create(x, y, sequence_explosion_enemy, -depth);
+            enemy_destroy();
             instance_destroy();
         }
     }

@@ -68,7 +68,7 @@ else if (sequence_index == sequence_jawz_chase)
 
     if (chase_alarm == 0 || collision_point(x, y, par_solid, false, false))
     {
-        effect_create(x, y, sequence_explosion_enemy, -depth);
+        enemy_destroy();
         instance_destroy();
     }
 }

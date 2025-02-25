@@ -503,3 +503,4 @@ sequence_jawz_move_turn
 sequence_jawz_charge
 sequence_jawz_chase
 player_can_launch
+enemy_destroy
