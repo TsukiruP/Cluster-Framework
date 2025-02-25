@@ -9,7 +9,6 @@ applies_to=self
 event_inherited();
 reaction_index = player_reaction_jump_panel;
 reaction_mask = true;
-surface_angle = 26;
 shape = SHP_CUSTOM;
 is_mask = false;
 force = 12;
