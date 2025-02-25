@@ -55,4 +55,3 @@ obj_basic_test_mask_01,480,528,1BA66EAE,0,4,1,4294967295,0,0
 obj_basic_test_mask_05,576,480,FF37FB78,0,-1,1,4294967295,0,0
 obj_basic_test_mask_06,672,504,4FEDFD5D,0,-1,1,4294967295,0,0
 obj_basic_test_mask_03,0,480,60664429,0,5,1,4294967295,0,0
-obj_blockade,456,456,E103E4C2,0,1,1,4294967295,0,0
