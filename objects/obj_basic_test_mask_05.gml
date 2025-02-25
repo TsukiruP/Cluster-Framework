@@ -7,4 +7,4 @@ applies_to=self
 /// Solid Initialization
 
 event_inherited();
-shape = SHP_RIGHT_TRIANGLE;
+shape = SHP_CUSTOM;
