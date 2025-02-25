@@ -1,7 +1,7 @@
 /// enemy_destroy()
-/// @desc Creates an explosion effect.
+/// @desc Enemy variant of instance_destroy().
 /// @returns {void}
 
 audio_play_sfx("snd_destroy", true);
-effect_create(x, y, pick(collision_point(x, y, obj_water_mask, true, false) == noone, sequence_explosion_water, sequence_explosion_enemy), -depth);
+effect_create(x, y, pick(place_meeting(x, y, obj_water_mask), sequence_explosion_enemy, sequence_explosion_water), -depth);
 instance_destroy();
