@@ -66,11 +66,7 @@ else if (sequence_index == sequence_jawz_chase)
     chase_alarm -= sequence_speed;
     chase_alarm = floorto(chase_alarm, pick(sequence_speed > 0, 1, sequence_speed));
 
-    if (chase_alarm == 0 || collision_point(x, y, par_solid, false, false))
-    {
-        enemy_destroy();
-        instance_destroy();
-    }
+    if (chase_alarm == 0 || collision_point(x, y, par_solid, false, false)) instance_destroy();
 }
 
 if (script_exists(sequence_index))

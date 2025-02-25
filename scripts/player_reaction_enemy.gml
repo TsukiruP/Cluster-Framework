@@ -36,11 +36,7 @@ if (((_hitbox & HIT_COLLISION) && status_invin == INVIN_BUFF) || (_hitbox & HIT_
         sonic_routine_homing();
         stage_add_score(100 + (400 * _obj.class));
 
-        with (_obj)
-        {
-            enemy_destroy();
-            instance_destroy();
-        }
+        with (_obj) enemy_destroy();
     }
 }
 else if ((_hitbox & HIT_HURT) && (_obj.attackbox_element == ELEM_NONE || (_obj.attackbox_element > ELEM_NONE && status_shield != _obj.attackbox_element + SHIELD_BUBBLE))) player_set_damage(_obj);
