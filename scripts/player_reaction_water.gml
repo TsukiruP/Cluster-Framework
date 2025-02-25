@@ -7,7 +7,7 @@
 var _obj; _obj = argument0;
 var _hitbox; _hitbox = argument1;
 
-if (_hitbox & HIT_COLLISION)
+if (_hitbox & HIT_MASK)
 {
     var x1; x1 = _obj.x;
     var y1; y1 = _obj.y;
@@ -25,6 +25,7 @@ if (_hitbox & HIT_COLLISION)
         air_remaining = 30;
         air_alarm = 60;
         player_set_physics();
+        if (status_shield == SHIELD_FIRE || status_shield == SHIELD_LIGHTNING) status_shield = 0;
 
         if (!water_previous)
         {

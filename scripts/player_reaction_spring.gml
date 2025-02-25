@@ -7,7 +7,7 @@
 var _obj; _obj = argument0;
 var _hitbox; _hitbox = argument1;
 
-if (_hitbox & HIT_COLLISION)
+if (_hitbox & HIT_INTERACT)
 {
     if (spring_inst != _obj || spring_alarm == 0)
     {
@@ -31,7 +31,7 @@ if (_hitbox & HIT_COLLISION)
 
         x = _obj.x;
         if (dcos(spring_angle) != 0) image_xscale = sign(dcos(spring_angle));
-        
+
         if (!input_cpu && is_dash_ring)
         {
             if (_obj.rainbow_score)

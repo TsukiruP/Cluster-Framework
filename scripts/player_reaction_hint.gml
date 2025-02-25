@@ -7,7 +7,7 @@
 var _obj; _obj = argument0;
 var _hitbox; _hitbox = argument1;
 
-if (_hitbox & HIT_COLLISION)
+if (_hitbox & HIT_INTERACT)
 {
     if (mask_direction == _obj.gravity_direction && on_ground && !input_cpu)
     {

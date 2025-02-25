@@ -7,4 +7,4 @@
 var _obj; _obj = argument0;
 var _hitbox; _hitbox = argument1;
 
-if (_hitbox & HIT_COLLISION) waterfall_draw = true;
+if (_hitbox & HIT_INTERACT) waterfall_draw = true;

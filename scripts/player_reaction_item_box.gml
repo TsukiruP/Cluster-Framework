@@ -7,7 +7,7 @@
 var _obj; _obj = argument0;
 var _hitbox; _hitbox = argument1;
 
-if ((_hitbox & HIT_COLLISION) || (_hitbox & HIT_ATTACK))
+if ((_hitbox & HIT_INTERACT) || (_hitbox & HIT_ATTACK))
 {
     if (!input_cpu || (input_cpu && input_cpu_gamepad_alarm > 0))
     {

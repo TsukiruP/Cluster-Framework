@@ -7,7 +7,7 @@
 var _obj; _obj = argument0;
 var _hitbox; _hitbox = argument1;
 
-if (_hitbox & HIT_COLLISION)
+if (_hitbox & HIT_INTERACT)
 {
     if (dash_panel_inst != _obj || input_lock_alarm == 0)
     {

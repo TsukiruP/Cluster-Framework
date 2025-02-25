@@ -20,12 +20,16 @@ if (script_exists(reaction_index))
 
     if (object_is_ancestor(_obj.object_index, par_solid))
     {
-        if (!_obj.reaction_mask || (_obj.reaction_mask && (_hitbox & HIT_SOLID)))
+        if (!_obj.reaction_solid || (_obj.reaction_solid && (_hitbox & HIT_SOLID)))
         {
             script_execute(reaction_index, _obj, _hitbox, _side);
         }
     }
-    else script_execute(reaction_index, _obj, _hitbox);
+    else
+    {
+        if (_obj.reaction_mask) _hitbox |= HIT_MASK;
+        script_execute(reaction_index, _obj, _hitbox);
+    }
 
     if (ds_list_find_index(solid_list, _obj) != -1)
     {

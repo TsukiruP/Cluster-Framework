@@ -114,7 +114,7 @@ if (instance_exists(_obj))
             var ax2; ax2 = ax_int + (acsine * aright) + (acsine * aoff_x) + (asine * abottom) + (asine * aoff_y);
             var ay2; ay2 = ay_int + (asine * aleft) - (asine * aoff_x) + (acsine * abottom) + (acsine * aoff_y);
 
-            if (rectangle_in_rectangle(ax1, ay1, ax2, ay2, bx1, by1, bx2, by2)) hitbox |= pick(_phase, HIT_COLLISION, HIT_HURT, HIT_ATTACK, HIT_CLASH);
+            if (rectangle_in_rectangle(ax1, ay1, ax2, ay2, bx1, by1, bx2, by2)) hitbox |= pick(_phase, HIT_INTERACT, HIT_HURT, HIT_ATTACK, HIT_CLASH);
         }
     }
 }
