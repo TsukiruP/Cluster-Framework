@@ -31,19 +31,19 @@ if (_hitbox & HIT_COLLISION)
 
         x = _obj.x;
         if (dcos(spring_angle) != 0) image_xscale = sign(dcos(spring_angle));
+        
+        if (!input_cpu && is_dash_ring)
+        {
+            if (_obj.rainbow_score)
+            {
+                _obj.rainbow_score = false;
+                stage_add_score(1000);
+            }
+        }
 
         with (_obj)
         {
             active = true;
-
-            if (is_dash_ring)
-            {
-                if (rainbow_score && !other.input_cpu)
-                {
-                    rainbow_score = false;
-                    stage_add_score(1000);
-                }
-            }
 
             if (sfx_alarm == 0)
             {

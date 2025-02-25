@@ -26,7 +26,6 @@ if (((_hitbox & HIT_COLLISION) && status_invin == INVIN_BUFF) || (_hitbox & HIT_
     {
         x_speed *= -0.5;
         y_speed *= -0.5;
-
         _obj.vitality -= 1;
         _obj.invin_alarm = 32;
     }
@@ -35,7 +34,6 @@ if (((_hitbox & HIT_COLLISION) && status_invin == INVIN_BUFF) || (_hitbox & HIT_
     {
         sonic_routine_homing();
         stage_add_score(100 + (400 * _obj.class));
-
         with (_obj) enemy_destroy();
     }
 }
