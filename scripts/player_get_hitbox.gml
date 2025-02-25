@@ -1,17 +1,17 @@
-/// player_get_hitbox(inst, [phase])
+/// player_get_hitbox(obj, [phase])
 /// @desc Returns a set of bit flags about the player and object's hitboxes.
-/// @param {object} inst
+/// @param {object} obj
 /// @param {int} [phase]
 /// @returns {int}
 
-var _inst; _inst = argument[0];
+var _obj; _obj = argument[0];
 var _phase; if (argument_count > 1) _phase = argument[1]; else _phase = 0;
 
 var hitbox; hitbox = 0;
 
-if (instance_exists(_inst))
+if (instance_exists(_obj))
 {
-    if (!_inst.collision) return 0;
+    if (!_obj.collision) return 0;
 
     // Initialize player:
     var ax_int; ax_int = floor(x);
@@ -24,34 +24,34 @@ if (instance_exists(_inst))
     var adir_y; adir_y = sign(image_yscale);
     var aoff_x; aoff_x = hurtbox_offset_x * adir_x;
     var aoff_y; aoff_y = hurtbox_offset_y * adir_y;
-    var arot; arot = mask_rotation;
+    var arot; arot = mask_direction;
     var asine; asine = dsin(arot);
     var acsine; acsine = dcos(arot);
 
     // Initialize object:
-    var bx_int; bx_int = floor(_inst.x);
-    var by_int; by_int = floor(_inst.y);
-    var bleft; bleft = _inst.hurtbox_left;
-    var btop; btop = _inst.hurtbox_top;
-    var bright; bright = _inst.hurtbox_right;
-    var bbottom; bbottom = _inst.hurtbox_bottom;
-    var bdir_x; bdir_x = sign(_inst.image_xscale);
-    var bdir_y; bdir_y = sign(_inst.image_yscale);
-    var boff_x; boff_x = _inst.hurtbox_offset_x * bdir_x;
-    var boff_y; boff_y = _inst.hurtbox_offset_y * bdir_y;
-    var brot; brot = _inst.gravity_direction;
+    var bx_int; bx_int = floor(_obj.x);
+    var by_int; by_int = floor(_obj.y);
+    var bleft; bleft = _obj.hurtbox_left;
+    var btop; btop = _obj.hurtbox_top;
+    var bright; bright = _obj.hurtbox_right;
+    var bbottom; bbottom = _obj.hurtbox_bottom;
+    var bdir_x; bdir_x = sign(_obj.image_xscale);
+    var bdir_y; bdir_y = sign(_obj.image_yscale);
+    var boff_x; boff_x = _obj.hurtbox_offset_x * bdir_x;
+    var boff_y; boff_y = _obj.hurtbox_offset_y * bdir_y;
+    var brot; brot = _obj.gravity_direction;
     var bsine; bsine = dsin(brot);
     var bcsine; bcsine = dcos(brot);
 
     // Swap to object's attackbox:
     if (_phase == 1 || _phase == 3)
     {
-        bleft = _inst.attackbox_left;
-        btop = _inst.attackbox_top;
-        bright = _inst.attackbox_right;
-        bbottom = _inst.attackbox_bottom;
-        boff_x = _inst.attackbox_offset_x * bdir_x;
-        boff_y = _inst.attackbox_offset_y * bdir_y;
+        bleft = _obj.attackbox_left;
+        btop = _obj.attackbox_top;
+        bright = _obj.attackbox_right;
+        bbottom = _obj.attackbox_bottom;
+        boff_x = _obj.attackbox_offset_x * bdir_x;
+        boff_y = _obj.attackbox_offset_y * bdir_y;
     }
 
     // Swap to player's attackbox:

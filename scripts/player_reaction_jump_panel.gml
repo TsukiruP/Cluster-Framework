@@ -1,20 +1,20 @@
-/// player_reaction_jump_panel(inst, hitbox, side)
+/// player_reaction_jump_panel(obj, hitbox, side)
 /// @desc
-/// @param {object} inst
+/// @param {object} obj
 /// @param {int} hitbox
 /// @param {number} side
 /// @returns {void}
 
-var _inst; _inst = argument0;
+var _obj; _obj = argument0;
 var _hitbox; _hitbox = argument1;
 var _side; _side = argument2;
 
 if ((_hitbox & HIT_SOLID) && _side == ANGLE_UP)
 {
-    image_xscale = _inst.image_xscale;
-    x_speed = _inst.force * image_xscale;
+    image_xscale = _obj.image_xscale;
+    x_speed = _obj.force * image_xscale;
     input_lock_alarm = 16;
-    if (ground_inst != _inst) player_set_ground(_inst);
+    if (ground_inst != _obj) player_set_ground(_obj);
 
     if (_hitbox & HIT_COLLISION)
     {

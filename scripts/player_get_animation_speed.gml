@@ -33,4 +33,4 @@ switch (character_index)
         }
 }
 
-animation_speed = _speed;
+sequence_speed = _speed;

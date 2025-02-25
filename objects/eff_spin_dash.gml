@@ -22,7 +22,7 @@ applies_to=self
 */
 /// Draw Dust
 
-var player_rotation; player_rotation = player_inst.mask_rotation;
+var player_rotation; player_rotation = player_inst.mask_direction;
 var sine; sine = dsin(player_rotation);
 var csine; csine = dcos(player_rotation);
 

@@ -1,10 +1,10 @@
-/// player_wall_push(inst, dir)
+/// player_wall_push(obj, dir)
 /// @desc Sets the animation for pushing, and moves the solid if possible.
-/// @param {object}  inst
+/// @param {object}  obj
 /// @param {int} dir
 /// @returns {void}
 
-var _inst; _inst = argument0;
+var _obj; _obj = argument0;
 var _dir; _dir = argument1;
 
 if (state_current != player_state_run) exit;
@@ -16,7 +16,7 @@ player_set_animation("push");
 var ox; ox = dcos(angle) * _dir;
 var oy; oy = dsin(angle) * _dir;
 
-with (_inst)
+with (_obj)
 {
     // Abort:
     if ((!can_push || y - yprevious != 0) || place_meeting(x + ox, y - oy, par_solid)) exit;

@@ -18,7 +18,7 @@ switch (character_index)
                     break
 
                 default:
-                    var solid_inst; solid_inst = collision_box_vertical(x_radius, y_radius + 32, mask_rotation, par_solid);
+                    var solid_inst; solid_inst = collision_box_vertical(x_radius, y_radius + 32, mask_direction, par_solid);
 
                     if (solid_inst)
                     {

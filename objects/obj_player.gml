@@ -373,7 +373,7 @@ if (input_allow)
         }
 
         // Respawn:
-        if (!in_view())
+        if (!in_view(self))
         {
             input_cpu_respawn_time += 1;
 
@@ -736,7 +736,7 @@ switch (animation_current)
     case "brake":
     case "brake_fast":
     case "skid":
-        image_angle = mask_rotation;
+        image_angle = mask_direction;
         break;
 
     case "spring_flight":

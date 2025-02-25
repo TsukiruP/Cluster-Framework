@@ -1,10 +1,10 @@
-/// player_reaction_waterfall(inst, hitbox)
+/// player_reaction_waterfall(obj, hitbox)
 /// @desc Really stupid commitment to game accuracy.
-/// @param {object} inst
+/// @param {object} obj
 /// @param {int} hitbox
 /// @returns {void}
 
-var _inst; _inst = argument0;
+var _obj; _obj = argument0;
 var _hitbox; _hitbox = argument1;
 
 if (_hitbox & HIT_COLLISION) waterfall_draw = true;

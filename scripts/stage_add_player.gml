@@ -1,8 +1,8 @@
-/// stage_add_player(inst)
+/// stage_add_player(obj)
 /// @desc Adds a player instance to the player list.
-/// @param {object} inst
+/// @param {object} obj
 /// @returns {void}
 
-var _inst; _inst = argument0;
+var _obj; _obj = argument0;
 
-with (ctrl_stage) ds_list_add(player_list, _inst);
+with (ctrl_stage) ds_list_add(player_list, _obj);

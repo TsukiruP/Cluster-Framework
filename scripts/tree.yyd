@@ -628,6 +628,7 @@
 		+Misc.
 			|player_react
 			|player_inbounds
+			|player_can_launch
 			|player_rotate_mask
 			|player_slope_friction
 			|player_ring_loss

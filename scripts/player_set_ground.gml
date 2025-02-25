@@ -1,46 +1,46 @@
-/// player_set_ground(inst)
+/// player_set_ground(obj)
 /// @desc Sets the player's ground instance.
-/// @param {object} inst
+/// @param {object} obj
 /// @returns {void}
 
-var _inst; _inst = argument0;
+var _obj; _obj = argument0;
 
-// Confirm assignment
-ground_inst = _inst;
+var new_angle; new_angle = player_get_angle(_obj, mask_direction);
+
+if (on_ground && abs(angle_difference(angle, new_angle)) > 45)
+{
+    on_ground = false;
+    exit;
+}
+
+angle = new_angle;
+relative_angle = angle_wrap(angle - gravity_direction);
+ground_inst = _obj;
 on_ground = true;
 player_reset_skill();
 
-// Calculate and set new ground angle
-angle = player_get_angle(ground_inst, mask_rotation);
-relative_angle = angle_wrap(angle - gravity_direction);
+var rotation; rotation = round(angle / 90) * 90;
+var sine; sine = dsin(rotation);
+var csine; csine = dcos(rotation);
 
-var sine; sine = dsin(mask_rotation);
-var csine; csine = dcos(mask_rotation);
-
-// Rise up while inside
-repeat (y_radius * 2)
+// Rise up while inside:
+repeat (y_radius)
 {
-    if (collision_box_vertical(x_radius, y_radius, mask_rotation, ground_inst) != noone)
+    if (collision_box_vertical(x_radius, y_radius, rotation, ground_inst) != noone)
     {
         x -= sine;
         y -= csine;
     }
-    else
-    {
-        break;
-    }
+    else break;
 }
 
-// Snap down while outside
-repeat (y_radius * 2)
+// Snap down while outside:
+repeat (y_radius + 1)
 {
-    if (collision_box_vertical(x_radius, y_radius + 1, mask_rotation, ground_inst) == noone)
+    if (collision_box_vertical(x_radius, y_radius + 1, rotation, ground_inst) == noone)
     {
         x += sine;
         y += csine;
     }
-    else
-    {
-        break;
-    }
+    else break;
 }

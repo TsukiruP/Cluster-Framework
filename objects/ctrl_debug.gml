@@ -90,24 +90,24 @@ with (obj_player)
     var y_int; y_int = floor(y);
 
     // Bounding box:
-    if (mask_rotation mod 180 != 0) draw_rectangle_color(x_int - y_radius, y_int - x_radius, x_int + y_radius, y_int + x_radius, c_orange, c_orange, c_orange, c_orange, true);
+    if (mask_direction mod 180 != 0) draw_rectangle_color(x_int - y_radius, y_int - x_radius, x_int + y_radius, y_int + x_radius, c_orange, c_orange, c_orange, c_orange, true);
     else draw_rectangle_color(x_int - x_radius, y_int - y_radius, x_int + x_radius, y_int + y_radius, c_orange, c_orange, c_orange, c_orange, true);
 
     // Wall radius:
-    var sine; sine = dsin(mask_rotation);
-    var csine; csine = dcos(mask_rotation);
+    var sine; sine = dsin(mask_direction);
+    var csine; csine = dcos(mask_direction);
 
     draw_line_color(x_int - (csine * wall_radius), y_int + (sine * wall_radius), x_int + (csine * wall_radius), y_int - (sine * wall_radius), c_white, c_white);
 
     // Hitboxes:
-    draw_hitbox(hurtbox_left, hurtbox_top, hurtbox_right, hurtbox_bottom, hurtbox_offset_x, hurtbox_offset_y, mask_rotation, c_maroon);
-    draw_hitbox(attackbox_left, attackbox_top, attackbox_right, attackbox_bottom, attackbox_offset_x, attackbox_offset_y, mask_rotation, c_green);
+    draw_hitbox(hurtbox_left, hurtbox_top, hurtbox_right, hurtbox_bottom, hurtbox_offset_x, hurtbox_offset_y, mask_direction, c_maroon);
+    draw_hitbox(attackbox_left, attackbox_top, attackbox_right, attackbox_bottom, attackbox_offset_x, attackbox_offset_y, mask_direction, c_green);
 
     // Homing range:
     if (game_save_get_skill(character_index, "homing") && character_index == CHAR_SONIC)
     {
-        draw_line(x_int, y_int, x_int + lengthdir_x(homing_range * image_xscale, mask_rotation + 45), y_int + lengthdir_y(homing_range * image_xscale, mask_rotation + 45));
-        draw_line(x_int, y_int, x_int + lengthdir_x(homing_range * image_xscale, mask_rotation - 45), y_int + lengthdir_y(homing_range * image_xscale, mask_rotation - 45));
+        draw_line(x_int, y_int, x_int + lengthdir_x(homing_range * image_xscale, mask_direction + 45), y_int + lengthdir_y(homing_range * image_xscale, mask_direction + 45));
+        draw_line(x_int, y_int, x_int + lengthdir_x(homing_range * image_xscale, mask_direction - 45), y_int + lengthdir_y(homing_range * image_xscale, mask_direction - 45));
         if (instance_exists(homing_inst)) draw_line(x_int, y_int, floor(homing_inst.x), floor(homing_inst.y));
     }
 
@@ -179,7 +179,7 @@ with (stage_get_player(0))
             "Gravity: " + string(gravity_direction) + "#" +
             "Angle: " + string(angle) + "#" +
             "Relative Angle: " + string(relative_angle) + "#" +
-            "Mask Rotation: " + string(mask_rotation) + "##" +
+            "Mask Rotation: " + string(mask_direction) + "##" +
             "Input Allow: " + string_bool(input_allow) + "#" +
             "Input Lock: " + string(input_lock_alarm);
     }

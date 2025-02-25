@@ -27,9 +27,9 @@ applies_to=self
 */
 /// Draw Debuff
 
-var player_rotation; player_rotation = player_inst.mask_rotation;
-var sine; sine = dsin(player_inst.mask_rotation);
-var csine; csine = dcos(player_inst.mask_rotation);
+var player_rotation; player_rotation = player_inst.mask_direction;
+var sine; sine = dsin(player_inst.mask_direction);
+var csine; csine = dcos(player_inst.mask_direction);
 
 var draw_x; draw_x = x - (sine * 16);
 var draw_y; draw_y = y - (csine * 16);

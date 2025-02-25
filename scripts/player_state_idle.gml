@@ -9,8 +9,9 @@ switch (_phase)
 {
     case STATE_START:
         wait_alarm = 360;
+        player_get_cliff();
 
-        if (player_get_cliff() == 0)
+        if (cliff_direction == 0)
         {
             if (animation_current != "wait" && animation_current != "standby" && animation_current != "land" &&
                 animation_current != "look" && animation_current != "look_end" && animation_current != "crouch_end" &&

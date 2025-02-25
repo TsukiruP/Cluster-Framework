@@ -36,4 +36,4 @@ if (script_exists(sequence_index))
     script_execute(sequence_index);
 }
 
-if (!in_view()) instance_destroy();
+if (!in_view(self)) instance_destroy();

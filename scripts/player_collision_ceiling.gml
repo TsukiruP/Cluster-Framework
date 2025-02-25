@@ -15,7 +15,7 @@ for ({var oy; oy = 0}; oy < _radius; oy += 1)
         var inst; inst = ds_list_find_value(solid_list, n);
 
         // Continue if not colliding with/passing through the current solid:
-        if (collision_box_vertical(x_radius, -oy, mask_rotation, inst) == noone || inst.semisolid) continue;
+        if (collision_box_vertical(x_radius, -oy, mask_direction, inst) == noone || inst.semisolid) continue;
 
         // Confirm matching solid:
         return inst;

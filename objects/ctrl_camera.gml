@@ -113,7 +113,7 @@ if (instance_exists(focus_inst))
             {
                 var player_offset; player_offset = 0;
 
-                if (focus_inst.on_ground) player_offset = focus_inst.camera_offset * dsin(focus_inst.mask_rotation);
+                if (focus_inst.on_ground) player_offset = focus_inst.camera_offset * dsin(focus_inst.mask_direction);
 
                 if (focus_inst.x < (border_left - player_offset)) camera_x -= min((border_left - player_offset) - focus_inst.x, 24);
                 else if (focus_inst.x > (border_right + player_offset)) camera_x += min(focus_inst.x - (border_right + player_offset), 24);

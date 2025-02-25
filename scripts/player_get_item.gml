@@ -1,10 +1,10 @@
-/// player_get_item(inst, item)
+/// player_get_item(obj, item)
 /// @desc Performs an event based on the item.
-/// @param {object} inst
+/// @param {object} obj
 /// @param {int} item
 /// @returns {void}
 
-var _inst; _inst = argument0;
+var _obj; _obj = argument0;
 var _item; _item = argument1;
 
 switch (_item)
@@ -50,8 +50,8 @@ switch (_item)
         break;
 
     case ITEM_MINE:
-        player_set_damage(_inst);
-        effect_create(_inst.x, _inst.y, sequence_explosion_large, depth);
+        player_set_damage(_obj);
+        effect_create(_obj.x, _obj.y, sequence_explosion_large, depth);
         break;
 
     case ITEM_SLOW:

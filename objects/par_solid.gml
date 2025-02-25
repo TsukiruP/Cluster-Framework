@@ -11,11 +11,12 @@ event_inherited();
 // Collision:
 layer = -1; // No collision happens with the player on layer mismatch
 surface_angle = -1; // Set this to > -1 to hard-code this solid's angle, otherwise it will be calculated based on its shape
-shape = SHAPE_RECTANGLE; // SHAPE_RECTANGLE, SHAPE_SLANT, SHAPE_CONCAVE or SHAPE_CONVEX; ignored if surface angle > -1; if left as -1, this solid's angle will be calculated via sensor extension
+shape = SHP_RECTANGLE; // SHP_RECTANGLE, SHP_RIGHT_TRIANGLE, SHP_QUARTER_PIPE, SHP_QUARTER_ELLIPSE or SHP_CUSTOM; ignored if surface angle > -1; if left as -1, this solid's angle will be calculated via sensor extension
 is_mask = true;
 
 // Flags:
 semisolid = false; // Only the bottom half of the player's mask will collide, and only if their top half isn't also colliding
+can_launch = false; // The player will launch off this solid when moving fast enough.
 can_crush = false; // If the player is embedded inside this solid, they will die
 can_push = false; // The player can push this solid if they're moving against it
 #define Other_4

@@ -31,12 +31,12 @@ switch (_phase)
 
         if (animation_time mod 8 == 0)
         {
-            var sine; sine = dsin(mask_rotation);
-            var csine; csine = dcos(mask_rotation);
+            var sine; sine = dsin(mask_direction);
+            var csine; csine = dcos(mask_direction);
 
             with (effect_create(x - (csine * x_radius * image_xscale) + (sine * y_radius), y + (sine * x_radius * image_xscale) + (csine * y_radius), sequence_rail_spark, depth, image_xscale))
             {
-                image_angle = other.mask_rotation;
+                image_angle = other.mask_direction;
             }
         }
         break;

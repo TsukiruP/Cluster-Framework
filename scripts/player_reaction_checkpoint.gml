@@ -1,17 +1,17 @@
-/// player_reaction_checkpoint(inst, hitbox)
+/// player_reaction_checkpoint(obj, hitbox)
 /// @desc
-/// @param {object} inst
+/// @param {object} obj
 /// @param {int} hitbox
 /// @returns {void}
 
-var _inst; _inst = argument0;
+var _obj; _obj = argument0;
 var _hitbox; _hitbox = argument1;
 
 if (_hitbox & HIT_COLLISION)
 {
     if (!input_cpu)
     {
-        if (game_get_checkpoint_x() != _inst.x && game_get_checkpoint_y() != _inst.y && !_inst.active)
+        if (game_get_checkpoint_x() != _obj.x && game_get_checkpoint_y() != _obj.y && !_obj.active)
         {
             if (game_get_config("gameplay_bonuses") && stage_get_rings() >= 20)
             {
@@ -39,12 +39,12 @@ if (_hitbox & HIT_COLLISION)
                         if (status_shield == SHIELD_NONE) item_index = choose(ITEM_BASIC, ITEM_MAGNETIC);
                 }
 
-                player_get_item(_inst, item_index);
+                player_get_item(_obj, item_index);
             }
 
             audio_play_sfx("snd_checkpoint", true);
 
-            with (_inst)
+            with (_obj)
             {
                 active = true;
                 game_set_checkpoint();

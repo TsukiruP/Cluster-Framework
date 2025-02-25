@@ -1,20 +1,20 @@
-/// player_reaction_spring(inst, hitbox)
+/// player_reaction_spring(obj, hitbox)
 /// @desc
-/// @param {object} inst
+/// @param {object} obj
 /// @param {int} hitbox
 /// @returns {void}
 
-var _inst; _inst = argument0;
+var _obj; _obj = argument0;
 var _hitbox; _hitbox = argument1;
 
 if (_hitbox & HIT_COLLISION)
 {
-    if (spring_inst != _inst || spring_alarm == 0)
+    if (spring_inst != _obj || spring_alarm == 0)
     {
-        var is_dash_ring; is_dash_ring = (_inst.object_index == obj_dash_ring);
+        var is_dash_ring; is_dash_ring = (_obj.object_index == obj_dash_ring);
 
         player_reset_spring();
-        spring_inst = _inst;
+        spring_inst = _obj;
         spring_force = spring_inst.force;
         spring_angle = angle_wrap(spring_inst.angle - gravity_direction);
         spring_alarm = spring_force + 15;
@@ -24,15 +24,15 @@ if (_hitbox & HIT_COLLISION)
 
         if (!(on_ground && (spring_angle == ANGLE_LEFT || spring_angle == ANGLE_RIGHT)) || is_dash_ring)
         {
-            y = _inst.y;
+            y = _obj.y;
             player_set_state(player_state_spring, true);
         }
         else input_lock_alarm = 16;
 
-        x = _inst.x;
+        x = _obj.x;
         if (dcos(spring_angle) != 0) image_xscale = sign(dcos(spring_angle));
 
-        with (_inst)
+        with (_obj)
         {
             active = true;
 

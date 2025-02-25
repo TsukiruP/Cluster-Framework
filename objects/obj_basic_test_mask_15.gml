@@ -7,4 +7,4 @@ applies_to=self
 /// Solid Initialization
 
 event_inherited();
-shape = SHAPE_CONCAVE;
+shape = SHP_QUARTER_PIPE;

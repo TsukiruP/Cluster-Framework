@@ -1,29 +1,29 @@
-/// player_reaction_dash_panel(inst, hitbox)
+/// player_reaction_dash_panel(obj, hitbox)
 /// @desc
-/// @param {object} inst
+/// @param {object} obj
 /// @param {int} hitbox
 /// @returns {void}
 
-var _inst; _inst = argument0;
+var _obj; _obj = argument0;
 var _hitbox; _hitbox = argument1;
 
 if (_hitbox & HIT_COLLISION)
 {
-    if (dash_panel_inst != _inst || input_lock_alarm == 0)
+    if (dash_panel_inst != _obj || input_lock_alarm == 0)
     {
-        if (gravity_direction != _inst.angle)
+        if (gravity_direction != _obj.angle)
         {
-            mask_rotation = _inst.angle;
+            mask_direction = _obj.angle;
             player_set_state(player_state_run);
         }
 
-        //image_xscale = _inst.image_xscale;
-        image_xscale = pick(_inst.variant, _inst.image_xscale, _inst.image_yscale);
-        x_speed = _inst.force * image_xscale;
+        //image_xscale = _obj.image_xscale;
+        image_xscale = pick(_obj.variant, _obj.image_xscale, _obj.image_yscale);
+        x_speed = _obj.force * image_xscale;
         input_lock_alarm = 16;
-        dash_panel_inst = _inst;
+        dash_panel_inst = _obj;
 
-        with (_inst)
+        with (_obj)
         {
             if (sfx_alarm == 0)
             {

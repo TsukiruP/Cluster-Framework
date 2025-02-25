@@ -27,9 +27,9 @@ if (animation_changed) animation_changed = false;
 
 if (on_ground)
 {
-    x += dsin(mask_rotation) * (y_radius_temp - y_radius);
-    y += dcos(mask_rotation) * (y_radius_temp - y_radius);
+    x += dsin(mask_direction) * (y_radius_temp - y_radius);
+    y += dcos(mask_direction) * (y_radius_temp - y_radius);
 }
 
 player_animation_fix();
-if (x_radius < 8) x_radius = 8;
+//if (x_radius < 8) x_radius = 8;

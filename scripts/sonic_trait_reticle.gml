@@ -37,14 +37,14 @@ if (!player_get_input(INP_ALT, CHECK_HELD))
         {
             var homing_candidate; homing_candidate = noone;
 
-            if (mask_rotation mod 180 == 0) homing_candidate = instance_nearest_dir_x(x, y, par_target, dcos(mask_rotation) * image_xscale, homing_range, i + 1);
-            else homing_candidate = instance_nearest_dir_y(x, y, par_target, dsin(mask_rotation) * image_xscale, homing_range, i + 1);
+            if (mask_direction mod 180 == 0) homing_candidate = instance_nearest_dir_x(x, y, par_target, dcos(mask_direction) * image_xscale, homing_range, i + 1);
+            else homing_candidate = instance_nearest_dir_y(x, y, par_target, dsin(mask_direction) * image_xscale, homing_range, i + 1);
 
             if (instance_exists(homing_candidate))
             {
                 if (!homing_candidate.collision || !homing_candidate.targetable || distance_to_object(homing_candidate) > homing_range) continue;
 
-                var homing_angle1; homing_angle1 = mask_rotation;
+                var homing_angle1; homing_angle1 = mask_direction;
                 var homing_angle2; homing_angle2 = direction_to_object(homing_candidate);
 
                 if (sign(image_xscale) == -1) homing_angle1 = angle_wrap(homing_angle1 + 180);

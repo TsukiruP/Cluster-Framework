@@ -1,8 +1,8 @@
-/// text_set_inst(inst)
+/// text_set_inst(obj)
 /// @desc Sets the instance that calls for special text behavior.
-/// @param {object} inst
+/// @param {object} obj
 /// @returns {void}
 
-var _inst; _inst = argument0;
+var _obj; _obj = argument0;
 
-with (ctrl_text) text_inst = _inst;
+with (ctrl_text) text_inst = _obj;
