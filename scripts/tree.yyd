@@ -177,6 +177,7 @@
 			|debug_set_previous
 			+Indexes
 				|debug_menu_home
+				|debug_option_template
 				+Options
 					|debug_option_character
 					+Character
@@ -440,6 +441,7 @@
 						|sequence_reticle
 						|sequence_reticle_colors
 						|sequence_shockwave
+						|sequence_bound_jump
 				+Shields
 					|sequence_shield_insta
 					|sequence_shield_basic

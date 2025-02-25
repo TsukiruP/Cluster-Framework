@@ -504,3 +504,5 @@ sequence_jawz_charge
 sequence_jawz_chase
 player_can_launch
 enemy_destroy
+debug_option_template
+sequence_bound_jump

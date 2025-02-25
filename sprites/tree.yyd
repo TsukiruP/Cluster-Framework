@@ -307,6 +307,7 @@
 				|spr_reticle
 				|spr_reticle_colors
 				|spr_shockwave
+				|spr_bound_jump
 		+Shields
 			|spr_shield_insta
 			|spr_shield_basic
