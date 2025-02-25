@@ -43,7 +43,7 @@ if (kind == SHP_CUSTOM)
     a number of times equal to double the player's vertical radius, plus 1.
     If you want to change the height at which the sensors are pushed, you must make sure it matches that in the "player_get_stage_objects" function. */
 
-    // Push sensors downward until they have found the solid
+    // Push sensors downward until they have found the solid:
     repeat (height)
     {
         if (!left)
@@ -70,11 +70,13 @@ if (kind == SHP_CUSTOM)
         if (left && right) return (point_direction(x1, y1, x2, y2) div 1);
     }
 }
-else if (!(kind == SHP_RECTANGLE && normal == -1))
+else if (!(kind == SHP_RECTANGLE && normal == -1)) // Ignore for flat rectangles (NOTE: if you want to hard-code the normal, the shape assigned MUST be a rectangle because of this.)
 {
+    // Default when on a flat side of the solid:
     if ((_rot == 0 && yscale == -1) || (_rot == 90 && xscale == -1) ||
         (_rot == 180 && yscale == 1) || (_rot == 270 && xscale == 1)) return _rot;
     
+    // Default if out of the solid's bounds:
     if (_rot mod 180 != 0)
     {
         if (yscale == -1 && y - x_radius < top_side) return _rot;
@@ -126,15 +128,18 @@ else if (!(kind == SHP_RECTANGLE && normal == -1))
     }
     else
     {
+        // Get ellipse/pipe center:
         if (kind == SHP_QUARTER_ELLIPSE ^^ xscale == 1) x1 = left_side;
         else x1 = right_side;
         
         if (kind == SHP_QUARTER_ELLIPSE ^^ yscale == 1) y1 = top_side;
         else y1 = bottom_side;
         
+        // Player's position clamped to the ellipse:
         x2 = clamp(x, left_side, right_side);
         y2 = clamp(y, top_side, bottom_side);
         
+        // Direction from the player to the ellipse/pipe center:
         var dir; dir = point_direction(x1, y1, x2, y2);
         
         if (kind == SHP_QUARTER_ELLIPSE) dir = point_direction(x2, y2, x1, y1);

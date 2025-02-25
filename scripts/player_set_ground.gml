@@ -7,18 +7,23 @@ var _obj; _obj = argument0;
 
 var new_angle; new_angle = player_get_angle(_obj, mask_direction);
 
+// Abort if solid is too steep:
 if (on_ground && abs(angle_difference(angle, new_angle)) > 45)
 {
     on_ground = false;
     exit;
 }
 
+// Set new ground angle:
 angle = new_angle;
 relative_angle = angle_wrap(angle - gravity_direction);
+
+// Confirm ground:
 ground_inst = _obj;
 on_ground = true;
 player_reset_skill();
 
+// Align to ground:
 var rotation; rotation = round(angle / 90) * 90;
 var sine; sine = dsin(rotation);
 var csine; csine = dcos(rotation);

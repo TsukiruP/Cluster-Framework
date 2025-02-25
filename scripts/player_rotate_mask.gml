@@ -5,18 +5,18 @@
 var difference; difference = angle_difference(mask_direction, angle);
 
 // Abort:
-if (abs(difference) <= 45 || abs(difference) >= 90) exit;
-if (collision_box(y_radius + 1, x_radius, (mask_direction mod 180 != 0), ground_inst) == noone) exit;
+if (abs(difference) <= 45 || abs(difference) >= 90) exit; // Difference is too steep or shallow.
+if (collision_box(y_radius + 1, x_radius, (mask_direction mod 180 != 0), ground_inst) == noone) exit; // Rotating would make the player fall.
 
-var new_rotation; new_rotation = angle_wrap(mask_direction + 90 * sign(difference));
-var new_angle; new_angle = player_get_angle(ground_inst, new_rotation);
-var new_difference; new_difference = angle_difference(mask_direction, new_angle);
+var new_direction; new_direction = angle_wrap(mask_direction + 90 * sign(difference)); // New mask direction.
+var new_angle; new_angle = player_get_angle(ground_inst, new_direction); // Ground angle from new mask direction.
+var new_difference; new_difference = angle_difference(mask_direction, new_angle); // Difference between new angle and mask direction.
 
 // Abort:
-if (sign(difference) != sign(new_difference)) exit;
-if (abs(new_difference) <= 45 || abs(new_difference) >= 90) exit;
+if (sign(difference) != sign(new_difference)) exit; // Rotating the wrong way.
+if (abs(new_difference) <= 45 || abs(new_difference) >= 90) exit; // New difference is too steep or shallow.
 
 // Confirm rotation:
 angle = new_angle;
 relative_angle = angle_wrap(angle - gravity_direction);
-mask_direction = new_rotation;
+mask_direction = new_direction;

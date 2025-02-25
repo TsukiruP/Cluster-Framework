@@ -49,6 +49,7 @@ repeat (total_steps)
         
         if (player_react(hit_wall, HIT_SOLID, pick(wall_sign == -1, ANGLE_LEFT, ANGLE_RIGHT))) return false;
         
+        // Stop moving and push:
         if (sign(x_speed) == wall_sign)
         {
             x_speed = 0;

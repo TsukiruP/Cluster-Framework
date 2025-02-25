@@ -41,6 +41,7 @@ repeat (total_steps)
         // React:
         if (player_react(hit_wall, HIT_SOLID, pick(wall_sign == -1, ANGLE_LEFT, ANGLE_RIGHT))) return false;
         
+        // Stop moving:
         if (sign(x_speed) == wall_sign) x_speed = 0;
     }
 }
@@ -85,17 +86,22 @@ repeat (total_steps)
         
         if (hit_floor != noone)
         {
+            // Rotate mask to ceiling and get ceiling data:
             mask_direction = (mask_direction + 180) mod 360;
             player_set_ground(hit_floor);
             
+            // Abort if rising too slow or ceiling is too shallow:
             if (y_speed > ceiling_land_threshold || (relative_angle > 135 && relative_angle < 225))
             {
                 var sine; sine = dsin(relative_angle);
                 var csine; csine = dcos(relative_angle);
                 var g_speed; g_speed = (csine * x_speed) - (sine * y_speed);
                 
+                // Slide against ceiling:
                 x_speed = csine * g_speed;
                 y_speed = sine * g_speed;
+                
+                // Reset air and exit loop:
                 player_reset_air();
                 break;
             }
@@ -105,16 +111,20 @@ repeat (total_steps)
     // Land:
     if (ground_inst != noone)
     {
+        // Calculate landing speed:
         if (abs(x_speed) <= abs(y_speed) && relative_angle >= 22.5 && relative_angle <= 337.5)
         {
+            // Scale speed to incline:
             x_speed = -y_speed * sign(dsin(relative_angle));
             if (relative_angle < 45 || relative_angle > 315) x_speed *= 0.5;
         }
         
+        // Stop falling and exit loop:
         y_speed = 0;
         break;
     }
     
+    // Wall collision (again):
     hit_wall = player_collision_wall(0);
     if (hit_wall != noone) player_wall_eject(hit_wall);
 }
