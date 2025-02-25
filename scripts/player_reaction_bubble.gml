@@ -9,7 +9,7 @@ var _hitbox; _hitbox = argument1;
 
 if (_hitbox & HIT_COLLISION)
 {
-    if (!on_ground && _obj.size == 2)
+    if (!on_ground && status_shield != SHIELD_BUBBLE && _obj.size == 2)
     {
         player_set_animation("breathe");
         player_set_state(player_state_air);
