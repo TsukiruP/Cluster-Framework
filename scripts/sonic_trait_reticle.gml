@@ -52,7 +52,7 @@ if (!player_get_input(INP_ALT, CHECK_HELD))
 
                 // Fail when interacting with solids:
                 var homing_fail; homing_fail = false;
-                var homing_solid; homing_solid = collision_line(x, y, homing_candidate.x, homing_candidate.y, par_solid, true, true);
+                var homing_solid; homing_solid = collision_line(x, y, homing_candidate.x, homing_candidate.y, par_solid, true, false);
 
                 if (instance_exists(homing_solid))
                 {
