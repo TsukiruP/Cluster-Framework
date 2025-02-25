@@ -42,10 +42,15 @@ if (sequence_index == sequence_jawz_move)
         {
             if (player_inst.underwater)
             {
-                var chase_angle; chase_angle = image_angle;
-
-                if (sign(image_xscale) == -1) chase_angle = angle_wrap(chase_angle + 180);
-                if (distance_to_object(player_inst) < chase_range && abs(angle_difference(chase_angle, direction_to_object(player_inst))) < 45) sequence_set(sequence_jawz_charge);
+                var chase_solid; chase_solid = collision_line(x, y, player_inst.x, player_inst.y, player_inst, true, false);
+                
+                if (!instance_exists(chase_solid))
+                {
+                    var chase_angle; chase_angle = image_angle;
+                    
+                    if (sign(image_xscale) == -1) chase_angle = angle_wrap(chase_angle + 180);
+                    if (distance_to_object(player_inst) < chase_range && abs(angle_difference(chase_angle, direction_to_object(player_inst))) < 45) sequence_set(sequence_jawz_charge);
+                }
             }
         }
     }
@@ -60,13 +65,13 @@ else if (sequence_index == sequence_jawz_chase)
         image_angle = approach_angle(image_angle, chase_angle, chase_speed - 2);
     }
 
-    x += chase_speed * image_xscale * dcos(image_angle);
-    y += chase_speed * dsin(image_angle);
+    x += dcos(image_angle) * chase_speed * image_xscale;
+    y += dsin(image_angle) * chase_speed;
 
     chase_alarm -= sequence_speed;
     chase_alarm = floorto(chase_alarm, pick(sequence_speed > 0, 1, sequence_speed));
 
-    if (chase_alarm == 0 || collision_point(x, y, par_solid, false, false)) instance_destroy();
+    if (chase_alarm == 0 || place_meeting(x, y, par_solid) || !place_meeting(x, y, obj_water_mask)) enemy_destroy();
 }
 
 if (script_exists(sequence_index))
