@@ -20,7 +20,12 @@ switch (_phase)
         if (!player_movement_air()) return false;
         if (player_routine_land()) return true;
 
-        if (homing_alarm == 0 || !instance_exists(homing_inst)) return player_set_state(player_state_jump, false);
+        if (homing_alarm == 0 || !instance_exists(homing_inst))
+        {
+            x_speed = 0;
+            y_speed = 0;
+            return player_set_state(player_state_jump, false);
+        }
         else
         {
             var homing_angle; homing_angle = angle_wrap(direction_to_object(homing_inst) - gravity_direction);
