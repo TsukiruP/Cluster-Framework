@@ -1,8 +1,8 @@
 /// player_get_animation_variant()
-/// @desc Sets animation variant.
+/// @desc Sets the animation variant.
 /// @returns {void}
 
-var _variant; _variant = 0;
+animation_variant = 1;
 
 switch (animation_current)
 {
@@ -23,15 +23,11 @@ switch (animation_current)
     case "wait":
         if (animation_changed)
         {
-            if (instance_number(obj_player) > 1) _variant = pick(player_index > 0, 0, 1);
-            else _variant = choose(0, 1);
+            if (instance_number(obj_player) > 1) animation_variant = pick(player_index > 0, 0, 1);
+            else animation_variant = choose(0, 1);
         }
 
-        _variant = animation_variant;
-
     case "death":
-        if (character_index == CHAR_CLASSIC && drown) _variant = 1;
-
+        if (character_index == CHAR_CLASSIC && drown) animation_variant = 1;
+        break;
 }
-
-animation_variant = _variant;
