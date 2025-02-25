@@ -33,7 +33,8 @@ if (script_exists(reaction_index))
 
     if (ds_list_find_index(solid_list, _obj) != -1)
     {
-        if (x_speed_temp != x_speed || y_speed_temp != y_speed || !_obj.collision || !instance_exists(_obj)) return true;
+        if (!instance_exists(_obj)) return true;
+        if (x_speed_temp != x_speed || y_speed_temp != y_speed || !_obj.collision) return true;
     }
 
     return state_changed;
