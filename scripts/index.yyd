@@ -506,3 +506,4 @@ player_can_launch
 enemy_destroy
 debug_option_template
 sequence_bound_jump
+game_debug_get_visible

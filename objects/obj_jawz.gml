@@ -104,7 +104,7 @@ applies_to=self
 
 draw_self_floored();
 
-if (game_get_debug() && sequence_index != sequence_jawz_chase)
+if (game_debug_get_visible() && sequence_index != sequence_jawz_chase)
 {
     var x_int; x_int = floor(x);
     var y_int; y_int = floor(y);

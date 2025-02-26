@@ -61,7 +61,7 @@ applies_to=self
 /// Draw Chopper
 
 draw_self_floored();
-if (game_get_debug())
+if (game_debug_get_visible())
 {
     draw_set_color(c_red);
     draw_rectangle(floor(xstart) - border_left, floor(ystart) - 8, floor(xstart) + border_right, floor(ystart) + 15, true);

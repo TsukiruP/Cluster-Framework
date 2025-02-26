@@ -144,7 +144,7 @@ applies_to=self
 /// Draw Buzzer
 
 draw_self_floored();
-if (game_get_debug() && move)
+if (game_debug_get_visible() && move)
 {
     draw_set_color(c_red);
     draw_rectangle(floor(xstart) - border_left, floor(ystart) - 2, floor(xstart) + border_right, floor(ystart) + 8, true);
