@@ -45,7 +45,7 @@ switch (mask_direction)
 
         if (y1 > ctrl_camera.limit_bottom)
         {
-            y = camera.limit_bottom + y_radius;
+            y = ctrl_camera.limit_bottom + y_radius;
             return false;
         }
         break;
@@ -63,12 +63,12 @@ switch (mask_direction)
             y = ctrl_camera.limit_bottom - x_radius;
             if (x_speed < 0) x_speed = 0;
         }
-        
+
         if (x2 + y_radius < ctrl_camera.limit_left)
         {
             x = ctrl_camera.limit_left - y_radius * 2;
         }
-        
+
         if (x1 > ctrl_camera.limit_right)
         {
             x = ctrl_camera.limit_right + y_radius;
@@ -92,7 +92,7 @@ switch (mask_direction)
 
         if (y1 - y_radius > ctrl_camera.limit_bottom)
         {
-            y = camera.limit_bottom + y_radius * 2;
+            y = ctrl_camera.limit_bottom + y_radius * 2;
         }
 
         if (y2 < ctrl_camera.limit_top)
@@ -115,12 +115,12 @@ switch (mask_direction)
             y = ctrl_camera.limit_bottom - x_radius;
             if (x_speed > 0) x_speed = 0;
         }
-        
+
         if (x1 - y_radius > ctrl_camera.limit_right)
         {
             x = ctrl_camera.limit_left + y_radius * 2;
         }
-        
+
         if (x2 < ctrl_camera.limit_left)
         {
             x = ctrl_camera.limit_left - y_radius;
