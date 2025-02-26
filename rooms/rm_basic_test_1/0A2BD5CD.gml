@@ -1,3 +1,3 @@
 //gm82 fields begin
-variant= 1
+layer=0
 //gm82 fields end
