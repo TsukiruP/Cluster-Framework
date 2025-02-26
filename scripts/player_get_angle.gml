@@ -74,7 +74,7 @@ if (kind == SHP_CUSTOM)
         }
     }
 }
-else if (!(kind == SHP_RECTANGLE && normal == -1)) // Ignore for flat rectangles (NOTE: if you want to hard-code the normal, the shape assigned MUST be a rectangle because of this.)
+else if (!(kind == SHP_RECTANGLE && normal == -1)) // Ignore for flat rectangles
 {
     // Default when on a flat side of the solid:
     if ((_rot == 0 && yscale == -1) || (_rot == 90 && xscale == -1) ||
