@@ -408,6 +408,9 @@
 						|sequence_jawz_move_turn
 						|sequence_jawz_charge
 						|sequence_jawz_chase
+					+Gun Hunter
+						|sequence_gun_hunter_move
+						|sequence_gun_hunter_turn
 				+Switch
 					|sequence_switch_platform
 					+Vertical
@@ -640,7 +643,9 @@
 			|player_cpu_respawn
 			|player_add_rings
 	+Props
-		|enemy_destroy
+		+Enemy
+			|enemy_destroy
+			|draw_enemy_border
 +Trash
 	|draw_sprite_tiled_horizontal
 	|draw_sprite_tiled_vertical

@@ -53,6 +53,7 @@
 			|obj_buzzer
 			|obj_chopper
 			|obj_jawz
+			|obj_gun_hunter
 		|obj_spike
 		|obj_blockade
 		+Rails

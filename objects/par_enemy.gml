@@ -12,6 +12,8 @@ attackbox_element = ELEM_NONE;
 class = ENE_BASIC;
 vitality = 3;
 invin_alarm = 0;
+explosion_x_offset = 0;
+explosion_y_offset = 0;
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1

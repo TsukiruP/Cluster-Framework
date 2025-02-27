@@ -4,14 +4,15 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Chopper Initialization
+/// Gun Hunter Initialization
 
 event_inherited();
+explosion_y_offset = 24;
 border_left = 0;
 border_right = 0;
-hitbox_set_hurtbox(17, 8, 15, 14);
-hitbox_set_attackbox(9, 6, 15, 12);
-sequence_init(sequence_chopper_move);
+hitbox_set_hurtbox(16, 10, 22, 22);
+hitbox_set_attackbox(8, 10, 7, 17);
+sequence_init(sequence_gun_hunter_move);
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -26,10 +27,10 @@ event_inherited();
 
 sequence_speed = game_get_speed();
 
-if (sequence_index == sequence_chopper_move)
+if (sequence_index == sequence_gun_hunter_move)
 {
     x += sequence_speed * image_xscale;
-    if (x < xstart - border_left || x > xstart + border_right) sequence_set(sequence_chopper_move_turn);
+    if (x < xstart - border_left || x > xstart + border_right) sequence_set(sequence_gun_hunter_turn);
 }
 
 if (script_exists(sequence_index))
@@ -58,7 +59,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Draw Chopper
+/// Draw Gun Hunter
 
 draw_self_floored();
 draw_enemy_border();

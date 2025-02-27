@@ -123,7 +123,7 @@ sprite_index = Sprite("spr_buzzer", pick(Field("move", 0), 0, 3));
 if (Field("move", 0))
 {
     draw_set_color(c_red);
-    draw_rectangle(floor(x) - Field("border_left", 0), floor(y) - 2, floor(x) + Field("border_right", 0), floor(y) + 8, true);
+    draw_rectangle(floor(x) - Field("border_left", 0), floor(y) - 8, floor(x) + Field("border_right", 0), floor(y) + 8, true);
 }
 */
 /*"/*'/**//* YYD ACTION
@@ -144,9 +144,4 @@ applies_to=self
 /// Draw Buzzer
 
 draw_self_floored();
-if (game_debug_get_visible() && move)
-{
-    draw_set_color(c_red);
-    draw_rectangle(floor(xstart) - border_left, floor(ystart) - 2, floor(xstart) + border_right, floor(ystart) + 8, true);
-    draw_reset();
-}
+if (move) draw_enemy_border();

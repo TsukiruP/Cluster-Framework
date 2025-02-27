@@ -43,11 +43,11 @@ if (sequence_index == sequence_jawz_move)
             if (player_inst.underwater)
             {
                 var chase_solid; chase_solid = collision_line(x, y, player_inst.x, player_inst.y, player_inst, true, false);
-                
+
                 if (!instance_exists(chase_solid))
                 {
                     var chase_angle; chase_angle = image_angle;
-                    
+
                     if (sign(image_xscale) == -1) chase_angle = angle_wrap(chase_angle + 180);
                     if (distance_to_object(player_inst) < chase_range && abs(angle_difference(chase_angle, direction_to_object(player_inst))) < 45) sequence_set(sequence_jawz_charge);
                 }
@@ -103,6 +103,7 @@ applies_to=self
 /// Draw Jawz
 
 draw_self_floored();
+draw_enemy_border();
 
 if (game_debug_get_visible() && sequence_index != sequence_jawz_chase)
 {
@@ -111,8 +112,4 @@ if (game_debug_get_visible() && sequence_index != sequence_jawz_chase)
 
     draw_line(x_int, y_int, x_int + lengthdir_x(chase_range * image_xscale, image_angle + 45), y_int + lengthdir_y(chase_range * image_xscale, image_angle + 45));
     draw_line(x_int, y_int, x_int + lengthdir_x(chase_range * image_xscale, image_angle - 45), y_int + lengthdir_y(chase_range * image_xscale, image_angle - 45));
-
-    draw_set_color(c_red);
-    draw_rectangle(floor(xstart) - border_left, floor(ystart) - 10, floor(xstart) + border_right, floor(ystart) + 14, true);
-    draw_reset();
 }
