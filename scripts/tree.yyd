@@ -644,6 +644,7 @@
 			|player_add_rings
 	+Props
 		+Enemy
+			|enemy_set_player
 			|enemy_destroy
 			|draw_enemy_border
 +Trash

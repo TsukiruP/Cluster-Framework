@@ -18,6 +18,8 @@ switch (state_current)
     case player_state_look:
     case player_state_crouch:
     case player_state_brake:
+    case player_state_spring:
+    case player_state_rail:
         homing_allow = true;
         break;
 
@@ -44,10 +46,9 @@ if (!player_get_input(INP_ALT, CHECK_HELD))
             {
                 if (!homing_candidate.collision || !homing_candidate.targetable || distance_to_object(homing_candidate) > homing_range) continue;
 
-                var homing_angle1; homing_angle1 = mask_direction;
+                var homing_angle1; homing_angle1 = pick(sign(image_xscale) == -1, mask_direction, angle_wrap(mask_direction + 180));
                 var homing_angle2; homing_angle2 = direction_to_object(homing_candidate);
 
-                if (sign(image_xscale) == -1) homing_angle1 = angle_wrap(homing_angle1 + 180);
                 if (abs(angle_difference(homing_angle1, homing_angle2)) > 45) continue;
 
                 // Fail when interacting with solids:
