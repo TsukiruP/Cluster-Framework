@@ -51,7 +51,7 @@ applies_to=self
 event_inherited();
 
 if (game_ispaused() || !dropped) exit;
-if (!in_view(self)) instance_destroy();
+if (!in_view(self, 64)) instance_destroy();
 
 var game_speed; game_speed = game_get_speed();
 var sine; sine = dsin(gravity_direction);
