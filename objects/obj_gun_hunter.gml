@@ -46,7 +46,7 @@ if (sequence_index == sequence_gun_hunter_move)
 }
 else if (sequence_index == sequence_gun_hunter_scan)
 {
-    if (scan_count >= 3)
+    if (scan_count >= 2)
     {
         scan_allow = false;
         scan_count = 0;
