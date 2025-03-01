@@ -14,8 +14,8 @@ if (_hitbox & HIT_MASK)
     var x2; x2 = x1 + _obj.sprite_width;
     var y2; y2 = y1 + _obj.sprite_height;
 
-    var water_current; water_current = point_in_rectangle(floor(x), floor(y), x1, y1, x2, y2);
-    var water_previous; water_previous = point_in_rectangle(floor(xprevious), floor(yprevious), x1, y1, x2, y2);
+    var water_current; water_current = point_in_rectangle(x, y, x1, y1, x2, y2);
+    var water_previous; water_previous = point_in_rectangle(xprevious, yprevious, x1, y1, x2, y2);
 
     if (!underwater && water_current)
     {
