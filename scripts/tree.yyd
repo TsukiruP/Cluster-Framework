@@ -412,6 +412,7 @@
 						|sequence_gun_hunter_move
 						|sequence_gun_hunter_turn
 						|sequence_gun_hunter_scan
+						|sequence_gun_hunter_shoot
 				+Switch
 					|sequence_switch_platform
 					+Vertical
