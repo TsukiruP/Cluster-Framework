@@ -50,7 +50,7 @@ switch (size)
 x = sine_wave_range(life_time, 128, xstart - 8, xstart + 8);
 y -= 0.5 * game_get_speed();
 
-if (place_meeting(x, y, par_solid) || !place_meeting(x, y, obj_water_mask)) instance_destroy();
+if (place_meeting(x, y, par_solid) || !position_meeting(x, y, obj_water_mask)) instance_destroy();
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1

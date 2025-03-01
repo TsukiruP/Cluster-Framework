@@ -60,7 +60,7 @@ else if (sequence_index == sequence_jawz_chase)
     chase_alarm -= sequence_speed;
     chase_alarm = floorto(chase_alarm, pick(sequence_speed > 0, 1, sequence_speed));
 
-    if (chase_alarm == 0 || place_meeting(x, y, par_solid) || !place_meeting(x, y, obj_water_mask)) enemy_destroy();
+    if (chase_alarm == 0 || place_meeting(x, y, par_solid) || !position_meeting(x, y, obj_water_mask)) enemy_destroy();
 }
 
 if (script_exists(sequence_index))

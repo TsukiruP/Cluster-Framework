@@ -4,7 +4,7 @@
 
 audio_play_sfx("snd_destroy", true);
 
-if (!place_meeting(x, y, obj_water_mask))
+if (!position_meeting(x, y, obj_water_mask))
 {
     var explosion_x; explosion_x = x + explosion_x_offset * image_xscale;
     var explosion_y; explosion_y = y + explosion_y_offset * image_yscale;

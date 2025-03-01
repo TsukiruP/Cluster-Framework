@@ -7,7 +7,6 @@ if (sequence_position(0))
 }
 else if (sequence_position(1))
 {
-    image_index = 1;
     image_xscale *= -1;
+    sequence_set(sequence_gun_hunter_move);
 }
-else if (sequence_position(2)) sequence_set(sequence_gun_hunter_move);

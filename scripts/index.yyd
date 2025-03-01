@@ -511,3 +511,4 @@ sequence_gun_hunter_move
 sequence_gun_hunter_turn
 draw_enemy_border
 enemy_set_player
+sequence_gun_hunter_scan
