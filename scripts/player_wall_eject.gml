@@ -21,7 +21,7 @@ if (collision_point(x, y, _obj, true, false) != noone)
             y -= sine * (wall_radius + ox);
             return -1;
         }
-        
+
         // Left:
         else if (collision_ray_vertical(-ox, 0, mask_direction, _obj) == noone)
         {
@@ -45,7 +45,7 @@ else
                 y += sine * (wall_radius - ox);
                 return 1;
             }
-            
+
             // Right:
             else if (collision_box_vertical(-(ox + 1), 0, mask_direction, _obj) != noone)
             {
