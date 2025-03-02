@@ -34,7 +34,7 @@ switch (_phase)
             var sine; sine = dsin(mask_direction);
             var csine; csine = dcos(mask_direction);
 
-            with (effect_create(x - (csine * x_radius * image_xscale) + (sine * y_radius), y + (sine * x_radius * image_xscale) + (csine * y_radius), sequence_rail_spark, depth, image_xscale))
+            with (effect_create(x - (csine * x_radius * image_xscale) + (sine * y_radius), y + (sine * x_radius * image_xscale) + (csine * y_radius), seq_rail_spark, depth, image_xscale))
             {
                 image_angle = other.mask_direction;
             }

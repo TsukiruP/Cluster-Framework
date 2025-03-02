@@ -13,12 +13,12 @@ active = false;
 switch_inst = noone;
 switch_active = false;
 switch_time = 0;
-sequence_array[0, false] = sequence_switch_spring_vertical_lock;
-sequence_array[0, true] = sequence_switch_spring_vertical_unlock;
-sequence_array[1, false] = sequence_switch_spring_horizontal_lock;
-sequence_array[1, true] = sequence_switch_spring_horizontal_unlock;
-sequence_array[2, false] = sequence_switch_spring_diagonal_lock;
-sequence_array[2, true] = sequence_switch_spring_diagonal_unlock;
+sequence_array[0, false] = seq_switch_spring_vertical_lock;
+sequence_array[0, true] = seq_switch_spring_vertical_unlock;
+sequence_array[1, false] = seq_switch_spring_horizontal_lock;
+sequence_array[1, true] = seq_switch_spring_horizontal_unlock;
+sequence_array[2, false] = seq_switch_spring_diagonal_lock;
+sequence_array[2, true] = seq_switch_spring_diagonal_unlock;
 sequence_init();
 #define Step_2
 /*"/*'/**//* YYD ACTION
@@ -87,19 +87,19 @@ switch (variant)
     case 1:
         sprite_index = spr_switch_spring_horizontal;
         angle = ANGLE_RIGHT;
-        sequence_init(sequence_switch_spring_horizontal);
+        sequence_init(seq_switch_spring_horizontal);
         break;
 
     case 2:
         sprite_index = spr_switch_spring_diagonal;
         angle = ANGLE_RIGHT_UP;
-        sequence_init(sequence_switch_spring_diagonal);
+        sequence_init(seq_switch_spring_diagonal);
         break;
 
     default:
         sprite_index = spr_switch_spring_vertical;
         angle = ANGLE_UP;
-        sequence_init(sequence_switch_spring_vertical);
+        sequence_init(seq_switch_spring_vertical);
 }
 
 if (sign(image_xscale) == -1) angle = 180 - angle;

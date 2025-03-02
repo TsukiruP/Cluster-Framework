@@ -11,7 +11,7 @@ collision = false;
 switch_inst = noone;
 switch_active = false;
 switch_time = 0;
-sequence_init(sequence_switch_platform);
+sequence_init(seq_switch_platform);
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -46,7 +46,7 @@ if (switch_active)
 else
 {
     life_time = 0;
-    sequence_set(sequence_switch_platform);
+    sequence_set(seq_switch_platform);
     if (x != xstart) x = xstart;
     if (y != ystart) y = ystart;
     if (collision != false) collision = false;

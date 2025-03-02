@@ -15,7 +15,7 @@ if (character_index == CHAR_SONIC || character_index == CHAR_CLASSIC)
         depth = other.depth;
         image_xscale = other.image_xscale;
         image_angle = other.gravity_direction;
-        sequence_init(sequence_shield_insta);
+        sequence_init(seq_shield_insta);
         player_inst = other.id;
     }
 }

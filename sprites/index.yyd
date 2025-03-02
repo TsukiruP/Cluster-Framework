@@ -19,12 +19,12 @@ spr_hud
 spr_sonic_stand
 spr_sonic_wait_partner
 spr_sonic_wait_leader
-spr_sonic_run_0
 spr_sonic_run_1
 spr_sonic_run_2
 spr_sonic_run_3
 spr_sonic_run_4
 spr_sonic_run_5
+spr_sonic_run_6
 spr_sonic_stand_tag
 spr_sonic_walk_tag
 spr_sonic_walk_fast_tag
@@ -49,8 +49,8 @@ spr_sonic_hurt
 spr_sonic_death
 spr_transition_curtain
 spr_classic_stand
-spr_classic_run_0
 spr_classic_run_1
+spr_classic_run_2
 spr_classic_roll
 spr_classic_spin_dash
 spr_classic_brake
@@ -129,11 +129,11 @@ spr_basic_test_waterfall
 spr_water_surface
 spr_bubble_spawn
 spr_bubble
-spr_splash_0
 spr_splash_1
 spr_splash_2
-spr_splash_4
 spr_splash_3
+spr_splash_5
+spr_splash_4
 spr_explosion_small
 spr_explosion_large
 spr_explosion_enemy
@@ -149,8 +149,8 @@ spr_hint_box
 spr_layer_sensor
 spr_hud_energy
 spr_enemy_alert
-spr_splash_5
 spr_splash_6
+spr_splash_7
 spr_classic_misc
 spr_item_box
 spr_item_icon

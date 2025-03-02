@@ -57,7 +57,7 @@ switch (_phase)
 
             with (shield_inst)
             {
-                if (sequence_index == sequence_shield_bubble_bound) shield_reset = true;
+                if (sequence_index == seq_shield_bubble_bound) shield_reset = true;
             }
         }
         break;

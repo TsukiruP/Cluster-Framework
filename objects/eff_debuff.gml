@@ -7,7 +7,7 @@ applies_to=self
 /// Debuff Initialization
 
 event_inherited();
-sequence_set(sequence_debuff);
+sequence_set(seq_debuff);
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1

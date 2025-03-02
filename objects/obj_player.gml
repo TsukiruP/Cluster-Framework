@@ -494,7 +494,7 @@ if ((status_shield != SHIELD_NONE || status_invin == INVIN_BUFF) && !instance_ex
 
 if (game_get_config("advance_flicker") && status_invin == INVIN_BUFF)
 {
-    if (time_sync(status_invin_alarm, 2, 4) == 0) effect_create(x + random_range(-x_radius, x_radius), y + random_range(-y_radius, y_radius), sequence_shield_invin_spark);
+    if (time_sync(status_invin_alarm, 2, 4) == 0) effect_create(x + random_range(-x_radius, x_radius), y + random_range(-y_radius, y_radius), seq_shield_invin_spark);
 }
 
 if ((status_speed == SPEED_SLOW || status_panic_alarm > 0) && !instance_exists(debuff_inst))
@@ -535,7 +535,7 @@ if (!underwater)
 
         if (surface_time mod 9 == 0)
         {
-            effect_create(x, surface_inst.y, pick(abs(x_speed) >= 4.50, sequence_splash_2, sequence_splash_3), depth, image_xscale);
+            effect_create(x, surface_inst.y, pick(abs(x_speed) >= 4.50, seq_splash_3, seq_splash_4), depth, image_xscale);
         }
     }
     else surface_time = 0;
@@ -815,7 +815,7 @@ player_trail_draw();
 
 with (shield_inst)
 {
-    var shield_depth; shield_depth = (other.status_shield == SHIELD_FIRE && (image_index mod 2) != 0 && sequence_index != sequence_shield_fire_dash) || (other.status_shield == SHIELD_LIGHTNING && sequence_moment > 48);
+    var shield_depth; shield_depth = (other.status_shield == SHIELD_FIRE && (image_index mod 2) != 0 && sequence_index != seq_shield_fire_dash) || (other.status_shield == SHIELD_LIGHTNING && sequence_moment > 48);
     if (shield_depth) event_draw();
 }
 

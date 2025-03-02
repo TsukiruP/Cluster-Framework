@@ -290,195 +290,195 @@
 		|sequence_skip
 		|sequence_position
 		+Indexes
-			|sequence_template
+			|seq_template
 			+Player
 				+Sonic
 					+Idle
-						|sequence_sonic_stand
+						|seq_sonic_stand
 						+Cliff
-							|sequence_sonic_cliff_front
-							|sequence_sonic_cliff_back
+							|seq_sonic_cliff_front
+							|seq_sonic_cliff_back
 						+Wait
-							|sequence_sonic_wait_leader
-							|sequence_sonic_wait_partner
+							|seq_sonic_wait_leader
+							|seq_sonic_wait_partner
 						+Omochao
-							|sequence_sonic_omochao
-							|sequence_sonic_omochao_end
+							|seq_sonic_omochao
+							|seq_sonic_omochao_end
 						+Misc.
-							|sequence_sonic_standby
-							|sequence_sonic_land
+							|seq_sonic_standby
+							|seq_sonic_land
 					+Turn
-						|sequence_sonic_turn
-						|sequence_sonic_turn_brake
+						|seq_sonic_turn
+						|seq_sonic_turn_brake
 					+Run
-						|sequence_sonic_run_0
-						|sequence_sonic_run_1
-						|sequence_sonic_run_2
-						|sequence_sonic_run_3
-						|sequence_sonic_run_4
-						|sequence_sonic_run_5
+						|seq_sonic_run_1
+						|seq_sonic_run_2
+						|seq_sonic_run_3
+						|seq_sonic_run_4
+						|seq_sonic_run_5
+						|seq_sonic_run_6
 					+Look
-						|sequence_sonic_look
-						|sequence_sonic_look_end
+						|seq_sonic_look
+						|seq_sonic_look_end
 					+Crouch
-						|sequence_sonic_crouch
-						|sequence_sonic_crouch_end
+						|seq_sonic_crouch
+						|seq_sonic_crouch_end
 					+Spin Dash
-						|sequence_sonic_spin_dash
-						|sequence_sonic_spin_charge
-					|sequence_sonic_roll
+						|seq_sonic_spin_dash
+						|seq_sonic_spin_charge
+					|seq_sonic_roll
 					+Spin
-						|sequence_sonic_spin_flight
-						|sequence_sonic_spin_fall
+						|seq_sonic_spin_flight
+						|seq_sonic_spin_fall
 					+Brake
-						|sequence_sonic_brake
-						|sequence_sonic_brake_fast
-					|sequence_sonic_hurt
-					|sequence_sonic_death
-					|sequence_sonic_push
+						|seq_sonic_brake
+						|seq_sonic_brake_fast
+					|seq_sonic_hurt
+					|seq_sonic_death
+					|seq_sonic_push
 					+Ramp
-						|sequence_sonic_ramp_flight
-						|sequence_sonic_ramp_fall
+						|seq_sonic_ramp_flight
+						|seq_sonic_ramp_fall
 					+Spring
-						|sequence_sonic_spring_flight
-						|sequence_sonic_spring_fall
-					|sequence_sonic_rail
-					|sequence_sonic_breathe
+						|seq_sonic_spring_flight
+						|seq_sonic_spring_fall
+					|seq_sonic_rail
+					|seq_sonic_breathe
 					+Goal
-					|sequence_sonic_hammer
+					|seq_sonic_hammer
 					+Skid
-						|sequence_sonic_somersault
-						|sequence_sonic_skid
-						|sequence_sonic_skid_end
-					|sequence_sonic_insta
-					|sequence_sonic_air_dash
+						|seq_sonic_somersault
+						|seq_sonic_skid
+						|seq_sonic_skid_end
+					|seq_sonic_insta
+					|seq_sonic_air_dash
 					+Stomp
-						|sequence_sonic_stomp
-						|sequence_sonic_stomp_land
-					|sequence_sonic_peel_out
+						|seq_sonic_stomp
+						|seq_sonic_stomp_land
+					|seq_sonic_peel_out
 				+Classic
 					+Idle
-						|sequence_classic_stand
-						|sequence_classic_standby
+						|seq_classic_stand
+						|seq_classic_standby
 						+Cliff
-							|sequence_classic_cliff_front
-							|sequence_classic_cliff_back
+							|seq_classic_cliff_front
+							|seq_classic_cliff_back
 						+Wait
-							|sequence_classic_wait_leader
-							|sequence_classic_wait_partner
+							|seq_classic_wait_leader
+							|seq_classic_wait_partner
 					+Run
-						|sequence_classic_run_0
-						|sequence_classic_run_1
-					|sequence_classic_look
-					|sequence_classic_crouch
-					|sequence_classic_spin_dash
-					|sequence_classic_roll
-					|sequence_classic_brake
-					|sequence_classic_hurt
+						|seq_classic_run_1
+						|seq_classic_run_2
+					|seq_classic_look
+					|seq_classic_crouch
+					|seq_classic_spin_dash
+					|seq_classic_roll
+					|seq_classic_brake
+					|seq_classic_hurt
 					+Death
-						|sequence_classic_death
-						|sequence_classic_drown
-					|sequence_classic_push
-					|sequence_classic_spring
-					|sequence_classic_rail
-					|sequence_classic_breathe
-					|sequence_classic_insta
+						|seq_classic_death
+						|seq_classic_drown
+					|seq_classic_push
+					|seq_classic_spring
+					|seq_classic_rail
+					|seq_classic_breathe
+					|seq_classic_insta
 			+Props
 				+Checkpoint
-					|sequence_checkpoint_inactive
-					|sequence_checkpoint_active
+					|seq_checkpoint_inactive
+					|seq_checkpoint_active
 				+Spring
-					|sequence_spring_vertical
-					|sequence_spring_horizontal
-					|sequence_spring_diagonal
+					|seq_spring_vertical
+					|seq_spring_horizontal
+					|seq_spring_diagonal
 				+Enemies
-					|sequence_spinner
-					|sequence_spanner
+					|seq_spinner
+					|seq_spanner
 					+Buzzer
-						|sequence_buzzer_aim
-						|sequence_buzzer_aim_turn
-						|sequence_buzzer_move
-						|sequence_buzzer_move_turn
-						|sequence_buzzer_shoot
+						|seq_buzzer_aim
+						|seq_buzzer_aim_turn
+						|seq_buzzer_move
+						|seq_buzzer_move_turn
+						|seq_buzzer_shoot
 					+Chopper
-						|sequence_chopper_move
-						|sequence_chopper_move_turn
+						|seq_chopper_move
+						|seq_chopper_move_turn
 					+Jawz
-						|sequence_jawz_move
-						|sequence_jawz_move_turn
-						|sequence_jawz_charge
-						|sequence_jawz_chase
+						|seq_jawz_move
+						|seq_jawz_move_turn
+						|seq_jawz_charge
+						|seq_jawz_chase
 					+Gun Hunter
-						|sequence_gun_hunter_move
-						|sequence_gun_hunter_turn
-						|sequence_gun_hunter_scan
-						|sequence_gun_hunter_shoot
+						|seq_gun_hunter_move
+						|seq_gun_hunter_turn
+						|seq_gun_hunter_scan
+						|seq_gun_hunter_shoot
 				+Switch
-					|sequence_switch_platform
+					|seq_switch_platform
 					+Vertical
-						|sequence_switch_vertical_on
-						|sequence_switch_vertical_off
+						|seq_switch_vertical_on
+						|seq_switch_vertical_off
 					+Horizontal
-						|sequence_switch_horizontal_on
-						|sequence_switch_horizontal_off
+						|seq_switch_horizontal_on
+						|seq_switch_horizontal_off
 					+Springs
 						+Vertical
-							|sequence_switch_spring_vertical
-							|sequence_switch_spring_vertical_unlock
-							|sequence_switch_spring_vertical_lock
+							|seq_switch_spring_vertical
+							|seq_switch_spring_vertical_unlock
+							|seq_switch_spring_vertical_lock
 						+Horizontal
-							|sequence_switch_spring_horizontal
-							|sequence_switch_spring_horizontal_unlock
-							|sequence_switch_spring_horizontal_lock
+							|seq_switch_spring_horizontal
+							|seq_switch_spring_horizontal_unlock
+							|seq_switch_spring_horizontal_lock
 						+Diagonal
-							|sequence_switch_spring_diagonal
-							|sequence_switch_spring_diagonal_unlock
-							|sequence_switch_spring_diagonal_lock
+							|seq_switch_spring_diagonal
+							|seq_switch_spring_diagonal_unlock
+							|seq_switch_spring_diagonal_lock
 			+Effects
 				+Player
-					|sequence_spin_dash
-					|sequence_spin_charge
-					|sequence_brake
-					|sequence_debuff
-					|sequence_swap
-					|sequence_rail_spark
+					|seq_spin_dash
+					|seq_spin_charge
+					|seq_brake
+					|seq_debuff
+					|seq_swap
+					|seq_rail_spark
 					+Sonic
-						|sequence_drop_dash
-						|sequence_reticle
-						|sequence_reticle_colors
-						|sequence_shockwave
-						|sequence_bound_jump
+						|seq_drop_dash
+						|seq_bound_jump
+						|seq_shockwave
+						|seq_reticle
+						|seq_reticle_colors
 				+Shields
-					|sequence_shield_insta
-					|sequence_shield_basic
-					|sequence_shield_magnetic
-					|sequence_shield_fire
-					|sequence_shield_fire_dash
-					|sequence_shield_lightning
-					|sequence_shield_lightning_spark
-					|sequence_shield_bubble
-					|sequence_shield_bubble_bound
-					|sequence_shield_bubble_recoil
-					|sequence_shield_invin
-					|sequence_shield_invin_spark
+					|seq_shield_insta
+					|seq_shield_basic
+					|seq_shield_magnetic
+					|seq_shield_fire
+					|seq_shield_fire_dash
+					|seq_shield_lightning
+					|seq_shield_lightning_spark
+					|seq_shield_bubble
+					|seq_shield_bubble_bound
+					|seq_shield_bubble_recoil
+					|seq_shield_invin
+					|seq_shield_invin_spark
 				+Explosions
-					|sequence_explosion_small
-					|sequence_explosion_large
-					|sequence_explosion_enemy
-					|sequence_explosion_water
+					|seq_explosion_small
+					|seq_explosion_large
+					|seq_explosion_enemy
+					|seq_explosion_water
 				+Enemies
-					|sequence_enemy_alert
-					|sequence_buzzer_bullet
+					|seq_enemy_alert
+					|seq_buzzer_bullet
 				+Splashes
-					|sequence_splash_0
-					|sequence_splash_1
-					|sequence_splash_2
-					|sequence_splash_3
-					|sequence_splash_4
-					|sequence_splash_5
+					|seq_splash_1
+					|seq_splash_2
+					|seq_splash_3
+					|seq_splash_4
+					|seq_splash_5
+					|seq_splash_6
 				+Misc.
-					|sequence_ring_sparkle
-					|sequence_blockade_debris
+					|seq_ring_sparkle
+					|seq_blockade_debris
 	+Utilities
 		+Math
 			|wrap

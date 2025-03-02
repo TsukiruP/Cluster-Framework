@@ -15,7 +15,7 @@ chase_alarm = 480;
 player_inst = noone;
 hitbox_set_hurtbox(24, 10, 30, 14);
 hitbox_set_attackbox(22, 4, 28, 8);
-sequence_init(sequence_jawz_move);
+sequence_init(seq_jawz_move);
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -30,21 +30,21 @@ event_inherited();
 
 sequence_speed = game_get_speed();
 
-if (sequence_index == sequence_jawz_move)
+if (sequence_index == seq_jawz_move)
 {
     x += sequence_speed * image_xscale;
-    if (x < xstart - border_left || x > xstart + border_right) sequence_set(sequence_jawz_move_turn);
+    if (x < xstart - border_left || x > xstart + border_right) sequence_set(seq_jawz_move_turn);
     else
     {
         enemy_set_player(chase_range);
 
         if (instance_exists(player_inst))
         {
-            if (player_inst.underwater) sequence_set(sequence_jawz_charge);
+            if (player_inst.underwater) sequence_set(seq_jawz_charge);
         }
     }
 }
-else if (sequence_index == sequence_jawz_chase)
+else if (sequence_index == seq_jawz_chase)
 {
     if (instance_exists(player_inst))
     {
@@ -94,7 +94,7 @@ applies_to=self
 draw_self_floored();
 draw_enemy_border();
 
-if (game_debug_get_visible() && sequence_index != sequence_jawz_chase)
+if (game_debug_get_visible() && sequence_index != seq_jawz_chase)
 {
     var x_int; x_int = floor(x);
     var y_int; y_int = floor(y);

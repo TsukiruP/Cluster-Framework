@@ -8,9 +8,9 @@ applies_to=self
 
 if (floor(player_inst.spin_dash_charge) > 0)
 {
-    if (sequence_index != sequence_spin_charge) sequence_set(sequence_spin_charge);
+    if (sequence_index != seq_spin_charge) sequence_set(seq_spin_charge);
 }
-else if (sequence_index != sequence_spin_dash) sequence_set(sequence_spin_dash);
+else if (sequence_index != seq_spin_dash) sequence_set(seq_spin_dash);
 
 if (player_inst.state_current != player_state_spin_dash) instance_destroy();
 event_inherited();

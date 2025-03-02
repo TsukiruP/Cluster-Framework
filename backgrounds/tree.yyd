@@ -9,16 +9,16 @@
 	|tls_sunset_forest
 +Parallax
 	+Sky Sanctuary
-		|bg_sky_sanctuary_0
-		|bg_sky_sanctuary_1
-		|bg_sky_sanctuary_2
-		|bg_sky_sanctuary_3
-		|bg_sky_sanctuary_4
-		|bg_sky_sanctuary_5
-		|bg_sky_sanctuary_6
-		|bg_sky_sanctuary_7
-		|bg_sky_sanctuary_8
-		|bg_sky_sanctuary_9
+		|bg_sky_sanctuary_01
+		|bg_sky_sanctuary_02
+		|bg_sky_sanctuary_03
+		|bg_sky_sanctuary_04
+		|bg_sky_sanctuary_05
+		|bg_sky_sanctuary_06
+		|bg_sky_sanctuary_07
+		|bg_sky_sanctuary_08
+		|bg_sky_sanctuary_09
+		|bg_sky_sanctuary_10
 	+Basic Test
 		|bg_basic_test_sky
 		|bg_basic_test_sea

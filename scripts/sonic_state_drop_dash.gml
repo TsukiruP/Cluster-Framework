@@ -40,7 +40,7 @@ switch (_phase)
                 x_speed = drop_dash_speed * image_xscale;
                 audio_play_sfx("snd_spin_dash_release", true);
                 audio_stop_sfx("snd_drop_dash");
-                with (effect_create(x, y + y_radius, sequence_drop_dash)) image_xscale = other.image_xscale;
+                with (effect_create(x, y + y_radius, seq_drop_dash)) image_xscale = other.image_xscale;
                 return player_set_state(player_state_roll);
             }
             else if (player_routine_land()) return true;

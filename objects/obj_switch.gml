@@ -16,10 +16,10 @@ duration = 0;
 target_time = 0;
 life_time = 0;
 image_offset = 0;
-sequence_array[0, false] = sequence_switch_vertical_off;
-sequence_array[0, true] = sequence_switch_vertical_on;
-sequence_array[1, false] = sequence_switch_horizontal_off;
-sequence_array[1, true] = sequence_switch_horizontal_on;
+sequence_array[0, false] = seq_switch_vertical_off;
+sequence_array[0, true] = seq_switch_vertical_on;
+sequence_array[1, false] = seq_switch_horizontal_off;
+sequence_array[1, true] = seq_switch_horizontal_on;
 sequence_init();
 #define Step_2
 /*"/*'/**//* YYD ACTION
@@ -81,12 +81,12 @@ switch (variant)
         sprite_index = spr_switch_horizontal;
         angle = pick(sign(image_xscale) == -1, ANGLE_RIGHT, ANGLE_LEFT);
         hitbox_set_hurtbox(7, 9, 6, 9);
-        sequence_init(sequence_switch_horizontal_off);
+        sequence_init(seq_switch_horizontal_off);
         break;
 
     default:
         sprite_index = spr_switch_vertical;
         angle = pick(sign(image_yscale) == -1, ANGLE_UP, ANGLE_DOWN);
         hitbox_set_hurtbox(9, 6, 9, 7);
-        sequence_init(sequence_switch_vertical_off);
+        sequence_init(seq_switch_vertical_off);
 }

@@ -7,7 +7,7 @@ applies_to=self
 /// Swap Initialization
 
 event_inherited();
-sequence_set(sequence_swap);
+sequence_set(seq_swap);
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1

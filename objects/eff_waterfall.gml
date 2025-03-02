@@ -8,7 +8,7 @@ applies_to=self
 
 event_inherited();
 depth = -11;
-sequence_set(sequence_splash_5);
+sequence_set(seq_splash_6);
 #define Step_1
 /*"/*'/**//* YYD ACTION
 lib_id=1

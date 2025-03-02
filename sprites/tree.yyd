@@ -51,12 +51,12 @@
 				|spr_sonic_turn_tag
 				|spr_sonic_turn_brake
 			+Run
-				|spr_sonic_run_0
 				|spr_sonic_run_1
 				|spr_sonic_run_2
 				|spr_sonic_run_3
 				|spr_sonic_run_4
 				|spr_sonic_run_5
+				|spr_sonic_run_6
 				+Tag
 					|spr_sonic_walk_tag
 					|spr_sonic_walk_fast_tag
@@ -223,8 +223,8 @@
 			|spr_classic_stand
 			|spr_classic_cliff
 			|spr_classic_wait
-			|spr_classic_run_0
 			|spr_classic_run_1
+			|spr_classic_run_2
 			|spr_classic_spin_dash
 			|spr_classic_roll
 			|spr_classic_brake
@@ -305,10 +305,10 @@
 			|spr_rail_spark
 			+Sonic
 				|spr_drop_dash
+				|spr_bound_jump
+				|spr_shockwave
 				|spr_reticle
 				|spr_reticle_colors
-				|spr_shockwave
-				|spr_bound_jump
 		+Shields
 			|spr_shield_insta
 			|spr_shield_basic
@@ -332,13 +332,13 @@
 			|spr_enemy_vitality
 			|spr_buzzer_bullet
 		+Splashes
-			|spr_splash_0
 			|spr_splash_1
 			|spr_splash_2
 			|spr_splash_3
 			|spr_splash_4
 			|spr_splash_5
 			|spr_splash_6
+			|spr_splash_7
 		+Misc.
 			|spr_ring_sparkle
 			|spr_blockade_debris

@@ -24,7 +24,7 @@ if (_hitbox & HIT_INTERACT)
 
         with (_inst)
         {
-            effect_create(x, y, sequence_ring_sparkle, -depth);
+            effect_create(x, y, seq_ring_sparkle, -depth);
             instance_destroy();
         }
     }

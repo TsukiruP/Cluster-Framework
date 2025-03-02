@@ -21,7 +21,7 @@ switch (status_shield)
         // Sparks:
         for ({var i; i = 0}; i < 4; i += 1)
         {
-            var spark_inst; spark_inst = effect_create(x, y, sequence_shield_lightning_spark);
+            var spark_inst; spark_inst = effect_create(x, y, seq_shield_lightning_spark);
             var spark_angle; spark_angle = pick(i, ANGLE_LEFT_UP, ANGLE_RIGHT_UP, ANGLE_LEFT_DOWN, ANGLE_RIGHT_DOWN);
 
             spark_inst.x_speed = dcos(spark_angle) * 2;

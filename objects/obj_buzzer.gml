@@ -28,7 +28,7 @@ event_inherited();
 
 sequence_speed = game_get_speed();
 
-if (sequence_index == sequence_buzzer_aim)
+if (sequence_index == seq_buzzer_aim)
 {
     player_inst = instance_nearest(x, y, obj_player);
 
@@ -36,7 +36,7 @@ if (sequence_index == sequence_buzzer_aim)
     {
         var x_sign; x_sign = sign(x - player_inst.x);
 
-        if (sign(image_xscale) != -x_sign) sequence_set(sequence_buzzer_aim_turn);
+        if (sign(image_xscale) != -x_sign) sequence_set(seq_buzzer_aim_turn);
 
         if (shoot)
         {
@@ -50,16 +50,16 @@ if (sequence_index == sequence_buzzer_aim)
         }
     }
 }
-else if (sequence_index == sequence_buzzer_move)
+else if (sequence_index == seq_buzzer_move)
 {
     x += sequence_speed * image_xscale;
     if (x < xstart - border_left || x > xstart + border_right)
     {
         shoot = false;
-        sequence_set(sequence_buzzer_move_turn);
+        sequence_set(seq_buzzer_move_turn);
     }
 }
-else if (sequence_index == sequence_buzzer_shoot)
+else if (sequence_index == seq_buzzer_shoot)
 {
     if (instance_exists(player_inst))
     {
@@ -74,13 +74,13 @@ else if (sequence_index == sequence_buzzer_shoot)
                 var bullet_y; bullet_y = y + 12 * image_yscale;
                 var bullet_angle; bullet_angle = point_direction(bullet_x, bullet_y, player_inst.x, player_inst.y);
 
-                bullet_create(bullet_x, bullet_y, sequence_buzzer_bullet, dcos(bullet_angle) * bullet_speed, -dsin(bullet_angle) * bullet_speed);
+                bullet_create(bullet_x, bullet_y, seq_buzzer_bullet, dcos(bullet_angle) * bullet_speed, -dsin(bullet_angle) * bullet_speed);
             }
         }
     }
 }
 
-if (!shoot && (sequence_index == sequence_buzzer_aim || sequence_index == sequence_buzzer_move))
+if (!shoot && (sequence_index == seq_buzzer_aim || sequence_index == seq_buzzer_move))
 {
     player_inst = instance_nearest(x, y, obj_player);
 
@@ -95,7 +95,7 @@ if (!shoot && (sequence_index == sequence_buzzer_aim || sequence_index == sequen
             {
                 shoot = true;
                 buzzer_time = 0;
-                sequence_set(sequence_buzzer_shoot);
+                sequence_set(seq_buzzer_shoot);
             }
         }
     }
@@ -133,8 +133,8 @@ applies_to=self
 */
 /// Buzzer Initialization
 
-if (move) sequence_init(sequence_buzzer_move);
-else sequence_init(sequence_buzzer_aim);
+if (move) sequence_init(seq_buzzer_move);
+else sequence_init(seq_buzzer_aim);
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1

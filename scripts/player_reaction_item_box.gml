@@ -17,7 +17,7 @@ if ((_hitbox & HIT_INTERACT) || (_hitbox & HIT_ATTACK))
 
         with (_obj)
         {
-            effect_create(x, y, sequence_explosion_small, -depth);
+            effect_create(x, y, seq_explosion_small, -depth);
             instance_destroy();
         }
     }

@@ -1,4 +1,4 @@
-/// sequence_splash_0()
+/// seq_splash_0()
 
 if (sequence_position(0))
 {

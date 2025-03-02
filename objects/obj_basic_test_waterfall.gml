@@ -30,5 +30,5 @@ applies_to=self
 /// Draw Waterfall
 
 draw_self();
-if (splash) draw_sprite(spr_splash_6, time_sync(game_get_time(), 2, sprite_get_number(spr_splash_6)), x, y + 16);
+if (splash) draw_sprite(spr_splash_7, time_sync(game_get_time(), 2, sprite_get_number(spr_splash_7)), x, y + 16);
 event_inherited();

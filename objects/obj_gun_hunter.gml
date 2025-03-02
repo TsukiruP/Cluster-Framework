@@ -15,7 +15,7 @@ scan_count = 0;
 player_inst = noone;
 hitbox_set_hurtbox(16, 10, 22, 22);
 hitbox_set_attackbox(8, 10, 7, 17);
-sequence_init(sequence_gun_hunter_move);
+sequence_init(seq_gun_hunter_move);
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -30,34 +30,34 @@ event_inherited();
 
 sequence_speed = game_get_speed();
 
-if (sequence_index == sequence_gun_hunter_move)
+if (sequence_index == seq_gun_hunter_move)
 {
     x += sequence_speed * image_xscale;
     if (x < xstart - border_left || x > xstart + border_right)
     {
         scan_allow = choose(false, true);
-        sequence_set(sequence_gun_hunter_turn);
+        sequence_set(seq_gun_hunter_turn);
     }
     else
     {
         enemy_set_player(128);
 
-        if (instance_exists(player_inst)) sequence_set(sequence_gun_hunter_shoot);
+        if (instance_exists(player_inst)) sequence_set(seq_gun_hunter_shoot);
         else if (scan_allow)
         {
             var scan_x; scan_x = irandom_range(xstart - border_left, xstart + border_right);
 
-            if (floor(x) == scan_x) sequence_set(sequence_gun_hunter_scan);
+            if (floor(x) == scan_x) sequence_set(seq_gun_hunter_scan);
         }
     }
 }
-else if (sequence_index == sequence_gun_hunter_scan)
+else if (sequence_index == seq_gun_hunter_scan)
 {
     if (scan_count >= 2)
     {
         scan_allow = false;
         scan_count = 0;
-        sequence_set(sequence_gun_hunter_move);
+        sequence_set(seq_gun_hunter_move);
     }
 }
 

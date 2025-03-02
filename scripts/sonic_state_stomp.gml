@@ -37,7 +37,7 @@ switch (_phase)
                     audio_play_sfx("snd_stomp_land", true);
                     audio_stop_sfx("snd_stomp");
 
-                    with (effect_create(x + (sine * y_radius), y + (csine * y_radius), sequence_shockwave))
+                    with (effect_create(x + (sine * y_radius), y + (csine * y_radius), seq_shockwave))
                     {
                         image_angle = angle_wrap(other.mask_direction - 90);
                         image_alpha = 0.5;

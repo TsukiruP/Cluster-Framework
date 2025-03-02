@@ -23,9 +23,9 @@ if (game_ispaused(mnu_pause)) exit;
 
 if (active)
 {
-    if (sequence_index != sequence_checkpoint_active) sequence_set(sequence_checkpoint_active);
+    if (sequence_index != seq_checkpoint_active) sequence_set(seq_checkpoint_active);
 }
-else if (sequence_index != sequence_checkpoint_inactive) sequence_set(sequence_checkpoint_inactive);
+else if (sequence_index != seq_checkpoint_inactive) sequence_set(seq_checkpoint_inactive);
 
 if (script_exists(sequence_index))
 {

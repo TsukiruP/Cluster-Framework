@@ -1,4 +1,4 @@
-/// sequence_sonic_run_5()
+/// seq_sonic_run_5()
 
 if (sequence_position(0))
 {

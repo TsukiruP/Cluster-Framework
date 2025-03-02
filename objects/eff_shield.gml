@@ -23,29 +23,29 @@ if (player_inst.status_invin != INVIN_BUFF)
     switch (player_inst.status_shield)
     {
         case SHIELD_MAGNETIC:
-            if (sequence_index != sequence_shield_magnetic) sequence_set(sequence_shield_magnetic);
+            if (sequence_index != seq_shield_magnetic) sequence_set(seq_shield_magnetic);
             break;
 
         case SHIELD_BUBBLE:
-            if ((sequence_index != sequence_shield_bubble && sequence_index != sequence_shield_bubble_bound && sequence_index != sequence_shield_bubble_recoil) || shield_reset)
+            if ((sequence_index != seq_shield_bubble && sequence_index != seq_shield_bubble_bound && sequence_index != seq_shield_bubble_recoil) || shield_reset)
             {
-                sequence_set(sequence_shield_bubble);
+                sequence_set(seq_shield_bubble);
             }
             break;
 
         case SHIELD_FIRE:
-            if ((sequence_index != sequence_shield_fire && sequence_index != sequence_shield_fire_dash) || shield_reset) sequence_set(sequence_shield_fire);
+            if ((sequence_index != seq_shield_fire && sequence_index != seq_shield_fire_dash) || shield_reset) sequence_set(seq_shield_fire);
             break;
 
         case SHIELD_LIGHTNING:
-            if (sequence_index != sequence_shield_lightning) sequence_set(sequence_shield_lightning);
+            if (sequence_index != seq_shield_lightning) sequence_set(seq_shield_lightning);
             break;
 
         default:
-            if (sequence_index != sequence_shield_basic) sequence_set(sequence_shield_basic);
+            if (sequence_index != seq_shield_basic) sequence_set(seq_shield_basic);
     }
 }
-else if (sequence_index != sequence_shield_invin) sequence_set(sequence_shield_invin);
+else if (sequence_index != seq_shield_invin) sequence_set(seq_shield_invin);
 
 if (shield_reset != false) shield_reset = false;
 if (player_inst.status_shield == SHIELD_NONE && player_inst.status_invin != INVIN_BUFF) instance_destroy();
@@ -53,7 +53,7 @@ event_inherited();
 
 shield_advance = (player_inst.status_shield == SHIELD_BASIC || player_inst.status_shield == SHIELD_MAGNETIC || player_inst.status_invin == INVIN_BUFF);
 
-if (!game_ispaused(mnu_pause) && ((player_inst.status_shield == SHIELD_BUBBLE && sequence_index == sequence_shield_bubble) || (game_get_config("advance_flicker") && shield_advance)))
+if (!game_ispaused(mnu_pause) && ((player_inst.status_shield == SHIELD_BUBBLE && sequence_index == seq_shield_bubble) || (game_get_config("advance_flicker") && shield_advance)))
 {
     shield_hide = time_sync(sequence_moment, 2, 2);
 }
@@ -69,12 +69,12 @@ applies_to=self
 switch (player_inst.status_shield)
 {
     case SHIELD_BUBBLE:
-        sequence_set(sequence_shield_bubble_bound);
+        sequence_set(seq_shield_bubble_bound);
         break;
 
     case SHIELD_FIRE:
         image_xscale = player_inst.image_xscale;
-        sequence_set(sequence_shield_fire_dash);
+        sequence_set(seq_shield_fire_dash);
         break;
 }
 #define Other_11
@@ -85,7 +85,7 @@ applies_to=self
 */
 /// Bubble Recoil
 
-sequence_set(sequence_shield_bubble_recoil);
+sequence_set(seq_shield_bubble_recoil);
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1

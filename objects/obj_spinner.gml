@@ -54,11 +54,11 @@ applies_to=self
 switch (variant)
 {
     case 1:
-        sequence_init(sequence_spanner);
+        sequence_init(seq_spanner);
         break;
 
     default:
-        sequence_init(sequence_spinner);
+        sequence_init(seq_spinner);
 }
 #define Draw_0
 /*"/*'/**//* YYD ACTION

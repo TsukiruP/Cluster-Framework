@@ -51,7 +51,7 @@ switch (_item)
 
     case ITEM_MINE:
         player_set_damage(_obj);
-        effect_create(_obj.x, _obj.y, sequence_explosion_large, depth);
+        effect_create(_obj.x, _obj.y, seq_explosion_large, depth);
         break;
 
     case ITEM_SLOW:

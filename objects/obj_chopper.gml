@@ -11,7 +11,7 @@ border_left = 0;
 border_right = 0;
 hitbox_set_hurtbox(17, 8, 15, 14);
 hitbox_set_attackbox(9, 6, 15, 12);
-sequence_init(sequence_chopper_move);
+sequence_init(seq_chopper_move);
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -26,10 +26,10 @@ event_inherited();
 
 sequence_speed = game_get_speed();
 
-if (sequence_index == sequence_chopper_move)
+if (sequence_index == seq_chopper_move)
 {
     x += sequence_speed * image_xscale;
-    if (x < xstart - border_left || x > xstart + border_right) sequence_set(sequence_chopper_move_turn);
+    if (x < xstart - border_left || x > xstart + border_right) sequence_set(seq_chopper_move_turn);
 }
 
 if (script_exists(sequence_index))

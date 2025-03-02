@@ -67,21 +67,21 @@ switch (variant)
         sprite_index = spr_spring_horizontal;
         angle = ANGLE_RIGHT;
         hitbox_set_hurtbox(16, 5, 4, 5);
-        sequence_init(sequence_spring_horizontal);
+        sequence_init(seq_spring_horizontal);
         break;
 
     case 2:
         sprite_index = spr_spring_diagonal;
         angle = ANGLE_RIGHT_UP;
         hitbox_set_hurtbox(6, 2, 4, 8);
-        sequence_init(sequence_spring_diagonal);
+        sequence_init(seq_spring_diagonal);
         break;
 
     default:
         sprite_index = spr_spring_vertical;
         angle = ANGLE_UP;
         hitbox_set_hurtbox(5, 4, 5, 15);
-        sequence_init(sequence_spring_vertical);
+        sequence_init(seq_spring_vertical);
 }
 
 if (sign(image_xscale) == -1) angle = 180 - angle;
