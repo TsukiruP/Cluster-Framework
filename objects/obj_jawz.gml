@@ -9,12 +9,10 @@ applies_to=self
 event_inherited();
 border_left = 0;
 border_right = 0;
-chase_range = 128;
-chase_speed = 6;
-chase_alarm = 480;
+jawz_range = 128;
+jawz_speed = 6;
+jawz_alarm = 480;
 player_inst = noone;
-hitbox_set_hurtbox(24, 10, 30, 14);
-hitbox_set_attackbox(22, 4, 28, 8);
 sequence_init(seq_jawz_move);
 #define Step_2
 /*"/*'/**//* YYD ACTION
@@ -36,7 +34,7 @@ if (sequence_index == seq_jawz_move)
     if (x < xstart - border_left || x > xstart + border_right) sequence_set(seq_jawz_move_turn);
     else
     {
-        enemy_set_player(chase_range);
+        player_inst = enemy_get_player(jawz_range);
 
         if (instance_exists(player_inst))
         {
@@ -48,19 +46,19 @@ else if (sequence_index == seq_jawz_chase)
 {
     if (instance_exists(player_inst))
     {
-        var chase_angle; chase_angle = direction_to_object(player_inst);
+        var jawz_angle; jawz_angle = direction_to_object(player_inst);
 
-        if (sign(image_xscale) == -1) chase_angle = angle_wrap(chase_angle - 180);
-        image_angle = approach_angle(image_angle, chase_angle, chase_speed - 2);
+        if (sign(image_xscale) == -1) jawz_angle = angle_wrap(jawz_angle - 180);
+        image_angle = approach_angle(image_angle, jawz_angle, jawz_speed - 2);
     }
 
-    x += dcos(image_angle) * chase_speed * image_xscale;
-    y += dsin(image_angle) * chase_speed;
+    x += dcos(image_angle) * jawz_speed * image_xscale;
+    y += dsin(image_angle) * jawz_speed;
 
-    chase_alarm -= sequence_speed;
-    chase_alarm = floorto(chase_alarm, pick(sequence_speed > 0, 1, sequence_speed));
+    jawz_alarm -= sequence_speed;
+    jawz_alarm = floorto(jawz_alarm, pick(sequence_speed > 0, 1, sequence_speed));
 
-    if (chase_alarm == 0 || place_meeting(x, y, par_solid) || !position_meeting(x, y, obj_water_mask)) enemy_destroy();
+    if (jawz_alarm == 0 || place_meeting(x, y, par_solid) || !position_meeting(x, y, obj_water_mask)) enemy_destroy();
 }
 
 if (script_exists(sequence_index))

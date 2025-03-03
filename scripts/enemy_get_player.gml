@@ -1,5 +1,5 @@
-/// enemy_set_player(range, [alert])
-/// @desc Sets the player instance.
+/// enemy_get_player(range, [alert])
+/// @desc Returns the nearest player instance.
 /// @param {int} range
 /// @param {bool} [alert]
 /// @returns {object}
@@ -7,7 +7,7 @@
 var _range; _range = argument[0];
 var _alert; if (argument_count > 1) _alert = argument[1]; else _alert = false;
 
-player_inst = instance_nearest(x, y, obj_player);
+var player_inst; player_inst = instance_nearest(x, y, obj_player);
 
 if (instance_exists(player_inst))
 {
@@ -18,3 +18,5 @@ if (instance_exists(player_inst))
     if (instance_exists(player_solid) || distance_to_object(player_inst) >= _range || player_difference >= 45 || player_inst.state_current == player_state_death) player_inst = noone;
     else effect_create(x, y - 40, seq_enemy_alert);
 }
+
+return player_inst;

@@ -510,6 +510,8 @@ game_debug_get_visible
 seq_gun_hunter_move
 seq_gun_hunter_turn
 draw_enemy_border
-enemy_set_player
+enemy_get_player
 seq_gun_hunter_scan
 seq_gun_hunter_shoot
+script515
+seq_gun_hunter_bullet

@@ -1,3 +1,13 @@
++Masks Old
+	|spr_basic_test_mask_21
+	|spr_basic_test_mask_22
+	|spr_basic_test_mask_23
+	|spr_basic_test_mask_24
+	|spr_basic_test_mask_25
+	|spr_basic_test_mask_26
+	|spr_basic_test_mask_27
+	|spr_basic_test_mask_28
+	|spr_basic_test_mask_29
 +System
 	|fnt_system
 	|spr_transition_curtain
@@ -331,6 +341,7 @@
 			|spr_enemy_alert
 			|spr_enemy_vitality
 			|spr_buzzer_bullet
+			|spr_gun_hunter_bullet
 		+Splashes
 			|spr_splash_1
 			|spr_splash_2
@@ -347,17 +358,6 @@
 		+Gimmicks
 			|spr_sky_sanctuary_fountain
 	+Basic Test
-		+Masks Old
-			|spr_basic_test_mask_20
-			|spr_basic_test_mask_21
-			|spr_basic_test_mask_22
-			|spr_basic_test_mask_23
-			|spr_basic_test_mask_24
-			|spr_basic_test_mask_25
-			|spr_basic_test_mask_26
-			|spr_basic_test_mask_27
-			|spr_basic_test_mask_28
-			|spr_basic_test_mask_29
 		+Masks
 			|spr_basic_test_mask_01
 			|spr_basic_test_mask_02

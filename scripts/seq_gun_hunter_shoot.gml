@@ -4,6 +4,8 @@ if (sequence_position(0))
 {
     sprite_index = spr_gun_hunter;
     image_index = 7;
+    hitbox_set_hurtbox(15, 14, 10, 23);
+    hitbox_set_attackbox(9, 11, 7, 14);
 }
 else if (sequence_position(8)) image_index = 12;
 else if (sequence_position(12)) image_index = 13;

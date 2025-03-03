@@ -10,8 +10,7 @@ event_inherited();
 move = false;
 border_left = 0;
 border_right = 0;
-shoot = false;
-buzzer_time = 0;
+buzzer_alarm = 0;
 bullet_speed = 1.6862745;
 player_inst = noone;
 #define Step_2
@@ -36,17 +35,10 @@ if (sequence_index == seq_buzzer_aim)
     {
         var x_sign; x_sign = sign(x - player_inst.x);
 
-        if (sign(image_xscale) != -x_sign) sequence_set(seq_buzzer_aim_turn);
-
-        if (shoot)
+        if (sign(image_xscale) != -x_sign)
         {
-            if (buzzer_time < 128)
-            {
-                buzzer_time += sequence_speed;
-                buzzer_time = roundto(buzzer_time, pick(sequence_speed > 0, 1, sequence_speed));
-            }
-
-            if (buzzer_time >= 128) shoot = false;
+            buzzer_alarm = 0;
+            sequence_set(seq_buzzer_aim_turn);
         }
     }
 }
@@ -55,47 +47,35 @@ else if (sequence_index == seq_buzzer_move)
     x += sequence_speed * image_xscale;
     if (x < xstart - border_left || x > xstart + border_right)
     {
-        shoot = false;
+        buzzer_alarm = 0;
         sequence_set(seq_buzzer_move_turn);
     }
 }
-else if (sequence_index == seq_buzzer_shoot)
+
+if (sequence_index == seq_buzzer_aim || sequence_index == seq_buzzer_move)
 {
-    if (instance_exists(player_inst))
+    if (buzzer_alarm > 0)
     {
-        if (buzzer_time < 14)
-        {
-            buzzer_time += sequence_speed;
-            buzzer_time = roundto(buzzer_time, pick(sequence_speed > 0, 1, sequence_speed));
-
-            if (buzzer_time == 14)
-            {
-                var bullet_x; bullet_x = x + 3 * image_xscale;
-                var bullet_y; bullet_y = y + 12 * image_yscale;
-                var bullet_angle; bullet_angle = point_direction(bullet_x, bullet_y, player_inst.x, player_inst.y);
-
-                bullet_create(bullet_x, bullet_y, seq_buzzer_bullet, dcos(bullet_angle) * bullet_speed, -dsin(bullet_angle) * bullet_speed);
-            }
-        }
+        buzzer_alarm -= sequence_speed;
+        buzzer_alarm = roundto(buzzer_alarm, pick(sequence_speed > 0, 1, sequence_speed));
     }
-}
 
-if (!shoot && (sequence_index == seq_buzzer_aim || sequence_index == seq_buzzer_move))
-{
-    player_inst = instance_nearest(x, y, obj_player);
-
-    if (instance_exists(player_inst))
+    if (buzzer_alarm == 0)
     {
-        if (y <= player_inst.y && y + 96 >= player_inst.y)
-        {
-            var x_distance; x_distance = x - player_inst.x;
-            var y_distance; y_distance = player_inst.y - y;
+        player_inst = instance_nearest(x, y, obj_player);
 
-            if (sign(image_xscale) == -sign(x_distance) && abs(x_distance) < abs(y_distance) && abs(x_distance * 1.7) >= y_distance && abs(x_distance * 0.58823529) <= y_distance)
+        if (instance_exists(player_inst))
+        {
+            if (y <= player_inst.y && y + 96 >= player_inst.y)
             {
-                shoot = true;
-                buzzer_time = 0;
-                sequence_set(seq_buzzer_shoot);
+                var x_distance; x_distance = x - player_inst.x;
+                var y_distance; y_distance = player_inst.y - y;
+
+                if (sign(image_xscale) == -sign(x_distance) && abs(x_distance) < abs(y_distance) && abs(x_distance * 1.7) >= y_distance && abs(x_distance * 0.58823529) <= y_distance)
+                {
+                    buzzer_alarm = 128;
+                    sequence_set(seq_buzzer_shoot);
+                }
             }
         }
     }
@@ -105,6 +85,18 @@ if (script_exists(sequence_index))
 {
     sequence_update();
     script_execute(sequence_index);
+}
+
+if (sequence_index == seq_buzzer_shoot && instance_exists(player_inst))
+{
+    if (sequence_position(12))
+    {
+        var bullet_x; bullet_x = x + 3 * image_xscale;
+        var bullet_y; bullet_y = y + 12 * image_yscale;
+        var bullet_angle; bullet_angle = point_direction(bullet_x, bullet_y, player_inst.x, player_inst.y);
+
+        bullet_create(bullet_x, bullet_y, seq_buzzer_bullet, dcos(bullet_angle) * bullet_speed, -dsin(bullet_angle) * bullet_speed);
+    }
 }
 #define Other_4
 /*"/*'/**//* YYD ACTION
