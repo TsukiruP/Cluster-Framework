@@ -16,7 +16,7 @@ if (instance_exists(player_inst))
     var player_difference; player_difference = abs(angle_difference(player_angle, direction_to_object(player_inst)));
 
     if (instance_exists(player_solid) || distance_to_object(player_inst) >= _range || player_difference >= 45 || player_inst.state_current == player_state_death) player_inst = noone;
-    else effect_create(x, y - 40, seq_enemy_alert);
+    else if (_alert) effect_create(x, y - 40, seq_enemy_alert);
 }
 
 return player_inst;

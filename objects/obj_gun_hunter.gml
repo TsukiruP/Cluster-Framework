@@ -43,7 +43,7 @@ if (sequence_index == seq_gun_hunter_move)
         var player_inst; player_inst = noone;
 
         if (hunter_alarm > 0) hunter_alarm -= 1;
-        else player_inst = enemy_get_player(hunter_range);
+        else player_inst = enemy_get_player(hunter_range, true);
 
         if (hunter_alarm == 0 && instance_exists(player_inst))
         {
