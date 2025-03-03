@@ -20,5 +20,9 @@ if (!_obj.reflect)
             reflect = true;
         }
     }
-    else if ((_hitbox & HIT_HURT) && (_obj.attackbox_element == ELEM_NONE || (_obj.attackbox_element > ELEM_NONE && status_shield != _obj.attackbox_element + SHIELD_BUBBLE))) player_set_damage(_obj);
+    else if ((_hitbox & HIT_HURT) && (_obj.attackbox_element == ELEM_NONE || (_obj.attackbox_element > ELEM_NONE && status_shield != _obj.attackbox_element + SHIELD_BUBBLE)))
+    {
+        player_set_damage(_obj);
+        instance_destroy_id(_obj);
+    }
 }
