@@ -2,7 +2,7 @@
 /// @desc Performs a jump.
 /// @returns {bool}
 
-if (player_collision_ceiling(y_radius + 5) == noone && player_get_input(INP_JUMP, CHECK_PRESSED))
+if (player_get_input(INP_JUMP, CHECK_PRESSED))
 {
     audio_play_sfx("snd_jump", true);
     return player_set_state(player_state_jump);
