@@ -96,6 +96,7 @@
 			|audio_fade_out
 			+SFX
 				|audio_play_sfx
+				|audio_loop_sfx
 				|audio_stop_sfx
 				|audio_pause_sfx_all
 				|audio_resume_sfx_all
@@ -655,4 +656,3 @@
 	|draw_sprite_tiled_vertical
 	|draw_sprite_tiled_horizontal_yscale
 	|draw_backdrop_tiled_area
-|script515

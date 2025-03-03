@@ -96,6 +96,7 @@ if (sequence_index == seq_buzzer_shoot && instance_exists(player_inst))
         var bullet_angle; bullet_angle = point_direction(bullet_x, bullet_y, player_inst.x, player_inst.y);
 
         bullet_create(bullet_x, bullet_y, seq_buzzer_bullet, dcos(bullet_angle) * bullet_speed, -dsin(bullet_angle) * bullet_speed);
+        audio_play_sfx("snd_buzzer_shoot");
     }
 }
 #define Other_4

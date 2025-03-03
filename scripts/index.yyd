@@ -513,5 +513,5 @@ draw_enemy_border
 enemy_get_player
 seq_gun_hunter_scan
 seq_gun_hunter_shoot
-script515
+audio_loop_sfx
 seq_gun_hunter_bullet

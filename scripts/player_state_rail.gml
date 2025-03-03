@@ -9,7 +9,8 @@ switch (_phase)
 {
     case STATE_START:
         player_set_animation("rail");
-        audio_play_sfx("snd_rail");
+        audio_play_sfx("snd_rail_catch");
+        rail_sfx = audio_loop_sfx("snd_rail");
         break;
 
     case STATE_STEP:
@@ -42,5 +43,6 @@ switch (_phase)
         break;
 
     case STATE_FINISH:
+        audio_stop_sfx(rail_sfx);
         break;
 }

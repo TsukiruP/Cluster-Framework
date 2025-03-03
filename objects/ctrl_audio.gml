@@ -11,6 +11,7 @@ sound_add_directory("data\audio\sfx\character\sonic", ".wav", 0, true);
 sound_add_directory("data\audio\sfx\character\classic", ".wav", 0, true);
 sound_add_directory("data\audio\sfx\character\shield", ".wav", 0, true);
 sound_add_directory("data\audio\sfx\prop", ".wav", 0, true);
+sound_add_directory("data\audio\sfx\enemy", ".wav", 0, true);
 sound_add_directory("data\audio\sfx\menu", ".wav", 0, true);
 
 sound_kind_volume(0, game_get_config("audio_sfx") / 100);

@@ -5,4 +5,4 @@
 
 var _sound; _sound = argument0;
 
-if (sound_exists(_sound)) sound_stop(_sound);
+sound_stop(_sound);

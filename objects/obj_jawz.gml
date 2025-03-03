@@ -12,6 +12,7 @@ border_right = 0;
 jawz_range = 128;
 jawz_speed = 6;
 jawz_alarm = 480;
+jawz_sfx = noone;
 player_inst = noone;
 sequence_init(seq_jawz_move);
 #define Step_2
@@ -44,6 +45,8 @@ if (sequence_index == seq_jawz_move)
 }
 else if (sequence_index == seq_jawz_chase)
 {
+    if (jawz_sfx == noone) jawz_sfx = audio_loop_sfx("snd_jawz_chase");
+
     if (instance_exists(player_inst))
     {
         var jawz_angle; jawz_angle = direction_to_object(player_inst);
@@ -58,7 +61,11 @@ else if (sequence_index == seq_jawz_chase)
     jawz_alarm -= sequence_speed;
     jawz_alarm = floorto(jawz_alarm, pick(sequence_speed > 0, 1, sequence_speed));
 
-    if (jawz_alarm == 0 || place_meeting(x, y, par_solid) || !position_meeting(x, y, obj_water_mask)) enemy_destroy();
+    if (jawz_alarm == 0 || place_meeting(x, y, par_solid) || !position_meeting(x, y, obj_water_mask))
+    {
+        audio_stop_sfx(jawz_sfx);
+        enemy_destroy();
+    }
 }
 
 if (script_exists(sequence_index))
@@ -97,6 +104,6 @@ if (game_debug_get_visible() && sequence_index != seq_jawz_chase)
     var x_int; x_int = floor(x);
     var y_int; y_int = floor(y);
 
-    draw_line(x_int, y_int, x_int + lengthdir_x(chase_range * image_xscale, image_angle + 45), y_int + lengthdir_y(chase_range * image_xscale, image_angle + 45));
-    draw_line(x_int, y_int, x_int + lengthdir_x(chase_range * image_xscale, image_angle - 45), y_int + lengthdir_y(chase_range * image_xscale, image_angle - 45));
+    draw_line(x_int, y_int, x_int + lengthdir_x(jawz_range * image_xscale, image_angle + 45), y_int + lengthdir_y(jawz_range * image_xscale, image_angle + 45));
+    draw_line(x_int, y_int, x_int + lengthdir_x(jawz_range * image_xscale, image_angle - 45), y_int + lengthdir_y(jawz_range * image_xscale, image_angle - 45));
 }

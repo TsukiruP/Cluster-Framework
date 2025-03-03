@@ -136,6 +136,7 @@ spring_inst = noone;
 spring_force = 0;
 spring_angle = 0;
 spring_alarm = 0;
+rail_sfx = noone;
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
