@@ -19,10 +19,6 @@ if (_hitbox & HIT_INTERACT)
         air_alarm = 60;
         audio_play_sfx("snd_bubble");
         if (!input_cpu) audio_stop_drown();
-
-        with (_obj)
-        {
-            instance_destroy();
-        }
+        instance_destroy_id(_obj);
     }
 }
