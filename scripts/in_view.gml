@@ -12,4 +12,4 @@ var view_top; view_top = view_yview[view_current] - _padding;
 var view_right; view_right = view_xview[view_current] + screen_get_width() + _padding;
 var view_bottom; view_bottom = view_yview[view_current] + screen_get_height() + _padding;
 
-with (_obj) return point_in_rectangle(x, y, view_left, view_top, view_right, view_bottom);
+with (_obj) return (rectangle_in_rectangle(bbox_left, bbox_top, bbox_right, bbox_bottom, view_left, view_top, view_right, view_bottom) != 0);
