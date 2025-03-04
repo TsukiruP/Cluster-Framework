@@ -1,5 +1,4 @@
 +Masks Old
-	|spr_basic_test_mask_21
 	|spr_basic_test_mask_22
 	|spr_basic_test_mask_23
 	|spr_basic_test_mask_24
@@ -340,6 +339,7 @@
 		+Enemies
 			|spr_enemy_alert
 			|spr_enemy_vitality
+			|spr_enemy_debris
 			|spr_buzzer_bullet
 			|spr_gun_hunter_bullet
 		+Splashes
