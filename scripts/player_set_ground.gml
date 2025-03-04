@@ -24,14 +24,14 @@ on_ground = true;
 player_reset_skill();
 
 // Align to ground:
-var rotation; rotation = round(angle / 90) * 90;
-var sine; sine = dsin(rotation);
-var csine; csine = dcos(rotation);
+mask_direction = round(angle / 90) * 90;
+var sine; sine = dsin(mask_direction);
+var csine; csine = dcos(mask_direction);
 
 // Rise up while inside:
 repeat (y_radius)
 {
-    if (collision_box_vertical(x_radius, y_radius, rotation, ground_inst) != noone)
+    if (collision_box_vertical(x_radius, y_radius, mask_direction, ground_inst) != noone)
     {
         x -= sine;
         y -= csine;
@@ -42,7 +42,7 @@ repeat (y_radius)
 // Snap down while outside:
 repeat (y_radius + 1)
 {
-    if (collision_box_vertical(x_radius, y_radius + 1, rotation, ground_inst) == noone)
+    if (collision_box_vertical(x_radius, y_radius + 1, mask_direction, ground_inst) == noone)
     {
         x += sine;
         y += csine;

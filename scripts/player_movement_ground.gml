@@ -71,7 +71,7 @@ repeat (total_steps)
     }
     else on_ground = false;
     
-    if (on_ground) player_rotate_mask();
+    //if (on_ground) player_rotate_mask();
 }
 
 return true;

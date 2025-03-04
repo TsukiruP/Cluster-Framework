@@ -75,7 +75,7 @@ repeat (total_steps)
         {
             if (player_react(hit_floor, HIT_SOLID, ANGLE_UP)) return false;
             player_set_ground(hit_floor);
-            player_rotate_mask();
+            //player_rotate_mask();
         }
     }
     
