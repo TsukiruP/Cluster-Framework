@@ -16,7 +16,7 @@ if ((_hitbox & HIT_SOLID) && _side == ANGLE_UP)
     input_lock_alarm = 16;
     if (ground_inst != _obj) player_set_ground(_obj);
 
-    if (_hitbox & HIT_INTERACT)
+    if (_hitbox & HIT_RADII)
     {
         y_speed = -6;
         player_set_state(player_state_ramp, true);

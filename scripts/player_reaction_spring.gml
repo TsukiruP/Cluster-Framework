@@ -7,7 +7,7 @@
 var _obj; _obj = argument0;
 var _hitbox; _hitbox = argument1;
 
-if (_hitbox & HIT_INTERACT)
+if (_hitbox & HIT_RADII)
 {
     if (spring_inst != _obj || spring_alarm == 0)
     {

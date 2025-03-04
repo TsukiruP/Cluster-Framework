@@ -64,6 +64,15 @@ if (instance_exists(_obj))
         aoff_x = attackbox_offset_x * adir_x;
         aoff_y = attackbox_offset_y * adir_y;
     }
+    else if (_phase == 4)
+    {
+        aleft = x_radius;
+        atop = y_radius;
+        aright= x_radius;
+        abottom = y_radius;
+        aoff_x = 0;
+        aoff_y = 0;
+    }
 
     // Check object collision:
     if !(bleft == 0 && btop == 0 && bright == 0 && bbottom == 0)
@@ -114,10 +123,10 @@ if (instance_exists(_obj))
             var ax2; ax2 = ax_int + (acsine * aright) + (acsine * aoff_x) + (asine * abottom) + (asine * aoff_y);
             var ay2; ay2 = ay_int + (asine * aleft) - (asine * aoff_x) + (acsine * abottom) + (acsine * aoff_y);
 
-            if (rectangle_in_rectangle(ax1, ay1, ax2, ay2, bx1, by1, bx2, by2)) hitbox |= pick(_phase, HIT_INTERACT, HIT_HURT, HIT_ATTACK, HIT_CLASH);
+            if (rectangle_in_rectangle(ax1, ay1, ax2, ay2, bx1, by1, bx2, by2)) hitbox |= pick(_phase, HIT_INTERACT, HIT_HURT, HIT_ATTACK, HIT_CLASH, HIT_RADII);
         }
     }
 }
 
-if (_phase == 0) return (hitbox | player_get_hitbox(argument0, 1) | player_get_hitbox(argument0, 2) | player_get_hitbox(argument0, 3));
+if (_phase == 0) return (hitbox | player_get_hitbox(argument0, 1) | player_get_hitbox(argument0, 2) | player_get_hitbox(argument0, 3) | player_get_hitbox(argument0, 4));
 return hitbox;
