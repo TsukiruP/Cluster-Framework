@@ -125,6 +125,9 @@ Random Talking Bush
 Kamen Rider Battride War - Kamen Rider Kabuto
 Sonic Mania - Sound Effects
 
+Chaofanatic
+Sonic Generations
+
 Altier
 Sonic Advance 3 Switch Ping
 
