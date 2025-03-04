@@ -12,6 +12,7 @@ border_left = 0;
 border_right = 0;
 hunter_range = 128;
 hunter_alarm = 0;
+hunter_sfx = noone;
 scan_allow = false;
 scan_count = 0;
 sequence_init(seq_gun_hunter_move);
@@ -76,8 +77,12 @@ if (script_exists(sequence_index))
 
 if (sequence_index == seq_gun_hunter_shoot)
 {
+    if (sequence_position(12)) hunter_sfx = audio_play_sfx("snd_gun_hunter_aim");
+
     if (sequence_position(44) || sequence_position(48) || sequence_position(52))
     {
+        audio_stop_sfx(hunter_sfx);
+        audio_play_sfx("snd_gun_hunter_shoot", true);
         with (bullet_create(x + (42 * image_xscale), y - (8 * image_yscale), seq_gun_hunter_bullet, 2 * image_xscale, 0)) image_xscale = other.image_xscale;
     }
 }
