@@ -16,6 +16,15 @@ hunter_sfx = noone;
 scan_allow = false;
 scan_count = 0;
 sequence_init(seq_gun_hunter_move);
+#define Destroy_0
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Stop Sound
+
+if (hunter_sfx != noone) audio_stop_sfx(hunter_sfx);
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1

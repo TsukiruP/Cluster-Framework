@@ -82,6 +82,7 @@
 			|eff_swap
 			|eff_reticle
 			|eff_waterfall
+		|obj_enemy_debris
 +Stages
 	+Sky Sanctuary
 		|obj_sky_sanctuary_parallax

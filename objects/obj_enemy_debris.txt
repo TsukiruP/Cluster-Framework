@@ -1,0 +1,7 @@
+sprite=spr_enemy_debris
+visible=1
+solid=0
+persistent=0
+depth=0
+parent=
+mask=

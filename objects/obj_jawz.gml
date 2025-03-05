@@ -15,6 +15,15 @@ jawz_alarm = 480;
 jawz_sfx = noone;
 player_inst = noone;
 sequence_init(seq_jawz_move);
+#define Destroy_0
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Stop Sound
+
+if (jawz_sfx != noone) audio_stop_sfx(jawz_sfx);
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
