@@ -60,7 +60,7 @@ else if (sequence_index == seq_jawz_chase)
     {
         var jawz_angle; jawz_angle = direction_to_object(player_inst);
 
-        if (sign(image_xscale) == -1) jawz_angle = angle_wrap(jawz_angle + 180);
+        if (sign(image_xscale) == -1) jawz_angle = (jawz_angle + 180) mod 360;
         image_angle = approach_angle(image_angle, jawz_angle, jawz_speed - 2);
     }
 
