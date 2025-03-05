@@ -24,7 +24,7 @@ applies_to=self
 */
 /// Stop Sound
 
-if (hunter_sfx != noone) audio_stop_sfx(hunter_sfx);
+audio_stop_sfx(hunter_sfx);
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -47,25 +47,11 @@ if (sequence_index == seq_gun_hunter_move)
         scan_allow = choose(false, true);
         sequence_set(seq_gun_hunter_turn);
     }
-    else
+    else if (scan_allow)
     {
+        var scan_x; scan_x = irandom_range(xstart - border_left, xstart + border_right);
 
-        var player_inst; player_inst = noone;
-
-        if (hunter_alarm > 0) hunter_alarm -= 1;
-        else player_inst = enemy_get_player(hunter_range, true);
-
-        if (hunter_alarm == 0 && instance_exists(player_inst))
-        {
-            hunter_alarm = 60;
-            sequence_set(seq_gun_hunter_shoot);
-        }
-        else if (scan_allow)
-        {
-            var scan_x; scan_x = irandom_range(xstart - border_left, xstart + border_right);
-
-            if (floor(x) == scan_x) sequence_set(seq_gun_hunter_scan);
-        }
+        if (floor(x) == scan_x) sequence_set(seq_gun_hunter_scan);
     }
 }
 else if (sequence_index == seq_gun_hunter_scan)
@@ -75,6 +61,20 @@ else if (sequence_index == seq_gun_hunter_scan)
         scan_allow = false;
         scan_count = 0;
         sequence_set(seq_gun_hunter_move);
+    }
+}
+
+if (sequence_index == seq_gun_hunter_move || sequence_index == seq_gun_hunter_scan)
+{
+    var player_inst; player_inst = noone;
+
+    if (hunter_alarm > 0) hunter_alarm -= 1;
+    else player_inst = enemy_get_player(hunter_range, true);
+
+    if (hunter_alarm == 0 && instance_exists(player_inst))
+    {
+        hunter_alarm = 60;
+        sequence_set(seq_gun_hunter_shoot);
     }
 }
 
