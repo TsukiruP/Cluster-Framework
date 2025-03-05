@@ -24,7 +24,7 @@ on_ground = true;
 player_reset_skill();
 
 // Align to ground:
-mask_direction = round(angle / 90) * 90;
+mask_direction = angle_wrap(round(angle / 90) * 90);
 var sine; sine = dsin(mask_direction);
 var csine; csine = dcos(mask_direction);
 
