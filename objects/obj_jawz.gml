@@ -54,23 +54,23 @@ if (sequence_index == seq_jawz_move)
 }
 else if (sequence_index == seq_jawz_chase)
 {
-    if (jawz_sfx == noone) jawz_sfx = audio_loop_sfx("snd_jawz_chase");
+    if (jawz_sfx == noone) jawz_sfx = audio_play_sfx("snd_jawz_chase");
 
     if (instance_exists(player_inst))
     {
         var jawz_angle; jawz_angle = direction_to_object(player_inst);
 
-        if (sign(image_xscale) == -1) jawz_angle = angle_wrap(jawz_angle - 180);
+        if (sign(image_xscale) == -1) jawz_angle = angle_wrap(jawz_angle + 180);
         image_angle = approach_angle(image_angle, jawz_angle, jawz_speed - 2);
     }
 
     x += dcos(image_angle) * jawz_speed * image_xscale;
-    y += dsin(image_angle) * jawz_speed;
+    y -= dsin(image_angle) * jawz_speed * image_xscale;
 
     jawz_alarm -= sequence_speed;
     jawz_alarm = floorto(jawz_alarm, pick(sequence_speed > 0, 1, sequence_speed));
 
-    if (jawz_alarm == 0 || place_meeting(x, y, par_solid) || !position_meeting(x, y, obj_water_mask))
+    if (jawz_alarm == 0 || position_meeting(x, y, par_solid) || !position_meeting(x, y, obj_water_mask))
     {
         audio_stop_sfx(jawz_sfx);
         enemy_destroy();
