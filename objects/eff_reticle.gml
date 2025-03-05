@@ -29,6 +29,8 @@ applies_to=self
 */
 /// Draw Reticle
 
+if (!instance_exists(homing_inst)) exit;
+
 var draw_x; draw_x = floor(homing_inst.x);
 var draw_y; draw_y = floor(homing_inst.y);
 
