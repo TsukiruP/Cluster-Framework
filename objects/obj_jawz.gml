@@ -12,18 +12,8 @@ border_right = 0;
 jawz_range = 128;
 jawz_speed = 6;
 jawz_alarm = 480;
-jawz_sfx = noone;
 player_inst = noone;
 sequence_init(seq_jawz_move);
-#define Destroy_0
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Stop Sound
-
-if (jawz_sfx != noone) audio_stop_sfx(jawz_sfx);
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -54,8 +44,6 @@ if (sequence_index == seq_jawz_move)
 }
 else if (sequence_index == seq_jawz_chase)
 {
-    if (jawz_sfx == noone) jawz_sfx = audio_play_sfx("snd_jawz_chase");
-
     if (instance_exists(player_inst))
     {
         var jawz_angle; jawz_angle = direction_to_object(player_inst);
@@ -70,11 +58,7 @@ else if (sequence_index == seq_jawz_chase)
     jawz_alarm -= sequence_speed;
     jawz_alarm = floorto(jawz_alarm, pick(sequence_speed > 0, 1, sequence_speed));
 
-    if (jawz_alarm == 0 || position_meeting(x, y, par_solid) || !position_meeting(x, y, obj_water_mask))
-    {
-        audio_stop_sfx(jawz_sfx);
-        enemy_destroy();
-    }
+    if (jawz_alarm == 0 || position_meeting(x, y, par_solid) || !position_meeting(x, y, obj_water_mask)) enemy_destroy();
 }
 
 if (script_exists(sequence_index))
