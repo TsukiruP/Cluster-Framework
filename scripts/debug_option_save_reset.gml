@@ -12,6 +12,7 @@ switch (_return)
 
     // Confirm:
     case 2:
+        game_set_save_index(-1);
         game_reset_save();
         return true;
 
