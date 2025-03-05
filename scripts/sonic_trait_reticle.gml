@@ -20,6 +20,7 @@ switch (state_current)
     case player_state_brake:
     case player_state_spring:
     case player_state_rail:
+    case sonic_state_bound:
         homing_allow = true;
         break;
 
