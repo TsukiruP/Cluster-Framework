@@ -1,3 +1,3 @@
 //gm82 fields begin
-super=true
+force=4.5
 //gm82 fields end

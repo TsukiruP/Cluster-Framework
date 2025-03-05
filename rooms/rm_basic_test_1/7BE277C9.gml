@@ -1,4 +1,5 @@
 //gm82 fields begin
-border_left=48
+move=true
+border_left=96
 border_right=48
 //gm82 fields end
