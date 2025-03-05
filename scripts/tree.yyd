@@ -625,6 +625,7 @@
 			|player_set_radii
 			|player_set_physics
 			|player_set_ground
+			|player_set_water_run
 			|player_set_status
 			|player_set_device
 			|player_set_input

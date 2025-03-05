@@ -71,6 +71,7 @@ repeat (total_steps)
     }
     else on_ground = false;
     
+    if (!on_ground) player_set_water_run();
     //if (on_ground) player_rotate_mask();
 }
 

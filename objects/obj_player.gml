@@ -144,7 +144,7 @@ applies_to=self
 */
 /// Water Initialization
 
-surface_time = 0;
+surface_alarm = 0;
 underwater = false;
 air_remaining = 30;
 air_alarm = 60;
@@ -473,8 +473,10 @@ applies_to=self
 */
 /// Effects
 
+// Depth:
 if (state_current != player_state_death) depth = player_index;
 
+// Spin Dash:
 if (state_current == player_state_spin_dash && !instance_exists(spin_dash_inst))
 {
     with (instance_create(x, y, eff_spin_dash))
@@ -484,6 +486,7 @@ if (state_current == player_state_spin_dash && !instance_exists(spin_dash_inst))
     }
 }
 
+// Shield:
 if ((status_shield != SHIELD_NONE || status_invin == INVIN_BUFF) && !instance_exists(shield_inst))
 {
     with (instance_create(x, y, eff_shield))
@@ -498,6 +501,7 @@ if (game_get_config("advance_flicker") && status_invin == INVIN_BUFF)
     if (time_sync(status_invin_alarm, 2, 4) == 0) effect_create(x + random_range(-x_radius, x_radius), y + random_range(-y_radius, y_radius), seq_shield_invin_spark);
 }
 
+// Debuff:
 if ((status_speed == SPEED_SLOW || status_panic_alarm > 0) && !instance_exists(debuff_inst))
 {
     with (instance_create(x, y, eff_debuff))
@@ -507,6 +511,7 @@ if ((status_speed == SPEED_SLOW || status_panic_alarm > 0) && !instance_exists(d
     }
 }
 
+// Reticle:
 if (game_get_config("misc_reticle") > 0 && instance_exists(homing_inst) && !instance_exists(reticle_inst))
 {
     with (instance_create(x, y, eff_reticle))
@@ -516,6 +521,7 @@ if (game_get_config("misc_reticle") > 0 && instance_exists(homing_inst) && !inst
     }
 }
 
+// Afterimage:
 if (status_speed == SPEED_UP) afterimage_draw = true;
 else
 {
@@ -523,23 +529,27 @@ else
     afterimage_alarm = 6;
 }
 
+// Trail:
 if (state_current == player_state_roll || state_current == sonic_state_homing) trail_draw = true;
 else trail_draw = false;
 
+// Splashes:
 if (!underwater)
 {
     var surface_inst; surface_inst = collision_point(x, floor(y) + y_radius + 1, obj_water_mask, false, false);
 
     if (on_ground && abs(x_speed) > 0 && surface_inst != noone)
     {
-        surface_time += 1;
+        surface_alarm -= 1;
 
-        if (surface_time mod 9 == 0)
+        if (surface_alarm <= 0)
         {
-            effect_create(x, surface_inst.y, pick(abs(x_speed) >= 4.50, seq_splash_3, seq_splash_4), depth, image_xscale);
+            surface_alarm = 9;
+            if (instance_exists(ground_inst)) effect_create(x, surface_inst.y, pick(abs(x_speed) >= 4.50, seq_splash_3, seq_splash_4), depth, image_xscale);
+            else effect_create(x, surface_inst.y, seq_splash_5, depth, image_xscale);
         }
     }
-    else surface_time = 0;
+    else surface_alarm = 0;
 }
 
 if (waterfall_draw && !instance_exists(waterfall_inst))

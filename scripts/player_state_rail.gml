@@ -24,6 +24,7 @@ switch (_phase)
         {
             if (!object_is_ancestor(ground_inst.object_index, par_rail)) return player_set_state(player_state_run);
         }
+        else return player_set_state(player_state_run);
 
         if (relative_angle >= 45 && relative_angle <= 315) input_lock_alarm = 30;
         if (angle_wrap(relative_angle + 135) <= 270) x_speed -= dsin(relative_angle * 5) / 32;
