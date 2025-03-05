@@ -581,7 +581,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// ID
+/// Index
 
 if (stage_get_player(player_index) != id)
 {
