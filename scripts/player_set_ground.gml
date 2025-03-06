@@ -16,7 +16,7 @@ if (on_ground && abs(angle_difference(angle, new_angle)) > 45)
 
 // Set new ground angle:
 angle = new_angle;
-relative_angle = angle_wrap(angle - gravity_direction);
+relative_angle = (angle - gravity_direction) mod 360;
 
 // Confirm ground:
 ground_inst = _obj;
