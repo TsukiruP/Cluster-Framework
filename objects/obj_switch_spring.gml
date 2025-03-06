@@ -102,6 +102,6 @@ switch (variant)
         sequence_init(seq_switch_spring_vertical);
 }
 
-if (sign(image_xscale) == -1) angle = (angle + 180) mod 360;
-if (sign(image_yscale) == -1) angle = (angle + 360) mod 360;
+if (sign(image_xscale) == -1) angle = angle_wrap(180 - angle);
+if (sign(image_yscale) == -1) angle = angle_wrap(360 - angle);
 with (switch_inst) image_offset = 5;

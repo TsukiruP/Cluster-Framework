@@ -47,7 +47,7 @@ if (!player_get_input(INP_ALT, CHECK_HELD))
             {
                 if (!homing_candidate.collision || !homing_candidate.targetable || distance_to_object(homing_candidate) > homing_range) continue;
 
-                var homing_angle1; homing_angle1 = pick(sign(image_xscale) == -1, mask_direction, (mask_direction + 180) mod 360);
+                var homing_angle1; homing_angle1 = pick(sign(image_xscale) == -1, mask_direction, angle_wrap(mask_direction + 180));
                 var homing_angle2; homing_angle2 = direction_to_object(homing_candidate);
 
                 if (abs(angle_difference(homing_angle1, homing_angle2)) > 45) continue;

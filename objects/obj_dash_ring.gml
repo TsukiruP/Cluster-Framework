@@ -75,8 +75,8 @@ switch (variant)
 
 }
 
-if (sign(image_xscale) == -1) angle = (angle + 180) mod 360;
-if (sign(image_yscale) == -1) angle = (angle + 360) mod 360;
+if (sign(image_xscale) == -1) angle = angle_wrap(180 - angle);
+if (sign(image_yscale) == -1) angle = angle_wrap(360 - angle);
 
 cover = instance_create(x, y, par_effect);
 cover.depth = -10;
