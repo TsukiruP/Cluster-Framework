@@ -92,7 +92,7 @@ if (sequence_index == seq_gun_hunter_shoot)
     {
         audio_stop_sfx(hunter_sfx);
         audio_play_sfx("snd_gun_hunter_shoot", true);
-        with (bullet_create(x + (42 * image_xscale), y - (8 * image_yscale), seq_gun_hunter_bullet, 2 * image_xscale, 0)) image_xscale = other.image_xscale;
+        with (bullet_create(x + (42 * image_xscale), y - (8 * image_yscale), seq_gun_hunter_bullet, 5 * image_xscale, 0)) image_xscale = other.image_xscale;
     }
 }
 #define Other_4
