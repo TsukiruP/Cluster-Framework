@@ -1,5 +1,5 @@
 /// enemy_get_player(range, [alert])
-/// @desc Returns the nearest player instance.
+/// @desc Returns the nearest player instance based off line of sight.
 /// @param {int} range
 /// @param {bool} [alert]
 /// @returns {object}
@@ -16,11 +16,7 @@ if (instance_exists(player_inst))
     var player_difference; player_difference = abs(angle_difference(player_angle, direction_to_object(player_inst)));
 
     if (instance_exists(player_solid) || distance_to_object(player_inst) >= _range || player_difference >= 45 || player_inst.state_current == player_state_death) player_inst = noone;
-    else if (_alert)
-    {
-        effect_create(x, y - 40, seq_enemy_alert);
-        audio_play_sfx("snd_enemy_alert", true);
-    }
+    else if (_alert) enemy_alert_create();
 }
 
 return player_inst;

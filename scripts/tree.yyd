@@ -414,6 +414,11 @@
 						|seq_gun_hunter_turn
 						|seq_gun_hunter_scan
 						|seq_gun_hunter_shoot
+					+Bomb Hawk
+						|seq_bomb_hawk_idle
+						|seq_bomb_hawk_move
+						|seq_bomb_hawk_move_turn
+						|seq_bomb_hawk_drop
 				+Switch
 					|seq_switch_platform
 					+Vertical
@@ -471,6 +476,7 @@
 					|seq_enemy_alert
 					|seq_buzzer_bullet
 					|seq_gun_hunter_bullet
+					|seq_bomb_hawk_bomb
 				+Splashes
 					|seq_splash_1
 					|seq_splash_2
@@ -506,8 +512,6 @@
 		+Misc.
 			|pick_offset
 			|transition_create
-			|bullet_create
-			|effect_create
 			|instance_create_single
 			|instance_nth_nearest
 			|instance_nearest_dir_x
@@ -598,6 +602,7 @@
 			|player_reaction_item_box
 			|player_reaction_enemy
 			|player_reaction_bullet
+			|player_reaction_bomb
 			|player_reaction_spike
 			|player_reaction_blockade
 			|player_reaction_rail
@@ -648,10 +653,17 @@
 			|player_cpu_respawn
 			|player_add_rings
 	+Props
+		|effect_create
+		|bullet_create
 		+Enemy
+			|enemy_alert_create
+			|enemy_debris_create
 			|enemy_get_player
 			|enemy_destroy
 			|draw_enemy_border
+		+Bomb
+			|bomb_create
+			|bomb_destroy
 +Trash
 	|draw_sprite_tiled_horizontal
 	|draw_sprite_tiled_vertical

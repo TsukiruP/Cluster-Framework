@@ -516,3 +516,13 @@ seq_gun_hunter_shoot
 audio_loop_sfx
 seq_gun_hunter_bullet
 player_set_water_run
+seq_bomb_hawk_idle
+seq_bomb_hawk_move
+seq_bomb_hawk_move_turn
+seq_bomb_hawk_drop
+enemy_alert_create
+seq_bomb_hawk_bomb
+bomb_create
+bomb_destroy
+enemy_debris_create
+player_reaction_bomb

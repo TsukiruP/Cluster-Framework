@@ -19,7 +19,8 @@ var bullet_inst; bullet_inst = instance_create(_x, _y, par_bullet);
 
 with (bullet_inst)
 {
-    depth = other.depth;
+    depth = other.depth + 1;
+    image_xscale = other.image_xscale;
     x_speed = _xspeed;
     y_speed = _yspeed;
     gravity_force = _gravity;

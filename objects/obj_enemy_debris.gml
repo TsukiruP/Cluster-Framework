@@ -9,7 +9,7 @@ applies_to=self
 image_speed = 0;
 x_speed = 0;
 y_speed = 0;
-gravity_force = 0.2;
+gravity_force = 0.1;
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1

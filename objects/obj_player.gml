@@ -827,6 +827,7 @@ player_trail_draw();
 with (shield_inst)
 {
     var shield_depth; shield_depth = (other.status_shield == SHIELD_FIRE && (image_index mod 2) != 0 && sequence_index != seq_shield_fire_dash) || (other.status_shield == SHIELD_LIGHTNING && sequence_moment > 48);
+
     if (shield_depth) event_draw();
 }
 
@@ -834,6 +835,7 @@ image_alpha = pick((status_invin == INVIN_HURT && status_invin_alarm > 0), 1, ti
 if (sprite_exists(sprite_index)) draw_self_floored();
 with (spin_dash_inst) event_draw();
 with (debuff_inst) event_draw();
+
 with (shield_inst)
 {
     if (!shield_depth) event_draw();

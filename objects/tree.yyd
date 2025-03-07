@@ -6,6 +6,7 @@
 	|par_ring
 	|par_enemy
 	|par_bullet
+	|par_bomb
 	|par_hint
 	|par_solid
 	|par_platform
@@ -54,6 +55,7 @@
 			|obj_chopper
 			|obj_jawz
 			|obj_gun_hunter
+			|obj_bomb_hawk
 		|obj_spike
 		|obj_blockade
 		+Rails
