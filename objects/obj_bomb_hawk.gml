@@ -44,7 +44,7 @@ if (sequence_index == seq_bomb_hawk_idle || sequence_index == seq_bomb_hawk_move
     {
         var player_inst; player_inst = instance_nearest(x, y, obj_player);
 
-        if (y < player_inst.y && abs(x - player_inst.x) < 64)
+        if (y < player_inst.y && abs(x - player_inst.x) < 64 && player_inst.state_current != player_state_death)
         {
             bomb_alarm = 128;
             enemy_alert_create();

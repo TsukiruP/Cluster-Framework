@@ -66,7 +66,7 @@ if (sequence_index == seq_buzzer_aim || sequence_index == seq_buzzer_move)
 
         if (instance_exists(player_inst))
         {
-            if (y <= player_inst.y && y + 96 >= player_inst.y)
+            if (y <= player_inst.y && y + 96 >= player_inst.y && player_inst.state_current != player_state_death)
             {
                 var x_distance; x_distance = x - player_inst.x;
                 var y_distance; y_distance = player_inst.y - y;
