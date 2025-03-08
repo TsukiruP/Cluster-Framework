@@ -52,8 +52,6 @@ if (script_exists(sequence_index))
     sequence_update();
     script_execute(sequence_index);
 }
-
-image_index += image_offset;
 #define Other_4
 /*"/*'/**//* YYD ACTION
 lib_id=1
