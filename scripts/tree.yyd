@@ -658,7 +658,7 @@
 		+Enemy
 			|enemy_alert_create
 			|enemy_debris_create
-			|enemy_get_player
+			|enemy_get_sight_line
 			|enemy_destroy
 			|draw_enemy_border
 		+Bomb

@@ -69,7 +69,7 @@ if (sequence_index == seq_gun_hunter_move || sequence_index == seq_gun_hunter_sc
     var player_inst; player_inst = noone;
 
     if (hunter_alarm > 0) hunter_alarm -= 1;
-    else player_inst = enemy_get_player(hunter_range, true);
+    else player_inst = enemy_get_sight_line(hunter_range, true);
 
     if (hunter_alarm == 0 && instance_exists(player_inst))
     {
