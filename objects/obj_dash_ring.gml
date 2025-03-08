@@ -50,7 +50,7 @@ applies_to=self
 
 switch (variant)
 {
-    case 2:
+    case 1:
         if (rainbow_ring) sprite_index = spr_rainbow_ring_horizontal;
         else sprite_index = spr_dash_ring_horizontal;
 
@@ -58,7 +58,7 @@ switch (variant)
         hitbox_set_hurtbox(6, 24, 7, 26);
         break;
 
-    case 1:
+    case 2:
         if (rainbow_ring) sprite_index = spr_rainbow_ring_diagonal;
         else sprite_index = spr_dash_ring_diagonal;
 
