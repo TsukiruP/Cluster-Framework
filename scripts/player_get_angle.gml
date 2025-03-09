@@ -55,10 +55,10 @@ if (kind == SHP_CUSTOM)
             // Check if each sensor has found the solid:
             if (!left && collision_point(x1, y1, inst, true, false) != noone) left = true;
             if (!right && collision_point(x2, y2, inst, true, false) != noone) right = true;
+            
+            // Calculate the direction from left to right, if applicable:
+            if (left && right) return (point_direction(x1, y1, x2, y2) div 1);
         }
-        
-        // Calculate the direction from left to right, if applicable:
-        if (left && right) return (point_direction(x1, y1, x2, y2) div 1);
         
         // Otherwise, push the sensors down:
         if (!left)
