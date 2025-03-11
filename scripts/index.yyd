@@ -526,3 +526,5 @@ bomb_create
 bomb_destroy
 enemy_debris_create
 player_reaction_bomb
+seq_klagen_blitz_idle
+seq_klagen_blitz_attack

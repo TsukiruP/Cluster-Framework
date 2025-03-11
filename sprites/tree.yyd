@@ -1,5 +1,4 @@
 +Masks Old
-	|spr_basic_test_mask_24
 	|spr_basic_test_mask_25
 	|spr_basic_test_mask_26
 	|spr_basic_test_mask_27
@@ -269,6 +268,7 @@
 			|spr_buzzer
 			|spr_chopper
 			|spr_jawz
+			|spr_klagen_blitz
 			|spr_gun_hunter
 			|spr_bomb_hawk
 		+Spikes

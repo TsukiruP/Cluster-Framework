@@ -409,6 +409,9 @@
 						|seq_jawz_move_turn
 						|seq_jawz_charge
 						|seq_jawz_chase
+					+Klagen
+						|seq_klagen_blitz_idle
+						|seq_klagen_blitz_attack
 					+Gun Hunter
 						|seq_gun_hunter_move
 						|seq_gun_hunter_turn
