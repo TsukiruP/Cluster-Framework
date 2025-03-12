@@ -479,7 +479,7 @@
 					|seq_enemy_alert
 					|seq_buzzer_bullet
 					|seq_gun_hunter_bullet
-					|seq_bomb_hawk_bomb
+					|seq_bomb_hawk_explosive
 				+Splashes
 					|seq_splash_1
 					|seq_splash_2
@@ -605,7 +605,7 @@
 			|player_reaction_item_box
 			|player_reaction_enemy
 			|player_reaction_bullet
-			|player_reaction_bomb
+			|player_reaction_explosive
 			|player_reaction_spike
 			|player_reaction_blockade
 			|player_reaction_rail
@@ -664,9 +664,9 @@
 			|enemy_get_sight_line
 			|enemy_destroy
 			|draw_enemy_border
-		+Bomb
-			|bomb_create
-			|bomb_destroy
+		+Explosive
+			|explosive_create
+			|explosive_destroy
 +Trash
 	|draw_sprite_tiled_horizontal
 	|draw_sprite_tiled_vertical

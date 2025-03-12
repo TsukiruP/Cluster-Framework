@@ -341,7 +341,7 @@
 			|spr_enemy_debris
 			|spr_buzzer_bullet
 			|spr_gun_hunter_bullet
-			|spr_bomb_hawk_bomb
+			|spr_bomb_hawk_explosive
 		+Splashes
 			|spr_splash_1
 			|spr_splash_2

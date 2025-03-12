@@ -521,10 +521,10 @@ seq_bomb_hawk_move
 seq_bomb_hawk_move_turn
 seq_bomb_hawk_drop
 enemy_alert_create
-seq_bomb_hawk_bomb
-bomb_create
-bomb_destroy
+seq_bomb_hawk_explosive
+explosive_create
+explosive_destroy
 enemy_debris_create
-player_reaction_bomb
+player_reaction_explosive
 seq_klagen_blitz_idle
 seq_klagen_blitz_attack

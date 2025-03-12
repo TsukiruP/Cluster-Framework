@@ -6,7 +6,7 @@
 	|par_ring
 	|par_enemy
 	|par_bullet
-	|par_bomb
+	|par_explosive
 	|par_hint
 	|par_solid
 	|par_platform

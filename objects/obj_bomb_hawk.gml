@@ -57,7 +57,7 @@ if (script_exists(sequence_index))
     script_execute(sequence_index);
 }
 
-if (sequence_index == seq_bomb_hawk_drop && sequence_position(10)) bomb_create(x, y, seq_bomb_hawk_bomb, 0.05);
+if (sequence_index == seq_bomb_hawk_drop && sequence_position(10)) explosive_create(x, y, seq_bomb_hawk_explosive, 0.05);
 #define Other_4
 /*"/*'/**//* YYD ACTION
 lib_id=1
