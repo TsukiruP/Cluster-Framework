@@ -36,5 +36,5 @@ var draw_y; draw_y = y - (csine * 16);
 
 if (sprite_exists(sprite_index))
 {
-    draw_sprite_ext(sprite_index, image_index, draw_x, draw_y, 1, 1, player_rotation, c_white, 1);
+    draw_sprite_ext(sprite_index, -1, draw_x, draw_y, 1, 1, player_rotation, c_white, 1);
 }

@@ -70,4 +70,4 @@ applies_to=self
 */
 /// Draw Omochao
 
-draw_sprite_ext(sprite_index, image_index, draw_x, draw_y, image_xscale, image_yscale, gravity_direction, c_white, 1);
+draw_sprite_ext(sprite_index, -1, draw_x, draw_y, image_xscale, image_yscale, gravity_direction, c_white, 1);

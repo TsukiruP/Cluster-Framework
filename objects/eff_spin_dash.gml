@@ -29,4 +29,4 @@ var csine; csine = dcos(player_rotation);
 var draw_x; draw_x = x + (sine * floor(player_inst.y_radius));
 var draw_y; draw_y = y + (csine * floor(player_inst.y_radius));
 
-if (sprite_exists(sprite_index)) draw_sprite_ext(sprite_index, image_index, draw_x, draw_y, player_inst.image_xscale, 1, player_rotation, c_white, 1);
+if (sprite_exists(sprite_index)) draw_sprite_ext(sprite_index, -1, draw_x, draw_y, player_inst.image_xscale, 1, player_rotation, c_white, 1);

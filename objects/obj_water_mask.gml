@@ -59,4 +59,4 @@ draw_rect(x, y, water_width, water_height, make_color_rgb(57, 132, 222));
 draw_reset();
 
 // Surface:
-if (surface) draw_sprite_tiled_extra(spr_water_surface, image_index, x, y, 1, 1, 0, c_white, 1, sprite_width / 8, 1);
+if (surface) draw_sprite_tiled_extra(spr_water_surface, -1, x, y, 1, 1, 0, c_white, 1, sprite_width / 8, 1);

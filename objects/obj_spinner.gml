@@ -66,4 +66,4 @@ applies_to=self
 */
 /// Draw Spinner
 
-draw_sprite_ext(sprite_index, image_index, floor(x) + x_offset * sign(image_xscale), floor(y) + y_offset * sign(image_yscale), image_xscale, image_yscale, gravity_direction, c_white, 1);
+draw_sprite_ext(sprite_index, -1, floor(x) + x_offset * sign(image_xscale), floor(y) + y_offset * sign(image_yscale), image_xscale, image_yscale, gravity_direction, c_white, 1);

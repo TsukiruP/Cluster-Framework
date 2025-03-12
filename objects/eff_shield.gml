@@ -96,14 +96,14 @@ applies_to=self
 
 var player_rotation; player_rotation = player_inst.gravity_direction;
 
-if (sprite_index != spr_shield_fire_dash) image_xscale = 1;
+if (sprite_index != spr_shield_fire_dash && image_xscale != 1) image_xscale = 1;
 
 if ((game_get_config("advance_flicker") && shield_advance) || !shield_advance) image_alpha = 1;
 else image_alpha = 0.6;
 
 if (sprite_exists(sprite_index))
 {
-    if (!shield_hide) draw_sprite_ext(sprite_index, image_index, x, y, image_xscale, 1, player_rotation, c_white, image_alpha);
+    if (!shield_hide) draw_sprite_ext(sprite_index, -1, x, y, image_xscale, 1, player_rotation, c_white, image_alpha);
     else if (player_inst.status_shield == SHIELD_BUBBLE && player_inst.status_invin != INVIN_BUFF)
     {
         draw_sprite_ext(spr_shield_bubble_shell, sequence_moment_previous div 12, x, y, image_xscale, 1, player_rotation, c_white, image_alpha);

@@ -92,5 +92,5 @@ applies_to=self
 */
 /// Draw Bomb Hawk
 
-draw_sprite_ext(sprite_index, image_index, floor(x), floor(y) + y_offset * sign(image_yscale), image_xscale, image_yscale, gravity_direction, c_white, 1);
+draw_sprite_ext(sprite_index, -1, floor(x), floor(y) + y_offset * sign(image_yscale), image_xscale, image_yscale, gravity_direction, c_white, 1);
 if (move) draw_enemy_border();
