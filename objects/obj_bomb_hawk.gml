@@ -32,22 +32,19 @@ if (sequence_index == seq_bomb_hawk_move)
 
 if (sequence_index == seq_bomb_hawk_idle || sequence_index == seq_bomb_hawk_move)
 {
+    var player_inst; player_inst = noone;
+
     if (bomb_alarm > 0)
     {
         bomb_alarm -= sequence_speed;
         bomb_alarm = roundto(bomb_alarm, pick(sequence_speed > 0, 1, sequence_speed));
     }
+    else player_inst = enemy_get_player_below(64, true);
 
-    if (bomb_alarm == 0)
+    if (bomb_alarm == 0 && instance_exists(player_inst))
     {
-        var player_inst; player_inst = instance_nearest(x, y, obj_player);
-
-        if (y < player_inst.y && abs(x - player_inst.x) < 64 && player_inst.state_current != player_state_death)
-        {
-            bomb_alarm = 128;
-            enemy_alert_create();
-            sequence_set(seq_bomb_hawk_drop);
-        }
+        bomb_alarm = 128;
+        sequence_set(seq_bomb_hawk_drop);
     }
 }
 

@@ -510,7 +510,7 @@ game_debug_get_visible
 seq_gun_hunter_move
 seq_gun_hunter_turn
 draw_enemy_border
-enemy_get_sight_line
+enemy_get_player_front
 seq_gun_hunter_scan
 seq_gun_hunter_shoot
 audio_loop_sfx
@@ -528,3 +528,4 @@ enemy_debris_create
 player_reaction_explosive
 seq_klagen_blitz_idle
 seq_klagen_blitz_attack
+enemy_get_player_below

@@ -661,7 +661,8 @@
 		+Enemy
 			|enemy_alert_create
 			|enemy_debris_create
-			|enemy_get_sight_line
+			|enemy_get_player_front
+			|enemy_get_player_below
 			|enemy_destroy
 			|draw_enemy_border
 		+Explosive
