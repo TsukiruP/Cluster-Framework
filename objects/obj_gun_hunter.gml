@@ -35,8 +35,6 @@ applies_to=self
 
 if (game_ispaused(mnu_pause)) exit;
 
-event_inherited();
-
 sequence_speed = game_get_speed();
 
 if (sequence_index == seq_gun_hunter_move)

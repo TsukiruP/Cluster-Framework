@@ -22,8 +22,6 @@ applies_to=self
 
 if (game_ispaused(mnu_pause)) exit;
 
-event_inherited();
-
 sequence_speed = game_get_speed();
 
 if (sequence_index == seq_bomb_hawk_move)
