@@ -55,7 +55,7 @@ if (instance_exists(explosive_inst))
                 explosive_alarm = 10;
             }
         }
-        else if (explosive_alarm == 0) explosive_inst.gravity_force = 0.05;
+        else if (explosive_alarm == 0) explosive_inst.gravity_force = 0.05 * image_yscale;
     }
     else if (explosive_inst.y != explosive_y && explosive_inst.gravity_force == 0) explosive_inst.y = approach(explosive_inst.y, explosive_y, 4/60 * sequence_speed);
 }

@@ -17,6 +17,7 @@ with (explosive_inst)
 {
     depth = other.depth + 1;
     image_xscale = other.image_xscale;
+    image_yscale = other.image_yscale;
     gravity_force = _gravity;
     sequence_set(_sequence);
 }

@@ -21,6 +21,7 @@ with (bullet_inst)
 {
     depth = other.depth + 1;
     image_xscale = other.image_xscale;
+    image_yscale = other.image_yscale;
     x_speed = _xspeed;
     y_speed = _yspeed;
     gravity_force = _gravity;
