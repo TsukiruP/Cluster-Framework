@@ -288,6 +288,7 @@
 		|sequence_init
 		|sequence_set
 		|sequence_update
+		|sequence_execute
 		|sequence_skip
 		|sequence_position
 		+Indexes

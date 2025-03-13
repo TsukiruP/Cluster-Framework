@@ -22,9 +22,4 @@ if (game_ispaused(mnu_pause)) exit;
 
 x += x_speed;
 y += y_speed;
-
-if (script_exists(sequence_index))
-{
-    sequence_update();
-    script_execute(sequence_index);
-}
+sequence_execute();

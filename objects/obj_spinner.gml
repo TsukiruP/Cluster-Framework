@@ -23,12 +23,7 @@ applies_to=self
 if (game_ispaused(mnu_pause)) exit;
 
 sequence_speed = game_get_speed();
-
-if (script_exists(sequence_index))
-{
-    sequence_update();
-    script_execute(sequence_index);
-}
+sequence_execute();
 #define Other_4
 /*"/*'/**//* YYD ACTION
 lib_id=1

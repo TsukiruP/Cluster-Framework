@@ -52,14 +52,7 @@ if (switch_active)
 }
 else if (sequence_index != spring_sequence) sequence_set(spring_sequence);
 
-if (sequence_index == spring_sequence || (active && sequence_index != spring_sequence))
-{
-    if (script_exists(sequence_index))
-    {
-        sequence_update();
-        script_execute(sequence_index);
-    }
-}
+if (sequence_index == spring_sequence || (active && sequence_index != spring_sequence)) sequence_execute();
 #define Other_4
 /*"/*'/**//* YYD ACTION
 lib_id=1

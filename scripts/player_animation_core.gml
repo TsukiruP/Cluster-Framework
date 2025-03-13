@@ -14,12 +14,7 @@ if (sequence_index != player_get_animation(animation_current, animation_variant)
     animation_time = 0;
 }
 
-if (script_exists(sequence_index))
-{
-    sequence_update();
-    script_execute(sequence_index);
-}
-
+sequence_execute();
 animation_time += 1;
 
 if (animation_skip) animation_skip = false;
@@ -32,4 +27,3 @@ if (on_ground)
 }
 
 player_animation_fix();
-//if (x_radius < 8) x_radius = 8;

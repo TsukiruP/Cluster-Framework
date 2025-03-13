@@ -27,8 +27,4 @@ if (active)
 }
 else if (sequence_index != seq_checkpoint_inactive) sequence_set(seq_checkpoint_inactive);
 
-if (script_exists(sequence_index))
-{
-    sequence_update();
-    script_execute(sequence_index);
-}
+sequence_execute();

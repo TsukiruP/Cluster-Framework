@@ -32,14 +32,7 @@ applies_to=self
 
 if (game_ispaused(mnu_pause) || object_is_ancestor(object_index, obj_dash_ring)) exit;
 
-if (active)
-{
-    if (script_exists(sequence_index))
-    {
-        sequence_update();
-        script_execute(sequence_index);
-    }
-}
+if (active) sequence_execute();
 #define Other_4
 /*"/*'/**//* YYD ACTION
 lib_id=1

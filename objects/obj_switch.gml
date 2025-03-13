@@ -47,11 +47,7 @@ if (sequence_index != switch_sequence)
     audio_play_sfx(pick(game_get_time() < target_time, "snd_switch_off", "snd_switch_on"));
 }
 
-if (script_exists(sequence_index))
-{
-    sequence_update();
-    script_execute(sequence_index);
-}
+sequence_execute();
 #define Other_4
 /*"/*'/**//* YYD ACTION
 lib_id=1

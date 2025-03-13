@@ -26,11 +26,7 @@ var game_speed; game_speed = game_get_speed();
 y += y_speed * game_speed;
 y_speed += gravity_force * game_speed;
 
-if (script_exists(sequence_index))
-{
-    sequence_update();
-    script_execute(sequence_index);
-}
+sequence_execute();
 
 if (!in_view(self, 64)) instance_destroy();
 if (position_meeting(x, y, par_solid)) bomb_destroy();

@@ -75,11 +75,7 @@ if (sequence_index == seq_buzzer_aim || sequence_index == seq_buzzer_move)
     }
 }
 
-if (script_exists(sequence_index))
-{
-    sequence_update();
-    script_execute(sequence_index);
-}
+sequence_execute();
 
 if (sequence_index == seq_buzzer_shoot && sequence_position(12) && instance_exists(player_inst))
 {

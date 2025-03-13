@@ -78,11 +78,7 @@ if (sequence_index == seq_gun_hunter_move || sequence_index == seq_gun_hunter_sc
     }
 }
 
-if (script_exists(sequence_index))
-{
-    sequence_update();
-    script_execute(sequence_index);
-}
+sequence_execute();
 
 if (sequence_index == seq_gun_hunter_shoot)
 {

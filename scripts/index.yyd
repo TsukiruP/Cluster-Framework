@@ -532,3 +532,4 @@ enemy_get_player_below
 seq_klagen_bomb
 seq_klagen_bomb_explosive
 roundto_step
+sequence_execute

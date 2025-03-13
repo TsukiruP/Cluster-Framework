@@ -30,11 +30,7 @@ if (sequence_index == seq_chopper_move)
     if (x < xstart - border_left || x > xstart + border_right) sequence_set(seq_chopper_move_turn);
 }
 
-if (script_exists(sequence_index))
-{
-    sequence_update();
-    script_execute(sequence_index);
-}
+sequence_execute();
 #define Other_4
 /*"/*'/**//* YYD ACTION
 lib_id=1

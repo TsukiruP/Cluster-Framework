@@ -29,13 +29,7 @@ var game_speed; game_speed = game_get_speed();
 x += x_speed * game_speed;
 y += y_speed * game_speed;
 y_speed += gravity_force * game_speed;
-
-if (script_exists(sequence_index))
-{
-    sequence_update();
-    script_execute(sequence_index);
-}
-
+sequence_execute();
 if (!in_view(self)) instance_destroy();
 #define Draw_0
 /*"/*'/**//* YYD ACTION

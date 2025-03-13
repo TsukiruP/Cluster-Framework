@@ -59,11 +59,7 @@ else if (sequence_index == seq_jawz_chase)
     if (jawz_alarm == 0 || position_meeting(x, y, par_solid) || !position_meeting(x, y, obj_water_mask)) enemy_destroy();
 }
 
-if (script_exists(sequence_index))
-{
-    sequence_update();
-    script_execute(sequence_index);
-}
+sequence_execute();
 #define Other_4
 /*"/*'/**//* YYD ACTION
 lib_id=1

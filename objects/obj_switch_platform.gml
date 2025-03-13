@@ -34,12 +34,7 @@ switch_active = (switch_active && time_difference);
 
 if (switch_active)
 {
-    if (script_exists(sequence_index))
-    {
-        sequence_update();
-        script_execute(sequence_index);
-    }
-
+    sequence_execute();
     image_alpha = pick(time_difference < 30, 1, time_sync(time_difference, 2, 2));
     if (collision) event_inherited();
 }

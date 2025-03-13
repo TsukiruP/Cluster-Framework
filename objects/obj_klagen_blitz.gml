@@ -30,11 +30,7 @@ if (klagen_count >= pick(klagen_attack, 6, 9))
     sequence_set(pick(!klagen_attack, seq_klagen_blitz_idle, seq_klagen_blitz_attack));
 }
 
-if (script_exists(sequence_index))
-{
-    sequence_update();
-    script_execute(sequence_index);
-}
+sequence_execute();
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
