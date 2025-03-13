@@ -42,7 +42,7 @@ switch (_phase)
         if (abs(x_speed) > air_friction_threshold && y_speed > -4 && y_speed < 0) x_speed *= air_friction;
         y_speed += gravity_force;
 
-        if (y_speed > 0 && animation_time mod 2 == 0) effect_create(x, y, seq_bound_jump, 10);
+        if (y_speed != 0 && animation_time mod 2 == 0) effect_create(x, y, seq_bound_jump, 10);
         break;
 
     case STATE_FINISH:
