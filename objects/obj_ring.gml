@@ -77,7 +77,6 @@ ox = sine * y_speed;
 oy = csine * y_speed;
 x += ox * game_speed;
 y += oy * game_speed;
-
 y_speed += gravity_force * game_speed;
 
 if (place_meeting(x + ox, y + oy, par_solid) && !place_meeting(xprevious, yprevious, par_solid))
