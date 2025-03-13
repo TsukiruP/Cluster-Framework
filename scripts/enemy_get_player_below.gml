@@ -14,7 +14,7 @@ if (instance_exists(player_inst))
     var player_solid; player_solid = collision_line(x, y, player_inst.x, player_inst.y, par_solid, true, false);
     var player_distance; player_distance = abs(x - player_inst.x);
 
-    if (y > player_inst.y || instance_exists(player_solid) || player_distance >= _range || player_inst.state_current == player_state_death) player_inst = noone;
+    if (sign(image_yscale) == sign(y - player_inst.y) || instance_exists(player_solid) || player_distance >= _range || player_inst.state_current == player_state_death) player_inst = noone;
     else if (_alert) enemy_alert_create();
 }
 

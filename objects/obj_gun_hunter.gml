@@ -64,19 +64,17 @@ else if (sequence_index == seq_gun_hunter_scan)
 
 if (sequence_index == seq_gun_hunter_move || sequence_index == seq_gun_hunter_scan)
 {
-    var player_inst; player_inst = noone;
+    if (hunter_alarm > 0) hunter_alarm = roundto_step(hunter_alarm, -sequence_speed);
 
-    if (hunter_alarm > 0)
+    if (hunter_alarm == 0)
     {
-        hunter_alarm -= sequence_speed;
-        hunter_alarm = roundto(hunter_alarm, pick(sequence_speed > 0, 1, sequence_speed));
-    }
-    else player_inst = enemy_get_player_front(hunter_range, true);
+        var player_inst; player_inst = enemy_get_player_front(hunter_range, true);
 
-    if (hunter_alarm == 0 && instance_exists(player_inst))
-    {
-        hunter_alarm = 60;
-        sequence_set(seq_gun_hunter_shoot);
+        if (instance_exists(player_inst))
+        {
+            hunter_alarm = 60;
+            sequence_set(seq_gun_hunter_shoot);
+        }
     }
 }
 

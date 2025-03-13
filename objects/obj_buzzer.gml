@@ -52,11 +52,7 @@ else if (sequence_index == seq_buzzer_move)
 
 if (sequence_index == seq_buzzer_aim || sequence_index == seq_buzzer_move)
 {
-    if (buzzer_alarm > 0)
-    {
-        buzzer_alarm -= sequence_speed;
-        buzzer_alarm = roundto(buzzer_alarm, pick(sequence_speed > 0, 1, sequence_speed));
-    }
+    if (buzzer_alarm > 0) buzzer_alarm = roundto_step(buzzer_alarm, -sequence_speed);
 
     if (buzzer_alarm == 0)
     {

@@ -1,6 +1,4 @@
 +Masks Old
-	|spr_basic_test_mask_25
-	|spr_basic_test_mask_26
 	|spr_basic_test_mask_27
 	|spr_basic_test_mask_28
 	|spr_basic_test_mask_29
@@ -269,6 +267,7 @@
 			|spr_chopper
 			|spr_jawz
 			|spr_klagen_blitz
+			|spr_klagen_bomb
 			|spr_gun_hunter
 			|spr_bomb_hawk
 		+Spikes
@@ -341,6 +340,7 @@
 			|spr_enemy_debris
 			|spr_buzzer_bullet
 			|spr_gun_hunter_bullet
+			|spr_klagen_bomb_explosive
 			|spr_bomb_hawk_explosive
 		+Splashes
 			|spr_splash_1

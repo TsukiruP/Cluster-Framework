@@ -412,6 +412,7 @@
 					+Klagen
 						|seq_klagen_blitz_idle
 						|seq_klagen_blitz_attack
+						|seq_klagen_bomb
 					+Gun Hunter
 						|seq_gun_hunter_move
 						|seq_gun_hunter_turn
@@ -479,6 +480,7 @@
 					|seq_enemy_alert
 					|seq_buzzer_bullet
 					|seq_gun_hunter_bullet
+					|seq_klagen_bomb_explosive
 					|seq_bomb_hawk_explosive
 				+Splashes
 					|seq_splash_1
@@ -498,6 +500,7 @@
 			|sine_wave
 			|cosine_wave
 			|sine_wave_range
+			|roundto_step
 		+Draw
 			|draw_hitbox
 			|draw_sprite_tiled_extra_OLD

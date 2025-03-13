@@ -1,4 +1,4 @@
-sprite=spr_basic_test_mask_26
+sprite=spr_klagen_bomb_explosive
 visible=1
 solid=0
 persistent=0

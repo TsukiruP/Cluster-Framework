@@ -529,3 +529,6 @@ player_reaction_explosive
 seq_klagen_blitz_idle
 seq_klagen_blitz_attack
 enemy_get_player_below
+seq_klagen_bomb
+seq_klagen_bomb_explosive
+roundto_step

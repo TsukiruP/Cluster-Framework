@@ -10,7 +10,8 @@ event_inherited();
 move = false;
 border_left = 0;
 border_right = 0;
-bomb_alarm = 0;
+hawk_range = 64;
+explosive_alarm = 0;
 y_offset = 0;
 #define Step_2
 /*"/*'/**//* YYD ACTION
@@ -32,19 +33,17 @@ if (sequence_index == seq_bomb_hawk_move)
 
 if (sequence_index == seq_bomb_hawk_idle || sequence_index == seq_bomb_hawk_move)
 {
-    var player_inst; player_inst = noone;
+    if (explosive_alarm > 0) explosive_alarm = roundto_step(explosive_alarm, -sequence_speed);
 
-    if (bomb_alarm > 0)
+    if (explosive_alarm == 0)
     {
-        bomb_alarm -= sequence_speed;
-        bomb_alarm = roundto(bomb_alarm, pick(sequence_speed > 0, 1, sequence_speed));
-    }
-    else player_inst = enemy_get_player_below(64, true);
+        var player_inst; player_inst = enemy_get_player_below(hawk_range, true);
 
-    if (bomb_alarm == 0 && instance_exists(player_inst))
-    {
-        bomb_alarm = 128;
-        sequence_set(seq_bomb_hawk_drop);
+        if (instance_exists(player_inst))
+        {
+            explosive_alarm = 128;
+            sequence_set(seq_bomb_hawk_drop);
+        }
     }
 }
 

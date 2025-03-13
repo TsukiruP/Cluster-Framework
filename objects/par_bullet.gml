@@ -37,3 +37,12 @@ if (script_exists(sequence_index))
 }
 
 if (!in_view(self)) instance_destroy();
+#define Draw_0
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Draw Bullet
+
+draw_self_floored();
