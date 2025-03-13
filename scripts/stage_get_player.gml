@@ -8,5 +8,6 @@ with (ctrl_stage)
     var player_inst; player_inst = ds_list_find_value(player_list, argument0);
 
     if (player_inst != 0) return player_inst;
-    else return noone;
 }
+
+return noone;
