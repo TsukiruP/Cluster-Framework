@@ -21,7 +21,13 @@ applies_to=self
 */
 /// Destroy Explosive
 
-if (instance_exists(explosive_inst)) instance_destroy_id(explosive_inst);
+if (instance_exists(explosive_inst))
+{
+    with (explosive_inst)
+    {
+        if (gravity_force == 0) explosive_destroy();
+    }
+}
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
