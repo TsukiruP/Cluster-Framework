@@ -8,6 +8,7 @@ applies_to=self
 
 info_hide = true;
 info_index = 0;
+info_alpha = 1;
 #define Step_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -53,6 +54,22 @@ with (obj_player)
     if (keyboard_check_pressed(ord('1'))) player_set_status(STATUS_SHIELD, wrap(status_shield + 1, SHIELD_NONE, SHIELD_LIGHTNING));
     if (keyboard_check_pressed(ord('2'))) player_set_status(STATUS_INVIN, INVIN_BUFF);
     if (keyboard_check_pressed(ord('3'))) player_set_status(STATUS_SPEED, SPEED_UP);
+}
+#define Step_2
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Alpha
+
+if (instance_exists(obj_player))
+{
+    if (obj_player.x < view_xview[view_current] + 125 && obj_player.y < view_yview[view_current] + 200 && view_yview[view_current] < obj_player.y - 50)
+    {
+        if (info_alpha > 0.3) info_alpha -= 1/16;
+    }
+    else if (info_alpha < 1) info_alpha += 1/16;
 }
 #define Draw_0
 /*"/*'/**//* YYD ACTION
@@ -119,11 +136,10 @@ if (!game_get_debug() || info_hide) exit;
 
 with (stage_get_player(0))
 {
+    var font_height; font_height = font_get_height(global.font_system);
     var info_string; info_string = "";
     var info_x; info_x = view_xview[view_current] + 10;
     var info_y; info_y = view_yview[view_current] + screen_get_height() / 2;
-
-    draw_set_font(global.font_system);
 
     switch (other.info_index)
     {
@@ -151,7 +167,7 @@ with (stage_get_player(0))
         case 2:
             info_string =
             "Animation: " + animation_current + "#" +
-            "Animation Prev: " + animation_previous + "##" +
+            "Animation Prev: " + animation_previous + "#" +
             "Animation Variant: " + string(animation_variant) + "#" +
             "Animation Moment: " + string(animation_moment) + "#" +
             "Animation Skip: " + string_bool(animation_skip) + "#" +
@@ -163,18 +179,15 @@ with (stage_get_player(0))
 
         default:
             info_string =
-            "X: " + string(floor(x)) + "#" +
-            "Y: " + string(floor(y)) + "#" +
-            "X Prev: " + string(floor(xprevious)) + "#" +
-            "Y Prev: " + string(floor(yprevious)) + "##" +
-            "X Speed: " + string(x_speed) + "#" +
-            "Y Speed: " + string(y_speed) + "##" +
+            "Position: " + string(floor(x)) + ", " + string(floor(y)) + "#" +
+            "Position Prev: " + string(floor(xprevious)) + ", " + string(floor(yprevious)) + "#" +
+            "Speed: " + string(floor(x_speed)) + ", " + string(floor(y_speed)) + "#" +
             "State: " + script_name(state_current) + "#" +
-            "State Prev: " + script_name(state_previous) + "##" +
+            "State Prev: " + script_name(state_previous) + "#" +
             "Gravity: " + string(gravity_direction) + "#" +
             "Angle: " + string(angle) + "#" +
             "Relative Angle: " + string(relative_angle) + "#" +
-            "Mask Rotation: " + string(mask_direction) + "##" +
+            "Mask Direction: " + string(mask_direction) + "#" +
             "Input Allow: " + string_bool(input_allow) + "#" +
             "Input Lock: " + string(input_lock_alarm);
     }
@@ -183,7 +196,8 @@ with (stage_get_player(0))
     draw_rect(info_x - 5, info_y - string_height(info_string) / 2 - 5, ceil((string_width(info_string) + 5) / 70) * 70 + 5, string_height(info_string) + 10, game_get_interface_color(), game_get_config("interface_alpha"));
 
     // Info:
+    draw_set1(c_white, other.info_alpha);
     draw_set2(fa_left, fa_center);
-    draw_text(info_x, info_y, info_string);
+    draw_text_ext(info_x, info_y, info_string, font_height, 215);
     draw_reset();
 }
