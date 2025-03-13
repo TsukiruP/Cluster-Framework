@@ -52,10 +52,7 @@ else if (sequence_index == seq_jawz_chase)
 
     x += dcos(image_angle) * jawz_speed * image_xscale;
     y -= dsin(image_angle) * jawz_speed * image_xscale;
-
-    jawz_alarm -= sequence_speed;
-    jawz_alarm = floorto(jawz_alarm, pick(sequence_speed > 0, 1, sequence_speed));
-
+    jawz_alarm = roundto_step(jawz_alarm, -sequence_speed);
     if (jawz_alarm == 0 || position_meeting(x, y, par_solid) || !position_meeting(x, y, obj_water_mask)) enemy_destroy();
 }
 
