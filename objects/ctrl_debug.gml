@@ -6,7 +6,7 @@ applies_to=self
 */
 /// Debug Initialization
 
-info_hide = true;
+info_hide = false;
 info_index = 0;
 info_alpha = 1;
 #define Step_0
