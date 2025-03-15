@@ -24,11 +24,7 @@ if (player_get_input(INP_SWAP, CHECK_PRESSED))
                 status_speed = other.status_speed;
                 status_speed_alarm = other.status_speed_alarm;
                 player_reset_input();
-
-                with (instance_create(x, y, eff_swap))
-                {
-                    player_inst = other.id;
-                }
+                with (instance_create(x, y, eff_swap)) player_inst = other.id;
             }
 
             player_reset_status();
