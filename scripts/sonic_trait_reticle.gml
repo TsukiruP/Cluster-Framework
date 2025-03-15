@@ -6,6 +6,7 @@ if (state_current == sonic_state_homing) exit;
 
 var homing_inst_temp; homing_inst_temp = homing_inst;
 
+homing_allow = false;
 homing_inst = noone;
 
 switch (state_current)
@@ -20,12 +21,8 @@ switch (state_current)
     case player_state_brake:
     case player_state_spring:
     case player_state_rail:
-    case sonic_state_bound:
         homing_allow = true;
         break;
-
-    default:
-        homing_allow = false;
 }
 
 if (!homing_allow || spring_alarm != 0 || !input_allow || (input_cpu && input_cpu_gamepad_alarm == 0)) exit;

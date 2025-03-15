@@ -94,6 +94,7 @@ player_reset_status();
 
 air_dash_allow = true;
 drop_dash_alarm = 20;
+homing_allow = false;
 homing_inst = noone;
 homing_range = 128;
 homing_speed = 12;
