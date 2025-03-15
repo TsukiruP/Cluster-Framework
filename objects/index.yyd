@@ -5,7 +5,7 @@ obj_blockade
 obj_sky_sanctuary_parallax
 obj_dash_ring
 obj_switch_platform
-obj_basic_test_mask_01
+obj_basic_test_mask_1
 obj_player
 par_culled
 
@@ -20,14 +20,14 @@ ctrl_game
 obj_player_spawn
 ctrl_hud
 mnu_pause
-obj_basic_test_mask_02
-obj_basic_test_mask_03
-obj_basic_test_mask_04
-obj_basic_test_mask_05
-obj_basic_test_mask_06
-obj_basic_test_mask_07
-obj_basic_test_mask_08
-obj_basic_test_mask_09
+obj_basic_test_mask_2
+obj_basic_test_mask_3
+obj_basic_test_mask_4
+obj_basic_test_mask_5
+obj_basic_test_mask_6
+obj_basic_test_mask_7
+obj_basic_test_mask_8
+obj_basic_test_mask_9
 obj_basic_test_mask_10
 obj_basic_test_mask_11
 obj_basic_test_mask_12
@@ -96,11 +96,11 @@ obj_layer_sensor
 obj_hint_box
 obj_spring_up
 obj_spring_right_up
-obj_rail_01
+obj_rail_1
 obj_spring_right
 obj_spring_down
-obj_rail_02
-obj_rail_03
+obj_rail_2
+obj_rail_3
 obj_spring_right_down
 eff_reticle
 obj_dash_ring_right

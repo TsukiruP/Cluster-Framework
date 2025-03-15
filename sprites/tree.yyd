@@ -277,9 +277,9 @@
 			|spr_blockade_vertical
 			|spr_blockade_horizontal
 		+Rails
-			|spr_rail_01
-			|spr_rail_02
-			|spr_rail_03
+			|spr_rail_1
+			|spr_rail_2
+			|spr_rail_3
 		+Hints
 			|spr_hint_box
 			+Omochao
@@ -359,15 +359,15 @@
 			|spr_sky_sanctuary_fountain
 	+Basic Test
 		+Masks
-			|spr_basic_test_mask_01
-			|spr_basic_test_mask_02
-			|spr_basic_test_mask_03
-			|spr_basic_test_mask_04
-			|spr_basic_test_mask_05
-			|spr_basic_test_mask_06
-			|spr_basic_test_mask_07
-			|spr_basic_test_mask_08
-			|spr_basic_test_mask_09
+			|spr_basic_test_mask_1
+			|spr_basic_test_mask_2
+			|spr_basic_test_mask_3
+			|spr_basic_test_mask_4
+			|spr_basic_test_mask_5
+			|spr_basic_test_mask_6
+			|spr_basic_test_mask_7
+			|spr_basic_test_mask_8
+			|spr_basic_test_mask_9
 			|spr_basic_test_mask_10
 			|spr_basic_test_mask_11
 			|spr_basic_test_mask_12

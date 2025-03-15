@@ -61,9 +61,9 @@
 		|obj_spike
 		|obj_blockade
 		+Rails
-			|obj_rail_01
-			|obj_rail_02
-			|obj_rail_03
+			|obj_rail_1
+			|obj_rail_2
+			|obj_rail_3
 		+Hints
 			|obj_hint_box
 			|obj_omochao
@@ -94,15 +94,15 @@
 	+Basic Test
 		|obj_basic_test_parallax
 		+Masks
-			|obj_basic_test_mask_01
-			|obj_basic_test_mask_02
-			|obj_basic_test_mask_03
-			|obj_basic_test_mask_04
-			|obj_basic_test_mask_05
-			|obj_basic_test_mask_06
-			|obj_basic_test_mask_07
-			|obj_basic_test_mask_08
-			|obj_basic_test_mask_09
+			|obj_basic_test_mask_1
+			|obj_basic_test_mask_2
+			|obj_basic_test_mask_3
+			|obj_basic_test_mask_4
+			|obj_basic_test_mask_5
+			|obj_basic_test_mask_6
+			|obj_basic_test_mask_7
+			|obj_basic_test_mask_8
+			|obj_basic_test_mask_9
 			|obj_basic_test_mask_10
 			|obj_basic_test_mask_11
 			|obj_basic_test_mask_12
