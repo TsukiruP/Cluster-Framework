@@ -85,6 +85,9 @@ applies_to=self
 /// Character Initialization
 
 character_index = CHAR_SONIC;
+form_index = FORM_BASE;
+
+tag_state = 0;
 
 swap_alarm = 0;
 player_reset_status();
@@ -180,11 +183,9 @@ applies_to=self
 animation_current = "stand";
 animation_previous = animation_current;
 animation_changed = false;
-
-animation_variant = 0;
+animation_variant = VARIANT_DEFAULT;
 animation_moment = 0;
 animation_skip = false;
-
 animation_trigger = false;
 animation_time = 0;
 sequence_init();
@@ -713,7 +714,8 @@ switch (animation_current)
     case "stand":
     case "cliff_front":
     case "cliff_back":
-    case "wait":
+    case "wait_leader":
+    case "wait_partner":
     case "standby":
     case "land":
     case "omochao":
@@ -759,7 +761,7 @@ switch (animation_current)
         if (on_ground) image_angle = angle;
         else image_angle = approach_angle(image_angle, gravity_direction, 4);
 
-        if (character_index == CHAR_CLASSIC)
+        if (character_index == CHAR_CLASSIC || tag_state == 1)
         {
             if (on_ground)
             {

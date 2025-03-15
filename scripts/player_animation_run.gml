@@ -12,10 +12,19 @@ switch (character_index)
         break;
 
     default:
-        if (peel_out) player_set_animation("run_6");
-        else if (abs(x_speed) >= 6.00) player_set_animation("run_5");
-        else if (abs(x_speed) >= 4.50) player_set_animation("run_4");
-        else if (abs(x_speed) >= 3.00) player_set_animation("run_3");
-        else if (abs(x_speed) >= 1.50) player_set_animation("run_2");
-        else player_set_animation("run_1");
+        if (tag_state == 1)
+        {
+            if (abs(x_speed) >= 6.00) player_set_animation("run_3");
+            else if (abs(x_speed) >= 3.75) player_set_animation("run_2");
+            else player_set_animation("run_1");
+        }
+        else
+        {
+            if (peel_out) player_set_animation("run_6");
+            else if (abs(x_speed) >= 6.00) player_set_animation("run_5");
+            else if (abs(x_speed) >= 4.50) player_set_animation("run_4");
+            else if (abs(x_speed) >= 3.00) player_set_animation("run_3");
+            else if (abs(x_speed) >= 1.50) player_set_animation("run_2");
+            else player_set_animation("run_1");
+        }
 }

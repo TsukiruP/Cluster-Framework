@@ -13,12 +13,8 @@ switch (_phase)
 
         if (cliff_direction == 0)
         {
-            if (animation_current != "wait" && animation_current != "standby" && animation_current != "land" &&
-                animation_current != "look" && animation_current != "look_end" && animation_current != "crouch_end" &&
-                animation_current != "omochao" && animation_current != "omochao_end")
-            {
-                player_set_animation("stand");
-            }
+            if (animation_current != "standby" && animation_current != "land" && animation_current != "look" && animation_current != "look_end" &&
+                animation_current != "crouch_end" && animation_current != "omochao" && animation_current != "omochao_end") player_set_animation("stand");
         }
         else
         {
@@ -67,7 +63,14 @@ switch (_phase)
             if (wait_alarm > 0)
             {
                 wait_alarm -= 1;
-                if (wait_alarm == 0) player_set_animation("wait");
+
+                if (wait_alarm == 0)
+                {
+                    var animation_wait; animation_wait = choose("wait_leader", "wait_partner");
+
+                    if (instance_number(obj_player) > 1) animation_wait = pick(player_index > 0, "wait_leader", "wait_partner");
+                    player_set_animation(animation_wait);
+                }
             }
         }
         break;

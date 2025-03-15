@@ -38,7 +38,7 @@ seq_sonic_spin_dash
 seq_sonic_brake
 time_sync
 player_animation_core
-player_get_animation
+player_get_animation_sequence
 debug_add_option
 player_set_damage
 player_state_idle
@@ -81,7 +81,7 @@ player_trail_color
 player_trail_draw
 seq_sonic_cliff_front
 debug_option_player0
-player_get_animation_speed
+player_set_animation_speed
 player_animation_air
 player_surface_splash
 debug_option_character
@@ -204,7 +204,7 @@ player_reaction_layer_sensor
 player_reaction_ring
 player_state_jump
 player_routine_shield
-player_get_animation_variant
+player_set_animation_variant
 player_reaction_hint
 seq_spring_vertical
 seq_spring_horizontal
@@ -533,3 +533,15 @@ seq_klagen_bomb
 seq_klagen_bomb_explosive
 roundto_step
 sequence_execute
+seq_sonic_tag_stand
+seq_sonic_tag_turn
+seq_sonic_tag_run_1
+seq_sonic_tag_run_2
+seq_sonic_tag_run_3
+seq_sonic_tag_look
+seq_sonic_tag_look_end
+seq_sonic_tag_crouch
+seq_sonic_tag_crouch_end
+seq_sonic_tag_brake
+seq_sonic_tag_spring_flight
+seq_sonic_tag_spring_fall

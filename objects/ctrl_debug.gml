@@ -168,7 +168,6 @@ with (stage_get_player(0))
             info_string =
             "Animation: " + animation_current + "#" +
             "Animation Prev: " + animation_previous + "#" +
-            "Animation Variant: " + string(animation_variant) + "#" +
             "Animation Moment: " + string(animation_moment) + "#" +
             "Animation Skip: " + string_bool(animation_skip) + "#" +
             "Animation Trigger: " + string_bool(animation_trigger) + "#" +

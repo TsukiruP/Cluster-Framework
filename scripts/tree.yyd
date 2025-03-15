@@ -295,69 +295,88 @@
 			|seq_template
 			+Player
 				+Sonic
-					+Idle
-						|seq_sonic_stand
-						+Cliff
-							|seq_sonic_cliff_front
-							|seq_sonic_cliff_back
-						+Wait
-							|seq_sonic_wait_leader
-							|seq_sonic_wait_partner
-						+Omochao
-							|seq_sonic_omochao
-							|seq_sonic_omochao_end
-						+Misc.
-							|seq_sonic_standby
-							|seq_sonic_land
-					+Turn
-						|seq_sonic_turn
-						|seq_sonic_turn_brake
-					+Run
-						|seq_sonic_run_1
-						|seq_sonic_run_2
-						|seq_sonic_run_3
-						|seq_sonic_run_4
-						|seq_sonic_run_5
-						|seq_sonic_run_6
-					+Look
-						|seq_sonic_look
-						|seq_sonic_look_end
-					+Crouch
-						|seq_sonic_crouch
-						|seq_sonic_crouch_end
-					+Spin Dash
-						|seq_sonic_spin_dash
-						|seq_sonic_spin_charge
-					|seq_sonic_roll
-					+Spin
-						|seq_sonic_spin_flight
-						|seq_sonic_spin_fall
-					+Brake
-						|seq_sonic_brake
-						|seq_sonic_brake_fast
-					|seq_sonic_hurt
-					|seq_sonic_death
-					|seq_sonic_push
-					+Ramp
-						|seq_sonic_ramp_flight
-						|seq_sonic_ramp_fall
-					+Spring
-						|seq_sonic_spring_flight
-						|seq_sonic_spring_fall
-					|seq_sonic_rail
-					|seq_sonic_breathe
-					+Goal
-					|seq_sonic_hammer
-					+Skid
-						|seq_sonic_somersault
-						|seq_sonic_skid
-						|seq_sonic_skid_end
-					|seq_sonic_insta
-					|seq_sonic_air_dash
-					+Stomp
-						|seq_sonic_stomp
-						|seq_sonic_stomp_land
-					|seq_sonic_peel_out
+					+Base
+						+Default
+							+Idle
+								|seq_sonic_stand
+								+Cliff
+									|seq_sonic_cliff_front
+									|seq_sonic_cliff_back
+								+Wait
+									|seq_sonic_wait_leader
+									|seq_sonic_wait_partner
+								+Omochao
+									|seq_sonic_omochao
+									|seq_sonic_omochao_end
+								+Misc.
+									|seq_sonic_standby
+									|seq_sonic_land
+							+Turn
+								|seq_sonic_turn
+								|seq_sonic_turn_brake
+							+Run
+								|seq_sonic_run_1
+								|seq_sonic_run_2
+								|seq_sonic_run_3
+								|seq_sonic_run_4
+								|seq_sonic_run_5
+								|seq_sonic_run_6
+							+Look
+								|seq_sonic_look
+								|seq_sonic_look_end
+							+Crouch
+								|seq_sonic_crouch
+								|seq_sonic_crouch_end
+							+Spin Dash
+								|seq_sonic_spin_dash
+								|seq_sonic_spin_charge
+							|seq_sonic_roll
+							+Spin
+								|seq_sonic_spin_flight
+								|seq_sonic_spin_fall
+							+Brake
+								|seq_sonic_brake
+								|seq_sonic_brake_fast
+							|seq_sonic_hurt
+							|seq_sonic_death
+							|seq_sonic_push
+							+Ramp
+								|seq_sonic_ramp_flight
+								|seq_sonic_ramp_fall
+							+Spring
+								|seq_sonic_spring_flight
+								|seq_sonic_spring_fall
+							|seq_sonic_rail
+							|seq_sonic_breathe
+							+Goal
+							|seq_sonic_hammer
+							+Skid
+								|seq_sonic_somersault
+								|seq_sonic_skid
+								|seq_sonic_skid_end
+							|seq_sonic_insta
+							|seq_sonic_air_dash
+							+Stomp
+								|seq_sonic_stomp
+								|seq_sonic_stomp_land
+							|seq_sonic_peel_out
+						+Tag
+							|seq_sonic_tag_stand
+							|seq_sonic_tag_turn
+							+Run
+								|seq_sonic_tag_run_1
+								|seq_sonic_tag_run_2
+								|seq_sonic_tag_run_3
+							+Look
+								|seq_sonic_tag_look
+								|seq_sonic_tag_look_end
+							+Crouch
+								|seq_sonic_tag_crouch
+								|seq_sonic_tag_crouch_end
+							|seq_sonic_tag_brake
+							+Spring
+								|seq_sonic_tag_spring_flight
+								|seq_sonic_tag_spring_fall
 				+Classic
 					+Idle
 						|seq_classic_stand
@@ -628,9 +647,7 @@
 			|player_get_angle
 			|player_get_cliff
 			|player_get_input
-			|player_get_animation
-			|player_get_animation_speed
-			|player_get_animation_variant
+			|player_get_animation_sequence
 			|player_get_item
 		+Setters
 			|player_set_state
@@ -642,6 +659,8 @@
 			|player_set_device
 			|player_set_input
 			|player_set_animation
+			|player_set_animation_variant
+			|player_set_animation_speed
 			|player_set_damage
 			|player_reset_input
 			|player_reset_air

@@ -1,28 +1,38 @@
-/// animation_get(character, animation, variant)
-/// @desc Returns a sequence from the animation grid.
+/// animation_get(character, form, variant, animation)
+/// @desc Returns a sequence from the animation controller.
 /// @param {int} character
-/// @param {string} animation
+/// @param {int} form
 /// @param {int} variant
+/// @param {string} animation
 /// @returns {script}
 
 var _character; _character = argument0;
-var _animation; _animation = argument1;
+var _form; _form = argument1;
 var _variant; _variant = argument2;
+var _animation; _animation = argument3;
 
 with (ctrl_animation)
 {
-    var grid_width; grid_width = ds_grid_width(animation_grid) - 1;
-    var grid_height; grid_height = ds_grid_height(animation_grid) - 1;
-    var grid_x; grid_x = 2;
-    var grid_y; grid_y = 0;
-
-    if (ds_grid_value_exists(animation_grid, 0, 0, grid_width, grid_height, _character)) grid_y = ds_grid_value_y(animation_grid, 0, 0, grid_width, grid_height, _character);
-
-    if (ds_grid_value_exists(animation_grid, 0, grid_y, grid_width, grid_height, _animation))
+    // Evaluate all characters:
+    for ({var i; i = min(_character, ds_list_size(animation_list) - 1)}; i > -1;  i -= 1)
     {
-        grid_y = ds_grid_value_y(animation_grid, 0, grid_y, grid_width, grid_height, _animation);
-        if (ds_grid_get(animation_grid, _variant + 2, grid_y)!= 0) grid_x = _variant + 2;
-    }
+        var form_list; form_list = ds_list_find_value(animation_list, i);
 
-    return ds_grid_get(animation_grid, grid_x, grid_y);
+        // Abort if the character has no forms:
+        if (form_list == 0) continue;
+        else
+        {
+            // Evaluate all forms:
+            for ({var j; j = min(_form, ds_list_size(form_list) - 1)}; j > -1; j -= 1)
+            {
+                var variant_list; variant_list = ds_list_find_value(form_list, j);
+                var animation_map; animation_map = ds_list_find_value(variant_list, min(_variant, ds_list_size(variant_list) - 1));
+                var animation_sequence; animation_sequence = ds_map_get(animation_map, _animation);
+
+                if (!is_undefined(animation_sequence)) return animation_sequence;
+            }
+        }
+    }
 }
+
+return seq_sonic_stand;

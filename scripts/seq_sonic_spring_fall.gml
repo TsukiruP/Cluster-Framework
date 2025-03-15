@@ -25,4 +25,4 @@ else if (sequence_position(12)) image_index = 9;
 else if (sequence_position(15)) image_index = 10;
 else if (sequence_position(18)) image_index = 11;
 else if (sequence_position(21)) image_index = 12;
-else if (sequence_position(23)) sequence_moment = 16;
+else if (sequence_position(23)) sequence_moment = 15;

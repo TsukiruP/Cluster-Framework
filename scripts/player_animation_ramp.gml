@@ -9,5 +9,6 @@ switch (character_index)
         break;
 
     default:
-        player_set_animation(pick(y_speed < 0, "ramp_fall", "ramp_flight"))
+        if (tag_state == 1) player_animation_spring();
+        else player_set_animation(pick(y_speed < 0, "ramp_fall", "ramp_flight"));
 }

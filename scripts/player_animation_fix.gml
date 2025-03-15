@@ -20,5 +20,18 @@ switch (character_index)
 
         // Brake:
         if (animation_current == "brake_fast") player_set_animation("brake");
+
+        // Drown:
+        if (drown && animation_current == "death") player_set_animation("drown");
         break;
+
+    default:
+        if (tag_state == 1)
+        {
+            // Turn:
+            if (animation_current == "turn_brake") player_set_animation("turn");
+
+            // Brake:
+            if (animation_current == "brake_fast") player_set_animation("brake");
+        }
 }
