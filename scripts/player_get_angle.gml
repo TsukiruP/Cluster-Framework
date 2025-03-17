@@ -38,10 +38,10 @@ if (kind == SHP_CUSTOM)
     var left; left = false;
     var right; right = false;
 
-    /* AUTHOR NOTE: the height used to push the sensors down is dependent on that used to record instances local to the player in the "player_get_stage_objects" function.
-    Currently, the maximum height sits at triple the player's vertical radius, plus 1 (same as SonicForGMS.) The sensors initially set at the player's feet and then get pushed down
+    /* AUTHOR NOTE: the height used to push the sensors down is dependent on that used to record instances local to the player.
+    Currently, the maximum height sits at triple the player's vertical radius, plus 1 (same as SonicForGMS.) The sensors are initially set at the player's feet and then get pushed down
     a number of times equal to double the player's vertical radius, plus 1.
-    If you want to change the height at which the sensors are pushed, you must make sure it matches that in the "player_get_stage_objects" function. */
+    If you want to change the height at which the sensors are pushed, you must make sure it matches that in the `player_get_stage_objects` function. */
 
     // Push sensors downward until they have found the solid:
     repeat (height)
@@ -104,12 +104,13 @@ else if (!(kind == SHP_RECTANGLE && normal == -1)) // Ignore for flat rectangles
         }
     }
 
-    // Return solid's angle if it's hard coded:
+    // Return the solid's angle if it's hard-coded:
     if (normal != -1) return normal;
 
-    // Calculate based off shape:
+    // Calculate based on shape:
     if (kind == SHP_RIGHT_TRIANGLE)
     {
+        // Get the angle of the hypotenuse:
         x1 = left_side;
         y1 = bottom_side;
         x2 = right_side;
@@ -127,7 +128,6 @@ else if (!(kind == SHP_RECTANGLE && normal == -1)) // Ignore for flat rectangles
             y2 = bottom_side;
         }
 
-        // Return hypotenuse:
         return (point_direction(x1, y1, x2, y2) div 1);
     }
     else
@@ -139,11 +139,11 @@ else if (!(kind == SHP_RECTANGLE && normal == -1)) // Ignore for flat rectangles
         if (kind == SHP_QUARTER_ELLIPSE ^^ yscale == 1) y1 = top_side;
         else y1 = bottom_side;
 
-        // Player's position clamped to the ellipse:
+        // Clamp the player's position to the ellipse/pipe:
         x2 = clamp(x, left_side, right_side);
         y2 = clamp(y, top_side, bottom_side);
         
-        // Direction from the player to the ellipse/pipe center:
+        // Get the direction from the player to the ellipse/pipe center:
         var dir; dir = point_direction(x1, y1, x2, y2);
         
         if (kind == SHP_QUARTER_ELLIPSE) dir = point_direction(x2, y2, x1, y1);
