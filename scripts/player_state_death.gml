@@ -21,7 +21,7 @@ switch (_phase)
         x += dsin(gravity_direction) * y_speed;
         y += dcos(gravity_direction) * y_speed;
 
-        y_speed += gravity_force;
+        y_speed += gravity_force_temp;
 
         if (death_alarm > 0)
         {

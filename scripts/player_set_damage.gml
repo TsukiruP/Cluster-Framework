@@ -23,8 +23,8 @@ if (damage_inst == id || (stage_get_rings() == 0 && status_shield == 0 && !input
 }
 else
 {
-    x_speed = 2 * hurt_direction;
-    y_speed = -4;
+    x_speed = pick(underwater, 2, 1) * hurt_direction;
+    y_speed = pick(underwater, -4, -2);
     status_invin = INVIN_HURT;
     player_set_state(player_state_hurt);
 
@@ -45,10 +45,4 @@ else if ((!input_cpu && shield_inst != noone) || input_cpu || state_current == p
     if (damage_inst.object_index == obj_spike) audio_play_sfx("snd_spike", true);
     else audio_play_sfx("snd_hurt", true);
     if (!input_cpu) audio_stop_drown();
-}
-
-if (underwater)
-{
-    x_speed /= 2;
-    y_speed /= 2;
 }

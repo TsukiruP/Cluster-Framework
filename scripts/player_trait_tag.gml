@@ -136,8 +136,8 @@ if (partner_inst.state_current == player_state_interlink)
 
         if (tag_reset)
         {
+            player_set_state(player_state_air);
             player_reset_tag();
-            player_cpu_respawn();
         }
     }
 }

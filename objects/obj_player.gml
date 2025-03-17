@@ -21,7 +21,7 @@ air_friction = 0.96875;
 
 y_speed = 0;
 gravity_force = 0.21875;
-gravity_force_temp = 0.21875;
+gravity_force_temp = gravity_force;
 
 state_current = player_state_standby;
 state_previous = state_current;
