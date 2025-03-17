@@ -31,7 +31,7 @@ switch (_phase)
         }
 
         if (player_routine_skill()) return true;
-        if (player_get_input(INP_JUMP, CHECK_PRESSED)) return player_set_state(player_state_spin_dash);
+        if (!tag_leader && player_get_input(INP_JUMP, CHECK_PRESSED)) return player_set_state(player_state_spin_dash);
         break;
 
     case STATE_FINISH:

@@ -11,10 +11,10 @@ switch (_phase)
         wait_alarm = 360;
         player_get_cliff();
 
-        if (cliff_direction == 0)
+        if (cliff_direction == 0 || tag_leader)
         {
-            if (animation_current != "standby" && animation_current != "land" && animation_current != "look" && animation_current != "look_end" &&
-                animation_current != "crouch_end" && animation_current != "omochao" && animation_current != "omochao_end") player_set_animation("stand");
+            if ((animation_current != "standby" && animation_current != "land" && animation_current != "look" && animation_current != "look_end" &&
+                animation_current != "crouch_end" && animation_current != "omochao" && animation_current != "omochao_end") || tag_leader) player_set_animation("stand");
         }
         else
         {
@@ -58,7 +58,7 @@ switch (_phase)
         if (player_routine_skill()) return true;
         if (player_routine_jump()) return true;
 
-        if (!game_ispaused(ctrl_text) && on_ground && input_allow && animation_current == "stand")
+        if (!game_ispaused(ctrl_text) && on_ground && !tag_leader && input_allow && animation_current == "stand")
         {
             if (wait_alarm > 0)
             {

@@ -4,7 +4,6 @@
 
 switch (character_index)
 {
-    // Classic:
     case CHAR_CLASSIC:
         // Stand:
         if (animation_current == "land" || animation_current == "omochao" || animation_current == "omochao_end" || animation_current == "look_end" || animation_current == "crouch_end")
@@ -26,8 +25,11 @@ switch (character_index)
         break;
 
     default:
-        if (tag_state == 1)
+        if (tag_leader)
         {
+            // Stand:
+            if (animation_current == "standby" || animation_current == "land") player_set_animation("stand");
+
             // Turn:
             if (animation_current == "turn_brake") player_set_animation("turn");
 

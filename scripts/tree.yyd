@@ -478,6 +478,9 @@
 						|seq_shockwave
 						|seq_reticle
 						|seq_reticle_colors
+					+Tag
+						|seq_tag_call
+						|seq_tag_catch
 				+Shields
 					|seq_shield_insta
 					|seq_shield_basic
@@ -521,6 +524,7 @@
 			|cosine_wave
 			|sine_wave_range
 			|roundto_step
+			|move_bezier
 		+Draw
 			|draw_hitbox
 			|draw_sprite_tiled_extra_OLD
@@ -592,6 +596,7 @@
 				|player_state_rail
 				|player_state_bound
 				|player_state_hammer
+				|player_state_interlink
 			+Sonic
 				|sonic_state_skid
 				|sonic_state_drop_dash
@@ -616,6 +621,7 @@
 			|sonic_routine_homing
 		+Traits
 			|player_trait_swap
+			|player_trait_tag
 			|sonic_trait_reticle
 			|classic_trait_clock_up
 		+Reactions
@@ -662,12 +668,13 @@
 			|player_set_animation_variant
 			|player_set_animation_speed
 			|player_set_damage
-			|player_reset_input
 			|player_reset_air
-			|player_reset_spring
-			|player_reset_skill
+			|player_reset_tag
 			|player_reset_status
+			|player_reset_skill
 			|player_reset_breath
+			|player_reset_spring
+			|player_reset_input
 		+Misc.
 			|player_react
 			|player_inbounds

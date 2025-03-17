@@ -84,6 +84,7 @@
 			|eff_debuff
 			|eff_shield
 			|eff_swap
+			|eff_tag
 			|eff_reticle
 			|eff_waterfall
 		|obj_enemy_debris

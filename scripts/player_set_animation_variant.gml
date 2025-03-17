@@ -4,7 +4,7 @@
 
 animation_variant = VARIANT_DEFAULT;
 
-if (tag_state == 1)
+if (tag_leader)
 {
     switch (animation_current)
     {

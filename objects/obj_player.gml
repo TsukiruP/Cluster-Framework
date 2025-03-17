@@ -8,7 +8,6 @@ applies_to=self
 
 image_speed = 0;
 gravity_direction = 0;
-
 player_index = 0;
 
 top_speed = 6;
@@ -46,8 +45,6 @@ roll_rebounce = false;
 
 death_alarm = 0;
 death_inst = noone;
-
-score_multiplier = 0;
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -87,14 +84,14 @@ applies_to=self
 character_index = CHAR_SONIC;
 form_index = FORM_BASE;
 
-tag_state = 0;
-
 swap_alarm = 0;
+tag_leader = false;
+tag_leader_time = 0;
+player_reset_tag();
 player_reset_status();
 
 air_dash_allow = true;
 drop_dash_alarm = 20;
-homing_allow = false;
 homing_inst = noone;
 homing_range = 128;
 homing_speed = 12;
@@ -426,6 +423,7 @@ applies_to=self
 if (game_ispaused()) exit;
 
 player_trait_swap();
+player_trait_tag();
 
 switch (character_index)
 {
@@ -758,7 +756,7 @@ switch (animation_current)
         if (on_ground) image_angle = angle;
         else image_angle = approach_angle(image_angle, gravity_direction, 4);
 
-        if (character_index == CHAR_CLASSIC || tag_state == 1)
+        if (character_index == CHAR_CLASSIC || tag_leader)
         {
             if (on_ground)
             {

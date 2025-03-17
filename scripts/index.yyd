@@ -545,4 +545,10 @@ seq_sonic_tag_crouch_end
 seq_sonic_tag_brake
 seq_sonic_tag_spring_flight
 seq_sonic_tag_spring_fall
+player_state_interlink
+player_trait_tag
+move_bezier
 player_reset_breath
+player_reset_tag
+seq_tag_call
+seq_tag_catch

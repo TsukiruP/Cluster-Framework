@@ -60,7 +60,7 @@ spr_classic_push
 spr_spin_dash
 spr_spin_charge
 spr_brake
-spr_tag_call
+spr_tag
 spr_title_card_load
 spr_debuff
 spr_shield_basic

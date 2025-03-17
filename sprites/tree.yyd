@@ -66,8 +66,8 @@
 					+Spin Dash
 						|spr_sonic_spin_dash
 						|spr_sonic_spin_charge
+					|spr_sonic_roll
 					+Spin
-						|spr_sonic_roll
 						|spr_sonic_spin_flight
 						|spr_sonic_spin_fall
 					+Brake
@@ -307,7 +307,7 @@
 			|spr_spin_charge
 			|spr_brake
 			|spr_swap
-			|spr_tag_call
+			|spr_tag
 			|spr_debuff
 			|spr_rail_spark
 			+Sonic
