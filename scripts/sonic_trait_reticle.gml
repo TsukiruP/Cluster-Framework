@@ -5,8 +5,8 @@
 if (state_current == sonic_state_homing) exit;
 
 var homing_inst_temp; homing_inst_temp = homing_inst;
+var homing_allow; homing_allow = false;
 
-homing_allow = false;
 homing_inst = noone;
 
 switch (state_current)
