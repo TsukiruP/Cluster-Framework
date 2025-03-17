@@ -18,7 +18,6 @@ applies_to=self
 /// Animation
 
 event_inherited();
-
 homing_inst = player_inst.homing_inst;
 if (!instance_exists(homing_inst)) instance_destroy();
 #define Draw_0

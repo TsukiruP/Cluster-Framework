@@ -29,7 +29,6 @@ applies_to=self
 /// Animation
 
 event_inherited();
-
 if (player_inst.waterfall_draw != true) instance_destroy();
 #define Draw_0
 /*"/*'/**//* YYD ACTION
@@ -39,7 +38,4 @@ applies_to=self
 */
 /// Draw Splash
 
-if (sprite_exists(sprite_index))
-{
-    draw_sprite_ext(sprite_index, -1, x, y - 16, 1, 1, 0, c_white, 1);
-}
+if (sprite_exists(sprite_index)) draw_sprite_ext(sprite_index, -1, x, y - 16, 1, 1, 0, c_white, 1);

@@ -17,7 +17,6 @@ applies_to=self
 /// Attach
 
 event_inherited();
-
 if (instance_exists(player_inst))
 {
     x = floor(player_inst.x);

@@ -17,7 +17,6 @@ applies_to=self
 /// Animation
 
 event_inherited();
-
 if (player_inst.swap_alarm == 0) instance_destroy();
 #define Draw_0
 /*"/*'/**//* YYD ACTION

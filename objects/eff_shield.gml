@@ -48,9 +48,9 @@ if (player_inst.status_invin != INVIN_BUFF)
 else if (sequence_index != seq_shield_invin) sequence_set(seq_shield_invin);
 
 if (shield_reset != false) shield_reset = false;
-if (player_inst.status_shield == SHIELD_NONE && player_inst.status_invin != INVIN_BUFF) instance_destroy();
-event_inherited();
 
+event_inherited();
+if (player_inst.status_shield == SHIELD_NONE && player_inst.status_invin != INVIN_BUFF) instance_destroy();
 shield_advance = (player_inst.status_shield == SHIELD_BASIC || player_inst.status_shield == SHIELD_MAGNETIC || player_inst.status_invin == INVIN_BUFF);
 
 if (!game_ispaused(mnu_pause) && ((player_inst.status_shield == SHIELD_BUBBLE && sequence_index == seq_shield_bubble) || (game_get_config("advance_flicker") && shield_advance)))

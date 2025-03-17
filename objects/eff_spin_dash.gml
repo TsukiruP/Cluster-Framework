@@ -12,8 +12,8 @@ if (floor(player_inst.spin_dash_charge) > 0)
 }
 else if (sequence_index != seq_spin_dash) sequence_set(seq_spin_dash);
 
-if (player_inst.state_current != player_state_spin_dash) instance_destroy();
 event_inherited();
+if (player_inst.state_current != player_state_spin_dash) instance_destroy();
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1

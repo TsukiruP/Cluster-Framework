@@ -49,7 +49,6 @@ applies_to=self
 /// Movement
 
 event_inherited();
-
 if (game_ispaused() || !dropped) exit;
 if (!in_view(self, 64)) instance_destroy();
 

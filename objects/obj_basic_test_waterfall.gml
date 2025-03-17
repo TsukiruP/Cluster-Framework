@@ -31,4 +31,3 @@ applies_to=self
 
 draw_self();
 if (splash) draw_sprite(spr_splash_7, time_sync(game_get_time(), 2, sprite_get_number(spr_splash_7)), x, y + 16);
-event_inherited();
