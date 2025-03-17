@@ -32,6 +32,9 @@ Trails
 Pixelated Pope
 Arc code for Tag Actions
 
+YellowAfterlife
+Missile code used for Jawz
+
 David Strachan
 Easing and Tweening Scripts in GameMaker
 
