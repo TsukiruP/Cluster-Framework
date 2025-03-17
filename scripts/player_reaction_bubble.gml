@@ -15,8 +15,7 @@ if (_hitbox & HIT_INTERACT)
         player_set_state(player_state_air);
         x_speed = 0;
         y_speed = 0;
-        air_remaining = 30;
-        air_alarm = 60;
+        player_reset_breath();
         audio_play_sfx("snd_bubble");
         if (!input_cpu) audio_stop_drown();
         instance_destroy_id(_obj);

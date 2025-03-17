@@ -150,10 +150,7 @@ applies_to=self
 
 surface_alarm = 0;
 underwater = false;
-air_remaining = 30;
-air_alarm = 60;
-drown_index = 0;
-drown = false;
+player_reset_breath();
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -573,8 +570,7 @@ if (game_ispaused()) exit;
 
 if (state_current == player_state_death || (status_shield == SHIELD_BUBBLE && underwater) || instance_exists(ctrl_tally))
 {
-    air_remaining = 30;
-    air_alarm = 60;
+    player_reset_breath();
     if (state_current != player_state_death && !input_cpu) audio_stop_drown();
 }
 #define Step_1
@@ -644,13 +640,13 @@ if (game_ispaused()) exit;
 
 if (state_current != player_state_death && status_shield != SHIELD_BUBBLE && underwater && !instance_exists(ctrl_tally))
 {
-    if (air_alarm > 0)
+    if (breath_alarm > 0)
     {
-        air_alarm -= 1;
+        breath_alarm -= 1;
 
-        if (air_alarm == 0)
+        if (breath_alarm == 0)
         {
-            switch (air_remaining)
+            switch (breath_remaining)
             {
                 case 25:
                 case 20:
@@ -676,8 +672,8 @@ if (state_current != player_state_death && status_shield != SHIELD_BUBBLE && und
                     break;
             }
 
-            air_remaining -= 1;
-            air_alarm = 60;
+            breath_remaining -= 1;
+            breath_alarm = 60;
         }
     }
 }

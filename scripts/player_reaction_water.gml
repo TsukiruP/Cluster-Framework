@@ -22,9 +22,8 @@ if (_hitbox & HIT_MASK)
         x_speed *= 0.50;
         y_speed *= 0.25;
         underwater = true;
-        air_remaining = 30;
-        air_alarm = 60;
         player_set_physics();
+        player_reset_breath();
         if (status_shield == SHIELD_FIRE || status_shield == SHIELD_LIGHTNING) status_shield = 0;
 
         if (!water_previous)
@@ -37,9 +36,8 @@ if (_hitbox & HIT_MASK)
     {
         y_speed = max(y_speed * 2, -16);
         underwater = false;
-        air_remaining = 30;
-        air_alarm = 60;
         player_set_physics();
+        player_reset_breath();
 
         if (water_previous)
         {

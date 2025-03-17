@@ -667,6 +667,7 @@
 			|player_reset_spring
 			|player_reset_skill
 			|player_reset_status
+			|player_reset_breath
 		+Misc.
 			|player_react
 			|player_inbounds
