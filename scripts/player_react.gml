@@ -15,7 +15,6 @@ var reaction_index; reaction_index = _obj.reaction_index;
 
 if (script_exists(reaction_index))
 {
-    var x_speed_temp; x_speed_temp = x_speed;
     var y_speed_temp; y_speed_temp = y_speed;
 
     if (object_is_ancestor(_obj.object_index, par_solid))
@@ -34,7 +33,7 @@ if (script_exists(reaction_index))
     if (ds_list_find_index(solid_list, _obj) != -1)
     {
         if (!instance_exists(_obj)) return true;
-        if (x_speed_temp != x_speed || y_speed_temp != y_speed || !_obj.collision) return true;
+        if (y_speed_temp != y_speed || !_obj.collision) return true;
     }
 
     return state_changed;

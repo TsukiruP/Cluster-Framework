@@ -12,9 +12,8 @@ var _side; _side = argument2;
 if ((_hitbox & HIT_SOLID) && _side == ANGLE_UP)
 {
     image_xscale = _obj.image_xscale;
-    x_speed = _obj.force * image_xscale;
+    x_speed = pick(abs(x_speed) < _obj.force, x_speed, _obj.force * image_xscale);
     input_lock_alarm = 16;
-    if (ground_inst != _obj) player_set_ground(_obj);
 
     if (_hitbox & HIT_RADII)
     {
