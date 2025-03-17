@@ -2,14 +2,15 @@
 /// @desc Do you have the courage to ride with the devil?
 /// @returns {void}
 
-if (character_index == CHAR_CLASSIC || input_cpu || !instance_exists(stage_get_player(1)))
+var partner_inst; partner_inst = stage_get_player(1);
+
+if (character_index == CHAR_CLASSIC || input_cpu || !instance_exists(partner_inst))
 {
     player_reset_tag(true);
     exit;
 }
 
 var tag_allow; tag_allow = false;
-var partner_inst; partner_inst = stage_get_player(1);
 
 if (instance_exists(partner_inst))
 {
@@ -56,8 +57,8 @@ if (tag_allow)
                     {
                         if (!in_view(self))
                         {
-                            if (x < other.x) x = view_xview[view_current] - 20;
-                            else if (x > other.x) x = view_xview[view_current] + 20;
+                            if (x < other.x) x = view_xview[view_current] - 32;
+                            else if (x > other.x) x = view_xview[view_current] + screen_get_width() + 32;
 
                             y = other.y;
                         }
@@ -129,7 +130,6 @@ if (partner_inst.state_current == player_state_interlink)
                 image_xscale = sign(other.image_xscale);
                 x = tag_leader_x;
                 y = tag_leader_y;
-
                 if (!tag_allow) tag_reset = true;
                 break;
         }

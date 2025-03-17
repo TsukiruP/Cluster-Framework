@@ -2,11 +2,9 @@
 /// @desc Reorders the player list. Based off Mania and Trible Trouble 16-bit.
 /// @returns {void}
 
-if (!game_get_save("swap") || state_current == player_state_hurt || state_current == player_state_death || !instance_exists(stage_get_player(1))) exit;
-
 var partner_inst; partner_inst = stage_get_player(1);
 
-if (partner_inst.input_cpu_gamepad_alarm > 0) exit;
+if (state_current == player_state_hurt || state_current == player_state_death || !instance_exists(partner_inst)) exit;
 
 if (player_get_input(INP_SWAP, CHECK_PRESSED))
 {
@@ -19,7 +17,7 @@ if (player_get_input(INP_SWAP, CHECK_PRESSED))
             player_reset_tag();
         }
     }
-    else
+    else if (game_get_save("swap") && partner_inst.input_cpu_gamepad_alarm == 0)
     {
         if (in_view(partner_inst))
         {
@@ -37,7 +35,7 @@ if (player_get_input(INP_SWAP, CHECK_PRESSED))
                     player_reset_input();
                     with (instance_create(x, y, eff_swap)) player_inst = other.id;
                 }
-    
+
                 player_reset_status();
                 player_reset_input();
                 classic_trait_clock_up(true);
