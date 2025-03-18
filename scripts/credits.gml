@@ -9,7 +9,10 @@ SAT-R
 Sonic Advance 2 Decompilation
 
 CBTBSD
+Sonic Advance Decompulation
 Sonic Advance Revamped
+Buzzer
+Boost Mode
 
 VectorSatyr (SonicForGMS)
 States machine
@@ -116,6 +119,7 @@ Rising Hopper ProgriseKey Realize Ver.
 RIPPED SOUNDS
 Tsukiru
 Sonic Heroes
+Sonic Advance 3 Tag Sounds
 
 PkR
 Sonic Adventure Sound Overhaul
