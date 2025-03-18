@@ -188,6 +188,8 @@
 							|debug_option_player0
 							|debug_option_player1
 							|debug_option_swap
+							|debug_option_tag
+							|debug_option_boost
 						+Sonic
 							|debug_menu_sonic
 							+Options

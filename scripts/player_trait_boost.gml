@@ -46,7 +46,7 @@ if (boost_mode)
     }
     else if (on_ground) boost_speed = boost_threshold[boost_index];
 }
-else if (on_ground && abs(x_speed) >= top_speed && status_speed != SPEED_SLOW)
+else if (game_get_save("boost") && on_ground && abs(x_speed) >= top_speed && status_speed != SPEED_SLOW)
 {
     if (input_x_direction != 0 && !input_alarm) boost_speed += acceleration;
 

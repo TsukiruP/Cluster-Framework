@@ -553,3 +553,6 @@ player_reset_tag
 seq_tag_call
 seq_tag_catch
 player_trait_boost
+debug_option_tag
+debug_option_boost
+player_afterimage_create

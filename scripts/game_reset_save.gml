@@ -12,6 +12,8 @@ game_save_reset_character();
 game_save_write_character();
 
 game_set_save("swap", true);
+game_set_save("tag", true);
+game_set_save("boost", true);
 
 game_save_reset_skill(CHAR_SONIC);
 game_save_write_skill(CHAR_SONIC);
