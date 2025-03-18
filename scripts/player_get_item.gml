@@ -47,6 +47,7 @@ switch (_item)
 
     case ITEM_SPEED:
         player_set_status(STATUS_SPEED, SPEED_UP);
+        player_reset_physics();
         break;
 
     case ITEM_MINE:
@@ -55,7 +56,11 @@ switch (_item)
         break;
 
     case ITEM_SLOW:
-        if (status_invin < INVIN_BUFF) player_set_status(STATUS_SPEED, SPEED_SLOW);
+        if (status_invin < INVIN_BUFF)
+        {
+            player_set_status(STATUS_SPEED, SPEED_SLOW);
+            player_reset_physics();
+        }
         break;
 
     case ITEM_PANIC:

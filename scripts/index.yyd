@@ -23,7 +23,7 @@ player_state_run
 player_state_brake
 angle_wrap
 string_input
-player_set_physics
+player_reset_physics
 player_reaction_item_box
 player_state_air
 sequence_update

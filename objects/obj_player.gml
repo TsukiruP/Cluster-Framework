@@ -8,40 +8,34 @@ applies_to=self
 
 image_speed = 0;
 gravity_direction = 0;
+
 player_index = 0;
-
-top_speed = 6;
-max_speed = 16;
-
-x_speed = 0;
-acceleration = 0.046875;
-deceleration = 0.5;
-slope_friction = 0.125;
-air_friction = 0.96875;
-
-y_speed = 0;
-gravity_force = 0.21875;
-gravity_force_temp = gravity_force;
+character_index = CHAR_SONIC;
+form_index = FORM_BASE;
 
 state_current = player_state_standby;
 state_previous = state_current;
 state_changed = false;
+
+surface_alarm = 0;
+underwater = false;
+player_reset_breath();
+
+max_speed = 16;
+x_speed = 0;
+y_speed = 0;
+acceleration_temp = 0.046875;
+gravity_force_temp = 0.21875;
+slope_friction = 0.125;
+air_friction = 0.96875;
 
 wait_alarm = 360;
 hint_allow = true;
 
 jump_cap = true;
 jump_aux = false;
-jump_force = 6.5;
-jump_release = -4;
 jump_uncurl = UNCURL_JUMP;
 jump_bound = BOUND_NONE;
-
-roll_deceleration = 0.125;
-roll_friction = 0.0234375;
-roll_friction_up = 0.078125;
-roll_friction_down = 0.3125;
-roll_rebounce = false;
 
 death_alarm = 0;
 death_inst = noone;
@@ -81,14 +75,12 @@ applies_to=self
 */
 /// Character Initialization
 
-character_index = CHAR_SONIC;
-form_index = FORM_BASE;
-
 swap_alarm = 0;
 tag_leader = false;
 tag_leader_time = 0;
 player_reset_tag();
 player_reset_status();
+player_reset_physics();
 
 air_dash_allow = true;
 drop_dash_alarm = 20;
@@ -138,16 +130,6 @@ spring_force = 0;
 spring_angle = 0;
 spring_alarm = 0;
 rail_sfx = noone;
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Water Initialization
-
-surface_alarm = 0;
-underwater = false;
-player_reset_breath();
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603

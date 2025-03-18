@@ -22,7 +22,7 @@ if (instance_exists(player_inst))
         underwater = player_inst.underwater;
         player_set_state(player_state_air);
         player_set_animation("roll");
-        player_set_physics();
+        player_reset_physics();
         player_reset_breath();
     }
 }
