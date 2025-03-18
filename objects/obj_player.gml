@@ -505,7 +505,7 @@ if (game_get_config("misc_reticle") > 0 && instance_exists(homing_inst) && !inst
 }
 
 // Afterimage:
-if (status_speed == SPEED_UP) afterimage_draw = true;
+if (status_speed == SPEED_UP || boost_mode) afterimage_draw = true;
 else
 {
     afterimage_draw = false;
@@ -769,16 +769,7 @@ if (afterimage_draw)
         {
             if (instance_number(eff_afterimage) < 3)
             {
-                with (instance_create(floor(x), floor(y), eff_afterimage))
-                {
-                    sprite_index = other.sprite_index;
-                    image_index = other.image_index;
-                    image_xscale = other.image_xscale;
-                    image_angle = other.image_angle;
-                    image_alpha = 0.9;
-                    depth = other.depth + 1;
-                }
-
+                player_afterimage_create();
                 afterimage_alarm = 6;
             }
         }

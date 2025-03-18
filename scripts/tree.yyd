@@ -689,6 +689,7 @@
 			|player_surface_splash
 			|player_cpu_respawn
 			|player_add_rings
+			|player_afterimage_create
 	+Props
 		|effect_create
 		|bullet_create
