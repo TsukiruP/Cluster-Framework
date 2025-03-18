@@ -13,6 +13,15 @@ player_index = 0;
 character_index = CHAR_SONIC;
 form_index = FORM_BASE;
 
+max_speed = 16;
+x_speed = 0;
+y_speed = 0;
+top_speed_temp = 6;
+acceleration_temp = 0.046875;
+gravity_force_temp = 0.21875;
+slope_friction = 0.125;
+air_friction = 0.96875;
+
 state_current = player_state_standby;
 state_previous = state_current;
 state_changed = false;
@@ -20,14 +29,6 @@ state_changed = false;
 surface_alarm = 0;
 underwater = false;
 player_reset_breath();
-
-max_speed = 16;
-x_speed = 0;
-y_speed = 0;
-acceleration_temp = 0.046875;
-gravity_force_temp = 0.21875;
-slope_friction = 0.125;
-air_friction = 0.96875;
 
 wait_alarm = 360;
 hint_allow = true;
@@ -78,6 +79,8 @@ applies_to=self
 swap_alarm = 0;
 tag_leader = false;
 tag_leader_time = 0;
+boost_mode = false;
+boost_speed = 0;
 player_reset_tag();
 player_reset_status();
 player_reset_physics();
@@ -406,6 +409,7 @@ if (game_ispaused()) exit;
 
 player_trait_swap();
 player_trait_tag();
+player_trait_boost();
 
 switch (character_index)
 {

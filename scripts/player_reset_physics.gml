@@ -2,7 +2,7 @@
 /// @desc Resets the player's physics.
 /// @returns {void}
 
-top_speed = 6;
+top_speed = top_speed_temp;
 acceleration = acceleration_temp;
 deceleration = 0.5
 
@@ -31,14 +31,11 @@ if (underwater)
     jump_force -= 3;
     jump_release *= 0.5;
 }
-else
+else if (status_speed == SPEED_UP)
 {
-    if (status_speed == SPEED_UP)
-    {
-        top_speed *= 2;
-        acceleration *= 2;
+    top_speed *= 2;
+    acceleration *= 2;
 
-        roll_friction *= 2;
-    }
-    else if (status_speed == SPEED_SLOW) top_speed *= 0.75;
+    roll_friction *= 2;
 }
+else if (status_speed == SPEED_SLOW) top_speed *= 0.75;

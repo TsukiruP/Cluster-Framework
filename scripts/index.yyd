@@ -552,3 +552,4 @@ player_reset_breath
 player_reset_tag
 seq_tag_call
 seq_tag_catch
+player_trait_boost
