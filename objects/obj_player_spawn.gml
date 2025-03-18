@@ -28,7 +28,7 @@ for ({var i; i = 0}; i < PLAYER_COUNT; i += 1)
 
             if (i == 0)
             {
-                camera = instance_create(x, y, ctrl_camera);
+                var camera; camera = instance_create(x, y, ctrl_camera);
                 camera.focus_inst = stage_get_player(i);
             }
         }
