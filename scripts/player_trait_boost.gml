@@ -29,7 +29,7 @@ else if (status_speed = SPEED_UP)
 else if (status_speed == SPEED_SLOW) top_speed *= 0.75;
 
 // Increase acceleration:
-if (status_speed != SPEED_SLOW)
+if (boost_mode || status_speed != SPEED_SLOW)
 {
     acceleration += (2/256) * min(3, stage_get_rings() / 50);
     if (stage_get_rings() > 10) acceleration += (4 / 256);
@@ -48,7 +48,7 @@ if (boost_mode)
 }
 else if (game_get_save("boost") && on_ground && abs(x_speed) >= top_speed && status_speed != SPEED_SLOW)
 {
-    if (input_x_direction != 0 && !input_alarm) boost_speed += acceleration;
+    if (input_x_direction != 0 && input_allow) boost_speed += acceleration;
 
     if (boost_speed >= boost_threshold[boost_index])
     {
