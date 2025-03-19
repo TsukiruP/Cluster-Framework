@@ -60,7 +60,7 @@ switch (_phase)
         if (player_routine_skill()) return true;
         if (player_routine_jump()) return true;
 
-        if (x_speed != 0) player_brake_dust();
+        if (x_speed != 0) player_brake_create();
         break;
 
     case STATE_FINISH:

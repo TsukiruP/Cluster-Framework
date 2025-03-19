@@ -66,7 +66,7 @@ switch (_phase)
 
         if (animation_current == "skid")
         {
-            if (on_ground) player_brake_dust();
+            if (on_ground) player_brake_create();
 
             // Time out:
             if (animation_time >= 32)

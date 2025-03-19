@@ -29,15 +29,12 @@ switch (_phase)
 
                 if (on_ground)
                 {
-                    var sine; sine = dsin(mask_direction);
-                    var csine; csine = dcos(mask_direction);
-
                     x_speed = 0;
                     player_set_animation("stomp_land");
                     audio_play_sfx("snd_stomp_land", true);
                     audio_stop_sfx("snd_stomp");
 
-                    with (effect_create(x + (sine * y_radius), y + (csine * y_radius), seq_shockwave))
+                    with (player_ground_effect_create(seq_shockwave))
                     {
                         image_angle = angle_wrap(other.mask_direction - 90);
                         image_alpha = 0.5;

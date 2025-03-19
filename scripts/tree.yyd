@@ -685,10 +685,12 @@
 			|player_rotate_mask
 			|player_slope_friction
 			|player_ring_loss
-			|player_brake_dust
 			|player_surface_splash
 			|player_cpu_respawn
 			|player_add_rings
+		+Effects
+			|player_ground_effect_create
+			|player_brake_create
 			|player_afterimage_create
 	+Props
 		|effect_create
