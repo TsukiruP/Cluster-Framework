@@ -8,7 +8,6 @@ applies_to=self
 
 info_hide = false;
 info_index = 0;
-info_alpha = 1;
 #define Step_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -21,7 +20,7 @@ if (input_get_check(INP_ALT, CHECK_HELD) && input_get_check(INP_SELECT, CHECK_PR
 
 if (!game_get_debug()) exit;
 
-if (keyboard_check_pressed(vk_f1)) info_hide = !info_hide;
+if (instance_exists(stage_get_player(0)) && keyboard_check_pressed(vk_f1)) other.info_hide = !other.info_hide;
 if (keyboard_check_pressed(vk_f2)) room_speed = pick(room_speed == 60, 60, 30);
 
 if (keyboard_check_pressed(vk_f5))
@@ -54,22 +53,6 @@ with (obj_player)
     if (keyboard_check_pressed(ord('1'))) player_set_status(STATUS_SHIELD, wrap(status_shield + 1, SHIELD_NONE, SHIELD_LIGHTNING));
     if (keyboard_check_pressed(ord('2'))) player_set_status(STATUS_INVIN, INVIN_BUFF);
     if (keyboard_check_pressed(ord('3'))) player_set_status(STATUS_SPEED, SPEED_UP);
-}
-#define Step_2
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Alpha
-
-if (instance_exists(obj_player))
-{
-    if (obj_player.x < view_xview[view_current] + 125 && obj_player.y < view_yview[view_current] + 200 && view_yview[view_current] < obj_player.y - 50)
-    {
-        if (info_alpha > 0.3) info_alpha -= 1/16;
-    }
-    else if (info_alpha < 1) info_alpha += 1/16;
 }
 #define Draw_0
 /*"/*'/**//* YYD ACTION
@@ -136,10 +119,10 @@ if (!game_get_debug() || info_hide) exit;
 
 with (stage_get_player(0))
 {
-    var font_height; font_height = font_get_height(global.font_system);
+    var font_height; font_height = font_get_height(global.font_debug);
     var info_string; info_string = "";
-    var info_x; info_x = view_xview[view_current] + 10;
-    var info_y; info_y = view_yview[view_current] + screen_get_height() / 2;
+    var info_x; info_x = view_xview[view_current] + screen_get_width() - 10;
+    var info_y; info_y = view_yview[view_current] + 10;
 
     switch (other.info_index)
     {
@@ -178,9 +161,8 @@ with (stage_get_player(0))
 
         default:
             info_string =
-            "Position: " + string(floor(x)) + ", " + string(floor(y)) + "#" +
-            "Position Prev: " + string(floor(xprevious)) + ", " + string(floor(yprevious)) + "#" +
-            "Speed: " + string(floor(x_speed)) + ", " + string(floor(y_speed)) + "#" +
+            "X Speed: " + string(x_speed) + "#" +
+            "Y Speed: " + string(y_speed) + "#" +
             "State: " + script_name(state_current) + "#" +
             "State Prev: " + script_name(state_previous) + "#" +
             "Gravity: " + string(gravity_direction) + "#" +
@@ -191,12 +173,7 @@ with (stage_get_player(0))
             "Input Lock: " + string(input_lock_alarm);
     }
 
-    // Box:
-    draw_rect(info_x - 5, info_y - string_height(info_string) / 2 - 5, ceil((string_width(info_string) + 5) / 70) * 70 + 5, string_height(info_string) + 10, game_get_interface_color(), game_get_config("interface_alpha"));
-
-    // Info:
-    draw_set1(c_white, other.info_alpha);
-    draw_set2(fa_left, fa_center);
-    draw_text_ext(info_x, info_y, info_string, font_height, 215);
+    draw_set2(fa_right, fa_top);
+    draw_text(info_x, info_y, info_string);
     draw_reset();
 }

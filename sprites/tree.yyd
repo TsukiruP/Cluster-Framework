@@ -1,9 +1,9 @@
 +Masks Old
-	|spr_basic_test_mask_27
 	|spr_basic_test_mask_28
 	|spr_basic_test_mask_29
 +System
 	|fnt_system
+	|fnt_debug
 	|spr_transition_curtain
 	|spr_save_stars
 	+Title Card
