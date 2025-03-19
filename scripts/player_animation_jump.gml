@@ -12,14 +12,18 @@ switch (character_index)
         if (tag_leader) player_set_animation(pick(y_speed < 0, "spring_fall", "spring_flight"));
         else
         {
-            if (animation_current == "spin_flight" && y_speed > 0)
+            if ((animation_current == "spin_flight" || (jump_bound == BOUND_SONIC && animation_current == "roll")) && y_speed > 0)
             {
                 switch (jump_uncurl)
                 {
                     case UNCURL_BLOCKADE:
                         player_set_animation("spring_fall");
-                        break
-
+                        break;
+                    
+                    case UNCURL_BOUND:
+                        player_set_animation("spin_fall");
+                        break;
+                    
                     default:
                         var solid_inst; solid_inst = collision_box_vertical(x_radius, y_radius + 32, mask_direction, par_solid);
 

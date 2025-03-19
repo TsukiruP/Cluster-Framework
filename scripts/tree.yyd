@@ -649,6 +649,7 @@
 		+Effects
 			|player_ground_effect_create
 			|player_brake_create
+			|sonic_bound_create
 			|player_afterimage_create
 		+Trail
 			|player_trail_init

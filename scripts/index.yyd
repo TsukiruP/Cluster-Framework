@@ -557,3 +557,4 @@ debug_option_tag
 debug_option_boost
 player_afterimage_create
 player_ground_effect_create
+sonic_bound_create

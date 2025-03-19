@@ -10,7 +10,6 @@ switch (_phase)
     case STATE_START:
         x_speed = 0;
         y_speed = 8;
-        jump_bound = BOUND_SHIELD;
         player_set_animation("roll");
         audio_play_sfx("snd_shield_bubble_bound", true);
         with (shield_inst) event_user(0);
@@ -32,10 +31,11 @@ switch (_phase)
 
         if (on_ground)
         {
+            jump_bound = BOUND_SHIELD;
             animation_skip = true;
             audio_play_sfx("snd_shield_bubble_bound", true);
             with (shield_inst) event_user(1);
-            return player_set_state(player_state_jump, true);
+            return player_set_state(player_state_jump);
         }
 
         if (abs(x_speed) > air_friction_threshold && y_speed > -4 && y_speed < 0) x_speed *= air_friction;
@@ -46,7 +46,6 @@ switch (_phase)
         if (state_current != player_state_jump)
         {
             jump_aux = false;
-            jump_bound = BOUND_NONE;
             with (shield_inst) shield_reset = true;
         }
         break;

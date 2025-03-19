@@ -8,8 +8,6 @@ var _phase; _phase = argument0;
 switch (_phase)
 {
     case STATE_START:
-        jump_cap = false;
-        jump_bound = BOUND_SONIC;
         player_set_animation("roll");
         audio_play_sfx("snd_bound", true);
         if (y_speed < bound_speed) y_speed = bound_speed;
@@ -33,19 +31,21 @@ switch (_phase)
 
         if (on_ground)
         {
+            jump_cap = false;
+            jump_bound = BOUND_SONIC;
+            jump_uncurl = UNCURL_BOUND;
             bound_count = min(bound_count_temp + 1, 2);
             animation_skip = true;
             audio_play_sfx("snd_bound_land", true);
-            return player_set_state(player_state_jump, true);
+            return player_set_state(player_state_jump);
         }
 
         if (abs(x_speed) > air_friction_threshold && y_speed > -4 && y_speed < 0) x_speed *= air_friction;
         y_speed += gravity_force;
 
-        if (y_speed != 0 && animation_time mod 2 == 0) effect_create(x, y, seq_bound_jump, 10);
+        sonic_bound_create();
         break;
 
     case STATE_FINISH:
-        if (state_current != player_state_jump) jump_bound = BOUND_NONE;
         break;
 }

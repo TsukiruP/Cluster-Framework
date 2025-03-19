@@ -44,6 +44,7 @@ switch (_phase)
         y_speed += gravity_force;
 
         player_animation_jump();
+        if (y_speed < 0 && jump_bound == BOUND_SONIC) sonic_bound_create();
         break;
 
     case STATE_FINISH:
@@ -53,8 +54,6 @@ switch (_phase)
 
         if (state_current != player_state_bound)
         {
-            jump_bound = BOUND_NONE;
-
             with (shield_inst)
             {
                 if (sequence_index == seq_shield_bubble_bound) shield_reset = true;
