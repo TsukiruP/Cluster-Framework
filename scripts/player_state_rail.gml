@@ -31,16 +31,7 @@ switch (_phase)
 
         if (player_routine_jump()) return true;
 
-        if (animation_time mod 8 == 0)
-        {
-            var sine; sine = dsin(mask_direction);
-            var csine; csine = dcos(mask_direction);
-
-            with (effect_create(x - (csine * x_radius * image_xscale) + (sine * y_radius), y + (sine * x_radius * image_xscale) + (csine * y_radius), seq_rail_spark, depth, image_xscale))
-            {
-                image_angle = other.mask_direction;
-            }
-        }
+        if (animation_time mod 8 == 0) player_ground_effect_create(seq_rail_spark, image_xscale, x_radius);
         break;
 
     case STATE_FINISH:

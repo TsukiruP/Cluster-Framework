@@ -36,7 +36,7 @@ switch (_phase)
 
                     with (player_ground_effect_create(seq_shockwave))
                     {
-                        image_angle = angle_wrap(other.mask_direction - 90);
+                        image_angle = angle_wrap(image_angle - 90);
                         image_alpha = 0.5;
                     }
                 }
