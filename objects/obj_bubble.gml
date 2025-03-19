@@ -47,7 +47,7 @@ switch (size)
         image_index = 0;
 }
 
-x = sine_wave_range(life_time, 128, xstart - 8, xstart + 8);
+x = sine_wave_range(life_time, 128, xstart - 8 * image_xscale, xstart + 8 * image_xscale);
 y -= 0.5 * game_get_speed();
 
 if (place_meeting(x, y, par_solid) || !position_meeting(x, y, obj_water_mask)) instance_destroy();

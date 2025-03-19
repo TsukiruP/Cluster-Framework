@@ -649,9 +649,10 @@
 		+Effects
 			|player_ground_effect_create
 			|player_brake_create
-			|sonic_bound_create
 			|player_afterimage_create
-			|player_surface_splash
+			|player_splash_create
+			|player_bubble_create
+			|sonic_bound_create
 		+Trail
 			|player_trail_init
 			|player_trail_color

@@ -83,7 +83,7 @@ seq_sonic_cliff_front
 debug_option_player0
 player_set_animation_speed
 player_animation_air
-player_surface_splash
+player_splash_create
 debug_option_character
 classic_trait_clock_up
 game_set_checkpoint
@@ -559,3 +559,4 @@ player_afterimage_create
 player_ground_effect_create
 sonic_bound_create
 player_reset_cpu
+player_bubble_create

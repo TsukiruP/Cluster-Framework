@@ -550,7 +550,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Air
+/// Breath
 
 if (game_ispaused()) exit;
 
@@ -620,12 +620,13 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Air
+/// Breath
 
 if (game_ispaused()) exit;
 
 if (state_current != player_state_death && status_shield != SHIELD_BUBBLE && underwater && !instance_exists(ctrl_tally))
 {
+    // Decrease breath:
     if (breath_alarm > 0)
     {
         breath_alarm -= 1;
@@ -657,9 +658,22 @@ if (state_current != player_state_death && status_shield != SHIELD_BUBBLE && und
                     player_set_damage(self);
                     break;
             }
-
-            breath_remaining -= 1;
+            
             breath_alarm = 60;
+            breath_remaining -= 1;
+            bubble_count = choose(1, 2);
+            if (bubble_count != 1) bubble_alarm = irandom_range(1, 16);
+            player_bubble_create();
+        }
+    }
+    
+    // Spawn another bubble:
+    if (bubble_count != 1)
+    {
+        if (bubble_alarm > 0)
+        {
+            bubble_alarm -= 1;
+            if (bubble_alarm == 0) player_bubble_create();
         }
     }
 }
