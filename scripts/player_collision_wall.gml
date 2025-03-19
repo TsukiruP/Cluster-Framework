@@ -1,5 +1,5 @@
 /// player_collision_wall(radius)
-/// @desc Returns the id of the first solid that is in collision with the wall sensor of the player's bounding box, or noone on failure.
+/// @desc Finds the first solid intersecting the wall sensor of the player's collision mask.
 /// @param {int} radius
 /// @returns {object}
 
@@ -11,12 +11,12 @@ for ({var n; n = ds_list_size(solid_list) - 1}; n > -1; n -= 1)
     // Get the current solid:
     var inst; inst = ds_list_find_value(solid_list, n);
 
-    // Continue if not colliding with/passing through the current solid:
+    // Continue if not intersecting / passing through the current solid:
     if (collision_ray(wall_radius + _radius, 0, mask_direction, inst) == noone || inst.semisolid) continue;
 
     // Confirm matching solid:
     return inst;
 }
 
-// If no solids were found:
+// No solid found:
 return noone;

@@ -1,5 +1,5 @@
 /// player_get_angle(obj, rot)
-/// @desc  Calculates the angle of the given solid using its image && collision data.
+/// @desc  Calculates the angle of the given solid using its image and collision data.
 /// @param {object} obj
 /// @param {number} rot
 /// @returns {number}
@@ -34,7 +34,6 @@ if (kind == SHP_CUSTOM)
     x2 = x_int + (csine * x_radius) + (sine * y_radius);
     y2 = y_int - (sine * x_radius) + (csine * y_radius);
 
-    var height; height = (y_radius * 2) + 1;
     var left; left = false;
     var right; right = false;
 
@@ -44,7 +43,7 @@ if (kind == SHP_CUSTOM)
     If you want to change the height at which the sensors are pushed, you must make sure it matches that in the `player_get_stage_objects` function. */
 
     // Push sensors downward until they have found the solid:
-    repeat (height)
+    repeat (y_radius * 3)
     {
         // Evaluate all solids:
         for ({var n; n = ds_list_size(solid_list) - 1}; n > -1; n -= 1)

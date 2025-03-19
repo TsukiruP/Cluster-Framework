@@ -66,13 +66,13 @@ repeat (total_steps)
         {
             if (player_react(hit_floor, HIT_SOLID, ANGLE_UP)) return false;
             player_set_ground(hit_floor);
+            player_rotate_mask();
         }
         else on_ground = false;
     }
     else on_ground = false;
     
     if (!on_ground) player_set_water_run();
-    //if (on_ground) player_rotate_mask();
 }
 
 return true;
