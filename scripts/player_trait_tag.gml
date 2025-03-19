@@ -84,12 +84,12 @@ if (partner_inst.state_current == player_state_interlink)
 {
     var sine; sine = dsin(mask_direction);
     var csine; csine = dcos(mask_direction);
+    var tag_hold; tag_hold = player_get_input(INP_TAG, CHECK_HELD);
+    var tag_reset; tag_reset = false;
     var tag_leader_offset; tag_leader_offset = 10 * sign(other.image_xscale);
 
     with (partner_inst)
     {
-
-        var tag_reset; tag_reset = false;
         var tag_leader_x; tag_leader_x = other.x + (csine * tag_leader_offset);
         var tag_leader_y; tag_leader_y = other.y - (sine * tag_leader_offset);
 
@@ -115,7 +115,7 @@ if (partner_inst.state_current == player_state_interlink)
 
                 if (x == tag_arc_end_x && y == tag_arc_end_y)
                 {
-                    if (tag_allow && other.input_player[INP_TAG, CHECK_HELD])
+                    if (tag_allow && tag_hold)
                     {
                         tag_state = 1;
                         other.tag_leader = true;
@@ -127,10 +127,28 @@ if (partner_inst.state_current == player_state_interlink)
 
             // Stick to leader:
             case 1:
-                image_xscale = sign(other.image_xscale);
                 x = tag_leader_x;
                 y = tag_leader_y;
+                image_xscale = sign(other.image_xscale);
+                
+                // Execute Tag Action:
                 if (!tag_allow) tag_reset = true;
+                else if (!tag_hold)
+                {
+                    switch (character_index)
+                    {
+                        default:
+                            player_reset_tag();
+                            
+                            with (other)
+                            {
+                                boost_mode = true;
+                                player_trait_boost(true);
+                                x_speed = max(abs(x_speed), top_speed) * image_xscale;
+                                player_reset_tag(true);
+                            }
+                    }
+                }
                 break;
         }
 

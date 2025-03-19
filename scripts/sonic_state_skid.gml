@@ -10,10 +10,12 @@ switch (_phase)
     case STATE_START:
         player_set_animation("somersault");
         audio_play_sfx("snd_somersault", true);
-        if (!peel_out) x_speed = 3 * image_xscale;
+        if (!peel_out && !boost_mode) x_speed = 3 * image_xscale;
         break;
 
     case STATE_STEP:
+        var skid_super; skid_super = (peel_out || boost_mode);
+        
         if (!on_ground)
         {
             if (!player_movement_air()) return false;
@@ -24,7 +26,7 @@ switch (_phase)
         else
         {
             // Friction:
-            if (!peel_out)
+            if (!skid_super)
             {
                 if (animation_current == "skid") x_speed -= min(abs(x_speed), 0.125) * sign(x_speed);
                 else x_speed -= min(abs(x_speed), acceleration) * sign(x_speed);
@@ -43,7 +45,7 @@ switch (_phase)
                     case "somersault":
                         player_set_animation("skid");
                         audio_play_sfx("snd_air_dash", true);
-                        if (!peel_out) x_speed = 4 * image_xscale;
+                        if (!skid_super) x_speed = 4 * image_xscale;
                         break;
 
                     case "skid_end":
@@ -73,7 +75,7 @@ switch (_phase)
             {
                 if (on_ground)
                 {
-                    if (!peel_out) player_set_animation("skid_end");
+                    if (!skid_super) player_set_animation("skid_end");
                     else return player_set_state(player_state_run);
                 }
                 else

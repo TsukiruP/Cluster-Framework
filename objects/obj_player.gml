@@ -357,9 +357,9 @@ if (input_allow)
         // Respawn:
         if (!in_view(self))
         {
-            input_cpu_respawn_time += 1;
+            if (input_cpu_respawn_time < 300) input_cpu_respawn_time += 1;
 
-            if (input_cpu_respawn_time >= 300)
+            if (state_current != player_state_interlink && input_cpu_respawn_time >= 300)
             {
                 input_cpu_respawn_time = 0;
                 player_cpu_respawn();

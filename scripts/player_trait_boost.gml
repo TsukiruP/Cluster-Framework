@@ -1,6 +1,9 @@
-/// player_trait_boost()
+/// player_trait_boost([tag])
 /// @desc Dynamite Boost Time!
+/// @param {bool} [tag]
 /// @returns {void}
+
+var _tag; if (argument_count > 0) _tag = argument[0]; else _tag = false;
 
 if (character_index == CHAR_CLASSIC) exit;
 
@@ -13,20 +16,7 @@ boost_threshold[3] = 5.625;
 boost_threshold[4] = 4.21875;
 
 // Have to start at the base values and redo their math:
-top_speed = top_speed_temp;
-acceleration = acceleration_temp;
-
-if (underwater)
-{
-    top_speed *= 0.5;
-    acceleration *= 0.5;
-}
-else if (status_speed = SPEED_UP)
-{
-    top_speed *= 2;
-    acceleration *= 2;
-}
-else if (status_speed == SPEED_SLOW) top_speed *= 0.75;
+player_reset_physics();
 
 // Increase acceleration:
 if (boost_mode || status_speed != SPEED_SLOW)
@@ -36,27 +26,29 @@ if (boost_mode || status_speed != SPEED_SLOW)
 }
 
 // Boost mode:
-
-if (boost_mode)
+if (!_tag)
 {
-    if ((on_ground && abs(x_speed) < 4.5) || status_speed == SPEED_SLOW)
+    if (boost_mode)
     {
-        boost_mode = false;
-        boost_speed = 0;
+        if ((on_ground && abs(x_speed) < 4.5) || status_speed == SPEED_SLOW)
+        {
+            boost_mode = false;
+            boost_speed = 0;
+        }
+        else if (on_ground) boost_speed = boost_threshold[boost_index];
     }
-    else if (on_ground) boost_speed = boost_threshold[boost_index];
-}
-else if (game_get_save("boost") && on_ground && abs(x_speed) >= top_speed && status_speed != SPEED_SLOW)
-{
-    if (input_x_direction != 0 && input_allow) boost_speed += acceleration;
-
-    if (boost_speed >= boost_threshold[boost_index])
+    else if (game_get_save("boost") && on_ground && abs(x_speed) >= top_speed && status_speed != SPEED_SLOW)
     {
-        boost_mode = true;
-        camera_set_lag(10);
+        if (input_x_direction != 0 && input_allow) boost_speed += acceleration;
+    
+        if (boost_speed >= boost_threshold[boost_index])
+        {
+            boost_mode = true;
+            camera_set_lag(10);
+        }
     }
+    else boost_speed = 0;
 }
-else boost_speed = 0;
 
 // Double top speed if not already doubled:
 if (boost_mode && status_speed != SPEED_UP) top_speed *= 2;
