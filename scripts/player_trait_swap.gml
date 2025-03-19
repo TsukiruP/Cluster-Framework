@@ -11,11 +11,7 @@ if (player_get_input(INP_SWAP, CHECK_PRESSED))
     if (tag_leader)
     {
         player_reset_tag(true);
-        with (partner_inst)
-        {
-            player_cpu_respawn();
-            player_reset_tag();
-        }
+        with (partner_inst) player_reset_cpu();
     }
     else if (game_get_save("swap") && partner_inst.input_cpu_gamepad_alarm == 0)
     {

@@ -651,6 +651,7 @@
 			|player_brake_create
 			|sonic_bound_create
 			|player_afterimage_create
+			|player_surface_splash
 		+Trail
 			|player_trail_init
 			|player_trail_color
@@ -683,6 +684,7 @@
 			|player_reset_breath
 			|player_reset_spring
 			|player_reset_input
+			|player_reset_cpu
 		+Misc.
 			|player_react
 			|player_inbounds
@@ -690,7 +692,6 @@
 			|player_rotate_mask
 			|player_slope_friction
 			|player_ring_loss
-			|player_surface_splash
 			|player_cpu_respawn
 			|player_add_rings
 	+Props

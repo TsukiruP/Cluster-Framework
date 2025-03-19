@@ -85,7 +85,6 @@ if (partner_inst.state_current == player_state_interlink)
     var sine; sine = dsin(mask_direction);
     var csine; csine = dcos(mask_direction);
     var tag_hold; tag_hold = player_get_input(INP_TAG, CHECK_HELD);
-    var tag_reset; tag_reset = false;
     var tag_leader_offset; tag_leader_offset = 10 * sign(other.image_xscale);
 
     with (partner_inst)
@@ -111,7 +110,7 @@ if (partner_inst.state_current == player_state_interlink)
                 var tag_arc_y3; tag_arc_y3 = min((tag_arc_end_y + tag_arc_center_y) / 2, tag_arc_end_y - 32);
 
                 if (tag_arc_time < tag_arc_max_time) tag_arc_time += 1;
-                move_bezier(tag_arc_frame, tag_arc_start_x, tag_arc_start_y, tag_arc_start_x, tag_arc_y2, tag_arc_end_x, tag_arc_y3, tag_arc_end_x, tag_arc_end_y);
+                move_bezier(tag_arc_frame, tag_arc_start_x, tag_arc_start_y, tag_arc_x2, tag_arc_y2, tag_arc_x3, tag_arc_y3, tag_arc_end_x, tag_arc_end_y);
 
                 if (x == tag_arc_end_x && y == tag_arc_end_y)
                 {
@@ -121,7 +120,7 @@ if (partner_inst.state_current == player_state_interlink)
                         other.tag_leader = true;
                         audio_play_sfx("snd_tag_catch", true);
                     }
-                    else tag_reset = true;
+                    else player_reset_cpu();
                 }
                 break;
 
@@ -132,13 +131,15 @@ if (partner_inst.state_current == player_state_interlink)
                 image_xscale = sign(other.image_xscale);
 
                 // Execute Tag Action:
-                if (!tag_allow || !other.tag_leader) tag_reset = true;
+                if (!tag_allow || !other.tag_leader) player_reset_cpu();
                 else if (!tag_hold)
                 {
                     switch (character_index)
                     {
+                        // Sonic Accelerator
                         default:
-                            player_reset_tag();
+                            player_reset_cpu();
+                            audio_play_sfx("snd_sonic_accel", true);
 
                             with (other)
                             {
@@ -150,12 +151,6 @@ if (partner_inst.state_current == player_state_interlink)
                     }
                 }
                 break;
-        }
-
-        if (tag_reset)
-        {
-            player_set_state(player_state_air);
-            player_reset_tag();
         }
     }
 }

@@ -40,11 +40,12 @@ if (!_tag)
     else if (game_get_save("boost") && on_ground && abs(x_speed) >= top_speed && status_speed != SPEED_SLOW)
     {
         if (input_x_direction != 0 && input_allow) boost_speed += acceleration;
-    
+
         if (boost_speed >= boost_threshold[boost_index])
         {
             boost_mode = true;
-            camera_set_lag(10);
+            audio_play_sfx("snd_boost_mode", true);
+            if (!input_cpu) camera_set_lag(10);
         }
     }
     else boost_speed = 0;

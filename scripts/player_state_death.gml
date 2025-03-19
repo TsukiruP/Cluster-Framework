@@ -11,6 +11,7 @@ switch (_phase)
         depth = -10000;
         x_speed = 0;
         death_alarm = 64;
+        boost_mode = false;
         player_reset_air();
         player_reset_status();
         player_set_animation("death");

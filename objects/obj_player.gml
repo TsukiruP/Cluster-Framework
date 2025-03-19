@@ -40,6 +40,10 @@ jump_bound = BOUND_NONE;
 
 death_alarm = 0;
 death_inst = noone;
+
+tag_leader = false;
+tag_leader_time = 0;
+player_reset_tag();
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -78,11 +82,8 @@ applies_to=self
 /// Character Initialization
 
 swap_alarm = 0;
-tag_leader = false;
-tag_leader_time = 0;
 boost_mode = false;
 boost_speed = 0;
-player_reset_tag();
 player_reset_status();
 player_reset_physics();
 

@@ -15,5 +15,6 @@ switch (_phase)
         break;
 
     case STATE_FINISH:
+        player_reset_tag();
         break;
 }
