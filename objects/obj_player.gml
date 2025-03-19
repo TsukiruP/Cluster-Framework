@@ -545,20 +545,6 @@ if (waterfall_draw && !instance_exists(waterfall_inst))
         player_inst.waterfall_inst = id;
     }
 }
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Breath
-
-if (game_ispaused()) exit;
-
-if (state_current == player_state_death || (status_shield == SHIELD_BUBBLE && underwater) || instance_exists(ctrl_tally))
-{
-    player_reset_breath();
-    if (state_current != player_state_death && !input_cpu) audio_stop_drown();
-}
 #define Step_1
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -658,7 +644,7 @@ if (state_current != player_state_death && status_shield != SHIELD_BUBBLE && und
                     player_set_damage(self);
                     break;
             }
-            
+
             breath_alarm = 60;
             breath_remaining -= 1;
             bubble_count = choose(1, 2);
@@ -666,7 +652,7 @@ if (state_current != player_state_death && status_shield != SHIELD_BUBBLE && und
             player_bubble_create();
         }
     }
-    
+
     // Spawn another bubble:
     if (bubble_count != 1)
     {

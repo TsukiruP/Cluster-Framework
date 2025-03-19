@@ -12,8 +12,13 @@ var hurt_direction; hurt_direction = esign(x - damage_inst.x, 1);
 
 if (damage_inst == id || (stage_get_rings() == 0 && status_shield == 0 && !input_cpu))
 {
-    if (!drown) y_speed = -7;
     player_set_state(player_state_death);
+    if (!drown) y_speed = -7;
+    else
+    {
+        bubble_alarm = irandom_range(0, 15);
+        bubble_count = 0;
+    }
 
     if (!input_cpu)
     {

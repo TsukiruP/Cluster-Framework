@@ -24,20 +24,30 @@ switch (_phase)
 
         y_speed += gravity_force_temp;
 
+        if (drown)
+        {
+            if (bubble_count < 11)
+            {
+                if (bubble_alarm > 0) bubble_alarm -= 1;
+                if (bubble_alarm == 0)
+                {
+                    bubble_alarm = irandom_range(1, 8);
+                    bubble_count += 1;
+                    with (player_bubble_create()) size = choose_weighted(0, 3, 1, 1);
+                }
+            }
+        }
+
         if (death_alarm > 0)
         {
             death_alarm -= 1;
-
-            if (death_alarm == 0 && !input_cpu && !instance_exists(death_inst))
-            {
-                death_inst = transition_create(room, TRANS_RETRY);
-            }
+            if (death_alarm == 0 && !input_cpu && !instance_exists(death_inst)) death_inst = transition_create(room, TRANS_RETRY);
         }
         break;
 
     case STATE_FINISH:
         with (death_inst) instance_destroy();
         death_inst = noone;
-        drown = false;
+        player_reset_breath();
         break;
 }
