@@ -51,6 +51,7 @@ switch (_phase)
         jump_cap = true;
         jump_aux = false;
         jump_uncurl = UNCURL_JUMP;
+        jump_bound = BOUND_NONE;
 
         if (state_current != player_state_bound)
         {
