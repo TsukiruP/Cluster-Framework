@@ -9,7 +9,7 @@ var _hitbox; _hitbox = argument1;
 
 if (_hitbox & HIT_INTERACT)
 {
-    if (mask_direction == _obj.gravity_direction && on_ground && !input_cpu)
+    if (mask_direction == _obj.gravity_direction && on_ground && !tag_leader && !input_cpu)
     {
         if (floor(x_speed) == 0 && player_get_input(INP_UP, CHECK_PRESSED))
         {

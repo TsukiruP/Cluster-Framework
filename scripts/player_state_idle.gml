@@ -11,10 +11,10 @@ switch (_phase)
         wait_alarm = 360;
         player_get_cliff();
 
-        if (cliff_direction == 0 || tag_leader)
+        if (cliff_direction == 0)
         {
-            if ((animation_current != "standby" && animation_current != "land" && animation_current != "look" && animation_current != "look_end" &&
-                animation_current != "crouch_end" && animation_current != "omochao" && animation_current != "omochao_end") || tag_leader) player_set_animation("stand");
+            if (animation_current != "standby" && animation_current != "land" && animation_current != "look" && animation_current != "look_end" &&
+                animation_current != "crouch_end" && animation_current != "omochao" && animation_current != "omochao_end") player_set_animation("stand");
         }
         else
         {
@@ -58,19 +58,35 @@ switch (_phase)
         if (player_routine_skill()) return true;
         if (player_routine_jump()) return true;
 
-        if (!game_ispaused(ctrl_text) && on_ground && !tag_leader && input_allow && animation_current == "stand")
+        if (!tag_leader)
         {
-            if (wait_alarm > 0)
+            if (!game_ispaused(ctrl_text) && on_ground && input_allow && animation_current == "stand")
             {
-                wait_alarm -= 1;
-
-                if (wait_alarm == 0)
+                if (wait_alarm > 0)
                 {
-                    var animation_wait; animation_wait = choose("wait_leader", "wait_partner");
+                    wait_alarm -= 1;
 
-                    if (instance_number(obj_player) > 1) animation_wait = pick(player_index > 0, "wait_leader", "wait_partner");
-                    player_set_animation(animation_wait);
+                    if (wait_alarm == 0)
+                    {
+                        var animation_wait; animation_wait = choose("wait_leader", "wait_partner");
+
+                        if (instance_number(obj_player) > 1) animation_wait = pick(player_index > 0, "wait_leader", "wait_partner");
+                        player_set_animation(animation_wait);
+                    }
                 }
+            }
+        }
+        else
+        {
+            switch (animation_current)
+            {
+                case "cliff_front":
+                case "cliff_back":
+                case "wait_leader":
+                case "wait_partner":
+                case "standby":
+                    player_set_animation("stand");
+                    break;
             }
         }
         break;

@@ -130,16 +130,16 @@ if (partner_inst.state_current == player_state_interlink)
                 x = tag_leader_x;
                 y = tag_leader_y;
                 image_xscale = sign(other.image_xscale);
-                
+
                 // Execute Tag Action:
-                if (!tag_allow) tag_reset = true;
+                if (!tag_allow || !other.tag_leader) tag_reset = true;
                 else if (!tag_hold)
                 {
                     switch (character_index)
                     {
                         default:
                             player_reset_tag();
-                            
+
                             with (other)
                             {
                                 boost_mode = true;
