@@ -7,7 +7,7 @@ var difference; difference = angle_difference(mask_direction, angle);
 
 // Abort if...
 if (abs(difference) <= 45 || abs(difference) >= 90) exit; // Offset is too steep or shallow.
-if (collision_box(y_radius + 1, x_radius, (mask_direction mod 180 != 0), ground_inst) == noone) exit; // Rotating would make the player fall.
+if (collision_box(y_radius * 2, x_radius, (mask_direction mod 180 != 0), ground_inst) == noone) exit; // Rotating would make the player fall.
 
 // Calculate...
 var new_direction; new_direction = angle_wrap(mask_direction + 90 * sign(difference)); // New mask direction.
