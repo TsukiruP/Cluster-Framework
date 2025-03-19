@@ -7,7 +7,7 @@ var _tag; if (argument_count > 0) _tag = argument[0]; else _tag = false;
 
 if (character_index == CHAR_CLASSIC) exit;
 
-var boost_index; boost_index = pick(stage_get_rings() > 10, 0, 1) + min(3, stage_get_rings() / 50);
+var boost_index; boost_index = pick(stage_get_rings() > 10, 0, 1) + min(stage_get_rings() / 50, 3);
 var boost_threshold;
 boost_threshold[0] = 8.0;
 boost_threshold[1] = 7.96875;
@@ -21,7 +21,7 @@ player_reset_physics();
 // Increase acceleration:
 if (boost_mode || status_speed != SPEED_SLOW)
 {
-    acceleration += (2/256) * min(3, stage_get_rings() / 50);
+    acceleration += (2/256) * min(stage_get_rings() / 50, 3);
     if (stage_get_rings() > 10) acceleration += (4 / 256);
 }
 
