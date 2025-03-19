@@ -32,7 +32,7 @@ if (instance_exists(partner_inst))
     }
 }
 
-// Call partner:
+// Leader:
 if (tag_allow)
 {
     if (!tag_leader)
@@ -85,13 +85,14 @@ if (partner_inst.state_current == player_state_interlink)
     var sine; sine = dsin(mask_direction);
     var csine; csine = dcos(mask_direction);
     var tag_hold; tag_hold = player_get_input(INP_TAG, CHECK_HELD);
-    var tag_leader_offset; tag_leader_offset = 10 * sign(other.image_xscale);
 
     with (partner_inst)
     {
+        
+        var tag_leader_offset; tag_leader_offset = 10 * sign(other.image_xscale);
         var tag_leader_x; tag_leader_x = other.x + (csine * tag_leader_offset);
         var tag_leader_y; tag_leader_y = other.y - (sine * tag_leader_offset);
-
+        
         switch (tag_state)
         {
             // Arc towards leader:
@@ -130,8 +131,10 @@ if (partner_inst.state_current == player_state_interlink)
                 y = tag_leader_y;
                 image_xscale = sign(other.image_xscale);
 
-                // Execute Tag Action:
+                // Reset:
                 if (!tag_allow || !other.tag_leader) player_reset_cpu();
+                
+                // Execute Tag Action:
                 else if (!tag_hold)
                 {
                     switch (character_index)

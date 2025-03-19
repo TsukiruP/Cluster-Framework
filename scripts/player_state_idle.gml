@@ -80,10 +80,12 @@ switch (_phase)
         {
             switch (animation_current)
             {
-                case "cliff_front":
-                case "cliff_back":
                 case "wait_leader":
                 case "wait_partner":
+                    wait_alarm = 360;
+                    
+                case "cliff_front":
+                case "cliff_back":
                 case "standby":
                     player_set_animation("stand");
                     break;
