@@ -19,5 +19,4 @@ if (instance_exists(player_inst))
     player_set_state(player_state_air);
     player_set_animation("roll");
     player_reset_physics();
-    player_reset_breath();
 }

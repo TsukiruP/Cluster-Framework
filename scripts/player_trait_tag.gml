@@ -70,7 +70,6 @@ if (tag_allow)
                         tag_arc_offset_x = x - other.x;
                         tag_arc_offset_y = y - other.y;
                         player_set_state(player_state_interlink);
-                        player_reset_breath();
                     }
                 }
             }
@@ -88,11 +87,11 @@ if (partner_inst.state_current == player_state_interlink)
 
     with (partner_inst)
     {
-        
+
         var tag_leader_offset; tag_leader_offset = 10 * sign(other.image_xscale);
         var tag_leader_x; tag_leader_x = other.x + (csine * tag_leader_offset);
         var tag_leader_y; tag_leader_y = other.y - (sine * tag_leader_offset);
-        
+
         switch (tag_state)
         {
             // Arc towards leader:
@@ -133,7 +132,7 @@ if (partner_inst.state_current == player_state_interlink)
 
                 // Reset:
                 if (!tag_allow || !other.tag_leader) player_reset_cpu();
-                
+
                 // Execute Tag Action:
                 else if (!tag_hold)
                 {

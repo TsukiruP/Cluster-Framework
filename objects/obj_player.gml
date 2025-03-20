@@ -547,7 +547,7 @@ applies_to=self
 
 if (game_ispaused()) exit;
 
-if (state_current != player_state_death && status_shield != SHIELD_BUBBLE && underwater && !instance_exists(ctrl_tally))
+if (state_current != player_state_death && state_current != player_state_interlink && status_shield != SHIELD_BUBBLE && underwater && !instance_exists(ctrl_tally))
 {
     // Decrease breath:
     if (breath_alarm > 0)
