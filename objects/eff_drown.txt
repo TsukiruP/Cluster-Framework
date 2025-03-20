@@ -1,7 +1,7 @@
 sprite=spr_drown
-visible=1
+visible=0
 solid=0
 persistent=0
 depth=0
-parent=par_solid
+parent=eff_player
 mask=

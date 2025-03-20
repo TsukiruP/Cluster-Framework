@@ -2,8 +2,7 @@
 /// @desc Resets the players solid variables.
 /// @returns {void}
 
-if (y_speed < 0) player_splash_create();
-
+if (y_speed < 0) player_jump_splash_create();
 angle = gravity_direction;
 relative_angle = 0;
 mask_direction = angle;

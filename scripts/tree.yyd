@@ -650,9 +650,17 @@
 			|player_ground_effect_create
 			|player_brake_create
 			|player_afterimage_create
-			|player_splash_create
+			|player_jump_splash_create
+			|player_run_splash_create
 			|player_bubble_create
 			|sonic_bound_create
+			|player_spin_dash_create
+			|player_shield_create
+			|player_invin_spark_create
+			|player_debuff_create
+			|player_reticle_create
+			|player_waterfall_splash_create
+			|player_drown_create
 		+Trail
 			|player_trail_init
 			|player_trail_color
@@ -677,6 +685,7 @@
 			|player_set_animation_variant
 			|player_set_animation_speed
 			|player_set_damage
+			|player_set_depth
 			|player_reset_physics
 			|player_reset_air
 			|player_reset_tag

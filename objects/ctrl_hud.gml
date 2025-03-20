@@ -25,11 +25,6 @@ switch (game_get_config("misc_hud"))
         hud_y = 6;
 }
 
-breath_hide = true;
-breath_frame = 0;
-breath_x = 0;
-breath_value = 30;
-
 gauge_hide = true;
 gauge_frame = 0;
 gauge_x = 0;
@@ -115,9 +110,6 @@ if (game_ispaused(mnu_pause)) exit;
 if (!hud_hide) hud_frame = approach(hud_frame, hud_max_frame, 1);
 else hud_frame = approach(hud_frame, 0, 1);
 
-if (!breath_hide) breath_frame = approach(breath_frame, hud_max_frame, 1);
-else breath_frame = approach(breath_frame, 0, 1);
-
 if (!hud_hide && !gauge_hide) gauge_frame = approach(gauge_frame, hud_max_frame, 1);
 else gauge_frame = approach(gauge_frame, 0, 1);
 
@@ -142,30 +134,6 @@ applies_to=self
 if (game_ispaused(mnu_pause)) exit;
 
 hud_x = lerp(-sprite_get_width(hud_sprite), hud_offset, smoothstep(0, hud_max_frame, hud_frame));
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Breath
-
-if (game_ispaused(mnu_pause) || game_get_config("misc_hud") != 1) exit;
-
-breath_x = lerp(-sprite_get_width(hud_sprite), hud_x, smoothstep(0, hud_max_frame, breath_frame));
-
-if (instance_exists(stage_get_player(0)))
-{
-    with (stage_get_player(0))
-    {
-        if (state_current != player_state_death)
-        {
-            if (status_shield != SHIELD_BUBBLE && underwater) other.breath_hide = false;
-            else other.breath_hide = true;
-            other.breath_value = breath_remaining;
-        }
-    }
-}
-else breath_value = 30;
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -292,10 +260,6 @@ draw_text(view_xview[view_current] + hud_x + 79, time_y, string_pad(floor(stage_
 draw_sprite(hud_sprite, 1, view_xview[view_current] + hud_x, view_yview[view_current] + hud_y + 26);
 draw_text(view_xview[view_current] + hud_x + 29, view_yview[view_current] + hud_y + 31, string_pad(stage_get_rings(), 3));
 
-// Air:
-draw_sprite(hud_sprite, 2, view_xview[view_current] + breath_x, view_yview[view_current] + hud_y + 52);
-draw_text(view_xview[view_current] + breath_x + 29, view_yview[view_current] + hud_y + 57, string_pad(breath_value, 2));
-
 // Gauge:
 var gauge_y; gauge_y = screen_get_height() - 27;
 
@@ -389,3 +353,11 @@ for ({var i; i = 0}; i < ds_grid_height(item_grid); i += 1)
 {
     draw_sprite_ext(spr_item_icon, ds_grid_get(item_grid, 0, i), view_xview[view_current] + ds_grid_get(item_grid, 2, i), view_yview[view_current] + screen_get_height() - 33, 1, 1, 0, c_white, !item_hide);
 }
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Draw Drown Countdown
+
+with (eff_drown) event_draw();

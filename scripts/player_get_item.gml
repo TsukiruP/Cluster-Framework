@@ -32,7 +32,6 @@ switch (_item)
     case ITEM_BUBBLE:
         player_set_status(STATUS_SHIELD, SHIELD_BUBBLE);
         player_reset_breath();
-        if (!input_cpu) audio_stop_drown();
         break;
 
     case ITEM_FIRE:

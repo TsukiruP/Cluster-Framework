@@ -113,6 +113,7 @@ spin_dash_charge = 0;
 spin_dash_inst = noone;
 shield_inst = noone;
 debuff_inst = noone;
+drown_inst = noone;
 reticle_inst = noone;
 
 afterimage_draw = false;
@@ -458,57 +459,18 @@ applies_to=self
 */
 /// Effects
 
-// Depth:
-if (state_current != player_state_death) depth = player_index;
-
-// Spin Dash:
-if (state_current == player_state_spin_dash && !instance_exists(spin_dash_inst))
-{
-    with (instance_create(x, y, eff_spin_dash))
-    {
-        player_inst = other.id;
-        player_inst.spin_dash_inst = id;
-    }
-}
-
-// Shield:
-if ((status_shield != SHIELD_NONE || status_invin == INVIN_BUFF) && !instance_exists(shield_inst))
-{
-    with (instance_create(x, y, eff_shield))
-    {
-        player_inst = other.id;
-        player_inst.shield_inst = id;
-    }
-}
-
-if (game_get_config("advance_flicker") && status_invin == INVIN_BUFF)
-{
-    if (time_sync(status_invin_alarm, 2, 4) == 0) effect_create(x + random_range(-x_radius, x_radius), y + random_range(-y_radius, y_radius), seq_shield_invin_spark);
-}
-
-// Debuff:
-if ((status_speed == SPEED_SLOW || status_panic_alarm > 0) && !instance_exists(debuff_inst))
-{
-    with (instance_create(x, y, eff_debuff))
-    {
-        player_inst = other.id;
-        player_inst.debuff_inst = id;
-    }
-}
-
-// Reticle:
-if (game_get_config("misc_reticle") > 0 && instance_exists(homing_inst) && !instance_exists(reticle_inst))
-{
-    with (instance_create(x, y, eff_reticle))
-    {
-        player_inst = other.id;
-        player_inst.reticle_inst = id;
-    }
-}
+player_set_depth(player_index);
+player_spin_dash_create();
+player_shield_create();
+player_invin_spark_create();
+player_debuff_create();
+player_reticle_create();
+player_run_splash_create();
+player_waterfall_splash_create();
 
 // Afterimage:
 if (status_speed == SPEED_UP || boost_mode) afterimage_draw = true;
-else
+else if (afterimage_draw)
 {
     afterimage_draw = false;
     afterimage_alarm = 6;
@@ -516,35 +478,10 @@ else
 
 // Trail:
 if (state_current == player_state_roll || state_current == sonic_state_homing) trail_draw = true;
-else trail_draw = false;
+else if (trail_draw) trail_draw = false;
 
-// Splashes:
-if (!underwater)
-{
-    var surface_inst; surface_inst = collision_point(x, floor(y) + y_radius + 1, obj_water_mask, false, false);
-
-    if (on_ground && abs(x_speed) > 0 && surface_inst != noone)
-    {
-        surface_alarm -= 1;
-
-        if (surface_alarm <= 0)
-        {
-            surface_alarm = 9;
-            if (instance_exists(ground_inst)) effect_create(x, surface_inst.y, pick(abs(x_speed) >= 4.50, seq_splash_3, seq_splash_4), depth, image_xscale);
-            else effect_create(x, surface_inst.y, seq_splash_5, depth, image_xscale);
-        }
-    }
-    else surface_alarm = 0;
-}
-
-if (waterfall_draw && !instance_exists(waterfall_inst))
-{
-    with (instance_create(x, y, eff_waterfall))
-    {
-        player_inst = other.id;
-        player_inst.waterfall_inst = id;
-    }
-}
+// Stop drowning music:
+if (drown_index == -1 && !input_cpu) audio_stop_drown();
 #define Step_1
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -635,6 +572,7 @@ if (state_current != player_state_death && status_shield != SHIELD_BUBBLE && und
                 case 6:
                 case 4:
                 case 2:
+                    player_drown_create();
                     drown_index += 1;
                     break;
 

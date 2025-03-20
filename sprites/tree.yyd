@@ -1,5 +1,4 @@
 +Masks Old
-	|spr_basic_test_mask_28
 	|spr_basic_test_mask_29
 +System
 	|fnt_system
@@ -306,10 +305,11 @@
 			|spr_spin_dash
 			|spr_spin_charge
 			|spr_brake
+			|spr_rail_spark
 			|spr_swap
 			|spr_tag
 			|spr_debuff
-			|spr_rail_spark
+			|spr_drown
 			+Sonic
 				|spr_drop_dash
 				|spr_bound_jump

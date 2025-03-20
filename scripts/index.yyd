@@ -83,7 +83,7 @@ seq_sonic_cliff_front
 debug_option_player0
 player_set_animation_speed
 player_animation_air
-player_splash_create
+player_jump_splash_create
 debug_option_character
 classic_trait_clock_up
 game_set_checkpoint
@@ -560,3 +560,12 @@ player_ground_effect_create
 sonic_bound_create
 player_reset_cpu
 player_bubble_create
+player_drown_create
+player_spin_dash_create
+player_shield_create
+player_debuff_create
+player_reticle_create
+player_waterfall_splash_create
+player_run_splash_create
+player_invin_spark_create
+player_set_depth

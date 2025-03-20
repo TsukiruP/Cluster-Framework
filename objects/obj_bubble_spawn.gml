@@ -96,10 +96,11 @@ if (cycle_state == 1)
     if (bubble_alarm == 0)
     {
         var bubble_size; bubble_size = cycle_set[cycle_index, bubble_count];
-        var bubble_check; bubble_check = (cycle_frequency == 0); // Always check when frequency is 0.
         
         if (!bubble_large)
         {
+            var bubble_check; bubble_check = (cycle_frequency == 0); // Always check when frequency is 0.
+             
             // If the frequency isn't zero, then we have to check if we're on a large bubble frame.
             if (!bubble_check && cycle_frequency > 0 && cycle_count > 0) bubble_check = (cycle_count mod cycle_frequency == 0);
             
