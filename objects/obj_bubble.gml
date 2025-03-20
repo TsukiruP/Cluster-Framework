@@ -32,7 +32,7 @@ applies_to=self
 /// Animation
 
 if (game_ispaused(mnu_pause)) exit;
-if (!in_view(self, 16)) instance_destroy();
+if (!in_view(self)) instance_destroy();
 
 switch (size)
 {
