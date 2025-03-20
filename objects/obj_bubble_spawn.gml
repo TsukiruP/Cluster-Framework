@@ -76,11 +76,11 @@ if (cycle_state == 0)
     if (cycle_alarm > 0)
     {
         cycle_alarm -= 1;
+
         if (cycle_alarm == 0)
         {
             cycle_index = irandom_range(0, 3);
             cycle_state = 1;
-            cycle_count = 0;
             bubble_large = false;
             bubble_count = 0;
             bubble_max_count = irandom_range(1, 6);
@@ -95,24 +95,31 @@ if (cycle_state == 1)
 
     if (bubble_alarm == 0)
     {
-        var bubble_size; bubble_size = 2;
-        var bubble_reset; bubble_reset = bubble_large;
-
-        if (cycle_frequency > 0 && cycle_count > 0 && !bubble_reset)
+        var bubble_size; bubble_size = cycle_set[cycle_index, bubble_count];
+        var bubble_check; bubble_check = (cycle_frequency == 0); // Always check when frequency is 0.
+        
+        if (!bubble_large)
         {
-            bubble_reset = (cycle_count mod cycle_frequency != 0);
+            // If the frequency isn't zero, then we have to check if we're on a large bubble frame.
+            if (!bubble_check && cycle_frequency > 0 && cycle_count > 0) bubble_check = (cycle_count mod cycle_frequency == 0);
+            
+            if (bubble_check)
+            {
+                // Large bubbles spawn if the last one, or with a 1/4 chance:
+                if (bubble_count == bubble_max_count - 1 || choose_weighted(false, 3, true, 1))
+                {
+                    bubble_size = 2;
+                    bubble_large = true;
+                }
+            }
         }
-
-        if (bubble_reset) bubble_size = cycle_set[cycle_index, bubble_count];
-        else bubble_large = true;
-
+        
         with (instance_create(x + irandom_range(-8, 8), y, obj_bubble))
         {
             size = bubble_size;
             if (bubble_size == 2) hitbox_set_hurtbox(12, 12, 12, 12);
         }
-
-        cycle_count += 1;
+        
         bubble_count += 1;
         bubble_alarm = irandom_range(0, 31);
     }
@@ -120,6 +127,7 @@ if (cycle_state == 1)
     if (bubble_count == bubble_max_count)
     {
         cycle_state = 0;
+        cycle_count += 1;
         cycle_alarm = irandom_range(128, 255);
     }
 }
