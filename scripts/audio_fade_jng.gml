@@ -15,11 +15,8 @@ with (ctrl_audio)
         {
             if (_out)
             {
-                if (sound_get_volume(jng_inst) > 0)
-                {
-                    sound_volume(jng_inst, max(sound_get_volume(jng_inst) - 0.01, 0));
-                    if (sound_get_volume(jng_inst) == 0) audio_stop_jng();
-                }
+                if (sound_get_volume(jng_inst) > 0) sound_volume(jng_inst, max(sound_get_volume(jng_inst) - 0.01, 0));
+                if (sound_get_volume(jng_inst) == 0) audio_stop_jng();
             }
             else if (sound_get_volume(jng_inst) < bgm_volume) sound_volume(jng_inst, min(sound_get_volume(jng_inst) + 0.01, bgm_volume));
         }
