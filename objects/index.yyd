@@ -41,7 +41,7 @@ obj_water_mask
 
 
 obj_basic_test_parallax
-mnu_save
+mnu_debug_save
 par_enemy
 obj_ring
 eff_player

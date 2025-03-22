@@ -50,9 +50,9 @@ applies_to=self
 
 menu_x_direction = 0;
 
-if (visible != !instance_exists(mnu_save)) visible = !instance_exists(mnu_save);
+if (visible != !instance_exists(mnu_debug_save)) visible = !instance_exists(mnu_debug_save);
 
-if (game_ispaused(ctrl_text) || instance_exists(ctrl_transition) || instance_exists(mnu_save) || rename_allow)
+if (game_ispaused(ctrl_text) || instance_exists(ctrl_transition) || instance_exists(mnu_debug_save) || rename_allow)
 {
     if (menu_alarm == 0) menu_alarm = 2;
     exit;

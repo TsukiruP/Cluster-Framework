@@ -283,9 +283,9 @@
 									|debug_option_misc_reticle
 									|debug_option_misc_tally
 					|debug_option_credits
-		+Save
-			|save_menu_create
-			|save_menu_preview
+			+Save
+				|debug_save_create
+				|debug_save_preview
 	+Sequences
 		|sequence_init
 		|sequence_set

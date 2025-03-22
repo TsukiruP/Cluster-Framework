@@ -12,7 +12,7 @@ switch (_return)
 
     // Confirm:
     case 2:
-        save_menu_create(1);
+        debug_save_create(1);
         return true;
 
     // Undefined:

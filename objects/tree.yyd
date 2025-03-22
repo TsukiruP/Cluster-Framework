@@ -32,7 +32,7 @@
 		|mnu_boot
 		|mnu_title
 		|mnu_debug
-		|mnu_save
+		|mnu_debug_save
 		|mnu_pause
 +Gameplay
 	+Player
