@@ -10,7 +10,7 @@ switch (_return)
 {
     // Text:
     case 0:
-        return "Boost:";
+        return "Boost Mode:";
 
     // Value:
     case 1:
