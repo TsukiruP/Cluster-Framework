@@ -13,6 +13,7 @@ menu_option = 0;
 menu_scroll = 0;
 menu_x_direction = 0;
 menu_list = ds_list_create();
+history_stack = ds_stack_create();
 debug_set_menu(debug_menu_home);
 
 transition_room = room_first;
@@ -21,7 +22,8 @@ transition_preview = TRANS_FADE;
 rename_allow = false;
 rename_backup = "";
 
-history_stack = ds_stack_create();
+input_device = DEV_KEYBOARD;
+input_rebind = INP_ANY;
 
 sfx_alarm = 0;
 #define Destroy_0
@@ -63,6 +65,8 @@ if (menu_alarm > 0)
     menu_alarm -= 1;
     exit;
 }
+
+if (input_rebind != INP_ANY) exit;
 
 var menu_up; menu_up = (input_get_check(INP_UP, CHECK_PRESSED) || input_get_time(INP_UP, 30));
 var menu_down; menu_down = (input_get_check(INP_DOWN, CHECK_PRESSED) || input_get_time(INP_DOWN, 30));
@@ -148,6 +152,94 @@ else
         rename_backup = "";
     }
 }
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Keyboard Rebind
+
+if (menu_alarm != 0 || input_device != DEV_KEYBOARD || input_rebind == INP_ANY) exit;
+
+
+if (keyboard_key != vk_nokey)
+{
+    keyboard_clear(vk_anykey);
+    
+    if (keyboard_key != vk_escape)
+    {
+        // Merge modifier keys:
+        if (keyboard_key == vk_lshift || keyboard_key == vk_rshift) keyboard_key = vk_shift;
+        if (keyboard_key == vk_lcontrol || keyboard_key == vk_rcontrol) keyboard_key = vk_control;
+        if (keyboard_key == vk_lalt || keyboard_key == vk_ralt) keyboard_key = vk_alt;
+        
+        // Global keys:
+        if (input_rebind <= INP_RIGHT || input_rebind == INP_START || input_rebind == INP_SELECT)
+        {
+            for ({var i; i = INP_UP}; i <= INP_HIDE; i += 1)
+            {
+                if (keyboard_key == game_config_get_key(i)) game_config_set_key(i, game_config_get_key(input_rebind));
+            }
+        }
+        
+        // Gameplay keys:
+        else if (input_rebind >= INP_JUMP && input_rebind <= INP_ALT)
+        {
+            var input_global; input_global = false;
+            
+            // First go through global and gameplay keys:
+            for ({var i; i = INP_UP}; i <= INP_SELECT; i += 1)
+            {
+                if (keyboard_key == game_config_get_key(i))
+                {
+                    if (i <= INP_RIGHT || i == INP_START || i == INP_SELECT) input_global = true;
+                    game_config_set_key(i, game_config_get_key(input_rebind));
+                }
+            }
+            
+            // If we've matched a global key, then we check the menu keys just in case:
+            if (input_global)
+            {
+                for ({var i; i = INP_CONFIRM}; i <= INP_HIDE; i += 1)
+                {
+                    if (game_config_get_key(input_rebind) == game_config_get_key(i)) game_config_set_key(i, keyboard_key);
+                }
+            }
+        }
+        
+        // Menu keys:
+        else if (input_rebind >= INP_CONFIRM && input_rebind <= INP_HIDE)
+        {
+            var input_global; input_global = false;
+            
+            // First we go through the globals and menu keys, skipping around the gameplay keys:
+            for ({var i; i = INP_UP}; i <= INP_HIDE; i += 1)
+            {
+                if (i == INP_JUMP) i = INP_START; // We skip to start.
+                
+                if (keyboard_key == game_config_get_key(i))
+                {
+                    if (i <= INP_RIGHT || i == INP_START || i == INP_SELECT) input_global = true;
+                    game_config_set_key(i, game_config_get_key(input_rebind));
+                }
+            }
+            
+            // Again, if we've matched a global key, we check the gameplay keys properly now:
+            if (input_global)
+            {
+                for ({var i; i = INP_JUMP}; i <= INP_ALT; i += 1)
+                {
+                    if (game_config_get_key(input_rebind) == game_config_get_key(i)) game_config_set_key(i, keyboard_key);
+                }
+            }
+        }
+        
+        game_config_set_key(input_rebind, keyboard_key);
+    }
+    
+    menu_alarm = 15;
+    input_rebind = INP_ANY;
+}
 #define Step_1
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -162,7 +254,6 @@ if (sfx_alarm > 0) sfx_alarm -= 1;
 lib_id=1
 action_id=203
 applies_to=self
-invert=0
 */
 #define Draw_0
 /*"/*'/**//* YYD ACTION

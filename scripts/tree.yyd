@@ -256,6 +256,25 @@
 									|debug_option_audio_sfx
 									|debug_option_audio_bgm
 							|debug_option_keyboard
+							+Keyboard
+								|debug_menu_keyboard
+								+Options
+									|debug_option_keyboard_up
+									|debug_option_keyboard_down
+									|debug_option_keyboard_left
+									|debug_option_keyboard_right
+									|debug_option_keyboard_jump
+									|debug_option_keyboard_aux
+									|debug_option_keyboard_swap
+									|debug_option_keyboard_super
+									|debug_option_keyboard_tag
+									|debug_option_keyboard_alt
+									|debug_option_keyboard_start
+									|debug_option_keyboard_select
+									|debug_option_keyboard_confirm
+									|debug_option_keyboard_cancel
+									|debug_option_keyboard_log
+									|debug_option_keyboard_hide
 							|debug_option_gamepad
 							|debug_option_gameplay
 							+Gameplay

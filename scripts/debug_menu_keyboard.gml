@@ -1,0 +1,18 @@
+/// debug_menu_keyboard()
+
+debug_add_option(debug_option_keyboard_up);
+debug_add_option(debug_option_keyboard_down);
+debug_add_option(debug_option_keyboard_left);
+debug_add_option(debug_option_keyboard_right);
+debug_add_option(debug_option_keyboard_jump);
+debug_add_option(debug_option_keyboard_aux);
+debug_add_option(debug_option_keyboard_swap);
+debug_add_option(debug_option_keyboard_super);
+debug_add_option(debug_option_keyboard_tag);
+debug_add_option(debug_option_keyboard_alt);
+debug_add_option(debug_option_keyboard_start);
+debug_add_option(debug_option_keyboard_select);
+debug_add_option(debug_option_keyboard_confirm);
+debug_add_option(debug_option_keyboard_cancel);
+debug_add_option(debug_option_keyboard_log);
+debug_add_option(debug_option_keyboard_hide);

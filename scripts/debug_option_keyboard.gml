@@ -10,6 +10,11 @@ switch (_return)
     case 0:
         return "Keyboard";
 
+    // Confirm:
+    case 2:
+        debug_set_next(debug_menu_keyboard);
+        return true;
+
     // Undefined:
     default:
         return undefined;
