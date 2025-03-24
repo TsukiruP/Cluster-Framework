@@ -38,7 +38,7 @@ if (kind == SHP_CUSTOM)
     var right; right = false;
 
     /* AUTHOR NOTE: the height used to push the sensors down is dependent on that used to record instances local to the player.
-    Currently, the maximum height sits at triple the player's vertical radius, plus 1 (same as SonicForGMS.) The sensors are initially set at the player's feet and then get pushed down
+    Currently, the maximum height sits at triple the player's vertical radius, plus 1 (same as Sonic For GMS.) The sensors are initially set at the player's feet and then get pushed down
     a number of times equal to double the player's vertical radius, plus 1.
     If you want to change the height at which the sensors are pushed, you must make sure it matches that in the `player_get_stage_objects` function. */
 
@@ -85,22 +85,22 @@ else if (!(kind == SHP_RECTANGLE && normal == -1)) // Ignore for flat rectangles
         if (yscale == -1 && y - x_radius < top_side) return _rot;
         if (yscale == 1 && y + x_radius > bottom_side) return _rot;
 
-        if (kind == SHP_QUARTER_PIPE)
+        /*if (kind == SHP_QUARTER_PIPE)
         {
             if (yscale == 1 && y + y_radius < top_side) return _rot;
             if (yscale == -1 && y - y_radius > bottom_side) return _rot;
-        }
+        }*/
     }
     else
     {
         if (xscale == -1 && x - x_radius < left_side) return _rot;
         if (xscale == 1 && x + x_radius > right_side) return _rot;
 
-        if (kind == SHP_QUARTER_PIPE)
+        /*if (kind == SHP_QUARTER_PIPE)
         {
             if (yscale == 1 && y + y_radius < top_side) return _rot;
             if (yscale == -1 && y - y_radius > bottom_side) return _rot;
-        }
+        }*/
     }
 
     // Return the solid's angle if it's hard-coded:
