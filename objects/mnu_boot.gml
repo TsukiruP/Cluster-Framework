@@ -93,9 +93,7 @@ var boot_x; boot_x = view_xview[view_current] + screen_get_width() / 2;
 var boot_y; boot_y = view_yview[view_current] + screen_get_height() / 2;
 
 // Fade:
-draw_set1(c_black, boot_fade);
-draw_rectangle(view_xview[view_current], view_yview[view_current], view_xview[view_current] + screen_get_width(), view_yview[view_current] + screen_get_height(), false);
-draw_reset();
+draw_rectangle_view(c_black, boot_fade);
 
 // Boot:
 draw_set_alpha(boot_alpha);

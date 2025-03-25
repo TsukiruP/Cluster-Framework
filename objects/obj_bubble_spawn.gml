@@ -96,14 +96,14 @@ if (cycle_state == 1)
     if (bubble_alarm == 0)
     {
         var bubble_size; bubble_size = cycle_set[cycle_index, bubble_count];
-        
+
         if (!bubble_large)
         {
             var bubble_check; bubble_check = (cycle_frequency == 0); // Always check when frequency is 0.
-             
+
             // If the frequency isn't zero, then we have to check if we're on a large bubble frame.
             if (!bubble_check && cycle_frequency > 0 && cycle_count > 0) bubble_check = (cycle_count mod cycle_frequency == 0);
-            
+
             if (bubble_check)
             {
                 // Large bubbles spawn if the last one, or with a 1/4 chance:
@@ -114,13 +114,13 @@ if (cycle_state == 1)
                 }
             }
         }
-        
+
         with (instance_create(x + irandom_range(-8, 8), y, obj_bubble))
         {
             size = bubble_size;
             if (bubble_size == 2) hitbox_set_hurtbox(12, 12, 12, 12);
         }
-        
+
         bubble_count += 1;
         bubble_alarm = irandom_range(0, 31);
     }

@@ -19,11 +19,11 @@ switch (character_index)
                     case UNCURL_BLOCKADE:
                         player_set_animation("spring_fall");
                         break;
-                    
+
                     case UNCURL_BOUND:
                         player_set_animation("spin_fall");
                         break;
-                    
+
                     default:
                         var solid_inst; solid_inst = collision_box_vertical(x_radius, y_radius + 32, mask_direction, par_solid);
 

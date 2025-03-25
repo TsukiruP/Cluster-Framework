@@ -20,14 +20,14 @@ with (_obj)
         var y_int; y_int = floor(y);
         var sine; sine = dsin(mask_direction);
         var csine; csine = dcos(mask_direction);
-        
+
         var x1; x1 = x_int - (csine * x_radius * 2) - (sine * y_radius);
         var y1; y1 = y_int + (sine * x_radius * 2) - (csine * y_radius);
         var x2; x2 = x_int + (csine * x_radius * 2) + (sine * y_radius);
         var y2; y2 = y_int - (sine * x_radius * 2) + (csine * y_radius);
-        
+
         return (rectangle_in_rectangle(x1, y1, x2, y2, view_left, view_top, view_right, view_bottom) != 0);
     }
-    
+
     return (rectangle_in_rectangle(bbox_left, bbox_top, bbox_right, bbox_bottom, view_left, view_top, view_right, view_bottom) != 0);
 }

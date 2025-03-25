@@ -1,5 +1,5 @@
 /// debug_option_player0(return)
-/// @param {any} return
+/// @param {int} return
 /// @returns {any}
 
 var _return; _return = argument0;

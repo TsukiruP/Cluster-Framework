@@ -234,9 +234,7 @@ applies_to=self
 if (menu_hide != 0) exit;
 
 // Fade:
-draw_set1(c_black, 0.6);
-draw_rectangle(view_xview[view_current], view_yview[view_current], view_xview[view_current] + screen_get_width(), view_yview[view_current] + screen_get_height(), false);
-draw_reset();
+draw_rectangle_view(c_black, 0.6);
 
 // Header:
 draw_sprite(pause_header, pick(menu_index, 0, menu_option[0]), view_xview[view_current] + pause_x, pause_y[menu_index]);

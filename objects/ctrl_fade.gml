@@ -16,7 +16,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Fade Alpha
+/// Alpha
 
 if (fade_alpha != fade_target)
 {
@@ -31,6 +31,4 @@ applies_to=self
 */
 /// Draw Fade
 
-draw_set1(fade_color, fade_alpha);
-draw_rectangle(view_xview[view_current], view_yview[view_current], view_xview[view_current] + screen_get_width(), view_yview[view_current] + screen_get_height(), false);
-draw_reset();
+draw_rectangle_view(fade_color, fade_alpha);

@@ -1,5 +1,5 @@
 /// debug_option_interface_blue(return)
-/// @param {any} return
+/// @param {int} return
 /// @returns {any}
 
 var _return; _return = argument0;

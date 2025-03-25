@@ -1,0 +1,14 @@
+/// debug_menu_gamepad()
+
+debug_add_option(debug_option_gamepad_player);
+debug_add_option(debug_option_gamepad_index);
+debug_add_option(debug_option_input_jump);
+debug_add_option(debug_option_input_aux);
+debug_add_option(debug_option_input_swap);
+debug_add_option(debug_option_input_super);
+debug_add_option(debug_option_input_tag);
+debug_add_option(debug_option_input_alt);
+debug_add_option(debug_option_gamepad_deadzone);
+debug_add_option(debug_option_gamepad_confirm);
+debug_add_option(debug_option_gamepad_style);
+debug_add_option(debug_option_input_reset);

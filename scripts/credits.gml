@@ -44,6 +44,12 @@ Easing and Tweening Scripts in GameMaker
 Mimpy
 Sine Waves
 
+u/disembodieddave
+Original string_key
+
+Damizean & Tpot
+3D Parallax
+
 INSPIRATION
 Sonic XG
 Status HUD concept

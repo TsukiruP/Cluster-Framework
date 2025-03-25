@@ -17,6 +17,6 @@ else if (_device >= DEV_GAMEPAD0)
 }
 else
 {
-    if (ctrl_input.gamepad_device[0, 0] > -1) return string_input(_input, DEV_GAMEPAD0);
+    if (gamepad_get(0) > -1) return string_input(_input, DEV_GAMEPAD0);
     return string_input(_input, DEV_KEYBOARD);
 }

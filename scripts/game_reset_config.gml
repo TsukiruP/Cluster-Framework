@@ -20,15 +20,10 @@ game_config_write_key();
 
 for ({var i; i = 0}; i < PLAYER_COUNT; i += 1)
 {
-    game_config_reset_btn(i);
-    game_config_set_gamepad(i, "input_deadzone", 0.1);
-    game_config_set_gamepad(i, "input_confirm", 0);
-    game_config_set_gamepad(i, "input_style", 0);
-    game_config_set_confirm(i);
+    game_config_reset_gamepad(i)
 }
 
 game_config_write_gamepad();
-
 game_set_config("input_gamepad_focus", true);
 
 game_set_config("gameplay_shields", 0);

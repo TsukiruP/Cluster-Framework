@@ -66,7 +66,7 @@ if (input_get_check(INP_CONFIRM, CHECK_PRESSED))
         if (save_name == "") save_name = "Slot " + string(menu_save);
 
         script_execute(pick(menu_mode, game_write_save, game_read_save, game_delete_save), menu_save);
-        script_execute(text_set_subject, pick(menu_mode, "Saved", "Loaded", "Deleted") + " " + save_name + " data.");
+        script_execute(text_set_subject, pick(menu_mode, "Wrote", "Read", "Deleted") + " " + save_name + " data.");
         event_user(0);
         audio_play_sfx("snd_menu_confirm", true);
     }

@@ -17,11 +17,6 @@ var list; list = ds_priority_create();
 var nearest; nearest = noone;
 
 with (_obj) ds_priority_add(list, id, distance_to_point(_x, _y));
-
-repeat (_n)
-{
-    nearest = ds_priority_delete_min(list);
-}
-
+repeat (_n) nearest = ds_priority_delete_min(list);
 ds_priority_destroy(list);
 return nearest;

@@ -1,10 +1,10 @@
-/// game_config_get_gamepad(device, key)
+/// game_config_get_gamepad(gamepad, key)
 /// @desc Returns the value corresponding to the gamepad key.
-/// @param {int} device
+/// @param {int} gamepad
 /// @param {string} key
 /// @returns {int}
 
-var _device; _device = argument0;
+var _gamepad; _gamepad = argument0;
 var _key; _key = argument1;
 
-with (ctrl_game) return ds_map_get(ds_list_find_value(gamepad_list, _device), _key);
+with (ctrl_game) return ds_map_get(ds_list_find_value(gamepad_list, _gamepad), _key);

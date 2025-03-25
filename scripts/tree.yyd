@@ -30,14 +30,15 @@
 					|game_config_reset_key
 				+Gamepad
 					|game_config_init_gamepad
+					|game_config_get_gamepad
 					|game_config_get_button
 					|game_config_set_button
-					|game_config_get_gamepad
 					|game_config_set_gamepad
+					|game_config_set_confirm
 					|game_config_write_gamepad
 					|game_config_read_gamepad
-					|game_config_reset_btn
-					|game_config_set_confirm
+					|game_config_reset_button
+					|game_config_reset_gamepad
 			+Save
 				|game_init_save
 				|game_get_save
@@ -124,12 +125,19 @@
 				|audio_drown_fade
 				|audio_drown_isplaying
 		+Input
-			|gamepad_get_check
 			|input_get_check
+			|input_get_name
 			|input_get_time
 			|input_queue_dequeue
 			|input_queue_enqueue
 			|input_queue_clear
+			+Gamepad
+				|gamepad_get
+				|gamepad_get_any
+				|gamepad_get_button
+				|gamepad_get_check
+				|gamepad_set
+				|gamepad_exists
 		+Text
 			|font_get_height
 			|text_get_clear
@@ -177,8 +185,9 @@
 			|debug_set_menu
 			|debug_set_next
 			|debug_set_previous
+			|debug_set_rebind
 			+Indexes
-				|debug_menu_home
+				|debug_menu_top
 				|debug_option_template
 				+Options
 					|debug_option_character
@@ -256,26 +265,34 @@
 									|debug_option_audio_sfx
 									|debug_option_audio_bgm
 							|debug_option_keyboard
-							+Keyboard
-								|debug_menu_keyboard
-								+Options
-									|debug_option_keyboard_up
-									|debug_option_keyboard_down
-									|debug_option_keyboard_left
-									|debug_option_keyboard_right
-									|debug_option_keyboard_jump
-									|debug_option_keyboard_aux
-									|debug_option_keyboard_swap
-									|debug_option_keyboard_super
-									|debug_option_keyboard_tag
-									|debug_option_keyboard_alt
-									|debug_option_keyboard_start
-									|debug_option_keyboard_select
-									|debug_option_keyboard_confirm
-									|debug_option_keyboard_cancel
-									|debug_option_keyboard_log
-									|debug_option_keyboard_hide
 							|debug_option_gamepad
+							+Input
+								|debug_menu_keyboard
+								|debug_menu_gamepad
+								+Options
+									|debug_option_input_up
+									|debug_option_input_down
+									|debug_option_input_left
+									|debug_option_input_right
+									|debug_option_input_jump
+									|debug_option_input_aux
+									|debug_option_input_swap
+									|debug_option_input_super
+									|debug_option_input_tag
+									|debug_option_input_alt
+									|debug_option_input_start
+									|debug_option_input_select
+									|debug_option_input_confirm
+									|debug_option_input_cancel
+									|debug_option_input_log
+									|debug_option_input_hide
+									|debug_option_input_reset
+									+Gamepad
+										|debug_option_gamepad_player
+										|debug_option_gamepad_index
+										|debug_option_gamepad_deadzone
+										|debug_option_gamepad_confirm
+										|debug_option_gamepad_style
 							|debug_option_gameplay
 							+Gameplay
 								|debug_menu_gameplay
@@ -549,6 +566,7 @@
 		+Draw
 			|draw_hitbox
 			|draw_sprite_tiled_extra_OLD
+			|draw_rectangle_view
 			|draw_background_tiled_view
 		+Text
 			|string_bool

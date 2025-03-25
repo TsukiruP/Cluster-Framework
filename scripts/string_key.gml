@@ -1,5 +1,5 @@
 /// string_key(key)
-/// @desc Returns a string representing the key.
+/// @desc Returns a string representing the key. https://pastebin.com/H7UNwuBr from u/disembodieddave.
 /// @param {int} key
 /// @returns {string}
 
@@ -40,6 +40,9 @@ switch (_key)
 
     case 27:
         return "Esc";
+
+    case 32:
+        return "Spacebar";
 
     case 33:
         return "Page Up";

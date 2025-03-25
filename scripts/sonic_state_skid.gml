@@ -15,7 +15,7 @@ switch (_phase)
 
     case STATE_STEP:
         var skid_super; skid_super = (peel_out || boost_mode);
-        
+
         if (!on_ground)
         {
             if (!player_movement_air()) return false;

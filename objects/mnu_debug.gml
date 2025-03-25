@@ -7,14 +7,15 @@ applies_to=self
 /// Menu Initialization
 
 menu_alarm = 0;
-menu_index = debug_menu_home;
+menu_index = debug_menu_top;
 menu_cursor = 0;
 menu_option = 0;
 menu_scroll = 0;
 menu_x_direction = 0;
 menu_list = ds_list_create();
+menu_fade = 0;
 history_stack = ds_stack_create();
-debug_set_menu(debug_menu_home);
+debug_set_menu(debug_menu_top);
 
 transition_room = room_first;
 transition_preview = TRANS_FADE;
@@ -22,8 +23,8 @@ transition_preview = TRANS_FADE;
 rename_allow = false;
 rename_backup = "";
 
-input_device = DEV_KEYBOARD;
 input_rebind = INP_ANY;
+input_device = DEV_KEYBOARD;
 
 sfx_alarm = 0;
 #define Destroy_0
@@ -54,7 +55,7 @@ menu_x_direction = 0;
 
 if (visible != !instance_exists(mnu_debug_save)) visible = !instance_exists(mnu_debug_save);
 
-if (game_ispaused(ctrl_text) || instance_exists(ctrl_transition) || instance_exists(mnu_debug_save) || rename_allow)
+if (game_ispaused(ctrl_text) || instance_exists(ctrl_transition) || instance_exists(mnu_debug_save))
 {
     if (menu_alarm == 0) menu_alarm = 2;
     exit;
@@ -66,7 +67,7 @@ if (menu_alarm > 0)
     exit;
 }
 
-if (input_rebind != INP_ANY) exit;
+if (menu_fade != 0) exit;
 
 var menu_up; menu_up = (input_get_check(INP_UP, CHECK_PRESSED) || input_get_time(INP_UP, 30));
 var menu_down; menu_down = (input_get_check(INP_DOWN, CHECK_PRESSED) || input_get_time(INP_DOWN, 30));
@@ -99,6 +100,7 @@ else
     else menu_cursor += menu_y_direction;
 }
 
+// Confirm:
 if (input_get_check(INP_CONFIRM, CHECK_PRESSED))
 {
     var option_confirm; option_confirm = script_execute(ds_list_find_value(menu_list, menu_option), 2);
@@ -106,6 +108,7 @@ if (input_get_check(INP_CONFIRM, CHECK_PRESSED))
     if (!is_undefined(option_confirm)) audio_play_sfx(pick(option_confirm, "snd_menu_cannot", "snd_menu_confirm"), true);
 }
 
+// Update:
 var menu_left; menu_left = (input_get_check(INP_LEFT, CHECK_PRESSED) || input_get_time(INP_LEFT, 30));
 var menu_right; menu_right = (input_get_check(INP_RIGHT, CHECK_PRESSED) || input_get_time(INP_RIGHT, 30));
 
@@ -122,6 +125,7 @@ if (menu_x_direction != 0)
     }
 }
 
+// Back:
 if (input_get_check(INP_CANCEL, CHECK_PRESSED))
 {
     if (debug_set_previous()) audio_play_sfx("snd_menu_close", true);
@@ -157,22 +161,21 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Keyboard Rebind
+/// Rebind
 
-if (menu_alarm != 0 || input_device != DEV_KEYBOARD || input_rebind == INP_ANY) exit;
+if (menu_alarm != 0 || input_rebind == INP_ANY) exit;
 
-
-if (keyboard_key != vk_nokey)
+if (input_device == DEV_KEYBOARD)
 {
-    keyboard_clear(vk_anykey);
-    
-    if (keyboard_key != vk_escape)
+    if (keyboard_key != vk_nokey)
     {
+        keyboard_clear(vk_anykey);
+
         // Merge modifier keys:
         if (keyboard_key == vk_lshift || keyboard_key == vk_rshift) keyboard_key = vk_shift;
         if (keyboard_key == vk_lcontrol || keyboard_key == vk_rcontrol) keyboard_key = vk_control;
         if (keyboard_key == vk_lalt || keyboard_key == vk_ralt) keyboard_key = vk_alt;
-        
+
         // Global keys:
         if (input_rebind <= INP_RIGHT || input_rebind == INP_START || input_rebind == INP_SELECT)
         {
@@ -181,12 +184,12 @@ if (keyboard_key != vk_nokey)
                 if (keyboard_key == game_config_get_key(i)) game_config_set_key(i, game_config_get_key(input_rebind));
             }
         }
-        
+
         // Gameplay keys:
         else if (input_rebind >= INP_JUMP && input_rebind <= INP_ALT)
         {
             var input_global; input_global = false;
-            
+
             // First go through global and gameplay keys:
             for ({var i; i = INP_UP}; i <= INP_SELECT; i += 1)
             {
@@ -196,7 +199,7 @@ if (keyboard_key != vk_nokey)
                     game_config_set_key(i, game_config_get_key(input_rebind));
                 }
             }
-            
+
             // If we've matched a global key, then we check the menu keys just in case:
             if (input_global)
             {
@@ -215,7 +218,7 @@ if (keyboard_key != vk_nokey)
             // First we go through the globals and menu keys, skipping around the gameplay keys:
             for ({var i; i = INP_UP}; i <= INP_HIDE; i += 1)
             {
-                if (i == INP_JUMP) i = INP_START; // We skip to start.
+                if (i == INP_JUMP) i = INP_START; // We skip to Start.
                 
                 if (keyboard_key == game_config_get_key(i))
                 {
@@ -233,12 +236,31 @@ if (keyboard_key != vk_nokey)
                 }
             }
         }
-        
+
         game_config_set_key(input_rebind, keyboard_key);
+        debug_set_rebind(INP_ANY);
     }
-    
-    menu_alarm = 15;
-    input_rebind = INP_ANY;
+}
+else if (input_device > DEV_KEYBOARD)
+{
+    var player_index; player_index = input_device - DEV_GAMEPAD0;
+    var gamepad_button; gamepad_button = gamepad_get_any(player_index, CHECK_PRESSED);
+
+    if (gamepad_button != PAD_NONE)
+    {
+        // Gamepad is restricted in what inputs it can change and what buttons can be used:
+        if (input_rebind >= INP_JUMP && input_rebind <= INP_ALT && gamepad_button >= PAD_FACE1 && gamepad_button <= PAD_TRIGGERR)
+        {
+            for ({var i; i = INP_JUMP}; i <= INP_ALT; i += 1)
+            {
+                if (gamepad_button == game_config_get_button(player_index, i)) game_config_set_button(player_index, i, game_config_get_button(player_index, input_rebind));
+            }
+
+            game_config_set_button(player_index, input_rebind, gamepad_button);
+        }
+
+        debug_set_rebind(INP_ANY);
+    }
 }
 #define Step_1
 /*"/*'/**//* YYD ACTION
@@ -249,11 +271,22 @@ applies_to=self
 /// Alarm
 
 if (sfx_alarm > 0) sfx_alarm -= 1;
+#define Step_2
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Alpha
+
+if (rename_allow || input_rebind != INP_ANY) menu_fade = 0.6;
+else menu_fade = 0;
 #define Other_5
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=203
 applies_to=self
+invert=0
 */
 #define Draw_0
 /*"/*'/**//* YYD ACTION
@@ -294,24 +327,59 @@ for ({var i; i = 0}; i < min(ds_list_size(menu_list), 4); i += 1)
     draw_text(option_x, option_y, option_text);
 }
 
+// Fade:
+draw_rectangle_view(c_black, menu_fade);
 draw_reset();
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
 applies_to=self
 */
-/// Draw Rename
-
-if (!rename_allow) exit;
+/// Draw Entry
 
 var font_height; font_height = font_get_height(global.font_system);
+var entry_string; entry_string = "";
 
-// Box:
-draw_rect(0, (screen_get_height() / 2) - (font_height / 2) - 2, screen_get_width(), font_height + 6, game_get_interface_color(), game_get_config("interface_alpha"));
-
-// Rename:
+// Entry:
 draw_set_font(global.font_system);
 draw_set1(c_white, 1);
 draw_set2(fa_center, fa_middle);
-draw_text(screen_get_width() / 2, screen_get_height() / 2, rename_backup);
+
+if (rename_allow) entry_string = "Enter a name#" + rename_backup;
+else if (input_rebind != INP_ANY)
+{
+    entry_string = "Enter a " + pick(input_device == DEV_KEYBOARD, "button", "key") + " to bind to " + input_get_name(input_rebind);
+    if (input_device > DEV_KEYBOARD) entry_string += "#Disclaimer: Some buttons cannot be used for binding.";
+}
+
+draw_text(view_xview[view_current] + screen_get_width() / 2, view_yview[view_current] + screen_get_height() / 2, entry_string);
+draw_reset();
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Draw Guide
+/*
+
+Scrapped because there's no way of checking if an option has an update or confirm function without executing it.
+
+var font_height; font_height = font_get_height(global.font_system);
+var guide_string; guide_string = "";
+
+if (rename_allow) guide_string = "ENTER Finish";
+else
+{
+    var guide_cancel; guide_cancel = "";
+    var guide_confirm; guide_confirm = "";
+    var guide_select; guide_select = "";
+    var guide_update; guide_update = "";
+    
+    if (!ds_stack_empty(history_stack)) guide_cancel = string_input(INP_CANCEL) + "Back";
+    
+    guide_string = guide_update + " " + guide_select + " " + guide_confirm + " " + guide_cancel;
+}
+
+draw_set2(fa_right, fa_bottom);
+draw_text(view_xview[view_current] + screen_get_width() - font_height / 2, view_yview[view_current] + screen_get_height(), guide_string); 
 draw_reset();

@@ -1,5 +1,5 @@
 /// debug_option_transition_room(return)
-/// @param {any} return
+/// @param {int} return
 /// @returns {any}
 
 var _return; _return = argument0;
@@ -29,7 +29,7 @@ switch (_return)
                 if (transition_room != room_first) transition_room = room_previous(transition_room);
                 else transition_room = room_last;
                 break;
-            
+
             // Right:
             case 1:
                 if (transition_room != room_last) transition_room = room_next(transition_room);
@@ -37,7 +37,7 @@ switch (_return)
                 break;
         }
         return true;
-    
+
     // Undefined:
     default:
         return undefined;

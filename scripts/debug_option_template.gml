@@ -1,5 +1,5 @@
 /// debug_option_template(return)
-/// @param {any} return
+/// @param {int} return
 /// @returns {any}
 
 var _return; _return = argument0;

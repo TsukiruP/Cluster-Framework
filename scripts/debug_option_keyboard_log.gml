@@ -1,5 +1,5 @@
 /// debug_option_keyboard_log(return)
-/// @param {any} return
+/// @param {int} return
 /// @returns {any}
 
 var _return; _return = argument0;
@@ -18,9 +18,7 @@ switch (_return)
 
     // Confirm:
     case 2:
-        menu_alarm = 15;
-        input_device = DEV_KEYBOARD;
-        input_rebind = input_index;
+        debug_input_rebind(input_index, DEV_KEYBOARD);
         return true;
 
     // Undefined:
