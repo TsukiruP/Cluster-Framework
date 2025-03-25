@@ -66,13 +66,22 @@ repeat (total_steps)
         {
             if (player_react(hit_floor, HIT_SOLID, ANGLE_UP)) return false;
             player_set_ground(hit_floor);
-            player_rotate_mask();
         }
-        else on_ground = false;
+        else
+        {
+            ground_inst = noone;
+            on_ground = false;
+        }
     }
-    else on_ground = false;
+    else
+    {
+        ground_inst = noone;
+        on_ground = false;
+    }
     
-    if (!on_ground) player_set_water_run();
+    // Update mask direction / run on water:
+    if (ground_inst != noone) player_rotate_mask();
+    else player_set_water_run();
 }
 
 return true;

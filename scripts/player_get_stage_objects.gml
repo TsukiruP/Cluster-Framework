@@ -1,5 +1,5 @@
 /// player_get_stage_objects()
-/// @desc Refreshes the list of stage objects.
+/// @desc Finds and records any stage objects nearby the player for interaction.
 /// @returns {void}
 
 var hitbox; hitbox = 0;
@@ -14,8 +14,9 @@ var y1; y1 = y_int + (sine * wall_radius * 2) - (csine * y_radius * 4);
 var x2; x2 = x_int + (csine * wall_radius * 2) + (sine * y_radius * 4);
 var y2; y2 = y_int - (sine * wall_radius * 2) + (csine * y_radius * 4);
 
-/* AUTHOR NOTE: you should use the player_inst's widest radii here instead so that interactions can be properly processed.
-However, the horizontal and vertical radii MUST come out greater than the base radii used for collision! */
+/* AUTHOR NOTE: you should use the player's widest radii here instead so that interactions can be properly processed.
+However, the horizontal radius must be greater than double the player's wall radius, and more than quadruple their vertical radius,
+so that they can correctly collide with solid objects. */
 
 // Reset lists:
 ds_list_clear(reaction_list);

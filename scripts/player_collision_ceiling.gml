@@ -18,7 +18,6 @@ for ({var oy; oy = 0}; oy < _height; oy += 1)
         if (collision_box_vertical(x_radius, -oy, mask_direction, inst) == noone || inst.semisolid) continue;
 
         // Confirm matching solid:
-        ground_offset = oy;
         return inst;
     }
 }

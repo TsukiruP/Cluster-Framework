@@ -55,7 +55,6 @@ reaction_list = ds_list_create();
 solid_list = ds_list_create();
 layer = 0;
 cliff_direction = 0;
-ground_offset = 0;
 player_reset_air();
 
 ceiling_land_threshold = -4;
