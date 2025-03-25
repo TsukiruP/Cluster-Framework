@@ -6,7 +6,9 @@ applies_to=self
 */
 /// Screen Initialization
 
-screen_set_size(480, 270);
+screen_width_temp = 480;
+screen_height_temp = 270;
+screen_set_size(screen_width_temp, screen_height_temp);
 room_set_view_all(screen_width, screen_height);
 window_resize_buffer(screen_width, screen_height, true, false);
 window_set_fullscreen(game_get_config("screen_full"));
@@ -17,6 +19,9 @@ action_id=603
 applies_to=self
 */
 /// Update
+
+screen_width_temp = screen_width;
+screen_height_temp = screen_height;
 
 if (screen_set_resolution())
 {

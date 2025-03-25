@@ -13,7 +13,7 @@ if (!window_get_fullscreen())
         window_set_size(screen_width, screen_height);
         window_set_region_size(screen_get_width(), screen_get_height(), false);
         window_set_region_scale(screen_scale, false);
-        window_resize_buffer(screen_get_width(), screen_get_height(), false, false);
+        window_resize_buffer(screen_get_width(), screen_get_height(), !screen_is_equal(screen_width_temp, screen_height_temp), false);
         window_center();
     }
 }
@@ -23,6 +23,6 @@ else
     {
         window_set_region_size(screen_get_width(), screen_get_height(), false);
         window_set_region_scale(-1, false);
-        window_resize_buffer(screen_get_width(), screen_get_height(), false, false);
+        window_resize_buffer(screen_get_width(), screen_get_height(), !screen_is_equal(screen_width_temp, screen_height_temp), false);
     }
 }
