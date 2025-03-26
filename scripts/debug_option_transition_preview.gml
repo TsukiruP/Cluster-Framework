@@ -1,8 +1,10 @@
-/// debug_option_transition_preview(return)
+/// debug_option_transition_preview(return, [execute])
 /// @param {int} return
+/// @param {bool} [execute]
 /// @returns {any}
 
-var _return; _return = argument0;
+var _return; _return = argument[0];
+var _execute; if (argument_count > 1) _execute = argument[1]; else _execute = true;
 
 switch (_return)
 {
@@ -16,13 +18,17 @@ switch (_return)
 
     // Confirm:
     case 2:
-        transition_create(transition_room, transition_preview, true);
+        if (_execute) transition_create(transition_room, transition_preview, true);
         return true;
 
     // Update:
     case 3:
-        transition_preview += menu_x_direction;
-        transition_preview = wrap(transition_preview, TRANS_FADE, TRANS_RETRY);
+        if (_execute)
+        {
+            transition_preview += menu_x_direction;
+            transition_preview = wrap(transition_preview, TRANS_FADE, TRANS_RETRY);
+        }
+        
         return true;
 
     // Undefined:

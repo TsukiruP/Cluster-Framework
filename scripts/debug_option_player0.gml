@@ -1,8 +1,10 @@
-/// debug_option_player0(return)
+/// debug_option_player0(return, [execute])
 /// @param {int} return
+/// @param {bool} [execute]
 /// @returns {any}
 
-var _return; _return = argument0;
+var _return; _return = argument[0];
+var _execute; if (argument_count > 1) _execute = argument[1]; else _execute = true;
 
 var character_index; character_index = 0;
 
@@ -21,7 +23,7 @@ switch (_return)
         switch (game_save_get_character(character_index))
         {
             case CHAR_SONIC:
-                debug_set_next(debug_menu_sonic);
+                if (_execute) debug_set_next(debug_menu_sonic);
                 return true;
 
             default:
@@ -31,7 +33,7 @@ switch (_return)
 
     // Update:
     case 3:
-        game_save_set_character(character_index, wrap(game_save_get_character(character_index) + menu_x_direction, CHAR_SONIC, CHAR_CLASSIC));
+        if (_execute) game_save_set_character(character_index, wrap(game_save_get_character(character_index) + menu_x_direction, CHAR_SONIC, CHAR_CLASSIC));
         return true;
 
     // Undefined:

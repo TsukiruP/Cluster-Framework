@@ -1,8 +1,10 @@
-/// debug_option_credits(return)
+/// debug_option_credits(return, [execute])
 /// @param {int} return
+/// @param {bool} [execute]
 /// @returns {any}
 
-var _return; _return = argument0;
+var _return; _return = argument[0];
+var _execute; if (argument_count > 1) _execute = argument[1]; else _execute = true;
 
 switch (_return)
 {

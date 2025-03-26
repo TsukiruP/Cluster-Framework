@@ -1,8 +1,10 @@
-/// debug_option_subject_test(return)
+/// debug_option_subject_test(return, [execute])
 /// @param {int} return
+/// @param {bool} [execute]
 /// @returns {any}
 
-var _return; _return = argument0;
+var _return; _return = argument[0];
+var _execute; if (argument_count > 1) _execute = argument[1]; else _execute = true;
 
 switch (_return)
 {
@@ -12,7 +14,7 @@ switch (_return)
 
     // Confirm:
     case 2:
-        text_set_subject("This message is a test!");
+        if (_execute) text_set_subject("This message is a test!");
         return true;
 
     // Undefined:

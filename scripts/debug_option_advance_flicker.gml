@@ -1,8 +1,10 @@
-/// debug_option_advance_flicker(return)
+/// debug_option_advance_flicker(return, [execute])
 /// @param {int} return
+/// @param {bool} [execute]
 /// @returns {any}
 
-var _return; _return = argument0;
+var _return; _return = argument[0];
+var _execute; if (argument_count > 1) _execute = argument[1]; else _execute = true;
 
 var config_key; config_key = "advance_flicker";
 
@@ -18,7 +20,7 @@ switch (_return)
 
     // Update:
     case 3:
-        game_set_config(config_key, !game_get_config(config_key));
+        if (_execute) game_set_config(config_key, !game_get_config(config_key));
         return true;
 
     // Undefined:

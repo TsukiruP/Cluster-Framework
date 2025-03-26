@@ -1,8 +1,10 @@
-/// debug_option_input_hide(return)
+/// debug_option_input_hide(return, [execute])
 /// @param {int} return
+/// @param {bool} [execute]
 /// @returns {any}
 
-var _return; _return = argument0;
+var _return; _return = argument[0];
+var _execute; if (argument_count > 1) _execute = argument[1]; else _execute = true;
 
 var input_index; input_index = INP_HIDE;
 
@@ -18,7 +20,7 @@ switch (_return)
 
     // Confirm:
     case 2:
-        debug_set_rebind(input_index);
+        if (_execute) debug_set_rebind(input_index);
         return true;
 
     // Undefined:

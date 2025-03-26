@@ -1,8 +1,10 @@
-/// debug_option_transition_room(return)
+/// debug_option_transition_room(return, [execute])
 /// @param {int} return
+/// @param {bool} [execute]
 /// @returns {any}
 
-var _return; _return = argument0;
+var _return; _return = argument[0];
+var _execute; if (argument_count > 1) _execute = argument[1]; else _execute = true;
 
 switch (_return)
 {
@@ -16,26 +18,30 @@ switch (_return)
 
     // Confirm:
     case 2:
-        transition_create(transition_room);
+        if (_execute) transition_create(transition_room);
         return true;
 
     // Update:
     case 3:
-        // Wrapping is a bit awkward because rooms aren't convenient to work with.
-        switch (sign(menu_x_direction))
+        if (_execute)
         {
-            // Left:
-            case -1:
-                if (transition_room != room_first) transition_room = room_previous(transition_room);
-                else transition_room = room_last;
-                break;
-
-            // Right:
-            case 1:
-                if (transition_room != room_last) transition_room = room_next(transition_room);
-                else transition_room = room_first;
-                break;
+            // Wrapping is a bit awkward because rooms aren't convenient to work with.
+            switch (sign(menu_x_direction))
+            {
+                // Left:
+                case -1:
+                    if (transition_room != room_first) transition_room = room_previous(transition_room);
+                    else transition_room = room_last;
+                    break;
+    
+                // Right:
+                case 1:
+                    if (transition_room != room_last) transition_room = room_next(transition_room);
+                    else transition_room = room_first;
+                    break;
+            }
         }
+        
         return true;
 
     // Undefined:

@@ -1,8 +1,10 @@
-/// debug_option_audio_sfx(return)
+/// debug_option_audio_sfx(return, [execute])
 /// @param {int} return
+/// @param {bool} [execute]
 /// @returns {any}
 
-var _return; _return = argument0;
+var _return; _return = argument[0];
+var _execute; if (argument_count > 1) _execute = argument[1]; else _execute = true;
 
 var config_key; config_key = "audio_sfx";
 
@@ -20,8 +22,12 @@ switch (_return)
     case 3:
         if (in_range(game_get_config(config_key) + menu_x_direction, 0, 100))
         {
-            game_set_config(config_key, clamp(game_get_config(config_key) + menu_x_direction, 0, 100));
-            sound_kind_volume(0, game_get_config(config_key) / 100);
+            if (_execute)
+            {
+                game_set_config(config_key, clamp(game_get_config(config_key) + menu_x_direction, 0, 100));
+                sound_kind_volume(0, game_get_config(config_key) / 100);
+            }
+            
             return true;
         }
 

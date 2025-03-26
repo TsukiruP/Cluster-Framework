@@ -1,8 +1,10 @@
-/// debug_option_gamepad_deadzone(return)
+/// debug_option_gamepad_deadzone(return, [execute])
 /// @param {int} return
+/// @param {bool} [execute]
 /// @returns {any}
 
-var _return; _return = argument0;
+var _return; _return = argument[0];
+var _execute; if (argument_count > 1) _execute = argument[1]; else _execute = true;
 
 var player_index; player_index = input_device - DEV_GAMEPAD0;
 var config_key; config_key = "input_deadzone";
@@ -21,7 +23,7 @@ switch (_return)
     case 3:
         if (in_range(game_config_get_gamepad(player_index, config_key) + menu_x_direction / 100, 0, 1))
         {
-            game_config_set_gamepad(player_index, config_key, clamp(game_config_get_gamepad(player_index, config_key) + menu_x_direction / 100, 0, 1));
+            if (_execute) game_config_set_gamepad(player_index, config_key, clamp(game_config_get_gamepad(player_index, config_key) + menu_x_direction / 100, 0, 1));
             return true;
         }
 

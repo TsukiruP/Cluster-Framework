@@ -1,8 +1,10 @@
-/// debug_option_save_read(return)
+/// debug_option_save_read(return, [execute])
 /// @param {int} return
+/// @param {bool} [execute]
 /// @returns {any}
 
-var _return; _return = argument0;
+var _return; _return = argument[0];
+var _execute; if (argument_count > 1) _execute = argument[1]; else _execute = true;
 
 switch (_return)
 {
@@ -12,7 +14,7 @@ switch (_return)
 
     // Confirm:
     case 2:
-        debug_save_create(1);
+        if (_execute) debug_save_create(1);
         return true;
 
     // Undefined:
