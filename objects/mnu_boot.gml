@@ -124,7 +124,7 @@ switch (boot_state)
 if (boot_string != "")
 {
     draw_set_font(global.font_system);
-    draw_set2(fa_middle, fa_center);
+    draw_set2(fa_center, fa_middle);
     draw_text_ext(boot_x, boot_y, boot_string, font_get_height(global.font_system), screen_get_width() - 84);
 }
 

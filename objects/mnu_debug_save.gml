@@ -164,18 +164,18 @@ for ({var i; i = 0}; i < page_count; i += 1)
             draw_sprite_ext(spr_save_character, save_character, save_x1 - 8, save_y1 - save_height / 2, 1, 1, 0, c_white, 0.6);
 
             // Name and stage:
-            draw_set2(fa_left, fa_center);
+            draw_set2(fa_left, fa_middle);
             draw_text(save_x1, save_y1, save_name + "##" + room_get_name(save_stage));
 
             // Time:
-            draw_set2(fa_right, fa_center);
+            draw_set2(fa_right, fa_middle);
             draw_text(save_x2, save_y1, "##" + string_pad(save_time div 216000, 3) + ":" + string_pad(save_time div 3600, 2));
         }
 
         // Save doesn't exist:
         else
         {
-            draw_set2(fa_middle, fa_center);
+            draw_set2(fa_center, fa_middle);
             draw_text(save_x1 + save_width, save_y2 - save_height / 2, "No Data");
         }
     }

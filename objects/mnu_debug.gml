@@ -360,9 +360,6 @@ action_id=603
 applies_to=self
 */
 /// Draw Guide
-/*
-
-Scrapped because there's no way of checking if an option has an update or confirm function without executing it.
 
 var font_height; font_height = font_get_height(global.font_system);
 var guide_string; guide_string = "";
@@ -374,12 +371,12 @@ else
     var guide_confirm; guide_confirm = "";
     var guide_select; guide_select = "";
     var guide_update; guide_update = "";
-    
+
     if (!ds_stack_empty(history_stack)) guide_cancel = string_input(INP_CANCEL) + "Back";
-    
+
     guide_string = guide_update + " " + guide_select + " " + guide_confirm + " " + guide_cancel;
 }
 
-draw_set2(fa_right, fa_bottom);
-draw_text(view_xview[view_current] + screen_get_width() - font_height / 2, view_yview[view_current] + screen_get_height(), guide_string); 
+draw_set2(fa_center, fa_bottom);
+draw_text(view_xview[view_current] + screen_get_width() / 2, view_yview[view_current] + screen_get_height(), guide_string);
 draw_reset();
