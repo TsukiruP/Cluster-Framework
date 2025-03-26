@@ -13,16 +13,13 @@ with (ctrl_game)
         var gamepad_map; gamepad_map = ds_map_create();
         var input_list; input_list = ds_list_create();
 
-        if (ds_map_read_safe(gamepad_map, ds_list_find_value(gamepad_list, i)))
-        {
-            ds_list_read(input_list, ds_map_get(gamepad_map, "input_list"));
-            ds_list_copy(game_config_get_gamepad(i, "input_list"), input_list);
-            ds_list_destroy(input_list);
-            game_config_set_gamepad(i, "input_deadzone", ds_map_get(gamepad_map, "input_deadzone"));
-            game_config_set_gamepad(i, "input_confirm", ds_map_get(gamepad_map, "input_confirm"));
-            game_config_set_gamepad(i, "input_style", ds_map_get(gamepad_map, "input_style"));
-        }
-
+        ds_map_read(gamepad_map, ds_list_find_value(gamepad_list, i))
+        ds_list_read(input_list, ds_map_get(gamepad_map, "input_list"));
+        ds_list_copy(game_config_get_gamepad(i, "input_list"), input_list);
+        ds_list_destroy(input_list);
+        game_config_set_gamepad(i, "input_deadzone", ds_map_get(gamepad_map, "input_deadzone"));
+        game_config_set_gamepad(i, "input_confirm", ds_map_get(gamepad_map, "input_confirm"));
+        game_config_set_gamepad(i, "input_style", ds_map_get(gamepad_map, "input_style"));
         ds_map_destroy(gamepad_map);
     }
 

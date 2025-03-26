@@ -10,5 +10,5 @@ with (ctrl_game)
     var skill_map; skill_map = game_save_get_skill_map(_character);
     var skill_key; skill_key = game_get_save(pick(_character, "sonic_skill"));
 
-    ds_map_read_safe(skill_map, skill_key);
+    ds_map_read(skill_map, skill_key);
 }
