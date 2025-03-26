@@ -16,11 +16,6 @@ switch (_index)
     case 1:
         return pick(transition_preview, "Fade", "Menu", "Title Card", "Retry");
 
-    // Confirm:
-    case 2:
-        if (_event) transition_create(transition_room, transition_preview, true);
-        return true;
-
     // Change:
     case 3:
         if (_event)
@@ -29,6 +24,11 @@ switch (_index)
             transition_preview = wrap(transition_preview, TRANS_FADE, TRANS_RETRY);
         }
 
+        return true;
+
+    // Confirm:
+    case 4:
+        if (_event) transition_create(transition_room, transition_preview, true);
         return true;
 
     // Undefined:

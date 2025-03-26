@@ -13,7 +13,7 @@ switch (_index)
         return "Character Debug";
 
     // Confirm:
-    case 2:
+    case 4:
         if (_event) debug_set_next(debug_menu_character);
         return true;
 

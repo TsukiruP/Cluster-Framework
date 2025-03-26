@@ -23,8 +23,8 @@ transition_preview = TRANS_FADE;
 rename_allow = false;
 rename_backup = "";
 
-input_rebind = INP_ANY;
-input_device = DEV_KEYBOARD;
+rebind_input = INP_ANY;
+rebind_device = DEV_KEYBOARD;
 
 sfx_alarm = 0;
 #define Destroy_0
@@ -100,14 +100,6 @@ else
     else menu_cursor += menu_y_direction;
 }
 
-// Confirm:
-if (input_get_check(INP_CONFIRM, CHECK_PRESSED))
-{
-    var option_confirm; option_confirm = debug_execute(menu_option, 2);
-
-    if (!is_undefined(option_confirm)) audio_play_sfx(pick(option_confirm, "snd_menu_cannot", "snd_menu_confirm"), true);
-}
-
 // Change:
 var menu_left; menu_left = (input_get_check(INP_LEFT, CHECK_PRESSED) || input_get_time(INP_LEFT, 30));
 var menu_right; menu_right = (input_get_check(INP_RIGHT, CHECK_PRESSED) || input_get_time(INP_RIGHT, 30));
@@ -123,6 +115,14 @@ if (menu_x_direction != 0)
         sfx_alarm = 8;
         audio_play_sfx(pick(option_update, "snd_menu_cannot", "snd_menu_move"), true);
     }
+}
+
+// Confirm:
+if (input_get_check(INP_CONFIRM, CHECK_PRESSED))
+{
+    var option_confirm; option_confirm = debug_execute(menu_option, 4);
+
+    if (!is_undefined(option_confirm)) audio_play_sfx(pick(option_confirm, "snd_menu_cannot", "snd_menu_confirm"), true);
 }
 
 // Back:
@@ -163,9 +163,9 @@ applies_to=self
 */
 /// Rebind
 
-if (menu_alarm != 0 || input_rebind == INP_ANY) exit;
+if (menu_alarm != 0 || rebind_input == INP_ANY) exit;
 
-if (input_device == DEV_KEYBOARD)
+if (rebind_device == DEV_KEYBOARD)
 {
     if (keyboard_key != vk_nokey)
     {
@@ -177,16 +177,16 @@ if (input_device == DEV_KEYBOARD)
         if (keyboard_key == vk_lalt || keyboard_key == vk_ralt) keyboard_key = vk_alt;
 
         // Global keys:
-        if (input_rebind <= INP_RIGHT || input_rebind == INP_START || input_rebind == INP_SELECT)
+        if (rebind_input <= INP_RIGHT || rebind_input == INP_START || rebind_input == INP_SELECT)
         {
             for ({var i; i = INP_UP}; i <= INP_HIDE; i += 1)
             {
-                if (keyboard_key == game_config_get_key(i)) game_config_set_key(i, game_config_get_key(input_rebind));
+                if (keyboard_key == game_config_get_key(i)) game_config_set_key(i, game_config_get_key(rebind_input));
             }
         }
 
         // Gameplay keys:
-        else if (input_rebind >= INP_JUMP && input_rebind <= INP_ALT)
+        else if (rebind_input >= INP_JUMP && rebind_input <= INP_ALT)
         {
             var input_global; input_global = false;
 
@@ -196,7 +196,7 @@ if (input_device == DEV_KEYBOARD)
                 if (keyboard_key == game_config_get_key(i))
                 {
                     if (i <= INP_RIGHT || i == INP_START || i == INP_SELECT) input_global = true;
-                    game_config_set_key(i, game_config_get_key(input_rebind));
+                    game_config_set_key(i, game_config_get_key(rebind_input));
                 }
             }
 
@@ -205,13 +205,13 @@ if (input_device == DEV_KEYBOARD)
             {
                 for ({var i; i = INP_CONFIRM}; i <= INP_HIDE; i += 1)
                 {
-                    if (game_config_get_key(input_rebind) == game_config_get_key(i)) game_config_set_key(i, keyboard_key);
+                    if (game_config_get_key(rebind_input) == game_config_get_key(i)) game_config_set_key(i, keyboard_key);
                 }
             }
         }
         
         // Menu keys:
-        else if (input_rebind >= INP_CONFIRM && input_rebind <= INP_HIDE)
+        else if (rebind_input >= INP_CONFIRM && rebind_input <= INP_HIDE)
         {
             var input_global; input_global = false;
             
@@ -223,7 +223,7 @@ if (input_device == DEV_KEYBOARD)
                 if (keyboard_key == game_config_get_key(i))
                 {
                     if (i <= INP_RIGHT || i == INP_START || i == INP_SELECT) input_global = true;
-                    game_config_set_key(i, game_config_get_key(input_rebind));
+                    game_config_set_key(i, game_config_get_key(rebind_input));
                 }
             }
             
@@ -232,31 +232,31 @@ if (input_device == DEV_KEYBOARD)
             {
                 for ({var i; i = INP_JUMP}; i <= INP_ALT; i += 1)
                 {
-                    if (game_config_get_key(input_rebind) == game_config_get_key(i)) game_config_set_key(i, keyboard_key);
+                    if (game_config_get_key(rebind_input) == game_config_get_key(i)) game_config_set_key(i, keyboard_key);
                 }
             }
         }
 
-        game_config_set_key(input_rebind, keyboard_key);
+        game_config_set_key(rebind_input, keyboard_key);
         debug_set_rebind(INP_ANY);
     }
 }
-else if (input_device > DEV_KEYBOARD)
+else if (rebind_device > DEV_KEYBOARD)
 {
-    var player_index; player_index = input_device - DEV_GAMEPAD0;
+    var player_index; player_index = rebind_device - DEV_GAMEPAD0;
     var gamepad_button; gamepad_button = gamepad_get_any(player_index, CHECK_PRESSED);
 
     if (gamepad_button != PAD_NONE)
     {
         // Gamepad is restricted in what inputs it can change and what buttons can be used:
-        if (input_rebind >= INP_JUMP && input_rebind <= INP_ALT && gamepad_button >= PAD_FACE1 && gamepad_button <= PAD_TRIGGERR)
+        if (rebind_input >= INP_JUMP && rebind_input <= INP_ALT && gamepad_button >= PAD_FACE1 && gamepad_button <= PAD_TRIGGERR)
         {
             for ({var i; i = INP_JUMP}; i <= INP_ALT; i += 1)
             {
-                if (gamepad_button == game_config_get_button(player_index, i)) game_config_set_button(player_index, i, game_config_get_button(player_index, input_rebind));
+                if (gamepad_button == game_config_get_button(player_index, i)) game_config_set_button(player_index, i, game_config_get_button(player_index, rebind_input));
             }
 
-            game_config_set_button(player_index, input_rebind, gamepad_button);
+            game_config_set_button(player_index, rebind_input, gamepad_button);
         }
 
         debug_set_rebind(INP_ANY);
@@ -279,14 +279,13 @@ applies_to=self
 */
 /// Alpha
 
-if (rename_allow || input_rebind != INP_ANY) menu_fade = 0.6;
+if (rename_allow || rebind_input != INP_ANY) menu_fade = 0.6;
 else menu_fade = 0;
 #define Other_5
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=203
 applies_to=self
-invert=0
 */
 #define Draw_0
 /*"/*'/**//* YYD ACTION
@@ -346,10 +345,10 @@ draw_set1(c_white, 1);
 draw_set2(fa_center, fa_middle);
 
 if (rename_allow) entry_string = "Enter a name#" + rename_backup;
-else if (input_rebind != INP_ANY)
+else if (rebind_input != INP_ANY)
 {
-    entry_string = "Enter a " + pick(input_device == DEV_KEYBOARD, "button", "key") + " to bind to " + input_get_name(input_rebind);
-    if (input_device > DEV_KEYBOARD) entry_string += "#Disclaimer: Some buttons cannot be used for binding.";
+    entry_string = "Enter a " + pick(rebind_device == DEV_KEYBOARD, "button", "key") + " to bind to " + input_get_name(rebind_input);
+    if (rebind_device > DEV_KEYBOARD) entry_string += "#Disclaimer: Some buttons cannot be used for binding.";
 }
 
 draw_text(view_xview[view_current] + screen_get_width() / 2, view_yview[view_current] + screen_get_height() / 2, entry_string);
@@ -367,16 +366,25 @@ var guide_string; guide_string = "";
 if (rename_allow) guide_string = "Enter Finish";
 else
 {
-    var guide_cancel; guide_cancel = "";
-    var guide_confirm; guide_confirm = "";
-    var guide_select; guide_select = "";
-    var guide_change; guide_change = "";
-
-    if (!ds_stack_empty(history_stack)) guide_cancel = string_input(INP_CANCEL) + " Back";
-    if (!is_undefined(debug_execute(menu_option, 2, false))) guide_confirm = string_input(INP_CONFIRM) + " Confirm";
-    if (!is_undefined(debug_execute(menu_option, 3, false))) guide_change = string_input(INP_LEFT) + " / " + string_input(INP_RIGHT) + " Change";
-
-    guide_string = guide_change + "#" + guide_confirm + " " + guide_cancel;
+    var guide_input;
+    
+    guide_input[0] = "";
+    guide_input[1] = "";
+    guide_input[2] = "";
+    guide_input[3] = "";
+    
+    if (!is_undefined(debug_execute(menu_option, 3, false))) guide_input[0] = string_input(INP_LEFT) + " / " + string_input(INP_RIGHT) + " Change";
+    if (!is_undefined(debug_execute(menu_option, 4, false))) guide_input[2] = string_input(INP_CONFIRM) + " Confirm";
+    if (!ds_stack_empty(history_stack)) guide_input[3] = string_input(INP_CANCEL) + " Back";
+    
+    for ({var i; i = 0}; i < 3; i += 1)
+    {
+        if (guide_input[i] != "")
+        {
+            if (guide_string != "") guide_string += "#";
+            guide_string += guide_input[i];
+        }
+    }
 }
 
 draw_set2(fa_left, fa_bottom);

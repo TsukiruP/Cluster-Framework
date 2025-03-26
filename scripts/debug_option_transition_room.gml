@@ -16,11 +16,6 @@ switch (_index)
     case 1:
         return room_get_name(transition_room);
 
-    // Confirm:
-    case 2:
-        if (_event) transition_create(transition_room);
-        return true;
-
     // Change:
     case 3:
         if (_event)
@@ -42,6 +37,11 @@ switch (_index)
             }
         }
 
+        return true;
+
+    // Confirm:
+    case 4:
+        if (_event) transition_create(transition_room);
         return true;
 
     // Undefined:

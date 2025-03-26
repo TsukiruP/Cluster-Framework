@@ -16,10 +16,10 @@ switch (_index)
 
     // Value:
     case 1:
-        return string_input(input_index, input_device);
+        return string_input(input_index, rebind_device);
 
     // Confirm:
-    case 2:
+    case 4:
         if (_event) debug_set_rebind(input_index);
         return true;
 

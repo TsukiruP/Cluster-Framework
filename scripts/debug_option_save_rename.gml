@@ -13,7 +13,7 @@ switch (_index)
         return "Rename Save";
 
     // Confirm:
-    case 2:
+    case 4:
         if (_event)
         {
             keyboard_string = game_get_save("name");

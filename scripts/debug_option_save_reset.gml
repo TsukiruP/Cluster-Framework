@@ -13,7 +13,7 @@ switch (_index)
         return "Reset Save";
 
     // Confirm:
-    case 2:
+    case 4:
         if (_event)
         {
             game_set_save_index(-1);

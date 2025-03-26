@@ -19,7 +19,7 @@ switch (_index)
         switch (game_get_config("screen_mode"))
         {
             // Misc:
-            case 2:
+            case 4:
                 return "7:4";
 
             // Default:

@@ -13,7 +13,7 @@ switch (_index)
         return "Write Config";
 
     // Confirm:
-    case 2:
+    case 4:
         if (_event) game_write_config();
         return true;
 

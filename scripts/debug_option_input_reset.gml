@@ -13,11 +13,11 @@ switch (_index)
         return "Reset";
 
     // Confirm:
-    case 2:
+    case 4:
         if (_event)
         {
-            if (input_device == DEV_KEYBOARD) game_config_reset_key();
-            else game_config_reset_gamepad(input_device - DEV_GAMEPAD0);
+            if (rebind_device == DEV_KEYBOARD) game_config_reset_key();
+            else game_config_reset_gamepad(rebind_device - DEV_GAMEPAD0);
         }
 
         return true;

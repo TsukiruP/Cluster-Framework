@@ -13,7 +13,7 @@ switch (_index)
         return "Write Save";
 
     // Confirm:
-    case 2:
+    case 4:
         if (_event) debug_save_create(0);
         return true;
 

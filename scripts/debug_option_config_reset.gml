@@ -13,7 +13,7 @@ switch (_index)
         return "Reset Config";
 
     // Confirm:
-    case 2:
+    case 4:
         if (_event) game_reset_config();
         return true;
 

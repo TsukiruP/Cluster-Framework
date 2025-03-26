@@ -13,7 +13,7 @@ switch (_index)
         return "Transition Debug";
 
     // Confirm:
-    case 2:
+    case 4:
         if (_event)
         {
             transition_room = room_first;

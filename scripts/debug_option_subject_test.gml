@@ -13,7 +13,7 @@ switch (_index)
         return "Subject Test";
 
     // Confirm:
-    case 2:
+    case 4:
         if (_event) text_set_subject("This message is a test!");
         return true;
 

@@ -13,7 +13,7 @@ switch (_index)
         return "Open Log";
 
     // Confirm:
-    case 2:
+    case 4:
         if (_event) ctrl_text.log_hide = false;
         return true;
 

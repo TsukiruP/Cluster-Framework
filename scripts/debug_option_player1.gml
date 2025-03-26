@@ -18,8 +18,13 @@ switch (_index)
     case 1:
         return pick_offset(game_save_get_character(character_index), -1, "None", "Sonic", "Miles", "Knuckles", "Amy", "Classic");
 
+    // Change:
+    case 3:
+        if (_event) game_save_set_character(character_index, wrap(game_save_get_character(character_index) + menu_x_direction, -1, CHAR_CLASSIC));
+        return true;
+
     // Confirm:
-    case 2:
+    case 4:
         switch (game_save_get_character(character_index))
         {
             case CHAR_SONIC:
@@ -30,11 +35,6 @@ switch (_index)
                 return false;
         }
         break;
-
-    // Change:
-    case 3:
-        if (_event) game_save_set_character(character_index, wrap(game_save_get_character(character_index) + menu_x_direction, -1, CHAR_CLASSIC));
-        return true;
 
     // Undefined:
     default:

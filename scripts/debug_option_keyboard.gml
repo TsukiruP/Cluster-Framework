@@ -13,10 +13,10 @@ switch (_index)
         return "Keyboard";
 
     // Confirm:
-    case 2:
+    case 4:
         if (_event)
         {
-            input_device = DEV_KEYBOARD;
+            rebind_device = DEV_KEYBOARD;
             debug_set_next(debug_menu_keyboard);
         }
 

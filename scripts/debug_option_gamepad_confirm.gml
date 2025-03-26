@@ -6,7 +6,7 @@
 var _index; _index = argument[0];
 var _event; if (argument_count > 1) _event = argument[1]; else _event = true;
 
-var player_index; player_index = input_device - DEV_GAMEPAD0;
+var player_index; player_index = rebind_device - DEV_GAMEPAD0;
 var config_key; config_key = "input_confirm";
 
 switch (_index)
@@ -17,7 +17,7 @@ switch (_index)
 
     // Value:
     case 1:
-        return string_input(INP_CONFIRM, input_device);
+        return string_input(INP_CONFIRM, rebind_device);
 
     // Change:
     case 3:

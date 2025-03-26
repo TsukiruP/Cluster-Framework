@@ -15,14 +15,19 @@ switch (_index)
     // Value:
     case 1:
         return undefined;
-
-    // Confirm:
+    
+    // Select:
     case 2:
         if (_event) return true;
         return false;
-
+    
     // Change:
     case 3:
+        if (_event) return true;
+        return false;
+
+    // Confirm:
+    case 4:
         if (_event) return true;
         return false;
 
