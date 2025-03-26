@@ -1,12 +1,12 @@
-/// debug_option_advance(return, [execute])
-/// @param {int} return
-/// @param {bool} [execute]
+/// debug_option_advance(index, [event])
+/// @param {int} index
+/// @param {bool} [event]
 /// @returns {any}
 
-var _return; _return = argument[0];
-var _execute; if (argument_count > 1) _execute = argument[1]; else _execute = true;
+var _index; _index = argument[0];
+var _event; if (argument_count > 1) _event = argument[1]; else _event = true;
 
-switch (_return)
+switch (_index)
 {
     // Text:
     case 0:
@@ -14,7 +14,7 @@ switch (_return)
 
     // Confirm:
     case 2:
-        if (_execute) debug_set_next(debug_menu_advance);
+        if (_event) debug_set_next(debug_menu_advance);
         return true;
 
     // Undefined:

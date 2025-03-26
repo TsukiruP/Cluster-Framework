@@ -1,14 +1,14 @@
-/// debug_option_player1(return, [execute])
-/// @param {int} return
-/// @param {bool} [execute]
+/// debug_option_player1(index, [event])
+/// @param {int} index
+/// @param {bool} [event]
 /// @returns {any}
 
-var _return; _return = argument[0];
-var _execute; if (argument_count > 1) _execute = argument[1]; else _execute = true;
+var _index; _index = argument[0];
+var _event; if (argument_count > 1) _event = argument[1]; else _event = true;
 
 var character_index; character_index = 1;
 
-switch (_return)
+switch (_index)
 {
     // Text:
     case 0:
@@ -23,7 +23,7 @@ switch (_return)
         switch (game_save_get_character(character_index))
         {
             case CHAR_SONIC:
-                if (_execute) debug_set_next(debug_menu_sonic);
+                if (_event) debug_set_next(debug_menu_sonic);
                 return true;
 
             default:
@@ -33,7 +33,7 @@ switch (_return)
 
     // Update:
     case 3:
-        if (_execute) game_save_set_character(character_index, wrap(game_save_get_character(character_index) + menu_x_direction, -1, CHAR_CLASSIC));
+        if (_event) game_save_set_character(character_index, wrap(game_save_get_character(character_index) + menu_x_direction, -1, CHAR_CLASSIC));
         return true;
 
     // Undefined:

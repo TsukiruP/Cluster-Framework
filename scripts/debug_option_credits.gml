@@ -1,12 +1,12 @@
-/// debug_option_credits(return, [execute])
-/// @param {int} return
-/// @param {bool} [execute]
+/// debug_option_credits(index, [event])
+/// @param {int} index
+/// @param {bool} [event]
 /// @returns {any}
 
-var _return; _return = argument[0];
-var _execute; if (argument_count > 1) _execute = argument[1]; else _execute = true;
+var _index; _index = argument[0];
+var _event; if (argument_count > 1) _event = argument[1]; else _event = true;
 
-switch (_return)
+switch (_index)
 {
     // Text:
     case 0:

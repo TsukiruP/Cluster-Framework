@@ -1,12 +1,12 @@
-/// debug_option_keyboard_hide(return)
-/// @param {int} return
+/// debug_option_keyboard_hide(index)
+/// @param {int} index
 /// @returns {any}
 
-var _return; _return = argument0;
+var _index; _index = argument0;
 
 var input_index; input_index = INP_HIDE;
 
-switch (_return)
+switch (_index)
 {
     // Text:
     case 0:

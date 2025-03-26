@@ -1,12 +1,12 @@
-/// debug_option_gamepad1(return)
-/// @param {int} return
+/// debug_option_gamepad1(index)
+/// @param {int} index
 /// @returns {any}
 
-var _return; _return = argument0;
+var _index; _index = argument0;
 
 var gamepad_index; gamepad_index = 1;
 
-switch (_return)
+switch (_index)
 {
     // Text:
     case 0:

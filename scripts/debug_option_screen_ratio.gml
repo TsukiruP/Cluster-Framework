@@ -1,14 +1,14 @@
-/// debug_option_screen_ratio(return, [execute])
-/// @param {int} return
-/// @param {bool} [execute]
+/// debug_option_screen_ratio(index, [event])
+/// @param {int} index
+/// @param {bool} [event]
 /// @returns {any}
 
-var _return; _return = argument[0];
-var _execute; if (argument_count > 1) _execute = argument[1]; else _execute = true;
+var _index; _index = argument[0];
+var _event; if (argument_count > 1) _event = argument[1]; else _event = true;
 
 var config_key; config_key = "screen_ratio";
 
-switch (_return)
+switch (_index)
 {
     // Text:
     case 0:
@@ -29,13 +29,13 @@ switch (_return)
 
     // Update:
     case 3:
-        if (_execute)
+        if (_event)
         {
             var ratio_max; ratio_max = pick(game_get_config("screen_mode"), 1, 2, 0);
-            
+
             game_set_config(config_key, wrap(game_get_config(config_key) + menu_x_direction, 0, ratio_max));
         }
-        
+
         return true;
 
     // Undefined:

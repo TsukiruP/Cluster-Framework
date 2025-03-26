@@ -602,3 +602,4 @@ input_get_name
 debug_option_gamepad_confirm
 game_config_reset_gamepad
 gamepad_get_any
+debug_execute

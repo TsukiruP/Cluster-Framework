@@ -1,12 +1,12 @@
-/// debug_option_save_rename(return, [execute])
-/// @param {int} return
-/// @param {bool} [execute]
+/// debug_option_save_rename(index, [event])
+/// @param {int} index
+/// @param {bool} [event]
 /// @returns {any}
 
-var _return; _return = argument[0];
-var _execute; if (argument_count > 1) _execute = argument[1]; else _execute = true;
+var _index; _index = argument[0];
+var _event; if (argument_count > 1) _event = argument[1]; else _event = true;
 
-switch (_return)
+switch (_index)
 {
     // Text:
     case 0:
@@ -14,13 +14,13 @@ switch (_return)
 
     // Confirm:
     case 2:
-        if (_execute)
+        if (_event)
         {
             keyboard_string = game_get_save("name");
             rename_allow = true;
             rename_backup = keyboard_string;
         }
-        
+
         return true;
 
     // Undefined:

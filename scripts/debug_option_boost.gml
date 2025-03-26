@@ -1,14 +1,14 @@
-/// debug_option_boost(return, [execute])
-/// @param {int} return
-/// @param {bool} [execute]
+/// debug_option_boost(index, [event])
+/// @param {int} index
+/// @param {bool} [event]
 /// @returns {any}
 
-var _return; _return = argument[0];
-var _execute; if (argument_count > 1) _execute = argument[1]; else _execute = true;
+var _index; _index = argument[0];
+var _event; if (argument_count > 1) _event = argument[1]; else _event = true;
 
 var save_key; save_key = "boost";
 
-switch (_return)
+switch (_index)
 {
     // Text:
     case 0:
@@ -20,7 +20,7 @@ switch (_return)
 
     // Update:
     case 3:
-        if (_execute) game_set_save(save_key, !game_get_save(save_key));
+        if (_event) game_set_save(save_key, !game_get_save(save_key));
         return true;
 
     // Undefined:

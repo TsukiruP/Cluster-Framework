@@ -185,6 +185,7 @@
 			|debug_set_menu
 			|debug_set_next
 			|debug_set_previous
+			|debug_execute
 			|debug_set_rebind
 			+Indexes
 				|debug_menu_top

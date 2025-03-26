@@ -1,14 +1,14 @@
-/// debug_option_input_swap(return, [execute])
-/// @param {int} return
-/// @param {bool} [execute]
+/// debug_option_input_swap(index, [event])
+/// @param {int} index
+/// @param {bool} [event]
 /// @returns {any}
 
-var _return; _return = argument[0];
-var _execute; if (argument_count > 1) _execute = argument[1]; else _execute = true;
+var _index; _index = argument[0];
+var _event; if (argument_count > 1) _event = argument[1]; else _event = true;
 
 var input_index; input_index = INP_SWAP;
 
-switch (_return)
+switch (_index)
 {
     // Text:
     case 0:
@@ -20,7 +20,7 @@ switch (_return)
 
     // Confirm:
     case 2:
-        if (_execute) debug_set_rebind(input_index);
+        if (_event) debug_set_rebind(input_index);
         return true;
 
     // Undefined:

@@ -103,7 +103,7 @@ else
 // Confirm:
 if (input_get_check(INP_CONFIRM, CHECK_PRESSED))
 {
-    var option_confirm; option_confirm = script_execute(ds_list_find_value(menu_list, menu_option), 2);
+    var option_confirm; option_confirm = debug_execute(menu_option, 2);
 
     if (!is_undefined(option_confirm)) audio_play_sfx(pick(option_confirm, "snd_menu_cannot", "snd_menu_confirm"), true);
 }
@@ -116,7 +116,7 @@ menu_x_direction = menu_right - menu_left;
 
 if (menu_x_direction != 0)
 {
-    var option_update; option_update = script_execute(ds_list_find_value(menu_list, menu_option), 3);
+    var option_update; option_update = debug_execute(menu_option, 3);
 
     if (!is_undefined(option_update) && sfx_alarm == 0)
     {
@@ -305,8 +305,8 @@ draw_rect(view_xview[view_current] + screen_get_width() / 2 - 81, view_yview[vie
 for ({var i; i = 0}; i < min(ds_list_size(menu_list), 4); i += 1)
 {
     var option_index; option_index = i + menu_scroll;
-    var option_text; option_text = script_execute(ds_list_find_value(menu_list, option_index), 0);
-    var option_value; option_value = script_execute(ds_list_find_value(menu_list, option_index), 1);
+    var option_text; option_text = debug_execute(option_index, 0);
+    var option_value; option_value = debug_execute(option_index, 1);
     var option_x; option_x = view_xview[view_current] + screen_get_width() / 2;
     var option_y; option_y = view_yview[view_current] + screen_get_height() / 2 - 41 + font_height * i;
 
@@ -364,7 +364,7 @@ applies_to=self
 var font_height; font_height = font_get_height(global.font_system);
 var guide_string; guide_string = "";
 
-if (rename_allow) guide_string = "ENTER Finish";
+if (rename_allow) guide_string = "Enter Finish";
 else
 {
     var guide_cancel; guide_cancel = "";
@@ -372,7 +372,8 @@ else
     var guide_select; guide_select = "";
     var guide_update; guide_update = "";
 
-    if (!ds_stack_empty(history_stack)) guide_cancel = string_input(INP_CANCEL) + "Back";
+    if (!ds_stack_empty(history_stack)) guide_cancel = string_input(INP_CANCEL) + " Back";
+    if (!is_undefined(debug_execute(menu_option, 2, false))) guide_confirm = string_input(INP_CONFIRM) + " Confirm";
 
     guide_string = guide_update + " " + guide_select + " " + guide_confirm + " " + guide_cancel;
 }

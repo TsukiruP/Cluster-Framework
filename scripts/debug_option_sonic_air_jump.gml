@@ -1,14 +1,14 @@
-/// debug_option_sonic_air_jump(return, [execute])
-/// @param {int} return
-/// @param {bool} [execute]
+/// debug_option_sonic_air_jump(index, [event])
+/// @param {int} index
+/// @param {bool} [event]
 /// @returns {any}
 
-var _return; _return = argument[0];
-var _execute; if (argument_count > 1) _execute = argument[1]; else _execute = true;
+var _index; _index = argument[0];
+var _event; if (argument_count > 1) _event = argument[1]; else _event = true;
 
 var skill_key; skill_key = "air_jump";
 
-switch (_return)
+switch (_index)
 {
     // Text:
     case 0:
@@ -20,7 +20,7 @@ switch (_return)
 
     // Update:
     case 3:
-        if (_execute) game_save_set_skill(CHAR_SONIC, skill_key, wrap(game_save_get_skill(CHAR_SONIC, skill_key) + menu_x_direction, SKILL_NONE, SKILL_DROP_DASH));
+        if (_event) game_save_set_skill(CHAR_SONIC, skill_key, wrap(game_save_get_skill(CHAR_SONIC, skill_key) + menu_x_direction, SKILL_NONE, SKILL_DROP_DASH));
         return true;
 
     // Undefined:
