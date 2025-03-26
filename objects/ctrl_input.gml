@@ -316,8 +316,7 @@ for ({var i; i = 0}; i < PLAYER_COUNT; i += 1)
         {
             for ({var k; k = CHECK_HELD}; k <= CHECK_RELEASED; k += 1)
             {
-                if (j <= INP_RIGHT) input_gamepad[j, k + check_offset] = (gamepad_get_check(i, game_config_get_button(i, j), k) || gamepad_analog[j, k + check_offset]);
-                else input_gamepad[j, k + check_offset] = gamepad_get_check(i, game_config_get_button(i, j), k);
+                input_gamepad[j, k + check_offset] = gamepad_get_check(i, game_config_get_button(i, j), k);
             }
         }
     }

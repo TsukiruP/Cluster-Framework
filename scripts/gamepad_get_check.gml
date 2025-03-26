@@ -29,7 +29,7 @@ with (ctrl_input)
             case PAD_DOWN:
             case PAD_LEFT:
             case PAD_RIGHT:
-                return gamepad_dpad[_button - PAD_UP, check_index];
+                return (gamepad_dpad[_button - PAD_UP, check_index] || gamepad_analog[_button - PAD_UP, check_index]);
 
             default:
                 var button_index; button_index = gamepad_get_button(gamepad_index, _button);;
