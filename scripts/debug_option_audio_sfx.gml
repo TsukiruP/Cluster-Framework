@@ -18,7 +18,7 @@ switch (_index)
     case 1:
         return string(game_get_config(config_key));
 
-    // Update:
+    // Change:
     case 3:
         if (in_range(game_get_config(config_key) + menu_x_direction, 0, 100))
         {

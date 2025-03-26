@@ -27,7 +27,7 @@ switch (_index)
                 return pick(game_get_config(config_key), "16:9", "4:3", "5:3");
         }
 
-    // Update:
+    // Change:
     case 3:
         if (_event)
         {

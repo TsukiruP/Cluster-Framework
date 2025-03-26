@@ -18,7 +18,7 @@ switch (_index)
     case 1:
         return string_bool(game_save_get_skill(CHAR_SONIC, skill_key), true);
 
-    // Update:
+    // Change:
     case 3:
         if (_event) game_save_set_skill(CHAR_SONIC, skill_key, !game_save_get_skill(CHAR_SONIC, skill_key));
         return true;

@@ -18,7 +18,7 @@ switch (_index)
     case 1:
         return string(gamepad_get(player_index));
 
-    // Update:
+    // Change:
     case 3:
         if (_event)
         {

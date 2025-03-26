@@ -18,7 +18,7 @@ switch (_index)
     case 1:
         return string_bool(game_get_config(config_key), true);
 
-    // Update:
+    // Change:
     case 3:
         if (_event) window_set_fullscreen(!game_get_config(config_key));
         return true;

@@ -9,6 +9,7 @@ if (character_index == CHAR_CLASSIC) exit;
 
 var boost_index; boost_index = pick(stage_get_rings() > 10, 0, 1) + min(stage_get_rings() / 50, 3);
 var boost_threshold;
+
 boost_threshold[0] = 8.0;
 boost_threshold[1] = 7.96875;
 boost_threshold[2] = 6.5625;

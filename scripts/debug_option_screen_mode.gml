@@ -18,7 +18,7 @@ switch (_index)
     case 1:
         return pick(game_get_config(config_key), "Default", "3DS", "Misc.");
 
-    // Update:
+    // Change:
     case 3:
         if (_event)
         {

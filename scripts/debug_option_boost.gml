@@ -18,7 +18,7 @@ switch (_index)
     case 1:
         return string_bool(game_get_save(save_key), true);
 
-    // Update:
+    // Change:
     case 3:
         if (_event) game_set_save(save_key, !game_get_save(save_key));
         return true;

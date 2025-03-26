@@ -1,5 +1,6 @@
 /// debug_execute(option, index, [event])
 /// @desc Executes the current debug option.
+/// @param {int} option
 /// @param {int} index
 /// @param {bool} [event]
 /// @returns bool

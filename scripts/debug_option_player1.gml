@@ -31,7 +31,7 @@ switch (_index)
         }
         break;
 
-    // Update:
+    // Change:
     case 3:
         if (_event) game_save_set_character(character_index, wrap(game_save_get_character(character_index) + menu_x_direction, -1, CHAR_CLASSIC));
         return true;

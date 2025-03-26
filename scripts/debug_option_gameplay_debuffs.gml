@@ -18,7 +18,7 @@ switch (_index)
     case 1:
         return string_bool(game_get_config(config_key), true);
 
-    // Update:
+    // Change:
     case 3:
         if (_event) game_set_config(config_key, !game_get_config(config_key));
         return true;

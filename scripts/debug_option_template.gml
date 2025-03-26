@@ -21,7 +21,7 @@ switch (_index)
         if (_event) return true;
         return false;
 
-    // Update:
+    // Change:
     case 3:
         if (_event) return true;
         return false;

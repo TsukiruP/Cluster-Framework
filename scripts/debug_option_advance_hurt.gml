@@ -18,7 +18,7 @@ switch (_index)
     case 1:
         return pick(game_get_config(config_key), "Classic", "Advance");
 
-    // Update:
+    // Change:
     case 3:
         if (_event) game_set_config(config_key, !game_get_config(config_key));
         return true;

@@ -18,7 +18,7 @@ switch (_index)
     case 1:
         return string(game_get_config(config_key));
 
-    // Update:
+    // Change:
     case 3:
         if (_event) game_set_config(config_key, wrap(game_get_config(config_key) + menu_x_direction, 1, 3));
         return true;

@@ -19,7 +19,7 @@ switch (_index)
     case 1:
         return string_input(INP_CONFIRM, input_device);
 
-    // Update:
+    // Change:
     case 3:
         if (_event)
         {

@@ -19,7 +19,7 @@ switch (_index)
     case 1:
         return string(game_config_get_gamepad(player_index, config_key));
 
-    // Update:
+    // Change:
     case 3:
         if (in_range(game_config_get_gamepad(player_index, config_key) + menu_x_direction / 100, 0, 1))
         {

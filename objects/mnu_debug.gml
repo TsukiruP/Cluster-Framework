@@ -108,7 +108,7 @@ if (input_get_check(INP_CONFIRM, CHECK_PRESSED))
     if (!is_undefined(option_confirm)) audio_play_sfx(pick(option_confirm, "snd_menu_cannot", "snd_menu_confirm"), true);
 }
 
-// Update:
+// Change:
 var menu_left; menu_left = (input_get_check(INP_LEFT, CHECK_PRESSED) || input_get_time(INP_LEFT, 30));
 var menu_right; menu_right = (input_get_check(INP_RIGHT, CHECK_PRESSED) || input_get_time(INP_RIGHT, 30));
 
@@ -370,14 +370,15 @@ else
     var guide_cancel; guide_cancel = "";
     var guide_confirm; guide_confirm = "";
     var guide_select; guide_select = "";
-    var guide_update; guide_update = "";
+    var guide_change; guide_change = "";
 
     if (!ds_stack_empty(history_stack)) guide_cancel = string_input(INP_CANCEL) + " Back";
     if (!is_undefined(debug_execute(menu_option, 2, false))) guide_confirm = string_input(INP_CONFIRM) + " Confirm";
+    if (!is_undefined(debug_execute(menu_option, 3, false))) guide_change = string_input(INP_LEFT) + " / " + string_input(INP_RIGHT) + " Change";
 
-    guide_string = guide_update + " " + guide_select + " " + guide_confirm + " " + guide_cancel;
+    guide_string = guide_change + "#" + guide_confirm + " " + guide_cancel;
 }
 
-draw_set2(fa_center, fa_bottom);
-draw_text(view_xview[view_current] + screen_get_width() / 2, view_yview[view_current] + screen_get_height(), guide_string);
+draw_set2(fa_left, fa_bottom);
+draw_text(view_xview[view_current] + font_height / 2, view_yview[view_current] + screen_get_height(), guide_string);
 draw_reset();

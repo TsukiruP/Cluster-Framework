@@ -21,7 +21,7 @@ switch (_index)
         if (_event) transition_create(transition_room);
         return true;
 
-    // Update:
+    // Change:
     case 3:
         if (_event)
         {

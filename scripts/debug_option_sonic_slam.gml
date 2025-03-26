@@ -18,7 +18,7 @@ switch (_index)
     case 1:
         return pick(game_save_get_skill(CHAR_SONIC, skill_key), "None", "Bound", "Stomp");
 
-    // Update:
+    // Change:
     case 3:
         if (_event) game_save_set_skill(CHAR_SONIC, skill_key, wrap(game_save_get_skill(CHAR_SONIC, skill_key) + menu_x_direction, SKILL_NONE, SKILL_STOMP));
         return true;
