@@ -14,13 +14,13 @@ if (state_current != argument0 || state_reset)
     state_previous = state_current;
     state_current = argument0;
     state_changed = true;
-    
+
     if (script_exists(state_previous)) script_execute(state_previous, STATE_FINISH);
     if (_start)
     {
         if (script_exists(state_current)) script_execute(state_current, STATE_START);
     }
-    
+
     return true;
 }
 
