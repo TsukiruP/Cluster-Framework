@@ -6,3 +6,4 @@ debug_add_option(debug_option_data);
 debug_add_option(debug_option_text);
 debug_add_option(debug_option_config);
 debug_add_option(debug_option_credits);
+debug_add_option(debug_option_exit);

@@ -320,6 +320,7 @@
 									|debug_option_misc_reticle
 									|debug_option_misc_tally
 					|debug_option_credits
+					|debug_option_exit
 			+Save
 				|debug_save_create
 				|debug_save_preview

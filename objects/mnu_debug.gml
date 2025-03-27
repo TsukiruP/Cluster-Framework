@@ -100,6 +100,14 @@ else
     else menu_cursor += menu_y_direction;
 }
 
+// Select:
+if (input_get_check(INP_SELECT, CHECK_PRESSED))
+{
+    var option_select; option_select = debug_execute(menu_option, 2);
+
+    if (!is_undefined(option_select)) audio_play_sfx("snd_menu_confirm", true);
+}
+
 // Change:
 var menu_left; menu_left = (input_get_check(INP_LEFT, CHECK_PRESSED) || input_get_time(INP_LEFT, 30));
 var menu_right; menu_right = (input_get_check(INP_RIGHT, CHECK_PRESSED) || input_get_time(INP_RIGHT, 30));
@@ -108,12 +116,12 @@ menu_x_direction = menu_right - menu_left;
 
 if (menu_x_direction != 0)
 {
-    var option_update; option_update = debug_execute(menu_option, 3);
+    var option_change; option_change = debug_execute(menu_option, 3);
 
-    if (!is_undefined(option_update) && sfx_alarm == 0)
+    if (!is_undefined(option_change) && sfx_alarm == 0)
     {
         sfx_alarm = 8;
-        audio_play_sfx(pick(option_update, "snd_menu_cannot", "snd_menu_move"), true);
+        audio_play_sfx(pick(option_change, "snd_menu_cannot", "snd_menu_move"), true);
     }
 }
 
@@ -286,6 +294,7 @@ else menu_fade = 0;
 lib_id=1
 action_id=203
 applies_to=self
+invert=0
 */
 #define Draw_0
 /*"/*'/**//* YYD ACTION
@@ -367,17 +376,18 @@ if (rename_allow) guide_string = "Enter Finish";
 else
 {
     var guide_input;
-    
+
     guide_input[0] = "";
     guide_input[1] = "";
     guide_input[2] = "";
     guide_input[3] = "";
-    
+
     if (!is_undefined(debug_execute(menu_option, 3, false))) guide_input[0] = string_input(INP_LEFT) + " / " + string_input(INP_RIGHT) + " Change";
+    if (!is_undefined(debug_execute(menu_option, 2, false))) guide_input[1] = string_input(INP_SELECT) + " Help";
     if (!is_undefined(debug_execute(menu_option, 4, false))) guide_input[2] = string_input(INP_CONFIRM) + " Confirm";
     if (!ds_stack_empty(history_stack)) guide_input[3] = string_input(INP_CANCEL) + " Back";
-    
-    for ({var i; i = 0}; i < 3; i += 1)
+
+    for ({var i; i = 0}; i <= 3; i += 1)
     {
         if (guide_input[i] != "")
         {

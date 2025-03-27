@@ -603,3 +603,4 @@ debug_option_gamepad_confirm
 game_config_reset_gamepad
 gamepad_get_any
 debug_execute
+debug_option_exit

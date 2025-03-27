@@ -1,4 +1,4 @@
-/// debug_option_character(index, [event])
+/// debug_option_exit(index, [event])
 /// @param {int} index
 /// @param {bool} [event]
 /// @returns {any}
@@ -10,17 +10,12 @@ switch (_index)
 {
     // Text:
     case 0:
-        return "Character Debug";
-
-    // Select:
-    case 2:
-        if (_event) text_set_body("Change player characters and their skills.");
-        return true;
+        return "Exit";
 
     // Confirm:
     case 4:
-        if (_event) debug_set_next(debug_menu_character);
-        return true;
+        if (_event) game_end();
+        return false;
 
     // Undefined:
     default:
