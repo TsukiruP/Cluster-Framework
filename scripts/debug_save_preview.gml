@@ -12,7 +12,7 @@ with (ctrl_game)
 
         if (game_save_exists(i))
         {
-            var save_temp; save_temp = game_load_save_buffer(i);
+            var save_temp; save_temp = game_save_load_buffer(i);
             var character_list; character_list = ds_list_create();
 
             ds_list_read(character_list, ds_map_get(save_temp, "character_index"));

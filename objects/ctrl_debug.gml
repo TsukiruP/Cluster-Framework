@@ -25,13 +25,13 @@ if (keyboard_check_pressed(vk_f2)) room_speed = pick(room_speed == 60, 60, 30);
 
 if (keyboard_check_pressed(vk_f5))
 {
-    if (game_get_save_index() != -1) game_write_save(game_get_save_index());
+    if (game_get_save_index() != -1) game_save_write(game_get_save_index());
 }
 
 if (keyboard_check_pressed(vk_f6))
 {
     if (game_get_save_index() == -1) game_set_save_index(0);
-    game_read_save(game_get_save_index());
+    game_save_read(game_get_save_index());
 }
 
 if (!info_hide)

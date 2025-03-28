@@ -24,7 +24,7 @@ game_debug_set(debug_mode);
 game_set_speed(1);
 game_checkpoint_set(true);
 game_config_init();
-game_init_save();
+game_save_init();
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -70,7 +70,7 @@ if (indicator_draw)
 
 if (game_ispaused(mnu_pause)) exit;
 
-if (!instance_exists(ctrl_transition)) game_set_save("time", game_get_save("time") + 1);
+if (!instance_exists(ctrl_transition)) game_save_set("time", game_save_get("time") + 1);
 game_time += game_speed;
 game_time = roundto_step(game_time, game_speed);
 #define Other_3

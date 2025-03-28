@@ -6,7 +6,7 @@ with (ctrl_game)
 {
     if (game_get_save_index() != -1)
     {
-        game_write_save(game_get_save_index());
+        game_save_write(game_get_save_index());
         indicator_draw = true;
     }
 }

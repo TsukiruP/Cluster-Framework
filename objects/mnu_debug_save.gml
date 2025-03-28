@@ -60,12 +60,12 @@ if (input_get_check(INP_CONFIRM, CHECK_PRESSED))
 {
     if (menu_mode == 0 || ((menu_mode == 1 || menu_mode == 2) && ds_map_get(save_preview_map, "save" + string(menu_save) + "_exists")))
     {
-        var save_name; save_name = game_get_save("name");;
+        var save_name; save_name = game_save_get("name");;
 
         if (menu_mode == 1 || menu_mode == 2) save_name = ds_map_get(save_preview_map, "save" + string(menu_save) + "_name");
         if (save_name == "") save_name = "Slot " + string(menu_save);
 
-        script_execute(pick(menu_mode, game_write_save, game_read_save, game_delete_save), menu_save);
+        script_execute(pick(menu_mode, game_save_write, game_save_read, game_save_delete), menu_save);
         script_execute(text_set_subject, pick(menu_mode, "Wrote", "Read", "Deleted") + " " + save_name + " data.");
         event_user(0);
         audio_play_sfx("snd_menu_confirm", true);

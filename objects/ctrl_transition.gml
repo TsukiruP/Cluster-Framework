@@ -421,7 +421,7 @@ if (game_room_get_water() != -1)
 
 if (transition_index != TRANS_RETRY && instance_exists(stage_get_player(0)))
 {
-    game_set_save("stage", room);
+    game_save_set("stage", room);
     game_save_auto();
 }
 #define Other_10

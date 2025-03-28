@@ -11,7 +11,7 @@ with (ctrl_game)
 
     if (file_exists(save_directory + "save" + string(_save) + ".sav"))
     {
-        var save_temp; save_temp = game_load_save_buffer(_save);
+        var save_temp; save_temp = game_save_load_buffer(_save);
 
         if (ds_map_get(save_temp, "game") == GAME_NAME && ds_map_get(save_temp, "version") == GAME_VERSION) save_exists = true;
         ds_map_destroy(save_temp);

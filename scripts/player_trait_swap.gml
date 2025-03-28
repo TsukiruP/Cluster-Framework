@@ -13,7 +13,7 @@ if (player_get_input(INP_SWAP, CHECK_PRESSED))
         player_reset_tag(true);
         with (partner_inst) player_reset_cpu();
     }
-    else if (game_get_save("swap") && partner_inst.input_cpu_gamepad_alarm == 0)
+    else if (game_save_get("swap") && partner_inst.input_cpu_gamepad_alarm == 0)
     {
         if (in_view(partner_inst))
         {

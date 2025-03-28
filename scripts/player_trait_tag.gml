@@ -4,7 +4,7 @@
 
 var partner_inst; partner_inst = stage_get_player(1);
 
-if (!game_get_save("tag") || character_index == CHAR_CLASSIC || input_cpu || !instance_exists(partner_inst))
+if (!game_save_get("tag") || character_index == CHAR_CLASSIC || input_cpu || !instance_exists(partner_inst))
 {
     player_reset_tag(true);
     exit;

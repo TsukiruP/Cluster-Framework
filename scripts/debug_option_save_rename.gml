@@ -16,7 +16,7 @@ switch (_index)
     case 4:
         if (_event)
         {
-            keyboard_string = game_get_save("name");
+            keyboard_string = game_save_get("name");
             rename_allow = true;
             rename_backup = keyboard_string;
         }

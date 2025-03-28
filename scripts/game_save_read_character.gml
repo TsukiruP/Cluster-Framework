@@ -6,7 +6,7 @@ with (ctrl_game)
 {
     var save_list; save_list = ds_list_create();
 
-    ds_list_read(save_list, game_get_save("character_index"));
+    ds_list_read(save_list, game_save_get("character_index"));
 
     for ({var i; i = 0}; i < min(ds_list_size(save_list), PLAYER_COUNT); i += 1)
     {

@@ -40,14 +40,14 @@
 					|game_config_reset_button
 					|game_config_reset_gamepad
 			+Save
-				|game_init_save
-				|game_get_save
-				|game_set_save
-				|game_write_save
-				|game_read_save
-				|game_delete_save
-				|game_reset_save
-				|game_load_save_buffer
+				|game_save_init
+				|game_save_get
+				|game_save_set
+				|game_save_write
+				|game_save_read
+				|game_save_delete
+				|game_save_reset
+				|game_save_load_buffer
 				|game_save_exists
 				|game_save_auto
 				+Character
@@ -75,11 +75,11 @@
 				|game_room_get_run
 			+Misc.
 				|game_get_speed
-				|game_set_speed
+				|game_get_save_index
+				|game_get_save_count
 				|game_get_time
 				|game_get_interface_color
-				|game_get_save_count
-				|game_get_save_index
+				|game_set_speed
 				|game_set_save_index
 		+Screen
 			|screen_is_equal

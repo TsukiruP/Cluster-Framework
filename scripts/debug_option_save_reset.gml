@@ -17,7 +17,7 @@ switch (_index)
         if (_event)
         {
             game_set_save_index(-1);
-            game_reset_save();
+            game_save_reset();
         }
 
         return true;
