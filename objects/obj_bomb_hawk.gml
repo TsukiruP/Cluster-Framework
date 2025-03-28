@@ -37,7 +37,7 @@ if (sequence_index == seq_bomb_hawk_idle || sequence_index == seq_bomb_hawk_move
 
     if (explosive_alarm == 0)
     {
-        var player_inst; player_inst = enemy_get_player_below(hawk_range, true);
+        var player_inst; player_inst = enemy_player_get_below(hawk_range, true);
 
         if (instance_exists(player_inst))
         {

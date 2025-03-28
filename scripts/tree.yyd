@@ -65,14 +65,14 @@
 					|game_save_get_skill_map
 			+Room
 				|game_room_add
-				|game_get_room_transition
-				|game_get_room_music
-				|game_get_room_background
-				|game_get_room_zone
-				|game_get_room_act
-				|game_get_room_water
-				|game_get_room_start
-				|game_get_room_run
+				|game_room_get_transition
+				|game_room_get_music
+				|game_room_get_background
+				|game_room_get_zone
+				|game_room_get_act
+				|game_room_get_water
+				|game_room_get_start
+				|game_room_get_run
 			+Misc.
 				|game_get_speed
 				|game_set_speed
@@ -748,8 +748,8 @@
 		+Enemy
 			|enemy_alert_create
 			|enemy_debris_create
-			|enemy_get_player_front
-			|enemy_get_player_below
+			|enemy_player_get_front
+			|enemy_player_get_below
 			|enemy_destroy
 			|draw_enemy_border
 		+Explosive

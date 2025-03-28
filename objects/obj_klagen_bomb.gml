@@ -47,7 +47,7 @@ if (instance_exists(explosive_inst))
     {
         if (!klagen_drop)
         {
-            var player_inst; player_inst = enemy_get_player_below(klagen_range, true);
+            var player_inst; player_inst = enemy_player_get_below(klagen_range, true);
 
             if (instance_exists(player_inst))
             {

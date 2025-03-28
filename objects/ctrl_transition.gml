@@ -79,9 +79,9 @@ applies_to=self
 
 if ((game_ispaused(mnu_pause) && !pause_ignore) || (transition_index != TRANS_CARD && transition_index != TRANS_RETRY) || !instance_exists(stage_get_player(0))) exit;
 
-if (((transition_index == TRANS_CARD && transition_state > 3) || (transition_index == TRANS_RETRY && transition_state > 4)) && game_get_room_start() == START_RUN && transition_run != -1)
+if (((transition_index == TRANS_CARD && transition_state > 3) || (transition_index == TRANS_RETRY && transition_state > 4)) && game_room_get_start() == START_RUN && transition_run != -1)
 {
-    if ((transition_index == TRANS_RETRY && game_checkpoint_isset()) || stage_get_player(0).x >= game_get_room_run()) transition_run = -1;
+    if ((transition_index == TRANS_RETRY && game_checkpoint_isset()) || stage_get_player(0).x >= game_room_get_run()) transition_run = -1;
     else
     {
         with (obj_player)
@@ -203,7 +203,7 @@ applies_to=self
 
 if ((game_ispaused(mnu_pause) && !pause_ignore) || transition_index != TRANS_CARD) exit;
 
-if (game_get_room_start() == START_STANDBY && transition_state > 3 && instance_exists(stage_get_player(0)))
+if (game_room_get_start() == START_STANDBY && transition_state > 3 && instance_exists(stage_get_player(0)))
 {
     if (input_get_check(INP_ANY, CHECK_PRESSED) && !input_get_check(INP_START, CHECK_PRESSED))
     {
@@ -223,7 +223,7 @@ banner_scroll = banner_scroll mod sprite_get_height(spr_title_card_banner);
 if (zone_width == -1)
 {
     draw_set_font(global.font_title_card);
-    zone_width = string_width(game_get_room_zone(transition_room)) + zone_spacing;
+    zone_width = string_width(game_room_get_zone(transition_room)) + zone_spacing;
 }
 
 if (transition_state > 3) zone_x = ease_in_out_back(zone_frame, 40, screen_get_width() + zone_spacing, zone_max_frame);
@@ -281,9 +281,9 @@ switch (transition_state)
 
     // 4 - Reverse:
     case 4:
-        var transition_next; transition_next = (preview || game_get_room_start() == START_IDLE || !instance_exists(obj_player));
+        var transition_next; transition_next = (preview || game_room_get_start() == START_IDLE || !instance_exists(obj_player));
 
-        switch (game_get_room_start())
+        switch (game_room_get_start())
         {
             case START_STANDBY:
                 with (obj_player)
@@ -388,7 +388,7 @@ switch (transition_state)
     case 5:
         if (curtain_frame == 0)
         {
-            if (game_get_room_start() != START_RUN || (game_get_room_start() == START_RUN && transition_run == -1) || preview) transition_state = 6;
+            if (game_room_get_start() != START_RUN || (game_room_get_start() == START_RUN && transition_run == -1) || preview) transition_state = 6;
         }
         break;
 
@@ -407,12 +407,12 @@ applies_to=self
 /// Room Initialization
 
 pause_ignore = false;
-audio_play_bgm(game_get_room_music());
-if (object_exists(game_get_room_background())) instance_create_single(0, 0, game_get_room_background());
+audio_play_bgm(game_room_get_music());
+if (object_exists(game_room_get_background())) instance_create_single(0, 0, game_room_get_background());
 
-if (game_get_room_water() != -1)
+if (game_room_get_water() != -1)
 {
-    with (instance_create(0, game_get_room_water(), obj_water_mask))
+    with (instance_create(0, game_room_get_water(), obj_water_mask))
     {
         image_xscale = room_width div sprite_width;
         image_yscale = (room_height - y) div sprite_height;
@@ -471,12 +471,12 @@ draw_sprite_tiled_extra(spr_title_card_banner, 0, view_xview[view_current] + ban
 // Zone:
 draw_set_font(global.font_title_card);
 draw_set_valign(fa_bottom);
-draw_text(view_xview[view_current] + zone_x, view_yview[view_current] + 126, game_get_room_zone(transition_room));
+draw_text(view_xview[view_current] + zone_x, view_yview[view_current] + 126, game_room_get_zone(transition_room));
 
 // Act:
-if (game_get_room_act(transition_room) != 0)
+if (game_room_get_act(transition_room) != 0)
 {
-    draw_sprite(spr_title_card_acts, game_get_room_act(transition_room), view_xview[view_current] + zone_x + 5, view_yview[view_current] + 128);
+    draw_sprite(spr_title_card_acts, game_room_get_act(transition_room), view_xview[view_current] + zone_x + 5, view_yview[view_current] + 128);
 }
 
 // Loading:

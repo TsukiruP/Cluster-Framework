@@ -32,7 +32,7 @@ if (sequence_index == seq_jawz_move)
     if (x < xstart - border_left || x > xstart + border_right) sequence_set(seq_jawz_move_turn);
     else
     {
-        player_inst = enemy_get_player_front(jawz_range);
+        player_inst = enemy_player_get_front(jawz_range);
 
         if (instance_exists(player_inst))
         {

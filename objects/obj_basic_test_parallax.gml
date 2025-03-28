@@ -60,7 +60,7 @@ applies_to=self
 */
 /// Reference
 
-if (game_get_room_water() != -1 && parallax_reference != game_get_room_water()) parallax_reference = game_get_room_water();
+if (game_room_get_water() != -1 && parallax_reference != game_room_get_water()) parallax_reference = game_room_get_water();
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
