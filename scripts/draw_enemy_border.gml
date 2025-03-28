@@ -2,7 +2,7 @@
 /// @desc Draws the enemy's movement borders when in debug mode.
 /// @returns {void}
 
-if (game_debug_get_visible())
+if (game_get_debug_visible())
 {
     var x1; x1 = floor(xstart) - border_left;
     var y1; y1 = floor(ystart) - hurtbox_top + hurtbox_offset_y;

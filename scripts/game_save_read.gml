@@ -12,7 +12,7 @@ with (ctrl_game)
         var save_temp; save_temp = game_save_load_buffer(_save);
         var save_key; save_key = ds_map_find_first(save_map);
 
-        game_set_save_index(_save);
+        game_save_set_index(_save);
 
         for ({var i; i = 0}; i < ds_map_size(save_map); i += 1)
         {

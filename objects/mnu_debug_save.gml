@@ -16,7 +16,7 @@ save_leading = 4;
 save_preview_map = debug_save_preview();
 save_max = 3;
 
-page_count = ceil(game_get_save_count() / save_max);
+page_count = ceil(game_save_get_count() / save_max);
 #define Destroy_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -49,7 +49,7 @@ if (menu_x_direction != 0 || menu_y_direction != 0) audio_play_sfx("snd_menu_mov
 menu_page += menu_x_direction;
 menu_page = wrap(menu_page, 0, page_count - 1);
 
-var save_count; save_count = min(game_get_save_count() - (save_max * menu_page), save_max);
+var save_count; save_count = min(game_save_get_count() - (save_max * menu_page), save_max);
 
 menu_option += menu_y_direction;
 menu_option = wrap(menu_option, 0, save_count - 1);
@@ -108,7 +108,7 @@ var i, j;
 // Pages:
 for ({var i; i = 0}; i < page_count; i += 1)
 {
-    var save_count; save_count = min(game_get_save_count() - (save_max * i), save_max);
+    var save_count; save_count = min(game_save_get_count() - (save_max * i), save_max);
     var page_top; page_top = (screen_get_height() / 2) - ((save_height + save_leading) * (save_count - 1)) / 2;
 
     // Saves:

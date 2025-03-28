@@ -19,8 +19,8 @@ applies_to=self
 /// Game Initialization
 
 randomize();
-game_time = 0;
-game_debug_set(debug_mode);
+game_set_debug(debug_mode);
+game_set_time(0);
 game_set_speed(1);
 game_checkpoint_set(true);
 game_config_init();
@@ -39,7 +39,6 @@ instance_create_single(0, 0, ctrl_input);
 instance_create_single(0, 0, ctrl_text);
 instance_create_single(0, 0, ctrl_animation);
 instance_create(0, 0, mnu_boot);
-//transition_create(rm_debug);
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -71,8 +70,7 @@ if (indicator_draw)
 if (game_ispaused(mnu_pause)) exit;
 
 if (!instance_exists(ctrl_transition)) game_save_set("time", game_save_get("time") + 1);
-game_time += game_speed;
-game_time = roundto_step(game_time, game_speed);
+game_set_time(roundto_step(game_time + game_speed, game_speed));
 #define Other_3
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -103,8 +101,8 @@ applies_to=self
 */
 /// Reset Time
 
-game_speed = 1;
-game_time = 0;
+game_set_time(0);
+game_set_speed(1);
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -129,7 +127,7 @@ applies_to=self
 */
 /// Draw Debug
 
-if (!game_debug_get()) exit;
+if (!game_get_debug()) exit;
 
 var font_height; font_height = font_get_height(global.font_system);
 var game_string; game_string = GAME_NAME + " " + string_format(GAME_VERSION, 1, 2);

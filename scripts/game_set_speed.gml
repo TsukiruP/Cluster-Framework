@@ -1,8 +1,8 @@
-/// game_set_speed(speed)
+/// game_set_speed(val)
 /// @desc Sets the game speed.
-/// @param {number} speed
+/// @param {number} val
 /// @returns {void}
 
-var _speed; _speed = argument0;
+var _val; _val = argument0;
 
-with (ctrl_game) game_speed = _speed;
+with (ctrl_game) game_speed = _val;

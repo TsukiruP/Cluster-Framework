@@ -4,9 +4,9 @@
 
 with (ctrl_game)
 {
-    if (game_get_save_index() != -1)
+    if (game_save_get_index() != -1)
     {
-        game_save_write(game_get_save_index());
+        game_save_write(game_save_get_index());
         indicator_draw = true;
     }
 }

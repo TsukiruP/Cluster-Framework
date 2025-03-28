@@ -16,22 +16,22 @@ applies_to=self
 */
 /// Inputs
 
-if (input_get_check(INP_ALT, CHECK_HELD) && input_get_check(INP_SELECT, CHECK_PRESSED)) game_debug_set(!game_debug_get());
+if (input_get_check(INP_ALT, CHECK_HELD) && input_get_check(INP_SELECT, CHECK_PRESSED)) game_set_debug(!game_get_debug());
 
-if (!game_debug_get()) exit;
+if (!game_get_debug()) exit;
 
 if (instance_exists(stage_get_player(0)) && keyboard_check_pressed(vk_f1)) other.info_hide = !other.info_hide;
 if (keyboard_check_pressed(vk_f2)) room_speed = pick(room_speed == 60, 60, 30);
 
 if (keyboard_check_pressed(vk_f5))
 {
-    if (game_get_save_index() != -1) game_save_write(game_get_save_index());
+    if (game_save_get_index() != -1) game_save_write(game_save_get_index());
 }
 
 if (keyboard_check_pressed(vk_f6))
 {
-    if (game_get_save_index() == -1) game_set_save_index(0);
-    game_save_read(game_get_save_index());
+    if (game_save_get_index() == -1) game_save_set_index(0);
+    game_save_read(game_save_get_index());
 }
 
 if (!info_hide)
@@ -62,7 +62,7 @@ applies_to=self
 */
 /// Draw Stage Objects
 
-if (!game_debug_get()) exit;
+if (!game_get_debug()) exit;
 
 with (par_culled)
 {
@@ -77,7 +77,7 @@ applies_to=self
 */
 /// Draw Player
 
-if (!game_debug_get()) exit;
+if (!game_get_debug()) exit;
 
 with (obj_player)
 {
@@ -115,7 +115,7 @@ applies_to=self
 */
 /// Draw Info
 
-if (!game_debug_get() || info_hide) exit;
+if (!game_get_debug() || info_hide) exit;
 
 with (stage_get_player(0))
 {

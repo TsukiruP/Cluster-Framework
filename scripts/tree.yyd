@@ -4,9 +4,15 @@
 		+Game
 			|game_ispaused
 			+Debug
-				|game_debug_get
-				|game_debug_get_visible
-				|game_debug_set
+				|game_get_debug
+				|game_get_debug_visible
+				|game_set_debug
+			+Time
+				|game_get_time
+				|game_set_time
+			+Speed
+				|game_get_speed
+				|game_set_speed
 			+Checkpoint
 				|game_checkpoint_get_x
 				|game_checkpoint_get_y
@@ -20,6 +26,12 @@
 				|game_config_write
 				|game_config_read
 				|game_config_reset
+				|game_config_reset_interface
+				|game_config_reset_screen
+				|game_config_reset_audio
+				|game_config_reset_gameplay
+				|game_config_reset_advance
+				|game_config_reset_misc
 				|game_config_load_buffer
 				|game_config_exists
 				+Keyboard
@@ -42,7 +54,10 @@
 			+Save
 				|game_save_init
 				|game_save_get
+				|game_save_get_index
+				|game_save_get_count
 				|game_save_set
+				|game_save_set_index
 				|game_save_write
 				|game_save_read
 				|game_save_delete
@@ -74,13 +89,7 @@
 				|game_room_get_start
 				|game_room_get_run
 			+Misc.
-				|game_get_speed
-				|game_get_save_index
-				|game_get_save_count
-				|game_get_time
 				|game_get_interface_color
-				|game_set_speed
-				|game_set_save_index
 		+Screen
 			|screen_is_equal
 			|screen_get_width
@@ -748,8 +757,8 @@
 		+Enemy
 			|enemy_alert_create
 			|enemy_debris_create
-			|enemy_player_get_front
-			|enemy_player_get_below
+			|enemy_get_player_front
+			|enemy_get_player_below
 			|enemy_destroy
 			|draw_enemy_border
 		+Explosive

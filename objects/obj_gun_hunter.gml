@@ -68,7 +68,7 @@ if (sequence_index == seq_gun_hunter_move || sequence_index == seq_gun_hunter_sc
 
     if (hunter_alarm == 0)
     {
-        var player_inst; player_inst = enemy_player_get_front(hunter_range, true);
+        var player_inst; player_inst = enemy_get_player_front(hunter_range, true);
 
         if (instance_exists(player_inst))
         {

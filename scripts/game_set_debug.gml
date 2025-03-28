@@ -1,5 +1,5 @@
 /// game_set_debug(debug)
-/// @desc Indicates whether debug mode is enabled.
+/// @desc Sets debug mode.
 /// @param {bool} debug
 /// @returns {void}
 

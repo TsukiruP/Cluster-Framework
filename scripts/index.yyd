@@ -72,7 +72,7 @@ credits
 in_view
 player_ring_loss
 player_slope_friction
-game_get_save_count
+game_save_get_count
 screen_get_width
 sine_wave
 input_get_time
@@ -253,8 +253,8 @@ stage_get_rings
 stage_set_time
 stage_get_score
 stage_set_time_allow
-game_debug_get
-game_debug_set
+game_get_debug
+game_set_debug
 game_set_speed
 game_get_player_count
 game_checkpoint_get_x
@@ -468,9 +468,9 @@ sonic_skill_homing
 sonic_skill_ground
 sonic_skill_air
 sonic_skill_peel_out
-game_get_save_index
+game_save_get_index
 instance_nearest_dir_y
-game_set_save_index
+game_save_set_index
 player_animation_jump
 player_set_status
 seq_switch_vertical_off
@@ -506,11 +506,11 @@ player_can_launch
 enemy_destroy
 debug_option_template
 seq_bound_jump
-game_debug_get_visible
+game_get_debug_visible
 seq_gun_hunter_move
 seq_gun_hunter_turn
 draw_enemy_border
-enemy_player_get_front
+enemy_get_player_front
 seq_gun_hunter_scan
 seq_gun_hunter_shoot
 audio_loop_sfx
@@ -528,7 +528,7 @@ enemy_debris_create
 player_reaction_explosive
 seq_klagen_blitz_idle
 seq_klagen_blitz_attack
-enemy_player_get_below
+enemy_get_player_below
 seq_klagen_bomb
 seq_klagen_bomb_explosive
 roundto_step
@@ -604,3 +604,10 @@ game_config_reset_gamepad
 gamepad_get_any
 debug_execute
 debug_option_exit
+game_config_reset_interface
+game_config_reset_screen
+game_config_reset_audio
+game_config_reset_gameplay
+game_config_reset_advance
+game_config_reset_misc
+game_set_time
