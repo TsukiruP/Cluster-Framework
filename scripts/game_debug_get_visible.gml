@@ -4,5 +4,5 @@
 
 with (ctrl_debug)
 {
-    return (visible && game_get_debug());
+    return (visible && game_debug_get());
 }

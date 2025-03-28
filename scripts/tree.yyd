@@ -4,9 +4,9 @@
 		+Game
 			|game_ispaused
 			+Debug
-				|game_get_debug
-				|game_set_debug
+				|game_debug_get
 				|game_debug_get_visible
+				|game_debug_set
 			+Checkpoint
 				|game_get_checkpoint_x
 				|game_get_checkpoint_y

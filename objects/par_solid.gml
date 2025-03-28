@@ -42,4 +42,4 @@ applies_to=self
 */
 /// Draw Solid
 
-if ((game_get_debug() && is_mask) || !is_mask) draw_self();
+if ((game_debug_get_visible() && is_mask) || !is_mask) draw_self();

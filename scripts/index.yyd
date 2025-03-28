@@ -253,8 +253,8 @@ stage_get_rings
 stage_set_time
 stage_get_score
 stage_set_time_allow
-game_get_debug
-game_set_debug
+game_debug_get
+game_debug_set
 game_set_speed
 game_get_player_count
 game_get_checkpoint_x

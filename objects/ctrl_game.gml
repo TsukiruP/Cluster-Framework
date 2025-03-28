@@ -134,7 +134,7 @@ applies_to=self
 */
 /// Draw Debug
 
-if (!game_get_debug()) exit;
+if (!game_debug_get()) exit;
 
 var font_height; font_height = font_get_height(global.font_system);
 var game_string; game_string = GAME_NAME + " " + string_format(GAME_VERSION, 1, 2);

@@ -31,7 +31,7 @@ applies_to=self
 */
 /// Draw Sensor
 
-if (!game_get_debug()) exit;
+if (!game_debug_get_visible()) exit;
 
 image_index = layer;
 draw_self();
