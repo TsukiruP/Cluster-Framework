@@ -11,7 +11,7 @@ if (_hitbox & HIT_RADII)
 {
     if (!input_cpu)
     {
-        if (game_get_checkpoint_x() != _obj.x && game_get_checkpoint_y() != _obj.y && !_obj.active)
+        if (game_checkpoint_get_x() != _obj.x && game_checkpoint_get_y() != _obj.y && !_obj.active)
         {
             if (game_get_config("gameplay_bonuses") && stage_get_rings() >= 20)
             {
@@ -47,7 +47,7 @@ if (_hitbox & HIT_RADII)
             with (_obj)
             {
                 active = true;
-                game_set_checkpoint();
+                game_checkpoint_set();
             }
         }
     }

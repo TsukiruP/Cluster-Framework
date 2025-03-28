@@ -135,7 +135,7 @@ switch (transition_state)
         {
             if (!preview)
             {
-                game_set_checkpoint(true);
+                game_checkpoint_set(true);
                 room_goto(transition_room);
                 transition_state = 2;
             }
@@ -181,7 +181,7 @@ switch (transition_state)
         {
             if (!preview)
             {
-                game_set_checkpoint(true);
+                game_checkpoint_set(true);
                 room_goto(transition_room);
                 transition_state = 2;
             }
@@ -263,7 +263,7 @@ switch (transition_state)
     case 2:
         if (transition_alarm == 0)
         {
-            game_set_checkpoint(true);
+            game_checkpoint_set(true);
             room_goto(transition_room);
             transition_state = 3;
             transition_alarm = 90;

@@ -10,9 +10,9 @@ instance_create(0, 0, ctrl_stage);
 
 if (game_checkpoint_isset())
 {
-    x = game_get_checkpoint_x();
-    y = game_get_checkpoint_y();
-    stage_set_time(game_get_checkpoint_time());
+    x = game_checkpoint_get_x();
+    y = game_checkpoint_get_y();
+    stage_set_time(game_checkpoint_get_time());
 }
 
 for ({var i; i = 0}; i < PLAYER_COUNT; i += 1)
