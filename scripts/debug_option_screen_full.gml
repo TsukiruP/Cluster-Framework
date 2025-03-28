@@ -16,11 +16,11 @@ switch (_index)
 
     // Value:
     case 1:
-        return string_bool(game_get_config(config_key), true);
+        return string_bool(game_config_get(config_key), true);
 
     // Change:
     case 3:
-        if (_event) window_set_fullscreen(!game_get_config(config_key));
+        if (_event) window_set_fullscreen(!game_config_get(config_key));
         return true;
 
     // Undefined:

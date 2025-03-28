@@ -2,8 +2,8 @@
 /// @desc Sets the screen resolution based on screen config.
 /// @returns {bool}
 
-var screen_mode; screen_mode = game_get_config("screen_mode");
-var screen_ratio; screen_ratio = game_get_config("screen_ratio");
+var screen_mode; screen_mode = game_config_get("screen_mode");
+var screen_ratio; screen_ratio = game_config_get("screen_ratio");
 
 switch (screen_mode)
 {

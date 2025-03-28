@@ -14,13 +14,13 @@
 				|game_checkpoint_set
 				|game_checkpoint_isset
 			+Config
-				|game_init_config
-				|game_get_config
-				|game_set_config
-				|game_write_config
-				|game_read_config
-				|game_reset_config
-				|game_load_config_buffer
+				|game_config_init
+				|game_config_get
+				|game_config_set
+				|game_config_write
+				|game_config_read
+				|game_config_reset
+				|game_config_load_buffer
 				|game_config_exists
 				+Keyboard
 					|game_config_get_key
@@ -74,7 +74,6 @@
 				|game_get_room_start
 				|game_get_room_run
 			+Misc.
-				|game_get_player_count
 				|game_get_speed
 				|game_set_speed
 				|game_get_time
@@ -761,3 +760,4 @@
 	|draw_sprite_tiled_vertical
 	|draw_sprite_tiled_horizontal_yscale
 	|draw_backdrop_tiled_area
+	|game_get_player_count

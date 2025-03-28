@@ -16,14 +16,14 @@ switch (_index)
 
     // Value:
     case 1:
-        return pick(game_get_config(config_key), "Default", "3DS", "Misc.");
+        return pick(game_config_get(config_key), "Default", "3DS", "Misc.");
 
     // Change:
     case 3:
         if (_event)
         {
-            game_set_config(config_key, wrap(game_get_config(config_key) + menu_x_direction, 0, 2));
-            game_set_config("screen_ratio", 0);
+            game_config_set(config_key, wrap(game_config_get(config_key) + menu_x_direction, 0, 2));
+            game_config_set("screen_ratio", 0);
         }
 
         return true;

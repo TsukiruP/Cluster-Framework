@@ -169,11 +169,11 @@ applies_to=self
 */
 /// Subject Alpha
 
-var subject_box_alpha_rate; subject_box_alpha_rate = game_get_config("interface_alpha") / 20;
+var subject_box_alpha_rate; subject_box_alpha_rate = game_config_get("interface_alpha") / 20;
 
 if (!text_clear && !subject_complete && subject_string != "")
 {
-    if (subject_box_alpha < game_get_config("interface_alpha")) subject_box_alpha += subject_box_alpha_rate;
+    if (subject_box_alpha < game_config_get("interface_alpha")) subject_box_alpha += subject_box_alpha_rate;
 
     if (subject_alpha < 1)
     {
@@ -194,11 +194,11 @@ applies_to=self
 */
 /// Body Alpha
 
-var body_box_alpha_rate; body_box_alpha_rate = game_get_config("interface_alpha") / 20;
+var body_box_alpha_rate; body_box_alpha_rate = game_config_get("interface_alpha") / 20;
 
 if (!text_clear && !ds_list_empty(body_list) && (subject_complete || subject_string == ""))
 {
-    if (body_box_alpha < game_get_config("interface_alpha")) body_box_alpha += body_box_alpha_rate;
+    if (body_box_alpha < game_config_get("interface_alpha")) body_box_alpha += body_box_alpha_rate;
 
     if (body_current == body_target)
     {

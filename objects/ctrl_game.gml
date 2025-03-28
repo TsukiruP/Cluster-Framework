@@ -19,16 +19,11 @@ applies_to=self
 /// Game Initialization
 
 randomize();
-
-game_debug = debug_mode;
-game_speed = 1;
 game_time = 0;
-
-checkpoint_x = -1;
-checkpoint_y = -1;
-checkpoint_time = -1;
-
-game_init_config();
+game_debug_set(debug_mode);
+game_set_speed(1);
+game_checkpoint_set(true);
+game_config_init();
 game_init_save();
 /*"/*'/**//* YYD ACTION
 lib_id=1

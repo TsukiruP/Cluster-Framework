@@ -14,7 +14,7 @@ switch (_index)
 
     // Confirm:
     case 4:
-        if (_event) game_reset_config();
+        if (_event) game_config_reset();
         return true;
 
     // Undefined:

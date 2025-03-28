@@ -2,4 +2,4 @@
 /// @desc Reads the keyboard list from the keyboard map.
 /// @returns {void}
 
-with (ctrl_game) ds_list_read(keyboard_list, game_get_config("input_keyboard"));
+with (ctrl_game) ds_list_read(keyboard_list, game_config_get("input_keyboard"));

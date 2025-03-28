@@ -93,9 +93,9 @@ player_routine_skill
 seq_sonic_turn_brake
 player_state_spin_dash
 seq_sonic_spring_flight
-game_init_config
+game_config_init
 player_get_input
-game_reset_config
+game_config_reset
 audio_play_sfx
 draw_hitbox
 audio_stop_sfx
@@ -232,8 +232,8 @@ seq_drop_dash
 sonic_state_bound
 game_set_save
 player_routine_roll
-game_set_config
-game_get_config
+game_config_set
+game_config_get
 screen_get_height
 screen_set_resolution
 game_config_set_key
@@ -332,9 +332,9 @@ debug_option_save_read
 debug_option_save_delete
 font_get_height
 debug_option_config_write
-game_write_config
-game_load_config_buffer
-game_read_config
+game_config_write
+game_config_load_buffer
+game_config_read
 game_config_exists
 debug_option_config_read
 debug_option_config_reset

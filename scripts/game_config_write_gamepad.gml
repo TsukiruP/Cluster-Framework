@@ -18,6 +18,6 @@ with (ctrl_game)
         ds_map_destroy(gamepad_map);
     }
 
-    game_set_config("input_gamepad", ds_list_write(gamepad_list));
+    game_config_set("input_gamepad", ds_list_write(gamepad_list));
     ds_list_destroy(gamepad_list);
 }

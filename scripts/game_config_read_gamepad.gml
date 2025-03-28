@@ -6,7 +6,7 @@ with (ctrl_game)
 {
     var gamepad_list; gamepad_list = ds_list_create();
 
-    ds_list_read(gamepad_list, game_get_config("input_gamepad"));
+    ds_list_read(gamepad_list, game_config_get("input_gamepad"));
 
     for ({var i; i = 0}; i < min(ds_list_size(gamepad_list), PLAYER_COUNT); i += 1)
     {

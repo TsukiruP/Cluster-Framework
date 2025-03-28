@@ -16,17 +16,17 @@ switch (_index)
 
     // Value:
     case 1:
-        return string(game_get_config(config_key));
+        return string(game_config_get(config_key));
 
     // Change:
     case 3:
-        if (in_range(game_get_config(config_key) + menu_x_direction, 0, 100))
+        if (in_range(game_config_get(config_key) + menu_x_direction, 0, 100))
         {
             if (_event)
             {
-                game_set_config(config_key, clamp(game_get_config(config_key) + menu_x_direction, 0, 100));
-                sound_kind_volume(1, game_get_config(config_key) / 100);
-                sound_kind_volume(3, game_get_config(config_key) / 100);
+                game_config_set(config_key, clamp(game_config_get(config_key) + menu_x_direction, 0, 100));
+                sound_kind_volume(1, game_config_get(config_key) / 100);
+                sound_kind_volume(3, game_config_get(config_key) / 100);
             }
 
             return true;

@@ -11,7 +11,7 @@ hud_max_frame = 10;
 hud_frame = 0;
 hud_x = 0;
 
-switch (game_get_config("misc_hud"))
+switch (game_config_get("misc_hud"))
 {
     case 2:
         hud_sprite = spr_hud_s4e2;
@@ -42,7 +42,7 @@ status_icon[STATUS_SPEED] = ITEM_SPEED;
 status_icon[STATUS_PANIC] = ITEM_PANIC;
 status_icon[STATUS_SWAP] = ITEM_SWAP;
 status_width = sprite_get_width(spr_item_icon) + 2;
-status_max = 3 + 2 * game_get_config("gameplay_debuffs");
+status_max = 3 + 2 * game_config_get("gameplay_debuffs");
 status_bar_x = 0;
 
 for ({var i; i = STATUS_SHIELD}; i <= STATUS_SWAP; i += 1)
@@ -55,7 +55,7 @@ item_hide = false;
 item_max_frame = 10;
 item_alarm = 0;
 item_grid = -1;
-if (game_get_config("misc_hud") == 1 && game_get_config("misc_feed")) item_grid = ds_grid_create(3, 0);
+if (game_config_get("misc_hud") == 1 && game_config_get("misc_feed")) item_grid = ds_grid_create(3, 0);
 #define Destroy_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -141,7 +141,7 @@ applies_to=self
 */
 /// Gauge
 
-if (game_ispaused(mnu_pause) || game_get_config("misc_hud") != 1) exit;
+if (game_ispaused(mnu_pause) || game_config_get("misc_hud") != 1) exit;
 
 gauge_x = lerp(-sprite_get_width(spr_hud_gauge), hud_x + 6, smoothstep(0, hud_max_frame, gauge_frame));
 
@@ -166,7 +166,7 @@ applies_to=self
 */
 /// Boss
 
-if (game_ispaused(mnu_pause) || game_get_config("misc_hud") != 1) exit;
+if (game_ispaused(mnu_pause) || game_config_get("misc_hud") != 1) exit;
 
 boss_x = lerp(screen_get_width() + sprite_get_width(spr_hud_boss), screen_get_width() - sprite_get_width(spr_hud_boss) - 10, smoothstep(0, hud_max_frame, boss_frame));
 /*"/*'/**//* YYD ACTION
@@ -176,7 +176,7 @@ applies_to=self
 */
 /// Status
 
-if (game_ispaused(mnu_pause) || game_get_config("misc_hud") != 1 || game_get_config("misc_status") == 0) exit;
+if (game_ispaused(mnu_pause) || game_config_get("misc_hud") != 1 || game_config_get("misc_status") == 0) exit;
 
 status_bar_x = lerp(screen_get_width() + status_width + 5, screen_get_width() - status_width * status_max + 5, smoothstep(0, hud_max_frame, hud_frame));
 
@@ -242,7 +242,7 @@ applies_to=self
 */
 /// Draw Default HUD
 
-if (game_get_config("misc_hud") != 1) exit;
+if (game_config_get("misc_hud") != 1) exit;
 
 // Font:
 draw_set_font(global.font_hud);
@@ -276,7 +276,7 @@ applies_to=self
 */
 /// Draw S4E2 HUD
 
-if (game_get_config("misc_hud") != 2) exit;
+if (game_config_get("misc_hud") != 2) exit;
 
 // Color:
 draw_set_color(c_white);
@@ -316,13 +316,13 @@ applies_to=self
 */
 /// Draw Status
 
-if (game_get_config("misc_hud") != 1 || game_get_config("misc_status") == 0) exit;
+if (game_config_get("misc_hud") != 1 || game_config_get("misc_status") == 0) exit;
 
 var status_count; status_count = 0;
 
 for ({var i; i = status_max}; i > 0; i -= 1)
 {
-    var status_config; status_config = game_get_config("misc_status");
+    var status_config; status_config = game_config_get("misc_status");
     var status_index; status_index = i - 1;
     var status_x; status_x = view_xview[view_current] + status_bar_x + status_width * (status_max - 1 - status_count);
 
@@ -347,7 +347,7 @@ applies_to=self
 */
 /// Draw Items
 
-if (!game_get_config("misc_feed") || item_grid == -1) exit;
+if (!game_config_get("misc_feed") || item_grid == -1) exit;
 
 for ({var i; i = 0}; i < ds_grid_height(item_grid); i += 1)
 {

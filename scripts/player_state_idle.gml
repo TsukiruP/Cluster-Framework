@@ -34,7 +34,7 @@ switch (_phase)
             return player_set_state(player_state_run);
         }
 
-        if ((game_get_config("advance_turn") && character_index != CHAR_CLASSIC) && input_x_direction != 0 && sign(image_xscale) != input_x_direction)
+        if ((game_config_get("advance_turn") && character_index != CHAR_CLASSIC) && input_x_direction != 0 && sign(image_xscale) != input_x_direction)
         {
             return player_set_state(player_state_turn);
         }

@@ -53,7 +53,7 @@ event_inherited();
 if (player_inst.status_shield == SHIELD_NONE && player_inst.status_invin != INVIN_BUFF) instance_destroy();
 shield_advance = (player_inst.status_shield == SHIELD_BASIC || player_inst.status_shield == SHIELD_MAGNETIC || player_inst.status_invin == INVIN_BUFF);
 
-if (!game_ispaused(mnu_pause) && ((player_inst.status_shield == SHIELD_BUBBLE && sequence_index == seq_shield_bubble) || (game_get_config("advance_flicker") && shield_advance)))
+if (!game_ispaused(mnu_pause) && ((player_inst.status_shield == SHIELD_BUBBLE && sequence_index == seq_shield_bubble) || (game_config_get("advance_flicker") && shield_advance)))
 {
     shield_hide = time_sync(sequence_moment, 2, 2);
 }
@@ -98,7 +98,7 @@ var player_rotation; player_rotation = player_inst.gravity_direction;
 
 if (sprite_index != spr_shield_fire_dash && image_xscale != 1) image_xscale = 1;
 
-if ((game_get_config("advance_flicker") && shield_advance) || !shield_advance) image_alpha = 1;
+if ((game_config_get("advance_flicker") && shield_advance) || !shield_advance) image_alpha = 1;
 else image_alpha = 0.6;
 
 if (sprite_exists(sprite_index))

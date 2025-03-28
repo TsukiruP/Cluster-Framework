@@ -1,4 +1,4 @@
-/// game_reset_config()
+/// game_config_reset()
 /// @desc Resets the config map.
 /// @returns {void}
 

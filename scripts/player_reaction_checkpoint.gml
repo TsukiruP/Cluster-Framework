@@ -13,7 +13,7 @@ if (_hitbox & HIT_RADII)
     {
         if (game_checkpoint_get_x() != _obj.x && game_checkpoint_get_y() != _obj.y && !_obj.active)
         {
-            if (game_get_config("gameplay_bonuses") && stage_get_rings() >= 20)
+            if (game_config_get("gameplay_bonuses") && stage_get_rings() >= 20)
             {
                 var item_index; item_index = -1;
 

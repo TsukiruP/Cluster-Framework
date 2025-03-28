@@ -16,11 +16,11 @@ switch (_index)
 
     // Value:
     case 1:
-        return string_bool(game_get_config(config_key), true);
+        return string_bool(game_config_get(config_key), true);
 
     // Change:
     case 3:
-        if (_event) game_set_config(config_key, !game_get_config(config_key));
+        if (_event) game_config_set(config_key, !game_config_get(config_key));
         return true;
 
     // Undefined:

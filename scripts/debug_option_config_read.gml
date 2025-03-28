@@ -16,8 +16,8 @@ switch (_index)
     case 4:
         if (_event)
         {
-            game_read_config();
-            window_set_fullscreen(game_get_config("screen_full"));
+            game_config_read();
+            window_set_fullscreen(game_config_get("screen_full"));
         }
 
         return true;

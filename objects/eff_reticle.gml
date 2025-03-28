@@ -7,7 +7,7 @@ applies_to=self
 /// Reticle Initialization
 
 event_inherited();
-sequence_set(pick(game_get_config("misc_reticle") == 2, seq_reticle, seq_reticle_colors));
+sequence_set(pick(game_config_get("misc_reticle") == 2, seq_reticle, seq_reticle_colors));
 homing_inst = noone;
 #define Step_2
 /*"/*'/**//* YYD ACTION

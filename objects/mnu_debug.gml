@@ -217,24 +217,24 @@ if (rebind_device == DEV_KEYBOARD)
                 }
             }
         }
-        
+
         // Menu keys:
         else if (rebind_input >= INP_CONFIRM && rebind_input <= INP_HIDE)
         {
             var input_global; input_global = false;
-            
+
             // First we go through the globals and menu keys, skipping around the gameplay keys:
             for ({var i; i = INP_UP}; i <= INP_HIDE; i += 1)
             {
                 if (i == INP_JUMP) i = INP_START; // We skip to Start.
-                
+
                 if (keyboard_key == game_config_get_key(i))
                 {
                     if (i <= INP_RIGHT || i == INP_START || i == INP_SELECT) input_global = true;
                     game_config_set_key(i, game_config_get_key(rebind_input));
                 }
             }
-            
+
             // Again, if we've matched a global key, we check the gameplay keys properly now:
             if (input_global)
             {
@@ -307,7 +307,7 @@ applies_to=self
 var font_height; font_height = font_get_height(global.font_system);
 
 // Box:
-draw_rect(view_xview[view_current] + screen_get_width() / 2 - 81, view_yview[view_current] + screen_get_height() / 2 - 52, 164, 78, game_get_interface_color(), game_get_config("interface_alpha"))
+draw_rect(view_xview[view_current] + screen_get_width() / 2 - 81, view_yview[view_current] + screen_get_height() / 2 - 52, 164, 78, game_get_interface_color(), game_config_get("interface_alpha"))
 
 // Text:
 for ({var i; i = 0}; i < min(ds_list_size(menu_list), 4); i += 1)

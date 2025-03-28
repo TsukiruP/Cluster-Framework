@@ -4,7 +4,7 @@
 
 if (!window_get_fullscreen())
 {
-    var screen_scale; screen_scale = game_get_config("screen_scale");
+    var screen_scale; screen_scale = game_config_get("screen_scale");
     var screen_width; screen_width = screen_get_width() * screen_scale;
     var screen_height; screen_height = screen_get_height() * screen_scale;
 
