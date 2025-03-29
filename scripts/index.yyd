@@ -611,3 +611,6 @@ game_config_reset_gameplay
 game_config_reset_advance
 game_config_reset_misc
 game_set_time
+debug_option_input
+debug_menu_input
+debug_option_gamepad_focus
