@@ -289,7 +289,7 @@
 											|debug_option_gamepad_deadzone
 											|debug_option_gamepad_confirm
 											|debug_option_gamepad_style
-									|debug_option_gamepad_focus
+											|debug_option_gamepad_focus
 								+Inputs
 									|debug_option_input_up
 									|debug_option_input_down

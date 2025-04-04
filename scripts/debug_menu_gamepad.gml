@@ -11,4 +11,5 @@ debug_add_option(debug_option_input_alt);
 debug_add_option(debug_option_gamepad_deadzone);
 debug_add_option(debug_option_gamepad_confirm);
 debug_add_option(debug_option_gamepad_style);
+debug_add_option(debug_option_gamepad_focus);
 debug_add_option(debug_option_input_reset);
