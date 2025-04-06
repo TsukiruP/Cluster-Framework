@@ -231,18 +231,15 @@
 						+Options
 							|debug_option_transition_room
 							|debug_option_transition_preview
-					|debug_option_data
+					|debug_option_save
 					+Data
-						|debug_menu_data
+						|debug_menu_save
 						+Options
 							|debug_option_save_write
 							|debug_option_save_read
 							|debug_option_save_delete
 							|debug_option_save_rename
 							|debug_option_save_reset
-							|debug_option_config_write
-							|debug_option_config_read
-							|debug_option_config_reset
 					|debug_option_text
 					+Text
 						|debug_menu_text
@@ -337,6 +334,9 @@
 									|debug_option_misc_trails
 									|debug_option_misc_reticle
 									|debug_option_misc_tally
+							|debug_option_config_write
+							|debug_option_config_read
+							|debug_option_config_reset
 					|debug_option_credits
 					|debug_option_exit
 			+Save

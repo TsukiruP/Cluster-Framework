@@ -16,6 +16,9 @@ switch (_index)
             debug_add_option(debug_option_gameplay);
             debug_add_option(debug_option_advance);
             debug_add_option(debug_option_misc);
+            debug_add_option(debug_option_config_write);
+            debug_add_option(debug_option_config_read);
+            debug_add_option(debug_option_config_reset);
             return true;
 
         default:

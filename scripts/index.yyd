@@ -308,7 +308,7 @@ audio_pause_drown
 audio_drown_resume
 seq_shield_invin_spark
 debug_option_transition
-debug_option_data
+debug_option_save
 debug_option_config
 debug_option_text
 debug_option_player1
@@ -324,7 +324,7 @@ debug_option_transition_room
 debug_option_transition_preview
 debug_save_create
 game_save_delete
-debug_menu_data
+debug_menu_save
 debug_option_save_rename
 debug_option_save_reset
 debug_option_save_write

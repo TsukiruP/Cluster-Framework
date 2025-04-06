@@ -1,4 +1,4 @@
-/// debug_option_config_reset(index, [execute])
+/// debug_option_save(index, [execute])
 /// @param {int} index
 /// @param {bool} [execute]
 /// @returns {any}
@@ -9,10 +9,10 @@ var _execute; if (argument_count > 1) _execute = argument[1]; else _execute = tr
 switch (_index)
 {
     case OPTION_TEXT:
-        return "Reset All";
+        return "Save Debug";
 
     case OPTION_CONFIRM:
-        if (_execute) game_config_reset();
+        if (_execute) debug_set_next(debug_menu_save);
         return true;
 
     default:

@@ -9,7 +9,7 @@ var _execute; if (argument_count > 1) _execute = argument[1]; else _execute = tr
 switch (_index)
 {
     case OPTION_TEXT:
-        return "Write Config";
+        return "Write All";
 
     case OPTION_CONFIRM:
         if (_execute) game_config_write();
