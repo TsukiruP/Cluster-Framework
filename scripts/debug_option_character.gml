@@ -8,21 +8,17 @@ var _execute; if (argument_count > 1) _execute = argument[1]; else _execute = tr
 
 switch (_index)
 {
-    // Text:
-    case 0:
+    case OPTION_TEXT:
         return "Character Debug";
 
-    // Select:
-    case 2:
+    case OPTION_SELECT:
         if (_execute) text_set_body("Change player characters and their skills.");
         return true;
 
-    // Confirm:
-    case 4:
+    case OPTION_CONFIRM:
         if (_execute) debug_set_next(debug_menu_character);
         return true;
 
-    // Undefined:
     default:
         return undefined;
 }

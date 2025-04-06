@@ -8,16 +8,13 @@ var _event; if (argument_count > 1) _event = argument[1]; else _event = true;
 
 switch (_index)
 {
-    // Text:
-    case 0:
+    case OPTION_TEXT:
         return "Input";
 
-    // Confirm:
-    case 4:
+    case OPTION_CONFIRM:
         if (_event) debug_set_next(debug_menu_input);
         return true;
 
-    // Undefined:
     default:
         return undefined;
 }

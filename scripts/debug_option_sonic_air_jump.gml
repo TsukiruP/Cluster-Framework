@@ -10,20 +10,16 @@ var skill_key; skill_key = "air_jump";
 
 switch (_index)
 {
-    // Text:
-    case 0:
+    case OPTION_TEXT:
         return "Jump Skill:";
 
-    // Value:
-    case 1:
+    case OPTION_VALUE:
         return pick(game_save_get_skill(CHAR_SONIC, skill_key), "None", "Insta-Shield", "Air Dash", "Drop Dash");
 
-    // Change:
-    case 3:
+    case OPTION_CHANGE:
         if (_execute) game_save_set_skill(CHAR_SONIC, skill_key, wrap(game_save_get_skill(CHAR_SONIC, skill_key) + menu_x_direction, SKILL_NONE, SKILL_DROP_DASH));
         return true;
 
-    // Undefined:
     default:
         return undefined;
 }

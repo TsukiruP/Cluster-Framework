@@ -10,20 +10,16 @@ var config_key; config_key = "screen_full";
 
 switch (_index)
 {
-    // Text:
-    case 0:
+    case OPTION_TEXT:
         return "Fullscreen:";
 
-    // Value:
-    case 1:
+    case OPTION_VALUE:
         return string_bool(game_config_get(config_key), true);
 
-    // Change:
-    case 3:
+    case OPTION_CHANGE:
         if (_execute) window_set_fullscreen(!game_config_get(config_key));
         return true;
 
-    // Undefined:
     default:
         return undefined;
 }

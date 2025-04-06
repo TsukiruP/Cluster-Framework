@@ -10,20 +10,16 @@ var skill_key; skill_key = "ground";
 
 switch (_index)
 {
-    // Text:
-    case 0:
+    case OPTION_TEXT:
         return "Ground Skill:";
 
-    // Value:
-    case 1:
+    case OPTION_VALUE:
         return pick(game_save_get_skill(CHAR_SONIC, skill_key), "None", "Hammer", "Skid");
 
-    // Change:
-    case 3:
+    case OPTION_CHANGE:
         if (_execute) game_save_set_skill(CHAR_SONIC, skill_key, wrap(game_save_get_skill(CHAR_SONIC, skill_key) + menu_x_direction, SKILL_NONE, SKILL_SKID));
         return true;
 
-    // Undefined:
     default:
         return undefined;
 }

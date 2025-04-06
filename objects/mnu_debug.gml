@@ -4,7 +4,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Macro Initialization
+/// Constant Initialization
 
 OPTION_TEXT = 0;
 OPTION_VALUE = 1;
@@ -306,7 +306,6 @@ else menu_fade = 0;
 lib_id=1
 action_id=203
 applies_to=self
-invert=0
 */
 #define Draw_0
 /*"/*'/**//* YYD ACTION

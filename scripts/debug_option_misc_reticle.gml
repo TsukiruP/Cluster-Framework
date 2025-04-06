@@ -10,20 +10,16 @@ var config_key; config_key = "misc_reticle";
 
 switch (_index)
 {
-    // Text:
-    case 0:
+    case OPTION_TEXT:
         return "Reticle:";
 
-    // Value:
-    case 1:
+    case OPTION_VALUE:
         return pick(game_config_get(config_key), "None", "Default", "Colors DS");
 
-    // Change:
-    case 3:
+    case OPTION_CHANGE:
         if (_execute) game_config_set(config_key, wrap(game_config_get(config_key) + menu_x_direction, 0, 2));
         return true;
 
-    // Undefined:
     default:
         return undefined;
 }

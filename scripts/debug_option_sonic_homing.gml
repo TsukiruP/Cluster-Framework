@@ -10,20 +10,16 @@ var skill_key; skill_key = "homing";
 
 switch (_index)
 {
-    // Text:
-    case 0:
+    case OPTION_TEXT:
         return "Homing Attack:";
 
-    // Value:
-    case 1:
+    case OPTION_VALUE:
         return pick(game_save_get_skill(CHAR_SONIC, skill_key), "None", "1998", "2008", "2022", "2024");
 
-    // Change:
-    case 3:
+    case OPTION_CHANGE:
         if (_execute) game_save_set_skill(CHAR_SONIC, skill_key, wrap(game_save_get_skill(CHAR_SONIC, skill_key) + menu_x_direction, HOMING_NONE, HOMING_GENERATIONS));
         return true;
 
-    // Undefined:
     default:
         return undefined;
 }

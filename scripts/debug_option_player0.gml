@@ -10,21 +10,17 @@ var character_index; character_index = 0;
 
 switch (_index)
 {
-    // Text:
-    case 0:
+    case OPTION_TEXT:
         return "Player 0:";
 
-    // Value:
-    case 1:
+    case OPTION_VALUE:
         return pick(game_save_get_character(character_index), "Sonic", "Miles", "Knuckles", "Amy", "Classic");
 
-    // Change:
-    case 3:
+    case OPTION_CHANGE:
         if (_execute) game_save_set_character(character_index, wrap(game_save_get_character(character_index) + menu_x_direction, CHAR_SONIC, CHAR_CLASSIC));
         return true;
 
-    // Confirm:
-    case 4:
+    case OPTION_CONFIRM:
         switch (game_save_get_character(character_index))
         {
             case CHAR_SONIC:
@@ -36,7 +32,6 @@ switch (_index)
         }
         break;
 
-    // Undefined:
     default:
         return undefined;
 }

@@ -10,20 +10,16 @@ var input_index; input_index = INP_DOWN;
 
 switch (_index)
 {
-    // Text:
-    case 0:
+    case OPTION_TEXT:
         return input_get_name(input_index) + ":";
 
-    // Value:
-    case 1:
+    case OPTION_VALUE:
         return string_input(input_index, rebind_device);
 
-    // Confirm:
-    case 4:
+    case OPTION_CONFIRM:
         if (_execute) debug_set_rebind(input_index);
         return true;
 
-    // Undefined:
     default:
         return undefined;
 }

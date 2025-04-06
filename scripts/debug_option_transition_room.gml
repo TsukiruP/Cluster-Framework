@@ -8,16 +8,13 @@ var _execute; if (argument_count > 1) _execute = argument[1]; else _execute = tr
 
 switch (_index)
 {
-    // Text:
-    case 0:
+    case OPTION_TEXT:
         return "Room:";
 
-    // Value:
-    case 1:
+    case OPTION_VALUE:
         return room_get_name(transition_room);
 
-    // Change:
-    case 3:
+    case OPTION_CHANGE:
         if (_execute)
         {
             // Wrapping is a bit awkward because rooms aren't convenient to work with.
@@ -39,12 +36,10 @@ switch (_index)
 
         return true;
 
-    // Confirm:
-    case 4:
+    case OPTION_CONFIRM:
         if (_execute) transition_create(transition_room);
         return true;
 
-    // Undefined:
     default:
         return undefined;
 }

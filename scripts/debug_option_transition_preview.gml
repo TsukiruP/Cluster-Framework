@@ -8,16 +8,13 @@ var _execute; if (argument_count > 1) _execute = argument[1]; else _execute = tr
 
 switch (_index)
 {
-    // Text:
-    case 0:
+    case OPTION_TEXT:
         return "Preview:";
 
-    // Value:
-    case 1:
+    case OPTION_VALUE:
         return pick(transition_preview, "Fade", "Menu", "Title Card", "Retry");
 
-    // Change:
-    case 3:
+    case OPTION_CHANGE:
         if (_execute)
         {
             transition_preview += menu_x_direction;
@@ -26,12 +23,10 @@ switch (_index)
 
         return true;
 
-    // Confirm:
-    case 4:
+    case OPTION_CONFIRM:
         if (_execute) transition_create(transition_room, transition_preview, true);
         return true;
 
-    // Undefined:
     default:
         return undefined;
 }

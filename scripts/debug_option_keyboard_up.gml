@@ -8,12 +8,10 @@ var input_index; input_index = INP_UP;
 
 switch (_index)
 {
-    // Text:
-    case 0:
+    case OPTION_TEXT:
         return "Up:";
 
-    // Value:
-    case 1:
+    case OPTION_VALUE:
         return string_input(input_index, DEV_KEYBOARD);
 
     // Confirm:
@@ -21,7 +19,6 @@ switch (_index)
         debug_input_rebind(input_index, DEV_KEYBOARD);
         return true;
 
-    // Undefined:
     default:
         return undefined;
 }

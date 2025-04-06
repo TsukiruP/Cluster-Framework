@@ -10,20 +10,16 @@ var save_key; save_key = "tag";
 
 switch (_index)
 {
-    // Text:
-    case 0:
+    case OPTION_TEXT:
         return "Tag:";
 
-    // Value:
-    case 1:
+    case OPTION_VALUE:
         return string_bool(game_save_get(save_key), true);
 
-    // Change:
-    case 3:
+    case OPTION_CHANGE:
         if (_execute) game_save_set(save_key, !game_save_get(save_key));
         return true;
 
-    // Undefined:
     default:
         return undefined;
 }

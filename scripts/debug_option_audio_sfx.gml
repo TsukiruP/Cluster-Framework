@@ -10,16 +10,13 @@ var config_key; config_key = "audio_sfx";
 
 switch (_index)
 {
-    // Text:
-    case 0:
+    case OPTION_TEXT:
         return "SFX Volume:";
 
-    // Value:
-    case 1:
+    case OPTION_VALUE:
         return string(game_config_get(config_key));
 
-    // Change:
-    case 3:
+    case OPTION_CHANGE:
         if (in_range(game_config_get(config_key) + menu_x_direction, 0, 100))
         {
             if (_execute)
@@ -33,7 +30,6 @@ switch (_index)
 
         return false;
 
-    // Undefined:
     default:
         return undefined;
 }

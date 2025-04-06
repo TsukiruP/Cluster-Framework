@@ -11,16 +11,13 @@ var config_key; config_key = "input_deadzone";
 
 switch (_index)
 {
-    // Text:
-    case 0:
+    case OPTION_TEXT:
         return "Deadzone:";
 
-    // Value:
-    case 1:
+    case OPTION_VALUE:
         return string(game_config_get_gamepad(player_index, config_key));
 
-    // Change:
-    case 3:
+    case OPTION_CHANGE:
         if (in_range(game_config_get_gamepad(player_index, config_key) + menu_x_direction / 100, 0, 1))
         {
             if (_execute) game_config_set_gamepad(player_index, config_key, clamp(game_config_get_gamepad(player_index, config_key) + menu_x_direction / 100, 0, 1));
@@ -29,7 +26,6 @@ switch (_index)
 
         return false;
 
-    // Undefined:
     default:
         return undefined;
 }

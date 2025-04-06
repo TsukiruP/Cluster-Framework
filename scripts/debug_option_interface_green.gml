@@ -10,16 +10,13 @@ var config_key; config_key = "interface_green";
 
 switch (_index)
 {
-    // Text:
-    case 0:
+    case OPTION_TEXT:
         return "Green:";
 
-    // Value:
-    case 1:
+    case OPTION_VALUE:
         return string(game_config_get(config_key));
 
-    // Change:
-    case 3:
+    case OPTION_CHANGE:
         if (in_range(game_config_get(config_key) + menu_x_direction, 0, 255))
         {
             if (_execute) game_config_set(config_key, clamp(game_config_get(config_key) + menu_x_direction, 0, 255));
@@ -28,7 +25,6 @@ switch (_index)
 
         return false;
 
-    // Undefined:
     default:
         return undefined;
 }

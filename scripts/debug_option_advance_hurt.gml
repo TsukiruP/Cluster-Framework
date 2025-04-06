@@ -10,20 +10,16 @@ var config_key; config_key = "advance_hurt";
 
 switch (_index)
 {
-    // Text:
-    case 0:
+    case OPTION_TEXT:
         return "Hurt:";
 
-    // Value:
-    case 1:
+    case OPTION_VALUE:
         return pick(game_config_get(config_key), "Classic", "Advance");
 
-    // Change:
-    case 3:
+    case OPTION_CHANGE:
         if (_execute) game_config_set(config_key, !game_config_get(config_key));
         return true;
 
-    // Undefined:
     default:
         return undefined;
 }

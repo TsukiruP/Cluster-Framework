@@ -8,16 +8,13 @@ var _execute; if (argument_count > 1) _execute = argument[1]; else _execute = tr
 
 switch (_index)
 {
-    // Text:
-    case 0:
+    case OPTION_TEXT:
         return "Subject Test";
 
-    // Confirm:
-    case 4:
+    case OPTION_CONFIRM:
         if (_execute) text_set_subject("This message is a test!");
         return true;
 
-    // Undefined:
     default:
         return undefined;
 }

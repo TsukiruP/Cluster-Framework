@@ -10,16 +10,13 @@ var player_index; player_index = rebind_device - DEV_GAMEPAD0;
 
 switch (_index)
 {
-    // Text:
-    case 0:
+    case OPTION_TEXT:
         return "Gamepad:";
 
-    // Value:
-    case 1:
+    case OPTION_VALUE:
         return string(gamepad_get(player_index));
 
-    // Change:
-    case 3:
+    case OPTION_CHANGE:
         if (_execute)
         {
             var gamepad_index; gamepad_index = gamepad_get(player_index);
@@ -32,7 +29,6 @@ switch (_index)
 
         return true;
 
-    // Undefined:
     default:
         return undefined;
 }

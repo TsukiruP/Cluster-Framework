@@ -8,11 +8,9 @@ var _execute; if (argument_count > 1) _execute = argument[1]; else _execute = tr
 
 switch (_index)
 {
-    // Text:
-    case 0:
+    case OPTION_TEXT:
         return "Credits";
 
-    // Undefined:
     default:
         return undefined;
 }

@@ -10,12 +10,10 @@ var config_key; config_key = "screen_ratio";
 
 switch (_index)
 {
-    // Text:
-    case 0:
+    case OPTION_TEXT:
         return "Ratio:";
 
-    // Value:
-    case 1:
+    case OPTION_VALUE:
         switch (game_config_get("screen_mode"))
         {
             // Misc:
@@ -27,8 +25,7 @@ switch (_index)
                 return pick(game_config_get(config_key), "16:9", "4:3", "5:3");
         }
 
-    // Change:
-    case 3:
+    case OPTION_CHANGE:
         if (_execute)
         {
             var ratio_max; ratio_max = pick(game_config_get("screen_mode"), 1, 2, 0);
@@ -38,7 +35,6 @@ switch (_index)
 
         return true;
 
-    // Undefined:
     default:
         return undefined;
 }
