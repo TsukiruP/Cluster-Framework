@@ -93,7 +93,7 @@ if (!text_clear)
         }
         else if (!body_scroll_complete) body_overflow = true;
 
-        if ((game_ispaused(mnu_pause) || !ds_list_empty(body_list) || subject_string != "") && log_string != "" && (log_alpha == 0 || log_alpha == 1) && input_get_check(INP_LOG, CHECK_PRESSED))
+        if ((game_ispaused(mnu_pause) || !ds_list_empty(body_list) || subject_string != "") && log_string != "" && (log_alpha == 0 || log_alpha == 1) && input_get_check(INP_FUNC, CHECK_PRESSED))
         {
             log_hide = !log_hide;
             if (!log_hide && log_height > screen_get_height() - log_spacing) log_scroll = log_height - (screen_get_height() - log_spacing);

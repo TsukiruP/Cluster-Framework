@@ -49,8 +49,8 @@ switch (_input)
     case INP_CANCEL:
         return "Cancel";
 
-    case INP_LOG:
-        return "Log";
+    case INP_FUNC:
+        return "Function";
 
     case INP_HIDE:
         return "Hide";

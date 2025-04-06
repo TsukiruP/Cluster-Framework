@@ -19,6 +19,6 @@ with (ctrl_game)
     ds_list_add(keyboard_list, vk_space); // Select
     ds_list_add(keyboard_list, ord("A")); // Confirm
     ds_list_add(keyboard_list, ord("S")); // Cancel
-    ds_list_add(keyboard_list, vk_backspace); // Log
+    ds_list_add(keyboard_list, vk_backspace); // Function
     ds_list_add(keyboard_list, ord("W")); // Hide
 }

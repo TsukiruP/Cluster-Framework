@@ -6,7 +6,7 @@
 var _index; _index = argument[0];
 var _execute; if (argument_count > 1) _execute = argument[1]; else _execute = true;
 
-var input_index; input_index = INP_LOG;
+var input_index; input_index = INP_FUNC;
 
 switch (_index)
 {

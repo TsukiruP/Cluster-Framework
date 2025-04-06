@@ -4,7 +4,7 @@
 
 var _index; _index = argument0;
 
-var input_index; input_index = INP_LOG;
+var input_index; input_index = INP_FUNC;
 
 switch (_index)
 {

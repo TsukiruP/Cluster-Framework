@@ -24,6 +24,6 @@ with (ctrl_game)
     ds_list_add(input_list, PAD_SELECT); // Select
     ds_list_add(input_list, PAD_FACE1); // Confirm
     ds_list_add(input_list, PAD_FACE2); // Cancel
-    ds_list_add(input_list, PAD_FACE3); // Log
+    ds_list_add(input_list, PAD_FACE3); // Function
     ds_list_add(input_list, PAD_FACE4); // Hide
 }
