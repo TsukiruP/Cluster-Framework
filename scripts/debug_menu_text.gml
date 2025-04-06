@@ -13,10 +13,8 @@ switch (_index)
             debug_add_option(debug_option_body_test);
             debug_add_option(debug_option_log_open);
             debug_add_option(debug_option_log_reset);
-            break;
-        
-        default:
-            return false;
-}
+            return true;
 
-return true;
+        default:
+            return undefined;
+}

@@ -16,10 +16,8 @@ switch (_index)
             debug_add_option(debug_option_config);
             debug_add_option(debug_option_credits);
             debug_add_option(debug_option_exit);
-            break;
-        
-        default:
-            return false;
-}
+            return true;
 
-return true;
+        default:
+            return undefined;
+}

@@ -1,9 +1,9 @@
 /// debug_get_option(option, index, [execute])
-/// @desc Executes the current debug option.
+/// @desc Returns an aspect of the menu option.
 /// @param {int} option
 /// @param {int} index
 /// @param {bool} [execute]
-/// @returns bool
+/// @returns {any}
 
 var _option; _option = argument[0];
 var _index; _index = argument[1];

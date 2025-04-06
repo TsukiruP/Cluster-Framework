@@ -22,7 +22,7 @@ switch (_index)
             if (_execute)
             {
                 game_config_set(config_key, clamp(game_config_get(config_key) + menu_x_direction, 0, 100));
-                sound_kind_volume(0, game_config_get(config_key) / 100);
+                audio_reset_volume();
             }
 
             return true;

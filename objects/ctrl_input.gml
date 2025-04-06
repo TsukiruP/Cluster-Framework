@@ -307,10 +307,10 @@ for ({var i; i = INP_UP}; i <= INP_HIDE; i += 1)
 for ({var i; i = 0}; i < PLAYER_COUNT; i += 1)
 {
     var gamepad_index; gamepad_index = gamepad_get(i);
-    var gamepad_focus; gamepad_focus = game_config_get("input_gamepad_focus");
+    var input_background; input_background = game_config_get("input_background");
     var check_offset; check_offset = i * 3;
 
-    if (gamepad_index > -1 && (gamepad_focus || (!gamepad_focus && window_has_focus())))
+    if (gamepad_index > -1 && (input_background || (!input_background && window_has_focus())))
     {
         for ({var j; j = INP_UP}; j <= INP_HIDE; j += 1)
         {

@@ -13,14 +13,17 @@ switch (_index)
             debug_add_option(debug_option_screen_ratio);
             debug_add_option(debug_option_screen_scale);
             debug_add_option(debug_option_screen_full);
-            break;
-        
-        case MENU_START:
-            game_config_reset_screen();
-            break;
-        
-        default:
-            return false;
-}
+            return true;
 
-return true;
+        case MENU_START:
+            if (_execute)
+            {
+                game_config_reset_screen();
+                screen_reset_fullscreen();
+                return true;
+            }
+            else return "Reset";
+
+        default:
+            return undefined;
+}

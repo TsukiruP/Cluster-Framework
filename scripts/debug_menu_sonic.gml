@@ -16,10 +16,8 @@ switch (_index)
             debug_add_option(debug_option_sonic_peel);
             debug_add_option(debug_option_sonic_homing);
             debug_add_option(debug_option_sonic_shield);
-            break;
-        
-        default:
-            return false;
-}
+            return true;
 
-return true;
+        default:
+            return undefined;
+}

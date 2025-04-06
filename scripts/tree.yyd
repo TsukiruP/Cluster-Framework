@@ -29,6 +29,7 @@
 				|game_config_reset_interface
 				|game_config_reset_screen
 				|game_config_reset_audio
+				|game_config_reset_input_background
 				|game_config_reset_gameplay
 				|game_config_reset_advance
 				|game_config_reset_misc
@@ -97,12 +98,14 @@
 			|screen_set_size
 			|screen_set_resolution
 			|screen_set_window
+			|screen_reset_fullscreen
 		+Audio
-			|audio_ring_pan
 			|audio_stop_all
 			|audio_pause_all
 			|audio_resume_all
 			|audio_fade_out
+			|audio_reset_volume
+			|audio_ring_pan
 			+SFX
 				|audio_play_sfx
 				|audio_loop_sfx
@@ -274,19 +277,23 @@
 								+Options
 									|debug_option_audio_sfx
 									|debug_option_audio_bgm
-							|debug_option_keyboard
-							|debug_option_gamepad
+							|debug_option_input
 							+Input
-								|debug_menu_keyboard
-								+Gamepad
-									|debug_menu_gamepad
-									+Options
-										|debug_option_gamepad_player
-										|debug_option_gamepad_index
-										|debug_option_gamepad_deadzone
-										|debug_option_gamepad_confirm
-										|debug_option_gamepad_style
-										|debug_option_gamepad_focus
+								|debug_menu_input
+								+Options
+									|debug_option_keyboard
+									+Keyboard
+										|debug_menu_keyboard
+									|debug_option_gamepad
+									+Gamepad
+										|debug_menu_gamepad
+										+Options
+											|debug_option_gamepad_player
+											|debug_option_gamepad_index
+											|debug_option_gamepad_deadzone
+											|debug_option_gamepad_confirm
+											|debug_option_gamepad_style
+									|debug_option_input_background
 								+Inputs
 									|debug_option_input_up
 									|debug_option_input_down
@@ -773,4 +780,3 @@
 	|draw_sprite_tiled_horizontal_yscale
 	|draw_backdrop_tiled_area
 	|game_get_player_count
-	|debug_option_input

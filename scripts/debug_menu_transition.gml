@@ -11,10 +11,8 @@ switch (_index)
         case MENU_INIT:
             debug_add_option(debug_option_transition_room);
             debug_add_option(debug_option_transition_preview);
-            break;
-        
-        default:
-            return false;
-}
+            return true;
 
-return true;
+        default:
+            return undefined;
+}

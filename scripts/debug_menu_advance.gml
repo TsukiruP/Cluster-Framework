@@ -13,10 +13,8 @@ switch (_index)
             debug_add_option(debug_option_advance_brake);
             debug_add_option(debug_option_advance_hurt);
             debug_add_option(debug_option_advance_flicker);
-            break;
-        
-        default:
-            return false;
-}
+            return true;
 
-return true;
+        default:
+            return undefined;
+}

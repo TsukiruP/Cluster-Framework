@@ -14,10 +14,8 @@ switch (_index)
             debug_add_option(debug_option_swap);
             debug_add_option(debug_option_tag);
             debug_add_option(debug_option_boost);
-            break;
-        
-        default:
-            return false;
-}
+            return true;
 
-return true;
+        default:
+            return undefined;
+}

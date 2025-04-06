@@ -12,10 +12,8 @@ switch (_index)
             debug_add_option(debug_option_gameplay_shields);
             debug_add_option(debug_option_gameplay_debuffs);
             debug_add_option(debug_option_gameplay_bonuses);
-            break;
-        
-        default:
-            return false;
-}
+            return true;
 
-return true;
+        default:
+            return undefined;
+}

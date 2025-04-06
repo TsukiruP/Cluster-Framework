@@ -7,4 +7,4 @@ var _menu; _menu = argument0;
 
 menu_index = _menu;
 ds_list_clear(menu_list);
-script_execute(menu_index, MENU_INIT);
+debug_get_menu(MENU_INIT);

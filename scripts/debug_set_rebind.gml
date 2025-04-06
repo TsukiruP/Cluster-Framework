@@ -6,4 +6,4 @@
 var _input; _input = argument0;
 
 menu_alarm = 15;
-input_rebind = _input;
+rebind_input = _input;
