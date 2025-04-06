@@ -14,6 +14,22 @@ switch (_index)
             debug_add_option(debug_option_advance_hurt);
             debug_add_option(debug_option_advance_flicker);
             return true;
+        
+        case MENU_START:
+            if (_execute)
+            {
+                game_config_reset_advance();
+                return true;
+            }
+            else return "Reset";
+        
+        case MENU_FUNCTION:
+            if (_execute)
+            {
+                game_config_write();
+                return true;
+            }
+            else return "Save";
 
         default:
             return undefined;

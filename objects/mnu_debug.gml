@@ -318,7 +318,6 @@ else menu_fade = 0;
 lib_id=1
 action_id=203
 applies_to=self
-invert=0
 */
 #define Draw_0
 /*"/*'/**//* YYD ACTION
@@ -411,7 +410,7 @@ else
     if (!is_undefined(debug_get_option(menu_option, OPTION_CHANGE, false))) guide_input[0] = string_input(INP_LEFT) + " / " + string_input(INP_RIGHT) + " Change";
     if (!is_undefined(debug_get_menu(MENU_START, false))) guide_input[1] = string_input(INP_START) + " " + debug_get_menu(MENU_START, false);
     if (!is_undefined(debug_get_option(menu_option, OPTION_SELECT, false))) guide_input[2] = string_input(INP_SELECT) + " Help";
-    if (!is_undefined(debug_get_menu(MENU_FUNCTION, false))) guide_input[3] = string_input(INP_START) + " " + debug_get_menu(MENU_FUNCTION, false);
+    if (!is_undefined(debug_get_menu(MENU_FUNCTION, false))) guide_input[3] = string_input(INP_FUNC) + " " + debug_get_menu(MENU_FUNCTION, false);
     if (!is_undefined(debug_get_option(menu_option, OPTION_CONFIRM, false))) guide_input[4] = string_input(INP_CONFIRM) + " Confirm";
     if (!ds_stack_empty(history_stack)) guide_input[5] = string_input(INP_CANCEL) + " Back";
 

@@ -23,6 +23,14 @@ switch (_index)
                 return true;
             }
             else return "Reset";
+        
+        case MENU_FUNCTION:
+            if (_execute)
+            {
+                game_config_write();
+                return true;
+            }
+            else return "Save";
 
         default:
             return undefined;
