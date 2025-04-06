@@ -4,6 +4,18 @@ lib_id=1
 action_id=603
 applies_to=self
 */
+/// Macro Initialization
+
+OPTION_TEXT = 0;
+OPTION_VALUE = 1;
+OPTION_SELECT = 2;
+OPTION_CHANGE = 3;
+OPTION_CONFIRM = 4;
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
 /// Menu Initialization
 
 menu_alarm = 0;
@@ -103,7 +115,7 @@ else
 // Select:
 if (input_get_check(INP_SELECT, CHECK_PRESSED))
 {
-    var option_select; option_select = debug_execute(menu_option, 2);
+    var option_select; option_select = debug_get_option(menu_option, 2);
 
     if (!is_undefined(option_select)) audio_play_sfx("snd_menu_confirm", true);
 }
@@ -116,7 +128,7 @@ menu_x_direction = menu_right - menu_left;
 
 if (menu_x_direction != 0)
 {
-    var option_change; option_change = debug_execute(menu_option, 3);
+    var option_change; option_change = debug_get_option(menu_option, 3);
 
     if (!is_undefined(option_change) && sfx_alarm == 0)
     {
@@ -128,7 +140,7 @@ if (menu_x_direction != 0)
 // Confirm:
 if (input_get_check(INP_CONFIRM, CHECK_PRESSED))
 {
-    var option_confirm; option_confirm = debug_execute(menu_option, 4);
+    var option_confirm; option_confirm = debug_get_option(menu_option, 4);
 
     if (!is_undefined(option_confirm)) audio_play_sfx(pick(option_confirm, "snd_menu_cannot", "snd_menu_confirm"), true);
 }
@@ -313,8 +325,8 @@ draw_rect(view_xview[view_current] + screen_get_width() / 2 - 81, view_yview[vie
 for ({var i; i = 0}; i < min(ds_list_size(menu_list), 4); i += 1)
 {
     var option_index; option_index = i + menu_scroll;
-    var option_text; option_text = debug_execute(option_index, 0);
-    var option_value; option_value = debug_execute(option_index, 1);
+    var option_text; option_text = debug_get_option(option_index, 0);
+    var option_value; option_value = debug_get_option(option_index, 1);
     var option_x; option_x = view_xview[view_current] + screen_get_width() / 2;
     var option_y; option_y = view_yview[view_current] + screen_get_height() / 2 - 41 + font_height * i;
 
@@ -382,9 +394,9 @@ else
     guide_input[2] = "";
     guide_input[3] = "";
 
-    if (!is_undefined(debug_execute(menu_option, 3, false))) guide_input[0] = string_input(INP_LEFT) + " / " + string_input(INP_RIGHT) + " Change";
-    if (!is_undefined(debug_execute(menu_option, 2, false))) guide_input[1] = string_input(INP_SELECT) + " Help";
-    if (!is_undefined(debug_execute(menu_option, 4, false))) guide_input[2] = string_input(INP_CONFIRM) + " Confirm";
+    if (!is_undefined(debug_get_option(menu_option, 3, false))) guide_input[0] = string_input(INP_LEFT) + " / " + string_input(INP_RIGHT) + " Change";
+    if (!is_undefined(debug_get_option(menu_option, 2, false))) guide_input[1] = string_input(INP_SELECT) + " Help";
+    if (!is_undefined(debug_get_option(menu_option, 4, false))) guide_input[2] = string_input(INP_CONFIRM) + " Confirm";
     if (!ds_stack_empty(history_stack)) guide_input[3] = string_input(INP_CANCEL) + " Back";
 
     for ({var i; i = 0}; i <= 3; i += 1)

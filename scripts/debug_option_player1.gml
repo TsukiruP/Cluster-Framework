@@ -1,10 +1,10 @@
-/// debug_option_player1(index, [event])
+/// debug_option_player1(index, [execute])
 /// @param {int} index
-/// @param {bool} [event]
+/// @param {bool} [execute]
 /// @returns {any}
 
 var _index; _index = argument[0];
-var _event; if (argument_count > 1) _event = argument[1]; else _event = true;
+var _execute; if (argument_count > 1) _execute = argument[1]; else _execute = true;
 
 var character_index; character_index = 1;
 
@@ -20,7 +20,7 @@ switch (_index)
 
     // Change:
     case 3:
-        if (_event) game_save_set_character(character_index, wrap(game_save_get_character(character_index) + menu_x_direction, -1, CHAR_CLASSIC));
+        if (_execute) game_save_set_character(character_index, wrap(game_save_get_character(character_index) + menu_x_direction, -1, CHAR_CLASSIC));
         return true;
 
     // Confirm:
@@ -28,7 +28,7 @@ switch (_index)
         switch (game_save_get_character(character_index))
         {
             case CHAR_SONIC:
-                if (_event) debug_set_next(debug_menu_sonic);
+                if (_execute) debug_set_next(debug_menu_sonic);
                 return true;
 
             default:

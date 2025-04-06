@@ -1,10 +1,10 @@
-/// debug_option_transition_room(index, [event])
+/// debug_option_transition_room(index, [execute])
 /// @param {int} index
-/// @param {bool} [event]
+/// @param {bool} [execute]
 /// @returns {any}
 
 var _index; _index = argument[0];
-var _event; if (argument_count > 1) _event = argument[1]; else _event = true;
+var _execute; if (argument_count > 1) _execute = argument[1]; else _execute = true;
 
 switch (_index)
 {
@@ -18,7 +18,7 @@ switch (_index)
 
     // Change:
     case 3:
-        if (_event)
+        if (_execute)
         {
             // Wrapping is a bit awkward because rooms aren't convenient to work with.
             switch (sign(menu_x_direction))
@@ -41,7 +41,7 @@ switch (_index)
 
     // Confirm:
     case 4:
-        if (_event) transition_create(transition_room);
+        if (_execute) transition_create(transition_room);
         return true;
 
     // Undefined:

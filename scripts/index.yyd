@@ -602,7 +602,7 @@ input_get_name
 debug_option_gamepad_confirm
 game_config_reset_gamepad
 gamepad_get_any
-debug_execute
+debug_get_option
 debug_option_exit
 game_config_reset_interface
 game_config_reset_screen
@@ -612,5 +612,5 @@ game_config_reset_advance
 game_config_reset_misc
 game_set_time
 debug_option_input
-debug_menu_input
+debug_get_menu
 debug_option_gamepad_focus
