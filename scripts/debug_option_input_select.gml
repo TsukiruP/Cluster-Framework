@@ -17,7 +17,12 @@ switch (_index)
         return string_input(input_index, rebind_device);
 
     case OPTION_CONFIRM:
-        if (_execute) debug_set_rebind(input_index);
+        if (_execute)
+        {
+            if (input_get_check(INP_CONFIRM, CHECK_HELD, rebind_device)) debug_set_rebind(input_index);
+            else return false;
+        }
+
         return true;
 
     default:

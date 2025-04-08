@@ -380,7 +380,7 @@ if (rename_allow) entry_string = "Enter a name#" + rename_backup;
 else if (rebind_input != INP_ANY)
 {
     entry_string = "Enter a " + pick(rebind_device == DEV_KEYBOARD, "button", "key") + " to bind to " + input_get_name(rebind_input);
-    if (rebind_device > DEV_KEYBOARD) entry_string += "#Disclaimer: Some buttons cannot be used for binding.";
+    if (rebind_device > DEV_KEYBOARD) entry_string += "#Only the face buttons, bumpers, and triggers can be used for rebinding.";
 }
 
 draw_text(view_xview[view_current] + screen_get_width() / 2, view_yview[view_current] + screen_get_height() / 2, entry_string);
@@ -396,7 +396,7 @@ var font_height; font_height = font_get_height(global.font_system);
 var guide_string; guide_string = "";
 
 if (rename_allow) guide_string = "Enter Finish";
-else
+else if (rebind_input == INP_ANY)
 {
     var guide_input;
 
