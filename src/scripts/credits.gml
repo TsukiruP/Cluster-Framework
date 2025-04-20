@@ -120,7 +120,7 @@ Vebilis
 Sonic Adventure Hint Box Sprites
 
 Zeronatt1233
-Rising Hopper ProgriseKey Realize Ver.
+Metal Cluster Hopper Symbols
 
 RIPPED SOUNDS
 Tsukiru
