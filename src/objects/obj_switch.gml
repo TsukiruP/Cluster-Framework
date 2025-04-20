@@ -84,3 +84,12 @@ switch (variant)
         hitbox_set_hurtbox(9, 6, 9, 7);
         sequence_init(seq_switch_vertical_off);
 }
+#define Draw_0
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Draw Switch
+
+draw_self_as(sprite_index, image_index + image_offset);
