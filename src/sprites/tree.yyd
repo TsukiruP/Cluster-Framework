@@ -1,5 +1,8 @@
 +Masks Old
 	|spr_basic_test_mask_29
+	+Title
+		|spr_realizing_hopper
+		|spr_title_start
 +System
 	|fnt_system
 	|fnt_debug
@@ -26,9 +29,6 @@
 	+Menu
 		|spr_boot
 		|spr_save_character
-		+Title
-			|spr_realizing_hopper
-			|spr_title_start
 		+Pause
 			|spr_pause_header
 			|spr_pause_menu

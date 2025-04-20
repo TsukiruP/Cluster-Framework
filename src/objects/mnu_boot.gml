@@ -28,7 +28,7 @@ applies_to=self
 */
 /// Alpha
 
-var boot_max_state; boot_max_state = 5;
+var boot_max_state; boot_max_state = 7;
 
 if (input_get_check(INP_CONFIRM, CHECK_PRESSED))
 {
@@ -36,7 +36,7 @@ if (input_get_check(INP_CONFIRM, CHECK_PRESSED))
     {
         boot_state = roundto(boot_state, 2) + 1;
         boot_alpha = 1;
-        boot_alarm = pick((boot_state - 1) div 2, 360, 180, 120);
+        boot_alarm = pick((boot_state - 1) div 2, 360, 180, 120, 120);
     }
     else if (!instance_exists(ctrl_transition)) transition_create(rm_debug);
 }
@@ -117,7 +117,9 @@ switch (boot_state)
     // FMOD:
     case 4:
     case 5:
-        draw_sprite_ext(spr_boot, 0, boot_x, boot_y, 1, 1, 0, c_white, boot_alpha);
+    case 6:
+    case 7:
+        draw_sprite_ext(spr_boot, boot_state > 5, boot_x, boot_y, 1, 1, 0, c_white, boot_alpha);
         break;
 }
 

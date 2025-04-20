@@ -30,7 +30,6 @@
 			|ctrl_tally
 	+Menus
 		|mnu_boot
-		|mnu_title
 		|mnu_debug
 		|mnu_debug_save
 		|mnu_pause
@@ -166,3 +165,4 @@
 	|obj_basic_test_mask_29
 	|obj_basic_test_water_fall_02
 	|obj_basic_test_water_fall_03
+	|mnu_title

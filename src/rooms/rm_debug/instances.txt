@@ -1,2 +1,2 @@
 obj_sky_sanctuary_fountain,240,146,E7661E4F,0,1,1,4294967295,0,0
-mnu_debug,0,0,B801DCFA,0,1,1,4294967295,0,0
+mnu_debug,0,0,5138DFF1,0,1,1,4294967295,0,0

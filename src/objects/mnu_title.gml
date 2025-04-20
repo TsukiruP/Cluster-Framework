@@ -23,7 +23,12 @@ if (!title_start)
 else if (game_get_time() mod 5 == 0)
 {
     title_flash -= 1;
-    if (title_flash == 0) instance_destroy();
+
+    if (title_flash == 0)
+    {
+        instance_create(0, 0, mnu_debug);
+        instance_destroy();
+    }
 }
 #define Draw_0
 /*"/*'/**//* YYD ACTION
