@@ -335,7 +335,7 @@
 		+Enemy
 			|spr_enemy_alert
 			|spr_enemy_vitality
-			|spr_enemy_hurt
+			|spr_enemy_hit
 			|spr_enemy_debris
 			|spr_buzzer_bullet
 			|spr_gun_hunter_bullet

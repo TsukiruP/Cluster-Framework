@@ -19,7 +19,8 @@ if (((_hitbox & HIT_INTERACT) && status_invin == INVIN_BUFF) || (_hitbox & HIT_A
         {
             x_speed *= -0.5;
             y_speed *= -0.5;
-            enemy_create_hurt(_obj);
+            enemy_create_hit(_obj);
+            audio_play_sfx("snd_enemy_hit", true);
         }
     }
 

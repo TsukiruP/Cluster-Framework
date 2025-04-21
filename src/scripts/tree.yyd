@@ -565,7 +565,7 @@
 					|seq_explosion_water
 				+Enemy
 					|seq_enemy_alert
-					|seq_enemy_hurt
+					|seq_enemy_hit
 					|seq_buzzer_bullet
 					|seq_gun_hunter_bullet
 					|seq_klagen_bomb_explosive
@@ -775,7 +775,7 @@
 		+Enemy
 			|enemy_alert_create
 			|enemy_debris_create
-			|enemy_create_hurt
+			|enemy_create_hit
 			|enemy_get_border_hor
 			|enemy_get_player_front
 			|enemy_get_player_below

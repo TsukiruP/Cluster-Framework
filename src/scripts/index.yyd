@@ -624,5 +624,5 @@ seq_rhino_charge
 seq_rhino_ram
 seq_rhino_spring
 player_reaction_rhino_spring
-seq_enemy_hurt
-enemy_create_hurt
+seq_enemy_hit
+enemy_create_hit
