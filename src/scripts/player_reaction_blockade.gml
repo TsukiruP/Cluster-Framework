@@ -27,6 +27,7 @@ if (_hitbox & HIT_ATTACK)
         y_speed = -2 * esign(y_speed, 1);
 
         _obj.vitality -= 1;
+        audio_play_sfx("snd_impact_2", true);
 
         if (_obj.vitality == 0)
         {
