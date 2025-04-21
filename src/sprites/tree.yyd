@@ -237,22 +237,22 @@
 			|spr_ring
 			|spr_ring_super
 		|spr_checkpoint
-		+Dash Panel
-			|spr_dash_panel_horizontal
-			|spr_dash_panel_vertical
+		+Dash Panels
+			|spr_dash_panel_hor
+			|spr_dash_panel_vert
 		|spr_jump_panel
 		+Springs
-			|spr_spring_vertical
-			|spr_spring_horizontal
-			|spr_spring_diagonal
+			|spr_spring_vert
+			|spr_spring_hor
+			|spr_spring_diag
 		+Dash Rings
-			|spr_dash_ring_vertical
-			|spr_dash_ring_horizontal
-			|spr_dash_ring_diagonal
+			|spr_dash_ring_vert
+			|spr_dash_ring_hor
+			|spr_dash_ring_diag
 			+Rainbow
-				|spr_rainbow_ring_vertical
-				|spr_rainbow_ring_horizontal
-				|spr_rainbow_ring_diagonal
+				|spr_rainbow_ring_vert
+				|spr_rainbow_ring_hor
+				|spr_rainbow_ring_diag
 		+Item Box
 			|spr_item_box
 			|spr_item_icon
@@ -268,11 +268,11 @@
 			|spr_bomb_hawk
 			|spr_rhino
 		+Spikes
-			|spr_spike_vertical
-			|spr_spike_horizontal
+			|spr_spike_vert
+			|spr_spike_hor
 		+Blockades
-			|spr_blockade_vertical
-			|spr_blockade_horizontal
+			|spr_blockade_vert
+			|spr_blockade_hor
 		+Rails
 			|spr_rail_1
 			|spr_rail_2
@@ -283,13 +283,13 @@
 				|spr_omochao_idle
 				|spr_omochao_sonic
 		+Switch
-			|spr_switch_vertical
-			|spr_switch_horizontal
+			|spr_switch_vert
+			|spr_switch_hor
 			|spr_switch_platform
 			+Springs
-				|spr_switch_spring_vertical
-				|spr_switch_spring_horizontal
-				|spr_switch_spring_diagonal
+				|spr_switch_spring_vert
+				|spr_switch_spring_hor
+				|spr_switch_spring_diag
 		+Water
 			|spr_water_mask
 			|spr_water_surface

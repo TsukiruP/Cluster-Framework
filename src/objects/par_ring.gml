@@ -41,16 +41,3 @@ applies_to=self
 if (game_ispaused(mnu_pause)) exit;
 
 image_index = time_sync(game_get_time(), rate / (1 + (dropped)), sprite_get_number(sprite_index));
-#define Other_4
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Field Initialization
-
-//field super: false
-
-/*preview
-sprite_index = Sprite(pick(Field("super", 0), "spr_ring", "spr_ring_super"), 0);
-*/

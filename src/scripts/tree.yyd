@@ -467,9 +467,9 @@
 					|seq_checkpoint_inactive
 					|seq_checkpoint_active
 				+Spring
-					|seq_spring_vertical
-					|seq_spring_horizontal
-					|seq_spring_diagonal
+					|seq_spring_vert
+					|seq_spring_hor
+					|seq_spring_diag
 				+Enemies
 					|seq_spinner
 					|seq_spanner
@@ -510,24 +510,24 @@
 				+Switch
 					|seq_switch_platform
 					+Vertical
-						|seq_switch_vertical_on
-						|seq_switch_vertical_off
+						|seq_switch_vert_active
+						|seq_switch_vert_inactive
 					+Horizontal
-						|seq_switch_horizontal_on
-						|seq_switch_horizontal_off
+						|seq_switch_hor_active
+						|seq_switch_hor_inactive
 					+Springs
 						+Vertical
-							|seq_switch_spring_vertical
-							|seq_switch_spring_vertical_unlock
-							|seq_switch_spring_vertical_lock
+							|seq_switch_spring_vert
+							|seq_switch_spring_vert_unlock
+							|seq_switch_spring_vert_lock
 						+Horizontal
-							|seq_switch_spring_horizontal
-							|seq_switch_spring_horizontal_unlock
-							|seq_switch_spring_horizontal_lock
+							|seq_switch_spring_hor
+							|seq_switch_spring_hor_unlock
+							|seq_switch_spring_hor_lock
 						+Diagonal
-							|seq_switch_spring_diagonal
-							|seq_switch_spring_diagonal_unlock
-							|seq_switch_spring_diagonal_lock
+							|seq_switch_spring_diag
+							|seq_switch_spring_diag_unlock
+							|seq_switch_spring_diag_lock
 			+Effects
 				+Player
 					|seq_spin_dash

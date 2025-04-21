@@ -11,8 +11,8 @@ var _side; _side = argument2;
 
 if (_hitbox & HIT_ATTACK)
 {
-    if (((_side == ANGLE_LEFT || _side == ANGLE_RIGHT) && _obj.variant == 0) ||
-        ((_side == ANGLE_UP || _side == ANGLE_DOWN) && _obj.variant == 1 && sign(y_speed) == dsin(_side)))
+    if (((_side == ANGLE_LEFT || _side == ANGLE_RIGHT) && _obj.angle == ANGLE_RIGHT) ||
+        ((_side == ANGLE_UP || _side == ANGLE_DOWN) && _obj.angle == ANGLE_UP && sign(y_speed) == dsin(_side)))
     {
         if (y_speed < 0 && _side == ANGLE_DOWN) mask_direction = (mask_direction + 180) mod 360;
         if (_side == ANGLE_UP || _side == ANGLE_DOWN) player_set_ground(_obj);

@@ -11,7 +11,7 @@ if (_hitbox & HIT_RADII)
 {
     if (spring_inst != _obj || spring_alarm == 0)
     {
-        var is_dash_ring; is_dash_ring = (_obj.object_index == obj_dash_ring);
+        var is_dash_ring; is_dash_ring = object_is_ancestor(_obj.object_index, par_dash_ring);
 
         player_reset_spring();
         spring_inst = _obj;
@@ -49,15 +49,8 @@ if (_hitbox & HIT_RADII)
             {
                 sfx_alarm = 8;
 
-                switch (object_index)
-                {
-                    case obj_dash_ring:
-                        audio_play_sfx(pick(rainbow_ring, "snd_dash_ring", "snd_rainbow_ring"), true);
-                        break;
-
-                    default:
-                        audio_play_sfx("snd_spring", true);
-                }
+                if (is_dash_ring) audio_play_sfx(pick(rainbow_ring, "snd_dash_ring", "snd_rainbow_ring"), true);
+                else audio_play_sfx("snd_spring", true);
             }
         }
     }

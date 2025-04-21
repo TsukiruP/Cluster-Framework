@@ -20,5 +20,5 @@ event_inherited();
 //field image_index: enum(0, 1)
 
 /*preview
-sprite_index = Sprite("spr_rail_1",  image_index);
+draw_sprite(Sprite("spr_rail_1",  image_index), 0, x, y);
 */

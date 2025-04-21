@@ -43,10 +43,6 @@ applies_to=self
 
 //field variant: enum(0, 1)
 //field force: number
-
-/*preview
-sprite_index = Sprite(pick(Field("variant", 0), "spr_dash_panel_horizontal", "spr_dash_panel_vertical"), 0);
-*/
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603

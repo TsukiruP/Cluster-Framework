@@ -7,7 +7,6 @@ applies_to=self
 /// Spring Initialization
 
 event_inherited();
-image_index = 5;
 collision = false;
 active = false;
 switch_inst = noone;

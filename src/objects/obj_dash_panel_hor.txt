@@ -1,0 +1,7 @@
+sprite=spr_dash_panel_hor
+visible=1
+solid=0
+persistent=0
+depth=0
+parent=par_dash_panel
+mask=

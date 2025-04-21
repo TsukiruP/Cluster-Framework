@@ -37,9 +37,13 @@ event_inherited();
 
 //field rainbow_ring: false
 
-/*preview
-if (Field("rainbow_ring", 0)) sprite_index = Sprite(pick(Field("variant", 0), "spr_rainbow_ring_vertical", "spr_rainbow_ring_horizontal", "spr_rainbow_ring_diagonal"), 0);
-else sprite_index = Sprite(pick(Field("variant", 0), "spr_dash_ring_vertical", "spr_dash_ring_horizontal", "spr_dash_ring_diagonal"), 0);
+/*preview nodrawself
+var preview_index;
+
+if (Field("rainbow_ring", 0)) preview_index = Sprite(pick(Field("variant", 0), "spr_rainbow_ring_vertical", "spr_rainbow_ring_horizontal", "spr_rainbow_ring_diagonal"), 0);
+else preview_index = Sprite(pick(Field("variant", 0), "spr_dash_ring_vertical", "spr_dash_ring_horizontal", "spr_dash_ring_diagonal"), 0);
+
+draw_sprite(preview_index, 0, x, y);
 */
 /*"/*'/**//* YYD ACTION
 lib_id=1

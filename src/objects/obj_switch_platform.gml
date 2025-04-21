@@ -4,7 +4,7 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Platform Initialization
+/// Switch Platform Initialization
 
 event_inherited();
 collision = false;
@@ -54,16 +54,15 @@ applies_to=self
 */
 /// Field Initialization
 
-event_inherited();
-
 //field switch_inst: instance
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
 applies_to=self
 */
-/// Switch Initialization
+/// Platform Initialization
 
+event_inherited();
 with (switch_inst) image_offset = 0;
 #define Draw_0
 /*"/*'/**//* YYD ACTION
