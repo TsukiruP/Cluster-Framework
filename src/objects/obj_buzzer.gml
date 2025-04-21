@@ -104,12 +104,12 @@ applies_to=self
 */
 /// Field Initialization
 
-//field move: true
+//field move: false
     //field border_left: number
     //field border_right: number
 
 /*preview nodrawself
-draw_sprite(Sprite("spr_buzzer", pick(Field("move", 0), 0, 3), 0, 2)), 0, x, y);
+draw_sprite(Sprite("spr_buzzer", pick(Field("move", 0), 0, 3)), 0, x, y);
 
 if (Field("move", 0))
 {
