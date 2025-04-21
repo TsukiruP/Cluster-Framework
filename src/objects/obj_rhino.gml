@@ -44,7 +44,7 @@ sequence_speed = game_get_speed();
 if (sequence_index == seq_rhino_move && rhino_alarm == 0)
 {
     x += sequence_speed * image_xscale;
-
+    
     if (enemy_get_border_hor()) sequence_set(seq_rhino_move_turn);
     else
     {
