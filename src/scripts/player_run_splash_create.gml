@@ -12,7 +12,7 @@ if (!underwater)
 
         if (surface_alarm <= 0)
         {
-            surface_alarm = 9;
+            surface_alarm = 8;
             if (instance_exists(ground_inst)) effect_create(x, surface_inst.y, pick(abs(x_speed) >= 4.50, seq_splash_3, seq_splash_4), depth, image_xscale);
             else effect_create(x, surface_inst.y, seq_splash_5, depth, image_xscale);
         }
