@@ -68,6 +68,7 @@ else if (sequence_index == seq_rhino_charge)
         ram_speed = 1;
         sequence_set(seq_rhino_ram);
         audio_play_sfx("snd_spin_dash_release", true);
+        audio_stop_sfx("snd_spin_dash_charge");
     }
 
     // Create dust:
