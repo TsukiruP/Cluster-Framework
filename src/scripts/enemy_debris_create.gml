@@ -11,7 +11,8 @@ for ({var i; i = 0}; i < irandom(sprite_get_number(spr_enemy_debris)); i += 1)
     with (debris_inst)
     {
         image_index = irandom(sprite_get_number(spr_enemy_debris));
-        image_xscale = other.image_xscale;
+        image_xscale = sign(other.image_xscale);
+        image_yscale = sign(other.image_yscale);
         x_speed = dcos(debris_angle) * debris_speed;
         y_speed = -dsin(debris_angle) * debris_speed;
     }

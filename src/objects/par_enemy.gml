@@ -42,4 +42,4 @@ image_alpha = pick((class == ENE_SUPER && invin_alarm > 0), 1, time_sync(invin_a
 draw_sprite_ext(sprite_index, -1, floor(x) + x_offset * sign(image_xscale), floor(y) + y_offset * sign(image_yscale), image_xscale, image_yscale, gravity_direction, c_white, image_alpha);
 
 // Vitality:
-if (class == ENE_SUPER && vitality <= sprite_get_number(spr_enemy_vitality) && vitality_alarm > 0) draw_sprite(spr_enemy_vitality, vitality - 1, x, y - 64);
+if (class == ENE_SUPER && vitality <= sprite_get_number(spr_enemy_vitality) && vitality_alarm > 0) draw_sprite(spr_enemy_vitality, vitality - 1, x, y - 64 * sign(image_yscale));
