@@ -44,4 +44,4 @@ applies_to=self
 var draw_y; draw_y = y - player_inst.y_radius - drown_y;
 
 image_index = player_inst.drown_index;
-if (active && sprite_exists(sprite_index)) draw_sprite_ext(sprite_index, -1, x, draw_y, 1, 1, 0, c_white, 1);
+if (active) draw_sprite_ext(spr_drown, -1, x, draw_y, 1, 1, 0, c_white, 1);
