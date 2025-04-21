@@ -256,7 +256,7 @@ stage_set_time_allow
 game_get_debug
 game_set_debug
 game_set_speed
-game_get_player_count
+enemy_get_border_hor
 game_checkpoint_get_x
 game_checkpoint_get_y
 game_checkpoint_get_time
@@ -618,3 +618,11 @@ audio_reset_volume
 screen_reset_fullscreen
 game_config_reset_input_background
 debug_menu_input
+seq_rhino_move
+seq_rhino_move_turn
+seq_rhino_charge
+seq_rhino_ram
+seq_rhino_spring
+player_reaction_rhino_spring
+seq_enemy_hurt
+enemy_create_hurt

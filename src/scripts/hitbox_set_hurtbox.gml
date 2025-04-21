@@ -20,5 +20,5 @@ hurtbox_top = _top;
 hurtbox_right = _right;
 hurtbox_bottom = _bottom;
 
-hurtbox_offset_x = _xoffset;
-hurtbox_offset_y = _yoffset;
+hurtbox_x_offset = _xoffset;
+hurtbox_y_offset = _yoffset;

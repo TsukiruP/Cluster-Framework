@@ -83,14 +83,14 @@ obj_basic_test_mask_25
 obj_basic_test_mask_26
 obj_basic_test_mask_27
 par_prop
-par_rainbow_ring
+obj_rhino_spring
 eff_spin_dash
 par_effect
 par_overlay
 obj_omochao
 eff_shield
 par_hint
-mnu_title
+par_enemy_move
 mnu_debug
 obj_layer_sensor
 obj_hint_box
@@ -139,3 +139,4 @@ obj_klagen_blitz
 obj_klagen_bomb
 eff_tag
 eff_drown
+obj_rhino

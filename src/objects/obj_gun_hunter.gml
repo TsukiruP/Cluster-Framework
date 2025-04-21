@@ -8,8 +8,6 @@ applies_to=self
 
 event_inherited();
 explosion_y_offset = 24;
-border_left = 0;
-border_right = 0;
 hunter_range = 128;
 hunter_alarm = 0;
 hunter_sfx = noone;
@@ -25,6 +23,17 @@ applies_to=self
 /// Stop Sound
 
 audio_stop_sfx(hunter_sfx);
+#define Step_1
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Alarm
+
+if (game_ispaused()) exit;
+
+if ((sequence_index == seq_gun_hunter_move || sequence_index == seq_gun_hunter_scan) && hunter_alarm > 0) hunter_alarm = roundto_step(hunter_alarm, -sequence_speed);
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -37,10 +46,12 @@ if (game_ispaused(mnu_pause)) exit;
 
 sequence_speed = game_get_speed();
 
+// Move:
 if (sequence_index == seq_gun_hunter_move)
 {
     x += sequence_speed * image_xscale;
-    if (x < xstart - border_left || x > xstart + border_right)
+
+    if (enemy_get_border_hor())
     {
         scan_allow = choose(false, true);
         sequence_set(seq_gun_hunter_turn);
@@ -52,6 +63,8 @@ if (sequence_index == seq_gun_hunter_move)
         if (floor(x) == scan_x) sequence_set(seq_gun_hunter_scan);
     }
 }
+
+// Scan:
 else if (sequence_index == seq_gun_hunter_scan)
 {
     if (scan_count >= 2)
@@ -62,25 +75,8 @@ else if (sequence_index == seq_gun_hunter_scan)
     }
 }
 
-if (sequence_index == seq_gun_hunter_move || sequence_index == seq_gun_hunter_scan)
-{
-    if (hunter_alarm > 0) hunter_alarm = roundto_step(hunter_alarm, -sequence_speed);
-
-    if (hunter_alarm == 0)
-    {
-        var player_inst; player_inst = enemy_get_player_front(hunter_range, true);
-
-        if (instance_exists(player_inst))
-        {
-            hunter_alarm = 60;
-            sequence_set(seq_gun_hunter_shoot);
-        }
-    }
-}
-
-sequence_execute();
-
-if (sequence_index == seq_gun_hunter_shoot)
+// Shoot:
+else if (sequence_index == seq_gun_hunter_shoot)
 {
     if (sequence_position(12)) hunter_sfx = audio_play_sfx("snd_gun_hunter_aim");
 
@@ -91,28 +87,17 @@ if (sequence_index == seq_gun_hunter_shoot)
         audio_play_sfx("snd_gun_hunter_shoot", true);
     }
 }
-#define Other_4
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Field Initialization
 
-//field border_left: number
-//field border_right: number
+// Initiate shoot:
+if ((sequence_index == seq_gun_hunter_move || sequence_index == seq_gun_hunter_scan) && hunter_alarm == 0)
+{
+    var player_inst; player_inst = enemy_get_player_front(hunter_range, true);
 
-/*preview
-draw_set_color(c_red);
-draw_rectangle(floor(x) - Field("border_left", 0), floor(y) - 8, floor(x) + Field("border_right", 0), floor(y) + 15, true);
-*/
-#define Draw_0
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Draw Gun Hunter
+    if (instance_exists(player_inst))
+    {
+        hunter_alarm = 60;
+        sequence_set(seq_gun_hunter_shoot);
+    }
+}
 
-draw_self_floored();
-draw_enemy_border();
+sequence_execute();

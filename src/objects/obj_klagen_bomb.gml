@@ -28,6 +28,17 @@ if (instance_exists(explosive_inst))
         if (gravity_force == 0) explosive_destroy();
     }
 }
+#define Step_1
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Alarm
+
+if (game_ispaused()) exit;
+
+if (explosive_alarm > 0) explosive_alarm = roundto_step(explosive_alarm, -sequence_speed);
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -39,7 +50,6 @@ applies_to=self
 if (game_ispaused(mnu_pause)) exit;
 
 sequence_speed = game_get_speed();
-if (explosive_alarm > 0) explosive_alarm = roundto_step(explosive_alarm, -sequence_speed);
 
 if (instance_exists(explosive_inst))
 {

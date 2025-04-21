@@ -501,6 +501,12 @@
 						|seq_bomb_hawk_move
 						|seq_bomb_hawk_move_turn
 						|seq_bomb_hawk_drop
+					+Rhino
+						|seq_rhino_move
+						|seq_rhino_move_turn
+						|seq_rhino_charge
+						|seq_rhino_ram
+						|seq_rhino_spring
 				+Switch
 					|seq_switch_platform
 					+Vertical
@@ -557,8 +563,9 @@
 					|seq_explosion_large
 					|seq_explosion_enemy
 					|seq_explosion_water
-				+Enemies
+				+Enemy
 					|seq_enemy_alert
+					|seq_enemy_hurt
 					|seq_buzzer_bullet
 					|seq_gun_hunter_bullet
 					|seq_klagen_bomb_explosive
@@ -703,6 +710,7 @@
 			|player_reaction_water
 			|player_reaction_bubble
 			|player_reaction_waterfall
+			|player_reaction_rhino_spring
 		+Effects
 			|player_ground_effect_create
 			|player_brake_create
@@ -767,6 +775,8 @@
 		+Enemy
 			|enemy_alert_create
 			|enemy_debris_create
+			|enemy_create_hurt
+			|enemy_get_border_hor
 			|enemy_get_player_front
 			|enemy_get_player_below
 			|enemy_destroy
@@ -779,4 +789,3 @@
 	|draw_sprite_tiled_vertical
 	|draw_sprite_tiled_horizontal_yscale
 	|draw_backdrop_tiled_area
-	|game_get_player_count

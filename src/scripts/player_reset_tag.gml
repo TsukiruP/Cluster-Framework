@@ -14,6 +14,6 @@ else
 {
     tag_state = 0;
     tag_arc_time = 0;
-    tag_arc_offset_x = 0;
-    tag_arc_offset_y = 0;
+    tag_arc_x_offset = 0;
+    tag_arc_y_offset = 0;
 }

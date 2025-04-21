@@ -22,8 +22,8 @@ if (instance_exists(_obj))
     var abottom; abottom = hurtbox_bottom;
     var adir_x; adir_x = sign(image_xscale);
     var adir_y; adir_y = sign(image_yscale);
-    var aoff_x; aoff_x = hurtbox_offset_x * adir_x;
-    var aoff_y; aoff_y = hurtbox_offset_y * adir_y;
+    var aoff_x; aoff_x = hurtbox_x_offset * adir_x;
+    var aoff_y; aoff_y = hurtbox_y_offset * adir_y;
     var arot; arot = mask_direction;
     var asine; asine = dsin(arot);
     var acsine; acsine = dcos(arot);
@@ -37,8 +37,8 @@ if (instance_exists(_obj))
     var bbottom; bbottom = _obj.hurtbox_bottom;
     var bdir_x; bdir_x = sign(_obj.image_xscale);
     var bdir_y; bdir_y = sign(_obj.image_yscale);
-    var boff_x; boff_x = _obj.hurtbox_offset_x * bdir_x;
-    var boff_y; boff_y = _obj.hurtbox_offset_y * bdir_y;
+    var boff_x; boff_x = _obj.hurtbox_x_offset * bdir_x;
+    var boff_y; boff_y = _obj.hurtbox_y_offset * bdir_y;
     var brot; brot = _obj.gravity_direction;
     var bsine; bsine = dsin(brot);
     var bcsine; bcsine = dcos(brot);
@@ -50,8 +50,8 @@ if (instance_exists(_obj))
         btop = _obj.attackbox_top;
         bright = _obj.attackbox_right;
         bbottom = _obj.attackbox_bottom;
-        boff_x = _obj.attackbox_offset_x * bdir_x;
-        boff_y = _obj.attackbox_offset_y * bdir_y;
+        boff_x = _obj.attackbox_x_offset * bdir_x;
+        boff_y = _obj.attackbox_y_offset * bdir_y;
     }
 
     // Swap to player's attackbox:
@@ -61,8 +61,8 @@ if (instance_exists(_obj))
         atop = attackbox_top;
         aright = attackbox_right;
         abottom = attackbox_bottom;
-        aoff_x = attackbox_offset_x * adir_x;
-        aoff_y = attackbox_offset_y * adir_y;
+        aoff_x = attackbox_x_offset * adir_x;
+        aoff_y = attackbox_y_offset * adir_y;
     }
     else if (_phase == 4)
     {

@@ -14,7 +14,7 @@ main_right    = 4;
 main_top      = 8;
 main_bottom   = 2;
 
-main_offset_y = 6;
+main_y_offset = 6;
 
 // Spring angle:
 spring_angle = ANGLE_RIGHT_UP;

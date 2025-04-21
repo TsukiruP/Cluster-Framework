@@ -67,8 +67,8 @@ if (tag_allow)
                         x_speed = 0;
                         y_speed = 0;
                         tag_arc_time = 0;
-                        tag_arc_offset_x = x - other.x;
-                        tag_arc_offset_y = y - other.y;
+                        tag_arc_x_offset = x - other.x;
+                        tag_arc_y_offset = y - other.y;
                         player_set_state(player_state_interlink);
                     }
                 }
@@ -98,8 +98,8 @@ if (partner_inst.state_current == player_state_interlink)
             case 0:
                 var tag_arc_max_time; tag_arc_max_time = 32;
                 var tag_arc_frame; tag_arc_frame = tag_arc_time / tag_arc_max_time;
-                var tag_arc_start_x; tag_arc_start_x = other.x + tag_arc_offset_x;
-                var tag_arc_start_y; tag_arc_start_y = other.y + tag_arc_offset_y;
+                var tag_arc_start_x; tag_arc_start_x = other.x + tag_arc_x_offset;
+                var tag_arc_start_y; tag_arc_start_y = other.y + tag_arc_y_offset;
                 var tag_arc_end_x; tag_arc_end_x = other.x;
                 var tag_arc_end_y; tag_arc_end_y = other.y;
                 var tag_arc_center_x; tag_arc_center_x = (tag_arc_end_x + tag_arc_start_x) / 2;

@@ -20,5 +20,5 @@ attackbox_top = _top;
 attackbox_right = _right;
 attackbox_bottom = _bottom;
 
-attackbox_offset_x = _xoffset;
-attackbox_offset_y = _yoffset;
+attackbox_x_offset = _xoffset;
+attackbox_y_offset = _yoffset;

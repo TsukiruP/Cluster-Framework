@@ -1,8 +1,5 @@
 +Masks Old
 	|spr_basic_test_mask_29
-	+Title
-		|spr_realizing_hopper
-		|spr_title_start
 +System
 	|fnt_system
 	|fnt_debug
@@ -269,6 +266,7 @@
 			|spr_klagen_bomb
 			|spr_gun_hunter
 			|spr_bomb_hawk
+			|spr_rhino
 		+Spikes
 			|spr_spike_vertical
 			|spr_spike_horizontal
@@ -334,9 +332,10 @@
 			|spr_explosion_large
 			|spr_explosion_enemy
 			|spr_explosion_water
-		+Enemies
+		+Enemy
 			|spr_enemy_alert
 			|spr_enemy_vitality
+			|spr_enemy_hurt
 			|spr_enemy_debris
 			|spr_buzzer_bullet
 			|spr_gun_hunter_bullet

@@ -8,7 +8,7 @@ spr_ring_super
 spr_sonic_peel_out
 spr_hud_boss
 spr_basic_test_mask_3
-spr_realizing_hopper
+spr_enemy_hurt
 fnt_system
 spr_title_card_banner
 spr_title_card_acts
@@ -288,7 +288,7 @@ spr_blockade_horizontal
 spr_spike_horizontal
 spr_blockade_debris
 spr_sky_sanctuary_fountain
-spr_title_start
+spr_rhino
 spr_shield_invin_spark
 spr_dash_panel_vertical
 spr_chopper

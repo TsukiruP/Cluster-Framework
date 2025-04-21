@@ -9,7 +9,21 @@ var _hitbox; _hitbox = argument1;
 
 if (((_hitbox & HIT_INTERACT) && status_invin == INVIN_BUFF) || (_hitbox & HIT_ATTACK))
 {
-    if (_obj.class == ENE_BASIC)
+    if (_obj.class == ENE_SUPER && _obj.invin_alarm == 0)
+    {
+        _obj.vitality -= 1;
+        _obj.vitality_alarm = 64;
+        _obj.invin_alarm = 32;
+
+        if (_obj.vitality > 0)
+        {
+            x_speed *= -0.5;
+            y_speed *= -0.5;
+            enemy_create_hurt(_obj);
+        }
+    }
+
+    if (_obj.class == ENE_BASIC || (_obj.class == ENE_SUPER && _obj.vitality == 0))
     {
         if (y > _obj.y || sign(y_speed) == -1)
         {
@@ -22,14 +36,6 @@ if (((_hitbox & HIT_INTERACT) && status_invin == INVIN_BUFF) || (_hitbox & HIT_A
         }
     }
 
-    if (_obj.class == ENE_SUPER && _obj.invin_alarm == 0)
-    {
-        x_speed *= -0.5;
-        y_speed *= -0.5;
-        _obj.vitality -= 1;
-        _obj.invin_alarm = 32;
-    }
-
     if (_obj.class == ENE_BASIC || (_obj.class == ENE_SUPER && (_obj.vitality == 0 || status_invin == INVIN_BUFF)))
     {
         sonic_routine_homing();
@@ -37,4 +43,4 @@ if (((_hitbox & HIT_INTERACT) && status_invin == INVIN_BUFF) || (_hitbox & HIT_A
         with (_obj) enemy_destroy();
     }
 }
-else if ((_hitbox & HIT_HURT) && (_obj.attackbox_element == ELEM_NONE || (_obj.attackbox_element > ELEM_NONE && status_shield != _obj.attackbox_element + SHIELD_BUBBLE))) player_set_damage(_obj);
+else if ((_hitbox & HIT_HURT) && (_obj.attackbox_element == ELEM_NONE || (_obj.attackbox_element > ELEM_NONE && status_shield != _obj.attackbox_element + SHIELD_BUBBLE)) && _obj.invin_alarm == 0) player_set_damage(_obj);

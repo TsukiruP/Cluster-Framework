@@ -5,6 +5,7 @@
 	|par_target
 	|par_ring
 	|par_enemy
+	|par_enemy_move
 	|par_bullet
 	|par_explosive
 	|par_hint
@@ -57,6 +58,7 @@
 			|obj_klagen_bomb
 			|obj_gun_hunter
 			|obj_bomb_hawk
+			|obj_rhino
 		|obj_spike
 		|obj_blockade
 		+Rails
@@ -87,7 +89,9 @@
 			|eff_reticle
 			|eff_drown
 			|eff_waterfall
-		|obj_enemy_debris
+		+Enemy
+			|obj_enemy_debris
+			|obj_rhino_spring
 +Stages
 	+Sky Sanctuary
 		|obj_sky_sanctuary_parallax
@@ -118,7 +122,6 @@
 			|obj_basic_test_waterfall
 +Trash
 	+Rainbow Rings
-		|par_rainbow_ring
 		|obj_rainbow_ring_overlay
 	+Springs
 		|obj_spring_up
@@ -165,4 +168,3 @@
 	|obj_basic_test_mask_29
 	|obj_basic_test_water_fall_02
 	|obj_basic_test_water_fall_03
-	|mnu_title

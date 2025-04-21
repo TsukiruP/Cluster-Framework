@@ -67,8 +67,8 @@ if (!game_get_debug()) exit;
 with (par_culled)
 {
     // Hitboxes:
-    draw_hitbox(hurtbox_left, hurtbox_top, hurtbox_right, hurtbox_bottom, hurtbox_offset_x, hurtbox_offset_y, gravity_direction, c_maroon);
-    draw_hitbox(attackbox_left, attackbox_top, attackbox_right, attackbox_bottom, attackbox_offset_x, attackbox_offset_y, gravity_direction, c_green);
+    draw_hitbox(hurtbox_left, hurtbox_top, hurtbox_right, hurtbox_bottom, hurtbox_x_offset, hurtbox_y_offset, gravity_direction, c_maroon);
+    draw_hitbox(attackbox_left, attackbox_top, attackbox_right, attackbox_bottom, attackbox_x_offset, attackbox_y_offset, gravity_direction, c_green);
 }
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -95,8 +95,8 @@ with (obj_player)
     draw_line_color(x_int - (csine * wall_radius), y_int + (sine * wall_radius), x_int + (csine * wall_radius), y_int - (sine * wall_radius), c_white, c_white);
 
     // Hitboxes:
-    draw_hitbox(hurtbox_left, hurtbox_top, hurtbox_right, hurtbox_bottom, hurtbox_offset_x, hurtbox_offset_y, mask_direction, c_maroon);
-    draw_hitbox(attackbox_left, attackbox_top, attackbox_right, attackbox_bottom, attackbox_offset_x, attackbox_offset_y, mask_direction, c_green);
+    draw_hitbox(hurtbox_left, hurtbox_top, hurtbox_right, hurtbox_bottom, hurtbox_x_offset, hurtbox_y_offset, mask_direction, c_maroon);
+    draw_hitbox(attackbox_left, attackbox_top, attackbox_right, attackbox_bottom, attackbox_x_offset, attackbox_y_offset, mask_direction, c_green);
 
     // Homing range:
     if (game_save_get_skill(character_index, "homing") && character_index == CHAR_SONIC)
@@ -176,4 +176,15 @@ with (stage_get_player(0))
     draw_set2(fa_right, fa_top);
     draw_text(info_x, info_y, info_string);
     draw_reset();
+}
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Draw Enemy Movement
+
+with (par_enemy_move)
+{
+    if (move) draw_enemy_border();
 }
