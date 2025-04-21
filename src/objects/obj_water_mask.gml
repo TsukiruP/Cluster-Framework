@@ -33,14 +33,7 @@ applies_to=self
 /*preview
 depth = 1000;
 image_alpha = 0.5;
-
-if (Field("surface", 0))
-{
-    for ({var i; i = 0}; i < image_xscale; i += 1)
-    {
-        draw_sprite(Sprite("spr_water_surface", 0), 0, x + 8 * i, y);
-    }
-}
+if (Field("surface", 0)) draw_sprite_tiled_extra(Sprite("spr_water_surface", 0), -1, x, y, 1, 1, 0, c_white, 1, sprite_width / 8, 1);
 */
 #define Draw_0
 /*"/*'/**//* YYD ACTION
