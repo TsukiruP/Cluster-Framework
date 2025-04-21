@@ -44,8 +44,8 @@ applies_to=self
 //field variant: enum(0, 1, 2)
 //field force: number
 
-/*preview
-sprite_index = Sprite(pick(Field("variant", 0), "spr_spring_vertical", "spr_spring_horizontal", "spr_spring_diagonal"), 0);
+/*preview nodrawself
+draw_sprite(Sprite(pick(Field("variant", 0), "spr_spring_vertical", "spr_spring_horizontal", "spr_spring_diagonal"), 0), 0, x, y);
 */
 /*"/*'/**//* YYD ACTION
 lib_id=1
