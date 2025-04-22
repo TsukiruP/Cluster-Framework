@@ -8,7 +8,7 @@ if (sequence_position(0))
     hitbox_set_attackbox(12, 1, 19, 9);
 }
 else if (sequence_position(1)) image_index = 5;
-else if (sequence_position(3))
+else if (sequence_position(2))
 {
     image_xscale *= -1;
     sequence_set(seq_rhino_move);
