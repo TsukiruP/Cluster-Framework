@@ -4,6 +4,6 @@
 
 with (ctrl_audio)
 {
-    ring_pan = !ring_pan;
+    ring_pan *= -1;
     return ring_pan;
 }
