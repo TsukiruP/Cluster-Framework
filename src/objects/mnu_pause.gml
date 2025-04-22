@@ -24,12 +24,6 @@ pause_menu = spr_pause_menu;
 pause_leading = 3;
 pause_x = screen_get_width() / 2;
 
-for ({var i; i = 0}; i < menu_count; i += 1)
-{
-    pause_height[i] = 0;
-    pause_y[i] = 0;
-}
-
 pause_count[0] = (sprite_get_number(pause_menu) / 2) - 2;
 pause_count[1] = 2;
 
@@ -140,18 +134,6 @@ lib_id=1
 action_id=603
 applies_to=self
 */
-/// Position
-
-for ({var i; i = 0}; i < menu_count; i += 1)
-{
-    pause_height[i] = (sprite_get_height(pause_header) + pause_leading) + (sprite_get_height(pause_menu) * pause_count[i]) + (pause_leading * (pause_count[i] - 1));
-    pause_y[i] = (view_yview[view_current] + screen_get_height() / 2) - (pause_height[i] / 2);
-}
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
 /// Mode
 
 if (!menu_lock) exit;
@@ -233,16 +215,19 @@ applies_to=self
 
 if (menu_hide != 0) exit;
 
+var pause_height; pause_height = (sprite_get_height(pause_header) + pause_leading) + (sprite_get_height(pause_menu) * pause_count[menu_index]) + (pause_leading * (pause_count[menu_index] - 1));
+var pause_y; pause_y = (view_yview[view_current] + screen_get_height() / 2) - (pause_height / 2);
+
 // Fade:
 draw_rectangle_view(c_black, 0.6);
 
 // Header:
-draw_sprite(pause_header, pick(menu_index, 0, menu_option[0]), view_xview[view_current] + pause_x, pause_y[menu_index]);
+draw_sprite(pause_header, pick(menu_index, 0, menu_option[0]), view_xview[view_current] + pause_x, pause_y);
 
 // Menu:
 var menu_offset; menu_offset = pick(menu_index, 0, 3);
 var menu_height; menu_height = sprite_get_height(pause_menu) + pause_leading;
-var menu_y; menu_y = pause_y[menu_index] + sprite_get_height(pause_header) + pause_leading;
+var menu_y; menu_y = pause_y + sprite_get_height(pause_header) + pause_leading;
 
 for ({var i; i = 0}; i < pause_count[menu_index]; i += 1)
 {
