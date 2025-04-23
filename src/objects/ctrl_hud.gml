@@ -151,8 +151,8 @@ with (stage_get_player(0))
     {
         case CHAR_CLASSIC:
             other.gauge_hide = false;
-            other.gauge_energy = clock_up_energy;
-            other.gauge_max_energy = clock_up_max_energy;
+            other.gauge_max_energy = max_energy;
+            other.gauge_energy = energy;
             break;
 
         default:

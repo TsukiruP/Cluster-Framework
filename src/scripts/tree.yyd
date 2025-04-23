@@ -788,6 +788,7 @@
 			|player_ring_loss
 			|player_cpu_respawn
 			|player_add_rings
+			|player_add_energy
 	+Props
 		|effect_create
 		|bullet_create

@@ -641,3 +641,4 @@ player_state_trick_bound
 player_reset_trick
 seq_super_skid
 sonic_super_skid_create
+player_add_energy

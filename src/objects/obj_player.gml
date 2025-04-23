@@ -86,6 +86,8 @@ applies_to=self
 swap_alarm = 0;
 boost_mode = false;
 boost_speed = 0;
+max_energy = 600;
+energy = max_energy;
 player_reset_status();
 player_reset_physics();
 
@@ -102,8 +104,6 @@ peel_out_alarm = 30;
 
 clock_up_state = 0;
 clock_up_alarm = 0;
-clock_up_max_energy = 600;
-clock_up_energy = clock_up_max_energy;
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
