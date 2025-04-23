@@ -39,7 +39,7 @@ switch (_phase)
             }
             
             if (abs(x_speed) > air_friction_threshold && y_speed > -4 && y_speed < 0) x_speed *= air_friction;
-            player_gravity_force(0.21875);
+            player_gravity_force();
             
             if (character_index == CHAR_SONIC) sonic_bound_create();
         }
@@ -48,6 +48,5 @@ switch (_phase)
         break;
 
     case STATE_FINISH:
-        player_reset_trick();
         break;
 }

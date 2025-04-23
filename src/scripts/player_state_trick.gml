@@ -46,6 +46,5 @@ switch (_phase)
         break;
 
     case STATE_FINISH:
-        player_reset_trick();
         break;
 }

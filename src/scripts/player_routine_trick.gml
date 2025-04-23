@@ -6,6 +6,7 @@ if (game_save_get("trick") && character_index != CHAR_CLASSIC && player_get_inpu
 {
     x_speed = 0;
     y_speed = 0;
+    player_reset_trick();
     stage_add_score(100);
 
     if (player_get_input(INP_UP, CHECK_HELD)) trick_index = TRICK_UP;
