@@ -141,6 +141,9 @@ Sonic Mania - Sound Effects
 Chaofanatic
 Sonic Generations
 
+Luna-Alex
+Sonic Advance 2
+
 Altier
 Sonic Advance 3 Switch Ping
 
@@ -157,6 +160,8 @@ PACTool
 
 RPatry
 Velocitas
+
+Vectorpea
 
 TEXT
 Sonic Time Twisted
