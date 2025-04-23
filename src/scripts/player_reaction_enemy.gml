@@ -41,6 +41,7 @@ if (((_hitbox & HIT_INTERACT) && status_invin == INVIN_BUFF) || (_hitbox & HIT_A
     {
         sonic_routine_homing();
         stage_add_score(pick(_obj.class, 100, 500));
+        player_add_energy(pick(_obj.class, 10, 50));
         with (_obj) enemy_destroy();
     }
 }
