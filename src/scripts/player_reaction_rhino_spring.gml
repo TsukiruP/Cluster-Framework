@@ -1,5 +1,5 @@
 /// player_reaction_rhino_spring(obj, hitbox)
-/// @desc Rhino variant of a spring. Behaves like a Classic spring because the snapping hurts the player..
+/// @desc Rhino variant of a spring. Behaves like a Classic spring because the snapping hurts the player.
 /// @param {object} obj
 /// @param {int} hitbox
 /// @returns {void}
