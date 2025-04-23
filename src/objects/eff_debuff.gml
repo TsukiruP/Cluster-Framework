@@ -33,7 +33,4 @@ var csine; csine = dcos(player_inst.mask_direction);
 var draw_x; draw_x = x - (sine * 16);
 var draw_y; draw_y = y - (csine * 16);
 
-if (sprite_exists(sprite_index))
-{
-    draw_sprite_ext(sprite_index, -1, draw_x, draw_y, 1, 1, player_rotation, c_white, 1);
-}
+if (sprite_exists(sprite_index)) draw_sprite_ext(sprite_index, -1, draw_x, draw_y, 1, 1, player_rotation, c_white, 1);

@@ -104,9 +104,7 @@ else image_alpha = 0.6;
 if (sprite_exists(sprite_index))
 {
     if (!shield_hide) draw_sprite_ext(sprite_index, -1, x, y, image_xscale, 1, player_rotation, c_white, image_alpha);
-    else if (player_inst.status_shield == SHIELD_BUBBLE && player_inst.status_invin != INVIN_BUFF)
-    {
-        draw_sprite_ext(spr_shield_bubble_shell, sequence_moment_previous div 12, x, y, image_xscale, 1, player_rotation, c_white, image_alpha);
-    }
+    else if (player_inst.status_shield == SHIELD_BUBBLE &&
+        player_inst.status_invin != INVIN_BUFF) draw_sprite_ext(spr_shield_bubble_shell, sequence_moment_previous div 12, x, y, image_xscale, 1, player_rotation, c_white, image_alpha);
 
 }
