@@ -40,7 +40,7 @@ if (((_hitbox & HIT_INTERACT) && status_invin == INVIN_BUFF) || (_hitbox & HIT_A
     if (_obj.class == ENE_BASIC || (_obj.class == ENE_SUPER && (_obj.vitality == 0 || status_invin == INVIN_BUFF)))
     {
         sonic_routine_homing();
-        stage_add_score(100 + (400 * _obj.class));
+        stage_add_score(pick(_obj.class, 100, 500));
         with (_obj) enemy_destroy();
     }
 }
