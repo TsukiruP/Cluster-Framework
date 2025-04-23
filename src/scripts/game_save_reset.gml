@@ -12,6 +12,7 @@ game_save_reset_character();
 game_save_write_character();
 
 game_save_set("swap", true);
+game_save_set("trick", true);
 game_save_set("tag", true);
 game_save_set("boost", true);
 

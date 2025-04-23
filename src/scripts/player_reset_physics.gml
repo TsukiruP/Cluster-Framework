@@ -4,10 +4,8 @@
 
 top_speed = top_speed_temp;
 acceleration = acceleration_temp;
-deceleration = 0.5
-
+deceleration = 0.5;
 gravity_force = gravity_force_temp;
-if (state_current == player_state_hurt) gravity_force = 0.1875;
 
 jump_force = 6.5 + ((character_index == CHAR_KNUCKLES) * 0.5);
 jump_release = -4;

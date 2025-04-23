@@ -41,7 +41,7 @@ switch (_phase)
         }
 
         if (abs(x_speed) > air_friction_threshold && y_speed > -4 && y_speed < 0) x_speed *= air_friction;
-        y_speed += gravity_force;
+        player_gravity_force();
 
         sonic_bound_create();
         break;

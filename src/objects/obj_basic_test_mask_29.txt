@@ -1,4 +1,4 @@
-sprite=spr_basic_test_mask_29
+sprite=spr_sonic_trick_up
 visible=1
 solid=0
 persistent=0

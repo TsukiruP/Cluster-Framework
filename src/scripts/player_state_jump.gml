@@ -8,7 +8,7 @@ var _phase; _phase = argument0;
 switch (_phase)
 {
     case STATE_START:
-        var leap_force; leap_force = pick(jump_bound, jump_force, 7.5, 6 + bound_count);
+        var leap_force; leap_force = pick(jump_bound, jump_force, 7.5, 6, 6 + bound_count);
         var g_speed; g_speed = x_speed;
 
         x_speed = (dcos(relative_angle) * g_speed) - (dsin(relative_angle) * leap_force);
@@ -41,8 +41,7 @@ switch (_phase)
         }
 
         if (abs(x_speed) > air_friction_threshold && y_speed > -4 && y_speed < 0) x_speed *= air_friction;
-        y_speed += gravity_force;
-
+        player_gravity_force();
         player_animation_jump();
         if (y_speed < 0 && jump_bound == BOUND_SONIC) sonic_bound_create();
         break;

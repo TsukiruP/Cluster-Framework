@@ -1,6 +1,6 @@
 /// player_slope_friction(friction)
 /// @desc Applies slope friction.
-/// @param {number} friection
+/// @param {number} friction
 /// @returns {void}
 
 var _friction; _friction = argument0;

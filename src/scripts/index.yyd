@@ -169,7 +169,7 @@ player_movement_ground
 player_reset_air
 collision_box
 player_react
-player_get_stage_objects
+player_set_stage_objects
 player_collision_wall
 collision_ray
 player_wall_eject
@@ -183,7 +183,7 @@ player_movement_air
 player_collision_ceiling
 instance_nearest_dir_x
 player_inbounds
-player_get_cliff
+player_set_cliff
 player_set_radii
 hitbox_set_hurtbox
 hitbox_set_attackbox
@@ -241,7 +241,7 @@ game_config_reset_button
 game_config_get_button
 game_config_set_button
 game_config_set_confirm
-animation_add
+animation_set
 animation_get
 stage_get_time
 game_get_speed
@@ -626,3 +626,17 @@ seq_rhino_spring
 player_reaction_rhino_spring
 seq_enemy_hit
 enemy_create_hit
+player_routine_trick
+player_state_trick
+player_set_trick_speed
+seq_sonic_trick_up_flight
+seq_sonic_trick_up_fall
+player_animation_trick
+seq_sonic_trick_front
+seq_sonic_trick_back
+player_gravity_force
+seq_sonic_trick_down
+seq_sonic_trick_bound
+player_state_trick_bound
+player_reset_trick
+seq_super_skid

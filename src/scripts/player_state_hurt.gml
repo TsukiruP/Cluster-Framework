@@ -23,7 +23,7 @@ switch (_phase)
             return true;
         }
 
-        y_speed += gravity_force;
+        player_gravity_force(0.1875);
         break;
 
     case STATE_FINISH:

@@ -19,13 +19,13 @@ switch (_phase)
         {
             if (image_index >= 5)
             {
+                if (!player_movement_air()) return false;
+
                 if (image_index == 5)
                 {
                     x_speed = 10 * image_xscale;
                     y_speed = 10;
                 }
-
-                if (!player_movement_air()) return false;
 
                 if (on_ground)
                 {
@@ -41,7 +41,7 @@ switch (_phase)
                     }
                 }
 
-                y_speed += gravity_force;
+                player_gravity_force();
             }
         }
         else
@@ -49,9 +49,9 @@ switch (_phase)
             if (!player_movement_ground()) return false;
             if (!on_ground) return player_set_state(player_state_air);
 
-            if (animation_trigger) return player_set_state(player_state_idle);
             if (player_get_input(INP_DOWN, CHECK_HELD) && player_get_input(INP_JUMP, CHECK_PRESSED)) return player_set_state(player_state_spin_dash);
             if (sonic_skill_peel_out()) return player_set_state(sonic_state_peel_out);
+            if (animation_trigger) return player_set_state(player_state_idle);
         }
         break;
 

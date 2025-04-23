@@ -17,10 +17,8 @@ switch (_phase)
             {
                 if (input_lock_alarm == 0)
                 {
-                    if ((game_config_get("advance_turn") && character_index != CHAR_CLASSIC) && sign(image_xscale) == -input_x_direction && abs(x_speed) <= 4)
-                    {
-                        return player_set_state(player_state_turn);
-                    }
+                    if ((game_config_get("advance_turn") && character_index != CHAR_CLASSIC) && sign(image_xscale) == -input_x_direction &&
+                        abs(x_speed) <= 4) return player_set_state(player_state_turn);
 
                     if (abs(x_speed) > 4)
                     {
@@ -59,7 +57,6 @@ switch (_phase)
         }
 
         player_slope_friction(slope_friction);
-
         if (x_speed == 0 && input_x_direction == 0) return player_set_state(player_state_idle);
         if (player_routine_skill()) return true;
         if (player_routine_jump()) return true;

@@ -1,5 +1,5 @@
 /// player_reset_tag([leader])
-/// @desc
+/// @desc Resets the player's tag action.
 /// @param {bool} [leader]
 /// @returns {void}
 

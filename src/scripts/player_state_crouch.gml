@@ -23,15 +23,15 @@ switch (_phase)
         }
 
         player_slope_friction(slope_friction);
+        if (x_speed != 0 || input_x_direction != 0) return player_set_state(player_state_run);
+        if (player_routine_skill()) return true;
+        if (!tag_leader && player_get_input(INP_JUMP, CHECK_PRESSED)) return player_set_state(player_state_spin_dash);
 
         if (animation_trigger && !player_get_input(INP_DOWN, CHECK_HELD))
         {
             player_set_animation("crouch_end");
             return player_set_state(player_state_idle);
         }
-
-        if (player_routine_skill()) return true;
-        if (!tag_leader && player_get_input(INP_JUMP, CHECK_PRESSED)) return player_set_state(player_state_spin_dash);
         break;
 
     case STATE_FINISH:

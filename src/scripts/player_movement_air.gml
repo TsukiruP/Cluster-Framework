@@ -21,7 +21,7 @@ repeat (total_steps)
     }
     
     // Stage objects:
-    player_get_stage_objects();
+    player_set_stage_objects();
     if (player_collision_reaction()) return false;
     
     // Wall collision:
@@ -63,7 +63,7 @@ repeat (total_steps)
     }
     
     // Stage objects:
-    player_get_stage_objects();
+    player_set_stage_objects();
     if (player_collision_reaction()) return false;
     
     // Floor collision:

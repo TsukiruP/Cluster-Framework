@@ -9,6 +9,6 @@ switch (character_index)
         break;
 
     default:
-        if (tag_leader) player_set_animation(pick(y_speed < 0, "spring_fall", "spring_flight"));
-        else player_set_animation(pick(y_speed < 0, "ramp_fall", "ramp_flight"));
+        if (tag_leader) player_set_animation(pick(y_speed > 0, "spring_flight", "spring_fall"));
+        else player_set_animation(pick(y_speed > 0, "ramp_flight", "ramp_fall"));
 }

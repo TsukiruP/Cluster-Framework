@@ -41,6 +41,8 @@ jump_bound = BOUND_NONE;
 death_alarm = 0;
 death_inst = noone;
 
+player_reset_trick();
+
 tag_leader = false;
 tag_leader_time = 0;
 player_reset_tag();

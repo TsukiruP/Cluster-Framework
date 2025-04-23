@@ -78,7 +78,7 @@ if (tag_allow)
 }
 else player_reset_tag(true);
 
-// Move partner:
+// Partner:
 if (partner_inst.state_current == player_state_interlink)
 {
     var sine; sine = dsin(mask_direction);

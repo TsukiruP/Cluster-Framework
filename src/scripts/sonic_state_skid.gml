@@ -21,7 +21,7 @@ switch (_phase)
             if (!player_movement_air()) return false;
             if (player_routine_land()) return true;
 
-            y_speed += gravity_force;
+            player_gravity_force();
         }
         else
         {

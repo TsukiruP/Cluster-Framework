@@ -1,5 +1,3 @@
-+Masks Old
-	|spr_basic_test_mask_29
 +System
 	|fnt_system
 	|fnt_debug
@@ -79,6 +77,11 @@
 					+Goal
 						|spr_sonic_goal
 						|spr_sonic_goal_gold
+					+Tricks
+						|spr_sonic_trick_up
+						|spr_sonic_trick_down
+						|spr_sonic_trick_back
+						|spr_sonic_trick_front
 					|spr_sonic_hammer
 					|spr_sonic_insta
 					|spr_sonic_skid

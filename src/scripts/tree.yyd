@@ -159,7 +159,7 @@
 			|text_set_body
 		+Animation
 			|animation_get
-			|animation_add
+			|animation_set
 			|animation_init_sonic
 			|animation_init_classic
 		+Fade
@@ -407,6 +407,15 @@
 							|seq_sonic_rail
 							|seq_sonic_breathe
 							+Goal
+							+Tricks
+								+Up
+									|seq_sonic_trick_up_flight
+									|seq_sonic_trick_up_fall
+								+Down
+									|seq_sonic_trick_down
+									|seq_sonic_trick_bound
+								|seq_sonic_trick_front
+								|seq_sonic_trick_back
 							|seq_sonic_hammer
 							+Skid
 								|seq_sonic_somersault
@@ -533,18 +542,19 @@
 					|seq_spin_dash
 					|seq_spin_charge
 					|seq_brake
-					|seq_debuff
-					|seq_swap
 					|seq_rail_spark
+					|seq_swap
+					+Tag
+						|seq_tag_call
+						|seq_tag_catch
+					|seq_debuff
 					+Sonic
+						|seq_super_skid
 						|seq_drop_dash
 						|seq_bound_jump
 						|seq_shockwave
 						|seq_reticle
 						|seq_reticle_colors
-					+Tag
-						|seq_tag_call
-						|seq_tag_catch
 				+Shields
 					|seq_shield_insta
 					|seq_shield_basic
@@ -630,6 +640,7 @@
 			|player_animation_jump
 			|player_animation_ramp
 			|player_animation_spring
+			|player_animation_trick
 		+Collision
 			|player_collision_reaction
 			|player_collision_wall
@@ -661,6 +672,8 @@
 				|player_state_spring
 				|player_state_rail
 				|player_state_bound
+				|player_state_trick
+				|player_state_trick_bound
 				|player_state_hammer
 				|player_state_interlink
 			+Sonic
@@ -683,6 +696,7 @@
 			|player_routine_roll
 			|player_routine_insta
 			|player_routine_shield
+			|player_routine_trick
 			|player_routine_skill
 			|sonic_routine_homing
 		+Traits
@@ -732,17 +746,18 @@
 			|player_trail_draw
 		+Getters
 			|player_get_hitbox
-			|player_get_stage_objects
 			|player_get_angle
-			|player_get_cliff
 			|player_get_input
 			|player_get_animation_sequence
 			|player_get_item
 		+Setters
 			|player_set_state
 			|player_set_radii
+			|player_set_stage_objects
 			|player_set_ground
 			|player_set_water_run
+			|player_set_cliff
+			|player_set_trick_speed
 			|player_set_status
 			|player_set_device
 			|player_set_input
@@ -753,6 +768,7 @@
 			|player_set_depth
 			|player_reset_physics
 			|player_reset_air
+			|player_reset_trick
 			|player_reset_tag
 			|player_reset_status
 			|player_reset_skill
@@ -766,6 +782,7 @@
 			|player_can_launch
 			|player_rotate_mask
 			|player_slope_friction
+			|player_gravity_force
 			|player_ring_loss
 			|player_cpu_respawn
 			|player_add_rings

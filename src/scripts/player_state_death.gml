@@ -21,14 +21,14 @@ switch (_phase)
     case STATE_STEP:
         x += dsin(gravity_direction) * y_speed;
         y += dcos(gravity_direction) * y_speed;
-
-        y_speed += gravity_force_temp;
+        player_gravity_force(gravity_force_temp);
 
         if (drown)
         {
             if (bubble_count < 11)
             {
                 if (bubble_alarm > 0) bubble_alarm -= 1;
+
                 if (bubble_alarm == 0)
                 {
                     bubble_alarm = irandom_range(1, 8);

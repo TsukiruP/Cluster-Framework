@@ -9,10 +9,10 @@ switch (character_index)
         break;
 
     default:
-        if (tag_leader) player_set_animation(pick(y_speed < 0, "spring_fall", "spring_flight"));
+        if (tag_leader) player_set_animation(pick(y_speed > 0, "spring_flight", "spring_fall"));
         else
         {
-            if ((animation_current == "spin_flight" || (jump_bound == BOUND_SONIC && animation_current == "roll")) && y_speed > 0)
+            if ((animation_current == "spin_flight" || jump_bound == BOUND_TRICK || (jump_bound == BOUND_SONIC && animation_current == "roll")) && y_speed > 0)
             {
                 switch (jump_uncurl)
                 {
@@ -21,7 +21,7 @@ switch (character_index)
                         break;
 
                     case UNCURL_BOUND:
-                        player_set_animation("spin_fall");
+                        player_set_animation(pick(jump_bound == BOUND_TRICK, "spin_fall", "trick_bound"));
                         break;
 
                     default:
@@ -33,7 +33,7 @@ switch (character_index)
                         }
                 }
             }
-            else if !((jump_uncurl == UNCURL_BLOCKADE && animation_current == "spring_fall") || (jump_bound == BOUND_SONIC && animation_current == "roll") ||
-                animation_current == "spin_fall") player_set_animation("spin_flight");
+            else if !(animation_current == "spin_fall" || (jump_uncurl == UNCURL_BLOCKADE && animation_current == "spring_fall") ||
+                jump_bound == BOUND_TRICK || (jump_bound == BOUND_SONIC && animation_current == "roll")) player_set_animation("spin_flight");
         }
 }

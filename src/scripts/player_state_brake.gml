@@ -55,7 +55,6 @@ switch (_phase)
         }
 
         player_slope_friction(slope_friction);
-
         if (x_speed == 0 && input_x_direction == 0) return player_set_state(player_state_idle);
         if (player_routine_skill()) return true;
         if (player_routine_jump()) return true;
