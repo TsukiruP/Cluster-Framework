@@ -7,7 +7,7 @@
 var _range; _range = argument[0];
 var _alert; if (argument_count > 1) _alert = argument[1]; else _alert = false;
 
-var player_inst; player_inst = instance_nearest(x, y, obj_player);
+var player_inst; player_inst = instance_nearest_dir_x(x, y, obj_player, image_xscale, _range);;
 
 if (instance_exists(player_inst))
 {
@@ -15,7 +15,7 @@ if (instance_exists(player_inst))
     var player_angle; player_angle = pick(sign(image_xscale) == -1, gravity_direction, angle_wrap(gravity_direction + 180));
     var player_difference; player_difference = abs(angle_difference(player_angle, direction_to_object(player_inst)));
 
-    if (instance_exists(player_solid) || distance_to_object(player_inst) >= _range || player_difference >= 45 || player_inst.state_current == player_state_death) player_inst = noone;
+    if (instance_exists(player_solid) || player_difference >= 45 || player_inst.state_current == player_state_death) player_inst = noone;
     else if (_alert) enemy_alert_create();
 }
 
