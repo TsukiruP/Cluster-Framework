@@ -39,9 +39,7 @@ switch (_phase)
                         image_angle = angle_wrap(image_angle - 90);
                         image_alpha = 0.5;
                     }
-                }
-
-                player_gravity_force();
+                } else player_gravity_force();
             }
         }
         else

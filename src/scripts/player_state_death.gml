@@ -21,7 +21,7 @@ switch (_phase)
     case STATE_STEP:
         x += dsin(gravity_direction) * y_speed;
         y += dcos(gravity_direction) * y_speed;
-        player_gravity_force(gravity_force_temp);
+        y_speed += pick(drown, gravity_force, gravity_force_underwater);
 
         if (drown)
         {

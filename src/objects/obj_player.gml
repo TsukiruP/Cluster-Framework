@@ -18,7 +18,8 @@ x_speed = 0;
 y_speed = 0;
 top_speed_temp = 6;
 acceleration_temp = 0.046875;
-gravity_force_temp = 0.21875;
+gravity_force = 0.21875;
+gravity_force_underwater = 0.0625;
 slope_friction = 0.125;
 air_friction = 0.96875;
 
