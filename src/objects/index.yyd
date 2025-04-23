@@ -54,7 +54,7 @@ par_spike
 obj_spike_hor
 obj_blockade_vert
 obj_ring_super
-obj_item_magnetic
+eff_super_skid
 obj_item_fire
 obj_item_mine
 obj_item_bubble

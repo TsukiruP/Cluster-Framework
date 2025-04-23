@@ -116,14 +116,14 @@ shield_inst = noone;
 debuff_inst = noone;
 drown_inst = noone;
 reticle_inst = noone;
+waterfall_draw = false;
+waterfall_inst = noone;
+super_skid_inst = noone;
 
 afterimage_draw = false;
 afterimage_alarm = 6;
 
 player_trail_init();
-
-waterfall_draw = false;
-waterfall_inst = noone;
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -461,13 +461,14 @@ applies_to=self
 /// Effects
 
 player_set_depth(player_index);
+player_run_splash_create();
 player_spin_dash_create();
 player_shield_create();
 player_invin_spark_create();
 player_debuff_create();
-player_reticle_create();
-player_run_splash_create();
 player_waterfall_splash_create();
+sonic_super_skid_create();
+sonic_reticle_create();
 
 // Afterimage:
 if (status_speed == SPEED_UP || boost_mode) afterimage_draw = true;

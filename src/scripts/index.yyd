@@ -564,7 +564,7 @@ player_drown_create
 player_spin_dash_create
 player_shield_create
 player_debuff_create
-player_reticle_create
+sonic_reticle_create
 player_waterfall_splash_create
 player_run_splash_create
 player_invin_spark_create
@@ -640,3 +640,4 @@ seq_sonic_trick_bound
 player_state_trick_bound
 player_reset_trick
 seq_super_skid
+sonic_super_skid_create

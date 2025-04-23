@@ -103,7 +103,6 @@
 		+Goals
 	+Effects
 		+Player
-			|eff_afterimage
 			|eff_player
 			|eff_spin_dash
 			|eff_swap
@@ -111,8 +110,11 @@
 			|eff_debuff
 			|eff_drown
 			|eff_shield
-			|eff_reticle
 			|eff_waterfall
+			|eff_afterimage
+			+Sonic
+				|eff_super_skid
+				|eff_reticle
 		+Enemy
 			|obj_enemy_debris
 			|obj_rhino_spring
@@ -152,7 +154,6 @@
 	+Item Boxes
 		+Rings
 		+Shields
-			|obj_item_magnetic
 			|obj_item_fire
 			|obj_item_lightning
 			|obj_item_bubble

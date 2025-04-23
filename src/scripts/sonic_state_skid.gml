@@ -14,7 +14,7 @@ switch (_phase)
         break;
 
     case STATE_STEP:
-        var skid_super; skid_super = (peel_out || boost_mode);
+        var skid_super; skid_super = (boost_mode || peel_out);
 
         if (!on_ground)
         {

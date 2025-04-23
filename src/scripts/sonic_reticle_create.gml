@@ -1,4 +1,4 @@
-/// player_reticle_create()
+/// sonic_reticle_create()
 /// @desc Creates a debuff instance.
 /// @returns {void}
 

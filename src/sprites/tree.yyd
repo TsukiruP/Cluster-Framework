@@ -312,6 +312,7 @@
 			|spr_debuff
 			|spr_drown
 			+Sonic
+				|spr_super_skid
 				|spr_drop_dash
 				|spr_bound_jump
 				|spr_shockwave
