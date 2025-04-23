@@ -7,7 +7,7 @@ applies_to=self
 /// Spinner Initialization
 
 event_inherited();
-variant = 0;
+spanner = false;
 hitbox_set_hurtbox(20, 19, 20, 4);
 hitbox_set_attackbox(8, 18, 7, 4);
 #define Step_2
@@ -30,24 +30,16 @@ applies_to=self
 */
 /// Field Initialization
 
-//field variant: enum(0, 1)
+//field spanner: false
 
-/*preview
-sprite_index = Sprite(pick(Field("variant", 0), "spr_spinner", "spr_spanner"), 0);
+/*preview nodrawself
+draw_sprite(Sprite(pick(Field("spanner", 0), "spr_spinner", "spr_spanner"), 0), 0, x, y);
 */
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
 applies_to=self
 */
-/// Spinner Initialization
+/// Sequence Initialization
 
-switch (variant)
-{
-    case 1:
-        sequence_init(seq_spanner);
-        break;
-
-    default:
-        sequence_init(seq_spinner);
-}
+sequence_init(pick(spanner, seq_spinner, seq_spanner));
