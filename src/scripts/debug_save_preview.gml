@@ -2,7 +2,7 @@
 /// @desc Returns a preview map from existing save files.
 /// @returns {ds_map}
 
-with (ctrl_game)
+with (ctrl_save)
 {
     var preview_map; preview_map = ds_map_create();
 
@@ -10,9 +10,9 @@ with (ctrl_game)
     {
         var save_string; save_string = "save" + string(i);
 
-        if (game_save_exists(i))
+        if (save_exists(i))
         {
-            var save_temp; save_temp = game_save_load_buffer(i);
+            var save_temp; save_temp = save_load_buffer(i);
             var character_list; character_list = ds_list_create();
 
             ds_list_read(character_list, ds_map_get(save_temp, "character_index"));

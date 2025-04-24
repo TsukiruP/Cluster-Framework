@@ -1,4 +1,4 @@
-/// game_save_set(key, val)
+/// save_set(key, val)
 /// @desc Sets the value of a save key.
 /// @param {string} key
 /// @param {any} val

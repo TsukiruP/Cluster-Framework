@@ -2,7 +2,7 @@
 /// @desc Performs a trick action.
 /// @returns {bool}
 
-if (game_save_get("trick") && character_index != CHAR_CLASSIC && player_get_input(INP_TAG, CHECK_PRESSED))
+if (save_get("trick") && character_index != CHAR_CLASSIC && player_get_input(INP_TAG, CHECK_PRESSED))
 {
     x_speed = 0;
     y_speed = 0;

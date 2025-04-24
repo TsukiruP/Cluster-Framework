@@ -14,14 +14,14 @@ switch (_index)
         return "Player 0:";
 
     case OPTION_VALUE:
-        return pick(game_save_get_character(character_index), "Sonic", "Miles", "Knuckles", "Amy", "Classic");
+        return pick(save_get_character(character_index), "Sonic", "Miles", "Knuckles", "Amy", "Classic");
 
     case OPTION_CHANGE:
-        if (_execute) game_save_set_character(character_index, wrap(game_save_get_character(character_index) + menu_x_direction, CHAR_SONIC, CHAR_CLASSIC));
+        if (_execute) save_set_character(character_index, wrap(save_get_character(character_index) + menu_x_direction, CHAR_SONIC, CHAR_CLASSIC));
         return true;
 
     case OPTION_CONFIRM:
-        switch (game_save_get_character(character_index))
+        switch (save_get_character(character_index))
         {
             case CHAR_SONIC:
                 if (_execute) debug_set_next(debug_menu_sonic);

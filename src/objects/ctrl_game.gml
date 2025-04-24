@@ -23,7 +23,6 @@ game_set_debug(debug_mode);
 game_set_time(0);
 game_set_speed(1);
 game_checkpoint_set(true);
-game_save_init();
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -32,6 +31,7 @@ applies_to=self
 /// Controller Initialization
 
 instance_create_single(0, 0, ctrl_config);
+instance_create_single(0, 0, ctrl_save);
 instance_create_single(0, 0, ctrl_screen);
 instance_create_single(0, 0, ctrl_audio);
 instance_create_single(0, 0, ctrl_input);
@@ -39,15 +39,6 @@ instance_create_single(0, 0, ctrl_text);
 instance_create_single(0, 0, ctrl_animation);
 instance_create_single(0, 0, ctrl_debug);
 instance_create(0, 0, mnu_boot);
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Indicator Initialization
-
-indicator_draw = false;
-indicator_time = 0;
 #define Step_1
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -56,20 +47,8 @@ applies_to=self
 */
 /// Time
 
-if (indicator_draw)
-{
-    indicator_time += 1;
-
-    if (indicator_time >= 60)
-    {
-        indicator_draw = false;
-        indicator_time = 0;
-    }
-}
-
 if (game_ispaused(mnu_pause)) exit;
 
-if (!instance_exists(ctrl_transition)) game_save_set("time", game_save_get("time") + 1);
 game_set_time(roundto_step(game_time + game_speed, game_speed));
 #define Other_3
 /*"/*'/**//* YYD ACTION
@@ -80,9 +59,6 @@ applies_to=self
 /// Cleanup
 
 ds_grid_destroy(room_grid);
-ds_map_destroy(save_map);
-ds_list_destroy(character_list);
-ds_map_destroy(sonic_map);
 #define Other_5
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -94,22 +70,6 @@ applies_to=self
 game_set_time(0);
 game_set_speed(1);
 #define Draw_0
-/*"/*'/**//* YYD ACTION
-lib_id=1
-action_id=603
-applies_to=self
-*/
-/// Draw Indicator
-
-if (!indicator_draw) exit;
-
-// Stars:
-draw_sprite(spr_save_stars, time_sync(indicator_time, 4, sprite_get_number(spr_save_stars)), view_xview[view_current] + screen_get_width() - 27, view_yview[view_current] + screen_get_height() - 16);
-
-// Sonic:
-d3d_fog_trick(c_white);
-draw_sprite(spr_sonic_run_5, time_sync(indicator_time, 4, sprite_get_number(spr_sonic_run_5)), view_xview[view_current] + screen_get_width() - 27, view_yview[view_current] + screen_get_height() - 25);
-d3d_set_fog(false, c_black, 0, 0);
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603

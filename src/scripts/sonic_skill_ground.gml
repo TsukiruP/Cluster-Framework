@@ -4,7 +4,7 @@
 
 if (on_ground && player_get_input(INP_AUX, CHECK_PRESSED))
 {
-    var skill_index; skill_index = game_save_get_skill(character_index, "ground");
+    var skill_index; skill_index = save_get_skill(character_index, "ground");
 
     switch (skill_index)
     {

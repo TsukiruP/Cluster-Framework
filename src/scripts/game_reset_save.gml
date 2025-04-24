@@ -8,12 +8,12 @@ game_set_save("name", "");
 game_set_save("stage", rm_basic_test_1);
 game_set_save("time", 0);
 
-game_save_reset_character();
-game_save_write_character();
+save_reset_character();
+save_write_character();
 
 game_set_save("swap", true);
 game_set_save("tag", true);
 game_set_save("boost", true);
 
-game_save_reset_skill(CHAR_SONIC);
-game_save_write_skill(CHAR_SONIC);
+save_reset_skill(CHAR_SONIC);
+save_write_skill(CHAR_SONIC);

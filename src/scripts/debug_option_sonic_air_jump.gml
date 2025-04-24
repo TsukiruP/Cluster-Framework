@@ -14,10 +14,10 @@ switch (_index)
         return "Jump Skill:";
 
     case OPTION_VALUE:
-        return pick(game_save_get_skill(CHAR_SONIC, skill_key), "None", "Insta-Shield", "Air Dash", "Drop Dash");
+        return pick(save_get_skill(CHAR_SONIC, skill_key), "None", "Insta-Shield", "Air Dash", "Drop Dash");
 
     case OPTION_CHANGE:
-        if (_execute) game_save_set_skill(CHAR_SONIC, skill_key, wrap(game_save_get_skill(CHAR_SONIC, skill_key) + menu_x_direction, SKILL_NONE, SKILL_DROP_DASH));
+        if (_execute) save_set_skill(CHAR_SONIC, skill_key, wrap(save_get_skill(CHAR_SONIC, skill_key) + menu_x_direction, SKILL_NONE, SKILL_DROP_DASH));
         return true;
 
     default:

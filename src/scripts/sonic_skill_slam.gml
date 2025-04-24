@@ -4,7 +4,7 @@
 
 if (!on_ground && player_get_input(INP_DOWN, CHECK_HELD) && player_get_input(INP_AUX, CHECK_PRESSED))
 {
-    var skill_index; skill_index = game_save_get_skill(character_index, "slam");
+    var skill_index; skill_index = save_get_skill(character_index, "slam");
 
     switch (skill_index)
     {

@@ -1,4 +1,4 @@
-/// game_save_get_index()
+/// save_get_index()
 /// @desc Returns the save index
 /// @returns {int}
 

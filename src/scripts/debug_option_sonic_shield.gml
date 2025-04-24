@@ -14,10 +14,10 @@ switch (_index)
         return "Shield Skills:";
 
     case OPTION_VALUE:
-        return string_bool(game_save_get_skill(CHAR_SONIC, skill_key), true);
+        return string_bool(save_get_skill(CHAR_SONIC, skill_key), true);
 
     case OPTION_CHANGE:
-        if (_execute) game_save_set_skill(CHAR_SONIC, skill_key, !game_save_get_skill(CHAR_SONIC, skill_key));
+        if (_execute) save_set_skill(CHAR_SONIC, skill_key, !save_get_skill(CHAR_SONIC, skill_key));
         return true;
 
     default:

@@ -7,5 +7,5 @@ var _save; _save = argument0;
 
 with (ctrl_game)
 {
-    if (game_save_exists(_save)) file_delete(save_directory + "save" + string(_save) + ".sav");
+    if (save_exists(_save)) file_delete(save_directory + "save" + string(_save) + ".sav");
 }

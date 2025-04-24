@@ -1,4 +1,4 @@
-/// game_save_load_buffer(save)
+/// save_load_buffer(save)
 /// @desc Returns a save map from a file.
 /// @param {int} save
 /// @returns {ds_map}

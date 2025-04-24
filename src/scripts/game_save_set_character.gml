@@ -1,4 +1,4 @@
-/// game_save_set_character(player, character)
+/// save_set_character(player, character)
 /// @desc Sets the character of a player.
 /// @param {int} player
 /// @param {int} character

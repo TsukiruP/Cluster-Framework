@@ -1,4 +1,4 @@
-/// game_save_set_index(index)
+/// save_set_index(index)
 /// @desc Sets the save index.
 /// @param {int} index
 /// @returns {void}

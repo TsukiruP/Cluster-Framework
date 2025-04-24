@@ -14,7 +14,7 @@ switch (_index)
     case OPTION_CONFIRM:
         if (_execute)
         {
-            keyboard_string = game_save_get("name");
+            keyboard_string = save_get("name");
             rename_allow = true;
             rename_backup = keyboard_string;
         }

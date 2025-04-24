@@ -24,6 +24,7 @@
 	+Controllers
 		|ctrl_game
 		|ctrl_config
+		|ctrl_save
 		|ctrl_screen
 		|ctrl_audio
 		|ctrl_input
@@ -158,7 +159,6 @@
 			|obj_item_lightning
 			|obj_item_bubble
 		+Buffs
-			|obj_item_invin
 			|obj_item_speed
 		|obj_item_mine
 		+Debuffs

@@ -10,7 +10,7 @@ with (ctrl_game)
     {
         var save_string; save_string = "save" + string(i);
 
-        if (game_save_exists(i))
+        if (save_exists(i))
         {
             var save_temp; save_temp = game_load_save_buffer(i);
             var character_list; character_list = ds_list_create();

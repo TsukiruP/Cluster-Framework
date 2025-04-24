@@ -14,8 +14,8 @@ switch (_index)
     case OPTION_CONFIRM:
         if (_execute)
         {
-            game_save_set_index(-1);
-            game_save_reset();
+            save_set_index(-1);
+            save_reset();
         }
 
         return true;

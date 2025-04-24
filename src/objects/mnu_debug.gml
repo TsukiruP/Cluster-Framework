@@ -183,7 +183,7 @@ else
 
     if (keyboard_check_pressed(vk_enter))
     {
-        game_save_set("name", rename_backup);
+        save_set("name", rename_backup);
         rename_allow = false;
         rename_backup = "";
     }

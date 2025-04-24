@@ -14,10 +14,10 @@ switch (_index)
         return "Tag:";
 
     case OPTION_VALUE:
-        return string_bool(game_save_get(save_key), true);
+        return string_bool(save_get(save_key), true);
 
     case OPTION_CHANGE:
-        if (_execute) game_save_set(save_key, !game_save_get(save_key));
+        if (_execute) save_set(save_key, !save_get(save_key));
         return true;
 
     default:

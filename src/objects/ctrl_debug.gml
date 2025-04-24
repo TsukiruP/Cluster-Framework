@@ -25,13 +25,13 @@ if (keyboard_check_pressed(vk_f2)) room_speed = pick(room_speed == 60, 60, 30);
 
 if (keyboard_check_pressed(vk_f5))
 {
-    if (game_save_get_index() != -1) game_save_write(game_save_get_index());
+    if (save_get_index() != -1) save_write(save_get_index());
 }
 
 if (keyboard_check_pressed(vk_f6))
 {
-    if (game_save_get_index() == -1) game_save_set_index(0);
-    game_save_read(game_save_get_index());
+    if (save_get_index() == -1) save_set_index(0);
+    save_read(save_get_index());
 }
 
 if (!info_hide)
@@ -99,7 +99,7 @@ with (obj_player)
     draw_hitbox(attackbox_left, attackbox_top, attackbox_right, attackbox_bottom, attackbox_x_offset, attackbox_y_offset, mask_direction, c_green);
 
     // Homing range:
-    if (game_save_get_skill(character_index, "homing") && character_index == CHAR_SONIC)
+    if (save_get_skill(character_index, "homing") && character_index == CHAR_SONIC)
     {
         draw_line(x_int, y_int, x_int + lengthdir_x(homing_range * image_xscale, mask_direction + 45), y_int + lengthdir_y(homing_range * image_xscale, mask_direction + 45));
         draw_line(x_int, y_int, x_int + lengthdir_x(homing_range * image_xscale, mask_direction - 45), y_int + lengthdir_y(homing_range * image_xscale, mask_direction - 45));

@@ -17,13 +17,13 @@ if (game_checkpoint_isset())
 
 for ({var i; i = 0}; i < PLAYER_COUNT; i += 1)
 {
-    if (game_save_get_character(i) != -1)
+    if (save_get_character(i) != -1)
     {
         stage_add_player(instance_create(x - (30 * i), y, obj_player));
 
         with (stage_get_player(i))
         {
-            character_index = game_save_get_character(i);
+            character_index = save_get_character(i);
             input_allow = false;
 
             if (i == 0)

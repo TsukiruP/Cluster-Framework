@@ -1,4 +1,4 @@
-/// game_save_get(key)
+/// save_get(key)
 /// @desc Returns the value corresponding to the save key.
 /// @param {string} key
 /// @returns {any}

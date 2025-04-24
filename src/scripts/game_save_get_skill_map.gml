@@ -1,4 +1,4 @@
-/// game_save_get_skill_map(character)
+/// save_get_skill_map(character)
 /// @desc Returns a skill map.
 /// @param {int} character
 /// @returns {ds_map}

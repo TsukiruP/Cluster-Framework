@@ -19,35 +19,6 @@
 				|game_checkpoint_get_time
 				|game_checkpoint_set
 				|game_checkpoint_isset
-			+Config
-				|game_unused_config_init
-			+Save
-				|game_save_init
-				|game_save_get
-				|game_save_get_index
-				|game_save_get_count
-				|game_save_set
-				|game_save_set_index
-				|game_save_write
-				|game_save_read
-				|game_save_delete
-				|game_save_reset
-				|game_save_load_buffer
-				|game_save_exists
-				|game_save_auto
-				+Character
-					|game_save_get_character
-					|game_save_set_character
-					|game_save_write_character
-					|game_save_read_character
-					|game_save_reset_character
-				+Skill
-					|game_save_get_skill
-					|game_save_set_skill
-					|game_save_write_skill
-					|game_save_read_skill
-					|game_save_reset_skill
-					|game_save_get_skill_map
 			+Room
 				|game_room_add
 				|game_room_get_transition
@@ -93,6 +64,32 @@
 				|config_reset_button
 				|config_reset_gamepad
 		+Save
+			|game_not_save_init
+			|save_get
+			|save_get_index
+			|save_get_count
+			|save_set
+			|save_set_index
+			|save_write
+			|save_read
+			|save_delete
+			|save_reset
+			|save_load_buffer
+			|save_exists
+			|save_auto
+			+Character
+				|save_get_character
+				|save_set_character
+				|save_write_character
+				|save_read_character
+				|save_reset_character
+			+Skill
+				|save_get_skill
+				|save_get_skill_map
+				|save_set_skill
+				|save_write_skill
+				|save_read_skill
+				|save_reset_skill
 		+Screen
 			|screen_is_equal
 			|screen_get_width
@@ -811,3 +808,5 @@
 	|draw_sprite_tiled_vertical
 	|draw_sprite_tiled_horizontal_yscale
 	|draw_backdrop_tiled_area
+	+Config
+		|game_unused_config_init

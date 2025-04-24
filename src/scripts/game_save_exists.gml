@@ -1,4 +1,4 @@
-/// game_save_exists(save)
+/// save_exists(save)
 /// @desc Returns whether a save file exists.
 /// @param {int} save
 /// @returns {bool}
@@ -11,7 +11,7 @@ with (ctrl_game)
 
     if (file_exists(save_directory + "save" + string(_save) + ".sav"))
     {
-        var save_temp; save_temp = game_save_load_buffer(_save);
+        var save_temp; save_temp = save_load_buffer(_save);
 
         if (ds_map_get(save_temp, "game") == GAME_NAME && ds_map_get(save_temp, "version") == GAME_VERSION) save_exists = true;
         ds_map_destroy(save_temp);
