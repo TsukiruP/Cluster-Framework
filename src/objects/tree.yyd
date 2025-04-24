@@ -121,33 +121,34 @@
 			|obj_enemy_debris
 			|obj_rhino_spring
 +Stages
+	+Zone Map
+		|obj_zone_map_parallax
+		+Masks
+			|obj_zone_map_mask_1
+			|obj_zone_map_mask_2
+			|obj_zone_map_mask_3
+			|obj_zone_map_mask_4
+			|obj_zone_map_mask_5
+			|obj_zone_map_mask_6
+			|obj_zone_map_mask_7
+			|obj_zone_map_mask_8
+			|obj_zone_map_mask_9
+			|obj_zone_map_mask_10
+			|obj_zone_map_mask_11
+			|obj_zone_map_mask_12
+			|obj_zone_map_mask_13
+			|obj_zone_map_mask_14
+			|obj_zone_map_mask_15
+			|obj_zone_map_mask_16
+			|obj_zone_map_mask_17
+			|obj_zone_map_mask_18
+			|obj_zone_map_mask_19
+		+Gimmicks
+			|obj_zone_map_waterfall
+	+Zone Map
 	+Sky Sanctuary
 		|obj_sky_sanctuary_parallax
 		|obj_sky_sanctuary_fountain
-	+Basic Test
-		|obj_basic_test_parallax
-		+Masks
-			|obj_basic_test_mask_1
-			|obj_basic_test_mask_2
-			|obj_basic_test_mask_3
-			|obj_basic_test_mask_4
-			|obj_basic_test_mask_5
-			|obj_basic_test_mask_6
-			|obj_basic_test_mask_7
-			|obj_basic_test_mask_8
-			|obj_basic_test_mask_9
-			|obj_basic_test_mask_10
-			|obj_basic_test_mask_11
-			|obj_basic_test_mask_12
-			|obj_basic_test_mask_13
-			|obj_basic_test_mask_14
-			|obj_basic_test_mask_15
-			|obj_basic_test_mask_16
-			|obj_basic_test_mask_17
-			|obj_basic_test_mask_18
-			|obj_basic_test_mask_19
-		+Gimmicks
-			|obj_basic_test_waterfall
 +Trash
 	+Rainbow Rings
 	+Springs

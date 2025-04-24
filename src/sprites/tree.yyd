@@ -357,34 +357,33 @@
 			|spr_ring_sparkle
 			|spr_blockade_debris
 +Stages
-	+Sky Sanctuary
-		+Gimmicks
-			|spr_sky_sanctuary_fountain
-	+Basic Test
+	+Zone Map
 		+Masks
-			|spr_basic_test_mask_1
-			|spr_basic_test_mask_2
-			|spr_basic_test_mask_3
-			|spr_basic_test_mask_4
-			|spr_basic_test_mask_5
-			|spr_basic_test_mask_6
-			|spr_basic_test_mask_7
-			|spr_basic_test_mask_8
-			|spr_basic_test_mask_9
-			|spr_basic_test_mask_10
-			|spr_basic_test_mask_11
-			|spr_basic_test_mask_12
-			|spr_basic_test_mask_13
-			|spr_basic_test_mask_14
-			|spr_basic_test_mask_15
-			|spr_basic_test_mask_16
-			|spr_basic_test_mask_17
-			|spr_basic_test_mask_18
-			|spr_basic_test_mask_19
+			|spr_zone_map_mask_1
+			|spr_zone_map_mask_2
+			|spr_zone_map_mask_3
+			|spr_zone_map_mask_4
+			|spr_zone_map_mask_5
+			|spr_zone_map_mask_6
+			|spr_zone_map_mask_7
+			|spr_zone_map_mask_8
+			|spr_zone_map_mask_9
+			|spr_zone_map_mask_10
+			|spr_zone_map_mask_11
+			|spr_zone_map_mask_12
+			|spr_zone_map_mask_13
+			|spr_zone_map_mask_14
+			|spr_zone_map_mask_15
+			|spr_zone_map_mask_16
+			|spr_zone_map_mask_17
+			|spr_zone_map_mask_18
+			|spr_zone_map_mask_19
 		+Gimmicks
-			|spr_basic_test_waterfall
-	+Sunset Forest
-		+Masks
+			|sprspr_zone_map_waterfall
+	+Sunset Hill
 		+Gimmicks
 			|spr_basic_test_water_fall_02
 			|spr_basic_test_water_fall_03
+	+Sky Sanctuary
+		+Gimmicks
+			|spr_sky_sanctuary_fountain
