@@ -4,7 +4,7 @@
 
 with (ctrl_game)
 {
-    if (game_config_exists())
+    if (config_exists())
     {
         var config_temp; config_temp = game_load_config_buffer();
         var config_key; config_key = ds_map_find_first(config_map);
@@ -16,7 +16,7 @@ with (ctrl_game)
         }
 
         ds_map_destroy(config_temp);
-        game_config_read_key();
-        game_config_read_gamepad();
+        config_read_key();
+        config_read_gamepad();
     }
 }

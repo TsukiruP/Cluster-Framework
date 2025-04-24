@@ -14,14 +14,14 @@ switch (_index)
         return "SFX Volume:";
 
     case OPTION_VALUE:
-        return string(game_config_get(config_key));
+        return string(config_get(config_key));
 
     case OPTION_CHANGE:
-        if (in_range(game_config_get(config_key) + menu_x_direction, 0, 100))
+        if (in_range(config_get(config_key) + menu_x_direction, 0, 100))
         {
             if (_execute)
             {
-                game_config_set(config_key, clamp(game_config_get(config_key) + menu_x_direction, 0, 100));
+                config_set(config_key, clamp(config_get(config_key) + menu_x_direction, 0, 100));
                 audio_reset_volume();
             }
 

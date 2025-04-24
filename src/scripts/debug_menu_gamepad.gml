@@ -25,16 +25,16 @@ switch (_index)
         case MENU_START:
             if (_execute)
             {
-                game_config_reset_gamepad(rebind_device - DEV_GAMEPAD0);
+                config_reset_gamepad(rebind_device - DEV_GAMEPAD0);
                 return true;
             }
             else return "Reset";
-        
+
         case MENU_FUNCTION:
             if (_execute)
             {
-                game_config_write_gamepad();
-                game_config_write();
+                config_write_gamepad();
+                config_write();
                 return true;
             }
             else return "Save";

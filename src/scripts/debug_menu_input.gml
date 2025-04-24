@@ -17,15 +17,15 @@ switch (_index)
         case MENU_START:
             if (_execute)
             {
-                game_config_reset_input_background();
+                config_reset_input_background();
                 return true;
             }
             else return "Reset";
-        
+
         case MENU_FUNCTION:
             if (_execute)
             {
-                game_config_write();
+                config_write();
                 return true;
             }
             else return "Save";

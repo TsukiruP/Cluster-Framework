@@ -20,38 +20,7 @@
 				|game_checkpoint_set
 				|game_checkpoint_isset
 			+Config
-				|game_config_init
-				|game_config_get
-				|game_config_set
-				|game_config_write
-				|game_config_read
-				|game_config_reset
-				|game_config_reset_interface
-				|game_config_reset_screen
-				|game_config_reset_audio
-				|game_config_reset_input_background
-				|game_config_reset_gameplay
-				|game_config_reset_advance
-				|game_config_reset_misc
-				|game_config_load_buffer
-				|game_config_exists
-				+Keyboard
-					|game_config_get_key
-					|game_config_set_key
-					|game_config_write_key
-					|game_config_read_key
-					|game_config_reset_key
-				+Gamepad
-					|game_config_init_gamepad
-					|game_config_get_gamepad
-					|game_config_get_button
-					|game_config_set_button
-					|game_config_set_gamepad
-					|game_config_set_confirm
-					|game_config_write_gamepad
-					|game_config_read_gamepad
-					|game_config_reset_button
-					|game_config_reset_gamepad
+				|game_unused_config_init
 			+Save
 				|game_save_init
 				|game_save_get
@@ -91,6 +60,39 @@
 				|game_room_get_run
 			+Misc.
 				|game_get_interface_color
+		+Config
+			|config_get
+			|config_set
+			|config_write
+			|config_read
+			|config_reset
+			|config_reset_interface
+			|config_reset_screen
+			|config_reset_audio
+			|config_reset_input_background
+			|config_reset_gameplay
+			|config_reset_advance
+			|config_reset_misc
+			|config_load_buffer
+			|config_exists
+			+Keyboard
+				|config_get_key
+				|config_set_key
+				|config_write_key
+				|config_read_key
+				|config_reset_key
+			+Gamepad
+				|config_init_gamepad
+				|config_get_gamepad
+				|config_get_button
+				|config_set_button
+				|config_set_gamepad
+				|config_set_confirm
+				|config_write_gamepad
+				|config_read_gamepad
+				|config_reset_button
+				|config_reset_gamepad
+		+Save
 		+Screen
 			|screen_is_equal
 			|screen_get_width

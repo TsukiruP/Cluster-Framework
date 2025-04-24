@@ -23,12 +23,13 @@
 +System
 	+Controllers
 		|ctrl_game
-		|ctrl_debug
+		|ctrl_config
 		|ctrl_screen
 		|ctrl_audio
 		|ctrl_input
 		|ctrl_text
 		|ctrl_animation
+		|ctrl_debug
 		|ctrl_transition
 		|ctrl_fade
 		+Stage
@@ -154,7 +155,6 @@
 	+Item Boxes
 		+Rings
 		+Shields
-			|obj_item_fire
 			|obj_item_lightning
 			|obj_item_bubble
 		+Buffs

@@ -16,16 +16,16 @@ switch (_index)
         case MENU_START:
             if (_execute)
             {
-                game_config_reset_audio();
+                config_reset_audio();
                 audio_reset_volume();
                 return true;
             }
             else return "Reset";
-        
+
         case MENU_FUNCTION:
             if (_execute)
             {
-                game_config_write();
+                config_write();
                 return true;
             }
             else return "Save";

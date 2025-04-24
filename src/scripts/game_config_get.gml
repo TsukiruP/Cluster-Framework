@@ -1,4 +1,4 @@
-/// game_config_get(key)
+/// config_get(key)
 /// @desc Returns the value corresponding to the config key.
 /// @param {string} key
 /// @returns {any}

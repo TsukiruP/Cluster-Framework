@@ -15,10 +15,10 @@ switch (_index)
         return "Style:";
 
     case OPTION_VALUE:
-        return string(game_config_get_gamepad(player_index, config_key))
+        return string(config_get_gamepad(player_index, config_key))
 
     case OPTION_CHANGE:
-        if (_execute) game_config_set_gamepad(player_index, config_key, wrap(game_config_get_gamepad(player_index, config_key) + menu_x_direction, 0, 2));
+        if (_execute) config_set_gamepad(player_index, config_key, wrap(config_get_gamepad(player_index, config_key) + menu_x_direction, 0, 2));
         return true;
 
     default:

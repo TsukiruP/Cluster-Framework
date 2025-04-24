@@ -14,8 +14,8 @@ switch (_index)
     case OPTION_CONFIRM:
         if (_execute)
         {
-            if (rebind_device == DEV_KEYBOARD) game_config_reset_key();
-            else game_config_reset_gamepad(rebind_device - DEV_GAMEPAD0);
+            if (rebind_device == DEV_KEYBOARD) config_reset_key();
+            else config_reset_gamepad(rebind_device - DEV_GAMEPAD0);
         }
 
         return true;

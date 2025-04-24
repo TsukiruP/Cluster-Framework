@@ -2,4 +2,4 @@
 /// @desc Resets fullscreen to the config.
 /// @returns {void}
 
-window_set_fullscreen(game_config_get("screen_full"));
+window_set_fullscreen(config_get("screen_full"));

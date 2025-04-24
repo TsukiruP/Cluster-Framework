@@ -5,7 +5,7 @@
 
 var _out; if (argument_count > 0) _out = argument[0]; else _out = false;
 
-var bgm_volume; bgm_volume = game_config_get("audio_bgm") / 100;
+var bgm_volume; bgm_volume = config_get("audio_bgm") / 100;
 
 with (ctrl_audio)
 {

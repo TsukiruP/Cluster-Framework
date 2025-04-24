@@ -1,4 +1,4 @@
-/// game_config_set_button(gamepad, input, button)
+/// config_set_button(gamepad, input, button)
 /// @desc Sets the button of an input.
 /// @param {int} gamepad
 /// @param {int} input

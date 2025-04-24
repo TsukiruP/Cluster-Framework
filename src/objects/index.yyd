@@ -55,7 +55,7 @@ obj_spike_hor
 obj_blockade_vert
 obj_ring_super
 eff_super_skid
-obj_item_fire
+ctrl_config
 obj_item_mine
 obj_item_bubble
 obj_item_lightning

@@ -14,10 +14,10 @@ switch (_index)
         return "Shields:";
 
     case OPTION_VALUE:
-        return pick(game_config_get(config_key), "All", "Basic/Magnetic", "Basic");
+        return pick(config_get(config_key), "All", "Basic/Magnetic", "Basic");
 
     case OPTION_CHANGE:
-        if (_execute) game_config_set(config_key, wrap(game_config_get(config_key) + menu_x_direction, 0, 2));
+        if (_execute) config_set(config_key, wrap(config_get(config_key) + menu_x_direction, 0, 2));
         return true;
 
     default:

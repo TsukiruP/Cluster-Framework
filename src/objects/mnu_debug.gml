@@ -213,7 +213,7 @@ if (rebind_device == DEV_KEYBOARD)
         {
             for ({var i; i = INP_UP}; i <= INP_HIDE; i += 1)
             {
-                if (keyboard_key == game_config_get_key(i)) game_config_set_key(i, game_config_get_key(rebind_input));
+                if (keyboard_key == config_get_key(i)) config_set_key(i, config_get_key(rebind_input));
             }
         }
 
@@ -225,10 +225,10 @@ if (rebind_device == DEV_KEYBOARD)
             // First go through global and gameplay keys:
             for ({var i; i = INP_UP}; i <= INP_SELECT; i += 1)
             {
-                if (keyboard_key == game_config_get_key(i))
+                if (keyboard_key == config_get_key(i))
                 {
                     if (i <= INP_RIGHT || i == INP_START || i == INP_SELECT) input_global = true;
-                    game_config_set_key(i, game_config_get_key(rebind_input));
+                    config_set_key(i, config_get_key(rebind_input));
                 }
             }
 
@@ -237,7 +237,7 @@ if (rebind_device == DEV_KEYBOARD)
             {
                 for ({var i; i = INP_CONFIRM}; i <= INP_HIDE; i += 1)
                 {
-                    if (game_config_get_key(rebind_input) == game_config_get_key(i)) game_config_set_key(i, keyboard_key);
+                    if (config_get_key(rebind_input) == config_get_key(i)) config_set_key(i, keyboard_key);
                 }
             }
         }
@@ -252,10 +252,10 @@ if (rebind_device == DEV_KEYBOARD)
             {
                 if (i == INP_JUMP) i = INP_START; // We skip to Start.
 
-                if (keyboard_key == game_config_get_key(i))
+                if (keyboard_key == config_get_key(i))
                 {
                     if (i <= INP_RIGHT || i == INP_START || i == INP_SELECT) input_global = true;
-                    game_config_set_key(i, game_config_get_key(rebind_input));
+                    config_set_key(i, config_get_key(rebind_input));
                 }
             }
 
@@ -264,12 +264,12 @@ if (rebind_device == DEV_KEYBOARD)
             {
                 for ({var i; i = INP_JUMP}; i <= INP_ALT; i += 1)
                 {
-                    if (game_config_get_key(rebind_input) == game_config_get_key(i)) game_config_set_key(i, keyboard_key);
+                    if (config_get_key(rebind_input) == config_get_key(i)) config_set_key(i, keyboard_key);
                 }
             }
         }
 
-        game_config_set_key(rebind_input, keyboard_key);
+        config_set_key(rebind_input, keyboard_key);
         debug_set_rebind(INP_ANY);
     }
 }
@@ -285,10 +285,10 @@ else if (rebind_device > DEV_KEYBOARD)
         {
             for ({var i; i = INP_JUMP}; i <= INP_ALT; i += 1)
             {
-                if (gamepad_button == game_config_get_button(player_index, i)) game_config_set_button(player_index, i, game_config_get_button(player_index, rebind_input));
+                if (gamepad_button == config_get_button(player_index, i)) config_set_button(player_index, i, config_get_button(player_index, rebind_input));
             }
 
-            game_config_set_button(player_index, rebind_input, gamepad_button);
+            config_set_button(player_index, rebind_input, gamepad_button);
         }
 
         debug_set_rebind(INP_ANY);
@@ -330,7 +330,7 @@ applies_to=self
 var font_height; font_height = font_get_height(global.font_system);
 
 // Box:
-draw_rect(view_xview[view_current] + screen_get_width() / 2 - 81, view_yview[view_current] + screen_get_height() / 2 - 52, 164, 78, game_get_interface_color(), game_config_get("interface_alpha"))
+draw_rect(view_xview[view_current] + screen_get_width() / 2 - 81, view_yview[view_current] + screen_get_height() / 2 - 52, 164, 78, game_get_interface_color(), config_get("interface_alpha"))
 
 // Text:
 for ({var i; i = 0}; i < min(ds_list_size(menu_list), 4); i += 1)

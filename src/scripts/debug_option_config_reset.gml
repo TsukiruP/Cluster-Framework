@@ -12,7 +12,7 @@ switch (_index)
         return "Reset All";
 
     case OPTION_CONFIRM:
-        if (_execute) game_config_reset();
+        if (_execute) config_reset();
         return true;
 
     default:

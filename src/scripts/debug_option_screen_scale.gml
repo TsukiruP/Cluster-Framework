@@ -14,10 +14,10 @@ switch (_index)
         return "Scale:";
 
     case OPTION_VALUE:
-        return string(game_config_get(config_key));
+        return string(config_get(config_key));
 
     case OPTION_CHANGE:
-        if (_execute) game_config_set(config_key, wrap(game_config_get(config_key) + menu_x_direction, 1, 3));
+        if (_execute) config_set(config_key, wrap(config_get(config_key) + menu_x_direction, 1, 3));
         return true;
 
     default:

@@ -15,12 +15,12 @@ switch (_index)
         return "Deadzone:";
 
     case OPTION_VALUE:
-        return string(game_config_get_gamepad(player_index, config_key));
+        return string(config_get_gamepad(player_index, config_key));
 
     case OPTION_CHANGE:
-        if (in_range(game_config_get_gamepad(player_index, config_key) + menu_x_direction / 100, 0, 1))
+        if (in_range(config_get_gamepad(player_index, config_key) + menu_x_direction / 100, 0, 1))
         {
-            if (_execute) game_config_set_gamepad(player_index, config_key, clamp(game_config_get_gamepad(player_index, config_key) + menu_x_direction / 100, 0, 1));
+            if (_execute) config_set_gamepad(player_index, config_key, clamp(config_get_gamepad(player_index, config_key) + menu_x_direction / 100, 0, 1));
             return true;
         }
 

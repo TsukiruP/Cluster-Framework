@@ -1,4 +1,4 @@
-/// game_config_set(key, val)
+/// config_set(key, val)
 /// @desc Sets the value of a config key.
 /// @param {string} key
 /// @param {any} val

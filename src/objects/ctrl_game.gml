@@ -23,7 +23,6 @@ game_set_debug(debug_mode);
 game_set_time(0);
 game_set_speed(1);
 game_checkpoint_set(true);
-game_config_init();
 game_save_init();
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -32,12 +31,13 @@ applies_to=self
 */
 /// Controller Initialization
 
-instance_create_single(0, 0, ctrl_debug);
+instance_create_single(0, 0, ctrl_config);
 instance_create_single(0, 0, ctrl_screen);
 instance_create_single(0, 0, ctrl_audio);
 instance_create_single(0, 0, ctrl_input);
 instance_create_single(0, 0, ctrl_text);
 instance_create_single(0, 0, ctrl_animation);
+instance_create_single(0, 0, ctrl_debug);
 instance_create(0, 0, mnu_boot);
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -80,16 +80,6 @@ applies_to=self
 /// Cleanup
 
 ds_grid_destroy(room_grid);
-ds_map_destroy(config_map);
-ds_list_destroy(keyboard_list);
-
-for ({var i; i = 0}; i < ds_list_size(gamepad_list); i += 1)
-{
-    ds_list_destroy(ds_map_get(ds_list_find_value(gamepad_list, i), "input_list"));
-    ds_map_destroy(ds_list_find_value(gamepad_list, i));
-}
-
-ds_list_destroy(gamepad_list);
 ds_map_destroy(save_map);
 ds_list_destroy(character_list);
 ds_map_destroy(sonic_map);

@@ -14,10 +14,10 @@ switch (_index)
         return "Gamepad Focus:";
 
     case OPTION_VALUE:
-        return string_bool(game_config_get(config_key), true);
+        return string_bool(config_get(config_key), true);
 
     case OPTION_CHANGE:
-        if (_execute) game_config_set(config_key, !game_config_get(config_key));
+        if (_execute) config_set(config_key, !config_get(config_key));
         return true;
 
     default:

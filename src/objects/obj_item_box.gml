@@ -19,7 +19,7 @@ applies_to=self
 /// Replace
 
 // Shields:
-switch (game_config_get("gameplay_shields"))
+switch (config_get("gameplay_shields"))
 {
     // Adventure/Advance:
     case 1:
@@ -34,7 +34,7 @@ switch (game_config_get("gameplay_shields"))
 }
 
 // Debuffs:
-if (!game_config_get("gameplay_debuffs"))
+if (!config_get("gameplay_debuffs"))
 {
     if (item_index == ITEM_SLOW || item_index == ITEM_PANIC || item_index == ITEM_SWAP) item_index = ITEM_MINE;
 }

@@ -26,24 +26,24 @@ switch (_index)
             debug_add_option(debug_option_input_log);
             debug_add_option(debug_option_input_hide);
             return true;
-        
+
         case MENU_START:
             if (_execute)
             {
-                game_config_reset_key();
+                config_reset_key();
                 return true;
             }
             else return "Reset";
-        
+
         case MENU_FUNCTION:
             if (_execute)
             {
-                game_config_write_key();
-                game_config_write();
+                config_write_key();
+                config_write();
                 return true;
             }
             else return "Save";
-        
+
         default:
             return undefined;
 }

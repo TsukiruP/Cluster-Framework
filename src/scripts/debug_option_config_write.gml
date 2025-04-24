@@ -12,7 +12,7 @@ switch (_index)
         return "Write All";
 
     case OPTION_CONFIRM:
-        if (_execute) game_config_write();
+        if (_execute) config_write();
         return true;
 
     default:

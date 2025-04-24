@@ -14,10 +14,10 @@ switch (_index)
         return "HUD:";
 
     case OPTION_VALUE:
-        return pick(game_config_get(config_key), "None", "Default", "S4E2");
+        return pick(config_get(config_key), "None", "Default", "S4E2");
 
     case OPTION_CHANGE:
-        if (_execute) game_config_set(config_key, wrap(game_config_get(config_key) + menu_x_direction, 0, 2));
+        if (_execute) config_set(config_key, wrap(config_get(config_key) + menu_x_direction, 0, 2));
         return true;
 
     default:

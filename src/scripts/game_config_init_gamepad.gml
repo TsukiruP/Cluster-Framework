@@ -1,4 +1,4 @@
-/// game_config_init_gamepad()
+/// config_init_gamepad()
 /// @desc Initializes gamepad list and maps.
 /// @returns {void}
 

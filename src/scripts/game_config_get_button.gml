@@ -1,4 +1,4 @@
-/// game_config_get_button(gamepad, input)
+/// config_get_button(gamepad, input)
 /// @desc Returns the button corresponding to the input.
 /// @param {int} gamepad
 /// @param {int} input

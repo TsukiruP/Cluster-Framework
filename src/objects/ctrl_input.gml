@@ -218,7 +218,7 @@ applies_to=self
 for ({var i; i = 0}; i < PLAYER_COUNT; i += 1)
 {
     var gamepad_index; gamepad_index = gamepad_get(i);
-    var gamepad_deadzone; gamepad_deadzone = game_config_get_gamepad(i, "input_deadzone");
+    var gamepad_deadzone; gamepad_deadzone = config_get_gamepad(i, "input_deadzone");
     var check_offset; check_offset = i * 3;
 
     if (gamepad_index > -1 && gamepad_deadzone != 0)
@@ -299,15 +299,15 @@ applies_to=self
 
 for ({var i; i = INP_UP}; i <= INP_HIDE; i += 1)
 {
-    input_keyboard[i, CHECK_HELD] = keyboard_check(game_config_get_key(i));
-    input_keyboard[i, CHECK_PRESSED] = keyboard_check_pressed(game_config_get_key(i));
-    input_keyboard[i, CHECK_RELEASED] = keyboard_check_released(game_config_get_key(i));
+    input_keyboard[i, CHECK_HELD] = keyboard_check(config_get_key(i));
+    input_keyboard[i, CHECK_PRESSED] = keyboard_check_pressed(config_get_key(i));
+    input_keyboard[i, CHECK_RELEASED] = keyboard_check_released(config_get_key(i));
 }
 
 for ({var i; i = 0}; i < PLAYER_COUNT; i += 1)
 {
     var gamepad_index; gamepad_index = gamepad_get(i);
-    var input_background; input_background = game_config_get("input_background");
+    var input_background; input_background = config_get("input_background");
     var check_offset; check_offset = i * 3;
 
     if (gamepad_index > -1 && (input_background || (!input_background && window_has_focus())))
@@ -316,7 +316,7 @@ for ({var i; i = 0}; i < PLAYER_COUNT; i += 1)
         {
             for ({var k; k = CHECK_HELD}; k <= CHECK_RELEASED; k += 1)
             {
-                input_gamepad[j, k + check_offset] = gamepad_get_check(i, game_config_get_button(i, j), k);
+                input_gamepad[j, k + check_offset] = gamepad_get_check(i, config_get_button(i, j), k);
             }
         }
     }

@@ -1,4 +1,4 @@
-/// game_config_set_gamepad(gamepad, key, val)
+/// config_set_gamepad(gamepad, key, val)
 /// @desc Sets the value of a gamepad key.
 /// @param {int} gamepad
 /// @param {string} key

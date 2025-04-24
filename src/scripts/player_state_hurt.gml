@@ -18,7 +18,7 @@ switch (_phase)
 
         if (player_routine_land())
         {
-            if (!game_config_get("advance_hurt") || character_index == CHAR_CLASSIC) x_speed = 0;
+            if (!config_get("advance_hurt") || character_index == CHAR_CLASSIC) x_speed = 0;
             y_speed = 0;
             return true;
         }

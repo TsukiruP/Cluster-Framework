@@ -14,13 +14,13 @@ switch (_index)
         return "Mode:";
 
     case OPTION_VALUE:
-        return pick(game_config_get(config_key), "Default", "3DS", "Misc.");
+        return pick(config_get(config_key), "Default", "3DS", "Misc.");
 
     case OPTION_CHANGE:
         if (_execute)
         {
-            game_config_set(config_key, wrap(game_config_get(config_key) + menu_x_direction, 0, 2));
-            game_config_set("screen_ratio", 0);
+            config_set(config_key, wrap(config_get(config_key) + menu_x_direction, 0, 2));
+            config_set("screen_ratio", 0);
         }
 
         return true;

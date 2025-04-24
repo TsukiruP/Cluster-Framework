@@ -13,19 +13,19 @@ switch (_index)
             debug_add_option(debug_option_gameplay_debuffs);
             debug_add_option(debug_option_gameplay_bonuses);
             return true;
-        
+
         case MENU_START:
             if (_execute)
             {
-                game_config_reset_gameplay();
+                config_reset_gameplay();
                 return true;
             }
             else return "Reset";
-        
+
         case MENU_FUNCTION:
             if (_execute)
             {
-                game_config_write();
+                config_write();
                 return true;
             }
             else return "Save";

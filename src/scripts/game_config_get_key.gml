@@ -1,4 +1,4 @@
-/// game_config_get_key(input)
+/// config_get_key(input)
 /// @desc Returns the key corresponding to the input.
 /// @param {int} input
 /// @returns {int}

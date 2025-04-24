@@ -1,4 +1,4 @@
-/// game_config_set_key(input, key)
+/// config_set_key(input, key)
 /// @desc Sets the key of an input.
 /// @param {int} input
 /// @param {int} key

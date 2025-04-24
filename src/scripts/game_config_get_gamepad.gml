@@ -1,4 +1,4 @@
-/// game_config_get_gamepad(gamepad, key)
+/// config_get_gamepad(gamepad, key)
 /// @desc Returns the value corresponding to the gamepad key.
 /// @param {int} gamepad
 /// @param {string} key

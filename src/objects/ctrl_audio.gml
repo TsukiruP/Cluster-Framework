@@ -14,7 +14,7 @@ sound_add_directory("data\audio\sfx\prop", ".wav", 0, true);
 sound_add_directory("data\audio\sfx\enemy", ".wav", 0, true);
 sound_add_directory("data\audio\sfx\menu", ".wav", 0, true);
 
-sound_kind_volume(0, game_config_get("audio_sfx") / 100);
+sound_kind_volume(0, config_get("audio_sfx") / 100);
 sfx_list = ds_list_create();
 ring_pan = 1;
 /*"/*'/**//* YYD ACTION
@@ -29,7 +29,7 @@ sound_add_directory("data\audio\bgm", ".ogg", 1, true);
 sound_set_loop("bgm_debug", 2304672, 9984665, unit_samples);
 sound_set_loop("bgm_basic_test_1", 1024258, 5121290, unit_samples);
 
-sound_kind_volume(1, game_config_get("audio_bgm") / 100);
+sound_kind_volume(1, config_get("audio_bgm") / 100);
 bgm_inst = -1;
 fade_out = false;
 /*"/*'/**//* YYD ACTION
@@ -41,7 +41,7 @@ applies_to=self
 
 sound_add_directory("data\audio\jng", ".ogg", 3, true);
 
-sound_kind_volume(3, game_config_get("audio_bgm") / 100);
+sound_kind_volume(3, config_get("audio_bgm") / 100);
 jng_inst = -1;
 drown_inst = -1;
 #define Step_0

@@ -1,4 +1,4 @@
-/// game_config_load_buffer()
+/// config_load_buffer()
 /// @desc Returns a config map from a file.
 /// @returns {ds_map}
 

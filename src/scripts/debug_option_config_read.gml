@@ -14,8 +14,8 @@ switch (_index)
     case OPTION_CONFIRM:
         if (_execute)
         {
-            game_config_read();
-            window_set_fullscreen(game_config_get("screen_full"));
+            config_read();
+            window_set_fullscreen(config_get("screen_full"));
         }
 
         return true;

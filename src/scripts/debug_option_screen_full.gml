@@ -14,10 +14,10 @@ switch (_index)
         return "Fullscreen:";
 
     case OPTION_VALUE:
-        return string_bool(game_config_get(config_key), true);
+        return string_bool(config_get(config_key), true);
 
     case OPTION_CHANGE:
-        if (_execute) window_set_fullscreen(!game_config_get(config_key));
+        if (_execute) window_set_fullscreen(!config_get(config_key));
         return true;
 
     default:

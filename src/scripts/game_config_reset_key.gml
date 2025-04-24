@@ -1,4 +1,4 @@
-/// game_config_reset_key()
+/// config_reset_key()
 /// @desc Resets the keyboard list.
 /// @returns {void}
 

@@ -1,4 +1,4 @@
-/// game_config_reset_btn(device)
+/// config_reset_btn(device)
 /// @desc Resets a gamepad list.
 /// @param {int} device
 /// @returns {void}

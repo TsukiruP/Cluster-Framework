@@ -20,8 +20,8 @@ switch (_index)
     case OPTION_CHANGE:
         if (_execute)
         {
-            game_config_set_gamepad(player_index, config_key, wrap(game_config_get_gamepad(player_index, config_key) + menu_x_direction, 0, 1));
-            game_config_set_confirm(player_index);
+            config_set_gamepad(player_index, config_key, wrap(config_get_gamepad(player_index, config_key) + menu_x_direction, 0, 1));
+            config_set_confirm(player_index);
         }
 
         return true;

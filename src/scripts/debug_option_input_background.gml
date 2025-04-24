@@ -14,14 +14,14 @@ switch (_index)
         return "Background Input:";
 
     case OPTION_VALUE:
-        return string_bool(game_config_get(config_key), true);
+        return string_bool(config_get(config_key), true);
 
     case OPTION_SELECT:
         if (_execute) text_set_body("Allow controller input even when the game is not in focus.");
         return true;
 
     case OPTION_CHANGE:
-        if (_execute) game_config_set(config_key, !game_config_get(config_key));
+        if (_execute) config_set(config_key, !config_get(config_key));
         return true;
 
     default:

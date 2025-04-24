@@ -14,10 +14,10 @@ switch (_index)
         return "Brake:";
 
     case OPTION_VALUE:
-        return pick(game_config_get(config_key), "Classic", "Advance");
+        return pick(config_get(config_key), "Classic", "Advance");
 
     case OPTION_CHANGE:
-        if (_execute) game_config_set(config_key, !game_config_get(config_key));
+        if (_execute) config_set(config_key, !config_get(config_key));
         return true;
 
     default:

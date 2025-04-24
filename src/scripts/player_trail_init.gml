@@ -5,7 +5,7 @@
 trail_draw = false;
 trail_alpha = -1;
 
-if (game_config_get("misc_trails"))
+if (config_get("misc_trails"))
 {
     trail_alpha = ds_list_create();
 
