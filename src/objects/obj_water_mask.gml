@@ -7,7 +7,7 @@ applies_to=self
 /// Water Initialization
 
 event_inherited();
-depth = -11000;
+depth = -10000;
 reaction_index = player_reaction_water;
 reaction_mask = true;
 surface = true;
