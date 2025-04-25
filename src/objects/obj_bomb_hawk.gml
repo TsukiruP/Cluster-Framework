@@ -53,7 +53,7 @@ if ((sequence_index == seq_bomb_hawk_idle || sequence_index == seq_bomb_hawk_mov
 }
 
 // Create bomb:
-if (sequence_index == seq_bomb_hawk_drop && sequence_position(9)) explosive_create(x, y, seq_bomb_hawk_explosive, 0.05 * image_yscale);
+if (sequence_index == seq_bomb_hawk_drop && sequence_position(10)) explosive_create(x, y, seq_bomb_hawk_explosive, 0.05 * image_yscale);
 
 sequence_execute();
 #define Other_4
