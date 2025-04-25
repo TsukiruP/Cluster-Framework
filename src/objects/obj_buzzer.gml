@@ -85,7 +85,7 @@ if ((sequence_index == seq_buzzer_aim || sequence_index == seq_buzzer_move) && b
 }
 
 // Create bullet:
-if (sequence_index == seq_buzzer_shoot && sequence_position(12) && instance_exists(player_inst))
+if (sequence_index == seq_buzzer_shoot && sequence_position(11) && instance_exists(player_inst))
 {
     var bullet_x; bullet_x = x + 3 * image_xscale;
     var bullet_y; bullet_y = y + 12 * image_yscale;
