@@ -285,7 +285,7 @@
 			+Omochao
 				|spr_omochao_idle
 				|spr_omochao_sonic
-		+Switch
+		+Switches
 			|spr_switch_vert
 			|spr_switch_hor
 			|spr_switch_platform

@@ -515,7 +515,7 @@
 						|seq_rhino_charge
 						|seq_rhino_ram
 						|seq_rhino_spring
-				+Switch
+				+Switches
 					|seq_switch_platform
 					+Vertical
 						|seq_switch_vert_active
