@@ -64,7 +64,6 @@
 				|config_reset_button
 				|config_reset_gamepad
 		+Save
-			|game_not_save_init
 			|save_get
 			|save_get_index
 			|save_get_count
@@ -536,6 +535,10 @@
 							|seq_switch_spring_diag
 							|seq_switch_spring_diag_unlock
 							|seq_switch_spring_diag_lock
+				+Goals
+					+Goal Ring
+						|seq_goal_ring
+						|seq_goal_ring_clear
 			+Effects
 				+Player
 					|seq_spin_dash
@@ -588,6 +591,7 @@
 					|seq_splash_6
 				+Misc.
 					|seq_ring_sparkle
+					|seq_goal_ring_sparkle
 					|seq_blockade_debris
 	+Utilities
 		+Math
@@ -713,6 +717,7 @@
 			|player_reaction_spring
 			|player_reaction_item_box
 			|player_reaction_enemy
+			|player_reaction_rhino_spring
 			|player_reaction_bullet
 			|player_reaction_explosive
 			|player_reaction_spike
@@ -722,8 +727,8 @@
 			|player_reaction_switch
 			|player_reaction_water
 			|player_reaction_bubble
+			|player_reaction_goal_ring
 			|player_reaction_waterfall
-			|player_reaction_rhino_spring
 		+Effects
 			|player_ground_effect_create
 			|player_brake_create
@@ -809,4 +814,4 @@
 	|draw_sprite_tiled_horizontal_yscale
 	|draw_backdrop_tiled_area
 	+Config
-		|game_unused_config_init
+|script646

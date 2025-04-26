@@ -58,7 +58,7 @@ eff_super_skid
 ctrl_config
 obj_item_mine
 obj_item_bubble
-obj_item_lightning
+obj_goal_ring
 ctrl_save
 obj_item_speed
 obj_item_slow

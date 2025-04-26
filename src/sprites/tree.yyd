@@ -355,6 +355,7 @@
 			|spr_splash_7
 		+Misc.
 			|spr_ring_sparkle
+			|spr_goal_ring_sparkle
 			|spr_blockade_debris
 +Stages
 	+Zone Map

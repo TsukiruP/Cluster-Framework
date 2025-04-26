@@ -103,6 +103,7 @@
 			|obj_bubble_spawn
 			|obj_bubble
 		+Goals
+			|obj_goal_ring
 	+Effects
 		+Player
 			|eff_player
@@ -145,7 +146,6 @@
 			|obj_zone_map_mask_19
 		+Gimmicks
 			|obj_zone_map_waterfall
-	+Zone Map
 	+Sky Sanctuary
 		|obj_sky_sanctuary_parallax
 		|obj_sky_sanctuary_fountain
@@ -157,7 +157,6 @@
 	+Item Boxes
 		+Rings
 		+Shields
-			|obj_item_lightning
 			|obj_item_bubble
 		+Buffs
 			|obj_item_speed
