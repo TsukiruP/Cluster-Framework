@@ -19,15 +19,14 @@ switch (status_shield)
         audio_play_sfx("snd_shield_lightning_jump", true);
 
         // Sparks:
-        for ({var i; i = 0}; i < 4; i += 1)
+        for ({var i; i = ANGLE_RIGHT_UP}; i <= ANGLE_RIGHT_DOWN; i += ANGLE_UP)
         {
             var spark_inst; spark_inst = effect_create(x, y, seq_shield_lightning_spark);
-            var spark_angle; spark_angle = pick(i, ANGLE_LEFT_UP, ANGLE_RIGHT_UP, ANGLE_LEFT_DOWN, ANGLE_RIGHT_DOWN);
 
             with (spark_inst)
             {
-                x_speed = dcos(spark_angle) * 2;
-                y_speed = -dsin(spark_angle) * 2;
+                x_speed = dcos(i) * 2;
+                y_speed = -dsin(i) * 2;
             }
         }
         break;
