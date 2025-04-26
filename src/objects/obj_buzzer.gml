@@ -84,18 +84,19 @@ if ((sequence_index == seq_buzzer_aim || sequence_index == seq_buzzer_move) && b
     }
 }
 
+sequence_execute();
+
 // Create bullet:
 if (sequence_index == seq_buzzer_shoot && sequence_position(11) && instance_exists(player_inst))
 {
     var bullet_x; bullet_x = x + 3 * image_xscale;
-    var bullet_y; bullet_y = y + 12 * image_yscale;
+    var bullet_x; bullet_x = x + (3 * image_xscale);
+    var bullet_y; bullet_y = y + (12 * image_yscale);
     var bullet_angle; bullet_angle = point_direction(bullet_x, bullet_y, player_inst.x, player_inst.y);
 
     bullet_create(bullet_x, bullet_y, seq_buzzer_bullet, dcos(bullet_angle) * bullet_speed, -dsin(bullet_angle) * bullet_speed);
     audio_play_sfx("snd_buzzer_shoot");
 }
-
-sequence_execute();
 #define Other_4
 /*"/*'/**//* YYD ACTION
 lib_id=1
