@@ -78,9 +78,9 @@ else if (sequence_index == seq_gun_hunter_scan)
 // Shoot:
 else if (sequence_index == seq_gun_hunter_shoot)
 {
-    if (sequence_position(12)) hunter_sfx = audio_play_sfx("snd_gun_hunter_aim");
+    if (sequence_position(11)) hunter_sfx = audio_play_sfx("snd_gun_hunter_aim");
 
-    if (sequence_position(44) || sequence_position(48) || sequence_position(52))
+    if (sequence_position(43) || sequence_position(47) || sequence_position(51))
     {
         bullet_create(x + (42 * image_xscale), y - (8 * image_yscale), seq_gun_hunter_bullet, 5 * image_xscale, 0);
         audio_stop_sfx(hunter_sfx);
