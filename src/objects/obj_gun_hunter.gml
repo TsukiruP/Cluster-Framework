@@ -13,6 +13,7 @@ hunter_alarm = 0;
 hunter_sfx = noone;
 scan_allow = false;
 scan_count = 0;
+scan_max_count = 2;
 sequence_init(seq_gun_hunter_move);
 #define Destroy_0
 /*"/*'/**//* YYD ACTION
@@ -67,7 +68,7 @@ if (sequence_index == seq_gun_hunter_move)
 // Scan:
 else if (sequence_index == seq_gun_hunter_scan)
 {
-    if (scan_count >= 2)
+    if (scan_count >= scan_max_count)
     {
         scan_allow = false;
         scan_count = 0;

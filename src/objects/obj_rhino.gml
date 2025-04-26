@@ -44,7 +44,7 @@ sequence_speed = game_get_speed();
 if (sequence_index == seq_rhino_move && rhino_alarm == 0)
 {
     x += sequence_speed * image_xscale;
-    
+
     if (enemy_get_border_hor()) sequence_set(seq_rhino_move_turn);
     else
     {
@@ -74,7 +74,7 @@ else if (sequence_index == seq_rhino_charge)
     // Create dust:
     if (dust_alarm == 0)
     {
-        effect_create(x - 16 * image_xscale + irandom_range(-16, 16), y + 11 * image_yscale, seq_brake, -depth, image_xscale, image_yscale);
+        effect_create(x - (16 * image_xscale) + irandom_range(-16, 16), y + (11 * image_yscale), seq_brake, depth - 1, image_xscale, image_yscale);
         dust_alarm = 4;
     }
 }

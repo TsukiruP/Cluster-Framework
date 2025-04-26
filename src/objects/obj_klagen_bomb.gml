@@ -10,7 +10,7 @@ event_inherited();
 klagen_range = 64;
 klagen_drop = false;
 explosive_alarm = 0;
-explosive_y = y + 15 * image_yscale;
+explosive_y = y + (15 * image_yscale);
 explosive_inst = explosive_create(x, explosive_y, seq_klagen_bomb_explosive);
 sequence_init(seq_klagen_bomb);
 #define Destroy_0
@@ -67,7 +67,7 @@ if (instance_exists(explosive_inst))
         }
         else if (explosive_alarm == 0) explosive_inst.gravity_force = 0.05 * image_yscale;
     }
-    else if (explosive_inst.y != explosive_y && explosive_inst.gravity_force == 0) explosive_inst.y = approach(explosive_inst.y, explosive_y, 4/60 * sequence_speed);
+    else if (explosive_inst.y != explosive_y && explosive_inst.gravity_force == 0) explosive_inst.y = approach(explosive_inst.y, explosive_y, 4 / 60 * sequence_speed);
 }
 else
 {
