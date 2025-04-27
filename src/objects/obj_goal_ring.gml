@@ -24,8 +24,8 @@ applies_to=self
 
 if (game_ispaused()) exit;
 
-if (clear_alarm > 0) clear_alarm -= 1;
 if (sparkle_alarm > 0) sparkle_alarm -= 1;
+if (clear_alarm > 0) clear_alarm -= 1;
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
