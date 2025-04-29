@@ -30,7 +30,7 @@ sequence_update
 sequence_position
 seq_sonic_stand
 seq_sonic_turn
-seq_sonic_run_2
+seq_sonic_run_1
 seq_sonic_wait_leader
 seq_sonic_crouch
 seq_sonic_spin_fall
@@ -116,10 +116,10 @@ save_read
 sequence_set
 player_reaction_checkpoint
 sequence_init
-seq_sonic_run_1
+seq_sonic_run_0
+seq_sonic_run_2
 seq_sonic_run_3
 seq_sonic_run_4
-seq_sonic_run_5
 seq_sonic_wait_partner
 seq_sonic_spin_flight
 seq_sonic_spin_charge
@@ -226,7 +226,7 @@ seq_sonic_stomp_land
 sonic_state_stomp
 seq_sonic_peel_out
 sonic_state_peel_out
-seq_sonic_run_6
+seq_sonic_run_5
 sonic_state_drop_dash
 seq_drop_dash
 sonic_state_bound
@@ -396,8 +396,8 @@ animation_init_classic
 seq_classic_stand
 seq_classic_cliff_front
 seq_classic_cliff_back
+seq_classic_run_0
 seq_classic_run_1
-seq_classic_run_2
 seq_classic_look
 seq_classic_crouch
 seq_classic_spin_dash
@@ -535,9 +535,9 @@ roundto_step
 sequence_execute
 seq_sonic_tag_stand
 seq_sonic_tag_turn
+seq_sonic_tag_run_0
 seq_sonic_tag_run_1
 seq_sonic_tag_run_2
-seq_sonic_tag_run_3
 seq_sonic_tag_look
 seq_sonic_tag_look_end
 seq_sonic_tag_crouch
@@ -644,4 +644,12 @@ sonic_super_skid_create
 player_add_energy
 seq_goal_ring_clear
 seq_goal_ring_sparkle
-script646
+seq_miles_stand
+seq_miles_turn
+seq_miles_turn_brake
+seq_miles_run_0
+seq_miles_run_1
+seq_miles_run_2
+seq_miles_run_3
+seq_miles_run_4
+animation_init_miles

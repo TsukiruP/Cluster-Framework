@@ -6,8 +6,8 @@ animation_set(CHAR_CLASSIC, FORM_BASE, VARIANT_DEFAULT, "cliff_back", seq_classi
 animation_set(CHAR_CLASSIC, FORM_BASE, VARIANT_DEFAULT, "wait_leader", seq_classic_wait_leader);
 animation_set(CHAR_CLASSIC, FORM_BASE, VARIANT_DEFAULT, "wait_partner", seq_classic_wait_partner);
 animation_set(CHAR_CLASSIC, FORM_BASE, VARIANT_DEFAULT, "standby", seq_classic_standby);
+animation_set(CHAR_CLASSIC, FORM_BASE, VARIANT_DEFAULT, "run_0", seq_classic_run_0);
 animation_set(CHAR_CLASSIC, FORM_BASE, VARIANT_DEFAULT, "run_1", seq_classic_run_1);
-animation_set(CHAR_CLASSIC, FORM_BASE, VARIANT_DEFAULT, "run_2", seq_classic_run_2);
 animation_set(CHAR_CLASSIC, FORM_BASE, VARIANT_DEFAULT, "look", seq_classic_look);
 animation_set(CHAR_CLASSIC, FORM_BASE, VARIANT_DEFAULT, "crouch", seq_classic_crouch);
 animation_set(CHAR_CLASSIC, FORM_BASE, VARIANT_DEFAULT, "spin_dash", seq_classic_spin_dash);

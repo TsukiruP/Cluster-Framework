@@ -159,6 +159,7 @@
 			|animation_get
 			|animation_set
 			|animation_init_sonic
+			|animation_init_miles
 			|animation_init_classic
 		+Fade
 			|fade_create
@@ -361,22 +362,22 @@
 								+Wait
 									|seq_sonic_wait_leader
 									|seq_sonic_wait_partner
-								+Omochao
-									|seq_sonic_omochao
-									|seq_sonic_omochao_end
 								+Misc.
 									|seq_sonic_standby
 									|seq_sonic_land
+									+Omochao
+										|seq_sonic_omochao
+										|seq_sonic_omochao_end
 							+Turn
 								|seq_sonic_turn
 								|seq_sonic_turn_brake
 							+Run
+								|seq_sonic_run_0
 								|seq_sonic_run_1
 								|seq_sonic_run_2
 								|seq_sonic_run_3
 								|seq_sonic_run_4
 								|seq_sonic_run_5
-								|seq_sonic_run_6
 							+Look
 								|seq_sonic_look
 								|seq_sonic_look_end
@@ -405,15 +406,6 @@
 							|seq_sonic_rail
 							|seq_sonic_breathe
 							+Goal
-							+Tricks
-								+Up
-									|seq_sonic_trick_up_flight
-									|seq_sonic_trick_up_fall
-								+Down
-									|seq_sonic_trick_down
-									|seq_sonic_trick_bound
-								|seq_sonic_trick_front
-								|seq_sonic_trick_back
 							|seq_sonic_hammer
 							+Skid
 								|seq_sonic_somersault
@@ -425,13 +417,22 @@
 								|seq_sonic_stomp
 								|seq_sonic_stomp_land
 							|seq_sonic_peel_out
+							+Tricks
+								+Up
+									|seq_sonic_trick_up_flight
+									|seq_sonic_trick_up_fall
+								+Down
+									|seq_sonic_trick_down
+									|seq_sonic_trick_bound
+								|seq_sonic_trick_front
+								|seq_sonic_trick_back
 						+Tag
 							|seq_sonic_tag_stand
 							|seq_sonic_tag_turn
 							+Run
+								|seq_sonic_tag_run_0
 								|seq_sonic_tag_run_1
 								|seq_sonic_tag_run_2
-								|seq_sonic_tag_run_3
 							+Look
 								|seq_sonic_tag_look
 								|seq_sonic_tag_look_end
@@ -442,6 +443,26 @@
 							+Spring
 								|seq_sonic_tag_spring_flight
 								|seq_sonic_tag_spring_fall
+				+Miles
+					+Base
+						+Default
+							+Idle
+								|seq_miles_stand
+								+Cliff
+								+Wait
+								+Misc.
+							+Turn
+								|seq_miles_turn
+								|seq_miles_turn_brake
+							+Run
+								|seq_miles_run_0
+								|seq_miles_run_1
+								|seq_miles_run_2
+								|seq_miles_run_3
+								|seq_miles_run_4
+							+Look
+							+Crouch
+						+Tag
 				+Classic
 					+Idle
 						|seq_classic_stand
@@ -453,8 +474,8 @@
 							|seq_classic_wait_leader
 							|seq_classic_wait_partner
 					+Run
+						|seq_classic_run_0
 						|seq_classic_run_1
-						|seq_classic_run_2
 					|seq_classic_look
 					|seq_classic_crouch
 					|seq_classic_spin_dash
@@ -675,9 +696,9 @@
 				|player_state_spring
 				|player_state_rail
 				|player_state_bound
+				|player_state_hammer
 				|player_state_trick
 				|player_state_trick_bound
-				|player_state_hammer
 				|player_state_interlink
 			+Sonic
 				|sonic_state_skid
@@ -699,8 +720,8 @@
 			|player_routine_roll
 			|player_routine_insta
 			|player_routine_shield
-			|player_routine_trick
 			|player_routine_skill
+			|player_routine_trick
 			|sonic_routine_homing
 		+Traits
 			|player_trait_swap
@@ -774,10 +795,10 @@
 			|player_set_depth
 			|player_reset_physics
 			|player_reset_air
-			|player_reset_trick
 			|player_reset_tag
 			|player_reset_status
 			|player_reset_skill
+			|player_reset_trick
 			|player_reset_breath
 			|player_reset_spring
 			|player_reset_input
@@ -814,4 +835,3 @@
 	|draw_sprite_tiled_horizontal_yscale
 	|draw_backdrop_tiled_area
 	+Config
-|script646

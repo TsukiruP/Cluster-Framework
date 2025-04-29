@@ -49,12 +49,12 @@
 						|spr_sonic_turn
 						|spr_sonic_turn_brake
 					+Run
+						|spr_sonic_run_0
 						|spr_sonic_run_1
 						|spr_sonic_run_2
 						|spr_sonic_run_3
 						|spr_sonic_run_4
 						|spr_sonic_run_5
-						|spr_sonic_run_6
 					|spr_sonic_look
 					|spr_sonic_crouch
 					+Spin Dash
@@ -77,17 +77,17 @@
 					+Goal
 						|spr_sonic_goal
 						|spr_sonic_goal_gold
-					+Tricks
-						|spr_sonic_trick_up
-						|spr_sonic_trick_down
-						|spr_sonic_trick_back
-						|spr_sonic_trick_front
 					|spr_sonic_hammer
 					|spr_sonic_insta
 					|spr_sonic_skid
 					|spr_sonic_air_dash
 					|spr_sonic_stomp
 					|spr_sonic_peel_out
+					+Tricks
+						|spr_sonic_trick_up
+						|spr_sonic_trick_down
+						|spr_sonic_trick_front
+						|spr_sonic_trick_back
 					+Tag Actions
 						|spr_sonic_leap
 						|spr_sonic_fly_carry
@@ -97,80 +97,89 @@
 					|spr_sonic_tag_stand
 					|spr_sonic_tag_turn
 					+Run
+						|spr_sonic_tag_run_0
 						|spr_sonic_tag_run_1
 						|spr_sonic_tag_run_2
-						|spr_sonic_tag_run_3
 					|spr_sonic_tag_look
 					|spr_sonic_tag_crouch
 					|spr_sonic_tag_brake
 					|spr_sonic_tag_spring
 		+Miles
-			+Default
-				|spr_miles_stand
-				|spr_miles_turn
-				|spr_miles_walk
-				|spr_miles_walk_fast
-				|spr_miles_jog
-				|spr_miles_jog_fast
-				|spr_miles_run
-				+Wait
-					|spr_miles_wait_leader
-					|spr_miles_wait_partner
+			+Base
+				+Default
+					+Idle
+						|spr_miles_stand
+						+Cliff
+							|spr_miles_balance_back
+							|spr_miles_balance_front
+						+Wait
+							|spr_miles_wait_leader
+							|spr_miles_wait_partner
+						+Misc.
+							|spr_miles_ready
+							|spr_miles_land
+							|spr_miles_omochao
+					+Turn
+						|spr_miles_turn
+						|spr_miles_turn_brake
+					+Run
+						|spr_miles_run_0
+						|spr_miles_run_1
+						|spr_miles_run_2
+						|spr_miles_run_3
+						|spr_miles_run_4
+					|spr_miles_look
+					|spr_miles_crouch
+					+Spin Dash
+						|spr_miles_spin_dash
+						|spr_miles_spin_charge
+					|spr_miles_roll
+					+Spin
+						|spr_miles_spin_flight
+						|spr_miles_spin_fall
+					+Brake
+						|spr_miles_brake
+						|spr_miles_brake_fast
+					|spr_miles_hurt
+					|spr_miles_death
+					|spr_miles_push
+					|spr_miles_spring
+					|spr_miles_breathe
+					+Goal
+						|spr_miles_goal
+						|spr_miles_goal_gold
 				+Tag
 					|spr_miles_stand_tag
 					|spr_miles_turn_tag
-					|spr_miles_walk_tag
-					|spr_miles_walk_fast_tag
-					|spr_miles_jog_tag
-				+Misc.
-					|spr_miles_ready
-					|spr_miles_land
-					|spr_miles_omochao
-			+Jump
-				|spr_miles_spin_flight
-				|spr_miles_spin_fall
-			+Look
-				|spr_miles_look
-				|spr_miles_look_tag
-			+Crouch
-				|spr_miles_crouch
-				|spr_miles_crouch_tag
-			|spr_miles_spin_dash
-			|spr_miles_roll
-			+Skid
-				|spr_miles_skid
-				|spr_miles_skid_fast
-				|spr_miles_skid_turn
-				|spr_miles_skid_tag
-			+Balance
-				|spr_miles_balance_back
-				|spr_miles_balance_front
-			|spr_miles_push
-			+Spring
-				|spr_miles_spring
-				|spr_miles_spring_tag
-			|spr_miles_breathe
-			+Goal
-				|spr_miles_goal
-				|spr_miles_goal_gold
-			|spr_miles_hurt
-			|spr_miles_death
-			+Tag Actions
-				|spr_miles_frog
-				|spr_miles_throw
-				|spr_miles_glide_carry
-			|spr_miles_tail_swipe
-			+Fly
-				|spr_miles_fly
-				|spr_miles_fly_turn
-				|spr_miles_fly_cancel
-				|spr_miles_swim
-				|spr_miles_swim_turn
-			+Boost
-				|spr_miles_boost
-				|spr_miles_boost_end
-			|spr_miles_tornado
-			|spr_miles_tails
+					+Run
+						|spr_miles_walk_tag
+						|spr_miles_walk_fast_tag
+						|spr_miles_jog_tag
+					|spr_miles_look_tag
+					|spr_miles_crouch_tag
+					|spr_miles_skid_tag
+					|spr_miles_spring_tag
+			+Archive
+				+Jump
+				+Look
+				+Crouch
+				+Spring
+				+Tag Actions
+					|spr_miles_frog
+					|spr_miles_throw
+					|spr_miles_glide_carry
+				|spr_miles_tail_swipe
+				+Fly
+					|spr_miles_fly
+					|spr_miles_fly_turn
+					|spr_miles_fly_cancel
+					|spr_miles_swim
+					|spr_miles_swim_turn
+				+Boost
+					|spr_miles_boost
+					|spr_miles_boost_end
+				|spr_miles_tornado
+				|spr_miles_tails
 		+Knuckles
 			+Default
 				|spr_knuckles_stand
@@ -226,8 +235,8 @@
 			|spr_classic_stand
 			|spr_classic_cliff
 			|spr_classic_wait
+			|spr_classic_run_0
 			|spr_classic_run_1
-			|spr_classic_run_2
 			|spr_classic_spin_dash
 			|spr_classic_roll
 			|spr_classic_brake
@@ -270,6 +279,12 @@
 			|spr_gun_hunter
 			|spr_bomb_hawk
 			|spr_rhino
+			+Bullets
+				|spr_buzzer_bullet
+				|spr_gun_hunter_bullet
+			+Explosives
+				|spr_klagen_bomb_explosive
+				|spr_bomb_hawk_explosive
 		+Spikes
 			|spr_spike_vert
 			|spr_spike_hor
@@ -341,10 +356,6 @@
 			|spr_enemy_vitality
 			|spr_enemy_hit
 			|spr_enemy_debris
-			|spr_buzzer_bullet
-			|spr_gun_hunter_bullet
-			|spr_klagen_bomb_explosive
-			|spr_bomb_hawk_explosive
 		+Splashes
 			|spr_splash_1
 			|spr_splash_2

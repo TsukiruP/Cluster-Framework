@@ -9,6 +9,7 @@ applies_to=self
 animation_list = ds_list_create();
 repeat (CHAR_CLASSIC + 1) ds_list_add(animation_list, 0);
 animation_init_sonic();
+animation_init_miles();
 animation_init_classic();
 #define Other_3
 /*"/*'/**//* YYD ACTION

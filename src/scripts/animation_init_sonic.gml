@@ -12,12 +12,12 @@ animation_set(CHAR_SONIC, FORM_BASE, VARIANT_DEFAULT, "omochao", seq_sonic_omoch
 animation_set(CHAR_SONIC, FORM_BASE, VARIANT_DEFAULT, "omochao_end", seq_sonic_omochao_end);
 animation_set(CHAR_SONIC, FORM_BASE, VARIANT_DEFAULT, "turn", seq_sonic_turn);
 animation_set(CHAR_SONIC, FORM_BASE, VARIANT_DEFAULT, "turn_brake", seq_sonic_turn_brake);
+animation_set(CHAR_SONIC, FORM_BASE, VARIANT_DEFAULT, "run_0", seq_sonic_run_0);
 animation_set(CHAR_SONIC, FORM_BASE, VARIANT_DEFAULT, "run_1", seq_sonic_run_1);
 animation_set(CHAR_SONIC, FORM_BASE, VARIANT_DEFAULT, "run_2", seq_sonic_run_2);
 animation_set(CHAR_SONIC, FORM_BASE, VARIANT_DEFAULT, "run_3", seq_sonic_run_3);
 animation_set(CHAR_SONIC, FORM_BASE, VARIANT_DEFAULT, "run_4", seq_sonic_run_4);
 animation_set(CHAR_SONIC, FORM_BASE, VARIANT_DEFAULT, "run_5", seq_sonic_run_5);
-animation_set(CHAR_SONIC, FORM_BASE, VARIANT_DEFAULT, "run_6", seq_sonic_run_6);
 animation_set(CHAR_SONIC, FORM_BASE, VARIANT_DEFAULT, "look", seq_sonic_look);
 animation_set(CHAR_SONIC, FORM_BASE, VARIANT_DEFAULT, "look_end", seq_sonic_look_end);
 animation_set(CHAR_SONIC, FORM_BASE, VARIANT_DEFAULT, "crouch", seq_sonic_crouch);
@@ -39,12 +39,6 @@ animation_set(CHAR_SONIC, FORM_BASE, VARIANT_DEFAULT, "spring_fall", seq_sonic_s
 animation_set(CHAR_SONIC, FORM_BASE, VARIANT_DEFAULT, "rail", seq_sonic_rail);
 animation_set(CHAR_SONIC, FORM_BASE, VARIANT_DEFAULT, "breathe", seq_sonic_breathe);
 animation_set(CHAR_SONIC, FORM_BASE, VARIANT_DEFAULT, "goal", seq_sonic_stand);
-animation_set(CHAR_SONIC, FORM_BASE, VARIANT_DEFAULT, "trick_up_flight", seq_sonic_trick_up_flight);
-animation_set(CHAR_SONIC, FORM_BASE, VARIANT_DEFAULT, "trick_up_fall", seq_sonic_trick_up_fall);
-animation_set(CHAR_SONIC, FORM_BASE, VARIANT_DEFAULT, "trick_down", seq_sonic_trick_down);
-animation_set(CHAR_SONIC, FORM_BASE, VARIANT_DEFAULT, "trick_bound", seq_sonic_trick_bound);
-animation_set(CHAR_SONIC, FORM_BASE, VARIANT_DEFAULT, "trick_front", seq_sonic_trick_front);
-animation_set(CHAR_SONIC, FORM_BASE, VARIANT_DEFAULT, "trick_back", seq_sonic_trick_back);
 animation_set(CHAR_SONIC, FORM_BASE, VARIANT_DEFAULT, "hammer", seq_sonic_hammer);
 animation_set(CHAR_SONIC, FORM_BASE, VARIANT_DEFAULT, "insta", seq_sonic_insta);
 animation_set(CHAR_SONIC, FORM_BASE, VARIANT_DEFAULT, "somersault", seq_sonic_somersault);
@@ -54,13 +48,19 @@ animation_set(CHAR_SONIC, FORM_BASE, VARIANT_DEFAULT, "air_dash", seq_sonic_air_
 animation_set(CHAR_SONIC, FORM_BASE, VARIANT_DEFAULT, "stomp", seq_sonic_stomp);
 animation_set(CHAR_SONIC, FORM_BASE, VARIANT_DEFAULT, "stomp_land", seq_sonic_stomp_land);
 animation_set(CHAR_SONIC, FORM_BASE, VARIANT_DEFAULT, "peel_out", seq_sonic_peel_out);
+animation_set(CHAR_SONIC, FORM_BASE, VARIANT_DEFAULT, "trick_up_flight", seq_sonic_trick_up_flight);
+animation_set(CHAR_SONIC, FORM_BASE, VARIANT_DEFAULT, "trick_up_fall", seq_sonic_trick_up_fall);
+animation_set(CHAR_SONIC, FORM_BASE, VARIANT_DEFAULT, "trick_down", seq_sonic_trick_down);
+animation_set(CHAR_SONIC, FORM_BASE, VARIANT_DEFAULT, "trick_bound", seq_sonic_trick_bound);
+animation_set(CHAR_SONIC, FORM_BASE, VARIANT_DEFAULT, "trick_front", seq_sonic_trick_front);
+animation_set(CHAR_SONIC, FORM_BASE, VARIANT_DEFAULT, "trick_back", seq_sonic_trick_back);
 
 // Tag:
 animation_set(CHAR_SONIC, FORM_BASE, VARIANT_TAG, "stand", seq_sonic_tag_stand);
 animation_set(CHAR_SONIC, FORM_BASE, VARIANT_TAG, "turn", seq_sonic_tag_turn);
+animation_set(CHAR_SONIC, FORM_BASE, VARIANT_TAG, "run_0", seq_sonic_tag_run_0);
 animation_set(CHAR_SONIC, FORM_BASE, VARIANT_TAG, "run_1", seq_sonic_tag_run_1);
 animation_set(CHAR_SONIC, FORM_BASE, VARIANT_TAG, "run_2", seq_sonic_tag_run_2);
-animation_set(CHAR_SONIC, FORM_BASE, VARIANT_TAG, "run_3", seq_sonic_tag_run_3);
 animation_set(CHAR_SONIC, FORM_BASE, VARIANT_TAG, "look", seq_sonic_tag_look);
 animation_set(CHAR_SONIC, FORM_BASE, VARIANT_TAG, "look_end", seq_sonic_tag_look_end);
 animation_set(CHAR_SONIC, FORM_BASE, VARIANT_TAG, "crouch", seq_sonic_tag_crouch);
