@@ -6,4 +6,4 @@ if (sequence_position(0))
     image_index = 3;
 }
 else if (sequence_position(3)) image_xscale *= -1;
-else if (sequence_position(4)) sequence_set(seq_jawz_move);
+else if (sequence_position(5)) sequence_set(seq_jawz_move);

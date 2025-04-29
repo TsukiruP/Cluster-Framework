@@ -11,4 +11,4 @@ else if (sequence_position(2)) image_index = 13;
 else if (sequence_position(6)) image_index = 14;
 else if (sequence_position(10)) image_index = 15;
 else if (sequence_position(14)) image_index = 16;
-else if (sequence_position(16)) sequence_set(seq_rhino_move);
+else if (sequence_position(15)) sequence_set(seq_rhino_move);
