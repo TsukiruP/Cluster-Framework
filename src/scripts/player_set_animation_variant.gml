@@ -10,9 +10,9 @@ if (tag_leader)
     {
         case "stand":
         case "turn":
+        case "run_0":
         case "run_1":
         case "run_2":
-        case "run_3":
         case "look":
         case "look_end":
         case "crouch":
