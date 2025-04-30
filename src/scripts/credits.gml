@@ -119,6 +119,9 @@ Classic Sonic Spritesheet
 Vebilis
 Sonic Adventure Hint Box Sprites
 
+IceIsNice
+Miles Spin Charge
+
 Zeronatt1233
 Metal Cluster Hopper Symbols
 
@@ -126,6 +129,7 @@ RIPPED SOUNDS
 Tsukiru
 Sonic Heroes
 Sonic Advance 3 Tag Sounds
+Sonic Rush
 
 PkR
 Sonic Adventure Sound Overhaul
@@ -162,6 +166,9 @@ RPatry
 Velocitas
 
 Vectorpea
+
+Gota7
+Nitro Sound 2
 
 TEXT
 Sonic Time Twisted
