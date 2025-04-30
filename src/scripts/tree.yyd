@@ -449,7 +449,11 @@
 							+Idle
 								|seq_miles_stand
 								+Cliff
+									|seq_miles_cliff_front
+									|seq_miles_cliff_back
 								+Wait
+									|seq_miles_wait_leader
+									|seq_miles_wait_partner
 								+Misc.
 							+Turn
 								|seq_miles_turn

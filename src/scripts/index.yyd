@@ -664,3 +664,7 @@ seq_miles_spin_dash
 seq_miles_spin_charge
 seq_miles_spin_flight
 seq_miles_spin_fall
+seq_miles_cliff_front
+seq_miles_cliff_back
+seq_miles_wait_leader
+seq_miles_wait_partner

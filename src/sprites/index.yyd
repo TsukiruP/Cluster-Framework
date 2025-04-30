@@ -229,8 +229,8 @@ spr_sonic_omochao
 spr_miles_turn
 spr_miles_turn_brake
 spr_miles_brake
-spr_miles_balance_front
-spr_miles_balance_back
+spr_miles_cliff_front
+spr_miles_cliff_back
 spr_miles_goal_gold
 spr_miles_goal
 spr_miles_fly_turn

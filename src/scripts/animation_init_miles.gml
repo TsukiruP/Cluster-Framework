@@ -2,10 +2,10 @@
 
 // Default:
 animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "stand", seq_miles_stand);
-animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "cliff_front", seq_sonic_cliff_front);
-animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "cliff_back", seq_sonic_cliff_back);
-animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "wait_leader", seq_sonic_wait_leader);
-animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "wait_partner", seq_sonic_wait_partner);
+animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "cliff_front", seq_miles_cliff_front);
+animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "cliff_back", seq_miles_cliff_back);
+animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "wait_leader", seq_miles_wait_leader);
+animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "wait_partner", seq_miles_wait_partner);
 animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "standby", seq_sonic_standby);
 animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "land", seq_sonic_land);
 animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "omochao", seq_sonic_omochao);

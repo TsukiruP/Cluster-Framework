@@ -110,8 +110,8 @@
 					+Idle
 						|spr_miles_stand
 						+Cliff
-							|spr_miles_balance_back
-							|spr_miles_balance_front
+							|spr_miles_cliff_front
+							|spr_miles_cliff_back
 						+Wait
 							|spr_miles_wait_leader
 							|spr_miles_wait_partner
