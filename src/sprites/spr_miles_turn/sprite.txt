@@ -1,7 +1,7 @@
 frames=2
 origin_x=23
 origin_y=16
-collision_shape=0
+collision_shape=1
 alpha_tolerance=0
 per_frame_colliders=0
 bbox_type=0

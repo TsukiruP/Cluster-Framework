@@ -471,6 +471,8 @@
 								|seq_miles_spin_charge
 							|seq_miles_roll
 							+Spin
+								|seq_miles_spin_flight
+								|seq_miles_spin_fall
 							+Brake
 								|seq_miles_brake
 								|seq_miles_brake_fast

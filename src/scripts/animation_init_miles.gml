@@ -24,8 +24,8 @@ animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "crouch_end", seq_miles_cr
 animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "spin_dash", seq_miles_spin_dash);
 animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "spin_charge", seq_miles_spin_charge);
 animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "roll", seq_miles_roll);
-animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "spin_flight", seq_sonic_spin_flight);
-animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "spin_fall", seq_sonic_spin_fall);
+animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "spin_flight", seq_miles_spin_flight);
+animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "spin_fall", seq_miles_spin_fall);
 animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "brake", seq_miles_brake);
 animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "brake_fast", seq_miles_brake_fast);
 animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "hurt", seq_sonic_hurt);
