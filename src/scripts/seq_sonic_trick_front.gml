@@ -14,7 +14,7 @@ else if (sequence_position(7))
 {
     image_index = 3;
     animation_trigger = true;
-    hitbox_set_hurtbox(6, 16, 6, 15);
+    hitbox_set_hurtbox(6, 16, 6, 16);
     hitbox_set_attackbox(14, 16, 14, 14);
 }
 else if (sequence_position(8)) image_index = 4;

@@ -5,7 +5,7 @@ if (sequence_position(0))
     sprite_index = spr_sonic_hammer;
     image_index = 0;
     player_set_radii(6, 14, 3);
-    hitbox_set_hurtbox(6, 13, 6, 15);
+    hitbox_set_hurtbox(6, 13, 6, 16);
     hitbox_set_attackbox();
 }
 else if (sequence_position(1))
@@ -35,7 +35,7 @@ else if (sequence_position(10))
 else if (sequence_position(11))
 {
     image_index = 8;
-    hitbox_set_hurtbox(6, 13, 6, 15);
+    hitbox_set_hurtbox(6, 13, 6, 16);
     hitbox_set_attackbox(16, 23, 16, 15, 16);
 }
 else if (sequence_position(13)) image_index = 9;
