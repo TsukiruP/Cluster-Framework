@@ -461,7 +461,15 @@
 								|seq_miles_run_3
 								|seq_miles_run_4
 							+Look
+								|seq_miles_look
+								|seq_miles_look_end
 							+Crouch
+							+Spin Dash
+							|seq_miles_roll
+							+Spin
+							+Brake
+								|seq_miles_brake
+								|seq_miles_brake_fast
 						+Tag
 				+Classic
 					+Idle

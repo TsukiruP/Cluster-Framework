@@ -23,11 +23,11 @@ animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "crouch", seq_sonic_crouch
 animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "crouch_end", seq_sonic_crouch_end);
 animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "spin_dash", seq_sonic_spin_dash);
 animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "spin_charge", seq_sonic_spin_charge);
-animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "roll", seq_sonic_roll);
+animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "roll", seq_miles_roll);
 animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "spin_flight", seq_sonic_spin_flight);
 animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "spin_fall", seq_sonic_spin_fall);
-animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "brake", seq_sonic_brake);
-animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "brake_fast", seq_sonic_brake_fast);
+animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "brake", seq_miles_brake);
+animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "brake_fast", seq_miles_brake_fast);
 animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "hurt", seq_sonic_hurt);
 animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "death", seq_sonic_death);
 animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "push", seq_sonic_push);

@@ -653,3 +653,8 @@ seq_miles_run_2
 seq_miles_run_3
 seq_miles_run_4
 animation_init_miles
+seq_miles_roll
+seq_miles_brake
+seq_miles_brake_fast
+seq_miles_look
+seq_miles_look_end
