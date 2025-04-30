@@ -464,7 +464,11 @@
 								|seq_miles_look
 								|seq_miles_look_end
 							+Crouch
+								|seq_miles_crouch
+								|seq_miles_crouch_end
 							+Spin Dash
+								|seq_miles_spin_dash
+								|seq_miles_spin_charge
 							|seq_miles_roll
 							+Spin
 							+Brake

@@ -658,3 +658,7 @@ seq_miles_brake
 seq_miles_brake_fast
 seq_miles_look
 seq_miles_look_end
+seq_miles_crouch
+seq_miles_crouch_end
+seq_miles_spin_dash
+seq_miles_spin_charge
