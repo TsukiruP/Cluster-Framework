@@ -668,3 +668,4 @@ seq_miles_cliff_front
 seq_miles_cliff_back
 seq_miles_wait_leader
 seq_miles_wait_partner
+seq_miles_standby

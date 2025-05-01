@@ -455,6 +455,7 @@
 									|seq_miles_wait_leader
 									|seq_miles_wait_partner
 								+Misc.
+									|seq_miles_standby
 							+Turn
 								|seq_miles_turn
 								|seq_miles_turn_brake

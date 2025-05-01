@@ -116,7 +116,7 @@
 							|spr_miles_wait_leader
 							|spr_miles_wait_partner
 						+Misc.
-							|spr_miles_ready
+							|spr_miles_standby
 							|spr_miles_land
 							|spr_miles_omochao
 					+Turn
