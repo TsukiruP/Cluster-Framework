@@ -9,7 +9,7 @@ applies_to=self
 event_inherited();
 draw_x = x;
 draw_y = y;
-hitbox_set_hurtbox(11, 11, 10, 10, 2, 5);
+hitbox_set_hurtbox(9, 6, 13, 15);
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
@@ -25,16 +25,7 @@ var omochao_index; omochao_index = spr_omochao_idle;
 with (player_inst)
 {
     if (animation_previous == "omochao_end") hint_allow = true;
-
-    if (!hint_allow)
-    {
-        switch (character_index)
-        {
-            case CHAR_SONIC:
-                omochao_index = spr_omochao_sonic;
-                break;
-        }
-    }
+    if (character_index != CHAR_CLASSIC && !hint_allow) omochao_index = pick(character_index, spr_omochao_sonic, spr_omochao_miles);
 }
 
 if (sprite_index != omochao_index) sprite_index = omochao_index;
@@ -56,7 +47,7 @@ if (sprite_index == spr_omochao_idle)
 }
 else
 {
-    image_index = player_inst.image_index;
+    image_index = min(sprite_get_number(sprite_index) - 1, player_inst.image_index);
     image_xscale = player_inst.image_xscale;
     draw_x = floor(player_inst.x);
     draw_y = floor(player_inst.y);

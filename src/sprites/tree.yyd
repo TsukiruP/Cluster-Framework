@@ -300,6 +300,7 @@
 			+Omochao
 				|spr_omochao_idle
 				|spr_omochao_sonic
+				|spr_omochao_miles
 		+Switches
 			|spr_switch_vert
 			|spr_switch_hor

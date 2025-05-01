@@ -7,9 +7,9 @@ animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "cliff_back", seq_miles_cl
 animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "wait_leader", seq_miles_wait_leader);
 animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "wait_partner", seq_miles_wait_partner);
 animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "standby", seq_miles_standby);
-animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "land", seq_sonic_land);
-animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "omochao", seq_sonic_omochao);
-animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "omochao_end", seq_sonic_omochao_end);
+animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "land", seq_miles_land);
+animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "omochao", seq_miles_omochao);
+animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "omochao_end", seq_miles_omochao_end);
 animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "turn", seq_miles_turn);
 animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "turn_brake", seq_miles_turn_brake);
 animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "run_0", seq_miles_run_0);

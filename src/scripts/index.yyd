@@ -669,3 +669,7 @@ seq_miles_cliff_back
 seq_miles_wait_leader
 seq_miles_wait_partner
 seq_miles_standby
+seq_miles_land
+seq_miles_omochao
+seq_miles_omochao_end
+seq_miles_hurt

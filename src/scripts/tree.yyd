@@ -456,6 +456,10 @@
 									|seq_miles_wait_partner
 								+Misc.
 									|seq_miles_standby
+									|seq_miles_land
+									+Omochao
+										|seq_miles_omochao
+										|seq_miles_omochao_end
 							+Turn
 								|seq_miles_turn
 								|seq_miles_turn_brake
@@ -481,6 +485,7 @@
 							+Brake
 								|seq_miles_brake
 								|seq_miles_brake_fast
+							|seq_miles_hurt
 						+Tag
 				+Classic
 					+Idle
