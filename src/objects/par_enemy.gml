@@ -38,7 +38,7 @@ applies_to=self
 /// Draw Enemy
 
 // Enemy:
-image_alpha = pick((class == ENE_SUPER && invin_alarm > 0), 1, time_sync(invin_alarm, 2, 2));
+image_alpha = pick((class == ENE_SUPER && invin_alarm > 0), 1, mod_time(invin_alarm, 2, 2));
 draw_sprite_ext(sprite_index, -1, floor(x) + x_offset * sign(image_xscale), floor(y) + y_offset * sign(image_yscale), image_xscale, image_yscale, gravity_direction, c_white, image_alpha);
 
 // Vitality:

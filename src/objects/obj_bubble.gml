@@ -37,11 +37,11 @@ if (!in_view(self)) instance_destroy();
 switch (size)
 {
     case 1:
-        image_index = time_sync(game_get_time(), 12, 3) + 1;
+        image_index = mod_time(game_get_time(), 12, 3) + 1;
         break;
 
     case 2:
-        image_index = time_sync(game_get_time(), 16, 3) + 4;
+        image_index = mod_time(game_get_time(), 16, 3) + 4;
         break;
 
     default:

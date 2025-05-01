@@ -58,9 +58,9 @@ applies_to=self
 if (!indicator_draw) exit;
 
 // Stars:
-draw_sprite(spr_save_stars, time_sync(indicator_time, 4, sprite_get_number(spr_save_stars)), view_xview[view_current] + screen_get_width() - 27, view_yview[view_current] + screen_get_height() - 16);
+draw_sprite(spr_save_stars, mod_time(indicator_time, 4, sprite_get_number(spr_save_stars)), view_xview[view_current] + screen_get_width() - 27, view_yview[view_current] + screen_get_height() - 16);
 
 // Sonic:
 d3d_fog_trick(c_white);
-draw_sprite(spr_sonic_run_4, time_sync(indicator_time, 4, sprite_get_number(spr_sonic_run_5)), view_xview[view_current] + screen_get_width() - 27, view_yview[view_current] + screen_get_height() - 25);
+draw_sprite(spr_sonic_run_4, mod_time(indicator_time, 4, sprite_get_number(spr_sonic_run_5)), view_xview[view_current] + screen_get_width() - 27, view_yview[view_current] + screen_get_height() - 25);
 d3d_set_fog(false, c_black, 0, 0);

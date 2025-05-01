@@ -86,7 +86,7 @@ if (item_grid != -1)
                 item_alarm -= 1;
                 item_hide = false;
 
-                if (item_alarm <= 30) item_hide = time_sync(item_alarm, 2, 2);
+                if (item_alarm <= 30) item_hide = mod_time(item_alarm, 2, 2);
 
                 if (item_alarm == 0)
                 {
@@ -191,27 +191,27 @@ with (stage_get_player(0))
     // Invincibility:
     other.status_icon[STATUS_INVIN] = ITEM_INVIN;
     other.status_active[STATUS_INVIN, 0] = (status_invin != INVIN_NONE);
-    if (status_invin_alarm > 0 && status_invin_alarm <= 120) other.status_active[STATUS_INVIN, 1] = time_sync(status_invin_alarm, 2, 2);
+    if (status_invin_alarm > 0 && status_invin_alarm <= 120) other.status_active[STATUS_INVIN, 1] = mod_time(status_invin_alarm, 2, 2);
     else other.status_active[STATUS_INVIN, 1] = true;
 
     // Speed Up/Slow Down:
     if (status_speed == SPEED_SLOW) other.status_icon[STATUS_SPEED] = ITEM_SLOW;
     else other.status_icon[STATUS_SPEED] = ITEM_SPEED;
     other.status_active[STATUS_SPEED, 0] = (status_speed != 0)
-    if (status_speed_alarm > 0 && status_speed_alarm <= 120) other.status_active[STATUS_SPEED, 1] = time_sync(status_speed_alarm, 2, 2);
+    if (status_speed_alarm > 0 && status_speed_alarm <= 120) other.status_active[STATUS_SPEED, 1] = mod_time(status_speed_alarm, 2, 2);
     else other.status_active[STATUS_SPEED, 1] = true;
 
     // Panic:
     other.status_icon[STATUS_PANIC] = ITEM_PANIC;
     other.status_active[STATUS_PANIC, 0] = (status_panic_alarm > 0);
-    if (status_panic_alarm > 0 && status_panic_alarm <= 120) other.status_active[STATUS_PANIC, 1] = time_sync(status_panic_alarm, 2, 2);
+    if (status_panic_alarm > 0 && status_panic_alarm <= 120) other.status_active[STATUS_PANIC, 1] = mod_time(status_panic_alarm, 2, 2);
     else other.status_active[STATUS_PANIC, 1] = true;
 
     // Swap:
     other.status_icon[STATUS_SWAP] = ITEM_SWAP;
     other.status_active[STATUS_SWAP, 0] = (status_swap_alarm > 0);
 
-    if (status_swap_alarm > 0 && status_swap_alarm <= 120) other.status_active[STATUS_SWAP, 1] = time_sync(status_swap_alarm, 2, 2);
+    if (status_swap_alarm > 0 && status_swap_alarm <= 120) other.status_active[STATUS_SWAP, 1] = mod_time(status_swap_alarm, 2, 2);
     else other.status_active[STATUS_SWAP, 1] = true;
 }
 /*"/*'/**//* YYD ACTION
@@ -302,7 +302,7 @@ draw_text(time_x + 44, time_y, string_pad(floor(stage_get_time() * 1.667) mod 10
 // Rings:
 draw_set_font(global.font_hud_s4e2);
 
-if ((time_sync(game_get_time(), 8, 2) && stage_get_rings() == 0) || stage_get_rings() > 0)
+if ((mod_time(game_get_time(), 8, 2) && stage_get_rings() == 0) || stage_get_rings() > 0)
 {
     if (stage_get_rings() == 0) draw_set_color(c_red);
     draw_text(view_xview[view_current] + hud_x - 5, view_yview[view_current] + hud_y + 11, string_pad(stage_get_rings(), 3));

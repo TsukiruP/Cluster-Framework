@@ -70,7 +70,7 @@ applies_to=self
 
 if (game_ispaused(mnu_pause)) exit;
 
-sky_scroll = -time_sync(game_get_time(), 16, background_get_width(bg_basic_test_sky));
+sky_scroll = -mod_time(game_get_time(), 16, background_get_width(bg_basic_test_sky));
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1

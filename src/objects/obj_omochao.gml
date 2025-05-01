@@ -49,7 +49,7 @@ if (text_get_clear())
 
 if (sprite_index == spr_omochao_idle)
 {
-    image_index = time_sync(game_get_time(), 3, sprite_get_number(sprite_index));
+    image_index = mod_time(game_get_time(), 3, sprite_get_number(sprite_index));
     image_xscale = 1;
     draw_x = x;
     draw_y = y;

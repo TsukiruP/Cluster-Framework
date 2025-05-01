@@ -19,7 +19,7 @@ applies_to=self
 */
 /// Animation
 
-image_index = time_sync(game_get_time(), 6, sprite_get_number(spr_water_surface));
+image_index = mod_time(game_get_time(), 6, sprite_get_number(spr_water_surface));
 #define Other_4
 /*"/*'/**//* YYD ACTION
 lib_id=1

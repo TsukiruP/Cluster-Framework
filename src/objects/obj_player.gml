@@ -748,7 +748,7 @@ with (shield_inst)
     if (shield_depth) event_draw();
 }
 
-image_alpha = pick((status_invin == INVIN_HURT && status_invin_alarm > 0), 1, time_sync(status_invin_alarm, 2, 2));
+image_alpha = pick((status_invin == INVIN_HURT && status_invin_alarm > 0), 1, mod_time(status_invin_alarm, 2, 2));
 if (sprite_exists(sprite_index)) draw_self_floored();
 with (spin_dash_inst) event_draw();
 with (debuff_inst) event_draw();

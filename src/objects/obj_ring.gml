@@ -118,5 +118,5 @@ applies_to=self
 */
 /// Draw Ring
 
-image_alpha = pick((dropped && life_alarm < 30), 1, time_sync(life_alarm, 2, 2));
+image_alpha = pick((dropped && life_alarm < 30), 1, mod_time(life_alarm, 2, 2));
 draw_self_floored();

@@ -36,7 +36,7 @@ seq_sonic_crouch
 seq_sonic_spin_fall
 seq_sonic_spin_dash
 seq_sonic_brake
-time_sync
+mod_time
 player_animation_core
 player_get_animation_sequence
 debug_add_option

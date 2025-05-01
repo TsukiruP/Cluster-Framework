@@ -55,7 +55,7 @@ shield_advance = (player_inst.status_shield == SHIELD_BASIC || player_inst.statu
 
 if (!game_ispaused(mnu_pause) && ((player_inst.status_shield == SHIELD_BUBBLE && sequence_index == seq_shield_bubble) || (config_get("advance_flicker") && shield_advance)))
 {
-    shield_hide = time_sync(sequence_moment, 2, 2);
+    shield_hide = mod_time(sequence_moment, 2, 2);
 }
 else shield_hide = false;
 #define Other_10

@@ -31,7 +31,7 @@ applies_to=self
 
 if (game_ispaused(mnu_pause)) exit;
 
-image_index = time_sync(game_get_time(), 1, sprite_get_number(sprite_index));
+image_index = mod_time(game_get_time(), 1, sprite_get_number(sprite_index));
 #define Other_4
 /*"/*'/**//* YYD ACTION
 lib_id=1

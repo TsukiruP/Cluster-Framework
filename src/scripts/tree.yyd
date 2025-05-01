@@ -637,7 +637,7 @@
 		+Math
 			|wrap
 			|angle_wrap
-			|time_sync
+			|mod_time
 			|sine_wave
 			|cosine_wave
 			|sine_wave_range
