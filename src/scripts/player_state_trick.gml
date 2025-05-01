@@ -17,7 +17,7 @@ switch (_phase)
     case STATE_STEP:
         if (!trick_windup)
         {
-            if (input_x_direction != 0 && (!(character_index == CHAR_KNUCKLES && trick_index == TRICK_UP) || y_speed > 0))
+            if (input_x_direction != 0 && (!(character_index == CHAR_KNUX && trick_index == TRICK_UP) || y_speed > 0))
             {
                 if (abs(x_speed) < top_speed || sign(x_speed) != input_x_direction)
                 {
