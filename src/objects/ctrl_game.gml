@@ -49,7 +49,7 @@ applies_to=self
 
 if (game_ispaused(mnu_pause)) exit;
 
-game_set_time(roundto_step(game_time + game_speed, game_speed));
+game_set_time(roundto_step(game_time, game_speed));
 #define Other_3
 /*"/*'/**//* YYD ACTION
 lib_id=1
