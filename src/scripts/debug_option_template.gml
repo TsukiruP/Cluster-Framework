@@ -13,11 +13,11 @@ switch (_index)
 
     case OPTION_VALUE:
         return undefined;
-    
+
     case OPTION_SELECT:
         if (_execute) return true;
         return false;
-    
+
     case OPTION_CHANGE:
         if (_execute) return true;
         return false;
