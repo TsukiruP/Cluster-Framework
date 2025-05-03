@@ -509,6 +509,22 @@
 									|seq_miles_trick_back
 									|seq_miles_trick_back_fall
 						+Tag
+							|seq_miles_tag_stand
+							|seq_miles_tag_turn
+							+Run
+								|seq_miles_tag_run_0
+								|seq_miles_tag_run_1
+								|seq_miles_tag_run_2
+							+Look
+								|seq_miles_tag_look
+								|seq_miles_tag_look_end
+							+Crouch
+								|seq_miles_tag_crouch
+								|seq_miles_tag_crouch_end
+							|seq_miles_tag_brake
+							+Spring
+								|seq_miles_tag_spring_flight
+								|seq_miles_tag_spring_fall
 				+Classic
 					+Idle
 						|seq_classic_stand

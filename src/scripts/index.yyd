@@ -690,3 +690,15 @@ seq_miles_trick_back
 seq_miles_trick_back_fall
 seq_tails
 miles_tails_create
+seq_miles_tag_stand
+seq_miles_tag_turn
+seq_miles_tag_run_0
+seq_miles_tag_run_1
+seq_miles_tag_run_2
+seq_miles_tag_look
+seq_miles_tag_look_end
+seq_miles_tag_crouch
+seq_miles_tag_crouch_end
+seq_miles_tag_brake
+seq_miles_tag_spring_flight
+seq_miles_tag_spring_fall

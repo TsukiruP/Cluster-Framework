@@ -47,15 +47,15 @@ animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "trick_back", seq_miles_tr
 animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "trick_back_fall", seq_miles_trick_back_fall);
 
 // Tag:
-animation_set(CHAR_MILES, FORM_BASE, VARIANT_TAG, "stand", seq_sonic_tag_stand);
-animation_set(CHAR_MILES, FORM_BASE, VARIANT_TAG, "turn", seq_sonic_tag_turn);
-animation_set(CHAR_MILES, FORM_BASE, VARIANT_TAG, "run_0", seq_sonic_tag_run_0);
-animation_set(CHAR_MILES, FORM_BASE, VARIANT_TAG, "run_1", seq_sonic_tag_run_1);
-animation_set(CHAR_MILES, FORM_BASE, VARIANT_TAG, "run_2", seq_sonic_tag_run_2);
-animation_set(CHAR_MILES, FORM_BASE, VARIANT_TAG, "look", seq_sonic_tag_look);
-animation_set(CHAR_MILES, FORM_BASE, VARIANT_TAG, "look_end", seq_sonic_tag_look_end);
-animation_set(CHAR_MILES, FORM_BASE, VARIANT_TAG, "crouch", seq_sonic_tag_crouch);
-animation_set(CHAR_MILES, FORM_BASE, VARIANT_TAG, "crouch_end", seq_sonic_tag_crouch_end);
-animation_set(CHAR_MILES, FORM_BASE, VARIANT_TAG, "brake", seq_sonic_tag_brake);
-animation_set(CHAR_MILES, FORM_BASE, VARIANT_TAG, "spring_flight", seq_sonic_tag_spring_flight);
-animation_set(CHAR_MILES, FORM_BASE, VARIANT_TAG, "spring_fall", seq_sonic_tag_spring_fall);
+animation_set(CHAR_MILES, FORM_BASE, VARIANT_TAG, "stand", seq_miles_tag_stand);
+animation_set(CHAR_MILES, FORM_BASE, VARIANT_TAG, "turn", seq_miles_tag_turn);
+animation_set(CHAR_MILES, FORM_BASE, VARIANT_TAG, "run_0", seq_miles_tag_run_0);
+animation_set(CHAR_MILES, FORM_BASE, VARIANT_TAG, "run_1", seq_miles_tag_run_1);
+animation_set(CHAR_MILES, FORM_BASE, VARIANT_TAG, "run_2", seq_miles_tag_run_2);
+animation_set(CHAR_MILES, FORM_BASE, VARIANT_TAG, "look", seq_miles_tag_look);
+animation_set(CHAR_MILES, FORM_BASE, VARIANT_TAG, "look_end", seq_miles_tag_look_end);
+animation_set(CHAR_MILES, FORM_BASE, VARIANT_TAG, "crouch", seq_miles_tag_crouch);
+animation_set(CHAR_MILES, FORM_BASE, VARIANT_TAG, "crouch_end", seq_miles_tag_crouch_end);
+animation_set(CHAR_MILES, FORM_BASE, VARIANT_TAG, "brake", seq_miles_tag_brake);
+animation_set(CHAR_MILES, FORM_BASE, VARIANT_TAG, "spring_flight", seq_miles_tag_spring_flight);
+animation_set(CHAR_MILES, FORM_BASE, VARIANT_TAG, "spring_fall", seq_miles_tag_spring_fall);
