@@ -884,4 +884,3 @@
 	|draw_sprite_tiled_vertical
 	|draw_sprite_tiled_horizontal_yscale
 	|draw_backdrop_tiled_area
-	+Config
