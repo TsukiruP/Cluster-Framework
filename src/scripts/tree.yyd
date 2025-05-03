@@ -789,8 +789,8 @@
 			|sonic_routine_homing
 		+Traits
 			|player_trait_swap
-			|player_trait_tag
 			|player_trait_boost
+			|player_trait_tag
 			|sonic_trait_reticle
 			|classic_trait_clock_up
 		+Reactions

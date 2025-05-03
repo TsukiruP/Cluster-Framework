@@ -11,10 +11,10 @@ save_set("time", 0);
 save_reset_character();
 save_write_character();
 
-save_set("swap", true);
+save_set("boost", true);
 save_set("trick", true);
 save_set("tag", true);
-save_set("boost", true);
+save_set("swap", true);
 
 save_reset_skill(CHAR_SONIC);
 save_write_skill(CHAR_SONIC);
