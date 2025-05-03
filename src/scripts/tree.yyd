@@ -486,6 +486,28 @@
 								|seq_miles_brake
 								|seq_miles_brake_fast
 							|seq_miles_hurt
+							|seq_miles_death
+							|seq_miles_push
+							+Ramp
+								|seq_miles_ramp_flight
+								|seq_miles_ramp_fall
+							+Spring
+								|seq_miles_spring_flight
+								|seq_miles_spring_fall
+							|seq_miles_rail
+							|seq_miles_breathe
+							+Goal
+							+Tricks
+								+Up
+									|seq_miles_trick_up_flight
+									|seq_miles_trick_up_fall
+								|seq_miles_trick_down
+								+Front
+									|seq_miles_trick_front
+									|seq_miles_trick_front_fall
+								+Back
+									|seq_miles_trick_back
+									|seq_miles_trick_back_fall
 						+Tag
 				+Classic
 					+Idle
@@ -602,6 +624,8 @@
 						|seq_shockwave
 						|seq_reticle
 						|seq_reticle_colors
+					+Miles
+						|seq_tails
 				+Shields
 					|seq_shield_insta
 					|seq_shield_basic
@@ -720,9 +744,9 @@
 				|player_state_spring
 				|player_state_rail
 				|player_state_bound
-				|player_state_hammer
 				|player_state_trick
 				|player_state_trick_bound
+				|player_state_hammer
 				|player_state_interlink
 			+Sonic
 				|sonic_state_skid
@@ -791,6 +815,8 @@
 				|sonic_super_skid_create
 				|sonic_bound_create
 				|sonic_reticle_create
+			+Miles
+				|miles_tails_create
 		+Trail
 			|player_trail_init
 			|player_trail_color

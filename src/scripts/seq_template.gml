@@ -2,7 +2,7 @@
 
 if (sequence_position(0))
 {
-    sprite_index = noone;
+    sprite_index = -1;
     image_index = 0;
 }
 else if (sequence_position(1)) sequence_moment = 0;

@@ -28,23 +28,23 @@ animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "spin_flight", seq_miles_s
 animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "spin_fall", seq_miles_spin_fall);
 animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "brake", seq_miles_brake);
 animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "brake_fast", seq_miles_brake_fast);
-animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "hurt", seq_sonic_hurt);
-animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "death", seq_sonic_death);
-animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "push", seq_sonic_push);
-animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "ramp_flight", seq_sonic_ramp_flight);
-animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "ramp_fall", seq_sonic_ramp_fall);
-animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "spring_flight", seq_sonic_spring_flight);
-animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "spring_fall", seq_sonic_spring_fall);
-animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "rail", seq_sonic_rail);
-animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "breathe", seq_sonic_breathe);
-animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "goal", seq_sonic_stand);
-
-animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "trick_up_flight", seq_sonic_trick_up_flight);
-animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "trick_up_fall", seq_sonic_trick_up_fall);
-animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "trick_down", seq_sonic_trick_down);
-animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "trick_bound", seq_sonic_trick_bound);
-animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "trick_front", seq_sonic_trick_front);
-animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "trick_back", seq_sonic_trick_back);
+animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "hurt", seq_miles_hurt);
+animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "death", seq_miles_death);
+animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "push", seq_miles_push);
+animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "ramp_flight", seq_miles_ramp_flight);
+animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "ramp_fall", seq_miles_ramp_fall);
+animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "spring_flight", seq_miles_spring_flight);
+animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "spring_fall", seq_miles_spring_fall);
+animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "rail", seq_miles_rail);
+animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "breathe", seq_miles_breathe);
+animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "goal", seq_miles_stand);
+animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "trick_up_flight", seq_miles_trick_up_flight);
+animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "trick_up_fall", seq_miles_trick_up_fall);
+animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "trick_down", seq_miles_trick_down);
+animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "trick_front", seq_miles_trick_front);
+animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "trick_front_fall", seq_miles_trick_front_fall);
+animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "trick_back", seq_miles_trick_back);
+animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "trick_back_fall", seq_miles_trick_back_fall);
 
 // Tag:
 animation_set(CHAR_MILES, FORM_BASE, VARIANT_TAG, "stand", seq_sonic_tag_stand);

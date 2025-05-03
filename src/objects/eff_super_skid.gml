@@ -16,13 +16,12 @@ applies_to=self
 */
 /// Animation
 
-event_inherited();
-
 var player_state; player_state = player_inst.state_current;
 var player_peel; player_peel = player_inst.peel_out;
 var player_boost; player_boost = player_inst.boost_mode;
 var player_animation; player_animation = player_inst.animation_current;
 
+event_inherited();
 if (player_state != sonic_state_skid || !(player_peel || player_boost) || player_animation != "skid") instance_destroy();
 #define Draw_0
 /*"/*'/**//* YYD ACTION

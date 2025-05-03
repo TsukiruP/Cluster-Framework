@@ -116,15 +116,15 @@ spin_dash_inst = noone;
 shield_inst = noone;
 debuff_inst = noone;
 drown_inst = noone;
-reticle_inst = noone;
 waterfall_draw = false;
 waterfall_inst = noone;
-super_skid_inst = noone;
-
 afterimage_draw = false;
 afterimage_alarm = 6;
-
 player_trail_init();
+
+super_skid_inst = noone;
+reticle_inst = noone;
+tails_inst = noone;
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -470,6 +470,7 @@ player_debuff_create();
 player_waterfall_splash_create();
 sonic_super_skid_create();
 sonic_reticle_create();
+miles_tails_create();
 
 // Afterimage:
 if (status_speed == SPEED_UP || boost_mode) afterimage_draw = true;
@@ -749,7 +750,8 @@ with (shield_inst)
 }
 
 image_alpha = pick((status_invin == INVIN_HURT && status_invin_alarm > 0), 1, mod_time(status_invin_alarm, 2, 2));
-if (sprite_exists(sprite_index)) draw_self_floored();
+with (tails_inst) event_draw();
+draw_self_floored();
 with (spin_dash_inst) event_draw();
 with (debuff_inst) event_draw();
 

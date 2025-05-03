@@ -118,6 +118,8 @@
 			+Sonic
 				|eff_super_skid
 				|eff_reticle
+			+Miles
+				|eff_tails
 		+Enemy
 			|obj_enemy_debris
 			|obj_rhino_spring
