@@ -40,7 +40,7 @@ switch (_phase)
             if (y_speed < jump_release && !input_held) y_speed = jump_release;
         }
 
-        if (abs(x_speed) > air_friction_threshold && y_speed > -4 && y_speed < 0) x_speed *= air_friction;
+        player_air_friction();
         player_gravity_force();
         player_animation_jump();
         if (y_speed < 0 && jump_bound == BOUND_SONIC) sonic_bound_create();

@@ -102,6 +102,16 @@ bound_count = 0;
 peel_out = false;
 peel_out_alarm = 30;
 
+fly_force_temp = 0.03125;
+fly_force_alt = -0.125;
+fly_force = fly_force_temp;
+fly_threshold = -1;
+max_fly_time = 480;
+fly_time = max_fly_time;
+fly_carry = false;
+fly_carry_alarm = 0;
+fly_sfx = noone;
+
 clock_up_state = 0;
 clock_up_alarm = 0;
 /*"/*'/**//* YYD ACTION
@@ -286,69 +296,84 @@ if (input_allow)
                             input_queue_enqueue(QUEUE_JUMP_PRESSED, player_get_input(INP_JUMP, CHECK_PRESSED));
                         }
 
-                        // Move left:
-                        if (x > leader_inst.x + 16 + 32 * (abs(leader_inst.x_speed) < 4))
+                        if (state_current == miles_state_fly && leader_inst.state_current == player_state_fly_carry)
                         {
-                            player_set_input(INP_LEFT, CHECK_HELD, true);
-                            player_set_input(INP_RIGHT, CHECK_HELD, false);
-                            if (sign(image_xscale) == 1 && x_speed != 0 && animation_current != "push") x += 1;
-                        }
-
-                        // Move right:
-                        if (x < leader_inst.x - 16 - 32 * (abs(leader_inst.x_speed) < 4))
-                        {
-                            player_set_input(INP_LEFT, CHECK_HELD, false);
-                            player_set_input(INP_RIGHT, CHECK_HELD, true);
-                            if (sign(image_xscale) == -1 && x_speed != 0 && animation_current != "push") x -= 1;
-                        }
-
-                        // Jump:
-                        var jump_auto; jump_auto = 0;
-
-                        if (animation_current == "push")
-                        {
-                            input_cpu_state_time += 1;
-
-                            if (sign(image_xscale) == sign(leader_inst.image_xscale) && leader_inst.animation_current == "push") input_cpu_state_time = 0;
-                            jump_auto = pick(input_cpu_state_time < 30, 0, 1);
+                            player_set_input(INP_UP, CHECK_HELD, input_get_check(INP_UP, CHECK_HELD));
+                            player_set_input(INP_DOWN, CHECK_HELD, input_get_check(INP_DOWN, CHECK_HELD));
+                            player_set_input(INP_LEFT, CHECK_HELD, input_get_check(INP_LEFT, CHECK_HELD));
+                            player_set_input(INP_RIGHT, CHECK_HELD, input_get_check(INP_RIGHT, CHECK_HELD));
+                            player_set_input(INP_JUMP, CHECK_HELD, input_get_check(INP_JUMP, CHECK_HELD));
+                            player_set_input(INP_JUMP, CHECK_PRESSED, input_get_check(INP_JUMP, CHECK_PRESSED));
                         }
                         else
                         {
-                            if (y - leader_inst.y < 32)
+                            // Move left:
+                            if (x > leader_inst.x + 16 + 32 * (abs(leader_inst.x_speed) < 4))
                             {
-                                jump_auto = 2;
-                                input_cpu_state_time = 0;
+                                player_set_input(INP_LEFT, CHECK_HELD, true);
+                                player_set_input(INP_RIGHT, CHECK_HELD, false);
+                                if (sign(image_xscale) == 1 && x_speed != 0 && animation_current != "push") x += 1;
+                            }
+
+                            // Move right:
+                            if (x < leader_inst.x - 16 - 32 * (abs(leader_inst.x_speed) < 4))
+                            {
+                                player_set_input(INP_LEFT, CHECK_HELD, false);
+                                player_set_input(INP_RIGHT, CHECK_HELD, true);
+                                if (sign(image_xscale) == -1 && x_speed != 0 && animation_current != "push") x -= 1;
+                            }
+
+                            // Jump:
+                            var jump_auto; jump_auto = 0;
+
+                            if (animation_current == "push")
+                            {
+                                input_cpu_state_time += 1;
+
+                                if (sign(image_xscale) == sign(leader_inst.image_xscale) && leader_inst.animation_current == "push") input_cpu_state_time = 0;
+                                jump_auto = pick(input_cpu_state_time < 30, 0, 1);
                             }
                             else
                             {
-                                input_cpu_state_time += 1;
-                                jump_auto = pick(input_cpu_state_time < 64, 0, 1);
+                                if (y - leader_inst.y < 32)
+                                {
+                                    jump_auto = 2;
+                                    input_cpu_state_time = 0;
+                                }
+                                else
+                                {
+                                    input_cpu_state_time += 1;
+                                    jump_auto = pick(input_cpu_state_time < 64, 0, 1);
+                                }
                             }
-                        }
 
-                        if (leader_inst.state_current != player_state_death)
-                        {
-                            switch (jump_auto)
+                            if (leader_inst.state_current != player_state_death)
                             {
-                                case 0:
-                                    if (on_ground)
-                                    {
-                                        if (!player_get_input(INP_JUMP, CHECK_HELD))
+                                switch (jump_auto)
+                                {
+                                    case 0:
+                                        if (on_ground)
                                         {
-                                            player_set_input(INP_JUMP, CHECK_PRESSED, true);
+                                            if (!player_get_input(INP_JUMP, CHECK_HELD))
+                                            {
+                                                player_set_input(INP_JUMP, CHECK_PRESSED, true);
+                                            }
+
+                                            player_set_input(INP_JUMP, CHECK_HELD, true);
                                         }
 
+                                        jump_cap = false;
+                                        input_cpu_state_time = 0;
+                                        break;
+
+                                    case 1:
                                         player_set_input(INP_JUMP, CHECK_HELD, true);
-                                    }
-
-                                    jump_cap = false;
-                                    input_cpu_state_time = 0;
-                                    break;
-
-                                case 1:
-                                    player_set_input(INP_JUMP, CHECK_HELD, true);
-                                    break;
+                                        break;
+                                }
                             }
+
+                            if (character_index == CHAR_MILES && !on_ground &&
+                                player_get_input(INP_UP, CHECK_HELD) && player_get_input(INP_JUMP, CHECK_PRESSED)) player_set_state(miles_state_fly);
                         }
                 }
             }

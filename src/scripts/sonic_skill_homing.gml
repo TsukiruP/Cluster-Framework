@@ -1,6 +1,6 @@
 /// sonic_skill_homing()
 /// @desc Performs Sonic's homing attack.
-/// @returns {bool} Returns whether a homing attack has been called.
+/// @returns {bool}
 
 var skill_index; skill_index = save_get_skill(character_index, "homing");
 

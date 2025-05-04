@@ -1,6 +1,6 @@
 /// sonic_skill_peel_out()
 /// @desc Performs Sonic's Super Peel Out.
-/// @returns {bool} Returns whether the Super Peel Out has been called.
+/// @returns {bool}
 
 if (on_ground && x_speed == 0 && player_get_input(INP_UP, CHECK_HELD) && player_get_input(INP_JUMP, CHECK_PRESSED))
 {

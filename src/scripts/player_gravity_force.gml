@@ -1,5 +1,5 @@
 /// player_gravity_force([force], [underwater])
-/// @desc Applies gravity force.
+/// @desc Applies gravity force. Not used when there's not supposed to be an underwater.
 /// @param {number} [force]
 /// @param {number} [underwater]
 /// @returns {void}

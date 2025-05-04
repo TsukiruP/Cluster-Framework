@@ -76,7 +76,7 @@ switch (_phase)
         }
         else if (player_routine_skill()) return true;
 
-        if (abs(x_speed) > air_friction_threshold && y_speed > -4 && y_speed < 0) x_speed *= air_friction;
+        player_air_friction();
         player_gravity_force();
         break;
 

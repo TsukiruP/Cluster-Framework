@@ -27,6 +27,7 @@ if (instance_exists(partner_inst))
         case player_state_brake:
         case player_state_ramp:
         case player_state_spring:
+        case miles_state_fly:
             tag_allow = true;
             break;
     }
@@ -138,6 +139,16 @@ if (partner_inst.state_current == player_state_interlink)
                 {
                     switch (character_index)
                     {
+                        case CHAR_MILES:
+                            if (other.on_ground) player_reset_tag(true);
+                            else
+                            {
+                                x = other.x;
+                                player_set_state(miles_state_fly);
+                                with (other) player_set_state(player_state_fly_carry);
+                            }
+                            break;
+
                         // Sonic Accelerator
                         default:
                             player_reset_cpu();

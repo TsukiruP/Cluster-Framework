@@ -426,6 +426,8 @@
 									|seq_sonic_trick_bound
 								|seq_sonic_trick_front
 								|seq_sonic_trick_back
+							+Tag Actions
+								|seq_sonic_fly_carry
 						+Tag
 							|seq_sonic_tag_stand
 							|seq_sonic_tag_turn
@@ -497,6 +499,14 @@
 							|seq_miles_rail
 							|seq_miles_breathe
 							+Goal
+							+Fly
+								|seq_miles_fly
+								|seq_miles_fly_drop
+								|seq_miles_fly_turn
+								|seq_miles_swim
+								|seq_miles_swim_drop
+								|seq_miles_swim_turn
+								|seq_miles_fly_cancel
 							+Tricks
 								+Up
 									|seq_miles_trick_up_flight
@@ -729,6 +739,7 @@
 			|player_animation_ramp
 			|player_animation_spring
 			|player_animation_trick
+			|miles_animation_fly
 		+Collision
 			|player_collision_reaction
 			|player_collision_wall
@@ -771,6 +782,10 @@
 				|sonic_state_bound
 				|sonic_state_stomp
 				|sonic_state_peel_out
+			+Miles
+				|miles_state_fly
+			+Tag Actions
+				|player_state_fly_carry
 		+Skills
 			+Sonic
 				|sonic_skill_slam
@@ -778,6 +793,8 @@
 				|sonic_skill_ground
 				|sonic_skill_air
 				|sonic_skill_peel_out
+			+Miles
+				|miles_skill_fly
 		+Routines
 			|player_routine_land
 			|player_routine_jump
@@ -792,6 +809,7 @@
 			|player_trait_boost
 			|player_trait_tag
 			|sonic_trait_reticle
+			|miles_trait_fly_carry
 			|classic_trait_clock_up
 		+Reactions
 			|player_reaction_layer_sensor
@@ -875,6 +893,7 @@
 			|player_can_launch
 			|player_rotate_mask
 			|player_slope_friction
+			|player_air_friction
 			|player_gravity_force
 			|player_ring_loss
 			|player_cpu_respawn

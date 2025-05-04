@@ -8,11 +8,15 @@ applies_to=self
 
 sound_add_directory("data\audio\sfx\player\common", ".wav", 0, true);
 sound_add_directory("data\audio\sfx\player\sonic", ".wav", 0, true);
+sound_add_directory("data\audio\sfx\player\miles", ".wav", 0, true);
 sound_add_directory("data\audio\sfx\player\classic", ".wav", 0, true);
 sound_add_directory("data\audio\sfx\player\shield", ".wav", 0, true);
 sound_add_directory("data\audio\sfx\prop", ".wav", 0, true);
 sound_add_directory("data\audio\sfx\enemy", ".wav", 0, true);
 sound_add_directory("data\audio\sfx\menu", ".wav", 0, true);
+
+sound_set_loop("snd_fly", 0, 33075, unit_samples);
+sound_set_loop("snd_fly_drop", 0, 12711, unit_samples);
 
 sound_kind_volume(0, config_get("audio_sfx") / 100);
 sfx_list = ds_list_create();

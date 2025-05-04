@@ -702,3 +702,17 @@ seq_miles_tag_crouch_end
 seq_miles_tag_brake
 seq_miles_tag_spring_flight
 seq_miles_tag_spring_fall
+seq_miles_fly
+seq_miles_fly_drop
+miles_state_fly
+player_air_friction
+miles_skill_fly
+seq_miles_fly_turn
+miles_animation_fly
+seq_miles_swim
+seq_miles_swim_drop
+seq_miles_swim_turn
+seq_miles_fly_cancel
+seq_sonic_fly_carry
+miles_trait_fly_carry
+player_state_fly_carry

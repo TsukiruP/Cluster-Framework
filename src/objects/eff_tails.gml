@@ -6,11 +6,11 @@ applies_to=self
 */
 /// Animation
 
-var player_tag; player_tag = player_inst.tag_leader;
 var player_animation; player_animation = player_inst.animation_current;
 var player_moment; player_moment = player_inst.sequence_moment;
+var player_tag; player_tag = player_inst.state_current == player_state_interlink;
 
-if (!player_tag && (player_animation == "roll" || (player_animation == "spin_flight" && player_moment > 6)))
+if ((player_animation == "roll" || (player_animation == "spin_flight" && player_moment > 6)) && !player_tag)
 {
     if (sequence_index != seq_tails) sequence_set(seq_tails);
 }

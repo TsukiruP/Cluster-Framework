@@ -1,6 +1,6 @@
 /// sonic_skill_air()
 /// @desc Performs Sonic's air skills.
-/// @returns {bool} Returns whether an air skill has been called.
+/// @returns {bool}
 
 if (!on_ground)
 {

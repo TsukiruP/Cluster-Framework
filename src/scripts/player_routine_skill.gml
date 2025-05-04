@@ -14,6 +14,10 @@ if ((!input_cpu || (input_cpu && input_cpu_gamepad_alarm > 0)) && !tag_leader)
             else if (sonic_skill_peel_out()) return true;
             break;
 
+        case CHAR_MILES:
+            if (miles_skill_fly()) return true;
+            break;
+
         case CHAR_CLASSIC:
             if (!on_ground)
             {

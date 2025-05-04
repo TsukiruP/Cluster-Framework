@@ -54,6 +54,7 @@ animation_set(CHAR_SONIC, FORM_BASE, VARIANT_DEFAULT, "trick_down", seq_sonic_tr
 animation_set(CHAR_SONIC, FORM_BASE, VARIANT_DEFAULT, "trick_bound", seq_sonic_trick_bound);
 animation_set(CHAR_SONIC, FORM_BASE, VARIANT_DEFAULT, "trick_front", seq_sonic_trick_front);
 animation_set(CHAR_SONIC, FORM_BASE, VARIANT_DEFAULT, "trick_back", seq_sonic_trick_back);
+animation_set(CHAR_SONIC, FORM_BASE, VARIANT_DEFAULT, "fly_carry", seq_sonic_fly_carry);
 
 // Tag:
 animation_set(CHAR_SONIC, FORM_BASE, VARIANT_TAG, "stand", seq_sonic_tag_stand);

@@ -18,7 +18,7 @@ if (player_get_input(INP_SWAP, CHECK_PRESSED))
         if (in_view(partner_inst))
         {
             if (swap_alarm == 0 && status_speed != SPEED_SLOW && status_panic_alarm == 0 && status_swap_alarm == 0 &&
-                partner_inst.state_current != player_state_hurt && partner_inst.state_current != player_state_death)
+                partner_inst.state_current != player_state_hurt && partner_inst.state_current != player_state_death && partner_inst.state_current != player_state_interlink)
             {
                 with (partner_inst)
                 {

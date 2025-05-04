@@ -38,6 +38,13 @@ animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "spring_fall", seq_miles_s
 animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "rail", seq_miles_rail);
 animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "breathe", seq_miles_breathe);
 animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "goal", seq_miles_stand);
+animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "fly", seq_miles_fly);
+animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "fly_drop", seq_miles_fly_drop);
+animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "fly_turn", seq_miles_fly_turn);
+animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "swim", seq_miles_swim);
+animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "swim_drop", seq_miles_swim_drop);
+animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "swim_turn", seq_miles_swim_turn);
+animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "fly_cancel", seq_miles_fly_cancel);
 animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "trick_up_flight", seq_miles_trick_up_flight);
 animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "trick_up_fall", seq_miles_trick_up_fall);
 animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "trick_down", seq_miles_trick_down);

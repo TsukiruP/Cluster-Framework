@@ -38,7 +38,8 @@ switch (_phase)
         }
         else if (!trick_windup)
         {
-            if (abs(x_speed) > air_friction_threshold && y_speed > -4 && y_speed < 0) x_speed *= air_friction;
+            player_air_friction();
+
             if (character_index == CHAR_MILES && (trick_index == TRICK_FRONT || trick_index == TRICK_BACK))
             {
                 var trick_force; trick_force = pick(underwater, gravity_force, gravity_force_underwater);
