@@ -145,7 +145,12 @@ if (partner_inst.state_current == player_state_interlink)
                             {
                                 x = other.x;
                                 player_set_state(miles_state_fly);
-                                with (other) player_set_state(player_state_fly_carry);
+
+                                with (other)
+                                {
+                                    y = other.y + 32;
+                                    player_set_state(player_state_fly_carry);
+                                }
                             }
                             break;
 

@@ -5,6 +5,7 @@
 var carry_inst; carry_inst = stage_get_player(pick(player_index, 1, 0));
 
 if (!instance_exists(carry_inst)) exit;
+if (carry_inst.character_index == CHAR_CLASSIC) exit;
 
 var carry_state; carry_state = carry_inst.state_current;
 
@@ -33,6 +34,7 @@ if (carry_inst.state_current == player_state_fly_carry)
     carry_inst.x = x;
     carry_inst.y = y + 32;
     carry_inst.image_xscale = image_xscale;
+    carry_inst.layer = layer;
     fly_carry = true;
 }
 else if (fly_carry != false) fly_carry = false;
