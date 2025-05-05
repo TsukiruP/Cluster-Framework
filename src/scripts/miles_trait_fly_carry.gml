@@ -21,7 +21,7 @@ if (carry_state != player_state_fly_carry && (!carry_inst.on_ground || carry_ins
 
         with (carry_inst) carry_down = player_get_input(INP_DOWN, CHECK_HELD);
 
-        if (abs(floor(x) - floor(carry_inst.x)) < 12 && abs(floor(y) - floor(carry_inst.y)) < 32 && fly_carry_alarm == 0 && !carry_down)
+        if (abs(floor(x) - floor(carry_inst.x)) < 12 && abs(floor(y) + 32 - floor(carry_inst.y)) < 12 && fly_carry_alarm == 0 && !carry_down)
         {
             with (carry_inst) player_set_state(player_state_fly_carry);
             audio_play_sfx("snd_grab", true);
