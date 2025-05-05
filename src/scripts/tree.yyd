@@ -782,6 +782,7 @@
 				|sonic_state_bound
 				|sonic_state_stomp
 				|sonic_state_peel_out
+				|sonic_state_accel
 			+Miles
 				|miles_state_fly
 			+Tag Actions

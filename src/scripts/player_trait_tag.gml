@@ -137,36 +137,54 @@ if (partner_inst.state_current == player_state_interlink)
                 // Execute Tag Action:
                 else if (!tag_hold)
                 {
-                    switch (character_index)
+                    player_reset_cpu();
+
+                    if (character_index != other.character_index)
                     {
-                        case CHAR_MILES:
-                            if (other.on_ground) player_reset_tag(true);
-                            else
-                            {
-                                x = other.x;
-                                player_set_state(miles_state_fly);
+                        switch (character_index)
+                        {
+                            case CHAR_MILES:
+                                // Leap Jump:
+                                if (other.on_ground) player_reset_cpu();
+
+                                // Propeller Catch:
+                                else
+                                {
+                                    x = floor(other.x);
+
+                                    if (!collision_box_vertical(x_radius, y_radius + 32, mask_direction, par_solid))
+                                    {
+                                        player_set_state(miles_state_fly);
+
+                                        with (other)
+                                        {
+                                            y = floor(other.y) + 32;
+                                            player_set_state(player_state_fly_carry);
+                                        }
+                                    }
+                                    else player_set_state(player_state_air);
+                                }
+                                break;
+
+                            // Sonic Accelerator:
+                            default:
+                                x = floor(other.x);
+                                y = floor(other.y + other.y_radius);
+                                on_ground = other.on_ground;
+                                player_set_state(sonic_state_accel);
+                                audio_play_sfx("snd_sonic_accel", true);
 
                                 with (other)
                                 {
-                                    y = other.y + 32;
-                                    player_set_state(player_state_fly_carry);
+                                    boost_mode = true;
+                                    player_trait_boost(true);
+                                    x_speed = max(abs(x_speed), top_speed) * image_xscale;
+                                    player_set_animation("spin_flight");
                                 }
-                            }
-                            break;
-
-                        // Sonic Accelerator
-                        default:
-                            player_reset_cpu();
-                            audio_play_sfx("snd_sonic_accel", true);
-
-                            with (other)
-                            {
-                                boost_mode = true;
-                                player_trait_boost(true);
-                                x_speed = max(abs(x_speed), top_speed) * image_xscale;
-                                player_reset_tag(true);
-                            }
+                        }
                     }
+
+                    with (other) player_reset_tag(true);
                 }
                 break;
         }

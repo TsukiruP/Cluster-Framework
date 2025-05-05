@@ -716,3 +716,4 @@ seq_miles_fly_cancel
 seq_sonic_fly_carry
 miles_trait_fly_carry
 player_state_fly_carry
+sonic_state_accel
