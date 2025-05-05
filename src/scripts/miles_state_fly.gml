@@ -41,6 +41,7 @@ switch (_phase)
 
         player_air_friction();
         y_speed += fly_force;
+        if (y < 0 && y_speed < 0) y_speed = 0;
 
         if (fly_time > 0) fly_time -= 1;
         miles_animation_fly();
