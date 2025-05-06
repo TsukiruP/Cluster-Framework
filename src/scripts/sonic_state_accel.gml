@@ -9,7 +9,6 @@ switch (_phase)
 {
     case STATE_START:
         player_set_animation("spin_dash");
-        y -= y_radius;
         break;
 
     case STATE_STEP:

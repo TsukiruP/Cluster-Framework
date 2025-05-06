@@ -2,7 +2,7 @@
 /// @desc Performs a roll.
 /// @returns {bool}
 
-if (abs(x_speed) > 0.5 && !tag_leader)
+if (abs(x_speed) > 0.5 && tag_leader_state != STATE_FINISH)
 {
     if (player_get_input(INP_DOWN, CHECK_HELD))
     {

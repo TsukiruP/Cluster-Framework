@@ -12,7 +12,7 @@ switch (character_index)
         break;
 
     default:
-        if (tag_leader)
+        if (tag_leader_state == STATE_FINISH)
         {
             if (abs(x_speed) >= 6.00) player_set_animation("run_2");
             else if (abs(x_speed) >= 3.75) player_set_animation("run_1");

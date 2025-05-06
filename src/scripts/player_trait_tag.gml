@@ -27,57 +27,62 @@ if (instance_exists(partner_inst))
         case player_state_brake:
         case player_state_ramp:
         case player_state_spring:
-        case miles_state_fly:
             tag_allow = true;
             break;
     }
 }
 
 // Leader:
+if (player_get_input(INP_TAG, CHECK_HELD))
+{
+    if (tag_leader_time < 64) tag_leader_time += 1;
+}
+else
+{
+    if (tag_leader_time != 0) tag_leader_time = 0;
+    if (tag_leader_state == STATE_STEP) tag_leader_state = STATE_START;
+}
+
 if (tag_allow)
 {
-    if (!tag_leader)
+    if (tag_leader_state == STATE_START)
     {
-        if (player_get_input(INP_TAG, CHECK_HELD))
+        // Create effect:
+        if (tag_leader_time >= 32)
         {
-            if (tag_leader_time < 64)
+            tag_leader_state = STATE_STEP;
+            audio_play_sfx("snd_tag_call", true);
+            with (instance_create(x, y, eff_tag)) player_inst = other.id;
+        }
+    }
+
+    if (tag_leader_state == STATE_STEP)
+    {
+        // Call partner:
+        if (tag_leader_time >= 64 && partner_inst.state_current != player_state_interlink)
+        {
+            with (partner_inst)
             {
-                tag_leader_time += 1;
-
-                // Create effect:
-                if (tag_leader_time == 32)
+                if (!in_view(self))
                 {
-                    audio_play_sfx("snd_tag_call", true);
-                    with (instance_create(x, y, eff_tag)) player_inst = other.id;
+                    if (x < other.x) x = view_xview[view_current] - 32;
+                    else x = view_xview[view_current] + screen_get_width() + 32;
+
+                    y = other.y;
                 }
 
-                // Start arc:
-                if (tag_leader_time == 64)
-                {
-                    with (partner_inst)
-                    {
-                        if (!in_view(self))
-                        {
-                            if (x < other.x) x = view_xview[view_current] - 32;
-                            else if (x > other.x) x = view_xview[view_current] + screen_get_width() + 32;
-
-                            y = other.y;
-                        }
-
-                        image_xscale = esign(other.x - x, 1);
-                        x_speed = 0;
-                        y_speed = 0;
-                        tag_arc_time = 0;
-                        tag_arc_x_offset = x - other.x;
-                        tag_arc_y_offset = y - other.y;
-                        player_set_state(player_state_interlink);
-                    }
-                }
+                image_xscale = esign(other.x - x, 1);
+                x_speed = 0;
+                y_speed = 0;
+                tag_arc_time = 0;
+                tag_arc_x_offset = x - other.x;
+                tag_arc_y_offset = y - other.y;
+                player_set_state(player_state_interlink);
             }
-        } else player_reset_tag(true);
+        }
     }
 }
-else player_reset_tag(true);
+else tag_leader_state = STATE_START;
 
 // Partner:
 if (partner_inst.state_current == player_state_interlink)
@@ -118,7 +123,7 @@ if (partner_inst.state_current == player_state_interlink)
                     if (tag_allow && tag_hold)
                     {
                         tag_state = 1;
-                        other.tag_leader = true;
+                        other.tag_leader_state = STATE_FINISH;
                         audio_play_sfx("snd_tag_catch", true);
                     }
                     else player_reset_cpu();
@@ -132,7 +137,7 @@ if (partner_inst.state_current == player_state_interlink)
                 image_xscale = sign(other.image_xscale);
 
                 // Reset:
-                if (!tag_allow || !other.tag_leader) player_reset_cpu();
+                if (!tag_allow || other.tag_leader_state != STATE_FINISH) player_reset_cpu();
 
                 // Execute Tag Action:
                 else if (!tag_hold)
@@ -154,11 +159,13 @@ if (partner_inst.state_current == player_state_interlink)
 
                                     if (!collision_box_vertical(x_radius, y_radius + 32, mask_direction, par_solid))
                                     {
+                                        fly_carry = true;
                                         player_set_state(miles_state_fly);
 
                                         with (other)
                                         {
-                                            y = floor(other.y) + 32;
+                                            x = floor(other.x) + (sine * 32);
+                                            y = floor(other.y) + (csine * 32);
                                             player_set_state(player_state_fly_carry);
                                         }
                                     }
@@ -168,10 +175,10 @@ if (partner_inst.state_current == player_state_interlink)
 
                             // Sonic Accelerator:
                             default:
-                                x = floor(other.x);
-                                y = floor(other.y + other.y_radius);
-                                on_ground = other.on_ground;
                                 player_set_state(sonic_state_accel);
+                                x = floor(other.x) + (sine * (other.y_radius - y_radius));
+                                y = floor(other.y) + (csine * (other.y_radius - y_radius));;
+                                on_ground = other.on_ground;
                                 audio_play_sfx("snd_sonic_accel", true);
 
                                 with (other)
@@ -179,7 +186,7 @@ if (partner_inst.state_current == player_state_interlink)
                                     boost_mode = true;
                                     player_trait_boost(true);
                                     x_speed = max(abs(x_speed), top_speed) * image_xscale;
-                                    player_set_animation("spin_flight");
+                                    if (!on_ground) player_set_animation("spin_flight");
                                 }
                         }
                     }

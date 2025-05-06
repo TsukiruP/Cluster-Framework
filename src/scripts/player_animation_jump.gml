@@ -9,7 +9,7 @@ switch (character_index)
         break;
 
     default:
-        if (tag_leader) player_set_animation(pick(y_speed > 0, "spring_flight", "spring_fall"));
+        if (tag_leader_state == STATE_FINISH) player_set_animation(pick(y_speed > 0, "spring_flight", "spring_fall"));
         else
         {
             if ((animation_current == "spin_flight" || jump_bound == BOUND_TRICK || (jump_bound == BOUND_SONIC && animation_current == "roll")) && y_speed > 0)

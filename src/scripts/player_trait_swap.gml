@@ -8,7 +8,7 @@ if (state_current == player_state_hurt || state_current == player_state_death ||
 
 if (player_get_input(INP_SWAP, CHECK_PRESSED))
 {
-    if (tag_leader)
+    if (tag_leader_state == STATE_FINISH)
     {
         player_reset_tag(true);
         with (partner_inst) player_reset_cpu();

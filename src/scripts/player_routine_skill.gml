@@ -2,7 +2,7 @@
 /// @desc Performs a character skill.
 /// @returns {bool}
 
-if ((!input_cpu || (input_cpu && input_cpu_gamepad_alarm > 0)) && !tag_leader)
+if ((!input_cpu || (input_cpu && input_cpu_gamepad_alarm > 0)) && tag_leader_state != STATE_FINISH)
 {
     switch (character_index)
     {

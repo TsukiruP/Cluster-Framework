@@ -56,7 +56,7 @@ switch (_phase)
         if (player_routine_skill()) return true;
         if (player_routine_jump()) return true;
 
-        if (!tag_leader)
+        if (tag_leader_state != STATE_FINISH)
         {
             if (!game_ispaused(ctrl_text) && on_ground && input_allow && animation_current == "stand")
             {

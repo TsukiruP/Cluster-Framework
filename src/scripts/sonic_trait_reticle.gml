@@ -25,7 +25,7 @@ switch (state_current)
         break;
 }
 
-if (tag_leader || !homing_allow || spring_alarm != 0 || !input_allow || (input_cpu && input_cpu_gamepad_alarm == 0)) exit;
+if (tag_leader_state == STATE_FINISH || !homing_allow || spring_alarm != 0 || !input_allow || (input_cpu && input_cpu_gamepad_alarm == 0)) exit;
 
 var skill_index; skill_index = save_get_skill(character_index, "homing");
 

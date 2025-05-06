@@ -13,7 +13,7 @@ switch (character_index)
         break;
 
     default:
-        if (tag_leader)
+        if (tag_leader_state == STATE_FINISH)
         {
             if (animation_current == "standby" || animation_current == "land") player_set_animation("stand");
             if (animation_current == "turn_brake") player_set_animation("turn");

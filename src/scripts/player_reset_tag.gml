@@ -7,8 +7,8 @@ var _leader; if (argument_count > 0) _leader = argument[0]; else _leader = false
 
 if (_leader)
 {
-    if (tag_leader) tag_leader = false;
-    if (tag_leader_time != 0) tag_leader_time = 0;
+    tag_leader_state = STATE_START;
+    tag_leader_time = 0;
 }
 else
 {

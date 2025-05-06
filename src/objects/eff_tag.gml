@@ -16,10 +16,15 @@ applies_to=self
 */
 /// Animation
 
-if (player_inst.tag_leader && sequence_index != seq_tag_catch) sequence_set(seq_tag_catch);
+if (player_inst.tag_leader_state == STATE_FINISH && sequence_index != seq_tag_catch) sequence_set(seq_tag_catch);
 
 event_inherited();
-if (player_inst.tag_leader_time < 32 && sequence_index == seq_tag_call) instance_destroy();
+
+if (player_inst.tag_leader_state == STATE_START && sequence_index == seq_tag_call)
+{
+    audio_stop_sfx("snd_tag_call");
+    instance_destroy();
+}
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1

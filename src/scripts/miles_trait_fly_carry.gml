@@ -31,8 +31,8 @@ if (carry_state != player_state_fly_carry && (!carry_inst.on_ground || carry_ins
 
 if (carry_inst.state_current == player_state_fly_carry)
 {
-    carry_inst.x = x;
-    carry_inst.y = y + 32;
+    carry_inst.x = x + (dsin(mask_direction) * 32);
+    carry_inst.y = y + (dcos(mask_direction) * 32);
     carry_inst.image_xscale = image_xscale;
     carry_inst.layer = layer;
     fly_carry = true;

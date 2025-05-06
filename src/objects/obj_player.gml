@@ -43,10 +43,8 @@ death_alarm = 0;
 death_inst = noone;
 
 player_reset_trick();
-
-tag_leader = false;
-tag_leader_time = 0;
 player_reset_tag();
+player_reset_tag(true);
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -711,7 +709,7 @@ switch (animation_current)
         if (on_ground) image_angle = angle;
         else image_angle = approach_angle(image_angle, gravity_direction, 4);
 
-        if (character_index == CHAR_CLASSIC || tag_leader)
+        if (character_index == CHAR_CLASSIC || tag_leader_state == STATE_FINISH)
         {
             if (on_ground)
             {

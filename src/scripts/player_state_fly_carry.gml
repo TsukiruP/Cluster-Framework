@@ -28,19 +28,20 @@ switch (_phase)
            return true;
         }
 
-        if (floor(x) != floor(fly_inst.x) || fly_inst.state_current != miles_state_fly)
+        if (pick(mask_direction mod 180 == 0, floor(y) != floor(fly_inst.y), floor(x) != floor(fly_inst.x)) || fly_inst.state_current != miles_state_fly)
         {
             fly_inst.fly_carry_alarm = 30;
             return player_set_state(player_state_air);
         }
 
-        if ((!input_cpu || (input_cpu && input_cpu_gamepad_alarm > 0)) && player_get_input(INP_DOWN, CHECK_HELD) && player_get_input(INP_JUMP, CHECK_PRESSED))
+        if ((!input_cpu || (input_cpu && input_cpu_gamepad_alarm > 0)) && player_get_input(INP_DOWN, CHECK_HELD))
+        {
+            if (player_routine_jump())
             {
-
-                player_set_state(player_state_jump);
                 y_speed = pick(underwater, -4, -2);
                 return true;
             }
+        }
         break;
 
     case STATE_FINISH:
