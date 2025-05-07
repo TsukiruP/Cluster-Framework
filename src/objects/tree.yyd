@@ -4,10 +4,6 @@
 	|par_prop
 	|par_target
 	|par_ring
-	|par_dash_panel
-	|par_spring
-	|par_switch_spring
-	|par_dash_ring
 	|par_enemy
 	|par_enemy_move
 	|par_bullet
@@ -15,10 +11,7 @@
 	|par_hint
 	|par_solid
 	|par_platform
-	|par_spike
-	|par_blockade
 	|par_rail
-	|par_switch
 	|par_effect
 +System
 	+Controllers
@@ -54,18 +47,10 @@
 			|obj_ring_super
 			|obj_ring_magnetized
 		|obj_checkpoint
-		+Dash Panels
-			|obj_dash_panel_hor
-			|obj_dash_panel_vert
+		|obj_dash_panel
 		|obj_jump_panel
-		+Springs
-			|obj_spring_vert
-			|obj_spring_hor
-			|obj_spring_diag
-		+Dash Rings
-			|obj_dash_ring_vert
-			|obj_dash_ring_hor
-			|obj_dash_ring_diag
+		|obj_spring
+		|obj_dash_ring
 		|obj_item_box
 		+Enemies
 			|obj_spinner
@@ -77,12 +62,8 @@
 			|obj_gun_hunter
 			|obj_bomb_hawk
 			|obj_rhino
-		+Spikes
-			|obj_spike_vert
-			|obj_spike_hor
-		+Blockades
-			|obj_blockade_vert
-			|obj_blockade_hor
+		|obj_spike
+		|obj_blockade
 		+Rails
 			|obj_rail_1
 			|obj_rail_2
@@ -90,14 +71,10 @@
 		+Hints
 			|obj_hint_box
 			|obj_omochao
-		+Switches
-			|obj_switch_vert
-			|obj_switch_hor
+		+Switch
+			|obj_switch
 			|obj_switch_platform
-			+Springs
-				|obj_switch_spring_vert
-				|obj_switch_spring_hor
-				|obj_switch_spring_diag
+			|obj_switch_spring
 		+Water
 			|obj_water_mask
 			|obj_bubble_spawn
@@ -152,21 +129,6 @@
 		|obj_sky_sanctuary_parallax
 		|obj_sky_sanctuary_fountain
 +Trash
-	+Rainbow Rings
-	+Springs
-	+Dash Panels
-	+Dash Rings
-	+Item Boxes
-		+Rings
-		+Shields
-			|obj_item_bubble
-		+Buffs
-			|obj_item_speed
-		|obj_item_mine
-		+Debuffs
-			|obj_item_slow
-			|obj_item_panic
-			|obj_item_swap
 	|obj_basic_test_mask_21
 	|obj_basic_test_mask_22
 	|obj_basic_test_mask_23
@@ -178,3 +140,37 @@
 	|obj_basic_test_mask_29
 	|obj_basic_test_water_fall_02
 	|obj_basic_test_water_fall_03
+	|obj_switch_vert
+	|obj_switch_hor
+	+Dash Panels
+		|obj_dash_panel_hor
+		|obj_dash_panel_vert
+	+Springs
+		|obj_spring_vert
+		|obj_spring_hor
+		|obj_spring_diag
+	+Dash Rings
+		|obj_dash_ring_vert
+		|obj_dash_ring_hor
+		|obj_dash_ring_diag
+	+Item Boxes
+		+Rings
+		+Shields
+			|obj_item_bubble
+		+Buffs
+			|obj_item_speed
+		|obj_item_mine
+		+Debuffs
+			|obj_item_slow
+			|obj_item_panic
+			|obj_item_swap
+	+Spikes
+		|obj_spike_vert
+		|obj_spike_hor
+	+Blockades
+		|obj_blockade_vert
+		|obj_blockade_hor
+	+Switch Springs
+		|obj_switch_spring_vert
+		|obj_switch_spring_hor
+		|obj_switch_spring_diag

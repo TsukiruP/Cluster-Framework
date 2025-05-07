@@ -1,9 +1,9 @@
 par_solid
 ctrl_fade
-par_spring
-par_blockade
+obj_spring
+obj_blockade
 obj_sky_sanctuary_parallax
-par_dash_ring
+obj_dash_ring
 obj_switch_platform
 obj_zone_map_mask_1
 obj_player
@@ -50,7 +50,7 @@ obj_zone_map_waterfall
 obj_basic_test_water_fall_02
 obj_basic_test_water_fall_03
 obj_spike_vert
-par_spike
+obj_spike
 obj_spike_hor
 obj_blockade_vert
 obj_ring_super
@@ -115,8 +115,8 @@ obj_dash_panel_hor
 obj_bubble_spawn
 obj_bubble
 ctrl_debug
-par_switch
-par_switch_spring
+obj_switch
+obj_switch_spring
 par_bullet
 obj_buzzer
 obj_spinner
@@ -128,7 +128,7 @@ par_target
 ctrl_stage
 eff_waterfall
 eff_swap
-par_dash_panel
+obj_dash_panel
 obj_chopper
 obj_jawz
 obj_gun_hunter

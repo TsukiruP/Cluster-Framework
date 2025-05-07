@@ -8,3 +8,4 @@ applies_to=self
 
 event_inherited();
 super = true;
+rate = 6;

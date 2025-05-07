@@ -68,8 +68,8 @@ applies_to=self
     //field border_left: number
     //field border_right: number
 
-/*preview nodrawself
-draw_sprite(Sprite("spr_bomb_hawk", pick(Field("move", 0), 0, 2)), 0, x, y);
+/*preview
+sprite_index = Sprite("spr_bomb_hawk", pick(Field("move", 0), 0, 2));
 
 if (Field("move", 0))
 {

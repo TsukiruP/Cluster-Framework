@@ -11,7 +11,7 @@ if (_hitbox & HIT_RADII)
 {
     if (spring_inst != _obj || spring_alarm == 0)
     {
-        var is_dash_ring; is_dash_ring = object_is_ancestor(_obj.object_index, par_dash_ring);
+        var is_dash_ring; is_dash_ring = _obj.object_index == obj_dash_ring;
 
         player_reset_spring();
         spring_inst = _obj;

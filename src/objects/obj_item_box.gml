@@ -47,6 +47,13 @@ applies_to=self
 /// Field Initialization
 
 //field item_index: enum(ITEM_BONUS, ITEM_SUPER_BONUS, ITEM_RANDOM_BONUS, ITEM_BASIC, ITEM_MAGNETIC, ITEM_BUBBLE, ITEM_FIRE, ITEM_LIGHTNING, ITEM_INVIN, ITEM_SPEED, ITEM_MINE, ITEM_SLOW, ITEM_PANIC, ITEM_SWAP)
+
+/*preview nodrawself
+var preview_item; preview_item = Field("item_index", 0);
+
+draw_sprite(Sprite("spr_item_icon", preview_item), 0, x, y);
+draw_sprite(Sprite("spr_item_box", 0), 0, x, y);
+*/
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1

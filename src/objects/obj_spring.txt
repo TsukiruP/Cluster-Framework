@@ -1,7 +1,7 @@
-sprite=spr_spike_hor
+sprite=spr_spring_vert
 visible=1
 solid=0
 persistent=0
 depth=0
-parent=obj_spike
+parent=par_target
 mask=

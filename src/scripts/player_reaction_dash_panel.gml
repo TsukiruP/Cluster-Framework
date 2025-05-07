@@ -17,7 +17,7 @@ if (_hitbox & HIT_INTERACT)
             player_set_state(player_state_run);
         }
 
-        image_xscale = pick((_obj.angle mod 180 != 0), _obj.image_xscale, _obj.image_yscale);
+        image_xscale = pick((_obj.angle mod 180 != 0), dcos(_obj.angle) * _obj.image_xscale, dsin(_obj.angle) * _obj.image_yscale);
         x_speed = _obj.force * image_xscale;
         input_lock_alarm = 16;
         dash_panel_inst = _obj;

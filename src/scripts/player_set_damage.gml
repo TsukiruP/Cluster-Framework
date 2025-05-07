@@ -47,7 +47,7 @@ if (damage_inst == id)
 }
 else if ((!input_cpu && shield_inst != noone) || input_cpu || state_current == player_state_death)
 {
-    if (object_is_ancestor(damage_inst.object_index, par_spike)) audio_play_sfx("snd_spike", true);
+    if (damage_inst.object_index == obj_spike) audio_play_sfx("snd_spike", true);
     else audio_play_sfx("snd_hurt", true);
 
     if (!input_cpu) audio_stop_drown();

@@ -32,8 +32,8 @@ applies_to=self
 
 //field spanner: false
 
-/*preview nodrawself
-draw_sprite(Sprite(pick(Field("spanner", 0), "spr_spinner", "spr_spanner"), 0), 0, x, y);
+/*preview
+sprite_index = Sprite(pick(Field("spanner", 0), "spr_spinner", "spr_spanner"), 0);
 */
 /*"/*'/**//* YYD ACTION
 lib_id=1

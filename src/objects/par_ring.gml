@@ -22,4 +22,4 @@ applies_to=self
 
 if (game_ispaused(mnu_pause)) exit;
 
-image_index = mod_time(game_get_time(), pick(dropped, rate, rate / 2), sprite_get_number(sprite_index));
+image_index = mod_time(game_get_time(), rate / pick(dropped, 1, 2), sprite_get_number(sprite_index));

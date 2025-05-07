@@ -20,8 +20,8 @@ applies_to=self
 
 //field layer: enum(0, 1)
 
-/*preview nodrawself
-draw_sprite(Sprite("spr_layer_sensor", Field("layer", 0)), 0, x, y);
+/*preview
+sprite_index = Sprite("spr_layer_sensor", Field("layer", 0));
 */
 #define Draw_0
 /*"/*'/**//* YYD ACTION

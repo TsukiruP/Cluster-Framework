@@ -1,4 +1,4 @@
-sprite=spr_spring_hor
+sprite=spr_switch_spring_vert
 visible=1
 solid=0
 persistent=0
