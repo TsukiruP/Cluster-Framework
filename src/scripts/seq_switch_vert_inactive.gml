@@ -3,7 +3,7 @@
 if (sequence_position(0))
 {
     image_index = 2;
-    hitbox_set_hurtbox(9, 2, 9, 2, 0, 5);
+    hitbox_set_hurtbox(9, -3, 9, 7);
 }
 else if (sequence_position(6))
 {

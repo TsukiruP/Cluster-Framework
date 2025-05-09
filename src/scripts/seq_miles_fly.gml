@@ -6,7 +6,7 @@ if (sequence_position(0))
     image_index = 0;
     player_set_radii(6, 14, 3);
     hitbox_set_hurtbox(6, 10, 6, 10);
-    hitbox_set_attackbox(22, 12, 21, 0, 0, -11);
+    hitbox_set_attackbox(22, 23, 21, -11);
 }
 else if (sequence_position(2)) image_index = 1;
 else if (sequence_position(4)) image_index = 2;

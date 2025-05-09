@@ -8,12 +8,12 @@ if (sequence_position(0))
 else if (sequence_position(3))
 {
     image_index = 1;
-    hitbox_set_hurtbox(3, 9, 6, 9, -5);
+    hitbox_set_hurtbox(8, 9, 1, 9);
 }
 else if (sequence_position(6))
 {
     image_index = 2;
-    hitbox_set_hurtbox(3, 9, 2, 9, -5);
+    hitbox_set_hurtbox(8, 9, -3, 9);
 }
 else if (sequence_position(12)) image_index = 3;
 else if (sequence_position(18)) image_index = 2;

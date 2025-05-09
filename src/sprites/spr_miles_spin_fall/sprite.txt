@@ -1,6 +1,6 @@
 frames=6
 origin_x=23
-origin_y=36
+origin_y=32
 collision_shape=1
 alpha_tolerance=0
 per_frame_colliders=0

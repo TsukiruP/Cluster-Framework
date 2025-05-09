@@ -3,7 +3,7 @@
 if (sequence_position(0))
 {
     image_index = 5;
-    hitbox_set_hurtbox(6, 6, 6, 6, -7, 7);
+    hitbox_set_hurtbox(13, -1, -1, 13);
 }
 else if (sequence_position(3))
 {
@@ -13,22 +13,22 @@ else if (sequence_position(3))
 else if (sequence_position(6))
 {
     image_index = 7;
-    hitbox_set_hurtbox(6, 6, 4, 4, -3, 5);
+    hitbox_set_hurtbox(9, 1, 1, 9);
 }
 else if (sequence_position(9))
 {
     image_index = 8;
-    hitbox_set_hurtbox(6, 6, 5, 5, -2, 3);
+    hitbox_set_hurtbox(8, 3, 3, 8);
 }
 else if (sequence_position(12))
 {
     image_index = 9;
-    hitbox_set_hurtbox(6, 6, 4, 4, -3, 5);
+    hitbox_set_hurtbox(9, 1, 1, 9);
 }
 else if (sequence_position(15))
 {
     image_index = 0;
-    hitbox_set_hurtbox(6, 6, 5, 5, -2, 3);
+    hitbox_set_hurtbox(8, 3, 3, 8);
 }
 else if (sequence_position(18))
 {

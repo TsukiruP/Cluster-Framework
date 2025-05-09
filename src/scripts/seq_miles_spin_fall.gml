@@ -4,15 +4,15 @@ if (sequence_position(0))
 {
     sprite_index = spr_miles_spin_fall;
     image_index = 0;
-    player_set_radii(6, 9, 3);
-    hitbox_set_hurtbox(6, 20, 6, 2);
-    hitbox_set_attackbox(10, 12, 10, 8);
+    player_set_radii(6, 9, 3, 5);
+    hitbox_set_hurtbox(6, 16, 6, 6);
+    hitbox_set_attackbox(10, 8, 10, 12);
 }
 else if (sequence_position(1))
 {
     image_index = 1;
-    hitbox_set_hurtbox(6, 22, 8, 0);
-    hitbox_set_attackbox(9, 13, 9, 5);
+    hitbox_set_hurtbox(6, 18, 8, 4);
+    hitbox_set_attackbox(9, 9, 9, 9);
 }
 else if (sequence_position(3)) image_index = 2;
 else if (sequence_position(5)) image_index = 3;

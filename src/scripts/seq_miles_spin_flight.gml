@@ -11,10 +11,15 @@ if (sequence_position(0))
     sprite_index = spr_miles_spin_flight;
     image_index = 0;
     player_set_radii(6, 14, 3);
-    hitbox_set_hurtbox(6, 22, 6, 0);
-    hitbox_set_attackbox(6, 22, 6, 0);
+    hitbox_set_hurtbox(6, 18, 6, 4);
+    hitbox_set_attackbox(6, 18, 6, 4);
 }
-else if (sequence_position(3)) image_index = 1;
+else if (sequence_position(3))
+{
+    image_index = 1;
+    hitbox_set_hurtbox(5, 6, 7, 16);
+    hitbox_set_attackbox(5, 6, 7, 16);
+}
 else if (sequence_position(6))
 {
     image_index = 2;
