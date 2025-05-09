@@ -99,11 +99,14 @@ with (obj_player)
     draw_hitbox(attackbox_left, attackbox_top, attackbox_right, attackbox_bottom, attackbox_x_offset, attackbox_y_offset, mask_direction, c_green);
 
     // Homing range:
-    if (save_get_skill(character_index, "homing") && character_index == CHAR_SONIC)
+    if (character_index == CHAR_SONIC)
     {
-        draw_line(x_int, y_int, x_int + lengthdir_x(homing_range * image_xscale, mask_direction + 45), y_int + lengthdir_y(homing_range * image_xscale, mask_direction + 45));
-        draw_line(x_int, y_int, x_int + lengthdir_x(homing_range * image_xscale, mask_direction - 45), y_int + lengthdir_y(homing_range * image_xscale, mask_direction - 45));
-        if (instance_exists(homing_inst)) draw_line(x_int, y_int, floor(homing_inst.x), floor(homing_inst.y));
+        if (save_get_skill(character_index, "homing"))
+        {
+            draw_line(x_int, y_int, x_int + lengthdir_x(homing_range * image_xscale, mask_direction + 45), y_int + lengthdir_y(homing_range * image_xscale, mask_direction + 45));
+            draw_line(x_int, y_int, x_int + lengthdir_x(homing_range * image_xscale, mask_direction - 45), y_int + lengthdir_y(homing_range * image_xscale, mask_direction - 45));
+            if (instance_exists(homing_inst)) draw_line(x_int, y_int, floor(homing_inst.x), floor(homing_inst.y));
+        }
     }
 
     draw_reset();

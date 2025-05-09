@@ -6,6 +6,7 @@
 var _index; _index = argument[0];
 var _execute; if (argument_count > 1) _execute = argument[1]; else _execute = true;
 
+var character_key; character_key = CHAR_SONIC;
 var skill_key; skill_key = "peel";
 
 switch (_index)
@@ -14,10 +15,10 @@ switch (_index)
         return "Peel Out:";
 
     case OPTION_VALUE:
-        return string_bool(save_get_skill(CHAR_SONIC, skill_key), true);
+        return string_bool(save_get_skill(character_key, skill_key), true);
 
     case OPTION_CHANGE:
-        if (_execute) save_set_skill(CHAR_SONIC, skill_key, !save_get_skill(CHAR_SONIC, skill_key));
+        if (_execute) save_set_skill(character_key, skill_key, !save_get_skill(character_key, skill_key));
         return true;
 
     default:

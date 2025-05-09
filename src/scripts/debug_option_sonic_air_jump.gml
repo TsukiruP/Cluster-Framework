@@ -6,6 +6,7 @@
 var _index; _index = argument[0];
 var _execute; if (argument_count > 1) _execute = argument[1]; else _execute = true;
 
+var character_key; character_key = CHAR_SONIC;
 var skill_key; skill_key = "air_jump";
 
 switch (_index)
@@ -14,10 +15,10 @@ switch (_index)
         return "Jump Skill:";
 
     case OPTION_VALUE:
-        return pick(save_get_skill(CHAR_SONIC, skill_key), "None", "Insta-Shield", "Air Dash", "Drop Dash");
+        return pick(save_get_skill(character_key, skill_key), "None", "Insta-Shield", "Air Dash", "Drop Dash");
 
     case OPTION_CHANGE:
-        if (_execute) save_set_skill(CHAR_SONIC, skill_key, wrap(save_get_skill(CHAR_SONIC, skill_key) + menu_x_direction, SKILL_NONE, SKILL_DROP_DASH));
+        if (_execute) save_set_skill(character_key, skill_key, wrap(save_get_skill(character_key, skill_key) + menu_x_direction, SKILL_NONE, SKILL_DROP_DASH));
         return true;
 
     default:

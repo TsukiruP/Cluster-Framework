@@ -1,5 +1,5 @@
 /// miles_state_fly(phase)
-/// @desc
+/// @desc Spin your tails and prepare for a force.
 /// @param {int} phase
 /// @returns {bool}
 
@@ -16,7 +16,7 @@ switch (_phase)
     case STATE_STEP:
         if (input_x_direction != 0)
         {
-            if (sign(image_xscale) != input_x_direction && fly_time > 0) player_set_animation("fly_turn");
+            if (sign(image_xscale) != input_x_direction && fly_time > 0 && !fly_hammer) player_set_animation("fly_turn");
             image_xscale = input_x_direction;
 
             if (abs(x_speed) < top_speed || sign(x_speed) != input_x_direction)
@@ -29,6 +29,7 @@ switch (_phase)
         if (!player_movement_air()) return false;
         if (player_routine_land()) return true;
         if (tag_leader_state == STATE_FINISH) return player_set_state(player_state_air);
+        if (fly_hammer != -1) fly_hammer = (save_get_skill(CHAR_MILES, "ground") == SKILL_HAMMER && !underwater && !fly_carry);
 
         if ((!input_cpu || (input_cpu && input_cpu_gamepad_alarm > 0)) && player_get_input(INP_DOWN, CHECK_HELD) && player_get_input(INP_JUMP, CHECK_PRESSED))
         {
@@ -36,7 +37,7 @@ switch (_phase)
             return player_set_state(player_state_air);
         }
 
-        if (y_speed >= fly_threshold && fly_time > 0 && player_get_input(INP_JUMP, CHECK_PRESSED)) fly_force = fly_force_alt;
+        if (y_speed >= fly_threshold && fly_time > 0 && player_get_input(INP_JUMP, CHECK_PRESSED) && animation_current != "fly_hammer_attack") fly_force = fly_force_alt;
         if (y_speed < fly_threshold && fly_force == fly_force_alt) fly_force = fly_force_temp;
 
         player_air_friction();
@@ -44,12 +45,14 @@ switch (_phase)
         if (y < 0 && y_speed < 0) y_speed = 0;
 
         if (fly_time > 0) fly_time -= 1;
-        miles_animation_fly();
+        if (fly_time > 0 && fly_hammer && player_get_input(INP_AUX, CHECK_PRESSED)) player_set_animation("fly_hammer_attack");
+
+        if (animation_current != "fly_hammer_attack") miles_animation_fly();
         miles_trait_fly_carry();
 
-        if (!underwater || fly_carry)
+        if (!underwater || fly_carry || animation_current == "fly_hammer" || animation_current == "fly_hammer_attack")
         {
-            if (fly_time > 0)
+            if (fly_time > 0 || animation_current == "fly_hammer" || animation_current == "fly_hammer_attack")
             {
                 if (!sound_isplaying("snd_fly"))
                 {
@@ -67,6 +70,7 @@ switch (_phase)
         break;
 
     case STATE_FINISH:
+        fly_hammer = false;
         audio_stop_sfx(fly_sfx);
         break;
 }

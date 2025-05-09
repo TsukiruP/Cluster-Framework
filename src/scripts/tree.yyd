@@ -87,8 +87,11 @@
 				|save_get_skill_map
 				|save_set_skill
 				|save_write_skill
+				|save_write_skill_all
 				|save_read_skill
+				|save_read_skill_all
 				|save_reset_skill
+				|save_reset_skill_all
 		+Screen
 			|screen_is_equal
 			|screen_get_width
@@ -206,8 +209,10 @@
 					+Character
 						|debug_menu_character
 						+Options
-							|debug_option_player0
-							|debug_option_player1
+							|debug_option_player
+							+Player
+								|debug_option_player0
+								|debug_option_player1
 							|debug_option_swap
 							|debug_option_tag
 							|debug_option_boost
@@ -222,6 +227,9 @@
 								|debug_option_sonic_homing
 								|debug_option_sonic_shield
 						+Miles
+							|debug_menu_miles
+							+Options
+								|debug_option_miles_ground
 						+Knuckles
 						+Amy
 					|debug_option_transition
@@ -507,6 +515,10 @@
 								|seq_miles_swim_drop
 								|seq_miles_swim_turn
 								|seq_miles_fly_cancel
+								+Hammer
+									|seq_miles_fly_hammer
+									|seq_miles_fly_hammer_attack
+							|seq_miles_hammer
 							+Tricks
 								+Up
 									|seq_miles_trick_up_flight
@@ -796,6 +808,7 @@
 				|sonic_skill_peel_out
 			+Miles
 				|miles_skill_fly
+				|miles_skill_ground
 		+Routines
 			|player_routine_land
 			|player_routine_jump

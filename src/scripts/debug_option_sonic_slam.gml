@@ -6,6 +6,7 @@
 var _index; _index = argument[0];
 var _execute; if (argument_count > 1) _execute = argument[1]; else _execute = true;
 
+var character_key; character_key = CHAR_SONIC;
 var skill_key; skill_key = "slam";
 
 switch (_index)
@@ -14,10 +15,10 @@ switch (_index)
         return "Slam Skill:";
 
     case OPTION_VALUE:
-        return pick(save_get_skill(CHAR_SONIC, skill_key), "None", "Bound", "Stomp");
+        return pick(save_get_skill(character_key, skill_key), "None", "Bound", "Stomp");
 
     case OPTION_CHANGE:
-        if (_execute) save_set_skill(CHAR_SONIC, skill_key, wrap(save_get_skill(CHAR_SONIC, skill_key) + menu_x_direction, SKILL_NONE, SKILL_STOMP));
+        if (_execute) save_set_skill(character_key, skill_key, wrap(save_get_skill(character_key, skill_key) + menu_x_direction, SKILL_NONE, SKILL_STOMP));
         return true;
 
     default:

@@ -4,7 +4,7 @@
 
 var carry_inst; carry_inst = stage_get_player(pick(player_index, 1, 0));
 
-if (!instance_exists(carry_inst)) exit;
+if (fly_hammer || !instance_exists(carry_inst)) exit;
 if (carry_inst.character_index == CHAR_CLASSIC) exit;
 
 var carry_state; carry_state = carry_inst.state_current;

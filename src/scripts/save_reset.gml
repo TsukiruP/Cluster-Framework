@@ -16,5 +16,5 @@ save_set("trick", true);
 save_set("tag", true);
 save_set("swap", true);
 
-save_reset_skill(CHAR_SONIC);
-save_write_skill(CHAR_SONIC);
+save_reset_skill_all();
+save_write_skill_all();

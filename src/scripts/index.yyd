@@ -717,3 +717,13 @@ seq_sonic_fly_carry
 miles_trait_fly_carry
 player_state_fly_carry
 sonic_state_accel
+seq_miles_hammer
+miles_skill_ground
+debug_menu_miles
+debug_option_miles_ground
+seq_miles_fly_hammer
+seq_miles_fly_hammer_attack
+debug_option_player
+save_write_skill_all
+save_read_skill_all
+save_reset_skill_all

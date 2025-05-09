@@ -15,6 +15,7 @@ indicator_time = 0;
 save_map = ds_map_create();
 character_list = ds_list_create();
 sonic_map = ds_map_create();
+miles_map = ds_map_create();
 save_reset();
 #define Step_1
 /*"/*'/**//* YYD ACTION
@@ -47,6 +48,7 @@ applies_to=self
 ds_map_destroy(save_map);
 ds_list_destroy(character_list);
 ds_map_destroy(sonic_map);
+ds_map_destroy(miles_map);
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1

@@ -108,6 +108,7 @@ max_fly_time = 480;
 fly_time = max_fly_time;
 fly_carry = false;
 fly_carry_alarm = 0;
+fly_hammer = false;
 fly_sfx = noone;
 
 clock_up_state = 0;

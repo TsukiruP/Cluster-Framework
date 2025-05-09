@@ -65,8 +65,8 @@ if (tag_allow)
             {
                 if (!in_view(self))
                 {
-                    if (x < other.x) x = view_xview[view_current] - 32;
-                    else x = view_xview[view_current] + screen_get_width() + 32;
+                    if (x > other.x) x = view_xview[view_current] + screen_get_width() + 32;
+                    else x = view_xview[view_current] - 32;
 
                     y = other.y;
                 }
@@ -160,6 +160,7 @@ if (partner_inst.state_current == player_state_interlink)
                                     if (!collision_box_vertical(x_radius, y_radius + 32, mask_direction, par_solid))
                                     {
                                         fly_carry = true;
+                                        fly_hammer = -1;
                                         player_set_state(miles_state_fly);
 
                                         with (other)

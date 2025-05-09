@@ -21,5 +21,10 @@ with (ctrl_save)
             ds_map_set(skill_map, "peel", false);
             ds_map_set(skill_map, "homing", HOMING_NONE);
             ds_map_set(skill_map, "shield", false);
+            break;
+
+        case CHAR_MILES:
+            ds_map_set(skill_map, "ground", SKILL_NONE);
+            break;
     }
 }

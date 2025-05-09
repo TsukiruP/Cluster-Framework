@@ -22,6 +22,6 @@ with (ctrl_save)
 
         ds_map_destroy(save_temp);
         save_read_character();
-        save_read_skill(CHAR_SONIC);
+        save_read_skill_all();
     }
 }

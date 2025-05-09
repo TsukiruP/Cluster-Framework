@@ -5,4 +5,4 @@
 
 var _character; _character = argument0;
 
-with (ctrl_save) return pick(_character, sonic_map);
+with (ctrl_save) return pick(_character, sonic_map, miles_map);
