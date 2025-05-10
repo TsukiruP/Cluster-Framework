@@ -11,7 +11,7 @@ var _player; if (argument_count > 2) _player = argument[2]; else _player = 0;
 switch (_index)
 {
     case OPTION_TEXT:
-        return "Player 0:";
+        return "Player " + string(_player) + ":";
 
     case OPTION_VALUE:
         if (save_get_character(_player) < CHAR_SONIC) return "None";
