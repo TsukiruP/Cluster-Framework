@@ -11,7 +11,7 @@ if (on_ground && player_get_input(INP_AUX, CHECK_PRESSED))
         case SKILL_HAMMER:
             return player_set_state(player_state_hammer);
 
-        case SKILL_SKID:
+        case SONIC_SKID:
             return player_set_state(sonic_state_skid);
 
     }

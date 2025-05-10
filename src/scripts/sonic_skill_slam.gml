@@ -8,10 +8,10 @@ if (!on_ground && player_get_input(INP_DOWN, CHECK_HELD) && player_get_input(INP
 
     switch (skill_index)
     {
-        case SKILL_BOUND_ATTACK:
+        case SONIC_BOUND:
             return player_set_state(sonic_state_bound);
 
-        case SKILL_STOMP:
+        case SONIC_STOMP:
             return player_set_state(sonic_state_stomp);
     }
 }

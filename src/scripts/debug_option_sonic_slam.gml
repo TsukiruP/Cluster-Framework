@@ -18,7 +18,7 @@ switch (_index)
         return pick(save_get_skill(character_key, skill_key), "None", "Bound", "Stomp");
 
     case OPTION_CHANGE:
-        if (_execute) save_set_skill(character_key, skill_key, wrap(save_get_skill(character_key, skill_key) + menu_x_direction, SKILL_NONE, SKILL_STOMP));
+        if (_execute) save_set_skill(character_key, skill_key, wrap(save_get_skill(character_key, skill_key) + menu_x_direction, SKILL_NONE, SONIC_STOMP));
         return true;
 
     default:

@@ -24,7 +24,7 @@ if (!on_ground)
                 return true;
             }
         }
-        else if (skill_index == SKILL_AIR_DASH && air_dash_allow)
+        else if (skill_index == SONIC_AIR_DASH && air_dash_allow)
         {
             x_speed += 2.25 * image_xscale;
             y_speed  = 0;
@@ -36,7 +36,7 @@ if (!on_ground)
         }
         else if (skill_key == "air_jump")
         {
-            if (skill_index == SKILL_DROP_DASH) return player_set_state(sonic_state_drop_dash);
+            if (skill_index == SONIC_DROP_DASH) return player_set_state(sonic_state_drop_dash);
         }
     }
 }

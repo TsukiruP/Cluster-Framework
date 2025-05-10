@@ -519,6 +519,7 @@
 									|seq_miles_fly_hammer
 									|seq_miles_fly_hammer_attack
 							|seq_miles_hammer
+							|seq_miles_tail_swipe
 							+Tricks
 								+Up
 									|seq_miles_trick_up_flight
@@ -798,6 +799,7 @@
 			+Miles
 				|miles_state_fly
 				|miles_state_fly_hammer
+				|miles_state_tail_swipe
 			+Tag Actions
 				|player_state_fly_carry
 		+Skills

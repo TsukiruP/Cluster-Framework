@@ -728,3 +728,5 @@ save_write_skill_all
 save_read_skill_all
 save_reset_skill_all
 miles_state_fly_hammer
+seq_miles_tail_swipe
+miles_state_tail_swipe

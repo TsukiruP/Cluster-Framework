@@ -10,6 +10,9 @@ if (on_ground && player_get_input(INP_AUX, CHECK_PRESSED))
     {
         case SKILL_HAMMER:
             return player_set_state(player_state_hammer);
+        
+        case MILES_TAIL:
+            return player_set_state(miles_state_tail_swipe);
     }
 }
 
