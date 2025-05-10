@@ -371,8 +371,11 @@ if (input_allow)
                                 }
                             }
 
-                            if (character_index == CHAR_MILES && !on_ground &&
-                                player_get_input(INP_UP, CHECK_HELD) && player_get_input(INP_JUMP, CHECK_PRESSED)) player_set_state(miles_state_fly);
+                            if (character_index == CHAR_MILES && !on_ground && player_get_input(INP_UP, CHECK_HELD) && player_get_input(INP_JUMP, CHECK_PRESSED))
+                            {
+                                fly_hammer = false;
+                                player_set_state(miles_state_fly);
+                            }
                         }
                 }
             }

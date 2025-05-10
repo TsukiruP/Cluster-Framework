@@ -4,7 +4,6 @@
 
 if (fly_time > 0)
 {
-    if (fly_hammer) player_set_animation("fly_hammer");
-    else if (animation_current != "fly_turn" && animation_current != "swim_turn") player_set_animation(pick(underwater && !fly_carry, "fly", "swim"));
+    if (animation_current != "fly_turn" && animation_current != "swim_turn") player_set_animation(pick(underwater && !fly_carry, "fly", "swim"));
 }
 else player_set_animation(pick(underwater && !fly_carry, "fly_drop", "swim_drop"));

@@ -30,4 +30,4 @@ else if (sequence_position(18)) image_index = 19;
 else if (sequence_position(20)) image_index = 20;
 else if (sequence_position(22)) image_index = 21;
 else if (sequence_position(24)) image_index = 22;
-else if (sequence_position(26)) miles_animation_fly();
+else if (sequence_position(26)) player_set_animation("fly_hammer");

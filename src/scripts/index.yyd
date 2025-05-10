@@ -727,3 +727,4 @@ debug_option_player
 save_write_skill_all
 save_read_skill_all
 save_reset_skill_all
+miles_state_fly_hammer

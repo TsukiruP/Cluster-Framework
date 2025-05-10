@@ -4,8 +4,8 @@
 
 if (!on_ground && fly_time > 0 && player_get_input(INP_JUMP, CHECK_PRESSED))
 {
-    fly_hammer = (save_get_skill(CHAR_MILES, "ground") == SKILL_HAMMER && !underwater);
-    return player_set_state(miles_state_fly);
+    fly_hammer = (save_get_skill(CHAR_MILES, "ground") == SKILL_HAMMER);
+    return player_set_state(pick(!underwater && fly_hammer, miles_state_fly, miles_state_fly_hammer));
 }
 
 return false;
