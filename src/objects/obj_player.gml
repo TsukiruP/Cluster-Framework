@@ -488,6 +488,8 @@ applies_to=self
 */
 /// Effects
 
+if (game_ispaused(mnu_pause)) exit;
+
 player_set_depth(player_index);
 player_run_splash_create();
 player_spin_dash_create();
