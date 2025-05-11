@@ -163,6 +163,8 @@
 					|spr_miles_hammer
 					|spr_miles_tail_swipe
 					|spr_miles_tornado
+					|spr_miles_dizzy
+					|spr_miles_insta
 					+Tricks
 						|spr_miles_trick_up
 						|spr_miles_trick_down

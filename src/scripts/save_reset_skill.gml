@@ -25,6 +25,8 @@ with (ctrl_save)
 
         case CHAR_MILES:
             ds_map_set(skill_map, "ground", SKILL_NONE);
+            ds_map_set(skill_map, "insta", false);
+            ds_map_set(skill_map, "shield", false);
             break;
     }
 }

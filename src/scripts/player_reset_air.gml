@@ -1,5 +1,5 @@
 /// player_reset_air()
-/// @desc Resets the players solid variables.
+/// @desc Resets the player's ground variables.
 /// @returns {void}
 
 if (y_speed < 0) player_jump_splash_create();

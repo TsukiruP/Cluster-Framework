@@ -49,6 +49,11 @@ animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "fly_hammer", seq_miles_fl
 animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "fly_hammer_attack", seq_miles_fly_hammer_attack);
 animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "hammer", seq_miles_hammer);
 animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "tail_swipe", seq_miles_tail_swipe);
+animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "tornado", seq_miles_tornado);
+animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "tornado_end", seq_miles_tornado_end);
+animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "dizzy", seq_miles_dizzy);
+animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "dizzy_end", seq_miles_dizzy_end);
+animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "insta", seq_miles_insta);
 animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "trick_up_flight", seq_miles_trick_up_flight);
 animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "trick_up_fall", seq_miles_trick_up_fall);
 animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "trick_down", seq_miles_trick_down);

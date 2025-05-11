@@ -16,14 +16,7 @@ switch (_phase)
     case STATE_STEP:
         var skid_super; skid_super = (boost_mode || peel_out);
 
-        if (!on_ground)
-        {
-            if (!player_movement_air()) return false;
-            if (player_routine_land()) return true;
-
-            player_gravity_force();
-        }
-        else
+        if (on_ground)
         {
             // Friction:
             if (!skid_super)
@@ -33,6 +26,12 @@ switch (_phase)
             }
 
             if (!player_movement_ground()) return false;
+
+            if (!on_ground)
+            {
+                player_reset_air_speed();
+                return true;
+            }
 
             if (abs(x_speed) < slide_threshold && relative_angle >= 90 && relative_angle <= 270) return player_set_state(player_state_air);
             if (x_speed != 0 && sign(x_speed) != image_xscale) return player_set_state(player_state_run);
@@ -52,10 +51,12 @@ switch (_phase)
                 }
             }
         }
-
-        if (!on_ground)
+        else
         {
-            if (ground_inst != noone) player_reset_air();
+            if (!player_movement_air()) return false;
+            if (player_routine_land()) return true;
+
+            player_gravity_force();
 
             if (animation_trigger)
             {
@@ -64,6 +65,7 @@ switch (_phase)
                 return player_set_state(player_state_jump, false);
             }
         }
+
 
         if (animation_current == "skid")
         {

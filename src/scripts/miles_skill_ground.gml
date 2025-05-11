@@ -13,6 +13,9 @@ if (on_ground && player_get_input(INP_AUX, CHECK_PRESSED))
         
         case MILES_TAIL:
             return player_set_state(miles_state_tail_swipe);
+        
+        case MILES_TORNADO:
+            return player_set_state(miles_state_tornado);
     }
 }
 

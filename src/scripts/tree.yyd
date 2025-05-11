@@ -230,6 +230,7 @@
 							|debug_menu_miles
 							+Options
 								|debug_option_miles_ground
+								|debug_option_miles_insta
 						+Knuckles
 						+Amy
 					|debug_option_transition
@@ -520,6 +521,13 @@
 									|seq_miles_fly_hammer_attack
 							|seq_miles_hammer
 							|seq_miles_tail_swipe
+							+Tornado
+								|seq_miles_tornado
+								|seq_miles_tornado_end
+							+Dizzy
+								|seq_miles_dizzy
+								|seq_miles_dizzy_end
+							|seq_miles_insta
 							+Tricks
 								+Up
 									|seq_miles_trick_up_flight
@@ -800,6 +808,8 @@
 				|miles_state_fly
 				|miles_state_fly_hammer
 				|miles_state_tail_swipe
+				|miles_state_tornado
+				|miles_state_dizzy
 			+Tag Actions
 				|player_state_fly_carry
 		+Skills
@@ -812,6 +822,7 @@
 			+Miles
 				|miles_skill_fly
 				|miles_skill_ground
+				|miles_skill_air
 		+Routines
 			|player_routine_land
 			|player_routine_jump
@@ -896,6 +907,7 @@
 			|player_set_depth
 			|player_reset_physics
 			|player_reset_air
+			|player_reset_air_speed
 			|player_reset_tag
 			|player_reset_status
 			|player_reset_skill

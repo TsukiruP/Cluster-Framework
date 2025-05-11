@@ -13,16 +13,12 @@ if (!on_ground)
     {
         var skill_index; skill_index = save_get_skill(character_index, skill_key);
 
-        if (skill_index <= SKILL_INSTA && status_shield_allow)
+        if (skill_index <= SONIC_INSTA && status_shield_allow)
         {
             var skill_shield; skill_shield = save_get_skill(character_index, "shield");
 
             if (skill_shield && status_shield >= SHIELD_BUBBLE) return player_routine_shield();
-            else if (skill_index == SKILL_INSTA)
-            {
-                player_routine_insta();
-                return true;
-            }
+            else if (skill_index == SONIC_INSTA) return player_routine_insta();
         }
         else if (skill_index == SONIC_AIR_DASH && air_dash_allow)
         {

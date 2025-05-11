@@ -12,17 +12,23 @@ switch (_phase)
         break;
 
     case STATE_STEP:
-        if (!on_ground)
+        if (on_ground)
+        {
+            x_speed -= min(abs(x_speed), deceleration / 2) * sign(x_speed);
+            if (!player_movement_ground()) return false;
+
+            if (!on_ground)
+            {
+                player_reset_air_speed();
+                return true;
+            }
+        }
+        else
         {
             if (!player_movement_air()) return false;
             if (player_routine_land()) return true;
 
             player_gravity_force();
-        }
-        else
-        {
-             x_speed -= min(abs(x_speed), deceleration / 2) * sign(x_speed);
-            if (!player_movement_ground()) return false;
         }
 
         if (animation_trigger)

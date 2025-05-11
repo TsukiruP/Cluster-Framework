@@ -14,6 +14,7 @@ if (sequence_index != animation_sequence)
 
 player_set_animation_speed();
 sequence_execute();
+
 animation_time += 1;
 if (animation_skip) animation_skip = false;
 if (animation_changed) animation_changed = false;

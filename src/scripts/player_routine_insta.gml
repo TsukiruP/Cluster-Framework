@@ -19,3 +19,5 @@ if (character_index == CHAR_SONIC || character_index == CHAR_CLASSIC)
         player_inst = other.id;
     }
 }
+
+return true;

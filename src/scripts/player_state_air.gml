@@ -8,11 +8,7 @@ var _phase; _phase = argument0;
 switch (_phase)
 {
     case STATE_START:
-        var g_speed; g_speed = x_speed;
-
-        x_speed = dcos(relative_angle) * g_speed;
-        y_speed = -(dsin(relative_angle) * g_speed);
-        player_reset_air();
+        player_reset_air_speed();
         player_animation_air();
         break;
 

@@ -730,3 +730,13 @@ save_reset_skill_all
 miles_state_fly_hammer
 seq_miles_tail_swipe
 miles_state_tail_swipe
+seq_miles_tornado
+seq_miles_tornado_end
+miles_state_tornado
+player_reset_air_speed
+miles_state_dizzy
+seq_miles_dizzy
+seq_miles_dizzy_end
+seq_miles_insta
+miles_skill_air
+debug_option_miles_insta
