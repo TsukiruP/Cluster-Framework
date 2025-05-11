@@ -22,7 +22,7 @@ else
 // Check if already within bounds (early out):
 if (rectangle_in_rectangle(x1, y1, x2, y2, ctrl_camera.limit_left, ctrl_camera.limit_top, ctrl_camera.limit_right, ctrl_camera.limit_bottom) == 1) return true;
 
-switch (mask_direction)
+switch (gravity_direction)
 {
     // Down:
     case 0:
