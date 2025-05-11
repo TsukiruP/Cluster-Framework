@@ -31,7 +31,7 @@ applies_to=self
 */
 /// Draw Tails
 
-if (sequence_index != noone)
+if (!game_ispaused(mnu_pause) && sequence_index != noone)
 {
     var player_xscale; player_xscale = player_inst.image_xscale;
     var player_alpha; player_alpha = player_inst.image_alpha;
