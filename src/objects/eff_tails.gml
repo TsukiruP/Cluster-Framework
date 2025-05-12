@@ -31,7 +31,7 @@ applies_to=self
 */
 /// Draw Tails
 
-if (!game_ispaused(mnu_pause) && sequence_index != noone)
+if (sequence_index != noone)
 {
     var player_xscale; player_xscale = player_inst.image_xscale;
     var player_alpha; player_alpha = player_inst.image_alpha;
@@ -41,12 +41,12 @@ if (!game_ispaused(mnu_pause) && sequence_index != noone)
     image_xscale = player_xscale;
     image_alpha = player_alpha;
 
-    if (!player_inst.on_ground) image_angle = angle_wrap(point_direction(player_inst.xprevious, player_inst.yprevious, player_inst.x, player_inst.y) - 90);
-    else
+    if (player_inst.on_ground)
     {
         image_angle = angle_wrap(player_inst.angle - 90);
         if (sign(image_xscale) == -1) image_angle = angle_wrap(image_angle + 180);
     }
+    else image_angle = angle_wrap(point_direction(0, 0, player_inst.x_speed, player_inst.y_speed) - 90);
 }
 
 draw_self_floored();
