@@ -44,7 +44,7 @@ if (sequence_index != noone)
     if (player_inst.on_ground)
     {
         image_angle = angle_wrap(player_inst.angle - 90);
-        if (sign(image_xscale) == -1) image_angle = angle_wrap(image_angle + 180);
+        if (sign(player_inst.x_speed) == -1) image_angle = angle_wrap(image_angle + 180);
     }
     else image_angle = angle_wrap(point_direction(0, 0, player_inst.x_speed, player_inst.y_speed) - 90);
 }
