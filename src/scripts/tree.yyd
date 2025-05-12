@@ -793,9 +793,9 @@
 				|player_state_spring
 				|player_state_rail
 				|player_state_bound
+				|player_state_hammer
 				|player_state_trick
 				|player_state_trick_bound
-				|player_state_hammer
 				|player_state_interlink
 			+Sonic
 				|sonic_state_skid
