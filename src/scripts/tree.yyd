@@ -231,6 +231,7 @@
 							+Options
 								|debug_option_miles_ground
 								|debug_option_miles_insta
+								|debug_option_miles_shield
 						+Knuckles
 						+Amy
 					|debug_option_transition

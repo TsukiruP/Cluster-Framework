@@ -28,6 +28,7 @@ switch (_phase)
 
         if (!player_movement_air()) return false;
         if (player_routine_land()) return true;
+        if (miles_skill_air()) return true;
 
         if ((!input_cpu || (input_cpu && input_cpu_gamepad_alarm > 0)) && player_get_input(INP_DOWN, CHECK_HELD) && player_get_input(INP_JUMP, CHECK_PRESSED))
         {
