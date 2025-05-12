@@ -667,6 +667,7 @@
 					|seq_debuff
 					+Sonic
 						|seq_super_skid
+						|seq_insta
 						|seq_drop_dash
 						|seq_bound_jump
 						|seq_shockwave
@@ -675,7 +676,6 @@
 					+Miles
 						|seq_tails
 				+Shields
-					|seq_shield_insta
 					|seq_shield_basic
 					|seq_shield_magnetic
 					|seq_shield_fire

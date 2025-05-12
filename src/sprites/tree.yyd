@@ -340,6 +340,7 @@
 			|spr_drown
 			+Sonic
 				|spr_super_skid
+				|spr_insta
 				|spr_drop_dash
 				|spr_bound_jump
 				|spr_shockwave
@@ -348,7 +349,6 @@
 			+Miles
 				|spr_tails
 		+Shields
-			|spr_shield_insta
 			|spr_shield_basic
 			|spr_shield_magnetic
 			|spr_shield_fire

@@ -146,7 +146,7 @@ seq_splash_4
 seq_shield_basic
 seq_shield_magnetic
 seq_shield_invin
-seq_shield_insta
+seq_insta
 seq_shield_fire
 seq_shield_bubble
 seq_shield_lightning

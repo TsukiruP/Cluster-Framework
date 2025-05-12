@@ -207,7 +207,7 @@ spr_basic_test_water_fall_03
 spr_trail
 spr_save_character
 spr_drop_dash
-spr_shield_insta
+spr_insta
 spr_shield_bubble_shell
 spr_spring_vert
 spr_tails
