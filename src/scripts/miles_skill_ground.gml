@@ -2,7 +2,7 @@
 /// @desc Performs Miles' ground skill.
 /// @returns {bool}
 
-if (on_ground && player_get_input(INP_AUX, CHECK_PRESSED))
+if (on_ground && !(relative_angle >= 45 && relative_angle <= 315) && player_get_input(INP_AUX, CHECK_PRESSED))
 {
     var skill_index; skill_index = save_get_skill(character_index, "ground");
 
