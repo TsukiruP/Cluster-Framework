@@ -1,4 +1,3 @@
 //gm82 fields begin
-border_left=48
-border_right=96
+semisolid=true
 //gm82 fields end
