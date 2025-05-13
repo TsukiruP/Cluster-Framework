@@ -45,13 +45,15 @@ applies_to=self
 
 /*preview
 var preview_angle; preview_angle = ANGLE_UP;
-var preview_force; preview_force = (8 + 15) / 0.21875;
+var preview_force; preview_force = 8;
 
 if (FieldDefined("angle")) preview_angle = Field("angle", 0);
-if (FieldDefined("force")) preview_force = (Field("force", 0) + 15) / 0.21875;
+if (FieldDefined("force")) preview_force = Field("force", 0);
+
+var preview_alarm; preview_alarm = preview_force + 15;
 
 sprite_index = Sprite(pick(preview_angle / 45, "spr_spring_hor", "spr_spring_diag", "spr_spring_vert"), 0);
-draw_line(x, y, x + lengthdir_x(preview_force * image_xscale, preview_angle), y + lengthdir_y(preview_force * image_yscale, preview_angle));
+draw_line(x, y, x + lengthdir_x(preview_force * preview_alarm * image_xscale, preview_angle), y + lengthdir_y(preview_force * preview_alarm * image_yscale, preview_angle));
 */
 /*"/*'/**//* YYD ACTION
 lib_id=1
