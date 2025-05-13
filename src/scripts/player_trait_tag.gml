@@ -12,7 +12,7 @@ if (!save_get("tag") || character_index == CHAR_CLASSIC || input_cpu || !instanc
 
 var tag_allow; tag_allow = false;
 
-if (instance_exists(partner_inst))
+if (!(relative_angle >= 45 && relative_angle <= 315) && instance_exists(partner_inst))
 {
     switch (state_current)
     {
