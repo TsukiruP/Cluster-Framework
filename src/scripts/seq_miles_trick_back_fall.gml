@@ -17,4 +17,4 @@ else if (sequence_position(22)) image_index = 17;
 else if (sequence_position(25)) image_index = 18;
 else if (sequence_position(28)) image_index = 19;
 else if (sequence_position(31)) image_index = 20;
-else if (sequence_position(33)) sequence_moment = 16;
+else if (sequence_position(33)) sequence_moment = 25;

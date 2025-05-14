@@ -9,6 +9,7 @@ switch (_phase)
 {
     case STATE_START:
         player_set_animation("tail_swipe");
+        audio_play_sfx("snd_tail_swipe", true);
         break;
 
     case STATE_STEP:
