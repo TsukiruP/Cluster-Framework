@@ -7,6 +7,6 @@ var _refresh; if (argument_count > 0) _refresh = argument[0]; else _refresh = fa
 
 status_shield_allow = true;
 air_dash_allow = true;
-fly_time = max_fly_time;
+fly_time = 0;
 
 if (!_refresh) bound_count = 0;

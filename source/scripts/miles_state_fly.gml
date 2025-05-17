@@ -16,7 +16,7 @@ switch (_phase)
     case STATE_STEP:
         if (input_x_direction != 0)
         {
-            if (sign(image_xscale) != input_x_direction && fly_time > 0) player_set_animation("fly_turn");
+            if (sign(image_xscale) != input_x_direction && fly_time < fly_max_time) player_set_animation("fly_turn");
             image_xscale = input_x_direction;
 
             if (abs(x_speed) < top_speed || sign(x_speed) != input_x_direction)
@@ -36,16 +36,16 @@ switch (_phase)
             return player_set_state(player_state_air);
         }
 
-        if (y_speed >= fly_threshold && fly_time > 0 && player_get_input(INP_JUMP, CHECK_PRESSED)) fly_force = fly_force_alt;
+        if (y_speed >= fly_threshold && fly_time < fly_max_time && player_get_input(INP_JUMP, CHECK_PRESSED)) fly_force = fly_force_alt;
         if (y_speed < fly_threshold && fly_force == fly_force_alt) fly_force = fly_force_temp;
 
         player_air_friction();
         y_speed += fly_force;
         if (y < 0 && y_speed < 0) y_speed = 0;
 
-        if (fly_time > 0) fly_time -= 1;
+        if (fly_time < fly_max_time) fly_time += 1;
 
-        if (!underwater && fly_time != 0 && fly_hammer)
+        if (!underwater && fly_time < fly_max_time && fly_hammer)
         {
             player_set_state(miles_state_fly_hammer, false);
             return player_set_animation("fly_hammer");
@@ -56,7 +56,7 @@ switch (_phase)
 
         if (!underwater || fly_carry)
         {
-            if (fly_time > 0)
+            if (fly_time < fly_max_time)
             {
                 if (!sound_isplaying("snd_fly"))
                 {
