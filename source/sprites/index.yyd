@@ -125,7 +125,7 @@ spr_miles_spring
 spr_miles_fly
 spr_miles_swim
 spr_miles_fly_boost
-sprspr_zone_map_waterfall
+spr_zone_map_waterfall
 spr_water_surface
 spr_bubble_spawn
 spr_bubble
@@ -312,3 +312,4 @@ spr_miles_hammer
 spr_miles_fly_hammer
 spr_miles_dizzy
 spr_miles_insta
+spr_stamina

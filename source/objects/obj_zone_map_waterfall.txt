@@ -1,4 +1,4 @@
-sprite=sprspr_zone_map_waterfall
+sprite=spr_zone_map_waterfall
 visible=1
 solid=0
 persistent=0

@@ -85,11 +85,12 @@
 		+Player
 			|eff_player
 			|eff_spin_dash
-			|eff_swap
+			|eff_stamina
 			|eff_tag
+			|eff_swap
+			|eff_shield
 			|eff_debuff
 			|eff_drown
-			|eff_shield
 			|eff_waterfall
 			|eff_afterimage
 			+Sonic

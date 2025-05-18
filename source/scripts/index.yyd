@@ -741,3 +741,6 @@ seq_miles_insta
 miles_skill_air
 debug_option_miles_insta
 debug_option_miles_shield
+draw_texture_radial
+draw_sprite_radial
+player_stamina_create

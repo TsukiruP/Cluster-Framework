@@ -334,8 +334,21 @@
 			|spr_spin_charge
 			|spr_brake
 			|spr_rail_spark
-			|spr_swap
+			|spr_stamina
 			|spr_tag
+			|spr_swap
+			+Shields
+				|spr_shield_basic
+				|spr_shield_magnetic
+				|spr_shield_fire
+				|spr_shield_fire_dash
+				|spr_shield_lightning
+				|spr_shield_lightning_spark
+				|spr_shield_bubble_shell
+				|spr_shield_bubble_wave
+				|spr_shield_bubble_bound
+				|spr_shield_invin
+				|spr_shield_invin_spark
 			|spr_debuff
 			|spr_drown
 			+Sonic
@@ -348,18 +361,6 @@
 				|spr_reticle_colors
 			+Miles
 				|spr_tails
-		+Shields
-			|spr_shield_basic
-			|spr_shield_magnetic
-			|spr_shield_fire
-			|spr_shield_fire_dash
-			|spr_shield_lightning
-			|spr_shield_lightning_spark
-			|spr_shield_bubble_shell
-			|spr_shield_bubble_wave
-			|spr_shield_bubble_bound
-			|spr_shield_invin
-			|spr_shield_invin_spark
 		+Explosions
 			|spr_explosion_small
 			|spr_explosion_large
@@ -405,7 +406,7 @@
 			|spr_zone_map_mask_18
 			|spr_zone_map_mask_19
 		+Gimmicks
-			|sprspr_zone_map_waterfall
+			|spr_zone_map_waterfall
 	+Sunset Hill
 		+Gimmicks
 			|spr_basic_test_water_fall_02

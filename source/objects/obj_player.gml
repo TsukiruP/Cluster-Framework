@@ -41,10 +41,6 @@ jump_bound = BOUND_NONE;
 
 death_alarm = 0;
 death_inst = noone;
-
-player_reset_trick();
-player_reset_tag();
-player_reset_tag(true);
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603
@@ -81,11 +77,14 @@ applies_to=self
 */
 /// Character Initialization
 
-swap_alarm = 0;
 boost_mode = false;
 boost_speed = 0;
 max_energy = 600;
 energy = max_energy;
+swap_alarm = 0;
+player_reset_trick();
+player_reset_tag();
+player_reset_tag(true);
 player_reset_status();
 player_reset_physics();
 
@@ -122,6 +121,7 @@ applies_to=self
 
 spin_dash_charge = 0;
 spin_dash_inst = noone;
+stamina_inst = noone;
 shield_inst = noone;
 debuff_inst = noone;
 drown_inst = noone;
@@ -493,6 +493,7 @@ if (game_ispaused(mnu_pause)) exit;
 player_set_depth(player_index);
 player_run_splash_create();
 player_spin_dash_create();
+player_stamina_create();
 player_shield_create();
 player_invin_spark_create();
 player_debuff_create();
@@ -761,6 +762,7 @@ ds_list_destroy(solid_list);
 ds_list_destroy(x_list);
 ds_list_destroy(y_list);
 if (trail_alpha != -1) ds_list_destroy(trail_alpha);
+surface_forget("pie");
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1

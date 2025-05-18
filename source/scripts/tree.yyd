@@ -213,9 +213,9 @@
 							+Player
 								|debug_option_player0
 								|debug_option_player1
-							|debug_option_swap
-							|debug_option_tag
 							|debug_option_boost
+							|debug_option_tag
+							|debug_option_swap
 						+Sonic
 							|debug_menu_sonic
 							+Options
@@ -725,6 +725,8 @@
 			|draw_sprite_tiled_extra_OLD
 			|draw_rectangle_view
 			|draw_background_tiled_view
+			|draw_texture_radial
+			|draw_sprite_radial
 		+Text
 			|string_bool
 			|string_key
@@ -834,9 +836,9 @@
 			|player_routine_trick
 			|sonic_routine_homing
 		+Traits
-			|player_trait_swap
 			|player_trait_boost
 			|player_trait_tag
+			|player_trait_swap
 			|sonic_trait_reticle
 			|miles_trait_fly_carry
 			|classic_trait_clock_up
@@ -867,11 +869,12 @@
 			|player_jump_splash_create
 			|player_run_splash_create
 			|player_spin_dash_create
+			|player_stamina_create
 			|player_shield_create
 			|player_invin_spark_create
 			|player_debuff_create
-			|player_drown_create
 			|player_bubble_create
+			|player_drown_create
 			|player_waterfall_splash_create
 			|player_afterimage_create
 			+Sonic
