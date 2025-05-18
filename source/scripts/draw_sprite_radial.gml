@@ -29,7 +29,7 @@ if (_uncrop)
 {
     var _ox; _ox = sprite_get_xoffset(_sprite);
     var _oy; _oy = sprite_get_yoffset(_sprite);
-    
+
     x1 = _x + _xscale * (sprite_get_bbox_left(_sprite) - _ox);
     x2 = _x + _xscale * (sprite_get_bbox_right(_sprite) + 1 - _ox);
     y1 = _y + _yscale * (sprite_get_bbox_top(_sprite) - _oy);

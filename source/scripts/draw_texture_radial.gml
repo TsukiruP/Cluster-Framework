@@ -30,13 +30,13 @@ if (_val >= 1)
 {
     draw_primitive_begin_texture(pr_trianglelist, _tex);
     draw_vertex_texture_color(_x1, _y1, 0, 0, _col, _alpha);
-    
+
     repeat (2)
     {
         draw_vertex_texture_color(_x2, _y1, 1, 0, _col, _alpha);
         draw_vertex_texture_color(_x1, _y2, 0, 1, _col, _alpha);
     }
-    
+
     draw_vertex_texture_color(_x2, _y2, 1, 1, _col, _alpha);
     draw_primitive_end();
     exit;
