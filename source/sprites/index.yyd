@@ -194,11 +194,11 @@ spr_sonic_rail
 spr_spike_vert
 spr_jump_panel
 spr_reticle
-spr_sonic_leap
+spr_sonic_leap_frog
 spr_sonic_fly_carry
 spr_sonic_throw
 spr_sonic_glide_carry
-spr_miles_frog
+spr_miles_jump_box
 spr_miles_throw
 spr_miles_glide_carry
 spr_knuckles_leap
@@ -313,3 +313,4 @@ spr_miles_fly_hammer
 spr_miles_dizzy
 spr_miles_insta
 spr_stamina
+spr_sonic_leap_jump

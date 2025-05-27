@@ -150,7 +150,11 @@ if (partner_inst.state_current == player_state_interlink)
                         {
                             case CHAR_MILES:
                                 // Leap Jump:
-                                if (other.on_ground) player_reset_cpu();
+                                if (other.on_ground)
+                                {
+                                    player_set_state(miles_state_jump_box);
+                                    with (other) player_set_state(player_state_leap_frog);
+                                }
 
                                 // Propeller Catch:
                                 else

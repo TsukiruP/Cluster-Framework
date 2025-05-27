@@ -1,5 +1,5 @@
 /// miles_state_fly_hammer(phase)
-/// @desc Spin your tails and prepare for a force.
+/// @desc Hammer time, but flying.
 /// @param {int} phase
 /// @returns {bool}
 

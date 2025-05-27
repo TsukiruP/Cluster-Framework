@@ -744,3 +744,9 @@ debug_option_miles_shield
 draw_texture_radial
 draw_sprite_radial
 player_stamina_create
+seq_sonic_leap_frog
+seq_sonic_leap_flight
+seq_sonic_leap_fall
+seq_miles_jump_box
+player_state_leap_frog
+miles_state_jump_box

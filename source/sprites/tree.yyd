@@ -89,7 +89,9 @@
 						|spr_sonic_trick_front
 						|spr_sonic_trick_back
 					+Tag Actions
-						|spr_sonic_leap
+						+Leap
+							|spr_sonic_leap_frog
+							|spr_sonic_leap_jump
 						|spr_sonic_fly_carry
 						|spr_sonic_throw
 						|spr_sonic_glide_carry
@@ -171,7 +173,7 @@
 						|spr_miles_trick_front
 						|spr_miles_trick_back
 					+Tag Actions
-						|spr_miles_frog
+						|spr_miles_jump_box
 						|spr_miles_throw
 						|spr_miles_glide_carry
 				+Tag

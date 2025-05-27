@@ -61,6 +61,7 @@ animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "trick_front", seq_miles_t
 animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "trick_front_fall", seq_miles_trick_front_fall);
 animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "trick_back", seq_miles_trick_back);
 animation_set(CHAR_MILES, FORM_BASE, VARIANT_DEFAULT, "trick_back_fall", seq_miles_trick_back_fall);
+animation_set(CHAR_SONIC, FORM_BASE, VARIANT_DEFAULT, "jump_box", seq_miles_jump_box);
 
 // Tag:
 animation_set(CHAR_MILES, FORM_BASE, VARIANT_TAG, "stand", seq_miles_tag_stand);

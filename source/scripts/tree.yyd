@@ -437,6 +437,10 @@
 								|seq_sonic_trick_front
 								|seq_sonic_trick_back
 							+Tag Actions
+								+Leap
+									|seq_sonic_leap_frog
+									|seq_sonic_leap_flight
+									|seq_sonic_leap_fall
 								|seq_sonic_fly_carry
 						+Tag
 							|seq_sonic_tag_stand
@@ -540,6 +544,8 @@
 								+Back
 									|seq_miles_trick_back
 									|seq_miles_trick_back_fall
+							+Tag Actions
+								|seq_miles_jump_box
 						+Tag
 							|seq_miles_tag_stand
 							|seq_miles_tag_turn
@@ -813,7 +819,9 @@
 				|miles_state_tail_swipe
 				|miles_state_tornado
 				|miles_state_dizzy
+				|miles_state_jump_box
 			+Tag Actions
+				|player_state_leap_frog
 				|player_state_fly_carry
 		+Skills
 			+Sonic
