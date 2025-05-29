@@ -20,12 +20,16 @@ switch (_phase)
 
             if (animation_trigger)
             {
-                x += 5 * image_xscale;
-                y -= 5;
+                var sine; sine = dsin(mask_direction);
+                var csine; csine = dcos(mask_direction);
+
+                x = x + (csine * (5 * image_xscale)) + (sine * 5);
+                y = y - (csine * 5) - (sine * (5 * image_xscale));
                 x_speed = 2 * image_xscale;
                 y_speed = -10;
                 player_reset_air();
                 player_set_animation("leap_flight");
+                audio_play_sfx("snd_jump", true);
             }
         }
         else
