@@ -8,6 +8,8 @@ var _phase; _phase = argument0;
 switch (_phase)
 {
     case STATE_START:
+        x_speed = 0;
+        y_speed = 0;
         player_set_animation("jump_box");
         break;
 

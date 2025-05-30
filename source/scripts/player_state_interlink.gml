@@ -10,6 +10,7 @@ switch (_phase)
     case STATE_START:
         x_speed = 0;
         y_speed = 0;
+        player_reset_skill();
         player_set_animation("roll");
         break;
 
