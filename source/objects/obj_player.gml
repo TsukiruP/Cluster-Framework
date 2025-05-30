@@ -666,38 +666,23 @@ if (game_ispaused()) exit;
 
 switch (animation_current)
 {
-    case "stand":
-    case "cliff_front":
-    case "cliff_back":
-    case "wait_leader":
-    case "wait_partner":
-    case "standby":
-    case "land":
-    case "omochao":
-    case "turn":
-    case "turn_brake":
-    case "look":
-    case "look_end":
-    case "crouch":
-    case "crouch_end":
-    case "spin_dash":
-    case "spin_charge":
-    case "roll":
-    case "spin_flight":
-    case "spin_fall":
-    case "hurt":
-    case "death":
-    case "push":
-    case "ramp_flight":
-    case "ramp_fall":
-    case "breathe":
-    case "goal":
-    case "hammer":
-    case "insta":
-    case "stomp":
-    case "stomp_land":
-    case "peel_out":
-        image_angle = gravity_direction;
+    case "run_0":
+    case "run_1":
+    case "run_2":
+    case "run_3":
+    case "run_4":
+    case "run_5":
+    case "rail":
+        if (on_ground) image_angle = angle;
+        else image_angle = approach_angle(image_angle, gravity_direction, 4);
+
+        if (character_index == CHAR_CLASSIC || tag_leader_state == STATE_FINISH)
+        {
+            if (on_ground)
+            {
+                if (image_angle mod 45 != 0) image_angle = roundto(image_angle, 45);
+            }
+        }
         break;
 
     case "brake":
@@ -713,16 +698,7 @@ switch (animation_current)
         break;
 
     default:
-        if (on_ground) image_angle = angle;
-        else image_angle = approach_angle(image_angle, gravity_direction, 4);
-
-        if (character_index == CHAR_CLASSIC || tag_leader_state == STATE_FINISH)
-        {
-            if (on_ground)
-            {
-                if (image_angle mod 45 != 0) image_angle = roundto(image_angle, 45);
-            }
-        }
+        image_angle = gravity_direction;
 }
 /*"/*'/**//* YYD ACTION
 lib_id=1

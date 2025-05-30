@@ -3,7 +3,7 @@
 /// @returns {void}
 
 // Abort if in the pushing animation:
-if (animation_current == "push" && sign(image_xscale) == input_x_direction) exit;
+if (animation_current == "push" && sign(image_xscale) == input_x_direction && tag_leader_state != STATE_FINISH) exit;
 
 switch (character_index)
 {

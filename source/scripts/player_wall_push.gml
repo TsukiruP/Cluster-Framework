@@ -7,7 +7,7 @@
 var _obj; _obj = argument0;
 var _dir; _dir = argument1;
 
-if (state_current != player_state_run) exit;
+if (state_current != player_state_run || tag_leader_state == STATE_FINISH) exit;
 
 // Animate:
 player_set_animation("push");
