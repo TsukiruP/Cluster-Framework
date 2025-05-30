@@ -19,7 +19,6 @@ if (on_ground && abs(angle_difference(angle, new_angle)) > 45)
 // Confirm ground assignment:
 ground_inst = _obj;
 on_ground = true;
-player_reset_skill();
 
 // Set new ground angle:
 angle = new_angle;
