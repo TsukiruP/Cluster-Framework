@@ -26,7 +26,6 @@ var game_speed; game_speed = game_get_speed();
 y += y_speed * game_speed;
 y_speed += gravity_force * game_speed;
 sequence_execute();
-if (!in_view(self, 64)) instance_destroy();
 if (position_meeting(x, y, par_solid)) explosive_destroy();
 #define Draw_0
 /*"/*'/**//* YYD ACTION
