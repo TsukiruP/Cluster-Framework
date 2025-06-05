@@ -69,7 +69,7 @@ if (instance_exists(explosive_inst))
     }
     else if (explosive_inst.y != explosive_y && explosive_inst.gravity_force == 0) explosive_inst.y = approach(explosive_inst.y, explosive_y, 4 / 60 * sequence_speed);
 }
-else
+else if in_view(self)
 {
     if (explosive_inst != noone)
     {
