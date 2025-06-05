@@ -27,7 +27,7 @@ if (boost_mode || status_speed != SPEED_SLOW)
 }
 
 // Boost mode:
-if (!_tag)
+if (!underwater && !_tag)
 {
     if (boost_mode)
     {
