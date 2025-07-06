@@ -1,3 +1,3 @@
 //gm82 fields begin
-item_index=ITEM_SUPER_BONUS
+layer=1
 //gm82 fields end

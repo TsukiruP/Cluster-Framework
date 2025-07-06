@@ -1,3 +1,3 @@
 //gm82 fields begin
-semisolid=true
+layer=1
 //gm82 fields end
