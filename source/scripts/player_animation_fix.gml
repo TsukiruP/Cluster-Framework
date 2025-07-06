@@ -9,7 +9,6 @@ switch (character_index)
             animation_current == "crouch_end") player_set_animation("stand");
         if (animation_current == "spin_charge" || (state_current == sonic_state_drop_dash && drop_dash_alarm == 0 && animation_current == "roll")) player_set_animation("spin_dash", 0);
         if (animation_current == "brake_fast") player_set_animation("brake");
-        if (drown && animation_current == "death") player_set_animation("drown");
         break;
 
     default:

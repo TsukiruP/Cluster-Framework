@@ -3,7 +3,7 @@
 /// @returns {void}
 
 var y_radius_temp; y_radius_temp = y_radius;
-var animation_sequence; animation_sequence = player_get_animation_sequence(animation_current);
+var animation_sequence; animation_sequence = player_get_sequence(animation_current);
 
 if (sequence_index != animation_sequence)
 {

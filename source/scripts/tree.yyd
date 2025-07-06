@@ -899,7 +899,10 @@
 			|player_get_hitbox
 			|player_get_angle
 			|player_get_input
-			|player_get_animation_sequence
+			|player_get_sequence
+			|sonic_get_sequence
+			|miles_get_sequence
+			|classic_get_sequence
 			|player_get_item
 		+Setters
 			|player_set_state

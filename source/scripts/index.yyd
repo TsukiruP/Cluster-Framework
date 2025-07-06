@@ -38,7 +38,7 @@ seq_sonic_spin_dash
 seq_sonic_brake
 mod_time
 player_animation_core
-player_get_animation_sequence
+player_get_sequence
 debug_add_option
 player_set_damage
 player_state_idle
@@ -750,3 +750,6 @@ seq_sonic_leap_fall
 seq_miles_jump_box
 player_state_leap_frog
 miles_state_jump_box
+sonic_get_sequence
+miles_get_sequence
+classic_get_sequence

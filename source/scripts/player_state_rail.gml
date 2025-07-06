@@ -8,7 +8,7 @@ var _phase; _phase = argument0;
 switch (_phase)
 {
     case STATE_START:
-        player_set_animation("rail");
+        player_set_animation(pick(character_index == CHAR_CLASSIC, "rail", "roll"));
         audio_play_sfx("snd_rail_catch");
         rail_sfx = audio_loop_sfx("snd_rail");
         break;

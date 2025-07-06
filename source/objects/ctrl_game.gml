@@ -36,7 +36,7 @@ instance_create_single(0, 0, ctrl_screen);
 instance_create_single(0, 0, ctrl_audio);
 instance_create_single(0, 0, ctrl_input);
 instance_create_single(0, 0, ctrl_text);
-instance_create_single(0, 0, ctrl_animation);
+//instance_create_single(0, 0, ctrl_animation);
 instance_create_single(0, 0, ctrl_debug);
 instance_create(0, 0, mnu_boot);
 #define Step_1
