@@ -738,7 +738,6 @@ ds_list_destroy(solid_list);
 ds_list_destroy(x_list);
 ds_list_destroy(y_list);
 if (trail_alpha != -1) ds_list_destroy(trail_alpha);
-surface_forget("pie");
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1
