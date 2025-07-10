@@ -25,11 +25,7 @@ applies_to=self
 
 if (game_ispaused(mnu_pause)) exit;
 
-with (switch_inst)
-{
-    other.switch_active = !collision;
-    other.switch_time = target_time;
-}
+switch_update();
 
 var time_difference; time_difference = switch_time - game_get_time();
 

@@ -958,6 +958,9 @@
 		+Explosive
 			|explosive_create
 			|explosive_destroy
+		+Switch
+			|switch_exists
+			|switch_update
 +Trash
 	|draw_sprite_tiled_horizontal
 	|draw_sprite_tiled_vertical
