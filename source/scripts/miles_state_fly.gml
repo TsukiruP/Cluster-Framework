@@ -36,20 +36,20 @@ switch (_phase)
             return player_set_state(player_state_air);
         }
 
-        if (y_speed >= fly_threshold && fly_time < fly_max_time && player_get_input(INP_JUMP, CHECK_PRESSED)) fly_force = fly_force_alt;
-        if (y_speed < fly_threshold && fly_force == fly_force_alt) fly_force = fly_force_temp;
+        if (y_speed >= fly_threshold && fly_time < fly_max_time && player_get_input(INP_JUMP, CHECK_PRESSED)) {
+            fly_force = fly_force_alt;
+            fly_alarm = 60;
+        }
+
+        if (y_speed < fly_threshold && fly_force == fly_force_alt || fly_alarm == 0) fly_force = fly_force_temp;
 
         player_air_friction();
         y_speed += fly_force;
         if (y < 0 && y_speed < 0) y_speed = 0;
 
         if (fly_time < fly_max_time) fly_time += 1;
-
-        if (!underwater && fly_time < fly_max_time && fly_hammer)
-        {
-            player_set_state(miles_state_fly_hammer, false);
-            return player_set_animation("fly_hammer");
-        }
+        if (fly_alarm > 0) fly_alarm -= 1;
+        if (!underwater && fly_time < fly_max_time && fly_hammer) return player_set_state(miles_state_fly_hammer, false);
 
         miles_animation_fly();
         miles_trait_fly_carry();

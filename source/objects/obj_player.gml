@@ -105,6 +105,7 @@ fly_force = fly_force_temp;
 fly_threshold = -1;
 fly_max_time = 480;
 fly_time = 0;
+fly_alarm = 0;
 fly_carry = false;
 fly_carry_alarm = 0;
 fly_hammer = false;
