@@ -960,7 +960,7 @@
 			|explosive_destroy
 		+Switch
 			|switch_exists
-			|switch_update
+			|switch_exists_ext
 +Trash
 	|draw_sprite_tiled_horizontal
 	|draw_sprite_tiled_vertical

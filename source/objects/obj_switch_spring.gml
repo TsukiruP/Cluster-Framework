@@ -25,7 +25,7 @@ applies_to=self
 
 if (game_ispaused(mnu_pause)) exit;
 
-switch_update();
+switch_exists_ext();
 
 var time_difference; time_difference = switch_time - game_get_time();
 

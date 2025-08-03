@@ -754,4 +754,4 @@ sonic_get_sequence
 miles_get_sequence
 classic_get_sequence
 switch_exists
-switch_update
+switch_exists_ext
