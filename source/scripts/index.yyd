@@ -755,3 +755,4 @@ miles_get_sequence
 classic_get_sequence
 switch_exists
 switch_exists_ext
+instance_exists_ext

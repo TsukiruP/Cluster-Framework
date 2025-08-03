@@ -747,6 +747,7 @@
 			|pick_offset
 			|transition_create
 			|instance_create_single
+			|instance_exists_ext
 			|instance_nth_nearest
 			|instance_nearest_dir_x
 			|instance_nearest_dir_y

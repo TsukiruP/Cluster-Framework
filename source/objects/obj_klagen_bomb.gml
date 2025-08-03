@@ -51,25 +51,28 @@ if (game_ispaused(mnu_pause)) exit;
 
 sequence_speed = game_get_speed();
 
-if (instance_exists(explosive_inst))
+if (instance_exists_ext(explosive_inst))
 {
-    if (explosive_inst.y == explosive_y)
+    if (in_view(self))
     {
-        if (!klagen_drop)
+        if (explosive_inst.y == explosive_y)
         {
-            var player_inst; player_inst = enemy_get_player_below(klagen_range, true);
-
-            if (instance_exists(player_inst))
+            if (!klagen_drop)
             {
-                klagen_drop = true;
-                explosive_alarm = 10;
+                var player_inst; player_inst = enemy_get_player_below(klagen_range, true);
+    
+                if (instance_exists(player_inst))
+                {
+                    klagen_drop = true;
+                    explosive_alarm = 10;
+                }
             }
+            else if (explosive_alarm == 0) explosive_inst.gravity_force = 0.05 * image_yscale;
         }
-        else if (explosive_alarm == 0) explosive_inst.gravity_force = 0.05 * image_yscale;
+        else if (explosive_inst.y != explosive_y && explosive_inst.gravity_force == 0) explosive_inst.y = approach(explosive_inst.y, explosive_y, 4 / 60 * sequence_speed);
     }
-    else if (explosive_inst.y != explosive_y && explosive_inst.gravity_force == 0) explosive_inst.y = approach(explosive_inst.y, explosive_y, 4 / 60 * sequence_speed);
 }
-else if in_view(self)
+else
 {
     if (explosive_inst != noone)
     {
