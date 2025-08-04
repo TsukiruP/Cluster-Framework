@@ -53,7 +53,7 @@ sequence_speed = game_get_speed();
 
 if (instance_exists_ext(explosive_inst))
 {
-    if (in_view(self))
+    if (instance_exists(explosive_inst))
     {
         if (explosive_inst.y == explosive_y)
         {
