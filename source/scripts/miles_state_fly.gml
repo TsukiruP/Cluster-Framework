@@ -36,7 +36,7 @@ switch (_phase)
             return player_set_state(player_state_air);
         }
 
-        if (y_speed >= fly_threshold && fly_time < fly_max_time && player_get_input(INP_JUMP, CHECK_PRESSED)) {
+        if (y_speed >= fly_threshold && fly_time < fly_max_time && player_get_input(INP_JUMP, save_get_skill(CHAR_MILES, "fly_controls"))) {
             fly_force = fly_force_alt;
             fly_alarm = 60;
         }

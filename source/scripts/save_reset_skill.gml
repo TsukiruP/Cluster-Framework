@@ -27,6 +27,7 @@ with (ctrl_save)
             ds_map_set(skill_map, "ground", SKILL_NONE);
             ds_map_set(skill_map, "insta", false);
             ds_map_set(skill_map, "shield", false);
+            ds_map_set(skill_map, "fly_controls", false);
             break;
     }
 }

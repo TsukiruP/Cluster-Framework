@@ -756,3 +756,4 @@ classic_get_sequence
 switch_exists
 switch_exists_ext
 instance_exists_ext
+debug_option_miles_fly_controls

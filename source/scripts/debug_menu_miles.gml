@@ -12,6 +12,7 @@ switch (_index)
             debug_add_option(debug_option_miles_ground);
             debug_add_option(debug_option_miles_insta);
             debug_add_option(debug_option_miles_shield);
+            debug_add_option(debug_option_miles_fly_controls);
             return true;
 
         default:
