@@ -30,18 +30,7 @@ switch (_phase)
         if (player_routine_land()) return true;
         if (miles_skill_air()) return true;
 
-        if ((!input_cpu || (input_cpu && input_cpu_gamepad_alarm > 0)) && player_get_input(INP_DOWN, CHECK_HELD) && player_get_input(INP_JUMP, CHECK_PRESSED))
-        {
-            player_set_animation("fly_cancel");
-            return player_set_state(player_state_air);
-        }
-
-        if (y_speed >= fly_threshold && fly_time < fly_max_time && player_get_input(INP_JUMP, save_get_skill(CHAR_MILES, "fly_controls"))) {
-            fly_force = fly_force_alt;
-            fly_alarm = 60;
-        }
-
-        if (y_speed < fly_threshold && fly_force == fly_force_alt || fly_alarm == 0) fly_force = fly_force_temp;
+        if (y_speed < fly_threshold || fly_alarm == 0) fly_force = fly_force_temp;
 
         player_air_friction();
         y_speed += fly_force;
@@ -49,7 +38,23 @@ switch (_phase)
 
         if (fly_time < fly_max_time) fly_time += 1;
         if (fly_alarm > 0) fly_alarm -= 1;
-        if (!underwater && fly_time < fly_max_time && fly_hammer) return player_set_state(miles_state_fly_hammer, false);
+        
+        if ((!input_cpu || (input_cpu && input_cpu_gamepad_alarm > 0)) && player_get_input(INP_DOWN, CHECK_HELD) && player_get_input(INP_JUMP, CHECK_PRESSED))
+        {
+            player_set_animation("fly_cancel");
+            return player_set_state(player_state_air);
+        }
+
+        if (fly_time < fly_max_time)
+        {
+            if (player_get_input(INP_JUMP, save_get_skill(CHAR_MILES, "fly_controls")))
+            {
+                fly_force = fly_force_alt;
+                fly_alarm = 60;
+            }
+            
+            if (!underwater && fly_hammer) return player_set_state(miles_state_fly_hammer, false);
+        }
 
         miles_animation_fly();
         miles_trait_fly_carry();
