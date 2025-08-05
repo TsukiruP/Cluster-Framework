@@ -47,7 +47,7 @@ switch (_phase)
                         break;
 
                     case "skid_end":
-                        return player_set_state(player_state_idle);
+                        return player_set_state(pick(skid_super, player_state_idle, player_state_run));
                 }
             }
         }
@@ -74,11 +74,7 @@ switch (_phase)
             // Time out:
             if (animation_time >= 32)
             {
-                if (on_ground)
-                {
-                    if (!skid_super) player_set_animation("skid_end");
-                    else return player_set_state(player_state_run);
-                }
+                if (on_ground) player_set_animation("skid_end");
                 else
                 {
                     player_reset_air();
