@@ -9,7 +9,7 @@ applies_to=self
 room_grid = ds_grid_create(9, 0);
 game_room_add(rm_initialize);
 game_room_add(rm_debug, TRANS_FADE, "bgm_debug", obj_sky_sanctuary_parallax, "Sky Sanctuary");
-game_room_add(rm_basic_test_1, TRANS_CARD, "bgm_basic_test_1", obj_zone_map_parallax, "Basic Test", 1, 1056, START_STANDBY);
+game_room_add(rm_basic_test_1, TRANS_CARD, "bgm_basic_test_1", -1, "Basic Test", 1, 1056, START_STANDBY);
 game_room_add(rm_basic_test_2, TRANS_CARD, "bgm_basic_test_1", obj_zone_map_parallax, "Basic Test", 2, 864, START_STANDBY);
 /*"/*'/**//* YYD ACTION
 lib_id=1
