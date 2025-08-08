@@ -60,6 +60,8 @@ FMODex is a product of Firelight Technologies.
 [CBTBSD](https://github.com/tariq-nasheed)\
 [VectorSatyr](https://github.com/VectorSatyr)\
 The Valeev\
+[renex](https://github.com/omicronrex)\
+[YellowAfterlife](https://github.com/yellowafterlife)\
 [David Strachan](https://www.davetech.co.uk/gamemakereasingandtweeningfunctions)\
 [Mimpy](https://gm48.net/resource/33/sine-waves-make-your-game-prettier)\
 [DomPizzie](https://gist.github.com/DomPizzie/7a5ff55ffa9081f2de27c315f5018afc)
