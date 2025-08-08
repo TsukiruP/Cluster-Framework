@@ -730,7 +730,7 @@ save_reset_skill_all
 miles_state_fly_hammer
 seq_miles_tail_swipe
 miles_state_tail_swipe
-seq_miles_tornado
+seq_miles_windup
 seq_miles_tornado_end
 miles_state_tornado
 player_reset_air_speed
@@ -758,3 +758,4 @@ switch_exists_ext
 instance_exists_ext
 debug_option_miles_fly_controls
 ds_map_match
+seq_miles_tornado

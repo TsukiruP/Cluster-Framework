@@ -528,6 +528,7 @@
 							|seq_miles_hammer
 							|seq_miles_tail_swipe
 							+Tornado
+								|seq_miles_windup
 								|seq_miles_tornado
 								|seq_miles_tornado_end
 							+Dizzy
