@@ -18,9 +18,9 @@ The Cluster Framework is a Sonic framework for Game Maker 8.2. Rather than being
 * Sonic Advance 2 Mechanics (Toggable)
   * Boost Mode
   * Trick Actions
-* Sonic Advance 3's Tag Actions (Toggable)
-* Sonic ~~Mania~~ Triple Trouble 16-bit's Swap Mechanic (Toggable)
-* Accurate Sonic Advance Animations
+* Sonic Advance 3 Tag Actions (Toggable)
+* Sonic ~~Mania~~ Triple Trouble 16-bit Swap Mechanic (Toggable)
+* Accurate Sonic Advance 2 & 3 animations
 * Basic save system
   * Allows for custom names
   * Stores most recent stage, characters, movesets, and playtime
