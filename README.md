@@ -38,25 +38,10 @@ The Cluster Framework is a Sonic framework for Game Maker 8.2. Rather than being
 * How/where to download your program
 * Any modifications needed to be made to files/folders
 
-### Executing program
-
-* How to run the program
-* Step-by-step bullets
-```
-code blocks for commands
-```
-
-## Help
-
-Any advise for common problems or issues.
-```
-command to run if program contains helper info
-```
-
 ## Authors
 
-ex. Tsukiru
-ex. [Monolith](https://github.com/monolith4007)
+Tsukiru\
+[Monolith](https://github.com/monolith4007)
 
 ## Version History
 
@@ -65,15 +50,16 @@ ex. [Monolith](https://github.com/monolith4007)
 
 ## License
 
-This project is licensed under the [NAME HERE] License - see the LICENSE.md file for details
+This project is licensed under the [NAME HERE] License - see the LICENSE.md file for details\
+FMODex is a product of Firelight Technologies.
 
 ## Acknowledgments
 
-[Sonic Mania Decompilation](https://github.com/RSDKModding/Sonic-Mania-Decompilation)
-[Sonic Advance 2 Decompilation](https://github.com/SAT-R/sa2)
-[CBTBSD](https://github.com/tariq-nasheed)
-[VectorSatyr](https://github.com/VectorSatyr)
-The Valeev
-[David Strachan](https://www.davetech.co.uk/gamemakereasingandtweeningfunctions)
-[Mimpy](https://gm48.net/resource/33/sine-waves-make-your-game-prettier)
+[Sonic Mania Decompilation](https://github.com/RSDKModding/Sonic-Mania-Decompilation)\
+[Sonic Advance 2 Decompilation](https://github.com/SAT-R/sa2)\
+[CBTBSD](https://github.com/tariq-nasheed)\
+[VectorSatyr](https://github.com/VectorSatyr)\
+The Valeev\
+[David Strachan](https://www.davetech.co.uk/gamemakereasingandtweeningfunctions)\
+[Mimpy](https://gm48.net/resource/33/sine-waves-make-your-game-prettier)\
 [DomPizzie](https://gist.github.com/DomPizzie/7a5ff55ffa9081f2de27c315f5018afc)
