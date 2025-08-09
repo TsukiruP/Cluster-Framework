@@ -98,10 +98,7 @@ border_right = camera_x + 8;
 border_top = camera_y - 32;
 border_bottom = camera_y + 32;
 
-if (game_ispaused(mnu_pause))
-{
-    exit;
-}
+if (game_ispaused(mnu_pause)) exit;
 
 if (instance_exists(focus_inst))
 {
