@@ -8,7 +8,10 @@ var _character; _character = argument0;
 with (ctrl_save)
 {
     var skill_map; skill_map = save_get_skill_map(_character);
-    var skill_key; skill_key = save_get(pick(_character, "sonic_skill", "miles_skill"));
+    var skill_key; skill_key = pick(_character, "sonic_skill", "miles_skill");
+    var skill_temp; skill_temp = ds_map_create();
 
-    ds_map_read(skill_map, skill_key);
+    ds_map_read(skill_temp, save_get(skill_key));
+    ds_map_match(skill_map, skill_temp);
+    ds_map_destroy(skill_temp);
 }

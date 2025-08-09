@@ -528,6 +528,7 @@
 							|seq_miles_hammer
 							|seq_miles_tail_swipe
 							+Tornado
+								|seq_miles_windup
 								|seq_miles_tornado
 								|seq_miles_tornado_end
 							+Dizzy
@@ -746,13 +747,14 @@
 			|ease_in_out_back
 		+Misc.
 			|pick_offset
-			|transition_create
+			|in_view
 			|instance_create_single
 			|instance_exists_ext
 			|instance_nth_nearest
 			|instance_nearest_dir_x
 			|instance_nearest_dir_y
-			|in_view
+			|transition_create
+			|ds_map_match
 +Gameplay
 	+Collision
 		|collision_box

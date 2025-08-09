@@ -8,7 +8,7 @@ var _phase; _phase = argument0;
 switch (_phase)
 {
     case STATE_START:
-        player_set_animation("tornado");
+        player_set_animation("windup");
         break;
 
     case STATE_STEP:
@@ -78,8 +78,19 @@ switch (_phase)
 
             player_gravity_force();
         }
+
+        if (animation_current == "tornado")
+        {
+            if (!sound_isplaying("snd_tornado"))
+            {
+                audio_stop_sfx(tornado_sfx);
+                tornado_sfx = audio_loop_sfx("snd_tornado", true);
+            }
+        }
+        else audio_stop_sfx(tornado_sfx);
         break;
 
     case STATE_FINISH:
+        audio_stop_sfx(tornado_sfx);
         break;
 }
