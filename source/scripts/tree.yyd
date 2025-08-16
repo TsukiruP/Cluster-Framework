@@ -1,5 +1,5 @@
 +System
-	|credits
+	|credits_get
 	+Controllers
 		+Game
 			|game_ispaused

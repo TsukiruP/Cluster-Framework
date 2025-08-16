@@ -68,7 +68,7 @@ player_reaction_spring
 text_set_subject
 screen_set_size
 player_get_item
-credits
+credits_get
 in_view
 player_ring_loss
 player_slope_friction
