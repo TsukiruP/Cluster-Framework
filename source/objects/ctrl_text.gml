@@ -53,7 +53,7 @@ subject_box_alpha = 0;
 log_hide = true;
 log_string = "";
 log_scroll = 0;
-log_spacing = 32;
+log_margin = 32;
 log_height = 0;
 log_alpha = 0;
 log_fade_alpha = 0;
@@ -96,7 +96,7 @@ if (!text_clear)
         if ((game_ispaused(mnu_pause) || !ds_list_empty(body_list) || subject_string != "") && log_string != "" && (log_alpha == 0 || log_alpha == 1) && input_get_check(INP_FUNC, CHECK_PRESSED))
         {
             log_hide = !log_hide;
-            if (!log_hide && log_height > screen_get_height() - log_spacing) log_scroll = log_height - (screen_get_height() - log_spacing);
+            if (!log_hide && log_height > screen_get_height() - log_margin) log_scroll = log_height - (screen_get_height() - log_margin);
         }
 
         if (log_hide)
@@ -133,7 +133,7 @@ if (!text_clear)
         else
         {
             scroll_min = log_scroll;
-            scroll_max = ((log_height - log_scroll) > (screen_get_height() - log_spacing));
+            scroll_max = ((log_height - log_scroll) > (screen_get_height() - log_margin));
         }
 
         scroll_up = ((input_get_check(INP_UP, CHECK_PRESSED) || input_get_time(INP_UP, 30)) && scroll_min > 0);
@@ -141,7 +141,7 @@ if (!text_clear)
         scroll_direction = scroll_down - scroll_up;
 
         if (body_scroll_complete && body_scroll_target != 0 && log_hide) body_scroll_current += scroll_direction;
-        else if (!log_hide && (log_height > screen_get_height() - log_spacing)) log_scroll += scroll_direction;
+        else if (!log_hide && (log_height > screen_get_height() - log_margin)) log_scroll += scroll_direction;
     }
 }
 
@@ -370,7 +370,7 @@ draw_set1(c_black, log_fade_alpha);
 draw_rectangle(0, 0, screen_get_width(), screen_get_height(), false);
 
 // Viewport:
-d3d_set_viewport(0, 16, screen_get_width(), screen_get_height() - log_spacing);
+d3d_set_viewport(0, 16, screen_get_width(), screen_get_height() - log_margin);
 
 // Log:
 draw_set_font(global.font_system);

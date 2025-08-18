@@ -31,7 +31,7 @@ banner_scroll_speed = 1;
 zone_max_frame = 30;
 zone_frame = 0;
 zone_width = -1;
-zone_spacing = 9;
+zone_padding = 0;
 zone_x = 0;
 
 fade_inst = noone;
@@ -223,11 +223,11 @@ banner_scroll = banner_scroll mod sprite_get_height(spr_title_card_banner);
 if (zone_width == -1)
 {
     draw_set_font(global.font_title_card);
-    zone_width = string_width(game_room_get_zone(transition_room)) + zone_spacing;
+    zone_width = string_width(game_room_get_zone(transition_room)) + zone_padding;
 }
 
-if (transition_state > 3) zone_x = ease_in_out_back(zone_frame, 40, screen_get_width() + zone_spacing, zone_max_frame);
-else zone_x = ease_in_out_back(zone_frame, -zone_width, 40 + zone_width, zone_max_frame);
+if (transition_state > 3) zone_x = ease_in_out_back(zone_frame, 40, screen_get_width() + zone_padding, zone_max_frame);
+else zone_x = ease_in_out_back(zone_frame, -zone_width, 40 + zone_padding, zone_max_frame);
 
 switch (transition_state)
 {
@@ -333,7 +333,7 @@ else curtain_y = lerp(-15, 32, smoothstep(0, curtain_max_frame, curtain_frame));
 if (zone_width == -1)
 {
     draw_set_font(global.font_title_card);
-    zone_width = floor((string_width("Try Again") + zone_spacing) / 2);
+    zone_width = floor((string_width("Try Again") + zone_padding) / 2);
 }
 
 if (transition_state > 2) zone_x = screen_get_width() - ease_in_out_back(zone_frame, screen_get_width() / 2, screen_get_width() + zone_width, zone_max_frame);
