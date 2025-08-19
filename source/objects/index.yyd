@@ -9,7 +9,7 @@ obj_zone_map_mask_1
 obj_player
 par_culled
 
-ctrl_animation
+mnu_credits
 ctrl_input
 ctrl_screen
 ctrl_transition

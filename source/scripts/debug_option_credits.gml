@@ -11,6 +11,10 @@ switch (_index)
     case OPTION_TEXT:
         return "Credits";
 
+    case OPTION_CONFIRM:
+        if (_execute) instance_create_single(0, 0, mnu_credits);
+        return true;
+
     default:
         return undefined;
 }

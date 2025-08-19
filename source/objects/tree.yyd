@@ -22,7 +22,6 @@
 		|ctrl_audio
 		|ctrl_input
 		|ctrl_text
-		|ctrl_animation
 		|ctrl_debug
 		|ctrl_transition
 		|ctrl_fade
@@ -33,6 +32,7 @@
 			|ctrl_tally
 	+Menus
 		|mnu_boot
+		|mnu_credits
 		|mnu_debug
 		|mnu_debug_save
 		|mnu_pause
