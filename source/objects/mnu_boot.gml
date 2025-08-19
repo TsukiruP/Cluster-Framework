@@ -9,7 +9,7 @@ applies_to=self
 boot_index = 0;
 boot_state = 0;
 boot_alpha = 0;
-boot_fade = 0;
+boot_fade_alpha = 0;
 boot_speed = 0.033;
 boot_alarm = 0;
 #define Step_1
@@ -48,9 +48,9 @@ switch (boot_state)
 {
     // Fade in:
     case 0:
-        if (boot_fade < 0.6) boot_fade += 0.02;
+        if (boot_fade_alpha < 0.6) boot_fade_alpha += 0.02;
 
-        if (boot_alpha < 1 && boot_fade == 0.6)
+        if (boot_alpha < 1 && boot_fade_alpha == 0.6)
         {
             boot_alpha += boot_speed;
 
@@ -106,7 +106,7 @@ var boot_x; boot_x = view_xview[view_current] + screen_get_width() / 2;
 var boot_y; boot_y = view_yview[view_current] + screen_get_height() / 2;
 
 // Fade:
-draw_rectangle_view(c_black, boot_fade);
+draw_rectangle_view(c_black, boot_fade_alpha);
 
 // Boot:
 draw_set_alpha(boot_alpha);
