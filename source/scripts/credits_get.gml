@@ -54,6 +54,12 @@ Azu
 Random Talking Bush
 Chaofanatic
 
+MUSIC
+Rose confession
+Phantasy Star Online Songs of RAGOL Odyssey -Soundtrack EPISODE 1&2-
+Composed by Hideaki Kobayashi
+Arranged by Yutaka Minobe
+
 TOOLS
 Game Maker 8.2
 AdvanceTools
