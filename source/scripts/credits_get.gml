@@ -56,7 +56,7 @@ Chaofanatic
 
 MUSIC
 Rose confession
-Phantasy Star Online Songs of RAGOL Odyssey -Soundtrack EPISODE 1&2-
+Phantasy Star Online
 Composed by Hideaki Kobayashi
 Arranged by Yutaka Minobe
 
