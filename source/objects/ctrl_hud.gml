@@ -149,11 +149,13 @@ with (stage_get_player(0))
 {
     switch (character_index)
     {
+        /*
         case CHAR_CLASSIC:
             other.gauge_hide = false;
             other.gauge_max_energy = max_energy;
             other.gauge_energy = energy;
             break;
+        */
 
         default:
             other.gauge_hide = true;
