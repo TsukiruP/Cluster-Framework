@@ -9,7 +9,7 @@ switch (character_index)
         {
             case "run_1":
             case "run_2":
-                if (on_ground) sequence_speed = clamp(abs(x_speed), 1, 7);
+                if (on_ground) sequence_speed = clamp(abs(floor(x_speed)), 1, 7);
                 else sequence_speed = clamp(sequence_speed, 1, 7);
                 break;
 
