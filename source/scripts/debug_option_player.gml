@@ -21,8 +21,12 @@ switch (_index)
         if (_execute)
         {
             var min_index; min_index = pick(_player == 0, -1, CHAR_SONIC);
+            var char_index; char_index = save_get_character(_player) + menu_x_direction;
 
-            save_set_character(_player, wrap(save_get_character(_player) + menu_x_direction, min_index, CHAR_CLASSIC));
+            while (char_index == CHAR_KNUX || char_index == CHAR_AMY) char_index += menu_x_direction;
+            char_index = wrap(char_index, min_index, CHAR_CLASSIC);
+
+            save_set_character(_player, char_index);
         }
         return true;
 
