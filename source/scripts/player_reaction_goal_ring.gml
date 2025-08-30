@@ -14,5 +14,8 @@ if ((_hitbox & HIT_INTERACT) && !_obj.active && !input_cpu)
         active = true;
         spin_count = clamp(floor(other.x_speed * 2), 3, 20);
         audio_play_sfx("snd_sign_post");
+        stage_set_pause_allow(false);
+        stage_set_time_allow(false);
+        camera_set_focus(self.id);
     }
 }
