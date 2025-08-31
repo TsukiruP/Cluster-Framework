@@ -102,3 +102,5 @@ if (sequence_index == seq_gun_hunter_shoot)
         audio_play_sfx("snd_gun_hunter_shoot", true);
     }
 }
+
+if (!in_view(self)) audio_stop_sfx(hunter_sfx);

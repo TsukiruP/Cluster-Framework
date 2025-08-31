@@ -50,7 +50,6 @@ applies_to=self
 
 event_inherited();
 if (game_ispaused() || !dropped) exit;
-if (!in_view(self, 64)) instance_destroy();
 
 var game_speed; game_speed = game_get_speed();
 var sine; sine = dsin(gravity_direction);
@@ -88,6 +87,8 @@ if (place_meeting(x + ox, y + oy, par_solid) && !place_meeting(xprevious, yprevi
 
     y_speed *= -1;
 }
+
+if (!in_view(self, 64)) instance_destroy();
 /*"/*'/**//* YYD ACTION
 lib_id=1
 action_id=603

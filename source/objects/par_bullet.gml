@@ -30,6 +30,7 @@ x += x_speed * game_speed;
 y += y_speed * game_speed;
 y_speed += gravity_force * game_speed;
 sequence_execute();
+
 if (!in_view(self)) instance_destroy();
 #define Draw_0
 /*"/*'/**//* YYD ACTION

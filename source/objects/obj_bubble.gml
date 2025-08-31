@@ -32,7 +32,6 @@ applies_to=self
 /// Animation
 
 if (game_ispaused(mnu_pause)) exit;
-if (!in_view(self)) instance_destroy();
 
 switch (size)
 {
@@ -51,7 +50,7 @@ switch (size)
 x = sine_wave_range(life_time, 128, xstart - 8 * image_xscale, xstart + 8 * image_xscale);
 y -= 0.5 * game_get_speed();
 
-if (!position_meeting(x, y, obj_water_mask)) instance_destroy();
+if (!in_view(self) || !position_meeting(x, y, obj_water_mask)) instance_destroy();
 #define Draw_0
 /*"/*'/**//* YYD ACTION
 lib_id=1

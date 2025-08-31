@@ -25,4 +25,5 @@ var game_speed; game_speed = game_get_speed();
 x += x_speed * game_speed;
 y += y_speed * game_speed;
 y_speed += gravity_force * game_speed;
+
 if (!in_view(self)) instance_destroy();
