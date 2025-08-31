@@ -7,15 +7,23 @@
 var _obj; _obj = argument0;
 var _hitbox; _hitbox = argument1;
 
-if ((_hitbox & HIT_INTERACT) && !_obj.active && !input_cpu)
+if ((_hitbox & HIT_INTERACT) && !_obj.goal_state && !input_cpu)
 {
     with (_obj)
     {
-        active = true;
+        goal_state = 1;
         spin_count = clamp(floor(other.x_speed * 2), 3, 20);
         audio_play_sfx("snd_sign_post");
         stage_set_pause_allow(false);
         stage_set_time_allow(false);
         camera_set_focus(self.id);
+        hud_set_hide(true);
+
+        with (obj_player)
+        {
+            input_allow = false;
+            player_reset_input();
+            player_set_input(pick(other.image_xscale == 1, INP_LEFT, INP_RIGHT), CHECK_HELD, true);
+        }
     }
 }

@@ -8,7 +8,7 @@ applies_to=self
 
 event_inherited();
 reaction_index = player_reaction_goal_ring;
-active = false;
+goal_state = 0;
 spin_count = 0;
 sparkle_alarm = 0;
 clear_alarm = 0;
@@ -36,9 +36,7 @@ applies_to=self
 
 if (game_ispaused(mnu_pause)) exit;
 
-if (sequence_index == seq_goal_ring && active && spin_count == 0) sequence_set(seq_goal_ring_clear);
-
-if (active)
+if (goal_state)
 {
     // Sparkles:
     if (sparkle_alarm == 0)
@@ -50,23 +48,45 @@ if (active)
     sequence_execute();
 }
 
-// Clear:
-if (sequence_position(60))
+switch (goal_state)
 {
-    clear_alarm = 64;
-    audio_stop_sfx("snd_sign_post");
-    audio_play_sfx("snd_goal_ring_clear");
-
-    for ({var i; i = ANGLE_RIGHT}; i <= ANGLE_RIGHT_DOWN; i += ANGLE_RIGHT_UP)
-    {
-        var sparkle_inst; sparkle_inst = effect_create(x, y, seq_goal_ring_sparkle, depth - 1);
-
-        with (sparkle_inst)
+    case 1:
+        if (spin_count == 0)
         {
-            x_speed = dcos(i) * 2;
-            y_speed = -dsin(i) * 2;
+            goal_state = 2;
+            sequence_set(seq_goal_ring_clear);
         }
-    }
+        break;
+
+    case 2:
+        if (sequence_position(60))
+        {
+            goal_state = 3;
+            clear_alarm = 128;
+            audio_stop_sfx("snd_sign_post");
+            audio_play_sfx("snd_goal_ring_clear");
+
+            for ({var i; i = ANGLE_RIGHT}; i <= ANGLE_RIGHT_DOWN; i += ANGLE_RIGHT_UP)
+            {
+                var sparkle_inst; sparkle_inst = effect_create(x, y, seq_goal_ring_sparkle, depth - 1);
+
+                with (sparkle_inst)
+                {
+                    x_speed = dcos(i) * 2;
+                    y_speed = -dsin(i) * 2;
+                }
+            }
+        }
+        break;
+
+    case 3:
+        if (clear_alarm == 0)
+        {
+            goal_state = 4;
+            save_auto();
+            transition_create(rm_debug);
+        }
+        break;
 }
 #define Other_4
 /*"/*'/**//* YYD ACTION
