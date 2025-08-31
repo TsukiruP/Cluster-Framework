@@ -23,6 +23,8 @@ switch (_phase)
                 player_reset_air_speed();
                 return true;
             }
+
+            if (relative_angle >= 45 && relative_angle <= 315) return player_set_state(player_state_run);
         }
         else
         {

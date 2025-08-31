@@ -44,6 +44,7 @@ switch (_phase)
                 return true;
             }
 
+            if (relative_angle >= 45 && relative_angle <= 315) return player_set_state(player_state_run);
             if (animation_time >= 180) return player_set_state(miles_state_dizzy);
 
             if (animation_trigger)
