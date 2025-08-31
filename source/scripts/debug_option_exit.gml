@@ -13,7 +13,7 @@ switch (_index)
 
     case OPTION_CONFIRM:
         if (_execute) game_end();
-        return true;
+        return false;
 
     default:
         return undefined;
