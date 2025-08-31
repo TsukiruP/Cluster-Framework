@@ -373,7 +373,8 @@ if (input_allow)
                                 }
                             }
 
-                            if (character_index == CHAR_MILES && !on_ground && player_get_input(INP_UP, CHECK_HELD) && player_get_input(INP_JUMP, CHECK_PRESSED))
+                            if (character_index == CHAR_MILES && !on_ground && leader_inst.state_current != sonic_state_peel_out &&
+                                player_get_input(INP_UP, CHECK_HELD) && player_get_input(INP_JUMP, CHECK_PRESSED))
                             {
                                 fly_hammer = false;
                                 player_set_state(miles_state_fly);
