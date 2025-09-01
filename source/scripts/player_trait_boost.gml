@@ -27,30 +27,27 @@ if (boost_mode || status_speed != SPEED_SLOW)
 }
 
 // Boost mode:
-if (!underwater && !_tag)
+if (boost_mode)
 {
-    if (boost_mode)
+    if ((on_ground && abs(x_speed) < 4.5) || underwater || _tag || status_speed == SPEED_SLOW)
     {
-        if ((on_ground && abs(x_speed) < 4.5) || status_speed == SPEED_SLOW)
-        {
-            boost_mode = false;
-            boost_speed = 0;
-        }
-        else if (on_ground) boost_speed = boost_threshold[boost_index];
+        boost_mode = false;
+        boost_speed = 0;
     }
-    else if (save_get("boost") && on_ground && abs(x_speed) >= top_speed && status_speed != SPEED_SLOW)
-    {
-        if (input_x_direction != 0 && input_allow) boost_speed += acceleration;
-
-        if (boost_speed >= boost_threshold[boost_index])
-        {
-            boost_mode = true;
-            audio_play_sfx("snd_boost_mode", true);
-            if (!input_cpu) camera_set_lag(10);
-        }
-    }
-    else boost_speed = 0;
+    else if (on_ground) boost_speed = boost_threshold[boost_index];
 }
+else if (save_get("boost") && on_ground && abs(x_speed) >= top_speed && !underwater && !_tag && status_speed != SPEED_SLOW)
+{
+    if (input_x_direction != 0 && input_allow) boost_speed += acceleration;
+
+    if (boost_speed >= boost_threshold[boost_index])
+    {
+        boost_mode = true;
+        audio_play_sfx("snd_boost_mode", true);
+        if (!input_cpu) camera_set_lag(10);
+    }
+}
+else boost_speed = 0;
 
 // Double top speed if not already doubled:
 if (boost_mode && status_speed != SPEED_UP) top_speed *= 2;
