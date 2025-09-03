@@ -1,3 +1,3 @@
 //gm82 fields begin
-layer=1
+item_index=ITEM_RANDOM_BONUS
 //gm82 fields end

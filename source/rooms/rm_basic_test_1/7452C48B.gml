@@ -1,3 +1,4 @@
 //gm82 fields begin
-layer=1
+move=true
+border_left=96
 //gm82 fields end

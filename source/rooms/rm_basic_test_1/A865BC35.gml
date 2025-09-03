@@ -1,3 +1,3 @@
 //gm82 fields begin
-layer=1
+item_index=ITEM_MAGNETIC
 //gm82 fields end
