@@ -10,6 +10,10 @@ switch (_index)
 {
     case OPTION_TEXT:
         return "Config";
+    
+    case OPTION_SELECT:
+        if (_execute) text_set_body("Various game settings.");
+        return true;
 
     case OPTION_CONFIRM:
         if (_execute) debug_set_next(debug_menu_config);

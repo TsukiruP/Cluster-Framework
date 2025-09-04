@@ -16,6 +16,10 @@ switch (_index)
 
     case OPTION_VALUE:
         return string(config_get_gamepad(player_index, config_key));
+    
+    case OPTION_SELECT:
+        if (_execute) text_set_body("Sets player's analog stick deadzone.");
+        return true;
 
     case OPTION_CHANGE:
         if (in_range(config_get_gamepad(player_index, config_key) + menu_x_direction / 100, 0, 1))

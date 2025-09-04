@@ -13,6 +13,10 @@ switch (_index)
 
     case OPTION_VALUE:
         return pick(transition_preview, "Fade", "Menu", "Title Card", "Retry");
+    
+    case OPTION_SELECT:
+        if (_execute) text_set_body("Creates a transition without changing rooms. Uses the data set in the Room option, meaning the Title Card will update accordingly.");
+        return true;
 
     case OPTION_CHANGE:
         if (_execute)

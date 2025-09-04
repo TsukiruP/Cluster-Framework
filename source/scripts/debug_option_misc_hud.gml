@@ -15,6 +15,17 @@ switch (_index)
 
     case OPTION_VALUE:
         return pick(config_get(config_key), "None", "Default", "S4E2");
+    
+    case OPTION_SELECT:
+        if (_execute)
+        {
+            text_set_body(pick(config_get(config_key),
+            "There will be no HUD during gameplay.",
+            "Sets the HUD to default.",
+            "Sets the HUD to one themed after Sonic the Hedgehog 4 Episode II."));
+        }
+        
+        return true;
 
     case OPTION_CHANGE:
         if (_execute) config_set(config_key, wrap(config_get(config_key) + menu_x_direction, 0, 2));

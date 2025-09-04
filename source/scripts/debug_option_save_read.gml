@@ -10,6 +10,10 @@ switch (_index)
 {
     case OPTION_TEXT:
         return "Read Save";
+    
+    case OPTION_SELECT:
+        if (_execute) text_set_body("Opens the debug save menu and allows you to pick a save to read.");
+        return true;
 
     case OPTION_CONFIRM:
         if (_execute) debug_save_create(1);

@@ -15,6 +15,10 @@ switch (_index)
 
     case OPTION_VALUE:
         return string(config_get(config_key));
+    
+    case OPTION_SELECT:
+        if (_execute) text_set_body("Sets the screen scale.");
+        return true;
 
     case OPTION_CHANGE:
         if (_execute) config_set(config_key, wrap(config_get(config_key) + menu_x_direction, 1, 3));

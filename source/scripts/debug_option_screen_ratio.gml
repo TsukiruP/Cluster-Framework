@@ -17,13 +17,17 @@ switch (_index)
         switch (config_get("screen_mode"))
         {
             // Misc:
-            case 4:
+            case 2:
                 return "7:4";
 
             // Default:
             default:
                 return pick(config_get(config_key), "16:9", "4:3", "5:3");
         }
+    
+    case OPTION_SELECT:
+        if (_execute) text_set_body("Sets the screen ratio. Screen modes may differ in what ratios they provide.");
+        return true;
 
     case OPTION_CHANGE:
         if (_execute)

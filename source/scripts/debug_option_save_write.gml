@@ -10,7 +10,12 @@ switch (_index)
 {
     case OPTION_TEXT:
         return "Write Save";
-
+    
+    case OPTION_SELECT:
+        if (_execute) text_set_body("Opens the debug save menu and allows you to pick a save slot to store game data.",
+        "Disclaimer: There is NO confirmation, so be careful about overriding a save.");
+        return true;
+    
     case OPTION_CONFIRM:
         if (_execute) debug_save_create(0);
         return true;

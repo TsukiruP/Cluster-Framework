@@ -10,6 +10,10 @@ switch (_index)
 {
     case OPTION_TEXT:
         return "Subject Test";
+    
+    case OPTION_SELECT:
+        if (_execute) text_set_body("Tests subject text.");
+        return true;
 
     case OPTION_CONFIRM:
         if (_execute) text_set_subject("This message is a test!");

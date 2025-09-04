@@ -16,6 +16,21 @@ switch (_index)
 
     case OPTION_VALUE:
         return string_input(INP_CONFIRM, rebind_device);
+    
+    case OPTION_SELECT:
+        if (_execute)
+        {
+            switch (config_get_gamepad(player_index, config_key))
+            {
+                case 1:
+                    text_set_body("Sets the player's Confirm/Cancel to Nintendo style.");
+                    
+                default:
+                    text_set_body("Sets the player's Confirm/Cancel to Xbox style.");
+            }
+        }
+        
+        return true;
 
     case OPTION_CHANGE:
         if (_execute)

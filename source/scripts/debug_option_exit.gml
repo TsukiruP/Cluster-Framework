@@ -10,6 +10,10 @@ switch (_index)
 {
     case OPTION_TEXT:
         return "Exit";
+    
+    case OPTION_SELECT:
+        if (_execute) text_set_body("Exits the game.");
+        return true;
 
     case OPTION_CONFIRM:
         if (_execute) game_end();

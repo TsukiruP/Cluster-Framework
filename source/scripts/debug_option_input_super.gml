@@ -15,6 +15,10 @@ switch (_index)
 
     case OPTION_VALUE:
         return string_input(input_index, rebind_device);
+    
+    case OPTION_SELECT:
+        if (_execute) text_set_body("Sets the Super input. Used for gameplay.");
+        return true;
 
     case OPTION_CONFIRM:
         if (_execute)

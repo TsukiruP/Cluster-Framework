@@ -15,6 +15,16 @@ switch (_index)
 
     case OPTION_VALUE:
         return string_bool(config_get(config_key), true);
+    
+    case OPTION_SELECT:
+        if (_execute)
+        {
+            text_set_body(pick(config_get(config_key),
+            "Characters don't play turning animations.",
+            "Characters play turning animations."));
+        }
+        
+        return true;
 
     case OPTION_CHANGE:
         if (_execute) config_set(config_key, !config_get(config_key));

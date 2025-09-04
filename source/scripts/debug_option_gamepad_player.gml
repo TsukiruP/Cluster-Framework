@@ -13,6 +13,10 @@ switch (_index)
 
     case OPTION_VALUE:
         return string(rebind_device - DEV_GAMEPAD0);
+    
+    case OPTION_SELECT:
+        if (_execute) text_set_body("Sets which player's input to display.");
+        return true;
 
     case OPTION_CHANGE:
         if (_execute) rebind_device = modwrap(rebind_device + menu_x_direction, 0, PLAYER_COUNT) + DEV_GAMEPAD0;

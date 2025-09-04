@@ -15,6 +15,27 @@ switch (_index)
 
     case OPTION_VALUE:
         return pick(config_get(config_key), "Default", "3DS", "Misc.");
+    
+    case OPTION_SELECT:
+        if (_execute)
+        {
+            switch (config_get(config_key))
+            {
+                case 0:
+                    text_set_body("Screen resolution is based around the default, 480x270.");
+                    break;
+                
+                case 1:
+                    text_set_body("Screen resolution is based around the 3DS.");
+                    break;
+                
+                default:
+                    text_set_body("Screen resolution isn't based on anything specific.");
+                    break;
+            }
+        }
+        
+        return true;
 
     case OPTION_CHANGE:
         if (_execute)

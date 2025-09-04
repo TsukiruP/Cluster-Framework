@@ -10,6 +10,10 @@ switch (_index)
 {
     case OPTION_TEXT:
         return "Input";
+    
+    case OPTION_SELECT:
+        if (_execute) text_set_body("Allows you to customize the input settings.");
+        return true;
 
     case OPTION_CONFIRM:
         if (_execute) debug_set_next(debug_menu_input);

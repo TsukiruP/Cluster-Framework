@@ -10,6 +10,10 @@ switch (_index)
 {
     case OPTION_TEXT:
         return "Body Test";
+    
+    case OPTION_SELECT:
+        if (_execute) text_set_body("Test body text.");
+        return true;
 
     case OPTION_CONFIRM:
         if (_execute)

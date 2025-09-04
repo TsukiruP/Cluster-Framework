@@ -15,7 +15,11 @@ switch (_index)
         return "Style:";
 
     case OPTION_VALUE:
-        return string(config_get_gamepad(player_index, config_key))
+        return string(config_get_gamepad(player_index, config_key));
+    
+    case OPTION_SELECT:
+        if (_execute) text_set_body("Sets the player's gamepad icons.");
+        return true;
 
     case OPTION_CHANGE:
         if (_execute) config_set_gamepad(player_index, config_key, wrap(config_get_gamepad(player_index, config_key) + menu_x_direction, 0, 2));

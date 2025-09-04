@@ -10,6 +10,10 @@ switch (_index)
 {
     case OPTION_TEXT:
         return "Read All";
+    
+    case OPTION_SELECT:
+        if (_execute) text_set_body("Reads all settings from a file.")
+        return true;
 
     case OPTION_CONFIRM:
         if (_execute)

@@ -10,6 +10,10 @@ switch (_index)
 {
     case OPTION_TEXT:
         return "Open Log";
+    
+    case OPTION_SELECT:
+        if (_execute) text_set_body("Opens the text log.");
+        return true;
 
     case OPTION_CONFIRM:
         if (_execute) ctrl_text.log_hide = false;

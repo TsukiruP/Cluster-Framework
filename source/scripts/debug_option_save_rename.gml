@@ -10,6 +10,10 @@ switch (_index)
 {
     case OPTION_TEXT:
         return "Rename Save";
+    
+    case OPTION_SELECT:
+        if (_execute) text_set_body("Opens a prompt to rename the current save name.");
+        return true;
 
     case OPTION_CONFIRM:
         if (_execute)

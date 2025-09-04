@@ -10,6 +10,10 @@ switch (_index)
 {
     case OPTION_TEXT:
         return "Write All";
+    
+    case OPTION_SELECT:
+        if (_execute) text_set_body("Writes all settings to a file.")
+        return true;
 
     case OPTION_CONFIRM:
         if (_execute) config_write();

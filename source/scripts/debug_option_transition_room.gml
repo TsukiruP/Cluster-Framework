@@ -13,6 +13,10 @@ switch (_index)
 
     case OPTION_VALUE:
         return room_get_name(transition_room);
+    
+    case OPTION_SELECT:
+        if (_execute) text_set_body("Changes the current room via a transition.");
+        return true;
 
     case OPTION_CHANGE:
         if (_execute)
