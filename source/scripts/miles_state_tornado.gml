@@ -52,7 +52,11 @@ switch (_phase)
                 switch (animation_current)
                 {
                     case "tornado":
-                        if (!player_get_input(INP_AUX, CHECK_HELD)) return player_set_animation("tornado_end");
+                        if (!player_get_input(INP_AUX, CHECK_HELD))
+                        {
+                            player_set_animation("tornado_end");
+                            return true;
+                        }
                         break;
 
                     case "tornado_end":
