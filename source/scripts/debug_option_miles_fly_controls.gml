@@ -17,6 +17,14 @@ switch (_index)
     case OPTION_VALUE:
         return pick(save_get_skill(character_key, skill_key), "Adventure", "Classic");
 
+    case OPTION_SELECT:
+        if (_execute)
+        {
+            text_set_body(pick(save_get_skill(character_key, skill_key), "Hold", "Press") + " " + string_input(INP_JUMP) + " to ascend while flying.");
+        }
+        
+        return true;
+    
     case OPTION_CHANGE:
         if (_execute) save_set_skill(character_key, skill_key, wrap(save_get_skill(character_key, skill_key) + menu_x_direction, CHECK_HELD, CHECK_PRESSED));
         return true;

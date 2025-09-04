@@ -17,6 +17,29 @@ switch (_index)
     case OPTION_VALUE:
         return pick(save_get_skill(character_key, skill_key), "None", "Hammer", "Skid");
 
+    case OPTION_SELECT:
+        if (_execute)
+        {
+            switch (save_get_skill(character_key, skill_key))
+            {
+                case SKILL_NONE:
+                    text_set_body("Nothing will occur when you press " + string_input(INP_AUX) + " while on the ground.");
+                    break;
+                
+                case SKILL_HAMMER:
+                    text_set_body("Press " + string_input(INP_AUX) + " to stop and swing a Piko Piko Hammer.");
+                    break;
+                
+                case SONIC_SKID:
+                    text_set_body("Press " + string_input(INP_AUX) + " to somersault into a slide.",
+                    "If done after a Super Peel Out or in Boost Mode, you will perform the Super Skid instead.",
+                    "Unlike the Skid, the Super Skid does not set or slow down your speed.");
+                    break;
+            }
+        }
+        
+        return true;
+    
     case OPTION_CHANGE:
         if (_execute) save_set_skill(character_key, skill_key, wrap(save_get_skill(character_key, skill_key) + menu_x_direction, SKILL_NONE, SONIC_SKID));
         return true;

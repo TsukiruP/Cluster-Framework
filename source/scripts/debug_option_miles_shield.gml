@@ -17,6 +17,11 @@ switch (_index)
     case OPTION_VALUE:
         return string_bool(save_get_skill(character_key, skill_key), true);
 
+    case OPTION_SELECT:
+        if (_execute) text_set_body("Enables Shield Skills when equipped with Elemental Shields.",
+        "Press " + string_input(INP_AUX) + " to perform Shield Skills.");
+        return true;
+    
     case OPTION_CHANGE:
         if (_execute) save_set_skill(character_key, skill_key, !save_get_skill(character_key, skill_key));
         return true;

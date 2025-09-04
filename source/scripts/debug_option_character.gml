@@ -12,7 +12,7 @@ switch (_index)
         return "Character Debug";
 
     case OPTION_SELECT:
-        if (_execute) text_set_body("Change player characters and their skills.");
+        if (_execute) text_set_body("Allows you to choose characters for both players. Also houses the options for Swap, Boost Mode, and Tag Actions.");
         return true;
 
     case OPTION_CONFIRM:
