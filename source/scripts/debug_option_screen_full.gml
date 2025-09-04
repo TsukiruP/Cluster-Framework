@@ -15,9 +15,9 @@ switch (_index)
 
     case OPTION_VALUE:
         return string_bool(config_get(config_key), true);
-    
+
     case OPTION_SELECT:
-        if (_execute) text_set_body("Sets whether the game is in fullscreen.");
+        if (_execute) text_set_body("Sets the game in fullscreen.");
         return true;
 
     case OPTION_CHANGE:

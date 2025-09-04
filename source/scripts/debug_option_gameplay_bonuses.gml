@@ -15,15 +15,15 @@ switch (_index)
 
     case OPTION_VALUE:
         return string_bool(config_get(config_key), true);
-    
+
     case OPTION_SELECT:
         if (_execute)
         {
             text_set_body(pick(config_get(config_key),
-            "Checkpoints do not give bonus items.",
-            "Checkpoints give bonus items."));
+            "Passing a Checkpoint will not give any items.",
+            "Passing a checkpoint will give you an item based on your ring count."));
         }
-        
+
         return true;
 
     case OPTION_CHANGE:

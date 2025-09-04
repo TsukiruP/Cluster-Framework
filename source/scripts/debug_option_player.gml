@@ -28,24 +28,24 @@ switch (_index)
 
             save_set_character(_player, char_index);
         }
-        
+
         return true;
-    
+
     case OPTION_SELECT:
         if (_execute)
         {
-            switch (_player)
+            switch (save_get_character(_player))
             {
                 case -1:
                     text_set_body("No character will spawn for this player.");
                     break;
-                    
+
                 case CHAR_SONIC:
                     text_set_body("The fastest thing alive, Sonic the Hedgehog. Provides the most customization out of any character.",
                     "You can also enable the Super Peel Out and Homing Attack to your liking.",
                     "His Tag Action is Sonic Accelerator, propelling the leader at max speed and putting them into Boost Mode.");
                     break;
-                
+
                 case CHAR_MILES:
                     text_set_body("The twin-tailed genius, Miles ''Tails'' Prower. Provides some customization, including access to the Insta-Shield.",
                     "When flying, hold " + string_input(INP_DOWN) + " and press " + string_input(INP_JUMP) + " to drop down. Press " + string_input(INP_JUMP) + " afterwards to resume flying.",
@@ -54,20 +54,20 @@ switch (_index)
                     "His aerial Tag Action is propeller catch, automatically putting himself into flight and carrying the leader.",
                     "Propeller Catch can also be triggered by making contact with Miles while he's flying or swimming.");
                     break;
-                
+
                 case CHAR_CLASSIC:
                     text_set_body("The blast from the past, Classic Sonic. Provides NO customization, instead having his Jump and Aux Skills fixed to the Drop Dash and Insta-Shield respectively.",
                     "Press Super for a surprise from the Heavenly Path.",
                     "Shares Sonic Accelerator with Sonic, but cannot perform Trick Actions or Tag Actions.");
                     break;
-                
+
                 default:
                     text_set_body("This character has no text set.");
             }
         }
-        
+
         return true;
-    
+
     case OPTION_CONFIRM:
         switch (save_get_character(_player))
         {

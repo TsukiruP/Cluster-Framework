@@ -15,15 +15,15 @@ switch (_index)
 
     case OPTION_VALUE:
         return pick(config_get(config_key), "Classic", "Advance");
-    
+
     case OPTION_SELECT:
         if (_execute)
         {
             text_set_body(pick(config_get(config_key),
             "Braking only stops if you input in the direction you're moving, like in Sonic 1.",
-            "Braking stops as long as you stop holding the direction opposite of where you're moving, like in the Sonic Advance series."));
+            "Braking stops when you stop holding the direction opposite of where you're moving, like in the Sonic Advance series."));
         }
-        
+
         return true;
 
     case OPTION_CHANGE:
