@@ -80,8 +80,9 @@ applies_to=self
 if (!game_get_debug()) exit;
 
 var font_height; font_height = font_get_height(global.font_system);
-var game_string; game_string = GAME_NAME + " " + string_format(GAME_VERSION, 1, 2);
+var game_string; game_string = GAME_NAME + "#" + "SAGE 2025"; //+ string_format(GAME_VERSION, 1, 2);
 
 draw_set2(fa_right, fa_bottom);
-draw_text(view_xview[view_current] + screen_get_width() - font_height / 2, view_yview[view_current] + screen_get_height(), game_string + "#" + date_datetime_string(date_current_datetime()));
+//draw_text(view_xview[view_current] + screen_get_width() - font_height / 2, view_yview[view_current] + screen_get_height(), game_string + "#" + date_datetime_string(date_current_datetime()));
+draw_text(view_xview[view_current] + screen_get_width() - font_height / 2, view_yview[view_current] + screen_get_height(), game_string + "#" + string(fps) + " " + "FPS");
 draw_reset();

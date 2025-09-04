@@ -11,9 +11,10 @@ Tsukiru
 PROGRAMMING
 Tsukiru
 Monolith
-CBTBSD
+A.NB
 VectorSatyr
 The Valeev
+CBTBSD
 renex
 square
 YellowAfterlife
@@ -59,6 +60,10 @@ Rose confession
 Phantasy Star Online
 Composed by Hideaki Kobayashi
 Arranged by Yutaka Minobe
+
+backyard of eden
+Fate/EXTRA CCC
+Composed by James Harris
 
 TOOLS
 Game Maker 8.2
