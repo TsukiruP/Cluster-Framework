@@ -17,7 +17,7 @@ switch (_index)
         return string_bool(save_get(save_key), true);
     
     case OPTION_SELECT:
-        if (_execute) text_set_body("Enables character swapping from Sonic Mania.",
+        if (_execute) text_set_body("Toggles character swapping from Sonic Mania.",
         "If the partner character is offscreen, press " + string_input(INP_SWAP) + " to teleport them to you.",
         "Swapping and teleporting will not work if the partner character is not being CPU controlled.")
         return true;

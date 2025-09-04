@@ -12,7 +12,7 @@ switch (_index)
         return "Reset Log";
     
     case OPTION_SELECT:
-        if (_execute) text_set_body("Clears the text log.");
+        if (_execute) text_set_body("Resets the text log.");
         return true;
 
     case OPTION_CONFIRM:

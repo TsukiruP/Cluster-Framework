@@ -12,7 +12,7 @@ switch (_index)
         return "Delete Save";
     
     case OPTION_SELECT:
-        if (_execute) text_set_body("Opens the debug save menu and allows you to pick a save slot to delete.",
+        if (_execute) text_set_body("Opens the debug save menu and allows you to pick a save slot to delete." + "#" +
         "Disclaimer: There is NO confirmation, so be careful about deleting a save.");
         return true;
 

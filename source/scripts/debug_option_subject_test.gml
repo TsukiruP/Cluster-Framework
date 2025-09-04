@@ -12,7 +12,7 @@ switch (_index)
         return "Subject Test";
     
     case OPTION_SELECT:
-        if (_execute) text_set_body("Tests subject text.");
+        if (_execute) text_set_body("Opens a subject textbox.");
         return true;
 
     case OPTION_CONFIRM:

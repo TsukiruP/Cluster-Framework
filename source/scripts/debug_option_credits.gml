@@ -12,8 +12,7 @@ switch (_index)
         return "Credits";
 
     case OPTION_SELECT:
-        if (_execute) text_set_body("Displays scrolling credits.",
-        "Can be moved with " + string_input(INP_UP) + " and " + string_input(INP_DOWN) + " or skipped with " + string_input(INP_START) + " or " + string_input(INP_CANCEL) + ".");
+        if (_execute) text_set_body("Displays scrolling credits. They can be moved with " + string_input(INP_UP) + " and " + string_input(INP_DOWN) + " or skipped with " + string_input(INP_START) + " or " + string_input(INP_CANCEL) + ".");
         return true;
 
     case OPTION_CONFIRM:

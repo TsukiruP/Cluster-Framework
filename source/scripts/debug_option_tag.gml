@@ -17,7 +17,7 @@ switch (_index)
         return string_bool(save_get(save_key), true);
     
     case OPTION_SELECT:
-        if (_execute) text_set_body("Enables Tag Actions from Sonic Advance 3.",
+        if (_execute) text_set_body("Toggles Tag Actions from Sonic Advance 3.",
         "You can cancel a Tag Action by pressing " + string_input(INP_SWAP) + ".");
         return true;
     

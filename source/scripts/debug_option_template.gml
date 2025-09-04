@@ -15,7 +15,7 @@ switch (_index)
         return undefined;
 
     case OPTION_SELECT:
-        if (_execute) return true;
+        if (_execute) text_set_body("Incompetent template use!");
         return false;
 
     case OPTION_CHANGE:

@@ -12,7 +12,7 @@ switch (_index)
         return "Character Debug";
 
     case OPTION_SELECT:
-        if (_execute) text_set_body("Allows you to choose characters for both players. Also houses the options for Swap, Boost Mode, and Tag Actions.");
+        if (_execute) text_set_body("Allows you to choose characters for both players. Also lets you toggle Boost Mode, Tag Actions, and Swap.");
         return true;
 
     case OPTION_CONFIRM:

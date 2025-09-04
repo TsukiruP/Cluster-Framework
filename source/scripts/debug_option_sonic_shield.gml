@@ -18,7 +18,7 @@ switch (_index)
         return string_bool(save_get_skill(character_key, skill_key), true);
     
     case OPTION_SELECT:
-        if (_execute) text_set_body("Enables Shield Skills when equipped with Elemental Shields.",
+        if (_execute) text_set_body("Toggles Shield Skills when equipped with Elemental Shields.",
         "Shield Skills are bound to any aerial skill set to None or Insta-Shield.");
         return true;
     

@@ -12,7 +12,7 @@ switch (_index)
         return "Body Test";
     
     case OPTION_SELECT:
-        if (_execute) text_set_body("Test body text.");
+        if (_execute) text_set_body("Opens a body textbox.");
         return true;
 
     case OPTION_CONFIRM:

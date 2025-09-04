@@ -18,7 +18,7 @@ switch (_index)
         return string_bool(save_get_skill(character_key, skill_key), true);
     
     case OPTION_SELECT:
-        if (_execute) text_set_body("Enables the Super Peel Out.")
+        if (_execute) text_set_body("Toggles the Super Peel Out. Hold " + string_input(INP_UP) + " and press " + string_input(INP_JUMP) + " to perform the Super Peel Out.");
         return true;
     
     case OPTION_CHANGE:

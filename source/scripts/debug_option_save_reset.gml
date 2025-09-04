@@ -12,7 +12,7 @@ switch (_index)
         return "Reset Save";
     
     case OPTION_SELECT:
-        if (_execute) text_set_body("Resets the current game data. Also resets the save index to -1, disabling auto save until a save is made or loaded.");
+        if (_execute) text_set_body("Resets the game data and the save index to -1, disabling auto save until a save is made or loaded.");
         return true;
 
     case OPTION_CONFIRM:
