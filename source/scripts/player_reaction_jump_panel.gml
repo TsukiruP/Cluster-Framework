@@ -19,6 +19,14 @@ if ((_hitbox & HIT_SOLID) && _side == ANGLE_UP)
     {
         y_speed = -6;
         player_set_state(player_state_ramp, true);
-        audio_play_sfx("snd_dash_panel");
+
+        with (_obj)
+        {
+            if (sfx_alarm == 0)
+            {
+                sfx_alarm = 8;
+                audio_play_sfx("snd_dash_panel", true);
+            }
+        }
     }
 }

@@ -12,7 +12,17 @@ reaction_solid = true;
 shape = SHP_CUSTOM;
 is_mask = false;
 force = 12;
+sfx_alarm = 0;
 hitbox_set_hurtbox(6, 16, 4, 0, 25);
+#define Step_1
+/*"/*'/**//* YYD ACTION
+lib_id=1
+action_id=603
+applies_to=self
+*/
+/// Alarm
+
+if (sfx_alarm > 0) sfx_alarm -= 1;
 #define Step_2
 /*"/*'/**//* YYD ACTION
 lib_id=1
