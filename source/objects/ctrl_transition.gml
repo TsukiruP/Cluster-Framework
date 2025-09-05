@@ -86,7 +86,7 @@ if (((transition_index == TRANS_CARD && transition_state > 3) || (transition_ind
     {
         with (obj_player)
         {
-            x_speed = top_speed;
+            x_speed = max(x_speed, top_speed);
             player_set_state(player_state_run);
             player_set_input(INP_RIGHT, CHECK_HELD, true);
         }
