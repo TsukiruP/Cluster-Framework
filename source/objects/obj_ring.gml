@@ -23,7 +23,11 @@ applies_to=self
 
 if (magnetized)
 {
-    with (instance_create(x, y, obj_ring_magnetized)) super = other.super;
+    with (instance_create(x, y, obj_ring_magnetized))
+    {
+        sprite_index = other.sprite_index;
+        super = other.super;
+    }
 }
 #define Step_1
 /*"/*'/**//* YYD ACTION
