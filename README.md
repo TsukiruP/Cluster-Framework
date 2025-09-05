@@ -14,7 +14,7 @@ The Cluster Framework is a Sonic framework for Game Maker 8.2. Rather than being
   * Classic Sonic
 * Classic CPU player/partner
 * Skill system
-  * Customize Sonic and Tails' movesets with moves from across the series!
+  * Customize Sonic and Tails' movesets with skills from across the series!
 * Sonic Advance 2 Mechanics
   * Boost Mode (Toggable)
   * Trick Actions
