@@ -2,5 +2,5 @@
 /// @desc Resets the audio config.
 /// @returns {void}
 
-config_set("audio_sfx", 50);
-config_set("audio_bgm", 0);
+config_set("audio_sfx", 20);
+config_set("audio_bgm", 20);
