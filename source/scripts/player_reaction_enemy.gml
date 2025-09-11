@@ -17,6 +17,7 @@ if (((_hitbox & HIT_INTERACT) && status_invin == INVIN_BUFF) || (_hitbox & HIT_A
 
         if (_obj.vitality > 0)
         {
+            sonic_routine_homing();
             x_speed *= -0.5;
             y_speed *= -0.5;
             enemy_create_hit(_obj);
