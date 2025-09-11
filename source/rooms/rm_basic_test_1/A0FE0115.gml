@@ -1,3 +1,3 @@
 //gm82 fields begin
-item_index=ITEM_SWAP
+border_right=144
 //gm82 fields end
