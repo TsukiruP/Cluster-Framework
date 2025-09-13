@@ -12,7 +12,7 @@ var _side; _side = argument2;
 if ((_hitbox & HIT_SOLID) && _side == ANGLE_UP)
 {
     image_xscale = _obj.image_xscale;
-    x_speed = max(abs(x_speed), _obj.force) * image_xscale;
+    x_speed = _obj.force * image_xscale;
     input_lock_alarm = 16;
 
     if (_hitbox & HIT_RADII)
