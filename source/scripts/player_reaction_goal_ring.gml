@@ -18,6 +18,7 @@ if ((_hitbox & HIT_INTERACT) && !_obj.goal_state && !input_cpu)
         stage_set_pause_allow(false);
         stage_set_time_allow(false);
         camera_set_focus(self.id);
+        camera_set_lag(0);
         hud_set_hide(true);
 
         with (obj_player)
