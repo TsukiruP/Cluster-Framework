@@ -1,3 +1,3 @@
 //gm82 fields begin
-force=6
+force=5
 //gm82 fields end
