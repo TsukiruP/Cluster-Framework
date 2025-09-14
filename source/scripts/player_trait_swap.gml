@@ -26,7 +26,7 @@ if (player_get_input(INP_SWAP, CHECK_PRESSED))
                     swap_alarm = 60;
                     status_shield = other.status_shield;
                     status_invin = other.status_invin;
-                    status_invin_alarm = other.status_invin;
+                    status_invin_alarm = other.status_invin_alarm;
                     status_speed = other.status_speed;
                     status_speed_alarm = other.status_speed_alarm;
                     player_reset_input();
