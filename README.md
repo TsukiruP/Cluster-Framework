@@ -4,7 +4,7 @@ A Sonic fangame framework for Game Maker 8.2.
 
 ## Description
 
-The Cluster Framework is a Sonic framework for Game Maker 8.2. Rather than being purely Classic, Modern, or Advance, this framework aims to bring together many concepts across the series, all the while providing incredible customization and attention to detail. Heavily based on VectorSatyr's [Sonic For GMS](https://github.com/VectorSatyr/legacy-sonic-for-gms-1), [Sonic Studio Engine](https://forums.sonicretro.org/threads/new-game-maker-studio-sonic-engine.31723/), and Monotlith's [Starlight 9 Engine](https://github.com/monolith4007/Starlight-9-Engine).
+The Cluster Framework is a Sonic framework for Game Maker 8.2. Rather than being purely Classic, Modern, or Advance, this framework aims to bring together many concepts across the series, all the while providing incredible customization and attention to detail. Heavily based on VectorSatyr's Sonic For GMS, Sonic Studio Engine, and Monotlith's [Starlight 9 Engine](https://github.com/monolith4007/Starlight-9-Engine).
 
 Although this is named a "framework" and is open source, the Cluster Framework is NOT recommended as a base for fan game projects. In it's current state, it's best to treat the framework as a proof of concept or tech demo. My code is free to use or take inspiration of for other projects as long as proper credit is given.
 
