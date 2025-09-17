@@ -54,7 +54,7 @@ Tsukiru\
 
 ## License
 
-This project is licensed under the [NAME HERE] License - see the LICENSE.md file for details\
+BSD 2-Clause License\
 FMODex is a product of Firelight Technologies.
 
 ## Acknowledgments
