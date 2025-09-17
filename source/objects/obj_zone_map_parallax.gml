@@ -90,6 +90,9 @@ var sky_height; sky_height = background_get_height(bg_basic_test_sky);
 var sky_x; sky_x = view_xview[view_current] div sky_rate;
 var sky_y; sky_y = sea_y - sky_height;
 
+draw_rect(view_xview[view_current], view_yview[view_current], screen_get_width(), screen_get_height(), make_color_rgb(0, 56, 192));
+draw_rect(view_xview[view_current], parallax_reference, screen_get_width(), room_height - screen_get_height(), make_color_rgb(8, 66, 82));
+
 draw_background_tiled_extra(bg_basic_test_under, sky_x, sea_y, 1,  1, 0, c_white, 1, 0, 1);
 draw_background_tiled_extra(bg_basic_test_sky, sky_x + sky_scroll, sky_y, 1, 1, 0, c_white, 1, 0, 1);
 draw_background_tiled_extra(bg_basic_test_sea, sea_x, sea_y, 1, sea_scale, 0, c_white, 1, 0, 1);

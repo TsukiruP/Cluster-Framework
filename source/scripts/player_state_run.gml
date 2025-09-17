@@ -61,7 +61,6 @@ switch (_phase)
         if (player_routine_skill()) return true;
         if (player_routine_jump()) return true;
 
-        if (abs(x_speed) < 10 && peel_out) peel_out = false;
         player_animation_run();
         break;
 

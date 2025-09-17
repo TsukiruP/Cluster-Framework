@@ -72,7 +72,7 @@ if (!text_clear && text_inst != par_overlay && log_hide && (body_alpha == 1 || s
 
 if (!text_clear)
 {
-    if (!game_ispaused(mnu_pause) && (!ds_list_empty(body_list) || subject_string != "" || log_alpha != 0) && input_get_check(INP_HIDE, CHECK_PRESSED))
+    if (!game_ispaused(mnu_pause) && (!ds_list_empty(body_list) || subject_string != "") && log_hide && input_get_check(INP_HIDE, CHECK_PRESSED))
     {
         text_hide = !text_hide;
     }

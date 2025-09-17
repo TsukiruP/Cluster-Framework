@@ -21,6 +21,12 @@ if ((_hitbox & HIT_INTERACT) && !_obj.goal_state && !input_cpu)
         camera_set_lag(0);
         hud_set_hide(true);
 
+        with (ctrl_camera)
+        {
+            camera_x_shift = 0;
+            camera_y_shift = 0;
+        }
+
         with (obj_player)
         {
             input_allow = false;
