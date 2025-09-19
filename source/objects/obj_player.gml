@@ -313,7 +313,7 @@ if (input_allow)
                             {
                                 player_set_input(INP_LEFT, CHECK_HELD, true);
                                 player_set_input(INP_RIGHT, CHECK_HELD, false);
-                                if (sign(image_xscale) == 1 && x_speed != 0 && animation_current != "push") x += 1;
+                                if (sign(image_xscale) == 1 && x_speed != 0 && animation_current != "push" && leader_inst.status_speed != SPEED_SLOW) x += 1;
                             }
 
                             // Move right:
@@ -321,7 +321,7 @@ if (input_allow)
                             {
                                 player_set_input(INP_LEFT, CHECK_HELD, false);
                                 player_set_input(INP_RIGHT, CHECK_HELD, true);
-                                if (sign(image_xscale) == -1 && x_speed != 0 && animation_current != "push") x -= 1;
+                                if (sign(image_xscale) == -1 && x_speed != 0 && animation_current != "push" && leader_inst.status_speed != SPEED_SLOW) x -= 1;
                             }
 
                             // Jump:
