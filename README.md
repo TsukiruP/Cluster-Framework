@@ -1,15 +1,12 @@
 # Cluster Framework
-
 A Sonic fangame framework for Game Maker 8.2.
 
 ## Description
-
 The Cluster Framework is a Sonic framework for Game Maker 8.2. Rather than being purely Classic, Modern, or Advance, this framework aims to bring together many concepts across the series, all the while providing incredible customization and attention to detail. Heavily based on VectorSatyr's Sonic For GMS, Sonic Studio Engine, and Monotlith's [Starlight 9 Engine](https://github.com/monolith4007/Starlight-9-Engine).
 
 Although this is named a "framework" and is open source, the Cluster Framework is NOT recommended as a base for fan game projects. In it's current state, it's best to treat the framework as a proof of concept or tech demo. My code is free to use or take inspiration of for other projects as long as proper credit is given.
 
 ## Features
-
 * 3 playable characters
   * Sonic the Hedgehog
   * Miles "Tails" Prower
@@ -32,33 +29,26 @@ Although this is named a "framework" and is open source, the Cluster Framework i
 * Full keyboard and partial gamepad configuration
 
 ## Getting Started
-
 ### Dependencies
-
 * [Game Maker 8.2](https://gm82.cherry-treehouse.com/#Downloads)
 
 ### Installing
-
 * How/where to download your program
 * Any modifications needed to be made to files/folders
 
 ## Authors
-
 Tsukiru\
 [Monolith](https://github.com/monolith4007)
 
 ## Version History
-
 * 0.1
     * Initial Release
 
 ## License
-
 BSD 2-Clause License\
 FMODex is a product of Firelight Technologies.
 
 ## Acknowledgments
-
 [Sonic Mania Decompilation](https://github.com/RSDKModding/Sonic-Mania-Decompilation)\
 [Sonic Advance 2 Decompilation](https://github.com/SAT-R/sa2)\
 [CBTBSD](https://github.com/tariq-nasheed)\
