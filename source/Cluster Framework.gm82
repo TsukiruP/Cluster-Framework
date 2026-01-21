@@ -12,7 +12,7 @@ exe_description=
 exe_version=1.0.0.0
 
 has_backgrounds=1
-has_datafiles=0
+has_datafiles=1
 has_fonts=0
 has_objects=1
 has_paths=0
